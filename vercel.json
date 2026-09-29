@@ -1,9 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm --prefix \"001 Main\" install --include=dev",
-  "buildCommand": "npm --prefix \"001 Main\" run build",
-  "outputDirectory": "001 Main/dist",
-  "framework": null,
   "cleanUrls": true,
   "rewrites": [
     { "source": "/api/pdf", "destination": "/api/pdf.js" },

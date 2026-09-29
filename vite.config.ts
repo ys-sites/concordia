@@ -34,7 +34,7 @@ function copyDirFiltered(src: string, dest: string) {
 
 // Custom middleware to serve local course PDFs seamlessly and bundle for Vercel
 function coursePdfPlugin() {
-  const semester1Root = path.resolve(__dirname, '..');
+  const semester1Root = __dirname;
 
   return {
     name: 'course-pdf-server',
@@ -125,10 +125,7 @@ export default defineConfig({
   plugins: [react(), coursePdfPlugin()],
   server: {
     port: 5173,
-    open: true,
-    fs: {
-      allow: ['..']
-    }
+    open: true
   }
 });
 

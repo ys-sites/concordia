@@ -1,15 +1,23 @@
 {
-  "name": "concordia-engineering-hub",
+  "name": "concordia-engineering-portal",
+  "private": true,
   "version": "1.0.0",
   "type": "module",
-  "private": true,
-  "description": "Concordia University Engineering Hub & 20-Question Brain-Programming Exam Engine",
-  "workspaces": [
-    "001 Main"
-  ],
   "scripts": {
-    "dev": "npm --prefix \"001 Main\" run dev",
-    "build": "npm --prefix \"001 Main\" run build",
-    "preview": "npm --prefix \"001 Main\" run preview"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "lucide-react": "^0.475.0",
+    "canvas-confetti": "^1.9.4",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/canvas-confetti": "^1.9.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
   }
 }
