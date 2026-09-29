@@ -4,9 +4,12 @@
   "type": "module",
   "private": true,
   "description": "Concordia University Engineering Hub & 20-Question Brain-Programming Exam Engine",
+  "workspaces": [
+    "001 Main"
+  ],
   "scripts": {
     "dev": "npm --prefix \"001 Main\" run dev",
-    "build": "cd \"001 Main\" && npm install && npm run build",
+    "build": "npm --prefix \"001 Main\" run build",
     "preview": "npm --prefix \"001 Main\" run preview"
   }
 }
