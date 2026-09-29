@@ -1,0 +1,11 @@
+{
+  "name": "concordia-engineering-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Concordia University Engineering Hub & 20-Question Brain-Programming Exam Engine",
+  "scripts": {
+    "dev": "npm --prefix \"001 Main\" run dev",
+    "build": "cd \"001 Main\" && npm install && npm run build",
+    "preview": "npm --prefix \"001 Main\" run preview"
+  }
+}

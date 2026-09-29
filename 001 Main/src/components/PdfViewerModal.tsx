@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { CourseDocument } from '../types';
 import { X, ExternalLink, Download, FileText, Maximize2 } from 'lucide-react';
 import { audio } from '../utils/audio';
+import { getPdfUrl } from '../utils/pdfUrl';
 
 interface PdfViewerModalProps {
   document: CourseDocument | null;
@@ -21,7 +22,7 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document, onClos
 
   if (!document) return null;
 
-  const pdfUrl = `/api/pdf?path=${encodeURIComponent(document.relativePath)}`;
+  const pdfUrl = getPdfUrl(document.relativePath);
 
   return (
     <div className="modal-backdrop" onClick={onClose}>

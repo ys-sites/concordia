@@ -21,6 +21,7 @@ import {
   ListTree
 } from 'lucide-react';
 import { audio } from '../utils/audio';
+import { getPdfUrl } from '../utils/pdfUrl';
 
 interface CourseWorkspaceProps {
   course: CourseWithDocs;
@@ -410,7 +411,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                       <div className="tree-files-list">
                         {docs.map((doc, idx) => {
                           const subDir = getSubDirectory(doc.relativePath);
-                          const pdfApiUrl = `/api/pdf?path=${encodeURIComponent(doc.relativePath)}`;
+                          const pdfApiUrl = getPdfUrl(doc.relativePath);
                           const isLast = idx === docs.length - 1;
 
                           return (
@@ -506,7 +507,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                       <div className="documents-grid in-folder">
                         {docs.map(doc => {
                           const subDir = getSubDirectory(doc.relativePath);
-                          const pdfApiUrl = `/api/pdf?path=${encodeURIComponent(doc.relativePath)}`;
+                          const pdfApiUrl = getPdfUrl(doc.relativePath);
 
                           return (
                             <div key={doc.id} className="doc-card">
