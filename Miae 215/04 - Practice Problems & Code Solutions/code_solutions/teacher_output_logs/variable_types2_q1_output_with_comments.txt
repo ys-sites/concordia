@@ -1,0 +1,25 @@
+
+y = 5
+z = 36 // look up the int from the ASCII table from the notes
+(int)ch = -125
+(int)'c' = 99 // look up char from ASCII table
+y = 32 // look up from ASCII table
+y2 = 32
+y3 = 32
+(char)y = g // from above 32 + upper case = lower case
+(char)y = # // ASCII table
+d1 = 0.0000000000e+00
+d2 = 4.7683715820e-07 
+// 0.000000005 for f2 is not used since it's beyond its 8 digit precision
+f1 = 3.0000004768e+00
+f2 = 3.0000000000e+00
+f3 = 4.7683715820e-07
+xs = -32059
+sizeof(short int) = 2
+sizeof(const double) = 8
+sizeof(long double) = 8
+sizeof(long float) = 8
+size1 = 4
+size2 = 4
+size3 = 2
+press enter to continue.

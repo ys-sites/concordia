@@ -1,0 +1,31 @@
+
+4) Expressions and Operators
+
+assignment operator =
+
+sequential logic and memory
+ 
+extended / multiple assignment
+
+basic arithmetic operators +, -, *, / and typical errors  
+
+% operator
+
+increment (++) and decrement (--) operators
+    
+generalized increment (+=) and decrement (-=) operators
+and *= and /=
+
+combining ++ and = in an expression
+
+order of precedence of arithmetic operators
+
+expressions with mixed variable types
+
+function libraries
+   
+math library functions including the most useful ones 
+(eg sin(x), etc.)
+
+typical errors with math functions
+

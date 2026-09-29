@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 900" width="100%" height="auto" style="background:#ffffff; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;">
+  <defs>
+    <!-- Arrowhead marker -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0f172a"/>
+    </marker>
+  </defs>
+
+  <!-- Title matching Lecture 3 Slide 20 exactly -->
+  <text x="50" y="38" font-size="22" font-weight="700" fill="#0f172a">▪ Operations process chart for wooden chair</text>
+  <text x="50" y="58" font-size="12" fill="#64748b">IKEA STEFAN Wooden Dining Chair — INDU 211 Operations Process Chart (OPC) Standard</text>
+
+  <!-- ==================== HORIZONTAL COMPONENT LINES (STAGGERED FROM LEFT) ==================== -->
+  <g stroke="#0f172a" stroke-width="2.2" fill="none">
+    <!-- 1. Rear Legs / Back Uprights (Main Trunk) - Top Line -->
+    <line x1="50" y1="95" x2="720" y2="95"/>
+
+    <!-- 2. Backrest Cross-Rail -->
+    <line x1="50" y1="170" x2="520" y2="170"/>
+
+    <!-- 3. Side Stretchers (2) -->
+    <line x1="50" y1="260" x2="360" y2="260"/>
+
+    <!-- 4. Front Legs (2) & Front Stretcher -->
+    <line x1="50" y1="360" x2="200" y2="360"/>
+
+    <!-- 5. Seat Board -->
+    <line x1="50" y1="520" x2="480" y2="520"/>
+
+    <!-- 6. Miscellaneous Purchased Parts Bar -->
+    <line x1="50" y1="620" x2="720" y2="620" stroke-width="2.5"/>
+  </g>
+
+  <!-- Component Titles above the Horizontal Lines -->
+  <g font-size="13" font-weight="700" fill="#0f172a">
+    <text x="50" y="87">Rear Legs / Back Uprights (2)</text>
+    <text x="50" y="162">Backrest Cross-Rail</text>
+    <text x="50" y="252">Side Stretchers (2)</text>
+    <text x="50" y="352">Front Legs (2) &amp; Front Stretcher</text>
+    <text x="50" y="512">Seat Board</text>
+    <text x="50" y="612">Miscellaneous Purchased Parts</text>
+  </g>
+  <text x="50" y="638" font-size="11" font-weight="600" fill="#64748b">(Hex Bolts, Barrel Nuts, Screws, Wooden Dowels)</text>
+
+  <!-- ==================== CONNECTING VERTICAL & MERGE LINES ==================== -->
+  <g stroke="#0f172a" stroke-width="2" fill="none">
+    <!-- Main Trunk (x = 720) from y=95 straight down to y=815 -->
+    <line x1="720" y1="95" x2="720" y2="815"/>
+
+    <!-- Backrest Cross-Rail Branch (x = 520) -->
+    <line x1="520" y1="170" x2="520" y2="225"/>
+    <line x1="520" y1="225" x2="720" y2="225"/>
+
+    <!-- Side Stretchers Branch (x = 360) -->
+    <line x1="360" y1="260" x2="360" y2="315"/>
+    <line x1="360" y1="315" x2="720" y2="315"/>
+
+    <!-- Front Legs Branch (x = 200) -->
+    <line x1="200" y1="360" x2="200" y2="440"/>
+    <line x1="200" y1="440" x2="720" y2="440"/>
+
+    <!-- Seat Board Branch (x = 480) -->
+    <line x1="480" y1="520" x2="480" y2="570"/>
+    <line x1="480" y1="570" x2="720" y2="570"/>
+  </g>
+
+  <!-- ==================== OPERATIONS ON BRANCHES ==================== -->
+
+  <!-- Branch 2: Backrest Cross-Rail -->
+  <circle cx="520" cy="195" r="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="495" y="193" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Bench 2</text>
+  <text x="495" y="204" font-size="9" fill="#64748b" text-anchor="end">(Dowel Jig)</text>
+  <text x="545" y="198" font-size="11.5" font-weight="600" fill="#0f172a">Inspect &amp; Insert End Dowels</text>
+
+  <!-- Branch 3: Side Stretchers -->
+  <circle cx="360" cy="285" r="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="335" y="283" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Dowel Press</text>
+  <text x="335" y="294" font-size="9" fill="#64748b" text-anchor="end">(Both Ends)</text>
+  <text x="385" y="288" font-size="11.5" font-weight="600" fill="#0f172a">Inspect &amp; Insert Dowels</text>
+
+  <!-- Branch 4: Front Legs & Stretcher -->
+  <circle cx="200" cy="385" r="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="175" y="383" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Bench 3</text>
+  <text x="175" y="394" font-size="9" fill="#64748b" text-anchor="end">(Staging)</text>
+  <text x="225" y="388" font-size="11.5" font-weight="600" fill="#0f172a">Inspect Front Legs &amp; Stretcher</text>
+
+  <circle cx="200" cy="425" r="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="175" y="423" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Front Clamp Jig</text>
+  <text x="175" y="434" font-size="9" fill="#64748b" text-anchor="end">(Pneumatic)</text>
+  <text x="225" y="428" font-size="11.5" font-weight="600" fill="#0f172a">Assemble Front Frame Sub-Assy</text>
+
+  <!-- Branch 5: Seat Board -->
+  <circle cx="480" cy="545" r="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="455" y="543" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Bench 4</text>
+  <text x="455" y="554" font-size="9" fill="#64748b" text-anchor="end">(Inspection)</text>
+  <text x="505" y="548" font-size="11.5" font-weight="600" fill="#0f172a">Inspect Finish &amp; Mounting Holes</text>
+
+  <!-- ==================== OPERATIONS ON MAIN TRUNK (REAR LEGS & CHAIR BACKBONE) ==================== -->
+  
+  <!-- Op 1: Unpack & Inspect Rear Uprights -->
+  <circle cx="720" cy="125" r="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="695" y="123" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Bench 1</text>
+  <text x="695" y="134" font-size="9" fill="#64748b" text-anchor="end">(Staging)</text>
+  <text x="745" y="128" font-size="12" font-weight="600" fill="#0f172a">Inspect Rear Legs &amp; Uprights</text>
+
+  <!-- Op 2: Insert Dowels into Uprights -->
+  <circle cx="720" cy="175" r="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="695" y="173" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Dowel Jig 1</text>
+  <text x="695" y="184" font-size="9" fill="#64748b" text-anchor="end">(Rear Posts)</text>
+  <text x="745" y="178" font-size="12" font-weight="600" fill="#0f172a">Insert Dowels into Upright Sockets</text>
+
+  <!-- Op 3: Attach Backrest Rail (Right below merge of Backrest Rail) -->
+  <circle cx="720" cy="245" r="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="695" y="243" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Clamp Fixture</text>
+  <text x="695" y="254" font-size="9" fill="#64748b" text-anchor="end">(Pneumatic)</text>
+  <text x="745" y="248" font-size="12" font-weight="600" fill="#0f172a">Attach Backrest Cross-Rail</text>
+
+  <!-- Op 4: Attach Side Stretchers (Right below merge of Side Stretchers) -->
+  <circle cx="720" cy="335" r="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="695" y="333" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Jig 2</text>
+  <text x="695" y="344" font-size="9" fill="#64748b" text-anchor="end">(Sub-Assembly)</text>
+  <text x="745" y="338" font-size="12" font-weight="600" fill="#0f172a">Attach Left &amp; Right Side Stretchers</text>
+
+  <!-- Op 5: Join Front Frame to Rear Frame (Right below merge of Front Legs) -->
+  <circle cx="720" cy="460" r="14" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="695" y="458" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Frame Clamp</text>
+  <text x="695" y="469" font-size="9" fill="#64748b" text-anchor="end">(Squaring Jig)</text>
+  <text x="745" y="458" font-size="12" font-weight="600" fill="#0f172a">Join Front &amp; Rear Sub-Assemblies</text>
+  <text x="745" y="471" font-size="11" fill="#334155">(Form Unified 4-Leg Frame Base)</text>
+
+  <!-- Inspection 1: Frame Squareness Check -->
+  <rect x="706" y="495" width="28" height="28" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="695" y="507" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Square Gauge</text>
+  <text x="695" y="518" font-size="9" fill="#64748b" text-anchor="end">(In-Process)</text>
+  <text x="745" y="513" font-size="12" font-weight="600" fill="#0f172a">Inspect Frame Squareness</text>
+
+  <!-- Op 6: Final Assemble (Mount Seat & Torque Bolts) -->
+  <circle cx="720" cy="670" r="15" fill="#ffffff" stroke="#0f172a" stroke-width="2.2"/>
+  <text x="695" y="667" font-size="11" font-weight="600" fill="#475569" text-anchor="end">Assembly Bench</text>
+  <text x="695" y="679" font-size="9" fill="#64748b" text-anchor="end">(DC Torque Driver)</text>
+  <text x="745" y="667" font-size="13" font-weight="700" fill="#0f172a">Assemble</text>
+  <text x="745" y="681" font-size="11" fill="#334155">Mount Seat &amp; Torque All Fasteners</text>
+
+  <!-- Inspection 2 / Test: Final Test -->
+  <rect x="705" y="730" width="30" height="30" fill="#ffffff" stroke="#0f172a" stroke-width="2.2"/>
+  <text x="695" y="742" font-size="11" font-weight="600" fill="#475569" text-anchor="end">Granite Plate</text>
+  <text x="695" y="754" font-size="9" fill="#64748b" text-anchor="end">(Level Gauge)</text>
+  <text x="745" y="742" font-size="13" font-weight="700" fill="#0f172a">Test</text>
+  <text x="745" y="756" font-size="11" fill="#334155">4-Point Wobble &amp; Stability Test</text>
+
+  <!-- Storage: Final Pack / Store -->
+  <polygon points="707,790 733,790 720,812" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="695" y="804" font-size="10.5" font-weight="600" fill="#475569" text-anchor="end">Packaging Line</text>
+  <text x="745" y="804" font-size="12" font-weight="600" fill="#047857">Store / Warehouse</text>
+
+  <!-- ==================== LEGEND (BOTTOM LEFT) ==================== -->
+  <g transform="translate(50, 715)">
+    <rect x="0" y="0" width="380" height="110" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="14" y="22" font-size="11" font-weight="700" fill="#0f172a">OPERATIONS PROCESS CHART (OPC) SYMBOL KEY:</text>
+    
+    <!-- Operation Circle -->
+    <text x="14" y="52" font-size="11" font-weight="600" fill="#475569">Machine / Station</text>
+    <circle cx="130" cy="48" r="10" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+    <text x="150" y="52" font-size="11" font-weight="600" fill="#0f172a">Description of Operation</text>
+
+    <!-- Inspection Square -->
+    <text x="14" y="80" font-size="11" font-weight="600" fill="#475569">Inspection Tool</text>
+    <rect x="121" y="71" width="18" height="18" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+    <text x="150" y="84" font-size="11" font-weight="600" fill="#0f172a">Description of Inspection / Test</text>
+
+    <!-- Storage Triangle -->
+    <polygon points="121,95 139,95 130,107" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="150" y="103" font-size="10.5" fill="#475569">= Storage / Finished Goods</text>
+  </g>
+</svg>

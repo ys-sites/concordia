@@ -1,0 +1,27 @@
+
+1) Introduction to digital computers and computer programming
+
+a) lesson 1 of mini-course (software installation)
+
+- list topics covered in mini-course
+
+b) [Introduction to C++] -- [] indicates an on-line lecture module
+
+- motivation for C++ programming for mechanical, industrial, aerospace
+engineering
+
+- example applications of C++ programing for mechanical, industrial, 
+aerospace engineering
+
+2) Writing, compiling, and debugging programs (online mini course)
+
+a) lesson 2 of mini-course (hello world)
+
+b) [Introduction to C++]
+- the build process
+- C++ file types
+- how to make / open / copy a project
+- how to pause the program with getchar() 
+
+c) lession 7 of mini-course: Debugging and testing programs
+

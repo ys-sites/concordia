@@ -1,0 +1,33 @@
+
+3) Variable types
+
+a) lesson 3 of mini-course
+
+- list topics covered in mini-course
+
+b) [Variable types I]
+
+- overview of mini-course results
+
+- examples / exercises to review mini course -- how to solve
+-- fill in blank, different types of questions, etc.
+
+- int
+- double
+- float
+- char
+- bool
+- logical/binary variables, true and false, HIGH / LOW
+- overflow and underflow
+- round-off error
+- exceptions (inf, nan, etc.)
+- sizeof
+- printing numbers out in scientific / fixed notation
+
+c) [Variable types II]
+- cast expressions
+- type modifiers: const, unsigned, long, short
+- different size variables on different processors
+
+d) [Variable types: Examples and exercises]
+

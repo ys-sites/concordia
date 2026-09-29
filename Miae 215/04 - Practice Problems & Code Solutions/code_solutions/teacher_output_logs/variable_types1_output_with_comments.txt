@@ -1,0 +1,33 @@
+
+x = 2147483647 // wraps around
+z = 0
+xf = 1e-39 
+// 1.2e-38 from notes is only approximate smallest value
+// -- smaller numbers are possible in some cases
+
+zf = -inf
+zf = -nan(ind) // -1 / (0 * inf) = not a number (nan)
+zf - 1.0 = 0
+xd = 1e-309
+// 2.3e-308 from notes is only approximate smallest value
+// -- smaller numbers are possible in some cases
+
+xd = inf
+xd = inf
+ba╠ // c3 is garbage G since it's not initialized
+
+b1 !
+b1 = 1
+b2 = 0
+b1 = 1
+b2 = 0
+logical1 > false
+logical1 = 1
+logical2 = 1
+
+sizeof(int) = 4
+sizeof(float) = 4
+sizeof(double) = 8
+sizeof(char) = 1
+sizeof(bool) = 1
+press enter to continue.

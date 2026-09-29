@@ -1,0 +1,51 @@
+# Dependencies & Build Output
+node_modules/
+dist/
+dist-ssr/
+.pnpm-store/
+
+# Executable Binaries & Libraries
+*.exe
+*.dll
+*.so
+*.dylib
+*.bin
+*.a
+*.lib
+*.pdb
+*.obj
+*.o
+
+# Large Media & Archives (>100MB GitHub Hard Limit & >1GB Files)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.wmv
+*.flv
+*.rar
+*.zip
+*.7z
+*.tar.gz
+**/video_podcasts/**
+**/rar_archives/**
+**/_Source & Archive/**
+**/*Zill - Advanced Engineering Mathematics (7th Edition).pdf
+**/*Advanced Engineering Mathematics (Zill, Dennis G.) (Z-Library).pdf
+
+# CodeBlocks & MinGW Portable Compiler Suites (thousands of C++ toolchain files)
+**/CodeBlocks_17.12_portable/**
+**/MinGW/**
+**/DLLs/**
+**/Flowgorithm*Setup/**
+**/05 - Software & Flowcharts/**/c++/**
+**/05 - Software & Flowcharts/**/gcc*/**
+**/05 - Software & Flowcharts/**/include*/**
+**/05 - Software & Flowcharts/**/lib*/**
+
+# OS & Environment
+.env
+.env.local
+*.log
+.DS_Store
+Thumbs.db

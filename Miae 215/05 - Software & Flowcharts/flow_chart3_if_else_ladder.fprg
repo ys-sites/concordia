@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="Diane"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-09-27 01:04:34 PM"/>
+        <attribute name="created" value="RGlhbmU7TEFQVE9QLTVDVTg0TTg0OzIwMjAtMDktMjc7MTI6NDY6NDEgUE07Mjc3Mg=="/>
+        <attribute name="edited" value="RGlhbmU7TEFQVE9QLTVDVTg0TTg0OzIwMjAtMDktMjc7MDE6MDQ6MzQgUE07MjsyODc1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="3"/>
+            <if expression="i == 1">
+                <then>
+                    <output expression="&quot;i == 1&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="i == 2">
+                        <then>
+                            <output expression="&quot;i == 2&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="i == 3">
+                                <then>
+                                    <output expression="&quot;i == 3&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;i is not 1, 2, or 3&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

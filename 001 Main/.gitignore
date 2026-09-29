@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Production Build
+dist/
+dist-ssr/
+*.local
+
+# Large Media & Archives (>1GB Safe Handling)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.wmv
+*.flv
+*.rar
+*.zip
+*.7z
+*.tar.gz
+**/video_podcasts/**
+**/rar_archives/**
+**/_Source & Archive/**
+
+# Environment & Logs
+.env
+.env.local
+.env.*.local
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

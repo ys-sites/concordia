@@ -1,0 +1,70 @@
+
+x = 10
+y = 10
+z = 10
+q = 10
+u = 0
+v = 0
+w = 0
+i = 0
+x = 1e+308
+y = 1e+308
+z = 1e-306
+q = 3080
+x = inf // overflow
+y = inf // overflow
+z = 0 // underflow
+q = 3070
+j = -1
+j = 1
+j = -1
+j = 1
+j = -1
+j = 1
+j = -1
+j = 1
+j = -1
+j = 1
+r = 7
+r = 3
+r = 2 
+// note 7,3,2 is the opposite digit order of b (237)
+// -- using remainder with repeated division by 10 could 
+// be useful to determine the digits of an integer
+y = 31
+z = 37
+d1 = 7.1
+d2 = 10.3333
+d3 = 7
+i1 = 3
+f1 = 7.25
+f2 = 0.333333
+f3 = 1.75
+x = 1.5708 (rad)
+sin(x) = 1
+cos(x) = 6.12323e-17 
+// this equal to 0.0 to within 16 digits of precision
+// ie 0.000000000000001
+// the reason it's not exactly equal to zero is due to approximation
+// errors with calculation of trig functions and because internal
+// calculations in C++ are in base 2 (ie binary) number system
+// (ie not in base 10 which are used when printing out numbers)
+tan(x) = 1.63312e+16 
+// close to inf but not quite due to approximation errors of 
+// trig functions (which are based on series approximations)
+exp(x) = 2.71828
+theta = atan(y/x) = -0.785398 (rad) = -45 (deg)
+theta = atan2(y,x) = 2.35619 (rad) = 135 (deg)
+// notice that atan(y/x) gives the wrong quadrant
+// whereas atan2(y,x) gives the correct quadrant
+x = -7.5
+abs(x) = 7.5
+sqrt(x) = 10
+log(x) = -nan(ind) // can't take log of negative or zero numbers
+log10(x) = 2
+pow(x,y) = -nan(ind) 
+// can't take fractional powers of negative numbers (or sqrt)
+// -- they result in complex numbers which double can't represent
+// since it only represents a real number
+pow(x,y) = 1000
+press enter to continue.

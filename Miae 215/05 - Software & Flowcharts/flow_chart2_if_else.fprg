@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="Diane"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-09-29 05:10:11 PM"/>
+        <attribute name="created" value="RGlhbmU7TEFQVE9QLTVDVTg0TTg0OzIwMjAtMDktMjk7MDU6MDI6MjIgUE07Mjc2Nw=="/>
+        <attribute name="edited" value="RGlhbmU7TEFQVE9QLTVDVTg0TTg0OzIwMjAtMDktMjk7MDU6MTA6MTEgUE07MjsyODcz"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="0"/>
+            <if expression="i &gt; 1">
+                <then>
+                    <output expression="&quot;i &gt; 1 is true&quot;" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;i &gt; 1 is false&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
