@@ -1,0 +1,9 @@
+# Ignore nested node_modules and temporary directories
+node_modules
+001 Main/node_modules
+.git
+.github
+*.log
+
+# Prevent any recursive/nested api detection outside root /api
+001 Main/api

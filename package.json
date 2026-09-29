@@ -1,6 +1,7 @@
 {
   "name": "concordia-engineering-hub",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "description": "Concordia University Engineering Hub & 20-Question Brain-Programming Exam Engine",
   "scripts": {
