@@ -34,10 +34,10 @@ const RAW_COURSES_DATA: CourseWithDocs[] = [
         "description": "Course materials for 00 - Course Syllabus & Textbook"
       },
       {
-        "id": "00 - Course Syllabus & Textbook/Zill Textbook Chapters",
-        "title": "Zill Textbook Chapters",
+        "id": "00 - Course Syllabus & Textbook/Textbook Chapters",
+        "title": "Textbook Chapters",
         "count": 5,
-        "description": "Course materials for Zill Textbook Chapters"
+        "description": "Course materials for Textbook Chapters"
       },
       {
         "id": "01 - Teacher Lecture Notes",
@@ -137,87 +137,87 @@ const RAW_COURSES_DATA: CourseWithDocs[] = [
       {
         "id": "ENGR213_5",
         "courseId": "ENGR213",
-        "categoryId": "00 - Course Syllabus & Textbook/Zill Textbook Chapters",
-        "categoryTitle": "Zill Textbook Chapters",
-        "title": "Zill Chapter 1 - Introduction to Differential Equations",
-        "filename": "Zill Chapter 1 - Introduction to Differential Equations.pdf",
-        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Zill Textbook Chapters/Zill Chapter 1 - Introduction to Differential Equations.pdf",
+        "categoryId": "00 - Course Syllabus & Textbook/Textbook Chapters",
+        "categoryTitle": "Textbook Chapters",
+        "title": "Textbook Chapter 1 - Introduction to Differential Equations",
+        "filename": "Textbook Chapter 1 - Introduction to Differential Equations.pdf",
+        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Textbook Chapter 1 - Introduction to Differential Equations.pdf",
         "fileSizeBytes": 9535822,
         "isMasterGuide": false,
         "isHighYield": false,
         "tags": [
-          "Zill Textbook Chapters",
+          "Textbook Chapters",
           "ENGR 213"
         ],
-        "summary": "Official curriculum document for ENGR 213: Zill Chapter 1 - Introduction to Differential Equations"
+        "summary": "Official curriculum document for ENGR 213: Textbook Chapter 1 - Introduction to Differential Equations"
       },
       {
         "id": "ENGR213_6",
         "courseId": "ENGR213",
-        "categoryId": "00 - Course Syllabus & Textbook/Zill Textbook Chapters",
-        "categoryTitle": "Zill Textbook Chapters",
-        "title": "Zill Chapter 2 - First-Order Differential Equations",
-        "filename": "Zill Chapter 2 - First-Order Differential Equations.pdf",
-        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Zill Textbook Chapters/Zill Chapter 2 - First-Order Differential Equations.pdf",
+        "categoryId": "00 - Course Syllabus & Textbook/Textbook Chapters",
+        "categoryTitle": "Textbook Chapters",
+        "title": "Textbook Chapter 2 - First-Order Differential Equations",
+        "filename": "Textbook Chapter 2 - First-Order Differential Equations.pdf",
+        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Textbook Chapter 2 - First-Order Differential Equations.pdf",
         "fileSizeBytes": 11911826,
         "isMasterGuide": false,
         "isHighYield": false,
         "tags": [
-          "Zill Textbook Chapters",
+          "Textbook Chapters",
           "ENGR 213"
         ],
-        "summary": "Official curriculum document for ENGR 213: Zill Chapter 2 - First-Order Differential Equations"
+        "summary": "Official curriculum document for ENGR 213: Textbook Chapter 2 - First-Order Differential Equations"
       },
       {
         "id": "ENGR213_7",
         "courseId": "ENGR213",
-        "categoryId": "00 - Course Syllabus & Textbook/Zill Textbook Chapters",
-        "categoryTitle": "Zill Textbook Chapters",
-        "title": "Zill Chapter 3 - Higher-Order Differential Equations",
-        "filename": "Zill Chapter 3 - Higher-Order Differential Equations.pdf",
-        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Zill Textbook Chapters/Zill Chapter 3 - Higher-Order Differential Equations.pdf",
+        "categoryId": "00 - Course Syllabus & Textbook/Textbook Chapters",
+        "categoryTitle": "Textbook Chapters",
+        "title": "Textbook Chapter 3 - Higher-Order Differential Equations",
+        "filename": "Textbook Chapter 3 - Higher-Order Differential Equations.pdf",
+        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Textbook Chapter 3 - Higher-Order Differential Equations.pdf",
         "fileSizeBytes": 11411066,
         "isMasterGuide": false,
         "isHighYield": false,
         "tags": [
-          "Zill Textbook Chapters",
+          "Textbook Chapters",
           "ENGR 213"
         ],
-        "summary": "Official curriculum document for ENGR 213: Zill Chapter 3 - Higher-Order Differential Equations"
+        "summary": "Official curriculum document for ENGR 213: Textbook Chapter 3 - Higher-Order Differential Equations"
       },
       {
         "id": "ENGR213_8",
         "courseId": "ENGR213",
-        "categoryId": "00 - Course Syllabus & Textbook/Zill Textbook Chapters",
-        "categoryTitle": "Zill Textbook Chapters",
-        "title": "Zill Chapter 4 - The Laplace Transform",
-        "filename": "Zill Chapter 4 - The Laplace Transform.pdf",
-        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Zill Textbook Chapters/Zill Chapter 4 - The Laplace Transform.pdf",
+        "categoryId": "00 - Course Syllabus & Textbook/Textbook Chapters",
+        "categoryTitle": "Textbook Chapters",
+        "title": "Textbook Chapter 4 - The Laplace Transform",
+        "filename": "Textbook Chapter 4 - The Laplace Transform.pdf",
+        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Textbook Chapter 4 - The Laplace Transform.pdf",
         "fileSizeBytes": 7119066,
         "isMasterGuide": false,
         "isHighYield": false,
         "tags": [
-          "Zill Textbook Chapters",
+          "Textbook Chapters",
           "ENGR 213"
         ],
-        "summary": "Official curriculum document for ENGR 213: Zill Chapter 4 - The Laplace Transform"
+        "summary": "Official curriculum document for ENGR 213: Textbook Chapter 4 - The Laplace Transform"
       },
       {
         "id": "ENGR213_9",
         "courseId": "ENGR213",
-        "categoryId": "00 - Course Syllabus & Textbook/Zill Textbook Chapters",
-        "categoryTitle": "Zill Textbook Chapters",
-        "title": "Zill_Advanced_Engineering_Mathematics_Solutions_Manual",
-        "filename": "Zill_Advanced_Engineering_Mathematics_Solutions_Manual.pdf",
-        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Zill Textbook Chapters/Zill_Advanced_Engineering_Mathematics_Solutions_Manual.pdf",
+        "categoryId": "00 - Course Syllabus & Textbook/Textbook Chapters",
+        "categoryTitle": "Textbook Chapters",
+        "title": "Advanced_Engineering_Mathematics_Solutions_Manual",
+        "filename": "Advanced_Engineering_Mathematics_Solutions_Manual.pdf",
+        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Advanced_Engineering_Mathematics_Solutions_Manual.pdf",
         "fileSizeBytes": 6434390,
         "isMasterGuide": true,
         "isHighYield": false,
         "tags": [
-          "Zill Textbook Chapters",
+          "Textbook Chapters",
           "ENGR 213"
         ],
-        "summary": "Official curriculum document for ENGR 213: Zill_Advanced_Engineering_Mathematics_Solutions_Manual"
+        "summary": "Official curriculum document for ENGR 213: Advanced_Engineering_Mathematics_Solutions_Manual"
       },
       {
         "id": "ENGR213_10",
@@ -513,9 +513,9 @@ const RAW_COURSES_DATA: CourseWithDocs[] = [
         "courseId": "ENGR213",
         "categoryId": "03 - Chapter 1 Summary",
         "categoryTitle": "03 - Chapter 1 Summary",
-        "title": "Zill Chapter 1 - Textbook Excerpt",
-        "filename": "Zill Chapter 1 - Textbook Excerpt.pdf",
-        "relativePath": "Engr 213/03 - Chapter 1 Summary/Zill Chapter 1 - Textbook Excerpt.pdf",
+        "title": "Chapter 1 - Textbook Excerpt",
+        "filename": "Chapter 1 - Textbook Excerpt.pdf",
+        "relativePath": "Engr 213/03 - Chapter 1 Summary/Chapter 1 - Textbook Excerpt.pdf",
         "fileSizeBytes": 9535822,
         "isMasterGuide": false,
         "isHighYield": false,
@@ -523,7 +523,7 @@ const RAW_COURSES_DATA: CourseWithDocs[] = [
           "03 - Chapter 1 Summary",
           "ENGR 213"
         ],
-        "summary": "Official curriculum document for ENGR 213: Zill Chapter 1 - Textbook Excerpt"
+        "summary": "Official curriculum document for ENGR 213: Chapter 1 - Textbook Excerpt"
       },
       {
         "id": "ENGR213_28",
@@ -666,9 +666,9 @@ const RAW_COURSES_DATA: CourseWithDocs[] = [
         "courseId": "ENGR213",
         "categoryId": "04 - Chapter 2 Summary",
         "categoryTitle": "04 - Chapter 2 Summary",
-        "title": "Zill Chapter 2 - Textbook Excerpt",
-        "filename": "Zill Chapter 2 - Textbook Excerpt.pdf",
-        "relativePath": "Engr 213/04 - Chapter 2 Summary/Zill Chapter 2 - Textbook Excerpt.pdf",
+        "title": "Chapter 2 - Textbook Excerpt",
+        "filename": "Chapter 2 - Textbook Excerpt.pdf",
+        "relativePath": "Engr 213/04 - Chapter 2 Summary/Chapter 2 - Textbook Excerpt.pdf",
         "fileSizeBytes": 11911826,
         "isMasterGuide": false,
         "isHighYield": false,
@@ -676,7 +676,7 @@ const RAW_COURSES_DATA: CourseWithDocs[] = [
           "04 - Chapter 2 Summary",
           "ENGR 213"
         ],
-        "summary": "Official curriculum document for ENGR 213: Zill Chapter 2 - Textbook Excerpt"
+        "summary": "Official curriculum document for ENGR 213: Chapter 2 - Textbook Excerpt"
       },
       {
         "id": "ENGR213_37",

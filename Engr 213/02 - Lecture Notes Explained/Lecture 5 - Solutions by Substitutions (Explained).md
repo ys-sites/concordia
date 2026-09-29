@@ -2,7 +2,7 @@
 # Lecture 5 Explained · Solutions by Substitutions
 **Concordia University · Department of Building, Civil & Environmental Engineering (BCEE)**  
 **Instructor**: Dr. A. Haghighat M. · **Lecture Date**: September 23, 2026  
-**Textbook Reference**: Dennis G. Zill, *Advanced Engineering Mathematics* (7th Edition), Section 2.5
+**Textbook Reference**: *Advanced Engineering Mathematics* (7th Edition), Section 2.5
 
 ---
 

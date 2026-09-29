@@ -30,8 +30,8 @@ dist-ssr/
 **/video_podcasts/**
 **/rar_archives/**
 **/_Source & Archive/**
-**/*Zill - Advanced Engineering Mathematics (7th Edition).pdf
-**/*Advanced Engineering Mathematics (Zill, Dennis G.) (Z-Library).pdf
+**/*Advanced Engineering Mathematics (7th Edition).pdf
+**/*Advanced Engineering Mathematics (Z-Library).pdf
 
 # CodeBlocks & MinGW Portable Compiler Suites (thousands of C++ toolchain files)
 **/CodeBlocks_17.12_portable/**

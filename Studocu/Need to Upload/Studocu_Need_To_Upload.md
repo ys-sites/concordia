@@ -117,7 +117,7 @@
 * **Category**: `Tutorial work`
 * **Title**: ENGR 213 - Team Project 1 & Tutorial Preparation Master Guide (Linear Models)
 * **Academic year**: `2025/2026`
-* **Description**: Comprehensive high-yield tutorial preparation manual for the 1-hour in-person Team Project 1 (Zill 2.7 / Dr. Haghighat Lecture 6). Features complete mathematical derivations and 8 step-by-step solved engineering problems across all 4 modeling archetypes: population growth/decay, Newton's law of cooling/warming, single-tank brine mixtures (both equal flow and unequal flow with overflow limits), and first-order LR/RC series circuits with DC and sinusoidal AC voltage sources.
+* **Description**: Comprehensive high-yield tutorial preparation manual for the 1-hour in-person Team Project 1 (§2.7 / Dr. Haghighat Lecture 6). Features complete mathematical derivations and 8 step-by-step solved engineering problems across all 4 modeling archetypes: population growth/decay, Newton's law of cooling/warming, single-tank brine mixtures (both equal flow and unequal flow with overflow limits), and first-order LR/RC series circuits with DC and sinusoidal AC voltage sources.
 
 ---
 
@@ -128,7 +128,7 @@
 * **Category**: `Lecture notes`
 * **Title**: ENGR 213 Lecture 6 - Linear Mathematical Models (Explained)
 * **Academic year**: `2025/2026`
-* **Description**: Fully expanded, step-by-step master lecture notes for Dr. Haghighat's Lecture 6 (September 25, 2026) on First-Order Linear Mathematical Modeling (Zill 2.7). Covers physical rate hypothesis formulation, exponential bacterial growth and tripling time, Newtonian cooling of a cake with asymptotic equilibrium analysis, stirred salt solution tank dynamics with integrating factors, and series LR circuit transient vs. steady-state current response.
+* **Description**: Fully expanded, step-by-step master lecture notes for Dr. Haghighat's Lecture 6 (September 25, 2026) on First-Order Linear Mathematical Modeling (§2.7). Covers physical rate hypothesis formulation, exponential bacterial growth and tripling time, Newtonian cooling of a cake with asymptotic equilibrium analysis, stirred salt solution tank dynamics with integrating factors, and series LR circuit transient vs. steady-state current response.
 
 ---
 

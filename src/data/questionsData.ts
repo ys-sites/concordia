@@ -24,7 +24,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$y^2$ is second degree in $y$, so it is nonlinear."
       ],
       "commonTrap": "Thinking a variable coefficient like $x^3$ makes an equation nonlinear. Only dependence on $y$ breaks linearity.",
-      "reference": "ENGR 213 Lecture 1 (Zill \u00a71.1)"
+      "reference": "ENGR 213 Lecture 1 (Textbook \u00a71.1)"
     }
   },
   {
@@ -48,7 +48,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$(y'')^3$ is third degree in $y''$, so the equation is nonlinear."
       ],
       "commonTrap": "Confusing power of derivative with derivative order.",
-      "reference": "ENGR 213 Lecture 1 (Zill \u00a71.1)"
+      "reference": "ENGR 213 Lecture 1 (Textbook \u00a71.1)"
     }
   },
   {
@@ -73,7 +73,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The largest intervals are therefore $(-\\infty, 0)$ or $(0, \\infty)$."
       ],
       "commonTrap": "Treating the function and the solution as the same thing. The function $1/x$ has domain $x \\neq 0$, but a solution must live on a single interval.",
-      "reference": "ENGR 213 Lecture 1 (Zill \u00a71.1)"
+      "reference": "ENGR 213 Lecture 1 (Textbook \u00a71.1)"
     }
   },
   {
@@ -98,7 +98,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Check $x^2e^x$: the left side becomes $2e^x \\neq 0$, so it is not a solution."
       ],
       "commonTrap": "Checking only the first derivative. Every term of the ODE must cancel.",
-      "reference": "ENGR 213 Lecture 1 (Zill \u00a71.1)"
+      "reference": "ENGR 213 Lecture 1 (Textbook \u00a71.1)"
     }
   },
   {
@@ -122,7 +122,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The other three involve only one independent variable ($x$ or $t$), so they are ODEs. The differential form $(y-x)dx + 4x\\,dy = 0$ is still an ODE."
       ],
       "commonTrap": "Thinking the differential form $M\\,dx + N\\,dy = 0$ is a PDE. It is an ODE for $y(x)$.",
-      "reference": "ENGR 213 Lecture 1 (Zill \u00a71.1)"
+      "reference": "ENGR 213 Lecture 1 (Textbook \u00a71.1)"
     }
   },
   {
@@ -146,7 +146,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The explicit solutions hidden in the relation are $y = \\pm\\sqrt{25 - x^2}$."
       ],
       "commonTrap": "Dropping the minus sign when isolating $y'$.",
-      "reference": "ENGR 213 Lecture 1 (Zill \u00a71.1)"
+      "reference": "ENGR 213 Lecture 1 (Textbook \u00a71.1)"
     }
   },
   {
@@ -169,7 +169,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$y(0) = 0^2 + c = 3 \\implies c = 3$, so $y = x^2 + 3$."
       ],
       "commonTrap": "Putting the initial value into the coefficient ($3x^2$) instead of solving for $c$.",
-      "reference": "ENGR 213 Lecture 2 (Zill \u00a71.2)"
+      "reference": "ENGR 213 Lecture 2 (Textbook \u00a71.2)"
     }
   },
   {
@@ -194,7 +194,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$x = -2\\cos 4t + \\tfrac14 \\sin 4t$."
       ],
       "commonTrap": "Forgetting the chain-rule factor 4 in $x'$, which gives $c_2 = 1$ or $4$ instead of $\\tfrac14$.",
-      "reference": "ENGR 213 Lecture 2 (Zill \u00a71.2)"
+      "reference": "ENGR 213 Lecture 2 (Textbook \u00a71.2)"
     }
   },
   {
@@ -218,7 +218,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "In fact, the family of solutions $y = cx$ only passes through $(0, 0)$, so no solution passes through $(0, 1)$."
       ],
       "commonTrap": "Trying to solve before checking the hypotheses. The theorem gives no guarantee when $f$ is discontinuous at the initial point.",
-      "reference": "ENGR 213 Lecture 2 (Zill \u00a71.2)"
+      "reference": "ENGR 213 Lecture 2 (Textbook \u00a71.2)"
     }
   },
   {
@@ -243,7 +243,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Check: $y = x^4/16 \\implies y' = x^3/4$ and $x\\sqrt{x^4/16} = x^3/4$. \u2714"
       ],
       "commonTrap": "Blaming $f$ itself. Here $f$ is continuous; it is the partial derivative $\\partial f/\\partial y$ that fails.",
-      "reference": "ENGR 213 Lecture 2 (Zill \u00a71.2)"
+      "reference": "ENGR 213 Lecture 2 (Textbook \u00a71.2)"
     }
   },
   {
@@ -266,7 +266,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$f(2, 3) = 0.2(2)(3) = 1.2$."
       ],
       "commonTrap": "Adding the coordinates ($0.2(2+3) = 1.0$) or forgetting the 0.2 factor ($6$).",
-      "reference": "ENGR 213 Lecture 2 (Zill \u00a72.1)"
+      "reference": "ENGR 213 Lecture 2 (Textbook \u00a72.1)"
     }
   },
   {
@@ -290,7 +290,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$y = 0$ is an attractor (asymptotically stable), $y = 3$ is a repeller (unstable)."
       ],
       "commonTrap": "Misreading the phase line. Arrows pointing toward $c$ from both sides mean an attractor (asymptotically stable); arrows pointing away mean a repeller (unstable).",
-      "reference": "ENGR 213 Lecture 2 (Zill \u00a72.1)"
+      "reference": "ENGR 213 Lecture 2 (Textbook \u00a72.1)"
     }
   },
   {
@@ -315,7 +315,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The IC has $y < 0$, so take the lower semicircle: $y = -\\sqrt{25 - x^2}$ on $(-5, 5)$."
       ],
       "commonTrap": "Taking the $+\\sqrt{\\ }$ branch. That curve passes through $(4, 3)$, not $(4, -3)$.",
-      "reference": "ENGR 213 Lecture 3 (Zill \u00a72.2)"
+      "reference": "ENGR 213 Lecture 3 (Textbook \u00a72.2)"
     }
   },
   {
@@ -340,7 +340,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "No value of $c$ gives $y = -2$, so $y = -2$ is the singular solution."
       ],
       "commonTrap": "Declaring every root of $g(y) = 0$ lost. Always check whether the family already contains it.",
-      "reference": "ENGR 213 Lecture 3 (Zill \u00a72.2)"
+      "reference": "ENGR 213 Lecture 3 (Textbook \u00a72.2)"
     }
   },
   {
@@ -365,7 +365,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\dfrac{d}{dx}\\left[\\sqrt{x^2-9}\\,y\\right] = 0 \\implies y = \\dfrac{c}{\\sqrt{x^2-9}}$."
       ],
       "commonTrap": "Forgetting to divide by $(x^2 - 9)$ first, which gives the wrong $P(x) = x$ and $\\mu = e^{x^2/2}$.",
-      "reference": "ENGR 213 Lecture 3 (Zill \u00a72.3)"
+      "reference": "ENGR 213 Lecture 3 (Textbook \u00a72.3)"
     }
   },
   {
@@ -388,7 +388,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$P(x) = -2 \\implies \\mu(x) = e^{\\int -2\\,dx} = e^{-2x}$."
       ],
       "commonTrap": "Dropping the negative sign in $P(x)$.",
-      "reference": "ENGR 213 Lecture 3 (Zill \u00a72.3)"
+      "reference": "ENGR 213 Lecture 3 (Textbook \u00a72.3)"
     }
   },
   {
@@ -414,7 +414,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Check: $y_p = -2$ gives $0 - 3(-2) = 6$. \u2714"
       ],
       "commonTrap": "Sign slip when integrating $6e^{-3x}$: $\\int 6e^{-3x}dx = -2e^{-3x}$, not $+2e^{-3x}$.",
-      "reference": "ENGR 213 Lecture 3 (Zill \u00a72.3)"
+      "reference": "ENGR 213 Lecture 3 (Textbook \u00a72.3)"
     }
   },
   {
@@ -439,7 +439,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Since mixed partials are equal for smooth functions: $\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}$."
       ],
       "commonTrap": "Differentiating $M$ with respect to $x$ and $N$ with respect to $y$ (swapping the variables).",
-      "reference": "ENGR 213 Lecture 4 (Zill \u00a72.4)"
+      "reference": "ENGR 213 Lecture 4 (Textbook \u00a72.4)"
     }
   },
   {
@@ -465,7 +465,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Solution: $x^2 y - y = c$."
       ],
       "commonTrap": "Forgetting $g(y)$, or not integrating $g'(y) = -1$ to get $-y$.",
-      "reference": "ENGR 213 Lecture 4 (Zill \u00a72.4)"
+      "reference": "ENGR 213 Lecture 4 (Textbook \u00a72.4)"
     }
   },
   {
@@ -491,7 +491,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Integrating yields $\\mu(x) = e^{\\int g(x)dx}$."
       ],
       "commonTrap": "Mixing up the two tests. If instead $(N_x - M_y)/M$ depends only on $y$, the factor is $\\mu(y) = e^{\\int \\frac{N_x - M_y}{M}dy}$.",
-      "reference": "ENGR 213 Lecture 4 (Zill \u00a72.4)"
+      "reference": "ENGR 213 Lecture 4 (Textbook \u00a72.4)"
     }
   },
   {
@@ -517,7 +517,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\mu(y) = e^{\\int 3/y\\,dy} = e^{3\\ln y} = y^3$."
       ],
       "commonTrap": "Stopping at the $x$-test, or writing $e^{3y}$ instead of $e^{3\\ln y} = y^3$.",
-      "reference": "ENGR 213 Lecture 4 (Zill \u00a72.4)"
+      "reference": "ENGR 213 Lecture 4 (Textbook \u00a72.4)"
     }
   },
   {
@@ -542,7 +542,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Factoring out $x^2$ leaves an ODE strictly in terms of $u$ and $x$ which is separable."
       ],
       "commonTrap": "Substituting $y = ux$ but forgetting that $dy = u\\,dx + x\\,du$.",
-      "reference": "ENGR 213 Lecture 5 (Zill \u00a72.5)"
+      "reference": "ENGR 213 Lecture 5 (Textbook \u00a72.5)"
     }
   },
   {
@@ -567,7 +567,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Substituting gives the linear ODE: $\\frac{1}{1-n}\\frac{du}{dx} + P(x)u = Q(x)$."
       ],
       "commonTrap": "Setting $u = y^n$ or $u = y^{n-1}$, which fails to eliminate the non-linear derivative product.",
-      "reference": "ENGR 213 Lecture 5 (Zill \u00a72.5)"
+      "reference": "ENGR 213 Lecture 5 (Textbook \u00a72.5)"
     }
   },
   {
@@ -593,7 +593,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Back-substitute: $y = 1/u = \\dfrac{1}{-x^2 + cx}$."
       ],
       "commonTrap": "Stopping at $u = -x^2 + cx$ without back-substituting, or missing the sign change that the substitution introduces.",
-      "reference": "ENGR 213 Lecture 5 (Zill \u00a72.5)"
+      "reference": "ENGR 213 Lecture 5 (Textbook \u00a72.5)"
     }
   },
   {
@@ -617,7 +617,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Separable: $\\dfrac{du}{1 + \\sin u} = dx$."
       ],
       "commonTrap": "Trying to expand $\\sin(x+y) = \\sin x \\cos y + \\cos x \\sin y$.",
-      "reference": "ENGR 213 Lecture 5 (Zill \u00a72.5)"
+      "reference": "ENGR 213 Lecture 5 (Textbook \u00a72.5)"
     }
   },
   {
@@ -642,7 +642,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Take natural log: $5k = \\ln 2 \\implies k = \\frac{\\ln 2}{5} \\approx 0.1386\\text{ hr}^{-1}$."
       ],
       "commonTrap": "Multiplying by the time interval instead of dividing: $k \\ne 5\\ln 2$.",
-      "reference": "ENGR 213 Lecture 6 (Zill \u00a72.7)"
+      "reference": "ENGR 213 Lecture 6 (Textbook \u00a72.7)"
     }
   },
   {
@@ -666,7 +666,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$3P_0 = P_0 e^{kt} \\implies t = \\dfrac{\\ln 3}{\\ln 1.5} \\approx 2.71$ h."
       ],
       "commonTrap": "Assuming linear growth (adding $0.5P_0$ per hour gives 4 h). Proportional growth is exponential.",
-      "reference": "ENGR 213 Lecture 6 (Zill \u00a72.7)"
+      "reference": "ENGR 213 Lecture 6 (Textbook \u00a72.7)"
     }
   },
   {
@@ -691,7 +691,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$A(0) = 50 \\implies c = -550$, so $A(t) = 600 - 550e^{-t/100} \\to 600$ lb."
       ],
       "commonTrap": "Answering 6 lb (the inflow rate). In the long run the tank concentration matches the inflow: $2 \\times 300 = 600$ lb.",
-      "reference": "ENGR 213 Lecture 6 (Zill \u00a72.7)"
+      "reference": "ENGR 213 Lecture 6 (Textbook \u00a72.7)"
     }
   },
   {
@@ -717,7 +717,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Hence: $T(t) = 350 - 280 e^{kt}$ (with $k < 0$ for cooling/warming towards equilibrium)."
       ],
       "commonTrap": "Setting $C = 70$ without subtracting the ambient oven temperature $350$.",
-      "reference": "ENGR 213 Lecture 6 (Zill \u00a72.7)"
+      "reference": "ENGR 213 Lecture 6 (Textbook \u00a72.7)"
     }
   },
   {
@@ -742,7 +742,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Since $230e^{kt} > 0$ for all $t$, $T > 70$ always. It is within $0.5^\\circ$F after about 32 min."
       ],
       "commonTrap": "Using $200/300$ instead of $(200-70)/(300-70)$. Always work with the difference $T - T_m$.",
-      "reference": "ENGR 213 Lecture 6 (Zill \u00a72.7)"
+      "reference": "ENGR 213 Lecture 6 (Textbook \u00a72.7)"
     }
   },
   {
@@ -767,7 +767,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\frac{dA}{dt} = -0.03 A \\implies A(t) = A(0)e^{-0.03t} = 20 e^{-0.03t}$."
       ],
       "commonTrap": "Forgetting that volume is in the denominator ($100$), leading to an incorrect decay rate of $-3t$.",
-      "reference": "ENGR 213 Lecture 6 (Zill \u00a72.7)"
+      "reference": "ENGR 213 Lecture 6 (Textbook \u00a72.7)"
     }
   },
   {
@@ -791,7 +791,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Integrate with $V(0) = 500$: $V(t) = 500 + 2t$."
       ],
       "commonTrap": "Subtracting $r_{\\text{in}} - r_{\\text{out}}$ in reverse order, which would imply the tank is emptying.",
-      "reference": "ENGR 213 Lecture 6 (Zill \u00a72.7)"
+      "reference": "ENGR 213 Lecture 6 (Textbook \u00a72.7)"
     }
   },
   {
@@ -816,7 +816,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$i(0) = 0 \\implies c = -\\tfrac65$. As $t \\to \\infty$, $i \\to E/R = 1.2$ A."
       ],
       "commonTrap": "Not dividing by $L$ first (giving $24$ as the steady state), or using $R/L = 5$ instead of $10/0.5 = 20$.",
-      "reference": "ENGR 213 Lecture 6 (Zill \u00a72.7)"
+      "reference": "ENGR 213 Lecture 6 (Textbook \u00a72.7)"
     }
   },
   {

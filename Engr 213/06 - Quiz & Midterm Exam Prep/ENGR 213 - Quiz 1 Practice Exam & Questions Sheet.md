@@ -1,7 +1,7 @@
 # ENGR 213: Applied Ordinary Differential Equations
 # Quiz 1 Practice Exam & Mock Test Sheet
 **Concordia University · Department of Building, Civil & Environmental Engineering (BCEE)**  
-**Target Assessment**: Quiz 1 (Week 1–2 Topics: Zill Sections 1.1, 1.2, 2.1, 2.2, 2.3)  
+**Target Assessment**: Quiz 1 (Week 1–2 Topics: Textbook Sections 1.1, 1.2, 2.1, 2.2, 2.3)  
 **Time Allowed**: 50 Minutes · **Calculator**: Faculty Approved (Sharp EL-531 or Casio FX-300MS)
 
 ---
@@ -137,7 +137,7 @@ $$\frac{dy}{dx} = -\frac{x}{y}, \quad y(4) = -3$$
 ## Part III: High-Probability Quiz & Homework Essentials
 
 ### Problem 11 · Comprehensive DE Classification Matrix (10 Marks)
-*(Zill Section 1.1 Assigned Problems)*
+*(Textbook Section 1.1 Assigned Problems)*
 
 Complete the classification table below for each given differential equation by identifying:
 1. **Type**: Ordinary (ODE) or Partial (PDE)
@@ -156,7 +156,7 @@ Complete the classification table below for each given differential equation by 
 ---
 
 ### Problem 12 · First-Order Linear ODE via Integrating Factor (10 Marks)
-*(Dr. Haghighat Lecture 3 Slide 12 & Zill Section 2.3)*
+*(Dr. Haghighat Lecture 3 Slide 12 & Textbook Section 2.3)*
 
 Find the unique particular solution of the initial value problem:
 $$x \frac{dy}{dx} + 2y = 4x^2, \quad y(1) = 2$$
@@ -170,7 +170,7 @@ $$x \frac{dy}{dx} + 2y = 4x^2, \quad y(1) = 2$$
 ## Part IV: Lecture 4 Exact Equations & Integrating Factors (Quiz Cutoff Topic)
 
 ### Problem 13 · Exact Differential Equation & Initial Value Problem (10 Marks)
-*(Dr. Haghighat Lecture 4 · Slide 9 & Zill Section 2.4)*
+*(Dr. Haghighat Lecture 4 · Slide 9 & Textbook Section 2.4)*
 
 Consider the first-order initial value problem:
 $$\frac{dy}{dx} = \frac{xy^2 - \cos x \sin x}{y(1 - x^2)}, \quad y(0) = 2$$
@@ -184,7 +184,7 @@ and prove that it satisfies the criterion for an exact differential.
 ---
 
 ### Problem 14 · Non-Exact ODE Made Exact via Integrating Factor (10 Marks)
-*(Dr. Haghighat Lecture 4 · Slides 10–11 & Zill Section 2.4)*
+*(Dr. Haghighat Lecture 4 · Slides 10–11 & Textbook Section 2.4)*
 
 Consider the differential equation:
 $$xy \, dx + (2x^2 + 3y^2 - 20) \, dy = 0$$

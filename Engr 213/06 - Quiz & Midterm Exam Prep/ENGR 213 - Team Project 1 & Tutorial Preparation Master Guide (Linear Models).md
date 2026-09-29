@@ -1,7 +1,7 @@
 # ENGR 213 · Applied Ordinary Differential Equations
 # Team Project 1 & Tutorial Preparation Master Guide: Linear Mathematical Models
 **Concordia University · Department of Building, Civil and Environmental Engineering**  
-**Instructor**: Dr. A. Haghighat M. · **Curriculum**: Lecture 6 & Zill Section 2.7 · **Deliverable**: 1-Hour In-Tutorial Team Project 1
+**Instructor**: Dr. A. Haghighat M. · **Curriculum**: Lecture 6 & Textbook Section 2.7 · **Deliverable**: 1-Hour In-Tutorial Team Project 1
 
 ---
 
@@ -54,7 +54,7 @@ To ensure top marks within the 1-hour time constraint, divide responsibilities d
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                 LINEAR MODELING MASTER FORMULARY (ZILL 2.7)                                  │
+│                                 LINEAR MODELING MASTER FORMULARY (§2.7)                                      │
 ├──────────────────────┬───────────────────────────────┬───────────────────────────────────────────────────────┤
 │ Archetype            │ Differential Equation         │ Master Integrated Solution                            │
 ├──────────────────────┼───────────────────────────────┼───────────────────────────────────────────────────────┤

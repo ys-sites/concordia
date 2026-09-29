@@ -48,11 +48,11 @@
 
 ### 3. Multivariable, Implicit & Higher-Order Derivatives
 
-#### Implicit Differentiation (Zill Section 1.1 Verification)
+#### Implicit Differentiation (Textbook Section 1.1 Verification)
 To find $\frac{dy}{dx}$ from an implicit relation $G(x,y) = 0$:
 $$\frac{d}{dx}[G(x,y)] = \frac{\partial G}{\partial x} + \frac{\partial G}{\partial y}\frac{dy}{dx} = 0 \implies \frac{dy}{dx} = -\frac{G_x(x,y)}{G_y(x,y)} \quad (G_y \neq 0)$$
 
-#### Total Differential & Clairaut's Symmetry (Zill Section 2.4 Exactness)
+#### Total Differential & Clairaut's Symmetry (Textbook Section 2.4 Exactness)
 $$df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy$$
 If $df = 0$, then $f(x,y) = C$ (level curves of potential function).
 $$\text{Clairaut's Schwarz Theorem: } \frac{\partial^2 f}{\partial y \partial x} = \frac{\partial^2 f}{\partial x \partial y} \iff \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$$
@@ -68,12 +68,12 @@ $$(uv)^{(n)} = \sum_{k=0}^n \binom{n}{k} u^{(n-k)} v^{(k)}$$
 
 | ODE Technique | Target Equation | Derivative Mechanism & Identity |
 | :--- | :--- | :--- |
-| **1. Integrating Factor (Zill Section 2.3)** | $y' + P(x)y = Q(x)$ | **Reverse Product Rule:** Multiply by $\mu(x) = e^{\int P dx}$. Since $\mu' = P\mu$, the LHS collapses to $\frac{d}{dx}[\mu(x) \cdot y] = \mu(x)Q(x)$. |
-| **2. Exactness Condition (Zill Section 2.4)** | $M(x,y)dx + N(x,y)dy = 0$ | **Mixed Partials Symmetry:** Exact iff $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$, guaranteeing existence of potential $f(x,y)$. |
-| **3. Bernoulli Substitution (Zill Section 2.5)** | $y' + P(x)y = Q(x)y^n$ | **Chain Rule Power Collapse:** Set $u = y^{1-n} \implies u' = (1-n)y^{-n}y'$. Eliminates $y^n$ and produces a 1st-order linear ODE in $u$. |
-| **4. Homogeneous Substitution (Zill Section 2.5)** | $\frac{dy}{dx} = g(y/x)$ | **Product Rule Expansion:** Let $y = u \cdot x \implies \frac{dy}{dx} = u + x\frac{du}{dx}$. Converts to separable $x\frac{du}{dx} = g(u) - u$. |
-| **5. Characteristic Equation (Zill Section 3.3)** | $a y'' + b y' + c y = 0$ | **Exponential Derivative Eigen-property:** Test $y = e^{rx} \implies y' = r e^{rx}, y'' = r^2 e^{rx} \implies a r^2 + b r + c = 0$. |
-| **6. Reduction of Order (Zill Section 3.7)** | $y'' + P(x)y' + Q(x)y = 0$ | **Leibniz Product Derivatives:** Set $y_2 = u(x)y_1(x) \implies y_2' = u'y_1 + uy_1', y_2'' = u''y_1 + 2u'y_1' + uy_1''$. $u$-terms cancel completely, leaving 1st-order in $w=u'$. |
+| **1. Integrating Factor (Textbook Section 2.3)** | $y' + P(x)y = Q(x)$ | **Reverse Product Rule:** Multiply by $\mu(x) = e^{\int P dx}$. Since $\mu' = P\mu$, the LHS collapses to $\frac{d}{dx}[\mu(x) \cdot y] = \mu(x)Q(x)$. |
+| **2. Exactness Condition (Textbook Section 2.4)** | $M(x,y)dx + N(x,y)dy = 0$ | **Mixed Partials Symmetry:** Exact iff $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$, guaranteeing existence of potential $f(x,y)$. |
+| **3. Bernoulli Substitution (Textbook Section 2.5)** | $y' + P(x)y = Q(x)y^n$ | **Chain Rule Power Collapse:** Set $u = y^{1-n} \implies u' = (1-n)y^{-n}y'$. Eliminates $y^n$ and produces a 1st-order linear ODE in $u$. |
+| **4. Homogeneous Substitution (Textbook Section 2.5)** | $\frac{dy}{dx} = g(y/x)$ | **Product Rule Expansion:** Let $y = u \cdot x \implies \frac{dy}{dx} = u + x\frac{du}{dx}$. Converts to separable $x\frac{du}{dx} = g(u) - u$. |
+| **5. Characteristic Equation (Textbook Section 3.3)** | $a y'' + b y' + c y = 0$ | **Exponential Derivative Eigen-property:** Test $y = e^{rx} \implies y' = r e^{rx}, y'' = r^2 e^{rx} \implies a r^2 + b r + c = 0$. |
+| **6. Reduction of Order (Textbook Section 3.7)** | $y'' + P(x)y' + Q(x)y = 0$ | **Leibniz Product Derivatives:** Set $y_2 = u(x)y_1(x) \implies y_2' = u'y_1 + uy_1', y_2'' = u''y_1 + 2u'y_1' + uy_1''$. $u$-terms cancel completely, leaving 1st-order in $w=u'$. |
 
 ---
 
@@ -130,7 +130,7 @@ $$(uv)^{(n)} = \sum_{k=0}^n \binom{n}{k} u^{(n-k)} v^{(k)}$$
 * **Distinct Linear:** $\frac{1}{(y-a)(y-b)} = \frac{A}{y-a} + \frac{B}{y-b}$ (Heaviside Cover-up: $A = \frac{1}{a-b}, B = \frac{1}{b-a}$).
 * **Repeated Linear:** $\frac{P(x)}{(y-a)^2(y-b)} = \frac{A}{y-a} + \frac{B}{(y-a)^2} + \frac{C}{y-b}$.
 * **Irreducible Quadratic:** $\frac{P(x)}{(y-a)(y^2+k^2)} = \frac{A}{y-a} + \frac{By+C}{y^2+k^2}$.
-* **The Logistic Equation (Zill Section 2.8):**
+* **The Logistic Equation (Textbook Section 2.8):**
   $$\frac{dy}{y(M-y)} = k dt \implies \frac{1}{M}\int\left(\frac{1}{y} + \frac{1}{M-y}\right)dy = \int k dt \implies \frac{y}{M-y} = C_1 e^{Mkt}$$
 
 #### Pillar 4: Completing the Square & Trig Identities
@@ -145,9 +145,9 @@ $$(uv)^{(n)} = \sum_{k=0}^n \binom{n}{k} u^{(n-k)} v^{(k)}$$
 
 | ODE Method | Required Integration Role | Critical Exam Protocol & Traps |
 | :--- | :--- | :--- |
-| **1. Separable Equations (Zill Section 2.2)** | $\int \frac{1}{h(y)}dy = \int g(x)dx + C$ | Combine arbitrary constants into a single $+C$ on the $x$-side immediately before exponentiating or inverting. Check for lost singular solutions where $h(y) = 0$. |
-| **2. Integrating Factor (Zill Section 2.3)** | Stage 1: $\mu(x) = e^{\int P(x)dx}$<br>Stage 2: $y = \frac{1}{\mu(x)}\left[\int \mu(x)Q(x)dx + C\right]$ | **Stage 1:** Set $+C=0$ (constant cancels across both sides of ODE).<br>**Stage 2:** $+C$ is **strictly mandatory inside brackets** before dividing by $\mu(x)$! |
-| **3. Exact Reconstruction (Zill Section 2.4)** | Step 1: $f = \int M dx + g(y)$<br>Step 2: $g'(y) = N - \frac{\partial}{\partial y}\int M dx$<br>Step 3: $g(y) = \int g'(y)dy$ | When computing $\int M dx$, treat $y$ as a pure constant. In Step 2, all $x$-terms in $g'(y)$ must completely cancel out; if any $x$ remains, check $M_y = N_x$ again! Implicit solution: $f(x,y)=C$. |
-| **4. Picard Iterations (Zill Section 1.2)** | $y_{n+1}(x) = y_0 + \int_{x_0}^x f(t, y_n(t))dt$ | Definite integration from $x_0$ to $x$. Generates sequential Taylor series approximations of the unique solution. |
-| **5. Variation of Parameters (Zill Section 3.5)** | $u_1 = -\int \frac{y_2 g}{W}dx, \quad u_2 = \int \frac{y_1 g}{W}dx$ | $W(x) = y_1 y_2' - y_1' y_2 \neq 0$. Particular solution is $y_p(x) = u_1 y_1 + u_2 y_2$. Always ensure the ODE is in standard form $y''+Py'+Qy=g(x)$ before identifying $g(x)$. |
+| **1. Separable Equations (Textbook Section 2.2)** | $\int \frac{1}{h(y)}dy = \int g(x)dx + C$ | Combine arbitrary constants into a single $+C$ on the $x$-side immediately before exponentiating or inverting. Check for lost singular solutions where $h(y) = 0$. |
+| **2. Integrating Factor (Textbook Section 2.3)** | Stage 1: $\mu(x) = e^{\int P(x)dx}$<br>Stage 2: $y = \frac{1}{\mu(x)}\left[\int \mu(x)Q(x)dx + C\right]$ | **Stage 1:** Set $+C=0$ (constant cancels across both sides of ODE).<br>**Stage 2:** $+C$ is **strictly mandatory inside brackets** before dividing by $\mu(x)$! |
+| **3. Exact Reconstruction (Textbook Section 2.4)** | Step 1: $f = \int M dx + g(y)$<br>Step 2: $g'(y) = N - \frac{\partial}{\partial y}\int M dx$<br>Step 3: $g(y) = \int g'(y)dy$ | When computing $\int M dx$, treat $y$ as a pure constant. In Step 2, all $x$-terms in $g'(y)$ must completely cancel out; if any $x$ remains, check $M_y = N_x$ again! Implicit solution: $f(x,y)=C$. |
+| **4. Picard Iterations (Textbook Section 1.2)** | $y_{n+1}(x) = y_0 + \int_{x_0}^x f(t, y_n(t))dt$ | Definite integration from $x_0$ to $x$. Generates sequential Taylor series approximations of the unique solution. |
+| **5. Variation of Parameters (Textbook Section 3.5)** | $u_1 = -\int \frac{y_2 g}{W}dx, \quad u_2 = \int \frac{y_1 g}{W}dx$ | $W(x) = y_1 y_2' - y_1' y_2 \neq 0$. Particular solution is $y_p(x) = u_1 y_1 + u_2 y_2$. Always ensure the ODE is in standard form $y''+Py'+Qy=g(x)$ before identifying $g(x)$. |
 | **6. Leibniz Integral Rule** | $\frac{d}{dx}\left[\int_{u(x)}^{v(x)} f(t)dt\right] = f(v(x))v'(x) - f(u(x))u'(x)$ | Used to differentiate general integral-defined solutions and verify IVPs with arbitrary forcing functions. |

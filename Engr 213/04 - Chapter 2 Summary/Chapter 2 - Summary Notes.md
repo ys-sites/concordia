@@ -1,5 +1,5 @@
 # ENGR 213: Chapter 2 Condensed Master Executive Summary
-*(Dennis G. Zill, Advanced Engineering Mathematics 7th ed. vs. Dr. A. Haghighat Lecture Notes 2, 3, 4 & Syllabus)*
+*(Advanced Engineering Mathematics 7th ed. vs. Dr. A. Haghighat Lecture Notes 2, 3, 4 & Syllabus)*
 
 ---
 
@@ -141,7 +141,7 @@ Mathematical formulation of real-world conservation laws:
 
 ### 📊 Master First-Order Diagnostic & Cross-Reference Matrix
 
-| Method | Form to Spot | Key Transformation / Formula | Zill Reference | Teacher Lecture | Deadly Exam Pitfall |
+| Method | Form to Spot | Key Transformation / Formula | Textbook Reference | Teacher Lecture | Deadly Exam Pitfall |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Separable** | $\frac{dy}{dx} = g(x)h(y)$ | $\int \frac{1}{h(y)}dy = \int g(x)dx$ | Section 2.2 (p. 67) | Lecture 3, Slides 3–7 | Forgetting to test $h(y) = 0$ for lost singular solutions. |
 | **Linear** | $a_1(x)y' + a_0(x)y = g(x)$ | $\mu(x) = e^{\int P(x)dx}$, $[y\mu]' = \mu f$ | Section 2.3 (p. 75) | Lecture 3, Slides 8–15 | Forgetting to divide by $a_1(x)$ to find true $P(x)$. |

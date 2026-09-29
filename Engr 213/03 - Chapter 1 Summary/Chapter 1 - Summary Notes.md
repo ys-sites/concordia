@@ -1,5 +1,5 @@
 # ENGR 213: Chapter 1.1 & 1.2 Condensed Master Summary
-*(Dennis G. Zill, Advanced Engineering Mathematics 7th ed. vs. Dr. A. Haghighat Lecture Notes)*
+*(Advanced Engineering Mathematics 7th ed. vs. Dr. A. Haghighat Lecture Notes)*
 
 ---
 
@@ -31,10 +31,10 @@
 * **Families vs. Singular Solutions:**
   * *General Family:* An $n$-th order ODE has an $n$-parameter family of solutions containing constants $c_1, \dots, c_n$.
   * *Trivial Solution:* $y \equiv 0$ when it identically solves a homogeneous DE.
-  * *Singular Solution (Zill's Book Insight):* A valid solution that **cannot** be obtained by choosing any value of $c$ in the family (e.g., envelope curves).
+  * *Singular Solution (Textbook Insight):* A valid solution that **cannot** be obtained by choosing any value of $c$ in the family (e.g., envelope curves).
 * **Teacher Slide Correlation:**
   * **Lecture 1, Slides 13–19:** Covers solution definition, explicit/implicit, trivial solution, and solution families.
-  * *Exact Match:* Slide 19 visualizes Zill's curves for $xy' - y = x^2\sin x$ ($y = cx - x\cos x$) and $y'' - 2y' + y = 0$ ($y = c_1 e^x + c_2 x e^x$).
+  * *Exact Match:* Slide 19 visualizes the textbook's curves for $xy' - y = x^2\sin x$ ($y = cx - x\cos x$) and $y'' - 2y' + y = 0$ ($y = c_1 e^x + c_2 x e^x$).
 
 ---
 
@@ -44,7 +44,7 @@
 * **Teacher Slide Correlation:**
   * **Lecture 2, Slides 3–5:**
     * *Slide 4:* 1st-order IVP: $y' = 2x, y(0)=3 \implies y = x^2 + 3$.
-    * *Slide 5 (Verbatim from Zill Ex 3, p. 91):* 2nd-order IVP: $x'' + 16x = 0, x(\pi/2) = -2, x'(\pi/2) = 1 \implies x(t) = -2\cos(4t) + \frac{1}{4}\sin(4t)$.
+    * *Slide 5 (Verbatim from Textbook Ex 3, p. 91):* 2nd-order IVP: $x'' + 16x = 0, x(\pi/2) = -2, x'(\pi/2) = 1 \implies x(t) = -2\cos(4t) + \frac{1}{4}\sin(4t)$.
 
 ---
 
@@ -54,7 +54,7 @@
   For the 1st-order IVP: $\frac{dy}{dx} = f(x,y), \quad y(x_0) = y_0$:
   * **Condition 1 (Existence):** If $f(x,y)$ is continuous on a rectangle $R$ enclosing $(x_0, y_0)$, then a solution **exists**.
   * **Condition 2 (Uniqueness):** If $\frac{\partial f}{\partial y}$ is *also* continuous on $R$, then the solution is **unique** on some subinterval $I_0$.
-* **The Classic Failure Case (Zill Ex 4, p. 93 $\leftrightarrow$ Teacher Lecture 2, Slide 8):**
+* **The Classic Failure Case (Textbook Ex 4, p. 93 $\leftrightarrow$ Teacher Lecture 2, Slide 8):**
   * $\frac{dy}{dx} = x y^{1/2}, \quad y(0) = 0$.
   * $f(x,y) = x\sqrt{y}$ is continuous at $(0,0) \implies$ **A solution exists** ($y \equiv 0$ works!).
   * But $\frac{\partial f}{\partial y} = \frac{x}{2\sqrt{y}}$ is **undefined/discontinuous at $y=0$**!
@@ -65,7 +65,7 @@
 
 ### 📊 Quick Cross-Reference Matrix
 
-| Core Concept | Zill 7th Ed. Reference | Teacher's Notes Correlation | Key Takeaway / Test Trap |
+| Core Concept | Textbook Reference (7th Ed.) | Teacher's Notes Correlation | Key Takeaway / Test Trap |
 | :--- | :--- | :--- | :--- |
 | **Classification (Type/Order/Linearity)** | Section 1.1 (pp. 49–56) | Lecture 1, Slides 6–11 | Linearity only applies to $y$ and its derivatives; $x^3 \cos(x)$ on coefficients is completely linear! |
 | **Interval of Definition** | Section 1.1 (pp. 57–60) | Lecture 1, Slide 15 | Solution curves cannot jump across vertical asymptotes or points of discontinuity. |

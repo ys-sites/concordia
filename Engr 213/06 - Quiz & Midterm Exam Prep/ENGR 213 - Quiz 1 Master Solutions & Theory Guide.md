@@ -1,7 +1,7 @@
 # ENGR 213: Applied Ordinary Differential Equations
 # Quiz 1 Master Solutions & Comprehensive Theory Guide
 **Concordia University · Department of Building, Civil & Environmental Engineering (BCEE)**  
-**Coverage**: Quiz 1 Preparation (Zill Sections 1.1, 1.2, 2.1, 2.2, 2.3 · Dr. Haghighat Lectures 1–3 · Tutorial 1)
+**Coverage**: Quiz 1 Preparation (Textbook Sections 1.1, 1.2, 2.1, 2.2, 2.3 · Dr. Haghighat Lectures 1–3 · Tutorial 1)
 
 ---
 
@@ -687,7 +687,7 @@ $$I = (-5, 5)$$
 ### Problem 11 · Complete DE Classification Matrix
 
 #### Problem Statement
-*(Zill Section 1.1 Assigned Problems)*  
+*(Textbook Section 1.1 Assigned Problems)*  
 Classify each differential equation by Type, Order, Linearity, and identify the dependent and independent variables.
 
 ---
@@ -721,7 +721,7 @@ Classify each differential equation by Type, Order, Linearity, and identify the 
 ### Problem 12 · First-Order Linear ODE via Integrating Factor
 
 #### Problem Statement
-*(Dr. Haghighat Lecture 3 Slide 12 & Zill Section 2.3)*  
+*(Dr. Haghighat Lecture 3 Slide 12 & Textbook Section 2.3)*  
 Find the unique particular solution of the initial value problem:
 $$x \frac{dy}{dx} + 2y = 4x^2, \quad y(1) = 2$$
 (a) Put the equation in standard form and identify $P(x)$ and $Q(x)$.  
@@ -787,7 +787,7 @@ $$\mathbf{I = (0, \infty)}$$
 ### Problem 13 · Exact Differential Equation & Initial Value Problem
 
 #### Problem Statement
-*(Dr. Haghighat Lecture 4 · Slide 9 & Zill Section 2.4)*  
+*(Dr. Haghighat Lecture 4 · Slide 9 & Textbook Section 2.4)*  
 Consider the first-order initial value problem:
 $$\frac{dy}{dx} = \frac{xy^2 - \cos x \sin x}{y(1 - x^2)}, \quad y(0) = 2$$
 (a) Rewrite the differential equation in standard differential form $M(x, y) \, dx + N(x, y) \, dy = 0$ and prove that it satisfies the criterion for an exact differential.  
@@ -878,7 +878,7 @@ $$\mathbf{I = (-1, 1)}$$
 ### Problem 14 · Non-Exact ODE Made Exact via Integrating Factor
 
 #### Problem Statement
-*(Dr. Haghighat Lecture 4 · Slides 10–11 & Zill Section 2.4)*  
+*(Dr. Haghighat Lecture 4 · Slides 10–11 & Textbook Section 2.4)*  
 Consider the differential equation:
 $$xy \, dx + (2x^2 + 3y^2 - 20) \, dy = 0$$
 (a) Show by calculating $\frac{\partial M}{\partial y}$ and $\frac{\partial N}{\partial x}$ that the equation is **not exact**.  

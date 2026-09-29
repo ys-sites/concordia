@@ -1,7 +1,7 @@
 # ENGR 213 · Applied Ordinary Differential Equations
 # Lecture 6: Differential Equations as Mathematical Models & Linear Models (Explained)
 **Concordia University · Department of Building, Civil and Environmental Engineering**  
-**Instructor**: Dr. A. Haghighat M. · **Textbook Reference**: D.G. Zill, *Advanced Engineering Mathematics*, 7th Edition, Section 2.7
+**Instructor**: Dr. A. Haghighat M. · **Textbook Reference**: *Advanced Engineering Mathematics*, 7th Edition, Section 2.7
 
 ---
 
@@ -11,7 +11,7 @@ Lecture 6 marks the fundamental bridge between purely formal ODE integration tec
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│               LECTURE 6 LINEAR MODELING TAXONOMY (ZILL 2.7)            │
+│               LECTURE 6 LINEAR MODELING TAXONOMY (§2.7)                │
 ├──────────────────────┬─────────────────────────────┬───────────────────┤
 │ Phenomenon           │ Governing Differential Eq.  │ Solution Method   │
 ├──────────────────────┼─────────────────────────────┼───────────────────┤

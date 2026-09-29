@@ -20,8 +20,8 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 > **Material oficial de referencia del curso:**
 * **`Calculus for Differential Equations - Master Sheet.pdf`**: Copia de referencia del resumen maestro de cálculo.
 * **`ENGR 213 - Course Outline Fall 2026.pdf`**: El temario oficial con calendario de clases, fechas de exámenes y lecturas requeridas.
-* **`Zill - Advanced Engineering Mathematics (7th Edition).pdf`**: El libro de texto completo oficial de Dennis G. Zill.
-* **`Zill Textbook Chapters/`**: Capítulos individuales extraídos del libro (Capítulos 1, 2, 3, 4) y el Manual de Soluciones completo.
+* **`Advanced Engineering Mathematics (7th Edition).pdf`**: El libro de texto completo oficial del curso.
+* **`Textbook Chapters/`**: Capítulos individuales extraídos del libro (Capítulos 1, 2, 3, 4) y el Manual de Soluciones completo.
 
 ---
 
@@ -43,26 +43,26 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 * **`Lecture 3 - Separable and Linear Equations (Explained).pdf`**: Guía completa de 10 páginas para ecuaciones separables y lineales.
 * **`Lecture 4 - Exact Equations (Explained).pdf`**: Guía paso a paso para dominar ecuaciones exactas y el método de reconstrucción.
 * **`Lecture 5 - Solutions by Substitutions (Explained).pdf`**: Guía completa para ecuaciones homogéneas ($y=ux$), Bernoulli ($u=y^{1-n}$) y argumentos lineales ($u=Ax+By+C$) con soluciones paso a paso de los ejemplos de clase.
-* **`Lecture 6 - Linear Mathematical Models (Explained).pdf` & `.md`**: Guía paso a paso completa para la clase 6 (Zill 2.7) cubriendo la formulación de leyes de tasa, crecimiento bacteriano, ley de enfriamiento de Newton, mezcla en tanques con factor integrante y respuesta transitoria/permanente en circuitos LR.
+* **`Lecture 6 - Linear Mathematical Models (Explained).pdf` & `.md`**: Guía paso a paso completa para la clase 6 (§2.7) cubriendo la formulación de leyes de tasa, crecimiento bacteriano, ley de enfriamiento de Newton, mezcla en tanques con factor integrante y respuesta transitoria/permanente en circuitos LR.
 * **`Archive & Alternatives/`**: Borradores previos y notas expandidas de cálculos detallados.
 
 ---
 
 ### `03 - Chapter 1 Summary`
-> **Resumen Maestro y Soluciones de Tareas del Capítulo 1 (Zill Section 1.1 – Section 1.3):**
+> **Resumen Maestro y Soluciones de Tareas del Capítulo 1 (Textbook Section 1.1 – Section 1.3):**
 * **`Chapter 1 - Master Summary.pdf`**: Guía de estudio maestra de 8 páginas (sin desbordamiento, formato visual premium con KaTeX).
 * **`Chapter 1 - Assigned Homework Solutions.pdf`**: Solucionario paso a paso de los 25 problemas asignados en el temario (Section 1.1, Section 1.2, Section 1.3), con soluciones de ingeniería detalladas y respuestas oficiales del libro verificadas.
 * **`Chapter 1 - Summary Notes.md`**: Resumen ejecutivo en formato Markdown para consulta rápida.
-* **`Zill Chapter 1 - Textbook Excerpt.pdf`**: Texto original del Capítulo 1 extraído del libro de Zill.
+* **`Chapter 1 - Textbook Excerpt.pdf`**: Texto original del Capítulo 1 extraído del libro de texto.
 
 ---
 
 ### `04 - Chapter 2 Summary`
 > **Resumen Maestro, Guías Temáticas y Solucionario del Capítulo 2:**
 * **`Chapter 2 - Master Summary.pdf`**: Guía de estudio maestra unificada de 9 páginas (incluye el árbol de decisión diagnóstico de 10 segundos y las 7 trampas de examen).
-* **`Chapter 2 - Assigned Homework Solutions.pdf`**: Solucionario paso a paso completo de los **53 problemas asignados** en el temario (Section 2.1, Section 2.2, Section 2.3, Section 2.4, Section 2.5, Section 2.7, Section 2.8) en 17 páginas, con derivaciones intermedias, notas de trampas de examen y verificación de respuestas oficiales de Zill.
+* **`Chapter 2 - Assigned Homework Solutions.pdf`**: Solucionario paso a paso completo de los **53 problemas asignados** en el temario (Section 2.1, Section 2.2, Section 2.3, Section 2.4, Section 2.5, Section 2.7, Section 2.8) en 17 páginas, con derivaciones intermedias, notas de trampas de examen y verificación de respuestas oficiales del libro de texto.
 * **`Chapter 2 - Summary Notes.md`**: Resumen ejecutivo en formato Markdown.
-* **`Zill Chapter 2 - Textbook Excerpt.pdf`**: Texto original del Capítulo 2 extraído del libro de Zill.
+* **`Chapter 2 - Textbook Excerpt.pdf`**: Texto original del Capítulo 2 extraído del libro de texto.
 
 ---
 
@@ -84,7 +84,7 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 
 ### `06 - Quiz & Midterm Exam Prep`
 > **Material de Preparación, Team Projects y Simulacros de Examen:**
-* **`ENGR 213 - Team Project 1 & Tutorial Preparation Master Guide (Linear Models).pdf` & `.md`**: Guía estratégica y técnica completa para el **Team Project 1** de 1 hora en tutorial (equipos de 2 a 3 estudiantes). Incluye protocolo de división de tiempo, desglose de los 4 arquetipos de modelos lineales (Zill 2.7) y 8 problemas de examen resueltos paso a paso con advertencias de trampas y checklist pre-entrega.
+* **`ENGR 213 - Team Project 1 & Tutorial Preparation Master Guide (Linear Models).pdf` & `.md`**: Guía estratégica y técnica completa para el **Team Project 1** de 1 hora en tutorial (equipos de 2 a 3 estudiantes). Incluye protocolo de división de tiempo, desglose de los 4 arquetipos de modelos lineales (§2.7) y 8 problemas de examen resueltos paso a paso con advertencias de trampas y checklist pre-entrega.
 * **`ENGR 213 - Quiz 1 Practice Exam & Master Solutions Guide.pdf`**: Compendio maestro de 25 páginas para el Quiz 1 con 14 problemas de alto rendimiento cubriendo todo el temario evaluado hasta Ecuaciones Exactas (Problemas del Tutorial 1, Diapositivas del Profesor Dr. Haghighat de Clases 1 a 4 y problemas clave del temario). Incluye soluciones matemáticas paso a paso y la sección inferior explicativa para cada ejercicio sobre fundamentos teóricos y trampas de examen.
 * **`ENGR 213 - Master Step-by-Step Solutions & Method Expansions.pdf`**: Manual maestro de 9 páginas que aplica el formato ultra-explicado de `exact_ode_step_by_step.pdf` a todos los arquetipos de problemas (Lecturas 1 a 5), con pasos numerados, teoría antes del cálculo y caja "Pattern to Remember".
 * **`ENGR 213 - Master Step-by-Step Solutions & Method Expansions.md`**: Versión completa en Markdown para consulta y edición rápida.

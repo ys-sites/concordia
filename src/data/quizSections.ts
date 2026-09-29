@@ -21,12 +21,12 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   ENGR213: {
     midterm: {
       label: 'Midterm Review — Chapters 1 & 2',
-      detail: 'Mixed questions from Lectures 1–6 (Zill §1.1–2.7)',
+      detail: 'Mixed questions from Lectures 1–6 (Textbook §1.1–2.7)',
       sections: ['ch1', 'ch2']
     },
     sections: [
-      { id: 'ch1', label: 'Chapter 1 — Introduction to Differential Equations', detail: 'Lectures 1–2 · Zill §1.1–1.2: terminology, solutions, IVPs, existence & uniqueness' },
-      { id: 'ch2', label: 'Chapter 2 — First-Order Differential Equations', detail: 'Lectures 2–6 · Zill §2.1–2.5, 2.7: direction fields, separable, linear, exact, substitutions, linear models' }
+      { id: 'ch1', label: 'Chapter 1 — Introduction to Differential Equations', detail: 'Lectures 1–2 · Textbook §1.1–1.2: terminology, solutions, IVPs, existence & uniqueness' },
+      { id: 'ch2', label: 'Chapter 2 — First-Order Differential Equations', detail: 'Lectures 2–6 · Textbook §2.1–2.5, 2.7: direction fields, separable, linear, exact, substitutions, linear models' }
     ]
   },
   INDU211: {

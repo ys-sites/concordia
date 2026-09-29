@@ -370,7 +370,7 @@
     "Chapter 1 - Assigned Homework Solutions.pdf": {
         "course": "Applied Ordinary Differential Equations (ENGR 213)",
         "category": "Mandatory assignments",
-        "title": "ENGR 213 Chapter 1: Fully Solved Assigned Homework Problems (Zill 7th Ed)",
+        "title": "ENGR 213 Chapter 1: Fully Solved Assigned Homework Problems (7th Ed)",
         "year": "2025/2026",
         "desc": "Complete handwritten/typed solutions for all assigned Chapter 1 textbook exercises on ODE classification, verification of solutions, and IVPs."
     },
@@ -559,7 +559,7 @@
     "Chapter 2 - Assigned Homework Solutions.pdf": {
         "course": "Applied Ordinary Differential Equations (ENGR 213)",
         "category": "Mandatory assignments",
-        "title": "ENGR 213 Chapter 2: Fully Solved Assigned Homework Problems (Zill 7th Ed)",
+        "title": "ENGR 213 Chapter 2: Fully Solved Assigned Homework Problems (7th Ed)",
         "year": "2025/2026",
         "desc": "Complete worked homework solutions for Chapter 2 textbook problems on separable ODEs, linear integrating factors, exact equations, and substitution methods."
     },
@@ -598,45 +598,45 @@
         "year": "2025/2026",
         "desc": "Official lecture slides examining plant layout types (product, process, cellular, fixed-position), material handling equipment, and line balancing techniques."
     },
-    "Zill_Advanced_Engineering_Mathematics_Solutions_Manual.pdf": {
+    "Advanced_Engineering_Mathematics_Solutions_Manual.pdf": {
         "course": "Applied Ordinary Differential Equations (ENGR 213)",
         "category": "Practice materials",
-        "title": "ENGR 213 Solutions Manual: Zill Advanced Engineering Mathematics (7th Edition)",
+        "title": "ENGR 213 Solutions Manual: Advanced Engineering Mathematics (7th Edition)",
         "year": "2025/2026",
-        "desc": "Comprehensive solutions manual providing fully worked, step-by-step answers for all textbook problems in Zill's Advanced Engineering Mathematics (7th Ed)."
+        "desc": "Comprehensive solutions manual providing fully worked, step-by-step answers for all textbook problems in Advanced Engineering Mathematics (7th Ed)."
     },
-    "Zill Chapter 4 - The Laplace Transform.pdf": {
+    "Textbook Chapter 4 - The Laplace Transform.pdf": {
         "course": "Applied Ordinary Differential Equations (ENGR 213)",
         "category": "Other",
-        "title": "ENGR 213 Textbook Chapter 4: The Laplace Transform (Zill 7th Edition)",
+        "title": "ENGR 213 Textbook Chapter 4: The Laplace Transform (7th Edition)",
         "year": "2025/2026",
         "desc": "Textbook reference chapter detailing definition of Laplace transforms, inverse transforms, translation theorems, derivatives of transforms, and solving IVPs."
     },
-    "Zill Chapter 1 - Introduction to Differential Equations.pdf": {
+    "Textbook Chapter 1 - Introduction to Differential Equations.pdf": {
         "course": "Applied Ordinary Differential Equations (ENGR 213)",
         "category": "Other",
-        "title": "ENGR 213 Textbook Chapter 1: Introduction to Differential Equations (Zill 7th Edition)",
+        "title": "ENGR 213 Textbook Chapter 1: Introduction to Differential Equations (7th Edition)",
         "year": "2025/2026",
         "desc": "Textbook reference chapter covering basic definitions, order, linearity, verification of explicit/implicit solutions, and first-order differential equation modeling."
     },
-    "Zill Chapter 3 - Higher-Order Differential Equations.pdf": {
+    "Textbook Chapter 3 - Higher-Order Differential Equations.pdf": {
         "course": "Applied Ordinary Differential Equations (ENGR 213)",
         "category": "Other",
-        "title": "ENGR 213 Textbook Chapter 3: Higher-Order Differential Equations (Zill 7th Edition)",
+        "title": "ENGR 213 Textbook Chapter 3: Higher-Order Differential Equations (7th Edition)",
         "year": "2025/2026",
         "desc": "Textbook reference chapter detailing linear higher-order ODE theory, characteristic roots, undetermined coefficients, variation of parameters, and Cauchy-Euler equations."
     },
-    "Zill Chapter 2 - First-Order Differential Equations.pdf": {
+    "Textbook Chapter 2 - First-Order Differential Equations.pdf": {
         "course": "Applied Ordinary Differential Equations (ENGR 213)",
         "category": "Other",
-        "title": "ENGR 213 Textbook Chapter 2: First-Order Differential Equations (Zill 7th Edition)",
+        "title": "ENGR 213 Textbook Chapter 2: First-Order Differential Equations (7th Edition)",
         "year": "2025/2026",
         "desc": "Textbook reference chapter covering separable equations, linear first-order ODEs, exact differential equations, integrating factors, and substitution methods."
     },
-    "Zill - Advanced Engineering Mathematics (7th Edition).pdf": {
+    "Advanced Engineering Mathematics (7th Edition).pdf": {
         "course": "Applied Ordinary Differential Equations (ENGR 213)",
         "category": "Other",
-        "title": "ENGR 213 Complete Course Textbook: Zill Advanced Engineering Mathematics (7th Edition)",
+        "title": "ENGR 213 Complete Course Textbook: Advanced Engineering Mathematics (7th Edition)",
         "year": "2025/2026",
         "desc": "Full official course textbook for ENGR 213 covering ordinary differential equations, series solutions, Laplace transforms, linear algebra, and vector calculus."
     }
