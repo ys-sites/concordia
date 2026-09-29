@@ -116,7 +116,10 @@ export const DrillPicker: React.FC<DrillPickerProps> = ({ open, initialCourseId,
                   <strong>{s.label}</strong>
                   <span>{s.detail}</span>
                 </span>
-                <span className="dp-count">{drillSize(course.id, s.id)} Q</span>
+                <span className="dp-count">
+                  {drillSize(course.id, s.id)} Q
+                  <small>of {questionPool(course.id, s.id).length}</small>
+                </span>
               </button>
             ))}
           </div>
