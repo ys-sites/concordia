@@ -10,6 +10,7 @@ import { QuizResults } from './components/QuizResults';
 import { QuestionBankBrowser } from './components/QuestionBankBrowser';
 import { DrillPicker } from './components/DrillPicker';
 import { audio } from './utils/audio';
+import { Analytics } from '@vercel/analytics/react';
 
 type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK';
 
@@ -179,6 +180,8 @@ export function App() {
           </div>
         </div>
       </footer>
+
+      <Analytics />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { CourseId, PracticeQuestion, QuizSessionState } from '../types';
 import { questionPool, sectionLabel, DRILL_LENGTH } from '../data/quizSections';
 import { MathText } from '../utils/mathRenderer';
+import { SourceList } from './SourceList';
 import { audio } from '../utils/audio';
 import { 
   Brain, 
@@ -295,10 +296,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
                 </div>
               )}
 
-              <div className="curriculum-ref">
-                <BookOpen size={14} />
-                <span>{currentQ.explanation.reference}</span>
-              </div>
+              <SourceList question={currentQ} />
             </div>
 
             <div className="drawer-body">

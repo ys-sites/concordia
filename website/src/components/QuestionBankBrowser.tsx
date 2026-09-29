@@ -3,6 +3,7 @@ import { CourseId, PracticeQuestion } from '../types';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
 import { COURSES_DATA } from '../data/coursesData';
 import { MathText } from '../utils/mathRenderer';
+import { SourceList } from './SourceList';
 import { audio } from '../utils/audio';
 import { 
   BookOpen, 
@@ -212,9 +213,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
                       </div>
                     )}
 
-                    <div className="ref-tag">
-                      Reference: {q.explanation.reference}
-                    </div>
+                    <SourceList question={q} />
                   </div>
                 </div>
               )}

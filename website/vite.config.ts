@@ -3,6 +3,10 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import fs from 'fs';
 import { isHiddenFromSite } from './src/data/localOnly';
+import { slugSegment } from './src/utils/pdfUrl';
+
+// Published course paths use URL-safe names (see src/utils/pdfUrl.ts); guard against two files mapping to one name
+const publishedPaths = new Map<string, string>();
 
 // Helper to recursively copy curriculum files
 function copyDirFiltered(src: string, dest: string, root: string) {
@@ -16,12 +20,16 @@ function copyDirFiltered(src: string, dest: string, root: string) {
       entry.name.startsWith('.') || 
       entry.name.includes('CodeBlocks') || 
       entry.name === 'node_modules' ||
+      entry.name === 'Term Paper & Final Project' ||
       entry.name.includes('Advanced Engineering Mathematics (7th Edition).pdf')
     ) {
       continue;
     }
     const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, entry.name);
+    const destPath = path.join(dest, slugSegment(entry.name));
+    const clash = publishedPaths.get(destPath);
+    if (clash && clash !== srcPath) throw new Error(`URL-safe name collision: "${srcPath}" and "${clash}"`);
+    publishedPaths.set(destPath, srcPath);
     // Only study material is deployed: no assignment/lab files, solutions or term paper
     if (isHiddenFromSite(path.relative(root, srcPath))) continue;
 
@@ -37,16 +45,28 @@ function copyDirFiltered(src: string, dest: string, root: string) {
             fs.copyFileSync(srcPath, destPath);
           }
         } catch (e) {
-          // Skip if unreadable
+          console.warn('[Vercel Build] Could not copy', srcPath, e);
         }
       }
     }
   }
 }
 
+// Dev server: map a published (URL-safe) path back to the real file by matching each segment's slug
+function resolvePublishedPath(root: string, published: string): string | null {
+  let current = root;
+  for (const seg of published.split('/').filter(Boolean)) {
+    if (!fs.existsSync(current) || !fs.statSync(current).isDirectory()) return null;
+    const match = fs.readdirSync(current).find((name) => name === seg || slugSegment(name) === seg);
+    if (!match) return null;
+    current = path.join(current, match);
+  }
+  return current;
+}
+
 // Custom middleware to serve local course PDFs seamlessly and bundle for Vercel
 function coursePdfPlugin() {
-  const semester1Root = __dirname;
+  const semester1Root = path.resolve(__dirname, '..');
 
   return {
     name: 'course-pdf-server',
@@ -56,16 +76,15 @@ function coursePdfPlugin() {
         if (req.url && req.url.startsWith('/courses/')) {
           try {
             const rawPath = req.url.slice('/courses/'.length).split('?')[0];
-            const decodedPath = decodeURIComponent(rawPath);
-            const targetPath = path.resolve(semester1Root, decodedPath);
+            const targetPath = resolvePublishedPath(semester1Root, decodeURIComponent(rawPath));
             
-            if (!targetPath.startsWith(semester1Root)) {
+            if (targetPath && !targetPath.startsWith(semester1Root)) {
               res.statusCode = 403;
               res.end('Access denied');
               return;
             }
 
-            if (fs.existsSync(targetPath) && fs.statSync(targetPath).isFile()) {
+            if (targetPath && fs.existsSync(targetPath) && fs.statSync(targetPath).isFile()) {
               res.setHeader('Content-Type', targetPath.endsWith('.pdf') ? 'application/pdf' : 'text/plain');
               res.setHeader('Content-Disposition', 'inline');
               fs.createReadStream(targetPath).pipe(res);
@@ -122,7 +141,7 @@ function coursePdfPlugin() {
         console.log('[Vercel Build] Bundling course curriculum files into dist/courses...');
         for (const c of courseDirs) {
           const src = path.resolve(semester1Root, c);
-          const dest = path.resolve(distCoursesDir, c);
+          const dest = path.resolve(distCoursesDir, slugSegment(c));
           copyDirFiltered(src, dest, semester1Root);
         }
         console.log('[Vercel Build] Course assets bundled successfully for Vercel CDN!');
@@ -137,7 +156,10 @@ export default defineConfig({
   plugins: [react(), coursePdfPlugin()],
   server: {
     port: 5173,
-    open: true
+    open: true,
+    fs: {
+      allow: ['..']
+    }
   }
 });
 

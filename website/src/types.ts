@@ -42,10 +42,17 @@ export interface CourseDocument {
   summary: string;
 }
 
+export interface QuestionSource {
+  deck: string;     // teacher's slide deck / file name
+  chapter: string;  // chapter or topic it belongs to
+  location: string; // "Page 5", "Pages 5–6" or "Line 42"
+}
+
 export interface PracticeQuestion {
   id: string;
   courseId: CourseId;
-  chapter: string; // section id from QUIZ_PLANS (e.g. 'ch1', 'types')
+  chapter: string; // section id from QUIZ_PLANS (e.g. 'ch1', 'types'); 'mixed' = midterm-only
+  source?: QuestionSource[];
   topic: string;
   difficulty: 'Foundation' | 'Midterm Level' | 'Exam Master';
   question: string;

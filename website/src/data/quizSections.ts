@@ -21,8 +21,8 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   ENGR213: {
     midterm: {
       label: 'Midterm Review — Chapters 1 & 2',
-      detail: 'Mixed questions from Lectures 1–6 (Textbook §1.1–2.7)',
-      sections: ['ch1', 'ch2']
+      detail: 'Both chapters plus 40 midterm-style mixed questions (Lectures 1–6)',
+      sections: ['ch1', 'ch2', 'mixed']
     },
     sections: [
       { id: 'ch1', label: 'Chapter 1 — Introduction to Differential Equations', detail: 'Lectures 1–2 · Textbook §1.1–1.2: terminology, solutions, IVPs, existence & uniqueness' },
@@ -58,8 +58,8 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   MIAE221: {
     midterm: {
       label: 'Midterm Review — Lectures 1 to 5',
-      detail: 'Mixed questions from the lectures posted so far (Callister Ch. 1–3)',
-      sections: ['intro', 'bonding', 'crystal']
+      detail: 'All three chapters plus mixed midterm-style questions (Lectures 1–5)',
+      sections: ['intro', 'bonding', 'crystal', 'mixed']
     },
     sections: [
       { id: 'intro', label: 'Ch. 1 · Introduction & Classes of Materials', detail: 'Lectures 1–2: science vs engineering, properties, material classes, failures' },

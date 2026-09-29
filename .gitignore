@@ -3,6 +3,9 @@ node_modules/
 dist/
 dist-ssr/
 .pnpm-store/
+.vite/
+website/dist/
+website/node_modules/
 
 # Executable Binaries & Libraries
 *.exe

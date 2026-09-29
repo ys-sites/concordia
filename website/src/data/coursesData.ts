@@ -856,12 +856,6 @@ const RAW_COURSES_DATA: CourseWithDocs[] = [
         "title": "Assignment 5",
         "count": 3,
         "description": "Course materials for Assignment 5"
-      },
-      {
-        "id": "05 - Assignments & Solutions/Term Paper & Final Project",
-        "title": "Term Paper & Final Project",
-        "count": 7,
-        "description": "Course materials for Term Paper & Final Project"
       }
     ],
     "documents": [
@@ -1493,125 +1487,6 @@ const RAW_COURSES_DATA: CourseWithDocs[] = [
           "INDU 211"
         ],
         "summary": "Official curriculum document for INDU 211: Assignment 5"
-      },
-      {
-        "id": "INDU211_38",
-        "courseId": "INDU211",
-        "categoryId": "05 - Assignments & Solutions/Term Paper & Final Project",
-        "categoryTitle": "Term Paper & Final Project",
-        "title": "Final project submission - Moodle instructions",
-        "filename": "Final project submission - Moodle instructions.pdf",
-        "relativePath": "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Final project submission - Moodle instructions.pdf",
-        "fileSizeBytes": 43885,
-        "isMasterGuide": false,
-        "isHighYield": true,
-        "tags": [
-          "Term Paper & Final Project",
-          "INDU 211"
-        ],
-        "summary": "Official curriculum document for INDU 211: Final project submission - Moodle instructions"
-      },
-      {
-        "id": "INDU211_39",
-        "courseId": "INDU211",
-        "categoryId": "05 - Assignments & Solutions/Term Paper & Final Project",
-        "categoryTitle": "Term Paper & Final Project",
-        "title": "INDU 211 - Term Paper Group Proposal (1-Page Official)",
-        "filename": "INDU 211 - Term Paper Group Proposal (1-Page Official).pdf",
-        "relativePath": "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Group Proposal (1-Page Official).pdf",
-        "fileSizeBytes": 91485,
-        "isMasterGuide": true,
-        "isHighYield": false,
-        "tags": [
-          "Term Paper & Final Project",
-          "INDU 211"
-        ],
-        "summary": "Official curriculum document for INDU 211: INDU 211 - Term Paper Group Proposal (1-Page Official)"
-      },
-      {
-        "id": "INDU211_40",
-        "courseId": "INDU211",
-        "categoryId": "05 - Assignments & Solutions/Term Paper & Final Project",
-        "categoryTitle": "Term Paper & Final Project",
-        "title": "INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era)",
-        "filename": "INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era).pdf",
-        "relativePath": "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era).pdf",
-        "fileSizeBytes": 362964,
-        "isMasterGuide": true,
-        "isHighYield": false,
-        "tags": [
-          "Term Paper & Final Project",
-          "INDU 211"
-        ],
-        "summary": "Official curriculum document for INDU 211: INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era)"
-      },
-      {
-        "id": "INDU211_41",
-        "courseId": "INDU211",
-        "categoryId": "05 - Assignments & Solutions/Term Paper & Final Project",
-        "categoryTitle": "Term Paper & Final Project",
-        "title": "INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script",
-        "filename": "INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script.pdf",
-        "relativePath": "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script.pdf",
-        "fileSizeBytes": 141280,
-        "isMasterGuide": true,
-        "isHighYield": false,
-        "tags": [
-          "Term Paper & Final Project",
-          "INDU 211"
-        ],
-        "summary": "Official curriculum document for INDU 211: INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script"
-      },
-      {
-        "id": "INDU211_42",
-        "courseId": "INDU211",
-        "categoryId": "05 - Assignments & Solutions/Term Paper & Final Project",
-        "categoryTitle": "Term Paper & Final Project",
-        "title": "Project video submission - Moodle instructions",
-        "filename": "Project video submission - Moodle instructions.pdf",
-        "relativePath": "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Project video submission - Moodle instructions.pdf",
-        "fileSizeBytes": 66642,
-        "isMasterGuide": false,
-        "isHighYield": true,
-        "tags": [
-          "Term Paper & Final Project",
-          "INDU 211"
-        ],
-        "summary": "Official curriculum document for INDU 211: Project video submission - Moodle instructions"
-      },
-      {
-        "id": "INDU211_43",
-        "courseId": "INDU211",
-        "categoryId": "05 - Assignments & Solutions/Term Paper & Final Project",
-        "categoryTitle": "Term Paper & Final Project",
-        "title": "Term Paper Description",
-        "filename": "Term Paper Description.pdf",
-        "relativePath": "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Term Paper Description.pdf",
-        "fileSizeBytes": 78656,
-        "isMasterGuide": false,
-        "isHighYield": false,
-        "tags": [
-          "Term Paper & Final Project",
-          "INDU 211"
-        ],
-        "summary": "Official curriculum document for INDU 211: Term Paper Description"
-      },
-      {
-        "id": "INDU211_44",
-        "courseId": "INDU211",
-        "categoryId": "05 - Assignments & Solutions/Term Paper & Final Project",
-        "categoryTitle": "Term Paper & Final Project",
-        "title": "Term paper group proposal - Moodle instructions",
-        "filename": "Term paper group proposal - Moodle instructions.pdf",
-        "relativePath": "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Term paper group proposal - Moodle instructions.pdf",
-        "fileSizeBytes": 48847,
-        "isMasterGuide": true,
-        "isHighYield": false,
-        "tags": [
-          "Term Paper & Final Project",
-          "INDU 211"
-        ],
-        "summary": "Official curriculum document for INDU 211: Term paper group proposal - Moodle instructions"
       }
     ]
   },

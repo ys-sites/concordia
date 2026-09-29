@@ -590,6 +590,7 @@ h1, h2, h3, h4, h5 {
 
 .card-btn-quiz {
   flex: 1;
+  white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2360,12 +2361,19 @@ h1, h2, h3, h4, h5 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .modal-header-left {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex: 1;
+  min-width: 0; /* lets the title shrink so the actions never get pushed off-screen */
+}
+
+.modal-heading {
+  min-width: 0;
 }
 
 .modal-icon-badge {
@@ -2389,7 +2397,7 @@ h1, h2, h3, h4, h5 {
   font-size: 16px;
   font-weight: 700;
   color: #0f172a;
-  max-width: 700px;
+  max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2399,6 +2407,7 @@ h1, h2, h3, h4, h5 {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .modal-action-btn {
@@ -2423,11 +2432,12 @@ h1, h2, h3, h4, h5 {
 }
 
 .modal-close-btn {
+  flex-shrink: 0;
   background: #f8fafc;
   border: 1px solid #cbd5e1;
   color: #475569;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
@@ -3134,4 +3144,152 @@ h1, h2, h3, h4, h5 {
   .dp-option-icon {
     display: none;
   }
+}
+
+/* PDF viewer on phones: full screen, compact header, open/download panel instead of an iframe */
+.pdf-phone-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  background: var(--bg-card-subtle);
+  color: var(--text-muted);
+}
+
+.pdf-phone-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.pdf-phone-hint {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.pdf-phone-btn {
+  width: 100%;
+  max-width: 320px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-highlight);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pdf-phone-btn.primary {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--text-inverse);
+}
+
+@media (max-width: 768px) {
+  .modal-backdrop {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .pdf-modal-container {
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    height: 100dvh;
+    border: none;
+    border-radius: 0;
+  }
+
+  .pdf-modal-header {
+    padding: 10px 12px;
+    padding-top: max(10px, env(safe-area-inset-top));
+  }
+
+  .modal-icon-badge,
+  .modal-action-label {
+    display: none;
+  }
+
+  .modal-action-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .modal-close-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .modal-title {
+    font-size: 15px;
+  }
+}
+
+/* Question source: teacher's deck · chapter · page */
+.q-source-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-subtle);
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+.q-source-heading {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.q-source-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+}
+
+.q-source-icon {
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.q-source-deck {
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.q-source-meta {
+  color: var(--text-secondary);
+}
+
+.q-source-loc {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 1px 8px;
 }

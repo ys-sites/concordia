@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CourseId, PracticeQuestion } from '../types';
 import { MathText } from '../utils/mathRenderer';
+import { SourceList } from './SourceList';
 import { audio } from '../utils/audio';
 import { 
   Award, 
@@ -256,9 +257,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
                         </div>
                       )}
 
-                      <div className="citation-tag">
-                        Reference: {q.explanation.reference}
-                      </div>
+                      <SourceList question={q} />
                     </div>
                   </div>
                 )}

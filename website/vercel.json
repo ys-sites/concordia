@@ -1,8 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm --prefix website install --include=dev",
-  "buildCommand": "npm --prefix website run build",
-  "outputDirectory": "website/dist",
   "cleanUrls": true,
   "rewrites": [
     { "source": "/api/pdf", "destination": "/api/pdf.js" },
