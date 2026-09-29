@@ -17,7 +17,7 @@ export const COURSES_DATA: CourseWithDocs[] = [
     "accentHex": "#6366f1",
     "iconName": "Sigma",
     "description": "First and second-order ODEs, linear models, integrating factors, substitutions, and Laplace transforms.",
-    "totalDocuments": 42,
+    "totalDocuments": 41,
     "totalQuestions": 30,
     "categories": [
       {
@@ -29,7 +29,7 @@ export const COURSES_DATA: CourseWithDocs[] = [
       {
         "id": "00 - Course Syllabus & Textbook",
         "title": "00 - Course Syllabus & Textbook",
-        "count": 3,
+        "count": 2,
         "description": "Course materials for 00 - Course Syllabus & Textbook"
       },
       {
@@ -132,23 +132,6 @@ export const COURSES_DATA: CourseWithDocs[] = [
           "ENGR 213"
         ],
         "summary": "Official curriculum document for ENGR 213: ENGR 213 - Course Outline Fall 2026"
-      },
-      {
-        "id": "ENGR213_4",
-        "courseId": "ENGR213",
-        "categoryId": "00 - Course Syllabus & Textbook",
-        "categoryTitle": "00 - Course Syllabus & Textbook",
-        "title": "Zill - Advanced Engineering Mathematics (7th Edition)",
-        "filename": "Zill - Advanced Engineering Mathematics (7th Edition).pdf",
-        "relativePath": "Engr 213/00 - Course Syllabus & Textbook/Zill - Advanced Engineering Mathematics (7th Edition).pdf",
-        "fileSizeBytes": 112588910,
-        "isMasterGuide": false,
-        "isHighYield": false,
-        "tags": [
-          "00 - Course Syllabus & Textbook",
-          "ENGR 213"
-        ],
-        "summary": "Official curriculum document for ENGR 213: Zill - Advanced Engineering Mathematics (7th Edition)"
       },
       {
         "id": "ENGR213_5",

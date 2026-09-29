@@ -14,7 +14,8 @@ function copyDirFiltered(src: string, dest: string) {
       entry.name === '_Source & Archive' || 
       entry.name.startsWith('.') || 
       entry.name.includes('CodeBlocks') || 
-      entry.name === 'node_modules'
+      entry.name === 'node_modules' ||
+      entry.name.includes('Advanced Engineering Mathematics (7th Edition).pdf')
     ) {
       continue;
     }
@@ -26,7 +27,15 @@ function copyDirFiltered(src: string, dest: string) {
     } else if (entry.isFile()) {
       const ext = path.extname(entry.name).toLowerCase();
       if (['.pdf', '.md', '.ino', '.cpp', '.png', '.jpg', '.svg'].includes(ext)) {
-        fs.copyFileSync(srcPath, destPath);
+        try {
+          const stat = fs.statSync(srcPath);
+          // Vercel hard limit is 100MB per static file; skip anything larger than 90MB
+          if (stat.size <= 90 * 1024 * 1024) {
+            fs.copyFileSync(srcPath, destPath);
+          }
+        } catch (e) {
+          // Skip if unreadable
+        }
       }
     }
   }
