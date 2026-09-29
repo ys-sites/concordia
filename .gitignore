@@ -49,3 +49,20 @@ dist-ssr/
 *.log
 .DS_Store
 Thumbs.db
+
+# Local-only: assignment/lab solutions & INDU 211 term paper (never publish).
+# Keep in sync with src/data/localOnly.ts
+Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/
+Indu 211/05 - Assignments & Solutions/Assignment */*Solution*
+Indu 211/05 - Assignments & Solutions/Assignment */README.md
+Indu 211/05 - Assignments & Solutions/Assignment 1/BOM_Tree_Diagram.*
+Indu 211/05 - Assignments & Solutions/Assignment 1/Operations_Process_Chart.*
+Miae 215/04 - Practice Problems & Code Solutions/Assignment *Fully Solved*
+Miae 215/04 - Practice Problems & Code Solutions/code_solutions/assignment*
+Miae 215/06 - Arduino Labs & Term Project/Lab */arduino_lab*_Q*.ino
+Miae 215/06 - Arduino Labs & Term Project/Lab 2 */README.md
+Miae 215/06 - Arduino Labs & Term Project/Lab 3 */README.md
+Miae 215/06 - Arduino Labs & Term Project/MIAE 215 - Arduino Labs & Mechatronics Project Master Guide.*
+Engr 213/**/*Assigned Homework Solutions*
+Miae 215/01 - Teacher Lecture Notes & Slides/Q2_e.*
+Miae 215/05 - Software & Flowcharts/Q2_e.*

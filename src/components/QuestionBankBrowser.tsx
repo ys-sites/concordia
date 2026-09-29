@@ -65,7 +65,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
               <BookOpen size={14} />
               <span>Full Master Question Database</span>
             </div>
-            <h1 className="bank-title">120+ High-Yield Engineering Questions</h1>
+            <h1 className="bank-title">{PRACTICE_QUESTIONS.length} Practice Questions from the Teachers' Notes</h1>
             <p className="bank-sub">Explore the complete curriculum-aligned question bank, mathematical proofs, and Concordia exam traps.</p>
           </div>
 
@@ -77,7 +77,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
             }}
           >
             <Brain size={18} />
-            <span>Launch 20-Q Drill ({selectedCourse === 'ALL' ? 'Mixed' : selectedCourse})</span>
+            <span>{selectedCourse === 'ALL' ? 'Start a Practice Drill' : `Start a ${selectedCourse} Drill`}</span>
           </button>
         </div>
 
@@ -92,7 +92,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
                 setSelectedCourse('ALL');
               }}
             >
-              All Subjects (120)
+              All Subjects ({PRACTICE_QUESTIONS.length})
             </button>
             {COURSES_DATA.map(c => (
               <button
@@ -103,7 +103,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
                   setSelectedCourse(c.id);
                 }}
               >
-                {c.code} (30)
+                {c.code} ({PRACTICE_QUESTIONS.filter(q => q.courseId === c.id).length})
               </button>
             ))}
           </div>

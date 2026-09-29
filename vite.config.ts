@@ -2,9 +2,10 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import fs from 'fs';
+import { isHiddenFromSite } from './src/data/localOnly';
 
 // Helper to recursively copy curriculum files
-function copyDirFiltered(src: string, dest: string) {
+function copyDirFiltered(src: string, dest: string, root: string) {
   if (!fs.existsSync(src)) return;
   if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
 
@@ -21,9 +22,11 @@ function copyDirFiltered(src: string, dest: string) {
     }
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
+    // Only study material is deployed: no assignment/lab files, solutions or term paper
+    if (isHiddenFromSite(path.relative(root, srcPath))) continue;
 
     if (entry.isDirectory()) {
-      copyDirFiltered(srcPath, destPath);
+      copyDirFiltered(srcPath, destPath, root);
     } else if (entry.isFile()) {
       const ext = path.extname(entry.name).toLowerCase();
       if (['.pdf', '.md', '.ino', '.cpp', '.png', '.jpg', '.svg'].includes(ext)) {
@@ -120,7 +123,7 @@ function coursePdfPlugin() {
         for (const c of courseDirs) {
           const src = path.resolve(semester1Root, c);
           const dest = path.resolve(distCoursesDir, c);
-          copyDirFiltered(src, dest);
+          copyDirFiltered(src, dest, semester1Root);
         }
         console.log('[Vercel Build] Course assets bundled successfully for Vercel CDN!');
       } catch (err) {

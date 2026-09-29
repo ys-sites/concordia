@@ -3,6 +3,8 @@ import { CourseId } from '../types';
 import { COURSES_DATA } from '../data/coursesData';
 import { Sparkles, Brain, BookOpen, Volume2, VolumeX, Layers, Compass } from 'lucide-react';
 import { audio } from '../utils/audio';
+import { BrandMark } from './BrandMark';
+import { PRACTICE_QUESTIONS } from '../data/questionsData';
 
 interface NavbarProps {
   activeCourseId: CourseId | null;
@@ -33,12 +35,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           }}
           title="Return to Course Selector"
         >
-          <div className="brand-logo-badge">
-            <span className="logo-symbol">⚡</span>
-          </div>
+          <BrandMark size={40} />
           <div className="brand-text-block">
             <div className="brand-title">CONCORDIA <span className="brand-highlight">ENGINEERING</span></div>
-            <div className="brand-sub">Neural Academic Repository & Exam Engine</div>
+            <div className="brand-sub">Unofficial student study hub</div>
           </div>
         </div>
 
@@ -82,10 +82,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               audio.playClick();
               onOpenQuestionBank();
             }}
-            title="Browse full 120-question bank"
+            title="Browse the full question bank"
           >
             <BookOpen size={16} />
-            <span className="btn-text">Question Bank (120+)</span>
+            <span className="btn-text">Question Bank ({PRACTICE_QUESTIONS.length})</span>
           </button>
 
           {/* Sound Toggle */}
@@ -95,12 +95,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               onToggleSound();
               if (!soundEnabled) audio.playCorrect();
             }}
-            title={soundEnabled ? "Mute audio effects" : "Enable audio effects"}
+            title={soundEnabled ? "Mute sound effects" : "Turn on sound effects"}
+            aria-label={soundEnabled ? "Mute sound effects" : "Turn on sound effects"}
           >
             {soundEnabled ? <Volume2 size={18} className="text-emerald" /> : <VolumeX size={18} className="text-muted" />}
           </button>
 
-          {/* Brain-Programming 20-Q Exam Engine Quick Start */}
+          {/* Practice drill: opens the course / chapter picker */}
           <button
             className="action-btn primary-glow-btn"
             onClick={() => {
@@ -109,8 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }}
           >
             <Brain size={17} className="pulse-glow" />
-            <span>20-Q Brain Drill</span>
-            <span className="badge-pill">Exam Ready</span>
+            <span>Practice Drill</span>
           </button>
         </div>
       </div>

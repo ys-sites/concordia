@@ -8,6 +8,7 @@ import { PdfViewerModal } from './components/PdfViewerModal';
 import { QuizEngine } from './components/QuizEngine';
 import { QuizResults } from './components/QuizResults';
 import { QuestionBankBrowser } from './components/QuestionBankBrowser';
+import { DrillPicker } from './components/DrillPicker';
 import { audio } from './utils/audio';
 
 type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK';
@@ -15,7 +16,10 @@ type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK';
 export function App() {
   const [viewMode, setViewMode] = useState<ViewMode>('HERO');
   const [selectedCourseId, setSelectedCourseId] = useState<CourseId | null>(null);
-  const [quizTargetCourse, setQuizTargetCourse] = useState<CourseId | 'ALL'>('ALL');
+  const [quizTarget, setQuizTarget] = useState<{ courseId: CourseId; sectionId: string } | null>(null);
+  const [drillRun, setDrillRun] = useState<number>(0); // remounts the engine for a fresh shuffle
+  const [pickerOpen, setPickerOpen] = useState<boolean>(false);
+  const [pickerCourse, setPickerCourse] = useState<CourseId | null>(null);
   const [activePdfDoc, setActivePdfDoc] = useState<CourseDocument | null>(null);
   const [quizResults, setQuizResults] = useState<any>(null);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
@@ -39,9 +43,16 @@ export function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Launch Quiz Drill
+  // Every drill button opens the picker (course → midterm or chapter); drills never mix courses
   const handleStartQuiz = (courseId: CourseId | 'ALL') => {
-    setQuizTargetCourse(courseId);
+    setPickerCourse(courseId === 'ALL' ? null : courseId);
+    setPickerOpen(true);
+  };
+
+  const launchDrill = (courseId: CourseId, sectionId: string) => {
+    setPickerOpen(false);
+    setQuizTarget({ courseId, sectionId });
+    setDrillRun((n) => n + 1);
     setViewMode('QUIZ');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -92,9 +103,11 @@ export function App() {
           />
         )}
 
-        {viewMode === 'QUIZ' && (
+        {viewMode === 'QUIZ' && quizTarget && (
           <QuizEngine 
-            courseId={quizTargetCourse}
+            key={drillRun}
+            courseId={quizTarget.courseId}
+            sectionId={quizTarget.sectionId}
             onExit={() => {
               if (selectedCourseId) {
                 setViewMode('WORKSPACE');
@@ -110,6 +123,7 @@ export function App() {
           <QuizResults 
             results={quizResults}
             onRestartNewCycle={() => {
+              setDrillRun((n) => n + 1);
               setViewMode('QUIZ');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
@@ -138,6 +152,13 @@ export function App() {
           />
         )}
       </main>
+
+      <DrillPicker
+        open={pickerOpen}
+        initialCourseId={pickerCourse}
+        onClose={() => setPickerOpen(false)}
+        onStart={launchDrill}
+      />
 
       {/* Embedded PDF Viewer Modal */}
       <PdfViewerModal 

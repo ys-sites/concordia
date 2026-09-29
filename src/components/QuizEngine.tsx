@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { CourseId, PracticeQuestion, QuizSessionState } from '../types';
-import { PRACTICE_QUESTIONS } from '../data/questionsData';
+import { questionPool, sectionLabel, DRILL_LENGTH } from '../data/quizSections';
 import { MathText } from '../utils/mathRenderer';
 import { audio } from '../utils/audio';
 import { 
@@ -21,10 +21,12 @@ import {
 import confetti from 'canvas-confetti';
 
 interface QuizEngineProps {
-  courseId: CourseId | 'ALL';
+  courseId: CourseId;
+  sectionId: string;
   onExit: () => void;
   onComplete: (results: {
-    courseId: CourseId | 'ALL';
+    courseId: CourseId;
+    sectionLabel: string;
     totalQuestions: number;
     score: number;
     timeSpentSeconds: number;
@@ -33,22 +35,30 @@ interface QuizEngineProps {
   }) => void;
 }
 
-export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, onExit, onComplete }) => {
-  // Select 20 random questions from the filtered bank
+export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onExit, onComplete }) => {
+  // Up to 20 random questions from this course + section only (never mixed across courses)
   const sessionQuestions = useMemo(() => {
-    let pool = PRACTICE_QUESTIONS;
-    if (courseId !== 'ALL') {
-      pool = pool.filter(q => q.courseId === courseId);
-    }
+    const pool = questionPool(courseId, sectionId);
     // Fisher-Yates shuffle
     const shuffled = [...pool];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    // Always take 20 questions
-    return shuffled.slice(0, 20);
-  }, [courseId]);
+    // Take up to 20 questions, shuffling each question's options so the answer isn't always "A"
+    return shuffled.slice(0, DRILL_LENGTH).map((q): PracticeQuestion => {
+      const order = [0, 1, 2, 3];
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+      return {
+        ...q,
+        options: order.map(i => q.options[i]) as PracticeQuestion['options'],
+        correctIndex: order.indexOf(q.correctIndex) as PracticeQuestion['correctIndex']
+      };
+    });
+  }, [courseId, sectionId]);
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
@@ -103,7 +113,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, onExit, onComp
     if (currentIndex < sessionQuestions.length - 1) {
       setCurrentIndex(prev => prev + 1);
     } else {
-      // Completed all 20 questions!
+      // Completed every question in the drill
       const totalTime = Math.floor((Date.now() - startTime) / 1000);
       const missed: PracticeQuestion[] = [];
       const history = sessionQuestions.map((q, idx) => {
@@ -113,7 +123,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, onExit, onComp
         return { question: q, selectedIndex: chosen, isCorrect: correct };
       });
 
-      if (score >= 16) {
+      if (score >= Math.ceil(sessionQuestions.length * 0.8)) {
         audio.playComplete();
         confetti({
           particleCount: 100,
@@ -124,6 +134,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, onExit, onComp
 
       onComplete({
         courseId,
+        sectionLabel: sectionLabel(courseId, sectionId),
         totalQuestions: sessionQuestions.length,
         score,
         timeSpentSeconds: totalTime,
@@ -148,11 +159,11 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, onExit, onComp
         <div className="hud-left">
           <div className="brain-badge">
             <Brain size={18} className="pulse-glow" />
-            <span>BRAIN DRILL · 20 QUESTIONS</span>
+            <span>BRAIN DRILL · {sessionQuestions.length} QUESTIONS</span>
           </div>
 
           <span className="course-pill-tag">
-            {courseId === 'ALL' ? 'GRAND MIXED EXAM' : courseId}
+            {courseId} · {sectionLabel(courseId, sectionId)}
           </span>
         </div>
 
@@ -179,7 +190,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, onExit, onComp
           <button 
             className="exit-quiz-btn"
             onClick={() => {
-              if (window.confirm("Exit this 20-question practice session? Your progress will be saved in history.")) {
+              if (window.confirm("Exit this practice drill? Your answers so far will be lost.")) {
                 onExit();
               }
             }}

@@ -20,7 +20,8 @@ import {
 
 interface QuizResultsProps {
   results: {
-    courseId: CourseId | 'ALL';
+    courseId: CourseId;
+    sectionLabel: string;
     totalQuestions: number;
     score: number;
     timeSpentSeconds: number;
@@ -60,7 +61,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
         badge: '📈 B-TIER: COMPETENT - REINFORCEMENT RECOMMENDED',
         color: '#f59e0b',
         title: 'Good Foundation!',
-        feedback: 'Solid conceptual understanding, but common algebraic or boundary traps cost points. Run another 20-Q cycle.'
+        feedback: 'Solid conceptual understanding, but common algebraic or boundary traps cost points. Run another cycle.'
       };
     } else {
       return {
@@ -134,7 +135,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
             <Brain size={18} className="text-purple" />
             <div>
               <div className="stat-label">Course Target</div>
-              <div className="stat-val">{results.courseId === 'ALL' ? 'Grand 4-Course Drill' : results.courseId}</div>
+              <div className="stat-val">{results.courseId} · {results.sectionLabel}</div>
             </div>
           </div>
         </div>
@@ -149,7 +150,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
             }}
           >
             <RotateCcw size={18} />
-            <span>Launch Fresh 20-Q Brain Cycle</span>
+            <span>Run This Drill Again</span>
           </button>
 
           <button 

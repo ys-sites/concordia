@@ -7,3 +7,12 @@ node_modules
 
 # Prevent any recursive/nested api detection outside root /api
 001 Main/api
+
+# Local-only: assignment/lab solutions & term paper (see src/data/localOnly.ts)
+Indu 211/05 - Assignments & Solutions/Term Paper & Final Project
+Indu 211/05 - Assignments & Solutions/Assignment */*Solution*
+Miae 215/04 - Practice Problems & Code Solutions/Assignment *Fully Solved*
+Miae 215/04 - Practice Problems & Code Solutions/code_solutions/assignment*
+Miae 215/06 - Arduino Labs & Term Project/Lab */arduino_lab*_Q*.ino
+Miae 215/06 - Arduino Labs & Term Project/MIAE 215 - Arduino Labs & Mechatronics Project Master Guide.*
+Engr 213/**/*Assigned Homework Solutions*

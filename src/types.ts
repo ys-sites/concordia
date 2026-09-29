@@ -45,6 +45,7 @@ export interface CourseDocument {
 export interface PracticeQuestion {
   id: string;
   courseId: CourseId;
+  chapter: string; // section id from QUIZ_PLANS (e.g. 'ch1', 'types')
   topic: string;
   difficulty: 'Foundation' | 'Midterm Level' | 'Exam Master';
   question: string;

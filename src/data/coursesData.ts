@@ -1,10 +1,11 @@
 import { CourseMeta, CourseDocument } from '../types';
+import { isHiddenFromSite } from './localOnly';
 
 export interface CourseWithDocs extends CourseMeta {
   documents: CourseDocument[];
 }
 
-export const COURSES_DATA: CourseWithDocs[] = [
+const RAW_COURSES_DATA: CourseWithDocs[] = [
   {
     "id": "ENGR213",
     "code": "ENGR 213",
@@ -2744,3 +2745,15 @@ export const COURSES_DATA: CourseWithDocs[] = [
     ]
   }
 ];
+
+// Show study material only: hide assignment/lab files, solutions, the term paper, and any folder left empty.
+export const COURSES_DATA: CourseWithDocs[] = RAW_COURSES_DATA.map((course) => {
+  // CodeBlocks files are never copied into the build, so their links would be dead
+  const documents = course.documents.filter(
+    (d) => !isHiddenFromSite(d.relativePath) && !d.relativePath.includes('CodeBlocks')
+  );
+  const categories = course.categories
+    .map((c) => ({ ...c, count: documents.filter((d) => d.categoryId === c.id).length }))
+    .filter((c) => c.count > 0);
+  return { ...course, categories, documents, totalDocuments: documents.length };
+});

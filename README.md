@@ -6,7 +6,7 @@
 [![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel&logoColor=white)](https://vercel.com/)
 [![License](https://img.shields.io/badge/License-Academic-blue.svg)](#)
 
-A centralized, interactive educational repository and web portal for Concordia University engineering students covering **ENGR 213**, **INDU 211**, **MIAE 215**, and **MIAE 221**. Includes over **140+ organized curriculum documents**, an extensive bank of **120+ multiple-choice practice questions**, and a **20-Question Brain-Programming Exam Drill** with step-by-step derivations and common exam trap analysis.
+A centralized, interactive educational repository and web portal for Concordia University engineering students covering **ENGR 213**, **INDU 211**, **MIAE 215**, and **MIAE 221**. Includes over **140+ organized curriculum documents**, a bank of **146 multiple-choice practice questions** built only from the teachers' lecture notes, and **per-course drills** (midterm review or a single chapter) with step-by-step solutions and common exam traps.
 
 ---
 
@@ -27,17 +27,18 @@ Deploy this entire portal to Vercel with zero configuration:
 
 | Course Code | Course Title | Curriculum Highlights | Practice Bank |
 | :--- | :--- | :--- | :---: |
-| **ENGR 213** | **Applied Ordinary Differential Equations** | First/second order ODEs, integrating factors, Bernoulli substitutions, linear population models, Laplace transforms. | **30 Questions** |
-| **INDU 211** | **Introduction to Production & Manufacturing** | Lean Six Sigma, EOQ inventory modeling, CPM/PERT project networks, assembly line balancing, GenAI industrial integration. | **30 Questions** |
-| **MIAE 215** | **Programming for Mechanical & Industrial Engineers** | C++ memory architecture, bitwise bitmasks, nested control logic, arrays, Flowgorithm, and Arduino mechatronics. | **30 Questions** |
-| **MIAE 221** | **Materials Science** | Crystal unit cells (BCC/FCC/HCP), APF calculations, Lennard-Jones potential wells, Miller indices, ionic bonding. | **30 Questions** |
+| **ENGR 213** | **Applied Ordinary Differential Equations** | Ch. 1–2 (Lectures 1–6): terminology, IVPs, direction fields, separable, linear, exact, substitutions, linear models. | **33 Questions** |
+| **INDU 211** | **Introduction to Production & Manufacturing** | Ch. 1–5: IE foundations, manufacturing engineering & break-even, facility location & layout, material handling & routing. | **37 Questions** |
+| **MIAE 215** | **Programming for Mechanical & Industrial Engineers** | Build process, variable types, expressions & operators, control statements & loops. | **41 Questions** |
+| **MIAE 221** | **Materials Science** | Lectures 1–5: classes of materials, atomic structure & bonding, crystal structures, density, Miller indices. | **35 Questions** |
 
 ---
 
 ## ✨ Features
 
 - **📁 Local Directory Tree Explorer**: Documents are organized within their exact course folders (`00 - Overview`, `01 - Lecture Notes`, `02 - Comprehensive Guides`, `03 - 1-Page Rapid Reviews`, `04 - Practice Problems`, etc.) with expandable accordion sections and tree branch guides (`├──` / `└──`).
-- **🧠 20-Question Brain-Programming Cycle**: Randomly cycles 20 exam-caliber questions per session, dynamically reinforcing core intuition with real-time audio synthesized feedback.
+- **🧠 Midterm & Chapter Drills**: Pick a course, then Midterm Review or one chapter. Up to 20 questions per drill, never mixed across courses, with shuffled answer order and audio feedback.
+- **🔒 Study material only**: Assignment/lab handouts, solutions and the term paper are never shown or deployed (see `src/data/localOnly.ts`).
 - **📐 Step-by-Step Derivations & KaTeX Formulas**: Every question includes a full mathematical proof and highlights common traps tested on midterms and finals.
 - **📄 Embedded PDF Reader & Direct CDN Access**: View documents instantly inside the modal reader or download them directly.
 - **🎨 Off-White Clean Design System**: High-contrast, WCAG-compliant styling crafted with Slate typography (`#0f172a`), emerald/rose feedback states, and glassmorphic elevation cards.

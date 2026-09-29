@@ -16,6 +16,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { audio } from '../utils/audio';
+import { PRACTICE_QUESTIONS } from '../data/questionsData';
 
 interface HeroCourseSelectorProps {
   onSelectCourse: (id: CourseId) => void;
@@ -53,7 +54,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
           Master Your Engineering Courses with <span className="gradient-text">Interactive Precision</span>
         </h1>
         <p className="hero-subtext">
-          Access 140+ verified Concordia lecture notes, step-by-step mathematical problem guides, and test your readiness with our <strong>20-question cycling brain-programming engine</strong>.
+          Study the lecture notes, step-by-step guides and review sheets for each course, then test yourself with <strong>midterm or chapter-by-chapter drills</strong> built from the teachers' notes.
         </p>
 
         {/* Global Key Metric Pills */}
@@ -64,11 +65,11 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
           </div>
           <div className="metric-pill">
             <Brain size={16} className="text-emerald" />
-            <span><strong>120+</strong> High-Yield Practice Questions</span>
+            <span><strong>{PRACTICE_QUESTIONS.length}</strong> Practice Questions from Teachers' Notes</span>
           </div>
           <div className="metric-pill">
             <Flame size={16} className="text-rose" />
-            <span><strong>20-Question</strong> Brain-Programming Cycles</span>
+            <span><strong>Midterm &amp; chapter</strong> drills per course</span>
           </div>
           <div className="metric-pill">
             <ShieldCheck size={16} className="text-cyan" />
@@ -83,7 +84,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
           <GraduationCap size={22} className="text-amber" />
           <div>
             <h2 className="prompt-title">Step 1: Select Your Course to Begin</h2>
-            <p className="prompt-desc">Choose a subject to explore its categorized materials or launch an adaptive 20-question drill.</p>
+            <p className="prompt-desc">Choose a subject to explore its materials, or start a drill for the midterm or a single chapter.</p>
           </div>
         </div>
         <div className="prompt-right">
@@ -95,7 +96,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
             }}
           >
             <Brain size={16} />
-            <span>Grand 20-Q Mixed Exam Drill (All 4 Courses)</span>
+            <span>Start a Practice Drill</span>
             <ArrowRight size={15} />
           </button>
         </div>
@@ -122,7 +123,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
                   </span>
                   <span className="badge q-badge">
                     <Brain size={12} />
-                    30 Questions
+                    {PRACTICE_QUESTIONS.filter(q => q.courseId === course.id).length} Questions
                   </span>
                 </div>
               </div>
@@ -157,7 +158,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
                     onSelectCourse(course.id);
                   }}
                 >
-                  <span>Explore Materials</span>
+                  <span>Open Course</span>
                   <ArrowRight size={15} />
                 </button>
 
@@ -167,10 +168,10 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
                     audio.playClick();
                     onStartQuiz(course.id);
                   }}
-                  title="Start a 20-Question Cycle for this course"
+                  title="Choose midterm review or a chapter for this course"
                 >
                   <Brain size={15} />
-                  <span>20-Q Drill</span>
+                  <span>Practice Drill</span>
                 </button>
               </div>
             </div>
