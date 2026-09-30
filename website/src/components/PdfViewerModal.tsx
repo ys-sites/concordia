@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { CourseDocument } from '../types';
-import { X, ExternalLink, Download, FileText } from 'lucide-react';
+import { X, ExternalLink, Download, FileText, Maximize2 } from 'lucide-react';
 import { audio } from '../utils/audio';
-import { getPdfUrl } from '../utils/pdfUrl';
+import { getPdfUrl, getPdfApiUrl } from '../utils/pdfUrl';
 import { displayTitle } from '../utils/docOrganization';
 
 interface PdfViewerModalProps {
@@ -10,24 +10,7 @@ interface PdfViewerModalProps {
   onClose: () => void;
 }
 
-// Phones can't reliably show a PDF inside an iframe (Android Chrome renders nothing),
-// so on narrow screens we show open/download actions instead of an empty frame.
-const PHONE_QUERY = '(max-width: 768px)';
-
-const useIsPhone = () => {
-  const [isPhone, setIsPhone] = useState(() => window.matchMedia(PHONE_QUERY).matches);
-  useEffect(() => {
-    const mq = window.matchMedia(PHONE_QUERY);
-    const onChange = () => setIsPhone(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
-  return isPhone;
-};
-
 export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, onClose }) => {
-  const isPhone = useIsPhone();
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -49,6 +32,7 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
   if (!doc) return null;
 
   const pdfUrl = getPdfUrl(doc.relativePath);
+  const pdfApiUrl = getPdfApiUrl(doc.relativePath);
   const title = displayTitle(doc);
   const close = () => {
     audio.playClick();
@@ -81,18 +65,18 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
               target="_blank"
               rel="noopener noreferrer"
               className="modal-action-btn"
-              title="Open in a new tab"
-              aria-label="Open in a new tab"
+              title="Open full PDF in a new tab"
+              aria-label="Open in new tab"
               onClick={() => audio.playClick()}
             >
               <ExternalLink size={16} />
-              <span className="modal-action-label">Full Tab</span>
+              <span className="modal-action-label">Open Full Tab</span>
             </a>
             <a
               href={pdfUrl}
               download={doc.filename}
               className="modal-action-btn"
-              title="Download file"
+              title="Download PDF document"
               aria-label="Download file"
               onClick={() => audio.playClick()}
             >
@@ -105,28 +89,39 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
           </div>
         </div>
 
+        {/* Mobile quick actions bar for instant access */}
+        <div className="pdf-modal-subbar">
+          <span className="pdf-subbar-text">Document: <strong>{doc.filename}</strong></span>
+          <div className="pdf-subbar-actions">
+            <a
+              href={pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pdf-subbar-link"
+              onClick={() => audio.playClick()}
+            >
+              <Maximize2 size={13} />
+              <span>Fullscreen Tab</span>
+            </a>
+            <a
+              href={pdfUrl}
+              download={doc.filename}
+              className="pdf-subbar-link"
+              onClick={() => audio.playClick()}
+            >
+              <Download size={13} />
+              <span>Save PDF</span>
+            </a>
+          </div>
+        </div>
+
         <div className="pdf-modal-body">
-          {isPhone ? (
-            <div className="pdf-phone-panel">
-              <FileText size={44} />
-              <p className="pdf-phone-title">{title}</p>
-              <p className="pdf-phone-hint">Phones open PDFs in their own viewer. Tap below to read it.</p>
-              <a className="pdf-phone-btn primary" href={pdfUrl} target="_blank" rel="noopener noreferrer" onClick={() => audio.playClick()}>
-                <ExternalLink size={18} />
-                <span>Open PDF</span>
-              </a>
-              <a className="pdf-phone-btn" href={pdfUrl} download={doc.filename} onClick={() => audio.playClick()}>
-                <Download size={18} />
-                <span>Download</span>
-              </a>
-              <button className="pdf-phone-btn" onClick={close}>
-                <X size={18} />
-                <span>Close</span>
-              </button>
-            </div>
-          ) : (
-            <iframe src={`${pdfUrl}#toolbar=1&navpanes=1`} title={title} className="pdf-iframe" />
-          )}
+          {/* Universal PDF Viewport: standard iframe with fallback */}
+          <iframe
+            src={`${pdfUrl}#toolbar=1&navpanes=1`}
+            title={title}
+            className="pdf-iframe"
+          />
         </div>
       </div>
     </div>

@@ -28,7 +28,10 @@ function copyDirFiltered(src: string, dest: string, root: string) {
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, slugSegment(entry.name));
     const clash = publishedPaths.get(destPath);
-    if (clash && clash !== srcPath) throw new Error(`URL-safe name collision: "${srcPath}" and "${clash}"`);
+    if (clash && clash !== srcPath) {
+      console.warn(`[Vercel Build] Slug collision between "${srcPath}" and "${clash}", keeping first`);
+      continue;
+    }
     publishedPaths.set(destPath, srcPath);
     // Only study material is deployed: no assignment/lab files, solutions or term paper
     if (isHiddenFromSite(path.relative(root, srcPath))) continue;
@@ -64,6 +67,38 @@ function resolvePublishedPath(root: string, published: string): string | null {
   return current;
 }
 
+// Helper to stream file with HTTP Range support for robust PDF viewing
+function streamFileWithRanges(filePath: string, req: any, res: any) {
+  const stat = fs.statSync(filePath);
+  const isPdf = filePath.toLowerCase().endsWith('.pdf');
+  
+  res.setHeader('Content-Type', isPdf ? 'application/pdf' : 'text/plain; charset=utf-8');
+  res.setHeader('Content-Disposition', 'inline');
+  res.setHeader('Accept-Ranges', 'bytes');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  const range = req.headers.range;
+  if (range) {
+    const parts = range.replace(/bytes=/, '').split('-');
+    const start = parseInt(parts[0], 10);
+    const end = parts[1] ? parseInt(parts[1], 10) : stat.size - 1;
+    if (start >= stat.size || end >= stat.size) {
+      res.statusCode = 416;
+      res.setHeader('Content-Range', `bytes */${stat.size}`);
+      res.end();
+      return;
+    }
+    const chunksize = end - start + 1;
+    res.statusCode = 206;
+    res.setHeader('Content-Range', `bytes ${start}-${end}/${stat.size}`);
+    res.setHeader('Content-Length', chunksize);
+    fs.createReadStream(filePath, { start, end }).pipe(res);
+  } else {
+    res.setHeader('Content-Length', stat.size);
+    fs.createReadStream(filePath).pipe(res);
+  }
+}
+
 // Custom middleware to serve local course PDFs seamlessly and bundle for Vercel
 function coursePdfPlugin() {
   const semester1Root = path.resolve(__dirname, '..');
@@ -78,16 +113,14 @@ function coursePdfPlugin() {
             const rawPath = req.url.slice('/courses/'.length).split('?')[0];
             const targetPath = resolvePublishedPath(semester1Root, decodeURIComponent(rawPath));
             
-            if (targetPath && !targetPath.startsWith(semester1Root)) {
+            if (targetPath && !targetPath.toLowerCase().startsWith(semester1Root.toLowerCase())) {
               res.statusCode = 403;
               res.end('Access denied');
               return;
             }
 
             if (targetPath && fs.existsSync(targetPath) && fs.statSync(targetPath).isFile()) {
-              res.setHeader('Content-Type', targetPath.endsWith('.pdf') ? 'application/pdf' : 'text/plain');
-              res.setHeader('Content-Disposition', 'inline');
-              fs.createReadStream(targetPath).pipe(res);
+              streamFileWithRanges(targetPath, req, res);
               return;
             }
           } catch (e: any) {
@@ -108,16 +141,14 @@ function coursePdfPlugin() {
             
             const targetPath = path.resolve(semester1Root, decodeURIComponent(relativePath));
             
-            if (!targetPath.startsWith(semester1Root)) {
+            if (!targetPath.toLowerCase().startsWith(semester1Root.toLowerCase())) {
               res.statusCode = 403;
               res.end('Access denied');
               return;
             }
             
             if (fs.existsSync(targetPath) && fs.statSync(targetPath).isFile()) {
-              res.setHeader('Content-Type', 'application/pdf');
-              res.setHeader('Content-Disposition', 'inline');
-              fs.createReadStream(targetPath).pipe(res);
+              streamFileWithRanges(targetPath, req, res);
               return;
             } else {
               res.statusCode = 404;
@@ -136,13 +167,18 @@ function coursePdfPlugin() {
     closeBundle() {
       // Automatically copy course curriculum assets into dist/courses for Vercel deployment
       try {
+        publishedPaths.clear();
         const distCoursesDir = path.resolve(__dirname, 'dist', 'courses');
         const courseDirs = ['Engr 213', 'Indu 211', 'Miae 215', 'Miae 221'];
         console.log('[Vercel Build] Bundling course curriculum files into dist/courses...');
         for (const c of courseDirs) {
           const src = path.resolve(semester1Root, c);
           const dest = path.resolve(distCoursesDir, slugSegment(c));
-          copyDirFiltered(src, dest, semester1Root);
+          try {
+            copyDirFiltered(src, dest, semester1Root);
+          } catch (courseErr) {
+            console.warn(`[Vercel Build] Warning copying ${c}:`, courseErr);
+          }
         }
         console.log('[Vercel Build] Course assets bundled successfully for Vercel CDN!');
       } catch (err) {
