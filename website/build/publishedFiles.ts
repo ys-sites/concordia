@@ -25,7 +25,9 @@ const isSkippedName = (name: string) =>
   name.includes('CodeBlocks') ||
   name === 'node_modules' ||
   name === 'images' ||
-  name.includes('Advanced Engineering Mathematics (7th Edition)');
+  name.includes('Advanced Engineering Mathematics (7th Edition)') ||
+  name.includes('Callister') ||
+  name.includes('z-lib.org');
 
 export interface PublishedFile {
   source: string; // absolute path on disk

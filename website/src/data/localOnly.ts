@@ -49,7 +49,12 @@ export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   /^Miae 215\/06 - Arduino Labs & Term Project(\/|$)/,
   /(^|\/)[^/]*assignment[^/]*$/i,
   /homework solutions/i,
-  /team project/i
+  /team project/i,
+
+  // Full copyrighted textbook scans (kept locally as reference only)
+  /(^|\/)[^/]*\((z-lib\.org|Z-Library)\)\.pdf$/i,
+  /(^|\/)[^/]*Callister[^/]*\.pdf$/i,
+  /(^|\/)[^/]*Advanced Engineering Mathematics[^/]*\.pdf$/i
 ];
 
 export const isLocalOnly = (relativePath: string): boolean => {

@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 22
+### Currently Pending Uploads: 24
 
 ---
 
@@ -250,6 +250,28 @@
 * **Title**: INDU 211 Part 9 - Chapter 17 Project Management, CPM & PERT Master Guide
 * **Academic year**: `2025/2026`
 * **Description**: Expanded guide to INDU 211 Chapter 17: work breakdown structures, the critical path method with forward and backward passes and a full slack table for the lecture example, PERT expected times and completion probabilities, and time-cost trade-offs from the course textbook.
+
+---
+
+## 23. `Lecture 6 - Crystal Structures 3 (Explained).pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Lecture notes`
+* **Title**: MIAE 221 Lecture 6 - Crystal Structures 3 (Explained)
+* **Academic year**: `2025/2026`
+* **Description**: Fully expanded, comprehensive master lecture guide for Dr. Medraj's MIAE 221 Lecture 6 covering linear density, planar density, close-packed slip geometries in FCC and BCC, single-crystal anisotropy versus polycrystalline isotropy, X-ray diffraction (XRD) physics, and complete Bragg's Law interplanar spacing ($d_{hkl}$) calculations with step-by-step solved exam problems and official lecture diagrams.
+
+---
+
+## 24. `Lecture 7 - Defects (Explained).pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Lecture notes`
+* **Title**: MIAE 221 Lecture 7 - Defects (Explained)
+* **Academic year**: `2025/2026`
+* **Description**: In-depth comprehensive master guide for Dr. Medraj's MIAE 221 Lecture 7 covering zero-dimensional point defects, equilibrium vacancy thermodynamics, Arrhenius activation energy calculations, Hume-Rothery empirical solid solubility rules, and one-dimensional linear defects (edge, screw, mixed dislocations) with Burgers vector definitions and slip plane geometries, illustrated with high-resolution slide figures.
 
 
 

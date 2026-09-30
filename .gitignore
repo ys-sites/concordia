@@ -35,6 +35,8 @@ website/node_modules/
 **/_Source & Archive/**
 **/*Advanced Engineering Mathematics (7th Edition).pdf
 **/*Advanced Engineering Mathematics (Z-Library).pdf
+**/*Materials Science and Engineering An Introduction*.pdf
+**/*(z-lib.org).pdf
 
 # CodeBlocks & MinGW Portable Compiler Suites (thousands of C++ toolchain files)
 **/CodeBlocks_17.12_portable/**
