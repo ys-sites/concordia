@@ -12,7 +12,12 @@ const D8 = '11.INDU_211_CH8_2025.pdf';
 const D611 = '12.INDU_211_CH6and11_2025.pdf';
 const D17 = '13.INDU_211_CH17_2025.pdf';
 const D4a = '3.0.INDU_211_CH4_1-2025.pdf';
+const D4b = '4.0.INDU_211_CH4_2_2025.pdf';
+const D5 = '5.0.INDU_211_CH5_2025.pdf';
 const D12 = '1.0.INDU_211_CH12_2025.pdf';
+const TB = 'Turner, Mize, Case & Nazemetz (3rd Ed.) — Introduction to Industrial and Systems Engineering';
+const C4 = 'Chapter 4 — Facilities Location & Layout';
+const C5 = 'Chapter 5 — Material Handling & Routing';
 const C7 = 'Chapter 7 — Operations Planning & Control';
 const C14 = 'Chapter 14 — Deterministic Operations Research';
 const C15 = 'Chapter 15 — Probabilistic Models (Queuing)';
@@ -1504,5 +1509,379 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
       reference: `${D7b} · Pages 3–4, 31`
     },
     source: src(D7b, C7, 'Pages 3–4 and 31')
+  }),
+
+  // ============================================================ Turner Textbook Quantitative Practice (Chapters 4–17)
+  // 1. Rectilinear 1-Median Location Problem
+  q({
+    id: 'Q_INDU211_TB01',
+    chapter: 'ch4',
+    topic: 'Rectilinear 1-Median Location (Turner)',
+    difficulty: 'Midterm Level',
+    question: t`A central facility serves four workstations at coordinates $(10, 20)$, $(20, 50)$, $(40, 10)$, and $(70, 30)$ with trip weights $w = [5, 15, 10, 10]$. Under rectilinear travel, what is the optimal location $(x^*, y^*)$ that minimizes total travel distance?`,
+    options: [
+      t`$(20, 30)$`,
+      t`$(35, 27.5)$`,
+      t`$(40, 20)$`,
+      t`$(20, 50)$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Under rectilinear distance, the $x$ and $y$ coordinates separate and can be solved independently. The optimal coordinate is the weighted median: the point where cumulative weight reaches or exceeds half of the total weight ($W/2$).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate total weight and half-weight threshold', math: t`W = \sum w_i = 5 + 15 + 10 + 10 = 40 \implies \frac{W}{2} = 20` },
+        { title: 'Sort by $x$-coordinate and find cumulative weight', math: t`\begin{array}{c|c|c} x_i & w_i & \text{Cum. } w \\ \hline 10 & 5 & 5 \\ 20 & 15 & 20 \leftarrow \text{reaches } W/2 \\ 40 & 10 & 30 \\ 70 & 10 & 40 \end{array} \implies x^* = 20` },
+        { title: 'Sort by $y$-coordinate and find cumulative weight', math: t`\begin{array}{c|c|c} y_i & w_i & \text{Cum. } w \\ \hline 10 & 10 & 10 \\ 20 & 5 & 15 \\ 30 & 10 & 25 \leftarrow \text{exceeds } W/2 \\ 50 & 15 & 40 \end{array} \implies y^* = 30` },
+        { title: 'Combine optimal coordinates', math: t`(x^*, y^*) = (20, 30)` }
+      ],
+      answer: t`(x^*, y^*) = (20, 30)`,
+      whyWrong: {
+        '1': t`$(35, 27.5)$ is the unweighted/weighted Center of Gravity (squared Euclidean metric), not the rectilinear 1-median.`,
+        '2': t`$(40, 20)$ reverses the coordinates and picks the 3rd sorted point.`,
+        '3': t`$(20, 50)$ is the single heaviest workstation location ($w=15$), but not the median.`
+      },
+      commonTrap: t`Confusing the Center of Gravity (which takes weighted averages: $\bar{x} = \sum w_i x_i / W$) with the Rectilinear 1-Median (which sorts and finds the 50% cumulative weight point). Rectilinear distance ALWAYS uses the median!`,
+      reference: `${TB} · Chapter 4 (§4.3); ${D4a} · Slide 14`
+    },
+    source: [
+      { deck: TB, chapter: C4, location: 'Section 4.3 (Single Facility Location Models)' },
+      { deck: D4a, chapter: C4, location: 'Slide 14 (Rectilinear distance and location)' }
+    ]
+  }),
+
+  // 2. Muther REL Chart Closeness Values
+  q({
+    id: 'Q_INDU211_TB02',
+    chapter: 'ch4',
+    topic: 'REL Chart Closeness Ratings (Turner)',
+    difficulty: 'Foundation',
+    question: t`In Richard Muther's Systematic Layout Planning (SLP), which closeness rating indicates that placing two departments adjacent is "Especially Important", and what standard letter code represents it?`,
+    options: [
+      t`$\mathbf{E}$ (Especially Important)`,
+      t`$\mathbf{A}$ (Absolutely Necessary)`,
+      t`$\mathbf{I}$ (Important)`,
+      t`$\mathbf{O}$ (Ordinary Closeness)`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Muther's Activity Relationship Chart (REL chart) uses standard vowels to denote qualitative closeness requirements: A (Absolutely necessary, 4 lines), E (Especially important, 3 lines), I (Important, 2 lines), O (Ordinary, 1 line), U (Unimportant, 0 lines), X (Undesirable).`,
+      stepByStep: [],
+      steps: [
+        { title: 'The standard Muther vowel hierarchy (SLP)', note: t`A = Absolutely Necessary, E = Especially Important, I = Important, O = Ordinary Closeness, U = Unimportant, X = Undesirable.` },
+        { title: 'Inspect the letter requested: "Especially Important"', math: t`\text{Especially Important} \iff \mathbf{E}` },
+        { title: 'Numerical weighting commonly used in software', math: t`A \approx 16\text{ (or 4)}, \quad E \approx 8\text{ (or 3)}, \quad I \approx 4\text{ (or 2)}, \quad O \approx 2\text{ (or 1)}, \quad U = 0, \quad X = -8` }
+      ],
+      answer: t`\mathbf{E}\ \text{(Especially Important)}`,
+      whyWrong: {
+        '1': t`A represents "Absolutely Necessary" (the highest possible priority rating).`,
+        '2': t`I represents "Important" (priority rank 3).`,
+        '3': t`O represents "Ordinary Closeness" (priority rank 4).`
+      },
+      commonTrap: t`Confusing E (Especially Important) with I (Important). In Muther's scale, E ranks above I.`,
+      reference: `${TB} · Chapter 4 (§4.5); ${D4b} · Slides 18–20`
+    },
+    source: [
+      { deck: TB, chapter: C4, location: 'Section 4.5 (Layout Planning & Relationship Charts)' },
+      { deck: D4b, chapter: C4, location: 'Slides 18–20 (Systematic Layout Planning)' }
+    ]
+  }),
+
+  // 3. Material Handling AGV Fleet Sizing
+  q({
+    id: 'Q_INDU211_TB03',
+    chapter: 'ch5',
+    topic: 'AGV Fleet Sizing (Turner)',
+    difficulty: 'Midterm Level',
+    question: t`A manufacturing facility requires $40$ delivery trips per hour. Each AGV trip requires an average delivery cycle time of $6.0\text{ minutes}$ (loaded travel, unloading, empty return, loading). Operating with a traffic congestion factor $TF = 0.80$, how many AGVs are required?`,
+    options: [
+      t`$5\text{ AGVs}$`,
+      t`$4\text{ AGVs}$ (ignores traffic congestion)`,
+      t`$6\text{ AGVs}$`,
+      t`$8\text{ AGVs}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Vehicle fleet size is computed as $N_v = \dfrac{\text{Total Hourly Workload}}{\text{Effective Available Time per Vehicle}} = \dfrac{D_{\text{trips}} \times T_{\text{cycle}}}{60 \times TF}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate total workload in vehicle-minutes per hour', math: t`WL = 40\text{ trips/hr} \times 6.0\text{ min/trip} = 240\text{ min/hr}` },
+        { title: 'Compute effective available operating time per AGV per hour', math: t`T_{\text{avail}} = 60\text{ min/hr} \times TF = 60 \times 0.80 = 48\text{ min/hr per AGV}` },
+        { title: 'Divide total workload by single vehicle capacity', math: t`N_v = \frac{WL}{T_{\text{avail}}} = \frac{240}{48} = 5.0 \implies 5\text{ AGVs}` }
+      ],
+      answer: t`5\text{ AGVs}`,
+      whyWrong: {
+        '1': t`4 AGVs ($240 / 60 = 4$) ignores the traffic factor ($TF = 0.80$). Without accounting for congestion and waiting at intersections, the fleet will fall behind schedule.`,
+        '2': t`6 AGVs overestimates requirement ($240 / (60 \times 0.67)$).`,
+        '3': t`8 AGVs doubles the necessary fleet size.`
+      },
+      commonTrap: t`Multiplying by the traffic factor instead of dividing the workload ($240 \times 0.8 = 192$). Congestion reduces available time, requiring MORE vehicles ($N_v \propto 1/TF$).`,
+      reference: `${TB} · Chapter 5 (§5.3); ${D5} · Slide 12`
+    },
+    source: [
+      { deck: TB, chapter: C5, location: 'Section 5.3 (Material Handling Equipment Fleet Sizing)' },
+      { deck: D5, chapter: C5, location: 'Slide 12 (Automated material handling)' }
+    ]
+  }),
+
+  // 4. Reorder Point with Safety Stock
+  q({
+    id: 'Q_INDU211_TB04',
+    chapter: 'ch7',
+    topic: 'Reorder Point with Safety Stock (Turner)',
+    difficulty: 'Midterm Level',
+    question: t`Daily demand for an assembly component is $d = 50\text{ units/day}$ with supplier lead time $L = 9\text{ days}$. The standard deviation of demand during lead time is $\sigma_L = 20\text{ units}$. For a $95\%$ service level ($z = 1.645$), what is the reorder point (ROP)?`,
+    options: [
+      t`$483\text{ units}$`,
+      t`$450\text{ units}$ (no safety stock)`,
+      t`$516\text{ units}$ ($z = 3.3$)`,
+      t`$466\text{ units}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Reorder Point ($ROP$) covers expected lead-time demand plus safety stock to protect against demand fluctuations: $ROP = d \times L + z\,\sigma_L$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate expected demand during lead time', math: t`\mu_L = d \times L = 50\text{ units/day} \times 9\text{ days} = 450\text{ units}` },
+        { title: 'Calculate buffer safety stock for 95% service level ($z = 1.645$)', math: t`SS = z \times \sigma_L = 1.645 \times 20 = 32.9 \approx 33\text{ units}` },
+        { title: 'Sum expected demand and safety stock', math: t`ROP = \mu_L + SS = 450 + 32.9 = 482.9 \approx 483\text{ units}` }
+      ],
+      answer: t`ROP = 483\text{ units}`,
+      whyWrong: {
+        '1': t`450 units is strictly expected demand ($50 \times 9$), with zero safety stock, leading to a 50% stockout probability during lead time.`,
+        '2': t`516 units corresponds to an overly conservative 99.9% service level ($z \approx 3.3$).`,
+        '3': t`466 units uses $z = 0.8$, which provides only an ~79% service level.`
+      },
+      commonTrap: t`Forgetting that $\sigma_L$ is already the standard deviation over the FULL lead time. If given daily standard deviation $\sigma_d$, then $\sigma_L = \sqrt{L}\cdot\sigma_d$.`,
+      reference: `${TB} · Chapter 7 (§7.2); ${D7a} · Slide 22`
+    },
+    source: [
+      { deck: TB, chapter: C7, location: 'Section 7.2 (Inventory Management & Safety Stock)' },
+      { deck: D7a, chapter: C7, location: 'Slide 22 (Inventory control and reorder point)' }
+    ]
+  }),
+
+  // 5. Quantity Discount Decision
+  q({
+    id: 'Q_INDU211_TB05',
+    chapter: 'ch7',
+    topic: 'Quantity Discount Evaluation (Turner)',
+    difficulty: 'Exam Master',
+    question: t`A company faces demand $D = 10{,}000$ units/year, ordering cost $PC = \$40$/order, and carrying cost rate $i = 20\%$ of unit price. The normal price is $\$5.00$ ($Q < 1{,}000$), with an all-units discount to $\$4.80$ if $Q \ge 1{,}000$. What should the company do?`,
+    options: [
+      t`Order $Q = 1{,}000$; total annual cost decreases by $\approx \$2{,}014$ due to purchase price savings`,
+      t`Order $EOQ = 894$; ordering $1{,}000$ units increases carrying cost too much`,
+      t`Do not order; ordering cost increases when order size increases`,
+      t`Order $Q = 2{,}000$ to maximize the discount further`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`To evaluate all-units quantity discounts, calculate total cost (purchase cost $D\cdot P$ + ordering $(D/Q)PC$ + holding $(Q/2)CC$) at the base $EOQ$ and compare it against the total cost at the discount breakpoint $Q = 1{,}000$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Evaluate total annual cost at normal price $P = \$5.00$ ($EOQ = 894$)', math: t`CC_1 = 0.20(5.00) = \$1.00 \implies EOQ_1 = \sqrt{\frac{2(10{,}000)(40)}{1.00}} \approx 894.4\text{ units}` },
+        { title: 'Calculate total cost at $EOQ_1 = 894$', math: t`TC_1 = 10{,}000(5.00) + \frac{10{,}000}{894}(40) + \frac{894}{2}(1.00) = 50{,}000 + 447.4 + 447.0 = \$50{,}894.40` },
+        { title: 'Evaluate total annual cost at discount breakpoint $Q = 1{,}000$ ($P = \$4.80$)', math: t`CC_2 = 0.20(4.80) = \$0.96 \implies TC_2 = 10{,}000(4.80) + \frac{10{,}000}{1000}(40) + \frac{1000}{2}(0.96) = 48{,}000 + 400 + 480 = \$48{,}880.00` },
+        { title: 'Compare total costs', math: t`\Delta TC = 50{,}894.40 - 48{,}880.00 = +\$2{,}014.40\ \text{annual net savings}` }
+      ],
+      answer: t`Order $Q = 1{,}000\ (\approx \$2{,}014\ \text{savings})`,
+      whyWrong: {
+        '1': t`While holding cost increases from \$447 to \$480 (a \$33 rise), purchase cost drops by \$2,000, overwhelmingly favoring the discount.`,
+        '2': t`Ordering cost actually decreases with larger order sizes ($(10{,}000/1{,}000)(40) = \$400 < \$447$).`,
+        '3': t`There is no further discount above 1,000 units, so ordering 2,000 would needlessly inflate inventory holding costs.`
+      },
+      commonTrap: t`Focusing only on the inventory trade-off ($CC$ vs $PC$) and forgetting the purchase cost $D \times P$. A 20-cent discount across 10,000 units is a \$2,000 direct saving!`,
+      reference: `${TB} · Chapter 7 (§7.2); ${D7a} · Slide 20`
+    },
+    source: [
+      { deck: TB, chapter: C7, location: 'Section 7.2 (Quantity Discount Inventory Models)' },
+      { deck: D7a, chapter: C7, location: 'Slide 20 (EOQ cost models)' }
+    ]
+  }),
+
+  // 6. Process Capability Index Cpk vs Cp
+  q({
+    id: 'Q_INDU211_TB06',
+    chapter: 'ch8',
+    topic: 'Process Capability Index Cpk (Turner)',
+    difficulty: 'Midterm Level',
+    question: t`A process has specification limits $USL = 50.0\text{ mm}$ and $LSL = 40.0\text{ mm}$ with standard deviation $\sigma = 1.0\text{ mm}$. If the process mean has drifted to $\mu = 43.0\text{ mm}$, what are the capability values $C_p$ and $C_{pk}$?`,
+    options: [
+      t`$C_p = 1.67, \quad C_{pk} = 1.00$`,
+      t`$C_p = 1.00, \quad C_{pk} = 1.67$`,
+      t`$C_p = 1.67, \quad C_{pk} = 1.67$`,
+      t`$C_p = 3.33, \quad C_{pk} = 2.00$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`$C_p = \dfrac{USL - LSL}{6\sigma}$ measures potential capability assuming a centered process. $C_{pk} = \min\left(\dfrac{USL - \mu}{3\sigma}, \dfrac{\mu - LSL}{3\sigma}\right)$ penalizes for mean decentering.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate potential process capability $C_p$', math: t`C_p = \frac{USL - LSL}{6\sigma} = \frac{50.0 - 40.0}{6(1.0)} = \frac{10.0}{6.0} \approx 1.67` },
+        { title: 'Calculate upper capability $C_{pu}$', math: t`C_{pu} = \frac{USL - \mu}{3\sigma} = \frac{50.0 - 43.0}{3(1.0)} = \frac{7.0}{3.0} \approx 2.33` },
+        { title: 'Calculate lower capability $C_{pl}$', math: t`C_{pl} = \frac{\mu - LSL}{3\sigma} = \frac{43.0 - 40.0}{3(1.0)} = \frac{3.0}{3.0} = 1.00` },
+        { title: 'Determine $C_{pk}$ as the minimum of $C_{pu}$ and $C_{pl}$', math: t`C_{pk} = \min(2.33, 1.00) = 1.00` }
+      ],
+      answer: t`C_p = 1.67, \quad C_{pk} = 1.00`,
+      whyWrong: {
+        '1': t`Inverted values: $C_p$ is always greater than or equal to $C_{pk}$. $C_p$ cannot be less than $C_{pk}$.`,
+        '2': t`$C_p = C_{pk} = 1.67$ is only true when the process is perfectly centered at $\mu = 45.0\text{ mm}$. Here $\mu = 43.0$ is shifted toward LSL.`,
+        '3': t`Divides by $3\sigma$ in $C_p$ instead of $6\sigma$.`
+      },
+      commonTrap: t`Assuming $C_p > 1.33$ guarantees zero defects. If the mean drifts ($C_{pk} < C_p$), parts will violate the nearer specification limit despite a high $C_p$.`,
+      reference: `${TB} · Chapter 8 (§8.4); ${D8} · Slide 65`
+    },
+    source: [
+      { deck: TB, chapter: C8, location: 'Section 8.4 (Process Capability Indices Cp and Cpk)' },
+      { deck: D8, chapter: C8, location: 'Slide 65 (Process capability)' }
+    ]
+  }),
+
+  // 7. Standard Time with Allowance Factor
+  q({
+    id: 'Q_INDU211_TB07',
+    chapter: 'ch6-11',
+    topic: 'Standard Time with Allowances (Turner)',
+    difficulty: 'Foundation',
+    question: t`An assembly task has an average Observed Time $OT = 1.50\text{ minutes}$ and operator Performance Rating $PR = 120\%$ ($1.20$). With an Allowance Factor $AF = 15\%$ ($0.15$) applied to normal time, what is the Standard Time ($ST$)?`,
+    options: [
+      t`$2.07\text{ minutes}$`,
+      t`$1.80\text{ minutes}$`,
+      t`$1.725\text{ minutes}$`,
+      t`$2.12\text{ minutes}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Work measurement standard time formula: First calculate Normal Time $NT = OT \times PR$, then add allowances: $ST = NT \times (1 + AF)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate Normal Time ($NT$)', math: t`NT = OT \times PR = 1.50\text{ min} \times 1.20 = 1.80\text{ min}` },
+        { title: 'Apply the allowance factor ($AF = 0.15$ on normal time)', math: t`ST = NT \times (1 + AF) = 1.80 \times (1 + 0.15) = 1.80 \times 1.15` },
+        { title: 'Evaluate numerically', math: t`ST = 2.07\text{ minutes}` }
+      ],
+      answer: t`ST = 2.07\text{ minutes}`,
+      whyWrong: {
+        '1': t`1.80 minutes is Normal Time, omitting fatigue, personal, and unavoidable delay allowances.`,
+        '2': t`1.725 minutes applies allowance directly to observed time without rating ($1.50 \times 1.15$).`,
+        '3': t`2.12 minutes ($1.80 / 0.85$) applies allowance on total job time ($ST = NT / (1 - AF)$), rather than on normal time.`
+      },
+      commonTrap: t`Forgetting to apply the performance rating before adding allowances. Always pace-rate first ($NT$), then add allowances ($ST$).`,
+      reference: `${TB} · Chapter 6 (§6.3); ${D611} · Slides 26–28`
+    },
+    source: [
+      { deck: TB, chapter: C611, location: 'Section 6.3 (Work Measurement & Standard Time)' },
+      { deck: D611, chapter: C611, location: 'Slides 26–28 (Time study and allowances)' }
+    ]
+  }),
+
+  // 8. Linear Programming Shadow Price
+  q({
+    id: 'Q_INDU211_TB08',
+    chapter: 'ch14',
+    topic: 'LP Shadow Price (Turner)',
+    difficulty: 'Midterm Level',
+    question: t`In a profit-maximization linear program, a binding milling constraint has a shadow price of $\$35.00/\text{hour}$. If management can acquire $10$ additional milling hours at an overtime cost of $\$20.00/\text{hour}$, what is the net impact on total profit?`,
+    options: [
+      t`Net profit increases by $+\$150.00$`,
+      t`Net profit decreases by $-\$200.00$`,
+      t`Net profit increases by $+\$350.00$`,
+      t`No change in profit`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`A shadow price (dual value) represents the marginal increase in total objective value per unit increase in the constraint's right-hand side. If the shadow price exceeds the unit procurement cost, acquiring capacity is profitable.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Determine gross profit increase per additional hour', math: t`\text{Gross Value} = \text{Shadow Price} = \$35.00/\text{hour}` },
+        { title: 'Compute net marginal profit per hour after overtime cost', math: t`\text{Net Marginal Profit} = \$35.00 - \$20.00 = +\$15.00/\text{hour}` },
+        { title: 'Multiply by acquired capacity ($10\text{ hours}$)', math: t`\Delta \text{Profit} = 10\text{ hours} \times \$15.00/\text{hour} = +\$150.00` }
+      ],
+      answer: t`+\$150.00\ \text{net profit increase}`,
+      whyWrong: {
+        '1': t`Decreases by \$200 only counts the cost of the hours without recognizing the revenue generated by utilizing them.`,
+        '2': t`+\$350.00 is the gross revenue increase, failing to deduct the overtime cost (\$200).`,
+        '3': t`Profit definitely changes because the milling constraint was binding (resource was fully utilized).`
+      },
+      commonTrap: t`Confusing shadow price with market price. Shadow price is the internal opportunity value to the firm's optimal product mix.`,
+      reference: `${TB} · Chapter 14 (§14.2); ${D14} · Slides 10–12`
+    },
+    source: [
+      { deck: TB, chapter: C14, location: 'Section 14.2 (Linear Programming Duality & Shadow Prices)' },
+      { deck: D14, chapter: C14, location: 'Slides 10–12 (Graphical LP and sensitivity)' }
+    ]
+  }),
+
+  // 9. Multi-Server M/M/s Queue Stability
+  q({
+    id: 'Q_INDU211_TB09',
+    chapter: 'ch15',
+    topic: 'Multi-Server Queue Utilization (Turner)',
+    difficulty: 'Midterm Level',
+    question: t`A customer service center has $s = 3$ identical agents, each completing service at rate $\mu = 10\text{ calls/hour}$. Incoming calls arrive at Poisson rate $\lambda = 24\text{ calls/hour}$. What is the facility utilization factor $\rho$, and is the queue stable?`,
+    options: [
+      t`$\rho = 0.80$; the system is stable because $\rho < 1.0$`,
+      t`$\rho = 2.40$; the system is unstable and the queue explodes`,
+      t`$\rho = 0.30$; tellers are mostly idle`,
+      t`$\rho = 1.25$; unstable`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`For a multi-server $M/M/s$ queue, total service capacity is $s\mu$. Traffic intensity is $\rho = \dfrac{\lambda}{s\mu}$. A steady state exists if and only if $\rho < 1.0$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate combined processing capacity of $s = 3$ servers', math: t`\text{Total Capacity} = s \times \mu = 3 \times 10 = 30\text{ calls/hour}` },
+        { title: 'Calculate facility utilization factor $\rho$', math: t`\rho = \frac{\lambda}{s\mu} = \frac{24}{3(10)} = \frac{24}{30} = 0.80\ (80\%)` },
+        { title: 'Check steady-state equilibrium condition', note: t`Since $\rho = 0.80 < 1.0$, arrival rate does not exceed total service capacity; the queue is stable.` }
+      ],
+      answer: t`\rho = 0.80\ \text{(stable)}`,
+      whyWrong: {
+        '1': t`$\rho = 2.40$ divides $\lambda$ by $\mu$ without dividing by the number of servers $s = 3$. That is $\lambda/\mu$, which represents the expected number of busy servers, not utilization per server!`,
+        '2': t`$\rho = 0.30$ divides 10 by 30 instead of 24 by 30.`,
+        '3': t`$\rho = 1.25$ inverts the ratio ($30/24$).`
+      },
+      commonTrap: t`Confusing server utilization $\rho = \frac{\lambda}{s\mu}$ with workload parameter $r = \frac{\lambda}{\mu}$. The average number of busy servers is $r = 2.4$, but each individual server is utilized at $\rho = 80\%$.`,
+      reference: `${TB} · Chapter 15 (§15.3); ${D15} · Slide 8`
+    },
+    source: [
+      { deck: TB, chapter: C15, location: 'Section 15.3 (Multi-Server Queueing Models)' },
+      { deck: D15, chapter: C15, location: 'Slide 8 (Queuing formulas)' }
+    ]
+  }),
+
+  // 10. Project Crashing Cost Slope
+  q({
+    id: 'Q_INDU211_TB10',
+    chapter: 'ch17',
+    topic: 'Project Crashing Cost Slope (Turner)',
+    difficulty: 'Midterm Level',
+    question: t`A project manager must compress a critical path by $1\text{ day}$. Two critical activities can be crashed: Activity A (Normal: 5 days, \$1,000; Crash: 3 days, \$1,600) and Activity B (Normal: 6 days, \$2,000; Crash: 4 days, \$2,800). Which activity should be crashed first?`,
+    options: [
+      t`Crash Activity A; cost slope is $\$300/\text{day}$ (cheaper than B's $\$400/\text{day}$)`,
+      t`Crash Activity B; cost slope is $\$400/\text{day}$`,
+      t`Crash both activities simultaneously`,
+      t`Crash Activity B because it has a longer duration`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Project crashing cost slope represents the marginal cost to compress an activity by one unit of time: $\text{Slope} = \dfrac{\text{Crash Cost} - \text{Normal Cost}}{\text{Normal Duration} - \text{Crash Duration}}$. Always crash the critical activity with the LOWEST cost slope first.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate cost slope for Activity A', math: t`S_A = \frac{\text{CC}_A - \text{NC}_A}{\text{NT}_A - \text{CT}_A} = \frac{1600 - 1000}{5 - 3} = \frac{600}{2} = \$300/\text{day}` },
+        { title: 'Calculate cost slope for Activity B', math: t`S_B = \frac{\text{CC}_B - \text{NC}_B}{\text{NT}_B - \text{CT}_B} = \frac{2800 - 2000}{6 - 4} = \frac{800}{2} = \$400/\text{day}` },
+        { title: 'Select the most economical critical activity to crash', math: t`S_A = \$300/\text{day} < S_B = \$400/\text{day} \implies \text{Crash Activity A}` }
+      ],
+      answer: t`Crash Activity A (\$300/\text{day})`,
+      whyWrong: {
+        '1': t`Activity B costs \$400/day to compress, which is \$100/day more expensive than Activity A.`,
+        '2': t`Crashing both is unnecessary and doubles the expenditure when only 1 day of total compression is required.`,
+        '3': t`Initial duration is irrelevant; only the marginal cost per day saved ($\text{Slope}$) determines optimal crashing.`
+      },
+      commonTrap: t`Comparing total crash costs (\$1,600 vs \$2,800) instead of the marginal cost per day saved ($\Delta \text{Cost} / \Delta \text{Time}$). Always compute the slope!`,
+      reference: `${TB} · Chapter 17 (§17.3); ${D17} · Slide 14`
+    },
+    source: [
+      { deck: TB, chapter: C17, location: 'Section 17.3 (Project Crashing and Time-Cost Trade-Offs)' },
+      { deck: D17, chapter: C17, location: 'Slide 14 (Project crashing)' }
+    ]
   })
 ];

@@ -21,7 +21,7 @@
 
 A **project** is a set of activities with **precedence relationships** that must be performed in the proper order; some activities can run concurrently (Lecture 13, slide 3). **Project management** is the planning and organisation of resources to move a project to completion at **minimum cost**. Typical applications are construction and engineering projects.
 
-> **From the textbook (Hicks, §17.1):** a project should be managed as a **one-time task**, a major undertaking unlikely to be repeated in exactly the same way. Mistakes are costly to fix after the fact, so careful up-front planning pays off.
+> **From the textbook (Turner et al., §17.1):** a project should be managed as a **one-time task**, a major undertaking unlikely to be repeated in exactly the same way. Mistakes are costly to fix after the fact, so careful up-front planning pays off.
 
 ---
 
@@ -114,7 +114,7 @@ The critical path is **C → G, 43 days**. It is the path with the fewest activi
 
 **PERT** (Program Evaluation and Review Technique, slide 17) is for projects with uncertain durations (research and development, new technology). Each activity gets three estimates: optimistic $t_o$, most likely $t_m$ and pessimistic $t_p$.
 
-> **From the textbook (Hicks, §17.4, Eq. 17.1):** the expected time is a weighted average giving the most likely estimate four times the weight of the others:
+> **From the textbook (Turner et al., §17.4, Eq. 17.1):** the expected time is a weighted average giving the most likely estimate four times the weight of the others:
 > $$t_e = \frac{t_o + 4t_m + t_p}{6}, \qquad \sigma^{2} = \left(\frac{t_p - t_o}{6}\right)^{2}$$
 
 ![PERT chart](./images/pert_chart.png)
@@ -134,7 +134,7 @@ The project duration is the sum of the critical-path activities, so (by the cent
 
 $$Z = \frac{\text{deadline} - T_E}{\sigma_{\text{path}}}$$
 
-> **From the textbook (Hicks, §17.4), same network as the lecture:** the critical path has expected length 43 days and $\sigma_{\text{path}} = 4.333$ days. For a 47-day deadline:
+> **From the textbook (Turner et al., §17.4), same network as the lecture:** the critical path has expected length 43 days and $\sigma_{\text{path}} = 4.333$ days. For a 47-day deadline:
 > $$Z = \frac{47 - 43}{4.333} = 0.923 \quad\Rightarrow\quad P(T \le 47) = 0.822$$
 > an **82.2%** chance of finishing in 47 days. The chance of finishing by 43 days (the mean) is 50%. The book warns that with only two critical activities, the normal approximation should not be trusted too much.
 
@@ -148,7 +148,7 @@ $$Z = \frac{\text{deadline} - T_E}{\sigma_{\text{path}}}$$
 * **Simulation** handles probabilistic networks.
 * **Resource-constrained scheduling** and **monitoring deadlines**.
 
-> **From the textbook (Hicks, §17.5, Time–Cost Trade-offs):** almost any activity can be shortened with more resources (overtime, extra crew, equipment), which raises **direct cost**. Meanwhile **indirect costs** (management, rentals, overhead, late-delivery penalties) grow with project length. The planner shortens ("crashes") critical activities, cheapest per day first, until the extra direct cost of the next day saved exceeds the indirect cost it avoids. Aerospace contracts often carry daily penalty or bonus clauses, which make this trade-off explicit.
+> **From the textbook (Turner et al., §17.5, Time–Cost Trade-offs):** almost any activity can be shortened with more resources (overtime, extra crew, equipment), which raises **direct cost**. Meanwhile **indirect costs** (management, rentals, overhead, late-delivery penalties) grow with project length. The planner shortens ("crashes") critical activities, cheapest per day first, until the extra direct cost of the next day saved exceeds the indirect cost it avoids. Aerospace contracts often carry daily penalty or bonus clauses, which make this trade-off explicit.
 
 **Why only critical activities?** Shortening a non-critical activity costs money but saves no project time. And after each crash, re-check: once another path becomes as long as the critical path, both must be shortened together.
 
@@ -162,4 +162,4 @@ $$Z = \frac{\text{deadline} - T_E}{\sigma_{\text{path}}}$$
 - [ ] Slack = LS − ES; critical activities have zero slack.
 - [ ] CPM deterministic vs PERT probabilistic; both find a critical path.
 - [ ] $t_e = (t_o + 4t_m + t_p)/6$; $\sigma = (t_p - t_o)/6$; $Z = (D - T_E)/\sigma_{\text{path}}$.
-- [ ] Crashing: shorten critical activities only; watch for a new critical path.
+- [ ] Crashing: Cost Slope $= (CC - NC)/(NT - CT)$; shorten critical activities with lowest slope only.\n- [ ] Crashing parallel critical paths requires crashing all critical paths simultaneously.\n- [ ] Optimal project duration minimizes Direct Costs + Indirect Overhead Costs.

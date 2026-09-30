@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { CourseDocument } from '../types';
-import { X, ExternalLink, Download, FileText, Maximize2 } from 'lucide-react';
+import { X, ExternalLink, FileText, Maximize2 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
 import { displayTitle } from '../utils/docOrganization';
@@ -74,17 +74,6 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
               <ExternalLink size={16} />
               <span className="modal-action-label">Open Full Tab</span>
             </a>
-            <a
-              href={pdfUrl}
-              download={doc.filename}
-              className="modal-action-btn"
-              title="Download PDF document"
-              aria-label="Download file"
-              onClick={() => audio.playClick()}
-            >
-              <Download size={16} />
-              <span className="modal-action-label">Download</span>
-            </a>
             <button className="modal-close-btn" onClick={close} title="Close viewer (Esc)" aria-label="Close viewer">
               <X size={20} />
             </button>
@@ -104,15 +93,6 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
             >
               <Maximize2 size={13} />
               <span>Fullscreen Tab</span>
-            </a>
-            <a
-              href={pdfUrl}
-              download={doc.filename}
-              className="pdf-subbar-link"
-              onClick={() => audio.playClick()}
-            >
-              <Download size={13} />
-              <span>Save PDF</span>
             </a>
           </div>
         </div>

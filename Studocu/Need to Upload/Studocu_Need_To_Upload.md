@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 25
+### Currently Pending Uploads: 24
 
 ---
 
@@ -253,38 +253,24 @@
 
 ---
 
-## 23. `Lecture 6 - Crystal Structures 3 (Explained).pdf`
-
-* **University**: Concordia University
-* **Course**: `Materials Science (MIAE 221)`
-* **Category**: `Lecture notes`
-* **Title**: MIAE 221 Lecture 6 - Crystal Structures 3 (Explained)
-* **Academic year**: `2025/2026`
-* **Description**: Fully expanded, comprehensive master lecture guide for Dr. Medraj's MIAE 221 Lecture 6 covering linear density, planar density, close-packed slip geometries in FCC and BCC, single-crystal anisotropy versus polycrystalline isotropy, X-ray diffraction (XRD) physics, and complete Bragg's Law interplanar spacing ($d_{hkl}$) calculations with step-by-step solved exam problems and official lecture diagrams.
-
 ---
 
-## 24. `Lecture 7 - Defects (Explained).pdf`
-
-* **University**: Concordia University
-* **Course**: `Materials Science (MIAE 221)`
-* **Category**: `Lecture notes`
-* **Title**: MIAE 221 Lecture 7 - Defects (Explained)
-* **Academic year**: `2025/2026`
-* **Description**: In-depth comprehensive master guide for Dr. Medraj's MIAE 221 Lecture 7 covering zero-dimensional point defects, equilibrium vacancy thermodynamics, Arrhenius activation energy calculations, Hume-Rothery empirical solid solubility rules, and one-dimensional linear defects (edge, screw, mixed dislocations) with Burgers vector definitions and slip plane geometries, illustrated with high-resolution slide figures.
-
----
-
-## 25. `MIAE 221 - Teacher Lecture Notes Fill-in-the-Blank Master Solutions Key.pdf`
+## 23. `Part 1 - Materials Classes, Atomic Structure & Energy Curves.pdf`
 
 * **University**: Concordia University
 * **Course**: `Materials Science (MIAE 221)`
 * **Category**: `Summaries`
-* **Title**: MIAE 221 - Teacher Lecture Notes Fill-in-the-Blank Master Solutions Key
+* **Title**: MIAE 221 Part 1 - Materials Classes, Atomic Structure & Energy Curves Master Guide
 * **Academic year**: `2025/2026`
-* **Description**: Exhaustive solutions key and companion guide for all incomplete, fill-in-the-blank slides across Dr. Mamoun Medraj's MIAE 221 Lectures 1 through 7. Systematically resolves every dotted underline, missing term, Hume-Rothery solubility criteria, unit cell parameters, and bonding classification using the Callister textbook.
+* **Description**: Comprehensive master study guide for Dr. Medraj's MIAE 221 Lectures 1 & 2 covering materials classification (metals, ceramics, polymers, composites), quantum numbers, electron configuration, atomic force-distance curves, and potential energy wells.
 
+---
 
+## 24. `Part 2 - Chemical Bonding, Potential Wells & Physical Properties.pdf`
 
-
-
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 2 - Chemical Bonding, Potential Wells & Physical Properties Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: High-yield study guide for MIAE 221 Lectures 2 & 3 covering primary atomic bonds (ionic, covalent, metallic), Pauling electronegativity, secondary van der Waals and hydrogen bonding, and macroscopic physical properties derived from potential wells (Tm, E, alpha).

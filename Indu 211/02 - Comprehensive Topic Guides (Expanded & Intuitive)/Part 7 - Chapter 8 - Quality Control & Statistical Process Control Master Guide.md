@@ -40,7 +40,7 @@ The slides open with eight definitions (Lecture 11, slides 3–10). Learn who sa
 
 **Determinants of quality (slide 22):** quality of design, capability of the production process, quality of conformance, quality of customer service.
 
-> **From the textbook (Hicks, §8.4): Deming's 14 points (first eight, paraphrased).** (1) Create constancy of purpose toward improvement. (2) Adopt the new philosophy. (3) **Cease dependence on inspection**: build quality in from the start. (4) Stop awarding business on price alone; minimise total cost, with long-term single suppliers. (5) Improve the system of production and service constantly and forever. (6) Institute training on the job. (7) Institute leadership. (8) Drive out fear. Point 3 is the idea behind moving from quality *control* (detection) to quality *assurance* (prevention).
+> **From the textbook (Turner et al., §8.4): Deming's 14 points (first eight, paraphrased).** (1) Create constancy of purpose toward improvement. (2) Adopt the new philosophy. (3) **Cease dependence on inspection**: build quality in from the start. (4) Stop awarding business on price alone; minimise total cost, with long-term single suppliers. (5) Improve the system of production and service constantly and forever. (6) Institute training on the job. (7) Institute leadership. (8) Drive out fear. Point 3 is the idea behind moving from quality *control* (detection) to quality *assurance* (prevention).
 
 ---
 
@@ -238,4 +238,4 @@ $$\hat\sigma = \frac{1.392}{2.059} = 0.676, \qquad C_p = \frac{4.4}{6(0.676)} = 
 - [ ] Random vs assignable causes; what a point outside the limits means.
 - [ ] $\bar X$ limits $\bar{\bar X} \pm A_2\bar R$; $R$ limits $D_3\bar R$, $D_4\bar R$; $\hat\sigma = \bar R/d_2$.
 - [ ] p-chart limits; truncate a negative LCL at 0.
-- [ ] $C_p = (USL - LSL)/6\hat\sigma$; six sigma = 3.4 defects per million; DMAIC.
+- [ ] $C_p = (USL - LSL)/6\hat\sigma$; $C_{pk} = \min(C_{pu}, C_{pl})$; $C_{pk} = C_p(1-k)$.\n- [ ] $C_p$ vs $C_{pk}$: $C_p$ assumes centered, $C_{pk}$ measures actual capability with drift.\n- [ ] Six sigma = 3.4 defects per million; DMAIC methodology.

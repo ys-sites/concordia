@@ -9,6 +9,8 @@ const L4 = 'lecture 4-crystal structure 1-students26.pdf';
 const L5 = 'lecture 5-crystal structure 2-students26.pdf';
 const L6 = 'lecture 6-crystal structure3-students26.pdf';
 const L7 = 'lecture 7-defects 1-students26.pdf';
+const L2 = 'lecture 2-review chemistry-students26.pdf';
+const CAL = 'Callister (10th/9th Ed.) — Materials Science and Engineering: An Introduction';
 const CH3 = 'Ch. 3 · Crystal Structures';
 const CH4 = 'Ch. 4 · Imperfections in Solids';
 const CH2 = 'Ch. 2 · Atomic Structure & Bonding';
@@ -956,5 +958,384 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
       reference: `${L6} · Pages 5–6`
     },
     source: src(L6, CH3, 'Pages 5–6 (planar density method)')
+  }),
+
+  // ============================================================ Callister Textbook Quantitative Practice (Lectures 1–7)
+  // 1. Potential Energy Function & Equilibrium Separation
+  q({
+    id: 'Q_MIAE221_CAL01',
+    chapter: 'bonding',
+    topic: 'Net Potential Energy & Separation (Callister)',
+    difficulty: 'Midterm Level',
+    question: t`For a pair of atoms, the net potential energy curve is given by $E_N = -\dfrac{A}{r} + \dfrac{B}{r^9}$. In terms of the constants $A$ and $B$, what is the equilibrium interatomic separation distance $r_0$?`,
+    options: [
+      t`$r_0 = \left(\dfrac{9B}{A}\right)^{1/8}$`,
+      t`$r_0 = \left(\dfrac{B}{9A}\right)^{1/8}$`,
+      t`$r_0 = \left(\dfrac{9B}{A}\right)^{1/9}$`,
+      t`$r_0 = \left(\dfrac{A}{9B}\right)^{1/8}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`At the equilibrium interatomic separation $r = r_0$, the net force is zero and the potential energy curve $E_N(r)$ is at its minimum: $\left.\dfrac{dE_N}{dr}\right|_{r=r_0} = 0$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Differentiate the net potential energy $E_N$ with respect to separation $r$', math: t`\frac{dE_N}{dr} = \frac{d}{dr}\left(-A\,r^{-1} + B\,r^{-9}\right) = A\,r^{-2} - 9B\,r^{-10}` },
+        { title: 'Set the derivative equal to zero at equilibrium separation $r_0$', math: t`\frac{A}{r_0^2} - \frac{9B}{r_0^{10}} = 0 \implies \frac{A}{r_0^2} = \frac{9B}{r_0^{10}}` },
+        { title: 'Cross-multiply to isolate the powers of $r_0$', math: t`A\,r_0^{10} = 9B\,r_0^2 \implies r_0^8 = \frac{9B}{A}` },
+        { title: 'Take the 8th root to solve for $r_0$', math: t`r_0 = \left(\frac{9B}{A}\right)^{1/8}` }
+      ],
+      answer: t`r_0 = \left(\frac{9B}{A}\right)^{1/8}`,
+      whyWrong: {
+        '1': t`Inverted coefficient: differentiating $B\,r^{-9}$ multiplies by $-9$, putting $9$ in the numerator alongside $B$.`,
+        '2': t`Exponent error: the exponent comes from $r^{10-2} = r^8$, so the root is $1/8$, not $1/9$.`,
+        '3': t`Inverted fraction: dividing $9B$ by $A$ yields $(9B/A)^{1/8}$, not $(A/9B)^{1/8}$.`
+      },
+      commonTrap: t`Forgetting that the net force is $F = -dE/dr$. Setting $dE/dr = 0$ is the universal condition for equilibrium separation in all materials potential functions.`,
+      reference: `${CAL} · Section 2.5 & Problem 2.14; ${L2} · Pages 10–12`
+    },
+    source: [
+      { deck: CAL, chapter: CH2, location: 'Problem 2.14 (Potential energy curve)' },
+      { deck: L2, chapter: CH2, location: 'Pages 10–12 (Interatomic forces and potential wells)' }
+    ]
+  }),
+
+  // 2. Pauling Percent Ionic Character
+  q({
+    id: 'Q_MIAE221_CAL02',
+    chapter: 'bonding',
+    topic: 'Percent Ionic Character of SiC (Callister)',
+    difficulty: 'Midterm Level',
+    question: t`Using Pauling's formula $\% \text{IC} = \left[1 - \exp\left(-0.25(X_A - X_B)^2\right)\right] \times 100\%$ with electronegativities $X_{\text{Si}} = 1.90$ and $X_{\text{C}} = 2.55$, what is the percent ionic character of Silicon Carbide ($\text{SiC}$)?`,
+    options: [
+      t`$\approx 10.0\%$ (predominantly covalent)`,
+      t`$\approx 25.4\%$`,
+      t`$\approx 50.0\%$ (equal ionic and covalent)`,
+      t`$\approx 89.2\%$ (predominantly ionic)`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Pauling's relation calculates the ionic fraction from the difference in electronegativity $\Delta X = |X_A - X_B|$. When $\Delta X < 1.0$, the bond is predominantly covalent with minor polar character.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Compute electronegativity difference between C and Si', math: t`\Delta X = |X_{\text{C}} - X_{\text{Si}}| = |2.55 - 1.90| = 0.65` },
+        { title: 'Square the difference and multiply by $-0.25$', math: t`(\Delta X)^2 = (0.65)^2 = 0.4225 \implies -0.25 \times 0.4225 = -0.105625` },
+        { title: 'Evaluate the exponential term', math: t`\exp(-0.105625) \approx 0.89976` },
+        { title: 'Subtract from 1 and convert to percentage', math: t`\% \text{IC} = (1 - 0.89976) \times 100\% \approx 10.02\% \approx 10.0\%` }
+      ],
+      answer: t`\% \text{IC} \approx 10.0\%`,
+      whyWrong: {
+        '1': t`$25.4\%$ arises from erroneously using an electronegativity difference of $\Delta X = 1.1$.`,
+        '2': t`$50\%$ occurs only when $\Delta X \approx 1.7$ (the classical boundary between ionic and covalent compounds).`,
+        '3': t`$89.2\%$ is the covalent fraction ($\approx 90\%$), which is $100\% - \% \text{IC}$, not the ionic fraction itself.`
+      },
+      commonTrap: t`Confusing percent covalent character with percent ionic character. $\% \text{Covalent} = 100\% - \% \text{IC} \approx 90\%$.`,
+      reference: `${CAL} · Section 2.6 & Problem 2.19; ${L3} · Pages 5–6`
+    },
+    source: [
+      { deck: CAL, chapter: CH2, location: 'Problem 2.19 (Percent ionic character)' },
+      { deck: L3, chapter: CH2, location: 'Pages 5–6 (Electronegativity and bond types)' }
+    ]
+  }),
+
+  // 3. Ideal c/a Ratio in HCP
+  q({
+    id: 'Q_MIAE221_CAL03',
+    chapter: 'crystal',
+    topic: 'Ideal HCP c/a Axial Ratio (Callister)',
+    difficulty: 'Midterm Level',
+    question: t`For an ideal Hexagonal Close-Packed (HCP) crystal composed of rigid hard spheres in continuous contact, what is the exact theoretical axial ratio $c/a$?`,
+    options: [
+      t`$\sqrt{\dfrac{8}{3}} \approx 1.633$`,
+      t`$\sqrt{\dfrac{3}{2}} \approx 1.225$`,
+      t`$\dfrac{4}{3} \approx 1.333$`,
+      t`$\sqrt{3} \approx 1.732$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`In ideal HCP packing, the three atoms in the basal triangular cluster and the middle-plane atom form a regular tetrahedron with edge length $a$. The height of this tetrahedron determines the half-height $c/2$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Identify the tetrahedral geometry formed by 3 basal atoms and 1 mid-plane atom', note: t`All four atoms touch, so every edge of the regular tetrahedron has length $a = 2R$.` },
+        { title: 'Find the planar distance from a triangle corner to its centroid', math: t`r_{\text{centroid}} = \frac{a}{\sqrt{3}}` },
+        { title: 'Use the Pythagorean theorem to calculate the tetrahedron height $h = c/2$', math: t`\left(\frac{c}{2}\right)^2 + r_{\text{centroid}}^2 = a^2 \implies \left(\frac{c}{2}\right)^2 + \frac{a^2}{3} = a^2` },
+        { title: 'Solve for $c/2$ and $c/a$', math: t`\left(\frac{c}{2}\right)^2 = \frac{2}{3}a^2 \implies \frac{c}{2} = \sqrt{\frac{2}{3}}\,a \implies \frac{c}{a} = 2\sqrt{\frac{2}{3}} = \sqrt{\frac{8}{3}} \approx 1.633` }
+      ],
+      answer: t`c/a = \sqrt{8/3} \approx 1.633`,
+      whyWrong: {
+        '1': t`$\sqrt{3/2} \approx 1.225$ is the reciprocal factor of the tetrahedral altitude, missing the factor of 2.`,
+        '2': t`$4/3$ is an algebraic ratio unrelated to close-packed tetrahedral geometry.`,
+        '3': t`$\sqrt{3}$ is the ratio between the long face diagonal and cube edge in cubic lattices, not HCP.`
+      },
+      commonTrap: t`Forgetting that real HCP metals deviate slightly from $1.633$: Zinc ($c/a = 1.856$) is elongated, while Titanium ($c/a = 1.587$) and Magnesium ($c/a = 1.624$) are compressed.`,
+      reference: `${CAL} · Section 3.4 & Problem 3.5; ${L4} · Pages 10–12`
+    },
+    source: [
+      { deck: CAL, chapter: CH3, location: 'Section 3.4 & Problem 3.5 (HCP crystal structure)' },
+      { deck: L4, chapter: CH3, location: 'Pages 10–12 (HCP lattice geometry)' }
+    ]
+  }),
+
+  // 4. Allotropic Volume Change in Iron
+  q({
+    id: 'Q_MIAE221_CAL04',
+    chapter: 'densities',
+    topic: 'Allotropic Transformation Volume Change (Callister)',
+    difficulty: 'Exam Master',
+    question: t`At $912^\circ\text{C}$, pure iron transforms from BCC ferrite ($\alpha$-Fe, $R_{\text{BCC}} = 0.1258\text{ nm}$) to FCC austenite ($\gamma$-Fe, $R_{\text{FCC}} = 0.1289\text{ nm}$). What is the percent volume change when BCC iron transforms into FCC iron?`,
+    options: [
+      t`$\approx -1.2\%$ (volume contraction / shrinkage)`,
+      t`$\approx +1.2\%$ (volume expansion)`,
+      t`$\approx -3.5\%$`,
+      t`$\approx +0.0\%$ (zero net change)`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`When iron is heated past $912^\circ\text{C}$, it transforms from BCC to FCC. Because FCC has a significantly higher atomic packing factor ($0.74$ vs $0.68$), the metal contracts upon heating despite the slight increase in atomic radius.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate volume per atom in BCC iron', math: t`a_{\text{BCC}} = \frac{4R_{\text{BCC}}}{\sqrt{3}} = \frac{4(0.1258)}{\sqrt{3}} \approx 0.29052\text{ nm} \implies v_{\text{atom, BCC}} = \frac{a_{\text{BCC}}^3}{2} \approx 0.012261\text{ nm}^3` },
+        { title: 'Calculate volume per atom in FCC iron', math: t`a_{\text{FCC}} = 2\sqrt{2}R_{\text{FCC}} = 2\sqrt{2}(0.1289) \approx 0.36458\text{ nm} \implies v_{\text{atom, FCC}} = \frac{a_{\text{FCC}}^3}{4} \approx 0.012115\text{ nm}^3` },
+        { title: 'Compute percent volume change', math: t`\frac{\Delta V}{V} = \frac{v_{\text{atom, FCC}} - v_{\text{atom, BCC}}}{v_{\text{atom, BCC}}} \times 100\% = \frac{0.012115 - 0.012261}{0.012261} \times 100\% \approx -1.19\% \approx -1.2\%` }
+      ],
+      answer: t`\Delta V / V \approx -1.2\%`,
+      whyWrong: {
+        '1': t`Positive $+1.2\%$ ignores that FCC packing ($0.74$) is denser than BCC ($0.68$), causing a net contraction on heating.`,
+        '2': t`$-3.5\%$ erroneously assumes the atomic radius $R$ remains constant across the phase transition.`,
+        '3': t`Zero net change assumes the change in radius perfectly cancels the packing factor difference, which it does not.`
+      },
+      commonTrap: t`Assuming heating always causes expansion. At allotropic phase transitions, the crystal structure shift can cause an abrupt volumetric contraction.`,
+      reference: `${CAL} · Problem 3.23; ${L6} · Slide 19`
+    },
+    source: [
+      { deck: CAL, chapter: CH3, location: 'Problem 3.23 (Allotropic volume change)' },
+      { deck: L6, chapter: CH3, location: 'Slide 19 (Iron allotropic transformations)' }
+    ]
+  }),
+
+  // 5. Linear Density of Close-Packed [111] in BCC
+  q({
+    id: 'Q_MIAE221_CAL05',
+    chapter: 'densities',
+    topic: 'Linear Density of BCC [111] (Callister)',
+    difficulty: 'Midterm Level',
+    question: t`In a Body-Centered Cubic (BCC) crystal with atomic radius $R$, what is the linear atomic density along the close-packed $[111]$ body diagonal?`,
+    options: [
+      t`$\dfrac{1}{2R}$`,
+      t`$\dfrac{1}{4R}$`,
+      t`$\dfrac{\sqrt{3}}{4R}$`,
+      t`$\dfrac{1}{2\sqrt{2}R}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`$LD = n/L$. Along the close-packed $[111]$ body diagonal in BCC, atoms touch continuously: the length is $L = 4R$ and it intercepts 2 full atomic diameters.`,
+      stepByStep: [],
+      steps: [
+        { title: 'The $[111]$ direction runs from one cube corner through the body-center to the opposite corner', note: t`Along this line, the body-center atom touches both corner atoms: $L = 4R$.` },
+        { title: 'Count atoms centred on the $[111]$ vector segment', math: t`n = 2\left(\tfrac{1}{2}\right) + 1 = 2\text{ atoms}` },
+        { title: 'Divide intercepted atoms by line length', math: t`LD_{[111]} = \frac{n}{L} = \frac{2}{4R} = \frac{1}{2R}` }
+      ],
+      answer: t`LD_{[111]} = \frac{1}{2R}`,
+      whyWrong: {
+        '1': t`$1/(4R)$ counts only 1 atom instead of 2 along the body diagonal.`,
+        '2': t`$\sqrt{3}/(4R)$ incorrectly uses the edge length $a$ in the numerator.`,
+        '3': t`$1/(2\sqrt{2}R)$ is the linear density along the $[100]$ edge in FCC, not BCC $[111]$.`
+      },
+      commonTrap: t`Forgetting that the body-center atom is completely inside the cell and centered directly on the $[111]$ line, contributing 1 full atom.`,
+      reference: `${CAL} · Section 3.11 & Problem 3.54; ${L6} · Slide 4`
+    },
+    source: [
+      { deck: CAL, chapter: CH3, location: 'Section 3.11 & Problem 3.54 (Linear density)' },
+      { deck: L6, chapter: CH3, location: 'Slide 4 (Linear density derivations)' }
+    ]
+  }),
+
+  // 6. Planar Density of Close-Packed (111) in FCC
+  q({
+    id: 'Q_MIAE221_CAL06',
+    chapter: 'densities',
+    topic: 'Planar Density of FCC (111) (Callister)',
+    difficulty: 'Exam Master',
+    question: t`In a Face-Centered Cubic (FCC) crystal with atomic radius $R$, what is the planar atomic density of the close-packed $(111)$ plane?`,
+    options: [
+      t`$\dfrac{1}{2\sqrt{3}\,R^2} \approx \dfrac{0.289}{R^2}$`,
+      t`$\dfrac{1}{4\sqrt{2}\,R^2}$`,
+      t`$\dfrac{1}{4\sqrt{3}\,R^2}$`,
+      t`$\dfrac{3}{8\sqrt{2}\,R^2}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`$PD = n/A_P$. The $(111)$ plane cuts through face diagonals of length $4R$, forming an equilateral triangle containing 2 equivalent atoms on an area of $4\sqrt{3}R^2$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'The $(111)$ plane intersects the FCC unit cell as an equilateral triangle', note: t`Each side of the triangle is a face diagonal where atoms touch: side length $b = 4R$.` },
+        { title: 'Calculate the area of the equilateral triangle', math: t`A_P = \frac{\sqrt{3}}{4}b^2 = \frac{\sqrt{3}}{4}(4R)^2 = 4\sqrt{3}\,R^2` },
+        { title: 'Count atoms centred on the triangular slice inside the cell', math: t`n = 3\left(\tfrac{1}{6}\right) + 3\left(\tfrac{1}{2}\right) = \tfrac{1}{2} + \tfrac{3}{2} = 2\text{ atoms}` },
+        { title: 'Divide atom count by plane area', math: t`PD_{(111)} = \frac{2}{4\sqrt{3}\,R^2} = \frac{1}{2\sqrt{3}\,R^2} \approx \frac{0.2887}{R^2}` }
+      ],
+      answer: t`PD_{(111)} = \frac{1}{2\sqrt{3}\,R^2}`,
+      whyWrong: {
+        '1': t`$1/(4\sqrt{2}R^2)$ is the planar density of the $(110)$ plane in FCC (rectangular geometry).`,
+        '2': t`$1/(4\sqrt{3}R^2)$ counts only 1 atom instead of 2 in the triangular slice.`,
+        '3': t`$3/(8\sqrt{2}R^2)$ is the planar density of the $(110)$ plane in BCC.`
+      },
+      commonTrap: t`Forgetting that the three face-centered atoms each sit on an edge of the triangle and contribute $1/2$ each, while the three corners contribute $1/6$ each ($60^\circ$ angle).`,
+      reference: `${CAL} · Section 3.11 & Problem 3.57; ${L6} · Slide 6`
+    },
+    source: [
+      { deck: CAL, chapter: CH3, location: 'Section 3.11 & Problem 3.57 (Planar density)' },
+      { deck: L6, chapter: CH3, location: 'Slide 6 (Planar density in close-packed planes)' }
+    ]
+  }),
+
+  // 7. X-Ray Diffraction Indexing for BCC Metal
+  q({
+    id: 'Q_MIAE221_CAL07',
+    chapter: 'densities',
+    topic: 'XRD Lattice Parameter Calculation (Callister)',
+    difficulty: 'Midterm Level',
+    question: t`Monochromatic X-rays with wavelength $\lambda = 0.1542\text{ nm}$ are incident on a BCC metal. The first diffraction peak corresponding to $(110)$ planes occurs at $2\theta = 40.4^\circ$. What is the lattice parameter $a$ of this metal?`,
+    options: [
+      t`$a \approx 0.316\text{ nm}$`,
+      t`$a \approx 0.223\text{ nm}$`,
+      t`$a \approx 0.447\text{ nm}$`,
+      t`$a \approx 0.158\text{ nm}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Use Bragg's Law $n\lambda = 2d_{hkl}\sin\theta$ (with $n=1$) to compute the interplanar spacing $d_{110}$, then relate $d_{hkl}$ to lattice parameter $a$ via $d_{hkl} = a/\sqrt{h^2+k^2+l^2}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Determine the Bragg angle $\theta$ from the diffraction angle $2\theta$', math: t`\theta = \frac{40.4^\circ}{2} = 20.2^\circ` },
+        { title: 'Calculate interplanar spacing $d_{110}$ using Bragg\'s Law', math: t`d_{110} = \frac{\lambda}{2\sin\theta} = \frac{0.1542\text{ nm}}{2\sin(20.2^\circ)} = \frac{0.1542}{2(0.3453)} \approx 0.2233\text{ nm}` },
+        { title: 'Relate $d_{110}$ to lattice parameter $a$ for a cubic system', math: t`d_{110} = \frac{a}{\sqrt{1^2 + 1^2 + 0^2}} = \frac{a}{\sqrt{2}} \implies a = d_{110}\sqrt{2}` },
+        { title: 'Evaluate $a$', math: t`a = 0.2233 \times 1.4142 \approx 0.3158\text{ nm} \approx 0.316\text{ nm}` }
+      ],
+      answer: t`a \approx 0.316\text{ nm}`,
+      whyWrong: {
+        '1': t`$0.223\text{ nm}$ is the interplanar spacing $d_{110}$, not the lattice parameter $a$.`,
+        '2': t`$0.447\text{ nm}$ results from multiplying by 2 instead of $\sqrt{2}$.`,
+        '3': t`$0.158\text{ nm}$ erroneously divides by $\sqrt{2}$ instead of multiplying.`
+      },
+      commonTrap: t`Diffractometers record data as $2\theta$ (the total deviation of the diffracted beam), but Bragg's law requires $\theta$. Always divide $2\theta$ by 2 first!`,
+      reference: `${CAL} · Section 3.16 & Problem 3.64; ${L6} · Slides 13–15`
+    },
+    source: [
+      { deck: CAL, chapter: CH3, location: 'Section 3.16 & Problem 3.64 (XRD Bragg\'s Law calculations)' },
+      { deck: L6, chapter: CH3, location: 'Slides 13–15 (XRD and lattice parameter determination)' }
+    ]
+  }),
+
+  // 8. Equilibrium Vacancy Temperature in Copper
+  q({
+    id: 'Q_MIAE221_CAL08',
+    chapter: 'defects',
+    topic: 'Equilibrium Vacancy Temperature (Callister)',
+    difficulty: 'Midterm Level',
+    question: t`In pure copper, the activation energy for vacancy formation is $Q_v = 0.90\text{ eV/atom}$. Using Boltzmann's constant $k_B = 8.617 \times 10^{-5}\text{ eV/K}$, at what temperature will the fraction of vacant atomic sites ($N_v/N$) reach $1.0 \times 10^{-4}$ ($0.01\%$)?`,
+    options: [
+      t`$T \approx 1134\text{ K} \quad (861^\circ\text{C})$`,
+      t`$T \approx 567\text{ K} \quad (294^\circ\text{C})$`,
+      t`$T \approx 1356\text{ K} \quad (1083^\circ\text{C}, \text{melting point})$`,
+      t`$T \approx 298\text{ K} \quad (25^\circ\text{C})`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Equilibrium vacancy concentration follows the Boltzmann distribution: $N_v/N = \exp(-Q_v / k_B T)$. Taking the natural logarithm allows direct algebraic solution for temperature $T$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Write the governing equilibrium vacancy expression', math: t`\frac{N_v}{N} = \exp\left(-\frac{Q_v}{k_B T}\right)` },
+        { title: 'Take the natural logarithm of both sides', math: t`\ln\left(\frac{N_v}{N}\right) = -\frac{Q_v}{k_B T} \implies T = \frac{-Q_v}{k_B \ln(N_v/N)}` },
+        { title: 'Substitute given values ($Q_v = 0.90\text{ eV}$, $N_v/N = 10^{-4}$)', math: t`\ln(10^{-4}) \approx -9.21034 \implies T = \frac{-0.90}{(8.617 \times 10^{-5})(-9.21034)}` },
+        { title: 'Evaluate numerically', math: t`T = \frac{0.90}{7.9365 \times 10^{-4}} \approx 1134.0\text{ K} \approx 861^\circ\text{C}` }
+      ],
+      answer: t`T \approx 1134\text{ K} \ (861^\circ\text{C})`,
+      whyWrong: {
+        '1': t`$567\text{ K}$ results from using common $\log_{10}$ instead of natural logarithm $\ln$.`,
+        '2': t`$1356\text{ K}$ is the actual melting point of Copper, where the vacancy fraction is higher ($\sim 10^{-3}$).`,
+        '3': t`At room temperature ($298\text{ K}$), the vacancy fraction in copper is virtually zero ($\sim 10^{-15}$).`
+      },
+      commonTrap: t`Units matching: since $Q_v$ is given in $\text{eV}$, use $k_B = 8.617 \times 10^{-5}\text{ eV/K}$, NOT the SI value $1.38 \times 10^{-23}\text{ J/K}$.`,
+      reference: `${CAL} · Section 4.2 & Problem 4.3; ${L7} · Slide 5`
+    },
+    source: [
+      { deck: CAL, chapter: CH4, location: 'Section 4.2 & Problem 4.3 (Vacancies in metals)' },
+      { deck: L7, chapter: CH4, location: 'Slide 5 (Arrhenius vacancy equation)' }
+    ]
+  }),
+
+  // 9. Hume-Rothery Complete Solubility (Cu-Ni vs Cu-Zn)
+  q({
+    id: 'Q_MIAE221_CAL09',
+    chapter: 'defects',
+    topic: 'Hume-Rothery Complete Solubility (Callister)',
+    difficulty: 'Midterm Level',
+    question: t`Why do Copper (Cu) and Nickel (Ni) form a complete solid solution across all compositions, whereas Copper and Zinc (Zn) have only limited solid solubility?`,
+    options: [
+      t`Cu and Ni have identical FCC structures, atomic radii within $2.5\%$, and nearly identical electronegativities, satisfying all 4 Hume-Rothery rules.`,
+      t`Cu and Ni form strong ionic bonds with each other, preventing phase segregation.`,
+      t`Ni is an interstitial solute in Cu because its atoms fit into octahedral interstices.`,
+      t`Cu and Ni have different crystal structures (FCC vs BCC), allowing mechanical interlocking.`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Complete (unlimited) solid solubility requires satisfying all four Hume-Rothery rules: (1) $\Delta R < 15\%$, (2) same crystal structure, (3) similar electronegativities, (4) same or compatible valence.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Check Hume-Rothery Rule 1: Atomic Size Difference', note: t`$R_{\text{Cu}} = 0.128\text{ nm}$, $R_{\text{Ni}} = 0.125\text{ nm} \implies \Delta R = \frac{0.128 - 0.125}{0.128} \times 100\% = 2.3\% < 15\%$ (satisfied).` },
+        { title: 'Check Hume-Rothery Rule 2: Crystal Structure', note: t`Both Cu and Ni have Face-Centered Cubic (FCC) lattices (satisfied). In contrast, Zinc is HCP, which severely limits its solubility in FCC Copper.` },
+        { title: 'Check Hume-Rothery Rule 3: Electronegativity', note: t`$X_{\text{Cu}} = 1.9$, $X_{\text{Ni}} = 1.8 \implies \Delta X = 0.1$ (very low, avoiding intermetallic compound formation).` },
+        { title: 'Check Hume-Rothery Rule 4: Valence', note: t`Cu is $+1/+2$, Ni is $+2$, yielding compatible electronic valencies.` }
+      ],
+      answer: t`Cu and Ni satisfy all 4 Hume-Rothery criteria`,
+      whyWrong: {
+        '1': t`Metals form metallic bonds with each other, not ionic bonds.`,
+        '2': t`Ni has an atomic radius of $0.125\text{ nm}$, almost identical to Cu ($0.128\text{ nm}$). It is strictly a substitutional solute, never interstitial.`,
+        '3': t`Both Cu and Ni are FCC; they do not have different crystal structures.`
+      },
+      commonTrap: t`Forgetting that satisfying all 4 Hume-Rothery rules is necessary for UNLIMITED solubility. Failing even one rule (such as Zinc having an HCP structure) restricts solubility to a limited range.`,
+      reference: `${CAL} · Section 4.3 & Problem 4.10; ${L7} · Slide 13`
+    },
+    source: [
+      { deck: CAL, chapter: CH4, location: 'Section 4.3 & Problem 4.10 (Hume-Rothery rules for solid solutions)' },
+      { deck: L7, chapter: CH4, location: 'Slide 13 (Solid solutions and Hume-Rothery criteria)' }
+    ]
+  }),
+
+  // 10. Dislocation Burgers Vector Magnitude in FCC
+  q({
+    id: 'Q_MIAE221_CAL10',
+    chapter: 'defects',
+    topic: 'Burgers Vector Magnitude in FCC (Callister)',
+    difficulty: 'Midterm Level',
+    question: t`In Face-Centered Cubic (FCC) metals like Aluminum ($a = 0.405\text{ nm}$), slip occurs along close-packed directions with Burgers vector $\vec{b} = \dfrac{a}{2}\langle 110 \rangle$. What is the magnitude of the Burgers vector $|\vec{b}|$ in Aluminum?`,
+    options: [
+      t`$|\vec{b}| \approx 0.286\text{ nm}$`,
+      t`$|\vec{b}| \approx 0.405\text{ nm}$`,
+      t`$|\vec{b}| \approx 0.203\text{ nm}$`,
+      t`$|\vec{b}| \approx 0.573\text{ nm}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`In any crystal lattice, the Burgers vector magnitude $|\vec{b}|$ represents the unit slip distance. For FCC metals, $|\vec{b}| = \frac{a}{2}|\langle 110 \rangle| = \frac{a}{\sqrt{2}} = 2R$ (one atomic diameter).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Write the magnitude of the direction vector $\langle 110 \rangle$', math: t`|\langle 110 \rangle| = \sqrt{1^2 + 1^2 + 0^2} = \sqrt{2}` },
+        { title: 'Calculate the Burgers vector magnitude formula for FCC', math: t`|\vec{b}| = \frac{a}{2}\sqrt{2} = \frac{a}{\sqrt{2}}` },
+        { title: 'Substitute the lattice parameter of Aluminum ($a = 0.405\text{ nm}$)', math: t`|\vec{b}| = \frac{0.405\text{ nm}}{\sqrt{2}} \approx 0.2864\text{ nm} \approx 0.286\text{ nm}` },
+        { title: 'Physical verification: in FCC, atoms touch along $\langle 110 \rangle$', note: t`Since $a = 2\sqrt{2}R$, $|\vec{b}| = \frac{2\sqrt{2}R}{\sqrt{2}} = 2R$. The unit slip distance is exactly equal to one atomic diameter!` }
+      ],
+      answer: t`|\vec{b}| \approx 0.286\text{ nm}`,
+      whyWrong: {
+        '1': t`$0.405\text{ nm}$ is the unit cell lattice parameter $a$, not the Burgers vector along $\langle 110 \rangle$.`,
+        '2': t`$0.203\text{ nm}$ is $a/2$, forgetting to multiply by the vector magnitude $\sqrt{2}$.`,
+        '3': t`$0.573\text{ nm}$ is $a\sqrt{2}$, which is the entire face diagonal length across the unit cell.`
+      },
+      commonTrap: t`Forgetting that Burgers vector represents a single atomic jump. In FCC close-packed directions, the shortest lattice translation is from a corner to a face center: $\frac{a}{2}[110]$.`,
+      reference: `${CAL} · Section 4.4 & Problem 4.25; ${L7} · Slides 16–17`
+    },
+    source: [
+      { deck: CAL, chapter: CH4, location: 'Section 4.4 & Problem 4.25 (Dislocations and Burgers vectors)' },
+      { deck: L7, chapter: CH4, location: 'Slides 16–17 (Burgers vector geometry)' }
+    ]
   })
 ];

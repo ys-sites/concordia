@@ -6,7 +6,6 @@ import {
   Search,
   ExternalLink,
   Eye,
-  Download,
   Brain,
   ArrowLeft,
   Folder,
@@ -159,9 +158,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           </button>
           <a className="fx-btn fx-btn-icon" href={url} target="_blank" rel="noopener noreferrer" title="Open in new tab" aria-label="Open in new tab">
             <ExternalLink size={14} />
-          </a>
-          <a className="fx-btn fx-btn-icon" href={url} download={doc.filename} title="Download" aria-label="Download">
-            <Download size={14} />
           </a>
         </div>
       </li>
