@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 24
+### Currently Pending Uploads: 26
 
 ---
 
@@ -274,3 +274,26 @@
 * **Title**: MIAE 221 Part 2 - Chemical Bonding, Potential Wells & Physical Properties Master Guide
 * **Academic year**: `2025/2026`
 * **Description**: High-yield study guide for MIAE 221 Lectures 2 & 3 covering primary atomic bonds (ionic, covalent, metallic), Pauling electronegativity, secondary van der Waals and hydrogen bonding, and macroscopic physical properties derived from potential wells (Tm, E, alpha).
+
+---
+
+## 25. `MIAE 221 - Callister Chapter-by-Chapter Master Study Guide & Teacher Comparison.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 - Callister Chapter-by-Chapter Master Study Guide & Teacher Comparison
+* **Academic year**: `2025/2026`
+* **Description**: Ultra-condensed, high-yield master textbook companion bridging Callister & Rethwisch (10th Ed.) with Dr. Medraj's lecture slides and Concordia exams across all 13 syllabus chapters. Features 22 high-resolution reference diagrams, 5-part mastery architecture, governing mathematical engines, and step-by-step exam problem frameworks.
+
+---
+
+## 26. `Lecture 7 - Non-Linear Models (Explained).pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 Lecture 7 - Non-Linear Models (Explained)
+* **Academic year**: `2025/2026`
+* **Description**: Complete step-by-step master lecture notes for Dr. Haghighat's Lecture 7 (September 30, 2026) on Non-Linear Mathematical Models (§2.8). Covers density-dependent population dynamics and the logistic equation with carrying capacity derivations, second-order bimolecular chemical reaction kinetics with limiting reactant analysis, and Torricelli's leaking tank efflux dynamics with exact emptying time calculations.
+

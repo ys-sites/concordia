@@ -33,6 +33,7 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 * **`Lecture 4 - Exact Equations.pdf`**: Ecuaciones exactas y factores integrantes para ecuaciones no exactas (18 de Septiembre).
 * **`Lecture 5, September 23 2026.pdf`**: Soluciones por sustitución (Bernoulli, homogéneas, argumentos lineales).
 * **`Lecture 6 - Linear Models, September 25 2026.pdf`**: Modelado matemático con ecuaciones diferenciales lineales de primer orden: crecimiento/decaimiento, enfriamiento de Newton, mezclas en tanques y circuitos LR/RC (25 de Septiembre).
+* **`ENGR213, Lecture 7, September 30 2026.pdf`**: Modelado matemático con ecuaciones diferenciales no lineales (§2.8): dinámica de poblaciones (ecuación logística), reacciones químicas de segundo orden y drenaje de tanques según la ley de Torricelli (30 de Septiembre).
 
 ---
 
@@ -44,6 +45,7 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 * **`Lecture 4 - Exact Equations (Explained).pdf`**: Guía paso a paso para dominar ecuaciones exactas y el método de reconstrucción.
 * **`Lecture 5 - Solutions by Substitutions (Explained).pdf`**: Guía completa para ecuaciones homogéneas ($y=ux$), Bernoulli ($u=y^{1-n}$) y argumentos lineales ($u=Ax+By+C$) con soluciones paso a paso de los ejemplos de clase.
 * **`Lecture 6 - Linear Mathematical Models (Explained).pdf` & `.md`**: Guía paso a paso completa para la clase 6 (§2.7) cubriendo la formulación de leyes de tasa, crecimiento bacteriano, ley de enfriamiento de Newton, mezcla en tanques con factor integrante y respuesta transitoria/permanente en circuitos LR.
+* **`Lecture 7 - Non-Linear Models (Explained).pdf` & `.md`**: Guía paso a paso completa para la clase 7 (§2.8) cubriendo dinámica de poblaciones dependiente de densidad, ecuación logística y capacidad de carga, cinética de reacciones químicas bimoleculares de segundo orden con reactivo limitante, y drenaje de tanques según la ley de Torricelli con tiempo exacto de vaciado.
 * **`Archive & Alternatives/`**: Borradores previos y notas expandidas de cálculos detallados.
 
 ---

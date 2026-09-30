@@ -41,6 +41,7 @@ Miae 221/
 
 ### 1. [00 - Course Overview & Study Guide](./00%20-%20Course%20Overview%20%26%20Study%20Guide/)
 * [MIAE 221 - Master Study Guide & Exam Strategy.md](./00%20-%20Course%20Overview%20%26%20Study%20Guide/MIAE%20221%20-%20Master%20Study%20Guide%20%26%20Exam%20Strategy.md): Complete syllabus breakdown, grading weights, midterm logistics (October 30th), the Materials Science Tetrahedron paradigm, and strategic exam traps.
+* [MIAE 221 - Callister Chapter-by-Chapter Master Study Guide & Teacher Comparison.md](./00%20-%20Course%20Overview%20%26%20Study%20Guide/MIAE%20221%20-%20Callister%20Chapter-by-Chapter%20Master%20Study%20Guide%20&%20Teacher%20Comparison.md): Ultra-condensed, high-yield master textbook companion bridging Callister & Rethwisch (10th Ed.) with Dr. Medraj's lecture slides across all 13 syllabus chapters. Features 22 high-resolution reference diagrams, 5-part mastery architecture, governing mathematical engines, and step-by-step exam problem frameworks.
 
 ### 2. [01 - Teacher Lecture Notes](./01%20-%20Teacher%20Lecture%20Notes/)
 * Original lecture slide PDFs from Dr. Mamoun Medraj (Lectures 1–5) and the official Practice Problem Set #1.
