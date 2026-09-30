@@ -47,13 +47,60 @@ If not exact, calculate:
 
 ---
 
-## 3. Curriculum-Grounded Visual Reference
+## 3. Curriculum-Grounded Visual Reference & Textbook Figure Breakdowns
 
-![Figure 2.1.2: Direction field of dy/dx = 0.2xy](./images/textbook_fig_2_1_2_direction_field.png)
-*Figure 2.1: Direction field and solution curves — from Textbook 7th Ed. Chapter 2 (Fig. 2.1.2).*
+### Visual 3.1: Direction Fields & Solution Curves (Textbook Fig. 2.1.2)
+![Figure 2.1.2: Direction Field and Solution Curves](./images/textbook_fig_2_1_2_direction_field.png)
+*Figure 2.1: Direction field and family of integral solution curves for $\frac{dy}{dx} = 0.2xy$ — extracted directly from Official Textbook (7th Ed., Chapter 2, Fig. 2.1.2).*
 
-![Figure 2.7.4: Mixture tank problem](./images/textbook_fig_2_7_4_mixture_tank.png)
-*Figure 2.2: Mixing tank schematic: Input brine rate vs output drain rate — from Textbook 7th Ed. Chapter 2 (Fig. 2.7.4).*
+#### In-Depth Pedagogical Breakdown:
+1. **Lineal Elements & Tangent Grids (Fig. 2.1.2a)**:
+   - At every Cartesian coordinate $(x, y)$, the differential equation $\frac{dy}{dx} = 0.2xy$ prescribes a unique numerical slope.
+   - **Coordinate Symmetries**:
+     - On the axes ($x = 0$ or $y = 0$), the slope is $0.2(0) = 0$. Hence, every lineal element along the $x$-axis and $y$-axis is strictly horizontal.
+     - In Quadrant I ($x > 0, y > 0$) and Quadrant III ($x < 0, y < 0$), the product $xy > 0$, so the slopes are strictly positive (pointing upward to the right).
+     - In Quadrant II ($x < 0, y > 0$) and Quadrant IV ($x > 0, y < 0$), the product $xy < 0$, so the slopes are strictly negative (pointing downward to the right).
+2. **Integral Solution Curves (Fig. 2.1.2b)**:
+   - Solving $\frac{dy}{dx} = 0.2xy$ by separation of variables:
+     $$\frac{dy}{y} = 0.2x dx \implies \ln|y| = 0.1x^2 + C_1 \implies y(x) = c e^{0.1x^2}$$
+   - Any trajectory dropped into the direction field must remain everywhere tangent to the lineal elements.
+   - For $c > 0$, the curves form upward-opening symmetric exponential wells.
+   - For $c < 0$, the curves form downward-opening symmetric profiles.
+   - The line $y \equiv 0$ ($c = 0$) serves as an exact equilibrium barrier that solution curves never cross due to Picard-Lindelöf uniqueness.
+
+---
+
+### Visual 3.2: Physical Mixing Tank Architecture & Salt Accumulation (Textbook Fig. 1.3.3 & Fig. 2.7.4)
+![Figure 1.3.3: Mixing Tank Schematic](./images/textbook_fig_2_7_4_mixture_tank.png)
+*Figure 2.2: Mixing tank schematic showing fluid inflow, impeller agitation, and bottom drainage — from Textbook 7th Ed. (Fig. 1.3.3).*
+
+![Figure 2.7.4: Pounds of Salt vs Time Curve](./images/textbook_fig_2_7_4_salt_curve.png)
+*Figure 2.3: Salt accumulation curve $x(t)$ approaching horizontal asymptote $x = 600\text{ lb}$ — from Textbook 7th Ed. (Fig. 2.7.4).*
+
+#### In-Depth Pedagogical Breakdown:
+1. **Fluid Dynamics & Mass Conservation (Fig. 1.3.3)**:
+   - **Inflow Stream**: Brine enters the top pipe at volumetric flow rate $r_{\text{in}} = 3\text{ gal/min}$ with dissolved salt concentration $c_{\text{in}} = 2\text{ lb/gal}$, delivering salt input $R_{\text{in}} = r_{\text{in}} \cdot c_{\text{in}} = 6\text{ lb/min}$.
+   - **Internal Tank Agitation**: An impeller continuously mixes the fluid to ensure uniform spatial concentration throughout the $300\text{ gallon}$ volume.
+   - **Drainage Stream**: Well-stirred brine exits through the bottom pipe at $r_{\text{out}} = 3\text{ gal/min}$, carrying salt out at instantaneous rate $R_{\text{out}} = r_{\text{out}} \cdot \frac{A(t)}{V(t)} = \frac{3}{300}A(t) = \frac{1}{100}A(t)\text{ lb/min}$.
+2. **Dynamic Trajectory to Equilibrium (Fig. 2.7.4)**:
+   - The governing linear ODE $\frac{dA}{dt} + \frac{1}{100}A = 6$ yields the analytical solution $A(t) = 600 - (600 - A_0)e^{-t/100}$.
+   - **Transient Phase**: As shown in the graph and table, the salt content rapidly climbs from $A(0) = 50\text{ lb}$ to $266.4\text{ lb}$ at $t = 50\text{ min}$, and $525.6\text{ lb}$ at $t = 200\text{ min}$.
+   - **Steady-State Saturation**: As $t \to \infty$, the exponential transient dies out ($e^{-t/100} \to 0$), and the salt content asymptotically approaches $A_{\text{limit}} = 600\text{ lb}$ ($V \times c_{\text{in}} = 300\text{ gal} \times 2\text{ lb/gal} = 600\text{ lb}$).
+
+---
+
+### Visual 3.3: One-Dimensional Phase Line & Autonomous Trajectories (Textbook Fig. 2.1.6)
+![Figure 2.1.6: Phase Portrait and Solution Curves](./images/textbook_fig_2_1_6_phase_curves.png)
+*Figure 2.4: Autonomous phase line mapped to solution trajectories in the $tP$-plane across regions $R_1, R_2, R_3$ — from Textbook 7th Ed. (Fig. 2.1.6).*
+
+#### In-Depth Pedagogical Breakdown:
+1. **Equilibrium Lines**:
+   - The horizontal dashed lines $P = 0$ and $P = a/b$ represent equilibrium solutions where $\frac{dP}{dt} = 0$.
+   - These equilibrium lines partition the phase plane into three distinct invariant regions: $R_1$ ($P < 0$), $R_2$ ($0 < P < a/b$), and $R_3$ ($P > a/b$).
+2. **Flow Direction & Stability**:
+   - In region $R_2$, $\frac{dP}{dt} > 0$ (indicated by upward arrow on the phase line). Solutions starting at $P_0 \in (0, a/b)$ increase monotonically toward the carrying capacity $a/b$, exhibiting an S-shaped logistic curve with an inflection point.
+   - In region $R_3$, $\frac{dP}{dt} < 0$ (indicated by downward arrow). Solutions starting above carrying capacity decrease asymptotically toward $a/b$.
+   - Hence, $P = a/b$ is an **asymptotically stable sink (attractor)**, while $P = 0$ is an **unstable source (repeller)**.
 
 ---
 
