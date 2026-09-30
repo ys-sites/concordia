@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CourseId } from '../types';
 import { COURSES_DATA } from '../data/coursesData';
-import { QUIZ_PLANS, MIDTERM_SECTION_ID, drillSize, questionPool } from '../data/quizSections';
+import { QUIZ_PLANS, MIDTERM_SECTION_ID, FINAL_SECTION_ID, drillSize, questionPool } from '../data/quizSections';
 import { Brain, X, ArrowLeft, Target, BookOpen, ChevronRight } from 'lucide-react';
 import { audio } from '../utils/audio';
 
@@ -104,6 +104,22 @@ export const DrillPicker: React.FC<DrillPickerProps> = ({ open, initialCourseId,
                 <small>of {questionPool(course.id, MIDTERM_SECTION_ID).length}</small>
               </span>
             </button>
+
+            {plan.final && (
+              <button className="dp-option dp-option-midterm" onClick={() => start(FINAL_SECTION_ID)}>
+                <span className="dp-option-icon">
+                  <Target size={20} />
+                </span>
+                <span className="dp-option-text">
+                  <strong>{plan.final.label}</strong>
+                  <span>{plan.final.detail}</span>
+                </span>
+                <span className="dp-count">
+                  {drillSize(course.id, FINAL_SECTION_ID)} Q
+                  <small>of {questionPool(course.id, FINAL_SECTION_ID).length}</small>
+                </span>
+              </button>
+            )}
 
             <p className="dp-divider">or review one chapter</p>
 

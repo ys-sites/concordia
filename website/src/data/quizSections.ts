@@ -11,10 +11,13 @@ export interface QuizSection {
 
 export interface CourseQuizPlan {
   midterm: { label: string; detail: string; sections: string[] };
+  // Optional cumulative review for courses whose teacher notes already cover the whole term
+  final?: { label: string; detail: string; sections: string[] };
   sections: QuizSection[];
 }
 
 export const MIDTERM_SECTION_ID = 'midterm';
+export const FINAL_SECTION_ID = 'final';
 export const DRILL_LENGTH = 20;
 
 export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
@@ -33,14 +36,27 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   INDU211: {
     midterm: {
       label: 'Midterm Review — Chapters 1 to 5',
-      detail: 'Mixed questions from lecture slides 1.0–5.0',
-      sections: ['ch1-2', 'ch3', 'ch4', 'ch5']
+      detail: 'Mixed questions from lecture slides 1.0–5.0 plus the 2019 midterm sample',
+      sections: ['ch1-2', 'ch3', 'ch4', 'ch5', 'past-mid']
+    },
+    final: {
+      label: 'Final Exam Review — All Chapters',
+      detail: 'Every lecture deck (1.0–13) with textbook support, plus the Fall 2020 final exam problems',
+      sections: ['ch1-2', 'ch3', 'ch4', 'ch5', 'ch7', 'ch14', 'ch15', 'ch8', 'ch6-11', 'ch17', 'past-mid', 'past-final']
     },
     sections: [
       { id: 'ch1-2', label: 'Chapters 1 & 2 — Engineering & IE Foundations', detail: 'Lecture 1.0: science vs engineering, ethics, IE chronology, systems, decision levels' },
       { id: 'ch3', label: 'Chapter 3 — Manufacturing Engineering', detail: 'Lecture 2.0: concurrent engineering, BOM, break-even, process selection, industrial processes' },
       { id: 'ch4', label: 'Chapter 4 — Facilities Location & Layout', detail: 'Lectures 3.0–4.0: distances, transportation method, center of gravity, layout types' },
-      { id: 'ch5', label: 'Chapter 5 — Material Handling & Routing', detail: 'Lecture 5.0: handling equipment & principles, TSP, VRP, Clark-Wright' }
+      { id: 'ch5', label: 'Chapter 5 — Material Handling & Routing', detail: 'Lecture 5.0: handling equipment & principles, TSP, VRP, Clark-Wright' },
+      { id: 'ch7', label: 'Chapter 7 — Operations Planning & Control', detail: 'Lectures 6.0–8.0: aggregate planning, EOQ, MRP, MRP II/ERP, JIT & Kanban, forecasting' },
+      { id: 'ch14', label: 'Chapter 14 — Deterministic Operations Research', detail: 'Lecture 9.0: LP formulation, graphical solution, maximisation & minimisation' },
+      { id: 'ch15', label: 'Chapter 15 — Queuing Models', detail: "Lecture 10: M/M/1 measures, Little's law, steady state, simulation" },
+      { id: 'ch8', label: 'Chapter 8 — Quality Control', detail: 'Lecture 11: definitions, costs of quality, SPC, X-bar/R and p charts, capability, six sigma' },
+      { id: 'ch6-11', label: 'Chapters 6 & 11 — Work Design & Human Factors', detail: 'Lecture 12: productivity, anthropometry, job design, motivation, time study' },
+      { id: 'ch17', label: 'Chapter 17 — Project Management', detail: 'Lecture 13: CPM critical path, slack, PERT expected times' },
+      { id: 'past-mid', label: 'Past Papers — Previous Midterm', detail: '2019 midterm sample questions (Chapters 1–5)' },
+      { id: 'past-final', label: 'Past Papers — Previous Final Exam', detail: 'Fall 2020 final: forecasting, graphical LP, control charts, queuing' }
     ]
   },
   MIAE215: {
@@ -76,13 +92,19 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
 export const sectionLabel = (courseId: CourseId, sectionId: string): string => {
   const plan = QUIZ_PLANS[courseId];
   if (sectionId === MIDTERM_SECTION_ID) return plan.midterm.label;
+  if (sectionId === FINAL_SECTION_ID && plan.final) return plan.final.label;
   return plan.sections.find((s) => s.id === sectionId)?.label ?? sectionId;
 };
 
 // All questions belonging to one course + section (the midterm mixes its sections)
 export const questionPool = (courseId: CourseId, sectionId: string): PracticeQuestion[] => {
   const plan = QUIZ_PLANS[courseId];
-  const chapters = sectionId === MIDTERM_SECTION_ID ? plan.midterm.sections : [sectionId];
+  const chapters =
+    sectionId === MIDTERM_SECTION_ID
+      ? plan.midterm.sections
+      : sectionId === FINAL_SECTION_ID && plan.final
+        ? plan.final.sections
+        : [sectionId];
   return PRACTICE_QUESTIONS.filter((q) => q.courseId === courseId && chapters.includes(q.chapter));
 };
 
