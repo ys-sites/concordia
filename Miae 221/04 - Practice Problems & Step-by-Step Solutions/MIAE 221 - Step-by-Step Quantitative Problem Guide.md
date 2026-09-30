@@ -15,15 +15,30 @@ Following the universal standard established in `exact_ode_step_by_step.pdf`:
 ---
 
 ## Table of Contents
+### Foundations & Bonding (Lectures 1–3)
 - [Problem 1: Percent Ionic Character Calculation (Pauling Formula)](#problem-1-percent-ionic-character-calculation-pauling-formula)
 - [Problem 2: Equilibrium Interionic Spacing and Bonding Energy](#problem-2-equilibrium-interionic-spacing-and-bonding-energy)
 - [Problem 3: Coulombic Electrostatic Force Balance Between Ions](#problem-3-coulombic-electrostatic-force-balance-between-ions)
 - [Problem 4: Wire Geometry to Microscopic Atom Count Stoichiometry](#problem-4-wire-geometry-to-microscopic-atom-count-stoichiometry)
+
+### Crystal Lattices & Crystallography (Lectures 4–5)
 - [Problem 5: Face-Centered Cubic (FCC) Lattice Parameter & APF Derivation](#problem-5-face-centered-cubic-fcc-lattice-parameter--apf-derivation)
 - [Problem 6: Body-Centered Cubic (BCC) Lattice Parameter & APF Derivation](#problem-6-body-centered-cubic-bcc-lattice-parameter--apf-derivation)
 - [Problem 7: Theoretical Density Computation of FCC Copper](#problem-7-theoretical-density-computation-of-fcc-copper)
 - [Problem 8: Crystallographic Direction Miller Indices [uvw]](#problem-8-crystallographic-direction-miller-indices-uvw)
 - [Problem 9: Crystallographic Plane Miller Indices (hkl)](#problem-9-crystallographic-plane-miller-indices-hkl)
+
+### Atomic Densities, XRD & Phase Changes (Lecture 6)
+- [Problem 10: Linear Density of Crystallographic Directions (FCC [100], [110] & BCC [111])](#problem-10-linear-density-of-crystallographic-directions)
+- [Problem 11: Planar Density of Crystallographic Planes (FCC (110), (111) & BCC (110))](#problem-11-planar-density-of-crystallographic-planes)
+- [Problem 12: X-Ray Diffraction, Interplanar Spacing & Bragg's Law](#problem-12-x-ray-diffraction-interplanar-spacing--braggs-law)
+- [Problem 13: Allotropic / Polymorphic Volume Change (BCC ↔ FCC Iron Transformation)](#problem-13-allotropic--polymorphic-volume-change)
+
+### Defects, Solid Solutions & Dislocations (Lecture 7)
+- [Problem 14: Equilibrium Vacancy Concentration & Arrhenius Activation Energy](#problem-14-equilibrium-vacancy-concentration--arrhenius-activation-energy)
+- [Problem 15: Hume-Rothery Quantitative Solid Solubility Evaluation](#problem-15-hume-rothery-quantitative-solid-solubility-evaluation)
+- [Problem 16: Composition Conversions Between Weight Percent (wt%) and Atom Percent (at%)](#problem-16-composition-conversions-between-weight-percent-and-atom-percent)
+- [Problem 17: Dislocation Burgers Vector Magnitude in FCC and BCC Slip Systems](#problem-17-dislocation-burgers-vector-magnitude-in-fcc-and-bcc-slip-systems)
 
 ---
 
@@ -342,3 +357,377 @@ Multiply all three terms by $2$:
 ### Step 5: Enclose in parentheses
 $$\mathbf{(230)}$$
 *(The family of all symmetrically equivalent planes in cubic crystals is denoted with braces: $\mathbf{\{230\}}$).*
+
+---
+
+## Problem 10: Linear Density of Crystallographic Directions
+
+### Problem Statement
+*(Lecture 6 · Slide 4 & Callister §3.11)*  
+(a) Derive the expression for the **Linear Density** ($LD$) of the $[100]$ direction in an FCC unit cell in terms of the atomic radius $R$.  
+(b) Calculate the numerical linear density for Copper ($R = 0.128\text{ nm}$).  
+(c) Derive $LD$ for the close-packed $[110]$ direction in FCC and demonstrate that it attains the theoretical maximum packing of $LD = \dfrac{1}{2R}$.
+
+---
+
+### Part (a): Linear Density of $[100]$ in FCC
+
+#### Step 1: State the governing equation for Linear Density
+$$\text{LD} = \frac{\text{Number of atomic diameters along direction vector inside unit cell}}{\text{Length of the direction vector inside unit cell}} = \frac{n}{L_L}$$
+
+#### Step 2: Count atoms centered on the $[100]$ vector segment
+The $[100]$ direction vector runs along the bottom edge of the cubic unit cell from $(0,0,0)$ to $(1,0,0)$.
+* It passes through two corner atoms.
+* Each corner atom is centered at the vertex, contributing only $\frac{1}{2}$ of an atom to this line segment:
+$$n = 2 \times \frac{1}{2} = \mathbf{1\text{ atom}}$$
+
+#### Step 3: Determine the line length $L_L$
+The vector length is equal to one lattice parameter $a$. For FCC, atoms touch along the face diagonal ($a\sqrt{2} = 4R$):
+$$L_L = a = 2\sqrt{2}R$$
+
+#### Step 4: Compute Linear Density
+$$\text{LD}_{[100]} = \frac{n}{L_L} = \frac{1}{2\sqrt{2}R} = \frac{\sqrt{2}}{4R} \approx \mathbf{\frac{0.3536}{R}}$$
+
+---
+
+### Part (b): Numerical calculation for Copper
+Given $R_{\text{Cu}} = 0.128\text{ nm} = 0.128 \times 10^{-9}\text{ m}$:
+$$\text{LD}_{[100]} = \frac{1}{2\sqrt{2}(0.128\text{ nm})} = \frac{1}{0.36204\text{ nm}} = \mathbf{2.762\text{ atoms/nm}} = \mathbf{2.762 \times 10^9\text{ atoms/m}}$$
+
+---
+
+### Part (c): Linear Density of Close-Packed $[110]$ in FCC
+* The $[110]$ vector runs diagonally across the cube face from $(0,0,0)$ to $(1,1,0)$.
+* It passes through two corner atoms (each contributing $\frac{1}{2}$) and one full face-centered atom:
+  $$n = 2 \left(\frac{1}{2}\right) + 1 = \mathbf{2\text{ atoms}}$$
+* The length of the face diagonal is:
+  $$L_L = a\sqrt{2} = (2\sqrt{2}R)\sqrt{2} = 4R$$
+* Therefore:
+  $$\text{LD}_{[110]} = \frac{2}{4R} = \mathbf{\frac{1}{2R}}$$
+* For Copper:
+  $$\text{LD}_{[110]} = \frac{1}{2(0.128\text{ nm})} = \mathbf{3.906\text{ atoms/nm}} = \mathbf{3.906 \times 10^9\text{ atoms/m}}$$
+* *Significance*: Since atoms touch continuously along $[110]$ ($2R$ per atom), this is the close-packed direction where linear density is maximized!
+
+---
+
+## Problem 11: Planar Density of Crystallographic Planes
+
+### Problem Statement
+*(Lecture 6 · Slide 6 & Callister §3.11)*  
+(a) Derive the **Planar Density** ($PD$) of the $(110)$ plane in an FCC crystal in terms of $R$.  
+(b) Derive the Planar Density of the close-packed $(111)$ plane in an FCC crystal.  
+(c) For Aluminum ($R = 0.143\text{ nm}$), compute the numerical planar density of $(111)$ in $\text{atoms/nm}^2$.
+
+---
+
+### Part (a): Planar Density of FCC $(110)$
+
+#### Step 1: State the governing equation for Planar Density
+$$\text{PD} = \frac{\text{Number of atoms centered on plane inside unit cell}}{\text{Area of the plane inside unit cell}} = \frac{n_P}{A_P}$$
+
+#### Step 2: Count atoms centered on the $(110)$ plane
+The $(110)$ plane cuts diagonally through the FCC cube, forming a rectangle of dimensions $a \times a\sqrt{2}$.
+* 4 corner atoms: each shared by 4 adjacent unit cells on this plane $\to 4 \times \frac{1}{4} = 1$ atom.
+* 2 face-centered atoms (top and bottom faces): cut in half by this plane $\to 2 \times \frac{1}{2} = 1$ atom.
+* Total atoms centered on the plane:
+$$n_P = 4\left(\frac{1}{4}\right) + 2\left(\frac{1}{2}\right) = 1 + 1 = \mathbf{2\text{ atoms}}$$
+
+#### Step 3: Calculate the area of the $(110)$ rectangle
+$$A_P = a \times a\sqrt{2} = \sqrt{2}\,a^2$$
+Substitute $a = 2\sqrt{2}R$:
+$$A_P = \sqrt{2}\,(2\sqrt{2}R)^2 = \sqrt{2}\,(8R^2) = 8\sqrt{2}\,R^2$$
+
+#### Step 4: Compute Planar Density
+$$\text{PD}_{(110)} = \frac{2}{8\sqrt{2}\,R^2} = \frac{1}{4\sqrt{2}\,R^2} = \frac{\sqrt{2}}{8R^2} \approx \mathbf{\frac{0.1768}{R^2}}$$
+
+---
+
+### Part (b): Planar Density of Close-Packed FCC $(111)$
+* The $(111)$ plane passes through three face diagonals, forming an **equilateral triangle** with side length $s = a\sqrt{2} = 4R$.
+* Atom count on the $(111)$ triangle:
+  * 3 corner atoms, each interior angle is $60^\circ$ (contributes $\frac{60^\circ}{360^\circ} = \frac{1}{6}$): $3 \times \frac{1}{6} = \frac{1}{2}$.
+  * 3 face-center atoms along the edges, each shared between 2 adjacent unit cell planes (contributes $\frac{1}{2}$): $3 \times \frac{1}{2} = \frac{3}{2}$.
+  * Total atoms:
+    $$n_P = \frac{1}{2} + \frac{3}{2} = \mathbf{2\text{ atoms}}$$
+* Area of the equilateral triangle:
+  $$A_P = \frac{\sqrt{3}}{4} s^2 = \frac{\sqrt{3}}{4} (4R)^2 = 4\sqrt{3}\,R^2$$
+* Planar Density:
+  $$\text{PD}_{(111)} = \frac{2}{4\sqrt{3}\,R^2} = \mathbf{\frac{1}{2\sqrt{3}\,R^2}} = \mathbf{\frac{\sqrt{3}}{6R^2}} \approx \mathbf{\frac{0.2887}{R^2}}$$
+
+---
+
+### Part (c): Numerical calculation for Aluminum
+Given $R_{\text{Al}} = 0.143\text{ nm}$:
+$$\text{PD}_{(111)} = \frac{1}{2\sqrt{3}\,(0.143\text{ nm})^2} = \frac{1}{3.4641 \times 0.020449} = \frac{1}{0.070838\text{ nm}^2} = \mathbf{14.12\text{ atoms/nm}^2} = \mathbf{1.412 \times 10^{19}\text{ atoms/m}^2}$$
+
+---
+
+## Problem 12: X-Ray Diffraction, Interplanar Spacing & Bragg's Law
+
+### Problem Statement
+*(Lecture 6 · Slide 14–17 & Callister §3.16)*  
+Diffraction angles are measured for FCC Copper ($a = 0.3615\text{ nm}$) using monochromatic X-radiation with wavelength $\lambda = 0.1542\text{ nm}$ ($\text{Cu } K_\alpha$).  
+(a) Calculate the interplanar spacing $d_{hkl}$ for the $(111)$ and $(200)$ planes.  
+(b) Determine the diffraction angle ($2\theta$) for first-order ($n=1$) reflection from the $(111)$ plane.  
+(c) State the diffraction selection rules for FCC and BCC crystals.
+
+---
+
+### Step 1: Calculate interplanar spacing $d_{hkl}$
+For cubic crystal systems:
+$$d_{hkl} = \frac{a}{\sqrt{h^2 + k^2 + l^2}}$$
+
+* For $(111)$ plane:
+  $$d_{111} = \frac{0.3615}{\sqrt{1^2 + 1^2 + 1^2}} = \frac{0.3615}{\sqrt{3}} = \frac{0.3615}{1.73205} = \mathbf{0.2087\text{ nm}} \quad (2.087\text{ \AA})$$
+
+* For $(200)$ plane:
+  $$d_{200} = \frac{0.3615}{\sqrt{2^2 + 0^2 + 0^2}} = \frac{0.3615}{\sqrt{4}} = \frac{0.3615}{2} = \mathbf{0.1808\text{ nm}} \quad (1.808\text{ \AA})$$
+
+---
+
+### Step 2: Apply Bragg's Law to find $\theta$ and $2\theta$
+Bragg's Law governs constructive interference of X-rays:
+$$n\lambda = 2 d_{hkl} \sin\theta$$
+
+For first-order diffraction ($n = 1$):
+$$\sin\theta = \frac{n\lambda}{2 d_{111}} = \frac{1 \times 0.1542\text{ nm}}{2 \times 0.2087\text{ nm}} = \frac{0.1542}{0.4174} = 0.36943$$
+
+Take the inverse sine:
+$$\theta = \arcsin(0.36943) = \mathbf{21.68^\circ}$$
+
+The detector angle recorded on a diffractometer is $2\theta$:
+$$\mathbf{2\theta = 2 \times 21.68^\circ = 43.36^\circ}$$
+
+---
+
+### Step 3: Diffraction Reflection Selection Rules
+Not all planes produce diffraction peaks due to destructive interference of waves scattered by interior atoms:
+
+| Crystal System | Allowed Reflection Rule | First 6 Diffraction Peaks (Lowest to Highest $2\theta$) |
+| :---: | :--- | :--- |
+| **BCC** | $h + k + l = \text{even integer}$ | $(110), (200), (211), (220), (310), (222)$ |
+| **FCC** | $h, k, l$ must be **all odd** OR **all even** | $(111), (200), (220), (311), (222), (400)$ |
+
+*(Notice that for FCC, $(111)$ is the first peak because $1,1,1$ are all odd; $(200)$ is second because $2,0,0$ are all even; $(100)$ is forbidden because $1,0,0$ is mixed).*
+
+---
+
+## Problem 13: Allotropic / Polymorphic Volume Change
+
+### Problem Statement
+*(Lecture 6 · Slide 11 & Callister §3.10)*  
+Pure Iron undergoes an allotropic phase transformation upon heating through $912^\circ\text{C}$ from $\alpha$-iron (BCC, $a_{\alpha} = 0.2866\text{ nm}$) to $\gamma$-iron (FCC, $a_{\gamma} = 0.3571\text{ nm}$).  
+Calculate the percentage volume change ($\Delta V / V_{\alpha} \times 100\%$) that accompanies this transformation. State whether iron expands or contracts upon heating through $912^\circ\text{C}$.
+
+---
+
+### Step 1: Relate crystal volume to atomic volume
+Mass is conserved during phase transformation. Therefore, the volume comparison must be made **per individual atom** (or per mole):
+$$V_{\text{atom}} = \frac{V_{\text{unit cell}}}{n_{\text{atoms/cell}}} = \frac{a^3}{n}$$
+
+---
+
+### Step 2: Compute volume per atom in $\alpha$-iron (BCC)
+In BCC, $n = 2$ atoms/cell:
+$$V_{\text{cell, }\alpha} = a_{\alpha}^3 = (0.2866\text{ nm})^3 = 0.023542\text{ nm}^3$$
+$$V_{\text{atom, }\alpha} = \frac{0.023542\text{ nm}^3}{2} = \mathbf{0.011771\text{ nm}^3/\text{atom}}$$
+
+---
+
+### Step 3: Compute volume per atom in $\gamma$-iron (FCC)
+In FCC, $n = 4$ atoms/cell:
+$$V_{\text{cell, }\gamma} = a_{\gamma}^3 = (0.3571\text{ nm})^3 = 0.045538\text{ nm}^3$$
+$$V_{\text{atom, }\gamma} = \frac{0.045538\text{ nm}^3}{4} = \mathbf{0.011385\text{ nm}^3/\text{atom}}$$
+
+---
+
+### Step 4: Calculate percentage volume change
+$$\% \Delta V = \frac{V_{\text{atom, }\gamma} - V_{\text{atom, }\alpha}}{V_{\text{atom, }\alpha}} \times 100\%$$
+$$\% \Delta V = \frac{0.011385 - 0.011771}{0.011771} \times 100\% = \frac{-0.000386}{0.011771} \times 100\% = \mathbf{-3.28\%}$$
+*(Using high-temperature thermal dilation values at exactly $912^\circ\text{C}$, $a_\alpha = 0.2892\text{ nm}$ and $a_\gamma = 0.3643\text{ nm}$, yielding $\approx -1.2\%$).*
+
+#### Physical Conclusion:
+**Iron CONTRACTS upon heating from BCC to FCC!**  
+*Physical Reason*: FCC has an atomic packing factor of $\text{APF} = 0.74$, whereas BCC has $\text{APF} = 0.68$. Transforming into a closer-packed structure packs the atoms more tightly, causing a net volumetric shrinkage despite the increase in temperature.
+
+---
+
+## Problem 14: Equilibrium Vacancy Concentration & Arrhenius Activation Energy
+
+### Problem Statement
+*(Lecture 7 · Slide 4 & Callister §4.2)*  
+Calculate the equilibrium number of vacancies per cubic meter ($N_v$) in pure Copper at $1000^\circ\text{C}$ ($1273\text{ K}$).  
+*Given*:
+* Energy for vacancy formation: $Q_v = 0.90\text{ eV/atom}$
+* Boltzmann's constant: $k = 8.62 \times 10^{-5}\text{ eV/K}$
+* Density of Copper at $1000^\circ\text{C}$: $\rho = 8.40\text{ g/cm}^3 = 8.40 \times 10^6\text{ g/m}^3$
+* Atomic weight of Copper: $A_{\text{Cu}} = 63.55\text{ g/mol}$
+* Avogadro's number: $N_A = 6.022 \times 10^{23}\text{ atoms/mol}$
+
+---
+
+### Step 1: Calculate total number of atomic lattice sites per cubic meter ($N$)
+$$N = \frac{\rho \cdot N_A}{A_{\text{Cu}}}$$
+$$N = \frac{(8.40 \times 10^6\text{ g/m}^3) \times (6.022 \times 10^{23}\text{ atoms/mol})}{63.55\text{ g/mol}} = \frac{5.0585 \times 10^{30}}{63.55} = \mathbf{7.960 \times 10^{28}\text{ sites/m}^3}$$
+
+---
+
+### Step 2: State the Arrhenius vacancy equation
+$$N_v = N \exp\left( -\frac{Q_v}{k T} \right)$$
+
+---
+
+### Step 3: Compute the thermal activation denominator ($k T$)
+$$T = 1000 + 273 = 1273\text{ K}$$
+$$k T = (8.62 \times 10^{-5}\text{ eV/K}) \times (1273\text{ K}) = \mathbf{0.10973\text{ eV}}$$
+
+---
+
+### Step 4: Evaluate the exponential Boltzmann factor
+$$\text{Exponent} = -\frac{Q_v}{k T} = -\frac{0.90\text{ eV}}{0.10973\text{ eV}} = -8.2019$$
+$$\exp(-8.2019) = e^{-8.2019} = \mathbf{2.741 \times 10^{-4}}$$
+
+---
+
+### Step 5: Compute the equilibrium vacancy concentration $N_v$
+$$N_v = (7.960 \times 10^{28}\text{ sites/m}^3) \times (2.741 \times 10^{-4}) = \mathbf{2.182 \times 10^{25}\text{ vacancies/m}^3}$$
+
+#### Vacancy Fraction:
+$$\frac{N_v}{N} = 2.741 \times 10^{-4} = \frac{1}{3648}$$
+*(At $1000^\circ\text{C}$, approximately 1 out of every 3,650 lattice sites in copper is vacant! At room temperature $25^\circ\text{C}$, $N_v/N \approx 10^{-15}$, demonstrating that vacancy concentration increases exponentially with temperature).*
+
+---
+
+## Problem 15: Hume-Rothery Quantitative Solid Solubility Evaluation
+
+### Problem Statement
+*(Lecture 7 · Slide 13 & Callister §4.3)*  
+Using the Hume-Rothery rules, evaluate whether Zinc ($\text{Zn}$) can form an unlimited/complete substitutional solid solution in Copper ($\text{Cu}$). Compare this with the Copper-Nickel ($\text{Cu-Ni}$) system.
+
+| Element | Atomic Radius ($R$) | Crystal Structure | Electronegativity ($X$) | Valence |
+| :---: | :---: | :---: | :---: | :---: |
+| **Copper ($\text{Cu}$)** | $0.128\text{ nm}$ | FCC | $1.9$ | $+2$ |
+| **Zinc ($\text{Zn}$)** | $0.133\text{ nm}$ | HCP | $1.6$ | $+2$ |
+| **Nickel ($\text{Ni}$)** | $0.125\text{ nm}$ | FCC | $1.8$ | $+2$ |
+
+---
+
+### Step 1: Rule 1 — Atomic Size Factor (Difference $\le 15\%$)
+$$\Delta R = \left| \frac{R_{\text{solute}} - R_{\text{solvent}}}{R_{\text{solvent}}} \right| \times 100\%$$
+
+* **For $\text{Cu-Zn}$**:
+  $$\Delta R = \left| \frac{0.133 - 0.128}{0.128} \right| \times 100\% = \frac{0.005}{0.128} \times 100\% = \mathbf{3.9\%} \le 15\% \quad \text{[SATISFIED]}$$
+
+* **For $\text{Cu-Ni}$**:
+  $$\Delta R = \left| \frac{0.125 - 0.128}{0.128} \right| \times 100\% = \frac{0.003}{0.128} \times 100\% = \mathbf{2.3\%} \le 15\% \quad \text{[SATISFIED]}$$
+
+---
+
+### Step 2: Rule 2 — Crystal Structure Rule (Must be IDENTICAL)
+* **For $\text{Cu-Zn}$**: $\text{Cu}$ is **FCC** while $\text{Zn}$ is **HCP**. **[VIOLATED]**  
+  *Consequence*: Because the crystal structures are different, $\text{Zn}$ CANNOT dissolve completely in $\text{Cu}$. It forms only a partial solid solution (maximum solubility of $\approx 35\text{ wt}\%$ at room temperature, forming $\alpha$-brass; beyond that, a new phase $\beta$ forms).
+* **For $\text{Cu-Ni}$**: $\text{Cu}$ is **FCC** and $\text{Ni}$ is **FCC**. **[SATISFIED]**
+
+---
+
+### Step 3: Rule 3 — Electronegativity Difference ($|\Delta X| \le 0.4$)
+* **For $\text{Cu-Zn}$**: $|\Delta X| = |1.6 - 1.9| = 0.3 \le 0.4$ **[SATISFIED]**
+* **For $\text{Cu-Ni}$**: $|\Delta X| = |1.8 - 1.9| = 0.1 \le 0.4$ **[SATISFIED]**
+
+---
+
+### Step 4: Rule 4 — Valency
+* Both pairs have identical primary valency of $+2$. **[SATISFIED]**
+
+---
+
+### Summary Table & Exam Takeaway:
+* **$\text{Cu-Ni}$ System**: Satisfies all 4 Hume-Rothery rules $\implies$ **Complete $100\%$ Isomorphous Solid Solubility** across all compositions from $0\%$ to $100\%$ Ni.
+* **$\text{Cu-Zn}$ System**: Violates the crystal structure rule $\implies$ **Partial Solid Solubility** only (limited to $\approx 35\text{ wt}\%$ Zn).
+
+---
+
+## Problem 16: Composition Conversions Between Weight Percent and Atom Percent
+
+### Problem Statement
+*(Lecture 7 · Slide 12 & Callister §4.4)*  
+(a) A cartridge brass alloy consists of $70.0\text{ wt}\%$ Copper ($\text{Cu}$, $A_{\text{Cu}} = 63.55\text{ g/mol}$) and $30.0\text{ wt}\%$ Zinc ($\text{Zn}$, $A_{\text{Zn}} = 65.38\text{ g/mol}$). Convert this composition to **atom percent** ($at\%$) of Zinc.  
+(b) Convert an alloy with $15.0\text{ at}\%$ Silicon ($A_{\text{Si}} = 28.09\text{ g/mol}$) in Aluminum ($A_{\text{Al}} = 26.98\text{ g/mol}$) to **weight percent** ($wt\%$).
+
+---
+
+### Part (a): Weight Percent to Atom Percent
+
+#### Method: $100\text{ g}$ Basis
+Assume a total sample mass of $100\text{ g}$:
+* Mass of Cu: $m_{\text{Cu}} = 70.0\text{ g}$
+* Mass of Zn: $m_{\text{Zn}} = 30.0\text{ g}$
+
+Compute number of moles of each element:
+$$n_{\text{Cu}} = \frac{m_{\text{Cu}}}{A_{\text{Cu}}} = \frac{70.0\text{ g}}{63.55\text{ g/mol}} = 1.1015\text{ mol}$$
+$$n_{\text{Zn}} = \frac{m_{\text{Zn}}}{A_{\text{Zn}}} = \frac{30.0\text{ g}}{65.38\text{ g/mol}} = 0.4589\text{ mol}$$
+
+Total moles:
+$$n_{\text{total}} = 1.1015 + 0.4589 = 1.5604\text{ mol}$$
+
+Compute atom percent ($at\%$):
+$$C_{\text{Zn}}' = \frac{n_{\text{Zn}}}{n_{\text{total}}} \times 100\% = \frac{0.4589}{1.5604} \times 100\% = \mathbf{29.41\text{ at}\%}$$
+$$C_{\text{Cu}}' = 100\% - 29.41\% = \mathbf{70.59\text{ at}\%}$$
+
+---
+
+### Part (b): Atom Percent to Weight Percent
+
+#### Method: $100\text{ mol}$ Basis
+Assume a total of $100\text{ moles}$ of alloy:
+* Moles of Si: $n_{\text{Si}} = 15.0\text{ mol}$
+* Moles of Al: $n_{\text{Al}} = 85.0\text{ mol}$
+
+Compute mass of each element:
+$$m_{\text{Si}} = n_{\text{Si}} \times A_{\text{Si}} = 15.0\text{ mol} \times 28.09\text{ g/mol} = 421.35\text{ g}$$
+$$m_{\text{Al}} = n_{\text{Al}} \times A_{\text{Al}} = 85.0\text{ mol} \times 26.98\text{ g/mol} = 2293.30\text{ g}$$
+
+Total mass:
+$$m_{\text{total}} = 421.35 + 2293.30 = 2714.65\text{ g}$$
+
+Compute weight percent ($wt\%$):
+$$C_{\text{Si}} = \frac{m_{\text{Si}}}{m_{\text{total}}} \times 100\% = \frac{421.35}{2714.65} \times 100\% = \mathbf{15.52\text{ wt}\%}$$
+$$C_{\text{Al}} = 100\% - 15.52\% = \mathbf{84.48\text{ wt}\%}$$
+
+---
+
+## Problem 17: Dislocation Burgers Vector Magnitude in FCC and BCC Slip Systems
+
+### Problem Statement
+*(Lecture 7 · Slide 18–20 & Callister §4.5)*  
+Dislocations slip along close-packed directions, which define the orientation and magnitude of the **Burgers vector** $\vec{b}$.  
+(a) In FCC metals, the Burgers vector is of the type $\vec{b} = \frac{a}{2}\langle 110 \rangle$. Compute the magnitude $|\vec{b}|$ for Copper ($a = 0.3615\text{ nm}$). Show that $|\vec{b}|$ equals exactly one atomic diameter ($2R$).  
+(b) In BCC metals, the Burgers vector is of the type $\vec{b} = \frac{a}{2}\langle 111 \rangle$. Compute the magnitude $|\vec{b}|$ for $\alpha$-Iron ($a = 0.2866\text{ nm}$).
+
+---
+
+### Part (a): Burgers Vector Magnitude in FCC
+The Burgers vector is $\vec{b} = \frac{a}{2} [110]$:
+$$|\vec{b}| = \frac{a}{2} \sqrt{1^2 + 1^2 + 0^2} = \frac{a\sqrt{2}}{2} = \frac{a}{\sqrt{2}}$$
+
+Substitute $a_{\text{Cu}} = 0.3615\text{ nm}$:
+$$|\vec{b}_{\text{Cu}}| = \frac{0.3615\text{ nm}}{\sqrt{2}} = \frac{0.3615}{1.4142} = \mathbf{0.2556\text{ nm}} \quad (2.556\text{ \AA})$$
+
+#### Proof that $|\vec{b}| = 2R$:
+In FCC, atoms touch along the face diagonal: $a = 2\sqrt{2}R$.
+$$|\vec{b}| = \frac{a}{\sqrt{2}} = \frac{2\sqrt{2}R}{\sqrt{2}} = \mathbf{2R}$$
+*Interpretation*: When a dislocation glides through an FCC crystal, the lattice is displaced by exactly one full atomic diameter!
+
+---
+
+### Part (b): Burgers Vector Magnitude in BCC
+The Burgers vector is $\vec{b} = \frac{a}{2} [111]$:
+$$|\vec{b}| = \frac{a}{2} \sqrt{1^2 + 1^2 + 1^2} = \frac{a\sqrt{3}}{2}$$
+
+Substitute $a_{\text{Fe}} = 0.2866\text{ nm}$:
+$$|\vec{b}_{\text{Fe}}| = \frac{0.2866 \times 1.73205}{2} = \frac{0.4964}{2} = \mathbf{0.2482\text{ nm}} \quad (2.482\text{ \AA})$$
+
+#### Proof that $|\vec{b}| = 2R$:
+In BCC, atoms touch along the body diagonal: $a = \frac{4R}{\sqrt{3}}$.
+$$|\vec{b}| = \frac{a\sqrt{3}}{2} = \frac{\frac{4R}{\sqrt{3}} \cdot \sqrt{3}}{2} = \frac{4R}{2} = \mathbf{2R}$$
+*Interpretation*: In both FCC and BCC systems, the Burgers vector magnitude corresponds precisely to the interatomic touching distance $2R$ along the primary slip direction!

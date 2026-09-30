@@ -71,9 +71,9 @@
 * **University**: Concordia University
 * **Course**: `Materials Science (MIAE 221)`
 * **Category**: `Practice materials`
-* **Title**: MIAE 221 - Step-by-Step Quantitative Problem Guide
+* **Title**: MIAE 221 - Step-by-Step Quantitative Problem Guide (All 17 Calculation Archetypes)
 * **Academic year**: `2025/2026`
-* **Description**: Comprehensive 9-page step-by-step expansion manual for MIAE 221 applying the exact_ode_step_by_step.pdf format to all core quantitative archetypes: Pauling ionic character, interionic potential wells & bonding energy, Coulombic force balance, atom count stoichiometry, APF derivations (FCC & BCC), theoretical density, and Miller indices ([uvw] and (hkl)).
+* **Description**: Comprehensive master quantitative manual for MIAE 221 covering all 17 calculation problem archetypes across Lectures 1 through 7: Pauling ionic character, interionic potential wells & bonding energy, Coulombic forces, atom count stoichiometry, FCC/BCC lattice parameters and APF derivations, theoretical density, crystallographic direction [uvw] & plane (hkl) Miller indices, linear density (LD), planar density (PD), XRD Bragg's Law & interplanar spacing, allotropic volume changes, Arrhenius vacancy concentrations & activation energies, Hume-Rothery solubility criteria, weight percent to atom percent conversions, and dislocation Burgers vector magnitudes.
 
 ---
 

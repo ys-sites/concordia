@@ -1,4 +1,4 @@
-66import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { CourseDocument } from '../types';
 import { X, ExternalLink, FileText, Maximize2 } from 'lucide-react';
 import { audio } from '../utils/audio';

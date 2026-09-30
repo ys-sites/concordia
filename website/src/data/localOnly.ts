@@ -28,10 +28,6 @@ export const LOCAL_ONLY_PATTERNS: RegExp[] = [
 // textbook chapters, expanded guides, review sheets) and practice problems only — nothing tied to
 // graded work or exams. Kept in git, never shown or deployed.
 export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
-  // Teacher lecture notes (disabled from website per user directive)
-  /(^|\/)01 - Teacher Lecture Notes(\/|$)/i,
-  /(^|\/)01 - Teacher Lecture Notes & Slides(\/|$)/i,
-
   // All Studocu downloads and folders (kept local only)
   /studocu/i,
 
