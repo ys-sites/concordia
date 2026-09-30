@@ -3553,6 +3553,54 @@ h1, h2, h3, h4, h5 {
   text-align: left;
 }
 
+.ws-type-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm, 8px);
+  font-size: 13px;
+  font-weight: 600;
+  gap: 10px;
+}
+
+.ws-type-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.banner-calc {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.banner-theory {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.ws-type-banner-badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(22, 101, 52, 0.12);
+  color: #166534;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.ws-step-latest {
+  border-left: 3px solid var(--engr-accent, #2563eb) !important;
+  background: #f8fafc;
+  border-radius: 4px;
+  padding: 4px 6px;
+  transition: all 0.3s ease;
+}
+
 .ws-card {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);

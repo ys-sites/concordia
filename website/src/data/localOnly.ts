@@ -28,17 +28,28 @@ export const LOCAL_ONLY_PATTERNS: RegExp[] = [
 // textbook chapters, expanded guides, review sheets) and practice problems only — nothing tied to
 // graded work or exams. Kept in git, never shown or deployed.
 export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
+  // Teacher lecture notes (disabled from website per user directive)
+  /(^|\/)01 - Teacher Lecture Notes(\/|$)/i,
+  /(^|\/)01 - Teacher Lecture Notes & Slides(\/|$)/i,
+
+  // All Studocu downloads and folders (kept local only)
+  /studocu/i,
+
+  // Quiz, midterm, exam, and test prep folders (kept local only)
+  /(^|\/)06 - Quiz & Midterm Exam Prep(\/|$)/i,
+
+  // Specific past tests, quizzes, and midterm exam files
+  /(^|\/)[^/]*(practice\s*exam|midterm|quiz\s*\d|test\s*\d)[^/]*\.(pdf|docx?|txt|md)$/i,
+
+  // Course outlines and syllabi
+  /(^|\/)[^/]*(outline|syllabus)[^/]*\.(pdf|docx?|txt|md)$/i,
+
   // Assignment & lab handouts, Moodle submission instructions, lab manuals, term-project brief
   /^Indu 211\/05 - Assignments & Solutions(\/|$)/,
   /^Miae 215\/06 - Arduino Labs & Term Project(\/|$)/,
   /(^|\/)[^/]*assignment[^/]*$/i,
   /homework solutions/i,
-  /team project/i,
-  // Quizzes, midterms, tests, finals & exam prep (folders or files), and past papers from Studocu
-  /(^|[\s/_-])(quiz(zes)?|midterms?|exams?|finals?|tests?)([\s/_.&-]|$)/i,
-  /studocu/i,
-  // Course outlines and syllabi (grading schemes, exam dates)
-  /(^|\/)[^/]*(outline|syllabus)[^/]*\.(pdf|docx?|txt|md)$/i
+  /team project/i
 ];
 
 export const isLocalOnly = (relativePath: string): boolean => {
