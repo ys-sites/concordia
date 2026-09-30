@@ -289,7 +289,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E01',
     courseId: 'ENGR213',
-    chapter: 'ch4',
+    chapter: 'past',
     pastPaper: 'Test 2 & Final Examination · Concordia University',
     topic: 'Cauchy-Euler Auxiliary Equation Trap (Complex Roots)',
     difficulty: 'Exam Master',
@@ -324,7 +324,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E02',
     courseId: 'ENGR213',
-    chapter: 'ch4',
+    chapter: 'past',
     pastPaper: 'Midterm 2 & Final Review · Concordia University',
     topic: 'Variation of Parameters with Repeated Roots',
     difficulty: 'Exam Master',
@@ -359,7 +359,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E03',
     courseId: 'ENGR213',
-    chapter: 'ch4',
+    chapter: 'past',
     pastPaper: 'Test 2 V2 · Concordia University',
     topic: 'Reduction of Order (Missing Independent Variable)',
     difficulty: 'Exam Master',
@@ -394,7 +394,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E04',
     courseId: 'ENGR213',
-    chapter: 'ch2',
+    chapter: 'past',
     pastPaper: 'Final Examination Winter 2023 · Concordia University',
     topic: 'Linear ODE by Reversing Variables',
     difficulty: 'Midterm Level',
@@ -429,7 +429,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E05',
     courseId: 'ENGR213',
-    chapter: 'ch2',
+    chapter: 'past',
     pastPaper: 'Final Examination Winter 2023 · Concordia University',
     topic: 'Bernoulli Equation IVP',
     difficulty: 'Exam Master',
@@ -465,7 +465,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E06',
     courseId: 'ENGR213',
-    chapter: 'ch2',
+    chapter: 'past',
     pastPaper: 'Final Examination Winter 2023 · Concordia University',
     topic: 'Exact Differential Equation IVP',
     difficulty: 'Midterm Level',
@@ -500,7 +500,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E07',
     courseId: 'ENGR213',
-    chapter: 'ch5',
+    chapter: 'past',
     pastPaper: 'Midterm 2 & Final Review · Concordia University',
     topic: 'Pure Mechanical Resonance Driving',
     difficulty: 'Midterm Level',
@@ -535,7 +535,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E08',
     courseId: 'ENGR213',
-    chapter: 'ch10',
+    chapter: 'past',
     pastPaper: 'Final Examination Winter 2023 · Concordia University',
     topic: 'Coupled Linear System of ODEs',
     difficulty: 'Exam Master',
@@ -570,7 +570,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E09',
     courseId: 'ENGR213',
-    chapter: 'ch7',
+    chapter: 'past',
     pastPaper: 'Final Examination Review · Concordia University',
     topic: 'Laplace Transform Discontinuous Step Forcing',
     difficulty: 'Exam Master',
@@ -600,5 +600,328 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
       reference: 'Laplace Transforms · Professor Leonard Lesson 50'
     },
     source: [{ deck: 'Laplace Transforms', chapter: 'Chapter 7 — Laplace Transforms', location: 'Second Shifting Theorem' }]
+  },
+  {
+    id: 'Q_ENGR213_P09',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Quiz 2 (Past Paper) · Concordia University',
+    topic: 'Nonlinear Rabbit Population Model',
+    difficulty: 'Exam Master',
+    question: t`A population of rabbits grows according to the nonlinear differential equation $\\dfrac{dy}{dt} = k\\,y^{1.01}$. Initially at $t = 0\\text{ months}$, the population is $y(0) = 2$. At $t = 3\\text{ months}$, the population has grown to $y(3) = 16$. What is the predicted rabbit population after $12\\text{ months}$?`,
+    options: [
+      t`$\\approx 11{,}050$ rabbits`,
+      t`$\\approx 8{,}192$ rabbits`,
+      t`$\\approx 2{,}048$ rabbits`,
+      t`$\\approx 64$ rabbits`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Separate variables: $\\int y^{-1.01} dy = \\int k dt \\implies -100 y^{-0.01} = kt + C$. The power exponent $1.01 > 1$ accelerates growth beyond standard Malthusian exponential models.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Separate variables and integrate', math: t`\\int y^{-1.01}\\,dy = \\int k\\,dt \\implies \\frac{y^{-0.01}}{-0.01} = kt + C \\implies -100 y^{-0.01} = kt + C` },
+        { title: 'Apply initial condition $y(0) = 2$', math: t`C = -100(2)^{-0.01} \\approx -100(0.9930925) = -99.30925` },
+        { title: 'Apply $y(3) = 16$ to find rate parameter $k$', math: t`-100(16)^{-0.01} = 3k - 99.30925 \\implies -97.2655 = 3k - 99.30925 \\implies 3k = 2.04375 \\implies k \\approx 0.68125` },
+        { title: 'Evaluate at $t = 12\\text{ months}$', math: t`-100 y^{-0.01} = 12(0.68125) - 99.30925 = 8.1750 - 99.30925 = -91.13425` },
+        { title: 'Solve for $y(12)$', math: t`y^{-0.01} = 0.9113425 \\implies y(12) = (0.9113425)^{-100} \\approx 11{,}050` }
+      ],
+      answer: t`\\approx 11{,}050\\text{ rabbits}`,
+      whyWrong: {
+        '1': t`Linear/exponential assumption: treating $\\frac{dy}{dt} = ky$ yields $y(t) = 2(8)^{t/3} \\implies y(12) = 2(8)^4 = 8192$. This ignores the nonlinear exponent $1.01$.`,
+        '2': t`Arithmetic extrapolation: $2 \\times 16 \\times 64 = 2048$.`,
+        '3': t`Simply adding or squaring the 3-month gain.`
+      },
+      commonTrap: t`Treating $\\frac{dy}{dt} = ky^{1.01}$ as linear Malthusian growth. Nonlinear exponents $p > 1$ create accelerated super-exponential expansion!`,
+      reference: 'Quiz 2 Solutions · Concordia University; First-Order Modeling'
+    },
+    source: [{ deck: 'Quiz 2', chapter: CH2, location: 'Nonlinear population dynamics' }]
+  },
+  {
+    id: 'Q_ENGR213_P10',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Quiz 3 (Past Paper) · Concordia University',
+    topic: 'Undetermined Coefficients with Repeated Auxiliary Root',
+    difficulty: 'Midterm Level',
+    question: t`Find the general solution of the second-order non-homogeneous differential equation $y'' - 10y' + 25y = 30x + 3$.`,
+    options: [
+      t`$y(x) = (c_1 + c_2 x)e^{5x} + \\dfrac{6}{5}x + \\dfrac{3}{5}$`,
+      t`$y(x) = c_1 e^{5x} + c_2 e^{-5x} + \\dfrac{6}{5}x + \\dfrac{3}{5}$`,
+      t`$y(x) = (c_1 + c_2 x)e^{5x} + 30x + 3$`,
+      t`$y(x) = c_1 e^{5x} + c_2 x e^{5x} + \\dfrac{6}{5}x - \\dfrac{3}{5}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Characteristic equation $r^2 - 10r + 25 = (r - 5)^2 = 0$ yields repeated root $r = 5$, giving $y_c = (c_1 + c_2 x)e^{5x}$. The trial particular solution for $g(x) = 30x + 3$ is linear: $y_p = Ax + B$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Solve the homogeneous equation', math: t`r^2 - 10r + 25 = 0 \\implies (r - 5)^2 = 0 \\implies r = 5\\text{ (multiplicity 2)} \\implies y_c = (c_1 + c_2 x)e^{5x}` },
+        { title: 'Form the trial particular solution', math: t`y_p = Ax + B \\implies y_p' = A, \\quad y_p'' = 0` },
+        { title: 'Substitute into the ODE', math: t`0 - 10(A) + 25(Ax + B) = 30x + 3 \\implies 25Ax + (25B - 10A) = 30x + 3` },
+        { title: 'Equate coefficients', math: t`25A = 30 \\implies A = \\frac{6}{5}; \\quad 25B - 10\\left(\\frac{6}{5}\\right) = 3 \\implies 25B - 12 = 3 \\implies 25B = 15 \\implies B = \\frac{3}{5}` },
+        { title: 'Form the general solution', math: t`y(x) = y_c + y_p = (c_1 + c_2 x)e^{5x} + \\frac{6}{5}x + \\frac{3}{5}` }
+      ],
+      answer: t`y(x) = (c_1 + c_2 x)e^{5x} + \\frac{6}{5}x + \\frac{3}{5}`,
+      whyWrong: {
+        '1': t`Uses distinct roots $e^{5x}, e^{-5x}$ instead of the repeated root factor $(c_1 + c_2 x)e^{5x}$.`,
+        '2': t`Directly uses the forcing function $30x + 3$ without solving for undetermined coefficients.`,
+        '3': t`Sign error: $25B - 12 = 3$ gives $25B = 15 \\implies B = +3/5$, not $-3/5$.`
+      },
+      commonTrap: t`Forgetting the $x$ factor in the complementary solution when the auxiliary equation has a repeated root: $y_c = c_1 e^{r x} + c_2 x e^{r x}$.`,
+      reference: 'Quiz 3 Solutions · Concordia University; Higher-Order Linear ODEs'
+    },
+    source: [{ deck: 'Quiz 3', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Method of Undetermined Coefficients' }]
+  },
+  {
+    id: 'Q_ENGR213_P11',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Quiz 3 (Past Paper) · Concordia University',
+    topic: 'Radioactive Decay Percentage Loss Model',
+    difficulty: 'Midterm Level',
+    question: t`A sample of $100\\text{ mg}$ of a radioactive isotope decays according to $\\dfrac{dA}{dt} = -k A$. After $6\\text{ hours}$, exactly $3\\%$ of the isotope has decayed. How much of the isotope remains after $24\\text{ hours}$?`,
+    options: [
+      t`$\\approx 88.53\\text{ mg}$`,
+      t`$88.00\\text{ mg}$`,
+      t`$\\approx 91.27\\text{ mg}$`,
+      t`$85.00\\text{ mg}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Radioactive decay follows the exponential model $A(t) = A_0 e^{-kt}$. If $3\\%$ is lost in 6 hours, $97\\%$ remains ($A(6) = 0.97 A_0$). In 24 hours, four 6-hour cycles elapse: $A(24) = A_0(0.97)^4$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Determine the retention ratio per 6-hour cycle', math: t`\\text{Remaining fraction after 6 hours} = 1 - 0.03 = 0.97` },
+        { title: 'Count the elapsed cycles', math: t`n = \\frac{24\\text{ hours}}{6\\text{ hours}} = 4\\text{ intervals}` },
+        { title: 'Compute remaining mass from first principles', math: t`A(24) = 100 \\times (0.97)^4 = 100 \\times 0.88529... \\approx 88.53\\text{ mg}` }
+      ],
+      answer: t`\\approx 88.53\\text{ mg}`,
+      whyWrong: {
+        '1': t`Scanned Exam Trap: Assuming linear decay: $4 \\times 3\\% = 12\\% \\implies 100 - 12 = 88.00\\text{ mg}$. Radioactive decay rate continuously decreases as remaining mass decreases.`,
+        '2': t`Miscounts cycles as 3 periods: $100 \\times (0.97)^3 \\approx 91.27\\text{ mg}$.`,
+        '3': t`Arbitrary linear loss of 5 mg per cycle.`
+      },
+      commonTrap: t`Treating continuous exponential decay as linear simple interest or arithmetic subtraction. Always multiply retention fractions!`,
+      reference: 'Quiz 3 · Concordia University; Radioactive Decay Models'
+    },
+    source: [{ deck: 'Quiz 3', chapter: CH2, location: 'Exponential decay models' }]
+  },
+  {
+    id: 'Q_ENGR213_P12',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Quiz 1 (Past Paper) · Concordia University',
+    topic: 'Trigonometric Integrating Factor IVP',
+    difficulty: 'Midterm Level',
+    question: t`Solve the initial value problem $(\\sin x)\\,\\dfrac{dy}{dx} + (\\cos x)\\,y = 2\\sin x \\cos x$, with $y(\\pi/2) = 3$ on the interval $(0, \\pi)$.`,
+    options: [
+      t`$y(x) = \\sin x + 2\\csc x$`,
+      t`$y(x) = \\sin x + 3\\csc x$`,
+      t`$y(x) = 2\\sin x + \\cos x$`,
+      t`$y(x) = \\sin^2 x + 2$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Recognize the exact product rule on the LHS: $\\frac{d}{dx}[y \\sin x] = y' \\sin x + y \\cos x$. Integrate both sides and apply the initial condition.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Collapse LHS using the product rule', math: t`\\frac{d}{dx}[y \\sin x] = 2\\sin x \\cos x = \\sin(2x)` },
+        { title: 'Integrate both sides', math: t`y \\sin x = \\int 2\\sin x \\cos x\\,dx = \\sin^2 x + C` },
+        { title: 'Apply initial condition $y(\\pi/2) = 3$', math: t`3 \\sin(\\pi/2) = \\sin^2(\\pi/2) + C \\implies 3(1) = 1 + C \\implies C = 2` },
+        { title: 'Isolate $y(x)$', math: t`y(x) = \\frac{\\sin^2 x + 2}{\\sin x} = \\sin x + \\frac{2}{\\sin x} = \\sin x + 2\\csc x` }
+      ],
+      answer: t`y(x) = \\sin x + 2\\csc x`,
+      whyWrong: {
+        '1': t`Sets $C = 3$ directly from the initial value without subtracting $\\sin^2(\\pi/2) = 1$.`,
+        '2': t`Fails to integrate $2\\sin x \\cos x$ properly.`,
+        '3': t`Forgets to divide by the integrating factor $\\sin x$.`
+      },
+      commonTrap: t`Forgetting that dividing by $\\sin x$ applies to BOTH the particular integral $\\sin^2 x$ and the constant $C$.`,
+      reference: 'Quiz 1 Solutions · Concordia University; First-Order Linear Equations'
+    },
+    source: [{ deck: 'Quiz 1', chapter: CH2, location: 'Trigonometric integrating factor' }]
+  },
+  {
+    id: 'Q_ENGR213_P13',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Final Examination Winter 2023 (Q1) · Concordia University',
+    topic: 'Separation of Variables with Multiple Exponentials',
+    difficulty: 'Exam Master',
+    question: t`Find the general solution of the first-order differential equation $e^x y\\,\\dfrac{dy}{dx} = e^{-2y}(1 + e^{-3x})$.`,
+    options: [
+      t`$(2y - 1)e^{2y} + 4e^{-x} + e^{-4x} = C$`,
+      t`$(y - 1)e^{2y} + e^{-x} + \\frac{1}{4}e^{-4x} = C$`,
+      t`$y^2 e^{2y} + 4e^{-x} + e^{-4x} = C$`,
+      t`$(2y + 1)e^{2y} - 4e^{-x} - e^{-4x} = C$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Separate variables: $y e^{2y} dy = e^{-x}(1 + e^{-3x})dx = (e^{-x} + e^{-4x})dx$. Integrate the LHS by parts: $\\int y e^{2y} dy = \\frac{2y-1}{4}e^{2y}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Separate the variables', math: t`y e^{2y}\\,dy = e^{-x}(1 + e^{-3x})\\,dx = (e^{-x} + e^{-4x})\\,dx` },
+        { title: 'Integrate the left-hand side by parts', math: t`\\int y e^{2y}\\,dy = \\frac{y}{2}e^{2y} - \\int \\frac{1}{2}e^{2y}\\,dy = \\frac{y}{2}e^{2y} - \\frac{1}{4}e^{2y} = \\frac{2y-1}{4}e^{2y}` },
+        { title: 'Integrate the right-hand side', math: t`\\int (e^{-x} + e^{-4x})\\,dx = -e^{-x} - \\frac{1}{4}e^{-4x} + C_1` },
+        { title: 'Equate and clear denominators by multiplying by 4', math: t`(2y - 1)e^{2y} = -4e^{-x} - e^{-4x} + C \\implies (2y - 1)e^{2y} + 4e^{-x} + e^{-4x} = C` }
+      ],
+      answer: t`(2y - 1)e^{2y} + 4e^{-x} + e^{-4x} = C`,
+      whyWrong: {
+        '1': t`Misses the factor of 2 in the integration by parts denominator ($1/4$).`,
+        '2': t`Integrates $y e^{2y}$ as $y^2 e^{2y}/2$, which violates integration by parts.`,
+        '3': t`Sign error when integrating $e^{2y}$: $\\int e^{2y} dy = +\\frac{1}{2}e^{2y}$, leading to $(2y-1)$, not $(2y+1)$.`
+      },
+      commonTrap: t`Forgetting integration by parts on $\\int y e^{2y} dy$ and attempting to integrate $y$ and $e^{2y}$ independently.`,
+      reference: 'Winter 2023 Final Exam Question 1 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2023', chapter: CH2, location: 'Separation of variables' }]
+  },
+  {
+    id: 'Q_ENGR213_P15',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Final Examination Winter 2023 (Q3) · Concordia University',
+    topic: 'Homogeneous Differential Equation Substitution',
+    difficulty: 'Midterm Level',
+    question: t`Solve the homogeneous differential equation $(y^2 + xy)dx - x^2 dy = 0$ for $x > 0$.`,
+    options: [
+      t`$y(x) = \\dfrac{x}{C - \\ln x}$`,
+      t`$y(x) = \\dfrac{x}{C + \\ln x}$`,
+      t`$y(x) = x(C - \\ln x)$`,
+      t`$y(x) = \\dfrac{1}{C - x\\ln x}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The coefficients are homogeneous of degree 2. Substitute $y = ux \\implies dy = u\\,dx + x\\,du$, which reduces the ODE to separable form.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Substitute $y = ux$ and $dy = u\\,dx + x\\,du$', math: t`(u^2 x^2 + u x^2)dx - x^2(u\\,dx + x\\,du) = 0` },
+        { title: 'Factor out $x^2$ and simplify', math: t`x^2(u^2 + u - u)dx - x^3 du = 0 \\implies u^2 dx - x\\,du = 0` },
+        { title: 'Separate variables', math: t`\\frac{dx}{x} = \\frac{du}{u^2}` },
+        { title: 'Integrate both sides', math: t`\\ln x + C_1 = -\\frac{1}{u} \\implies \\frac{1}{u} = C - \\ln x \\implies u = \\frac{1}{C - \\ln x}` },
+        { title: 'Back-substitute $u = y/x$', math: t`\\frac{y}{x} = \\frac{1}{C - \\ln x} \\implies y(x) = \\frac{x}{C - \\ln x}` }
+      ],
+      answer: t`y(x) = \\frac{x}{C - \\ln x}`,
+      whyWrong: {
+        '1': t`Sign error when integrating $u^{-2}$: $\\int u^{-2} du = -u^{-1}$, not $+u^{-1}$.`,
+        '2': t`Inverts $u$ without dividing: writing $u = C - \\ln x$ instead of $1/(C - \\ln x)$.`,
+        '3': t`Forgets that $x$ multiplies $u$ when back-substituting $y = ux$.`
+      },
+      commonTrap: t`Forgetting that $\\int u^{-2} du = -1/u$, resulting in a sign error on $\\ln x$.`,
+      reference: 'Winter 2023 Final Exam Question 3 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2023', chapter: CH2, location: 'Homogeneous substitution' }]
+  },
+  {
+    id: 'Q_ENGR213_P18',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Final Examination Winter 2023 (Q6) · Concordia University',
+    topic: 'Resonant Undetermined Coefficients with Polynomial-Exponential Forcing',
+    difficulty: 'Exam Master',
+    question: t`Find the particular solution $y_p(x)$ for the differential equation $y'' - 4y' + 4y = (x - 2)e^{2x}$.`,
+    options: [
+      t`$y_p(x) = \\left(\\dfrac{1}{6}x^3 - x^2\\right)e^{2x}$`,
+      t`$y_p(x) = (Ax + B)e^{2x}$`,
+      t`$y_p(x) = \\left(\\dfrac{1}{2}x^3 - 2x^2\\right)e^{2x}$`,
+      t`$y_p(x) = \\left(\\dfrac{1}{6}x^2 - x\\right)e^{2x}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Auxiliary equation $r^2 - 4r + 4 = (r - 2)^2 = 0$ gives $y_c = (c_1 + c_2 x)e^{2x}$. Because $e^{2x}$ and $x e^{2x}$ are in $y_c$, multiply the standard trial form $(Ax + B)e^{2x}$ by $x^2$: $y_p = (Ax^3 + Bx^2)e^{2x}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Complementary roots', math: t`r^2 - 4r + 4 = 0 \\implies r = 2\\text{ with multiplicity 2} \\implies y_c = (c_1 + c_2 x)e^{2x}` },
+        { title: 'Determine the form of $y_p$', math: t`\\text{Standard guess: } (Ax + B)e^{2x}. \\text{ Duplicates } e^{2x} \\text{ and } x e^{2x} \\implies \\text{Multiply by } x^2: \\; y_p = (Ax^3 + Bx^2)e^{2x}` },
+        { title: 'Use the shift rule / operator $(D - 2)^2$', math: t`(D - 2)^2[(Ax^3 + Bx^2)e^{2x}] = e^{2x} D^2(Ax^3 + Bx^2) = e^{2x}(6Ax + 2B)` },
+        { title: 'Equate to the RHS $(x - 2)e^{2x}$', math: t`6Ax + 2B = x - 2 \\implies 6A = 1 \\implies A = \\frac{1}{6}; \\quad 2B = -2 \\implies B = -1` },
+        { title: 'Assemble $y_p(x)$', math: t`y_p(x) = \\left(\\frac{1}{6}x^3 - x^2\\right)e^{2x}` }
+      ],
+      answer: t`y_p(x) = \\left(\\frac{1}{6}x^3 - x^2\\right)e^{2x}`,
+      whyWrong: {
+        '1': t`Standard guess $(Ax+B)e^{2x}$ is swallowed by the complementary solution because $r = 2$ is a double root!`,
+        '2': t`Arithmetic error during differentiation of $x^3$: $D^2(x^3) = 6x$, not $2x$.`,
+        '3': t`Multiplies by $x$ instead of $x^2$, which still collides with $x e^{2x}$.`
+      },
+      commonTrap: t`Failing to multiply by $x^2$ when the forcing frequency matches a repeated root of multiplicity 2.`,
+      reference: 'Winter 2023 Final Exam Question 6 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2023', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Resonant undetermined coefficients' }]
+  },
+  {
+    id: 'Q_ENGR213_P19',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Final Examination Winter 2023 (Q7) · Concordia University',
+    topic: 'Cauchy-Euler Inhomogeneous Equation IVP',
+    difficulty: 'Exam Master',
+    question: t`Solve the Cauchy-Euler initial value problem $x^2 y'' - 4x y' + 6y = 3x^{-3}$ with $y(1) = 0$ and $y'(1) = 1$ for $x > 0$.`,
+    options: [
+      t`$y(x) = -\\dfrac{8}{5}x^2 + \\dfrac{3}{2}x^3 + \\dfrac{1}{10x^3}$`,
+      t`$y(x) = \\dfrac{8}{5}x^2 - \\dfrac{3}{2}x^3 + \\dfrac{1}{10x^3}$`,
+      t`$y(x) = -\\dfrac{8}{5}x^2 + \\dfrac{3}{2}x^3 + \\dfrac{3}{10x^3}$`,
+      t`$y(x) = -\\dfrac{3}{2}x^2 + \\dfrac{8}{5}x^3 + \\dfrac{1}{10x^3}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`For $x^2 y'' - 4x y' + 6y = 0$, the auxiliary equation $m(m-1) - 4m + 6 = m^2 - 5m + 6 = (m-2)(m-3) = 0$ yields $y_c = c_1 x^2 + c_2 x^3$. Find $y_p$ by substituting $y_p = A x^{-3}$, then apply initial conditions.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Auxiliary equation for Cauchy-Euler', math: t`m(m-1) - 4m + 6 = m^2 - 5m + 6 = 0 \\implies m = 2, 3 \\implies y_c = c_1 x^2 + c_2 x^3` },
+        { title: 'Find particular solution $y_p = A x^{-3}$', math: t`y_p' = -3A x^{-4}, \\quad y_p'' = 12A x^{-5}` },
+        { title: 'Substitute into ODE', math: t`x^2(12A x^{-5}) - 4x(-3A x^{-4}) + 6(A x^{-3}) = (12 + 12 + 6)A x^{-3} = 30A x^{-3}` },
+        { title: 'Solve for A', math: t`30A x^{-3} = 3x^{-3} \\implies A = \\frac{3}{30} = \\frac{1}{10} \\implies y_p = \\frac{1}{10}x^{-3}` },
+        { title: 'General solution', math: t`y(x) = c_1 x^2 + c_2 x^3 + \\frac{1}{10}x^{-3}` },
+        { title: 'Apply $y(1) = 0$', math: t`c_1 + c_2 + \\frac{1}{10} = 0 \\implies c_1 + c_2 = -\\frac{1}{10}` },
+        { title: 'Differentiate and apply $y\'(1) = 1$', math: t`y'(x) = 2c_1 x + 3c_2 x^2 - \\frac{3}{10}x^{-4} \\implies 2c_1 + 3c_2 - \\frac{3}{10} = 1 \\implies 2c_1 + 3c_2 = \\frac{13}{10}` },
+        { title: 'Solve linear system for $c_1, c_2$', math: t`c_2 = \\frac{13}{10} - 2\\left(-\\frac{1}{10}\\right) = \\frac{15}{10} = \\frac{3}{2}; \\quad c_1 = -\\frac{1}{10} - \\frac{15}{10} = -\\frac{16}{10} = -\\frac{8}{5}` }
+      ],
+      answer: t`y(x) = -\\frac{8}{5}x^2 + \\frac{3}{2}x^3 + \\frac{1}{10x^3}`,
+      whyWrong: {
+        '1': t`Sign flip on both constants $c_1$ and $c_2$.`,
+        '2': t`Fails to divide 3 by 30, keeping $A = 3/10$.`,
+        '3': t`Swaps the coefficients between $x^2$ and $x^3$.`
+      },
+      commonTrap: t`Forgetting that in Cauchy-Euler, $x^2 y''$ contributes $m(m-1) = m^2 - m$, NOT just $m^2$. Missing $-m$ corrupts the auxiliary equation to $m^2 - 4m + 6 = 0$!`,
+      reference: 'Winter 2023 Final Exam Question 7 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2023', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Cauchy-Euler inhomogeneous IVP' }]
+  },
+  {
+    id: 'Q_ENGR213_P20',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm 2 & Final Review · Concordia University',
+    topic: 'Variation of Parameters with Tangent Forcing',
+    difficulty: 'Exam Master',
+    question: t`Find the particular solution $y_p(x)$ for $y'' + 9y = \\tan(3x)$ using the method of variation of parameters.`,
+    options: [
+      t`$y_p(x) = -\\dfrac{1}{9}\\cos(3x)\\ln|\\sec(3x) + \\tan(3x)|$`,
+      t`$y_p(x) = \\dfrac{1}{9}\\cos(3x)\\ln|\\sec(3x)|$`,
+      t`$y_p(x) = -\\dfrac{1}{3}\\sin(3x)\\ln|\\cos(3x)|$`,
+      t`$y_p(x) = -\\dfrac{1}{9}\\sin(3x)\\ln|\\sec(3x) + \\tan(3x)|$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`$y_1 = \\cos(3x), y_2 = \\sin(3x)$, Wronskian $W = 3$. $u_1' = -\\frac{y_2 f}{W} = -\\frac{1}{3}\\frac{\\sin^2(3x)}{\\cos(3x)}$ and $u_2' = \\frac{y_1 f}{W} = \\frac{1}{3}\\sin(3x)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Complementary basis and Wronskian', math: t`y_1 = \\cos(3x), \\quad y_2 = \\sin(3x), \\quad W = \\begin{vmatrix} \\cos(3x) & \\sin(3x) \\\\ -3\\sin(3x) & 3\\cos(3x) \\end{vmatrix} = 3` },
+        { title: 'Calculate $u_1(x)$', math: t`u_1' = -\\frac{\\sin(3x)\\tan(3x)}{3} = -\\frac{1}{3}\\left(\\frac{\\sin^2(3x)}{\\cos(3x)}\\right) = -\\frac{1}{3}(\\sec(3x) - \\cos(3x))` },
+        { title: 'Integrate $u_1$', math: t`u_1 = -\\frac{1}{9}\\ln|\\sec(3x) + \\tan(3x)| + \\frac{1}{9}\\sin(3x)` },
+        { title: 'Calculate $u_2(x)$', math: t`u_2' = \\frac{\\cos(3x)\\tan(3x)}{3} = \\frac{1}{3}\\sin(3x) \\implies u_2 = -\\frac{1}{9}\\cos(3x)` },
+        { title: 'Combine $y_p = u_1 y_1 + u_2 y_2$', math: t`y_p = \\left(-\\frac{1}{9}\\ln|\\sec(3x)+\\tan(3x)| + \\frac{1}{9}\\sin(3x)\\right)\\cos(3x) - \\frac{1}{9}\\cos(3x)\\sin(3x) = -\\frac{1}{9}\\cos(3x)\\ln|\\sec(3x)+\\tan(3x)|` }
+      ],
+      answer: t`y_p(x) = -\\frac{1}{9}\\cos(3x)\\ln|\\sec(3x) + \\tan(3x)|`,
+      whyWrong: {
+        '1': t`Misses the tangent term in the secant natural logarithm integral.`,
+        '2': t`Multiplies by $\\sin(3x)$ and omits the Wronskian division by 3.`,
+        '3': t`Associates the logarithmic term with $\\sin(3x)$ instead of $\\cos(3x)$.`
+      },
+      commonTrap: t`Forgetting that the terms $\\frac{1}{9}\\sin(3x)\\cos(3x)$ and $-\\frac{1}{9}\\cos(3x)\\sin(3x)$ cancel completely when combining $u_1 y_1 + u_2 y_2$!`,
+      reference: 'Variation of Parameters · Concordia University Exam Review'
+    },
+    source: [{ deck: 'Exam Review', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Variation of parameters' }]
   }
 ];

@@ -474,5 +474,452 @@ cout << A[i];`,
       reference: 'MIAE 215 Midterm Fall 2023'
     },
     source: [{ deck: CS2, chapter: CH, location: 'Array boundaries and loop termination values' }]
+  },
+  {
+    id: 'Q_MIAE215_P12',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam Fall 2024 (Q1a) · Concordia University',
+    topic: 'Operator Precedence and Explicit Type Casting',
+    difficulty: 'Foundation',
+    question: t`What is the exact numerical result of the C++ expression: \`(5 % 2) * int(1.5 + 2)\`?`,
+    options: [
+      t`\`3\``,
+      t`\`3.5\``,
+      t`\`4\``,
+      t`\`1\``
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Operator precedence evaluates parentheses first: \`5 % 2 = 1\`, then \`1.5 + 2 = 3.5\`. The explicit functional cast \`int(3.5)\` truncates the fractional component to \`3\`. Finally, \`1 * 3 = 3\` (integer).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Evaluate modulo in first parentheses', math: t`5 \\% 2 = 1` },
+        { title: 'Evaluate arithmetic in second parentheses', math: t`1.5 + 2 = 3.5\\text{ (promoted to double)}` },
+        { title: 'Apply integer cast', math: t`\\text{int}(3.5) = 3\\text{ (fractional part truncated)}` },
+        { title: 'Multiply results', math: t`1 \\times 3 = 3` }
+      ],
+      answer: t`3`,
+      whyWrong: {
+        '1': t`3.5 assumes the explicit int cast was ignored or did not truncate.`,
+        '2': t`4 assumes rounding up (round/ceil), but integer casting in C++ strictly truncates toward zero.`,
+        '3': t`1 assumes int(1.5+2) was computed as int(1.5) = 1, forgetting the + 2 inside the parentheses.`
+      },
+      commonTrap: t`Thinking explicit \`int()\` rounds to the nearest integer. In C++, integer conversion always truncates (chops off) the decimal part toward zero!`,
+      reference: 'MIAE 215 Midterm Fall 2024 Question 1(a); Expressions & Operators'
+    },
+    source: [{ deck: 'Midterm 2024', chapter: '3 · Expressions & Operators', location: 'Question 1(a)' }]
+  },
+  {
+    id: 'Q_MIAE215_P13',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam Fall 2024 (Q1b) · Concordia University',
+    topic: 'Math Library Floating Point Power Evaluation',
+    difficulty: 'Foundation',
+    question: t`What is the exact evaluation of the C++ function call \`pow(2.75, 2)\` from \`<cmath>\`?`,
+    options: [
+      t`\`7.5625\``,
+      t`\`7.5\``,
+      t`\`7\``,
+      t`\`8.0\``
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`\`pow(double base, double exp)\` performs floating-point exponentiation. $2.75 = 11/4$, and $(11/4)^2 = 121/16 = 7.5625$. Both arguments are represented in double-precision without integer truncation.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Convert to fraction', math: t`2.75 = \\frac{11}{4}` },
+        { title: 'Square the fraction', math: t`\\left(\\frac{11}{4}\\right)^2 = \\frac{121}{16} = 7 + \\frac{9}{16}` },
+        { title: 'Convert back to decimal', math: t`\\frac{9}{16} = 0.5625 \\implies 7.5625` }
+      ],
+      answer: t`7.5625`,
+      whyWrong: {
+        '1': t`7.5 is an approximation that drops lower-order decimal places.`,
+        '2': t`7 assumes integer truncation, but pow() returns a double.`,
+        '3': t`8.0 assumes rounding up.`
+      },
+      commonTrap: t`Assuming \`pow\` truncates intermediate results to integers. It retains full double floating-point precision.`,
+      reference: 'MIAE 215 Midterm Fall 2024 Question 1(b); <cmath> Library'
+    },
+    source: [{ deck: 'Midterm 2024', chapter: '3 · Expressions & Operators', location: 'Question 1(b)' }]
+  },
+  {
+    id: 'Q_MIAE215_P14',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam Fall 2024 (Q1c) · Concordia University',
+    topic: 'For Loop Control Flow with Dead Break Branch Trap',
+    difficulty: 'Exam Master',
+    question: t`What is printed by this C++ loop?`,
+    codeSnippet: `for (int i = 0; i <= 10; i++) {
+    if (i % 4 != 2)
+        continue;
+    else if (sqrt(i) == 3)
+        break;
+    cout << i << " ";
+}`,
+    options: [
+      t`\`2 6 10 \``,
+      t`\`2 6 \``,
+      t`\`2 6 9 \``,
+      t`\`2 6 9 10 \``
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Scanned Exam Trap! At $i = 9$, $\\sqrt{9} == 3$, but $9 \\% 4 = 1 \\neq 2$, so the FIRST condition \`i % 4 != 2\` is true and executes \`continue\`! The \`else if (sqrt(i) == 3) break;\` branch is DEAD CODE and is never reached!`,
+      stepByStep: [],
+      steps: [
+        { title: 'i = 0, 1', note: t`0%4 = 0 != 2, 1%4 = 1 != 2 -> continue` },
+        { title: 'i = 2', note: t`2%4 = 2 -> else if: sqrt(2) != 3 -> prints "2 "` },
+        { title: 'i = 3, 4, 5', note: t`3%4 = 3, 4%4 = 0, 5%4 = 1 -> continue` },
+        { title: 'i = 6', note: t`6%4 = 2 -> else if: sqrt(6) != 3 -> prints "6 "` },
+        { title: 'i = 7, 8', note: t`7%4 = 3, 8%4 = 0 -> continue` },
+        { title: 'i = 9 (The Trap!)', note: t`9%4 = 1 != 2 -> triggers continue! The 'else if' with sqrt(9) == 3 is skipped!` },
+        { title: 'i = 10', note: t`10%4 = 2 -> else if: sqrt(10) != 3 -> prints "10 "` }
+      ],
+      answer: t`2 6 10 `,
+      whyWrong: {
+        '1': t`Authentic Student Exam Error: Assuming the loop breaks when $i = 9$ because $\\sqrt{9} = 3$. The first \`if\` condition executes \`continue\` before \`else if\` can ever be evaluated!`,
+        '2': t`9 is not printed because $9 \\% 4 = 1 \\neq 2$ triggers \`continue\`.`,
+        '3': t`9 is never reached by \`cout\`.`
+      },
+      commonTrap: t`Failing to trace the \`if\` condition hierarchy. An \`else if\` branch will NEVER execute if the preceding \`if\` condition is met!`,
+      reference: 'MIAE 215 Midterm Fall 2024 Question 1(c); Control Statements'
+    },
+    source: [{ deck: 'Midterm 2024', chapter: '4 · Control Statements & Loops', location: 'Question 1(c)' }]
+  },
+  {
+    id: 'Q_MIAE215_P15',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam Fall 2024 (Q1d) · Concordia University',
+    topic: 'While Loop Integer Division Digit Stripper',
+    difficulty: 'Foundation',
+    question: t`What is the final value of \`a\` after this loop completes?`,
+    codeSnippet: `int num = 4321, a = 0;
+while (num > 0) {
+    num /= 10;
+    a++;
+}
+cout << a;`,
+    options: [
+      t`\`4\``,
+      t`\`3\``,
+      t`\`5\``,
+      t`\`0\``
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Each iteration divides \`num\` by 10 using integer division, stripping off one rightmost decimal digit. The loop runs exactly once per digit in the base-10 integer.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Iteration 1', math: t`num = 4321 / 10 = 432, \\quad a = 1` },
+        { title: 'Iteration 2', math: t`num = 432 / 10 = 43, \\quad a = 2` },
+        { title: 'Iteration 3', math: t`num = 43 / 10 = 4, \\quad a = 3` },
+        { title: 'Iteration 4', math: t`num = 4 / 10 = 0, \\quad a = 4` },
+        { title: 'Termination', note: t`num > 0 is now 0 > 0 (false). Loop exits with a = 4.` }
+      ],
+      answer: t`4`,
+      whyWrong: {
+        '1': t`Stopping early before stripping the final single digit 4.`,
+        '2': t`Counting the terminating false condition as an extra iteration.`,
+        '3': t`Confusing the final value of num (0) with the counter variable a.`
+      },
+      commonTrap: t`Forgetting that integer division $4 / 10 = 0$, which terminates the loop after precisely 4 iterations.`,
+      reference: 'MIAE 215 Midterm Fall 2024 Question 1(d); While Loops'
+    },
+    source: [{ deck: 'Midterm 2024', chapter: '4 · Control Statements & Loops', location: 'Question 1(d)' }]
+  },
+  {
+    id: 'Q_MIAE215_P16',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam Fall 2024 (Q1e) · Concordia University',
+    topic: 'For Loop Halving Progression and Post-Loop Value',
+    difficulty: 'Midterm Level',
+    question: t`What is the exact output printed by this C++ code fragment?`,
+    codeSnippet: `int i, j = 0;
+for (i = 5; i > 0; i /= 2) {
+    j++;
+    cout << j;
+}
+cout << j;`,
+    options: [
+      t`\`1233\``,
+      t`\`1234\``,
+      t`\`123\``,
+      t`\`0123\``
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Trace the loop step by step: $i = 5, 2, 1$. During the 3 iterations, $j$ becomes $1, 2, 3$, printing \`123\`. Post-loop, \`cout << j;\` prints the final value of $j$, which is \`3\`, yielding \`1233\`.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Iteration 1: i = 5 > 0', note: t`j = 1; prints 1; update i = 5/2 = 2` },
+        { title: 'Iteration 2: i = 2 > 0', note: t`j = 2; prints 2; update i = 2/2 = 1` },
+        { title: 'Iteration 3: i = 1 > 0', note: t`j = 3; prints 3; update i = 1/2 = 0` },
+        { title: 'Exit: i = 0 (not > 0)', note: t`Loop terminates. j retains its value of 3.` },
+        { title: 'Post-loop print', note: t`cout << j; prints 3. Total output: 1233.` }
+      ],
+      answer: t`1233`,
+      whyWrong: {
+        '1': t`Assuming j increments upon loop exit. j is only incremented inside the loop body.`,
+        '2': t`Forgetting the post-loop statement \`cout << j;\` after the closing brace.`,
+        '3': t`Printing j before incrementing.`
+      },
+      commonTrap: t`Overlooking the statement after the loop. Always check for code that executes immediately after loop termination!`,
+      reference: 'MIAE 215 Midterm Fall 2024 Question 1(e); For Loops'
+    },
+    source: [{ deck: 'Midterm 2024', chapter: '4 · Control Statements & Loops', location: 'Question 1(e)' }]
+  },
+  {
+    id: 'Q_MIAE215_P17',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam Fall 2024 (Q1f) · Concordia University',
+    topic: 'Nested Loop Modulo Filter Accumulator',
+    difficulty: 'Midterm Level',
+    question: t`What is the value of \`result\` printed after this code executes?`,
+    codeSnippet: `int result = 0;
+for (int i = 1; i <= 4; i++) {
+    if (i % 3 == 0) {
+        for (int j = i; j <= 5; j++) {
+            result += j;
+        }
+    }
+}
+cout << result;`,
+    options: [
+      t`\`12\``,
+      t`\`15\``,
+      t`\`9\``,
+      t`\`0\``
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The outer loop tests $i = 1, 2, 3, 4$. Only $i = 3$ satisfies \`i % 3 == 0\`. The inner loop then executes with $j$ running from 3 to 5: $\\sum_{j=3}^5 j = 3 + 4 + 5 = 12$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'i = 1, 2', note: t`1%3 = 1 != 0, 2%3 = 2 != 0 -> inner loop skipped.` },
+        { title: 'i = 3', note: t`3%3 = 0 -> enters inner loop for j = 3, 4, 5.` },
+        { title: 'Inner loop accumulation', math: t`\\text{result} = 3 + 4 + 5 = 12` },
+        { title: 'i = 4', note: t`4%3 = 1 != 0 -> inner loop skipped.` }
+      ],
+      answer: t`12`,
+      whyWrong: {
+        '1': t`15 assumes j runs from 1 to 5 ($1+2+3+4+5=15$), ignoring the start condition \`j = i = 3\`.`,
+        '2': t`9 drops the final iteration $j = 5$.`,
+        '3': t`0 assumes the if condition is never satisfied.`
+      },
+      commonTrap: t`Misreading the inner loop initialization: \`int j = i\` starts at 3, NOT at 1!`,
+      reference: 'MIAE 215 Midterm Fall 2024 Question 1(f); Nested Loops'
+    },
+    source: [{ deck: 'Midterm 2024', chapter: '4 · Control Statements & Loops', location: 'Question 1(f)' }]
+  },
+  {
+    id: 'Q_MIAE215_P18',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam Fall 2024 (Q1g) · Concordia University',
+    topic: 'Short-Circuit Logical Evaluation and Side-Effects',
+    difficulty: 'Exam Master',
+    question: t`What value of \`count\` is printed by the following code?`,
+    codeSnippet: `int found = 1, count = 4;
+if (!found || --count == 0) {
+    count += 10;
+}
+cout << count;`,
+    options: [
+      t`\`3\``,
+      t`\`4\``,
+      t`\`14\``,
+      t`\`13\``
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Short-circuit evaluation rule for \`||\`: if the first operand is false, the second operand MUST be evaluated! Here \`found = 1\`, so \`!found\` is \`0\` (false). Therefore, C++ evaluates \`--count == 0\`, decrementing \`count\` from 4 to 3. Since \`3 == 0\` is false, the \`if\` body is not entered, leaving \`count = 3\`.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Evaluate first condition of ||', math: t`\\text{found} = 1 \\implies !\\text{found} = 0\\text{ (false)}` },
+        { title: 'Check short-circuit rule', note: t`Because the LHS of || is false, C++ MUST evaluate the RHS to determine the boolean outcome!` },
+        { title: 'Evaluate --count == 0', math: t`--\\text{count} \\text{ pre-decrements count from 4 to 3}. \\; 3 == 0 \\text{ is false}.` },
+        { title: 'Outcome', note: t`Both sides are false -> if-body (count += 10) is skipped. count remains 3.` }
+      ],
+      answer: t`3`,
+      whyWrong: {
+        '1': t`Exam Trap: Believing short-circuit occurred because \`found = 1\`, forgetting the \`!\` operator makes it FALSE, forcing the RHS decrement to execute!`,
+        '2': t`14 assumes the if-body executed with an un-decremented count (4 + 10).`,
+        '3': t`13 assumes the if-body executed after decrementing (3 + 10). But the condition was false!`
+      },
+      commonTrap: t`Overlooking the \`!\` negation operator in \`!found\`. Because \`!1\` is \`0\`, short-circuiting does NOT occur and \`--count\` executes!`,
+      reference: 'MIAE 215 Midterm Fall 2024 Question 1(g); Logical Operators'
+    },
+    source: [{ deck: 'Midterm 2024', chapter: '4 · Control Statements & Loops', location: 'Question 1(g)' }]
+  },
+  {
+    id: 'Q_MIAE215_P19',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam Fall 2024 (Q1h) · Concordia University',
+    topic: 'While Loop with Continue Increment Skipping',
+    difficulty: 'Midterm Level',
+    question: t`What is the exact output printed by this while loop?`,
+    codeSnippet: `int i = 2;
+while (i <= 20) {
+    if (i % 3 == 0) {
+        i += 2;
+        continue;
+    }
+    cout << i << " ";
+    i += 2;
+}`,
+    options: [
+      t`\`2 4 8 10 14 16 20 \``,
+      t`\`2 4 6 8 10 12 14 16 18 20 \``,
+      t`\`2 4 6 8 10 14 16 20 \``,
+      t`Infinite loop at \`i = 6\``
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Even numbers up to 20 are tested. Whenever a number is a multiple of 3 (6, 12, 18), the \`if\` branch increments $i$ by 2 and calls \`continue\`, bypassing the \`cout\` statement. Because $i$ is incremented before \`continue\`, no infinite loop occurs.`,
+      stepByStep: [],
+      steps: [
+        { title: 'i = 2, 4', note: t`Neither is divisible by 3 -> prints "2 4 "` },
+        { title: 'i = 6', note: t`6%3 == 0 -> i becomes 8, continue skips cout` },
+        { title: 'i = 8, 10', note: t`Neither is divisible by 3 -> prints "8 10 "` },
+        { title: 'i = 12', note: t`12%3 == 0 -> i becomes 14, continue skips cout` },
+        { title: 'i = 14, 16', note: t`Neither is divisible by 3 -> prints "14 16 "` },
+        { title: 'i = 18', note: t`18%3 == 0 -> i becomes 20, continue skips cout` },
+        { title: 'i = 20', note: t`20%3 == 2 != 0 -> prints "20 "` }
+      ],
+      answer: t`2 4 8 10 14 16 20 `,
+      whyWrong: {
+        '1': t`Prints all even numbers without filtering out multiples of 3 (6, 12, 18).`,
+        '2': t`Fails to skip 6.`,
+        '3': t`Infinite loop would only occur if \`i += 2\` was missing before \`continue\`.`
+      },
+      commonTrap: t`Thinking \`continue\` in a \`while\` loop always creates an infinite loop. Here \`i += 2\` explicitly executes inside the \`if\` block before \`continue\`!`,
+      reference: 'MIAE 215 Midterm Fall 2024 Question 1(h); While Loops'
+    },
+    source: [{ deck: 'Midterm 2024', chapter: '4 · Control Statements & Loops', location: 'Question 1(h)' }]
+  },
+  {
+    id: 'Q_MIAE215_P20',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam Fall 2024 (Q1i) · Concordia University',
+    topic: 'Compound Arithmetic Mutation over Multiple Iterations',
+    difficulty: 'Midterm Level',
+    question: t`What are the values of \`x, y, z, q\` after this loop executes?`,
+    codeSnippet: `double x = 4;
+int y = 4;
+double z = 4;
+int q = 4;
+for (int k = 0; k < 4; k++) {
+    x *= 1.5;
+    y *= 2;
+    z /= 2.0;
+    q += 4;
+}`,
+    options: [
+      t`\`x = 20.25, y = 64, z = 0.25, q = 20\``,
+      t`\`x = 20.25, y = 32, z = 0.5, q = 16\``,
+      t`\`x = 18.0, y = 64, z = 0.25, q = 20\``,
+      t`\`x = 20.25, y = 64, z = 0, q = 20\``
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The loop executes exactly 4 times ($k = 0, 1, 2, 3$). Compute the closed form progression for each variable over 4 steps.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Variable x (geometric)', math: t`x = 4 \\times (1.5)^4 = 4 \\times 5.0625 = 20.25` },
+        { title: 'Variable y (doubling)', math: t`y = 4 \\times 2^4 = 4 \\times 16 = 64` },
+        { title: 'Variable z (floating halving)', math: t`z = 4 / 2^4 = 4 / 16 = 0.25` },
+        { title: 'Variable q (arithmetic accumulation)', math: t`q = 4 + (4 \\times 4) = 20` }
+      ],
+      answer: t`x = 20.25, y = 64, z = 0.25, q = 20`,
+      whyWrong: {
+        '1': t`Performs only 3 iterations ($k < 3$).`,
+        '2': t`Computes x as $4 \\times 1.5 \\times 3 = 18.0$ linearly instead of multiplying by $1.5^4$.`,
+        '3': t`Assumes integer truncation on z, but z is a double divided by 2.0.`
+      },
+      commonTrap: t`Treating geometric multiplication as linear addition, or truncating the double variable \`z\` to zero.`,
+      reference: 'MIAE 215 Midterm Fall 2024 Question 1(i); Loops & Assignment'
+    },
+    source: [{ deck: 'Midterm 2024', chapter: '4 · Control Statements & Loops', location: 'Question 1(i)' }]
+  },
+  {
+    id: 'Q_MIAE215_P21',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Examination Review (Q2) · Concordia University',
+    topic: 'Integer Division Truncation in Relational Expressions',
+    difficulty: 'Foundation',
+    question: t`What is printed by the following code?`,
+    codeSnippet: `int i = 9, j = 4;
+if (i / j < 2.1) {
+    cout << i / j;
+} else {
+    cout << double(i) / j;
+}`,
+    options: [
+      t`\`2\``,
+      t`\`2.25\``,
+      t`\`2.1\``,
+      t`Compiler error`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Scanned Exam Trap! In \`i / j\`, both \`i\` and \`j\` are \`int\`, so integer division truncates $9 / 4 = 2$. Then \`2 < 2.1\` is TRUE! The \`if\` branch executes, printing \`i / j = 2\`.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Evaluate i / j', math: t`9 / 4 = 2\\text{ (integer division)}` },
+        { title: 'Evaluate relational condition', math: t`2 < 2.1 \\implies \\text{TRUE}` },
+        { title: 'Execute if branch', math: t`\\text{cout} \\ll i / j \\implies \\text{prints } 2` }
+      ],
+      answer: t`2`,
+      whyWrong: {
+        '1': t`Exam Trap: Mental math converts $9/4 = 2.25$, says $2.25 < 2.1$ is false, and selects the else branch. But C++ performs integer truncation first!`,
+        '2': t`2.1 is the comparison threshold, not the printed value.`,
+        '3': t`The code is completely valid C++.`
+      },
+      commonTrap: t`Forgetting that the division \`i / j\` inside the condition is integer division before being promoted to double for comparison with 2.1!`,
+      reference: 'MIAE 215 Midterm Review Question 2; Expressions'
+    },
+    source: [{ deck: 'Midterm Review', chapter: '3 · Expressions & Operators', location: 'Question 2' }]
+  },
+  {
+    id: 'Q_MIAE215_P22',
+    courseId: 'MIAE215',
+    chapter: 'past',
+    pastPaper: 'Midterm Examination Review (Q4) · Concordia University',
+    topic: 'Array Equality Verification Algorithm',
+    difficulty: 'Midterm Level',
+    question: t`Which code fragment correctly determines if two integer arrays \`A[5]\` and \`B[5]\` are completely equal?`,
+    options: [
+      t`\`bool eq = true; for(int i=0; i<5; i++) if(A[i] != B[i]) { eq = false; break; }\``,
+      t`\`if (A == B) { eq = true; }\``,
+      t`\`bool eq = false; for(int i=0; i<5; i++) if(A[i] == B[i]) eq = true;\``,
+      t`\`bool eq = (sizeof(A) == sizeof(B));\``
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`In C++, array names \`A\` and \`B\` decay to memory pointers. Comparing \`A == B\` compares memory addresses, not element values. To verify array equality, assume true, compare element-by-element, and break immediately upon finding any mismatch.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Pointer comparison trap', note: t`A == B checks whether both arrays reside at the same memory address, which is always false for two distinct arrays.` },
+        { title: 'Correct linear scan', note: t`Initialize eq = true. If any A[i] != B[i], set eq = false and terminate early.` }
+      ],
+      answer: t`bool eq = true; for(int i=0; i<5; i++) if(A[i] != B[i]) { eq = false; break; }`,
+      whyWrong: {
+        '1': t`A == B compares memory addresses, never the array contents.`,
+        '2': t`Setting eq = true on ANY match falsely reports arrays as equal if even just the last elements match.`,
+        '3': t`sizeof() checks the allocated byte size of the types, not the values inside.`
+      },
+      commonTrap: t`Writing \`if (A == B)\` to compare two C-style arrays. This tests pointer address identity, not array equality!`,
+      reference: 'MIAE 215 Midterm Review Question 4; Arrays & Algorithms'
+    },
+    source: [{ deck: 'Midterm Review', chapter: '4 · Control Statements & Loops', location: 'Question 4' }]
   }
 ];

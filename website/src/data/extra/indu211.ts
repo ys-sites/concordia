@@ -1888,7 +1888,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
   // Past Exam Practice from Concordia University INDU 211 Midterm & Final Exams
   q({
     id: 'Q_INDU211_E01',
-    chapter: 'ch4',
+    chapter: 'past-mid',
     pastPaper: 'Midterm Exam 2020 (Problem 2) · Concordia University',
     topic: 'Warehouse Forklift Routing: Nearest Neighbor Heuristic',
     difficulty: 'Exam Master',
@@ -1923,7 +1923,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_INDU211_E02',
-    chapter: 'ch7',
+    chapter: 'past-final',
     pastPaper: 'Sample Final Exam 2022 (Q3) · Concordia University',
     topic: 'EOQ Model Cost Trade-Off Objective',
     difficulty: 'Foundation',
@@ -1956,7 +1956,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_INDU211_E03',
-    chapter: 'ch4',
+    chapter: 'past-mid',
     pastPaper: 'Midterm Exam 2020 (Q9) · Concordia University',
     topic: 'Facility Layout Typology & Production Volume',
     difficulty: 'Midterm Level',
@@ -1990,7 +1990,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_INDU211_E04',
-    chapter: 'ch1',
+    chapter: 'past-final',
     pastPaper: 'Sample Final Exam 2022 (Q1) & Midterm 2020 (Q3) · Concordia University',
     topic: 'Professional Engineering Accreditation in Canada',
     difficulty: 'Foundation',
@@ -2023,7 +2023,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_INDU211_E05',
-    chapter: 'ch1',
+    chapter: 'past-mid',
     pastPaper: 'Midterm Exam 2020 (Q8) · Concordia University',
     topic: 'Concurrent Engineering Principles',
     difficulty: 'Midterm Level',
@@ -2052,5 +2052,409 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
       reference: 'INDU 211 Midterm 2020 Question 8; Turner Chapter 1'
     },
     source: src('Midterm 2020', 'Concurrent Engineering', 'Question 8')
+  }),
+
+  // Authentic Exam Questions from Scanned Midterms and Finals (2019-2024)
+  q({
+    id: 'Q_INDU211_P11',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Exam 2019 / 2024 (Problem 3) · Concordia University',
+    topic: 'Transportation Method: Lowest-Unit-Cost Allocation',
+    difficulty: 'Exam Master',
+    question: t`Three warehouses supply three retail outlets with unit shipping costs: Edmonton supply 40 (Montreal $12, Ottawa $10, Toronto $15), Winnipeg supply 20 (Montreal $8, Ottawa $6, Toronto $10), and Saskatoon supply 80 (Montreal $10, Ottawa $12, Toronto $9). Demands are Montreal 50, Ottawa 30, Toronto 60. Using the Lowest-Unit-Cost heuristic, what is the total initial shipping cost?`,
+    options: [
+      t`$\$1{,}320$`,
+      t`$\$1{,}280$`,
+      t`$\$1{,}460$`,
+      t`$\$1{,}150$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The Lowest-Unit-Cost heuristic greedily assigns maximum allowable volume to the route with the lowest cell cost in the entire table, updating remaining supplies and demands iteratively until all are satisfied.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Allocate to lowest overall cost cell ($c = 6$)', math: t`\\text{Winnipeg} \\to \\text{Ottawa}: \\min(20, 30) = 20 \\text{ units at } \\$6 = \\$120. \\; (\\text{Winnipeg exhausted, Ottawa needs } 10)` },
+        { title: 'Allocate to next lowest cost cell ($c = 9$)', math: t`\\text{Saskatoon} \\to \\text{Toronto}: \\min(80, 60) = 60 \\text{ units at } \\$9 = \\$540. \\; (\\text{Toronto satisfied, Saskatoon has } 20 \\text{ left})` },
+        { title: 'Allocate to cells with cost $c = 10$', math: t`\\text{Saskatoon} \\to \\text{Montreal}: 20 \\text{ units at } \\$10 = \\$200. \\; (\\text{Saskatoon exhausted, Montreal needs } 30); \\quad \\text{Edmonton} \\to \\text{Ottawa}: 10 \\text{ units at } \\$10 = \\$100. \\; (\\text{Ottawa satisfied, Edmonton has } 30 \\text{ left})` },
+        { title: 'Allocate remaining demand to Edmonton ($c = 12$)', math: t`\\text{Edmonton} \\to \\text{Montreal}: 30 \\text{ units at } \\$12 = \\$360. \\; (\\text{All supplies and demands satisfied})` },
+        { title: 'Compute total shipping cost', math: t`\\text{Total Cost} = 120 + 540 + 200 + 100 + 360 = \\$1{,}320` }
+      ],
+      answer: t`\\$1{,}320`,
+      whyWrong: {
+        '1': t`Exam Trap: Assigning Winnipeg to Montreal first ($c = 8$) leaves Ottawa to be supplied entirely from Edmonton at $c = 10$, giving $\$1{,}280$ but violating greedy lowest-unit-cost priority ($6 < 8$).`,
+        '2': t`Northwest corner rule allocation: $40(12) + 10(8) + 10(6) + 20(12) + 60(9) = \\$1{,}460$.`,
+        '3': t`Omits the final Edmonton-Montreal shipment.`
+      },
+      commonTrap: t`Failing to exhaust the absolute minimum cost cell ($c = 6$) first. Lowest-unit-cost must prioritize cells in strictly increasing cost order.`,
+      reference: 'INDU 211 Midterm 2019/2024 Problem 3; Facilities Logistics & Transportation'
+    },
+    source: src('Midterm 2019/2024', 'Transportation Method', 'Problem 3')
+  }),
+
+  q({
+    id: 'Q_INDU211_P12',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Exam 2024 (Q1) & 2019 (Q1) · Concordia University',
+    topic: 'Science vs Engineering Fundamental Distinction',
+    difficulty: 'Foundation',
+    question: t`In the foundational definition of engineering, what is the primary distinction between science and engineering?`,
+    options: [
+      t`Science is the quest for basic knowledge and understanding natural laws; engineering applies that knowledge to solve practical human and societal problems`,
+      t`Science creates physical products and structures, whereas engineering develops abstract theoretical proofs`,
+      t`Engineering is purely theoretical research, while science is solely trade craftsmanship`,
+      t`There is no recognized distinction; Canadian engineering legislation treats them identically`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`As emphasized by Theodore von Kármán: 'Scientists discover the world that exists; engineers create the world that never was.' Science seeks foundational understanding, whereas engineering synthesizes science and math into real-world solutions under economic and societal constraints.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Scientific Objective', note: t`Investigate natural phenomena to discover fundamental truths and empirical relationships.` },
+        { title: 'Engineering Objective', note: t`Design, model, and implement safe, cost-effective systems that fulfill human needs.` }
+      ],
+      answer: t`Science is the quest for knowledge; engineering applies it to solve practical human problems`,
+      whyWrong: {
+        '1': t`Inverted: engineering creates physical artifacts; pure science discovers theoretical natural laws.`,
+        '2': t`Engineering is practical and applied, not purely theoretical.`,
+        '3': t`Canadian provincial law (OIQ/PEO) strictly defines engineering as a distinct regulated profession.`
+      },
+      commonTrap: t`Confusing the discovery of scientific principles with the engineering process of applying them to create solutions.`,
+      reference: 'INDU 211 Midterm 2024 Question 1; Turner Chapter 1'
+    },
+    source: src('Midterm 2024', 'Engineering Foundations', 'Question 1')
+  }),
+
+  q({
+    id: 'Q_INDU211_P13',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Exam 2024 (Q3) & 2019 (Q3) · Concordia University',
+    topic: 'Supply Chain Architecture & Flows',
+    difficulty: 'Foundation',
+    question: t`Which statement best defines a modern industrial 'Supply Chain'?`,
+    options: [
+      t`A complex production network where components are fabricated by multiple entities interconnected by physical material, information, and financial flows`,
+      t`A linear conveyor belt connecting machines inside a single machining department`,
+      t`An internal accounting department that records employee payroll transactions`,
+      t`A fleet of delivery trucks owned exclusively by a single municipal retail store`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`A supply chain encompasses all facilities, functions, and activities involved in producing and delivering a product or service from raw material suppliers to final end-users. It relies on three critical flows: product/material, information, and financial.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Material Flow', note: t`Physical movement of raw materials, work-in-process (WIP), and finished goods downstream.` },
+        { title: 'Information Flow', note: t`Two-way communication of orders, demand forecasts, inventory levels, and shipment tracking.` },
+        { title: 'Financial Flow', note: t`Upstream payments, credit terms, and invoicing across autonomous organizational boundaries.` }
+      ],
+      answer: t`A complex production network interconnected by physical material, information, and financial flows`,
+      whyWrong: {
+        '1': t`A conveyor belt is an internal material handling device, not an entire supply chain.`,
+        '2': t`Payroll is a human resources / accounting function.`,
+        '3': t`A retail truck fleet is a single logistics component, not the comprehensive multi-echelon network.`
+      },
+      commonTrap: t`Viewing a supply chain solely as physical transportation, ignoring the vital roles of information and financial feedback loops.`,
+      reference: 'INDU 211 Midterm 2024 Question 3; Turner Chapter 7'
+    },
+    source: src('Midterm 2024', 'Operations & Supply Chain', 'Question 3')
+  }),
+
+  q({
+    id: 'Q_INDU211_P14',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2020 (Q7) · Concordia University',
+    topic: 'Enterprise Resource Planning (ERP) System Architecture',
+    difficulty: 'Midterm Level',
+    question: t`In enterprise systems, an Enterprise Resource Planning (ERP) software system is fundamentally characterized as:`,
+    options: [
+      t`An integrated, multi-module suite built on a common centralized database that coordinates all business functions (procurement, production, finance, sales, HR)`,
+      t`A standalone shop-floor CAD software used exclusively for CNC toolpath generation`,
+      t`A single-user desktop spreadsheet for tracking annual office stationery supplies`,
+      t`A hardware interface linking barcode scanners to warehouse forklifts`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`ERP evolved from Material Requirements Planning (MRP) and Manufacturing Resource Planning (MRP II) into an enterprise-wide software architecture. Its defining attribute is real-time data integration across all corporate divisions through a single unified database.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Evolution', note: t`MRP (materials) $\\to$ MRP II (manufacturing resources + capacity) $\\to$ ERP (enterprise-wide integration).` },
+        { title: 'Centralized Database', note: t`All transactions immediately update inventory, accounting, order fulfillment, and production schedules without redundant data entry.` }
+      ],
+      answer: t`An integrated multi-module suite built on a common centralized database coordinating all business functions`,
+      whyWrong: {
+        '1': t`CNC toolpath software is CAM (Computer-Aided Manufacturing), not enterprise-level ERP.`,
+        '2': t`Spreadsheets create fragmented 'data silos'—the exact opposite of integrated ERP.`,
+        '3': t`Barcode scanning hardware is an automated data capture tool, not the ERP system itself.`
+      },
+      commonTrap: t`Confusing shop-floor execution tools (MES / CAM) with enterprise-wide management systems (ERP).`,
+      reference: 'INDU 211 Final Exam Fall 2020 Question 7; Turner Chapter 7'
+    },
+    source: src('Final 2020', 'Enterprise Systems', 'Question 7')
+  }),
+
+  q({
+    id: 'Q_INDU211_P15',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2020 (Q8) · Concordia University',
+    topic: 'Just-In-Time (JIT) and Lean Production Mechanisms',
+    difficulty: 'Midterm Level',
+    question: t`What is the primary operational mechanism of a Just-In-Time (JIT) production system?`,
+    options: [
+      t`A demand-driven pull system where downstream operations signal upstream processes to produce parts only as needed, minimizing WIP inventory`,
+      t`A forecast-driven push system that mass-produces large batches to keep machine utilization at 100%`,
+      t`Building large buffers of safety stock at every workstation to prevent stockouts`,
+      t`Inspecting 100% of finished goods at the end of the line to eliminate customer defects`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`JIT (Toyota Production System / Lean) is built on 'pull' production controlled by Kanban signals. Parts are produced only when demanded by the subsequent process, exposing inefficiencies and eliminating the waste of overproduction and excess inventory.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Pull vs Push', note: t`Push pushes products based on long-range forecasts; Pull reacts directly to real-time consumption.` },
+        { title: 'Inventory Reduction', note: t`High WIP acts like water hiding rocks (problems). Lowering inventory exposes quality and setup bottlenecks.` }
+      ],
+      answer: t`A demand-driven pull system where downstream operations signal production only as needed`,
+      whyWrong: {
+        '1': t`Push systems with large batches create high work-in-process (WIP) and long lead times—the antithesis of JIT.`,
+        '2': t`Large safety stock buffers mask line imbalances and defects.`,
+        '3': t`JIT emphasizes quality at the source (jidoka), preventing defects from being created rather than catching them at final inspection.`
+      },
+      commonTrap: t`Thinking JIT is about running machines continuously. In JIT, producing unneeded parts is considered the worst form of waste (*muda*).`,
+      reference: 'INDU 211 Final Exam Fall 2020 Question 8; Turner Chapter 7'
+    },
+    source: src('Final 2020', 'Lean Manufacturing', 'Question 8')
+  }),
+
+  q({
+    id: 'Q_INDU211_P16',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2020 (Q9) · Concordia University',
+    topic: 'Critical Path Method (CPM) vs PERT Foundations',
+    difficulty: 'Midterm Level',
+    question: t`What is the fundamental difference in activity duration assumptions between CPM and PERT in project network analysis?`,
+    options: [
+      t`CPM assumes deterministic activity durations (known with certainty); PERT models uncertain durations using three probabilistic time estimates (a, m, b)`,
+      t`CPM is probabilistic with beta distributions; PERT is strictly deterministic`,
+      t`CPM cannot determine a critical path, whereas PERT identifies multiple critical paths simultaneously`,
+      t`PERT requires dollar cost budgeting, whereas CPM only measures calendar days`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`CPM (Critical Path Method) was developed for industrial plant maintenance where task durations are well known (deterministic). PERT (Program Evaluation and Review Technique) was developed for novel R&D projects (Polaris missile) where task times are stochastic and modeled with a beta distribution: $\\mu = \\frac{a + 4m + b}{6}, \\; \\sigma^2 = \\left(\\frac{b - a}{6}\\right)^2$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'CPM', note: t`Deterministic: single time estimate per activity.` },
+        { title: 'PERT', note: t`Probabilistic: three estimates—optimistic ($a$), most likely ($m$), pessimistic ($b$).` }
+      ],
+      answer: t`CPM assumes deterministic durations; PERT models uncertain durations using three estimates (a, m, b)`,
+      whyWrong: {
+        '1': t`Reverses CPM and PERT.`,
+        '2': t`Both CPM and PERT calculate the critical path through early/late forward and backward pass times.`,
+        '3': t`Both methods handle schedule networks; CPM was also extended with cost slope crashing (CPM cost accounting).`
+      },
+      commonTrap: t`Forgetting that the beta distribution formula in PERT weights the most likely time $m$ by 4: $\\mu = (a + 4m + b)/6$.`,
+      reference: 'INDU 211 Final Exam Fall 2020 Question 9; Turner Chapter 17'
+    },
+    source: src('Final 2020', 'Project Management', 'Question 9')
+  }),
+
+  q({
+    id: 'Q_INDU211_P17',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2020 (Q10) · Concordia University',
+    topic: 'Critical Path Properties and Total Slack',
+    difficulty: 'Foundation',
+    question: t`In a project network diagram, which statement is always TRUE regarding the Critical Path?`,
+    options: [
+      t`It is the longest path through the network, determines the shortest time to complete the project, and all activities on it have zero total slack`,
+      t`It is the shortest path through the network and has the maximum total slack`,
+      t`Activities on the critical path can be delayed without affecting the project completion date`,
+      t`A project can never have more than one critical path under any circumstance`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The critical path is defined as the sequence of dependent activities that forms the longest path from project start to finish. Because it governs total project duration, any delay in a critical activity immediately delays project completion ($TS = LS - ES = LF - EF = 0$).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Longest Path = Shortest Project Time', note: t`You cannot finish the project until the slowest bottleneck path is completed.` },
+        { title: 'Slack Definition', note: t`Total Slack $TS = LS - ES = 0$ for all critical activities.` },
+        { title: 'Multiple Paths', note: t`Multiple paths of identical longest duration can be simultaneously critical.` }
+      ],
+      answer: t`It is the longest path, dictates the minimum completion time, and has zero total slack`,
+      whyWrong: {
+        '1': t`It is the longest path, not the shortest, and critical activities have zero slack, not maximum.`,
+        '2': t`By definition, any delay on the critical path delays the entire project.`,
+        '3': t`Parallel paths with identical durations can both be critical.`
+      },
+      commonTrap: t`Confusing 'longest path in network' with 'shortest project completion time'. The longest path dictates the earliest possible finish time!`,
+      reference: 'INDU 211 Final Exam Fall 2020 Question 10; Turner Chapter 17'
+    },
+    source: src('Final 2020', 'Project Management', 'Question 10')
+  }),
+
+  q({
+    id: 'Q_INDU211_P18',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2020 (Q11) · Concordia University',
+    topic: 'Time Series Demand Forecasting: Moving Average',
+    difficulty: 'Foundation',
+    question: t`Historical weekly demand for Product 1 was recorded as: Week 1 = 60, Week 2 = 65, Week 3 = 50, Week 4 = 55, Week 5 = 45. What is the forecast for Week 6 using a 3-week simple moving average?`,
+    options: [
+      t`$50\\text{ units}$`,
+      t`$55\\text{ units}$`,
+      t`$45\\text{ units}$`,
+      t`$52.5\\text{ units}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`A $k$-period simple moving average forecasts the next period as the arithmetic mean of the most recent $k$ actual demands: $F_{t+1} = \\dfrac{1}{k}\\sum_{i=0}^{k-1} D_{t-i}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Identify the 3 most recent historical observations', note: t`For Week 6 ($t=5$), the previous 3 weeks are Week 5 ($D_5 = 45$), Week 4 ($D_4 = 55$), and Week 3 ($D_3 = 50$).` },
+        { title: 'Compute arithmetic average', math: t`F_6 = \\frac{D_5 + D_4 + D_3}{3} = \\frac{45 + 55 + 50}{3} = \\frac{150}{3} = 50\\text{ units}` }
+      ],
+      answer: t`50\\text{ units}`,
+      whyWrong: {
+        '1': t`55 is the average of Weeks 1 and 2, which are the oldest data points.`,
+        '2': t`45 is the demand of Week 5 only (naive forecast).`,
+        '3': t`52.5 is the 4-week average $(65+50+55+45)/4$.`
+      },
+      commonTrap: t`Averaging all 5 historical periods instead of strictly the last 3 periods specified by the problem.`,
+      reference: 'INDU 211 Final Exam Fall 2020 Question 11; Turner Chapter 7'
+    },
+    source: src('Final 2020', 'Demand Forecasting', 'Question 11')
+  }),
+
+  q({
+    id: 'Q_INDU211_P19',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Exam 2024 (Problem 5) · Concordia University',
+    topic: 'Manufacturing Economics: Make-or-Buy Break-Even Volume',
+    difficulty: 'Midterm Level',
+    question: t`A company needs a stamped metal bracket. An external supplier offers to sell the part for $\$18/\\text{unit}$ with zero fixed setup cost. Alternatively, the company can produce the part in-house by purchasing dedicated tooling for $\$60{,}000/\\text{year}$ with a variable unit cost of $\$6/\\text{unit}$. At what annual production volume does making in-house become more economical than purchasing?`,
+    options: [
+      t`$Q > 5{,}000\\text{ units/year}$`,
+      t`$Q > 3{,}333\\text{ units/year}$`,
+      t`$Q > 10{,}000\\text{ units/year}$`,
+      t`$Q > 2{,}500\\text{ units/year}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Make-or-Buy break-even balances total costs: $TC_{\\text{buy}} = P \\times Q$ versus $TC_{\\text{make}} = FC + VC \\times Q$. The break-even volume is $Q^* = \\dfrac{FC}{P - VC}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Equate total costs', math: t`TC_{\\text{buy}} = 18Q, \\quad TC_{\\text{make}} = 60{,}000 + 6Q` },
+        { title: 'Set $TC_{\\text{buy}} = TC_{\\text{make}}$ and solve for $Q^*$', math: t`18Q = 60{,}000 + 6Q \\implies 12Q = 60{,}000 \\implies Q^* = \\frac{60{,}000}{12} = 5{,}000\\text{ units}` },
+        { title: 'Decision rule', note: t`Because making has a lower variable cost ($\$6 < \$18$), each unit produced beyond 5,000 saves $\$12$, making in-house production more profitable for $Q > 5{,}000$.` }
+      ],
+      answer: t`Q > 5{,}000\\text{ units/year}`,
+      whyWrong: {
+        '1': t`Dividing fixed cost by purchase price: $60{,}000 / 18 = 3{,}333$. Ignores in-house variable costs.`,
+        '2': t`Dividing fixed cost by in-house variable cost: $60{,}000 / 6 = 10{,}000$. Ignores external supplier price.`,
+        '3': t`Using $(P + VC) = 24$ in denominator: $60{,}000 / 24 = 2{,}500$.`
+      },
+      commonTrap: t`Dividing by $P$ or $VC$ alone rather than the marginal savings per unit $(P - VC) = 18 - 6 = 12$.`,
+      reference: 'INDU 211 Midterm 2024 Problem 5; Turner Chapter 3'
+    },
+    source: src('Midterm 2024', 'Process Selection & Break-Even', 'Problem 5')
+  }),
+
+  q({
+    id: 'Q_INDU211_P20',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2020 (Q1) · Concordia University',
+    topic: 'Engineering Profession & Ethics in Quebec/Canada',
+    difficulty: 'Foundation',
+    question: t`Under the Engineers Act in Canada (e.g., OIQ in Quebec, PEO in Ontario), which of the following is the primary legal obligation and paramount responsibility of a licensed Professional Engineer?`,
+    options: [
+      t`Safeguard life, health, property, economic interests, and the public welfare in all engineering activities`,
+      t`Maximize immediate quarterly shareholder profits regardless of environmental compliance`,
+      t`Protect company confidential trade secrets even if public safety is endangered`,
+      t`Ensure that union workers receive mandatory minimum overtime wages`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Under professional engineering codes of ethics in Canada, the engineer's duty to protect public safety, health, and welfare is paramount. It overrides all duties to clients, employers, and personal commercial gain.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Paramount Duty', note: t`Section 2.01 of the Code of Ethics: In all aspects of work, the engineer must prioritize public safety above commercial interests.` }
+      ],
+      answer: t`Safeguard life, health, property, and public welfare`,
+      whyWrong: {
+        '1': t`Violates the core code of ethics: public safety strictly supercedes financial profits.`,
+        '2': t`Whistleblower protection and public hazard disclosure take legal precedence over trade secrecy.`,
+        '3': t`Wage negotiations fall under labor law, not professional engineering licensure obligations.`
+      },
+      commonTrap: t`Assuming an engineer's primary duty is loyalty to their employer. Legally and ethically, public safety ALWAYS comes first.`,
+      reference: 'INDU 211 Final Exam Fall 2020 Question 1; Canadian Professional Engineering Ethics'
+    },
+    source: src('Final 2020', 'Professional Ethics', 'Question 1')
+  }),
+
+  q({
+    id: 'Q_INDU211_P21',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2020 (Q2) · Concordia University',
+    topic: 'Industrial Engineering Discipline Foundations',
+    difficulty: 'Foundation',
+    question: t`According to the Institute of Industrial and Systems Engineers (IISE), what distinguishes Industrial Engineering from traditional engineering disciplines?`,
+    options: [
+      t`It is concerned with the design, improvement, and installation of integrated systems of people, materials, information, equipment, and energy`,
+      t`It focuses exclusively on subatomic particle interactions and quantum computing algorithms`,
+      t`It deals solely with designing reinforced concrete bridges and highway pavements`,
+      t`It is limited to writing legal contracts for commercial real estate acquisitions`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The official IISE definition states: 'Industrial engineering is concerned with the design, improvement, and installation of integrated systems of people, materials, information, equipment, and energy. It draws upon specialized knowledge and skill in the mathematical, physical, and social sciences.'`,
+      stepByStep: [],
+      steps: [
+        { title: 'System-Level Integration', note: t`While other engineering fields design specific hardware (circuits, engines, beams), IEs design and optimize the entire sociotechnical system.` }
+      ],
+      answer: t`Design, improvement, and installation of integrated systems of people, materials, information, equipment, and energy`,
+      whyWrong: {
+        '1': t`Subatomic particles belong to nuclear physics and quantum mechanics.`,
+        '2': t`Bridges and pavements belong to Civil Engineering.`,
+        '3': t`Real estate contracts belong to legal practice.`
+      },
+      commonTrap: t`Thinking IE is restricted to mechanical machinery. The human element ('people') in integrated systems is the defining hallmark of IE.`,
+      reference: 'INDU 211 Final Exam Fall 2020 Question 2; Turner Chapter 1'
+    },
+    source: src('Final 2020', 'IE Definition', 'Question 2')
+  }),
+
+  q({
+    id: 'Q_INDU211_P22',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2020 (Q15) · Concordia University',
+    topic: 'Statistical Quality Control: p-Chart Control Limits',
+    difficulty: 'Midterm Level',
+    question: t`A quality engineer inspects 20 successive samples of $n = 100$ items each from a high-speed packaging line. Across all 20 samples, a total of 180 defective items were detected. What are the upper and lower $3\\sigma$ control limits ($UCL$ and $LCL$) for the process $p$-chart?`,
+    options: [
+      t`$UCL = 0.1758, \\quad LCL = 0.0042$`,
+      t`$UCL = 0.1186, \\quad LCL = 0.0614$`,
+      t`$UCL = 0.1800, \\quad LCL = 0.0000$`,
+      t`$UCL = 0.2700, \\quad LCL = 0.0300$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`For a $p$-chart with sample size $n$, the center line is the average fraction defective $\\bar{p} = \\frac{\\sum D}{k \\cdot n}$. Control limits are $\\bar{p} \\pm 3 \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}}$, with $LCL = \\max(0, \\dots)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate overall fraction defective $\\bar{p}$', math: t`\\bar{p} = \\frac{\\text{Total Defects}}{\\text{Total Inspected}} = \\frac{180}{20 \\times 100} = \\frac{180}{2000} = 0.09` },
+        { title: 'Compute standard error of the proportion $\\sigma_p$', math: t`\\sigma_p = \\sqrt{\\frac{\\bar{p}(1 - \\bar{p})}{n}} = \\sqrt{\\frac{0.09(0.91)}{100}} = \\sqrt{\\frac{0.0819}{100}} = \\sqrt{0.000819} \\approx 0.028618` },
+        { title: 'Compute $3\\sigma$ margin', math: t`3\\sigma_p = 3 \\times 0.028618 \\approx 0.08585` },
+        { title: 'Determine Upper Control Limit ($UCL$)', math: t`UCL = \\bar{p} + 3\\sigma_p = 0.09 + 0.08585 = 0.17585 \\approx 0.1758` },
+        { title: 'Determine Lower Control Limit ($LCL$)', math: t`LCL = \\bar{p} - 3\\sigma_p = 0.09 - 0.08585 = 0.00415 \\approx 0.0042` }
+      ],
+      answer: t`UCL = 0.1758, \\quad LCL = 0.0042`,
+      whyWrong: {
+        '1': t`Divides by total inspected items $2000$ in $\\sigma_p$ instead of sample size $n = 100$: $\\sqrt{0.0819/2000} = 0.0064$.`,
+        '2': t`Assumes $\\bar{p} = 180 / 1000 = 0.18$.`,
+        '3': t`Omits the square root when computing standard error.`
+      },
+      commonTrap: t`Using the total inspected items $k \\cdot n = 2000$ in the denominator of $\\sigma_p$ instead of individual sample subgroup size $n = 100$.`,
+      reference: 'INDU 211 Final Exam Fall 2020 Question 15; Turner Chapter 8'
+    },
+    source: src('Final 2020', 'Quality Control & SPC', 'Question 15')
   })
 ];

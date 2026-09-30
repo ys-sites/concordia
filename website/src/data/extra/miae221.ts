@@ -1575,7 +1575,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_MIAE221_E08',
-    chapter: 'diffusion',
+    chapter: 'past',
     pastPaper: 'Midterm Exam 2025 Version A (Q7) · Concordia University',
     topic: 'Steady-State Diffusion Flux and Mass Flow',
     difficulty: 'Exam Master',
@@ -1606,5 +1606,513 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
       reference: 'MIAE 221 Midterm 2025 Version A, Question 7; Callister Chapter 5'
     },
     source: src('Midterm 2025', 'Diffusion', 'Question 7')
+  }),
+
+  // Authentic Exam Questions from Scanned Midterms and Reviews (2024-2025)
+  q({
+    id: 'Q_MIAE221_P14',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 / 2025 (Q1) · Concordia University',
+    topic: 'Crystallographic Direction Families: Cubic Face Diagonals',
+    difficulty: 'Foundation',
+    question: t`In a cubic crystal structure, the face diagonals belong to which family of crystallographic directions?`,
+    options: [
+      t`$\\langle 110 \\rangle$`,
+      t`$\\langle 100 \\rangle$`,
+      t`$\\langle 111 \\rangle$`,
+      t`$\\langle 112 \\rangle$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`In cubic symmetry, indices enclose families of equivalent directions in angle brackets $\\langle uvw \\rangle$. A vector traversing a face diagonal runs 1 unit in $x$, 1 unit in $y$, and 0 in $z$, representing the $\\langle 110 \\rangle$ family (consisting of 12 equivalent directions).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Vector coordinates', math: t`\\vec{r} = 1\\hat{x} + 1\\hat{y} + 0\\hat{z} \\implies [110]` },
+        { title: 'Family notation', note: t`By cubic symmetry, all 12 face diagonals ($[110], [101], [011], [1\\bar{1}0], \\dots$) form the \\langle 110 \\rangle family.` }
+      ],
+      answer: t`\\langle 110 \\rangle`,
+      whyWrong: {
+        '1': t`$\\langle 100 \\rangle$ is the family of cube edges (6 directions).`,
+        '2': t`$\\langle 111 \\rangle$ is the family of body diagonals (8 directions).`,
+        '3': t`$\\langle 112 \\rangle$ vectors connect corners to edge bisectors.`
+      },
+      commonTrap: t`Confusing body diagonals ($\\langle 111 \\rangle$) with face diagonals ($\\langle 110 \\rangle$).`,
+      reference: 'MIAE 221 Midterm 2024 Question 1; Callister Chapter 3'
+    },
+    source: src('Midterm 2024', 'Crystal Directions', 'Question 1')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P15',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q2) · Concordia University',
+    topic: 'Arrhenius Interstitial Diffusion: BCC vs FCC Iron',
+    difficulty: 'Midterm Level',
+    question: t`At $910^\\circ\\text{C}$, the diffusion coefficient of carbon in BCC iron ($\\alpha$-ferrite) is approximately how many times larger than that in FCC iron ($\\gamma$-austenite)?`,
+    options: [
+      t`$\\approx 30\\text{ times faster in BCC}$`,
+      t`$\\approx 30\\text{ times faster in FCC}$`,
+      t`Equal in both phases because the temperature is identical`,
+      t`$\\approx 10{,}000\\text{ times faster in FCC}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`BCC iron has a lower atomic packing factor ($\text{APF} = 0.68$) than FCC ($\text{APF} = 0.74$). The lower packing density and shorter jump distances in BCC result in a significantly lower activation energy ($Q_d \\approx 80\\text{ kJ/mol}$ for BCC vs $148\\text{ kJ/mol}$ for FCC), making carbon diffuse roughly 25–30 times faster in BCC iron at $910^\\circ\\text{C}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Packing Factor Comparison', note: t`BCC APF = 0.68 (more open structure); FCC APF = 0.74 (close-packed).` },
+        { title: 'Activation Energy', math: t`Q_{d,\\text{BCC}} \\approx 80\\text{ kJ/mol} < Q_{d,\\text{FCC}} \\approx 148\\text{ kJ/mol}` },
+        { title: 'Arrhenius ratio at 1183 K', math: t`\\frac{D_{\\text{BCC}}}{D_{\\text{FCC}}} = \\frac{D_{0,\\text{BCC}} e^{-Q_1/RT}}{D_{0,\\text{FCC}} e^{-Q_2/RT}} \\approx 30` }
+      ],
+      answer: t`\\approx 30\\text{ times faster in BCC}`,
+      whyWrong: {
+        '1': t`FCC has a higher packing factor (0.74), which restricts interstitial jump mobility.`,
+        '2': t`Diffusion coefficients depend exponentially on crystal crystal structure and activation energy, not temperature alone.`,
+        '3': t`Reverses the structural openess of BCC.`
+      },
+      commonTrap: t`Assuming close-packed FCC allows faster diffusion. Because FCC atoms are packed more tightly, interstitial diffusion is significantly SLOWER!`,
+      reference: 'MIAE 221 Midterm 2024 Question 2; Callister Chapter 5'
+    },
+    source: src('Midterm 2024', 'Diffusion', 'Question 2')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P16',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q3) · Concordia University',
+    topic: 'Carbon Allotropes: Diamond vs Graphite Bonding',
+    difficulty: 'Foundation',
+    question: t`What fundamentally accounts for the dramatic difference in mechanical and electrical properties between diamond and graphite?`,
+    options: [
+      t`Diamond forms a 3D covalent network of $sp^3$ bonds; graphite consists of $sp^2$ covalent layered sheets bound by weak secondary van der Waals forces`,
+      t`Diamond has metallic bonding with free electrons; graphite has purely ionic bonding`,
+      t`Diamond is amorphous glass; graphite is an ordered single crystal`,
+      t`Diamond contains high concentrations of interstitial metallic impurities`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Allotropy of carbon. Diamond has each carbon tetrahedral $sp^3$ covalently bonded to 4 neighbors, producing extreme hardness and electrical insulation. Graphite has $sp^2$ hexagonal sheets where delocalized $\\pi$-electrons provide electrical conductivity, while weak interlayer van der Waals bonds allow easy cleavage/lubrication.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Diamond Structure', note: t`3D tetrahedral covalent network ($sp^3$); no free electrons, isotropic high stiffness.` },
+        { title: 'Graphite Structure', note: t`Planar hexagonal graphene sheets ($sp^2$) with delocalized pi-electrons (conductive) separated by weak van der Waals gaps (lubricating).` }
+      ],
+      answer: t`Diamond is 3D covalent ($sp^3$); graphite is layered $sp^2$ sheets with weak van der Waals interlayer bonds`,
+      whyWrong: {
+        '1': t`Neither carbon allotrope possesses metallic or ionic bonding.`,
+        '2': t`Diamond is crystalline, not amorphous glass.`,
+        '3': t`Both are pure elemental carbon allotropes.`
+      },
+      commonTrap: t`Thinking graphite's softness is due to weak covalent bonds within the sheets. The intra-layer bonds are stronger than diamond; only the INTER-layer van der Waals bonds are weak!`,
+      reference: 'MIAE 221 Midterm 2024 Question 3; Callister Chapter 12'
+    },
+    source: src('Midterm 2024', 'Atomic Bonding', 'Question 3')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P17',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q4) · Concordia University',
+    topic: 'BCC Unit Cell Number Density per Volume',
+    difficulty: 'Midterm Level',
+    question: t`Vanadium crystallizes in a BCC unit cell with lattice parameter $a = 0.304\\text{ nm}$. How many unit cells are contained within a volume of $1.0\\text{ mm}^3$?`,
+    options: [
+      t`$3.56 \\times 10^{19}\\text{ unit cells}$`,
+      t`$7.12 \\times 10^{19}\\text{ unit cells}$`,
+      t`$1.78 \\times 10^{16}\\text{ unit cells}$`,
+      t`$3.56 \\times 10^{22}\\text{ unit cells}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Unit cell volume is $V_c = a^3$. The number of unit cells in total volume $V$ is $N = V / V_c$. Ensure proper metric unit conversion from $\\text{nm}$ to $\\text{mm}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Convert lattice parameter to millimeters', math: t`a = 0.304\\text{ nm} = 0.304 \\times 10^{-6}\\text{ mm}` },
+        { title: 'Compute unit cell volume $V_c$', math: t`V_c = a^3 = (0.304 \\times 10^{-6}\\text{ mm})^3 = 2.8094 \\times 10^{-20}\\text{ mm}^3` },
+        { title: 'Calculate number of unit cells in $1.0\\text{ mm}^3$', math: t`N = \\frac{1.0\\text{ mm}^3}{2.8094 \\times 10^{-20}\\text{ mm}^3} \\approx 3.56 \\times 10^{19}\\text{ unit cells}` }
+      ],
+      answer: t`3.56 \\times 10^{19}\\text{ unit cells}`,
+      whyWrong: {
+        '1': t`$7.12 \\times 10^{19}$ is the number of ATOMS ($2 \\times N$ for BCC), not the number of unit cells.`,
+        '2': t`Unit conversion error: converting $\\text{nm}$ as $10^{-7}\\text{ mm}$.`,
+        '3': t`Using $1\\text{ cm}^3$ volume instead of $1\\text{ mm}^3$.`
+      },
+      commonTrap: t`Multiplying by 2 (the BCC atom count). The question asks for the number of UNIT CELLS, not the number of atoms!`,
+      reference: 'MIAE 221 Midterm 2024 Question 4; Callister Chapter 3'
+    },
+    source: src('Midterm 2024', 'Crystal Structures', 'Question 4')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P18',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q5) · Concordia University',
+    topic: 'Mechanical Deformation Threshold: Yield Strength',
+    difficulty: 'Foundation',
+    question: t`A steel soup can dropped onto a concrete floor sustains a visible permanent dent. This permanent plastic deformation occurred because the impact stresses exceeded the material's:`,
+    options: [
+      t`Yield strength ($\\sigma_y$)`,
+      t`Ultimate tensile strength ($\\sigma_{\\text{UTS}}$)`,
+      t`Modulus of elasticity ($E$)`,
+      t`Poisson's ratio ($\\nu$)`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Elastic deformation is completely reversible upon load release. Plastic (permanent) deformation begins precisely when the local applied stress exceeds the yield strength ($\\sigma_y$). Below $\\sigma_y$, all deflection is elastic.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Deformation Regimes', note: t`$\\sigma < \\sigma_y$: Hookean elastic deformation (recovers 100%).` },
+        { title: 'Onset of Plastic Flow', note: t`$\\sigma \\ge \\sigma_y$: Dislocation motion initiates permanent shape change (plasticity).` }
+      ],
+      answer: t`Yield strength (\\sigma_y)`,
+      whyWrong: {
+        '1': t`Ultimate tensile strength is the maximum engineering stress before necking and fracture, far beyond the initial yield threshold.`,
+        '2': t`Modulus of elasticity measures initial elastic slope/stiffness, not a failure or transition stress.`,
+        '3': t`Poisson's ratio is the ratio of lateral to axial strain.`
+      },
+      commonTrap: t`Confusing yield strength (onset of permanent deformation) with ultimate tensile strength (fracture limit).`,
+      reference: 'MIAE 221 Midterm 2024 Question 5; Callister Chapter 6'
+    },
+    source: src('Midterm 2024', 'Mechanical Properties', 'Question 5')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P19',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q6) · Concordia University',
+    topic: 'Interatomic Potential: Equilibrium Separation Conditions',
+    difficulty: 'Foundation',
+    question: t`At the equilibrium interatomic spacing $r_0$ between two bonded atoms, what are the net bonding force $F_{\\text{net}}$ and potential energy $E_{\\text{net}}$?`,
+    options: [
+      t`$F_{\\text{net}} = 0$, and $E_{\\text{net}}$ is at a global minimum`,
+      t`$F_{\\text{net}}$ is at a maximum, and $E_{\\text{net}} = 0$`,
+      t`$F_{\\text{net}} = 0$, and $E_{\\text{net}} = 0$`,
+      t`Both $F_{\\text{net}}$ and $E_{\\text{net}}$ are at their absolute maximum`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`By definition, force is the negative derivative of potential energy: $F = -\\dfrac{dE}{dr}$. At equilibrium separation $r_0$, attractive and repulsive forces exactly balance ($F_A + F_R = 0 \\implies F_{\\text{net}} = 0$). This zero-force location corresponds to the bottom of the potential energy well (minimum $E_{\\text{net}}$).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Force Equilibrium', math: t`F_{\\text{net}}(r_0) = F_A(r_0) + F_R(r_0) = 0` },
+        { title: 'Energy Relationship', math: t`\\frac{dE_{\\text{net}}}{dr}\\Bigg|_{r_0} = -F_{\\text{net}}(r_0) = 0 \\implies E_{\\text{net}}(r_0) = -E_0\\text{ (potential well minimum)}` }
+      ],
+      answer: t`F_{\\text{net}} = 0, and E_{\\text{net}} is at a global minimum`,
+      whyWrong: {
+        '1': t`Net force is zero, not maximum. Maximum attractive force occurs at an inflection point $r > r_0$.`,
+        '2': t`$E_{\\text{net}}$ is negative (the bonding energy $-E_0$), not zero.`,
+        '3': t`Energy is at a stable minimum, not a maximum.`
+      },
+      commonTrap: t`Assuming potential energy must be zero at equilibrium. It is at its deepest negative trough (the bond dissociation energy $E_0$)!`,
+      reference: 'MIAE 221 Midterm 2024 Question 6; Callister Chapter 2'
+    },
+    source: src('Midterm 2024', 'Atomic Bonding', 'Question 6')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P20',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q7) · Concordia University',
+    topic: 'Non-Steady-State Diffusion: Fick\'s Second Law & Error Function',
+    difficulty: 'Exam Master',
+    question: t`A steel gear is carburized at high temperature with surface concentration maintained at $C_s = 4.0\\text{ kg/m}^3$ and initial uniform carbon concentration $C_0 = 0.8\\text{ kg/m}^3$. At a depth where $z = \\dfrac{x}{2\\sqrt{Dt}} = 0.50$ (given $\\text{erf}(0.50) = 0.5205$), what is the carbon concentration $C_x$?`,
+    options: [
+      t`$2.33\\text{ kg/m}^3$`,
+      t`$2.46\\text{ kg/m}^3$`,
+      t`$1.66\\text{ kg/m}^3$`,
+      t`$3.20\\text{ kg/m}^3$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Fick's Second Law for semi-infinite solid with constant surface concentration: $\\dfrac{C_x - C_0}{C_s - C_0} = 1 - \\text{erf}\\left(\\dfrac{x}{2\\sqrt{Dt}}\\right)$. Solve explicitly for $C_x$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Standard Error Function Equation', math: t`\\frac{C_x - C_0}{C_s - C_0} = 1 - \\text{erf}(z)` },
+        { title: 'Substitute given values', math: t`\\frac{C_x - 0.8}{4.0 - 0.8} = 1 - 0.5205 = 0.4795` },
+        { title: 'Multiply by concentration range', math: t`C_x - 0.8 = 0.4795 \\times 3.2 = 1.5344` },
+        { title: 'Add initial concentration $C_0$', math: t`C_x = 0.8 + 1.5344 = 2.3344 \\approx 2.33\\text{ kg/m}^3` }
+      ],
+      answer: t`2.33\\text{ kg/m}^3`,
+      whyWrong: {
+        '1': t`Using $\\text{erf}(z) = 0.5205$ directly without $1 - \\text{erf}(z)$: $0.8 + 0.5205(3.2) = 2.46\\text{ kg/m}^3$.`,
+        '2': t`$1.66\\text{ kg/m}^3$ forgets to add initial baseline $C_0 = 0.8$.`,
+        '3': t`$3.20\\text{ kg/m}^3$ is simply $(C_s - C_0)$.`
+      },
+      commonTrap: t`Forgetting that the profile uses $1 - \\text{erf}(z)$, not $\\text{erf}(z)$ directly when defining $(C_x - C_0)/(C_s - C_0)$.`,
+      reference: 'MIAE 221 Midterm 2024 Question 7; Callister Chapter 5'
+    },
+    source: src('Midterm 2024', 'Diffusion', 'Question 7')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P21',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q8) · Concordia University',
+    topic: 'Elastic Modulus Invariance in Structural Steels',
+    difficulty: 'Midterm Level',
+    question: t`A designer considers two steels for a cantilever leaf spring: Steel A (ultra-high strength quenched alloy, $\\sigma_y = 1200\\text{ MPa}$) and Steel B (standard mild carbon steel, $\\sigma_y = 250\\text{ MPa}$). Both beams have identical geometric cross-sections. In the purely elastic regime (small deflections), which beam requires more force to deflect by $2.0\\text{ mm}$?`,
+    options: [
+      t`Both require identical force because their Modulus of Elasticity ($E \\approx 207\\text{ GPa}$) is virtually identical`,
+      t`Steel A requires nearly 5 times more force because of its higher yield strength`,
+      t`Steel B requires more force because lower strength steels have greater stiffness`,
+      t`Steel A requires less force due to alloy work softening`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Elastic stiffness is governed entirely by Hooke's Law and Young's modulus $E$. Young's modulus is a structure-insensitive property determined by the iron-iron atomic bond energy curve. Alloying and heat treatment change yield strength (dislocation pinning) but have negligible effect ($< 2\\%$) on $E$ ($E \\approx 207\\text{ GPa}$ for all carbon and low-alloy steels).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Stiffness Formula', math: t`k = \\frac{F}{\\delta} = \\frac{3EI}{L^3}` },
+        { title: 'Material Dependency', note: t`The force depends strictly on E and geometry (I, L), NOT on yield strength. Both steels have E = 207 GPa.` }
+      ],
+      answer: t`Both require identical force because their Young's modulus (E ~ 207 GPa) is identical`,
+      whyWrong: {
+        '1': t`Exam Trap: Confusing yield strength (resistance to plastic deformation) with elastic modulus (resistance to elastic deflection).`,
+        '2': t`Yield strength does not increase elastic stiffness.`,
+        '3': t`Alloying does not lower the modulus of elasticity.`
+      },
+      commonTrap: t`Assuming high-strength steels are 'stiffer' than mild steel. Their elastic modulus $E$ is identical; high-strength steel simply stays elastic over a wider stress range!`,
+      reference: 'MIAE 221 Midterm 2024 Question 8; Callister Chapter 6'
+    },
+    source: src('Midterm 2024', 'Mechanical Properties', 'Question 8')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P22',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q9) · Concordia University',
+    topic: 'Elastic Elongation of Cylindrical Steel Rod',
+    difficulty: 'Midterm Level',
+    question: t`A vertical 10-meter-long cylindrical steel rod ($d = 20\\text{ mm}$, $E = 207\\text{ GPa}$) supports a static suspended weight of mass $m = 1000\\text{ kg}$ ($F = 9800\\text{ N}$). What is the final extended length of the rod under this load?`,
+    options: [
+      t`$10.00151\\text{ m}$`,
+      t`$10.00603\\text{ m}$`,
+      t`$10.01507\\text{ m}$`,
+      t`$10.00038\\text{ m}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Hooke's Law: $\\sigma = E \\epsilon \\implies \\dfrac{F}{A} = E \\dfrac{\\Delta L}{L_0} \\implies \\Delta L = \\dfrac{F L_0}{A E}$. Final length is $L_f = L_0 + \\Delta L$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate cross-sectional area A', math: t`A = \\frac{\\pi}{4}d^2 = \\frac{\\pi}{4}(0.020\\text{ m})^2 = 3.1416 \\times 10^{-4}\\text{ m}^2` },
+        { title: 'Calculate elongation $\\Delta L$', math: t`\\Delta L = \\frac{(9800\\text{ N})(10.0\\text{ m})}{(3.1416 \\times 10^{-4}\\text{ m}^2)(207 \\times 10^9\\text{ N/m}^2)} = \\frac{98000}{6.5031 \\times 10^7} \\approx 1.507 \\times 10^{-3}\\text{ m} = 1.507\\text{ mm}` },
+        { title: 'Compute final length $L_f$', math: t`L_f = 10.0\\text{ m} + 0.001507\\text{ m} = 10.00151\\text{ m}` }
+      ],
+      answer: t`10.00151\\text{ m}`,
+      whyWrong: {
+        '1': t`Using radius $r = 20\\text{ mm}$ instead of diameter $d = 20\\text{ mm}$ ($4\\times$ error in area).`,
+        '2': t`Decimal place conversion error on GPa ($10^6$ instead of $10^9$).`,
+        '3': t`Using $E = 800\\text{ GPa}$.`
+      },
+      commonTrap: t`Forgetting to square the diameter in $A = \\pi d^2 / 4$ or confusing radius with diameter.`,
+      reference: 'MIAE 221 Midterm 2024 Question 9; Callister Chapter 6'
+    },
+    source: src('Midterm 2024', 'Mechanical Properties', 'Question 9')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P23',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q10) · Concordia University',
+    topic: 'Miller Indices of Crystallographic Plane from Intercepts',
+    difficulty: 'Foundation',
+    question: t`A crystallographic plane intersects the coordinate axes at $x = -1$, $y = -1$, and $z = 1$ in terms of lattice parameters. What are the Miller indices of this plane?`,
+    options: [
+      t`$(\\bar{1}\\bar{1}1)$`,
+      t`$(11\\bar{1})$`,
+      t`$[\\bar{1}\\bar{1}1]$`,
+      t`$(\\bar{1}11)$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Miller indices $(hkl)$ for planes are obtained by: (1) reading axial intercepts, (2) taking their reciprocals, (3) clearing fractions to smallest integers, and (4) enclosing in parentheses $(hkl)$ with negative signs represented by overbars.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Intercepts', math: t`x = -1, \\quad y = -1, \\quad z = 1` },
+        { title: 'Take reciprocals', math: t`h = \\frac{1}{-1} = -1, \\quad k = \\frac{1}{-1} = -1, \\quad l = \\frac{1}{1} = 1` },
+        { title: 'Format with overbars in parentheses', math: t`(\\bar{1}\\bar{1}1)` }
+      ],
+      answer: t`(\\bar{1}\\bar{1}1)`,
+      whyWrong: {
+        '1': t`$(11\\bar{1})$ is the opposite plane (inverted signs on all axes).`,
+        '2': t`Square brackets $[\\bar{1}\\bar{1}1]$ denote a DIRECTION, not a plane. Planes must use parentheses ()!`,
+        '3': t`Sign error on the y-axis.`
+      },
+      commonTrap: t`Using square brackets $[\\dots]$ instead of parentheses $(\\dots)$. Brackets denote crystallographic directions, whereas parentheses denote planes!`,
+      reference: 'MIAE 221 Midterm 2024 Question 10; Callister Chapter 3'
+    },
+    source: src('Midterm 2024', 'Miller Indices', 'Question 10')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P24',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q11) · Concordia University',
+    topic: 'Bragg\'s Law First-Order Diffraction Angle for Platinum',
+    difficulty: 'Exam Master',
+    question: t`Monochromatic X-radiation with wavelength $\\lambda = 0.1542\\text{ nm}$ diffracts from the $(113)$ planes of platinum (FCC, $a = 0.3924\\text{ nm}$). What is the diffraction angle $2\\theta$ for first-order reflection ($n = 1$)?`,
+    options: [
+      t`$2\\theta = 81.4^\\circ$`,
+      t`$2\\theta = 40.7^\\circ$`,
+      t`$2\\theta = 53.6^\\circ$`,
+      t`$2\\theta = 90.0^\\circ$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`First calculate interplanar spacing $d_{hkl} = \\dfrac{a}{\\sqrt{h^2+k^2+l^2}}$. Then apply Bragg's Law: $n\\lambda = 2d\\sin\\theta$. Finally, compute the diffraction angle $2\\theta = 2 \\times \\theta$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate interplanar spacing $d_{113}$', math: t`d_{113} = \\frac{a}{\\sqrt{1^2 + 1^2 + 3^2}} = \\frac{0.3924\\text{ nm}}{\\sqrt{11}} = \\frac{0.3924}{3.3166} = 0.11831\\text{ nm}` },
+        { title: 'Apply Bragg\'s law to find $\\sin\\theta$', math: t`\\sin\\theta = \\frac{\\lambda}{2 d_{113}} = \\frac{0.1542\\text{ nm}}{2(0.11831\\text{ nm})} = \\frac{0.1542}{0.23662} \\approx 0.65168` },
+        { title: 'Compute Bragg angle $\\theta$', math: t`\\theta = \\arcsin(0.65168) \\approx 40.67^\\circ` },
+        { title: 'Compute instrument diffraction angle $2\\theta$', math: t`2\\theta = 2 \\times 40.67^\\circ = 81.34^\\circ \\approx 81.4^\\circ` }
+      ],
+      answer: t`2\\theta = 81.4^\\circ`,
+      whyWrong: {
+        '1': t`Exam Trap: Reporting the Bragg angle $\\theta = 40.7^\\circ$ instead of the instrument diffractometer angle $2\\theta$!`,
+        '2': t`$53.6^\\circ$ assumes diffraction from the (200) plane.`,
+        '3': t`$90.0^\\circ$ assumes $\\sin\\theta = 1$.`
+      },
+      commonTrap: t`Reporting $\\theta$ instead of $2\\theta$. X-ray diffractometers always measure the deflection angle $2\\theta$!`,
+      reference: 'MIAE 221 Midterm 2024 Question 11; Callister Chapter 3'
+    },
+    source: src('Midterm 2024', 'X-Ray Diffraction', 'Question 11')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P25',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2025 Version A (Q4) · Concordia University',
+    topic: 'Student Scanned Error Correction: Planar Density of FCC (110) Plane',
+    difficulty: 'Exam Master',
+    question: t`A student's scanned midterm exam marks the planar density of the FCC $(110)$ plane as $PD = \\dfrac{1}{2\\sqrt{2}R^2}$. Is this answer mathematically correct?`,
+    options: [
+      t`No; the correct planar density is $\\dfrac{1}{4\\sqrt{2}R^2}$. The student undercalculated the rectangular plane area by a factor of 2`,
+      t`Yes; the student's answer of $\\dfrac{1}{2\\sqrt{2}R^2}$ is completely correct`,
+      t`No; the correct planar density is $\\dfrac{1}{8\\sqrt{2}R^2}$`,
+      t`No; planar density for FCC (110) is zero because atoms do not touch along this plane`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Scanned Student Mistake Analysis! The FCC $(110)$ plane forms a rectangle with height $a = 2\\sqrt{2}R$ and width equal to the face diagonal $\\sqrt{2}a = 4R$. The area is $A = a \\times \\sqrt{2}a = \\sqrt{2}a^2 = 8\\sqrt{2}R^2$. The plane contains $4(1/4) + 2(1/2) = 2\\text{ atoms}$. Thus $PD = \\frac{2}{8\\sqrt{2}R^2} = \\frac{1}{4\\sqrt{2}R^2}$. The student forgot the face diagonal dimension is $4R$ (not $2R$), halving the true area!`,
+      stepByStep: [],
+      steps: [
+        { title: 'Count atoms centered on the (110) slice', math: t`n = 4\\left(\\frac{1}{4}\\right) \\text{ [corners]} + 2\\left(\\frac{1}{2}\\right) \\text{ [face centers]} = 1 + 1 = 2\\text{ atoms}` },
+        { title: 'Compute rectangular dimensions of the plane', math: t`\\text{Height} = a = 2\\sqrt{2}R; \\quad \\text{Width} = \\sqrt{2}a = \\sqrt{2}(2\\sqrt{2}R) = 4R` },
+        { title: 'Compute total plane area $A_p$', math: t`A_p = a \\times (\\sqrt{2}a) = \\sqrt{2}a^2 = \\sqrt{2}(2\\sqrt{2}R)^2 = \\sqrt{2}(8R^2) = 8\\sqrt{2}R^2` },
+        { title: 'Compute correct planar density', math: t`PD_{(110)} = \\frac{n}{A_p} = \\frac{2}{8\\sqrt{2}R^2} = \\frac{1}{4\\sqrt{2}R^2}` }
+      ],
+      answer: t`No; correct is 1 / (4*sqrt(2)*R^2). The student undercalculated plane area by a factor of 2`,
+      whyWrong: {
+        '1': t`Accepting the student's erroneous answer: $\\frac{1}{2\\sqrt{2}R^2}$ corresponds to an area of $4\\sqrt{2}R^2$, which wrongly assumes face diagonal length is $2R$ instead of $4R$.`,
+        '2': t`$\\frac{1}{8\\sqrt{2}R^2}$ assumes only 1 atom lies in the plane instead of 2.`,
+        '3': t`Atoms do lie directly in the (110) plane.`
+      },
+      commonTrap: t`Trusting student handwritten notes on past papers without deriving from first principles. The student missed the full $4R$ face diagonal width!`,
+      reference: 'MIAE 221 Midterm 2025 Version A Question 4; Callister Chapter 3'
+    },
+    source: src('Midterm 2025', 'Planar Density', 'Question 4')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P26',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2025 Version A (Q8) · Concordia University',
+    topic: 'Theoretical Density Calculation: BCC Tungsten',
+    difficulty: 'Midterm Level',
+    question: t`Tungsten (W) has a BCC crystal structure with atomic mass $A_W = 183.84\\text{ g/mol}$ and atomic radius $R = 0.1371\\text{ nm}$. What is its theoretical mass density $\\rho$?`,
+    options: [
+      t`$19.3\\text{ g/cm}^3$`,
+      t`$16.5\\text{ g/cm}^3$`,
+      t`$9.65\\text{ g/cm}^3$`,
+      t`$21.4\\text{ g/cm}^3$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Theoretical density formula: $\\rho = \\dfrac{n A}{V_c N_A}$. For BCC, $n = 2$ atoms/unit cell, and the lattice parameter along the close-packed body diagonal is $a = \\dfrac{4R}{\\sqrt{3}}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate lattice parameter a', math: t`a = \\frac{4R}{\\sqrt{3}} = \\frac{4(0.1371\\text{ nm})}{\\sqrt{3}} = \\frac{0.5484}{1.73205} = 0.31662\\text{ nm} = 3.1662 \\times 10^{-8}\\text{ cm}` },
+        { title: 'Compute unit cell volume $V_c$', math: t`V_c = a^3 = (3.1662 \\times 10^{-8}\\text{ cm})^3 = 3.174 \\times 10^{-23}\\text{ cm}^3` },
+        { title: 'Apply theoretical density formula', math: t`\\rho = \\frac{n A_W}{V_c N_A} = \\frac{2(183.84\\text{ g/mol})}{(3.174 \\times 10^{-23}\\text{ cm}^3)(6.022 \\times 10^{23}\\text{ mol}^{-1})} = \\frac{367.68}{19.114} \\approx 19.24 \\approx 19.3\\text{ g/cm}^3` }
+      ],
+      answer: t`19.3\\text{ g/cm}^3`,
+      whyWrong: {
+        '1': t`Using FCC relation $a = 2\\sqrt{2}R$ instead of BCC $a = 4R/\\sqrt{3}$.`,
+        '2': t`Using $n = 1$ (simple cubic) instead of $n = 2$ for BCC: yields half the density ($9.65\\text{ g/cm}^3$).`,
+        '3': t`$21.4\\text{ g/cm}^3$ is the density of platinum (FCC).`
+      },
+      commonTrap: t`Mixing up BCC ($a = 4R/\\sqrt{3}$) and FCC ($a = 2\\sqrt{2}R$) lattice parameter formulas.`,
+      reference: 'MIAE 221 Midterm 2025 Version A Question 8; Callister Chapter 3'
+    },
+    source: src('Midterm 2025', 'Theoretical Density', 'Question 8')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P27',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q19) · Concordia University',
+    topic: 'Poisson\'s Ratio Determination from Tensile Data',
+    difficulty: 'Midterm Level',
+    question: t`A cylindrical metal specimen ($d_0 = 12.8000\\text{ mm}$) subjected to an elastic tensile stress exhibits an axial strain $\\epsilon_z = +0.0020$. Simultaneously, the diameter reduces to $12.7923\\text{ mm}$. What is the Poisson's ratio $\\nu$ of this material?`,
+    options: [
+      t`$0.30$`,
+      t`$0.35$`,
+      t`$0.25$`,
+      t`$-0.30$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Poisson's ratio is defined as the negative ratio of lateral strain to axial strain: $\\nu = -\\dfrac{\\epsilon_x}{\\epsilon_z} = -\\dfrac{\\Delta d / d_0}{\\epsilon_z}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate diameter change $\\Delta d$', math: t`\\Delta d = 12.7923 - 12.8000 = -0.0077\\text{ mm}` },
+        { title: 'Compute lateral strain $\\epsilon_x$', math: t`\\epsilon_x = \\frac{\\Delta d}{d_0} = \\frac{-0.0077\\text{ mm}}{12.8000\\text{ mm}} = -0.00060156` },
+        { title: 'Compute Poisson\'s ratio', math: t`\\nu = -\\frac{\\epsilon_x}{\\epsilon_z} = -\\frac{-0.00060156}{0.0020} = +0.3008 \\approx 0.30` }
+      ],
+      answer: t`0.30`,
+      whyWrong: {
+        '1': t`Rounding or calculation slip in diameter difference: using $0.0089$ instead of $0.0077$.`,
+        '2': t`$0.25$ assumes $\\Delta d = -0.0064\\text{ mm}$.`,
+        '3': t`Forgetting the negative sign in the definition of Poisson's ratio: $\\nu$ is conventionally positive for stable metals.`
+      },
+      commonTrap: t`Forgetting that tensile elongation produces lateral contraction (negative $\\Delta d$), which cancels with the minus sign in $\\nu = -\\epsilon_x / \\epsilon_z$.`,
+      reference: 'MIAE 221 Midterm 2024 Question 19; Callister Chapter 6'
+    },
+    source: src('Midterm 2024', 'Mechanical Properties', 'Question 19')
+  }),
+
+  q({
+    id: 'Q_MIAE221_P28',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam 2024 (Q20) · Concordia University',
+    topic: 'Tensile Test Measurable Properties Boundary',
+    difficulty: 'Foundation',
+    question: t`Which of the following mechanical properties CANNOT be directly determined from a standard uniaxial tensile stress-strain test?`,
+    options: [
+      t`Hardness (Rockwell / Brinell indentation resistance)`,
+      t`Yield strength ($\\sigma_y$ at $0.2\\%$ strain offset)`,
+      t`Ultimate tensile strength ($\\sigma_{\\text{UTS}}$)`,
+      t`Modulus of elasticity ($E$)`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`A standard tensile test continuously pulls a dogbone specimen uniaxially to measure the stress-strain curve, directly yielding $E$, $\\sigma_y$, $\\sigma_{\\text{UTS}}$, ductiliy ($\\text{\\%EL}$), and modulus of resilience. Hardness, however, measures localized surface resistance to permanent penetration/indentation under a pointed indenter (Rockwell, Brinell, Vickers) and requires a dedicated hardness tester.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Tensile Test Outputs', note: t`Yield strength, tensile strength, Young's modulus, and elongation to fracture are all derived from the tensile test curve.` },
+        { title: 'Hardness Test', note: t`Indentation resistance requires pressing a diamond or carbide ball into the surface and measuring indentation depth or diameter.` }
+      ],
+      answer: t`Hardness`,
+      whyWrong: {
+        '1': t`Yield strength is directly read at the $0.002$ offset intersection with the linear curve.`,
+        '2': t`Ultimate tensile strength is the maximum engineering stress point on the tensile curve.`,
+        '3': t`Modulus of elasticity is the slope of the initial linear elastic region.`
+      },
+      commonTrap: t`Assuming empirical correlations (e.g. $\\text{TS} \\approx 3.45 \\times \\text{HB}$) mean hardness is directly measured in a tensile test. It is measured via indentation!`,
+      reference: 'MIAE 221 Midterm 2024 Question 20; Callister Chapter 6'
+    },
+    source: src('Midterm 2024', 'Mechanical Properties', 'Question 20')
   })
 ];

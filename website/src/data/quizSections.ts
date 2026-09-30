@@ -27,16 +27,21 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
       detail: 'Both chapters, mixed midterm-style questions and past-paper problems (Lectures 1–6)',
       sections: ['ch1', 'ch2', 'mixed', 'past']
     },
+    final: {
+      label: 'Final Exam Review — Comprehensive All Topics',
+      detail: 'Complete ODE curriculum: first-order, higher-order, systems, Cauchy-Euler, resonance, and Laplace transforms',
+      sections: ['ch1', 'ch2', 'mixed', 'past']
+    },
     sections: [
       { id: 'ch1', label: 'Chapter 1 — Introduction to Differential Equations', detail: 'Lectures 1–2 · Textbook §1.1–1.2: terminology, solutions, IVPs, existence & uniqueness' },
       { id: 'ch2', label: 'Chapter 2 — First-Order Differential Equations', detail: 'Lectures 2–6 · Textbook §2.1–2.5, 2.7: direction fields, separable, linear, exact, substitutions, linear models' },
-      { id: 'past', label: "Past Papers — Previous Years' Quizzes & Tests", detail: 'Winter 2025 Quiz 1, Quiz 2 and Test 1 problems, limited to what Lectures 1–6 cover' }
+      { id: 'past', label: "Past Papers — Previous Years' Quizzes & Exams", detail: 'Authentic exam questions from Winter 2025 Quizzes 1-3, Tests 1-2, and Winter 2023 Final Examination' }
     ]
   },
   INDU211: {
     midterm: {
       label: 'Midterm Review — Chapters 1 to 5',
-      detail: 'Mixed questions from lecture slides 1.0–5.0 plus the 2019 midterm sample',
+      detail: 'Mixed questions from lecture slides 1.0–5.0 plus the 2019/2024 midterm sample',
       sections: ['ch1-2', 'ch3', 'ch4', 'ch5', 'past-mid']
     },
     final: {
@@ -55,8 +60,8 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
       { id: 'ch8', label: 'Chapter 8 — Quality Control', detail: 'Lecture 11: definitions, costs of quality, SPC, X-bar/R and p charts, capability, six sigma' },
       { id: 'ch6-11', label: 'Chapters 6 & 11 — Work Design & Human Factors', detail: 'Lecture 12: productivity, anthropometry, job design, motivation, time study' },
       { id: 'ch17', label: 'Chapter 17 — Project Management', detail: 'Lecture 13: CPM critical path, slack, PERT expected times' },
-      { id: 'past-mid', label: 'Past Papers — Previous Midterm', detail: '2019 midterm sample questions (Chapters 1–5)' },
-      { id: 'past-final', label: 'Past Papers — Previous Final Exam', detail: 'Fall 2020 final: forecasting, graphical LP, control charts, queuing' }
+      { id: 'past-mid', label: 'Past Papers — Previous Midterm', detail: 'Authentic 2019 & 2024 midterm exam questions (Chapters 1–5)' },
+      { id: 'past-final', label: 'Past Papers — Previous Final Exam', detail: 'Fall 2020 final: forecasting, graphical LP, control charts, queuing, ethics' }
     ]
   },
   MIAE215: {
@@ -65,12 +70,17 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
       detail: 'Mixed questions from every lecture posted so far, plus adapted past-midterm problems',
       sections: ['intro', 'types', 'expr', 'control', 'past']
     },
+    final: {
+      label: 'Final Exam Review — All C++ Topics',
+      detail: 'Comprehensive curriculum review: computing basics, types, expressions, control flow, loops, and arrays',
+      sections: ['intro', 'types', 'expr', 'control', 'past']
+    },
     sections: [
       { id: 'intro', label: '1 · Computing Basics & the Build Process', detail: 'Introduction slides: compiler vs interpreter, program phases, file types' },
       { id: 'types', label: '2 · Variable Types', detail: 'Variable Types I & II: ranges, overflow, round-off, casts, modifiers' },
       { id: 'expr', label: '3 · Expressions & Operators', detail: 'Assignment, arithmetic, %, ++/--, precedence, mixed types, math library' },
       { id: 'control', label: '4 · Control Statements & Loops', detail: 'if / if-else / ladders, logical operators, flowcharts, for & nested loops' },
-      { id: 'past', label: "Past Papers — Previous Years' Midterm", detail: 'Fall 2023 midterm program-output questions, adapted to the topics covered so far' }
+      { id: 'past', label: "Past Papers — Previous Years' Exams & Midterms", detail: 'Authentic exam questions from Fall 2023, Fall 2024 Midterms, and Midterm Examination Review' }
     ]
   },
   MIAE221: {
@@ -79,13 +89,18 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
       detail: 'Every chapter so far, mixed midterm-style questions and past-midterm problems',
       sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mixed', 'past']
     },
+    final: {
+      label: 'Final Exam Review — All Materials Chapters',
+      detail: 'Comprehensive materials science review across crystal structures, defects, diffusion, mechanical properties, and electrical properties',
+      sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mixed', 'past']
+    },
     sections: [
       { id: 'intro', label: 'Ch. 1 · Introduction & Classes of Materials', detail: 'Lectures 1–2: science vs engineering, properties, material classes, failures' },
       { id: 'bonding', label: 'Ch. 2 · Atomic Structure & Bonding', detail: 'Lectures 2–3: atomic structure, electronegativity, bond energy, bond types' },
       { id: 'crystal', label: 'Ch. 3 · Crystal Structures', detail: 'Lectures 4–5: unit cells, APF, CN, stacking, density, Miller indices' },
       { id: 'densities', label: 'Ch. 3 · Atomic Densities & X-Ray Diffraction', detail: 'Lecture 6: linear & planar density, slip, single vs polycrystals, Bragg’s law, powder XRD' },
       { id: 'defects', label: 'Ch. 4 · Imperfections in Solids', detail: 'Lecture 7: vacancies & Arrhenius, impurities, solid solutions, Hume-Rothery, wt% ↔ at.%, dislocations' },
-      { id: 'past', label: "Past Papers — Previous Years' Midterm", detail: '2025 Midterm (version A) questions on topics covered so far' }
+      { id: 'past', label: "Past Papers — Previous Years' Midterms & Exams", detail: 'Authentic exam questions from 2024 Midterm, 2025 Midterm Version A, and Final Review' }
     ]
   }
 };
