@@ -18,18 +18,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "An ODE is linear in $y$ when $y$ and all its derivatives appear to the first degree, their coefficients depend at most on $x$, and no nonlinear functions of $y$ (like $\\sin y$ or $e^y$) appear.",
       "stepByStep": [
-        "$x^3 y''' + x y' - 5y = e^x$: coefficients $x^3, x, -5$ depend only on $x$, so it is linear. \u2714",
+        "$x^3 y''' + x y' - 5y = e^x$: coefficients $x^3, x, -5$ depend only on $x$, so it is linear. ✔",
         "$(1-y)y'$: the coefficient of $y'$ depends on $y$, so it is nonlinear.",
         "$\\sin y$ is a nonlinear function of $y$, so it is nonlinear.",
         "$y^2$ is second degree in $y$, so it is nonlinear."
       ],
       "commonTrap": "Thinking a variable coefficient like $x^3$ makes an equation nonlinear. Only dependence on $y$ breaks linearity.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 10"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 10"
       }
     ]
@@ -55,12 +55,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$(y'')^3$ is third degree in $y''$, so the equation is nonlinear."
       ],
       "commonTrap": "Confusing power of derivative with derivative order.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 9"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 9"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 9"
       }
     ]
@@ -82,17 +82,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "A solution must be defined and differentiable on its interval of definition $I$, and must reduce the ODE to an identity there.",
       "stepByStep": [
-        "$\\varphi' = -\\dfrac{1}{x^2}$, so $x\\left(-\\dfrac{1}{x^2}\\right) + \\dfrac{1}{x} = 0$. \u2714",
+        "$\\varphi' = -\\dfrac{1}{x^2}$, so $x\\left(-\\dfrac{1}{x^2}\\right) + \\dfrac{1}{x} = 0$. ✔",
         "$\\varphi$ is undefined at $x = 0$, so the interval cannot contain 0.",
         "The largest intervals are therefore $(-\\infty, 0)$ or $(0, \\infty)$."
       ],
       "commonTrap": "Treating the function and the solution as the same thing. The function $1/x$ has domain $x \\neq 0$, but a solution must live on a single interval.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 15"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 15"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 15"
       }
     ]
@@ -115,16 +115,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Substitute the candidate and its derivatives into the ODE. It is a solution only if the left side is identically 0.",
       "stepByStep": [
         "$y = xe^x$: $y' = e^x + xe^x$, $y'' = 2e^x + xe^x$.",
-        "$y'' - 2y' + y = (2e^x + xe^x) - 2(e^x + xe^x) + xe^x = 0$. \u2714",
+        "$y'' - 2y' + y = (2e^x + xe^x) - 2(e^x + xe^x) + xe^x = 0$. ✔",
         "Check $x^2e^x$: the left side becomes $2e^x \\neq 0$, so it is not a solution."
       ],
       "commonTrap": "Checking only the first derivative. Every term of the ODE must cancel.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 13"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 13"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 13"
       }
     ]
@@ -150,12 +150,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The other three involve only one independent variable ($x$ or $t$), so they are ODEs. The differential form $(y-x)dx + 4x\\,dy = 0$ is still an ODE."
       ],
       "commonTrap": "Thinking the differential form $M\\,dx + N\\,dy = 0$ is a PDE. It is an ODE for $y(x)$.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 7"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 7"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 7"
       }
     ]
@@ -181,12 +181,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The explicit solutions hidden in the relation are $y = \\pm\\sqrt{25 - x^2}$."
       ],
       "commonTrap": "Dropping the minus sign when isolating $y'$.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 16"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 16"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 16"
       }
     ]
@@ -197,7 +197,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1",
     "topic": "First-Order IVP",
     "difficulty": "Foundation",
-    "question": "Lecture 2: $y = x^2 + c$ is a one-parameter family of solutions of $y' = 2x$. Which member satisfies $y(0) = 3$?",
+    "question": "$y = x^2 + c$ is a one-parameter family of solutions of $y' = 2x$. Which member satisfies $y(0) = 3$?",
     "options": [
       "$y = x^2 + 3$",
       "$y = x^2 - 3$",
@@ -211,12 +211,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$y(0) = 0^2 + c = 3 \\implies c = 3$, so $y = x^2 + 3$."
       ],
       "commonTrap": "Putting the initial value into the coefficient ($3x^2$) instead of solving for $c$.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 4"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 4"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 4"
       }
     ]
@@ -243,12 +243,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$x = -2\\cos 4t + \\tfrac14 \\sin 4t$."
       ],
       "commonTrap": "Forgetting the chain-rule factor 4 in $x'$, which gives $c_2 = 1$ or $4$ instead of $\\tfrac14$.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 5"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 5"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 5"
       }
     ]
@@ -259,7 +259,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1",
     "topic": "IVP Existence & Uniqueness",
     "difficulty": "Exam Master",
-    "question": "For $\\dfrac{dy}{dx} = \\dfrac{y}{x}$, does the existence\u2013uniqueness theorem guarantee a unique solution through $(0, 1)$?",
+    "question": "For $\\dfrac{dy}{dx} = \\dfrac{y}{x}$, does the existence–uniqueness theorem guarantee a unique solution through $(0, 1)$?",
     "options": [
       "No. $f(x,y) = y/x$ is not continuous at $x = 0$, so the theorem does not apply",
       "Yes, a unique solution exists",
@@ -274,12 +274,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "In fact, the family of solutions $y = cx$ only passes through $(0, 0)$, so no solution passes through $(0, 1)$."
       ],
       "commonTrap": "Trying to solve before checking the hypotheses. The theorem gives no guarantee when $f$ is discontinuous at the initial point.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 8"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 8"
       }
     ]
@@ -290,7 +290,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1",
     "topic": "Uniqueness Failure",
     "difficulty": "Exam Master",
-    "question": "Lecture 2: the IVP $\\dfrac{dy}{dx} = x y^{1/2}$, $y(0) = 0$ has two solutions, $y = 0$ and $y = \\dfrac{x^4}{16}$. Why doesn't this contradict the existence\u2013uniqueness theorem?",
+    "question": "the IVP $\\dfrac{dy}{dx} = x y^{1/2}$, $y(0) = 0$ has two solutions, $y = 0$ and $y = \\dfrac{x^4}{16}$. Why doesn't this contradict the existence–uniqueness theorem?",
     "options": [
       "$\\partial f/\\partial y = \\dfrac{x}{2\\sqrt{y}}$ is not continuous at $y = 0$, so uniqueness is not guaranteed at $(0,0)$",
       "$f(x, y) = x y^{1/2}$ is not continuous at $(0, 0)$",
@@ -303,15 +303,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "stepByStep": [
         "$f = x\\sqrt{y}$ is continuous for $y \\ge 0$, so existence is fine.",
         "$\\partial f/\\partial y = \\dfrac{x}{2\\sqrt{y}}$ blows up at $y = 0$, so the uniqueness hypothesis fails at $(0,0)$.",
-        "Check: $y = x^4/16 \\implies y' = x^3/4$ and $x\\sqrt{x^4/16} = x^3/4$. \u2714"
+        "Check: $y = x^4/16 \\implies y' = x^3/4$ and $x\\sqrt{x^4/16} = x^3/4$. ✔"
       ],
       "commonTrap": "Blaming $f$ itself. Here $f$ is continuous; it is the partial derivative $\\partial f/\\partial y$ that fails.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 8"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 8"
       }
     ]
@@ -336,12 +336,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$f(2, 3) = 0.2(2)(3) = 1.2$."
       ],
       "commonTrap": "Adding the coordinates ($0.2(2+3) = 1.0$) or forgetting the 0.2 factor ($6$).",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 11"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 11"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 11"
       }
     ]
@@ -367,12 +367,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$y = 0$ is an attractor (asymptotically stable), $y = 3$ is a repeller (unstable)."
       ],
       "commonTrap": "Misreading the phase line. Arrows pointing toward $c$ from both sides mean an attractor (asymptotically stable); arrows pointing away mean a repeller (unstable).",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 14"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 14"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 14"
       }
     ]
@@ -383,7 +383,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Separable ODEs",
     "difficulty": "Midterm Level",
-    "question": "Lecture 3, Example 2: solve the IVP $\\dfrac{dy}{dx} = -\\dfrac{x}{y}$, $y(4) = -3$.",
+    "question": "solve the IVP $\\dfrac{dy}{dx} = -\\dfrac{x}{y}$, $y(4) = -3$.",
     "options": [
       "$y = -\\sqrt{25 - x^2}$, for $-5 < x < 5$",
       "$y = \\sqrt{25 - x^2}$, for $-5 < x < 5$",
@@ -399,12 +399,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The IC has $y < 0$, so take the lower semicircle: $y = -\\sqrt{25 - x^2}$ on $(-5, 5)$."
       ],
       "commonTrap": "Taking the $+\\sqrt{\\ }$ branch. That curve passes through $(4, 3)$, not $(4, -3)$.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 5"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 5"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 5"
       }
     ]
@@ -413,9 +413,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_ENGR213_014",
     "courseId": "ENGR213",
     "chapter": "ch2",
-    "topic": "Separable ODEs \u2013 Lost Solutions",
+    "topic": "Separable ODEs – Lost Solutions",
     "difficulty": "Midterm Level",
-    "question": "Lecture 3, Example 3: solving $\\dfrac{dy}{dx} = y^2 - 4$ by separation gives the family $y = 2\\,\\dfrac{1 + c e^{4x}}{1 - c e^{4x}}$. Which constant solution is a singular (lost) solution?",
+    "question": "solving $\\dfrac{dy}{dx} = y^2 - 4$ by separation gives the family $y = 2\\,\\dfrac{1 + c e^{4x}}{1 - c e^{4x}}$. Which constant solution is a singular (lost) solution?",
     "options": [
       "$y = -2$ only",
       "$y = 2$ and $y = -2$",
@@ -431,12 +431,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "No value of $c$ gives $y = -2$, so $y = -2$ is the singular solution."
       ],
       "commonTrap": "Declaring every root of $g(y) = 0$ lost. Always check whether the family already contains it.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 6"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 6"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 6"
       }
     ]
@@ -447,7 +447,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Linear First-Order ODEs",
     "difficulty": "Exam Master",
-    "question": "Lecture 3, Example 5: solve $(x^2 - 9)\\dfrac{dy}{dx} + xy = 0$ for $x > 3$.",
+    "question": "solve $(x^2 - 9)\\dfrac{dy}{dx} + xy = 0$ for $x > 3$.",
     "options": [
       "$y = \\dfrac{c}{\\sqrt{x^2 - 9}}$",
       "$y = c\\sqrt{x^2 - 9}$",
@@ -463,12 +463,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\dfrac{d}{dx}\\left[\\sqrt{x^2-9}\\,y\\right] = 0 \\implies y = \\dfrac{c}{\\sqrt{x^2-9}}$."
       ],
       "commonTrap": "Forgetting to divide by $(x^2 - 9)$ first, which gives the wrong $P(x) = x$ and $\\mu = e^{x^2/2}$.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 13"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 13"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 13"
       }
     ]
@@ -493,12 +493,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$P(x) = -2 \\implies \\mu(x) = e^{\\int -2\\,dx} = e^{-2x}$."
       ],
       "commonTrap": "Dropping the negative sign in $P(x)$.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 9"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 9"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 9"
       }
     ]
@@ -509,7 +509,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Linear First-Order ODEs",
     "difficulty": "Midterm Level",
-    "question": "Lecture 3, Example 4: find the general solution of $\\dfrac{dy}{dx} - 3y = 6$.",
+    "question": "find the general solution of $\\dfrac{dy}{dx} - 3y = 6$.",
     "options": [
       "$y = -2 + c e^{3x}$",
       "$y = 2 + c e^{3x}$",
@@ -523,15 +523,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$P(x) = -3 \\implies \\mu = e^{-3x}$.",
         "$\\dfrac{d}{dx}\\left[e^{-3x}y\\right] = 6e^{-3x}$.",
         "$e^{-3x}y = -2e^{-3x} + c \\implies y = -2 + ce^{3x}$.",
-        "Check: $y_p = -2$ gives $0 - 3(-2) = 6$. \u2714"
+        "Check: $y_p = -2$ gives $0 - 3(-2) = 6$. ✔"
       ],
       "commonTrap": "Sign slip when integrating $6e^{-3x}$: $\\int 6e^{-3x}dx = -2e^{-3x}$, not $+2e^{-3x}$.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 12"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 12"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 12"
       }
     ]
@@ -558,12 +558,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Since mixed partials are equal for smooth functions: $\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}$."
       ],
       "commonTrap": "Differentiating $M$ with respect to $x$ and $N$ with respect to $y$ (swapping the variables).",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 4"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 4"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 4"
       }
     ]
@@ -574,7 +574,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Exact Equations",
     "difficulty": "Midterm Level",
-    "question": "Lecture 4, Example 1: solve $2xy\\,dx + (x^2 - 1)\\,dy = 0$.",
+    "question": "solve $2xy\\,dx + (x^2 - 1)\\,dy = 0$.",
     "options": [
       "$x^2 y - y = c$",
       "$x^2 y^2 - y = c$",
@@ -591,12 +591,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Solution: $x^2 y - y = c$."
       ],
       "commonTrap": "Forgetting $g(y)$, or not integrating $g'(y) = -1$ to get $-y$.",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 8"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 8"
       }
     ]
@@ -624,12 +624,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Integrating yields $\\mu(x) = e^{\\int g(x)dx}$."
       ],
       "commonTrap": "Mixing up the two tests. If instead $(N_x - M_y)/M$ depends only on $y$, the factor is $\\mu(y) = e^{\\int \\frac{N_x - M_y}{M}dy}$.",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 10"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 10"
       }
     ]
@@ -640,7 +640,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Integrating Factor (Exact)",
     "difficulty": "Exam Master",
-    "question": "Lecture 4, Example 3: which integrating factor makes $xy\\,dx + (2x^2 + 3y^2 - 20)\\,dy = 0$ exact?",
+    "question": "which integrating factor makes $xy\\,dx + (2x^2 + 3y^2 - 20)\\,dy = 0$ exact?",
     "options": [
       "$\\mu = y^3$",
       "$\\mu = x^3$",
@@ -657,12 +657,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\mu(y) = e^{\\int 3/y\\,dy} = e^{3\\ln y} = y^3$."
       ],
       "commonTrap": "Stopping at the $x$-test, or writing $e^{3y}$ instead of $e^{3\\ln y} = y^3$.",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 10"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 10"
       }
     ]
@@ -689,12 +689,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Factoring out $x^2$ leaves an ODE strictly in terms of $u$ and $x$ which is separable."
       ],
       "commonTrap": "Substituting $y = ux$ but forgetting that $dy = u\\,dx + x\\,du$.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 8"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 8"
       }
     ]
@@ -721,12 +721,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Substituting gives the linear ODE: $\\frac{1}{1-n}\\frac{du}{dx} + P(x)u = Q(x)$."
       ],
       "commonTrap": "Setting $u = y^n$ or $u = y^{n-1}$, which fails to eliminate the non-linear derivative product.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 10"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 10"
       }
     ]
@@ -737,7 +737,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Bernoulli's Equation",
     "difficulty": "Exam Master",
-    "question": "Lecture 5, Example 3: solve $x\\dfrac{dy}{dx} + y = x^2 y^2$.",
+    "question": "solve $x\\dfrac{dy}{dx} + y = x^2 y^2$.",
     "options": [
       "$y = \\dfrac{1}{-x^2 + cx}$",
       "$y = \\dfrac{1}{x^2 + cx}$",
@@ -754,12 +754,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Back-substitute: $y = 1/u = \\dfrac{1}{-x^2 + cx}$."
       ],
       "commonTrap": "Stopping at $u = -x^2 + cx$ without back-substituting, or missing the sign change that the substitution introduces.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 11"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 11"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 11"
       }
     ]
@@ -785,12 +785,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Separable: $\\dfrac{du}{1 + \\sin u} = dx$."
       ],
       "commonTrap": "Trying to expand $\\sin(x+y) = \\sin x \\cos y + \\cos x \\sin y$.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 12"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 12"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 12"
       }
     ]
@@ -817,12 +817,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Take natural log: $5k = \\ln 2 \\implies k = \\frac{\\ln 2}{5} \\approx 0.1386\\text{ hr}^{-1}$."
       ],
       "commonTrap": "Multiplying by the time interval instead of dividing: $k \\ne 5\\ln 2$.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 5"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 5"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 5"
       }
     ]
@@ -833,7 +833,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Growth Model (Bacteria)",
     "difficulty": "Midterm Level",
-    "question": "Lecture 6, Example 1: a culture starts with $P_0$ bacteria and has $\\tfrac32 P_0$ after 1 hour. If the growth rate is proportional to $P$, when does the population triple?",
+    "question": "a culture starts with $P_0$ bacteria and has $\\tfrac32 P_0$ after 1 hour. If the growth rate is proportional to $P$, when does the population triple?",
     "options": [
       "$t = \\dfrac{\\ln 3}{\\ln 1.5} \\approx 2.71$ h",
       "$t = 4$ h",
@@ -848,12 +848,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$3P_0 = P_0 e^{kt} \\implies t = \\dfrac{\\ln 3}{\\ln 1.5} \\approx 2.71$ h."
       ],
       "commonTrap": "Assuming linear growth (adding $0.5P_0$ per hour gives 4 h). Proportional growth is exponential.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 6"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 6"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 6"
       }
     ]
@@ -864,7 +864,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Mixture of Two Salt Solutions",
     "difficulty": "Midterm Level",
-    "question": "Lecture 6, Example 3: a 300 gal tank starts with 50 lb of salt. Brine at 2 lb/gal enters at 3 gal/min, and the well-mixed solution leaves at 3 gal/min. How much salt is in the tank after a long time?",
+    "question": "a 300 gal tank starts with 50 lb of salt. Brine at 2 lb/gal enters at 3 gal/min, and the well-mixed solution leaves at 3 gal/min. How much salt is in the tank after a long time?",
     "options": [
       "600 lb",
       "50 lb",
@@ -880,12 +880,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$A(0) = 50 \\implies c = -550$, so $A(t) = 600 - 550e^{-t/100} \\to 600$ lb."
       ],
       "commonTrap": "Answering 6 lb (the inflow rate). In the long run the tank concentration matches the inflow: $2 \\times 300 = 600$ lb.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 12"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 12"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 12"
       }
     ]
@@ -913,12 +913,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Hence: $T(t) = 350 - 280 e^{kt}$ (with $k < 0$ for cooling/warming towards equilibrium)."
       ],
       "commonTrap": "Setting $C = 70$ without subtracting the ambient oven temperature $350$.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 8"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 8"
       }
     ]
@@ -929,7 +929,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Newton's Law of Cooling",
     "difficulty": "Exam Master",
-    "question": "Lecture 6: a cake leaves the oven at $300^\\circ$F and is $200^\\circ$F three minutes later, in a $70^\\circ$F room. Which statement is correct?",
+    "question": "a cake leaves the oven at $300^\\circ$F and is $200^\\circ$F three minutes later, in a $70^\\circ$F room. Which statement is correct?",
     "options": [
       "$k = \\tfrac13\\ln\\tfrac{13}{23} \\approx -0.190$, and $T(t)$ only approaches $70^\\circ$F as $t \\to \\infty$",
       "$k = \\tfrac13\\ln\\tfrac{2}{3} \\approx -0.135$, and the cake reaches $70^\\circ$F at about 11 min",
@@ -945,12 +945,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Since $230e^{kt} > 0$ for all $t$, $T > 70$ always. It is within $0.5^\\circ$F after about 32 min."
       ],
       "commonTrap": "Using $200/300$ instead of $(200-70)/(300-70)$. Always work with the difference $T - T_m$.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 9"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 9"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 9"
       }
     ]
@@ -977,12 +977,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\frac{dA}{dt} = -0.03 A \\implies A(t) = A(0)e^{-0.03t} = 20 e^{-0.03t}$."
       ],
       "commonTrap": "Forgetting that volume is in the denominator ($100$), leading to an incorrect decay rate of $-3t$.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 11"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 11"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 11"
       }
     ]
@@ -1008,12 +1008,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Integrate with $V(0) = 500$: $V(t) = 500 + 2t$."
       ],
       "commonTrap": "Subtracting $r_{\\text{in}} - r_{\\text{out}}$ in reverse order, which would imply the tank is emptying.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 11"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 11"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 11"
       }
     ]
@@ -1024,7 +1024,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "LR-Series Circuit",
     "difficulty": "Midterm Level",
-    "question": "Lecture 6, Example 4: a 12 V battery is connected to an LR-series circuit with $L = 0.5$ H and $R = 10\\,\\Omega$. If $i(0) = 0$, find $i(t)$.",
+    "question": "a 12 V battery is connected to an LR-series circuit with $L = 0.5$ H and $R = 10\\,\\Omega$. If $i(0) = 0$, find $i(t)$.",
     "options": [
       "$i(t) = \\tfrac65 - \\tfrac65 e^{-20t}$",
       "$i(t) = \\tfrac65 e^{-20t}$",
@@ -1040,12 +1040,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$i(0) = 0 \\implies c = -\\tfrac65$. As $t \\to \\infty$, $i \\to E/R = 1.2$ A."
       ],
       "commonTrap": "Not dividing by $L$ first (giving $24$ as the steady state), or using $R/L = 5$ instead of $10/0.5 = 20$.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 16"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 16"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 16"
       }
     ]
@@ -1056,7 +1056,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1",
     "topic": "Why Differential Equations",
     "difficulty": "Foundation",
-    "question": "According to Lecture 1, what is a differential equation, in one phrase?",
+    "question": "What is the definition of a differential equation?",
     "options": [
       "A mathematical model of change",
       "A formula that gives constant values",
@@ -1067,15 +1067,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "The world does not just have values, it changes. DEs describe how quantities change, so once we know the rules governing change we can predict, design and control systems.",
       "stepByStep": [
-        "Physical system \u2192 laws governing change \u2192 prediction."
+        "Physical system → laws governing change → prediction."
       ],
       "commonTrap": "Thinking a DE gives values directly. It relates an unknown function to its derivatives.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 3"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 3"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 3"
       }
     ]
@@ -1086,7 +1086,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1",
     "topic": "Where DEs Appear",
     "difficulty": "Foundation",
-    "question": "In the Lecture 1 examples, what do cooling, vehicle motion, chemical reactions and population growth have in common?",
+    "question": "In mathematical modeling, what fundamental characteristic is shared by Newton's law of cooling, vehicle dynamics, chemical kinetics, and population growth?",
     "options": [
       "An unknown quantity is related to one or more of its derivatives",
       "They all use the same equation",
@@ -1097,16 +1097,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Different physical systems give different equations, but each relates an unknown quantity to its rate of change.",
       "stepByStep": [
-        "Cooling: dT/dt depends on T \u2212 Tm.",
+        "Cooling: dT/dt depends on T − Tm.",
         "Population: dP/dt depends on P (limited resources)."
       ],
       "commonTrap": "Assuming one universal equation. Each system has its own law of change.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 4"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 4"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 4"
       }
     ]
@@ -1131,12 +1131,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$dP/dt$ is the derivative of $P$ (dependent) with respect to $t$ (independent); $r$ and $K$ are constants."
       ],
       "commonTrap": "Confusing the parameters $r, K$ with variables.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 6"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 6"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 6"
       }
     ]
@@ -1147,7 +1147,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1",
     "topic": "Ways to Classify a DE",
     "difficulty": "Foundation",
-    "question": "Lecture 1 classifies differential equations by which three properties?",
+    "question": "Differential equations are classically classified by which three fundamental properties?",
     "options": [
       "Type, order and linearity",
       "Degree, slope and area",
@@ -1161,12 +1161,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Explicit/implicit describes solutions, not the equation."
       ],
       "commonTrap": "Mixing up how equations are classified with how solutions are described.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 6"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 6"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 6"
       }
     ]
@@ -1177,7 +1177,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1",
     "topic": "Derivative Notation",
     "difficulty": "Foundation",
-    "question": "Which notation does Lecture 1 say is sometimes used for derivatives with respect to time $t$?",
+    "question": "In physics and differential equations, which notation (Newton's notation) is commonly used to denote derivatives with respect to time $t$?",
     "options": [
       "Newton's dot notation (e.g. $\\dot{x}$, $\\ddot{x}$)",
       "Prime notation only ($y'$)",
@@ -1191,12 +1191,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\ddot{s} = -32$ means $d^2s/dt^2 = -32$."
       ],
       "commonTrap": "Using subscripts for ordinary derivatives. Subscripts are for partial derivatives.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 8"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 8"
       }
     ]
@@ -1221,12 +1221,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$d^2y/dx^2$ is the highest derivative, so the order is 2. The cube on $dy/dx$ affects linearity, not order."
       ],
       "commonTrap": "Reading the exponent 3 as the order.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 9"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 9"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 9"
       }
     ]
@@ -1251,12 +1251,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$4xy' = x - y \\implies y' = (x - y)/(4x)$."
       ],
       "commonTrap": "Forgetting to move $y$ to the right side with a sign change.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 9"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 9"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 9"
       }
     ]
@@ -1281,12 +1281,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Variable coefficients like $x^3$ are fine; constant coefficients are not required."
       ],
       "commonTrap": "Thinking $g(x) \\neq 0$ makes it nonlinear. That only makes it nonhomogeneous.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 10"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 10"
       }
     ]
@@ -1311,12 +1311,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The highest derivative is 4 and $y^2$ is second degree, so it is nonlinear."
       ],
       "commonTrap": "Declaring it linear because the derivative term itself is first degree.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 11"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 11"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 11"
       }
     ]
@@ -1341,12 +1341,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The interval $I$ is the interval of definition (domain of the solution)."
       ],
       "commonTrap": "Checking the equation at a single point only.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 13"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 13"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 13"
       }
     ]
@@ -1368,15 +1368,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "A solution that is identically zero on the interval is called the trivial solution.",
       "stepByStep": [
-        "$y = 0 \\implies y'' + y = 0 + 0 = 0$. \u2714"
+        "$y = 0 \\implies y'' + y = 0 + 0 = 0$. ✔"
       ],
       "commonTrap": "Calling $y = \\cos x$ trivial. It is a valid but non-trivial solution.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 14"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 14"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 14"
       }
     ]
@@ -1402,12 +1402,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Both are defined and continuous for all real $x$."
       ],
       "commonTrap": "Sign error on the second derivative of $\\sin x$.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 14"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 14"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 14"
       }
     ]
@@ -1432,12 +1432,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Like integration: each integration introduces a constant."
       ],
       "commonTrap": "Assuming every ODE has exactly one constant.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 18"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 18"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 18"
       }
     ]
@@ -1460,15 +1460,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "A one-parameter family has one arbitrary constant; each value of $c$ gives a particular solution.",
       "stepByStep": [
         "$y' = -\\cos x + x\\sin x + c$.",
-        "$xy' - y = -x\\cos x + x^2\\sin x + cx + x\\cos x - cx = x^2\\sin x$. \u2714"
+        "$xy' - y = -x\\cos x + x^2\\sin x + cx + x\\cos x - cx = x^2\\sin x$. ✔"
       ],
       "commonTrap": "Stopping after differentiating; the $cx$ terms must cancel.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 19"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 19"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 19"
       }
     ]
@@ -1490,16 +1490,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "An $n$th-order IVP specifies $y(x_0), y'(x_0), \\dots, y^{(n-1)}(x_0)$: $n$ conditions to fix $n$ constants.",
       "stepByStep": [
-        "Check $y = x$: $0 - 2x + 2x = 0$. \u2714",
-        "Check $y = x^2$: $2x^2 - 4x^2 + 2x^2 = 0$. \u2714"
+        "Check $y = x$: $0 - 2x + 2x = 0$. ✔",
+        "Check $y = x^2$: $2x^2 - 4x^2 + 2x^2 = 0$. ✔"
       ],
       "commonTrap": "Counting terms instead of constants.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 19"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 19"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 19"
       }
     ]
@@ -1510,7 +1510,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1",
     "topic": "Systems of ODEs",
     "difficulty": "Foundation",
-    "question": "According to Lecture 1, what is a system of ordinary differential equations?",
+    "question": "What is the definition of a system of ordinary differential equations?",
     "options": [
       "Two or more equations involving the derivatives of two or more unknown functions of a single independent variable",
       "One equation with two independent variables",
@@ -1524,12 +1524,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "E.g. $dx/dt = f(t,x,y)$, $dy/dt = g(t,x,y)$."
       ],
       "commonTrap": "Confusing a system with a PDE. A system still has one independent variable.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 20"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 20"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 20"
       }
     ]
@@ -1554,12 +1554,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "All conditions share the same $x_0$."
       ],
       "commonTrap": "Specifying values at different points (that would be a boundary-value problem).",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 3"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 3"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 3"
       }
     ]
@@ -1568,7 +1568,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_ENGR213_051",
     "courseId": "ENGR213",
     "chapter": "ch1",
-    "topic": "Existence\u2013Uniqueness Theorem",
+    "topic": "Existence–Uniqueness Theorem",
     "difficulty": "Midterm Level",
     "question": "If $f$ and $\\partial f/\\partial y$ are continuous on a rectangle $R$ containing $(x_0, y_0)$, what does the theorem guarantee?",
     "options": [
@@ -1584,12 +1584,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The theorem answers both questions: existence and uniqueness."
       ],
       "commonTrap": "Assuming the solution exists everywhere $f$ is continuous.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 8"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 8"
       }
     ]
@@ -1614,12 +1614,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\partial f/\\partial y$ is discontinuous only at $y = 0$; $(2, 1)$ lies in the region $y > 0$."
       ],
       "commonTrap": "Generalizing the failure at $(0, 0)$ to every point.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 8"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 8"
       }
     ]
@@ -1641,15 +1641,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Existence: do solution curves pass through $(x_0, y_0)$? Uniqueness: is there precisely one?",
       "stepByStep": [
-        "The existence\u2013uniqueness theorem gives sufficient conditions for both."
+        "The existence–uniqueness theorem gives sufficient conditions for both."
       ],
       "commonTrap": "Listing classification questions instead.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 7"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 7"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 \u2014 Introduction to Differential Equations",
+        "chapter": "Chapter 1 — Introduction to Differential Equations",
         "location": "Page 7"
       }
     ]
@@ -1674,12 +1674,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Solution curves follow the flow of the field."
       ],
       "commonTrap": "Confusing the field with a single solution curve.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 12"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 12"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 12"
       }
     ]
@@ -1690,7 +1690,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Phase Portrait Stability",
     "difficulty": "Midterm Level",
-    "question": "For the autonomous ODE $y' = y(1 - y)$ (Lecture 2), classify the critical point $y = 0$.",
+    "question": "For the autonomous differential equation $y' = y(1 - y)$, classify the critical point $y = 0$.",
     "options": [
       "Unstable (repeller): solutions move away from 0 on both sides",
       "Asymptotically stable (attractor)",
@@ -1701,17 +1701,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Critical points: $f(y) = 0 \\implies y = 0, 1$. Check the sign of $f$ on each interval of the phase line.",
       "stepByStep": [
-        "$y < 0$: $f < 0$ \u2192 decreasing (away from 0).",
-        "$0 < y < 1$: $f > 0$ \u2192 increasing (away from 0, toward 1).",
-        "$y > 1$: $f < 0$ \u2192 decreasing toward 1. So 1 is an attractor."
+        "$y < 0$: $f < 0$ → decreasing (away from 0).",
+        "$0 < y < 1$: $f > 0$ → increasing (away from 0, toward 1).",
+        "$y > 1$: $f < 0$ → decreasing toward 1. So 1 is an attractor."
       ],
       "commonTrap": "Reading the arrows backwards.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 15"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 15"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 15"
       }
     ]
@@ -1734,15 +1734,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Semi-stable: arrows point toward $c$ on one side and away on the other.",
       "stepByStep": [
         "$f(y) = (y-2)^2 \\ge 0$ on both sides, so $y$ increases on both sides.",
-        "Below 2 \u2192 moves up toward 2; above 2 \u2192 moves up away from 2."
+        "Below 2 → moves up toward 2; above 2 → moves up away from 2."
       ],
       "commonTrap": "Calling it stable because solutions from below approach it.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 17"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 17"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 17"
       }
     ]
@@ -1753,7 +1753,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Separable ODEs",
     "difficulty": "Foundation",
-    "question": "Lecture 3, Example 1: solve $(1 + x)\\,dy - y\\,dx = 0$.",
+    "question": "solve $(1 + x)\\,dy - y\\,dx = 0$.",
     "options": [
       "$y = c(1 + x)$",
       "$y = c\\,e^{x}$",
@@ -1768,12 +1768,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$y = c(1 + x)$."
       ],
       "commonTrap": "Dropping the logarithm and writing $y = \\ln|1+x| + c$.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 4"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 4"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 4"
       }
     ]
@@ -1798,12 +1798,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$y^2 x e^{3x+4y} = (x e^{3x})(y^2 e^{4y})$, a product of a function of $x$ and a function of $y$."
       ],
       "commonTrap": "Thinking a sum like $y + \\sin x$ can be separated.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 3"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 3"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 3"
       }
     ]
@@ -1828,12 +1828,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$y_c = c\\,e^{-\\int P dx}$ and $y_p$ comes from the integrating-factor method."
       ],
       "commonTrap": "Multiplying the two parts instead of adding them.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 9"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 9"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 9"
       }
     ]
@@ -1844,7 +1844,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Piecewise-Linear ODE",
     "difficulty": "Exam Master",
-    "question": "Lecture 3 piecewise example: $y' + y = f(x)$, $y(0) = 0$, with $f = 1$ for $0 \\le x \\le 1$ and $f = 0$ for $x > 1$. What is $y$ for $x > 1$?",
+    "question": "For the initial value problem $y' + y = f(x)$, $y(0) = 0$, where $f(x) = 1$ for $0 \\le x \\le 1$ and $f(x) = 0$ for $x > 1$, what is the solution $y(x)$ for $x > 1$?",
     "options": [
       "$y = (e - 1)e^{-x}$",
       "$y = 1 - e^{-x}$",
@@ -1860,12 +1860,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Continuity at $x = 1$: $c\\,e^{-1} = 1 - e^{-1} \\implies c = e - 1$."
       ],
       "commonTrap": "Restarting with $y(1) = 0$ instead of matching the value at $x = 1$.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 14"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 14"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 14"
       }
     ]
@@ -1876,7 +1876,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Exact IVP",
     "difficulty": "Exam Master",
-    "question": "Lecture 4, Example 2: solve $\\dfrac{dy}{dx} = \\dfrac{xy^2 - \\cos x \\sin x}{y(1 - x^2)}$, $y(0) = 2$.",
+    "question": "solve $\\dfrac{dy}{dx} = \\dfrac{xy^2 - \\cos x \\sin x}{y(1 - x^2)}$, $y(0) = 2$.",
     "options": [
       "$y^2(1 - x^2) - \\cos^2 x = 3$",
       "$y^2(1 - x^2) + \\cos^2 x = 5$",
@@ -1892,12 +1892,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "So $y^2(1 - x^2) - \\cos^2 x = c$; $y(0) = 2$ gives $4 - 1 = 3$."
       ],
       "commonTrap": "Forgetting the $\\cos^2 x$ term at $x = 0$ (giving $c = 4$).",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 9"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 9"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 9"
       }
     ]
@@ -1908,7 +1908,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch2",
     "topic": "Reduction to Separable",
     "difficulty": "Midterm Level",
-    "question": "Lecture 5, Example 4: with $u = -2x + y$, what does $\\dfrac{dy}{dx} = (-2x + y)^2 - 7$ become?",
+    "question": "with $u = -2x + y$, what does $\\dfrac{dy}{dx} = (-2x + y)^2 - 7$ become?",
     "options": [
       "$\\dfrac{du}{dx} = u^2 - 9$",
       "$\\dfrac{du}{dx} = u^2 - 7$",
@@ -1923,12 +1923,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Separable: $\\dfrac{du}{u^2 - 9} = dx$."
       ],
       "commonTrap": "Forgetting the $-2$ from differentiating $-2x$.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 12"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 12"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 \u2014 First-Order Differential Equations",
+        "chapter": "Chapter 2 — First-Order Differential Equations",
         "location": "Page 12"
       }
     ]
@@ -1953,17 +1953,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$e^{-2y}dy = e^{3x}dx$."
       ],
       "commonTrap": "Missing the exponent law $e^{a+b} = e^a e^b$.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 3; Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 10"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 3; Lecture 1 - Introduction to Differential Equations.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 3"
       },
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 (\u00a71.1)",
+        "chapter": "Chapter 1 (§1.1)",
         "location": "Page 10"
       }
     ]
@@ -1989,12 +1989,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$x^4 y = \\tfrac{x^7}{7} - \\tfrac{x^5}{5} + c$."
       ],
       "commonTrap": "Using $\\mu = e^{4x}$ without dividing by $x$ first.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 10"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 10"
       }
     ]
@@ -2019,12 +2019,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$f = x^2 - x + g(y)$, $g' = 3y + 7$."
       ],
       "commonTrap": "Halving only one of the terms.",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 8"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.4)",
+        "chapter": "Chapter 2 (§2.4)",
         "location": "Page 8"
       }
     ]
@@ -2050,17 +2050,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "It is also homogeneous, so $y = ux$ works too."
       ],
       "commonTrap": "Using $\\mu = e^{x}$.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 10; Lecture 5, September 23 2026.pdf \u00b7 Page 8"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 10; Lecture 5, September 23 2026.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 10"
       },
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.5)",
+        "chapter": "Chapter 2 (§2.5)",
         "location": "Page 8"
       }
     ]
@@ -2086,12 +2086,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$u = x + \\tfrac13 + ce^{3x}$."
       ],
       "commonTrap": "Using $u = y^{3}$ instead of $y^{-3}$.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 10"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.5)",
+        "chapter": "Chapter 2 (§2.5)",
         "location": "Page 10"
       }
     ]
@@ -2117,12 +2117,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$x + y + 1 = \\tan(x + c)$."
       ],
       "commonTrap": "Forgetting the $+1$ in $u' = 1 + y'$.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 12"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 12"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.5)",
+        "chapter": "Chapter 2 (§2.5)",
         "location": "Page 12"
       }
     ]
@@ -2148,17 +2148,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$y(0) = \\tfrac12 + c = -3 \\implies c = -\\tfrac72$."
       ],
       "commonTrap": "Setting $c = -3$ and forgetting the particular part.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 10; Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 4"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 10; Lecture 2 - IVPs and Direction Fields.pdf · Page 4"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 10"
       },
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1\u20132 (\u00a71.2, \u00a72.1)",
+        "chapter": "Chapters 1–2 (§1.2, §2.1)",
         "location": "Page 4"
       }
     ]
@@ -2180,17 +2180,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Need $f = \\sqrt{y - x}$ and $f_y = \\dfrac{1}{2\\sqrt{y - x}}$ continuous in a rectangle around the point, i.e. $y > x$.",
       "stepByStep": [
-        "$(2,3)$: $y - x = 1 > 0$. \u2714",
+        "$(2,3)$: $y - x = 1 > 0$. ✔",
         "$(2,2)$, $(3,3)$: $f_y$ blows up on $y = x$.",
         "$(5,2)$: $f$ undefined."
       ],
       "commonTrap": "Checking only $f$ and forgetting $\\partial f/\\partial y$.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 8"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1\u20132 (\u00a71.2, \u00a72.1)",
+        "chapter": "Chapters 1–2 (§1.2, §2.1)",
         "location": "Page 8"
       }
     ]
@@ -2215,17 +2215,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$M_y = 2y$ and $N_x = 1$, so it is not exact as written."
       ],
       "commonTrap": "Calling it linear despite $y^2$.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 10; Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 3"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 10; Lecture 3 - Separable and Linear Equations.pdf · Page 3"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 (\u00a71.1)",
+        "chapter": "Chapter 1 (§1.1)",
         "location": "Page 10"
       },
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 3"
       }
     ]
@@ -2250,12 +2250,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$0 < P < 4 \\implies P' > 0$."
       ],
       "commonTrap": "Assuming exponential growth forever.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 17"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 17"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1\u20132 (\u00a71.2, \u00a72.1)",
+        "chapter": "Chapters 1–2 (§1.2, §2.1)",
         "location": "Page 17"
       }
     ]
@@ -2266,12 +2266,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "Mixture at a Given Time",
     "difficulty": "Midterm Level",
-    "question": "In the Lecture 6 tank, $A(t) = 600 - 550e^{-t/100}$ lb. How much salt is present after 100 min?",
+    "question": "In a mixing tank problem where the amount of salt is modeled by $A(t) = 600 - 550e^{-t/100}$ lb, how much salt is present at $t = 100\\text{ min}$?",
     "options": [
-      "\u2248 397.7 lb",
-      "\u2248 202.3 lb",
+      "≈ 397.7 lb",
+      "≈ 202.3 lb",
       "600 lb",
-      "\u2248 550 lb"
+      "≈ 550 lb"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -2280,12 +2280,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$600 - 550e^{-1} = 600 - 202.3 = 397.7$ lb."
       ],
       "commonTrap": "Reporting $550e^{-1}$ (the decayed part).",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 12"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 12"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 12"
       }
     ]
@@ -2296,11 +2296,11 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "Cooling Time",
     "difficulty": "Exam Master",
-    "question": "For the Lecture 6 cake, $T = 70 + 230e^{kt}$ with $k \\approx -0.19018$. When is the cake at 75 \u00b0F?",
+    "question": "According to Newton's law of cooling, a cooling cake has temperature $T(t) = 70 + 230e^{kt}\\ ^\\circ\\text{F}$ with $k \\approx -0.19018\\text{ min}^{-1}$. At what time $t$ does the temperature reach $75\\ ^\\circ\\text{F}$?",
     "options": [
-      "\u2248 20.1 min",
-      "\u2248 3 min",
-      "\u2248 11 min",
+      "≈ 20.1 min",
+      "≈ 3 min",
+      "≈ 11 min",
       "Never"
     ],
     "correctIndex": 0,
@@ -2309,13 +2309,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "stepByStep": [
         "$t = \\ln(5/230)/k = -3.8286/-0.19018 \\approx 20.1$ min."
       ],
-      "commonTrap": "Answering \"never\" \u2014 75 \u00b0F is reached; only 70 \u00b0F exactly is never reached.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 9"
+      "commonTrap": "Answering \"never\" — 75 °F is reached; only 70 °F exactly is never reached.",
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 9"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 9"
       }
     ]
@@ -2328,10 +2328,10 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Midterm Level",
     "question": "A radioactive substance decays by $dA/dt = kA$. If 3% has decayed after 100 years, what is its half-life?",
     "options": [
-      "\u2248 2276 years",
-      "\u2248 1667 years",
-      "\u2248 3300 years",
-      "\u2248 231 years"
+      "≈ 2276 years",
+      "≈ 1667 years",
+      "≈ 3300 years",
+      "≈ 231 years"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -2341,12 +2341,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$T = 0.6931/3.046\\times10^{-4} \\approx 2276$ yr."
       ],
       "commonTrap": "Using $0.03$ instead of $0.97$ remaining.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 5"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 5"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 5"
       }
     ]
@@ -2357,7 +2357,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "LR Circuit Time",
     "difficulty": "Midterm Level",
-    "question": "In the Lecture 6 LR circuit, $i(t) = 1.2(1 - e^{-20t})$ A. When does the current reach 1.0 A?",
+    "question": "In an LR series circuit where the current builds according to $i(t) = 1.2(1 - e^{-20t})\\text{ A}$, at what time $t$ does the current reach $1.0\\text{ A}$?",
     "options": [
       "$t = \\dfrac{\\ln 6}{20} \\approx 0.090$ s",
       "$t = \\dfrac{\\ln 1.2}{20} \\approx 0.009$ s",
@@ -2371,12 +2371,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$e^{-20t} = 1/6 \\implies t = \\ln 6/20$."
       ],
       "commonTrap": "Solving $e^{-20t} = 1/1.2$.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 16"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 16"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 16"
       }
     ]
@@ -2389,10 +2389,10 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Midterm Level",
     "question": "A population obeying $dP/dt = kP$ doubles in 3 h. How long until it is 10 times the initial size?",
     "options": [
-      "\u2248 9.97 h",
+      "≈ 9.97 h",
       "15 h",
       "30 h",
-      "\u2248 6.64 h"
+      "≈ 6.64 h"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -2401,12 +2401,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$t = \\ln 10/k = 3\\ln 10/\\ln 2 \\approx 9.97$ h."
       ],
       "commonTrap": "Assuming linear growth (15 h).",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 5"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 5"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 5"
       }
     ]
@@ -2432,12 +2432,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$f_y = 4x + g'(y) = 4x - 8y^3 \\implies g = -2y^4$."
       ],
       "commonTrap": "Counting the $4xy$ term twice.",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 5"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 5"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.4)",
+        "chapter": "Chapter 2 (§2.4)",
         "location": "Page 5"
       }
     ]
@@ -2463,12 +2463,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "At $(0, e)$: $e\\cdot1 - e = 0 = c$."
       ],
       "commonTrap": "Integrating $\\ln y$ as $1/y$.",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 5"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 5"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.4)",
+        "chapter": "Chapter 2 (§2.4)",
         "location": "Page 5"
       }
     ]
@@ -2477,7 +2477,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_ENGR213_080",
     "courseId": "ENGR213",
     "chapter": "mixed",
-    "topic": "Integrating Factor \u03bc(x)",
+    "topic": "Integrating Factor μ(x)",
     "difficulty": "Exam Master",
     "question": "Find the integrating factor and solution of $(2y^2 + 3x)\\,dx + 2xy\\,dy = 0$.",
     "options": [
@@ -2494,12 +2494,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$(2xy^2 + 3x^2)dx + 2x^2y\\,dy = 0$ is exact with $f = x^2y^2 + x^3$."
       ],
       "commonTrap": "Using $(N_x - M_y)/M$, which is not a function of $y$ alone here.",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 10"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.4)",
+        "chapter": "Chapter 2 (§2.4)",
         "location": "Page 10"
       }
     ]
@@ -2510,7 +2510,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "Homogeneous Equation",
     "difficulty": "Exam Master",
-    "question": "Lecture 5, Example 2: the solution of $(x^2 + y^2)\\,dx + (x^2 - xy)\\,dy = 0$ can be written as:",
+    "question": "the solution of $(x^2 + y^2)\\,dx + (x^2 - xy)\\,dy = 0$ can be written as:",
     "options": [
       "$(x + y)^2 = c\\,x\\,e^{y/x}$",
       "$x^2 + y^2 = c\\,x$",
@@ -2522,15 +2522,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Both coefficients are homogeneous of degree 2, so use $y = ux$.",
       "stepByStep": [
         "$(1 + u)dx + x(1 - u)du = 0 \\implies \\dfrac{dx}{x} + \\left(-1 + \\dfrac{2}{1 + u}\\right)du = 0$.",
-        "$\\ln|x| - u + 2\\ln|1 + u| = c$ \u2192 $(x+y)^2 = cxe^{y/x}$."
+        "$\\ln|x| - u + 2\\ln|1 + u| = c$ → $(x+y)^2 = cxe^{y/x}$."
       ],
       "commonTrap": "Forgetting $dy = u\\,dx + x\\,du$.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 9"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 9"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.5)",
+        "chapter": "Chapter 2 (§2.5)",
         "location": "Page 9"
       }
     ]
@@ -2552,20 +2552,20 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "The ODE is autonomous; $f(T) = k(T - T_m)$ vanishes at $T = T_m$.",
       "stepByStep": [
-        "Above $T_m$: $T' < 0$; below: $T' > 0$ \u2192 both sides move toward $T_m$."
+        "Above $T_m$: $T' < 0$; below: $T' > 0$ → both sides move toward $T_m$."
       ],
       "commonTrap": "Ignoring the sign of $k$.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 14; Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 8"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 14; Lecture 6 - Linear Models, September 25 2026.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1\u20132 (\u00a71.2, \u00a72.1)",
+        "chapter": "Chapters 1–2 (§1.2, §2.1)",
         "location": "Page 14"
       },
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 8"
       }
     ]
@@ -2590,12 +2590,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The volume grows because $Q_{in} > Q_{out}$."
       ],
       "commonTrap": "Using a constant volume of 500 L.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 11"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 11"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 11"
       }
     ]
@@ -2620,12 +2620,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$u = y^{-1}$ gives a linear ODE in $u$."
       ],
       "commonTrap": "Using $u = y^n$.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 10"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.5)",
+        "chapter": "Chapter 2 (§2.5)",
         "location": "Page 10"
       }
     ]
@@ -2650,12 +2650,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\tan^{-1}1 = \\pi/4 = c$."
       ],
       "commonTrap": "Adding the IC value outside the tangent.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 5"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 5"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 5"
       }
     ]
@@ -2680,17 +2680,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The function is defined for $x \\ne 1$, but the IVP solution lives on the piece containing 0."
       ],
       "commonTrap": "Taking the domain of the function as the interval.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 13; Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 3"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 13; Lecture 2 - IVPs and Direction Fields.pdf · Page 3"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 (\u00a71.1)",
+        "chapter": "Chapter 1 (§1.1)",
         "location": "Page 13"
       },
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1\u20132 (\u00a71.2, \u00a72.1)",
+        "chapter": "Chapters 1–2 (§1.2, §2.1)",
         "location": "Page 3"
       }
     ]
@@ -2716,12 +2716,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$-1/u = \\ln|x| + c \\implies y = -x/(\\ln|x| + c)$."
       ],
       "commonTrap": "Losing the minus sign from $\\int u^{-2}du = -u^{-1}$.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 8"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.5)",
+        "chapter": "Chapter 2 (§2.5)",
         "location": "Page 8"
       }
     ]
@@ -2746,17 +2746,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "For exactness: $M = -(x+y)$, $N = 1$: $M_y = -1 \\ne 0 = N_x$."
       ],
       "commonTrap": "Calling a sum separable.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 10; Lecture 5, September 23 2026.pdf \u00b7 Page 12"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 10; Lecture 5, September 23 2026.pdf · Page 12"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 10"
       },
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.5)",
+        "chapter": "Chapter 2 (§2.5)",
         "location": "Page 12"
       }
     ]
@@ -2767,12 +2767,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "Bacteria After 5 Hours",
     "difficulty": "Foundation",
-    "question": "For the Lecture 6 culture ($P(1) = 1.5P_0$), how large is the population after 5 h?",
+    "question": "For an exponentially growing bacterial culture with $P(1) = 1.5 P_0$, what is the relative population size after 5 hours?",
     "options": [
-      "\u2248 $7.59P_0$",
+      "≈ $7.59P_0$",
       "$3.5P_0$",
       "$7.5P_0$",
-      "\u2248 $4.48P_0$"
+      "≈ $4.48P_0$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -2781,12 +2781,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$1.5^5 = 7.59$."
       ],
       "commonTrap": "Adding $0.5P_0$ per hour (linear).",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 6"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 6"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 6"
       }
     ]
@@ -2811,17 +2811,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The LRC version in $q(t)$ is second order."
       ],
       "commonTrap": "Confusing it with the second-order LRC equation.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 16; Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 9"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 16; Lecture 1 - Introduction to Differential Equations.pdf · Page 9"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 16"
       },
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 (\u00a71.1)",
+        "chapter": "Chapter 1 (§1.1)",
         "location": "Page 9"
       }
     ]
@@ -2846,12 +2846,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Solutions increase on both sides: toward 0 from below, away above."
       ],
       "commonTrap": "Treating $y^2$ like $y$ (sign change).",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 17"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 17"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1\u20132 (\u00a71.2, \u00a72.1)",
+        "chapter": "Chapters 1–2 (§1.2, §2.1)",
         "location": "Page 17"
       }
     ]
@@ -2873,20 +2873,20 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "$M_y = 2$, $N_x = -1$: not exact. Dividing by $x\\,dx$ gives a linear ODE.",
       "stepByStep": [
-        "$\\mu = x^{-2}$ \u2192 $y = x^2\\ln|x| + cx^2$."
+        "$\\mu = x^{-2}$ → $y = x^2\\ln|x| + cx^2$."
       ],
       "commonTrap": "Assuming every $M\\,dx + N\\,dy$ form is exact.",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 4; Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 10"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 4; Lecture 3 - Separable and Linear Equations.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.4)",
+        "chapter": "Chapter 2 (§2.4)",
         "location": "Page 4"
       },
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 10"
       }
     ]
@@ -2911,12 +2911,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$(xy)' = \\tfrac1x \\implies xy = \\ln x + c$."
       ],
       "commonTrap": "Using $\\mu = x^2$.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 10"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 10"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 10"
       }
     ]
@@ -2941,17 +2941,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "It is a one-parameter family (circles)."
       ],
       "commonTrap": "Calling any solution with $y$ on both sides singular.",
-      "reference": "Lecture 1 - Introduction to Differential Equations.pdf \u00b7 Page 16; Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 4"
+      "reference": "Lecture 1 - Introduction to Differential Equations.pdf · Page 16; Lecture 3 - Separable and Linear Equations.pdf · Page 4"
     },
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 (\u00a71.1)",
+        "chapter": "Chapter 1 (§1.1)",
         "location": "Page 16"
       },
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 4"
       }
     ]
@@ -2973,15 +2973,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Compute $M_y$ and $N_x$ for each.",
       "stepByStep": [
-        "$M_y = 4xy = N_x$. \u2714 The others fail."
+        "$M_y = 4xy = N_x$. ✔ The others fail."
       ],
       "commonTrap": "Differentiating $M$ with respect to $x$.",
-      "reference": "Lecture 4 - Exact Equations.pdf \u00b7 Page 4"
+      "reference": "Lecture 4 - Exact Equations.pdf · Page 4"
     },
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.4)",
+        "chapter": "Chapter 2 (§2.4)",
         "location": "Page 4"
       }
     ]
@@ -2992,7 +2992,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "Warming Model",
     "difficulty": "Midterm Level",
-    "question": "A 70 \u00b0F object is placed in a 350 \u00b0F oven: $T(t) = 350 - 280e^{kt}$. If $T(1) = 110$ \u00b0F, what is $k$?",
+    "question": "A 70 °F object is placed in a 350 °F oven: $T(t) = 350 - 280e^{kt}$. If $T(1) = 110$ °F, what is $k$?",
     "options": [
       "$k = \\ln(6/7) \\approx -0.154$",
       "$k = \\ln(7/6) \\approx 0.154$",
@@ -3006,12 +3006,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$110 = 350 - 280e^{k} \\implies e^{k} = 240/280 = 6/7$."
       ],
       "commonTrap": "Using $110/70$ (ignoring $T_m$).",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 8"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 8"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 8"
       }
     ]
@@ -3033,15 +3033,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "An $n$th-order IVP needs $n$ conditions at a single point.",
       "stepByStep": [
-        "Order 3 \u2192 3 conditions."
+        "Order 3 → 3 conditions."
       ],
       "commonTrap": "Counting the right-hand side as a condition.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 3"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 3"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1\u20132 (\u00a71.2, \u00a72.1)",
+        "chapter": "Chapters 1–2 (§1.2, §2.1)",
         "location": "Page 3"
       }
     ]
@@ -3066,12 +3066,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "No value of $c$ gives $y = 0$, so it is a singular solution."
       ],
       "commonTrap": "Assuming the family contains every solution.",
-      "reference": "Lecture 3 - Separable and Linear Equations.pdf \u00b7 Page 6"
+      "reference": "Lecture 3 - Separable and Linear Equations.pdf · Page 6"
     },
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (\u00a72.2\u20132.3)",
+        "chapter": "Chapter 2 (§2.2–2.3)",
         "location": "Page 6"
       }
     ]
@@ -3085,7 +3085,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "question": "For $y' = x - y$, what is the slope of the lineal element at $(3, 1)$?",
     "options": [
       "2",
-      "\u22122",
+      "−2",
       "3",
       "4"
     ],
@@ -3096,12 +3096,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$f(3, 1) = 3 - 1 = 2$."
       ],
       "commonTrap": "Swapping $x$ and $y$.",
-      "reference": "Lecture 2 - IVPs and Direction Fields.pdf \u00b7 Page 11"
+      "reference": "Lecture 2 - IVPs and Direction Fields.pdf · Page 11"
     },
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1\u20132 (\u00a71.2, \u00a72.1)",
+        "chapter": "Chapters 1–2 (§1.2, §2.1)",
         "location": "Page 11"
       }
     ]
@@ -3112,7 +3112,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "Model Building Steps",
     "difficulty": "Foundation",
-    "question": "According to Lecture 6, what should you do if a model's predictions compare poorly with experimental data?",
+    "question": "In engineering modeling, what should be done if an initial differential model's predictions compare poorly with experimental data?",
     "options": [
       "Refine the assumptions or increase the model resolution",
       "Discard the differential equation",
@@ -3121,17 +3121,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Modeling cycle: assumptions \u2192 DE \u2192 solve \u2192 compare with data \u2192 refine.",
+      "coreConcept": "Modeling cycle: assumptions → DE → solve → compare with data → refine.",
       "stepByStep": [
         "Better accuracy usually costs more mathematical complexity."
       ],
       "commonTrap": "Treating the first model as final.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 3"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 3"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 3"
       }
     ]
@@ -3142,7 +3142,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "Substitution Goal",
     "difficulty": "Foundation",
-    "question": "According to Lecture 5, what is the goal of a substitution?",
+    "question": "In solving differential equations, what is the primary objective of applying a substitution (change of variable)?",
     "options": [
       "To convert the ODE into a familiar solvable form, such as separable or linear",
       "To create a brand-new solution method",
@@ -3151,17 +3151,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Pattern recognition fails \u2192 new variable \u2192 simpler ODE \u2192 solve \u2192 back-substitute.",
+      "coreConcept": "Pattern recognition fails → new variable → simpler ODE → solve → back-substitute.",
       "stepByStep": [
         "Substitution is a bridge to methods you already know."
       ],
       "commonTrap": "Forgetting to back-substitute to the original variable.",
-      "reference": "Lecture 5, September 23 2026.pdf \u00b7 Page 6"
+      "reference": "Lecture 5, September 23 2026.pdf · Page 6"
     },
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.5)",
+        "chapter": "Chapter 2 (§2.5)",
         "location": "Page 6"
       }
     ]
@@ -3172,7 +3172,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "Linear Model Identification",
     "difficulty": "Midterm Level",
-    "question": "Which of these Lecture 6 models is NOT a linear first-order ODE?",
+    "question": "Which of the following mathematical models is NOT governed by a linear first-order differential equation?",
     "options": [
       "None: growth/decay, cooling, mixtures and LR circuits are all linear first-order models",
       "Newton's law of cooling",
@@ -3183,15 +3183,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "All four are of the form $y' + P(t)y = f(t)$.",
       "stepByStep": [
-        "That is why they are grouped as \"linear models\" (\u00a72.7)."
+        "That is why they are grouped as \"linear models\" (§2.7)."
       ],
       "commonTrap": "Thinking the mixture model is nonlinear because of $A/V$.",
-      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf \u00b7 Page 2"
+      "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 2"
     },
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (\u00a72.7)",
+        "chapter": "Chapter 2 (§2.7)",
         "location": "Page 2"
       }
     ]
@@ -3202,7 +3202,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1-2",
     "topic": "Open vs Closed-Loop Systems",
     "difficulty": "Foundation",
-    "question": "In the lecture, a car without a driver is used as an example of an open-loop system and a car with a driver as a closed-loop system. What makes the second one closed-loop?",
+    "question": "Comparing an open-loop automated vehicle to a driver-operated vehicle (closed-loop system), what essential element creates the closed-loop functionality?",
     "options": [
       "It uses feedback on its own output performance to adjust its behaviour",
       "It has more components interacting with each other",
@@ -3213,17 +3213,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "A closed-loop system is aware of, and influenced by, its past performance through feedback; an open-loop system has no means to monitor or control its output.",
       "stepByStep": [
-        "Open loop: Input \u2192 System \u2192 Output (no performance measurement).",
-        "Closed loop: Input \u2192 System \u2192 Output, with output performance fed back to the input side.",
-        "The driver observes the car's behaviour and corrects it \u2014 that is the feedback path."
+        "Open loop: Input → System → Output (no performance measurement).",
+        "Closed loop: Input → System → Output, with output performance fed back to the input side.",
+        "The driver observes the car's behaviour and corrects it — that is the feedback path."
       ],
       "commonTrap": "Thinking \"closed\" means isolated from the environment. It refers to the feedback loop being closed, not the system being sealed off.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 20"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 20"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 20"
       }
     ]
@@ -3245,16 +3245,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Strategic = what, how, where (products, processes, facilities). Tactical = how much, when (production, inventory and maintenance planning). Control = planning and controlling daily operations.",
       "stepByStep": [
-        "\"How much to produce\" \u2192 production planning to meet demand \u2192 tactical.",
-        "\"When to do maintenance\" \u2192 maintenance planning \u2192 tactical."
+        "\"How much to produce\" → production planning to meet demand → tactical.",
+        "\"When to do maintenance\" → maintenance planning → tactical."
       ],
       "commonTrap": "Labelling anything that sounds important as \"strategic\". Strategic decisions are about which products, which processes, and where the facilities go.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 22"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 22"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 22"
       }
     ]
@@ -3265,29 +3265,29 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1-2",
     "topic": "Chronology of Industrial Engineering",
     "difficulty": "Foundation",
-    "question": "Which pioneer\u2013contribution pairing matches the Chronology of Industrial Engineering in the lecture?",
+    "question": "In the historical chronology of Industrial Engineering, which pioneer is correctly paired with their foundational contribution?",
     "options": [
-      "Walter Shewhart \u2014 Quality control",
-      "Henry L. Gantt \u2014 Division of labour",
-      "Charles Babbage \u2014 Mass production and assembly lines",
-      "Lillian Gilbreth \u2014 Interchangeable manufacture"
+      "Walter Shewhart — Quality control",
+      "Henry L. Gantt — Division of labour",
+      "Charles Babbage — Mass production and assembly lines",
+      "Lillian Gilbreth — Interchangeable manufacture"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Key pioneers from the slides: Babbage (division of labour, 1800s), Ford (mass production and assembly lines), F.W. Taylor (job analysis and design for maximum efficiency), F.B. Gilbreth (motion analysis and time study), L. Gilbreth (human factors), H.L. Gantt (Gantt chart), Shewhart (quality control).",
       "stepByStep": [
-        "Shewhart \u2192 statistical quality control. \u2714",
-        "Gantt \u2192 the Gantt chart, not division of labour (Babbage).",
-        "Assembly lines \u2192 Henry Ford, not Babbage.",
-        "Lillian Gilbreth \u2192 human factors."
+        "Shewhart → statistical quality control. ✔",
+        "Gantt → the Gantt chart, not division of labour (Babbage).",
+        "Assembly lines → Henry Ford, not Babbage.",
+        "Lillian Gilbreth → human factors."
       ],
       "commonTrap": "Mixing up Babbage (division of labour) with Ford (assembly lines), and Frank Gilbreth (motion study) with Lillian Gilbreth (human factors).",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 16"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 16"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 16"
       }
     ]
@@ -3313,12 +3313,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "When cost and public safety conflict, public welfare comes first."
       ],
       "commonTrap": "Believing loyalty to the employer overrides public safety.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 15"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 15"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 15"
       }
     ]
@@ -3343,12 +3343,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$Q^* = \\dfrac{FC}{p - v} = \\dfrac{50{,}000}{25 - 15} = \\dfrac{50{,}000}{10} = 5{,}000$ units."
       ],
       "commonTrap": "Dividing $FC$ by the price $p$ (giving 2,000) instead of by the unit contribution $(p - v)$.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 11"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 11"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 11"
       }
     ]
@@ -3375,12 +3375,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Below 5,000 choose A (lower fixed cost); above 5,000 choose B (lower variable cost)."
       ],
       "commonTrap": "Dividing the fixed-cost difference by the sum of variable costs ($20{,}000/12$) instead of their difference.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 13"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 13"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 13"
       }
     ]
@@ -3391,7 +3391,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch3",
     "topic": "Three-Process Selection",
     "difficulty": "Exam Master",
-    "question": "Lecture example: Process A ($FC = \\$110{,}000$, $v = \\$2$), Process B ($FC = \\$80{,}000$, $v = \\$4$), Process C ($FC = \\$75{,}000$, $v = \\$5$). Over what range of annual volume is Process B the cheapest?",
+    "question": "Process A ($FC = \\$110{,}000$, $v = \\$2$), Process B ($FC = \\$80{,}000$, $v = \\$4$), Process C ($FC = \\$75{,}000$, $v = \\$5$). Over what range of annual volume is Process B the cheapest?",
     "options": [
       "Between 5,000 and 15,000 units",
       "Between 0 and 5,000 units",
@@ -3404,16 +3404,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "stepByStep": [
         "$BEP_{BC}$: $80{,}000 + 4Q = 75{,}000 + 5Q \\implies Q = 5{,}000$.",
         "$BEP_{AB}$: $110{,}000 + 2Q = 80{,}000 + 4Q \\implies Q = 15{,}000$.",
-        "0\u20135,000 \u2192 C; 5,000\u201315,000 \u2192 B; above 15,000 \u2192 A.",
-        "Check at 10,000: $TC_A = 130{,}000$, $TC_B = 120{,}000$, $TC_C = 125{,}000$, so B is cheapest. \u2714"
+        "0–5,000 → C; 5,000–15,000 → B; above 15,000 → A.",
+        "Check at 10,000: $TC_A = 130{,}000$, $TC_B = 120{,}000$, $TC_C = 125{,}000$, so B is cheapest. ✔"
       ],
-      "commonTrap": "Using the A\u2013C crossover (11,667). That intersection lies above the B line, so it never decides anything.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 17"
+      "commonTrap": "Using the A–C crossover (11,667). That intersection lies above the B line, so it never decides anything.",
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 17"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 17"
       }
     ]
@@ -3439,12 +3439,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "For $Q > 5{,}000$, making has the lower total cost."
       ],
       "commonTrap": "Reversing the logic. A large fixed cost is only justified at high volume, where it can be spread over many units.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 10"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 10"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 10"
       }
     ]
@@ -3453,7 +3453,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_INDU211_009",
     "courseId": "INDU211",
     "chapter": "ch3",
-    "topic": "Product\u2013Production Design Interaction",
+    "topic": "Product–Production Design Interaction",
     "difficulty": "Foundation",
     "question": "What is the classic tolerance conflict between the product designer and the manufacturing engineer?",
     "options": [
@@ -3466,17 +3466,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Product design evaluates whether the part performs its function; manufacturing engineering evaluates the cost of producing it. Tighter tolerances are more expensive to produce.",
       "stepByStep": [
-        "Designer: tight tolerance \u2192 better function, but higher processing cost.",
-        "Manufacturing engineer: largest acceptable tolerance \u2192 easier and cheaper to produce.",
+        "Designer: tight tolerance → better function, but higher processing cost.",
+        "Manufacturing engineer: largest acceptable tolerance → easier and cheaper to produce.",
         "That is why the two must interact from the very beginning (Concurrent Engineering)."
       ],
       "commonTrap": "Assuming tighter tolerance is always better. It raises cost and hurts manufacturability.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 4"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 4"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 4"
       }
     ]
@@ -3503,12 +3503,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The slides note it has been applied most notably in the aerospace industry."
       ],
       "commonTrap": "Option C describes the traditional sequential approach that Concurrent Engineering replaces.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 5"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 5"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 5"
       }
     ]
@@ -3533,12 +3533,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Level 0 = Product; Level 1 = subassemblies (S1, S2); lower levels = sub-subassemblies, components (C) and raw materials (R)."
       ],
       "commonTrap": "Thinking Level 0 is the bottom of the tree (raw material).",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 7"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 7"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 7"
       }
     ]
@@ -3549,7 +3549,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch3",
     "topic": "Sequence of Operations",
     "difficulty": "Midterm Level",
-    "question": "In the lecture's steel-shaft sequence (cut stock \u2192 facing \u2192 turning \u2192 drilling \u2192 grooving \u2192 heat treatment \u2192 grinding \u2192 surface finishing \u2192 coating), why is grinding placed after heat treatment?",
+    "question": "In an alloy steel shaft manufacturing routing (turning → drilling → grooving → heat treatment → grinding), why is precision grinding scheduled after heat treatment rather than before?",
     "options": [
       "Heat treatment hardens and can distort the part, so grinding is done afterwards to reach the final tolerance and surface finish on the hard metal",
       "Grinding softens the metal so that heat treatment is more effective",
@@ -3562,15 +3562,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "stepByStep": [
         "Grinding removes metal in small pieces to improve the surface finish on very hard metal.",
         "Grinding before heat treatment would let the heat treatment distort the finished dimensions.",
-        "So it goes: rough machining (soft) \u2192 heat treat (hard) \u2192 grind (final tolerance)."
+        "So it goes: rough machining (soft) → heat treat (hard) → grind (final tolerance)."
       ],
       "commonTrap": "Assuming the order is arbitrary. Operations sequencing is an explicit step in process engineering.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 19"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 19"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 19"
       }
     ]
@@ -3597,12 +3597,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Rolling can be either hot or cold."
       ],
       "commonTrap": "Swapping the two. Heat makes the metal easy to shape, but it scales the surface and loosens tolerances.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 24"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 24"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 24"
       }
     ]
@@ -3628,12 +3628,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Jig = hold + guide the tool into the workpiece (drilling jig)."
       ],
       "commonTrap": "Swapping the definitions. Remember \"Jig guides\".",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 36"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 36"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 36"
       }
     ]
@@ -3658,12 +3658,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$d = |2 - 8| + |3 - 11| = 6 + 8 = 14$."
       ],
       "commonTrap": "Computing the Euclidean distance $\\sqrt{6^2 + 8^2} = 10$ when the setting calls for rectilinear.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 7"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 7"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 7"
       }
     ]
@@ -3690,12 +3690,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\bar{x} = 9{,}000 / 400 = 22.5$"
       ],
       "commonTrap": "Using the equal-quantity formula $(10+30+20)/3 = 20$.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 20"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 20"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 20"
       }
     ]
@@ -3704,9 +3704,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_INDU211_017",
     "courseId": "INDU211",
     "chapter": "ch4",
-    "topic": "Center of Gravity (Lecture Example)",
+    "topic": "Center of Gravity (Weighted Example)",
     "difficulty": "Exam Master",
-    "question": "Lecture example: destinations D1 $(2,2)$, D2 $(3,5)$, D3 $(5,4)$, D4 $(8,5)$ receive 800, 900, 200 and 100 units/week. Where should the distribution center be located?",
+    "question": "destinations D1 $(2,2)$, D2 $(3,5)$, D3 $(5,4)$, D4 $(8,5)$ receive 800, 900, 200 and 100 units/week. Where should the distribution center be located?",
     "options": [
       "$(3.05,\\ 3.70)$",
       "$(4.50,\\ 4.00)$",
@@ -3722,12 +3722,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\sum Q_i y_i = 1{,}600 + 4{,}500 + 800 + 500 = 7{,}400 \\implies \\bar{y} = 3.70$"
       ],
       "commonTrap": "$(4.5, 4.0)$ is the equal-quantity answer. The heavy demand at D1 and D2 pulls the location toward the lower left.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 22"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 22"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 22"
       }
     ]
@@ -3738,8 +3738,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch4",
     "topic": "Transportation Method (Least-Cost)",
     "difficulty": "Exam Master",
-    "question": "Plain View example. Factories: Amarillo (400), Waco (1,000), Huntsville (600). Warehouses: San Antonio (300), Dallas (900), Houston (800). Unit costs are in the table. Using the least-cost assignment method (and allocating Amarillo\u2192Dallas first when the two cells costing 21 tie), what is the total monthly shipping cost?",
-    "codeSnippet": "From \\ To     San Antonio   Dallas   Houston   Capacity\nAmarillo           31          21        42        400\nWaco               20          21        30      1,000\nHuntsville         23          20        15        600\nDemand            300         900       800      2,000",
+    "question": "Plain View example. Factories: Amarillo (400), Waco (1,000), Huntsville (600). Warehouses: San Antonio (300), Dallas (900), Houston (800). Unit costs are in the table. Using the least-cost assignment method (and allocating Amarillo→Dallas first when the two cells costing 21 tie), what is the total monthly shipping cost?",
     "options": [
       "$39,900",
       "$42,300",
@@ -3750,20 +3749,21 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Least-cost assignment: repeatedly pick the cheapest remaining cell and allocate as much as possible, until all demand is met and all supply is used.",
       "stepByStep": [
-        "Cost 15: Huntsville\u2192Houston 600 (Huntsville used up; Houston needs 200 more).",
-        "Cost 20: Waco\u2192San Antonio 300 (San Antonio done; Waco has 700 left).",
-        "Cost 21 (tie): Amarillo\u2192Dallas 400, then Waco\u2192Dallas 500 (Dallas done; Waco has 200 left).",
-        "Cost 30: Waco\u2192Houston 200 (Houston done).",
+        "Cost 15: Huntsville→Houston 600 (Huntsville used up; Houston needs 200 more).",
+        "Cost 20: Waco→San Antonio 300 (San Antonio done; Waco has 700 left).",
+        "Cost 21 (tie): Amarillo→Dallas 400, then Waco→Dallas 500 (Dallas done; Waco has 200 left).",
+        "Cost 30: Waco→Houston 200 (Houston done).",
         "Cost $= 600(15) + 300(20) + 400(21) + 500(21) + 200(30) = 9{,}000 + 6{,}000 + 8{,}400 + 10{,}500 + 6{,}000 = \\$39{,}900$."
       ],
-      "commonTrap": "Breaking the tie the other way (Waco\u2192Dallas first) forces Amarillo\u2192Houston at 42/unit and gives a total of 42,300. That is exactly why least-cost gives a good feasible solution, not a guaranteed optimum.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Pages 14\u201315"
+      "commonTrap": "Breaking the tie the other way (Waco→Dallas first) forces Amarillo→Houston at 42/unit and gives a total of 42,300. That is exactly why least-cost gives a good feasible solution, not a guaranteed optimum.",
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Pages 14–15"
     },
+    "codeSnippet": "From \\ To     San Antonio   Dallas   Houston   Capacity\nAmarillo           31          21        42        400\nWaco               20          21        30      1,000\nHuntsville         23          20        15        600\nDemand            300         900       800      2,000",
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
-        "location": "Pages 14\u201315"
+        "chapter": "Chapter 4 — Facilities Location & Layout",
+        "location": "Pages 14–15"
       }
     ]
   },
@@ -3773,7 +3773,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch4",
     "topic": "Material Handling Cost Rule",
     "difficulty": "Foundation",
-    "question": "According to the Chapter 4 facility-layout lecture, material handling typically accounts for what share of production cost?",
+    "question": "In industrial plant operations and facility layout design, material handling typically accounts for what estimated proportion of total operating cost?",
     "options": [
       "30% to 95%",
       "5% to 10%",
@@ -3787,12 +3787,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Because it is so large and non-value-adding, layout and the material handling system are designed together."
       ],
       "commonTrap": "Treating material handling as a minor overhead.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 7"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 7"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 7"
       }
     ]
@@ -3818,12 +3818,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Limitations: expensive material handling, harder planning and control, large WIP, higher skill required."
       ],
       "commonTrap": "Confusing it with cellular layout, which groups different machines into cells that each process a family of similar parts.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 13"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 13"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 13"
       }
     ]
@@ -3849,12 +3849,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Options B, C and D are all limitations of the process layout."
       ],
       "commonTrap": "Mixing up the advantage/limitation lists of the product and process layouts.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 12"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 12"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 12"
       }
     ]
@@ -3880,12 +3880,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "It is more flexible (but less efficient) than a product layout, and more efficient (but less flexible) than a process layout."
       ],
       "commonTrap": "Confusing part families (similar processing) with high volume of a single product.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 16"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 16"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 16"
       }
     ]
@@ -3907,15 +3907,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Cells co-locate the machines a part family needs, so parts no longer travel between distant functional departments.",
       "stepByStep": [
-        "Shorter travel \u2192 lower handling cost, less WIP, faster throughput."
+        "Shorter travel → lower handling cost, less WIP, faster throughput."
       ],
       "commonTrap": "Thinking cellular is the most flexible layout. The process layout is more flexible; cellular trades some flexibility for efficiency.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 16"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 16"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 16"
       }
     ]
@@ -3940,12 +3940,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "It is used when the product is very bulky, large, heavy or fragile (ships, aircraft, buildings)."
       ],
       "commonTrap": "Choosing product layout just because the vessel is \"assembled\". The ship cannot move down a line.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 18"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 18"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 18"
       }
     ]
@@ -3972,12 +3972,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Containers and racks: store and handle bulk material, better use of space."
       ],
       "commonTrap": "Picking industrial trucks. They are for varying paths, not a fixed route at a constant rate.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 5"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 5"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 5"
       }
     ]
@@ -4002,12 +4002,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Match each piece of equipment to its defining characteristics from the Chapter 5 slides."
       ],
       "commonTrap": "Confusing an AGV (a moving vehicle) with an AS/RS (a storage system with a crane).",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 9"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 9"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 9"
       }
     ]
@@ -4034,12 +4034,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Space utilization = high racks with narrow-aisle stacking trucks."
       ],
       "commonTrap": "Choosing standardization because pallets are mentioned. The key idea here is the size of the load moved at once.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 11"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 11"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 11"
       }
     ]
@@ -4048,10 +4048,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_INDU211_028",
     "courseId": "INDU211",
     "chapter": "ch5",
-    "topic": "TSP \u2013 Nearest Neighbor Heuristic",
+    "topic": "TSP – Nearest Neighbor Heuristic",
     "difficulty": "Exam Master",
-    "question": "A truck must leave plant A, visit warehouses B\u2013G once each, and return to A (distance matrix below). Using the Nearest Neighbor method from A, and going to B when E\u2192B and E\u2192G tie, what is the total route distance?",
-    "codeSnippet": "      A   B   C   D   E   F   G\nA     -  14  21  20   6  24   9\nB    14   -  10   9   9  10  11\nC    21  10   -   1  15   9  21\nD    20   9   1   -  14   9  20\nE     6   9  15  14   -  19   9\nF    24  10   9   9  19   -  21\nG     9  11  21  20   9  21   -",
+    "question": "A truck must leave plant A, visit warehouses B–G once each, and return to A (distance matrix below). Using the Nearest Neighbor method from A, and going to B when E→B and E→G tie, what is the total route distance?",
     "options": [
       "64",
       "60",
@@ -4062,16 +4061,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Nearest Neighbor: from the current node, always go to the closest unvisited node, then return to the start. It gives a feasible route quickly, but not necessarily the optimal one.",
       "stepByStep": [
-        "A\u2192E (6) \u2192 B (9, tie with G) \u2192 D (9) \u2192 C (1) \u2192 F (9) \u2192 G (21) \u2192 A (9).",
+        "A→E (6) → B (9, tie with G) → D (9) → C (1) → F (9) → G (21) → A (9).",
         "Route A-E-B-D-C-F-G-A: $6 + 9 + 9 + 1 + 9 + 21 + 9 = 64$."
       ],
-      "commonTrap": "60 is the optimal tour (A-G-B-F-C-D-E-A), which Nearest Neighbor does not find. 69 comes from taking G at the tie, and 55 forgets the return leg G\u2192A.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 14"
+      "commonTrap": "60 is the optimal tour (A-G-B-F-C-D-E-A), which Nearest Neighbor does not find. 69 comes from taking G at the tie, and 55 forgets the return leg G→A.",
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 14"
     },
+    "codeSnippet": "      A   B   C   D   E   F   G\nA     -  14  21  20   6  24   9\nB    14   -  10   9   9  10  11\nC    21  10   -   1  15   9  21\nD    20   9   1   -  14   9  20\nE     6   9  15  14   -  19   9\nF    24  10   9   9  19   -  21\nG     9  11  21  20   9  21   -",
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 14"
       }
     ]
@@ -4083,7 +4083,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Clark-Wright Savings",
     "difficulty": "Midterm Level",
     "question": "Using the same distance matrix with depot A, what is the Clark-Wright savings from serving C and D on one route instead of two separate round trips?",
-    "codeSnippet": "      A   B   C   D   E   F   G\nA     -  14  21  20   6  24   9\nB    14   -  10   9   9  10  11\nC    21  10   -   1  15   9  21\nD    20   9   1   -  14   9  20\nE     6   9  15  14   -  19   9\nF    24  10   9   9  19   -  21\nG     9  11  21  20   9  21   -",
     "options": [
       "40",
       "41",
@@ -4095,15 +4094,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Savings $s_{ij} = d_{Ai} + d_{Aj} - d_{ij}$: the distance saved by linking $i$ and $j$ instead of returning to the depot between them.",
       "stepByStep": [
         "$s_{CD} = d_{AC} + d_{AD} - d_{CD} = 21 + 20 - 1 = 40$.",
-        "This is the highest saving in the example, so C\u2013D is the first pair joined into a route."
+        "This is the highest saving in the example, so C–D is the first pair joined into a route."
       ],
       "commonTrap": "Forgetting to subtract $d_{CD}$ (giving 41), or doubling the depot legs (82).",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 19"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 19"
     },
+    "codeSnippet": "      A   B   C   D   E   F   G\nA     -  14  21  20   6  24   9\nB    14   -  10   9   9  10  11\nC    21  10   -   1  15   9  21\nD    20   9   1   -  14   9  20\nE     6   9  15  14   -  19   9\nF    24  10   9   9  19   -  21\nG     9  11  21  20   9  21   -",
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 19"
       }
     ]
@@ -4112,9 +4112,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_INDU211_030",
     "courseId": "INDU211",
     "chapter": "ch5",
-    "topic": "VRP \u2013 Capacity Feasibility",
+    "topic": "VRP – Capacity Feasibility",
     "difficulty": "Exam Master",
-    "question": "VRP example: truck capacity is 25,000 units. Demands: B 5,000, C 7,000, D 10,000, E 4,000, F 6,000, G 10,000. Clark-Wright has built the route Depot\u2013F\u2013C\u2013D\u2013Depot. The next saving on the ranked list is B\u2013F (28). What happens to it?",
+    "question": "VRP example: truck capacity is 25,000 units. Demands: B 5,000, C 7,000, D 10,000, E 4,000, F 6,000, G 10,000. Clark-Wright has built the route Depot–F–C–D–Depot. The next saving on the ranked list is B–F (28). What happens to it?",
     "options": [
       "It is rejected: adding B raises the route load to 28,000 units, which exceeds the 25,000 truck capacity",
       "It is accepted, because it has the next-highest saving",
@@ -4126,16 +4126,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Clark-Wright works down the ranked savings list. Each link is added only if the truck capacity is respected and the route stays feasible (joining at a route end).",
       "stepByStep": [
         "Current load F + C + D $= 6{,}000 + 7{,}000 + 10{,}000 = 23{,}000$.",
-        "Adding B: $23{,}000 + 5{,}000 = 28{,}000 > 25{,}000$ \u2192 reject and move to the next saving.",
-        "Final routes: Depot\u2013F\u2013C\u2013D\u2013Depot and Depot\u2013E\u2013B\u2013G\u2013Depot (19,000). Total distance $= 24+9+1+20+6+9+11+9 = 89$."
+        "Adding B: $23{,}000 + 5{,}000 = 28{,}000 > 25{,}000$ → reject and move to the next saving.",
+        "Final routes: Depot–F–C–D–Depot and Depot–E–B–G–Depot (19,000). Total distance $= 24+9+1+20+6+9+11+9 = 89$."
       ],
       "commonTrap": "Accepting savings purely by rank. The capacity check is what separates the VRP from the TSP.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 21"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 21"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 21"
       }
     ]
@@ -4155,18 +4155,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Science: the quest for basic knowledge (conjectures \u2192 theories verified by physical experiments). Engineering: applying that knowledge to materials, power, structures and systems to make life better.",
+      "coreConcept": "Science: the quest for basic knowledge (conjectures → theories verified by physical experiments). Engineering: applying that knowledge to materials, power, structures and systems to make life better.",
       "stepByStep": [
         "The two work hand in hand: science receives feedback from engineering about where knowledge is needed.",
         "Advances in mathematics are fundamental to all engineering developments."
       ],
       "commonTrap": "Reversing the roles. The Great Wall is the lecture's engineering example; the inclined plane and the wheel are its science examples.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 5"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 5"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 5"
       }
     ]
@@ -4188,15 +4188,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Ingenium means a talent or natural capacity: clever, innovative, creative, good for invention.",
       "stepByStep": [
-        "\"Engineer\" \u2192 one with ingenium; \"ingenious\" \u2192 having ingenium."
+        "\"Engineer\" → one with ingenium; \"ingenious\" → having ingenium."
       ],
       "commonTrap": "Assuming \"engineer\" comes from \"engine\". Both words share the older root ingenium.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 3"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 3"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 3"
       }
     ]
@@ -4207,7 +4207,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1-2",
     "topic": "Components of a Production System",
     "difficulty": "Midterm Level",
-    "question": "In the Chapter 2 production-system model (Inputs \u2192 Conversion process \u2192 Outputs), what makes it a closed-loop system?",
+    "question": "In the Chapter 2 production-system model (Inputs → Conversion process → Outputs), what makes it a closed-loop system?",
     "options": [
       "Market feedback and performance monitoring that trigger corrective action on the inputs/process",
       "Using only primary resources as inputs",
@@ -4221,12 +4221,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The feedback path is what makes the system aware of, and influenced by, its own performance, i.e. closed loop."
       ],
       "commonTrap": "Thinking the type of output (product vs service) decides open vs closed loop. Only the feedback path does.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 21"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 21"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 21"
       }
     ]
@@ -4237,29 +4237,29 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1-2",
     "topic": "IE vs Other Disciplines",
     "difficulty": "Foundation",
-    "question": "In the lecture's comparison of engineering disciplines, which core scientific knowledge is associated with Industrial Engineering?",
+    "question": "In contrast to pure mechanical or electrical engineering, which foundational scientific domain is uniquely integrated into Industrial Engineering?",
     "options": [
       "Applied mathematics / operations research",
-      "Physics \u2013 dynamics",
-      "Physics \u2013 statics",
-      "Physics \u2013 electromagnetics"
+      "Physics – dynamics",
+      "Physics – statics",
+      "Physics – electromagnetics"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "IE deals with products and processes as systems of connected components operated and managed by people (factories, hospitals, banks). Its core tool is applied math / OR.",
       "stepByStep": [
-        "Mechanical \u2192 dynamics (products that move).",
-        "Civil \u2192 statics (products that do not move).",
-        "Electrical \u2192 electromagnetics.",
-        "Industrial \u2192 applied math / operations research, used with and for people."
+        "Mechanical → dynamics (products that move).",
+        "Civil → statics (products that do not move).",
+        "Electrical → electromagnetics.",
+        "Industrial → applied math / operations research, used with and for people."
       ],
       "commonTrap": "Picking dynamics because IE works in factories. IE's distinguishing feature is systems that contain people.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 26"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 26"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 26"
       }
     ]
@@ -4281,15 +4281,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Material handling moves material between receiving, storage, work centers and shipping, but does not transform the product. It is non-value-added.",
       "stepByStep": [
-        "That is why layout and material handling are designed together: less handling means lower cost, since handling can be 30\u201395% of production cost."
+        "That is why layout and material handling are designed together: less handling means lower cost, since handling can be 30–95% of production cost."
       ],
       "commonTrap": "Confusing necessary with value-adding. Handling is needed, but the customer does not pay for movement.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 3"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 3"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 3"
       }
     ]
@@ -4311,17 +4311,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Space utilization: make use of cubic space, e.g. high racks with narrow-aisle stacking trucks in warehouses.",
       "stepByStep": [
-        "Gravity \u2192 gravity-feed bins, roller conveyors.",
-        "Unit size \u2192 largest accumulated load (pallets).",
-        "Simplification \u2192 motion economy."
+        "Gravity → gravity-feed bins, roller conveyors.",
+        "Unit size → largest accumulated load (pallets).",
+        "Simplification → motion economy."
       ],
       "commonTrap": "Picking gravity because the goods are stacked vertically. Gravity means using gravity to move material.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 10"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 10"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 10"
       }
     ]
@@ -4346,12 +4346,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Clark-Wright is the heuristic the lecture uses for the capacity-constrained case."
       ],
       "commonTrap": "Thinking \"more than one truck\" is enough to make it a VRP. The key is that capacity binds.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 15"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 15"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 15"
       }
     ]
@@ -4376,12 +4376,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The others come from the modern era / industrial revolution."
       ],
       "commonTrap": "Mixing up early marvels with industrial-era developments.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 9"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 9"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 9"
       }
     ]
@@ -4392,7 +4392,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1-2",
     "topic": "Science vs Engineering Examples",
     "difficulty": "Foundation",
-    "question": "In the lecture, which example is given as a SCIENCE development (rather than an engineering one)?",
+    "question": "In distinguishing pure scientific discovery from applied engineering synthesis, which of the following represents a pure scientific theory/discovery?",
     "options": [
       "The inclined plane and the wheel",
       "The Great Wall of China",
@@ -4406,12 +4406,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Science and engineering work hand in hand."
       ],
       "commonTrap": "Treating any old invention as engineering.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 4"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 4"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 4"
       }
     ]
@@ -4436,12 +4436,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Mathematics is the common language of science and engineering."
       ],
       "commonTrap": "Choosing computers, which came much later.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 4"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 4"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 4"
       }
     ]
@@ -4463,15 +4463,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Conjectures are derived with valid reasoning consistent with existing knowledge; theories are conjectures verified by physical experiments.",
       "stepByStep": [
-        "Observation \u2192 conjecture \u2192 controlled experiments validate or nullify."
+        "Observation → conjecture → controlled experiments validate or nullify."
       ],
       "commonTrap": "Calling an untested conjecture a theory.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 5"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 5"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 5"
       }
     ]
@@ -4496,12 +4496,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "IEs must be more people-oriented in their solutions."
       ],
       "commonTrap": "Thinking IE is purely technical.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 10"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 10"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 10"
       }
     ]
@@ -4521,17 +4521,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Rapid technological innovation \u2192 mass production \u2192 interchangeable parts, specialized labour, need for better management.",
+      "coreConcept": "Rapid technological innovation → mass production → interchangeable parts, specialized labour, need for better management.",
       "stepByStep": [
         "This is the setting in which IE emerged."
       ],
       "commonTrap": "Forgetting the management dimension.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 10"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 10"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 10"
       }
     ]
@@ -4556,12 +4556,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Licensing protects the public."
       ],
       "commonTrap": "Assuming a degree alone gives the right to practise.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 12"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 12"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 12"
       }
     ]
@@ -4586,12 +4586,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Managing any of those acts also counts."
       ],
       "commonTrap": "Defining it by workplace instead of by the act and its consequences.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 13"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 13"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 13"
       }
     ]
@@ -4602,7 +4602,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1-2",
     "topic": "Analysis vs Synthesis",
     "difficulty": "Foundation",
-    "question": "In the engineering process slide, what is the difference between analysis and synthesis?",
+    "question": "In the engineering design process, what is the fundamental difference between analysis and synthesis?",
     "options": [
       "Analysis resolves something into basic elements (existing system); synthesis combines elements into a whole (new system)",
       "Analysis builds new systems; synthesis studies old ones",
@@ -4611,17 +4611,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Process: symptom \u2192 problem definition \u2192 analysis \u2192 synthesis of alternatives \u2192 decision \u2192 solution.",
+      "coreConcept": "Process: symptom → problem definition → analysis → synthesis of alternatives → decision → solution.",
       "stepByStep": [
         "Analysis examines; synthesis creates."
       ],
       "commonTrap": "Reversing the two definitions.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 14"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 14"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 14"
       }
     ]
@@ -4646,12 +4646,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Operations research came later (military applications)."
       ],
       "commonTrap": "Linking IE only to the computer age.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 16"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 16"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 16"
       }
     ]
@@ -4676,12 +4676,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Babbage: division of labour. Ford: mass production and assembly lines."
       ],
       "commonTrap": "Crediting Ford with statistical quality control (Shewhart).",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 16"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 16"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 16"
       }
     ]
@@ -4706,12 +4706,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Gantt: Gantt chart. Shewhart: quality control."
       ],
       "commonTrap": "Confusing Frank with Lillian Gilbreth.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 16"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 16"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 16"
       }
     ]
@@ -4736,12 +4736,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Today OR extends to business and data analytics."
       ],
       "commonTrap": "Assuming OR started in manufacturing.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 17"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 17"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 17"
       }
     ]
@@ -4766,12 +4766,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The social sciences are included because people are part of the system."
       ],
       "commonTrap": "Leaving people out of the definition.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 18"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 18"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 18"
       }
     ]
@@ -4791,17 +4791,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "IE designs (1) human activity systems \u2014 process, machines, layout, material handling \u2014 and (2) management control systems \u2014 procedures for planning, measuring and controlling.",
+      "coreConcept": "IE designs (1) human activity systems — process, machines, layout, material handling — and (2) management control systems — procedures for planning, measuring and controlling.",
       "stepByStep": [
         "The listed items are planning/control procedures."
       ],
       "commonTrap": "Classifying planning procedures as physical workplace design.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 19"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 19"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 19"
       }
     ]
@@ -4812,7 +4812,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch1-2",
     "topic": "IE Motto",
     "difficulty": "Foundation",
-    "question": "Complete the Chapter 1 slogan: \"Industrial engineers work with PEOPLE to do things\u2026\"",
+    "question": "Complete the Chapter 1 slogan: \"Industrial engineers work with PEOPLE to do things…\"",
     "options": [
       "Better, faster, safer, cheaper",
       "Bigger, heavier, louder, costlier",
@@ -4826,12 +4826,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Four goals: better, faster, safer, cheaper."
       ],
       "commonTrap": "Focusing only on cost.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 24"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 24"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 24"
       }
     ]
@@ -4851,17 +4851,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Mechanical \u2192 cars, trains, machines (physics/dynamics). Civil \u2192 buildings, bridges, roads (physics/statics).",
+      "coreConcept": "Mechanical → cars, trains, machines (physics/dynamics). Civil → buildings, bridges, roads (physics/statics).",
       "stepByStep": [
-        "Industrial \u2192 systems operated by people (applied math/OR)."
+        "Industrial → systems operated by people (applied math/OR)."
       ],
       "commonTrap": "Swapping statics and dynamics.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 25"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 25"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 25"
       }
     ]
@@ -4886,12 +4886,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The IISE advice slide also stresses communication."
       ],
       "commonTrap": "Swapping the 15% and 85%.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 31"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 31"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 31"
       }
     ]
@@ -4916,12 +4916,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "AI enhances IE rather than displacing it."
       ],
       "commonTrap": "Choosing the opposite of a listed trend.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 32"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 32"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 32"
       }
     ]
@@ -4946,12 +4946,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Real-time data helps identify bottlenecks and optimize supply chains."
       ],
       "commonTrap": "Assuming automation replaces the engineer.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 33"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 33"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 33"
       }
     ]
@@ -4976,12 +4976,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Licensing itself is done by provincial bodies such as the OIQ."
       ],
       "commonTrap": "Confusing accreditation of programs with licensing of people.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 36"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 36"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 36"
       }
     ]
@@ -5006,12 +5006,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "In Quebec the regulator is the OIQ."
       ],
       "commonTrap": "Mixing it up with the OIQ or IISE.",
-      "reference": "1.0.INDU_211_CH12_2025.pdf \u00b7 Page 35"
+      "reference": "1.0.INDU_211_CH12_2025.pdf · Page 35"
     },
     "source": [
       {
         "deck": "1.0.INDU_211_CH12_2025.pdf",
-        "chapter": "Chapters 1 & 2 \u2014 Engineering & IE Foundations",
+        "chapter": "Chapters 1 & 2 — Engineering & IE Foundations",
         "location": "Page 35"
       }
     ]
@@ -5036,12 +5036,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "It covers everything related to making the product."
       ],
       "commonTrap": "Confusing it with business functions.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 3"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 3"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 3"
       }
     ]
@@ -5052,7 +5052,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch3",
     "topic": "Product Design Role",
     "difficulty": "Foundation",
-    "question": "In the product\u2013production design interaction, what does product design evaluate?",
+    "question": "In the product–production design interaction, what does product design evaluate?",
     "options": [
       "The ability of the part to perform its function (size, shape, strength)",
       "The cost of producing the part",
@@ -5066,12 +5066,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The two interact from the very beginning."
       ],
       "commonTrap": "Assigning cost evaluation to the product designer.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 4"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 4"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 4"
       }
     ]
@@ -5095,13 +5095,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "stepByStep": [
         "Its aim is to reduce time to market by integrating functions early."
       ],
-      "commonTrap": "Guessing automotive \u2014 possible in practice, but not what the slide states.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 5"
+      "commonTrap": "Guessing automotive — possible in practice, but not what the slide states.",
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 5"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 5"
       }
     ]
@@ -5126,12 +5126,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The BOM supports the product-structure step."
       ],
       "commonTrap": "Reducing it to machine selection only.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 6"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 6"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 6"
       }
     ]
@@ -5156,12 +5156,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Commonly available materials help for the same reason."
       ],
       "commonTrap": "Thinking custom features are always better.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 9"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 9"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 9"
       }
     ]
@@ -5172,7 +5172,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch3",
     "topic": "Fixed vs Variable Costs",
     "difficulty": "Foundation",
-    "question": "Which item is a VARIABLE cost in the Chapter 3 cost\u2013volume model?",
+    "question": "Which item is a VARIABLE cost in the Chapter 3 cost–volume model?",
     "options": [
       "Material used per unit",
       "Purchase of a machine",
@@ -5186,12 +5186,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Total cost Y = aX + b (a = variable cost per unit, b = fixed cost)."
       ],
       "commonTrap": "Counting jigs/fixtures as variable.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 10"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 10"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 10"
       }
     ]
@@ -5211,17 +5211,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "BEP = FC / (p \u2212 v).",
+      "coreConcept": "BEP = FC / (p − v).",
       "stepByStep": [
-        "28,000 / (200 \u2212 100) = 280 units."
+        "28,000 / (200 − 100) = 280 units."
       ],
       "commonTrap": "Dividing by the price only (140).",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 12"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 12"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 12"
       }
     ]
@@ -5246,12 +5246,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The slide: \"If estimated total demand is less than 280, the company should not set up the system.\""
       ],
       "commonTrap": "Assuming any sales volume is profitable.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 12"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 12"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 12"
       }
     ]
@@ -5278,12 +5278,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "C: 75,000 + 50,000 = 125,000."
       ],
       "commonTrap": "Choosing the lowest fixed cost (C) without computing totals.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 17"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 17"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 17"
       }
     ]
@@ -5294,7 +5294,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch3",
     "topic": "Minimum Selling Price",
     "difficulty": "Exam Master",
-    "question": "In the same example, the slide says the selling price must be at least $12/unit when producing 10,000 units with process B. Why?",
+    "question": "In break-even analysis, if process B has fixed cost $70,000 and variable cost $5/unit, why must the minimum selling price be at least $12/unit to break even at 10,000 units?",
     "options": [
       "Total cost of B at 10,000 units is $\\$120{,}000$, i.e. $\\$12$ per unit",
       "Variable cost of B is $12",
@@ -5308,12 +5308,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "120,000 / 10,000 = $12/unit."
       ],
       "commonTrap": "Using only the variable cost ($4).",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 17"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 17"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 17"
       }
     ]
@@ -5333,17 +5333,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "CNC machining and 3D printing: high purchase and high production cost (slow cycle). Stamping: high set-up, low unit cost \u2192 best for high volume.",
+      "coreConcept": "CNC machining and 3D printing: high purchase and high production cost (slow cycle). Stamping: high set-up, low unit cost → best for high volume.",
       "stepByStep": [
-        "This is the cost\u2013volume trade-off in action."
+        "This is the cost–volume trade-off in action."
       ],
       "commonTrap": "Picking CNC because it is precise.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 16"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 16"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 16"
       }
     ]
@@ -5368,12 +5368,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Fewer set-ups also help quality."
       ],
       "commonTrap": "Thinking more machine changes improve quality.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 18"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 18"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 18"
       }
     ]
@@ -5398,12 +5398,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Photosynthesis is not a manufacturing process."
       ],
       "commonTrap": "Forgetting that additive manufacturing is on the list.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 21"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 21"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 21"
       }
     ]
@@ -5416,24 +5416,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Midterm Level",
     "question": "What is the difference between refining and alloying?",
     "options": [
-      "Refining improves the usefulness of metal ore (e.g. iron ore \u2192 steel); alloying transforms metals (heat treating, combining metals) to improve hardness, strength, workability",
+      "Refining improves the usefulness of metal ore (e.g. iron ore → steel); alloying transforms metals (heat treating, combining metals) to improve hardness, strength, workability",
       "Refining combines metals; alloying removes impurities",
       "They are identical processes",
       "Alloying only applies to plastics"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Refining: blast furnace \u2192 steel mill. Alloying: metallurgical transformation because primary metals lack required properties.",
+      "coreConcept": "Refining: blast furnace → steel mill. Alloying: metallurgical transformation because primary metals lack required properties.",
       "stepByStep": [
         "Different steels come from different furnace temperatures and compositions."
       ],
       "commonTrap": "Swapping the two definitions.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 21"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 21"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 21"
       }
     ]
@@ -5458,12 +5458,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Permanent molds suit high volume."
       ],
       "commonTrap": "Confusing casting with forging.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 23"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 23"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 23"
       }
     ]
@@ -5488,12 +5488,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Both use a die, but the force direction differs."
       ],
       "commonTrap": "Choosing extrusion (pushing, not pulling).",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 24"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 24"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 24"
       }
     ]
@@ -5518,12 +5518,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Both are metal-forming (pressure) processes."
       ],
       "commonTrap": "Reversing continuous and intermittent.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 27"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 27"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 27"
       }
     ]
@@ -5548,12 +5548,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Milling uses a revolving multi-tooth cutter."
       ],
       "commonTrap": "Swapping which part moves.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 30"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 30"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 30"
       }
     ]
@@ -5578,12 +5578,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Grinding removes small pieces to finish very hard metal."
       ],
       "commonTrap": "Assuming both rotate.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 31"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 31"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 31"
       }
     ]
@@ -5603,17 +5603,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Shearing: applying pressure and forcing the metal between two sharp edges \u2014 blanking, parting, punching, nibbling.",
+      "coreConcept": "Shearing: applying pressure and forcing the metal between two sharp edges — blanking, parting, punching, nibbling.",
       "stepByStep": [
         "Turning rotates the workpiece against a cutting tool."
       ],
       "commonTrap": "Choosing drilling because it makes holes like punching.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 29"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 29"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 29"
       }
     ]
@@ -5638,12 +5638,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Casting, milling and extrusion are other processes."
       ],
       "commonTrap": "Confusing welding with casting.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 32"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 32"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 32"
       }
     ]
@@ -5668,12 +5668,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Packaging protects the product in transit."
       ],
       "commonTrap": "Applying the same maintenance policy to every machine.",
-      "reference": "2.0.INDU_211_CH3_2025.pdf \u00b7 Page 34"
+      "reference": "2.0.INDU_211_CH3_2025.pdf · Page 34"
     },
     "source": [
       {
         "deck": "2.0.INDU_211_CH3_2025.pdf",
-        "chapter": "Chapter 3 \u2014 Manufacturing Engineering",
+        "chapter": "Chapter 3 — Manufacturing Engineering",
         "location": "Page 34"
       }
     ]
@@ -5698,12 +5698,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "It is team work: accountants, lawyers, marketing, executives, IEs."
       ],
       "commonTrap": "Treating location as a short-term decision.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 5"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 5"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 5"
       }
     ]
@@ -5728,12 +5728,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Heavy, bulky inputs favour locating near raw materials."
       ],
       "commonTrap": "Mixing up with potato chips (near markets).",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 6"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 6"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 6"
       }
     ]
@@ -5758,12 +5758,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Emergency service location problems use this idea."
       ],
       "commonTrap": "Using a total-cost objective for fairness-driven public services.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 7"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 7"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 7"
       }
     ]
@@ -5783,17 +5783,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Euclidean \u2192 intercity travel. Rectilinear \u2192 urban grid, factory corridors, walk paths.",
+      "coreConcept": "Euclidean → intercity travel. Rectilinear → urban grid, factory corridors, walk paths.",
       "stepByStep": [
         "Pick the metric that matches how travel actually happens."
       ],
       "commonTrap": "Using straight lines inside a building with corridors.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 7"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 7"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 7"
       }
     ]
@@ -5818,12 +5818,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\sqrt{36 + 64} = \\sqrt{100} = 10$."
       ],
       "commonTrap": "Giving the rectilinear value (14).",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 7"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 7"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 7"
       }
     ]
@@ -5848,12 +5848,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Gantt/PERT are project tools; time study belongs to work measurement."
       ],
       "commonTrap": "Listing Chapter 3 tools.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 8"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 8"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 8"
       }
     ]
@@ -5878,12 +5878,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Each candidate site is evaluated with its own transportation problem."
       ],
       "commonTrap": "Thinking the method chooses the site directly.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 9"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 9"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 9"
       }
     ]
@@ -5905,15 +5905,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Repeat until all demand is met and supply used; ties may be broken arbitrarily.",
       "stepByStep": [
-        "In Plain View, Huntsville\u2192Houston ($15) is filled first."
+        "In Plain View, Huntsville→Houston ($15) is filled first."
       ],
       "commonTrap": "Starting with the largest cost.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 13"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 13"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 13"
       }
     ]
@@ -5926,24 +5926,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "In the Plain View example, which cell does the least-cost method fill first?",
     "options": [
-      "Huntsville \u2192 Houston ($15), 600 units",
-      "Amarillo \u2192 Dallas ($21), 400 units",
-      "Waco \u2192 San Antonio ($20), 300 units",
-      "Amarillo \u2192 Houston ($42), 400 units"
+      "Huntsville → Houston ($15), 600 units",
+      "Amarillo → Dallas ($21), 400 units",
+      "Waco → San Antonio ($20), 300 units",
+      "Amarillo → Houston ($42), 400 units"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "The smallest unit cost in the table is $15.",
       "stepByStep": [
-        "Huntsville supplies 600 \u2192 Houston still needs 200."
+        "Huntsville supplies 600 → Houston still needs 200."
       ],
       "commonTrap": "Starting with the first row of the table.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 14"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 14"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 14"
       }
     ]
@@ -5968,12 +5968,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Without Huntsville, capacity (1,400) could not meet demand."
       ],
       "commonTrap": "Adding only two factories.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 12"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 12"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 12"
       }
     ]
@@ -5984,7 +5984,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch4",
     "topic": "Center of Gravity, Equal Quantities",
     "difficulty": "Midterm Level",
-    "question": "Lecture example: D1 (2,2), D2 (3,5), D3 (5,4), D4 (8,5) with EQUAL shipments. Where is the center of gravity?",
+    "question": "D1 (2,2), D2 (3,5), D3 (5,4), D4 (8,5) with EQUAL shipments. Where is the center of gravity?",
     "options": [
       "(4.5, 4.0)",
       "(3.05, 3.70)",
@@ -5993,18 +5993,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Equal quantities \u2192 simple averages.",
+      "coreConcept": "Equal quantities → simple averages.",
       "stepByStep": [
-        "x\u0304 = (2 + 3 + 5 + 8)/4 = 4.5.",
-        "\u0233 = (2 + 5 + 4 + 5)/4 = 4.0."
+        "x̄ = (2 + 3 + 5 + 8)/4 = 4.5.",
+        "ȳ = (2 + 5 + 4 + 5)/4 = 4.0."
       ],
       "commonTrap": "Using the weighted result (3.05, 3.70) from the unequal case.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 19"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 19"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 19"
       }
     ]
@@ -6029,12 +6029,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Heavier destinations pull the location toward them."
       ],
       "commonTrap": "Ignoring quantities.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 17"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 17"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 17"
       }
     ]
@@ -6059,12 +6059,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The others belong to Chapter 3."
       ],
       "commonTrap": "Choosing a Chapter 3 topic.",
-      "reference": "3.0.INDU_211_CH4_1-2025.pdf \u00b7 Page 23"
+      "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 23"
     },
     "source": [
       {
         "deck": "3.0.INDU_211_CH4_1-2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 23"
       }
     ]
@@ -6089,12 +6089,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Templates, simulation and optimization are the three methods listed."
       ],
       "commonTrap": "Using the location tools instead.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 2"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 2"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 2"
       }
     ]
@@ -6119,12 +6119,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Layouts must follow the production reality."
       ],
       "commonTrap": "Picking a cosmetic change.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 5"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 5"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 5"
       }
     ]
@@ -6135,7 +6135,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch4",
     "topic": "Layout Constraints",
     "difficulty": "Foundation",
-    "question": "According to the facility layout decision slide, layout alternatives are limited by:",
+    "question": "In industrial facility layout planning, layout configurations and alternatives are primarily constrained by:",
     "options": [
       "The amount and type of space required and available",
       "The colour of the machines",
@@ -6149,12 +6149,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Space is the binding constraint."
       ],
       "commonTrap": "Thinking layouts are unconstrained.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 6"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 6"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 6"
       }
     ]
@@ -6174,17 +6174,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Product layout: mass production, large volume, continuous flow \u2014 paper mills, dairy, cement, automotive assembly.",
+      "coreConcept": "Product layout: mass production, large volume, continuous flow — paper mills, dairy, cement, automotive assembly.",
       "stepByStep": [
         "Hospitals, banks and machine shops are process layouts."
       ],
       "commonTrap": "Choosing a service facility with varied flows.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 9"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 9"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 9"
       }
     ]
@@ -6209,12 +6209,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Flexibility, lower investment and operator satisfaction are process-layout advantages."
       ],
       "commonTrap": "Mixing up the two advantage lists.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 12"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 12"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 12"
       }
     ]
@@ -6239,12 +6239,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Its limitations: costly handling, harder planning, large WIP, higher skill."
       ],
       "commonTrap": "Choosing a product-layout advantage.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 15"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 15"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 15"
       }
     ]
@@ -6269,12 +6269,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Smartphones: product layout for PCB lines, process for testing/repair, cellular for final assembly & customization."
       ],
       "commonTrap": "Assuming the whole plant uses one layout.",
-      "reference": "4.0.INDU_211_CH4_2_2025.pdf \u00b7 Page 8"
+      "reference": "4.0.INDU_211_CH4_2_2025.pdf · Page 8"
     },
     "source": [
       {
         "deck": "4.0.INDU_211_CH4_2_2025.pdf",
-        "chapter": "Chapter 4 \u2014 Facilities Location & Layout",
+        "chapter": "Chapter 4 — Facilities Location & Layout",
         "location": "Page 8"
       }
     ]
@@ -6299,12 +6299,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Match equipment to the flow pattern."
       ],
       "commonTrap": "Choosing conveyors for irregular flows.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 5"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 5"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 5"
       }
     ]
@@ -6329,12 +6329,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "AGVs are driverless vehicles."
       ],
       "commonTrap": "Confusing cranes with AGVs.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 5"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 5"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 5"
       }
     ]
@@ -6359,12 +6359,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Elevators move material vertically."
       ],
       "commonTrap": "Confusing storage equipment with transport equipment.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 5"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 5"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 5"
       }
     ]
@@ -6389,12 +6389,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Trucks and AGVs move horizontally along varying or predetermined paths."
       ],
       "commonTrap": "Picking a mobile device.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 7"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 7"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 7"
       }
     ]
@@ -6419,12 +6419,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "AS/RS combines racks, a computer control system and a crane."
       ],
       "commonTrap": "Confusing AGV with AS/RS.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 8"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 8"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 8"
       }
     ]
@@ -6449,12 +6449,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Planning comes first."
       ],
       "commonTrap": "Letting handling \"evolve\" ad hoc.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 10"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 10"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 10"
       }
     ]
@@ -6479,12 +6479,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Powered conveyors would be automation."
       ],
       "commonTrap": "Choosing automation because conveyors are involved.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 10"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 10"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 10"
       }
     ]
@@ -6509,12 +6509,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Material flow: keep flow smooth."
       ],
       "commonTrap": "Picking space utilization.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 10"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 10"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 10"
       }
     ]
@@ -6536,15 +6536,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Standardization: standard pallets and stacking patterns. Unit size: largest accumulated load.",
       "stepByStep": [
-        "Both may involve pallets \u2014 the idea differs."
+        "Both may involve pallets — the idea differs."
       ],
       "commonTrap": "Confusing it with unit size.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 11"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 11"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 11"
       }
     ]
@@ -6569,12 +6569,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Automation would be powered conveyors and automatic pallet stackers."
       ],
       "commonTrap": "Choosing automation.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 11"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 11"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 11"
       }
     ]
@@ -6599,12 +6599,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Equipment selection is based on all aspects of material and layout."
       ],
       "commonTrap": "Choosing gravity.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 11"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 11"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 11"
       }
     ]
@@ -6629,12 +6629,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The others are unrelated business topics."
       ],
       "commonTrap": "Choosing Chapter 3 or planning topics.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 11"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 11"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 11"
       }
     ]
@@ -6656,15 +6656,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "TSP: one truck can supply all warehouses; minimize the tour length.",
       "stepByStep": [
-        "Several capacity-limited trucks \u2192 VRP."
+        "Several capacity-limited trucks → VRP."
       ],
       "commonTrap": "Confusing TSP with VRP.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 12"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 12"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 12"
       }
     ]
@@ -6689,12 +6689,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "In Example 1, NN gives 64 vs the optimum 60."
       ],
       "commonTrap": "Believing heuristics are exact.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 13"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 13"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 13"
       }
     ]
@@ -6714,17 +6714,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Gap = (heuristic \u2212 optimal)/optimal.",
+      "coreConcept": "Gap = (heuristic − optimal)/optimal.",
       "stepByStep": [
-        "(64 \u2212 60)/60 = 0.0667 \u2192 6.7%."
+        "(64 − 60)/60 = 0.0667 → 6.7%."
       ],
       "commonTrap": "Dividing by 64 instead of 60 (6.25%).",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 14"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 14"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 14"
       }
     ]
@@ -6735,8 +6735,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch5",
     "topic": "Nearest Neighbor Tie-Break",
     "difficulty": "Midterm Level",
-    "question": "In Example 1, if the truck goes to G (not B) when E\u2192B and E\u2192G tie at 9, what is the Nearest Neighbor route length?",
-    "codeSnippet": "      A   B   C   D   E   F   G\nA     -  14  21  20   6  24   9\nB    14   -  10   9   9  10  11\nC    21  10   -   1  15   9  21\nD    20   9   1   -  14   9  20\nE     6   9  15  14   -  19   9\nF    24  10   9   9  19   -  21\nG     9  11  21  20   9  21   -",
+    "question": "In Example 1, if the truck goes to G (not B) when E→B and E→G tie at 9, what is the Nearest Neighbor route length?",
     "options": [
       "69",
       "64",
@@ -6749,13 +6748,14 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "stepByStep": [
         "6 + 9 + 11 + 9 + 1 + 9 + 24 = 69."
       ],
-      "commonTrap": "Forgetting the return leg F\u2192A (24).",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 14"
+      "commonTrap": "Forgetting the return leg F→A (24).",
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 14"
     },
+    "codeSnippet": "      A   B   C   D   E   F   G\nA     -  14  21  20   6  24   9\nB    14   -  10   9   9  10  11\nC    21  10   -   1  15   9  21\nD    20   9   1   -  14   9  20\nE     6   9  15  14   -  19   9\nF    24  10   9   9  19   -  21\nG     9  11  21  20   9  21   -",
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 14"
       }
     ]
@@ -6767,7 +6767,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Savings Calculation",
     "difficulty": "Midterm Level",
     "question": "Using the Example 2 distance matrix with depot A, what is the Clark-Wright saving for linking C and F?",
-    "codeSnippet": "      A   B   C   D   E   F   G\nA     -  14  21  20   6  24   9\nB    14   -  10   9   9  10  11\nC    21  10   -   1  15   9  21\nD    20   9   1   -  14   9  20\nE     6   9  15  14   -  19   9\nF    24  10   9   9  19   -  21\nG     9  11  21  20   9  21   -",
     "options": [
       "36",
       "45",
@@ -6778,15 +6777,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "$s_{CF} = d_{AC} + d_{AF} - d_{CF}$.",
       "stepByStep": [
-        "21 + 24 \u2212 9 = 36."
+        "21 + 24 − 9 = 36."
       ],
       "commonTrap": "Forgetting to subtract $d_{CF}$ (45).",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 19"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 19"
     },
+    "codeSnippet": "      A   B   C   D   E   F   G\nA     -  14  21  20   6  24   9\nB    14   -  10   9   9  10  11\nC    21  10   -   1  15   9  21\nD    20   9   1   -  14   9  20\nE     6   9  15  14   -  19   9\nF    24  10   9   9  19   -  21\nG     9  11  21  20   9  21   -",
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 19"
       }
     ]
@@ -6799,24 +6799,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "What is the correct order of the Clark-Wright procedure?",
     "options": [
-      "Initial routes \u2192 compute pairing savings \u2192 rank savings descending \u2192 add links while capacity and feasibility hold",
-      "Rank distances ascending \u2192 pick the shortest edge \u2192 stop",
-      "Choose a random route \u2192 improve by swapping",
+      "Initial routes → compute pairing savings → rank savings descending → add links while capacity and feasibility hold",
+      "Rank distances ascending → pick the shortest edge → stop",
+      "Choose a random route → improve by swapping",
       "Assign each stop its own truck and stop"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Stops are added from the top of the ranked list until no more can be added (capacity, feasibility, all destinations visited).",
       "stepByStep": [
-        "It starts from one route per stop (depot\u2013stop\u2013depot)."
+        "It starts from one route per stop (depot–stop–depot)."
       ],
       "commonTrap": "Ranking by distance instead of savings.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 19"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 19"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 19"
       }
     ]
@@ -6836,17 +6836,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Routes: Depot\u2013F\u2013C\u2013D\u2013Depot and Depot\u2013E\u2013B\u2013G\u2013Depot.",
+      "coreConcept": "Routes: Depot–F–C–D–Depot and Depot–E–B–G–Depot.",
       "stepByStep": [
         "24 + 9 + 1 + 20 + 6 + 9 + 11 + 9 = 89."
       ],
       "commonTrap": "Adding only one route.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 21"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 21"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 21"
       }
     ]
@@ -6857,7 +6857,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch5",
     "topic": "Route Loads",
     "difficulty": "Midterm Level",
-    "question": "In the final Clark-Wright solution, what is the load of the route Depot\u2013E\u2013B\u2013G\u2013Depot?",
+    "question": "In the final Clark-Wright solution, what is the load of the route Depot–E–B–G–Depot?",
     "options": [
       "19,000 units",
       "23,000 units",
@@ -6868,15 +6868,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "E 4,000 + B 5,000 + G 10,000.",
       "stepByStep": [
-        "= 19,000 \u2264 25,000."
+        "= 19,000 ≤ 25,000."
       ],
       "commonTrap": "Using the other route (23,000).",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 21"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 21"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 21"
       }
     ]
@@ -6896,17 +6896,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Minimum trucks = \u2308total demand / capacity\u2309.",
+      "coreConcept": "Minimum trucks = ⌈total demand / capacity⌉.",
       "stepByStep": [
-        "\u230842,000 / 25,000\u2309 = \u23081.68\u2309 = 2."
+        "⌈42,000 / 25,000⌉ = ⌈1.68⌉ = 2."
       ],
       "commonTrap": "Using one truck per warehouse (6).",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 16"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 16"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 16"
       }
     ]
@@ -6931,12 +6931,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Nearest Neighbor (TSP) and Clark-Wright (VRP)."
       ],
       "commonTrap": "Assuming optimality is easy.",
-      "reference": "5.0.INDU_211_CH5_2025.pdf \u00b7 Page 22"
+      "reference": "5.0.INDU_211_CH5_2025.pdf · Page 22"
     },
     "source": [
       {
         "deck": "5.0.INDU_211_CH5_2025.pdf",
-        "chapter": "Chapter 5 \u2014 Material Handling & Routing",
+        "chapter": "Chapter 5 — Material Handling & Routing",
         "location": "Page 22"
       }
     ]
@@ -6947,7 +6947,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Compiler vs Interpreter",
     "difficulty": "Foundation",
-    "question": "According to the introduction slides, how does a compiler differ from an interpreter?",
+    "question": "In computer science, how does a compiler differ fundamentally from an interpreter?",
     "options": [
       "A compiler translates the whole C/C++ program into machine language at once; an interpreter (e.g. Python) translates one instruction at a time, which is slower but flexible",
       "A compiler runs the program line by line; an interpreter translates it all at once",
@@ -6958,16 +6958,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Programs are written in a language humans can read, then translated to machine language (1s and 0s) that the computer can execute directly.",
       "stepByStep": [
-        "Compiler: C, C++, Fortran \u2192 machine language, all at once.",
-        "Interpreter: Python, MATLAB \u2192 one instruction at a time (slow but flexible)."
+        "Compiler: C, C++, Fortran → machine language, all at once.",
+        "Interpreter: Python, MATLAB → one instruction at a time (slow but flexible)."
       ],
       "commonTrap": "Reversing the two. C++ is a compiled language, which is part of why it is fast.",
-      "reference": "introduction.pdf \u00b7 Page 6"
+      "reference": "introduction.pdf · Page 6"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 6"
       }
     ]
@@ -6978,12 +6978,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Phases of Program Development",
     "difficulty": "Foundation",
-    "question": "What is the correct order of the phases of C++ program development shown in the introduction slides?",
+    "question": "What is the correct sequence of phases in the standard C++ program build and execution pipeline?",
     "options": [
-      "Edit \u2192 Preprocess \u2192 Compile \u2192 Link \u2192 Execute \u2192 Test/Debug/Optimize",
-      "Compile \u2192 Edit \u2192 Link \u2192 Preprocess \u2192 Execute",
-      "Edit \u2192 Link \u2192 Compile \u2192 Execute \u2192 Preprocess",
-      "Preprocess \u2192 Edit \u2192 Execute \u2192 Compile \u2192 Link"
+      "Edit → Preprocess → Compile → Link → Execute → Test/Debug/Optimize",
+      "Compile → Edit → Link → Preprocess → Execute",
+      "Edit → Link → Compile → Execute → Preprocess",
+      "Preprocess → Edit → Execute → Compile → Link"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6993,12 +6993,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The program is then loaded into memory (RAM) and executed by the processor."
       ],
       "commonTrap": "Putting Link before Compile. The linker combines the compiled object files (.obj) with libraries (.lib).",
-      "reference": "introduction.pdf \u00b7 Page 7"
+      "reference": "introduction.pdf · Page 7"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 7"
       }
     ]
@@ -7018,17 +7018,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Editor \u2192 .cpp/.h source files; compiler \u2192 .obj object files; linker combines .obj + .lib \u2192 .exe executable.",
+      "coreConcept": "Editor → .cpp/.h source files; compiler → .obj object files; linker combines .obj + .lib → .exe executable.",
       "stepByStep": [
         "The .exe is then loaded from disk into RAM and run by the processor."
       ],
       "commonTrap": "Thinking the compiler makes the .exe directly. It makes .obj files; linking produces the executable.",
-      "reference": "introduction.pdf \u00b7 Page 7"
+      "reference": "introduction.pdf · Page 7"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 7"
       }
     ]
@@ -7039,7 +7039,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "What \"Build\" Means",
     "difficulty": "Foundation",
-    "question": "On the slide, which phases does the \"Build\" bracket cover?",
+    "question": "In a C++ IDE / toolchain, which phases are collectively covered by the \"Build\" operation?",
     "options": [
       "Preprocess, Compile and Link",
       "Edit and Compile only",
@@ -7053,12 +7053,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Edit comes before the build; Execute and Test/Debug come after it."
       ],
       "commonTrap": "Including Edit. Writing the code is not part of the build.",
-      "reference": "introduction.pdf \u00b7 Page 7"
+      "reference": "introduction.pdf · Page 7"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 7"
       }
     ]
@@ -7069,7 +7069,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Operating System",
     "difficulty": "Foundation",
-    "question": "According to the Basics of Computing slide, what is an operating system (OS)?",
+    "question": "In computer architecture, what is the primary role of an operating system (OS)?",
     "options": [
       "Software that manages all other programs and provides services (disk, graphics, etc.) for them",
       "The CPU and memory hardware of the computer",
@@ -7083,12 +7083,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Option C describes a compiler; option D describes a computer program."
       ],
       "commonTrap": "Confusing the OS with the compiler. The OS runs and manages programs; the compiler translates them.",
-      "reference": "introduction.pdf \u00b7 Page 5"
+      "reference": "introduction.pdf · Page 5"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 5"
       }
     ]
@@ -7099,7 +7099,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Components of a Computer",
     "difficulty": "Foundation",
-    "question": "The slides define a computer as a digital electronic device composed of:",
+    "question": "A computer is defined as a digital electronic system composed of:",
     "options": [
       "CPU (processors), memory (RAM, disk, etc.) and Input/Output (IO)",
       "Compiler, linker and editor",
@@ -7113,73 +7113,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Compiler, linker and editor are software tools, not components of the computer itself."
       ],
       "commonTrap": "Listing software (OS, compiler) as the computer's components.",
-      "reference": "introduction.pdf \u00b7 Page 5"
+      "reference": "introduction.pdf · Page 5"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 5"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE215_007",
-    "courseId": "MIAE215",
-    "chapter": "intro",
-    "topic": "Why C++",
-    "difficulty": "Foundation",
-    "question": "Why does the course use C++, according to the introduction slides?",
-    "options": [
-      "It is the fastest structured general-purpose language and suits applications needing speed or direct hardware access (mechatronics, IoT, simulation)",
-      "It is the easiest language to learn",
-      "It can only be used for video games",
-      "It does not need to be compiled"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "C++ is fast and gives direct hardware access: robotics, instrumentation, IoT, simulation, VR, operating systems. \"Programming is the language of automation.\"",
-      "stepByStep": [
-        "The slide notes other languages are easier; once you learn C++, others (Java, JavaScript) are easy because of similar syntax."
-      ],
-      "commonTrap": "Assuming C++ was chosen for being easy. The slide says the opposite.",
-      "reference": "introduction.pdf \u00b7 Page 4"
-    },
-    "source": [
-      {
-        "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
-        "location": "Page 4"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE215_008",
-    "courseId": "MIAE215",
-    "chapter": "intro",
-    "topic": "Pausing a Console Program",
-    "difficulty": "Foundation",
-    "question": "According to the course outline, which function is used to pause a console program so its output window can be read?",
-    "options": [
-      "getchar()",
-      "sizeof()",
-      "abs()",
-      "main()"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "getchar() waits for a key press, which keeps the console window open at the end of the program.",
-      "stepByStep": [
-        "This is covered in \"Writing, compiling, and debugging programs\" (the build process module)."
-      ],
-      "commonTrap": "Confusing it with sizeof(), which returns a size in bytes and does not pause anything.",
-      "reference": "extended_outline_introduction.txt (Course lecture outline) \u00b7 Line 24"
-    },
-    "source": [
-      {
-        "deck": "extended_outline_introduction.txt (Course lecture outline)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
-        "location": "Line 24"
       }
     ]
   },
@@ -7198,17 +7138,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "int range (4 bytes): \u22122147483648 to 2147483647. Out-of-range integer results wrap around (overflow).",
+      "coreConcept": "int range (4 bytes): −2147483648 to 2147483647. Out-of-range integer results wrap around (overflow).",
       "stepByStep": [
-        "2147483647 is the maximum; adding 1 wraps to the minimum \u22122147483648."
+        "2147483647 is the maximum; adding 1 wraps to the minimum −2147483648."
       ],
-      "commonTrap": "Expecting Inf. Only float/double overflow gives \u00b1Inf; ints wrap around.",
-      "reference": "variable_types1.pdf \u00b7 Page 2"
+      "commonTrap": "Expecting Inf. Only float/double overflow gives ±Inf; ints wrap around.",
+      "reference": "variable_types1.pdf · Page 2"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 2"
       }
     ]
@@ -7228,18 +7168,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Typical float/double out-of-range errors on the slides: overflow \u2192 \u00b1Inf, underflow \u2192 0.0.",
+      "coreConcept": "Typical float/double out-of-range errors on the slides: overflow → ±Inf, underflow → 0.0.",
       "stepByStep": [
         "float: 4 bytes, about 8 digits of precision, range 1.2e-38 to 3.4e+38.",
         "double: 8 bytes, about 16 digits, range 2.3e-308 to 1.7e+308."
       ],
       "commonTrap": "Applying the int rule (wrap-around) to float/double.",
-      "reference": "variable_types1.pdf \u00b7 Page 3"
+      "reference": "variable_types1.pdf · Page 3"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 3"
       }
     ]
@@ -7251,7 +7191,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Uninitialized Variables",
     "difficulty": "Foundation",
     "question": "What is printed?",
-    "codeSnippet": "int y, z;\nz = y + 1;\ncout << z;",
     "options": [
       "An unpredictable \"garbage\" value",
       "1",
@@ -7266,12 +7205,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Rule from the slides: always initialize a variable to a valid value within its range before using it."
       ],
       "commonTrap": "Assuming C++ sets new variables to 0 automatically.",
-      "reference": "variable_types1.pdf \u00b7 Page 2"
+      "reference": "variable_types1.pdf · Page 2"
     },
+    "codeSnippet": "int y, z;\nz = y + 1;\ncout << z;",
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 2"
       }
     ]
@@ -7282,8 +7222,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "types",
     "topic": "Divide by Zero",
     "difficulty": "Midterm Level",
-    "question": "According to the slides, what happens in each case?",
-    "codeSnippet": "// case 1\nint y = 0, z;\nz = 1/y;\n\n// case 2\nfloat fy = 0.0, fz;\nfz = 1/fy;",
+    "question": "In C++, what happens when dividing an integer by zero versus dividing a floating-point number by zero?",
     "options": [
       "The int version causes an exception; the float version gives Inf",
       "Both give Inf",
@@ -7294,17 +7233,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Integer divide-by-zero is an exception (error). Floating-point divide-by-zero produces Inf.",
       "stepByStep": [
-        "int: y = 0; z = 1/y \u2192 exception.",
-        "float/double: y = 0.0; z = 1/y \u2192 Inf."
+        "int: y = 0; z = 1/y → exception.",
+        "float/double: y = 0.0; z = 1/y → Inf."
       ],
       "commonTrap": "Thinking int and float handle division by zero the same way.",
-      "reference": "variable_types1.pdf \u00b7 Pages 2\u20133"
+      "reference": "variable_types1.pdf · Pages 2–3"
     },
+    "codeSnippet": "// case 1\nint y = 0, z;\nz = 1/y;\n\n// case 2\nfloat fy = 0.0, fz;\nfz = 1/fy;",
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
-        "location": "Pages 2\u20133"
+        "chapter": "Topic 2 — Variable Types",
+        "location": "Pages 2–3"
       }
     ]
   },
@@ -7315,7 +7255,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Round-off Error",
     "difficulty": "Midterm Level",
     "question": "Why does z print as 1.0000000?",
-    "codeSnippet": "float y, z;\ny = 1.0e-10;\nz = 1.0 + y;\ncout << z;",
     "options": [
       "float keeps only about 8 significant digits, so the tiny 1.0e-10 is lost when added to 1.0 (round-off error)",
       "Adding a small number to 1.0 is illegal in C++",
@@ -7330,12 +7269,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "With double, the same loss happens for y = 1.0e-18."
       ],
       "commonTrap": "Calling this underflow. y itself is fine; the precision is lost in the addition.",
-      "reference": "variable_types1.pdf \u00b7 Page 3"
+      "reference": "variable_types1.pdf · Page 3"
     },
+    "codeSnippet": "float y, z;\ny = 1.0e-10;\nz = 1.0 + y;\ncout << z;",
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 3"
       }
     ]
@@ -7360,12 +7300,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The slides list \"a\", 'abc' and \"abc\" as incorrect char initializations."
       ],
       "commonTrap": "Using double quotes for a single character.",
-      "reference": "variable_types1.pdf \u00b7 Page 5"
+      "reference": "variable_types1.pdf · Page 5"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 5"
       }
     ]
@@ -7377,7 +7317,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Logical Values with int",
     "difficulty": "Foundation",
     "question": "Does the if statement print?",
-    "codeSnippet": "int logical1 = -7;\nif( logical1 ) cout << \"\\nlogical1 is true\";",
     "options": [
       "Yes. In C++ any non-zero int is considered true",
       "No. Only 1 is considered true",
@@ -7386,17 +7325,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "ints can represent logical variables: 0 is false and any non-zero value (1, \u22127, 11, \u2026) is true.",
+      "coreConcept": "ints can represent logical variables: 0 is false and any non-zero value (1, −7, 11, …) is true.",
       "stepByStep": [
-        "logical1 = \u22127 is non-zero, so it is true and the message prints."
+        "logical1 = −7 is non-zero, so it is true and the message prints."
       ],
       "commonTrap": "Thinking only 1 counts as true.",
-      "reference": "variable_types1.pdf \u00b7 Page 6"
+      "reference": "variable_types1.pdf · Page 6"
     },
+    "codeSnippet": "int logical1 = -7;\nif( logical1 ) cout << \"\\nlogical1 is true\";",
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 6"
       }
     ]
@@ -7421,12 +7361,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The slide lists My_integer_1, _1myint_1, a, A and Apple as valid."
       ],
       "commonTrap": "Thinking a leading underscore is illegal. It is allowed; a leading digit is not.",
-      "reference": "variable_types1.pdf \u00b7 Page 7"
+      "reference": "variable_types1.pdf · Page 7"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 7"
       }
     ]
@@ -7448,15 +7388,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "sizeof() returns the size of a variable or type in bytes. On the slides: double = 8 bytes (about 16 digits), float = 4 bytes (about 8 digits).",
       "stepByStep": [
-        "sizeof(double) \u2192 8."
+        "sizeof(double) → 8."
       ],
       "commonTrap": "Confusing double (8 bytes) with float (4 bytes).",
-      "reference": "variable_types1.pdf \u00b7 Page 7"
+      "reference": "variable_types1.pdf · Page 7"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 7"
       }
     ]
@@ -7478,16 +7418,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "A cast expression like (double)a converts the value for that expression only; a itself stays an int.",
       "stepByStep": [
-        "(double)a / b \u2192 7.0 / 2 \u2192 3.5 (floating-point division).",
-        "(double)(a / b) casts after the integer division: 7/2 = 3 \u2192 3.0."
+        "(double)a / b → 7.0 / 2 → 3.5 (floating-point division).",
+        "(double)(a / b) casts after the integer division: 7/2 = 3 → 3.0."
       ],
       "commonTrap": "Casting the result of the division. By then the fraction is already lost.",
-      "reference": "variable_types2.pdf \u00b7 Page 1"
+      "reference": "variable_types2.pdf · Page 1"
     },
     "source": [
       {
         "deck": "variable_types2.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 1"
       }
     ]
@@ -7499,7 +7439,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Implicit Conversion",
     "difficulty": "Midterm Level",
     "question": "After this code, what is stored in i1?",
-    "codeSnippet": "float f2 = 3.6;\nint i1;\ni1 = f2;",
     "options": [
       "3",
       "4",
@@ -7510,16 +7449,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "For similar types C++ performs an automatic (\"implicit\") conversion, possibly with a compiler warning.",
       "stepByStep": [
-        "float \u2192 int: the fractional part is dropped (rounded down), so 3.6 \u2192 3.",
-        "int \u2192 double: zeros are added, and double \u2192 float truncates extra digits."
+        "float → int: the fractional part is dropped (rounded down), so 3.6 → 3.",
+        "int → double: zeros are added, and double → float truncates extra digits."
       ],
       "commonTrap": "Expecting normal rounding to 4.",
-      "reference": "variable_types2.pdf \u00b7 Page 3"
+      "reference": "variable_types2.pdf · Page 3"
     },
+    "codeSnippet": "float f2 = 3.6;\nint i1;\ni1 = f2;",
     "source": [
       {
         "deck": "variable_types2.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 3"
       }
     ]
@@ -7530,27 +7470,27 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "types",
     "topic": "unsigned Modifier",
     "difficulty": "Foundation",
-    "question": "What is the range of unsigned char w = 237; according to the Variable Types II slides?",
+    "question": "In C++, what is the valid numerical range of an unsigned char variable?",
     "options": [
       "0 to 255",
-      "\u2212128 to 127",
+      "−128 to 127",
       "0 to 127",
-      "\u2212255 to 255"
+      "−255 to 255"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "unsigned restricts a type to positive or zero values and typically doubles the positive range; the size in bytes is unchanged.",
       "stepByStep": [
-        "char: 1 byte, \u2212128 to 127.",
+        "char: 1 byte, −128 to 127.",
         "unsigned char: 1 byte, 0 to 255, so 237 fits."
       ],
       "commonTrap": "Thinking unsigned adds bytes. It only shifts the range to non-negative values.",
-      "reference": "variable_types2.pdf \u00b7 Page 6"
+      "reference": "variable_types2.pdf · Page 6"
     },
     "source": [
       {
         "deck": "variable_types2.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 6"
       }
     ]
@@ -7575,12 +7515,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "const double PI = 3.14159; then PI = 1.7; \"can't be done -- generates a compiler error\"."
       ],
       "commonTrap": "Assuming const only acts as a documentation comment.",
-      "reference": "variable_types2.pdf \u00b7 Page 6"
+      "reference": "variable_types2.pdf · Page 6"
     },
     "source": [
       {
         "deck": "variable_types2.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 6"
       }
     ]
@@ -7600,17 +7540,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "When both operands are ints, / performs integer division and the fractional part is dropped (e.g. z = 1/3 \u2192 0 on the Variable Types slide).",
+      "coreConcept": "When both operands are ints, / performs integer division and the fractional part is dropped (e.g. z = 1/3 → 0 on the Variable Types slide).",
       "stepByStep": [
-        "7 / 2 \u2192 3 (not 3.5)."
+        "7 / 2 → 3 (not 3.5)."
       ],
       "commonTrap": "Assuming C++ automatically converts the result to float 3.5.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 66"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 66"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 66"
       }
     ]
@@ -7622,7 +7562,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Mixed-Type Expressions",
     "difficulty": "Midterm Level",
     "question": "What values are stored in d1 and d2?",
-    "codeSnippet": "double d1 = 5 / 2;\ndouble d2 = 5 / 2.0;",
     "options": [
       "d1 = 2.0, d2 = 2.5",
       "d1 = 2.5, d2 = 2.5",
@@ -7633,16 +7572,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "The type of an operation is decided by its operands, not by the variable that receives the result.",
       "stepByStep": [
-        "5 / 2 is int / int \u2192 2, which is then stored as 2.0.",
-        "5 / 2.0 is int / double \u2192 2.5."
+        "5 / 2 is int / int → 2, which is then stored as 2.0.",
+        "5 / 2.0 is int / double → 2.5."
       ],
       "commonTrap": "Assuming that assigning into a double makes the division floating-point.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 88"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 88"
     },
+    "codeSnippet": "double d1 = 5 / 2;\ndouble d2 = 5 / 2.0;",
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 88"
       }
     ]
@@ -7667,12 +7607,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Integer types only."
       ],
       "commonTrap": "Trying to write 5.5 % 2.1 in C++, which causes a compiler error.",
-      "reference": "expressions_operators_topics.txt (Expressions & operators lecture outline) \u00b7 Line 12"
+      "reference": "Course Reference · Line 12"
     },
     "source": [
       {
-        "deck": "expressions_operators_topics.txt (Expressions & operators lecture outline)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "deck": "MIAE 215 Course Reference",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 12"
       }
     ]
@@ -7684,7 +7624,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "The % Operator",
     "difficulty": "Foundation",
     "question": "What is the value of r?",
-    "codeSnippet": "int r = 17 % 5;",
     "options": [
       "2",
       "3",
@@ -7695,15 +7634,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "% (modulus) returns the remainder of integer division.",
       "stepByStep": [
-        "17 = 3 \u00d7 5 + 2, so 17 % 5 = 2."
+        "17 = 3 × 5 + 2, so 17 % 5 = 2."
       ],
       "commonTrap": "Giving the quotient (3) instead of the remainder.",
-      "reference": "expressions_operators_topics.txt (Expressions & operators lecture outline) \u00b7 Line 12"
+      "reference": "Course Reference · Line 12"
     },
+    "codeSnippet": "int r = 17 % 5;",
     "source": [
       {
-        "deck": "expressions_operators_topics.txt (Expressions & operators lecture outline)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "deck": "MIAE 215 Course Reference",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 12"
       }
     ]
@@ -7728,12 +7668,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "b receives $5$; a becomes $6$."
       ],
       "commonTrap": "Confusing post-increment a++ with pre-increment ++a which increments first.",
-      "reference": "expressions_operators_topics.txt (Expressions & operators lecture outline) \u00b7 Line 19"
+      "reference": "Course Reference · Line 19"
     },
     "source": [
       {
-        "deck": "expressions_operators_topics.txt (Expressions & operators lecture outline)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "deck": "MIAE 215 Course Reference",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 19"
       }
     ]
@@ -7745,7 +7685,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Generalized Increment Operators",
     "difficulty": "Midterm Level",
     "question": "What is the final value of x?",
-    "codeSnippet": "int x = 10;\nx += 3;\nx *= 2;",
     "options": [
       "26",
       "23",
@@ -7757,16 +7696,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "x += a means x = x + a; x *= a means x = x * a. Statements run in sequence.",
       "stepByStep": [
         "x = 10.",
-        "x += 3 \u2192 13.",
-        "x *= 2 \u2192 26."
+        "x += 3 → 13.",
+        "x *= 2 → 26."
       ],
-      "commonTrap": "Doing the operations out of order (10 \u00d7 2 + 3 = 23).",
-      "reference": "expressions_operators_topics.txt (Expressions & operators lecture outline) \u00b7 Line 16"
+      "commonTrap": "Doing the operations out of order (10 × 2 + 3 = 23).",
+      "reference": "Course Reference · Line 16"
     },
+    "codeSnippet": "int x = 10;\nx += 3;\nx *= 2;",
     "source": [
       {
-        "deck": "expressions_operators_topics.txt (Expressions & operators lecture outline)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "deck": "MIAE 215 Course Reference",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 16"
       }
     ]
@@ -7778,7 +7718,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Operator Precedence",
     "difficulty": "Midterm Level",
     "question": "What is the value of r?",
-    "codeSnippet": "int r = 10 - 4 / 2 * 3;",
     "options": [
       "4",
       "9",
@@ -7787,19 +7726,20 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "* , / and % have higher precedence than + and \u2212; operators of equal precedence are evaluated left to right.",
+      "coreConcept": "* , / and % have higher precedence than + and −; operators of equal precedence are evaluated left to right.",
       "stepByStep": [
         "4 / 2 = 2.",
         "2 * 3 = 6.",
-        "10 \u2212 6 = 4."
+        "10 − 6 = 4."
       ],
-      "commonTrap": "Evaluating strictly left to right: (10 \u2212 4) / 2 * 3 = 9.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 52"
+      "commonTrap": "Evaluating strictly left to right: (10 − 4) / 2 * 3 = 9.",
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 52"
     },
+    "codeSnippet": "int r = 10 - 4 / 2 * 3;",
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 52"
       }
     ]
@@ -7824,12 +7764,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Equality is tested with ==, not =."
       ],
       "commonTrap": "Reading = as the mathematical equals sign.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 120"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 120"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 120"
       }
     ]
@@ -7841,7 +7781,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Multiple Assignment",
     "difficulty": "Foundation",
     "question": "After this statement, what are a, b and c?",
-    "codeSnippet": "int a, b, c;\na = b = c = 7;",
     "options": [
       "a = 7, b = 7, c = 7",
       "a = 7, b and c are unchanged",
@@ -7852,15 +7791,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Extended / multiple assignment: = evaluates right to left, and each assignment passes its value on.",
       "stepByStep": [
-        "c = 7 \u2192 b = 7 \u2192 a = 7."
+        "c = 7 → b = 7 → a = 7."
       ],
       "commonTrap": "Thinking only the leftmost variable is set.",
-      "reference": "expressions_operators_topics.txt (Expressions & operators lecture outline) \u00b7 Line 8"
+      "reference": "Course Reference · Line 8"
     },
+    "codeSnippet": "int a, b, c;\na = b = c = 7;",
     "source": [
       {
-        "deck": "expressions_operators_topics.txt (Expressions & operators lecture outline)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "deck": "MIAE 215 Course Reference",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 8"
       }
     ]
@@ -7872,7 +7812,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Math Library Errors",
     "difficulty": "Midterm Level",
     "question": "Why does this code NOT print 0.5?",
-    "codeSnippet": "#include <cmath>\ndouble y = sin(30.0);\ncout << y;",
     "options": [
       "sin() expects its argument in radians, not degrees",
       "sin() only works with int arguments",
@@ -7883,16 +7822,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Math library functions such as sin, cos and tan take angles in radians; this is one of the \"typical errors with math functions\".",
       "stepByStep": [
-        "sin(30 rad) \u2248 \u22120.988.",
-        "Correct: sin(30 * 3.14159 / 180) \u2248 0.5."
+        "sin(30 rad) ≈ −0.988.",
+        "Correct: sin(30 * 3.14159 / 180) ≈ 0.5."
       ],
       "commonTrap": "Assuming degrees because the calculator is in DEG mode.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 136"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 136"
     },
+    "codeSnippet": "#include <cmath>\ndouble y = sin(30.0);\ncout << y;",
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 136"
       }
     ]
@@ -7903,7 +7843,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "control",
     "topic": "Float Equality in Test Conditions",
     "difficulty": "Midterm Level",
-    "question": "Why do the control-statement slides warn against if( x == 0.0 ) for float/double variables, and what should be used instead?",
+    "question": "Why is direct equality comparison if( x == 0.0 ) strongly discouraged for float/double variables in C++, and what approach should be used instead?",
     "options": [
       "Round-off error makes exact equality unlikely; use a tolerance: if( abs(x) < eps ) with a small eps such as 1.0e-9",
       "C++ does not allow == with doubles",
@@ -7915,17 +7855,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Equality conditions should normally not be used with float/double; round-off makes execution unlikely even when x is \"zero for engineering purposes\".",
       "stepByStep": [
         "double eps = 1.0e-9;",
-        "if( abs(x) < eps ) \u2192 approximately zero.",
-        "if( abs(x - 5.5) < eps ) \u2192 approximately 5.5.",
+        "if( abs(x) < eps ) → approximately zero.",
+        "if( abs(x - 5.5) < eps ) → approximately 5.5.",
         "The slides say <= and >= should also normally be avoided for floats."
       ],
       "commonTrap": "Thinking == is illegal for doubles. It compiles, but is unreliable.",
-      "reference": "control_statements1.pdf \u00b7 Page 3"
+      "reference": "control_statements1.pdf · Page 3"
     },
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 3"
       }
     ]
@@ -7947,17 +7887,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "AND (&&): both must be true. OR (||): at least one true. NOT (!): true when the condition is false.",
       "stepByStep": [
-        "(5 > 3) && (3 <= 3) \u2192 true && true \u2192 true. \u2714",
-        "!(5 > 3) \u2192 false.",
-        "(5 < 3) || (3 > 3) \u2192 false || false \u2192 false."
+        "(5 > 3) && (3 <= 3) → true && true → true. ✔",
+        "!(5 > 3) → false.",
+        "(5 < 3) || (3 > 3) → false || false → false."
       ],
       "commonTrap": "Reading k <= 3 as false when k equals 3.",
-      "reference": "control_statements1.pdf \u00b7 Page 4"
+      "reference": "control_statements1.pdf · Page 4"
     },
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 4"
       }
     ]
@@ -7969,7 +7909,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "if-else Ladders",
     "difficulty": "Midterm Level",
     "question": "With i = 2, what is printed by this if-else ladder?",
-    "codeSnippet": "if ( i == 1 ) {\n    cout << \"\\ni == 1\";\n} else if ( i == 2 ) {\n    cout << \"\\ni == 2\";\n} else if ( i == 3 ) {\n    cout << \"\\ni == 3\";\n} else {\n    cout << \"\\nnone of the above\";\n}",
     "options": [
       "i == 2 only",
       "i == 2 and none of the above",
@@ -7980,16 +7919,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "An if-else ladder is a fork in the road with more than two paths: conditions are checked top-down until one is true, and only that block runs.",
       "stepByStep": [
-        "i == 1 \u2192 false.",
-        "i == 2 \u2192 true \u2192 print, then skip the rest of the ladder."
+        "i == 1 → false.",
+        "i == 2 → true → print, then skip the rest of the ladder."
       ],
       "commonTrap": "Thinking the final else also runs. It runs only when no condition is true.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 3"
+      "reference": "control_statements1_part2.pdf · Page 3"
     },
+    "codeSnippet": "if ( i == 1 ) {\n    cout << \"\\ni == 1\";\n} else if ( i == 2 ) {\n    cout << \"\\ni == 2\";\n} else if ( i == 3 ) {\n    cout << \"\\ni == 3\";\n} else {\n    cout << \"\\nnone of the above\";\n}",
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 3"
       }
     ]
@@ -8000,7 +7940,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "control",
     "topic": "Default else in a Ladder",
     "difficulty": "Foundation",
-    "question": "The slides say the last else in an if-else ladder can be removed but is not recommended. Why?",
+    "question": "In an if-else ladder, why is it recommended programming practice to include a final default else clause?",
     "options": [
       "Without it the ladder is no longer a true fork, and the default case is often used to check for errors",
       "The program will not compile without it",
@@ -8014,12 +7954,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "It is a natural place to catch unexpected values, i.e. error checking."
       ],
       "commonTrap": "Thinking the final else is required by C++ syntax.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 4"
+      "reference": "control_statements1_part2.pdf · Page 4"
     },
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 4"
       }
     ]
@@ -8031,7 +7971,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Codeblocks & Braces",
     "difficulty": "Midterm Level",
     "question": "With i = -1, what is printed?",
-    "codeSnippet": "if ( i > 0 ) cout << \"a\";\n    cout << \"b\";",
     "options": [
       "b",
       "ab",
@@ -8046,12 +7985,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "cout << \"b\" is outside the if and always runs."
       ],
       "commonTrap": "Being misled by the indentation. Without braces only one statement is controlled by the if.",
-      "reference": "control_statements1.pdf \u00b7 Page 1"
+      "reference": "control_statements1.pdf · Page 1"
     },
+    "codeSnippet": "if ( i > 0 ) cout << \"a\";\n    cout << \"b\";",
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 1"
       }
     ]
@@ -8076,12 +8016,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Diamond = Decision logic."
       ],
       "commonTrap": "Selecting rectangle (which is an assignment/process).",
-      "reference": "control_statements1.pdf \u00b7 Page 8"
+      "reference": "control_statements1.pdf · Page 8"
     },
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 8"
       }
     ]
@@ -8106,12 +8046,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$5$ iterations total."
       ],
       "commonTrap": "Dividing $10/2$ and adding $1$, forgetting i < 10 is strict inequality.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 6"
+      "reference": "control_statements1_part2.pdf · Page 6"
     },
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 6"
       }
     ]
@@ -8123,7 +8063,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "for Loop Exit Value",
     "difficulty": "Midterm Level",
     "question": "What is printed after the loop finishes?",
-    "codeSnippet": "int i;\nfor( i = 0; i < 5; i++ ) cout << \"\\ni = \" << i;\ncout << \"\\nexit i = \" << i;",
     "options": [
       "5",
       "4",
@@ -8138,12 +8077,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "After i++ makes i = 5, the test i < 5 fails, so the loop ends with i = 5."
       ],
       "commonTrap": "Answering 4, the last value inside the loop.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 6"
+      "reference": "control_statements1_part2.pdf · Page 6"
     },
+    "codeSnippet": "int i;\nfor( i = 0; i < 5; i++ ) cout << \"\\ni = \" << i;\ncout << \"\\nexit i = \" << i;",
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 6"
       }
     ]
@@ -8155,7 +8095,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Loops with Multiplicative Update",
     "difficulty": "Exam Master",
     "question": "How many times does the loop body execute?",
-    "codeSnippet": "double x;\nfor( x = 1.0; x < 1.0e5; x *= 10.0 ) cout << \"\\n\" << x;",
     "options": [
       "5",
       "4",
@@ -8166,16 +8105,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Any expression can be the update step of a for loop, such as x *= 10.0.",
       "stepByStep": [
-        "x = 1, 10, 100, 1000, 10000 \u2192 5 iterations.",
-        "x becomes 1.0e5 \u2192 1.0e5 < 1.0e5 is false \u2192 stop."
+        "x = 1, 10, 100, 1000, 10000 → 5 iterations.",
+        "x becomes 1.0e5 → 1.0e5 < 1.0e5 is false → stop."
       ],
       "commonTrap": "Counting 1.0e5 as an iteration. The test is a strict <.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 6"
+      "reference": "control_statements1_part2.pdf · Page 6"
     },
+    "codeSnippet": "double x;\nfor( x = 1.0; x < 1.0e5; x *= 10.0 ) cout << \"\\n\" << x;",
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 6"
       }
     ]
@@ -8186,8 +8126,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "control",
     "topic": "Nested Loops",
     "difficulty": "Exam Master",
-    "question": "After these nested loops (from the slides), what is A[2][1], and how many times does the inner body run?",
-    "codeSnippet": "double A[3][3];\nfor(i=0;i<3;i++) {       // outer loop (i = row)\n    for(j=0;j<3;j++) {   // inner loop (j = col)\n        A[i][j] = 1.0 + i + j;\n    }\n}",
+    "question": "After executing the following nested loops, what is the value of A[2][1], and how many times did the inner loop body run?",
     "options": [
       "A[2][1] = 4.0; the inner body runs 9 times",
       "A[2][1] = 3.0; the inner body runs 6 times",
@@ -8199,136 +8138,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "In a nested loop, the inner loop runs completely for each value of the outer index, so the 2D array is set one row at a time.",
       "stepByStep": [
         "A[2][1] = 1.0 + 2 + 1 = 4.0.",
-        "Total inner iterations = 3 (rows) \u00d7 3 (columns) = 9."
+        "Total inner iterations = 3 (rows) × 3 (columns) = 9."
       ],
       "commonTrap": "Adding the loop counts (3 + 3 = 6) instead of multiplying them.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 7"
+      "reference": "control_statements1_part2.pdf · Page 7"
     },
+    "codeSnippet": "double A[3][3];\nfor(i=0;i<3;i++) {       // outer loop (i = row)\n    for(j=0;j<3;j++) {   // inner loop (j = col)\n        A[i][j] = 1.0 + i + j;\n    }\n}",
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 7"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE215_042",
-    "courseId": "MIAE215",
-    "chapter": "intro",
-    "topic": "Course Objectives",
-    "difficulty": "Foundation",
-    "question": "Which of the following is NOT one of the MIAE 215 objectives on the introduction slide?",
-    "options": [
-      "Designing mechanical gearboxes",
-      "Developing C++ programs and algorithms",
-      "Solving engineering problems using C++",
-      "Introduction to microcontroller (Arduino) programming"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Objectives: develop C++ programs and algorithms, solve engineering problems with C++, use a C++ compiler effectively, intro to microcontroller programming.",
-      "stepByStep": [
-        "Gearbox design belongs to other mechanical courses."
-      ],
-      "commonTrap": "Assuming every mechanical topic is covered.",
-      "reference": "introduction.pdf \u00b7 Page 1"
-    },
-    "source": [
-      {
-        "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
-        "location": "Page 1"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE215_043",
-    "courseId": "MIAE215",
-    "chapter": "intro",
-    "topic": "Why Programming",
-    "difficulty": "Foundation",
-    "question": "Complete the slide: \"Programming is the language of\u2026\"",
-    "options": [
-      "automation",
-      "mathematics",
-      "hardware",
-      "marketing"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Programming is very useful in industry and engineering (analysis, automation).",
-      "stepByStep": [
-        "Many well-paying Mech/Indu/Aero jobs require programming skills."
-      ],
-      "commonTrap": "Picking mathematics.",
-      "reference": "introduction.pdf \u00b7 Page 2"
-    },
-    "source": [
-      {
-        "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
-        "location": "Page 2"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE215_044",
-    "courseId": "MIAE215",
-    "chapter": "intro",
-    "topic": "MIAE Applications",
-    "difficulty": "Foundation",
-    "question": "On the \"Important MIAE Applications\" slide, the finite element method is an example of:",
-    "options": [
-      "Numerical analysis",
-      "Instrumentation and measurement",
-      "Automation",
-      "Video games"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Applications: numerical analysis (FEM), simulation, optimization, automation, robotics/control, instrumentation and measurement.",
-      "stepByStep": [
-        "FEM is a numerical method."
-      ],
-      "commonTrap": "Choosing simulation, which is a separate item.",
-      "reference": "introduction.pdf \u00b7 Page 3"
-    },
-    "source": [
-      {
-        "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
-        "location": "Page 3"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE215_045",
-    "courseId": "MIAE215",
-    "chapter": "intro",
-    "topic": "Languages Similar to C++",
-    "difficulty": "Foundation",
-    "question": "Why does the slide say other languages become easy once you learn C++?",
-    "options": [
-      "Many other languages (Java, JavaScript, etc.) have similar syntax",
-      "C++ automatically converts itself to other languages",
-      "Other languages are subsets of C++",
-      "Other languages do not need compiling"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "C++ is harder to learn, but its syntax carries over.",
-      "stepByStep": [
-        "Handwritten note on the slide: \"if you learn C++, other languages are easy\"."
-      ],
-      "commonTrap": "Believing C++ is the easiest language.",
-      "reference": "introduction.pdf \u00b7 Page 4"
-    },
-    "source": [
-      {
-        "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
-        "location": "Page 4"
       }
     ]
   },
@@ -8338,7 +8158,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Computer Program",
     "difficulty": "Foundation",
-    "question": "According to the Basics of Computing slide, a computer program is:",
+    "question": "In software engineering, a computer program is defined as:",
     "options": [
       "A sequence of instructions for the computer, often referred to as software",
       "The CPU and memory",
@@ -8352,12 +8172,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The OS is a special program that manages the other programs."
       ],
       "commonTrap": "Confusing software with hardware.",
-      "reference": "introduction.pdf \u00b7 Page 5"
+      "reference": "introduction.pdf · Page 5"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 5"
       }
     ]
@@ -8368,7 +8188,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Programming Language",
     "difficulty": "Foundation",
-    "question": "What is a programming language, according to the introduction slides?",
+    "question": "What is the primary definition and role of a programming language?",
     "options": [
       "A system that lets humans give written instructions that are then translated into a form the computer can use (machine language)",
       "The 1s and 0s the processor runs",
@@ -8377,17 +8197,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Human-readable instructions \u2192 translated \u2192 machine language (1s and 0s).",
+      "coreConcept": "Human-readable instructions → translated → machine language (1s and 0s).",
       "stepByStep": [
         "Translation is done by a compiler or an interpreter."
       ],
       "commonTrap": "Calling machine code itself the programming language.",
-      "reference": "introduction.pdf \u00b7 Page 6"
+      "reference": "introduction.pdf · Page 6"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 6"
       }
     ]
@@ -8398,7 +8218,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Compiled Languages",
     "difficulty": "Foundation",
-    "question": "Which languages does the slide list as translated by a compiler \"all at once\"?",
+    "question": "Which of the following sets consists exclusively of compiled languages?",
     "options": [
       "C, C++ and Fortran",
       "Python and MATLAB",
@@ -8407,17 +8227,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Compiler: C, C++, Fortran \u2192 machine language all at once. Interpreter: Python, MATLAB \u2192 one instruction at a time.",
+      "coreConcept": "Compiler: C, C++, Fortran → machine language all at once. Interpreter: Python, MATLAB → one instruction at a time.",
       "stepByStep": [
         "Interpreters are slower but flexible."
       ],
       "commonTrap": "Listing interpreted languages.",
-      "reference": "introduction.pdf \u00b7 Page 6"
+      "reference": "introduction.pdf · Page 6"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 6"
       }
     ]
@@ -8428,7 +8248,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Interpreters",
     "difficulty": "Midterm Level",
-    "question": "What trade-off does the slide give for interpreted languages such as Python and MATLAB?",
+    "question": "What is the primary trade-off associated with interpreted languages (such as Python and MATLAB) compared to compiled languages?",
     "options": [
       "Slow but flexible",
       "Fast but inflexible",
@@ -8442,12 +8262,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "C++ is compiled, which is part of why it is fast."
       ],
       "commonTrap": "Assuming interpreted means faster.",
-      "reference": "introduction.pdf \u00b7 Page 6"
+      "reference": "introduction.pdf · Page 6"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 6"
       }
     ]
@@ -8467,17 +8287,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Editor \u2192 .cpp/.h; compiler \u2192 .obj; libraries \u2192 .lib; linker \u2192 .exe.",
+      "coreConcept": "Editor → .cpp/.h; compiler → .obj; libraries → .lib; linker → .exe.",
       "stepByStep": [
         "Source files are plain text."
       ],
       "commonTrap": "Confusing source files with the executable.",
-      "reference": "introduction.pdf \u00b7 Page 7"
+      "reference": "introduction.pdf · Page 7"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 7"
       }
     ]
@@ -8502,12 +8322,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The .exe is then loaded into RAM and executed."
       ],
       "commonTrap": "Thinking the linker reads .cpp files directly.",
-      "reference": "introduction.pdf \u00b7 Page 7"
+      "reference": "introduction.pdf · Page 7"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 7"
       }
     ]
@@ -8527,17 +8347,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Edit \u2192 Preprocess \u2192 Compile \u2192 Link \u2192 Execute \u2192 Test/Debug/Optimize.",
+      "coreConcept": "Edit → Preprocess → Compile → Link → Execute → Test/Debug/Optimize.",
       "stepByStep": [
         "Debugging = removing errors/bugs."
       ],
       "commonTrap": "Confusing debugging with compiling.",
-      "reference": "introduction.pdf \u00b7 Page 7"
+      "reference": "introduction.pdf · Page 7"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 7"
       }
     ]
@@ -8557,17 +8377,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Load program: disk \u2192 RAM \u2192 processor.",
+      "coreConcept": "Load program: disk → RAM → processor.",
       "stepByStep": [
         "Execute is phase 5."
       ],
       "commonTrap": "Thinking the program runs directly from the source code.",
-      "reference": "introduction.pdf \u00b7 Page 7"
+      "reference": "introduction.pdf · Page 7"
     },
     "source": [
       {
         "deck": "introduction.pdf",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Page 7"
       }
     ]
@@ -8578,9 +8398,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Comments",
     "difficulty": "Foundation",
-    "question": "In the teacher's lesson2.cpp, what are // comments used for?",
+    "question": "In C++, what are single-line // comments used for?",
     "options": [
-      "Documentation, and intentionally disabling parts of the program \u2014 they are not compiled",
+      "Documentation, and intentionally disabling parts of the program — they are not compiled",
       "Printing text to the screen",
       "Including libraries",
       "Ending a program line"
@@ -8592,12 +8412,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Commenting out code is a handy way to test."
       ],
       "commonTrap": "Thinking comments are executed.",
-      "reference": "lesson2.cpp (Mini-course Lesson 2) \u00b7 Line 4"
+      "reference": "lesson2.cpp (Mini-course Lesson 2) · Line 4"
     },
     "source": [
       {
         "deck": "lesson2.cpp (Mini-course Lesson 2)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Line 4"
       }
     ]
@@ -8608,7 +8428,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "#include and Header Files",
     "difficulty": "Foundation",
-    "question": "What does an #include statement do, according to lesson2.cpp?",
+    "question": "In C++, what does an #include preprocessor directive do?",
     "options": [
       "It lets you use a built-in C++ library (e.g. iostream for console I/O); include files are called header files",
       "It declares a variable",
@@ -8617,17 +8437,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "#include <iostream> \u2192 console input/output; #include <cmath> \u2192 math functions like sin(x).",
+      "coreConcept": "#include <iostream> → console input/output; #include <cmath> → math functions like sin(x).",
       "stepByStep": [
         "Include statements go at the top of the program."
       ],
       "commonTrap": "Confusing #include with variable declarations.",
-      "reference": "lesson2.cpp (Mini-course Lesson 2) \u00b7 Line 11"
+      "reference": "lesson2.cpp (Mini-course Lesson 2) · Line 11"
     },
     "source": [
       {
         "deck": "lesson2.cpp (Mini-course Lesson 2)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Line 11"
       }
     ]
@@ -8652,12 +8472,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Each library adds different built-in functions."
       ],
       "commonTrap": "Choosing <iostream> because it is always included.",
-      "reference": "lesson2.cpp (Mini-course Lesson 2) \u00b7 Line 16"
+      "reference": "lesson2.cpp (Mini-course Lesson 2) · Line 16"
     },
     "source": [
       {
         "deck": "lesson2.cpp (Mini-course Lesson 2)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Line 16"
       }
     ]
@@ -8682,12 +8502,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The braces { } mark its beginning and end."
       ],
       "commonTrap": "Thinking a program can start anywhere.",
-      "reference": "lesson2.cpp (Mini-course Lesson 2) \u00b7 Line 29"
+      "reference": "lesson2.cpp (Mini-course Lesson 2) · Line 29"
     },
     "source": [
       {
         "deck": "lesson2.cpp (Mini-course Lesson 2)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Line 29"
       }
     ]
@@ -8712,12 +8532,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "cin uses >> in the opposite direction for input."
       ],
       "commonTrap": "Mixing up << (output) and >> (input).",
-      "reference": "lesson2.cpp (Mini-course Lesson 2) \u00b7 Line 44"
+      "reference": "lesson2.cpp (Mini-course Lesson 2) · Line 44"
     },
     "source": [
       {
         "deck": "lesson2.cpp (Mini-course Lesson 2)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Line 44"
       }
     ]
@@ -8728,7 +8548,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Semicolons",
     "difficulty": "Foundation",
-    "question": "According to lesson2.cpp, how does C++ know where a program line ends?",
+    "question": "In C++, how does the compiler determine where a statement ends?",
     "options": [
       "Every program line ends with a semicolon ;",
       "At the end of each text line",
@@ -8742,12 +8562,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "One statement can span several text lines."
       ],
       "commonTrap": "Assuming a new line ends a statement.",
-      "reference": "lesson2.cpp (Mini-course Lesson 2) \u00b7 Line 47"
+      "reference": "lesson2.cpp (Mini-course Lesson 2) · Line 47"
     },
     "source": [
       {
         "deck": "lesson2.cpp (Mini-course Lesson 2)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Line 47"
       }
     ]
@@ -8772,12 +8592,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Variable names are case-sensitive too."
       ],
       "commonTrap": "Thinking capitalization does not matter.",
-      "reference": "lesson2.cpp (Mini-course Lesson 2) \u00b7 Line 54"
+      "reference": "lesson2.cpp (Mini-course Lesson 2) · Line 54"
     },
     "source": [
       {
         "deck": "lesson2.cpp (Mini-course Lesson 2)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Line 54"
       }
     ]
@@ -8802,12 +8622,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "cout << \"a\" <<   \"b\"; works the same across several lines."
       ],
       "commonTrap": "Forgetting that spaces inside quotes are kept.",
-      "reference": "lesson2.cpp (Mini-course Lesson 2) \u00b7 Line 58"
+      "reference": "lesson2.cpp (Mini-course Lesson 2) · Line 58"
     },
     "source": [
       {
         "deck": "lesson2.cpp (Mini-course Lesson 2)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Line 58"
       }
     ]
@@ -8832,12 +8652,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "cout << \"\\nyour text1\\n\"; prints on new lines."
       ],
       "commonTrap": "Swapping the two.",
-      "reference": "lesson2.cpp (Mini-course Lesson 2) \u00b7 Line 52"
+      "reference": "lesson2.cpp (Mini-course Lesson 2) · Line 52"
     },
     "source": [
       {
         "deck": "lesson2.cpp (Mini-course Lesson 2)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Line 52"
       }
     ]
@@ -8848,7 +8668,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Sequential Execution",
     "difficulty": "Midterm Level",
-    "question": "How is a C++ program executed, according to the teacher's notes?",
+    "question": "In standard C++, how are statements inside the main() function executed by default?",
     "options": [
       "Sequentially, one line at a time, from the start to the end of main",
       "All lines at the same time",
@@ -8862,12 +8682,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "This is why x = 2*x + 1 is not a math equation."
       ],
       "commonTrap": "Treating a program like a set of simultaneous equations.",
-      "reference": "lesson2.cpp (Mini-course Lesson 2) \u00b7 Line 36"
+      "reference": "lesson2.cpp (Mini-course Lesson 2) · Line 36"
     },
     "source": [
       {
         "deck": "lesson2.cpp (Mini-course Lesson 2)",
-        "chapter": "Topic 1 \u2014 Computing Basics & Build Process",
+        "chapter": "Topic 1 — Computing Basics & Build Process",
         "location": "Line 36"
       }
     ]
@@ -8887,17 +8707,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Syntax: [variable type] [variable name]; \u2014 a variable must be declared before it is used.",
+      "coreConcept": "Syntax: [variable type] [variable name]; — a variable must be declared before it is used.",
       "stepByStep": [
         "Variables are normally declared at the beginning of the program."
       ],
       "commonTrap": "Writing the name before the type.",
-      "reference": "variable_types1.pdf \u00b7 Page 1"
+      "reference": "variable_types1.pdf · Page 1"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 1"
       }
     ]
@@ -8910,24 +8730,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "What is the range of a 4-byte int on a 32/64-bit CPU?",
     "options": [
-      "\u22122147483648 to 2147483647",
-      "\u2212128 to 127",
+      "−2147483648 to 2147483647",
+      "−128 to 127",
       "0 to 4294967295",
-      "\u221232768 to 32767"
+      "−32768 to 32767"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "int holds negative, positive and zero integers (2 or 4 bytes).",
       "stepByStep": [
-        "\u2212128..127 is char; 0..4294967295 is unsigned int; \u221232768..32767 is short int."
+        "−128..127 is char; 0..4294967295 is unsigned int; −32768..32767 is short int."
       ],
       "commonTrap": "Mixing up the ranges of different types.",
-      "reference": "variable_types1.pdf \u00b7 Page 2"
+      "reference": "variable_types1.pdf · Page 2"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 2"
       }
     ]
@@ -8938,7 +8758,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "types",
     "topic": "float Precision",
     "difficulty": "Foundation",
-    "question": "How many bytes and digits of precision does a float have, according to the slides?",
+    "question": "In standard C++, how many bytes and digits of precision does a single-precision float typically have?",
     "options": [
       "4 bytes, about 8 digits",
       "8 bytes, about 16 digits",
@@ -8952,12 +8772,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Use double for engineering calculations."
       ],
       "commonTrap": "Swapping float and double.",
-      "reference": "variable_types1.pdf \u00b7 Page 3"
+      "reference": "variable_types1.pdf · Page 3"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 3"
       }
     ]
@@ -8972,7 +8792,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "options": [
       "2.3e-308 to 1.7e+308",
       "1.2e-38 to 3.4e+38",
-      "\u22122147483648 to 2147483647",
+      "−2147483648 to 2147483647",
       "0 to 255"
     ],
     "correctIndex": 0,
@@ -8982,12 +8802,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "float: 1.2e-38 to 3.4e+38."
       ],
       "commonTrap": "Using the float range.",
-      "reference": "variable_types1.pdf \u00b7 Page 4"
+      "reference": "variable_types1.pdf · Page 4"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 4"
       }
     ]
@@ -9000,24 +8820,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "In C++, what does the constant 1.0e-38 mean?",
     "options": [
-      "1.0 \u00d7 10\u207b\u00b3\u2078",
-      "1.0 \u2212 38",
-      "e (2.718) to the power \u221238",
-      "1.0 \u00d7 38"
+      "1.0 × 10⁻³⁸",
+      "1.0 − 38",
+      "e (2.718) to the power −38",
+      "1.0 × 38"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "The e stands for \"times ten to the power\", as annotated on the float slide.",
       "stepByStep": [
-        "1.7e308 = 1.7 \u00d7 10\u00b3\u2070\u2078."
+        "1.7e308 = 1.7 × 10³⁰⁸."
       ],
       "commonTrap": "Reading e as Euler's number.",
-      "reference": "variable_types1.pdf \u00b7 Page 3"
+      "reference": "variable_types1.pdf · Page 3"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 3"
       }
     ]
@@ -9039,15 +8859,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Typical int error (d): rounding down during integer division.",
       "stepByStep": [
-        "1/3 = 0.333\u2026 \u2192 0."
+        "1/3 = 0.333… → 0."
       ],
       "commonTrap": "Expecting a fraction in an int.",
-      "reference": "variable_types1.pdf \u00b7 Page 2"
+      "reference": "variable_types1.pdf · Page 2"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 2"
       }
     ]
@@ -9058,11 +8878,11 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "types",
     "topic": "char Range",
     "difficulty": "Foundation",
-    "question": "According to the slides, what is the range of a char (1 byte on most processors)?",
+    "question": "In C++, what is the typical numerical range of a signed 1-byte char?",
     "options": [
-      "\u2212128 to 127",
+      "−128 to 127",
       "0 to 255",
-      "\u221232768 to 32767",
+      "−32768 to 32767",
       "0 to 65535"
     ],
     "correctIndex": 0,
@@ -9072,12 +8892,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "unsigned char is 0 to 255."
       ],
       "commonTrap": "Using the unsigned range.",
-      "reference": "variable_types1.pdf \u00b7 Page 5"
+      "reference": "variable_types1.pdf · Page 5"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 5"
       }
     ]
@@ -9089,7 +8909,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Printing a bool",
     "difficulty": "Midterm Level",
     "question": "What does this print?",
-    "codeSnippet": "bool b1, b2 = false;\nb1 = true;\ncout << \"\\nb1 = \" << b1 << \" , b2 = \" << b2;",
     "options": [
       "b1 = 1 , b2 = 0",
       "b1 = true , b2 = false",
@@ -9103,12 +8922,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "bool = boolean."
       ],
       "commonTrap": "Expecting the words true/false.",
-      "reference": "variable_types1.pdf \u00b7 Page 6"
+      "reference": "variable_types1.pdf · Page 6"
     },
+    "codeSnippet": "bool b1, b2 = false;\nb1 = true;\ncout << \"\\nb1 = \" << b1 << \" , b2 = \" << b2;",
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 6"
       }
     ]
@@ -9119,7 +8939,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "types",
     "topic": "Ways to Set a Variable",
     "difficulty": "Foundation",
-    "question": "Which is NOT listed on the slide as a way to initialize/set a variable?",
+    "question": "Which of the following is NOT a valid way to initialize or assign a variable in C++?",
     "options": [
       "From the compiler's default value (variables start at 0 automatically)",
       "During declaration: int x = 1;",
@@ -9133,12 +8953,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Uninitialized variables hold garbage, not 0."
       ],
       "commonTrap": "Believing C++ sets variables to 0 for you.",
-      "reference": "variable_types1.pdf \u00b7 Page 7"
+      "reference": "variable_types1.pdf · Page 7"
     },
     "source": [
       {
         "deck": "variable_types1.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 7"
       }
     ]
@@ -9150,7 +8970,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Characters as Integers",
     "difficulty": "Midterm Level",
     "question": "What value is stored in z?",
-    "codeSnippet": "char ch = 'a';\nint z;\nz = (int)ch;",
     "options": [
       "97 (the ASCII code of 'a')",
       "'a'",
@@ -9164,12 +8983,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Useful for converting text to numbers."
       ],
       "commonTrap": "Thinking the cast fails for characters.",
-      "reference": "variable_types2.pdf \u00b7 Page 2"
+      "reference": "variable_types2.pdf · Page 2"
     },
+    "codeSnippet": "char ch = 'a';\nint z;\nz = (int)ch;",
     "source": [
       {
         "deck": "variable_types2.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 2"
       }
     ]
@@ -9181,9 +9001,8 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Information Loss in Casts",
     "difficulty": "Midterm Level",
     "question": "Why is the result of ch = (char)x; meaningless here?",
-    "codeSnippet": "char ch;\nint x = 3000;\nch = (char)x;",
     "options": [
-      "x is out of char's range (\u2212128..127), so only the first byte of x is used and information is lost",
+      "x is out of char's range (−128..127), so only the first byte of x is used and information is lost",
       "Casting to char is not allowed",
       "x becomes 3000 characters long",
       "char and int are the same size"
@@ -9192,15 +9011,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Converting from a type with more bytes can lose information.",
       "stepByStep": [
-        "int is 4 bytes (\u00b12 billion); char is 1 byte."
+        "int is 4 bytes (±2 billion); char is 1 byte."
       ],
       "commonTrap": "Assuming casts always preserve the value.",
-      "reference": "variable_types2.pdf \u00b7 Page 2"
+      "reference": "variable_types2.pdf · Page 2"
     },
+    "codeSnippet": "char ch;\nint x = 3000;\nch = (char)x;",
     "source": [
       {
         "deck": "variable_types2.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 2"
       }
     ]
@@ -9225,12 +9045,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Only the result of the cast expression is an int."
       ],
       "commonTrap": "Thinking the cast changes the variable permanently.",
-      "reference": "variable_types2.pdf \u00b7 Page 1"
+      "reference": "variable_types2.pdf · Page 1"
     },
     "source": [
       {
         "deck": "variable_types2.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 1"
       }
     ]
@@ -9243,9 +9063,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "What does short int x; typically give on a 32/64-bit CPU?",
     "options": [
-      "A 2-byte integer with range \u221232768 to 32767",
+      "A 2-byte integer with range −32768 to 32767",
       "A 1-byte integer",
-      "A 4-byte integer with range \u00b12 billion",
+      "A 4-byte integer with range ±2 billion",
       "An 8-byte integer"
     ],
     "correctIndex": 0,
@@ -9255,12 +9075,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "long makes it larger if possible."
       ],
       "commonTrap": "Thinking short means fewer digits of a double.",
-      "reference": "variable_types2.pdf \u00b7 Page 4"
+      "reference": "variable_types2.pdf · Page 4"
     },
     "source": [
       {
         "deck": "variable_types2.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 4"
       }
     ]
@@ -9271,9 +9091,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "types",
     "topic": "long Modifier",
     "difficulty": "Exam Master",
-    "question": "On a 32/64-bit compiler, the slides note that sizeof(long int) == sizeof(int). Why?",
+    "question": "On many 32/64-bit compilers (such as 64-bit Windows), why does sizeof(long int) == sizeof(int)?",
     "options": [
-      "A long/short modifier changes the size only if possible \u2014 the compiler may ignore the request",
+      "A long/short modifier changes the size only if possible — the compiler may ignore the request",
       "long is always half of int",
       "long only applies to doubles",
       "It is a compiler bug"
@@ -9285,12 +9105,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Check with sizeof()."
       ],
       "commonTrap": "Assuming long always doubles the size.",
-      "reference": "variable_types2.pdf \u00b7 Page 5"
+      "reference": "variable_types2.pdf · Page 5"
     },
     "source": [
       {
         "deck": "variable_types2.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 5"
       }
     ]
@@ -9304,7 +9124,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the range of unsigned int z; on a 32/64-bit CPU?",
     "options": [
       "0 to 4294967295",
-      "\u22122147483648 to 2147483647",
+      "−2147483648 to 2147483647",
       "0 to 255",
       "0 to 65535"
     ],
@@ -9315,12 +9135,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Main use: avoid negative numbers where they are invalid."
       ],
       "commonTrap": "Keeping the signed range.",
-      "reference": "variable_types2.pdf \u00b7 Page 6"
+      "reference": "variable_types2.pdf · Page 6"
     },
     "source": [
       {
         "deck": "variable_types2.pdf",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Page 6"
       }
     ]
@@ -9331,27 +9151,27 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "types",
     "topic": "Lesson 3 Exercise Output",
     "difficulty": "Exam Master",
-    "question": "Teacher's lesson3_exercises.cpp, Question #1: what is printed?",
-    "codeSnippet": "int x=1, y=-1, z=5;\nchar c1, c2, c3;\nc1 = '\\n';\nc2 = ' ';\nc3 = 'c';\ncout << x << c1 << y << c2 << z << c3;",
+    "question": "What is the console output of the following C++ program?",
     "options": [
-      "1, then a new line, then \u22121 5c",
-      "1 \u22121 5 c on one line",
-      "1\\n\u22121 5c (with the characters \\n shown)",
-      "15c\u22121"
+      "1, then a new line, then −1 5c",
+      "1 −1 5 c on one line",
+      "1\\n−1 5c (with the characters \\n shown)",
+      "15c−1"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "c1 = '\\n' is a newline, c2 = ' ' is a space, c3 = 'c'.",
       "stepByStep": [
-        "Output: \"1\" \u2192 newline \u2192 \"-1\" \u2192 space \u2192 \"5\" \u2192 \"c\"."
+        "Output: \"1\" → newline → \"-1\" → space → \"5\" → \"c\"."
       ],
       "commonTrap": "Printing \\n literally instead of as a newline.",
-      "reference": "lesson3_exercises.cpp (Mini-course Lesson 3) \u00b7 Line 12"
+      "reference": "lesson3_exercises.cpp (Mini-course Lesson 3) · Line 12"
     },
+    "codeSnippet": "int x=1, y=-1, z=5;\nchar c1, c2, c3;\nc1 = '\\n';\nc2 = ' ';\nc3 = 'c';\ncout << x << c1 << y << c2 << z << c3;",
     "source": [
       {
         "deck": "lesson3_exercises.cpp (Mini-course Lesson 3)",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Line 12"
       }
     ]
@@ -9362,27 +9182,27 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "types",
     "topic": "Finding Errors",
     "difficulty": "Exam Master",
-    "question": "Teacher's lesson3_exercises.cpp, Question #2: what is wrong with this program?",
-    "codeSnippet": "double a, b, c, d\nb = 1.0e308\nc = 2*b\nd = a + 77.7\ncout << \"\\nc = \" << c\ncout << \"\\nd = \" << d",
+    "question": "What compiler errors or bugs exist in the following C++ code?",
     "options": [
-      "Missing semicolons, c = 2*b overflows the double range (\u2192 inf), and a is used uninitialized",
+      "Missing semicolons, c = 2*b overflows the double range (→ inf), and a is used uninitialized",
       "Only the variable names are invalid",
       "Nothing is wrong",
       "cout cannot print doubles"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Every statement needs ;. 2 \u00d7 1.0e308 exceeds 1.7e308 \u2192 overflow \u2192 inf. a has no value \u2192 garbage.",
+      "coreConcept": "Every statement needs ;. 2 × 1.0e308 exceeds 1.7e308 → overflow → inf. a has no value → garbage.",
       "stepByStep": [
         "Fix: add semicolons, keep values in range, initialize a."
       ],
       "commonTrap": "Spotting only the syntax errors.",
-      "reference": "lesson3_exercises.cpp (Mini-course Lesson 3) \u00b7 Line 24"
+      "reference": "lesson3_exercises.cpp (Mini-course Lesson 3) · Line 24"
     },
+    "codeSnippet": "double a, b, c, d\nb = 1.0e308\nc = 2*b\nd = a + 77.7\ncout << \"\\nc = \" << c\ncout << \"\\nd = \" << d",
     "source": [
       {
         "deck": "lesson3_exercises.cpp (Mini-course Lesson 3)",
-        "chapter": "Topic 2 \u2014 Variable Types",
+        "chapter": "Topic 2 — Variable Types",
         "location": "Line 24"
       }
     ]
@@ -9393,7 +9213,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "expr",
     "topic": "Operators and Expressions",
     "difficulty": "Foundation",
-    "question": "According to lesson4.cpp, what is an expression?",
+    "question": "In C++, what is the definition of an expression?",
     "options": [
       "A combination of operators and operands (variables) that performs some task",
       "A single variable declaration",
@@ -9407,12 +9227,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "e.g. i = 7 + 3;"
       ],
       "commonTrap": "Confusing expressions with declarations.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 18"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 18"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 18"
       }
     ]
@@ -9437,12 +9257,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "= has lower precedence than arithmetic operators."
       ],
       "commonTrap": "Thinking = acts first.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 49"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 49"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 49"
       }
     ]
@@ -9464,15 +9284,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "With double operands, / is real division.",
       "stepByStep": [
-        "Compare i = 7 / 3; \u2192 2 with ints."
+        "Compare i = 7 / 3; → 2 with ints."
       ],
       "commonTrap": "Applying integer division to doubles.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 84"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 84"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 84"
       }
     ]
@@ -9494,15 +9314,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "In a mixed sub-expression, operands are converted to the more general type (double) before the operator is applied.",
       "stepByStep": [
-        "3 \u2192 3.0; 3.0 \u00d7 3.5 = 10.5; 10.5 \u00d7 7 = 73.5."
+        "3 → 3.0; 3.0 × 3.5 = 10.5; 10.5 × 7 = 73.5."
       ],
       "commonTrap": "Truncating to an int.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 91"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 91"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 91"
       }
     ]
@@ -9514,26 +9334,26 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Sequential Logic",
     "difficulty": "Midterm Level",
     "question": "What is printed?",
-    "codeSnippet": "double x;\nx = 3;\nx = 2*x + 1;\ncout << x;",
     "options": [
       "7",
-      "\u22121",
+      "−1",
       "3",
       "1"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "A program is evaluated sequentially with current variable values \u2014 not as a simultaneous math equation.",
+      "coreConcept": "A program is evaluated sequentially with current variable values — not as a simultaneous math equation.",
       "stepByStep": [
-        "x = 3 \u2192 x = 2*3 + 1 = 7."
+        "x = 3 → x = 2*3 + 1 = 7."
       ],
-      "commonTrap": "Solving x = 2x + 1 algebraically (x = \u22121).",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 108"
+      "commonTrap": "Solving x = 2x + 1 algebraically (x = −1).",
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 108"
     },
+    "codeSnippet": "double x;\nx = 3;\nx = 2*x + 1;\ncout << x;",
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 108"
       }
     ]
@@ -9558,12 +9378,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Generalized forms: x += a, x -= a."
       ],
       "commonTrap": "Confusing ++ and --.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 124"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 124"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 124"
       }
     ]
@@ -9585,15 +9405,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Math functions from <cmath>: sin, cos, tan, exp, log (natural), log10, atan, abs, pow.",
       "stepByStep": [
-        "log(2.718\u2026) \u2248 1."
+        "log(2.718…) ≈ 1."
       ],
       "commonTrap": "Assuming log is base 10 as on many calculators.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 152"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 152"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 152"
       }
     ]
@@ -9613,17 +9433,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "pow(x, y) = x\u02b8 from <cmath>.",
+      "coreConcept": "pow(x, y) = xʸ from <cmath>.",
       "stepByStep": [
         "C++ has no ^ power operator for this."
       ],
       "commonTrap": "Writing x^y (which is not exponentiation in C++).",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 161"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 161"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 161"
       }
     ]
@@ -9637,7 +9457,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "question": "What does abs(-x) return when x = 0.785?",
     "options": [
       "0.785",
-      "\u22120.785",
+      "−0.785",
       "0",
       "1"
     ],
@@ -9645,15 +9465,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "abs returns the absolute value.",
       "stepByStep": [
-        "|\u22120.785| = 0.785."
+        "|−0.785| = 0.785."
       ],
       "commonTrap": "Returning the negative value.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 158"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 158"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 158"
       }
     ]
@@ -9664,26 +9484,26 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "expr",
     "topic": "Lesson 4 Exercise: q",
     "difficulty": "Midterm Level",
-    "question": "Teacher's lesson4_exercises.cpp, Question #1: with int q; what is q = 7 - (7/3)*3; ?",
+    "question": "In C++, given int q; what is the resulting value of q = 7 - (7/3)*3; ?",
     "options": [
       "1",
       "0",
       "7",
-      "\u22122"
+      "−2"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Integer division first: 7/3 = 2.",
       "stepByStep": [
-        "2*3 = 6 \u2192 7 \u2212 6 = 1 (this is 7 % 3)."
+        "2*3 = 6 → 7 − 6 = 1 (this is 7 % 3)."
       ],
-      "commonTrap": "Using real division (7 \u2212 7 = 0).",
-      "reference": "lesson4_exercises.cpp (Mini-course Lesson 4) \u00b7 Line 19"
+      "commonTrap": "Using real division (7 − 7 = 0).",
+      "reference": "lesson4_exercises.cpp (Mini-course Lesson 4) · Line 19"
     },
     "source": [
       {
         "deck": "lesson4_exercises.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 19"
       }
     ]
@@ -9705,15 +9525,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "1/3 is int/int = 0, evaluated left to right before multiplying by 10.0.",
       "stepByStep": [
-        "0 \u00d7 10.0 = 0."
+        "0 × 10.0 = 0."
       ],
       "commonTrap": "Assuming the 10.0 makes the whole expression real from the start.",
-      "reference": "lesson4_exercises.cpp (Mini-course Lesson 4) \u00b7 Line 20"
+      "reference": "lesson4_exercises.cpp (Mini-course Lesson 4) · Line 20"
     },
     "source": [
       {
         "deck": "lesson4_exercises.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 20"
       }
     ]
@@ -9726,24 +9546,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Midterm Level",
     "question": "Same exercise with double z = 0: what is y = -1.0/z; ?",
     "options": [
-      "\u2212inf",
+      "−inf",
       "0",
       "An integer exception",
       "1"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Floating-point division by zero gives an exception value such as Inf (here \u2212Inf).",
+      "coreConcept": "Floating-point division by zero gives an exception value such as Inf (here −Inf).",
       "stepByStep": [
         "Integer division by zero is an exception instead."
       ],
       "commonTrap": "Expecting a crash as with ints.",
-      "reference": "lesson4_exercises.cpp (Mini-course Lesson 4) \u00b7 Line 21"
+      "reference": "lesson4_exercises.cpp (Mini-course Lesson 4) · Line 21"
     },
     "source": [
       {
         "deck": "lesson4_exercises.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 21"
       }
     ]
@@ -9754,8 +9574,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "expr",
     "topic": "Tracing Variables",
     "difficulty": "Exam Master",
-    "question": "Teacher's lesson4_exercises.cpp, Question #2: what is the final value of w?",
-    "codeSnippet": "double u=0.0,v=1.1,w=1.0;\nu--;            // line 1\nw++;            // line 2\nv = v - u;      // line 3\nw = w*w + v + w; // line 4",
+    "question": "In C++, what is the final value of variable w after executing this code?",
     "options": [
       "8.1",
       "5.1",
@@ -9766,18 +9585,19 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Trace each line with current values.",
       "stepByStep": [
-        "u-- \u2192 u = \u22121.",
-        "w++ \u2192 w = 2.",
-        "v = v \u2212 u = 1.1 \u2212 (\u22121) = 2.1.",
+        "u-- → u = −1.",
+        "w++ → w = 2.",
+        "v = v − u = 1.1 − (−1) = 2.1.",
         "w = w*w + v + w = 4 + 2.1 + 2 = 8.1."
       ],
       "commonTrap": "Using the old v (1.1) in line 4.",
-      "reference": "lesson4_exercises.cpp (Mini-course Lesson 4) \u00b7 Line 26"
+      "reference": "lesson4_exercises.cpp (Mini-course Lesson 4) · Line 26"
     },
+    "codeSnippet": "double u=0.0,v=1.1,w=1.0;\nu--;            // line 1\nw++;            // line 2\nv = v - u;      // line 3\nw = w*w + v + w; // line 4",
     "source": [
       {
         "deck": "lesson4_exercises.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 26"
       }
     ]
@@ -9788,7 +9608,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "expr",
     "topic": "Invalid Assignment",
     "difficulty": "Midterm Level",
-    "question": "Teacher's lesson4_exercises.cpp, Question #3: why is 2*a = a + 1; an error?",
+    "question": "In C++, why does the statement 2*a = a + 1; cause a compilation error?",
     "options": [
       "The left side of = must be a variable, not an expression",
       "a is a double",
@@ -9799,15 +9619,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Assignment stores a value into a variable (memory location).",
       "stepByStep": [
-        "Also in that program: log(a) with a = \u22122 is undefined (nan)."
+        "Also in that program: log(a) with a = −2 is undefined (nan)."
       ],
       "commonTrap": "Treating = as algebraic equality.",
-      "reference": "lesson4_exercises.cpp (Mini-course Lesson 4) \u00b7 Line 45"
+      "reference": "lesson4_exercises.cpp (Mini-course Lesson 4) · Line 45"
     },
     "source": [
       {
         "deck": "lesson4_exercises.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 45"
       }
     ]
@@ -9818,7 +9638,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "expr",
     "topic": "Integer Division Trap",
     "difficulty": "Exam Master",
-    "question": "Teacher's lesson4_more.cpp: with int q = 3; double r = 3; what is A = 1/q*r*r; ?",
+    "question": "In C++, with int q = 3; double r = 3; what is the resulting value of A = 1/q*r*r; ?",
     "options": [
       "0",
       "3",
@@ -9829,15 +9649,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "1/q is int/int = 0, so everything multiplied by it is 0.",
       "stepByStep": [
-        "Then y = 1.0/A \u2192 inf."
+        "Then y = 1.0/A → inf."
       ],
       "commonTrap": "Assuming r being double changes 1/q.",
-      "reference": "lesson4_more.cpp (Mini-course Lesson 4) \u00b7 Line 23"
+      "reference": "lesson4_more.cpp (Mini-course Lesson 4) · Line 23"
     },
     "source": [
       {
         "deck": "lesson4_more.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 23"
       }
     ]
@@ -9848,26 +9668,26 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "expr",
     "topic": "Round-off Limits",
     "difficulty": "Exam Master",
-    "question": "lesson4_more.cpp: why does r4 = 1.0 - (1.0 - 1.0e-20); give 0?",
+    "question": "In C++, why does evaluating double r4 = 1.0 - (1.0 - 1.0e-20); evaluate to 0?",
     "options": [
-      "A double keeps about 16 significant digits, so 1.0 \u2212 1.0e-20 rounds to exactly 1.0",
+      "A double keeps about 16 significant digits, so 1.0 − 1.0e-20 rounds to exactly 1.0",
       "Subtraction is not allowed with doubles",
       "1.0e-20 is an integer",
       "The compiler removes the parentheses"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Round-off: 1e\u221220 is far below the 16th significant digit of 1.0.",
+      "coreConcept": "Round-off: 1e−20 is far below the 16th significant digit of 1.0.",
       "stepByStep": [
-        "With 1.0e-15 the result is only approximately 1e\u221215."
+        "With 1.0e-15 the result is only approximately 1e−15."
       ],
       "commonTrap": "Expecting exactly 1.0e-20.",
-      "reference": "lesson4_more.cpp (Mini-course Lesson 4) \u00b7 Line 21"
+      "reference": "lesson4_more.cpp (Mini-course Lesson 4) · Line 21"
     },
     "source": [
       {
         "deck": "lesson4_more.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 21"
       }
     ]
@@ -9878,29 +9698,29 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "expr",
     "topic": "Tracing with abs",
     "difficulty": "Exam Master",
-    "question": "lesson4_more.cpp, Question #2: what are u, v and w at the end?",
-    "codeSnippet": "double u=0.0,v=2.0,w=-1.0;\nu = u + 3;        // line 1\nw = w / 2;        // line 2\nv = v * u + w;    // line 3\nv = 2*v;          // line 4\nw = -w*abs(-w);   // line 5",
+    "question": "In C++, what are the final values of u, v, and w after executing the following statements?",
     "options": [
       "u = 3, v = 11, w = 0.25",
-      "u = 3, v = 5.5, w = \u22120.5",
-      "u = 0, v = 2, w = \u22121",
-      "u = 3, v = 11, w = \u22120.25"
+      "u = 3, v = 5.5, w = −0.5",
+      "u = 0, v = 2, w = −1",
+      "u = 3, v = 11, w = −0.25"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Trace line by line with current values.",
       "stepByStep": [
-        "u = 3; w = \u22120.5.",
-        "v = 2\u00b73 + (\u22120.5) = 5.5; v = 11.",
-        "w = \u2212(\u22120.5)\u00b7|0.5| = 0.25."
+        "u = 3; w = −0.5.",
+        "v = 2·3 + (−0.5) = 5.5; v = 11.",
+        "w = −(−0.5)·|0.5| = 0.25."
       ],
-      "commonTrap": "Losing the sign in \u2212w.",
-      "reference": "lesson4_more.cpp (Mini-course Lesson 4) \u00b7 Line 31"
+      "commonTrap": "Losing the sign in −w.",
+      "reference": "lesson4_more.cpp (Mini-course Lesson 4) · Line 31"
     },
+    "codeSnippet": "double u=0.0,v=2.0,w=-1.0;\nu = u + 3;        // line 1\nw = w / 2;        // line 2\nv = v * u + w;    // line 3\nv = 2*v;          // line 4\nw = -w*abs(-w);   // line 5",
     "source": [
       {
         "deck": "lesson4_more.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 31"
       }
     ]
@@ -9911,7 +9731,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "expr",
     "topic": "Division by Zero",
     "difficulty": "Foundation",
-    "question": "According to lesson4.cpp, what does dividing by zero produce?",
+    "question": "In floating-point arithmetic (IEEE 754 in C++), what does division by zero produce?",
     "options": [
       "\"Exception\" values such as NaN (not a number) or Inf",
       "Always 0",
@@ -9925,12 +9745,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Integer divide-by-zero is an exception error; floating point gives Inf/NaN."
       ],
       "commonTrap": "Assuming the result is 0.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 70"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 70"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 70"
       }
     ]
@@ -9942,26 +9762,26 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Generalized Operators",
     "difficulty": "Midterm Level",
     "question": "What is x at the end?",
-    "codeSnippet": "double x = 20;\nx /= 4;\nx -= 2;",
     "options": [
       "3",
       "5",
-      "\u22123",
+      "−3",
       "18"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "x /= a means x = x / a; x -= a means x = x \u2212 a.",
+      "coreConcept": "x /= a means x = x / a; x -= a means x = x − a.",
       "stepByStep": [
-        "20 / 4 = 5 \u2192 5 \u2212 2 = 3."
+        "20 / 4 = 5 → 5 − 2 = 3."
       ],
       "commonTrap": "Applying them in reverse order.",
-      "reference": "expressions_operators_topics.txt (Expressions & operators lecture outline) \u00b7 Line 17"
+      "reference": "Course Reference · Line 17"
     },
+    "codeSnippet": "double x = 20;\nx /= 4;\nx -= 2;",
     "source": [
       {
-        "deck": "expressions_operators_topics.txt (Expressions & operators lecture outline)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "deck": "MIAE 215 Course Reference",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 17"
       }
     ]
@@ -9986,12 +9806,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Mixed types are promoted."
       ],
       "commonTrap": "Thinking the double becomes an int.",
-      "reference": "lesson4.cpp (Mini-course Lesson 4) \u00b7 Line 96"
+      "reference": "lesson4.cpp (Mini-course Lesson 4) · Line 96"
     },
     "source": [
       {
         "deck": "lesson4.cpp (Mini-course Lesson 4)",
-        "chapter": "Topic 3 \u2014 Expressions & Operators",
+        "chapter": "Topic 3 — Expressions & Operators",
         "location": "Line 96"
       }
     ]
@@ -10016,12 +9836,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Loops repeat parts of the program."
       ],
       "commonTrap": "Confusing control flow with declarations.",
-      "reference": "control_statements1.pdf \u00b7 Page 1"
+      "reference": "control_statements1.pdf · Page 1"
     },
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 1"
       }
     ]
@@ -10046,12 +9866,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "lesson5.cpp shows the same if printing or not after i and j change."
       ],
       "commonTrap": "Thinking the condition is re-checked automatically later.",
-      "reference": "control_statements1.pdf \u00b7 Page 1"
+      "reference": "control_statements1.pdf · Page 1"
     },
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 1"
       }
     ]
@@ -10076,12 +9896,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "== tests equality; = is assignment."
       ],
       "commonTrap": "Using <> from other languages.",
-      "reference": "control_statements1.pdf \u00b7 Page 2"
+      "reference": "control_statements1.pdf · Page 2"
     },
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 2"
       }
     ]
@@ -10092,7 +9912,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "control",
     "topic": "Approximate Equality",
     "difficulty": "Midterm Level",
-    "question": "How do the slides check whether a double x is approximately equal to 5.5?",
+    "question": "In numerical computing and C++, how should one correctly check whether a double x is approximately equal to 5.5?",
     "options": [
       "if( abs(x - 5.5) < eps )",
       "if( x == 5.5 )",
@@ -10106,12 +9926,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "eps = 1.0e-9 in the example."
       ],
       "commonTrap": "Using == with doubles.",
-      "reference": "control_statements1.pdf \u00b7 Page 3"
+      "reference": "control_statements1.pdf · Page 3"
     },
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 3"
       }
     ]
@@ -10136,12 +9956,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Multiple ANDs and ORs can be combined."
       ],
       "commonTrap": "Reading && as OR.",
-      "reference": "control_statements1.pdf \u00b7 Page 5"
+      "reference": "control_statements1.pdf · Page 5"
     },
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 5"
       }
     ]
@@ -10163,15 +9983,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "NOT (!): the condition has to be false for the result to be true.",
       "stepByStep": [
-        "i > k \u2192 1 > 2 \u2192 false \u2192 !false = true."
+        "i > k → 1 > 2 → false → !false = true."
       ],
       "commonTrap": "Ignoring the !.",
-      "reference": "control_statements1.pdf \u00b7 Page 5"
+      "reference": "control_statements1.pdf · Page 5"
     },
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 5"
       }
     ]
@@ -10196,73 +10016,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "An if-else ladder generalizes this to more paths."
       ],
       "commonTrap": "Thinking both blocks may run.",
-      "reference": "control_statements1.pdf \u00b7 Page 6"
+      "reference": "control_statements1.pdf · Page 6"
     },
     "source": [
       {
         "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 6"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE215_108",
-    "courseId": "MIAE215",
-    "chapter": "control",
-    "topic": "Decision Making Example",
-    "difficulty": "Foundation",
-    "question": "In the robot example on the slides, what does the else branch do?",
-    "options": [
-      "Stops the robot (it is at its destination)",
-      "Moves the robot forward",
-      "Restarts the program",
-      "Prints an error"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "if (robot is not at destination) move forward; else stop robot.",
-      "stepByStep": [
-        "if/if-else statements are good for decision making."
-      ],
-      "commonTrap": "Swapping the branches.",
-      "reference": "control_statements1.pdf \u00b7 Page 7"
-    },
-    "source": [
-      {
-        "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
-        "location": "Page 7"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE215_109",
-    "courseId": "MIAE215",
-    "chapter": "control",
-    "topic": "Flowcharts",
-    "difficulty": "Foundation",
-    "question": "What does the slide say about flowchart representations made with Flowgorithm?",
-    "options": [
-      "Flowcharts are a universal programming language that improves organization and presentation; Flowgorithm is free",
-      "Flowcharts only work for C++",
-      "Flowgorithm is paid software for Python only",
-      "Flowcharts replace compiling"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "The same flowchart can be implemented in C++, Java or Python.",
-      "stepByStep": [
-        "Decision = diamond with True/False branches."
-      ],
-      "commonTrap": "Thinking flowcharts are language-specific.",
-      "reference": "control_statements1.pdf \u00b7 Page 8"
-    },
-    "source": [
-      {
-        "deck": "control_statements1.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
-        "location": "Page 8"
       }
     ]
   },
@@ -10272,9 +10032,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "control",
     "topic": "Nested if-else",
     "difficulty": "Midterm Level",
-    "question": "The nested if-else on the slides (if inside else inside else) is equivalent to:",
+    "question": "A nested if-else construct (where an if is placed inside an else block) is structurally equivalent to:",
     "options": [
-      "An if-else ladder: if \u2026 else if \u2026 else if \u2026 else",
+      "An if-else ladder: if … else if … else if … else",
       "Three separate if statements that can all run",
       "A for loop",
       "A single if with no else"
@@ -10286,13 +10046,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The ladder form is easier to read."
       ],
       "commonTrap": "Thinking several blocks can run.",
-      "reference": "control_statements1_part2.pdf \u00b7 Pages 2\u20133"
+      "reference": "control_statements1_part2.pdf · Pages 2–3"
     },
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
-        "location": "Pages 2\u20133"
+        "chapter": "Topic 4 — Control Statements & Loops",
+        "location": "Pages 2–3"
       }
     ]
   },
@@ -10316,42 +10076,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The final else runs only if none is true."
       ],
       "commonTrap": "Expecting every true condition to run.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 4"
+      "reference": "control_statements1_part2.pdf · Page 4"
     },
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
-        "location": "Page 4"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE215_112",
-    "courseId": "MIAE215",
-    "chapter": "control",
-    "topic": "Switch Statements",
-    "difficulty": "Midterm Level",
-    "question": "What does the teacher say about switch statements?",
-    "options": [
-      "They are similar to if-else ladders but less general, since they cannot use variables in the test conditions \u2014 they are not recommended/taught",
-      "They are the main tool of the course",
-      "They replace for loops",
-      "They are faster and always preferred"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "The course uses if-else ladders instead.",
-      "stepByStep": [
-        "\"I don't recommend / teach switch statements.\""
-      ],
-      "commonTrap": "Assuming switch will be tested heavily.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 4"
-    },
-    "source": [
-      {
-        "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 4"
       }
     ]
@@ -10362,26 +10092,26 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "control",
     "topic": "for Loop Steps",
     "difficulty": "Foundation",
-    "question": "In for( i = 0; i < 5; i++ ) { \u2026 }, which steps repeat until the test is false?",
+    "question": "In for( i = 0; i < 5; i++ ) { … }, which steps repeat until the test is false?",
     "options": [
-      "Test the condition \u2192 execute the codeblock \u2192 update the index (initialization happens once)",
-      "Initialize \u2192 update only",
+      "Test the condition → execute the codeblock → update the index (initialization happens once)",
+      "Initialize → update only",
       "Execute the codeblock once, then stop",
       "Initialize every time"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Step 0: initialize the index. Steps 1\u20133: test, execute codeblock, update \u2014 repeated.",
+      "coreConcept": "Step 0: initialize the index. Steps 1–3: test, execute codeblock, update — repeated.",
       "stepByStep": [
         "The loop ends when the test is false (i = 5)."
       ],
       "commonTrap": "Re-initializing each cycle.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 5"
+      "reference": "control_statements1_part2.pdf · Page 5"
     },
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 5"
       }
     ]
@@ -10406,12 +10136,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Compare with i < 10, which gives 5."
       ],
       "commonTrap": "Ignoring the = in <=.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 6"
+      "reference": "control_statements1_part2.pdf · Page 6"
     },
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 6"
       }
     ]
@@ -10423,7 +10153,6 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Nonlinear Update",
     "difficulty": "Exam Master",
     "question": "How many values does this loop print?",
-    "codeSnippet": "int k;\nfor( k = 0; k < 1000; k = k*k + 1 ) cout << \"\\n\" << k;",
     "options": [
       "6",
       "5",
@@ -10434,15 +10163,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Other expressions can be used as the update.",
       "stepByStep": [
-        "k = 0, 1, 2, 5, 26, 677 are printed; the next k = 677\u00b2 + 1 = 458330 fails k < 1000."
+        "k = 0, 1, 2, 5, 26, 677 are printed; the next k = 677² + 1 = 458330 fails k < 1000."
       ],
       "commonTrap": "Stopping at 26.",
-      "reference": "control_statements1_part2.pdf \u00b7 Page 6"
+      "reference": "control_statements1_part2.pdf · Page 6"
     },
+    "codeSnippet": "int k;\nfor( k = 0; k < 1000; k = k*k + 1 ) cout << \"\\n\" << k;",
     "source": [
       {
         "deck": "control_statements1_part2.pdf",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Page 6"
       }
     ]
@@ -10453,27 +10183,27 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "control",
     "topic": "Lesson 5 Exercise",
     "difficulty": "Exam Master",
-    "question": "Teacher's lesson5_exercises.cpp, Question #1 (first part): what is printed?",
-    "codeSnippet": "double x=1.1, y=0.25, z=-3.0;\nif( (x/y) > 4 ) {\n    z = abs(z);\n    z = z*z;\n    x = -x;\n}\nif( (x/y) > 4 ) x = -x;\ncout << x << \"\\t\" << y << \"\\t\" << z << \"\\n\";",
+    "question": "What is the console output of this C++ loop?",
     "options": [
-      "\u22121.1  0.25  9",
-      "1.1  0.25  \u22123",
-      "\u22121.1  0.25  \u22123",
+      "−1.1  0.25  9",
+      "1.1  0.25  −3",
+      "−1.1  0.25  −3",
       "1.1  0.25  9"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "x/y = 4.4 > 4 \u2192 z = |\u22123| = 3 \u2192 z = 9 \u2192 x = \u22121.1.",
+      "coreConcept": "x/y = 4.4 > 4 → z = |−3| = 3 → z = 9 → x = −1.1.",
       "stepByStep": [
-        "Second if: x/y = \u22124.4 > 4 is false, so x stays \u22121.1."
+        "Second if: x/y = −4.4 > 4 is false, so x stays −1.1."
       ],
       "commonTrap": "Flipping x back in the second if.",
-      "reference": "lesson5_exercises.cpp (Mini-course Lesson 5) \u00b7 Line 12"
+      "reference": "lesson5_exercises.cpp (Mini-course Lesson 5) · Line 12"
     },
+    "codeSnippet": "double x=1.1, y=0.25, z=-3.0;\nif( (x/y) > 4 ) {\n    z = abs(z);\n    z = z*z;\n    x = -x;\n}\nif( (x/y) > 4 ) x = -x;\ncout << x << \"\\t\" << y << \"\\t\" << z << \"\\n\";",
     "source": [
       {
         "deck": "lesson5_exercises.cpp (Mini-course Lesson 5)",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Line 12"
       }
     ]
@@ -10484,26 +10214,26 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "control",
     "topic": "Countdown Loop Exit",
     "difficulty": "Midterm Level",
-    "question": "lesson5_exercises.cpp: after for( i = 10; i > -1; i-- ) cout << i; what value of i is printed next?",
+    "question": "In C++, after executing for( i = 10; i > -1; i-- ) cout << i; what is the terminal value of i?",
     "options": [
-      "\u22121",
+      "−1",
       "0",
       "10",
       "1"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "The loop prints 10 down to 0; after i-- makes i = \u22121, the test i > \u22121 fails.",
+      "coreConcept": "The loop prints 10 down to 0; after i-- makes i = −1, the test i > −1 fails.",
       "stepByStep": [
         "Exit value = first value failing the condition."
       ],
       "commonTrap": "Answering 0 (the last printed value).",
-      "reference": "lesson5_exercises.cpp (Mini-course Lesson 5) \u00b7 Line 24"
+      "reference": "lesson5_exercises.cpp (Mini-course Lesson 5) · Line 24"
     },
     "source": [
       {
         "deck": "lesson5_exercises.cpp (Mini-course Lesson 5)",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Line 24"
       }
     ]
@@ -10515,26 +10245,26 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "topic": "Changing the Index Inside a Loop",
     "difficulty": "Exam Master",
     "question": "What does this loop print?",
-    "codeSnippet": "for( i = -1; i <= 5; i = i + 2 ) {\n    cout << \"\\n\" << i;\n    if( i == 3 ) i = 7;\n}",
     "options": [
-      "\u22121 1 3",
-      "\u22121 1 3 5",
-      "\u22121 1 3 7 9",
-      "\u22121 3 5"
+      "−1 1 3",
+      "−1 1 3 5",
+      "−1 1 3 7 9",
+      "−1 3 5"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Setting the index inside the body changes the loop.",
       "stepByStep": [
-        "i = \u22121, 1, 3 \u2192 at 3, i = 7 \u2192 update i = 9 \u2192 9 <= 5 false \u2192 stop."
+        "i = −1, 1, 3 → at 3, i = 7 → update i = 9 → 9 <= 5 false → stop."
       ],
       "commonTrap": "Ignoring the i = 7 assignment.",
-      "reference": "lesson5_exercises.cpp (Mini-course Lesson 5) \u00b7 Line 29"
+      "reference": "lesson5_exercises.cpp (Mini-course Lesson 5) · Line 29"
     },
+    "codeSnippet": "for( i = -1; i <= 5; i = i + 2 ) {\n    cout << \"\\n\" << i;\n    if( i == 3 ) i = 7;\n}",
     "source": [
       {
         "deck": "lesson5_exercises.cpp (Mini-course Lesson 5)",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Line 29"
       }
     ]
@@ -10545,27 +10275,27 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "control",
     "topic": "Integer Test Condition",
     "difficulty": "Exam Master",
-    "question": "Teacher's lesson5_more.cpp, Question #1: what are x, y and z at the end?",
-    "codeSnippet": "int i, x=1, y=2, z=3;\nif( (z/2) > 1 ) {\n    z = -z;\n    z++;\n    x = x + z;\n}\nif( x >= 1 ) x = -x;",
+    "question": "In C++, what are the final values of x, y, and z after executing this conditional block?",
     "options": [
-      "x = \u22121, y = 2, z = 3",
-      "x = \u22121, y = 2, z = \u22122",
-      "x = \u22123, y = 2, z = \u22122",
+      "x = −1, y = 2, z = 3",
+      "x = −1, y = 2, z = −2",
+      "x = −3, y = 2, z = −2",
       "x = 1, y = 2, z = 3"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "z/2 is int division: 3/2 = 1, and 1 > 1 is false \u2192 the first block is skipped.",
+      "coreConcept": "z/2 is int division: 3/2 = 1, and 1 > 1 is false → the first block is skipped.",
       "stepByStep": [
-        "x >= 1 \u2192 x = \u22121."
+        "x >= 1 → x = −1."
       ],
       "commonTrap": "Using real division (1.5 > 1).",
-      "reference": "lesson5_more.cpp (Mini-course Lesson 5) \u00b7 Line 12"
+      "reference": "lesson5_more.cpp (Mini-course Lesson 5) · Line 12"
     },
+    "codeSnippet": "int i, x=1, y=2, z=3;\nif( (z/2) > 1 ) {\n    z = -z;\n    z++;\n    x = x + z;\n}\nif( x >= 1 ) x = -x;",
     "source": [
       {
         "deck": "lesson5_more.cpp (Mini-course Lesson 5)",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Line 12"
       }
     ]
@@ -10576,8 +10306,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "control",
     "topic": "Nested Loop Counters",
     "difficulty": "Exam Master",
-    "question": "Teacher's lesson5_more.cpp, Question #2: what are k1, k2 and k3 after the loops?",
-    "codeSnippet": "int j,k1=0,k2=0,k3;\nk3 = 0;\nfor(i=1;i<=2;i++) {\n    k1 = k1 + 1;\n    k3 = k3 + 1;\n    for(j=1;j<=3;j++) {\n        k2 = k2 + 1;\n        k3 = k3 + 1;\n    }\n}",
+    "question": "In C++, what are the final values of k1, k2, and k3 after the nested loops finish?",
     "options": [
       "k1 = 2, k2 = 6, k3 = 8",
       "k1 = 2, k2 = 3, k3 = 5",
@@ -10588,15 +10317,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "The outer loop runs 2 times; the inner loop runs 3 times per outer pass.",
       "stepByStep": [
-        "k1 = 2, k2 = 2 \u00d7 3 = 6, k3 = 2 + 6 = 8."
+        "k1 = 2, k2 = 2 × 3 = 6, k3 = 2 + 6 = 8."
       ],
       "commonTrap": "Forgetting that k3 is incremented in both loops.",
-      "reference": "lesson5_more.cpp (Mini-course Lesson 5) \u00b7 Line 33"
+      "reference": "lesson5_more.cpp (Mini-course Lesson 5) · Line 33"
     },
+    "codeSnippet": "int j,k1=0,k2=0,k3;\nk3 = 0;\nfor(i=1;i<=2;i++) {\n    k1 = k1 + 1;\n    k3 = k3 + 1;\n    for(j=1;j<=3;j++) {\n        k2 = k2 + 1;\n        k3 = k3 + 1;\n    }\n}",
     "source": [
       {
         "deck": "lesson5_more.cpp (Mini-course Lesson 5)",
-        "chapter": "Topic 4 \u2014 Control Statements & Loops",
+        "chapter": "Topic 4 — Control Statements & Loops",
         "location": "Line 33"
       }
     ]
@@ -10607,7 +10337,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Materials Science vs Materials Engineering",
     "difficulty": "Foundation",
-    "question": "According to Lecture 1, what is the difference between materials science and materials engineering?",
+    "question": "What is the fundamental difference between materials science and materials engineering?",
     "options": [
       "Science studies the relationships between structure and properties; engineering designs the structure to obtain desired properties",
       "Science designs products; engineering studies atoms",
@@ -10616,17 +10346,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Materials science: structure \u2194 properties relationships. Materials engineering: use those structure\u2013property correlations to design a material with desired properties.",
+      "coreConcept": "Materials science: structure ↔ properties relationships. Materials engineering: use those structure–property correlations to design a material with desired properties.",
       "stepByStep": [
-        "The course is organized around the link Processing \u2192 Structure \u2192 Properties."
+        "The course is organized around the link Processing → Structure → Properties."
       ],
       "commonTrap": "Reversing the two definitions.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 7"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 7"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 7"
       }
     ]
@@ -10637,7 +10367,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Definition of a Property",
     "difficulty": "Foundation",
-    "question": "How does Lecture 1 define a material property?",
+    "question": "In materials science, how is a material property defined?",
     "options": [
       "The response of a material to an external stimulus (mechanical, thermal, electrical, magnetic, optical), independent of shape and size",
       "The shape and size of a part",
@@ -10651,12 +10381,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Categories: mechanical, thermal, electrical, magnetic, optical."
       ],
       "commonTrap": "Treating geometry (shape and size) as a material property.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 8"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 8"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 8"
       }
     ]
@@ -10665,9 +10395,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE221_003",
     "courseId": "MIAE221",
     "chapter": "intro",
-    "topic": "Classes of Materials \u2013 Ceramics",
+    "topic": "Classes of Materials – Ceramics",
     "difficulty": "Midterm Level",
-    "question": "Based on the Lecture 2 comparison table, which class of materials has poor ductility, low electrical and thermal conductivity, high hardness and stiffness, and poor machinability?",
+    "question": "Which class of materials typically exhibits poor ductility, low electrical and thermal conductivity, high hardness and stiffness, and poor machinability?",
     "options": [
       "Ceramics",
       "Metals",
@@ -10681,12 +10411,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The combination of poor ductility and high hardness points to ceramics."
       ],
       "commonTrap": "Picking metals because they are also strong. Metals are ductile and conductive.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 2"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 2"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 2"
       }
     ]
@@ -10695,7 +10425,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE221_004",
     "courseId": "MIAE221",
     "chapter": "intro",
-    "topic": "Classes of Materials \u2013 Metals",
+    "topic": "Classes of Materials – Metals",
     "difficulty": "Foundation",
     "question": "Which class of materials has very high electrical and thermal conductivity and good ductility?",
     "options": [
@@ -10711,12 +10441,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Ceramics and polymers both have low conductivity."
       ],
       "commonTrap": "Choosing polymers because some are flexible. Flexibility is not conductivity.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 2"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 2"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 2"
       }
     ]
@@ -10727,7 +10457,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Catastrophic Failures",
     "difficulty": "Midterm Level",
-    "question": "Which pairing of failure and cause is given in Lecture 1?",
+    "question": "In engineering failure analysis, which famous structural failure is correctly paired with its primary material mechanism?",
     "options": [
       "Liberty ships (WWII): ductile-to-brittle transition in BCC Fe; Challenger (1986): failure of a polymer O-ring seal",
       "Liberty ships: polymer O-ring failure; Challenger: metal fatigue at rivet holes",
@@ -10741,13 +10471,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Match each failure to its material cause from the slides."
       ],
       "commonTrap": "Mixing up the Comet (fatigue) and the Challenger (polymer seal).",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Pages 12\u201314"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Pages 12–14"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Pages 12\u201314"
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
+        "location": "Pages 12–14"
       }
     ]
   },
@@ -10755,9 +10485,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE221_006",
     "courseId": "MIAE221",
     "chapter": "intro",
-    "topic": "Structure \u2192 Properties Example",
+    "topic": "Structure → Properties Example",
     "difficulty": "Exam Master",
-    "question": "Lecture 1 turbine-blade example: removing grain boundaries (equiaxed \u2192 columnar \u2192 single crystal) let designers raise operating temperature by about 200 \u00b0C. Why?",
+    "question": "In aerospace turbine-blade design, how does eliminating grain boundaries (progressing from equiaxed to columnar to single-crystal superalloys) permit substantially higher operating temperatures?",
     "options": [
       "Grain boundaries creep at high temperature, so eliminating them improves high-temperature performance",
       "Single crystals are cheaper to cast",
@@ -10768,15 +10498,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Understanding structure lets engineers design better parts: here, controlling grain structure improves creep resistance and engine efficiency.",
       "stepByStep": [
-        "Fewer grain boundaries \u2192 less creep at high temperature \u2192 higher allowed operating temperature."
+        "Fewer grain boundaries → less creep at high temperature → higher allowed operating temperature."
       ],
       "commonTrap": "Thinking grain boundaries raise the melting point. The issue is creep, not melting.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 15"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 15"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 15"
       }
     ]
@@ -10789,24 +10519,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "Why is the reported atomic mass of carbon 12.011 g/mol rather than exactly 12?",
     "options": [
-      "It is the abundance-weighted average of its isotopes (\u00b9\u00b2C and \u00b9\u00b3C), which have the same Z but different N",
+      "It is the abundance-weighted average of its isotopes (¹²C and ¹³C), which have the same Z but different N",
       "Electrons add 0.011 g/mol",
       "Carbon has 12.011 protons on average",
       "It is a rounding error in the periodic table"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Isotopes: same atomic number Z (protons), different number of neutrons N. Atomic mass A \u2248 Z + N.",
+      "coreConcept": "Isotopes: same atomic number Z (protons), different number of neutrons N. Atomic mass A ≈ Z + N.",
       "stepByStep": [
-        "0.989(12.000) + 0.011(13.003) \u2248 12.011 g/mol."
+        "0.989(12.000) + 0.011(13.003) ≈ 12.011 g/mol."
       ],
       "commonTrap": "Thinking the number of protons can vary. Z defines the element.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 5"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 5"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 5"
       }
     ]
@@ -10817,27 +10547,27 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Mole & Avogadro's Number",
     "difficulty": "Midterm Level",
-    "question": "Lecture 2 review problem: how many atoms are in 6 g of carbon (A = 12.011 g/mol)?",
+    "question": "How many atoms are in a 6.0 g sample of carbon (atomic mass A = 12.011 g/mol)?",
     "options": [
-      "\u2248 3.01 \u00d7 10\u00b2\u00b3 atoms",
-      "\u2248 6.02 \u00d7 10\u00b2\u00b3 atoms",
-      "\u2248 7.23 \u00d7 10\u00b2\u2074 atoms",
-      "\u2248 0.5 atoms"
+      "≈ 3.01 × 10²³ atoms",
+      "≈ 6.02 × 10²³ atoms",
+      "≈ 7.23 × 10²⁴ atoms",
+      "≈ 0.5 atoms"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Number of atoms = (mass / atomic weight) \u00d7 N_A, with N_A = 6.022 \u00d7 10\u00b2\u00b3 atoms/mol. Use dimensional analysis.",
+      "coreConcept": "Number of atoms = (mass / atomic weight) × N_A, with N_A = 6.022 × 10²³ atoms/mol. Use dimensional analysis.",
       "stepByStep": [
-        "6 g \u00f7 12.011 g/mol = 0.4995 mol.",
-        "0.4995 \u00d7 6.022 \u00d7 10\u00b2\u00b3 \u2248 3.01 \u00d7 10\u00b2\u00b3 atoms."
+        "6 g ÷ 12.011 g/mol = 0.4995 mol.",
+        "0.4995 × 6.022 × 10²³ ≈ 3.01 × 10²³ atoms."
       ],
-      "commonTrap": "Multiplying by the atomic weight instead of dividing (7.23 \u00d7 10\u00b2\u2074).",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 13"
+      "commonTrap": "Multiplying by the atomic weight instead of dividing (7.23 × 10²⁴).",
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 13"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 13"
       }
     ]
@@ -10848,7 +10578,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Electron Configurations",
     "difficulty": "Midterm Level",
-    "question": "Practice Set #1: the configuration 1s\u00b2 2s\u00b2 2p\u2076 3s\u00b2 3p\u2076 4s\u00b9 belongs to which group?",
+    "question": "Practice Set #1: the configuration 1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹ belongs to which group?",
     "options": [
       "Alkali metal (Group IA)",
       "Halogen (Group VIIA)",
@@ -10857,18 +10587,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Valence electrons decide the group: one s electron beyond a filled shell \u2192 alkali metal (gives up 1 e\u207b, electropositive).",
+      "coreConcept": "Valence electrons decide the group: one s electron beyond a filled shell → alkali metal (gives up 1 e⁻, electropositive).",
       "stepByStep": [
-        "4s\u00b9 \u2192 one valence electron \u2192 Group IA (this is potassium).",
-        "1s\u00b22s\u00b22p\u2075 would be a halogen (needs 1 e\u207b); a filled 3p\u2076 with nothing after it would be an inert gas."
+        "4s¹ → one valence electron → Group IA (this is potassium).",
+        "1s²2s²2p⁵ would be a halogen (needs 1 e⁻); a filled 3p⁶ with nothing after it would be an inert gas."
       ],
       "commonTrap": "Counting total electrons instead of looking at the outermost shell.",
-      "reference": "Practice Problem Set #1.pdf \u00b7 Page 1"
+      "reference": "Practice Problem Set #1.pdf · Page 1"
     },
     "source": [
       {
         "deck": "Practice Problem Set #1.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 1"
       }
     ]
@@ -10879,27 +10609,27 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Bonding Energy & Equilibrium Spacing",
     "difficulty": "Midterm Level",
-    "question": "On the interatomic energy\u2013distance curve, what do the equilibrium separation r\u2080 and the bonding energy E\u2080 correspond to?",
+    "question": "On the interatomic energy–distance curve, what do the equilibrium separation r₀ and the bonding energy E₀ correspond to?",
     "options": [
-      "r\u2080 is where the net force is zero (the energy minimum); E\u2080 is the depth of that minimum, the energy needed to separate the atoms completely",
-      "r\u2080 is where the attractive force is maximum; E\u2080 is the repulsive energy at r\u2080",
-      "r\u2080 is where the energy is zero; E\u2080 is the slope of the curve",
-      "r\u2080 and E\u2080 are both measured at infinite separation"
+      "r₀ is where the net force is zero (the energy minimum); E₀ is the depth of that minimum, the energy needed to separate the atoms completely",
+      "r₀ is where the attractive force is maximum; E₀ is the repulsive energy at r₀",
+      "r₀ is where the energy is zero; E₀ is the slope of the curve",
+      "r₀ and E₀ are both measured at infinite separation"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Net force = attractive + repulsive. E = \u222bF dr, so the minimum of E is where F_net = 0.",
+      "coreConcept": "Net force = attractive + repulsive. E = ∫F dr, so the minimum of E is where F_net = 0.",
       "stepByStep": [
         "A deep well means strongly bonded; a shallow well means weakly bonded."
       ],
-      "commonTrap": "Placing r\u2080 where E = 0 instead of at the minimum.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Pages 15\u201316"
+      "commonTrap": "Placing r₀ where E = 0 instead of at the minimum.",
+      "reference": "lecture 2-review chemistry-students26.pdf · Pages 15–16"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
-        "location": "Pages 15\u201316"
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
+        "location": "Pages 15–16"
       }
     ]
   },
@@ -10923,12 +10653,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Delocalized electron sea = Metallic bond."
       ],
       "commonTrap": "Confusing with ionic bonding which features localized electron transfer between electronegative and electropositive atoms.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 10"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 10"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 10"
       }
     ]
@@ -10939,7 +10669,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Ionic vs Covalent Bonding",
     "difficulty": "Foundation",
-    "question": "Which statement matches Lecture 3?",
+    "question": "Which of the following statements regarding primary atomic bonding is true?",
     "options": [
       "Ionic bonding requires electron transfer and a large electronegativity difference; covalent bonding shares electrons and is highly directional",
       "Ionic bonding shares electrons; covalent bonding transfers them",
@@ -10948,18 +10678,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Ionic (e.g. NaCl, MgO): metal + non-metal, electron transfer, non-directional; hard, brittle, insulating, high Tm. Covalent (e.g. CH\u2084, diamond): shared electrons, comparable electronegativities, directional.",
+      "coreConcept": "Ionic (e.g. NaCl, MgO): metal + non-metal, electron transfer, non-directional; hard, brittle, insulating, high Tm. Covalent (e.g. CH₄, diamond): shared electrons, comparable electronegativities, directional.",
       "stepByStep": [
-        "Typical ionic bonding energies are 600\u20131500 kJ/mol."
+        "Typical ionic bonding energies are 600–1500 kJ/mol."
       ],
       "commonTrap": "Calling ionic solids conductive. They are insulators in the solid state.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Pages 4\u20137"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Pages 4–7"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
-        "location": "Pages 4\u20137"
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
+        "location": "Pages 4–7"
       }
     ]
   },
@@ -10978,17 +10708,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Most materials are neither 100% ionic nor 100% covalent: % ionic character = [1 \u2212 exp(\u22120.25(X_A \u2212 X_B)\u00b2)] \u00d7 100%.",
+      "coreConcept": "Most materials are neither 100% ionic nor 100% covalent: % ionic character = [1 − exp(−0.25(X_A − X_B)²)] × 100%.",
       "stepByStep": [
         "Higher $\\Delta X \\implies$ higher ionicity."
       ],
       "commonTrap": "Assuming covalent character increases with electronegativity difference.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 9"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 9"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 9"
       }
     ]
@@ -10999,33 +10729,33 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Percent Ionic Character",
     "difficulty": "Exam Master",
-    "question": "Lecture 3 / Practice Set #1: with X_Ti = 1.5 and X_O = 3.5, what is the percent ionic character of the Ti\u2013O bond in TiO\u2082?",
+    "question": "Using Pauling's formula, with electronegativities X_Ti = 1.5 and X_O = 3.5, what is the percent ionic character of the Ti–O bond in TiO₂?",
     "options": [
-      "\u2248 63.2%",
-      "\u2248 36.8%",
-      "\u2248 6.1%",
+      "≈ 63.2%",
+      "≈ 36.8%",
+      "≈ 6.1%",
       "100%"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "% IC = [1 \u2212 exp(\u22120.25 \u0394X\u00b2)] \u00d7 100%.",
+      "coreConcept": "% IC = [1 − exp(−0.25 ΔX²)] × 100%.",
       "stepByStep": [
-        "\u0394X = 3.5 \u2212 1.5 = 2.0 \u2192 0.25 \u00d7 4 = 1.0.",
-        "1 \u2212 e\u207b\u00b9 = 1 \u2212 0.368 = 0.632 \u2192 63.2% ionic.",
-        "For comparison, ZnTe (1.6 vs 2.1): \u0394X = 0.5 \u2192 6.1% ionic."
+        "ΔX = 3.5 − 1.5 = 2.0 → 0.25 × 4 = 1.0.",
+        "1 − e⁻¹ = 1 − 0.368 = 0.632 → 63.2% ionic.",
+        "For comparison, ZnTe (1.6 vs 2.1): ΔX = 0.5 → 6.1% ionic."
       ],
-      "commonTrap": "Reporting e\u207b\u00b9 = 36.8% (the covalent fraction) as the ionic character.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 9; Practice Problem Set #1.pdf \u00b7 Page 1"
+      "commonTrap": "Reporting e⁻¹ = 36.8% (the covalent fraction) as the ionic character.",
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 9; Practice Problem Set #1.pdf · Page 1"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 9"
       },
       {
         "deck": "Practice Problem Set #1.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 1"
       }
     ]
@@ -11036,7 +10766,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Identifying Bond Types",
     "difficulty": "Midterm Level",
-    "question": "Lecture 3 summary: what type of bonding holds solid xenon together?",
+    "question": "What type of bonding primarily holds solid xenon together at cryogenic temperatures?",
     "options": [
       "Secondary (van der Waals) bonding",
       "Metallic bonding",
@@ -11047,16 +10777,16 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Xenon is an inert gas with a full valence shell, so it forms no primary bonds; only weak induced-dipole (van der Waals) forces act between its atoms.",
       "stepByStep": [
-        "Brass \u2192 metallic; rubber and nylon \u2192 covalent with some van der Waals; AlP \u2192 predominantly covalent; BaS \u2192 predominantly ionic."
+        "Brass → metallic; rubber and nylon → covalent with some van der Waals; AlP → predominantly covalent; BaS → predominantly ionic."
       ],
       "commonTrap": "Choosing covalent because xenon is a non-metal. Inert gases do not share electrons.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Pages 17\u201318"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Pages 17–18"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
-        "location": "Pages 17\u201318"
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
+        "location": "Pages 17–18"
       }
     ]
   },
@@ -11080,12 +10810,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Weak physical bonding ($\\sim 0.1\\text{ eV/atom}$)."
       ],
       "commonTrap": "Thinking secondary bonds involve permanent chemical reactions.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 13"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 13"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 13"
       }
     ]
@@ -11096,9 +10826,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Hydrogen Bonding",
     "difficulty": "Foundation",
-    "question": "Which statement about hydrogen bonding is correct, according to Lecture 3?",
+    "question": "Which of the following statements regarding hydrogen bonding is correct?",
     "options": [
-      "It is a special, stronger case of secondary bonding, arising from the unshielded proton in H\u2013O, H\u2013F and H\u2013N bonds",
+      "It is a special, stronger case of secondary bonding, arising from the unshielded proton in H–O, H–F and H–N bonds",
       "It is a primary bond stronger than ionic bonding",
       "It occurs only between metal atoms",
       "It is weaker than all other van der Waals interactions"
@@ -11107,15 +10837,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Secondary bonds (about 10 kJ/mol) come from dipoles. Polar molecules with H bonded to O, F or N form hydrogen bonds, generally the strongest secondary bond.",
       "stepByStep": [
-        "Example: H\u2082O between molecules (Practice Set #1 Q2g) \u2192 hydrogen bonding; within the molecule \u2192 covalent."
+        "Example: H₂O between molecules (Practice Set #1 Q2g) → hydrogen bonding; within the molecule → covalent."
       ],
       "commonTrap": "Classifying hydrogen bonding as a primary (chemical) bond.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 13"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 13"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 13"
       }
     ]
@@ -11135,18 +10865,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Properties from bonding (Lecture 3): a larger bond energy E\u2080 gives a larger Tm and a larger elastic modulus E; the thermal expansion coefficient \u03b1 is larger when E\u2080 is smaller.",
+      "coreConcept": "Properties from bonding (Lecture 3): a larger bond energy E₀ gives a larger Tm and a larger elastic modulus E; the thermal expansion coefficient α is larger when E₀ is smaller.",
       "stepByStep": [
         "Deep well = High $T_m$, High $E$, Low $\\alpha$."
       ],
       "commonTrap": "Thinking thermal expansion increases with deeper wells (it decreases).",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Pages 14\u201316"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Pages 14–16"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
-        "location": "Pages 14\u201316"
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
+        "location": "Pages 14–16"
       }
     ]
   },
@@ -11156,7 +10886,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "crystal",
     "topic": "Crystalline vs Amorphous",
     "difficulty": "Foundation",
-    "question": "According to Lecture 4, when do non-crystalline (amorphous) structures typically form?",
+    "question": "Under what solidification conditions do non-crystalline (amorphous) materials typically form?",
     "options": [
       "With complex structures or rapid cooling, when atoms have no periodic packing",
       "Only in pure metals cooled slowly",
@@ -11169,13 +10899,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "stepByStep": [
         "Dense, regular packing has lower energy, but rapid cooling or complex structures prevent atoms from ordering."
       ],
-      "commonTrap": "Thinking all solids are crystalline. Glass (non-crystalline SiO\u2082) is the classic counter-example.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 3"
+      "commonTrap": "Thinking all solids are crystalline. Glass (non-crystalline SiO₂) is the classic counter-example.",
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 3"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 3"
       }
     ]
@@ -11202,12 +10932,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "FCC: $8 \\times (1/8) + 6 \\times (1/2) = 1 + 3 = 4$."
       ],
       "commonTrap": "Counting shared corners as whole atoms ($8, 9, 14$).",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 8"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 8"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 8"
       }
     ]
@@ -11232,12 +10962,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "(1/6)(12) + (1/2)(2) + 3 = 2 + 1 + 3 = 6."
       ],
       "commonTrap": "Confusing atoms per cell (6) with the coordination number (12).",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 13"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 13"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 13"
       }
     ]
@@ -11262,12 +10992,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$4 + 4 + 4 = 12$ nearest neighbors."
       ],
       "commonTrap": "Selecting 8 (which is the coordination number of BCC).",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 12"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 12"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 12"
       }
     ]
@@ -11292,12 +11022,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\text{APF} = \\frac{V_{\\text{atoms}}}{V_{\\text{unit cell}}} = \\frac{4 \\times \\frac{4}{3}\\pi R^3}{(2R\\sqrt{2})^3} = \\frac{16\\pi R^3 / 3}{16\\sqrt{2}R^3} = \\frac{\\pi}{3\\sqrt{2}} \\approx 0.74$."
       ],
       "commonTrap": "Confusing FCC (0.74) with BCC (0.68) or Simple Cubic (0.52).",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 12"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 12"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 12"
       }
     ]
@@ -11323,12 +11053,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\text{APF} = \\frac{2 \\times \\frac{4}{3}\\pi R^3}{(4R/\\sqrt{3})^3} = \\frac{8\\pi / 3}{64 / (3\\sqrt{3})} = \\frac{\\pi\\sqrt{3}}{8} \\approx 0.68$."
       ],
       "commonTrap": "Confusing BCC with FCC close-packing.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 1"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 1"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 1"
       }
     ]
@@ -11353,12 +11083,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$a = 2\\sqrt{2}R$."
       ],
       "commonTrap": "Using the BCC body diagonal relationship $\\sqrt{3}a = 4R$.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 4"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 4"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 4"
       }
     ]
@@ -11383,12 +11113,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$a = 4R/\\sqrt{3}$."
       ],
       "commonTrap": "Using the face diagonal relationship.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 10"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 10"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 10"
       }
     ]
@@ -11399,28 +11129,28 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "crystal",
     "topic": "Stacking Sequence: FCC vs HCP",
     "difficulty": "Midterm Level",
-    "question": "Both FCC and HCP have CN = 12 and APF = 0.74. What distinguishes them, according to Lecture 5?",
+    "question": "Both FCC and HCP crystal structures have a coordination number of 12 and an APF of 0.74. What is the fundamental geometric difference between them?",
     "options": [
-      "The stacking sequence: HCP is ABAB\u2026, FCC is ABCABC\u2026",
+      "The stacking sequence: HCP is ABAB…, FCC is ABCABC…",
       "FCC has more atoms touching each atom",
       "HCP has a lower APF of 0.68",
-      "FCC stacks as AAAA\u2026 with no offset"
+      "FCC stacks as AAAA… with no offset"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Both start with a close-packed A layer and a B layer in the hollows. The third layer decides: directly over A (HCP) or in the empty C hollows (FCC).",
       "stepByStep": [
-        "HCP: ABAB\u2026 (repeats every 2 layers).",
-        "FCC: ABCABC\u2026 (repeats every 3 layers).",
+        "HCP: ABAB… (repeats every 2 layers).",
+        "FCC: ABCABC… (repeats every 3 layers).",
         "The slide notes this is why FCC and HCP deform so differently."
       ],
       "commonTrap": "Thinking they differ in packing density. They are equally dense.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 7"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 7"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 7"
       }
     ]
@@ -11440,17 +11170,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Lecture 4: Fe is BCC below 912 \u00b0C and FCC above 912 \u00b0C. The same element can take more than one crystal structure (polymorphism/allotropy).",
+      "coreConcept": "Lecture 4: Fe is BCC below 912 °C and FCC above 912 °C. The same element can take more than one crystal structure (polymorphism/allotropy).",
       "stepByStep": [
         "BCC $\\to$ FCC $\\to$ BCC with rising temperature."
       ],
       "commonTrap": "Confusing polymorphism with magnetic phase change.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 9"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 9"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 9"
       }
     ]
@@ -11463,25 +11193,25 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "How many crystal systems and Bravais lattices are there, and what defines the cubic system?",
     "options": [
-      "7 systems, 14 Bravais lattices; cubic has a = b = c and \u03b1 = \u03b2 = \u03b3 = 90\u00b0",
-      "14 systems, 7 lattices; cubic has a \u2260 b \u2260 c",
+      "7 systems, 14 Bravais lattices; cubic has a = b = c and α = β = γ = 90°",
+      "14 systems, 7 lattices; cubic has a ≠ b ≠ c",
       "3 systems (SC, BCC, FCC), 3 lattices",
-      "7 systems, 7 lattices; cubic has a = b \u2260 c"
+      "7 systems, 7 lattices; cubic has a = b ≠ c"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Seven crystal systems (cubic, tetragonal, orthorhombic, rhombohedral, hexagonal, monoclinic, triclinic) give 14 unique lattice types (Bravais lattices).",
       "stepByStep": [
         "Cubic contains SC, BCC and FCC as subsets.",
-        "Tetragonal: a = b \u2260 c, all angles 90\u00b0."
+        "Tetragonal: a = b ≠ c, all angles 90°."
       ],
       "commonTrap": "Treating SC, BCC and FCC as separate crystal systems. They are lattice types within the cubic system.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 19"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 19"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 19"
       }
     ]
@@ -11506,12 +11236,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "$\\rho = \\frac{\\text{Mass}}{\\text{Volume}} = \\frac{n A / N_A}{V_c} = \\frac{n A}{V_c N_A}$."
       ],
       "commonTrap": "Inverting Avogadro's number in the expression.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 8"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 8"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 8"
       }
     ]
@@ -11522,28 +11252,28 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "crystal",
     "topic": "Theoretical Density (Copper)",
     "difficulty": "Exam Master",
-    "question": "Lecture 5 example: copper is FCC with R = 0.128 nm and A = 63.5 g/mol. What is its theoretical density?",
+    "question": "Copper has an FCC crystal structure with atomic radius R = 0.128 nm and atomic weight A = 63.5 g/mol. What is its theoretical density?",
     "options": [
-      "\u2248 8.89 g/cm\u00b3",
-      "\u2248 4.45 g/cm\u00b3",
-      "\u2248 17.8 g/cm\u00b3",
-      "\u2248 2.22 g/cm\u00b3"
+      "≈ 8.89 g/cm³",
+      "≈ 4.45 g/cm³",
+      "≈ 17.8 g/cm³",
+      "≈ 2.22 g/cm³"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "\u03c1 = nA / (V_C \u00b7 N_A), with n = 4 for FCC and a = 2R\u221a2.",
+      "coreConcept": "ρ = nA / (V_C · N_A), with n = 4 for FCC and a = 2R√2.",
       "stepByStep": [
-        "a = 2(0.128)\u221a2 = 0.362 nm = 3.62 \u00d7 10\u207b\u2078 cm \u2192 V_C = a\u00b3 = 4.75 \u00d7 10\u207b\u00b2\u00b3 cm\u00b3.",
-        "\u03c1 = (4 \u00d7 63.5) / (4.75 \u00d7 10\u207b\u00b2\u00b3 \u00d7 6.022 \u00d7 10\u00b2\u00b3) = 254 / 28.6 \u2248 8.89 g/cm\u00b3.",
-        "The measured value is 8.94 g/cm\u00b3, which is very close."
+        "a = 2(0.128)√2 = 0.362 nm = 3.62 × 10⁻⁸ cm → V_C = a³ = 4.75 × 10⁻²³ cm³.",
+        "ρ = (4 × 63.5) / (4.75 × 10⁻²³ × 6.022 × 10²³) = 254 / 28.6 ≈ 8.89 g/cm³.",
+        "The measured value is 8.94 g/cm³, which is very close."
       ],
-      "commonTrap": "Using n = 2 (the BCC value), which halves the answer to about 4.45 g/cm\u00b3.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 8"
+      "commonTrap": "Using n = 2 (the BCC value), which halves the answer to about 4.45 g/cm³.",
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 8"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 8"
       }
     ]
@@ -11568,12 +11298,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Vector components: $(1/2, 1, 0)$. Multiply by 2: $[1, 2, 0]$."
       ],
       "commonTrap": "Using parentheses $(120)$ which designate crystallographic planes, not directions.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 12"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 12"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 12"
       }
     ]
@@ -11598,12 +11328,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Intercepts: $(1, 2, \\infty) \\to$ Reciprocals: $(1, 1/2, 0) \\to$ Scale: $(2, 1, 0)$."
       ],
       "commonTrap": "Forgetting to take reciprocals, writing $(1, 2, 0)$.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 11"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 11"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 11"
       }
     ]
@@ -11614,7 +11344,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "crystal",
     "topic": "Families of Directions",
     "difficulty": "Midterm Level",
-    "question": "In a cubic crystal, which directions belong to the family \u27e8123\u27e9?",
+    "question": "In a cubic crystal, which directions belong to the family ⟨123⟩?",
     "options": [
       "[123], [213], [312], [132], [231], [321] (all orders, and signs)",
       "Only [123]",
@@ -11623,18 +11353,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "In the cubic system, directions with the same indices regardless of order or sign are equivalent; \u27e8 \u27e9 denotes the family.",
+      "coreConcept": "In the cubic system, directions with the same indices regardless of order or sign are equivalent; ⟨ ⟩ denotes the family.",
       "stepByStep": [
         "Planes work the same way: (hkl) is one plane, {hkl} is the family.",
-        "This equivalence holds only in cubic crystals. In tetragonal, [100] \u2260 [001]."
+        "This equivalence holds only in cubic crystals. In tetragonal, [100] ≠ [001]."
       ],
       "commonTrap": "Applying cubic equivalence to non-cubic systems.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 16"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 16"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 16"
       }
     ]
@@ -11659,12 +11389,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Property depends on direction vector $[uvw]$."
       ],
       "commonTrap": "Confusing with isotropic (uniform properties in all directions, typical of fine polycrystals).",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 17"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 17"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 17"
       }
     ]
@@ -11675,7 +11405,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "What Is a Material",
     "difficulty": "Foundation",
-    "question": "According to Lecture 1, which of these would be treated as a MATERIAL (rather than a substance like oils or gases)?",
+    "question": "In engineering classification, which of the following is categorized as an engineering material (rather than an operating consumable or chemical substance)?",
     "options": [
       "Cement",
       "Natural gas",
@@ -11684,17 +11414,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "A material can be put into a certain geometric shape, and the product has some functionality \u2014 e.g. iron, copper, polymers, cement.",
+      "coreConcept": "A material can be put into a certain geometric shape, and the product has some functionality — e.g. iron, copper, polymers, cement.",
       "stepByStep": [
         "Oils, gases and pharmaceuticals are substances, not engineering materials."
       ],
       "commonTrap": "Treating any chemical substance as a material.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 4"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 4"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 4"
       }
     ]
@@ -11705,7 +11435,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Old vs New Materials",
     "difficulty": "Foundation",
-    "question": "Which of the following is listed as a NEW material (not an old one) in Lecture 1?",
+    "question": "In materials history, which of the following is classified as an engineered advanced material developed primarily in the modern era?",
     "options": [
       "Synthetic polymers",
       "Wood",
@@ -11719,159 +11449,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Metals and ceramics appear in both lists."
       ],
       "commonTrap": "Choosing a natural material.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 4"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 4"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 4"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_038",
-    "courseId": "MIAE221",
-    "chapter": "intro",
-    "topic": "Ages of Civilization",
-    "difficulty": "Foundation",
-    "question": "Lecture 1 says civilization is strongly linked with materials. Which of these is one of the named \"ages\"?",
-    "options": [
-      "The bronze age",
-      "The plastic age",
-      "The glass age",
-      "The rubber age"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Stone age, bronze age, iron age \u2026 nuclear age, information age.",
-      "stepByStep": [
-        "Technological eras are named after the materials that defined them."
-      ],
-      "commonTrap": "Inventing an age not on the slide.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 5"
-    },
-    "source": [
-      {
-        "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Page 5"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_039",
-    "courseId": "MIAE221",
-    "chapter": "intro",
-    "topic": "Early Materials: Sumerians",
-    "difficulty": "Foundation",
-    "question": "According to the historical perspective slide, which material is associated with the Sumerians?",
-    "options": [
-      "Ceramics",
-      "Lime",
-      "Iron",
-      "Bronze"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Sumerians: ceramics. Egyptians: lime. Anatolians: iron (12th century BC). Earliest bronze: modern Iran/Iraq.",
-      "stepByStep": [],
-      "commonTrap": "Mixing up the Sumerians and the Egyptians.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 5"
-    },
-    "source": [
-      {
-        "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Page 5"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_040",
-    "courseId": "MIAE221",
-    "chapter": "intro",
-    "topic": "Early Materials: Egyptians",
-    "difficulty": "Foundation",
-    "question": "Which material does the slide associate with the Egyptians?",
-    "options": [
-      "Lime",
-      "Ceramics",
-      "Iron",
-      "Silicon"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Egyptians: lime.",
-      "stepByStep": [
-        "Sumerians: ceramics; Anatolians: iron."
-      ],
-      "commonTrap": "Choosing ceramics.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 5"
-    },
-    "source": [
-      {
-        "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Page 5"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_041",
-    "courseId": "MIAE221",
-    "chapter": "intro",
-    "topic": "Early Materials: Iron",
-    "difficulty": "Foundation",
-    "question": "Who is credited on the slide with iron, around the 12th century BC?",
-    "options": [
-      "The Anatolians",
-      "The Sumerians",
-      "The Egyptians",
-      "The Romans"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Anatolians: iron (12th century BC).",
-      "stepByStep": [
-        "The earliest known bronze is from what is now Iran and Iraq."
-      ],
-      "commonTrap": "Choosing the Romans.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 5"
-    },
-    "source": [
-      {
-        "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Page 5"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_042",
-    "courseId": "MIAE221",
-    "chapter": "intro",
-    "topic": "Earliest Bronze",
-    "difficulty": "Foundation",
-    "question": "Where is the earliest known bronze from, according to Lecture 1?",
-    "options": [
-      "What is now Iran and Iraq",
-      "Ancient Greece",
-      "China",
-      "Egypt"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Historical perspective slide.",
-      "stepByStep": [],
-      "commonTrap": "Guessing a well-known ancient civilization.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 5"
-    },
-    "source": [
-      {
-        "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Page 5"
       }
     ]
   },
@@ -11893,12 +11477,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Transportation: engines, airframes, auto bodies. Space: shuttle tiles, high-temp alloys. Energy: solar power, batteries. Communications: semiconductors.",
       "stepByStep": [],
       "commonTrap": "Mixing up the categories.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 6"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 6"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 6"
       }
     ]
@@ -11918,17 +11502,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Communications \u2192 semiconductors.",
+      "coreConcept": "Communications → semiconductors.",
       "stepByStep": [
-        "Energy \u2192 solar power, batteries."
+        "Energy → solar power, batteries."
       ],
       "commonTrap": "Choosing batteries.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 6"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 6"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 6"
       }
     ]
@@ -11939,7 +11523,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Property Categories",
     "difficulty": "Foundation",
-    "question": "Which is NOT one of the property categories listed in Lecture 1?",
+    "question": "Which of the following is NOT one of the major physical property categories in materials science?",
     "options": [
       "Financial",
       "Mechanical",
@@ -11948,106 +11532,18 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Properties: mechanical, thermal, electrical, magnetic, optical \u2014 responses to an external stimulus.",
+      "coreConcept": "Properties: mechanical, thermal, electrical, magnetic, optical — responses to an external stimulus.",
       "stepByStep": [
         "Properties are independent of shape and size."
       ],
       "commonTrap": "Counting cost as a material property.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 8"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 8"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 8"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_046",
-    "courseId": "MIAE221",
-    "chapter": "intro",
-    "topic": "Course Framework",
-    "difficulty": "Midterm Level",
-    "question": "The general course outline links which three ideas?",
-    "options": [
-      "Processing \u2192 structure \u2192 properties (structure at the atomic, molecular and microscopic levels)",
-      "Cost \u2192 price \u2192 profit",
-      "Design \u2192 marketing \u2192 sales",
-      "Mass \u2192 volume \u2192 density only"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Processing controls structure; structure determines properties.",
-      "stepByStep": [
-        "Structure is studied from the atomic to the microscopic scale."
-      ],
-      "commonTrap": "Leaving processing out.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 9"
-    },
-    "source": [
-      {
-        "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Page 9"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_047",
-    "courseId": "MIAE221",
-    "chapter": "intro",
-    "topic": "Course Outline Order",
-    "difficulty": "Midterm Level",
-    "question": "In the MIAE 221 outline, which topics come before the midterm exam?",
-    "options": [
-      "Introduction, chemistry review, crystalline solids, imperfections, diffusion, mechanical properties of metals",
-      "Phase diagrams and ceramics only",
-      "Thermal, electrical, magnetic and optical properties",
-      "Polymers and composites only"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Midterm Exam: Friday October 30th, 2026.",
-      "stepByStep": [
-        "After the midterm: phase diagrams, ceramics, polymers, functional properties."
-      ],
-      "commonTrap": "Placing phase diagrams before the midterm.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 9"
-    },
-    "source": [
-      {
-        "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Page 9"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_048",
-    "courseId": "MIAE221",
-    "chapter": "intro",
-    "topic": "Why Study Materials Science (1)",
-    "difficulty": "Foundation",
-    "question": "What is the first reason Lecture 1 gives for studying materials science?",
-    "options": [
-      "To understand the capabilities and limitations of materials",
-      "To memorize the periodic table",
-      "To avoid mathematics",
-      "To learn programming"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Reasons: (1) capabilities and limitations (avoid catastrophic failures), (2) design better components, (3) it is interesting.",
-      "stepByStep": [],
-      "commonTrap": "Skipping the safety motivation.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 11"
-    },
-    "source": [
-      {
-        "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Page 11"
       }
     ]
   },
@@ -12071,12 +11567,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Other failures: Comet (fatigue), DC-10 (turbine inclusion), Challenger (O-ring)."
       ],
       "commonTrap": "Attributing it to fatigue.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 13"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 13"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 13"
       }
     ]
@@ -12099,12 +11595,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "The crash killed 88 people.",
       "stepByStep": [],
       "commonTrap": "Mixing it up with the Comet.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 13"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 13"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 13"
       }
     ]
@@ -12117,7 +11613,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "What caused the Tacoma Narrows Bridge collapse (1940)?",
     "options": [
-      "Poor design \u2014 insufficient crosswind stiffening",
+      "Poor design — insufficient crosswind stiffening",
       "Corrosion of the cables",
       "A material inclusion",
       "Brittle fracture in the deck"
@@ -12127,12 +11623,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Listed under catastrophic failures.",
       "stepByStep": [],
       "commonTrap": "Assuming a material defect.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 14"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 14"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 14"
       }
     ]
@@ -12155,12 +11651,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Inclusions are defects that can start cracks.",
       "stepByStep": [],
       "commonTrap": "Mixing it up with the Challenger.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 14"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 14"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 14"
       }
     ]
@@ -12183,43 +11679,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Stress concentrations at openings accelerate fatigue cracking.",
       "stepByStep": [],
       "commonTrap": "Choosing a structural design cause.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 14"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 14"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 14"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_054",
-    "courseId": "MIAE221",
-    "chapter": "intro",
-    "topic": "Why Study Materials Science (2)",
-    "difficulty": "Foundation",
-    "question": "According to Lecture 1, understanding materials science helps us design better parts by answering questions such as:",
-    "options": [
-      "How can we make something stronger or lighter? How do elements form alloys?",
-      "How much should a part cost?",
-      "Who should manufacture it?",
-      "How should it be marketed?"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Reason (2): design better components, parts, devices.",
-      "stepByStep": [
-        "Example: turbine blades with controlled grain structure."
-      ],
-      "commonTrap": "Choosing business questions.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 15"
-    },
-    "source": [
-      {
-        "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Page 15"
       }
     ]
   },
@@ -12229,7 +11695,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Stiffness by Material Class",
     "difficulty": "Foundation",
-    "question": "According to the classes-of-materials table, which class has LOW stiffness?",
+    "question": "Among the primary classes of materials, which class typically has the lowest elastic modulus (stiffness)?",
     "options": [
       "Polymers",
       "Ceramics",
@@ -12243,12 +11709,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Polymers also have low conductivity."
       ],
       "commonTrap": "Picking metals.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 2"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 2"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 2"
       }
     ]
@@ -12259,7 +11725,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Hardness by Material Class",
     "difficulty": "Foundation",
-    "question": "Which class has very high hardness/strength in the Lecture 2 table?",
+    "question": "Which class of materials typically displays the highest hardness and compressive strength?",
     "options": [
       "Ceramics",
       "Polymers",
@@ -12268,17 +11734,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Hardness/strength: polymers low\u2013medium, ceramics very high, metals medium\u2013high.",
+      "coreConcept": "Hardness/strength: polymers low–medium, ceramics very high, metals medium–high.",
       "stepByStep": [
         "But ceramics have poor ductility."
       ],
       "commonTrap": "Picking metals.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 2"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 2"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 2"
       }
     ]
@@ -12303,42 +11769,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Hard and brittle materials are difficult to machine."
       ],
       "commonTrap": "Choosing metals.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 2"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 2"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
-        "location": "Page 2"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_058",
-    "courseId": "MIAE221",
-    "chapter": "intro",
-    "topic": "Course Assessment",
-    "difficulty": "Foundation",
-    "question": "How is the MIAE 221 grade weighted, according to Lecture 1?",
-    "options": [
-      "In-tutorial problems 20%, term-assignment 10%, midterm 25%, final 45%",
-      "Midterm 50%, final 50%",
-      "Assignments 40%, final 60%",
-      "Final 100%"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Assignments are not collected, but their questions are the basis of the in-tutorial problems.",
-      "stepByStep": [
-        "The midterm is done in class."
-      ],
-      "commonTrap": "Assuming assignments are collected and graded.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 2"
-    },
-    "source": [
-      {
-        "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 2"
       }
     ]
@@ -12349,9 +11785,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "intro",
     "topic": "Properties vs Size",
     "difficulty": "Foundation",
-    "question": "A 1 cm and a 10 cm cube of the same copper are compared. What does Lecture 1 say about their properties?",
+    "question": "Comparing a 1 cm cube and a 10 cm cube of identical pure copper at room temperature, how do their intensive material properties compare?",
     "options": [
-      "They are the same \u2014 properties are independent of shape and size",
+      "They are the same — properties are independent of shape and size",
       "The larger cube is always stronger",
       "The smaller cube conducts better",
       "Properties depend only on shape"
@@ -12361,43 +11797,13 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "A property is the material's response to a stimulus, not a feature of the part geometry.",
       "stepByStep": [],
       "commonTrap": "Confusing properties with part performance.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 8"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 8"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction & Classes of Materials",
+        "chapter": "Ch. 1 — Introduction & Classes of Materials",
         "location": "Page 8"
-      }
-    ]
-  },
-  {
-    "id": "Q_MIAE221_060",
-    "courseId": "MIAE221",
-    "chapter": "bonding",
-    "topic": "Why Study Bonding",
-    "difficulty": "Foundation",
-    "question": "Why does Lecture 2 say we study bonding?",
-    "options": [
-      "Material properties (strength, hardness, conductivity\u2026) are determined by how atoms are connected and arranged",
-      "To memorize atomic masses",
-      "Because all materials have the same bonds",
-      "Only to calculate densities"
-    ],
-    "correctIndex": 0,
-    "explanation": {
-      "coreConcept": "Properties come from the manner in which atoms are connected and how they are arranged in space.",
-      "stepByStep": [
-        "Bonding depends on electronic structure and electronegativity."
-      ],
-      "commonTrap": "Thinking bonding is unrelated to properties.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 3"
-    },
-    "source": [
-      {
-        "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
-        "location": "Page 3"
       }
     ]
   },
@@ -12421,12 +11827,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The electronegativity difference sets the bond type."
       ],
       "commonTrap": "Choosing neutrons, which do not take part in bonding.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 3"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 3"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 3"
       }
     ]
@@ -12451,12 +11857,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "The later wave-mechanical model uses probability distributions."
       ],
       "commonTrap": "Mixing up the Bohr and wave-mechanical models.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 4"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 4"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 4"
       }
     ]
@@ -12476,15 +11882,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Developed by Schr\u00f6dinger, Heisenberg, Planck and others (1927); more precise than Bohr.",
+      "coreConcept": "Developed by Schrödinger, Heisenberg, Planck and others (1927); more precise than Bohr.",
       "stepByStep": [],
       "commonTrap": "Describing the Bohr model instead.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 6"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 6"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 6"
       }
     ]
@@ -12504,17 +11910,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Atomic mass A \u2248 Z + N.",
+      "coreConcept": "Atomic mass A ≈ Z + N.",
       "stepByStep": [
         "Isotopes have the same Z but different N."
       ],
       "commonTrap": "Confusing Z with A.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 5"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 5"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 5"
       }
     ]
@@ -12525,24 +11931,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Electronegativity Scale",
     "difficulty": "Foundation",
-    "question": "According to Lecture 2, over what range do electronegativity values run?",
+    "question": "On the Pauling electronegativity scale, what is the approximate numerical range of electronegativity values for elements?",
     "options": [
       "0.7 to 4.0",
       "0 to 1",
       "1 to 100",
-      "\u22124.0 to 4.0"
+      "−4.0 to 4.0"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Originally worked out by Linus Pauling (1939). Large values = strong tendency to acquire electrons.",
       "stepByStep": [],
-      "commonTrap": "Assuming a 0\u20131 scale.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 10"
+      "commonTrap": "Assuming a 0–1 scale.",
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 10"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 10"
       }
     ]
@@ -12555,22 +11961,22 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "Group IA elements such as Li, Na and K have low electronegativity. They are called:",
     "options": [
-      "Electropositive \u2014 they readily give up electrons to become + ions",
-      "Electronegative \u2014 they readily accept electrons",
-      "Inert \u2014 they never bond",
+      "Electropositive — they readily give up electrons to become + ions",
+      "Electronegative — they readily accept electrons",
+      "Inert — they never bond",
       "Semiconductors"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "High EN (Group VIIA: F, Cl) \u2192 accept electrons. Low EN (Group IA) \u2192 give up electrons.",
+      "coreConcept": "High EN (Group VIIA: F, Cl) → accept electrons. Low EN (Group IA) → give up electrons.",
       "stepByStep": [],
       "commonTrap": "Reversing the definitions.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 9"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 9"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 9"
       }
     ]
@@ -12581,24 +11987,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Density of Solids",
     "difficulty": "Foundation",
-    "question": "According to Lecture 2, most solids have densities in which range?",
+    "question": "In materials engineering, what is the typical density range for the vast majority of engineering solids?",
     "options": [
-      "About 1 to 23 g/cm\u00b3",
-      "About 100 to 1000 g/cm\u00b3",
-      "Less than 0.01 g/cm\u00b3",
-      "Exactly 1 g/cm\u00b3"
+      "About 1 to 23 g/cm³",
+      "About 100 to 1000 g/cm³",
+      "Less than 0.01 g/cm³",
+      "Exactly 1 g/cm³"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Density is in g/cm\u00b3; many problems are solved by combining density, atomic mass and Avogadro's number.",
+      "coreConcept": "Density is in g/cm³; many problems are solved by combining density, atomic mass and Avogadro's number.",
       "stepByStep": [],
-      "commonTrap": "Confusing g/cm\u00b3 with kg/m\u00b3.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 12"
+      "commonTrap": "Confusing g/cm³ with kg/m³.",
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 12"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 12"
       }
     ]
@@ -12611,24 +12017,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "What is Avogadro's number N_A?",
     "options": [
-      "6.022 \u00d7 10\u00b2\u00b3 particles per mole",
-      "6.022 \u00d7 10\u207b\u00b2\u00b3",
-      "1.602 \u00d7 10\u207b\u00b9\u2079",
+      "6.022 × 10²³ particles per mole",
+      "6.022 × 10⁻²³",
+      "1.602 × 10⁻¹⁹",
       "9.81"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "A mole contains N_A particles; atomic weight is in g/mol.",
       "stepByStep": [
-        "1.602 \u00d7 10\u207b\u00b9\u2079 C is the electron charge."
+        "1.602 × 10⁻¹⁹ C is the electron charge."
       ],
       "commonTrap": "Mixing up constants.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 12"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 12"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 12"
       }
     ]
@@ -12639,26 +12045,26 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Volume of a Mole of Gold",
     "difficulty": "Midterm Level",
-    "question": "Lecture 2 review problem: what is the volume of 1 mole of gold (A = 196.97 g/mol, \u03c1 = 19.32 g/cm\u00b3)?",
+    "question": "What is the molar volume of gold given atomic weight A = 196.97 g/mol and density ρ = 19.32 g/cm³?",
     "options": [
-      "\u2248 10.2 cm\u00b3",
-      "\u2248 3805 cm\u00b3",
-      "\u2248 0.098 cm\u00b3",
-      "\u2248 19.3 cm\u00b3"
+      "≈ 10.2 cm³",
+      "≈ 3805 cm³",
+      "≈ 0.098 cm³",
+      "≈ 19.3 cm³"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Volume = mass / density; 1 mole has a mass of A grams.",
       "stepByStep": [
-        "196.97 / 19.32 \u2248 10.2 cm\u00b3."
+        "196.97 / 19.32 ≈ 10.2 cm³."
       ],
       "commonTrap": "Multiplying instead of dividing.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 13"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 13"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 13"
       }
     ]
@@ -12669,7 +12075,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Stable Electron Configurations",
     "difficulty": "Midterm Level",
-    "question": "Which electron configurations are the most stable, according to Lecture 2?",
+    "question": "In atomic physics and chemistry, which electron configurations represent the lowest energy and greatest stability?",
     "options": [
       "Those with complete s and p subshells (inert gases)",
       "Those with a single valence electron",
@@ -12683,12 +12089,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Other atoms gain, lose or share electrons to approach a stable configuration."
       ],
       "commonTrap": "Thinking alkali metals are most stable.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 14"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 14"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 14"
       }
     ]
@@ -12711,12 +12117,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "The higher the bond energy, the higher the melting temperature.",
       "stepByStep": [],
       "commonTrap": "Reversing the trend.",
-      "reference": "lecture 2-review chemistry-students26.pdf \u00b7 Page 17"
+      "reference": "lecture 2-review chemistry-students26.pdf · Page 17"
     },
     "source": [
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 17"
       }
     ]
@@ -12727,9 +12133,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Ionic Bond Energies",
     "difficulty": "Foundation",
-    "question": "What is the typical range of ionic bonding energies given in Lecture 3?",
+    "question": "What is the typical bond energy range for primary ionic bonds?",
     "options": [
-      "600 to 1500 kJ/mol (3\u20138 eV/atom)",
+      "600 to 1500 kJ/mol (3–8 eV/atom)",
       "About 10 kJ/mol",
       "68 to 850 kJ/mol",
       "1 to 5 J/mol"
@@ -12741,12 +12147,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "Secondary bonds are about 10 kJ/mol."
       ],
       "commonTrap": "Using the metallic range.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 4"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 4"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 4"
       }
     ]
@@ -12759,7 +12165,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Exam Master",
     "question": "Why is it hard to assign general characteristics to covalently bonded materials?",
     "options": [
-      "Bond strength and properties vary widely: diamond (Tm > 3550 \u00b0C) vs bismuth (Tm = 270 \u00b0C); GaAs conducts while diamond insulates",
+      "Bond strength and properties vary widely: diamond (Tm > 3550 °C) vs bismuth (Tm = 270 °C); GaAs conducts while diamond insulates",
       "All covalent materials melt at the same temperature",
       "Covalent bonds are always weak",
       "Covalent materials are always metals"
@@ -12769,12 +12175,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Covalent bonds are directional and can be strong or weak.",
       "stepByStep": [],
       "commonTrap": "Assuming covalent means always strong.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 8"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 8"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 8"
       }
     ]
@@ -12787,22 +12193,22 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Midterm Level",
     "question": "Which example shows that metallic bonding can be weak or strong?",
     "options": [
-      "Hg \u2248 68 kJ/mol (0.7 eV/atom) vs W \u2248 850 kJ/mol (8.8 eV/atom)",
+      "Hg ≈ 68 kJ/mol (0.7 eV/atom) vs W ≈ 850 kJ/mol (8.8 eV/atom)",
       "NaCl vs MgO",
       "Diamond vs bismuth",
-      "H\u2082O vs HF"
+      "H₂O vs HF"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Metallic bonding energy varies widely; higher E\u2080 means higher melting point (W vs Hg).",
+      "coreConcept": "Metallic bonding energy varies widely; higher E₀ means higher melting point (W vs Hg).",
       "stepByStep": [],
       "commonTrap": "Picking the covalent example.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 11"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 11"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 11"
       }
     ]
@@ -12825,12 +12231,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Each atom has several unoccupied valence orbitals; the electron sea lets atoms move relative to each other.",
       "stepByStep": [],
       "commonTrap": "Calling metallic bonds directional.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 11"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 11"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 11"
       }
     ]
@@ -12843,22 +12249,22 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "How do typical secondary bond strengths compare with primary bonds?",
     "options": [
-      "Secondary \u2248 10 kJ/mol vs primary \u2248 50\u20131000 kJ/mol",
+      "Secondary ≈ 10 kJ/mol vs primary ≈ 50–1000 kJ/mol",
       "Secondary bonds are stronger",
       "They are equal",
-      "Secondary \u2248 1000 kJ/mol"
+      "Secondary ≈ 1000 kJ/mol"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Secondary (van der Waals) bonds are physical, not chemical, and exist between almost all atoms and molecules.",
       "stepByStep": [],
       "commonTrap": "Reversing the comparison.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 12"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 12"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 12"
       }
     ]
@@ -12878,15 +12284,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Elements near each other (Al, P) \u2192 small EN difference \u2192 covalent. Far apart (Ba, S) \u2192 ionic.",
+      "coreConcept": "Elements near each other (Al, P) → small EN difference → covalent. Far apart (Ba, S) → ionic.",
       "stepByStep": [],
       "commonTrap": "Assuming every metal + non-metal pair is purely ionic.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 18"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 18"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 18"
       }
     ]
@@ -12897,7 +12303,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Electron Configuration: Halogen",
     "difficulty": "Midterm Level",
-    "question": "Practice Set #1: which group does 1s\u00b2 2s\u00b2 2p\u2075 belong to?",
+    "question": "Practice Set #1: which group does 1s² 2s² 2p⁵ belong to?",
     "options": [
       "Halogen (Group VIIA)",
       "Inert gas (Group 0)",
@@ -12906,15 +12312,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "One electron short of a filled 2p subshell \u2192 accepts 1 electron (fluorine).",
+      "coreConcept": "One electron short of a filled 2p subshell → accepts 1 electron (fluorine).",
       "stepByStep": [],
       "commonTrap": "Calling it inert because the shell is nearly full.",
-      "reference": "Practice Problem Set #1.pdf \u00b7 Page 1"
+      "reference": "Practice Problem Set #1.pdf · Page 1"
     },
     "source": [
       {
         "deck": "Practice Problem Set #1.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 1"
       }
     ]
@@ -12925,28 +12331,28 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "bonding",
     "topic": "Atoms in a Gold Wire",
     "difficulty": "Exam Master",
-    "question": "Practice Set #1, Q5a: how many atoms are in a gold wire 0.70 mm in diameter and 8.0 cm long (\u03c1 = 19.3 g/cm\u00b3, A = 196.97 g/mol)?",
+    "question": "Practice Set #1, Q5a: how many atoms are in a gold wire 0.70 mm in diameter and 8.0 cm long (ρ = 19.3 g/cm³, A = 196.97 g/mol)?",
     "options": [
-      "\u2248 1.82 \u00d7 10\u00b2\u00b9 atoms",
-      "\u2248 7.3 \u00d7 10\u00b2\u00b9 atoms",
-      "\u2248 1.82 \u00d7 10\u00b2\u00b3 atoms",
-      "\u2248 3.0 \u00d7 10\u00b9\u2078 atoms"
+      "≈ 1.82 × 10²¹ atoms",
+      "≈ 7.3 × 10²¹ atoms",
+      "≈ 1.82 × 10²³ atoms",
+      "≈ 3.0 × 10¹⁸ atoms"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Volume \u2192 mass \u2192 moles \u2192 atoms.",
+      "coreConcept": "Volume → mass → moles → atoms.",
       "stepByStep": [
-        "V = \u03c0(0.035 cm)\u00b2(8 cm) = 0.0308 cm\u00b3.",
-        "m = 19.3 \u00d7 0.0308 = 0.594 g.",
-        "n = (0.594/196.97) \u00d7 6.022 \u00d7 10\u00b2\u00b3 \u2248 1.82 \u00d7 10\u00b2\u00b9."
+        "V = π(0.035 cm)²(8 cm) = 0.0308 cm³.",
+        "m = 19.3 × 0.0308 = 0.594 g.",
+        "n = (0.594/196.97) × 6.022 × 10²³ ≈ 1.82 × 10²¹."
       ],
-      "commonTrap": "Using the diameter as the radius (\u00d74).",
-      "reference": "Practice Problem Set #1.pdf \u00b7 Page 2"
+      "commonTrap": "Using the diameter as the radius (×4).",
+      "reference": "Practice Problem Set #1.pdf · Page 2"
     },
     "source": [
       {
         "deck": "Practice Problem Set #1.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 2"
       }
     ]
@@ -12957,7 +12363,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "crystal",
     "topic": "Energy and Packing",
     "difficulty": "Foundation",
-    "question": "According to Lecture 4, why do dense, regular-packed structures form?",
+    "question": "In crystalline solids, why do atoms naturally arrange into dense, regularly repeating crystal lattices?",
     "options": [
       "They tend to have lower energy",
       "They have higher energy",
@@ -12966,17 +12372,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Dense, regular packing \u2192 lower energy; non-dense, random packing \u2192 higher energy.",
+      "coreConcept": "Dense, regular packing → lower energy; non-dense, random packing → higher energy.",
       "stepByStep": [
         "Metals typically adopt dense crystal structures."
       ],
       "commonTrap": "Reversing the energy relation.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 2"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 2"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 2"
       }
     ]
@@ -12999,12 +12405,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Many properties (especially mechanical) are determined by the arrangement of atoms.",
       "stepByStep": [],
       "commonTrap": "Using the terms interchangeably.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 4"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 4"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 4"
       }
     ]
@@ -13017,7 +12423,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "Which element is given as the (rare) example of a simple cubic structure?",
     "options": [
-      "Polonium (\u03b1-Po)",
+      "Polonium (α-Po)",
       "Iron",
       "Copper",
       "Magnesium"
@@ -13029,12 +12435,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "CN = 6, APF = 0.52."
       ],
       "commonTrap": "Choosing a common metal.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 6"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 6"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 6"
       }
     ]
@@ -13047,7 +12453,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "What is a lattice parameter?",
     "options": [
-      "The length of a unit-cell axis \u2014 typically a few \u00e5ngstr\u00f6ms (a few tenths of a nanometre)",
+      "The length of a unit-cell axis — typically a few ångströms (a few tenths of a nanometre)",
       "The number of atoms per unit cell",
       "The angle between planes",
       "The density of the crystal"
@@ -13057,12 +12463,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "In cubic systems all three lattice parameters are equal (a = b = c).",
       "stepByStep": [],
       "commonTrap": "Confusing it with the atomic radius.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 7"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 7"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 7"
       }
     ]
@@ -13082,22 +12488,22 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "APF_SC = (1 \u00d7 4/3 \u03c0(0.5a)\u00b3)/a\u00b3 = \u03c0/6 \u2248 0.52.",
+      "coreConcept": "APF_SC = (1 × 4/3 π(0.5a)³)/a³ = π/6 ≈ 0.52.",
       "stepByStep": [
         "CN = 6 nearest neighbours."
       ],
       "commonTrap": "Using the BCC values.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 8; lecture 5-crystal structure 2-students26.pdf \u00b7 Page 2"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 8; lecture 5-crystal structure 2-students26.pdf · Page 2"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 8"
       },
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 2"
       }
     ]
@@ -13110,9 +12516,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "Which formula gives the number of atoms per unit cell?",
     "options": [
-      "N = N\u1d62 + N_f/2 + N_c/8",
-      "N = N\u1d62 + N_f + N_c",
-      "N = N\u1d62/8 + N_f/2 + N_c",
+      "N = Nᵢ + N_f/2 + N_c/8",
+      "N = Nᵢ + N_f + N_c",
+      "N = Nᵢ/8 + N_f/2 + N_c",
       "N = 8N_c"
     ],
     "correctIndex": 0,
@@ -13122,12 +12528,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "SC = 1, BCC = 2, FCC = 4."
       ],
       "commonTrap": "Counting shared atoms fully.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 8"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 8"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 8"
       }
     ]
@@ -13138,9 +12544,9 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "crystal",
     "topic": "BCC Metals",
     "difficulty": "Foundation",
-    "question": "Which metals are given as BCC examples in Lecture 4?",
+    "question": "Which group of metals crystallizes in a Body-Centered Cubic (BCC) structure at room temperature?",
     "options": [
-      "Cr, W, Mo, Ta, and Fe below 912 \u00b0C",
+      "Cr, W, Mo, Ta, and Fe below 912 °C",
       "Cu, Ni, Au, Ag",
       "Mg, Co, Ti, Zn",
       "Po only"
@@ -13152,12 +12558,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
         "FCC: Cu, Ni, Au, Ag. HCP: Mg, Co, Ti, Zn, Zr."
       ],
       "commonTrap": "Mixing up the lists.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 9"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 9"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 9"
       }
     ]
@@ -13179,15 +12585,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "SC: cube edges. BCC: body diagonals. FCC: face diagonals.",
       "stepByStep": [
-        "That is why a = 2R\u221a2 in FCC."
+        "That is why a = 2R√2 in FCC."
       ],
       "commonTrap": "Using the BCC answer.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 11"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 11"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 11"
       }
     ]
@@ -13207,15 +12613,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "HCP: 6 atoms per cell, CN = 12, APF = 0.74, stacking ABAB\u2026",
+      "coreConcept": "HCP: 6 atoms per cell, CN = 12, APF = 0.74, stacking ABAB…",
       "stepByStep": [],
       "commonTrap": "Choosing FCC metals.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 13"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 13"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 13"
       }
     ]
@@ -13228,22 +12634,22 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Midterm Level",
     "question": "Which describes the tetragonal crystal system?",
     "options": [
-      "a = b \u2260 c, \u03b1 = \u03b2 = \u03b3 = 90\u00b0",
-      "a = b = c, \u03b1 = \u03b2 = \u03b3 = 90\u00b0",
-      "a \u2260 b \u2260 c, all angles 90\u00b0",
-      "a = b \u2260 c, \u03b3 = 120\u00b0"
+      "a = b ≠ c, α = β = γ = 90°",
+      "a = b = c, α = β = γ = 90°",
+      "a ≠ b ≠ c, all angles 90°",
+      "a = b ≠ c, γ = 120°"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Cubic: a = b = c. Tetragonal: one axis different. Orthorhombic: all different, still 90\u00b0. Hexagonal: a = b \u2260 c, \u03b3 = 120\u00b0.",
+      "coreConcept": "Cubic: a = b = c. Tetragonal: one axis different. Orthorhombic: all different, still 90°. Hexagonal: a = b ≠ c, γ = 120°.",
       "stepByStep": [],
       "commonTrap": "Confusing tetragonal with hexagonal.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 16"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 16"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 16"
       }
     ]
@@ -13254,26 +12660,26 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "crystal",
     "topic": "Direction Indices",
     "difficulty": "Midterm Level",
-    "question": "A direction vector goes from the origin to the point (1, \u00bd, 1). What are its Miller indices?",
+    "question": "A direction vector goes from the origin to the point (1, ½, 1). What are its Miller indices?",
     "options": [
       "[212]",
       "[121]",
-      "[1 \u00bd 1]",
+      "[1 ½ 1]",
       "(212)"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Take the projections, clear fractions by multiplying by the smallest factor, and use square brackets.",
       "stepByStep": [
-        "(1, \u00bd, 1) \u00d7 2 = (2, 1, 2)."
+        "(1, ½, 1) × 2 = (2, 1, 2)."
       ],
       "commonTrap": "Leaving the fraction or using parentheses (which are for planes).",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 12"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 12"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 12"
       }
     ]
@@ -13284,26 +12690,26 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "crystal",
     "topic": "Plane Indices",
     "difficulty": "Midterm Level",
-    "question": "A plane intercepts the axes at x = 1, y = 1 and z = \u00bd. What are its Miller indices?",
+    "question": "A plane intercepts the axes at x = 1, y = 1 and z = ½. What are its Miller indices?",
     "options": [
       "(112)",
       "(221)",
-      "(11\u00bd)",
+      "(11½)",
       "[112]"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Take reciprocals of the intercepts: 1/1, 1/1, 1/\u00bd.",
+      "coreConcept": "Take reciprocals of the intercepts: 1/1, 1/1, 1/½.",
       "stepByStep": [
         "(1, 1, 2)."
       ],
-      "commonTrap": "Forgetting the reciprocal of \u00bd.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 11"
+      "commonTrap": "Forgetting the reciprocal of ½.",
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 11"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 11"
       }
     ]
@@ -13323,15 +12729,15 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Method: move origin if needed \u2192 intercepts in a, b, c \u2192 reciprocals (1/\u221e = 0) \u2192 smallest integers \u2192 parentheses.",
+      "coreConcept": "Method: move origin if needed → intercepts in a, b, c → reciprocals (1/∞ = 0) → smallest integers → parentheses.",
       "stepByStep": [],
       "commonTrap": "Dividing by zero.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 19"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 19"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 19"
       }
     ]
@@ -13354,17 +12760,17 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       "coreConcept": "Cu is a metal (electron sea) with an FCC structure.",
       "stepByStep": [],
       "commonTrap": "Mixing up FCC and BCC values.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 10; lecture 4-crystal structure 1-students26.pdf \u00b7 Page 11"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 10; lecture 4-crystal structure 1-students26.pdf · Page 11"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 10"
       },
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 11"
       }
     ]
@@ -13377,30 +12783,30 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Exam Master",
     "question": "Iron is BCC with R = 0.124 nm and A = 55.85 g/mol. What is its theoretical density?",
     "options": [
-      "\u2248 7.90 g/cm\u00b3",
-      "\u2248 3.95 g/cm\u00b3",
-      "\u2248 15.8 g/cm\u00b3",
-      "\u2248 8.89 g/cm\u00b3"
+      "≈ 7.90 g/cm³",
+      "≈ 3.95 g/cm³",
+      "≈ 15.8 g/cm³",
+      "≈ 8.89 g/cm³"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "\u03c1 = nA / (V_C N_A), with n = 2 and a = 4R/\u221a3 for BCC.",
+      "coreConcept": "ρ = nA / (V_C N_A), with n = 2 and a = 4R/√3 for BCC.",
       "stepByStep": [
-        "a = 4(0.124)/\u221a3 = 0.2864 nm \u2192 V_C = 2.349 \u00d7 10\u207b\u00b2\u00b3 cm\u00b3.",
-        "\u03c1 = 2 \u00d7 55.85 / (2.349 \u00d7 10\u207b\u00b2\u00b3 \u00d7 6.022 \u00d7 10\u00b2\u00b3) \u2248 7.90 g/cm\u00b3."
+        "a = 4(0.124)/√3 = 0.2864 nm → V_C = 2.349 × 10⁻²³ cm³.",
+        "ρ = 2 × 55.85 / (2.349 × 10⁻²³ × 6.022 × 10²³) ≈ 7.90 g/cm³."
       ],
       "commonTrap": "Using n = 4 (FCC), which doubles the answer.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 8; lecture 4-crystal structure 1-students26.pdf \u00b7 Page 10"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 8; lecture 4-crystal structure 1-students26.pdf · Page 10"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 8"
       },
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 10"
       }
     ]
@@ -13413,24 +12819,24 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Midterm Level",
     "question": "What is the FCC unit-cell volume in terms of the atomic radius R?",
     "options": [
-      "16\u221a2 R\u00b3",
-      "64R\u00b3/(3\u221a3)",
-      "8R\u00b3",
-      "4R\u00b3"
+      "16√2 R³",
+      "64R³/(3√3)",
+      "8R³",
+      "4R³"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "a = 2R\u221a2 \u2192 a\u00b3 = 8 \u00d7 2\u221a2 R\u00b3 = 16\u221a2 R\u00b3.",
+      "coreConcept": "a = 2R√2 → a³ = 8 × 2√2 R³ = 16√2 R³.",
       "stepByStep": [
-        "64R\u00b3/(3\u221a3) is the BCC volume."
+        "64R³/(3√3) is the BCC volume."
       ],
       "commonTrap": "Cubing only the 2.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 4"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 4"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 4"
       }
     ]
@@ -13439,33 +12845,33 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE221_096",
     "courseId": "MIAE221",
     "chapter": "mixed",
-    "topic": "Atoms per cm\u00b3",
+    "topic": "Atoms per cm³",
     "difficulty": "Exam Master",
-    "question": "Using the Lecture 5 copper example (4 atoms per cell, V_C = 4.75 \u00d7 10\u207b\u00b2\u00b3 cm\u00b3), how many atoms are in 1 cm\u00b3 of copper?",
+    "question": "Given that copper has 4 atoms per unit cell and a unit cell volume V_c = 4.75 × 10⁻²³ cm³, how many atoms are present in 1 cm³ of copper?",
     "options": [
-      "\u2248 8.4 \u00d7 10\u00b2\u00b2 atoms",
-      "\u2248 2.1 \u00d7 10\u00b2\u00b2 atoms",
-      "\u2248 6.0 \u00d7 10\u00b2\u00b3 atoms",
-      "\u2248 4.0 \u00d7 10\u00b2\u00b3 atoms"
+      "≈ 8.4 × 10²² atoms",
+      "≈ 2.1 × 10²² atoms",
+      "≈ 6.0 × 10²³ atoms",
+      "≈ 4.0 × 10²³ atoms"
     ],
     "correctIndex": 0,
     "explanation": {
       "coreConcept": "Atoms per volume = n / V_C.",
       "stepByStep": [
-        "4 / 4.75 \u00d7 10\u207b\u00b2\u00b3 \u2248 8.4 \u00d7 10\u00b2\u00b2; check: \u03c1N_A/A = 8.89 \u00d7 6.022 \u00d7 10\u00b2\u00b3 / 63.5 \u2248 8.4 \u00d7 10\u00b2\u00b2."
+        "4 / 4.75 × 10⁻²³ ≈ 8.4 × 10²²; check: ρN_A/A = 8.89 × 6.022 × 10²³ / 63.5 ≈ 8.4 × 10²²."
       ],
       "commonTrap": "Using Avogadro's number directly.",
-      "reference": "lecture 5-crystal structure 2-students26.pdf \u00b7 Page 8; lecture 2-review chemistry-students26.pdf \u00b7 Page 12"
+      "reference": "lecture 5-crystal structure 2-students26.pdf · Page 8; lecture 2-review chemistry-students26.pdf · Page 12"
     },
     "source": [
       {
         "deck": "lecture 5-crystal structure 2-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 8"
       },
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 12"
       }
     ]
@@ -13476,31 +12882,31 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "Bond Energy and Melting",
     "difficulty": "Midterm Level",
-    "question": "Using Lecture 3 data, which metal should have the higher melting temperature: Hg (\u2248 68 kJ/mol) or W (\u2248 850 kJ/mol)?",
+    "question": "Comparing mercury (Hg, bond energy ≈ 68 kJ/mol) and tungsten (W, bond energy ≈ 850 kJ/mol), which metal has the substantially higher melting temperature, and why?",
     "options": [
-      "W, because a larger bond energy E\u2080 gives a larger Tm",
+      "W, because a larger bond energy E₀ gives a larger Tm",
       "Hg, because it is heavier",
       "They melt at the same temperature",
       "It cannot be predicted from bond energy"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Tm is larger if E\u2080 is larger (deeper potential well).",
+      "coreConcept": "Tm is larger if E₀ is larger (deeper potential well).",
       "stepByStep": [
-        "Hg is liquid at room temperature; W melts above 3400 \u00b0C."
+        "Hg is liquid at room temperature; W melts above 3400 °C."
       ],
       "commonTrap": "Ignoring the bond-energy trend.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 11; lecture 3-review chemistry 2-students26.pdf \u00b7 Page 14"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 11; lecture 3-review chemistry 2-students26.pdf · Page 14"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 11"
       },
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 14"
       }
     ]
@@ -13520,22 +12926,22 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Lecture 3 summary: rubber and nylon \u2192 covalent with some van der Waals.",
+      "coreConcept": "Lecture 3 summary: rubber and nylon → covalent with some van der Waals.",
       "stepByStep": [
         "Polymers have low electrical and thermal conductivity in the Lecture 2 table."
       ],
       "commonTrap": "Choosing metallic because polymers can be flexible.",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 18; lecture 2-review chemistry-students26.pdf \u00b7 Page 2"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 18; lecture 2-review chemistry-students26.pdf · Page 2"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 18"
       },
       {
         "deck": "lecture 2-review chemistry-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 2"
       }
     ]
@@ -13546,7 +12952,7 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "mixed",
     "topic": "Iron Polymorphism and Packing",
     "difficulty": "Exam Master",
-    "question": "When iron transforms from BCC to FCC at 912 \u00b0C, how does its packing change?",
+    "question": "When iron transforms from BCC to FCC at 912 °C, how does its packing change?",
     "options": [
       "APF increases from 0.68 to 0.74 (denser packing)",
       "APF decreases from 0.74 to 0.68",
@@ -13555,22 +12961,22 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Fe: BCC below 912 \u00b0C, FCC above.",
+      "coreConcept": "Fe: BCC below 912 °C, FCC above.",
       "stepByStep": [
         "BCC APF 0.68; FCC APF 0.74."
       ],
       "commonTrap": "Reversing the two structures.",
-      "reference": "lecture 4-crystal structure 1-students26.pdf \u00b7 Page 9; lecture 4-crystal structure 1-students26.pdf \u00b7 Page 1"
+      "reference": "lecture 4-crystal structure 1-students26.pdf · Page 9; lecture 4-crystal structure 1-students26.pdf · Page 1"
     },
     "source": [
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 9"
       },
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 1"
       }
     ]
@@ -13590,22 +12996,22 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "Lecture 1: D-B-T in BCC Fe. Iron is BCC below 912 \u00b0C (Lecture 4).",
+      "coreConcept": "Lecture 1: D-B-T in BCC Fe. Iron is BCC below 912 °C (Lecture 4).",
       "stepByStep": [
         "This links structure to catastrophic failure."
       ],
       "commonTrap": "Choosing FCC.",
-      "reference": "lecture 1-introduction-2026-students (1).pdf \u00b7 Page 12; lecture 4-crystal structure 1-students26.pdf \u00b7 Page 9"
+      "reference": "lecture 1-introduction-2026-students (1).pdf · Page 12; lecture 4-crystal structure 1-students26.pdf · Page 9"
     },
     "source": [
       {
         "deck": "lecture 1-introduction-2026-students (1).pdf",
-        "chapter": "Ch. 1 \u2014 Introduction",
+        "chapter": "Ch. 1 — Introduction",
         "location": "Page 12"
       },
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 9"
       }
     ]
@@ -13618,29 +13024,29 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Exam Master",
     "question": "With X_Mg = 1.2 and X_O = 3.5, what is the percent ionic character of MgO?",
     "options": [
-      "\u2248 73%",
-      "\u2248 27%",
-      "\u2248 50%",
+      "≈ 73%",
+      "≈ 27%",
+      "≈ 50%",
       "100%"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "% IC = [1 \u2212 exp(\u22120.25 \u0394X\u00b2)] \u00d7 100%.",
+      "coreConcept": "% IC = [1 − exp(−0.25 ΔX²)] × 100%.",
       "stepByStep": [
-        "\u0394X = 2.3 \u2192 0.25 \u00d7 5.29 = 1.3225 \u2192 1 \u2212 e^(\u22121.3225) = 1 \u2212 0.266 = 0.734."
+        "ΔX = 2.3 → 0.25 × 5.29 = 1.3225 → 1 − e^(−1.3225) = 1 − 0.266 = 0.734."
       ],
       "commonTrap": "Reporting the covalent fraction (27%).",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 9; lecture 3-review chemistry 2-students26.pdf \u00b7 Page 3"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 9; lecture 3-review chemistry 2-students26.pdf · Page 3"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 9"
       },
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 3"
       }
     ]
@@ -13662,20 +13068,20 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "The electron sea does not restrict bond angles, so atoms pack as closely as possible.",
       "stepByStep": [
-        "Dense, regular packing \u2192 lower energy (Lecture 4)."
+        "Dense, regular packing → lower energy (Lecture 4)."
       ],
       "commonTrap": "Calling metallic bonds directional (that is covalent).",
-      "reference": "lecture 3-review chemistry 2-students26.pdf \u00b7 Page 10; lecture 4-crystal structure 1-students26.pdf \u00b7 Page 2"
+      "reference": "lecture 3-review chemistry 2-students26.pdf · Page 10; lecture 4-crystal structure 1-students26.pdf · Page 2"
     },
     "source": [
       {
         "deck": "lecture 3-review chemistry 2-students26.pdf",
-        "chapter": "Ch. 2 \u2014 Atomic Structure & Bonding",
+        "chapter": "Ch. 2 — Atomic Structure & Bonding",
         "location": "Page 10"
       },
       {
         "deck": "lecture 4-crystal structure 1-students26.pdf",
-        "chapter": "Ch. 3 \u2014 Crystal Structures",
+        "chapter": "Ch. 3 — Crystal Structures",
         "location": "Page 2"
       }
     ]

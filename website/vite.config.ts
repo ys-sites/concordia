@@ -21,6 +21,8 @@ function copyDirFiltered(src: string, dest: string, root: string) {
       entry.name.includes('CodeBlocks') || 
       entry.name === 'node_modules' ||
       entry.name === 'Term Paper & Final Project' ||
+      entry.name.startsWith('01 - Teacher Lecture Notes') ||
+      /outline|syllabus/i.test(entry.name) ||
       entry.name.includes('Advanced Engineering Mathematics (7th Edition).pdf')
     ) {
       continue;
@@ -119,6 +121,12 @@ function coursePdfPlugin() {
               return;
             }
 
+            if (targetPath && isHiddenFromSite(path.relative(semester1Root, targetPath))) {
+              res.statusCode = 404;
+              res.end('Access denied');
+              return;
+            }
+
             if (targetPath && fs.existsSync(targetPath) && fs.statSync(targetPath).isFile()) {
               streamFileWithRanges(targetPath, req, res);
               return;
@@ -146,6 +154,12 @@ function coursePdfPlugin() {
               res.end('Access denied');
               return;
             }
+
+            if (isHiddenFromSite(path.relative(semester1Root, targetPath))) {
+              res.statusCode = 404;
+              res.end('File not found');
+              return;
+            }
             
             if (fs.existsSync(targetPath) && fs.statSync(targetPath).isFile()) {
               streamFileWithRanges(targetPath, req, res);
@@ -169,6 +183,9 @@ function coursePdfPlugin() {
       try {
         publishedPaths.clear();
         const distCoursesDir = path.resolve(__dirname, 'dist', 'courses');
+        if (fs.existsSync(distCoursesDir)) {
+          fs.rmSync(distCoursesDir, { recursive: true, force: true });
+        }
         const courseDirs = ['Engr 213', 'Indu 211', 'Miae 215', 'Miae 221'];
         console.log('[Vercel Build] Bundling course curriculum files into dist/courses...');
         for (const c of courseDirs) {

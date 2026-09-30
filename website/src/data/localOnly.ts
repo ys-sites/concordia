@@ -29,7 +29,11 @@ export const LOCAL_ONLY_PATTERNS: RegExp[] = [
 export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   /^Indu 211\/05 - Assignments & Solutions(\/|$)/,
   /^Miae 215\/06 - Arduino Labs & Term Project(\/|$)/,
-  /(^|\/)[^/]*assignment\d*\.docx?$/i
+  /(^|\/)[^/]*assignment\d*\.docx?$/i,
+  // All teacher lecture notes & slides across all courses
+  /(^|\/)01 - Teacher Lecture Notes/i,
+  // All course outlines and syllabi across all courses
+  /(^|\/)[^/]*(outline|syllabus)[^/]*\.(pdf|docx?|txt|md)$/i
 ];
 
 export const isLocalOnly = (relativePath: string): boolean => {

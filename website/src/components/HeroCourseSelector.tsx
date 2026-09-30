@@ -54,7 +54,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
           Master Your Engineering Courses with <span className="gradient-text">Interactive Precision</span>
         </h1>
         <p className="hero-subtext">
-          Study the lecture notes, step-by-step guides and review sheets for each course, then test yourself with <strong>midterm or chapter-by-chapter drills</strong> built from the teachers' notes.
+          Study the step-by-step guides, summaries and rapid review sheets for each course, then test yourself with <strong>midterm or chapter-by-chapter drills</strong> built for exam mastery.
         </p>
 
         {/* Global Key Metric Pills */}
@@ -65,7 +65,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
           </div>
           <div className="metric-pill">
             <Brain size={16} className="text-emerald" />
-            <span><strong>{PRACTICE_QUESTIONS.length}</strong> Practice Questions from Teachers' Notes</span>
+            <span><strong>{PRACTICE_QUESTIONS.length}</strong> Curated Practice & Drill Questions</span>
           </div>
           <div className="metric-pill">
             <Flame size={16} className="text-rose" />

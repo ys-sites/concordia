@@ -1,5 +1,6 @@
 import { CourseMeta, CourseDocument } from '../types';
 import { isHiddenFromSite } from './localOnly';
+import { PRACTICE_QUESTIONS } from './questionsData';
 
 export interface CourseWithDocs extends CourseMeta {
   documents: CourseDocument[];
@@ -2630,5 +2631,6 @@ export const COURSES_DATA: CourseWithDocs[] = RAW_COURSES_DATA.map((course) => {
   const categories = course.categories
     .map((c) => ({ ...c, count: documents.filter((d) => d.categoryId === c.id).length }))
     .filter((c) => c.count > 0);
-  return { ...course, categories, documents, totalDocuments: documents.length };
+  const totalQuestions = PRACTICE_QUESTIONS.filter((q) => q.courseId === course.id).length;
+  return { ...course, categories, documents, totalDocuments: documents.length, totalQuestions };
 });
