@@ -289,7 +289,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E01',
     courseId: 'ENGR213',
-    chapter: 'past',
+    chapter: 'past-final',
     pastPaper: 'Test 2 & Final Examination · Concordia University',
     topic: 'Cauchy-Euler Auxiliary Equation Trap (Complex Roots)',
     difficulty: 'Exam Master',
@@ -324,7 +324,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E02',
     courseId: 'ENGR213',
-    chapter: 'past',
+    chapter: 'past-final',
     pastPaper: 'Midterm 2 & Final Review · Concordia University',
     topic: 'Variation of Parameters with Repeated Roots',
     difficulty: 'Exam Master',
@@ -359,7 +359,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E03',
     courseId: 'ENGR213',
-    chapter: 'past',
+    chapter: 'past-final',
     pastPaper: 'Test 2 V2 · Concordia University',
     topic: 'Reduction of Order (Missing Independent Variable)',
     difficulty: 'Exam Master',
@@ -500,7 +500,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E07',
     courseId: 'ENGR213',
-    chapter: 'past',
+    chapter: 'past-final',
     pastPaper: 'Midterm 2 & Final Review · Concordia University',
     topic: 'Pure Mechanical Resonance Driving',
     difficulty: 'Midterm Level',
@@ -535,7 +535,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E08',
     courseId: 'ENGR213',
-    chapter: 'past',
+    chapter: 'past-final',
     pastPaper: 'Final Examination Winter 2023 · Concordia University',
     topic: 'Coupled Linear System of ODEs',
     difficulty: 'Exam Master',
@@ -570,7 +570,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_E09',
     courseId: 'ENGR213',
-    chapter: 'past',
+    chapter: 'past-final',
     pastPaper: 'Final Examination Review · Concordia University',
     topic: 'Laplace Transform Discontinuous Step Forcing',
     difficulty: 'Exam Master',
@@ -640,7 +640,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_P10',
     courseId: 'ENGR213',
-    chapter: 'past',
+    chapter: 'past-final',
     pastPaper: 'Quiz 3 (Past Paper) · Concordia University',
     topic: 'Undetermined Coefficients with Repeated Auxiliary Root',
     difficulty: 'Midterm Level',
@@ -816,7 +816,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_P18',
     courseId: 'ENGR213',
-    chapter: 'past',
+    chapter: 'past-final',
     pastPaper: 'Final Examination Winter 2023 (Q6) · Concordia University',
     topic: 'Resonant Undetermined Coefficients with Polynomial-Exponential Forcing',
     difficulty: 'Exam Master',
@@ -852,7 +852,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_P19',
     courseId: 'ENGR213',
-    chapter: 'past',
+    chapter: 'past-final',
     pastPaper: 'Final Examination Winter 2023 (Q7) · Concordia University',
     topic: 'Cauchy-Euler Inhomogeneous Equation IVP',
     difficulty: 'Exam Master',
@@ -891,7 +891,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
   {
     id: 'Q_ENGR213_P20',
     courseId: 'ENGR213',
-    chapter: 'past',
+    chapter: 'past-final',
     pastPaper: 'Midterm 2 & Final Review · Concordia University',
     topic: 'Variation of Parameters with Tangent Forcing',
     difficulty: 'Exam Master',

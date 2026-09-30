@@ -228,7 +228,9 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
 
           <div className="question-meta-group">
             <span className="topic-badge">{currentQ.topic}</span>
-            {currentQ.pastPaper && <span className="past-paper-badge">Past paper · {currentQ.pastPaper}</span>}
+            {(currentQ.pastPaper || currentQ.chapter.startsWith('past')) && (
+              <span className="past-paper-badge">Quiz drill from Past papers</span>
+            )}
             <span className={`difficulty-badge diff-${currentQ.difficulty.toLowerCase().replace(' ', '-')}`}>
               {currentQ.difficulty}
             </span>

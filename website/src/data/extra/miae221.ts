@@ -1342,7 +1342,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
   // Past Exam Practice & Corrections from Concordia Midterms and Finals
   q({
     id: 'Q_MIAE221_E01',
-    chapter: 'densities',
+    chapter: 'past',
     pastPaper: 'Midterm Exam 2025 Version A (Q4) · Concordia University',
     topic: 'Planar Density of (110) in BCC (Exam Correction)',
     difficulty: 'Exam Master',
@@ -1376,7 +1376,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_MIAE221_E02',
-    chapter: 'stress-strain',
+    chapter: 'past',
     pastPaper: 'Midterm Exam 2025 Version A (Q20) · Concordia University',
     topic: 'Highest Ductility Identification (Exam Correction)',
     difficulty: 'Midterm Level',
@@ -1410,7 +1410,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_MIAE221_E03',
-    chapter: 'crystal-structure',
+    chapter: 'past',
     pastPaper: 'Midterm Exam 2025 Version A (Q30) · Concordia University',
     topic: 'Crystalline vs Amorphous Order (Exam Correction)',
     difficulty: 'Foundation',
@@ -1441,7 +1441,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_MIAE221_E04',
-    chapter: 'ceramics',
+    chapter: 'past-final',
     pastPaper: 'Final Exam Review for MIAE 221 (Q30) · Concordia University',
     topic: 'Ceramic Processing & Sintering Mechanism (Exam Correction)',
     difficulty: 'Midterm Level',
@@ -1474,7 +1474,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_MIAE221_E05',
-    chapter: 'xrd',
+    chapter: 'past',
     pastPaper: 'Midterm Exam 2025 Version A (Q29) · Concordia University',
     topic: 'Diffraction Angle vs Bragg Angle Trap',
     difficulty: 'Midterm Level',
@@ -1508,7 +1508,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_MIAE221_E06',
-    chapter: 'ceramics',
+    chapter: 'past-final',
     pastPaper: 'Final Exam Review for MIAE 221 (Q24) · Concordia University',
     topic: 'Porosity Effect on Ceramic Elastic Modulus',
     difficulty: 'Midterm Level',
@@ -1542,7 +1542,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
 
   q({
     id: 'Q_MIAE221_E07',
-    chapter: 'electrical',
+    chapter: 'past-final',
     pastPaper: 'Final Exam Review for MIAE 221 (Q19) · Concordia University',
     topic: 'Electrical Resistance vs Temperature (Metal vs Semiconductor)',
     difficulty: 'Midterm Level',
