@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 24
+### Currently Pending Uploads: 25
 
 ---
 
@@ -272,6 +272,17 @@
 * **Title**: MIAE 221 Lecture 7 - Defects (Explained)
 * **Academic year**: `2025/2026`
 * **Description**: In-depth comprehensive master guide for Dr. Medraj's MIAE 221 Lecture 7 covering zero-dimensional point defects, equilibrium vacancy thermodynamics, Arrhenius activation energy calculations, Hume-Rothery empirical solid solubility rules, and one-dimensional linear defects (edge, screw, mixed dislocations) with Burgers vector definitions and slip plane geometries, illustrated with high-resolution slide figures.
+
+---
+
+## 25. `MIAE 221 - Teacher Lecture Notes Fill-in-the-Blank Master Solutions Key.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 - Teacher Lecture Notes Fill-in-the-Blank Master Solutions Key
+* **Academic year**: `2025/2026`
+* **Description**: Exhaustive solutions key and companion guide for all incomplete, fill-in-the-blank slides across Dr. Mamoun Medraj's MIAE 221 Lectures 1 through 7. Systematically resolves every dotted underline, missing term, Hume-Rothery solubility criteria, unit cell parameters, and bonding classification using the Callister textbook.
 
 
 
