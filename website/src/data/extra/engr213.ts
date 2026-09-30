@@ -285,5 +285,320 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
       reference: `${L3} · Pages 8–10`
     },
     source: [{ deck: L3, chapter: CH2, location: 'Pages 8–10 (linear equations)' }]
+  },
+  {
+    id: 'Q_ENGR213_E01',
+    courseId: 'ENGR213',
+    chapter: 'ch4',
+    pastPaper: 'Test 2 & Final Examination · Concordia University',
+    topic: 'Cauchy-Euler Auxiliary Equation Trap (Complex Roots)',
+    difficulty: 'Exam Master',
+    question: t`What is the general solution of the Cauchy-Euler equation $x^2 y'' + 4x y' + 3y = 0$ for $x > 0$?`,
+    options: [
+      t`$y(x) = x^{-3/2}\\left[c_1 \\cos\\left(\\frac{\\sqrt{3}}{2}\\ln x\\right) + c_2 \\sin\\left(\\frac{\\sqrt{3}}{2}\\ln x\\right)\\right]$`,
+      t`$y(x) = c_1 x^{-1} + c_2 x^{-3}$`,
+      t`$y(x) = c_1 x^{-2} + c_2 x^{-2}\\ln x$`,
+      t`$y(x) = e^{-3x/2}\\left[c_1 \\cos\\left(\\frac{\\sqrt{3}}{2}x\\right) + c_2 \\sin\\left(\\frac{\\sqrt{3}}{2}x\\right)\\right]$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`For $a x^2 y'' + b x y' + c y = 0$, substituting $y = x^m$ yields the auxiliary equation $a m(m-1) + b m + c = 0$, NOT $a m^2 + b m + c = 0$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Derive the auxiliary equation', math: t`m(m-1) + 4m + 3 = 0 \\implies m^2 + 3m + 3 = 0` },
+        { title: 'Solve the quadratic', math: t`m = \\frac{-3 \\pm \\sqrt{9 - 12}}{2} = -\\frac{3}{2} \\pm i \\frac{\\sqrt{3}}{2}` },
+        { title: 'Form the complex Euler solution', math: t`x^m = x^{-3/2} x^{\\pm i \\sqrt{3}/2} = x^{-3/2} e^{\\pm i \\frac{\\sqrt{3}}{2}\\ln x}` },
+        { title: 'Apply Euler formula', math: t`y(x) = x^{-3/2}\\left[c_1 \\cos\\left(\\frac{\\sqrt{3}}{2}\\ln x\\right) + c_2 \\sin\\left(\\frac{\\sqrt{3}}{2}\\ln x\\right)\\right]` }
+      ],
+      answer: t`y(x) = x^{-3/2}\\left[c_1 \\cos\\left(\\frac{\\sqrt{3}}{2}\\ln x\\right) + c_2 \\sin\\left(\\frac{\\sqrt{3}}{2}\\ln x\\right)\\right]`,
+      whyWrong: {
+        '1': t`Exam Trap: Dropping the $-m$ term gives $m^2 + 4m + 3 = (m+1)(m+3) = 0 \\implies x^{-1}, x^{-3}$. This is the single most common student error on Concordia exams!`,
+        '2': t`Assumes a repeated root $m = -2$, which does not satisfy $m^2 + 3m + 3 = 0$.`,
+        '3': t`Uses standard constant-coefficient exponentials $e^{\\alpha x}$ instead of Cauchy-Euler powers $x^\\alpha = x^{-3/2}$ and $\\ln x$.`
+      },
+      commonTrap: t`Confusing constant-coefficient auxiliary equations ($a r^2 + b r + c = 0$) with Cauchy-Euler auxiliary equations ($a m(m-1) + b m + c = 0$).`,
+      reference: 'Cauchy-Euler Equations · Professor Leonard Lesson 44 & Concordia Test 2'
+    },
+    source: [{ deck: 'Cauchy-Euler', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Cauchy-Euler Auxiliary Equations' }]
+  },
+  {
+    id: 'Q_ENGR213_E02',
+    courseId: 'ENGR213',
+    chapter: 'ch4',
+    pastPaper: 'Midterm 2 & Final Review · Concordia University',
+    topic: 'Variation of Parameters with Repeated Roots',
+    difficulty: 'Exam Master',
+    question: t`Find a particular solution $y_p(x)$ for the differential equation $y'' - 2y' + y = \\dfrac{e^x}{x^3}$ for $x > 0$.`,
+    options: [
+      t`$y_p(x) = \\dfrac{e^x}{2x}$`,
+      t`$y_p(x) = \\dfrac{e^x}{x}$`,
+      t`$y_p(x) = -\\dfrac{e^x}{2x}$`,
+      t`$y_p(x) = \\dfrac{e^x}{x^2}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Variation of parameters gives $y_p = u_1 y_1 + u_2 y_2$ with $u_1' = -\\frac{y_2 f}{W}$ and $u_2' = \\frac{y_1 f}{W}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Complementary solutions and Wronskian', math: t`r^2 - 2r + 1 = 0 \\implies y_1 = e^x, \\; y_2 = x e^x. \\quad W = e^{2x}` },
+        { title: 'Compute u_1', math: t`u_1' = -\\frac{x e^x (e^x / x^3)}{e^{2x}} = -\\frac{1}{x^2} \\implies u_1 = \\int -x^{-2}dx = \\frac{1}{x}` },
+        { title: 'Compute u_2', math: t`u_2' = \\frac{e^x (e^x / x^3)}{e^{2x}} = \\frac{1}{x^3} \\implies u_2 = \\int x^{-3}dx = -\\frac{1}{2x^2}` },
+        { title: 'Combine into y_p', math: t`y_p = \\left(\\frac{1}{x}\\right)e^x + \\left(-\\frac{1}{2x^2}\\right)x e^x = \\frac{e^x}{x} - \\frac{e^x}{2x} = \\frac{e^x}{2x}` }
+      ],
+      answer: t`y_p(x) = \\frac{e^x}{2x}`,
+      whyWrong: {
+        '1': t`Misses the second term $u_2 y_2 = -\\frac{e^x}{2x}$.`,
+        '2': t`Sign error when integrating $-x^{-2}$, mistakenly writing $-\\frac{1}{x}$.`,
+        '3': t`Fails to cancel the $x$ factor in $u_2 y_2$.`
+      },
+      commonTrap: t`Forgetting to combine like terms between $u_1 y_1$ and $u_2 y_2$.`,
+      reference: 'Variation of Parameters · Professor Leonard Lesson 43'
+    },
+    source: [{ deck: 'Variation of Parameters', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Nonhomogeneous Equations' }]
+  },
+  {
+    id: 'Q_ENGR213_E03',
+    courseId: 'ENGR213',
+    chapter: 'ch4',
+    pastPaper: 'Test 2 V2 · Concordia University',
+    topic: 'Reduction of Order (Missing Independent Variable)',
+    difficulty: 'Exam Master',
+    question: t`Solve $y'' + 2y(y')^3 = 0$ using reduction of order.`,
+    options: [
+      t`$\\frac{1}{3}y^3 + C_1 y = x + C_2$`,
+      t`$y^2 + C_1 y = 2x^2 + C_2$`,
+      t`$\\frac{1}{4}y^4 = x + C$`,
+      t`$y = C_1 e^{2x} + C_2$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`When the independent variable $x$ is missing, substitute $y' = u(y)$, so that $y'' = \\frac{du}{dx} = \\frac{du}{dy}\\frac{dy}{dx} = u \\frac{du}{dy}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Substitute u(y)', math: t`u \\frac{du}{dy} + 2y u^3 = 0` },
+        { title: 'Divide by u and separate', math: t`\\frac{du}{dy} + 2y u^2 = 0 \\implies \\frac{du}{u^2} = -2y dy` },
+        { title: 'Integrate to find u', math: t`-\\frac{1}{u} = -y^2 + C_1 \\implies u = \\frac{1}{y^2 - C_1} = \\frac{1}{y^2 + K_1}` },
+        { title: 'Replace u with dy/dx and integrate again', math: t`(y^2 + K_1)dy = dx \\implies \\frac{1}{3}y^3 + K_1 y = x + C_2` }
+      ],
+      answer: t`\\frac{1}{3}y^3 + C_1 y = x + C_2`,
+      whyWrong: {
+        '1': t`Misses the cubic power when integrating $y^2 dy$.`,
+        '2': t`Assumes $u = y'$ without converting $y''$ to $u \\frac{du}{dy}$.`,
+        '3': t`Treats the equation as linear.`
+      },
+      commonTrap: t`Writing $y'' = \\frac{du}{dx}$ and getting stuck because $x$ is not present. Always use $y'' = u \\frac{du}{dy}$ when $x$ is missing.`,
+      reference: 'Reduction of Order · Professor Leonard Lesson 40'
+    },
+    source: [{ deck: 'Reduction of Order', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Variable Missing' }]
+  },
+  {
+    id: 'Q_ENGR213_E04',
+    courseId: 'ENGR213',
+    chapter: 'ch2',
+    pastPaper: 'Final Examination Winter 2023 · Concordia University',
+    topic: 'Linear ODE by Reversing Variables',
+    difficulty: 'Midterm Level',
+    question: t`Find the general solution of $y\\,dx - 4(x + y^8)\\,dy = 0$.`,
+    options: [
+      t`$x(y) = y^8 + C y^4$`,
+      t`$x(y) = \\frac{1}{2}y^8 + C y^{-4}$`,
+      t`$y(x) = x^8 + C x^4$`,
+      t`$x(y) = 4y^8 + C y^4$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Divide by $dy$ to view $x$ as the dependent variable of $y$, obtaining a first-order linear ODE in $x(y)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Divide by dy and rearrange', math: t`y \\frac{dx}{dy} - 4x = 4y^8 \\implies \\frac{dx}{dy} - \\frac{4}{y}x = 4y^7` },
+        { title: 'Integrating factor', math: t`\\mu(y) = e^{\\int -\\frac{4}{y}dy} = y^{-4}` },
+        { title: 'Collapse and integrate', math: t`\\frac{d}{dy}[y^{-4} x] = 4y^7 y^{-4} = 4y^3 \\implies y^{-4} x = y^4 + C` },
+        { title: 'Solve for x', math: t`x(y) = y^8 + C y^4` }
+      ],
+      answer: t`x(y) = y^8 + C y^4`,
+      whyWrong: {
+        '1': t`$C y^{-4}$ misses multiplying both sides by $y^4$.`,
+        '2': t`Swaps the roles of $x$ and $y$.`,
+        '3': t`Fails to divide $4y^8$ by $y$ to obtain $4y^7$.`
+      },
+      commonTrap: t`Trying to solve for $y(x)$ when the equation is nonlinear in $y$, instead of recognizing it is linear in $x(y)$.`,
+      reference: 'First-Order Linear ODEs · Professor Leonard Lesson 18'
+    },
+    source: [{ deck: L3, chapter: CH2, location: 'Linear equations by variable reversal' }]
+  },
+  {
+    id: 'Q_ENGR213_E05',
+    courseId: 'ENGR213',
+    chapter: 'ch2',
+    pastPaper: 'Final Examination Winter 2023 · Concordia University',
+    topic: 'Bernoulli Equation IVP',
+    difficulty: 'Exam Master',
+    question: t`Solve the initial-value problem for the Bernoulli equation $x^2 \\frac{dy}{dx} - 2xy = 3y^6, \\quad y(1) = 1$.`,
+    options: [
+      t`$y(x) = \\left( \\frac{16}{x^5} - \\frac{15}{x^6} \\right)^{-1/5}$`,
+      t`$y(x) = \\left( \\frac{3}{x^5} - \\frac{2}{x^6} \\right)^{-1/5}$`,
+      t`$y(x) = \\frac{1}{x^5 + 1}$`,
+      t`$y(x) = \\sqrt[5]{x^5 + 1}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Divide by $x^2$ and $y^6$, then linearize with $w = y^{1-6} = y^{-5}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Standard form', math: t`y' - \\frac{2}{x}y = \\frac{3}{x^2}y^6` },
+        { title: 'Substitute w = y^{-5}', math: t`w' + \\frac{10}{x}w = -\\frac{15}{x^2}` },
+        { title: 'Integrating factor mu = x^{10}', math: t`\\frac{d}{dx}[x^{10} w] = -15 x^8 \\implies x^{10} w = -\\frac{15}{9}x^9 + C = -\\frac{5}{3}x^9 + C` },
+        { title: 'Solve for w and apply y(1) = 1', math: t`w(1) = 1 \\implies 1 = -\\frac{5}{3} + C \\implies C = \\frac{8}{3}` },
+        { title: 'Final particular solution', math: t`y(x) = \\left( \\frac{16}{x^5} - \\frac{15}{x^6} \\right)^{-1/5}` }
+      ],
+      answer: t`y(x) = \\left( \\frac{16}{x^5} - \\frac{15}{x^6} \\right)^{-1/5}`,
+      whyWrong: {
+        '1': t`Misses the factor of $(1-n) = -5$ when substituting $w' = -5y^{-6}y'$.`,
+        '2': t`Treats $y^6$ as linear.`,
+        '3': t`Forgets to invert the exponent $-1/5$.`
+      },
+      commonTrap: t`Forgetting to multiply the entire ODE by $(1-n) = -5$ when converting Bernoulli to linear.`,
+      reference: 'Bernoulli Equations · Professor Leonard Lesson 22'
+    },
+    source: [{ deck: 'Bernoulli Equations', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Bernoulli IVPs' }]
+  },
+  {
+    id: 'Q_ENGR213_E06',
+    courseId: 'ENGR213',
+    chapter: 'ch2',
+    pastPaper: 'Final Examination Winter 2023 · Concordia University',
+    topic: 'Exact Differential Equation IVP',
+    difficulty: 'Midterm Level',
+    question: t`Given that $(5x^4 y - 15x^2 + 8xy)dx + (x^5 + 4x^2 - 1)dy = 0$ is exact, find the implicit solution satisfying $y(0) = 1$.`,
+    options: [
+      t`$x^5 y - 5x^3 + 4x^2 y - y = -1$`,
+      t`$x^5 y - 15x^3 + 8x^2 y - y = 0$`,
+      t`$5x^4 y - 5x^3 + 4x^2 - y = -1$`,
+      t`$x^5 y - 5x^3 + 4x^2 y + y = 1$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Integrate $M(x,y)$ with respect to $x$, match with $N(x,y)$ to find $g(y)$, and apply $y(0) = 1$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Integrate M with respect to x', math: t`\\Psi(x, y) = \\int (5x^4 y - 15x^2 + 8xy)dx = x^5 y - 5x^3 + 4x^2 y + g(y)` },
+        { title: 'Match partial with N', math: t`\\frac{\\partial \\Psi}{\\partial y} = x^5 + 4x^2 + g'(y) = x^5 + 4x^2 - 1 \\implies g'(y) = -1 \\implies g(y) = -y` },
+        { title: 'General solution', math: t`x^5 y - 5x^3 + 4x^2 y - y = C` },
+        { title: 'Apply y(0) = 1', math: t`0 - 0 + 0 - 1 = C \\implies C = -1` }
+      ],
+      answer: t`x^5 y - 5x^3 + 4x^2 y - y = -1`,
+      whyWrong: {
+        '1': t`Misses integrating $-15x^2$ to $-5x^3$.`,
+        '2': t`Differentiates instead of integrating $M$.`,
+        '3': t`Sign error on $g(y) = -y$.`
+      },
+      commonTrap: t`Forgetting that the constant of integration with respect to $x$ is a function $g(y)$.`,
+      reference: 'Exact Differential Equations · Professor Leonard Lesson 28'
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact equations IVP' }]
+  },
+  {
+    id: 'Q_ENGR213_E07',
+    courseId: 'ENGR213',
+    chapter: 'ch5',
+    pastPaper: 'Midterm 2 & Final Review · Concordia University',
+    topic: 'Pure Mechanical Resonance Driving',
+    difficulty: 'Midterm Level',
+    question: t`An undamped spring-mass system satisfies $x'' + 9x = 12\\cos(3t)$ with $x(0) = 0, x'(0) = 0$. What is the resulting motion $x(t)$?`,
+    options: [
+      t`$x(t) = 2t\\sin(3t)$`,
+      t`$x(t) = 4\\cos(3t) - 4\\cos(3t)$`,
+      t`$x(t) = 2t\\cos(3t)$`,
+      t`$x(t) = \\frac{4}{3}\\sin(3t)$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Driving an undamped oscillator at its natural frequency $\\omega = \\omega_0 = 3$ produces pure resonance with particular solution $x_p(t) = \\frac{F_0}{2\\omega_0}t\\sin(\\omega_0 t)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Natural frequency', math: t`\\omega_0 = \\sqrt{9} = 3\\text{ rad/s}. \\quad \\text{Matches driving frequency } \\omega = 3!` },
+        { title: 'Guess form with resonance', math: t`x_p = t(A\\cos(3t) + B\\sin(3t))` },
+        { title: 'Substitute and solve', math: t`6B\\cos(3t) - 6A\\sin(3t) = 12\\cos(3t) \\implies B = 2, A = 0 \\implies x_p = 2t\\sin(3t)` },
+        { title: 'Apply initial conditions x(0) = 0, x\'(0) = 0', math: t`x_c = c_1\\cos(3t) + c_2\\sin(3t) \\implies c_1 = 0, c_2 = 0` }
+      ],
+      answer: t`x(t) = 2t\\sin(3t)`,
+      whyWrong: {
+        '1': t`Neglects the resonance multiplication by $t$, which would yield division by zero.`,
+        '2': t`Cosine term corresponds to driving with sine, not cosine.`,
+        '3': t`Assumes bounded periodic motion without resonance.`
+      },
+      commonTrap: t`Forgetting that when the driving frequency matches the natural frequency, the particular solution grows linearly with $t$.`,
+      reference: 'Resonance · Professor Leonard Lesson 47'
+    },
+    source: [{ deck: 'Resonance', chapter: 'Chapter 5 — Modeling with Higher-Order ODEs', location: 'Resonance in Oscillators' }]
+  },
+  {
+    id: 'Q_ENGR213_E08',
+    courseId: 'ENGR213',
+    chapter: 'ch10',
+    pastPaper: 'Final Examination Winter 2023 · Concordia University',
+    topic: 'Coupled Linear System of ODEs',
+    difficulty: 'Exam Master',
+    question: t`Solve the linear system $\\dfrac{dx}{dt} = x - y, \\quad \\dfrac{dy}{dt} = 2x + 4y$.`,
+    options: [
+      t`$x(t) = c_1 e^{2t} + c_2 e^{3t}, \\quad y(t) = -c_1 e^{2t} - 2c_2 e^{3t}$`,
+      t`$x(t) = c_1 e^{2t} + c_2 e^{3t}, \\quad y(t) = c_1 e^{2t} + 2c_2 e^{3t}$`,
+      t`$x(t) = c_1 \\cos(2t) + c_2 \\sin(3t), \\quad y(t) = c_1 \\cos(2t)$`,
+      t`$x(t) = c_1 e^t + c_2 e^{4t}, \\quad y(t) = c_1 e^t - c_2 e^{4t}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Isolate $y = x - x'$ from the first equation, substitute into the second to obtain $x'' - 5x' + 6x = 0$, and back-solve for $y(t)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Elimination', math: t`y = x - x' \\implies y' = x' - x''` },
+        { title: 'Substitute into 2nd equation', math: t`x' - x'' = 2x + 4(x - x') \\implies x'' - 5x' + 6x = 0` },
+        { title: 'Solve for x(t)', math: t`r^2 - 5r + 6 = 0 \\implies r = 2, 3 \\implies x(t) = c_1 e^{2t} + c_2 e^{3t}` },
+        { title: 'Back-solve for y(t)', math: t`y = x - x' = (c_1 e^{2t} + c_2 e^{3t}) - (2c_1 e^{2t} + 3c_2 e^{3t}) = -c_1 e^{2t} - 2c_2 e^{3t}` }
+      ],
+      answer: t`x(t) = c_1 e^{2t} + c_2 e^{3t}, \\quad y(t) = -c_1 e^{2t} - 2c_2 e^{3t}`,
+      whyWrong: {
+        '1': t`Sign error when computing $x - x'$.`,
+        '2': t`Assumes oscillatory complex eigenvalues.`,
+        '3': t`Uses diagonal matrix entries 1 and 4 as eigenvalues, which ignores coupling.`
+      },
+      commonTrap: t`Forgetting that the constants in $y(t)$ are strictly tied to $c_1, c_2$ from $x(t)$. You cannot introduce new independent constants $c_3, c_4$!`,
+      reference: 'Systems of ODEs · Professor Leonard Lesson 48'
+    },
+    source: [{ deck: 'Systems of ODEs', chapter: 'Chapter 10 — Systems of Linear ODEs', location: 'Elimination Method' }]
+  },
+  {
+    id: 'Q_ENGR213_E09',
+    courseId: 'ENGR213',
+    chapter: 'ch7',
+    pastPaper: 'Final Examination Review · Concordia University',
+    topic: 'Laplace Transform Discontinuous Step Forcing',
+    difficulty: 'Exam Master',
+    question: t`Solve $y' + 2y = u(t - 3)$ with $y(0) = 0$ using Laplace transforms.`,
+    options: [
+      t`$y(t) = \\frac{1}{2}\\left(1 - e^{-2(t-3)}\\right)u(t-3)$`,
+      t`$y(t) = \\frac{1}{2}\\left(1 - e^{-2t}\\right)u(t-3)$`,
+      t`$y(t) = e^{-2(t-3)}u(t-3)$`,
+      t`$y(t) = \\left(1 - e^{-2(t-3)}\\right)$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Transform: $(s + 2)Y(s) = \\frac{e^{-3s}}{s} \\implies Y(s) = e^{-3s}\\left[\\frac{1}{s(s+2)}\\right]$. Inverse using second shifting theorem.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Partial fractions', math: t`\\frac{1}{s(s+2)} = \\frac{1}{2}\\left(\\frac{1}{s} - \\frac{1}{s+2}\\right)` },
+        { title: 'Pre-shift inverse', math: t`f(t) = \\mathcal{L}^{-1}\\left\\{\\frac{1}{2}\\left(\\frac{1}{s} - \\frac{1}{s+2}\\right)\\right\\} = \\frac{1}{2}(1 - e^{-2t})` },
+        { title: 'Apply second shift theorem', math: t`y(t) = f(t-3)u(t-3) = \\frac{1}{2}\\left(1 - e^{-2(t-3)}\\right)u(t-3)` }
+      ],
+      answer: t`y(t) = \\frac{1}{2}\\left(1 - e^{-2(t-3)}\\right)u(t-3)`,
+      whyWrong: {
+        '1': t`Forgets to shift $t \\to (t-3)$ in the exponential term.`,
+        '2': t`Misses the partial fraction $1/s$ step function response.`,
+        '3': t`Omits the Heaviside step multiplier $u(t-3)$, which would mean the response starts before $t = 3$.`
+      },
+      commonTrap: t`Forgetting to shift the argument of the exponential: $\\mathcal{L}^{-1}\\{e^{-as}F(s)\\} = f(t-a)u(t-a)$, so $e^{-2t}$ becomes $e^{-2(t-3)}$!`,
+      reference: 'Laplace Transforms · Professor Leonard Lesson 50'
+    },
+    source: [{ deck: 'Laplace Transforms', chapter: 'Chapter 7 — Laplace Transforms', location: 'Second Shifting Theorem' }]
   }
 ];

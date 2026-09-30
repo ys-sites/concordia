@@ -1883,5 +1883,174 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
       { deck: TB, chapter: C17, location: 'Section 17.3 (Project Crashing and Time-Cost Trade-Offs)' },
       { deck: D17, chapter: C17, location: 'Slide 14 (Project crashing)' }
     ]
+  }),
+
+  // Past Exam Practice from Concordia University INDU 211 Midterm & Final Exams
+  q({
+    id: 'Q_INDU211_E01',
+    chapter: 'ch4',
+    pastPaper: 'Midterm Exam 2020 (Problem 2) · Concordia University',
+    topic: 'Warehouse Forklift Routing: Nearest Neighbor Heuristic',
+    difficulty: 'Exam Master',
+    question: t`A warehouse forklift visits 5 departments (A, B, C, D, E) starting from and returning to depot P. Using the Nearest Neighbor heuristic yields the route $P \\to E \\to A \\to B \\to D \\to C \\to P$ with total distance 91. Using Second-Nearest First yields $P \\to A \\to B \\to D \\to E \\to C \\to P$ with distance 89. Is either solution guaranteed to be optimal?`,
+    options: [
+      t`Neither solution is optimal; Nearest Neighbor is a greedy heuristic that often incurs a severe penalty on the final return leg (true optimal is 72)`,
+      t`Yes, Nearest Neighbor is guaranteed to find the global optimum for the Traveling Salesperson Problem`,
+      t`Yes, the Second-Nearest First route of 89 is mathematically optimal`,
+      t`Only an exhaustive search over 6! = 720 routes is capable of finding a feasible path`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Traveling Salesperson Problem (TSP) heuristics. Nearest Neighbor makes greedy, myopic local choices that neglect the overall network, frequently forcing a catastrophic last-leg penalty to return to the depot.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Evaluate Nearest Neighbor Route', math: t`P \\xrightarrow{13} E \\xrightarrow{9} A \\xrightarrow{12} B \\xrightarrow{15} D \\xrightarrow{20} C \\xrightarrow{22} P \\implies \\text{Total} = 91` },
+        { title: 'Notice the last-leg trap', note: t`Visiting C last leaves the truck with a costly return trip from C to P (22 units).` },
+        { title: 'Evaluate Second-Nearest First Route', math: t`P \\xrightarrow{15} A \\xrightarrow{12} B \\xrightarrow{15} D \\xrightarrow{12} E \\xrightarrow{13} C \\xrightarrow{22} P \\implies \\text{Total} = 89` },
+        { title: 'Compute True Global Optimum (via full permutation)', math: t`P \\xrightarrow{13} E \\xrightarrow{13} C \\xrightarrow{12} B \\xrightarrow{15} D \\xrightarrow{10} A \\xrightarrow{9} P \\implies \\text{Total} = 72` }
+      ],
+      answer: t`Neither solution is optimal; Nearest Neighbor is a greedy heuristic (true optimal is 72)`,
+      whyWrong: {
+        '1': t`Nearest Neighbor is an approximation heuristic, NOT an exact optimization algorithm. It guarantees neither global optimality nor bounded error.`,
+        '2': t`89 is improved over 91, but still 17 units longer than the true optimum (72).`,
+        '3': t`With 5 departments, total routes from P are $(5-1)! = 24$ (if symmetric) or $5! = 120$ (if directed), not 720.`
+      },
+      commonTrap: t`Believing greedy heuristics produce optimal results. Always check the final leg: greedy algorithms often leave the most distant points for last!`,
+      reference: 'INDU 211 Midterm 2020 Problem 2; Facilities Logistics'
+    },
+    source: src('Midterm 2020', 'Material Handling & Logistics', 'Problem 2')
+  }),
+
+  q({
+    id: 'Q_INDU211_E02',
+    chapter: 'ch7',
+    pastPaper: 'Sample Final Exam 2022 (Q3) · Concordia University',
+    topic: 'EOQ Model Cost Trade-Off Objective',
+    difficulty: 'Foundation',
+    question: t`In a continuous-review fixed-order quantity inventory system, the solution of the classic Economic Order Quantity (EOQ) model determines the order quantity that:`,
+    options: [
+      t`Minimizes the sum of annual material ordering costs and annual inventory holding costs`,
+      t`Minimizes material ordering cost and material purchasing cost`,
+      t`Minimizes material purchasing cost and material carrying cost`,
+      t`Minimizes variable production costs and safety stock buffer cost`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The classic EOQ model ($Q^* = \\sqrt{\\frac{2DS}{H}}$) balances ordering costs ($S \\frac{D}{Q}$) against holding costs ($H \\frac{Q}{2}$). Unit purchase cost is constant and unaffected by $Q$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Identify relevant annual variable inventory costs', math: t`TC(Q) = S\\left(\\frac{D}{Q}\\right) + H\\left(\\frac{Q}{2}\\right)` },
+        { title: 'Differentiate with respect to Q and set to zero', math: t`\\frac{dTC}{dQ} = -\\frac{DS}{Q^2} + \\frac{H}{2} = 0 \\implies Q^* = \\sqrt{\\frac{2DS}{H}}` }
+      ],
+      answer: t`Minimizes the sum of annual material ordering costs and annual inventory holding costs`,
+      whyWrong: {
+        '1': t`In basic EOQ without quantity discounts, purchasing cost $P \\times D$ is fixed and unaffected by batch size.`,
+        '2': t`Omits ordering setup costs.`,
+        '3': t`Safety stock is zero in deterministic EOQ.`
+      },
+      commonTrap: t`Confusing total business costs with relevant trade-off costs. Only costs that vary with order size $Q$ dictate the EOQ minimum!`,
+      reference: 'INDU 211 Sample Final Exam 2022 Question 3; Turner Chapter 7'
+    },
+    source: src('Final 2022', 'Inventory Control', 'Question 3')
+  }),
+
+  q({
+    id: 'Q_INDU211_E03',
+    chapter: 'ch4',
+    pastPaper: 'Midterm Exam 2020 (Q9) · Concordia University',
+    topic: 'Facility Layout Typology & Production Volume',
+    difficulty: 'Midterm Level',
+    question: t`Which combination correctly pairs manufacturing facility layout types with their ideal production environment?`,
+    options: [
+      t`Product layout: single/few product types in high volume; Process layout: diverse parts in lower quantities`,
+      t`Product layout: high variety and low volume; Process layout: dedicated mass production lines`,
+      t`Fixed-position layout: mass production of microelectronics`,
+      t`Cellular layout: exclusively used for one-of-a-kind naval shipbuilding`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Facility layout typology. Product layouts (assembly lines) group machines according to product flow for high-volume standardized production. Process layouts group by machine function for high-variety job shops.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Product layout', note: t`Dedicated sequence of workstations; high volume, low variety (e.g. automotive assembly).` },
+        { title: 'Process layout', note: t`Functional departments (milling, welding); low volume, high variety (e.g. custom machine shops).` },
+        { title: 'Fixed-position layout', note: t`Product remains stationary while tools and workers move (e.g. ships, aircraft).` }
+      ],
+      answer: t`Product layout: high volume; Process layout: diverse parts in lower quantities`,
+      whyWrong: {
+        '1': t`Reverses product and process layouts.`,
+        '2': t`Microelectronics use cleanroom product or cellular layouts, not fixed-position.`,
+        '3': t`Shipbuilding uses fixed-position layout, not cellular manufacturing.`
+      },
+      commonTrap: t`Confusing process layout (functional grouping) with product layout (sequential line flow).`,
+      reference: 'INDU 211 Midterm 2020 Question 9; Turner Chapter 4'
+    },
+    source: src('Midterm 2020', 'Facility Layout', 'Question 9')
+  }),
+
+  q({
+    id: 'Q_INDU211_E04',
+    chapter: 'ch1',
+    pastPaper: 'Sample Final Exam 2022 (Q1) & Midterm 2020 (Q3) · Concordia University',
+    topic: 'Professional Engineering Accreditation in Canada',
+    difficulty: 'Foundation',
+    question: t`In Canada, engineering is a regulated profession. To obtain the title of Professional Engineer (P.Eng. / ing.), an applicant must:`,
+    options: [
+      t`Complete an undergraduate engineering program accredited by the Canadian Engineering Accreditation Board (CEAB) and fulfill provincial licensure requirements (e.g. OIQ/PEO)`,
+      t`Obtain a Ph.D. degree in natural science or mathematics from any recognized university`,
+      t`Complete ISO quality management certification authorized by the federal government`,
+      t`Complete a two-year college diploma in industrial technology approved by a municipality`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Under Canadian provincial engineering acts, professional engineering licensure requires an undergraduate engineering degree accredited by Engineers Canada's CEAB (or passing equivalency examinations), plus ethical and practical experience requirements.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Academic Accreditation', note: t`CEAB accredits Canadian undergraduate engineering programs.` },
+        { title: 'Provincial Regulation', note: t`Provincial associations (OIQ in Quebec, PEO in Ontario) license individuals to practice.` }
+      ],
+      answer: t`Complete an undergraduate engineering program accredited by CEAB and fulfill provincial licensure`,
+      whyWrong: {
+        '1': t`A Ph.D. in pure science does not fulfill CEAB engineering curriculum requirements without professional qualification.`,
+        '2': t`ISO certification is for organizational quality management, not professional engineering licensure.`,
+        '3': t`College diplomas qualify for engineering technologist status, not Professional Engineer (P.Eng. / ing.).`
+      },
+      commonTrap: t`Assuming Canadian engineering is regulated federally or that science degrees automatically confer engineering status.`,
+      reference: 'INDU 211 Sample Final Exam 2022 Question 1; Concordia Course Introduction'
+    },
+    source: src('Final 2022', 'Engineering Profession', 'Question 1')
+  }),
+
+  q({
+    id: 'Q_INDU211_E05',
+    chapter: 'ch1',
+    pastPaper: 'Midterm Exam 2020 (Q8) · Concordia University',
+    topic: 'Concurrent Engineering Principles',
+    difficulty: 'Midterm Level',
+    question: t`In modern industrial manufacturing systems, 'Concurrent Engineering' fundamentally refers to:`,
+    options: [
+      t`A systematic approach where product design and manufacturing process development are integrated simultaneously from the earliest phase`,
+      t`Designing a product entirely first, and then handing it 'over the wall' to manufacturing engineers`,
+      t`Running two identical assembly lines concurrently to double production throughput`,
+      t`A software method exclusively used for concurrent multithreaded cloud computing`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Concurrent (Simultaneous) Engineering replaces sequential 'over-the-wall' product development by involving cross-functional teams (design, manufacturing, quality, suppliers) concurrently from concept inception.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Sequential vs Concurrent', note: t`Sequential engineering leads to costly redesigns when manufacturing discovers design flaws late. Concurrent engineering considers manufacturability (DFM/DFA) early.` },
+        { title: 'Benefits', note: t`Shorter lead time to market, lower lifetime product costs, higher quality.` }
+      ],
+      answer: t`A systematic approach where product design and manufacturing processes are integrated simultaneously`,
+      whyWrong: {
+        '1': t`'Over the wall' is traditional sequential engineering, the exact opposite of concurrent engineering.`,
+        '2': t`Duplicating assembly lines is capacity expansion, not concurrent product engineering.`,
+        '3': t`Multithreaded computing is computer science concurrency, not industrial engineering product design.`
+      },
+      commonTrap: t`Confusing concurrent product development methodology with computer multiprocessing.`,
+      reference: 'INDU 211 Midterm 2020 Question 8; Turner Chapter 1'
+    },
+    source: src('Midterm 2020', 'Concurrent Engineering', 'Question 8')
   })
 ];

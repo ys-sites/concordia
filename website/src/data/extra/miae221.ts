@@ -1337,5 +1337,274 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
       { deck: CAL, chapter: CH4, location: 'Section 4.4 & Problem 4.25 (Dislocations and Burgers vectors)' },
       { deck: L7, chapter: CH4, location: 'Slides 16–17 (Burgers vector geometry)' }
     ]
+  }),
+
+  // Past Exam Practice & Corrections from Concordia Midterms and Finals
+  q({
+    id: 'Q_MIAE221_E01',
+    chapter: 'densities',
+    pastPaper: 'Midterm Exam 2025 Version A (Q4) · Concordia University',
+    topic: 'Planar Density of (110) in BCC (Exam Correction)',
+    difficulty: 'Exam Master',
+    question: t`In a Body-Centered Cubic (BCC) unit cell, what is the planar density of the $(110)$ plane in terms of the atomic radius $R$?`,
+    options: [
+      t`$\\dfrac{3}{8\\sqrt{2} R^2}$`,
+      t`$\\dfrac{1}{2\\sqrt{2} R^2}$`,
+      t`$\\dfrac{1}{4\\sqrt{2} R^2}$`,
+      t`$\\dfrac{1}{\\sqrt{2} R^2}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Planar density $PD = \\dfrac{n}{A_P}$. In BCC, the lattice parameter is $a = \\dfrac{4R}{\\sqrt{3}}$, and the $(110)$ plane is a rectangle of dimensions $a \\times a\\sqrt{2}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Count atoms centered on the plane', math: t`n = 4\\left(\\tfrac{1}{4}\\right)_{\\text{corners}} + 1_{\\text{body-center}} = 2\\text{ atoms}` },
+        { title: 'Calculate area of the $(110)$ rectangle', math: t`A_P = a \\times a\\sqrt{2} = a^2 \\sqrt{2} = \\left(\\frac{4R}{\\sqrt{3}}\\right)^2 \\sqrt{2} = \\frac{16\\sqrt{2}}{3}R^2` },
+        { title: 'Compute planar density', math: t`PD_{(110)} = \\frac{2}{\\frac{16\\sqrt{2}}{3}R^2} = \\frac{6}{16\\sqrt{2}R^2} = \\frac{3}{8\\sqrt{2}R^2}` }
+      ],
+      answer: t`PD_{(110)} = \\frac{3}{8\\sqrt{2}R^2}`,
+      whyWrong: {
+        '1': t`Exam Trap: The student scan marked $\\frac{1}{2\\sqrt{2}R^2}$ by misapplying FCC formulas ($a = 2\\sqrt{2}R$). BCC has $a = 4R/\\sqrt{3}$!`,
+        '2': t`$\\frac{1}{4\\sqrt{2}R^2}$ is the planar density of $(110)$ in FCC, not BCC.`,
+        '3': t`$\\frac{1}{\\sqrt{2}R^2}$ counts only 1 atom instead of 2 atoms.`
+      },
+      commonTrap: t`Student Mistake Alert: Confusing BCC with FCC. In BCC, the (110) plane passes directly through the body-center atom, giving 2 full atoms and area $\\frac{16\\sqrt{2}}{3}R^2$.`,
+      reference: 'MIAE 221 Midterm 2025 Version A, Question 4; Callister Chapter 3'
+    },
+    source: src(L6, CH3, 'Midterm 2025 Q4 (BCC planar density correction)')
+  }),
+
+  q({
+    id: 'Q_MIAE221_E02',
+    chapter: 'stress-strain',
+    pastPaper: 'Midterm Exam 2025 Version A (Q20) · Concordia University',
+    topic: 'Highest Ductility Identification (Exam Correction)',
+    difficulty: 'Midterm Level',
+    question: t`In the tensile stress-strain curves of five materials (Figure 4: A, B, C, D, F), which material exhibits the highest ductility?`,
+    options: [
+      t`Material A (largest fracture strain $\\epsilon_f$)`,
+      t`Material D (highest tensile strength)`,
+      t`Material F (highest Young's modulus)`,
+      t`Material C (intermediate strength and strain)`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Ductility is the measure of the degree of plastic deformation sustained at fracture ($\\%EL = \\epsilon_f \\times 100\\%$). It corresponds strictly to the horizontal strain distance at rupture.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Inspect the horizontal strain axis $\\epsilon$', note: t`The horizontal coordinate of the endpoint represents fracture strain $\\epsilon_f$.` },
+        { title: 'Compare curve endpoints', note: t`Material A extends significantly further to the right than all other curves (B, C, D, F).` },
+        { title: 'Conclude ductility', note: t`Because Material A endures the greatest elongation before breaking, it has the highest ductility.` }
+      ],
+      answer: t`Material A`,
+      whyWrong: {
+        '1': t`Exam Trap: The student scan marked Material D, confusing ductility with ultimate tensile strength! Material D is strong, but Material A is far more ductile.`,
+        '2': t`Material F is brittle with high stiffness but virtually zero ductility.`,
+        '3': t`Material C fractures at an intermediate strain lower than A.`
+      },
+      commonTrap: t`Student Mistake Alert: Confusing ductility with strength or toughness. High strength often correlates with low ductility. Look strictly at fracture strain $\\epsilon_f$ on the horizontal axis!`,
+      reference: 'MIAE 221 Midterm 2025 Version A, Question 20; Callister Chapter 6'
+    },
+    source: src('Midterm 2025', 'Mechanical Properties', 'Question 20')
+  }),
+
+  q({
+    id: 'Q_MIAE221_E03',
+    chapter: 'crystal-structure',
+    pastPaper: 'Midterm Exam 2025 Version A (Q30) · Concordia University',
+    topic: 'Crystalline vs Amorphous Order (Exam Correction)',
+    difficulty: 'Foundation',
+    question: t`True or False: Crystalline atomic structures have both short-range and long-range order, whereas amorphous or non-crystalline materials (such as glass) have only short-range order.`,
+    options: [
+      t`True`,
+      t`False`,
+      t`False, neither crystalline nor amorphous materials possess short-range order`,
+      t`False, amorphous materials possess neither short-range nor long-range order`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`By fundamental definition, crystalline solids possess long-range periodic translational symmetry, while amorphous solids possess only localized short-range coordination.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Crystalline definition', note: t`Atoms arrange in periodic 3D lattices repeated over millions of unit cells $\\implies$ both short- and long-range order.` },
+        { title: 'Amorphous definition', note: t`Bond angles and lengths are well-defined only for nearest neighbors (e.g., SiO4 tetrahedra in glass) $\\implies$ short-range order only.` }
+      ],
+      answer: t`True`,
+      whyWrong: {
+        '1': t`Exam Trap: The student scan marked this statement as False. The statement is fundamentally TRUE according to Callister and lecture definitions.`
+      },
+      commonTrap: t`Student Mistake Alert: Assuming amorphous materials have zero order. They DO have short-range order (coordination polyhedron), but NO long-range order.`,
+      reference: 'MIAE 221 Midterm 2025 Version A, Question 30'
+    },
+    source: src(L4, CH3, 'Question 30 (crystalline vs amorphous order)')
+  }),
+
+  q({
+    id: 'Q_MIAE221_E04',
+    chapter: 'ceramics',
+    pastPaper: 'Final Exam Review for MIAE 221 (Q30) · Concordia University',
+    topic: 'Ceramic Processing & Sintering Mechanism (Exam Correction)',
+    difficulty: 'Midterm Level',
+    question: t`Which of the following statements about ceramics is true? Ceramic components are:`,
+    options: [
+      t`Usually made from powder compacts which are sintered below their melting points`,
+      t`Exceedingly hard but capable of substantial plastic deformation at room temperature`,
+      t`Usually cast in the molten state in a similar way to cast irons`,
+      t`Usually sintered just above their melting points to ensure liquefaction`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Due to extremely high melting points and brittleness, ceramics are shaped as powder compacts and densified via solid-state sintering BELOW their melting points ($T \\approx 0.7 - 0.8 T_m$).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Evaluate sintering temperature', note: t`Solid-state diffusion drives pore elimination and neck formation below Tm.` },
+        { title: 'Evaluate room temperature plasticity', note: t`Ceramics fracture elastically; dislocation motion is virtually impossible at room temperature due to high directional bonding.` }
+      ],
+      answer: t`Usually made from powder compacts which are sintered below their melting points`,
+      whyWrong: {
+        '1': t`Exam Trap: The student scan circled plastic deformation at room temperature. Ceramics are brittle with virtually zero plastic strain!`,
+        '2': t`Ceramics are not cast because molten temperatures are prohibitively high and viscosity is extreme.`,
+        '3': t`Sintering above the melting point is liquid-phase casting/melting, not solid-state sintering.`
+      },
+      commonTrap: t`Thinking ceramics can deform plastically at room temperature. Plastic deformation in ceramics only occurs at elevated temperatures near Tm.`,
+      reference: 'MIAE 221 Final Exam Review Question 30; Callister Chapter 12 & 13'
+    },
+    source: src('Final Review', 'Ceramics', 'Question 30')
+  }),
+
+  q({
+    id: 'Q_MIAE221_E05',
+    chapter: 'xrd',
+    pastPaper: 'Midterm Exam 2025 Version A (Q29) · Concordia University',
+    topic: 'Diffraction Angle vs Bragg Angle Trap',
+    difficulty: 'Midterm Level',
+    question: t`Monochromatic X-radiation ($\\lambda = 0.1542\\text{ nm}$) reflects in first order from the $(113)$ planes of FCC Platinum ($a = 0.3923\\text{ nm}$). The Bragg angle is $\\theta = 40.69^\\circ$. What is the expected diffraction angle $(2\\theta)$?`,
+    options: [
+      t`$2\\theta = 81.38^\\circ$`,
+      t`$2\\theta = 40.69^\\circ$`,
+      t`$2\\theta = 20.35^\\circ$`,
+      t`$2\\theta = 121.07^\\circ$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Bragg's Law gives the glancing angle $\\theta$. The physical diffraction angle recorded on a powder diffractometer is $2\\theta$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate interplanar spacing', math: t`d_{113} = \\frac{a}{\\sqrt{1^2 + 1^2 + 3^2}} = \\frac{0.3923}{\\sqrt{11}} = 0.11828\\text{ nm}` },
+        { title: 'Apply Bragg Law for theta', math: t`\\sin\\theta = \\frac{\\lambda}{2 d_{113}} = \\frac{0.1542}{2(0.11828)} = 0.6518 \\implies \\theta = 40.69^\\circ` },
+        { title: 'Calculate diffraction angle 2-theta', math: t`2\\theta = 2 \\times 40.69^\\circ = 81.38^\\circ` }
+      ],
+      answer: t`2\\theta = 81.38^\\circ`,
+      whyWrong: {
+        '1': t`Exam Trap: Confusing $\\theta$ (Bragg angle) with $2\\theta$ (diffraction angle). If an exam asks for $2\\theta$, $40.69^\\circ$ is wrong!`,
+        '2': t`$20.35^\\circ$ halves $\\theta$ instead of doubling it.`,
+        '3': t`$121.07^\\circ$ adds $40.69^\\circ$ to $2\\theta$.`
+      },
+      commonTrap: t`Failing to double $\\theta$. Diffractometer charts always display peaks against $2\\theta$ on the horizontal axis!`,
+      reference: 'MIAE 221 Midterm 2025 Version A, Question 29; Callister Section 3.16'
+    },
+    source: src(L6, CH3, 'Midterm 2025 Q29 (XRD diffraction angle)')
+  }),
+
+  q({
+    id: 'Q_MIAE221_E06',
+    chapter: 'ceramics',
+    pastPaper: 'Final Exam Review for MIAE 221 (Q24) · Concordia University',
+    topic: 'Porosity Effect on Ceramic Elastic Modulus',
+    difficulty: 'Midterm Level',
+    question: t`The modulus of elasticity of beryllium oxide (BeO) with $5\\text{ vol}\\%$ porosity is $310\\text{ GPa}$. What is the modulus of elasticity $E_0$ of the fully dense, non-porous material ($0\\%$ porosity)?`,
+    options: [
+      t`$341.7\\text{ GPa}$`,
+      t`$281.2\\text{ GPa}$`,
+      t`$326.2\\text{ GPa}$`,
+      t`$243.3\\text{ GPa}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Porosity diminishes the load-bearing cross section and acts as stress risers according to $E = E_0(1 - 1.9P + 0.9P^2)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Identify porosity fraction', math: t`P = 0.05` },
+        { title: 'Calculate polynomial reduction factor', math: t`1 - 1.9(0.05) + 0.9(0.05)^2 = 1 - 0.095 + 0.00225 = 0.90725` },
+        { title: 'Solve for non-porous modulus E_0', math: t`E_0 = \\frac{E}{0.90725} = \\frac{310\\text{ GPa}}{0.90725} \\approx 341.7\\text{ GPa}` }
+      ],
+      answer: t`E_0 = 341.7\\text{ GPa}`,
+      whyWrong: {
+        '1': t`$281.2\\text{ GPa}$ incorrectly multiplies $310 \\times 0.90725$ instead of dividing (non-porous MUST be stiffer!).`,
+        '2': t`$326.2\\text{ GPa}$ uses a linear $1 - P$ rule.`,
+        '3': t`$243.3\\text{ GPa}$ uses flexural strength porosity exponent.`
+      },
+      commonTrap: t`Multiplying by the factor instead of dividing. A non-porous ceramic must always be STIFFIER than the porous specimen!`,
+      reference: 'MIAE 221 Final Exam Review Question 24; Callister Chapter 12'
+    },
+    source: src('Final Review', 'Ceramics', 'Question 24')
+  }),
+
+  q({
+    id: 'Q_MIAE221_E07',
+    chapter: 'electrical',
+    pastPaper: 'Final Exam Review for MIAE 221 (Q19) · Concordia University',
+    topic: 'Electrical Resistance vs Temperature (Metal vs Semiconductor)',
+    difficulty: 'Midterm Level',
+    question: t`As temperature increases near room temperature, how does the electrical resistance of a metal compare to that of an intrinsic semiconductor?`,
+    options: [
+      t`Metal: increases; Semiconductor: decreases`,
+      t`Metal: decreases; Semiconductor: increases`,
+      t`Metal: increases; Semiconductor: increases`,
+      t`Metal: decreases; Semiconductor: decreases`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Metal conductivity is mobility-limited by thermal phonon scattering (resistance rises). Semiconductor conductivity is carrier-limited by exponential thermal excitation across the band gap (resistance drops).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Metal mechanism', note: t`Carrier concentration is constant. Rising T increases lattice vibrations, scattering electrons $\\implies$ resistance INCREASES.` },
+        { title: 'Semiconductor mechanism', note: t`Thermal energy promotes electrons across Eg, exponentially multiplying electron-hole pairs $\\implies$ resistance DECREASES.` }
+      ],
+      answer: t`Metal: increases; Semiconductor: decreases`,
+      whyWrong: {
+        '1': t`Reverses the physical mechanisms.`,
+        '2': t`Fails to recognize that semiconductors generate carriers with heat.`,
+        '3': t`Ignores phonon scattering in metals.`
+      },
+      commonTrap: t`Assuming all conductors behave alike. Semiconductors have negative temperature coefficients of resistance (NTC)!`,
+      reference: 'MIAE 221 Final Exam Review Question 19; Callister Chapter 18'
+    },
+    source: src('Final Review', 'Electrical Properties', 'Question 19')
+  }),
+
+  q({
+    id: 'Q_MIAE221_E08',
+    chapter: 'diffusion',
+    pastPaper: 'Midterm Exam 2025 Version A (Q7) · Concordia University',
+    topic: 'Steady-State Diffusion Flux and Mass Flow',
+    difficulty: 'Exam Master',
+    question: t`Hydrogen gas diffuses through an 8-mm-thick palladium sheet ($A = 1.20\\text{ m}^2$) at $500^\\circ\\text{C}$ with $D = 1.0 \\times 10^{-8}\\text{ m}^2/\\text{s}$. If concentrations on the high- and low-pressure sides are $2.4$ and $0.6\\text{ kg/m}^3$ respectively, calculate the mass of hydrogen passing through per hour.`,
+    options: [
+      t`$9.72 \\times 10^{-3}\\text{ kg/h}$`,
+      t`$2.70 \\times 10^{-6}\\text{ kg/h}$`,
+      t`$2.16 \\times 10^{-3}\\text{ kg/h}$`,
+      t`$1.62 \\times 10^{-4}\\text{ kg/h}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Fick's First Law: $J = -D \\frac{\\Delta C}{\\Delta x}$. Total mass per hour is $M = J \\times A \\times 3600\\text{ s}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Calculate concentration gradient', math: t`\\frac{\\Delta C}{\\Delta x} = \\frac{2.4 - 0.6}{8 \\times 10^{-3}\\text{ m}} = \\frac{1.8}{0.008} = 225\\text{ kg/m}^4` },
+        { title: 'Calculate diffusion flux J', math: t`J = (1.0 \\times 10^{-8}\\text{ m}^2/\\text{s}) \\times 225 = 2.25 \\times 10^{-6}\\text{ kg/(m}^2\\cdot\\text{s)}` },
+        { title: 'Mass flow per second', math: t`\\dot{M} = J \\cdot A = (2.25 \\times 10^{-6}) \\times 1.20 = 2.70 \\times 10^{-6}\\text{ kg/s}` },
+        { title: 'Convert to mass per hour', math: t`M_{\\text{hour}} = (2.70 \\times 10^{-6}) \\times 3600\\text{ s/h} = 9.72 \\times 10^{-3}\\text{ kg/h}` }
+      ],
+      answer: t`9.72 \\times 10^{-3}\\text{ kg/h}`,
+      whyWrong: {
+        '1': t`$2.70 \\times 10^{-6}$ is the mass flow per SECOND, forgetting to multiply by 3600 seconds per hour.`,
+        '2': t`$2.16 \\times 10^{-3}$ assumes sheet thickness was 10 mm.`,
+        '3': t`$1.62 \\times 10^{-4}$ converts using 60 seconds instead of 3600.`
+      },
+      commonTrap: t`Forgetting unit conversion from seconds to hours ($3600\\text{ s/h}$). Check the handwritten calculations on the midterm paper!`,
+      reference: 'MIAE 221 Midterm 2025 Version A, Question 7; Callister Chapter 5'
+    },
+    source: src('Midterm 2025', 'Diffusion', 'Question 7')
   })
 ];
