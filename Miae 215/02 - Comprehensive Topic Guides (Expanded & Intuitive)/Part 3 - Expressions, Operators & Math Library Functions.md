@@ -23,20 +23,10 @@
 
 In computer programming, an **operator** performs a specific mathematical or logical manipulation upon one or more data inputs (**operands**). An **expression** is any valid sequence of operators and operands that evaluates to a single value.
 
-```
-                  ┌───────────────────────────────┐
-                  │   EXPRESSION: y = x + z * w   │
-                  └───────────────┬───────────────┘
-                                  │
-         ┌────────────────────────┴────────────────────────┐
-         ▼                                                 ▼
-┌──────────────────┐                              ┌──────────────────┐
-│    OPERATORS     │                              │     OPERANDS     │
-│   = , + , *      │                              │  y, x, z, w,     │
-│                  │                              │  intermediate ALU│
-│                  │                              │  registers       │
-└──────────────────┘                              └──────────────────┘
-```
+| Part of `y = x + z * w` | Items | Role |
+| :--- | :--- | :--- |
+| **Operators** | `=`, `+`, `*` | The actions performed |
+| **Operands** | `y`, `x`, `z`, `w` (and intermediate results) | The values acted on |
 
 ### The Imperative Assignment Operator (`=`)
 In pure mathematics, the equals symbol ($=$) states a static identity: $x = y$ is mathematically equivalent to $y = x$. In C++, `=` is an **imperative memory copy instruction**:
@@ -222,21 +212,18 @@ C++ provides shorthand compound operators: `+=`, `-=`, `*=`, `/=`.
 
 When an expression contains multiple operators, C++ evaluates them according to a strict mathematical hierarchy.
 
-```
- Precedence Hierarchy (Highest to Lowest):
- ┌────────────────────────────────────────────────────────┐
- │ 1. Parentheses: ( )                                    │
- │ 2. Postfix: x++, x--                                   │
- │ 3. Unary / Prefix: ++x, --x, -x, (type) cast           │
- │ 4. Multiplicative: *, /, %                             │
- │ 5. Additive: +, -                                      │
- │ 6. Relational: <, <=, >, >=                            │
- │ 7. Equality: ==, !=                                    │
- │ 8. Logical AND: &&                                     │
- │ 9. Logical OR: ||                                      │
- │ 10. Chained Assignment: =                              │
- └────────────────────────────────────────────────────────┘
-```
+| Rank (highest first) | Operators | Associativity |
+| :---: | :--- | :--- |
+| 1 | Parentheses `( )` | inside out |
+| 2 | Postfix `x++`, `x--` | left to right |
+| 3 | Unary / prefix `++x`, `--x`, `-x`, `(type)` cast | right to left |
+| 4 | Multiplicative `*`, `/`, `%` | left to right |
+| 5 | Additive `+`, `-` | left to right |
+| 6 | Relational `<`, `<=`, `>`, `>=` | left to right |
+| 7 | Equality `==`, `!=` | left to right |
+| 8 | Logical AND `&&` | left to right |
+| 9 | Logical OR `\|\|` | left to right |
+| 10 | Assignment `=`, `+=`, `-=`, `*=`, `/=` | **right to left** (so `a = b = c = 7` works) |
 
 ### Case Study: Rational Formula Evaluation
 To evaluate the rational engineering formula:
@@ -348,16 +335,7 @@ In `MIAE_215_week2_lecture2_in_person/lecture_example2b` and `assignment1/questi
 Find the global maximum value and corresponding location $x_{\text{max}}$ of the non-linear function:
 $$f(x) = \sin(x^2 - 1.0)(x - 3.0) + \cos(x) \quad \text{over the domain } 0 \le x \le 10\pi$$
 
-```
- Global Maximum Search across Domain [0, 10*pi]:
-  f(x)
-   │               Peak f_max at x_max
-   │                 ▲
-   │        /\      / \      /\
-   │   /\  /  \    /   \    /  \
-   └───┴───┴───┴───┴────┴───┴───┴───────► x
-       0.0  dx  2*dx ...          10*pi
-```
+**The idea:** sample $f(x)$ at evenly spaced points $x = 0, \Delta x, 2\Delta x, \dots$ up to $10\pi$, and keep the largest value seen so far (and where it occurred). A smaller step $\Delta x$ finds the peak more accurately but needs more loop iterations.
 
 ### C++ Numerical Grid-Search Implementation
 ```cpp

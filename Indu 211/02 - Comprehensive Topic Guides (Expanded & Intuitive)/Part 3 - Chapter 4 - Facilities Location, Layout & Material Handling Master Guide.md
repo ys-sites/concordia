@@ -32,21 +32,20 @@
 
 In industrial operations, deciding **where** to build a facility and **how** to arrange the machinery inside it are among the most critical decisions an organization will ever make. 
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE THREE LEVELS OF FACILITY DESIGN                  │
-├───────────────────────┬───────────────────────┬────────────────────────┤
-│ 1. GENERAL LOCATION   │ 2. EXACT SITE         │ 3. INTERNAL LAYOUT     │
-├───────────────────────┼───────────────────────┼────────────────────────┤
-│ Country, province,    │ Specific industrial   │ Spatial floor-plan of  │
-│ metropolitan region,  │ park, acreage, zoning │ machines, departments, │
-│ proximity to markets  │ parcel, soil loading, │ aisles, storage racks, │
-│ or raw materials.     │ highway interchange.  │ & utility drops.       │
-└───────────────────────┴───────────────────────┴────────────────────────┘
-```
+| Level | Decision | Examples |
+| :--- | :--- | :--- |
+| **1. General location** | Country, province, metropolitan region | Proximity to markets or raw materials |
+| **2. Exact site** | The specific parcel | Industrial park, zoning, soil, highway access |
+| **3. Internal layout** | Arrangement inside the building | Machines, departments, aisles, storage, utilities |
+
+![Supply chain design example](./images/supply_chain_design_example.png)
+
+*Figure 1: Example of supply chain design, Lecture 3.0, slide 4.*
+
+**Reading the figure:** material flows left to right from **suppliers** (raw material) to **manufacturing plants** (semi-finished product), to **assembly plants** (finished product), then through a **central distribution centre (CDC)** and **regional distribution centres (RDC)** to ports and retail outlets. The red ovals mark the stages where facilities must be located. Every arrow is a transport cost, which is why location decisions (this chapter) and routing (Chapter 5) are linked.
 
 ### Why Facility Decisions Are Strategic
-1. **Long Time Horizon (3 to 10+ Years)**: Once a $50-million manufacturing plant or fulfillment center is built, it cannot be easily relocated. The company must live with the consequences for a decade or more.
+1. **Long Time Horizon (3 to 10+ Years)**: Once a \$50-million manufacturing plant or fulfillment center is built, it cannot be easily relocated. The company must live with the consequences for a decade or more.
 2. **Massive Capital Commitment**: Land acquisition, structural construction, cleanrooms, overhead cranes, and substation interconnects consume immense capital that remains permanently sunk.
 3. **Irreversibility & Operating Cost Floor**: A poorly located plant locks in high freight tariffs, unfavorable utility rates, or wage premiums for years. No amount of shop-floor optimization can fully overcome a fundamentally flawed geographic location.
 4. **Interdisciplinary Team Requirement**: Because facility planning impacts every facet of an enterprise, decisions are made by a multidisciplinary team:
@@ -67,7 +66,7 @@ When selecting a general geographic region, engineers evaluate a complex trade-o
 | **Proximity to Markets** | Essential when finished goods are **perishable, fragile, bulky, or heavy** relative to raw materials, or when rapid customer response time is paramount. | **Potato chip factories**, commercial bakeries, craft breweries, cardboard box packaging converters. |
 | **Proximity to Raw Materials** | Essential when the manufacturing process involves **weight loss** (refining/smelting) or when raw materials are costly and hazardous to transport. | **Integrated steel mills** (near iron ore and metallurgical coal), pulp & paper mills (near timber forests), aluminum smelters. |
 | **Transportation Infrastructure** | Multimodal access: interstate highways, Class-1 rail spurs, deep-water ocean ports, and air cargo hubs. Lowers inbound and outbound freight rates. | Automotive assembly plants situated adjacent to major rail corridors and interstate highways. |
-| **Electric Power & Utilities** | Availability of continuous, high-megawatt power, high-pressure natural gas lines, and industrial water. Electricity rate ($/kWh) heavily affects margins. | Data centers, semiconductor wafer fabrication plants, electric arc furnace steelmakers. |
+| **Electric Power & Utilities** | Availability of continuous, high-megawatt power, high-pressure natural gas lines, and industrial water. Electricity rate (\$/kWh) heavily affects margins. | Data centers, semiconductor wafer fabrication plants, electric arc furnace steelmakers. |
 | **Climate & Fuel Costs** | Extreme temperatures drive up winter heating or summer air-conditioning loads; severe freeze/snow cycles risk supply chain halts. | Aircraft flight testing facilities located in the arid, mild climate of Arizona and the Mojave Desert. |
 | **Labor Supply & Prevailing Wages** | Availability of required skill sets (certified CNC machinists, roboticists, welders), local wage rates, and unionization dynamics. | Aerospace manufacturing clusters in Montreal (Bombardier, Pratt & Whitney, CAE) due to deep aerospace engineering talent. |
 | **Laws, Taxation & Subsidies** | Corporate tax rates, municipal property tax abatements, R&D tax credits, environmental discharge permits, right-to-work legislation. | Electric vehicle battery gigafactories competing for multi-billion dollar provincial/federal capital grants. |
@@ -92,16 +91,11 @@ $$d_R = |x_1 - x_2| + |y_1 - y_2|$$
 
 * **Industrial Engineering Context**: Used for urban distribution where delivery vans navigate rectangular city street grids, and **inside factories and warehouses** where forklifts, Automated Guided Vehicles (AGVs), and workers travel strictly down designated orthogonal aisles and corridors.
 
-```
-       (x1, y1) ┌───────────────┐
-                │               │  <-- Rectilinear path: |x1-x2| + |y1-y2|
-                │               │
-                ▼               │
-                └───────────────┘ (x2, y2)
-                \               /
-                 \             /   <-- Euclidean path: sqrt((x1-x2)^2 + (y1-y2)^2)
-                  \           /
-```
+**Worked comparison** for $A(2, 3)$ and $B(8, 11)$:
+
+$$d_{\text{rect}} = |2 - 8| + |3 - 11| = 6 + 8 = 14, \qquad d_{\text{Euc}} = \sqrt{6^{2} + 8^{2}} = \sqrt{100} = 10$$
+
+The rectilinear distance is always at least as large as the Euclidean one, because walking along the aisles means covering the $x$-gap and the $y$-gap separately instead of cutting the corner.
 
 > ### Geometric Comparison:
 > * Rectilinear distance is always **greater than or equal to** Euclidean distance: $d_R \ge d_E$.
@@ -138,17 +132,11 @@ An urban health network must locate a new blood bank to distribute blood product
 * Hospital $D_3$: $(5, 4)$
 * Hospital $D_4$: $(8, 5)$
 
-```
-   y ▲
-   6 ┼
-   5 ┼        D2 (3,5)                    D4 (8,5)
-   4 ┼                              D3 (5,4)
-   3 ┼
-   2 ┼    D1 (2,2)
-   1 ┼
-   0 ┼───┼───┼───┼───┼───┼───┼───┼───┼───► x
-     0   1   2   3   4   5   6   7   8
-```
+![Center of gravity method: destination map](./images/center_of_gravity_destinations.png)
+
+*Figure 2: Center of gravity method, Lecture 3.0, slide 18.*
+
+**Reading the map:** the four hospitals are plotted on an $(x, y)$ grid. The centre of gravity is the **balance point** of these dots: with equal shipments it is their plain average $(4.5, 4.0)$; with the unequal shipments below it is pulled toward D1 and D2, which receive the most units, ending at $(3.05, 3.70)$.
 
 ##### Scenario A: Equal Shipment Quantities
 $$\bar{x} = \frac{2 + 3 + 5 + 8}{4} = \frac{18}{4} = 4.50$$
@@ -237,37 +225,43 @@ Plain View currently operates factories in **Amarillo** and **Waco**, Texas, ser
   * Houston: 800 units
   * **Total Demand = 2,000 units** *(Balanced problem)*
 
-#### Unit Shipping Cost Matrix ($/unit):
+#### Unit Shipping Cost Matrix (\$/unit):
 | Factory \ Warehouse | San Antonio | Dallas | Houston | Capacity |
 | :--- | :---: | :---: | :---: | :---: |
-| **Amarillo** | $31 | $21 | $42 | **400** |
-| **Waco** | $20 | $21 | $30 | **1,000** |
-| **Huntsville** | $23 | $20 | $15 | **600** |
+| **Amarillo** | \$31 | \$21 | \$42 | **400** |
+| **Waco** | \$20 | \$21 | \$30 | **1,000** |
+| **Huntsville** | \$23 | \$20 | \$15 | **600** |
 | **Demand** | **300** | **900** | **800** | **2,000** |
 
 #### Step-by-Step Least-Cost Allocation:
-1. **Lowest unit cost in entire matrix**: Huntsville to Houston at **$15/unit**.
+1. **Lowest unit cost in entire matrix**: Huntsville to Houston at **\$15/unit**.
    * Max allocation = $\min(\text{Huntsville supply } 600, \text{Houston demand } 800) = \mathbf{600}$.
    * Huntsville capacity becomes 0 (row satisfied). Houston remaining demand = $800 - 600 = 200$.
-2. **Next lowest available cost**: Waco to San Antonio at **$20/unit** (or Huntsville to Dallas at $20, but Huntsville is exhausted).
+2. **Next lowest available cost**: Waco to San Antonio at **\$20/unit** (or Huntsville to Dallas at \$20, but Huntsville is exhausted).
    * Allocate to Waco $\to$ San Antonio: $\min(\text{Waco supply } 1,000, \text{San Antonio demand } 300) = \mathbf{300}$.
    * San Antonio demand becomes 0 (column satisfied). Waco remaining supply = $1,000 - 300 = 700$.
-3. **Next lowest available cost**: Tie at **$21/unit** between Amarillo $\to$ Dallas and Waco $\to$ Dallas.
+3. **Next lowest available cost**: Tie at **\$21/unit** between Amarillo $\to$ Dallas and Waco $\to$ Dallas.
    * Allocate Amarillo $\to$ Dallas: $\min(\text{Amarillo supply } 400, \text{Dallas demand } 900) = \mathbf{400}$.
    * Amarillo capacity becomes 0 (row satisfied). Dallas remaining demand = $900 - 400 = 500$.
 4. **Remaining requirements**:
    * Dallas still needs 500 units; Houston still needs 200 units.
    * The only remaining factory with capacity is Waco (has 700 units left).
-   * Allocate Waco $\to$ Dallas: $\mathbf{500\text{ units}}$ at $21/unit. (Dallas demand satisfied).
-   * Allocate Waco $\to$ Houston: $\mathbf{200\text{ units}}$ at $30/unit. (Houston demand satisfied; Waco supply exhausted).
+   * Allocate Waco $\to$ Dallas: $\mathbf{500\text{ units}}$ at \$21/unit. (Dallas demand satisfied).
+   * Allocate Waco $\to$ Houston: $\mathbf{200\text{ units}}$ at \$30/unit. (Houston demand satisfied; Waco supply exhausted).
 
 #### Final Feasible Solution Tableau:
 | Factory \ Warehouse | San Antonio | Dallas | Houston | Total Shipped |
 | :--- | :---: | :---: | :---: | :---: |
-| **Amarillo** | — | **400** ($21) | — | 400 |
-| **Waco** | **300** ($20) | **500** ($21) | **200** ($30) | 1,000 |
-| **Huntsville** | — | — | **600** ($15) | 600 |
+| **Amarillo** | — | **400** (\$21) | — | 400 |
+| **Waco** | **300** (\$20) | **500** (\$21) | **200** (\$30) | 1,000 |
+| **Huntsville** | — | — | **600** (\$15) | 600 |
 | **Total Received** | 300 | 900 | 800 | **2,000** |
+
+![Plain View least-cost solution](./images/plain_view_least_cost_solution.png)
+
+*Figure 6: Example solution, Lecture 3.0, slide 14.*
+
+**Reading the tableau:** each cell has the unit cost in its small top-right box and the allocated quantity written below it. The numbers in brackets in the margins are the running balances: Waco's (1000) drops to 700 after its 300 units to San Antonio, and Dallas's (900) drops to 500 after Amarillo's 400. When every row and column total is met, the allocation is feasible.
 
 #### Total Monthly Shipping Cost:
 $$TC = (600 \times \$15) + (300 \times \$20) + (400 \times \$21) + (500 \times \$21) + (200 \times \$30)$$
@@ -275,7 +269,7 @@ $$TC = \$9,000 + \$6,000 + \$8,400 + \$10,500 + \$6,000 = \mathbf{\$39,900}$$
 *(Expressed as $399 \times 100$ in lecture notes).*
 
 #### Alternative Tie-Break Result:
-If ties at $21/unit are resolved differently (allocating 700 to Waco $\to$ Dallas and 200 to Amarillo $\to$ Dallas, forcing Amarillo $\to$ Houston at $42):
+If ties at \$21/unit are resolved differently (allocating 700 to Waco $\to$ Dallas and 200 to Amarillo $\to$ Dallas, forcing Amarillo $\to$ Houston at \$42):
 $$TC_{\text{alt}} = (600 \times 15) + (300 \times 20) + (200 \times 21) + (700 \times 21) + (200 \times 42) = \mathbf{\$42,300}$$
 This demonstrates that greedy heuristics can produce different costs depending on tie-breaking rules, highlighting the importance of linear programming optimization!
 
@@ -293,20 +287,16 @@ This demonstrates that greedy heuristics can produce different costs depending o
 
 While facility *location* determines the external geographic coordinates of a plant, **facility layout** designs the internal spatial arrangement of departments, workstations, tooling, storage areas, and material corridors inside the building.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│             STRATEGIC DRIVERS DEMANDING A LAYOUT REDESIGN              │
-├────────────────────────────────────────────────────────────────────────┤
-│ • Chronic operational bottlenecks & production delays                  │
-│ • Excessive material handling expenses & transit congestion            │
-│ • High industrial accident rates & workplace safety hazards            │
-│ • Introduction of new products or major engineering design changes     │
-│ • Shifts in customer demand volume or product mix                      │
-│ • Upgrades in processing equipment, robotics, or production methods    │
-│ • Morale problems, ergonomic strain, & worker dissatisfaction          │
-│ • New environmental, fire, egress, or regulatory standards             │
-└────────────────────────────────────────────────────────────────────────┘
-```
+**The need for layout decisions** (Lecture 4.0, slides 4–5). A redesign is triggered by:
+
+* Inefficient operations: high cost, bottlenecks
+* Changes in the design of products or services
+* The introduction of new products or services
+* Accidents and safety hazards
+* Changes in environmental or other legal requirements
+* Changes in the volume of output or the product mix
+* Changes in methods and equipment
+* Morale problems
 
 ### The 30% to 95% Material Handling Cost Rule
 
@@ -333,25 +323,13 @@ A comprehensive industrial layout accounts for complete human and physical infra
 
 Industrial layouts are categorized into five fundamental configurations based on **product volume** and **product variety**:
 
-```
-Product
-Variety ▲
-        │      ┌─────────────────────┐
-   High │      │   PROCESS LAYOUT    │
-        │      │ (Job Shop / Custom) │
-        │      └──────────┬──────────┘
-        │                 │
-Medium  │                 ▼   ┌──────────────────────┐
-        │                     │   CELLULAR LAYOUT    │
-        │                     │ (Group Technology)   │
-        │                     └──────────┬───────────┘
-        │                                │
-    Low │                                ▼   ┌─────────────────────┐
-        │                                    │   PRODUCT LAYOUT    │
-        │                                    │ (Assembly / Line)   │
-        └────────────────────────────────────┴─────────────────────►
-        Low                Medium                 High        Volume
-```
+| Product variety | Production volume | Best-suited layout |
+| :--- | :--- | :--- |
+| High (many different products) | Low | **Process layout** (job shop) |
+| Medium (families of similar parts) | Medium | **Cellular layout** (group technology) |
+| Low (one or a few standard products) | High | **Product layout** (assembly line) |
+| One very bulky product | One-off | **Fixed-position layout** |
+| Different needs in different areas | Mixed | **Mixed layout** |
 
 ---
 
@@ -363,9 +341,11 @@ Medium  │                 ▼   ┌──────────────�
   * **Continuous Flow**: Paper manufacturing mills, oil refineries, cement plants, dairy pasteurization.
   * **Discrete Flow**: High-volume assembly lines (automotive chassis, beverage bottling lines, consumer appliances).
 
-```
-   Raw Materials ──► [Station 1] ──► [Station 2] ──► [Station 3] ──► [Station 4] ──► Finished Goods
-```
+![Product layout](./images/product_layout_line.png)
+
+*Figure 3: Product layout, Lecture 4.0, slide 10.*
+
+**Reading the figure:** raw materials enter at Station 1 and pass through Stations 2, 3 and 4 in a fixed sequence to become the finished item. The arrows underneath show **material and/or labour** fed into each station. Because every unit follows the same path, flow is smooth and fast; but if one station stops, the whole line stops.
 
 #### Advantages:
 * **Smooth, continuous workflow**: Minimal backtracking and predictable transit.
@@ -388,15 +368,11 @@ Medium  │                 ▼   ┌──────────────�
 * **Material Flow**: Variable, intermittent, and complex; each job follows a customized routing sheet.
 * **Industrial Examples**: Commercial machine shops, hospitals (emergency, radiology, intensive care, surgery), commercial banks, custom fabrication shops.
 
-```
-   ┌────────────────┐   ┌────────────────┐   ┌────────────────┐
-   │  TURNING DEPT  │   │  MILLING DEPT  │   │ DRILLING DEPT  │
-   │  (All Lathes)  │   │  (All Mills)   │   │  (All Drills)  │
-   └───────┬────────┘   └────────┬───────┘   └────────┬───────┘
-           │   ▲                 │                    │
-           └───┼─────────────────┼────────────────────┘
-               └─────────────────┘ (Criss-crossing job routings)
-```
+![Process layout](./images/process_layout_job_shop.png)
+
+*Figure 4: Process layout, Lecture 4.0, slide 13.*
+
+**Reading the figure:** the right-hand sketch is the "process-focused (intermittent process)" diagram. Many different inputs enter at the bottom, similar machines (dots) are grouped by function, and each job takes its own zig-zag route through the groups, giving a **high variety of outputs** at the top. Compare it with Figure 3, where every unit takes the same straight path.
 
 #### Advantages:
 * **High Equipment Flexibility**: General-purpose machines can handle an infinite variety of part designs.
@@ -421,18 +397,11 @@ Medium  │                 ▼   ┌──────────────�
   * *Furniture Manufacturing*: Dedicated cells for dining chairs, office ergonomic chairs, and bar stools.
   * *Automotive Components*: Dedicated cells for transmission gears, brake calipers, and steering knuckles.
 
-```
-                  ┌───────── [Cell Entry] ─────────┐
-                  ▼                                │
-            [Saw Station]                          │
-                  │                                ▼
-            [CNC Lathe]                    [Final Inspection]
-                  │                                ▲
-            [CNC Mill]                             │
-                  │                                │
-                  └─────────► [Deburring] ─────────┘
-                    U-SHAPED CELLULAR WORKFLOW
-```
+![Process layout vs cellular layout](./images/process_vs_cellular_layout.png)
+
+*Figure 5: Process layout vs cellular layout, Lecture 4.0, slide 17.*
+
+**Reading the figure:** the "current state" (top) is a process layout: injection moulding machines are grouped in one department and parts travel to separate assembly and heat-treatment areas. The "desired state" (bottom) regroups the machines into **cells**, each containing everything a part family needs in flow order, so the "work flow" arrow runs straight through each cell instead of criss-crossing the plant.
 
 #### The Best-of-Both-Worlds Paradigm:
 Cellular layouts bridge the gap between product and process layouts:
@@ -450,6 +419,12 @@ Cellular layouts bridge the gap between product and process layouts:
   * Space launch vehicles (NASA Artemis / SpaceX Starship vertical integration pads).
   * Large civil engineering structures (bridges, tunnels, skyscrapers).
   * Large power generation turbines and nuclear reactor vessels.
+
+![Fixed position layout](./images/fixed_position_layout.png)
+
+*Figure 7: Fixed position layout, Lecture 4.0, slide 18.*
+
+**Reading the photo:** aircraft fuselages sit in fixed assembly bays while workers, platforms and equipment surround them. Nothing moves the product; instead the resources move to it, which is the defining idea of a fixed-position layout.
 
 #### Key Logistical Challenges:
 * On-site spatial congestion: Coordinating multiple trade contractors in a cramped physical footprint.

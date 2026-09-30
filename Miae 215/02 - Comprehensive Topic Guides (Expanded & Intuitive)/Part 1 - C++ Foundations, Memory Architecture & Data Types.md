@@ -22,24 +22,18 @@
 
 To write high-performance engineering simulations, control robotic hardware, or process high-frequency sensor streams, an engineer cannot treat the computer as an abstract "black box." You must understand how high-level code maps directly to physical silicon and memory.
 
-```
-┌────────────────────────────────────────────────────────┐
-│             CENTRAL PROCESSING UNIT (CPU)              │
-│  ┌───────────────────────┐  ┌───────────────────────┐  │
-│  │  Instruction Register │  │  Arithmetic & Logic   │  │
-│  │   & Program Counter   │  │      Unit (ALU)       │  │
-│  └───────────────────────┘  └───────────────────────┘  │
-│  ┌──────────────────────────────────────────────────┐  │
-│  │  High-Speed Internal CPU Registers (RAX, RBX...) │  │
-│  └──────────────────────────────────────────────────┘  │
-└───────────────────────────┬────────────────────────────┘
-                            │ System Bus (Data, Address, Control)
-┌───────────────────────────▼────────────────────────────┐
-│        RANDOM ACCESS MEMORY (RAM / SYSTEM MEMORY)      │
-│  Byte Address 0x00000000 ──► [ Byte 0 ][ Byte 1 ] ...  │
-│  Byte Address 0x7FFFFFFF ──► [ Byte N ][ Byte N+1] ... │
-└────────────────────────────────────────────────────────┘
-```
+![Basics of computing](./images/basics_of_computing.png)
+
+*Figure 1: Basics of computing, Introduction slides, p. 5.*
+
+**Reading the slide:** a **computer** is a digital electronic device made of a CPU (processor), memory (RAM, disk) and input/output. A **program** is a sequence of instructions for it (software), and the **operating system** manages all other programs and provides services such as disk, graphics and networking. The teacher's handwritten examples (Windows, OS X, Linux) are operating systems.
+
+| Component | Role | Speed and size |
+| :--- | :--- | :--- |
+| **CPU** (ALU + control unit + registers) | Executes instructions and arithmetic | Fastest, tiny storage |
+| **RAM** (main memory) | Holds the running program and its variables | Fast, gigabytes, lost at power-off |
+| **Disk** | Stores files (.cpp, .obj, .exe) | Slow, terabytes, permanent |
+| **System bus** | Carries data, addresses and control signals between them | |
 
 ### The von Neumann Architecture
 Modern computing platforms operate on the **von Neumann architecture**, characterized by:
@@ -57,40 +51,22 @@ Modern computing platforms operate on the **von Neumann architecture**, characte
 
 When you click "Build & Run" in an IDE (such as Code::Blocks, CodeLite, or Visual Studio) or invoke `g++` on the command line, four sequential transformations take place before your program executes.
 
-```
-┌────────────────────────────────────────────────────────┐
-│                   SOURCE CODE (.cpp, .h)               │
-│  Human-readable C++ instructions & preprocessor macros │
-└───────────────────────────┬────────────────────────────┘
-                            │ (1) PREPROCESSOR (g++ -E)
-                            │ Expands #include, #define, strips comments
-                            ▼
-┌────────────────────────────────────────────────────────┐
-│                 TRANSLATION UNIT (.i)                  │
-│  Pure C++ expanded source code ready for compilation   │
-└───────────────────────────┬────────────────────────────┘
-                            │ (2) COMPILER (g++ -S / -c)
-                            │ Lexical analysis, parsing, machine translation
-                            ▼
-┌────────────────────────────────────────────────────────┐
-│                  OBJECT FILE (.o, .obj)                │
-│  Machine code (binary) with unresolved external symbols│
-└───────────────────────────┬────────────────────────────┘
-                            │ (3) LINKER (g++ / ld)
-                            │ Resolves symbols & merges with libraries
-                            │ (libstdc++.a, libm.a, iostream.lib)
-                            ▼
-┌────────────────────────────────────────────────────────┐
-│                STANDALONE EXECUTABLE (.exe)            │
-│  Complete binary ready for OS loader to execute        │
-└───────────────────────────┬────────────────────────────┘
-                            │ (4) OPERATING SYSTEM LOADER
-                            ▼
-┌────────────────────────────────────────────────────────┐
-│                RUNTIME MEMORY IN RAM                   │
-│  Loaded into Stack, Heap, Data, BSS, and Code Segments │
-└────────────────────────────────────────────────────────┘
-```
+![Phases of C++ program development](./images/phases_of_program_development.png)
+
+*Figure 2: Phases of C++ program development, Introduction slides, p. 7 (with the teacher's annotations).*
+
+**Reading the slide, phase by phase** (each phase reads from and writes to disk, right-hand column):
+
+| Phase | Tool | Input → output | Teacher's note |
+| :---: | :--- | :--- | :--- |
+| 1. Edit | Editor | You type → `*.cpp`, `*.h` | "a text file", the source files |
+| 2. Preprocess | Preprocessor | Handles `#include` / `#` lines → expanded text | The `#` arrow |
+| 3. Compile | Compiler | Text → object file `*.obj` | "converts text to machine language" |
+| 4. Link | Linker | `*.obj` + libraries `*.lib` → `*.exe` | "executable" |
+| 5. Execute | OS loader + processor | `*.exe` loaded from disk into RAM and run | "load program", "Run" |
+| 6. Test, debug, optimise | You | Find and remove errors | "remove errors/bugs" |
+
+Phases 2–4 together are what an IDE calls **Build** (the red box). The object file is machine code that still has unresolved references, which the linker fills in from libraries such as the math library.
 
 ### Toolchain Breakdown
 
@@ -111,37 +87,14 @@ When you click "Build & Run" in an IDE (such as Code::Blocks, CodeLite, or Visua
 
 When your operating system launches a C++ program, it creates a dedicated **Process** with a private 4 GB (on 32-bit systems) or 128 TB (on 64-bit systems) virtual address space partitioned into distinct memory segments:
 
-```
- High Memory Addresses (0xFFFFFFFF on 32-bit / 0x7FFFFFFFFFFF on 64-bit)
- ┌────────────────────────────────────────────────────────┐
- │                    THE STACK SEGMENT                   │
- │  • Grows DOWNWARD toward lower memory addresses        │
- │  • Stores local variables, function call frames,       │
- │    return addresses, and loop counters                 │
- │  • Extremely fast (managed automatically via CPU RSP)  │
- ├────────────────────────────────────────────────────────┤
- │                           │                            │
- │                           ▼                            │
- │                                                        │
- │                           ▲                            │
- │                           │                            │
- ├────────────────────────────────────────────────────────┤
- │                    THE HEAP SEGMENT                    │
- │  • Grows UPWARD toward higher memory addresses         │
- │  • Dynamic memory allocation (`new`, `malloc()`)       │
- │  • Persists until explicitly freed (`delete`, `free()`)│
- ├────────────────────────────────────────────────────────┤
- │                UNINITIALIZED DATA (.BSS)               │
- │  • Global & static variables initialized to zero       │
- ├────────────────────────────────────────────────────────┤
- │                 INITIALIZED DATA (.DATA)               │
- │  • Global & static variables with explicit values      │
- ├────────────────────────────────────────────────────────┤
- │                   TEXT / CODE SEGMENT                  │
- │  • Read-only machine instructions compiled from C++    │
- └────────────────────────────────────────────────────────┘
- Low Memory Addresses (0x00000000)
-```
+| Segment (high → low address) | What it holds | Notes |
+| :--- | :--- | :--- |
+| **Stack** | Local variables, function call frames, return addresses, loop counters | Grows downward; fast; managed automatically |
+| *(free space)* | | Stack and heap grow toward each other |
+| **Heap** | Dynamically allocated memory (`new`, `malloc`) | Grows upward; lives until freed |
+| **BSS** | Global/static variables initialised to zero | |
+| **Data** | Global/static variables with explicit initial values | |
+| **Text (code)** | The compiled machine instructions | Read-only |
 
 1. **Stack Segment**: Automatically allocated and deallocated as functions are called and return. Every local variable inside `int main()` or user functions lives here.
 2. **Heap Segment**: Used when data sizes cannot be known at compile time (e.g., reading an image or laser scan of arbitrary size). Managed manually by the programmer.
@@ -267,21 +220,16 @@ Example: Representing $-5$ in an 8-bit byte:
 
 Real numbers with decimal points are fundamentally different from integers: they cannot be stored exactly in a finite number of bits. Modern microprocessors use the **IEEE 754 Standard** for floating-point arithmetic.
 
-```
- Single-Precision 'float' (32 bits = 4 bytes):
- ┌───┬──────────────┬─────────────────────────────────────────────────┐
- │ S │ Exponent (E) │             Fraction / Mantissa (M)             │
- │ 1 │    8 bits    │                     23 bits                     │
- └───┴──────────────┴─────────────────────────────────────────────────┘
- Bit 31   Bits 30-23                          Bits 22-0
+| Type | Total size | Sign bit | Exponent bits | Fraction (mantissa) bits | Significant digits | Range (magnitude) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| `float` | 32 bits (4 bytes) | 1 (bit 31) | 8 (bits 30–23) | 23 (bits 22–0) | about 8 | $1.2\times10^{-38}$ to $3.4\times10^{38}$ |
+| `double` | 64 bits (8 bytes) | 1 (bit 63) | 11 (bits 62–52) | 52 (bits 51–0) | about 16 | $2.3\times10^{-308}$ to $1.7\times10^{308}$ |
 
- Double-Precision 'double' (64 bits = 8 bytes):
- ┌───┬──────────────────┬─────────────────────────────────────────────┐
- │ S │   Exponent (E)   │           Fraction / Mantissa (M)           │
- │ 1 │     11 bits      │                   52 bits                   │
- └───┴──────────────────┴─────────────────────────────────────────────┘
- Bit 63   Bits 62-52                          Bits 51-0
-```
+![float range and typical errors](./images/float_range_and_typical_errors.png)
+
+*Figure 3: float variables, Variable Types I, p. 3.*
+
+**Reading the slide:** a float has 4 bytes and about 8 digits of precision, with range $1.2\times10^{-38}$ to $3.4\times10^{38}$ (the teacher writes $1.0\text{e-}38 = 1.0\times10^{-38}$). Its typical errors: (a) out of range → overflow gives ±Inf, underflow gives 0.0; (b) uninitialised; (c) divide by zero → Inf, not a crash; (d) **round-off**: `z = 1.0 + 1.0e-10` prints 1.0000000 because the $10^{-10}$ is beyond 8 digits.
 
 ### Mathematical Formula for IEEE 754 Floating-Point Value:
 $$\text{Value} = (-1)^S \times (1 + M) \times 2^{E - \text{Bias}}$$
@@ -317,16 +265,11 @@ When stored in a 32-bit `float` or 64-bit `double`, the trailing bits are trunca
 
 Because memory registers have finite bit widths, arithmetic operations that exceed the maximum or minimum representable bounds cause **overflow** and **underflow**.
 
-```
-             ┌─────────────────────────┐
-             │       +2,147,483,647    │  (INT_MAX)
-             └────────────┬────────────┘
-                          │ Adding +1
-                          ▼
-             ┌─────────────────────────┐
-             │       -2,147,483,648    │  (INT_MIN: Wraps around!)
-             └─────────────────────────┘
-```
+![int range and typical errors](./images/int_range_and_typical_errors.png)
+
+*Figure 4: int variables, Variable Types I, p. 2 (with the teacher's annotations).*
+
+**Reading the slide:** an `int` holds whole numbers from $-2{,}147{,}483{,}648$ to $2{,}147{,}483{,}647$ (4 bytes on a 32/64-bit CPU). The first typical error is **out of range**: `x = 2147483647 + 1` **wraps around** to $-2{,}147{,}483{,}648$ (INT_MAX + 1 → INT_MIN). The teacher's notes mark the other traps: an uninitialised `y` makes `z = y + 1` **garbage (unpredictable)**; `1/y` with `y = 0` causes an **exception**; and `z = 1/3` rounds **down to 0** (integer division).
 
 ### The Circular Number Line
 Imagine an 8-bit signed `char` holding the value $127$ (`01111111`). If you add $1$:

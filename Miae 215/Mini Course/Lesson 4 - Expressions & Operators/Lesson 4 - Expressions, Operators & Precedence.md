@@ -71,7 +71,7 @@ Precedence Hierarchy:
 5. = (assignment)
 ```
 
-To evaluate rational expressions like $y = rac{ax^2+bx+c}{dx+e}$, **parentheses are mandatory**:
+To evaluate rational expressions like $y = \frac{ax^2+bx+c}{dx+e}$, **parentheses are mandatory**:
 ```cpp
 y = (a*x*x + b*x + c) / (d*x + e);
 ```

@@ -38,23 +38,13 @@ When entering engineering for the first time, students often picture math equati
 
 One of the most essential distinctions in your academic journey is understanding where science ends and engineering begins.
 
-```
-┌────────────────────────────────────────────────────────┐
-│                      SCIENCE                           │
-│  • Observes the universe & hypothesizes conjectures    │
-│  • Validates via experiments → Output: Theories & Laws │
-└───────────────────────────┬────────────────────────────┘
-        │ Discovery: "Here is how nature behaves"
-        ▼
-┌────────────────────────────────────────────────────────┐
-│                    ENGINEERING                         │
-│  • Takes verified science & mathematical principles    │
-│  • Synthesizes systems & methods → Output: Better Life │
-└───────────────────────────┬────────────────────────────┘
-        │ Feedback: "What knowledge is missing?"
-        ▼
-   (Back to Science)
-```
+The two work hand in hand, as the Lecture 1.0 slides put it (p. 4):
+
+1. **Science discovers** how nature behaves: it observes, forms conjectures with logic, and verifies them by controlled experiments (slide 5).
+2. **Engineering applies** that verified knowledge to real problems: food, shelter, movement, communications, the environment (slide 6).
+3. **Engineering feeds back** to science: when a design needs knowledge that does not exist yet, it creates a new scientific question (slide 4: "science receives feedback from engineering").
+
+> **From the textbook (Hicks, Ch. 1):** the inclined plane, the bow, the wheel and the water wheel were *science*, while the Great Wall of China and Roman construction were *engineering*. Mathematics is the common foundation of every engineering development.
 
 ### Side-by-Side Comparison Matrix
 
@@ -100,20 +90,11 @@ Because an engineer's design directly affects public safety, health, and economi
 
 ### The Canadian Regulatory Hierarchy
 
-```
-┌────────────────────────────────────────────────────────┐
-│                   ENGINEERS CANADA                     │
-│  • National federation representing 12 jurisdictions   │
-└───────────────────────────┬────────────────────────────┘
-                            │
-             ┌──────────────┴──────────────┐
-             ▼                             ▼
-┌──────────────────────────┐  ┌──────────────────────────┐
-│        CEAB (Nat.)       │  │        OIQ (Quebec)      │
-│ • Program accreditation  │  │ • Licensing & law        │
-│ • Validates B.Eng degrees│  │ • Regulates ~55k P.Engs  │
-└──────────────────────────┘  └──────────────────────────┘
-```
+| Body | Level | Role |
+| :--- | :--- | :--- |
+| **Engineers Canada** | National federation | Represents the provincial and territorial regulators |
+| **CEAB** (Canadian Engineering Accreditation Board) | National (under Engineers Canada) | Accredits university engineering programs |
+| **OIQ** (Ordre des ingénieurs du Québec) | Provincial regulator | Licenses engineers in Quebec and enforces the code of ethics |
 
 1. **Engineers Canada**: The national federation representing all provincial and territorial associations.
 2. **Canadian Engineering Accreditation Board (CEAB)**: Audits university engineering curriculums. When you graduate from Concordia’s CEAB-accredited B.Eng program, your degree satisfies the academic prerequisite for professional licensure.
@@ -136,28 +117,18 @@ Engineers constantly face a tug-of-war:
 
 The engineering method is an iterative feedback cycle designed to translate vague symptoms into robust systems:
 
-```
-[ Problem Symptom / Expressed Need ]
-                │
-                ▼
-[ Problem Definition (Desired Outcome) ]
-                │
-                ▼
-┌───────────────────────────────────────────────────────┐
-│               THE CORE ITERATIVE ENGINE               │
-│                                                       │
-│   ANALYSIS (Breakdown)       SYNTHESIS (Creation)     │
-│  "Deconstruct problem   ◄►  "Assemble elements into   │
-│   into basic elements"       a novel unified system"  │
-│   [Existing System]          [New Solution System]    │
-└───────────────────────────────────────────────────────┘
-                │
-                ▼
-[ Decision: Selection of Optimal Alternative ]
-                │
-                ▼
-[ Final Solution, System, or Method ]
-```
+![Engineering process: design of systems through analysis and synthesis](./images/engineering_design_process.png)
+
+*Figure 1: The engineering process, Lecture 1.0, slide 14.*
+
+**Reading the figure, box by box:**
+
+1. **Problem symptom / expression of needs**: something is wrong or wanted ("orders are late", "we need a new clinic"). A symptom is not yet a problem statement.
+2. **Problem definition**: state the desired outcome precisely. A badly defined problem produces a perfect solution to the wrong question.
+3. **Analysis (experimentation)**: break the *existing* system into basic elements and study them (measure cycle times, find bottlenecks).
+4. **Synthesis of alternative solutions**: combine elements into a *new* whole. Several alternatives are generated, not just one.
+5. **Decision (selection of an alternative)**: compare the alternatives on cost, safety and performance.
+6. **Solution, system, or method**: implement it. The loop arrow on the slide means you return to analysis whenever the chosen alternative fails a test.
 
 * **Analysis**: Breaking down a complex phenomenon or existing system into smaller, understandable pieces (e.g., measuring cycle times, finding bottlenecks, dissecting failure modes).
 * **Synthesis**: Assembling distinct materials, machines, software, and human tasks together to form a novel, functioning whole.
@@ -179,6 +150,15 @@ Industrial Engineering was born out of necessity during the Industrial Revolutio
 | **1920s–1930s** | **Walter A. Shewhart** | Statistical Quality Control (SQC / SPC) |
 | **1940s (WWII)** | **Operations Research** | Mathematical optimization & linear programming |
 | **21st Century** | **Modern Analytics & AI** | Predictive maintenance, digital twins & LLMs |
+
+### From the Textbook (Hicks, Ch. 1, §1.9): What Each Pioneer Actually Did
+
+* **Charles Babbage (1832)** recorded every step of making straight pins (seven distinct operations) and the pay of each worker. He showed that money is saved when lower-skilled steps are given to lower-paid workers and only the skilled steps to skilled workers: the economic case for **division of labour** (*On the Economy of Machinery and Manufactures*).
+* **Eli Whitney** built muskets from **interchangeable parts** made by machines that workers with little training could operate, creating the first mass-production system.
+* **Frederick W. Taylor** proposed a three-phase method: analyse and improve the work method, measure the time the job should take, and set standards and incentives, making work design a "science" rather than an "art".
+* **Frank Gilbreth** classified basic motions ("reach", "grasp", "transport"…) and filmed workers to time each one, the basis of motion study (see Chapter 6).
+* **Dr. Lillian Gilbreth**, a psychologist, brought concern for **human welfare and human relations** into the profession; she was the first woman elected to the U.S. National Academy of Engineering.
+* **Henry L. Gantt** devised the **Gantt chart**, a graphical way to plan and schedule work and track progress, still used in project management (Chapter 17).
 
 ---
 
@@ -209,6 +189,8 @@ In professional practice, an Industrial Engineer operates across two synchronize
 | **Level 2: Management Control Systems** *(Planning & Policy)* | Procedures for planning, measuring, analyzing, and controlling activities. | Demand forecasting, MRP inventory control, production line balancing, wage incentive plans, statistical quality control (SPC). |
 
 > **Crucial Reality Check:** In real life, an IE rarely designs a multi-billion dollar factory from zero. 90% of an IE’s daily career is **optimizing and continuously improving existing sub-systems** (Kaizen/lean improvement).
+>
+> The textbook says it directly (Hicks, §2.2): *"almost all human activity systems are not really designed; they simply evolve. Few I.&S.E.s really engage in overall system design. Almost all are concerned with improving a very small piece of an existing system."* This is the "improving the performance of a small part of the system" bullet on Lecture 1.0, slide 19.
 
 ---
 
@@ -223,24 +205,24 @@ A **system** is defined as a collection of interrelated components acting togeth
 * Has no corrective feedback mechanism.
 * **Analogy**: A car with a brick on the gas pedal and no driver. It moves forward, but cannot steer around an obstacle or adjust speed on a hill.
 
-```
-[ Input ] ──► [ Conversion Process ] ──► [ Output ]
-              (No Feedback Mechanism)
-```
-
 #### 2. Closed-Loop System
 * Measures its real-time output using sensors, compares the result to a target standard (the error signal), and executes corrective control.
 * **Analogy**: A car steered by an alert driver. The driver sees the road lane (sensor/feedback), detects drift (error), and turns the steering wheel (actuator/corrective action).
 
-```
-[ Input ] ──► [ Conversion Process ] ──► [ Output ]
-    ▲                                       │
-    │            FEEDBACK LOOP              │
-    └──── [ Corrective Action ◄── Audit ] ──┘
-```
+![Open-loop vs closed-loop systems](./images/open_vs_closed_loop_systems.png)
+
+*Figure 2: The nature of systems, Lecture 1.0, slide 20.*
+
+**What the two block diagrams show:** both have the same *Input → System performance → Output* chain. The only difference is the **feedback** line at the bottom of the closed-loop diagram, which carries information about the output back to the input side. That one line is what allows the system to be "aware of and influenced by its past performance". The slide's analogy is the same as the one above: an open loop is a car without a driver, a closed loop is a car with one.
 
 ### The Universal Production System Model
 Every manufacturing plant, warehouse, or hospital clinic functions as a closed-loop transformation model:
+
+![Components of a production system](./images/production_system_conversion_process.png)
+
+*Figure 3: Components of a production system, Lecture 1.0, slide 21.*
+
+**Reading the figure:** inputs (primary resources and the market) enter the **conversion process**, which produces the outputs (products or services). Performance monitoring of the outputs drives **corrective action** back into the process: this is the feedback loop of Figure 2 applied to a factory.
 
 1. **Inputs**:
    * *Primary Resources*: Capital, raw materials, machines, facilities, skilled human labor.

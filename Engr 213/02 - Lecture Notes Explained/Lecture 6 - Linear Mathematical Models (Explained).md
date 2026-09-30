@@ -9,20 +9,14 @@
 
 Lecture 6 marks the fundamental bridge between purely formal ODE integration techniques and real-world engineering systems. When describing physical phenomena, empirical principles and conservation laws are formulated as **rates of change** ($\frac{dy}{dt}$), naturally producing differential equations.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│               LECTURE 6 LINEAR MODELING TAXONOMY (§2.7)                │
-├──────────────────────┬─────────────────────────────┬───────────────────┤
-│ Phenomenon           │ Governing Differential Eq.  │ Solution Method   │
-├──────────────────────┼─────────────────────────────┼───────────────────┤
-│ Population Growth    │ dP/dt = k P                 │ Separable         │
-│ Radioactive Decay    │ dA/dt = k A   (k < 0)       │ Separable         │
-│ Newton's Cooling     │ dT/dt = k (T - Tm)  (k < 0) │ Separable / Linear│
-│ Single-Tank Mixture  │ dA/dt = Rin - Rout          │ 1st-Order Linear  │
-│ LR Series Circuit    │ L (di/dt) + R i = E(t)      │ 1st-Order Linear  │
-│ RC Series Circuit    │ R (dq/dt) + (1/C) q = E(t)  │ 1st-Order Linear  │
-└────────────────────────────────────────────────────────────────────────┘
-```
+| Phenomenon | Governing differential equation | Solution method |
+| :--- | :--- | :--- |
+| Population growth | $\dfrac{dP}{dt} = kP$ ($k > 0$) | Separable |
+| Radioactive decay | $\dfrac{dA}{dt} = kA$ ($k < 0$) | Separable |
+| Newton's cooling/warming | $\dfrac{dT}{dt} = k(T - T_m)$ ($k < 0$) | Separable or linear |
+| Single-tank mixture | $\dfrac{dA}{dt} = R_{in} - R_{out}$ | First-order linear |
+| LR series circuit | $L\dfrac{di}{dt} + Ri = E(t)$ | First-order linear |
+| RC series circuit | $R\dfrac{dq}{dt} + \dfrac{1}{C}q = E(t)$ | First-order linear |
 
 ---
 
@@ -30,31 +24,20 @@ Lecture 6 marks the fundamental bridge between purely formal ODE integration tec
 
 Building a reliable engineering model follows five systematic stages:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        THE ENGINEERING MODEL CYCLE                     │
-└────────────────────────────────────────────────────────────────────────┘
-                                 │
-                                 ▼
-                     [ 1. Physical System ]
-            Identify physical variables, rates & parameters
-                                 │
-                                 ▼
-             [ 2. Mathematical Formulation (Assumptions) ]
-         Apply conservation laws (Mass, Energy, Momentum, KVL)
-                                 │
-                                 ▼
-             [ 3. Initial Value Problem (IVP) Solution ]
-             Solve ODE using Separable or Linear IF methods
-                                 │
-                                 ▼
-                     [ 4. Model Predictions ]
-            Calculate thresholds, time horizons & asymptotes
-                                 │
-                                 ▼
-             [ 5. Verification & Experimental Validation ]
-        Compare with empirical data; refine assumptions if needed
-```
+![Steps in the modeling process](./images/steps_in_modeling_process.png)
+
+*Figure 1: Steps in the modeling process, Lecture 6, slide 4 (Zill Fig. 1.3.1).*
+
+**Reading the cycle, clockwise from the top left:**
+
+1. **Assumptions and hypotheses** about the real system (which variables matter, which effects to ignore).
+2. **Express the assumptions in terms of DEs**, producing the **mathematical formulation**.
+3. **Solve the DEs** to **obtain solutions**.
+4. **Display predictions of the model** (for example graphically).
+5. **Check the model predictions with known facts** (experimental data).
+6. **If necessary, alter the assumptions or increase the resolution of the model**, and go around again.
+
+The loop is the point: a model is never "done" after one pass. If the predictions compare poorly with data, you refine the assumptions, usually at the price of more mathematical complexity.
 
 ---
 
@@ -91,17 +74,16 @@ Building a reliable engineering model follows five systematic stages:
 Newton's empirical law states that the rate of change of temperature $\frac{dT}{dt}$ of a body is proportional to the instantaneous temperature difference between the body $T(t)$ and the surrounding medium $T_m$:
 $$\frac{dT}{dt} = k (T - T_m)$$
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        NEWTONIAN COOLING DYNAMICS                      │
-├────────────────────────────────────────────────────────────────────────┤
-│ • If T > Tm (Object hotter than room):                                 │
-│   (T - Tm) > 0. Since object cools (dT/dt < 0), k MUST BE NEGATIVE.    │
-│ • If T < Tm (Object colder than room):                                 │
-│   (T - Tm) < 0. Object warms up (dT/dt > 0), confirming k < 0.         │
-│ • Universal Rule: In all natural heat transfer, k < 0.                 │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Newton's law of cooling/warming](./images/newton_law_of_cooling.png)
+
+*Figure 2: Newton's law of cooling/warming, Lecture 6, slide 8.*
+
+| Case | Sign of $T - T_m$ | Direction of change | So $k$ must be |
+| :--- | :---: | :--- | :---: |
+| Object hotter than the room ($T > T_m$) | $+$ | Cools: $dT/dt < 0$ | negative |
+| Object colder than the room ($T < T_m$) | $-$ | Warms: $dT/dt > 0$ | negative |
+
+In both cases $k < 0$: the rate is proportional to the temperature **difference**, and the temperature always moves toward $T_m$.
 
 ### 3.2 Analytic Solution
 $$\frac{dT}{T - T_m} = k \, dt \implies \ln|T - T_m| = kt + C_1 \implies T(t) - T_m = c e^{kt}$$
@@ -144,21 +126,15 @@ Where:
 * $V(t) = V_0 + (Q_{in} - Q_{out})t$ = instantaneous liquid volume in tank
 * $c_{out}(t) = \frac{A(t)}{V(t)}$ = instantaneous concentration leaving tank
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                       CONTINUOUS STIRRED TANK MIXING                   │
-├────────────────────────────────────────────────────────────────────────┤
-│ Inflow:  Qin [gal/min],  cin [lb/gal]  ──►  Rin = cin * Qin [lb/min]   │
-│                                                   │                    │
-│                                                   ▼                    │
-│                      Tank: V(t) = V0 + (Qin - Qout) t                  │
-│                            Salt amount = A(t) [lb]                     │
-│                            cout(t) = A(t) / V(t)                       │
-│                                                   │                    │
-│                                                   ▼                    │
-│ Outflow: Qout [gal/min], cout(t) [lb/gal] ──► Rout = cout * Qout       │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Mixture tank model](./images/mixture_tank_model.png)
+
+*Figure 3: Mixtures, Lecture 6, slide 11.*
+
+**Reading the slide:** brine flows in at a rate $Q_{in}$ with concentration $c_{in}$, the tank is kept well mixed, and the mixture flows out at $Q_{out}$ with the tank's own concentration $c_{out} = A(t)/V(t)$. The net rate of change of salt is **input rate minus output rate**:
+
+$$\frac{dA}{dt} = R_{in} - R_{out} = c_{in}\,Q_{in} - \frac{A(t)}{V(t)}\,Q_{out}, \qquad V(t) = V_0 + (Q_{in} - Q_{out})\,t$$
+
+The slide's three scenarios: $Q_{in} = Q_{out}$ (constant volume), $Q_{in} < Q_{out}$ (the tank drains), $Q_{in} > Q_{out}$ (the tank fills).
 
 The universal linear ODE is:
 $$\frac{dA}{dt} + \frac{Q_{out}}{V_0 + (Q_{in} - Q_{out})t} A(t) = c_{in} Q_{in}$$
@@ -199,12 +175,17 @@ $$\frac{dA}{dt} + \frac{Q_{out}}{V_0 + (Q_{in} - Q_{out})t} A(t) = c_{in} Q_{in}
 In any closed electrical loop, the impressed electromotive force $E(t)$ equals the sum of voltage drops across circuit components:
 $$V_L + V_R + V_C = E(t)$$
 
-```
-Component   Constitutive Law        Voltage Drop
-Inductor    v_L = L (di/dt)         L (di/dt)
-Resistor    v_R = R i               R i
-Capacitor   v_C = (1/C) q           (1/C) q  where i = dq/dt
-```
+| Component | Voltage drop | In terms of charge $q$ ($i = dq/dt$) |
+| :--- | :--- | :--- |
+| Inductor $L$ | $L\dfrac{di}{dt}$ | $L\dfrac{d^{2}q}{dt^{2}}$ |
+| Resistor $R$ | $iR$ | $R\dfrac{dq}{dt}$ |
+| Capacitor $C$ | $\dfrac{1}{C}q$ | $\dfrac{1}{C}q$ |
+
+![LRC series circuit](./images/lrc_series_circuit.png)
+
+*Figure 4: Series circuits, Lecture 6, slide 15.*
+
+**Reading the slide:** the single loop contains a source $E(t)$, an inductor $L$, a resistor $R$ and a capacitor $C$. Kirchhoff's second law adds the three drops to give the **second-order** equation in the boxed formula, $L\,q'' + R\,q' + \frac{1}{C}q = E(t)$. Removing the capacitor leaves the **LR circuit**, $L\,i' + R\,i = E(t)$, which is first-order and linear in $i$: that is why it belongs in this lecture.
 
 ---
 

@@ -16,6 +16,7 @@
 9. [Robotics Sensor & Actuator Decision Systems](#9-robotics-sensor--actuator-decision-systems)
 10. [Teacher Lesson Code Walkthrough: `control_statements1.cpp` & Assignment 1 Problems](#10-teacher-lesson-code-walkthrough-control_statements1cpp--assignment-1-problems)
 11. [Week 3 In-Person Lecture Deep-Dive: Input Stream Processing, Negative Exit Guards & Double Accumulation](#11-week-3-in-person-lecture-deep-dive-input-stream-processing-negative-exit-guards--double-accumulation)
+12. [Loop Statements: the for Loop, Exit Values & Nested Loops](#12-loop-statements-the-for-loop-exit-values--nested-loops)
 
 ---
 
@@ -23,29 +24,18 @@
 
 Before writing a single line of C++ code, engineers design and verify algorithmic logic using **flowcharts**. A flowchart provides a formal graphic blueprint mapping decision forks, hardware states, and execution pathways.
 
-```
-┌────────────────────────────────────────────────────────┐
-│               STANDARD ANSI FLOWCHART SYMBOLS          │
-│                                                        │
-│     ( Start / Stop )     Oval / Capsule: Terminal node │
-│            │                                           │
-│            ▼                                           │
-│     /  cin >> input  /   Parallelogram: Stream I/O     │
-│            │                                           │
-│            ▼                                           │
-│     ┌──────────────┐     Rectangle: Assignment / math  │
-│     │  x = 2*x + 1 │                                   │
-│     └──────┬───────┘                                   │
-│            │                                           │
-│            ▼                                           │
-│          /   \           Diamond: Decision Condition   │
-│         < x>0? >                                       │
-│          \   /                                         │
-│          /   \                                         │
-│     True│     │False                                   │
-│         ▼     ▼                                        │
-└────────────────────────────────────────────────────────┘
-```
+| Symbol | Shape | Meaning | Example |
+| :--- | :--- | :--- | :--- |
+| Terminal | Oval / capsule | Start or stop | Main, End |
+| Input/output | Parallelogram | Stream input or output | `cin >> x`, Output |
+| Process | Rectangle | Assignment or calculation | `x = 2*x + 1` |
+| Decision | Diamond | A test with True/False exits | `x > 0?` |
+
+![Flow chart representation](./images/flowchart_representation.png)
+
+*Figure 1: Flow chart representation, Control Statements I, p. 8 (with the teacher's annotations).*
+
+**Reading the flowchart:** it starts at **Main**, **declares variables** (`Integer i`), **initialises** them (`i = 3`), then reaches the diamond **if statement** (`i > 5`). The **False** branch runs *codeblock2* (Output "i > 5 is false") and the **True** branch runs *codeblock1*; both rejoin before **End**. The teacher's notes explain why flowcharts matter: they "improve organization", are "a universal programming language" independent of C++, Java or Python, and are drawn with the free **Flowgorithm** package.
 
 ### Flowgorithm in MIAE 215
 Prof. Gordon provides **Flowgorithm** in `05 - Software & Flowcharts/`:
@@ -90,9 +80,21 @@ if (score >= 90.0) {
 }
 ```
 
+![if-else ladder](./images/if_else_ladder.png)
+
+*Figure 3: if-else ladders, Control Statements I (part 2), p. 2 (with the teacher's annotations).*
+
+**Reading the slide:** the nested form (an `if` inside each `else`) is drawn with arrows marking each `{ }` pair. It is exactly the same logic as the flat `else if` ladder. The tests run **top to bottom**, the first true one executes its block, and control jumps past the rest; the final `else` is the "none of the above" default.
+
 ---
 
 ## 3. Relational Comparison Operators & Dynamic State Evaluation
+
+![Test conditions](./images/test_conditions_comparison.png)
+
+*Figure 4: Test conditions, Control Statements I, p. 2.*
+
+**Reading the slide:** the comparison operators are `>`, `<`, `>=`, `<=`, `==` (equal) and `!=` (not equal). The warning at the bottom is the key one: **equality tests should normally not be used with float/double**, because round-off makes `x == 0.0` fail when `x` is really `1e-20`. That is why Section 5 uses an epsilon tolerance.
 
 Relational operators compare two operands and produce a Boolean result: `true` (1) or `false` (0).
 
@@ -127,15 +129,11 @@ if (k > i) {
 
 By far the most catastrophic, silent bug in C++ programming is confusing the **assignment operator** (`=`) with the **relational equality operator** (`==`).
 
-```
- INTENDED COMPARISON:                  CATASTROPHIC ACCIDENTAL ASSIGNMENT:
- if (x == 5)                           if (x = 5)
- ┌─────────────────────────┐           ┌─────────────────────────┐
- │ Reads x from RAM        │           │ Overwrites x in RAM to 5│
- │ Tests if x equals 5     │           │ Evaluates condition to 5│
- │ Evaluates to TRUE/FALSE │           │ 5 is non-zero ──► TRUE! │
- └─────────────────────────┘           └─────────────────────────┘
-```
+| | `if (x == 5)` (intended comparison) | `if (x = 5)` (accidental assignment) |
+| :--- | :--- | :--- |
+| What happens to `x` | Read only | **Overwritten** with 5 |
+| Value of the condition | True or false depending on `x` | 5, which is non-zero, so **always true** |
+| Result | Correct test | Silent bug: the if-block always runs |
 
 ```cpp
 int pressure = 0; // Safe pressure
@@ -193,15 +191,17 @@ if ((x < 5.5) || (abs(x - 5.5) < eps)) {
 
 To evaluate complex engineering states (e.g., "altitude $> 1000$ AND velocity $< 250$"), simple relational comparisons are joined using Boolean logical operators.
 
-```
-┌────────────────────────────────────────────────────────┐
-│                   BOOLEAN LOGICAL GATES                │
-│                                                        │
-│  Logical AND (&&) : True ONLY IF BOTH operands true    │
-│  Logical OR  (||) : True IF AT LEAST ONE operand true  │
-│  Logical NOT (!)  : Inverts Boolean truth value        │
-└────────────────────────────────────────────────────────┘
-```
+| Operator | Name | True when |
+| :---: | :--- | :--- |
+| `&&` | Logical AND | **Both** conditions are true |
+| `\|\|` | Logical OR | **At least one** condition is true |
+| `!` | Logical NOT | The condition is false (inverts it) |
+
+![Logical operators](./images/logical_operators.png)
+
+*Figure 2: Logical operators, Control Statements I, p. 4.*
+
+**Reading the slide:** comparisons are combined with `&&` and `||` for more complex tests, e.g. `if( (i > k) && (k <= 3) )` prints "i is greater than k AND k is less than or equal to 3". Multiple ANDs and ORs are allowed.
 
 ### Comprehensive Truth Table
 
@@ -396,21 +396,11 @@ Write a robust C++ engineering program that satisfies two strict operational con
 
 ### Defensive Exit Strategies: `exit(status)` vs. `return code`
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                   PROGRAM ABORT ARCHITECTURES                    │
-├────────────────────────────────┬─────────────────────────────────┤
-│ return code;                   │ exit(status_code);              │
-├────────────────────────────────┼─────────────────────────────────┤
-│ • Defined in language core.    │ • Defined in <cstdlib>.         │
-│ • Returns from current func.   │ • Terminates entire process.    │
-│ • Inside main(): exits program │ • Can be called from any depth  │
-│   and returns code to the OS.  │   (deep inside nested helper    │
-│ • Unwinds local stack objects  │   functions or sensor drivers). │
-│   in C++.                      │ • Flushes buffers, calls atexit │
-│                                │   handlers, returns code to OS. │
-└────────────────────────────────┴─────────────────────────────────┘
-```
+| | `return code;` | `exit(status_code);` |
+| :--- | :--- | :--- |
+| Defined in | The language core | `<cstdlib>` |
+| Effect | Returns from the **current function**; inside `main()` it ends the program and returns the code to the OS | Terminates the **whole process** from any depth |
+| Cleanup | Destroys local objects on the way out | Flushes buffers, runs `atexit` handlers |
 
 In engineering control software, entering abnormal states (e.g., negative pressures, negative Kelvin temperatures, or invalid sensor inputs) often demands an immediate failsafe shutdown.
 
@@ -484,4 +474,46 @@ During this lecture, Prof. Gordon reinforced why `current_value == 0.0` or direc
 * Due to binary representation limitations (IEEE 754), a calculation producing a theoretical zero may evaluate to `1.0e-17` or `1.0e-30`.
 * Direct equality `x == 0.0` evaluates to `false`.
 * Always use relational inequalities (`<`, `>`, `<=`, `>=`) or epsilon tolerance bands: `fabs(a - b) < 1.0e-7`.
+
+---
+
+## 12. Loop Statements: the for Loop, Exit Values & Nested Loops
+
+A **loop** executes part of the program repeatedly (Control Statements I part 2, p. 5). The `for` loop is the most common kind.
+
+![Anatomy of a for loop](./images/for_loop_anatomy.png)
+
+*Figure 5: Loop statements, Control Statements I (part 2), p. 5 (with the teacher's annotations).*
+
+**Reading the slide: the order in which the parts run.**
+
+| Step | Part of `for( i = 0 ; i < 5 ; i++ )` | When it runs |
+| :---: | :--- | :--- |
+| 0 | `i = 0`: **initialise** the index | Once, before anything else |
+| 1 | `i < 5`: **test** the condition | Before every pass; if false, the loop ends |
+| 2 | The **code block** `cout << "\ni = " << i;` | Only when the test was true |
+| 3 | `i++`: **update** the index | After every pass, then back to step 1 |
+
+The teacher's notes list the printed values `i = 0, 1, 2, 3, 4`, and underneath the closing brace, **`i = 5`**: the update runs one last time, the test `5 < 5` fails, and the loop exits with `i` equal to 5. For a single-statement body the braces are optional.
+
+### Other update expressions (p. 6)
+The update does not have to be `i++`. Trace each one by listing the values that pass the test:
+
+| Loop | Values printed | Exit value |
+| :--- | :--- | :--- |
+| `for( i = 0; i <= 10; i += 2 )` | 0, 2, 4, 6, 8, 10 | `i = 12` |
+| `for( x = 1.0; x < 1.0e5; x *= 10.0 )` | 1, 10, 100, 1000, 10000 | `x = 1.0e5` |
+| `for( k = 0; k < 1000; k = k*k + 1 )` | 0, 1, 2, 5, 26, 677 | `k = 458330` |
+
+**The exit value** is always the first value that *fails* the test, never the last one printed, because the update runs before the failing test. This is the most common trap in "what is printed after the loop?" questions.
+
+**Changing the index inside the body** changes the trace: in `for( i = -1; i <= 5; i = i + 2 ) { cout << i; if( i == 3 ) i = 7; }` the values −1, 1, 3 print; at 3 the body sets `i = 7`, the update makes it 9, and the test `9 <= 5` ends the loop.
+
+### Nested loops (p. 7)
+
+![Nested for loops](./images/nested_for_loops.png)
+
+*Figure 6: Nested loops, Control Statements I (part 2), p. 7.*
+
+**Reading the slide:** the outer loop (`i`, the row) runs 3 times; for **each** value of `i`, the inner loop (`j`, the column) runs 3 times. So the inner body runs $3 \times 3 = 9$ times, and it fills the 2D array one row at a time with `A[i][j] = 1.0 + i + j` (for example $A[2][1] = 1 + 2 + 1 = 4$). In general, the inner body runs (outer count) × (inner count) times.
 

@@ -37,7 +37,7 @@ In modern industry, an industrial designer or mechanical engineer drafts a brill
 | Product Design | Manufacturing Engineering |
 | :--- | :--- |
 | **Focus**: Function, ergonomics & aesthetic styling | **Focus**: Physical feasibility, tooling & unit economics |
-| *"Will this part safely support a 5,000 N load?"* | *"How can we produce 50,000 units at under $12/piece?"* |
+| *"Will this part safely support a 5,000 N load?"* | *"How can we produce 50,000 units at under \$12/piece?"* |
 | Favors: **Ultra-tight tolerances** ($\pm 0.0001"$) | Favors: **Largest acceptable tolerances** ($\pm 0.010"$) |
 
 The manufacturing engineer answers the practical production questions:
@@ -58,19 +58,13 @@ In traditional 20th-century companies, departments operated in isolated silos:
 * Manufacturing engineers discovered the design was impossible or astronomically expensive to machine, leading to bitter blame-shifting, delayed launches, and budget blowouts.
 
 ### The Tolerance vs. Cost Trade-Off
-A foundational law of manufacturing: **Tighter tolerances cause production costs to rise exponentially.**
+A foundational law of manufacturing: **tighter tolerances make production costs rise steeply** (Lecture 2.0, slide 4: "designer opts for tight tolerances → high processing cost").
 
-```
-Cost ($)
-  ▲
-  │                       * (Ultra-tight: grinding/lapping)
-  │                     *
-  │                   *
-  │                 *
-  │        * * * * 
-  └───────────────────────────────► Tolerance (Deviation)
-    Tight (±0.0001")    Loose (±0.010")
-```
+| Tolerance required | Typical finishing needed | Relative cost |
+| :--- | :--- | :--- |
+| Loose (e.g. ±0.010 in) | One pass of turning or milling | Low |
+| Medium (e.g. ±0.001 in) | Extra finishing cuts, slower feeds | Moderate |
+| Tight (e.g. ±0.0001 in) | Grinding, lapping, honing, extra inspection | High and rising sharply |
 
 * **Product Designers** naturally desire the tightest possible tolerances to ensure pristine kinematic fit and safety margins.
 * **Manufacturing Engineers** continuously advocate for the largest permissible tolerance that still satisfies functional requirements, avoiding expensive secondary operations like finish grinding or honing.
@@ -95,17 +89,30 @@ Cost ($)
 ### The Bill of Materials (BOM) & Product Structure Tree
 A **Bill of Materials (BOM)** is an engineering parts list organized as an inverted hierarchical tree. Every level breaks down an assembly into sub-assemblies, individual parts, and raw stock.
 
-#### Abstract Product Tree (from Lecture Slides)
+#### The Product Structure Tree (Lecture 2.0, slide 7)
 
-```
-Level 0: Final Product (1)
-  ├── Level 1: Sub-Assembly S1 (Qty: 3)
-  │     ├── Sub-Assy SS1 (1) ── Comp C1 (1), Comp C2 (2)
-  │     └── Sub-Assy SS3 (2) ── Component C3 (1)
-  └── Level 1: Sub-Assembly S2 (Qty: 1)
-        ├── Sub-Assy SS1 (1) ── Comp C1 (1), Comp C2 (2)
-        └── Component C4 (2) ── Raw Material R5 (2)
-```
+![Bill of material: product structure tree](./images/bill_of_materials_product_tree.png)
+
+*Figure 1: Product structure and specifications, Lecture 2.0, slide 7.*
+
+**How to read the tree:** each box is an item; the number in brackets on an arrow is **how many of the lower item one unit of the upper item needs**. S = sub-assembly, SS = sub-sub-assembly, C = component, R = raw material.
+
+| Parent | Needs (quantity per parent) |
+| :--- | :--- |
+| Product | S1 (3), S2 (1) |
+| S1 | SS1 (2), C3 (4) |
+| S2 | SS1 (4), SS3 (3) |
+| SS1 | C1 (1), C2 (1) |
+| C2 | R2 (2), R3 (1) |
+| C3 | R4 (6) |
+| SS3 | R4 (3), C4 (1), C5 (1) |
+| C4 | R5 (2), R6 (2) |
+
+**Worked "explosion": how much R4 does one Product need?** Multiply the quantities along every path that ends in R4, then add the paths:
+
+$$\underbrace{3 \times 4 \times 6}_{\text{Product}\to S1\to C3\to R4} + \underbrace{1 \times 3 \times 3}_{\text{Product}\to S2\to SS3\to R4} = 72 + 9 = 81 \text{ units of R4}$$
+
+The same method gives SS1: $3 \times 2 + 1 \times 4 = 10$ per product, so C1 = 10, C2 = 10, R2 = 20 and R3 = 10. Notice that SS1, C1, C2, R2, R3 and R4 appear in **more than one branch**: common parts are exactly why MRP (Chapter 7) adds up requirements across the whole tree.
 
 #### Concrete Industrial Example: Commercial Metal Bookcase
 Suppose a company manufactures a standard office bookcase:
@@ -135,6 +142,12 @@ Where:
 * $a = \text{Variable Cost per unit } (VC)$: Expenses that scale directly with each physical unit manufactured (raw materials, operator labor wages, cutting tool wear, electricity).
 * $X = \text{Production volume (units per year)}$.
 
+![Cost-volume relationship](./images/cost_volume_relationship.png)
+
+*Figure 2: Cost-volume relationships, Lecture 2.0, slide 10.*
+
+**Reading the graph:** the horizontal line at height $b$ is the fixed cost, which is paid even at $Q = 0$ (machine purchase, installation, jigs and fixtures, space occupied, listed in orange on the slide). The total-cost line $Y = aX + b$ starts at $b$ and rises with slope $a$, the variable cost per unit (material, labour, tools). The vertical gap between the two lines at any volume is the total variable cost at that volume.
+
 ---
 
 ### Revenue-Based Break-Even Point (BEP)
@@ -147,6 +160,12 @@ $$P \cdot X = a \cdot X + b \implies X(P - a) = b$$
 $$\mathbf{X_{BEP} = \frac{\text{Fixed Cost}}{P - a} = \frac{b}{P - a}}$$
 
 The term $(P - a)$ is called the **Contribution Margin per unit** (the portion of selling price left over to pay off fixed debt after covering variable unit costs).
+
+![Revenue-based break-even point](./images/revenue_based_break_even.png)
+
+*Figure 3: Revenue-based break-even point, Lecture 2.0, slide 11.*
+
+**Reading the graph:** the revenue line starts at the origin (no sales, no revenue) and is steeper than the cost line because $P > a$. To the left of the crossing, cost is above revenue (a loss, because fixed cost has not yet been recovered); to the right, revenue is above cost (profit). The crossing is the BEP: *the level of sales at which total revenue equals total cost*.
 
 #### Example 1 (Direct from Lecture Slide 12):
 * Fixed Cost ($b$) = $\$28,000$
@@ -163,6 +182,12 @@ $$X_{BEP} = \frac{28,000}{200 - 100} = \frac{28,000}{100} = \mathbf{280 \text{ u
 In manufacturing, you rarely have only one process option. Typically, you choose between:
 1. **Low Fixed Cost / High Variable Cost Process** (e.g., manual machining or 3D printing): Cheap to start, but slow and labor-heavy per unit.
 2. **High Fixed Cost / Low Variable Cost Process** (e.g., progressive die stamping or automated casting): Requires massive tooling investment, but stamps out parts for pennies in seconds.
+
+![Evaluating the cost of each process](./images/process_crossover_break_even.png)
+
+*Figure 4: Evaluating the cost of each process, Lecture 2.0, slide 13.*
+
+**Reading the graph:** Process A has the lower fixed cost (its line starts lower) but the steeper slope (higher cost per unit); Process B starts higher but rises more slowly. The two lines cross at the BEP, *the production quantity at which the total cost of one process equals the total cost of another*. Left of the crossing A is cheaper; right of it B is cheaper. Choosing a process therefore reduces to **locating the expected demand relative to the crossing points**.
 
 #### Example 2: The 3-Process Selection Problem (Lecture Slide 15)
 A manufacturing plant evaluates three distinct processes to fabricate a metal bracket:
@@ -196,24 +221,11 @@ We equate cost functions pairwise to find the **Crossover Volumes**:
    $$110,000 + 2X = 75,000 + 5X \implies 3X = 35,000 \implies X \approx 11,667 \text{ units}$$
    Since $5,000 < 11,667 < 15,000$, all three processes have valid operational ranges!
 
-```
-Total Cost ($)
-  ▲
-  │                                          / TC_C ($5/unit)
-  │                                    /    / 
-  │                              /    /    / TC_B ($4/unit)
-  │                        /    /    /    / 
-  │                  /    /    /    /    /  TC_A ($2/unit)
-  │            /    /    /    /    /    /
-$110k ├───────/────/────/────/────/────/────────
-      │      /    /    /    /    /
- $80k ├─────/────/────/────/
- $75k ├────/────/
-      │   /    /
-      └───┴────┴────────────┴─────────────────► Volume (X)
-          0   5,000        15,000
-       [Choose C] [Choose B]   [Choose A]
-```
+![Solution of the three-process example](./images/three_process_selection_solution.png)
+
+*Figure 5: Solution of the three-process example, Lecture 2.0, slide 17.*
+
+**Reading the slide:** part (a) lists the three total costs at 10,000 units ($TC_A = \$130{,}000$, $TC_B = \$120{,}000$, $TC_C = \$125{,}000$, so B wins). Part (b) lists the two crossovers that matter, $BEP_{BC} = 5{,}000$ and $BEP_{AB} = 15{,}000$, and the decision ranges below. The plot on the right is the same linear cost function $Y = aX + b$ drawn for each process; the lowest line at each volume is the one to choose. The last bullet (the selling price must be at least $\$12$ per unit) is process B's total cost per unit at 10,000 units: $120{,}000 / 10{,}000 = \$12$.
 
 #### Final Operational Selection Rules:
 * For **$0 \le X < 5,000$ units**: Select **Process C** (minimal fixed commitment).
@@ -245,32 +257,7 @@ In manufacturing, operations cannot be scheduled at random. An industrial engine
 
 ### Sequence of Operations for a Steel Shaft (Lecture Slide 19)
 
-Consider the standardized 8-step sequence required to manufacture a stepped steel shaft from raw bar stock:
-
-```
-[Raw Stock] ──► 1. Cut Stock (Bandsaw)
-                     │
-                     ▼
-             2. Facing (Lathe)
-                     │
-                     ▼
-             3. Turning (Lathe)
-                     │
-                     ▼
-             4. Drilling (Lathe / Drill Press)
-                     │
-                     ▼
-             5. Grooving (Lathe)
-                     │
-                     ▼
-             6. Heat Treatment (Furnace / Quench)
-                     │
-                     ▼
-             7. Grinding (Cylindrical Grinder)
-                     │
-                     ▼
-             8. Surface Finishing (Protective Coating) ──► [Finished Shaft]
-```
+Consider the standardized 8-step sequence required to manufacture a stepped steel shaft from raw bar stock (raw stock → steps 1 to 8 in order → finished shaft):
 
 | Step | Operation | Machine / Tool | Primary Purpose |
 | :---: | :--- | :--- | :--- |
@@ -297,22 +284,24 @@ An **Operation Process Chart** is a standardized graphical overview displaying t
   * **Square ($\square$)**: Represents an **Inspection** — a verification of quality, dimensions, or technical specifications.
 * **Assembly Hierarchy**: The chart displays main components along the right vertical backbone, with subassemblies feeding chronologically into the main trunk from left to right until final assembly.
 
+![Operations process chart for a check valve](./images/operations_process_chart_check_valve.png)
+
+*Figure 6: Operations process chart for a check valve, Lecture 2.0, slide 20.*
+
+**Reading the chart:** each vertical line is one component (body, cover, clapper…), read from top to bottom in the order its operations happen. Circles are operations and squares are inspections, each labelled with its machine. Where a line joins the main vertical line at the right, that component is **assembled** into the valve. The chart shows at a glance every operation, every inspection and the point where each part enters the assembly, which is what process engineers need to plan machines, tooling and material flow.
+
 ---
 
 ## 6. Classification of Industrial Processes
 
 Every manufacturing process in the INDU 211 curriculum fits into the following master classification (Slide 21):
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│               MASTER CLASSIFICATION OF INDUSTRIAL PROCESSES            │
-├────────────────────────────────────────────────────────────────────────┤
-│ 1. Refining and Alloying    5. Welding & Joining                       │
-│ 2. Casting                  6. Assembly                                │
-│ 3. Metal Forming            7. Finishing                               │
-│ 4. Metal Cutting            8. 3D Printing (Additive Manufacturing)    │
-└────────────────────────────────────────────────────────────────────────┘
-```
+| # | Process family | # | Process family |
+| :---: | :--- | :---: | :--- |
+| 1 | Refining and alloying | 5 | Welding and joining |
+| 2 | Casting | 6 | Assembly |
+| 3 | Metal forming | 7 | Finishing |
+| 4 | Metal cutting | 8 | 3D printing (additive manufacturing) |
 
 ---
 
@@ -347,6 +336,12 @@ Every manufacturing process in the INDU 211 curriculum fits into the following m
      * *Advantage*: Fast cycle times, excellent dimensional accuracy, and smooth surface finishes.
      * *Trade-off*: High initial tooling cost; justified strictly for high production volumes.
 
+![Sand casting mold](./images/sand_casting.png)
+
+*Figure 7: Casting, Lecture 2.0, slide 23.*
+
+**Reading the mold cross-section:** metal is poured into the **pouring basin**, runs down the **sprue** and along the **runner** to the **gate**, and fills the **mold cavity** (the shape left in the sand when the pattern was removed). The **riser** is a reservoir that feeds extra metal into the casting as it shrinks while solidifying. The mold is split into a top half (**cope**) and bottom half (**drag**) so the pattern can be removed. The sand mold is broken to release the part, which is why sand casting is slow and costly at high volume.
+
 ---
 
 ### C. Metal Forming (Hot vs. Cold Working) (Lecture Slides 24–28)
@@ -374,6 +369,18 @@ Every manufacturing process in the INDU 211 curriculum fits into the following m
 6. **Drawing and Stretching (Slide 28)**:
    * Producing **seamless hollow vessels** (e.g., beverage cans, sinks, pots) by applying pressure with a punch to force sheet metal into a die cavity.
 
+![Rolling operation](./images/rolling_operation.png)
+
+*Figure 8: Rolling operation, Lecture 2.0, slide 25.*
+
+**Reading the rolling diagram:** the stock enters between two counter-rotating rolls and leaves thinner and longer. The inset shows why hot rolling changes properties: **elongated crystals** form as the metal is squeezed, and above the recrystallization temperature new equiaxed **crystals begin to reform** (hot rolling). Below it (cold rolling) the grains stay elongated, which strengthens the metal and gives a better finish and tolerance.
+
+![Forging and extrusion](./images/forging_and_extrusion.png)
+
+*Figure 9: Metal forming (forging and extrusion), Lecture 2.0, slide 27.*
+
+**Reading the figure:** the left sketches show **forging**: a ram presses the heated blank into shaped dies in one or more intermittent blows (open-die hammering, closed-die forging). The right sketches show **extrusion**: a ram pushes the billet so it flows through a die opening, like toothpaste, making a long part with the die's cross-section (direct, hydrostatic and closed-cavity variants).
+
 ---
 
 ### D. Metal Cutting & Machining (Lecture Slides 29–31)
@@ -385,6 +392,12 @@ Cutting sheet metal by applying pressure between two sharp cutting edges:
 * **Blanking**: The piece punched out is the **desired part**; the surrounding strip is scrap.
 * **Punching**: The piece punched out is **scrap (the hole)**; the surrounding sheet is the desired part.
 * Other shearing variants: **Parting** (separating sheets), **nibbling** (overlapping punches to cut contours), and straight-line shearing.
+
+![Shearing operations](./images/shearing_operations.png)
+
+*Figure 10: Shearing operations, Lecture 2.0, slide 29.*
+
+**Reading the figure:** each small sketch is one shearing operation on sheet stock; the shaded region is what the tool removes. Compare **blanking** (the removed piece is the product) with **punching/piercing** (the removed piece is scrap and the hole is the feature), then **notching** (a cut at the edge), **slitting** (a straight cut that does not remove material), **lancing** (a partial cut that leaves a tab), **nibbling** (a contour built from overlapping small punches), and **trimming** (removing excess from a drawn part).
 
 #### 2. Machining Operations (Slides 30–31)
 
@@ -398,6 +411,12 @@ Cutting sheet metal by applying pressure between two sharp cutting edges:
 | **Broaching** (Slide 31) | Multi-tooth straight bar is **pushed or pulled in 1 pass** | Stepped broach tool (does NOT revolve) | Internal keyways, splines, square or hexagonal holes. |
 | **Sawing & Filing** (Slide 31) | Linear or circular blade action | Saw blade or abrasive file teeth | Cutting stock to raw length; removing rough burrs. |
 | **Grinding** (Slide 31) | High-speed bonded abrasive wheel removes micro-chips | Abrasive grinding wheel | Finishing very hard or heat-treated metals to ultra-close tolerances. |
+
+![Milling operations](./images/milling_operations.png)
+
+*Figure 11: Metal cutting (milling), Lecture 2.0, slide 31.*
+
+**Reading the sketches:** in every milling set-up the **cutter revolves** and the workpiece feeds past it, so each tooth takes a short intermittent cut. Slab or plain milling produces flat surfaces, slot or keyway milling cuts a channel, and side milling machines a vertical face. This is the difference from broaching (listed on the same slide), where a toothed bar is pushed or pulled once and does not revolve.
 
 > **High-Yield Exam Distinction: Shaping vs. Planing**:
 > * **Shaping**: Workpiece is **clamped stationary** on the table; the cutting tool reciprocates back and forth (best for small to medium parts).
@@ -450,6 +469,12 @@ Beyond primary shaping processes, manufacturing engineers oversee critical suppo
 > **Memory Rule**:
 > * A **Fixture** only *fixes* (holds and locates) the part.
 > * A **Jig** *guides* the cutting tool into the workpiece.
+
+![Jig and fixture design](./images/jig_vs_fixture.png)
+
+*Figure 12: Jig and fixture design, Lecture 2.0, slide 36.*
+
+**Reading the photos:** the top photo is a machine **vise**, the classic fixture: it clamps and locates the part, but the machine's own motion guides the cutter. The bottom photo is a **drilling jig**: besides clamping the part, it carries hardened bushings that the drill passes through, so every hole lands in the same place without measuring or marking.
 
 ---
 

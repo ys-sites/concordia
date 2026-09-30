@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 16
+### Currently Pending Uploads: 22
 
 ---
 
@@ -140,6 +140,116 @@
 * **Title**: INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era)
 * **Academic year**: `2025/2026`
 * **Description**: Comprehensive academic term paper examining the future of Industrial Engineering in the Generative AI era. Synthesizes peer-reviewed scientific literature across all 5 core themes: workplace transformation and macroeconomic shifts, feasibility-impact automation matrix across 6 IE sub-disciplines (scheduling, facility layout, line balancing, supply chain, SQC, ergonomics), operational limitations and hallucination failure modes, the Industry 5.0 Human-in-the-Loop systems architect role, and a multi-tiered graduate competency blueprint.
+
+---
+
+## 13. `Part 4 - Crystallographic Densities, XRD, Anisotropy & Bragg's Law Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 4 - Crystallographic Densities, XRD, Anisotropy & Bragg's Law Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Expanded study guide for MIAE 221 Lecture 6 built on the lecture slides: linear and planar density (FCC [100] and (110) worked examples), why slip follows the densest planes, single crystals vs polycrystals and anisotropy, and X-ray diffraction with Bragg's law and the BCC iron (220) example. Useful for density and diffraction calculations on the midterm.
+
+---
+
+## 14. `Part 4 - Planar Densities, XRD & Bragg's Law - One-Page Review Sheet.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 4 - Planar Densities, XRD & Bragg's Law One-Page Review Sheet
+* **Academic year**: `2025/2026`
+* **Description**: One-page formula sheet for MIAE 221 Lecture 6: linear and planar density formulas, interplanar spacing for cubic crystals, Bragg's law, and the common θ vs 2θ trap. Designed for last-minute review before quizzes and the midterm.
+
+---
+
+## 15. `Part 5 - Imperfections in Solids, Point Defects, Solid Solutions & Dislocations Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 5 - Imperfections in Solids, Point Defects, Solid Solutions & Dislocations Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Expanded study guide for MIAE 221 Lecture 7: vacancies and self-interstitials, the Arrhenius equilibrium vacancy equation with worked examples, impurities and solid solutions, the Hume-Rothery rules, wt% to at.% conversion, and edge, screw and mixed dislocations, illustrated with the lecture slides.
+
+---
+
+## 16. `Part 5 - Point Defects, Hume-Rothery & Dislocations - One-Page Review Sheet.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 5 - Point Defects, Hume-Rothery & Dislocations One-Page Review Sheet
+* **Academic year**: `2025/2026`
+* **Description**: One-page summary of MIAE 221 Lecture 7: vacancy concentration (Arrhenius), activation-energy plots, the four Hume-Rothery conditions, composition conversions and dislocation types. A compact reference for defect calculations and concept questions.
+
+---
+
+## 17. `Part 4 - Chapter 5 - Material Handling, Distribution & Routing Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Summaries`
+* **Title**: INDU 211 Part 4 - Chapter 5 Material Handling, Distribution & Routing Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Expanded guide to INDU 211 Chapter 5 built on the lecture slides and the course textbook: material handling equipment and principles, the travelling salesman problem with the nearest-neighbour heuristic, and vehicle routing with the Clark-Wright savings method, all worked on the lecture's examples. Ideal for routing and savings calculations on exams.
+
+---
+
+## 18. `Part 5 - Chapter 7 - Operations Planning & Control Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Summaries`
+* **Title**: INDU 211 Part 5 - Chapter 7 Operations Planning & Control Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Expanded guide to INDU 211 Chapter 7: level vs chase planning, EOQ derivation and the lecture's widget example, MRP records with lot sizes and lead-time offsets, MRP II and ERP, JIT and Kanban, and demand forecasting (moving average, exponential smoothing, linear regression) with every lecture example solved step by step.
+
+---
+
+## 19. `Part 6 - Chapters 14 & 15 - Linear Programming & Queuing Models Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Summaries`
+* **Title**: INDU 211 Part 6 - Chapters 14 & 15 Linear Programming & Queuing Models Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Expanded guide to INDU 211 Chapters 14 and 15: LP formulation and the graphical method for maximisation and minimisation (Lawn Grow example), and M/M/1 queuing measures, Little's law and steady-state conditions worked on the drive-up window example. Covers the quantitative operations research questions on the final.
+
+---
+
+## 20. `Part 7 - Chapter 8 - Quality Control & Statistical Process Control Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Summaries`
+* **Title**: INDU 211 Part 7 - Chapter 8 Quality Control & Statistical Process Control Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Expanded guide to INDU 211 Chapter 8: definitions of quality, QC vs QA, costs of quality and the classical vs new optimum models, X-bar/R and p control charts with the lecture examples, process capability and six sigma. Includes Deming's principles from the course textbook.
+
+---
+
+## 21. `Part 8 - Chapters 6 & 11 - Work Design, Work Measurement & Human Factors Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Summaries`
+* **Title**: INDU 211 Part 8 - Chapters 6 & 11 Work Design, Work Measurement & Human Factors Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Expanded guide to INDU 211 Chapters 6 and 11: productivity measures, human factors and anthropometric percentile design, motivation theories, job specialisation vs job expansion, methods analysis charts and motion study, and time study with the lecture's standard-time examples worked step by step.
+
+---
+
+## 22. `Part 9 - Chapter 17 - Project Management, CPM & PERT Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Summaries`
+* **Title**: INDU 211 Part 9 - Chapter 17 Project Management, CPM & PERT Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Expanded guide to INDU 211 Chapter 17: work breakdown structures, the critical path method with forward and backward passes and a full slack table for the lecture example, PERT expected times and completion probabilities, and time-cost trade-offs from the course textbook.
 
 
 

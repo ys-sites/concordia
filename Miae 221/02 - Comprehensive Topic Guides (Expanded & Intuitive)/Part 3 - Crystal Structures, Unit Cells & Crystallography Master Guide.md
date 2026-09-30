@@ -241,26 +241,13 @@ A unit cell is geometrically defined by 6 independent lattice parameters:
 
 | Crystal System | Axial Edge Relationships | Interaxial Angle Constraints | Bravais Lattice Types |
 | :--- | :--- | :--- | :--- |
-| **Cubic** | $a = b = c$ | $lpha = eta = \gamma = 90^\circ$ | Simple ($P$), Body-Centered ($I$), Face-Centered ($F$) |
-| **Tetragonal** | $a = b 
-eq c$ | $lpha = eta = \gamma = 90^\circ$ | Simple ($P$), Body-Centered ($I$) |
-| **Orthorhombic** | $a 
-eq b 
-eq c$ | $lpha = eta = \gamma = 90^\circ$ | Simple ($P$), Body-Centered ($I$), Face-Centered ($F$), Base-Centered ($C$) |
-| **Hexagonal** | $a = b 
-eq c$ | $lpha = eta = 90^\circ, \gamma = 120^\circ$ | Simple ($P$) |
-| **Rhombohedral** | $a = b = c$ | $lpha = eta = \gamma 
-eq 90^\circ$ | Simple ($P$) |
-| **Monoclinic** | $a 
-eq b 
-eq c$ | $lpha = \gamma = 90^\circ 
-eq eta$ | Simple ($P$), Base-Centered ($C$) |
-| **Triclinic** | $a 
-eq b 
-eq c$ | $lpha 
-eq eta 
-eq \gamma 
-eq 90^\circ$ | Simple ($P$) |
+| **Cubic** | $a = b = c$ | $\alpha = \beta = \gamma = 90^\circ$ | Simple ($P$), Body-Centered ($I$), Face-Centered ($F$) |
+| **Tetragonal** | $a = b \neq c$ | $\alpha = \beta = \gamma = 90^\circ$ | Simple ($P$), Body-Centered ($I$) |
+| **Orthorhombic** | $a \neq b \neq c$ | $\alpha = \beta = \gamma = 90^\circ$ | Simple ($P$), Body-Centered ($I$), Face-Centered ($F$), Base-Centered ($C$) |
+| **Hexagonal** | $a = b \neq c$ | $\alpha = \beta = 90^\circ, \gamma = 120^\circ$ | Simple ($P$) |
+| **Rhombohedral** | $a = b = c$ | $\alpha = \beta = \gamma \neq 90^\circ$ | Simple ($P$) |
+| **Monoclinic** | $a \neq b \neq c$ | $\alpha = \gamma = 90^\circ \neq \beta$ | Simple ($P$), Base-Centered ($C$) |
+| **Triclinic** | $a \neq b \neq c$ | $\alpha \neq \beta \neq \gamma \neq 90^\circ$ | Simple ($P$) |
 
 * **14 Bravais Lattices**:
   When lattice points are placed at corners (Primitive, $P$), centers (Body-centered, $I$), faces (Face-centered, $F$), or end bases (Base-centered, $C$), only **14 unique non-redundant spatial lattices** are mathematically possible across these 7 systems.

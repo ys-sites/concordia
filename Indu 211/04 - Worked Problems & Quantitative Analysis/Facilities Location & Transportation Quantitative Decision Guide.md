@@ -190,12 +190,12 @@ The president proposes constructing a new plant in **Huntsville**, Texas, bringi
   * Houston ($W_3$): 800 units
   * **Total Demand = 2,000 units** *(Supply equals Demand $\implies$ Balanced model)*
 
-#### Unit Shipping Cost Matrix ($c_{ij}$ in $/unit):
+#### Unit Shipping Cost Matrix ($c_{ij}$ in \$/unit):
 | Factory \ Warehouse | San Antonio ($W_1$) | Dallas ($W_2$) | Houston ($W_3$) | Factory Capacity ($S_i$) |
 | :--- | :---: | :---: | :---: | :---: |
-| **Amarillo ($F_1$)** | $31 | $21 | $42 | **400** |
-| **Waco ($F_2$)** | $20 | $21 | $30 | **1,000** |
-| **Huntsville ($F_3$)** | $23 | $20 | $15 | **600** |
+| **Amarillo ($F_1$)** | \$31 | \$21 | \$42 | **400** |
+| **Waco ($F_2$)** | \$20 | \$21 | \$30 | **1,000** |
+| **Huntsville ($F_3$)** | \$23 | \$20 | \$15 | **600** |
 | **Warehouse Demand ($D_j$)** | **300** | **900** | **800** | **2,000** |
 
 ### Questions:
@@ -217,8 +217,8 @@ The president proposes constructing a new plant in **Huntsville**, Texas, bringi
 
 #### Iteration 2:
 * Scan remaining active cells (Amarillo and Waco rows):
-  * Amarillo: $31, $21, $42
-  * Waco: $20, $21, $30
+  * Amarillo: \$31, \$21, \$42
+  * Waco: \$20, \$21, \$30
 * Minimum active unit cost:
   $$c_{21} = \$20 \quad (\text{Waco } \to \text{San Antonio})$$
 * Maximum possible allocation:
@@ -233,7 +233,7 @@ The president proposes constructing a new plant in **Huntsville**, Texas, bringi
   * Amarillo $\to$ Houston ($c_{13} = \$42$)
   * Waco $\to$ Dallas ($c_{22} = \$21$)
   * Waco $\to$ Houston ($c_{23} = \$30$)
-* Minimum cost is a tie at **$21/unit**:
+* Minimum cost is a tie at **\$21/unit**:
   * Option A: Allocate to Amarillo $\to$ Dallas ($c_{12} = \$21$).
 * Maximum allocation:
   $$x_{12} = \min(S_1, D_2) = \min(400, 900) = \mathbf{400 \text{ units}}$$
@@ -257,9 +257,9 @@ The president proposes constructing a new plant in **Huntsville**, Texas, bringi
 
 | Factory \ Warehouse | San Antonio ($W_1$) | Dallas ($W_2$) | Houston ($W_3$) | Total Shipped |
 | :--- | :---: | :---: | :---: | :---: |
-| **Amarillo ($F_1$)** | — | **400** [@ $21] | — | **400** |
-| **Waco ($F_2$)** | **300** [@ $20] | **500** [@ $21] | **200** [@ $30] | **1,000** |
-| **Huntsville ($F_3$)** | — | — | **600** [@ $15] | **600** |
+| **Amarillo ($F_1$)** | — | **400** [@ \$21] | — | **400** |
+| **Waco ($F_2$)** | **300** [@ \$20] | **500** [@ \$21] | **200** [@ \$30] | **1,000** |
+| **Huntsville ($F_3$)** | — | — | **600** [@ \$15] | **600** |
 | **Total Received** | **300** | **900** | **800** | **2,000** |
 
 #### Total Monthly Shipping Cost:
@@ -278,10 +278,10 @@ TC &= (x_{33} \times c_{33}) + (x_{21} \times c_{21}) + (x_{12} \times c_{12}) +
 In Iteration 3, suppose the tie at $\$21$ was broken by allocating all available capacity of Waco ($700$ units) to Dallas:
 1. Allocate Waco $\to$ Dallas: $x_{22} = \min(700, 900) = \mathbf{700}$ units. (Waco exhausted).
 2. Dallas still requires: $900 - 700 = 200$ units.
-3. Allocate Amarillo $\to$ Dallas: $x_{12} = \min(400, 200) = \mathbf{200}$ units [@ $21]. (Dallas satisfied).
+3. Allocate Amarillo $\to$ Dallas: $x_{12} = \min(400, 200) = \mathbf{200}$ units [@ \$21]. (Dallas satisfied).
 4. Amarillo still has: $400 - 200 = 200$ units.
 5. Houston still needs: $800 - 600 = 200$ units.
-6. Force Amarillo $\to$ Houston: $x_{13} = \mathbf{200}$ units [@ $42].
+6. Force Amarillo $\to$ Houston: $x_{13} = \mathbf{200}$ units [@ \$42].
 
 #### Total Cost for Alternative Solution:
 $$\begin{aligned}
@@ -293,7 +293,7 @@ TC_{\text{alt}} &= (600 \times \$15) + (300 \times \$20) + (200 \times \$21) + (
 *(Expressed as $\$423 \times 100$ in lecture slides).*
 
 > ### Critical Managerial Takeaway:
-> Breaking the tie sub-optimally forced 200 units onto the very expensive Amarillo-to-Houston route at **$42/unit**, incurring an extra **$\$2,400/\text{month}$ ($\$28,800/\text{year}$)** in avoidable transportation waste! This underscores why linear programming solvers (e.g., the Simplex-based Transportation Algorithm) are essential to find the true global optimum.
+> Breaking the tie sub-optimally forced 200 units onto the very expensive Amarillo-to-Houston route at **\$42/unit**, incurring an extra **$\$2,400/\text{month}$ ($\$28,800/\text{year}$)** in avoidable transportation waste! This underscores why linear programming solvers (e.g., the Simplex-based Transportation Algorithm) are essential to find the true global optimum.
 
 ---
 

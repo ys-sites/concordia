@@ -37,24 +37,17 @@ In previous lectures, three core analytical techniques were developed for first-
 
 Many real-world engineering models do not immediately fit these three forms. However, a large family of non-linear equations can be transformed into **separable** or **linear** equations via a strategic change of variables (substitution).
 
-```
-   [ Non-Linear / Complex ODE ]
-                │
-                ▼
-   [ Pattern Recognition: Choose Substitution u ]
-                │
-                ▼
-   [ Transformed ODE: Separable or Linear in u ]
-                │
-                ▼
-   [ Standard Analytical Integration ]
-                │
-                ▼
-   [ Back-Substitution: Replace u with x & y ]
-                │
-                ▼
-   [ Final Solution in Original Variables ]
-```
+![Substitution strategy](./images/substitution_strategy_flowchart.png)
+
+*Figure 1: The substitution strategy, Lecture 5, slide 6.*
+
+**Reading the flowchart:** start from the **original ODE**. When the common methods (separable, linear, exact) **fail**, look for a **pattern** that suggests a **new variable** (the substitution). The substitution turns it into a **simpler ODE**, which you solve with a common method; finally **back-substitute** to get the solution in the original variables. The blue box states the purpose: *the goal of substitution is not to create a new solution method, but to convert the ODE into a familiar solvable form, such as a separable or linear equation.*
+
+| Pattern in the ODE | Substitution | Becomes |
+| :--- | :--- | :--- |
+| $M$ and $N$ homogeneous of the same degree | $y = ux$ (or $x = vy$) | Separable in $u$ and $x$ |
+| $y' + P(x)y = f(x)\,y^{n}$, $n \neq 0, 1$ (Bernoulli) | $u = y^{1-n}$ | Linear in $u$ |
+| $y' = f(Ax + By + C)$ | $u = Ax + By + C$ | Separable in $u$ and $x$ |
 
 > [!IMPORTANT]
 > **The Core Rule**: The goal of substitution is never to create an entirely new calculus method; it is strictly an algebraic bridge that converts an intractable non-linear problem into an elementary separable or linear ODE that we already know how to solve.

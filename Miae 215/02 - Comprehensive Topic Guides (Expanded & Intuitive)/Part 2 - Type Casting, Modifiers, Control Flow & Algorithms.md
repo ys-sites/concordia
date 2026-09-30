@@ -22,15 +22,16 @@
 
 In engineering applications, data from multiple disparate sources must interact: sensor ADC counts (integers), elapsed times (floating-point doubles), and serial communication packets (characters). C++ defines strict rules for converting between data types.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   IMPLICIT TYPE PROMOTION (WIDENING)                   │
-│                                                                        │
-│   bool ──► char ──► short ──► int ──► unsigned int ──► float ──► double│
-│                                                                        │
-│  ◄──────────────────────── NARROWING (TRUNCATION) ───────────────────  │
-└────────────────────────────────────────────────────────────────────────┘
-```
+| Direction | Order | Effect |
+| :--- | :--- | :--- |
+| **Widening** (safe, automatic promotion) | `bool` → `char` → `short` → `int` → `unsigned int` → `float` → `double` | Value is preserved; extra digits or zeros are added |
+| **Narrowing** (truncation) | The reverse direction | Digits or bytes are lost; the compiler may warn |
+
+![Cast expressions](./images/cast_expressions.png)
+
+*Figure 1: Cast expressions, Variable Types II, p. 1.*
+
+**Reading the slide:** `y = (int)x;` converts `x = 3.14` to the int 3 and stores it in `y`; `z = (int)ch;` converts `'a'` to its code 97. The teacher stresses that **the variable types of x and ch don't change**: a cast only produces a converted *value*.
 
 ### Implicit Promotion vs. Explicit Casting
 
@@ -68,19 +69,16 @@ int y = (int)x; // Explicitly forces conversion; y = 3
 
 When casting a wide variable into a narrow variable, significant data corruption can occur if the value exceeds the target's capacity.
 
-```
- 32-bit Integer Value: 3000 (0x00000BB8)
- ┌──────────────┬──────────────┬──────────────┬──────────────┐
- │   Byte 3     │   Byte 2     │   Byte 1     │   Byte 0     │
- │  0000 0000   │  0000 0000   │  0000 1011   │  1011 1000   │
- └──────────────┴──────────────┴──────────────┴──────────────┘
-                                              ▲
-                               Casting to char│ (Keeps only Byte 0)
-                                              ▼
-                                 ┌──────────────┐
-                                 │  1011 1000   │ ──► -72 in Two's Complement!
-                                 └──────────────┘
-```
+| | Byte 3 | Byte 2 | Byte 1 | Byte 0 |
+| :--- | :---: | :---: | :---: | :---: |
+| `int x = 3000` (0x00000BB8) | 0000 0000 | 0000 0000 | 0000 1011 | 1011 1000 |
+| `ch = (char)x` keeps only byte 0 | | | | 1011 1000 → **−72** (two's complement) |
+
+![Information loss in casts](./images/cast_information_loss.png)
+
+*Figure 2: Loss of information in casts, Variable Types II, p. 2.*
+
+**Reading the slide:** `char` holds −128 to 127 in one byte, while `int` holds about ±2 billion in four. Casting 3000 to `char` keeps only the first byte, so the result "doesn't make sense". Conversions are possible between most types, but **information may be lost when converting to a type with fewer bytes**.
 
 ### The 3000 to `char` Truncation Trap (Teacher Demonstration)
 In `variable_types2_examples/program.cpp`, Prof. Gordon illustrates this exact behavior:
@@ -106,16 +104,13 @@ cout << "(int)ch = " << (int)ch; // PRINTS: -72
 
 Computers cannot store letters or symbols; they store binary integers. The **American Standard Code for Information Interchange (ASCII)** maps numerical byte values ($0 \text{ to } 127$) to typography.
 
-```
-┌────────────────────────────────────────────────────────┐
-│                   ASCII NUMERICAL BLOCKS               │
-│  48 – 57  : Numerical Digits '0' through '9'           │
-│  65 – 90  : Uppercase Letters 'A' through 'Z'          │
-│  97 – 122 : Lowercase Letters 'a' through 'z'          │
-│   32      : Space Character ' '                        │
-│   10      : Newline Character '\n'                     │
-└────────────────────────────────────────────────────────┘
-```
+| ASCII codes | Characters |
+| :---: | :--- |
+| 48–57 | Digits `'0'` to `'9'` |
+| 65–90 | Uppercase `'A'` to `'Z'` |
+| 97–122 | Lowercase `'a'` to `'z'` |
+| 32 | Space `' '` |
+| 10 | Newline `'\n'` |
 
 ### The Universal ASCII Offset: $\Delta = 32$
 Notice the mathematical relationship between lowercase and uppercase letters:
@@ -150,16 +145,12 @@ int val = ch - '0'; // '7' (55) - '0' (48) = 7
 
 In C++, keyboard input is read through the standard input stream object `cin` (defined in `<iostream>`), utilizing the stream extraction operator (`>>`).
 
-```
- Keyboard Input: "42 3.14159 q [ENTER]"
- ┌────────────────────────────────────────────────────────┐
- │                 KEYBOARD INPUT STREAM BUFFER           │
- │  [ 4 ][ 2 ][   ][ 3 ][ . ][ 1 ][ 4 ][   ][ q ][ \n ]   │
- └───────┬──────────────┬──────────────────┬───────┬──────┘
-         │ cin >> i     │ cin >> x         │cin>>ch│
-         ▼              ▼                  ▼       ▼
-       i = 42       x = 3.14159         ch = 'q'  (Leftover '\n' in buffer!)
-```
+| Buffer contents (typed: `42 3.14159 q` + Enter) | Statement | Result |
+| :--- | :--- | :--- |
+| `42` | `cin >> i;` | `i = 42` (stops at the space) |
+| `3.14159` | `cin >> x;` | `x = 3.14159` |
+| `q` | `cin >> ch;` | `ch = 'q'` |
+| `\n` | *(not read)* | The newline is **left in the buffer** for the next input |
 
 ### Stream Delimiters
 The `>>` operator skips leading whitespace and stops reading at the next **whitespace delimiter** (space, tab, or newline `\n`).
@@ -223,16 +214,19 @@ int main() {
 
 Type modifiers alter the memory width, sign range, or mutability of fundamental data types.
 
-```
-┌────────────────────────────────────────────────────────┐
-│                   C++ TYPE MODIFIERS                   │
-│  • signed   : Default for integers & chars (+ and -)   │
-│  • unsigned : Only positive numbers & zero (doubles max│
-│  • short    : Shrinks memory size (typically 2 bytes)  │
-│  • long     : Expands memory size (4 or 8 bytes)       │
-│  • const    : Read-only; forbids modification          │
-└────────────────────────────────────────────────────────┘
-```
+| Modifier | Effect | Example |
+| :--- | :--- | :--- |
+| `signed` | Default for integers and chars: negative and positive values | `int x;` |
+| `unsigned` | Zero and positive only; **doubles** the positive range | `unsigned char w = 237;` (0 to 255) |
+| `short` | Smaller type (fewer bytes) to save memory | `short int x;` (2 bytes) |
+| `long` | Larger type for a larger range | `long int y;` |
+| `const` | Value fixed at declaration; cannot be changed | `const double PI = 3.14159;` |
+
+![unsigned and const modifiers](./images/unsigned_and_const_modifiers.png)
+
+*Figure 3: unsigned and const, Variable Types II, p. 6.*
+
+**Reading the slide:** `unsigned int z` ranges from 0 to 4,294,967,295 on a 32/64-bit CPU (the same 4 bytes as `int`, but no negative half). The boxed example `unsigned char w = 237;` is legal because an unsigned char ranges from 0 to 255, while a plain `char` only reaches 127 (the teacher's "one byte" note). `const` fixes a value: `PI = 1.7;` after `const double PI = 3.14159;` is a **compiler error**.
 
 ### Comprehensive Type Modifiers Table (32/64-bit PC Architecture)
 
@@ -284,16 +278,11 @@ int main() {
 
 A profound concept taught by Prof. Gordon in `variable_types2` is that **data type sizes are hardware-dependent**.
 
-```
- 32/64-bit Desktop PC (x86/x64)          8-bit Arduino Uno (AVR ATmega328P)
- ┌─────────────────────────────┐        ┌─────────────────────────────┐
- │ sizeof(int)      = 4 bytes  │        │ sizeof(int)      = 2 bytes  │
- │ (-2.14B to +2.14B)          │        │ (-32,768 to +32,767)        │
- ├─────────────────────────────┤        ├─────────────────────────────┤
- │ sizeof(long int) = 4/8 bytes│        │ sizeof(long int) = 4 bytes  │
- │ sizeof(double)   = 8 bytes  │        │ sizeof(double)   = 4 bytes! │
- └─────────────────────────────┘        └─────────────────────────────┘
-```
+| Quantity | 32/64-bit desktop PC (x86/x64) | 8-bit Arduino Uno (AVR ATmega328P) |
+| :--- | :--- | :--- |
+| `sizeof(int)` | 4 bytes (±2.14 billion) | **2 bytes** (−32,768 to +32,767) |
+| `sizeof(long int)` | 4 or 8 bytes | 4 bytes |
+| `sizeof(double)` | 8 bytes | **4 bytes** (same as float) |
 
 ### The Embedded Microcontroller Trap
 * On an 8-bit Arduino microcontroller, an `int` is only **2 bytes (16 bits)**, with an upper limit of $+32,767$.

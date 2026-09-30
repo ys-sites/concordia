@@ -20,10 +20,10 @@ In Lesson 3, Prof. Gordon introduces the five fundamental data types used in eng
 
 | Type | Size (Bytes) | Range / Precision | Typical Engineering Purpose |
 | :--- | :---: | :--- | :--- |
-| `int` | 4 bytes | $-2.14 	imes 10^9 	ext{ to } +2.14 	imes 10^9$ | Integer counters, loop indices, discrete states. |
-| `float` | 4 bytes | $\pm 10^{-38} 	ext{ to } \pm 10^{+38}$ (~7 digits) | Embedded memory buffers, low-precision signals. |
-| `double` | 8 bytes | $\pm 10^{-308} 	ext{ to } \pm 10^{+308}$ (~16 digits) | Standard for physics, aerodynamics, and robotics. |
-| `char` | 1 byte | $-128 	ext{ to } +127$ (ASCII code) | Keyboard keys, ASCII text, single telemetry bytes. |
+| `int` | 4 bytes | $-2.14 \times 10^9 \text{ to } +2.14 \times 10^9$ | Integer counters, loop indices, discrete states. |
+| `float` | 4 bytes | $\pm 10^{-38} \text{ to } \pm 10^{+38}$ (~7 digits) | Embedded memory buffers, low-precision signals. |
+| `double` | 8 bytes | $\pm 10^{-308} \text{ to } \pm 10^{+308}$ (~16 digits) | Standard for physics, aerodynamics, and robotics. |
+| `char` | 1 byte | $-128 \text{ to } +127$ (ASCII code) | Keyboard keys, ASCII text, single telemetry bytes. |
 | `bool` | 1 byte | `true` (1) or `false` (0) | Decision flags, binary sensor triggers. |
 
 ---
