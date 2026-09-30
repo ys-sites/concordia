@@ -26,7 +26,7 @@ const isSkippedName = (name: string) =>
   name === 'node_modules' ||
   name === 'images' ||
   name.includes('Advanced Engineering Mathematics (7th Edition)') ||
-  name.includes('Callister') ||
+  name.includes('Materials Science and Engineering An Introduction') ||
   name.includes('z-lib.org');
 
 export interface PublishedFile {
