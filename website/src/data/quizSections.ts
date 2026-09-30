@@ -62,14 +62,15 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   MIAE215: {
     midterm: {
       label: 'Midterm Review — All Topics So Far',
-      detail: 'Mixed questions from every lecture posted so far',
-      sections: ['intro', 'types', 'expr', 'control']
+      detail: 'Mixed questions from every lecture posted so far, plus adapted past-midterm problems',
+      sections: ['intro', 'types', 'expr', 'control', 'past']
     },
     sections: [
       { id: 'intro', label: '1 · Computing Basics & the Build Process', detail: 'Introduction slides: compiler vs interpreter, program phases, file types' },
       { id: 'types', label: '2 · Variable Types', detail: 'Variable Types I & II: ranges, overflow, round-off, casts, modifiers' },
       { id: 'expr', label: '3 · Expressions & Operators', detail: 'Assignment, arithmetic, %, ++/--, precedence, mixed types, math library' },
-      { id: 'control', label: '4 · Control Statements & Loops', detail: 'if / if-else / ladders, logical operators, flowcharts, for & nested loops' }
+      { id: 'control', label: '4 · Control Statements & Loops', detail: 'if / if-else / ladders, logical operators, flowcharts, for & nested loops' },
+      { id: 'past', label: "Past Papers — Previous Years' Midterm", detail: 'Fall 2023 midterm program-output questions, adapted to the topics covered so far' }
     ]
   },
   MIAE221: {
