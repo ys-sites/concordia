@@ -1,6 +1,6 @@
 # Chapter 10: Systems of Linear Differential Equations & Eigenvalues
 ### Concordia University · Department of Mechanical, Industrial & Aerospace Engineering
-**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Dennis G. Zill (7th Ed., Chapter 10)
+**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Official Course Textbook (7th Ed., Chapter 10)
 
 ---
 
@@ -45,8 +45,8 @@ Three characteristic cases dictate the geometry of the phase plane:
 
 ## 3. Curriculum-Grounded Visual Reference
 
-![Figure 10.2.2: Phase Plane Trajectories](./images/zill_fig_10_2_2_phase_portrait.png)
-*Figure 10.1: Phase plane trajectories showing directional flow along eigenvector asymptotes — from Zill 7th Ed. Chapter 10 (Fig. 10.2.2).*
+![Figure 10.2.2: Phase Plane Trajectories](./images/textbook_fig_10_2_2_phase_portrait.png)
+*Figure 10.1: Phase plane trajectories showing directional flow along eigenvector asymptotes — from Textbook 7th Ed. Chapter 10 (Fig. 10.2.2).*
 
 ---
 

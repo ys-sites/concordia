@@ -1,7 +1,7 @@
 # ENGR 213: Applied Ordinary Differential Equations
 ## Master Study Guide & Curriculum-Grounded Textbook Companion
 ### Concordia University · Gina Cody School of Engineering · Department of Mechanical, Industrial & Aerospace Engineering
-**Primary Textbook**: *Advanced Engineering Mathematics* (7th Ed.) by Dennis G. Zill & Warren S. Wright  
+**Primary Textbook**: *Advanced Engineering Mathematics* (7th Ed.) by Official Course Textbook & Warren S. Wright  
 **Course Coordination**: Dr. Alireza Haghighat M. | **Academic Scope**: Fall 2026
 
 ---
@@ -79,17 +79,17 @@ For $\mathbf{X}' = \mathbf{A}\mathbf{X}$:
 
 ## 🖼️ Curriculum-Grounded Visual Reference Gallery
 
-![Figure 2.1.2: Direction Field](./images/zill_fig_2_1_2_direction_field.png)
-*Figure M.1: Direction field and solution curves — from Zill 7th Ed. Chapter 2 (Fig. 2.1.2).*
+![Figure 2.1.2: Direction Field](./images/textbook_fig_2_1_2_direction_field.png)
+*Figure M.1: Direction field and solution curves — from Textbook 7th Ed. Chapter 2 (Fig. 2.1.2).*
 
-![Figure 2.7.4: Mixture Tank Problem](./images/zill_fig_2_7_4_mixture_tank.png)
-*Figure M.2: Liquid mass balance in tank with dynamic volume — from Zill 7th Ed. Chapter 2 (Fig. 2.7.4).*
+![Figure 2.7.4: Mixture Tank Problem](./images/textbook_fig_2_7_4_mixture_tank.png)
+*Figure M.2: Liquid mass balance in tank with dynamic volume — from Textbook 7th Ed. Chapter 2 (Fig. 2.7.4).*
 
-![Figure 3.8.4: Damped Oscillatory Motion](./images/zill_fig_3_8_4_damped_motion.png)
-*Figure M.3: Damped mechanical oscillator decay curves (Underdamped vs Critically Damped vs Overdamped) — from Zill 7th Ed. Chapter 3 (Fig. 3.8.4).*
+![Figure 3.8.4: Damped Oscillatory Motion](./images/textbook_fig_3_8_4_damped_motion.png)
+*Figure M.3: Damped mechanical oscillator decay curves (Underdamped vs Critically Damped vs Overdamped) — from Textbook 7th Ed. Chapter 3 (Fig. 3.8.4).*
 
-![Figure 10.2.2: Phase Plane Trajectories](./images/zill_fig_10_2_2_phase_portrait.png)
-*Figure M.4: Trajectories in phase plane for 2x2 linear system — from Zill 7th Ed. Chapter 10 (Fig. 10.2.2).*
+![Figure 10.2.2: Phase Plane Trajectories](./images/textbook_fig_10_2_2_phase_portrait.png)
+*Figure M.4: Trajectories in phase plane for 2x2 linear system — from Textbook 7th Ed. Chapter 10 (Fig. 10.2.2).*
 
 ---
 

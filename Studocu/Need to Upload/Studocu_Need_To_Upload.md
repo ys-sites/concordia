@@ -300,14 +300,14 @@
 
 ---
 
-## 27. `ENGR 213 - Zill ODE Chapters Master Study Guide (Expanded & Condensed).pdf`
+## 27. `ENGR 213 - Textbook ODE Chapters Master Study Guide (Expanded & Condensed).pdf`
 
 * **University**: Concordia University
 * **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
 * **Category**: `Summaries`
-* **Title**: ENGR 213 - Zill ODE Chapters Master Study Guide (Expanded & Condensed)
+* **Title**: ENGR 213 - Textbook ODE Chapters Master Study Guide (Expanded & Condensed)
 * **Academic year**: `2025/2026`
-* **Description**: Comprehensive master study companion bridging Dennis G. Zill's Advanced Engineering Mathematics (7th Ed.) with Dr. Haghighat's lecture curriculum across all 7 syllabus chapters (1, 2, 3, 4, 5, 10, 17). Features 5 analytical solution engines, formula cards, reference diagrams, and step-by-step exam trapdoor avoidance.
+* **Description**: Comprehensive master study companion bridging the official course textbook with Dr. Haghighat's lecture curriculum across all 7 syllabus chapters (1, 2, 3, 4, 5, 10, 17). Features 5 analytical solution engines, formula cards, reference diagrams, and step-by-step exam trapdoor avoidance.
 
 ---
 

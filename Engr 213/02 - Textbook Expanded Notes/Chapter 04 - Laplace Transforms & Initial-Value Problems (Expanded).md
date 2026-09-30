@@ -1,6 +1,6 @@
 # Chapter 04: Laplace Transforms & Operational Calculus
 ### Concordia University · Department of Mechanical, Industrial & Aerospace Engineering
-**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Dennis G. Zill (7th Ed., Chapter 4)
+**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Official Course Textbook (7th Ed., Chapter 4)
 
 ---
 

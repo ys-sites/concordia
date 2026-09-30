@@ -1,6 +1,6 @@
 # Chapter 01: Introduction to Differential Equations & Initial-Value Problems
 ### Concordia University · Department of Mechanical, Industrial & Aerospace Engineering
-**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Dennis G. Zill (7th Ed., Chapter 1)
+**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Official Course Textbook (7th Ed., Chapter 1)
 
 ---
 
@@ -46,8 +46,8 @@ $$y' = f(x, y), \quad y(x_0) = y_0$$
 
 ## 3. Curriculum-Grounded Visual Reference
 
-![Figure 2.1.1: Lineal element tangent to solution curve](./images/zill_fig_2_1_1_lineal_element.png)
-*Figure 1.1: Lineal element indicating slope at point $(x, y)$ — from Zill 7th Ed. Chapter 2 (Fig. 2.1.1).*
+![Figure 2.1.1: Lineal element tangent to solution curve](./images/textbook_fig_2_1_1_lineal_element.png)
+*Figure 1.1: Lineal element indicating slope at point $(x, y)$ — from Textbook 7th Ed. Chapter 2 (Fig. 2.1.1).*
 
 ### Deep Pedagogical Breakdown:
 1. At any coordinate point $(x_0, y_0)$, the differential equation $\frac{dy}{dx} = f(x, y)$ assigns a numerical slope $m = f(x_0, y_0)$.

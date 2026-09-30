@@ -14,8 +14,8 @@ $$\mathbf{A}\mathbf{v} = \lambda \mathbf{v} \iff (\mathbf{A} - \lambda \mathbf{I
 
 ## 2. Curriculum Reference Diagram
 
-![Figure 10.2.2: Phase Plane Trajectories](./images/zill_fig_10_2_2_phase_portrait.png)
-*Figure 15.1: Trajectories in phase plane for 2x2 linear system — from Zill 7th Ed. Chapter 10 (Fig. 10.2.2).*
+![Figure 10.2.2: Phase Plane Trajectories](./images/textbook_fig_10_2_2_phase_portrait.png)
+*Figure 15.1: Trajectories in phase plane for 2x2 linear system — from Textbook 7th Ed. Chapter 10 (Fig. 10.2.2).*
 
 ---
 

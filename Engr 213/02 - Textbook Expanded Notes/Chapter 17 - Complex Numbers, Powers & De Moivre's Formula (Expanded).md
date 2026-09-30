@@ -1,6 +1,6 @@
 # Chapter 17: Complex Numbers, Powers & De Moivre's Formula
 ### Concordia University · Department of Mechanical, Industrial & Aerospace Engineering
-**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Dennis G. Zill (7th Ed., Sections 17.1 & 17.2)
+**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Official Course Textbook (7th Ed., Sections 17.1 & 17.2)
 
 ---
 
@@ -30,11 +30,11 @@ $$w_k = r_0^{1/n} \exp\left(i\frac{\theta_0 + 2k\pi}{n}\right), \quad k = 0, 1, 
 
 ## 3. Curriculum-Grounded Visual Reference
 
-![Figure 17.1.1: Complex Plane Representation](./images/zill_fig_17_1_1_complex_plane.png)
-*Figure 17.1: The Argand complex plane: Cartesian coordinates $(x, y)$ vs Polar $(r, \theta)$ — from Zill 7th Ed. Chapter 17 (Fig. 17.1.1).*
+![Figure 17.1.1: Complex Plane Representation](./images/textbook_fig_17_1_1_complex_plane.png)
+*Figure 17.1: The Argand complex plane: Cartesian coordinates $(x, y)$ vs Polar $(r, \theta)$ — from Textbook 7th Ed. Chapter 17 (Fig. 17.1.1).*
 
-![Figure 17.2.1: Roots of Unity on Circle](./images/zill_fig_17_2_1_roots_of_unity.png)
-*Figure 17.2: Roots of a complex number evenly spaced on a circle in the complex plane — from Zill 7th Ed. Chapter 17 (Fig. 17.2.1).*
+![Figure 17.2.1: Roots of Unity on Circle](./images/textbook_fig_17_2_1_roots_of_unity.png)
+*Figure 17.2: Roots of a complex number evenly spaced on a circle in the complex plane — from Textbook 7th Ed. Chapter 17 (Fig. 17.2.1).*
 
 ---
 

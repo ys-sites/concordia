@@ -20,8 +20,8 @@ If you drop a boat (an initial condition $(x_0, y_0)$) into the ocean, the boat 
 
 ## 2. Curriculum Reference Diagram
 
-![Figure 2.1.2: Direction field of dy/dx = 0.2xy](./images/zill_fig_2_1_2_direction_field.png)
-*Figure 2.1: Direction field and solution curves — from Zill 7th Ed. Chapter 2 (Fig. 2.1.2).*
+![Figure 2.1.2: Direction field of dy/dx = 0.2xy](./images/textbook_fig_2_1_2_direction_field.png)
+*Figure 2.1: Direction field and solution curves — from Textbook 7th Ed. Chapter 2 (Fig. 2.1.2).*
 
 ### Key Observations:
 1. Along the axes where $x = 0$ or $y = 0$, the slope is $0.2(0) = 0$, so all hash marks are **horizontal**.

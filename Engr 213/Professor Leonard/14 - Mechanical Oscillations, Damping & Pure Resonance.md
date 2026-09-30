@@ -14,11 +14,11 @@ $$m x'' = -k x - \beta x' + F(t) \implies m x'' + \beta x' + k x = F(t)$$
 
 ## 2. Curriculum Reference Diagrams
 
-![Figure 3.8.2: Mass-Spring System](./images/zill_fig_3_8_2_mass_spring_setup.png)
-*Figure 14.1: Mass-spring coordinate reference — from Zill 7th Ed. Chapter 3 (Fig. 3.8.2).*
+![Figure 3.8.2: Mass-Spring System](./images/textbook_fig_3_8_2_mass_spring_setup.png)
+*Figure 14.1: Mass-spring coordinate reference — from Textbook 7th Ed. Chapter 3 (Fig. 3.8.2).*
 
-![Figure 3.8.4: Damped Oscillatory Motion](./images/zill_fig_3_8_4_damped_motion.png)
-*Figure 14.2: Damping behavior: Underdamped envelope decay vs Overdamped slow return — from Zill 7th Ed. Chapter 3 (Fig. 3.8.4).*
+![Figure 3.8.4: Damped Oscillatory Motion](./images/textbook_fig_3_8_4_damped_motion.png)
+*Figure 14.2: Damping behavior: Underdamped envelope decay vs Overdamped slow return — from Textbook 7th Ed. Chapter 3 (Fig. 3.8.4).*
 
 ---
 

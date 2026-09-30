@@ -1,6 +1,6 @@
 # Chapter 02: First-Order Differential Equations & Modeling
 ### Concordia University · Department of Mechanical, Industrial & Aerospace Engineering
-**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Dennis G. Zill (7th Ed., Chapter 2)
+**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Official Course Textbook (7th Ed., Chapter 2)
 
 ---
 
@@ -49,11 +49,11 @@ If not exact, calculate:
 
 ## 3. Curriculum-Grounded Visual Reference
 
-![Figure 2.1.2: Direction field of dy/dx = 0.2xy](./images/zill_fig_2_1_2_direction_field.png)
-*Figure 2.1: Direction field and solution curves — from Zill 7th Ed. Chapter 2 (Fig. 2.1.2).*
+![Figure 2.1.2: Direction field of dy/dx = 0.2xy](./images/textbook_fig_2_1_2_direction_field.png)
+*Figure 2.1: Direction field and solution curves — from Textbook 7th Ed. Chapter 2 (Fig. 2.1.2).*
 
-![Figure 2.7.4: Mixture tank problem](./images/zill_fig_2_7_4_mixture_tank.png)
-*Figure 2.2: Mixing tank schematic: Input brine rate vs output drain rate — from Zill 7th Ed. Chapter 2 (Fig. 2.7.4).*
+![Figure 2.7.4: Mixture tank problem](./images/textbook_fig_2_7_4_mixture_tank.png)
+*Figure 2.2: Mixing tank schematic: Input brine rate vs output drain rate — from Textbook 7th Ed. Chapter 2 (Fig. 2.7.4).*
 
 ---
 

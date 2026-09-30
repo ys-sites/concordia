@@ -20,8 +20,8 @@ Think of a room with people:
 
 ## 2. Curriculum Reference Diagram
 
-![Figure 2.8.2: Logistic curve](./images/zill_fig_2_8_2_logistic_curve.png)
-*Figure 10.1: Logistic S-curve with inflection point at half the carrying capacity $P = K/2$ — from Zill 7th Ed. Chapter 2 (Fig. 2.8.2).*
+![Figure 2.8.2: Logistic curve](./images/textbook_fig_2_8_2_logistic_curve.png)
+*Figure 10.1: Logistic S-curve with inflection point at half the carrying capacity $P = K/2$ — from Textbook 7th Ed. Chapter 2 (Fig. 2.8.2).*
 
 ---
 

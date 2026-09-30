@@ -1,6 +1,6 @@
 # Chapter 03: Higher-Order Differential Equations & Oscillators
 ### Concordia University · Department of Mechanical, Industrial & Aerospace Engineering
-**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Dennis G. Zill (7th Ed., Chapter 3)
+**Course**: Applied Ordinary Differential Equations (ENGR 213) | **Textbook**: Official Course Textbook (7th Ed., Chapter 3)
 
 ---
 
@@ -44,11 +44,11 @@ $$u_1'(x) = -\frac{y_2(x)f(x)}{W(y_1, y_2)}, \quad u_2'(x) = \frac{y_1(x)f(x)}{W
 
 ## 3. Curriculum-Grounded Visual Reference
 
-![Figure 3.8.2: Mass-Spring System](./images/zill_fig_3_8_2_mass_spring_setup.png)
-*Figure 3.1: Mass-spring equilibrium displacement coordinate system — from Zill 7th Ed. Chapter 3 (Fig. 3.8.2).*
+![Figure 3.8.2: Mass-Spring System](./images/textbook_fig_3_8_2_mass_spring_setup.png)
+*Figure 3.1: Mass-spring equilibrium displacement coordinate system — from Textbook 7th Ed. Chapter 3 (Fig. 3.8.2).*
 
-![Figure 3.8.4: Damped Oscillatory Motion](./images/zill_fig_3_8_4_damped_motion.png)
-*Figure 3.2: Damped oscillator decay curves (Underdamped vs Critically Damped vs Overdamped) — from Zill 7th Ed. Chapter 3 (Fig. 3.8.4).*
+![Figure 3.8.4: Damped Oscillatory Motion](./images/textbook_fig_3_8_4_damped_motion.png)
+*Figure 3.2: Damped oscillator decay curves (Underdamped vs Critically Damped vs Overdamped) — from Textbook 7th Ed. Chapter 3 (Fig. 3.8.4).*
 
 ---
 

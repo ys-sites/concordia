@@ -25,9 +25,9 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 
 ---
 
-### `02 - Zill Textbook Expanded Notes`
-> **Notas expandidas capítulo por capítulo del libro oficial (Dennis G. Zill, 7ma Edición):**
-* **`ENGR 213 - Zill ODE Chapters Master Study Guide (Expanded & Condensed).pdf` & `.md`**: Compendio maestro de estudio que abarca los 7 capítulos del temario oficial (Capítulos 1, 2, 3, 4, 5, 10, 17) con motores analíticos de solución, tarjetas de fórmulas maestras, diagramas de referencia del libro y trampas de examen.
+### `02 - Textbook Expanded Notes`
+> **Notas expandidas capítulo por capítulo del libro oficial (Libro de texto oficial):**
+* **`ENGR 213 - Textbook ODE Chapters Master Study Guide (Expanded & Condensed).pdf` & `.md`**: Compendio maestro de estudio que abarca los 7 capítulos del temario oficial (Capítulos 1, 2, 3, 4, 5, 10, 17) con motores analíticos de solución, tarjetas de fórmulas maestras, diagramas de referencia del libro y trampas de examen.
 * **`Chapter 01 - Introduction to Differential Equations & IVPs (Expanded).pdf` & `.md`**: Orden, linealidad, teoremas de existencia/unicidad de Picard y problemas de valor inicial.
 * **`Chapter 02 - First-Order Differential Equations & Modeling (Expanded).pdf` & `.md`**: Separables, lineales con factor integrante, exactas con multiplicadores, sustituciones de Bernoulli/homogéneas y tanques de mezcla dinámicos.
 * **`Chapter 03 - Higher-Order Differential Equations & Oscillators (Expanded).pdf` & `.md`**: Ecuaciones lineales con coeficientes constantes (3 casos), coeficientes indeterminados, variación de parámetros, Cauchy-Euler y osciladores mecánicos amortiguados.

@@ -21,8 +21,8 @@ $$R_{\text{in}} = c_{\text{in}} \cdot r_{\text{in}}, \quad R_{\text{out}} = c_{\
 
 ## 2. Curriculum Reference Diagram
 
-![Figure 2.7.4: Mixture tank problem](./images/zill_fig_2_7_4_mixture_tank.png)
-*Figure 6.1: Mixing tank with input and drain streams — from Zill 7th Ed. Chapter 2 (Fig. 2.7.4).*
+![Figure 2.7.4: Mixture tank problem](./images/textbook_fig_2_7_4_mixture_tank.png)
+*Figure 6.1: Mixing tank with input and drain streams — from Textbook 7th Ed. Chapter 2 (Fig. 2.7.4).*
 
 ---
 
