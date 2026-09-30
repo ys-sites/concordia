@@ -55,7 +55,7 @@ const folderIcon = (name: string, size = 22) => {
   if (/arduino|lab/.test(n)) return <Cpu size={size} />;
   if (/quiz|exam|midterm/.test(n)) return <Target size={size} />;
   if (/software|flowchart|code/.test(n)) return <Code size={size} />;
-  if (/mini course|lesson/.test(n)) return <GraduationCap size={size} />;
+  if (/mini course|lesson|leonard/i.test(n)) return <GraduationCap size={size} />;
   if (/summary|chapter|calculus/.test(n)) return <Layers size={size} />;
   return <Folder size={size} />;
 };

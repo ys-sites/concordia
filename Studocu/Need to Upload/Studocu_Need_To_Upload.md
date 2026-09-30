@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 26
+### Currently Pending Uploads: 34
 
 ---
 
@@ -297,3 +297,91 @@
 * **Academic year**: `2025/2026`
 * **Description**: Complete step-by-step master lecture notes for Dr. Haghighat's Lecture 7 (September 30, 2026) on Non-Linear Mathematical Models (§2.8). Covers density-dependent population dynamics and the logistic equation with carrying capacity derivations, second-order bimolecular chemical reaction kinetics with limiting reactant analysis, and Torricelli's leaking tank efflux dynamics with exact emptying time calculations.
 
+
+---
+
+## 27. `ENGR 213 - Zill ODE Chapters Master Study Guide (Expanded & Condensed).pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Summaries`
+* **Title**: ENGR 213 - Zill ODE Chapters Master Study Guide (Expanded & Condensed)
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive master study companion bridging Dennis G. Zill's Advanced Engineering Mathematics (7th Ed.) with Dr. Haghighat's lecture curriculum across all 7 syllabus chapters (1, 2, 3, 4, 5, 10, 17). Features 5 analytical solution engines, formula cards, reference diagrams, and step-by-step exam trapdoor avoidance.
+
+---
+
+## 28. `00 - Professor Leonard - Differential Equations Complete Roadmap & Intuition.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Summaries`
+* **Title**: ENGR 213 - Professor Leonard Complete Differential Equations Roadmap & Intuition Guide
+* **Academic year**: `2025/2026`
+* **Description**: Complete pedagogical course roadmap and whiteboard intuition guide based on Professor Leonard's renowned 50-lesson Differential Equations masterclass. Covers the big picture philosophy, line-by-line algebraic derivations, physical analogies, and the rules of the road for mastering ODEs.
+
+---
+
+## 29. `05 - First-Order Linear Equations & The Integrating Factor Method (Lessons 15-18).pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Leonard First-Order Linear Equations & Integrating Factor Guide
+* **Academic year**: `2025/2026`
+* **Description**: Step-by-step master lecture guide covering Lessons 15 to 18 of Professor Leonard's Differential Equations series. Explains the reverse Product Rule intuition for integrating factors, the 5-step standard form recipe, transient vs steady-state response, and classic algebraic trap avoidance.
+
+---
+
+## 30. `08 - Bernoulli Equations & Composition Substitutions (Lessons 22-24.5).pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Leonard Bernoulli & Substitution Methods Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive whiteboard walkthrough for Lessons 22 to 24.5 covering Bernoulli equations, linearizing substitutions w = y^(1-n), and linear argument compositions u = Ax + By + C with full algebraic derivations and verified problem sets.
+
+---
+
+## 31. `09 - Exact Differential Equations & Integrating Multipliers (Lessons 28-30).pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Leonard Exact Differential Equations & Multipliers Guide
+* **Academic year**: `2025/2026`
+* **Description**: In-depth intuitive guide for Lessons 28 to 30 explaining exact differential equations via multivariable potential functions and level curves, Clairaut exactness testing, step-by-step partial integration, and finding non-exact integrating multipliers.
+
+---
+
+## 32. `11 - Second-Order Linear Equations, The Wronskian & The 3 Characteristic Cases (Lessons 37-39).pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Leonard Second-Order Linear Equations & Wronskian Guide
+* **Academic year**: `2025/2026`
+* **Description**: Detailed whiteboard lecture notes for Lessons 37 to 39 covering the characteristic auxiliary equation, the 3 foundational root cases (distinct real, repeated real, and complex conjugate with Euler's formula), and linear independence testing via the Wronskian determinant.
+
+---
+
+## 33. `14 - Mechanical Oscillations, Damping & Pure Resonance.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Summaries`
+* **Title**: ENGR 213 - Professor Leonard Mechanical Vibrations, Damping & Resonance Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive mechanical engineering guide covering second-order mass-spring-damper systems, undamped simple harmonic motion, the 3 damping regimes (underdamped envelope decay, critically damped, overdamped), and unbounded linear resonance envelope growth.
+
+---
+
+## 34. `16 - The Laplace Transform (The Time-to-Frequency Machine).pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Summaries`
+* **Title**: ENGR 213 - Professor Leonard Laplace Transforms & Operational Calculus Guide
+* **Academic year**: `2025/2026`
+* **Description**: Operational calculus master guide explaining the time-to-frequency domain transformation machine, table of elementary transforms, derivative shift theorems, and solving second-order initial-value problems through algebraic partial fraction inversion.

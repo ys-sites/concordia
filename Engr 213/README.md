@@ -25,6 +25,41 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 
 ---
 
+### `02 - Zill Textbook Expanded Notes`
+> **Notas expandidas capítulo por capítulo del libro oficial (Dennis G. Zill, 7ma Edición):**
+* **`ENGR 213 - Zill ODE Chapters Master Study Guide (Expanded & Condensed).pdf` & `.md`**: Compendio maestro de estudio que abarca los 7 capítulos del temario oficial (Capítulos 1, 2, 3, 4, 5, 10, 17) con motores analíticos de solución, tarjetas de fórmulas maestras, diagramas de referencia del libro y trampas de examen.
+* **`Chapter 01 - Introduction to Differential Equations & IVPs (Expanded).pdf` & `.md`**: Orden, linealidad, teoremas de existencia/unicidad de Picard y problemas de valor inicial.
+* **`Chapter 02 - First-Order Differential Equations & Modeling (Expanded).pdf` & `.md`**: Separables, lineales con factor integrante, exactas con multiplicadores, sustituciones de Bernoulli/homogéneas y tanques de mezcla dinámicos.
+* **`Chapter 03 - Higher-Order Differential Equations & Oscillators (Expanded).pdf` & `.md`**: Ecuaciones lineales con coeficientes constantes (3 casos), coeficientes indeterminados, variación de parámetros, Cauchy-Euler y osciladores mecánicos amortiguados.
+* **`Chapter 04 - Laplace Transforms & Initial-Value Problems (Expanded).pdf` & `.md`**: Transformada de Laplace operacional, tablas maestras, teoremas de traslación y resolución algebraica de PVIs.
+* **`Chapter 05 - Power Series Solutions about Ordinary Points (Expanded).pdf` & `.md`**: Puntos ordinarios vs singulares, manipulación de índices de sumatoria y relaciones de recurrencia.
+* **`Chapter 10 - Systems of Linear Differential Equations & Eigenvalues (Expanded).pdf` & `.md`**: Formulación matricial, autovalores/autovectores, diagonalización y retratos de fase en el plano.
+* **`Chapter 17 - Complex Numbers, Powers & De Moivre's Formula (Expanded).pdf` & `.md`**: Forma rectangular y polar, fórmula de Euler, potencias de De Moivre y raíces $n$-ésimas en círculos simétricos.
+
+---
+
+### `Professor Leonard`
+> **Serie Maestra de Ecuaciones Diferenciales (50 Lecciones de Pizarra - Whiteboard Intuition):**
+* **`00 - Professor Leonard - Differential Equations Complete Roadmap & Intuition.pdf` & `.md`**: Mapa de ruta completo, filosofía de pizarra e intuición conceptual del curso.
+* **`01 - The Big Picture, Order, Linearity & Verifying Solutions (Lessons 1-4).pdf` & `.md`**
+* **`02 - Slope Fields, Solution Curves & Qualitative Behavior (Lessons 5-6).pdf` & `.md`**
+* **`03 - Existence and Uniqueness of Solutions (Lesson 11).pdf` & `.md`**
+* **`04 - Separable Equations & Initial Value Problems (Lessons 12-14).pdf` & `.md`**
+* **`05 - First-Order Linear Equations & The Integrating Factor Method (Lessons 15-18).pdf` & `.md`**
+* **`06 - Tank Mixing Problems & Draining Rates (Lesson 19).pdf` & `.md`**
+* **`07 - Homogeneous First-Order Equations & Geometric Substitutions (Lessons 20-21).pdf` & `.md`**
+* **`08 - Bernoulli Equations & Composition Substitutions (Lessons 22-24.5).pdf` & `.md`**
+* **`09 - Exact Differential Equations & Integrating Multipliers (Lessons 28-30).pdf` & `.md`**
+* **`10 - Population Models, The Logistic Equation & Phase-Line Stability (Lessons 31-36).pdf` & `.md`**
+* **`11 - Second-Order Linear Equations, The Wronskian & The 3 Characteristic Cases (Lessons 37-39).pdf` & `.md`**
+* **`12 - Undetermined Coefficients & The Annihilator Method.pdf` & `.md`**
+* **`13 - Variation of Parameters & Cauchy-Euler Equidimensional Equations.pdf` & `.md`**
+* **`14 - Mechanical Oscillations, Damping & Pure Resonance.pdf` & `.md`**
+* **`15 - Linear Systems of ODEs & Phase Plane Portraits.pdf` & `.md`**
+* **`16 - The Laplace Transform (The Time-to-Frequency Machine).pdf` & `.md`**
+
+---
+
 ### `01 - Teacher Lecture Notes`
 > **Diapositivas originales del profesor (Dr. A. Haghighat):**
 * **`Lecture 1 - Introduction to Differential Equations.pdf`**: Introducción a las EDOs, clasificación, orden y linealidad (9 de Septiembre).

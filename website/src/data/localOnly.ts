@@ -50,7 +50,7 @@ export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   // Full copyrighted textbook scans (kept locally as reference only)
   /(^|\/)[^/]*\((z-lib\.org|Z-Library)\)\.pdf$/i,
   /(^|\/)[^/]*Materials Science and Engineering An Introduction[^/]*\.pdf$/i,
-  /(^|\/)[^/]*Advanced Engineering Mathematics[^/]*\.pdf$/i
+  /(^|\/)[^/]*Advanced Engineering Mathematics\s*\(7th Edition\)[^/]*\.pdf$/i
 ];
 
 export const isLocalOnly = (relativePath: string): boolean => {
