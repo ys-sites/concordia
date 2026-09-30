@@ -21,12 +21,13 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   ENGR213: {
     midterm: {
       label: 'Midterm Review — Chapters 1 & 2',
-      detail: 'Both chapters plus 40 midterm-style mixed questions (Lectures 1–6)',
-      sections: ['ch1', 'ch2', 'mixed']
+      detail: 'Both chapters, mixed midterm-style questions and past-paper problems (Lectures 1–6)',
+      sections: ['ch1', 'ch2', 'mixed', 'past']
     },
     sections: [
       { id: 'ch1', label: 'Chapter 1 — Introduction to Differential Equations', detail: 'Lectures 1–2 · Textbook §1.1–1.2: terminology, solutions, IVPs, existence & uniqueness' },
-      { id: 'ch2', label: 'Chapter 2 — First-Order Differential Equations', detail: 'Lectures 2–6 · Textbook §2.1–2.5, 2.7: direction fields, separable, linear, exact, substitutions, linear models' }
+      { id: 'ch2', label: 'Chapter 2 — First-Order Differential Equations', detail: 'Lectures 2–6 · Textbook §2.1–2.5, 2.7: direction fields, separable, linear, exact, substitutions, linear models' },
+      { id: 'past', label: "Past Papers — Previous Years' Quizzes & Tests", detail: 'Winter 2025 Quiz 1, Quiz 2 and Test 1 problems, limited to what Lectures 1–6 cover' }
     ]
   },
   INDU211: {

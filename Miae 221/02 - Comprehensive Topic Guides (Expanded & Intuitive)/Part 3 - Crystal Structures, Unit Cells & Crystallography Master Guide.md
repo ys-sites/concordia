@@ -41,17 +41,8 @@ In solid-state physics and materials engineering, how atoms pack together in thr
 
 Solids are divided into two fundamental structural classes based on the regularity of their atomic arrangements:
 
-```
-    [ CRYSTALLINE SOLID ]                     [ AMORPHOUS SOLID ]
-(Periodic, Long-Range Order)             (Non-Periodic, Short-Range Order Only)
-
-    O ── O ── O ── O ── O                     O ── O       O ── O
-    │    │    │    │    │                    /      \     /      \
-    O ── O ── O ── O ── O                   O        O ── O        O
-    │    │    │    │    │                    \      /      \      /
-    O ── O ── O ── O ── O                     O ── O        O ── O
-  (Metals, Ceramics, Semi-cond.)             (Glasses, Non-crystalline Polymers)
-```
+![Crystalline vs. Amorphous Solids Atomic Arrangement](./images/crystalline_vs_amorphous_sio2.png)
+*Figure 3.1: Fundamental comparison of atomic arrangements (adapted from Dr. Medraj MIAE 221 Lecture 4 & Callister Fig. 3.23). (a) Crystalline solid exhibiting strict periodic long-range order across macroscopic dimensions (metals, alloys, semiconductors). (b) Amorphous vitreous structure exhibiting short-range chemical bonding without translational lattice periodicity (inorganic silicate glasses, amorphous polymers).*
 
 1. **Crystalline Materials**:
    * Atoms position themselves in a **repeating, periodic 3D array** spanning large atomic distances (long-range order).
@@ -61,6 +52,9 @@ Solids are divided into two fundamental structural classes based on the regulari
    * Atoms lack systemic long-range spatial periodicity; only localized chemical bond distances (short-range order) exist.
    * Occurs when rapid liquid cooling ("quenching") freezes atoms in place before they have time to arrange into equilibrium crystal lattices.
    * *Examples*: Silica window glass, amorphous polymers (polystyrene, PMMA), and amorphous metallic glass alloys.
+
+![Dense Ordered vs Non-Dense Random Atomic Packing](./images/energy_and_packing_dense_vs_nondense.png)
+*Figure 3.2: Energy versus interatomic separation for dense, ordered crystalline packing versus non-dense, random amorphous structures (adapted from Dr. Medraj MIAE 221 Lecture 4 & Callister). Dense ordered arrangements achieve lower minimum bonding energy states than irregular, non-dense random structures.*
 
 ---
 
@@ -98,17 +92,8 @@ Over $90\%$ of all elemental metals crystallize into one of three densely packed
 
 ### A. Simple Cubic (SC)
 
-```
-        O───────────O
-       /│          /│
-      / │         / │
-     O───────────O  │        Cube Edge: a
-     │  │        │  │        Atomic Radius: R
-     │  O────────┼──O        Atoms touch along cube edges:
-     │ /         │ /         a = 2R
-     │/          │/
-     O───────────O
-```
+![Simple Cubic Unit Cell Geometry](./images/simple_cubic_unit_cell.png)
+*Figure 3.2: Simple Cubic (SC) unit cell geometry (Dr. Medraj Lecture 4). Corner atoms touch along cube edges ($a = 2R$). With coordination number $CN = 6$ and packing factor $APF = 0.52$, the loose packing makes it unstable for almost all elemental metals except Polonium (Po).*
 
 1. **Lattice Geometry & Atom Contact**:
    * Atoms reside **only** at the 8 cube corners.
@@ -129,17 +114,8 @@ Over $90\%$ of all elemental metals crystallize into one of three densely packed
 
 ### B. Body-Centered Cubic (BCC)
 
-```
-        O───────────O
-       /│          /│
-      / │    O    / │        Corner atoms + 1 Center atom
-     O───────────O  │        Close-packed direction: Body Diagonal
-     │  │        │  │        Body Diagonal = √3 · a = 4R
-     │  O────────┼──O
-     │ /         │ /         a = 4R / √3
-     │/          │/
-     O───────────O
-```
+![Body-Centered Cubic (BCC) Unit Cell Geometry](./images/bcc_unit_cell_geometry.png)
+*Figure 3.3: Body-Centered Cubic (BCC) unit cell geometry (Dr. Medraj Lecture 4). Corner atoms touch the central body atom along the cube body diagonal ($a\sqrt{3} = 4R$). $N = 2$ atoms/cell, coordination number $CN = 8$, and $APF = 0.68$. Typical metals: $\alpha$-Fe, Cr, W, Mo, Ta, V.*
 
 1. **Lattice Geometry & Atom Contact**:
    * Atoms are located at the 8 corners plus **1 full atom in the center of the cube**.
@@ -161,17 +137,8 @@ Over $90\%$ of all elemental metals crystallize into one of three densely packed
 
 ### C. Face-Centered Cubic (FCC)
 
-```
-        O─────O─────O
-       /│    /     /│
-      O │   O     O │        Corner atoms + 6 Face-Center atoms
-     O─────O─────O  │        Close-packed direction: Face Diagonal
-     │  │        │  │        Face Diagonal = √2 · a = 4R
-     │  O─────O──┼──O
-     │ /     /   │ /         a = 2√2 · R = 4R / √2
-     │/          │/
-     O─────O─────O
-```
+![Face-Centered Cubic (FCC) Unit Cell Geometry](./images/fcc_unit_cell_geometry.png)
+*Figure 3.4: Face-Centered Cubic (FCC) unit cell geometry (Dr. Medraj Lecture 4). Atoms touch continuously along the face diagonals ($a\sqrt{2} = 4R$). $N = 4$ atoms/cell, coordination number $CN = 12$, and maximum theoretical packing efficiency $APF = 0.74$. Typical metals: Al, Cu, Au, Ag, Ni, Pt, Pb, $\gamma$-Fe.*
 
 1. **Lattice Geometry & Atom Contact**:
    * Atoms reside at the 8 corners plus **in the center of all 6 cube faces**.
@@ -193,18 +160,8 @@ Over $90\%$ of all elemental metals crystallize into one of three densely packed
 
 ### D. Hexagonal Close-Packed (HCP)
 
-```
-             O───────O
-            / \     / \           Top Basal Plane: 6 corner + 1 center
-           O───O───O───O
-           │           │
-           │   O   O   │          Mid-Plane: 3 interior atoms in triangle
-           │     O     │
-           │           │
-           O───O───O───O          Bottom Basal Plane: 6 corner + 1 center
-            \ /     \ /
-             O───────O
-```
+![Hexagonal Close-Packed (HCP) Unit Cell Geometry](./images/hcp_unit_cell_geometry.png)
+*Figure 3.5: Hexagonal Close-Packed (HCP) unit cell structure (Dr. Medraj Lecture 4). Basal planes sandwich an interior triangular cluster of 3 atoms. Ideal axial ratio $c/a = 1.633$, $N = 6$ atoms/cell, $CN = 12$, and $APF = 0.74$. Typical metals: $\alpha$-Ti, Mg, Zn, Co, Zr, Be.*
 
 1. **Lattice Geometry**:
    * Two parallel hexagonal basal planes separated by height $c$.
@@ -236,13 +193,8 @@ The answer lies in **layer stacking order**.
 
 ### The Close-Packed Layer of Spheres
 
-```
-      Row 1:    ( A )   ( A )   ( A )
-      Row 2:      \   /   \   /
-                   ( B )   ( B )      <-- Layer B rests in triangular hollows of A
-      Row 3:        |       |
-                   ( C )   ( C )      <-- Layer C can either align with A or take new hollows
-```
+![Close-Packed Atomic Layer Stacking Sequences](./images/stacking_sequence_hcp_vs_fcc.png)
+*Figure 3.6: Atomic packing sequences of close-packed planes (Dr. Medraj Lecture 4). Placing close-packed 2D triangular layers yields two packing choices for the 3rd layer: (a) ABAB... stacking creates the Hexagonal Close-Packed (HCP) structure. (b) ABCABC... stacking creates the Face-Centered Cubic (FCC) structure with $\{111\}$ close-packed slip planes.*
 
 * When you place a 2D sheet of spheres together as tightly as possible, each sphere touches 6 neighbors, forming a triangular array of "valleys" or hollows.
 * Let the first layer be **Layer A**.
@@ -278,36 +230,37 @@ A unit cell is geometrically defined by 6 independent lattice parameters:
    * $\beta$: Angle between $a$ and $c$
    * $\gamma$: Angle between $a$ and $b$
 
-```
-               z
-               │
-               │ c
-               │______ β ______ y
-              / \     /      b
-           a /   \ α /
-            /     \ / γ
-           x
-```
+
 
 ---
 
 ### The Master 7 Crystal Systems Matrix
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        THE 7 UNIQUE CRYSTAL SYSTEMS                    │
-├───────────────────┬──────────────────────┬─────────────────────────────┤
-│ System            │ Axial Edge Lengths   │ Interaxial Angles           │
-├───────────────────┼──────────────────────┼─────────────────────────────┤
-│ 1. Cubic          │ a = b = c            │ α = β = γ = 90°             │
-│ 2. Tetragonal     │ a = b ≠ c            │ α = β = γ = 90°             │
-│ 3. Orthorhombic   │ a ≠ b ≠ c            │ α = β = γ = 90°             │
-│ 4. Hexagonal      │ a = b ≠ c            │ α = β = 90°, γ = 120°       │
-│ 5. Rhombohedral   │ a = b = c            │ α = β = γ ≠ 90°             │
-│ 6. Monoclinic     │ a ≠ b ≠ c            │ α = γ = 90° ≠ β             │
-│ 7. Triclinic      │ a ≠ b ≠ c            │ α ≠ β ≠ γ ≠ 90°             │
-└───────────────────┴──────────────────────┴─────────────────────────────┘
-```
+![The Seven Crystal Systems and Lattice Parameters](./images/seven_crystal_systems_bravais.png)
+*Figure 3.7: The 7 Unique Crystal Systems and their unit cell lattice parameters (Dr. Medraj Lecture 5): Cubic ($a=b=c, \alpha=\beta=\gamma=90^\circ$), Tetragonal ($a=b\neq c, \alpha=\beta=\gamma=90^\circ$), Orthorhombic ($a\neq b\neq c, \alpha=\beta=\gamma=90^\circ$), Hexagonal ($a=b\neq c, \alpha=\beta=90^\circ, \gamma=120^\circ$), Rhombohedral ($a=b=c, \alpha=\beta=\gamma\neq 90^\circ$), Monoclinic ($a\neq b\neq c, \alpha=\gamma=90^\circ\neq\beta$), and Triclinic ($a\neq b\neq c, \alpha\neq\beta\neq\gamma\neq 90^\circ$). Combined with lattice centerings, these produce the 14 Bravais Lattices.*
+
+| Crystal System | Axial Edge Relationships | Interaxial Angle Constraints | Bravais Lattice Types |
+| :--- | :--- | :--- | :--- |
+| **Cubic** | $a = b = c$ | $lpha = eta = \gamma = 90^\circ$ | Simple ($P$), Body-Centered ($I$), Face-Centered ($F$) |
+| **Tetragonal** | $a = b 
+eq c$ | $lpha = eta = \gamma = 90^\circ$ | Simple ($P$), Body-Centered ($I$) |
+| **Orthorhombic** | $a 
+eq b 
+eq c$ | $lpha = eta = \gamma = 90^\circ$ | Simple ($P$), Body-Centered ($I$), Face-Centered ($F$), Base-Centered ($C$) |
+| **Hexagonal** | $a = b 
+eq c$ | $lpha = eta = 90^\circ, \gamma = 120^\circ$ | Simple ($P$) |
+| **Rhombohedral** | $a = b = c$ | $lpha = eta = \gamma 
+eq 90^\circ$ | Simple ($P$) |
+| **Monoclinic** | $a 
+eq b 
+eq c$ | $lpha = \gamma = 90^\circ 
+eq eta$ | Simple ($P$), Base-Centered ($C$) |
+| **Triclinic** | $a 
+eq b 
+eq c$ | $lpha 
+eq eta 
+eq \gamma 
+eq 90^\circ$ | Simple ($P$) |
 
 * **14 Bravais Lattices**:
   When lattice points are placed at corners (Primitive, $P$), centers (Body-centered, $I$), faces (Face-centered, $F$), or end bases (Base-centered, $C$), only **14 unique non-redundant spatial lattices** are mathematically possible across these 7 systems.
@@ -369,20 +322,8 @@ Where $x = q \cdot a$, $y = r \cdot b$, and $z = s \cdot c$.
 
 A direction is a vector joining two points in the lattice, specified inside **square brackets $[uvw]$**.
 
-```
-                z
-                │       Head [1, 1, 1]
-                │      /
-                │     /
-                │    /
-                │   /
-                │  /
-                │ /
-                └───────────── y
-               / Origin [0, 0, 0]
-              /
-             x
-```
+![Crystallographic Directions Vector Algorithm](./images/crystallographic_directions_miller.png)
+*Figure 3.8: Specification of Crystallographic Direction Indices $[uvw]$ (Dr. Medraj Lecture 5). Vector tail is positioned at origin $(0,0,0)$ and tip at $(x_2, y_2, z_2)$. Multiples of $a, b, c$ are reduced to the smallest integers enclosed in square brackets $[uvw]$. Negative indices are designated with an overbar $[\bar{u}vw]$.*
 
 #### The 4-Step Vector Algorithm:
 1. **Define Coordinates**: Position vector tail at the origin $(0, 0, 0)$ and locate the tip head $(x_2, y_2, z_2)$.
@@ -409,19 +350,8 @@ A direction is a vector joining two points in the lattice, specified inside **sq
 
 Atomic planes are designated by Miller indices enclosed in **parentheses $(hkl)$**.
 
-```
-           z
-           │ (0, 0, 1) Intercept = 1
-           │   ▲
-           │  / \
-           │ /   \
-           │/     \
-           └───────► y   Plane Intercepts: x=1, y=1, z=1
-          / (0, 1, 0)    Reciprocals: 1/1, 1/1, 1/1 -> Plane is (111)
-         / Intercept = 1
-        ▼
-        x (1, 0, 0) Intercept = 1
-```
+![Crystallographic Planes Miller Indices Algorithm](./images/crystallographic_planes_miller.png)
+*Figure 3.9: Determination of Miller Indices $(hkl)$ for Crystallographic Planes (Dr. Medraj Lecture 5). (1) Verify origin does not lie in plane; (2) Measure axis intercepts in units of $a, b, c$ (planes parallel to an axis have intercept $\infty$); (3) Take reciprocals $1/\text{intercept}$; (4) Clear fractions to obtain smallest integer triplet $(hkl)$.*
 
 #### The 4-Step Plane Algorithm:
 1. **Origin Verification**: If the plane passes through the chosen origin $(0,0,0)$, **you MUST shift the origin** to an adjacent corner of the unit cell!

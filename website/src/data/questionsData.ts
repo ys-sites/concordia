@@ -1,6 +1,9 @@
 import { PracticeQuestion } from '../types';
+import { SOLUTION_UPGRADES, EXTRA_QUESTIONS } from './questionBank';
 
-export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
+// Base bank built from the teacher's lecture notes. Baby-step solutions and past-paper questions are
+// layered on in ./questionBank.ts (solutions/*.ts and extra/*.ts).
+const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_001",
     "courseId": "ENGR213",
@@ -13086,4 +13089,12 @@ export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
       }
     ]
   }
+];
+
+export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
+  ...BASE_QUESTIONS.map((q) => {
+    const upgrade = SOLUTION_UPGRADES[q.id];
+    return upgrade ? { ...q, explanation: { ...q.explanation, ...upgrade } } : q;
+  }),
+  ...EXTRA_QUESTIONS
 ];

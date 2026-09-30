@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CourseId, PracticeQuestion } from '../types';
 import { MathText } from '../utils/mathRenderer';
+import { WorkedSolution } from './WorkedSolution';
 import { SourceList } from './SourceList';
 import { audio } from '../utils/audio';
 import { 
@@ -240,22 +241,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
                     </div>
 
                     <div className="review-derivation-box">
-                      <div className="concept-title">📘 Core Principle:</div>
-                      <p><MathText text={q.explanation.coreConcept} /></p>
-
-                      <div className="concept-title">📐 Derivation:</div>
-                      <ol className="derivation-steps">
-                        {q.explanation.stepByStep.map((s, sIdx) => (
-                          <li key={sIdx}><MathText text={s} /></li>
-                        ))}
-                      </ol>
-
-                      {q.explanation.commonTrap && (
-                        <div className="review-trap-box">
-                          <strong>⚠️ Common Exam Pitfall:</strong>
-                          <p><MathText text={q.explanation.commonTrap} /></p>
-                        </div>
-                      )}
+                      <WorkedSolution question={q} selectedIndex={item.selectedIndex} mode="review" />
 
                       <SourceList question={q} />
                     </div>

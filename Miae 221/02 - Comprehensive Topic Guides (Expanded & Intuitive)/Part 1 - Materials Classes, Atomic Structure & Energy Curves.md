@@ -7,17 +7,14 @@
 
 Every object engineered by humankind—from microchips and jet turbine blades to biomedical stents and composite golf shafts—derives its capabilities directly from the arrangement of its atoms and the bonds holding them together. In engineering, materials are classified into three primary categories, along with advanced composites and semiconductors:
 
-```
-                      [ ENGINEERING MATERIALS ]
-           _______________________|_______________________
-          |                       |                       |
-      [ METALS ]             [ CERAMICS ]           [ POLYMERS ]
-   (Fe, Al, Cu, Ti)       (Al2O3, SiC, SiO2)      (PE, PTFE, Nylon)
-          \                       |                       /
-           \______________________|______________________/
-                                  |
-                           [ COMPOSITES ]
-                       (CFRP, Fiberglass, MMC)
+```mermaid
+graph TD
+    EM["ENGINEERING MATERIALS"] --> M["METALS<br/>(Fe, Al, Cu, Ti)"]
+    EM --> C["CERAMICS<br/>(Al2O3, SiC, SiO2)"]
+    EM --> P["POLYMERS<br/>(PE, PTFE, Nylon)"]
+    M -.-> COMP["COMPOSITES<br/>(CFRP, Fiberglass, MMC)"]
+    C -.-> COMP
+    P -.-> COMP
 ```
 
 ### Comparative Engineering Property Matrix
@@ -51,19 +48,12 @@ Every object engineered by humankind—from microchips and jet turbine blades to
 
 To predict how atoms interact, we must examine how electrons arrange themselves around the nucleus.
 
-```
-       [ BOHR MODEL ]                           [ QUANTUM MODEL ]
- (Planetary circular orbits)              (3D Probability Electron Cloud)
-
-            ( - )                                       ...:'''''':...
-         /    |    \                                  .:'   .  .  .   ':.
-       /      |      \                               :   .  : (Nucleus) :  :
-     ( )-----(+)-----( )                             :  .  .  :   +   :  . :
-       \      |      /                                ':.   .  .  .   .:'
-         \    |    /                                    ...:......:...
-            ( - )                                  Orbital: Probability density
-                                                      P(r) = |Ψ(r)|^2
-```
+| Model Characteristic | Bohr Model (1913) | Modern Quantum Mechanical Model |
+| :--- | :--- | :--- |
+| **Electron Motion** | Fixed 2D planar circular orbits ($n=1,2,3...$) | 3D spatial wavefunctions / orbitals ($\Psi$) |
+| **Position Certainty** | Precise radius $r$ and deterministic velocity | Heisenberg Uncertainty ($\Delta x \cdot \Delta p \ge \hbar/2$); probability density $|\Psi|^2$ |
+| **Spatial Shapes** | Strictly circular or elliptical rings | Complex geometric probability lobes ($s$: sphere, $p$: dumbbell, $d$: cloverleaf) |
+| **Governing Mathematics** | Quantized angular momentum $L = n\hbar$ | Schrödinger Wave Equation $\hat{H}\Psi = E\Psi$ |
 
 ### The Evolution of Atomic Understanding
 
@@ -113,20 +103,14 @@ Every electron in an atom is uniquely identified by four quantum numbers:
 
 The layout of the modern periodic table directly reflects the filling of atomic subshells:
 
-```
-[Group IA]                                                         [Group 0]
- Alkali                                                             Inert Gas
-  (s1)                                                                (s2p6)
- +---+                                                               +---+
- | H |  [Group IIA]               [Non-Metals / Halogens]            |He |
- +---+   Alk-Earth                 IIIA  IVA   VA   VIA  VIIA        +---+
- |Li |     (s2)                    (p1) (p2)  (p3)  (p4) (p5)        |Ne |
- +---+     +---+                 +----+----+----+----+----+----+     +---+
- |Na |     |Mg |  [TRANSITION]   | B  | C  | N  | O  | F  | Ne |     |Ar |
- +---+     +---+  (d-block)      +----+----+----+----+----+----+     +---+
- | K | ... |Ca |  [3d1 -> 3d10]  | Al | Si | P  | S  | Cl | Ar |     |Kr |
- +---+     +---+                 +----+----+----+----+----+----+     +---+
-```
+| Group | Category | Valence Subshell | Typical Elements | Primary Chemical Character |
+| :--- | :--- | :---: | :--- | :--- |
+| **Group IA** | Alkali Metals | $s^1$ | Li, Na, K, Rb, Cs | Highly electropositive; loses 1 electron ($+1$) |
+| **Group IIA** | Alkaline Earth | $s^2$ | Be, Mg, Ca, Sr, Ba | Electropositive; loses 2 electrons ($+2$) |
+| **Groups IIIB–IIB** | Transition Metals | $(n-1)d^{1-10} \, ns^2$ | Fe, Ni, Cu, Ti, Cr | Variable oxidation states; metallic bonding sea |
+| **Group IIIA–VIA** | Post-transition / Metalloids | $s^2 p^{1-4}$ | Al, Si, Ge, C, O | Covalent & directional bonding tendencies |
+| **Group VIIA** | Halogens | $s^2 p^5$ | F, Cl, Br, I | Highly electronegative; gains 1 electron ($-1$) |
+| **Group 0 (VIIIA)** | Noble / Inert Gases | $s^2 p^6$ | He, Ne, Ar, Kr, Xe | Stable full octet; inert, zero electronegativity |
 
 ### Periodic Chemical Families
 
@@ -178,30 +162,11 @@ Where:
 
 Why do solid objects hold their shape, resist compression, and resist stretching? The answer lies in the competition between attractive and repulsive forces between adjacent atoms.
 
-```
-       Force F(r)
-          ^
-Repulsive |       / (Repulsive Force F_R)
-          |      /
-          |     /
-    F = 0 +----+-----------> Interatomic distance r
-          |   / \          (Equilibrium at r = r_0)
-          |  /   \
-Attractive| /     \_______ (Attractive Force F_A)
-          v
+![Interatomic Potential Energy Curve](./images/interatomic_potential_well_curve.png)
+*Figure 1.1: The Interatomic Potential Energy Curve $E_N(r) = E_A(r) + E_R(r)$ and net force $F_N(r) = -dE_N/dr$ (Dr. Medraj MIAE 221 Lecture 3). At equilibrium separation $r_0$, net force is zero ($F_N(r_0) = 0$) and potential energy reaches minimum bonding well depth $-E_0$.*
 
-       Energy E(r)
-          ^
-          |      / (Repulsive Energy E_R = +B / r^n)
-    E = 0 +-----+--------------------------> r
-          |    / \
-          |   /   \______ (Net Energy E_N = E_A + E_R)
-          |  |      \
-   -E_0 --+--*       \____ (Attractive Energy E_A = -A / r)
-          |  |
-          |  r_0 (Equilibrium separation)
-          v
-```
+![Interatomic Force Curves and Equilibrium Spacing](./images/interatomic_force_curve.png)
+*Figure 1.2: Interatomic Force Components vs. atomic separation $r$. Attractive Coulombic force $F_A(r) \propto -1/r^2$ dominates at large separations; quantum electron cloud overlap repulsion $F_R(r) \propto +1/r^{n}$ steeply resists compression at $r < r_0$.*
 
 ### Mathematical Formulation of Forces
 

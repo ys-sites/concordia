@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "validate:questions": "esbuild scripts/validate-questions.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-questions.mjs --loader:.css=empty && node node_modules/.cache/validate-questions.mjs"
   },
   "dependencies": {
     "@types/canvas-confetti": "^1.9.0",
@@ -15,7 +16,9 @@
     "@vercel/analytics": "^2.0.1",
     "@vitejs/plugin-react": "^4.3.4",
     "canvas-confetti": "^1.9.4",
+    "katex": "^0.18.9",
     "lucide-react": "^0.475.0",
+    "pdfjs-dist": "^4.10.38",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "typescript": "^5.7.3",

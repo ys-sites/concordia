@@ -69,3 +69,17 @@ Miae 215/06 - Arduino Labs & Term Project/MIAE 215 - Arduino Labs & Mechatronics
 Engr 213/**/*Assigned Homework Solutions*
 Miae 215/01 - Teacher Lecture Notes & Slides/Q2_e.*
 Miae 215/05 - Software & Flowcharts/Q2_e.*
+
+# Past papers downloaded from Studocu: every page is stamped with the downloader's account e-mail,
+# and the repository is public. Kept locally as source material for drill questions only.
+**/* - Studocu - */
+Studocu - Exam Quiz Test Archive Progress.md
+
+# Original textbook archives (the extracted, compressed chapters are committed instead)
+**/Textbook-*.zip
+# Photos of graded past quizzes/tests (other students' names are visible)
+Engr 213/06 - Quiz & Midterm Exam Prep/IMG_*.jpg
+
+# Local build/helper scripts from previous agent sessions (contain machine-specific paths)
+scratch/
+scratch_test_img.pdf

@@ -24,15 +24,20 @@ export const LOCAL_ONLY_PATTERNS: RegExp[] = [
   /^Engr 213\/.*Assigned Homework Solutions[^/]*$/i
 ];
 
-// Not secret, but not study material either: assignment & lab handouts, Moodle submission
-// instructions, lab manuals and the term-project brief. Kept in git, never shown or deployed.
+// Not secret, but not published either. The site carries theory notes (teacher lecture notes,
+// textbook chapters, expanded guides, review sheets) and practice problems only — nothing tied to
+// graded work or exams. Kept in git, never shown or deployed.
 export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
+  // Assignment & lab handouts, Moodle submission instructions, lab manuals, term-project brief
   /^Indu 211\/05 - Assignments & Solutions(\/|$)/,
   /^Miae 215\/06 - Arduino Labs & Term Project(\/|$)/,
-  /(^|\/)[^/]*assignment\d*\.docx?$/i,
-  // All teacher lecture notes & slides across all courses
-  /(^|\/)01 - Teacher Lecture Notes/i,
-  // All course outlines and syllabi across all courses
+  /(^|\/)[^/]*assignment[^/]*$/i,
+  /homework solutions/i,
+  /team project/i,
+  // Quizzes, midterms, tests, finals & exam prep (folders or files), and past papers from Studocu
+  /(^|[\s/_-])(quiz(zes)?|midterms?|exams?|finals?|tests?)([\s/_.&-]|$)/i,
+  /studocu/i,
+  // Course outlines and syllabi (grading schemes, exam dates)
   /(^|\/)[^/]*(outline|syllabus)[^/]*\.(pdf|docx?|txt|md)$/i
 ];
 

@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { CourseDocument } from '../types';
 import { X, ExternalLink, Download, FileText, Maximize2 } from 'lucide-react';
 import { audio } from '../utils/audio';
-import { getPdfUrl, getPdfApiUrl } from '../utils/pdfUrl';
+import { getPdfUrl } from '../utils/pdfUrl';
 import { displayTitle } from '../utils/docOrganization';
+
+// PDF.js is large: load it only when a document is opened
+const PdfCanvasViewer = lazy(() => import('./PdfCanvasViewer'));
 
 interface PdfViewerModalProps {
   document: CourseDocument | null;
@@ -32,7 +35,6 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
   if (!doc) return null;
 
   const pdfUrl = getPdfUrl(doc.relativePath);
-  const pdfApiUrl = getPdfApiUrl(doc.relativePath);
   const title = displayTitle(doc);
   const close = () => {
     audio.playClick();
@@ -116,12 +118,9 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
         </div>
 
         <div className="pdf-modal-body">
-          {/* Universal PDF Viewport: standard iframe with fallback */}
-          <iframe
-            src={`${pdfUrl}#toolbar=1&navpanes=1`}
-            title={title}
-            className="pdf-iframe"
-          />
+          <Suspense fallback={<div className="pdfv-status">Loading viewer…</div>}>
+            <PdfCanvasViewer key={pdfUrl} url={pdfUrl} title={title} />
+          </Suspense>
         </div>
       </div>
     </div>

@@ -2,79 +2,23 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import fs from 'fs';
-import { isHiddenFromSite } from './src/data/localOnly';
-import { slugSegment } from './src/utils/pdfUrl';
+import { buildDocumentRegistry, listPublishedFiles } from './build/publishedFiles';
 
-// Published course paths use URL-safe names (see src/utils/pdfUrl.ts); guard against two files mapping to one name
-const publishedPaths = new Map<string, string>();
+const VIRTUAL_DOCS_ID = 'virtual:course-documents';
+const RESOLVED_VIRTUAL_DOCS_ID = '\0' + VIRTUAL_DOCS_ID;
 
-// Helper to recursively copy curriculum files
-function copyDirFiltered(src: string, dest: string, root: string) {
-  if (!fs.existsSync(src)) return;
-  if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
-
-  const entries = fs.readdirSync(src, { withFileTypes: true });
-  for (const entry of entries) {
-    if (
-      entry.name === '_Source & Archive' || 
-      entry.name.startsWith('.') || 
-      entry.name.includes('CodeBlocks') || 
-      entry.name === 'node_modules' ||
-      entry.name === 'Term Paper & Final Project' ||
-      entry.name.startsWith('01 - Teacher Lecture Notes') ||
-      /outline|syllabus/i.test(entry.name) ||
-      entry.name.includes('Advanced Engineering Mathematics (7th Edition).pdf')
-    ) {
-      continue;
-    }
-    const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, slugSegment(entry.name));
-    const clash = publishedPaths.get(destPath);
-    if (clash && clash !== srcPath) {
-      console.warn(`[Vercel Build] Slug collision between "${srcPath}" and "${clash}", keeping first`);
-      continue;
-    }
-    publishedPaths.set(destPath, srcPath);
-    // Only study material is deployed: no assignment/lab files, solutions or term paper
-    if (isHiddenFromSite(path.relative(root, srcPath))) continue;
-
-    if (entry.isDirectory()) {
-      copyDirFiltered(srcPath, destPath, root);
-    } else if (entry.isFile()) {
-      const ext = path.extname(entry.name).toLowerCase();
-      if (['.pdf', '.md', '.ino', '.cpp', '.png', '.jpg', '.svg'].includes(ext)) {
-        try {
-          const stat = fs.statSync(srcPath);
-          // Vercel hard limit is 100MB per static file; skip anything larger than 90MB
-          if (stat.size <= 90 * 1024 * 1024) {
-            fs.copyFileSync(srcPath, destPath);
-          }
-        } catch (e) {
-          console.warn('[Vercel Build] Could not copy', srcPath, e);
-        }
-      }
-    }
-  }
-}
-
-// Dev server: map a published (URL-safe) path back to the real file by matching each segment's slug
-function resolvePublishedPath(root: string, published: string): string | null {
-  let current = root;
-  for (const seg of published.split('/').filter(Boolean)) {
-    if (!fs.existsSync(current) || !fs.statSync(current).isDirectory()) return null;
-    const match = fs.readdirSync(current).find((name) => name === seg || slugSegment(name) === seg);
-    if (!match) return null;
-    current = path.join(current, match);
-  }
-  return current;
-}
-
-// Helper to stream file with HTTP Range support for robust PDF viewing
+// Helper to stream file with HTTP Range support (PDF.js fetches large PDFs in chunks)
 function streamFileWithRanges(filePath: string, req: any, res: any) {
   const stat = fs.statSync(filePath);
-  const isPdf = filePath.toLowerCase().endsWith('.pdf');
-  
-  res.setHeader('Content-Type', isPdf ? 'application/pdf' : 'text/plain; charset=utf-8');
+  const ext = path.extname(filePath).toLowerCase();
+  const types: Record<string, string> = {
+    '.pdf': 'application/pdf',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.svg': 'image/svg+xml'
+  };
+
+  res.setHeader('Content-Type', types[ext] ?? 'application/octet-stream');
   res.setHeader('Content-Disposition', 'inline');
   res.setHeader('Accept-Ranges', 'bytes');
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -90,10 +34,9 @@ function streamFileWithRanges(filePath: string, req: any, res: any) {
       res.end();
       return;
     }
-    const chunksize = end - start + 1;
     res.statusCode = 206;
     res.setHeader('Content-Range', `bytes ${start}-${end}/${stat.size}`);
-    res.setHeader('Content-Length', chunksize);
+    res.setHeader('Content-Length', end - start + 1);
     fs.createReadStream(filePath, { start, end }).pipe(res);
   } else {
     res.setHeader('Content-Length', stat.size);
@@ -101,106 +44,51 @@ function streamFileWithRanges(filePath: string, req: any, res: any) {
   }
 }
 
-// Custom middleware to serve local course PDFs seamlessly and bundle for Vercel
+// Serves course files in dev, bundles them into dist/courses for Vercel, and exposes the
+// document registry. Both use listPublishedFiles, so the portal lists exactly what is deployed.
 function coursePdfPlugin() {
   const semester1Root = path.resolve(__dirname, '..');
 
   return {
     name: 'course-pdf-server',
+    resolveId(id: string) {
+      return id === VIRTUAL_DOCS_ID ? RESOLVED_VIRTUAL_DOCS_ID : null;
+    },
+    load(id: string) {
+      if (id !== RESOLVED_VIRTUAL_DOCS_ID) return null;
+      const docs = buildDocumentRegistry(semester1Root);
+      return `export default ${JSON.stringify(docs)};`;
+    },
     configureServer(server: any) {
       server.middlewares.use((req: any, res: any, next: any) => {
-        // Handle /courses/... static route in dev
-        if (req.url && req.url.startsWith('/courses/')) {
-          try {
-            const rawPath = req.url.slice('/courses/'.length).split('?')[0];
-            const targetPath = resolvePublishedPath(semester1Root, decodeURIComponent(rawPath));
-            
-            if (targetPath && !targetPath.toLowerCase().startsWith(semester1Root.toLowerCase())) {
-              res.statusCode = 403;
-              res.end('Access denied');
-              return;
-            }
-
-            if (targetPath && isHiddenFromSite(path.relative(semester1Root, targetPath))) {
-              res.statusCode = 404;
-              res.end('Access denied');
-              return;
-            }
-
-            if (targetPath && fs.existsSync(targetPath) && fs.statSync(targetPath).isFile()) {
-              streamFileWithRanges(targetPath, req, res);
-              return;
-            }
-          } catch (e: any) {
-            console.error('Error serving /courses in dev:', e);
-          }
-        }
-
-        // Handle /api/pdf?path=... in dev
-        if (req.url && req.url.startsWith('/api/pdf')) {
-          try {
-            const urlObj = new URL(req.url, 'http://localhost');
-            const relativePath = urlObj.searchParams.get('path');
-            if (!relativePath) {
-              res.statusCode = 400;
-              res.end('Missing path parameter');
-              return;
-            }
-            
-            const targetPath = path.resolve(semester1Root, decodeURIComponent(relativePath));
-            
-            if (!targetPath.toLowerCase().startsWith(semester1Root.toLowerCase())) {
-              res.statusCode = 403;
-              res.end('Access denied');
-              return;
-            }
-
-            if (isHiddenFromSite(path.relative(semester1Root, targetPath))) {
-              res.statusCode = 404;
-              res.end('File not found');
-              return;
-            }
-            
-            if (fs.existsSync(targetPath) && fs.statSync(targetPath).isFile()) {
-              streamFileWithRanges(targetPath, req, res);
-              return;
-            } else {
-              res.statusCode = 404;
-              res.end('File not found');
-              return;
-            }
-          } catch (e: any) {
-            res.statusCode = 500;
-            res.end('Internal server error: ' + e.message);
+        if (!req.url || !req.url.startsWith('/courses/')) return next();
+        try {
+          const published = decodeURIComponent(req.url.slice('/courses/'.length).split('?')[0]);
+          // Re-listed per request so files added while the dev server runs are served too
+          const file = listPublishedFiles(semester1Root).find((f) => f.publishedPath === published);
+          if (!file) {
+            res.statusCode = 404;
+            res.end('File not found');
             return;
           }
+          streamFileWithRanges(file.source, req, res);
+        } catch (e: any) {
+          res.statusCode = 500;
+          res.end('Internal server error: ' + e.message);
         }
-        next();
       });
     },
     closeBundle() {
-      // Automatically copy course curriculum assets into dist/courses for Vercel deployment
-      try {
-        publishedPaths.clear();
-        const distCoursesDir = path.resolve(__dirname, 'dist', 'courses');
-        if (fs.existsSync(distCoursesDir)) {
-          fs.rmSync(distCoursesDir, { recursive: true, force: true });
-        }
-        const courseDirs = ['Engr 213', 'Indu 211', 'Miae 215', 'Miae 221'];
-        console.log('[Vercel Build] Bundling course curriculum files into dist/courses...');
-        for (const c of courseDirs) {
-          const src = path.resolve(semester1Root, c);
-          const dest = path.resolve(distCoursesDir, slugSegment(c));
-          try {
-            copyDirFiltered(src, dest, semester1Root);
-          } catch (courseErr) {
-            console.warn(`[Vercel Build] Warning copying ${c}:`, courseErr);
-          }
-        }
-        console.log('[Vercel Build] Course assets bundled successfully for Vercel CDN!');
-      } catch (err) {
-        console.warn('[Vercel Build] Notice bundling assets:', err);
+      const distCoursesDir = path.resolve(__dirname, 'dist', 'courses');
+      fs.rmSync(distCoursesDir, { recursive: true, force: true });
+      const files = listPublishedFiles(semester1Root);
+      console.log(`[Vercel Build] Bundling ${files.length} course files into dist/courses...`);
+      for (const f of files) {
+        const dest = path.join(distCoursesDir, f.publishedPath);
+        fs.mkdirSync(path.dirname(dest), { recursive: true });
+        fs.copyFileSync(f.source, dest);
       }
+      console.log('[Vercel Build] Course assets bundled.');
     }
   };
 }
@@ -215,4 +103,3 @@ export default defineConfig({
     }
   }
 });
-

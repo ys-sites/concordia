@@ -3,6 +3,7 @@ import { CourseId, PracticeQuestion, QuizSessionState } from '../types';
 import { questionPool, sectionLabel, DRILL_LENGTH } from '../data/quizSections';
 import { MathText } from '../utils/mathRenderer';
 import { SourceList } from './SourceList';
+import { WorkedSolution } from './WorkedSolution';
 import { audio } from '../utils/audio';
 import { 
   Brain, 
@@ -53,10 +54,17 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
         const j = Math.floor(Math.random() * (i + 1));
         [order[i], order[j]] = [order[j], order[i]];
       }
+      // Wrong-answer diagnoses are keyed by option index, so they move with their options
+      const whyWrong = q.explanation.whyWrong
+        ? Object.fromEntries(
+            Object.entries(q.explanation.whyWrong).map(([orig, text]) => [String(order.indexOf(Number(orig))), text])
+          )
+        : undefined;
       return {
         ...q,
         options: order.map(i => q.options[i]) as PracticeQuestion['options'],
-        correctIndex: order.indexOf(q.correctIndex) as PracticeQuestion['correctIndex']
+        correctIndex: order.indexOf(q.correctIndex) as PracticeQuestion['correctIndex'],
+        explanation: { ...q.explanation, whyWrong }
       };
     });
   }, [courseId, sectionId]);
@@ -220,6 +228,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
 
           <div className="question-meta-group">
             <span className="topic-badge">{currentQ.topic}</span>
+            {currentQ.pastPaper && <span className="past-paper-badge">Past paper · {currentQ.pastPaper}</span>}
             <span className={`difficulty-badge diff-${currentQ.difficulty.toLowerCase().replace(' ', '-')}`}>
               {currentQ.difficulty}
             </span>
@@ -292,7 +301,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
               ) : (
                 <div className="feedback-status status-incorrect">
                   <AlertTriangle size={20} />
-                  <span>Incorrect. Review the derivation below to solidify your neural recall.</span>
+                  <span>Not quite. Let's find exactly where it went wrong.</span>
                 </div>
               )}
 
@@ -300,28 +309,12 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
             </div>
 
             <div className="drawer-body">
-              <div className="concept-row">
-                <strong>Core Law / Principle:</strong>
-                <p><MathText text={currentQ.explanation.coreConcept} /></p>
-              </div>
-
-              <div className="step-by-step-box">
-                <div className="steps-title">Step-by-Step Derivation:</div>
-                <ol className="steps-list">
-                  {currentQ.explanation.stepByStep.map((step, sIdx) => (
-                    <li key={sIdx}>
-                      <MathText text={step} />
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              {currentQ.explanation.commonTrap && (
-                <div className="trap-box">
-                  <div className="trap-title">⚠️ Common Exam Trap to Avoid:</div>
-                  <p><MathText text={currentQ.explanation.commonTrap} /></p>
-                </div>
-              )}
+              <WorkedSolution
+                key={currentIndex}
+                question={currentQ}
+                selectedIndex={userSelectedIndex}
+                mode={isCorrect ? 'correct' : 'wrong'}
+              />
             </div>
 
             {/* Next Question CTA */}

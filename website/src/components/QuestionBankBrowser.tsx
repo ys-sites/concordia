@@ -3,6 +3,7 @@ import { CourseId, PracticeQuestion } from '../types';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
 import { COURSES_DATA } from '../data/coursesData';
 import { MathText } from '../utils/mathRenderer';
+import { WorkedSolution } from './WorkedSolution';
 import { SourceList } from './SourceList';
 import { audio } from '../utils/audio';
 import { 
@@ -192,26 +193,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
                   </div>
 
                   <div className="explanation-section">
-                    <div className="expl-item">
-                      <strong>Core Law / Principle:</strong>
-                      <p><MathText text={q.explanation.coreConcept} /></p>
-                    </div>
-
-                    <div className="expl-item">
-                      <strong>Step-by-Step Derivation:</strong>
-                      <ol className="expl-steps">
-                        {q.explanation.stepByStep.map((s, sIdx) => (
-                          <li key={sIdx}><MathText text={s} /></li>
-                        ))}
-                      </ol>
-                    </div>
-
-                    {q.explanation.commonTrap && (
-                      <div className="expl-trap-box">
-                        <strong>⚠️ Common Student Mistake:</strong>
-                        <p><MathText text={q.explanation.commonTrap} /></p>
-                      </div>
-                    )}
+                    <WorkedSolution question={q} mode="review" />
 
                     <SourceList question={q} />
                   </div>
