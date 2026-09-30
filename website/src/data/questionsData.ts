@@ -3743,10 +3743,10 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Exam Master",
     "question": "Plain View example. Factories: Amarillo (400), Waco (1,000), Huntsville (600). Warehouses: San Antonio (300), Dallas (900), Houston (800). Unit costs are in the table. Using the least-cost assignment method (and allocating Amarillo→Dallas first when the two cells costing 21 tie), what is the total monthly shipping cost?",
     "options": [
-      "$39,900",
-      "$42,300",
-      "$36,000",
-      "$45,600"
+      "\\$39,900",
+      "\\$42,300",
+      "\\$36,000",
+      "\\$45,600"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5267,9 +5267,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Midterm Level",
     "question": "For processes A ($\\$110{,}000 + \\$2$/unit), B ($\\$80{,}000 + \\$4$/unit), C ($\\$75{,}000 + \\$5$/unit), which is cheapest at 10,000 units/year?",
     "options": [
-      "B, with total cost $120,000",
-      "A, with total cost $130,000",
-      "C, with total cost $125,000",
+      "B, with total cost \\$120,000",
+      "A, with total cost \\$130,000",
+      "C, with total cost \\$125,000",
       "All are equal"
     ],
     "correctIndex": 0,
@@ -5297,10 +5297,10 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "chapter": "ch3",
     "topic": "Minimum Selling Price",
     "difficulty": "Exam Master",
-    "question": "In break-even analysis, if process B has fixed cost $70,000 and variable cost $5/unit, why must the minimum selling price be at least $12/unit to break even at 10,000 units?",
+    "question": "In break-even analysis, if process B has fixed cost \\$70,000 and variable cost \\$5/unit, why must the minimum selling price be at least \\$12/unit to break even at 10,000 units?",
     "options": [
       "Total cost of B at 10,000 units is $\\$120{,}000$, i.e. $\\$12$ per unit",
-      "Variable cost of B is $12",
+      "Variable cost of B is \\$12",
       "Fixed cost divided by 12 equals 10,000",
       "It is the price of process C"
     ],
@@ -5308,9 +5308,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Average cost per unit = TC / Q.",
       "stepByStep": [
-        "120,000 / 10,000 = $12/unit."
+        "120,000 / 10,000 = \\$12/unit."
       ],
-      "commonTrap": "Using only the variable cost ($4).",
+      "commonTrap": "Using only the variable cost (\\$4).",
       "reference": "2.0.INDU_211_CH3_2025.pdf · Page 17"
     },
     "source": [
@@ -5908,7 +5908,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "Repeat until all demand is met and supply used; ties may be broken arbitrarily.",
       "stepByStep": [
-        "In Plain View, Huntsville→Houston ($15) is filled first."
+        "In Plain View, Huntsville→Houston (\\$15) is filled first."
       ],
       "commonTrap": "Starting with the largest cost.",
       "reference": "3.0.INDU_211_CH4_1-2025.pdf · Page 13"
@@ -5929,14 +5929,14 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "difficulty": "Foundation",
     "question": "In the Plain View example, which cell does the least-cost method fill first?",
     "options": [
-      "Huntsville → Houston ($15), 600 units",
-      "Amarillo → Dallas ($21), 400 units",
-      "Waco → San Antonio ($20), 300 units",
-      "Amarillo → Houston ($42), 400 units"
+      "Huntsville → Houston (\\$15), 600 units",
+      "Amarillo → Dallas (\\$21), 400 units",
+      "Waco → San Antonio (\\$20), 300 units",
+      "Amarillo → Houston (\\$42), 400 units"
     ],
     "correctIndex": 0,
     "explanation": {
-      "coreConcept": "The smallest unit cost in the table is $15.",
+      "coreConcept": "The smallest unit cost in the table is \\$15.",
       "stepByStep": [
         "Huntsville supplies 600 → Houston still needs 200."
       ],

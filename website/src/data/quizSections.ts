@@ -58,14 +58,17 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   },
   MIAE221: {
     midterm: {
-      label: 'Midterm Review — Lectures 1 to 5',
-      detail: 'All three chapters plus mixed midterm-style questions (Lectures 1–5)',
-      sections: ['intro', 'bonding', 'crystal', 'mixed']
+      label: 'Midterm Review — Lectures 1 to 7',
+      detail: 'Every chapter so far, mixed midterm-style questions and past-midterm problems',
+      sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mixed', 'past']
     },
     sections: [
       { id: 'intro', label: 'Ch. 1 · Introduction & Classes of Materials', detail: 'Lectures 1–2: science vs engineering, properties, material classes, failures' },
       { id: 'bonding', label: 'Ch. 2 · Atomic Structure & Bonding', detail: 'Lectures 2–3: atomic structure, electronegativity, bond energy, bond types' },
-      { id: 'crystal', label: 'Ch. 3 · Crystal Structures', detail: 'Lectures 4–5: unit cells, APF, CN, stacking, density, Miller indices' }
+      { id: 'crystal', label: 'Ch. 3 · Crystal Structures', detail: 'Lectures 4–5: unit cells, APF, CN, stacking, density, Miller indices' },
+      { id: 'densities', label: 'Ch. 3 · Atomic Densities & X-Ray Diffraction', detail: 'Lecture 6: linear & planar density, slip, single vs polycrystals, Bragg’s law, powder XRD' },
+      { id: 'defects', label: 'Ch. 4 · Imperfections in Solids', detail: 'Lecture 7: vacancies & Arrhenius, impurities, solid solutions, Hume-Rothery, wt% ↔ at.%, dislocations' },
+      { id: 'past', label: "Past Papers — Previous Years' Midterm", detail: '2025 Midterm (version A) questions on topics covered so far' }
     ]
   }
 };
