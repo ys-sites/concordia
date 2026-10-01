@@ -1,9 +1,9 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { CourseDocument } from '../types';
-import { X, ExternalLink, FileText, Maximize2 } from 'lucide-react';
+import { X, ExternalLink, FileText, Maximize2, Video } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
-import { displayTitle } from '../utils/docOrganization';
+import { displayTitle, getVideoUrl } from '../utils/docOrganization';
 
 // PDF.js is large: load it only when a document is opened
 const PdfCanvasViewer = lazy(() => import('./PdfCanvasViewer'));
@@ -62,6 +62,25 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
           </div>
 
           <div className="modal-header-actions">
+            {getVideoUrl(doc) && (
+              <a
+                href={getVideoUrl(doc)!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="modal-action-btn"
+                title="Watch tutorial video on YouTube"
+                aria-label="Watch on YouTube"
+                onClick={() => audio.playClick()}
+                style={{
+                  backgroundColor: 'rgba(239, 68, 68, 0.15)',
+                  color: '#ef4444',
+                  borderColor: 'rgba(239, 68, 68, 0.35)'
+                }}
+              >
+                <Video size={16} />
+                <span className="modal-action-label">Watch Video</span>
+              </a>
+            )}
             <a
               href={pdfUrl}
               target="_blank"

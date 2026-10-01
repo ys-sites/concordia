@@ -149,3 +149,28 @@ export const findFolder = (root: FolderNode, path: string[]): FolderNode | null 
   }
   return node;
 };
+
+// ---------------------------------------------------------------------------
+// YouTube Video Tutorial Mappings
+// ---------------------------------------------------------------------------
+
+export const YOUTUBE_VIDEO_MAP: Record<string, string> = {
+  '00 - INDU 211 - Problem Solutions Complete Roadmap & Video Guide': 'https://www.youtube.com/playlist?list=PLuGCuftTFDZz87QrfzlgnXXh6dTVS6Y11',
+  '01 - Demand Forecasting (Moving Average & Market Share)': 'https://www.youtube.com/watch?v=SOivSDdtTH8',
+  '02 - Linear Programming Minimization (Graphical Method & Line Feasible Space)': 'https://www.youtube.com/watch?v=yTi70c0_cq8',
+  '03 - Project Management & PERT Chart (Critical Path & Slack)': 'https://www.youtube.com/watch?v=b2g1kZrEYtk',
+  '04 - Queuing Theory (M-M-1 Congestion & Waiting Line Models)': 'https://www.youtube.com/watch?v=XT1EgQRcqmU',
+  '05 - Traveling Salesperson Problem (Warehouse Forklift Routing)': 'https://www.youtube.com/watch?v=ayqA56IHMZ0',
+  '06 - Linear Programming Production Modeling (Multi-Constraint Formulation)': 'https://www.youtube.com/watch?v=Rwc_f6IzUQk',
+  '07 - Statistical Quality Control (X-bar & R Charts and Process Capability)': 'https://www.youtube.com/watch?v=1BcAZosLMb0'
+};
+
+export const getVideoUrl = (doc: CourseDocument): string | null => {
+  for (const [key, url] of Object.entries(YOUTUBE_VIDEO_MAP)) {
+    if (doc.title.includes(key) || key.includes(doc.title) || doc.filename.includes(key)) {
+      return url;
+    }
+  }
+  return null;
+};
+

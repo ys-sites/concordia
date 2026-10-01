@@ -23,7 +23,8 @@ import {
   GraduationCap,
   Layers,
   Archive,
-  FolderOpen
+  FolderOpen,
+  Video
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
@@ -33,7 +34,8 @@ import {
   displayTitle,
   findFolder,
   FolderNode,
-  splitFolderName
+  splitFolderName,
+  getVideoUrl
 } from '../utils/docOrganization';
 
 interface CourseWorkspaceProps {
@@ -55,6 +57,7 @@ const folderIcon = (name: string, size = 22) => {
   if (/arduino|lab/.test(n)) return <Cpu size={size} />;
   if (/quiz|exam|midterm/.test(n)) return <Target size={size} />;
   if (/software|flowchart|code/.test(n)) return <Code size={size} />;
+  if (/video|youtube|tutorial|problem solutions/i.test(n)) return <Video size={size} />;
   if (/mini course|lesson|leonard/i.test(n)) return <GraduationCap size={size} />;
   if (/summary|chapter|calculus/.test(n)) return <Layers size={size} />;
   return <Folder size={size} />;
@@ -146,6 +149,31 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           </span>
         </button>
         <div className="fx-file-actions">
+          {getVideoUrl(doc) && (
+            <a
+              className="fx-btn"
+              href={getVideoUrl(doc)!}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Watch tutorial video on YouTube"
+              aria-label="Watch video"
+              onClick={(e) => {
+                e.stopPropagation();
+                audio.playClick();
+              }}
+              style={{
+                backgroundColor: 'rgba(239, 68, 68, 0.12)',
+                color: '#ef4444',
+                borderColor: 'rgba(239, 68, 68, 0.3)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px'
+              }}
+            >
+              <Video size={14} />
+              <span>Watch</span>
+            </a>
+          )}
           <button
             className="fx-btn fx-btn-primary"
             onClick={() => {

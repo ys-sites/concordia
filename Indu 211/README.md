@@ -76,8 +76,17 @@ This workspace has been thoroughly organized into a professional, intuitive cour
 
 ---
 
+### `YouTube Tutorial Solutions`
+> **Official Concordia INDU 211 Problem Solving Video Guides:**
+* **[`00 - INDU 211 - Problem Solutions Complete Roadmap & Video Guide.md`](./YouTube%20Tutorial%20Solutions/00%20-%20INDU%20211%20-%20Problem%20Solutions%20Complete%20Roadmap%20&%20Video%20Guide.md)**: Master index, video links, quick reference formula sheet, and Midterm vs Final decoupling.
+* **[`01 - Demand Forecasting (Moving Average & Market Share).md`](./YouTube%20Tutorial%20Solutions/01%20-%20Demand%20Forecasting%20(Moving%20Average%20&%20Market%20Share).md)**: Video 1 (Midterm) — 3-period moving average, understocking error, total market calculation, competitor share.
+* **[`02 - Linear Programming Minimization (Graphical Method & Line Feasible Space).md`](./YouTube%20Tutorial%20Solutions/02%20-%20Linear%20Programming%20Minimization%20(Graphical%20Method%20&%20Line%20Feasible%20Space).md)**: Video 2 (Final) — Graphical LP with equality constraints and 1D line-segment feasible space.
+* **[`03 - Project Management & PERT Chart (Critical Path & Slack).md`](./YouTube%20Tutorial%20Solutions/03%20-%20Project%20Management%20&%20PERT%20Chart%20(Critical%20Path%20&%20Slack).md)**: Video 3 (Final) — AON network scheduling, branching, critical path (15 weeks), total slack.
+* **[`04 - Queuing Theory (M-M-1 Congestion & Waiting Line Models).md`](./YouTube%20Tutorial%20Solutions/04%20-%20Queuing%20Theory%20(M-M-1%20Congestion%20&%20Waiting%20Line%20Models).md)**: Video 4 (Final) — M/M/1 takeout window, server utilization, wait times, congestion probability.
+* **[`05 - Traveling Salesperson Problem (Warehouse Forklift Routing).md`](./YouTube%20Tutorial%20Solutions/05%20-%20Traveling%20Salesperson%20Problem%20(Warehouse%20Forklift%20Routing).md)**: Video 5 (Midterm / 2020 Exam Problem 2) — Asymmetric TSP, nearest neighbor heuristics, sub-optimality, (n-1)! combinatorial explosion.
+* **[`06 - Linear Programming Production Modeling (Multi-Constraint Formulation).md`](./YouTube%20Tutorial%20Solutions/06%20-%20Linear%20Programming%20Production%20Modeling%20(Multi-Constraint%20Formulation).md)**: Video 6 (Final) — Multi-product drug LP formulation, raw material limits, machine time equivalence, blend ratios.
+* **[`07 - Statistical Quality Control (X-bar & R Charts and Process Capability).md`](./YouTube%20Tutorial%20Solutions/07%20-%20Statistical%20Quality%20Control%20(X-bar%20&%20R%20Charts%20and%20Process%20Capability).md)**: Video 7 (Final) — X-bar and R charts, out-of-control sample removal, sigma estimation, Cp capability ratio.
 
----
 
 ### `05 - Assignments & Solutions`
 > **Course Assignments, Term Paper & Official Submissions:**
