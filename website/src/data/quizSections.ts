@@ -34,8 +34,8 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
     sections: [
       { id: 'ch1', label: 'Chapter 1 — Introduction to Differential Equations', detail: 'Textbook §1.1–1.2: terminology, solutions, IVPs, existence & uniqueness' },
       { id: 'ch2', label: 'Chapter 2 — First-Order Differential Equations', detail: 'Textbook §2.1–2.5, 2.7: direction fields, separable, linear, exact, substitutions, linear models' },
-      { id: 'past', label: 'Past Papers', detail: 'Quiz drill from past papers' },
-      { id: 'past-final', label: 'Past Papers — Final Exam', detail: 'Quiz drill from past papers' }
+      { id: 'past', label: 'Past Papers — Midterm Exam', detail: 'Authentic Concordia midterm exam drills (2011–2018)' },
+      { id: 'past-final', label: 'Past Papers — Final Exam', detail: 'Authentic Concordia final exam drills (2005–2021)' }
     ]
   },
   INDU211: {

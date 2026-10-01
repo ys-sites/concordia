@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 43
+### Currently Pending Uploads: 45
 
 ---
 
@@ -485,5 +485,24 @@
 * **Academic year**: `2025/2026`
 * **Description**: Master quantitative final exam study guide for INDU 211 covering Chapter 14 linear programming minimization with equality constraints and 1D line-segment feasible regions, multi-product production modeling, Chapter 15 M/M/1 queuing theory evaluation, Chapter 8 statistical process control (X-bar and R charts) with process capability ratio (Cp), and Chapter 17 PERT/CPM project scheduling.
 
+---
 
+## 44. `ENGR 213 - Past Midterm Examinations Solved Master Guide (2011-2018).pdf`
 
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Practice materials`
+* **Title**: ENGR 213 - Past Midterm Examinations Solved Master Guide (2011-2018)
+* **Academic year**: `2025/2026`
+* **Description**: Complete pedagogical solutions manual for authentic Concordia University ENGR 213 Midterm Examinations (2011–2018). Covers first-order separable IVPs, Bernoulli equations, exact ODEs with potential functions, homogeneous substitutions (y=vx), bacterial kinetics, Wronskian linear independence proofs, fourth-order repeated roots, resonant undetermined coefficients, variation of parameters BVPs, and Cauchy-Euler equations with complete step-by-step algebra.
+
+---
+
+## 45. `ENGR 213 - Past Final Examinations Solved Master Guide (2005-2021).pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Practice materials`
+* **Title**: ENGR 213 - Past Final Examinations Solved Master Guide (2005-2021)
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive master preparation manual for Concordia University ENGR 213 Final Examinations (2005–2021). Features fully solved exam problems covering nonlinear separable arctan IVPs, exact trigonometric potentials, forced damped harmonic oscillators (transient vs steady-state analysis), third-order IVPs, Bernoulli explicit forms, cosecant variation of parameters, non-homogeneous 2x2 first-order linear systems, and power series ordinary point recurrence relations.

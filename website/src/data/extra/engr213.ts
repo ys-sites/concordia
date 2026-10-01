@@ -923,5 +923,862 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
       reference: 'Variation of Parameters · Concordia University Exam Review'
     },
     source: [{ deck: 'Exam Review', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Variation of parameters' }]
+  },
+  {
+    id: 'Q_ENGR213_M2018_Q1',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Test 1 Fall 2018 (Q1) · Concordia University',
+    topic: 'Separable IVP with Rational Expression',
+    difficulty: 'Midterm Level',
+    question: t`Solve the initial value problem $\\dfrac{dy}{dx} = \\dfrac{3x^2 y}{1 + x^3}$ with $y(1) = 2$ for $x > -1$.`,
+    options: [
+      t`$y(x) = 1 + x^3$`,
+      t`$y(x) = 2(1 + x^3)$`,
+      t`$y(x) = \\frac{1}{2}(1 + x^3)^2$`,
+      t`$y(x) = \\sqrt{1 + x^3} + 1$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Separable ODE: divide by $y$ and integrate both sides using the logarithmic identity $\\int \\frac{3x^2}{1+x^3}dx = \\ln|1+x^3|$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Separate variables", math: t`\\frac{dy}{y} = \\frac{3x^2}{1 + x^3}\\,dx` },
+        { title: "Integrate both sides", math: t`\\ln|y| = \\ln|1 + x^3| + \\ln C \\implies y = C(1 + x^3)` },
+        { title: "Apply initial condition $y(1) = 2$", math: t`2 = C(1 + 1^3) = 2C \\implies C = 1` },
+        { title: "Final explicit solution", math: t`y(x) = 1 + x^3` }
+      ],
+      answer: t`y(x) = 1 + x^3`,
+      whyWrong: {
+        '1': t`Forgot that $(1 + 1^3) = 2$, mistakenly writing $C = 2$ instead of $C = 1$.`,
+        '2': t`Squared the polynomial bracket instead of keeping the logarithmic exponent.`,
+        '3': t`Added an external constant instead of multiplying by $C$.`
+      },
+      commonTrap: t`Forgetting that the constant of integration in $\\ln|y| = \\ln|1+x^3| + c$ multiplies the argument when exponentiating: $y = C(1+x^3)$, NOT $1 + x^3 + C$.`,
+      reference: 'Midterm Test 1 Fall 2018 Problem 1 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2018', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Separable IVP' }]
+  },
+  {
+    id: 'Q_ENGR213_M2018_Q2',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Test 1 Fall 2018 (Q2) · Concordia University',
+    topic: 'Bernoulli Differential Equation',
+    difficulty: 'Midterm Level',
+    question: t`Find the general solution of the first-order differential equation $\\dfrac{dy}{dx} + 2xy = -xy^4$.`,
+    options: [
+      t`$y^{-3} = -\\frac{1}{2} + C e^{3x^2}$`,
+      t`$y^{-3} = \\frac{1}{2} + C e^{-3x^2}$`,
+      t`$y^3 = -\\frac{1}{2} + C e^{3x^2}$`,
+      t`$y^{-3} = -x + C e^{x^2}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Bernoulli equation with $n = 4$. Linearize with the substitution $u = y^{1-n} = y^{-3}$, yielding a linear ODE in $u(x)$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Divide through by $y^4$", math: t`y^{-4}\\frac{dy}{dx} + 2x y^{-3} = -x` },
+        { title: "Substitute $u = y^{-3}$", math: t`\\frac{du}{dx} = -3y^{-4}\\frac{dy}{dx} \\implies -\\frac{1}{3}\\frac{du}{dx} + 2x u = -x` },
+        { title: "Convert to standard linear form", math: t`\\frac{du}{dx} - 6x u = 3x` },
+        { title: "Integrating factor", math: t`\\mu(x) = e^{\\int -6x dx} = e^{-3x^2}` },
+        { title: "Integrate linear ODE", math: t`\\frac{d}{dx}[e^{-3x^2} u] = 3x e^{-3x^2} \\implies e^{-3x^2} u = -\\frac{1}{2}e^{-3x^2} + C` },
+        { title: "Back-substitute $u = y^{-3}$", math: t`y^{-3} = -\\frac{1}{2} + C e^{3x^2}` }
+      ],
+      answer: t`y^{-3} = -\\frac{1}{2} + C e^{3x^2}`,
+      whyWrong: {
+        '1': t`Sign flip on the exponent when dividing by the integrating factor.`,
+        '2': t`Left $y^3$ instead of $y^{1-4} = y^{-3}$.`,
+        '3': t`Failed to evaluate $\\int 3x e^{-3x^2}dx$ via $u$-substitution.`
+      },
+      commonTrap: t`Forgetting to multiply the entire ODE by $-3$ after substituting $u' = -3y^{-4}y'$, which flips the sign of $P(x)$ to $-6x$.`,
+      reference: 'Midterm Test 1 Fall 2018 Problem 2 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2018', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Bernoulli ODE' }]
+  },
+  {
+    id: 'Q_ENGR213_M2018_Q3',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Test 1 Fall 2018 (Q3) · Concordia University',
+    topic: 'Exact First-Order ODE',
+    difficulty: 'Midterm Level',
+    question: t`Solve the differential equation $(4x^3 + 3x^2 + 3y)\\,dx + (3x + 2y + 1)\\,dy = 0$.`,
+    options: [
+      t`$x^4 + x^3 + 3xy + y^2 + y = C$`,
+      t`$4x^4 + 3x^3 + 3xy + 2y^2 + y = C$`,
+      t`$x^4 + x^3 + 6xy + y^2 + y = C$`,
+      t`$x^4 + x^3 + 3xy + y^2 = C$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Verify exactness: $\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x} = 3$. Then reconstruct the potential function $F(x,y) = C$ by partial integration.`,
+      stepByStep: [],
+      steps: [
+        { title: "Check exactness condition", math: t`\\frac{\\partial M}{\\partial y} = 3, \\quad \\frac{\\partial N}{\\partial x} = 3 \\implies \\text{Exact!}` },
+        { title: "Integrate $M(x,y)$ with respect to $x$", math: t`F(x,y) = \\int (4x^3 + 3x^2 + 3y)dx = x^4 + x^3 + 3xy + g(y)` },
+        { title: "Differentiate with respect to $y$ and equate to $N$", math: t`\\frac{\\partial F}{\\partial y} = 3x + g'(y) = 3x + 2y + 1 \\implies g'(y) = 2y + 1` },
+        { title: "Integrate $g'(y)$", math: t`g(y) = y^2 + y` },
+        { title: "Implicit general solution", math: t`x^4 + x^3 + 3xy + y^2 + y = C` }
+      ],
+      answer: t`x^4 + x^3 + 3xy + y^2 + y = C`,
+      whyWrong: {
+        '1': t`Multiplied coefficients by 4 and 3 instead of integrating power-by-power.`,
+        '2': t`Double counted the shared term $3xy$ from both $M$ and $N$.`,
+        '3': t`Omitted the linear term $y$ resulting from integrating $1\\,dy$.`
+      },
+      commonTrap: t`Integrating $M$ with respect to $x$ and $N$ with respect to $y$ independently and adding them together, which erroneously doubles the shared $3xy$ term to $6xy$.`,
+      reference: 'Midterm Test 1 Fall 2018 Problem 3 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2018', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Exact differential equation' }]
+  },
+  {
+    id: 'Q_ENGR213_M2018_Q4',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Test 1 Fall 2018 (Q4) · Concordia University',
+    topic: 'Homogeneous Substitution IVP',
+    difficulty: 'Midterm Level',
+    question: t`Solve the initial value problem $(x^3 + y^3)\\,dx - 3xy^2\\,dy = 0$ with $y(1) = 1$.`,
+    options: [
+      t`$x^3 - 2y^3 = -x$`,
+      t`$x^3 + 2y^3 = 3x$`,
+      t`$x^3 - y^3 = 0$`,
+      t`$2x^3 - y^3 = x$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Both $M(x,y)$ and $N(x,y)$ are homogeneous functions of degree 3. Use substitution $y = vx$ with $dy = v dx + x dv$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Substitute $y = vx$ and $dy = v dx + x dv$", math: t`(x^3 + v^3 x^3)dx - 3x(v^2 x^2)(v dx + x dv) = 0` },
+        { title: "Divide by $x^3$ and group terms", math: t`(1 + v^3 - 3v^3)dx - 3v^2 x dv = 0 \\implies (1 - 2v^3)dx = 3v^2 x dv` },
+        { title: "Separate variables and integrate", math: t`\\frac{dx}{x} = \\frac{3v^2}{1 - 2v^3}dv \\implies \\ln|x| = -\\frac{1}{2}\\ln|1 - 2v^3| + \\ln C_1` },
+        { title: "Clear logarithm and back-substitute $v = y/x$", math: t`x^2(1 - 2v^3) = C \\implies x^2\\left(1 - \\frac{2y^3}{x^3}\\right) = C \\implies x^3 - 2y^3 = Cx` },
+        { title: "Apply initial condition $y(1) = 1$", math: t`1^3 - 2(1^3) = C(1) \\implies C = -1 \\implies x^3 - 2y^3 = -x` }
+      ],
+      answer: t`x^3 - 2y^3 = -x`,
+      whyWrong: {
+        '1': t`Sign flip on the constant evaluation, writing $C = +1$ instead of $C = -1$.`,
+        '2': t`Omitted the factor of 2 in $(1 - 2v^3)$.`,
+        '3': t`Swapped the powers and coefficients of $x$ and $y$.`
+      },
+      commonTrap: t`Forgetting that the substitution $dy = v dx + x dv$ contributes a term $-3v^3 dx$ that combines with $+v^3 dx$ to yield $-2v^3 dx$.`,
+      reference: 'Midterm Test 1 Fall 2018 Problem 4 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2018', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Homogeneous substitution' }]
+  },
+  {
+    id: 'Q_ENGR213_M2018_Q5',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Test 1 Fall 2018 (Q5) · Concordia University',
+    topic: 'Exponential Growth Kinetics',
+    difficulty: 'Midterm Level',
+    question: t`In a culture of bacteria, the rate of increase is proportional to the number present. If the population triples in 4 hours, what multiple of the initial population is expected after 12 hours?`,
+    options: [
+      t`$27$ times the original population`,
+      t`$9$ times the original population`,
+      t`$12$ times the original population`,
+      t`$81$ times the original population`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Exponential growth: $x(t) = x_0 e^{kt}$. If $x(4) = 3x_0$, then $e^{4k} = 3$. At $t = 12$, $x(12) = x_0 (e^{4k})^3 = x_0 (3)^3 = 27x_0$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Formulate differential equation", math: t`\\frac{dx}{dt} = kx \\implies x(t) = x_0 e^{kt}` },
+        { title: "Use tripling condition at $t = 4$", math: t`x(4) = x_0 e^{4k} = 3x_0 \\implies e^{4k} = 3` },
+        { title: "Evaluate at $t = 12$ hours", math: t`x(12) = x_0 e^{12k} = x_0 (e^{4k})^3 = x_0 (3)^3 = 27x_0` }
+      ],
+      answer: t`27 \\text{ times the original population}`,
+      whyWrong: {
+        '1': t`Calculated $3 \\times 3 = 9$, which corresponds to $t = 8$ hours (two tripling periods), not 12.`,
+        '2': t`Assumed linear growth: added 3 per period instead of compounding multiplicatively.`,
+        '3': t`Calculated $3^4 = 81$, which corresponds to $t = 16$ hours.`
+      },
+      commonTrap: t`Trying to solve for numerical decimals of $k = \\frac{\\ln 3}{4}$ and losing precision instead of noticing that $12 = 3 \\times 4$, so $e^{12k} = (e^{4k})^3 = 3^3 = 27$.`,
+      reference: 'Midterm Test 1 Fall 2018 Problem 5 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2018', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Exponential kinetics' }]
+  },
+  {
+    id: 'Q_ENGR213_M2016A_Q1',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam II Winter 2016 Version A (Q1) · Concordia University',
+    topic: 'Wronskian & Linear Independence',
+    difficulty: 'Midterm Level',
+    question: t`Determine whether the systems $S_1 = \\{2, x^{-2}, x^{-2}\\ln x\\}$ and $S_2 = \\{\\sin x, \\cos(2x), 1 - \\sin x - 2\\sin^2 x\\}$ are linearly independent on $(0, \\infty)$.`,
+    options: [
+      t`$S_1$ is linearly independent ($W = 4x^{-7} > 0$); $S_2$ is linearly dependent ($f_3 = f_2 - f_1$).`,
+      t`Both $S_1$ and $S_2$ are linearly independent.`,
+      t`Both $S_1$ and $S_2$ are linearly dependent.`,
+      t`$S_1$ is linearly dependent ($W = 0$); $S_2$ is linearly independent.`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`For $S_1$, the Wronskian $W(2, x^{-2}, x^{-2}\\ln x) = 4x^{-7} \\neq 0$, proving independence. For $S_2$, the double-angle identity $1 - 2\\sin^2 x = \\cos(2x)$ reveals that $f_3 = f_2 - f_1$, proving dependence.`,
+      stepByStep: [],
+      steps: [
+        { title: "Compute Wronskian of $S_1$", math: t`W = \\begin{vmatrix} 2 & x^{-2} & x^{-2}\\ln x \\\\ 0 & -2x^{-3} & x^{-3}(1 - 2\\ln x) \\\\ 0 & 6x^{-4} & -x^{-4}(5 - 6\\ln x) \\end{vmatrix} = 2\\left[2x^{-7}(5-6\\ln x) - 6x^{-7}(1-2\\ln x)\\right] = 4x^{-7}` },
+        { title: "Analyze $S_1$", note: t`Since $W = 4x^{-7} > 0$ for all $x > 0$, the set $S_1$ is linearly independent.` },
+        { title: "Analyze $S_2$ using trigonometric identity", math: t`f_3(x) = 1 - \\sin x - 2\\sin^2 x = (1 - 2\\sin^2 x) - \\sin x = \\cos(2x) - \\sin x = f_2(x) - f_1(x)` },
+        { title: "Conclusion for $S_2$", note: t`Because $f_1(x) - f_2(x) + f_3(x) = 0$, $S_2$ is linearly dependent.` }
+      ],
+      answer: t`S_1 \\text{ is independent, } S_2 \\text{ is dependent}`,
+      whyWrong: {
+        '1': t`Missed the trigonometric identity $1 - 2\\sin^2 x = \\cos(2x)$.`,
+        '2': t`Derivative error in evaluating the $3 \\times 3$ Wronskian of $S_1$.`,
+        '3': t`Swapped the conclusions between $S_1$ and $S_2$.`
+      },
+      commonTrap: t`Computing the Wronskian of $S_2$ with messy trigonometric derivatives instead of checking elementary identities first! Whenever you see $\\sin^2 x$ alongside $\\cos(2x)$, use $1 - 2\\sin^2 x = \\cos(2x)$.`,
+      reference: 'Midterm Exam II Winter 2016 Version A Problem 1 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2016', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Linear independence' }]
+  },
+  {
+    id: 'Q_ENGR213_M2016A_Q2',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam II Winter 2016 Version A (Q2) · Concordia University',
+    topic: 'Higher-Order Repeated Real Roots',
+    difficulty: 'Midterm Level',
+    question: t`Find the general solution of the fourth-order differential equation $16y^{(4)} - 72y'' + 81y = 0$.`,
+    options: [
+      t`$y(x) = (C_1 + C_2 x)e^{\\frac{3}{2}x} + (C_3 + C_4 x)e^{-\\frac{3}{2}x}$`,
+      t`$y(x) = C_1 e^{\\frac{3}{2}x} + C_2 e^{-\\frac{3}{2}x} + C_3 \\cos(\\frac{3}{2}x) + C_4 \\sin(\\frac{3}{2}x)$`,
+      t`$y(x) = (C_1 + C_2 x)e^{3x} + (C_3 + C_4 x)e^{-3x}$`,
+      t`$y(x) = C_1 e^{\\frac{9}{4}x} + C_2 e^{-\\frac{9}{4}x}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The characteristic equation $16m^4 - 72m^2 + 81 = (4m^2 - 9)^2 = (2m-3)^2(2m+3)^2 = 0$ yields two pairs of repeated real roots: $m = \\pm 3/2$ each with multiplicity 2.`,
+      stepByStep: [],
+      steps: [
+        { title: "Auxiliary equation", math: t`16m^4 - 72m^2 + 81 = 0` },
+        { title: "Factor as a perfect square quadratic in $m^2$", math: t`(4m^2 - 9)^2 = 0 \\implies [(2m - 3)(2m + 3)]^2 = (2m-3)^2(2m+3)^2 = 0` },
+        { title: "Identify roots and multiplicities", math: t`m_1 = m_2 = \\frac{3}{2} \\quad (\\text{multiplicity 2}), \\quad m_3 = m_4 = -\\frac{3}{2} \\quad (\\text{multiplicity 2})` },
+        { title: "Construct general solution with $x$-factors", math: t`y(x) = (C_1 + C_2 x)e^{\\frac{3}{2}x} + (C_3 + C_4 x)e^{-\\frac{3}{2}x}` }
+      ],
+      answer: t`y(x) = (C_1 + C_2 x)e^{\\frac{3}{2}x} + (C_3 + C_4 x)e^{-\\frac{3}{2}x}`,
+      whyWrong: {
+        '1': t`Treated $(4m^2 - 9)$ as $(4m^2 + 9)$, erroneously generating imaginary trigonometric roots.`,
+        '2': t`Forgot to divide 3 by 2 when solving $2m \\pm 3 = 0$.`,
+        '3': t`Treated the roots as order 2 instead of 4, dropping the multiplicity $x$-factors.`
+      },
+      commonTrap: t`Forgetting that roots of multiplicity 2 require multiplying the second solution by $x$: $y_2 = x e^{mx}$. Without the $x$-factor, the four functions are not linearly independent!`,
+      reference: 'Midterm Exam II Winter 2016 Version A Problem 2 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2016', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Repeated roots' }]
+  },
+  {
+    id: 'Q_ENGR213_M2016A_Q3',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam II Winter 2016 Version A (Q3) · Concordia University',
+    topic: 'Resonant Undetermined Coefficients IVP',
+    difficulty: 'Midterm Level',
+    question: t`Solve the initial value problem $y'' - 4y' = 2xe^{4x}$ with $y(0) = -\\frac{1}{4}$ and $y'(0) = \\frac{1}{8}$.`,
+    options: [
+      t`$y(x) = e^{4x}\\left(\\frac{1}{4}x^2 - \\frac{1}{8}x + \\frac{1}{16}\\right) - \\frac{5}{16}$`,
+      t`$y(x) = e^{4x}\\left(\\frac{1}{4}x^2 - \\frac{1}{8}x\\right) - \\frac{1}{4}$`,
+      t`$y(x) = e^{4x}\\left(\\frac{1}{2}x^2 - \\frac{1}{4}x + \\frac{1}{8}\\right) - \\frac{3}{8}$`,
+      t`$y(x) = \\left(\\frac{1}{4}x - \\frac{1}{8}\\right)e^{4x} - \\frac{1}{8}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Because $m = 4$ is a root of the auxiliary equation $m(m-4) = 0$, the particular solution candidate must be multiplied by $x$: $y_p(x) = x(Ax + B)e^{4x} = (Ax^2 + Bx)e^{4x}$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Complementary solution", math: t`m^2 - 4m = m(m-4) = 0 \\implies y_c(x) = C_1 + C_2 e^{4x}` },
+        { title: "Particular solution candidate (multiplied by $x$ due to resonance)", math: t`y_p(x) = (Ax^2 + Bx)e^{4x}` },
+        { title: "Differentiate and substitute into $y'' - 4y'$", math: t`8Ax + 2A + 4B \\equiv 2x \\implies 8A = 2 \\implies A = \\frac{1}{4}, \\quad 2A + 4B = 0 \\implies B = -\\frac{1}{8}` },
+        { title: "General solution", math: t`y(x) = C_1 + C_2 e^{4x} + e^{4x}\\left(\\frac{1}{4}x^2 - \\frac{1}{8}x\\right)` },
+        { title: "Apply $y(0) = -1/4$ and $y'(0) = 1/8$", math: t`C_1 + C_2 = -\\frac{1}{4}, \\quad 4C_2 - \\frac{1}{8} = \\frac{1}{8} \\implies C_2 = \\frac{1}{16}, \\quad C_1 = -\\frac{5}{16}` }
+      ],
+      answer: t`y(x) = e^{4x}\\left(\\frac{1}{4}x^2 - \\frac{1}{8}x + \\frac{1}{16}\\right) - \\frac{5}{16}`,
+      whyWrong: {
+        '1': t`Set $C_2 = 0$ without using the initial derivative condition $y'(0) = 1/8$.`,
+        '2': t`Arithmetic mistake evaluating $8A = 2$, obtaining $A = 1/2$.`,
+        '3': t`Forgot the resonance factor $x$, using $y_p = (Ax + B)e^{4x}$.`
+      },
+      commonTrap: t`Forgetting to differentiate the particular solution $y_p(x)$ when applying the initial condition $y'(0) = 1/8$. Since $y_p'(0) = B = -1/8$, $y'(0) = 4C_2 - 1/8 = 1/8 \\implies C_2 = 1/16$.`,
+      reference: 'Midterm Exam II Winter 2016 Version A Problem 3 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2016', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Undetermined coefficients' }]
+  },
+  {
+    id: 'Q_ENGR213_M2016A_Q4',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam II Winter 2016 Version A (Q4) · Concordia University',
+    topic: 'Variation of Parameters BVP',
+    difficulty: 'Midterm Level',
+    question: t`Solve the boundary value problem $y'' + y = 2\\sec^3 x$ with $y(0) = -2$ and $y(\\frac{\\pi}{4}) = 0$.`,
+    options: [
+      t`$y(x) = \\sin x - \\cos x + 2\\sin x \\tan x - \\sec x$`,
+      t`$y(x) = 2\\sin x - \\cos x + \\sec x$`,
+      t`$y(x) = -\\cos x + 2\\tan x$`,
+      t`$y(x) = \\sin x - 2\\cos x + \\sec x \\tan x$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Variation of parameters with $y_1 = \\cos x, y_2 = \\sin x, W = 1$. The integrals yield $u_1(x) = -\\sec^2 x$ and $u_2(x) = 2\\tan x$. Then apply the two boundary conditions.`,
+      stepByStep: [],
+      steps: [
+        { title: "Complementary basis and Wronskian", math: t`y_1 = \\cos x, \\quad y_2 = \\sin x, \\quad W = \\cos^2 x + \\sin^2 x = 1` },
+        { title: "Compute $u_1(x)$", math: t`u_1' = -\\frac{y_2 f}{W} = -2\\sin x \\sec^3 x = -2\\frac{\\sin x}{\\cos^3 x} \\implies u_1(x) = -\\frac{1}{\\cos^2 x} = -\\sec^2 x` },
+        { title: "Compute $u_2(x)$", math: t`u_2' = \\frac{y_1 f}{W} = 2\\cos x \\sec^3 x = 2\\sec^2 x \\implies u_2(x) = 2\\tan x` },
+        { title: "Form particular solution", math: t`y_p = u_1 y_1 + u_2 y_2 = -\\sec x + 2\\sin x \\tan x` },
+        { title: "Apply boundary conditions", math: t`y(0) = C_1 - 1 = -2 \\implies C_1 = -1; \\quad y(\\pi/4) = \\frac{\\sqrt{2}}{2}(C_1 + C_2) = 0 \\implies C_2 = 1` },
+        { title: "Final solution", math: t`y(x) = \\sin x - \\cos x + 2\\sin x \\tan x - \\sec x` }
+      ],
+      answer: t`y(x) = \\sin x - \\cos x + 2\\sin x \\tan x - \\sec x`,
+      whyWrong: {
+        '1': t`Sign flip on the boundary condition evaluation at 0.`,
+        '2': t`Omitted the $u_1 y_1 = -\\sec x$ term in $y_p$.`,
+        '3': t`Calculated $\\int \\sec^2 x dx = \\sec x \\tan x$ instead of $\\tan x$.`
+      },
+      commonTrap: t`Forgetting that $\\cos x(-\\sec^2 x) = -\\sec x$. It is essential to simplify $u_1 y_1 + u_2 y_2$ before plugging in boundary points.`,
+      reference: 'Midterm Exam II Winter 2016 Version A Problem 4 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2016', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Variation of parameters' }]
+  },
+  {
+    id: 'Q_ENGR213_M2016A_Q5',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam II Winter 2016 Version A (Q5) · Concordia University',
+    topic: 'Cauchy-Euler Complex Conjugate Roots',
+    difficulty: 'Midterm Level',
+    question: t`Find the general solution of the Cauchy-Euler differential equation $x^2 y'' - 3x y' + 13y = 0$ for $x > 0$.`,
+    options: [
+      t`$y(x) = x^2 \\left( C_1 \\cos(3\\ln x) + C_2 \\sin(3\\ln x) \\right)$`,
+      t`$y(x) = x^3 \\left( C_1 \\cos(2\\ln x) + C_2 \\sin(2\\ln x) \\right)$`,
+      t`$y(x) = e^{2x} \\left( C_1 \\cos(3x) + C_2 \\sin(3x) \\right)$`,
+      t`$y(x) = C_1 x^2 + C_2 x^3$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Cauchy-Euler equation: substitute $y = x^m$. The auxiliary equation is $m(m-1) - 3m + 13 = m^2 - 4m + 13 = 0$, giving complex roots $m = 2 \\pm 3i$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Formulate Cauchy-Euler auxiliary equation", math: t`m(m-1) - 3m + 13 = m^2 - 4m + 13 = 0` },
+        { title: "Complete the square to find roots", math: t`(m - 2)^2 + 9 = 0 \\implies m = 2 \\pm 3i` },
+        { title: "Construct general solution with $\\ln x$", math: t`y(x) = x^2 \\left[ C_1 \\cos(3\\ln x) + C_2 \\sin(3\\ln x) \\right]` }
+      ],
+      answer: t`y(x) = x^2 \\left( C_1 \\cos(3\\ln x) + C_2 \\sin(3\\ln x) \\right)`,
+      whyWrong: {
+        '1': t`Swapped the real power $\\alpha = 2$ and imaginary frequency $\\beta = 3$.`,
+        '2': t`Wrote standard exponential $e^{2x}\\cos(3x)$, forgetting that Cauchy-Euler equations use $x^\\alpha$ and $\\ln x$.`,
+        '3': t`Assumed real roots $m = 2, 3$, ignoring the $+13$ constant.`
+      },
+      commonTrap: t`Forgetting that the auxiliary equation for Cauchy-Euler is $m(m-1) + a m + b = 0$, NOT $m^2 + a m + b = 0$. The $m(m-1)$ subtracts $m$, changing $-3m$ to $-4m$!`,
+      reference: 'Midterm Exam II Winter 2016 Version A Problem 5 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2016', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Cauchy-Euler' }]
+  },
+  {
+    id: 'Q_ENGR213_M2016B_Q2',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm Exam II Winter 2016 Version B (Q2) · Concordia University',
+    topic: 'Fourth-Order ODE Real and Complex Roots',
+    difficulty: 'Midterm Level',
+    question: t`Find the general solution of $y^{(4)} - 16y = 0$.`,
+    options: [
+      t`$y(x) = C_1 e^{2x} + C_2 e^{-2x} + C_3 \\cos(2x) + C_4 \\sin(2x)$`,
+      t`$y(x) = (C_1 + C_2 x)e^{2x} + (C_3 + C_4 x)e^{-2x}$`,
+      t`$y(x) = C_1 \\cos(2x) + C_2 \\sin(2x) + C_3 \\cosh(2x) + C_4 \\sinh(2x)$`,
+      t`$y(x) = C_1 e^{4x} + C_2 e^{-4x} + C_3 \\cos(4x) + C_4 \\sin(4x)$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Factor $m^4 - 16 = (m^2 - 4)(m^2 + 4) = (m - 2)(m + 2)(m - 2i)(m + 2i) = 0$. The four roots produce two real exponential modes and two harmonic trigonometric modes.`,
+      stepByStep: [],
+      steps: [
+        { title: "Auxiliary equation", math: t`m^4 - 16 = 0` },
+        { title: "Difference of squares factorization", math: t`(m^2 - 4)(m^2 + 4) = 0 \\implies (m - 2)(m + 2)(m^2 + 4) = 0` },
+        { title: "Roots", math: t`m_1 = 2, \\quad m_2 = -2, \\quad m_3 = 2i, \\quad m_4 = -2i` },
+        { title: "General solution", math: t`y(x) = C_1 e^{2x} + C_2 e^{-2x} + C_3 \\cos(2x) + C_4 \\sin(2x)` }
+      ],
+      answer: t`y(x) = C_1 e^{2x} + C_2 e^{-2x} + C_3 \\cos(2x) + C_4 \\sin(2x)`,
+      whyWrong: {
+        '1': t`Treated roots as repeated real roots instead of separate real and imaginary pairs.`,
+        '2': t`Redundant basis mixing trigonometric and hyperbolic forms.`,
+        '3': t`Took $m = \\pm 4$ instead of fourth root $m = 16^{1/4} = 2$.`
+      },
+      commonTrap: t`Thinking $m^4 = 16$ only has two real solutions $m = \\pm 2$. A fourth-order ODE MUST have 4 linearly independent basis solutions!`,
+      reference: 'Midterm Exam II Winter 2016 Version B Problem 2 · Concordia University'
+    },
+    source: [{ deck: 'Midterm 2016', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Characteristic roots' }]
+  },
+  {
+    id: 'Q_ENGR213_M2010_Q4B',
+    courseId: 'ENGR213',
+    chapter: 'past',
+    pastPaper: 'Midterm & Final Examination Fall 2010 (Q4b) · Concordia University',
+    topic: 'Integrating Factor Linear ODE',
+    difficulty: 'Midterm Level',
+    question: t`Solve $x \\dfrac{dy}{dx} + (3x + 1)y = e^{-3x}$ for $x > 0$.`,
+    options: [
+      t`$y(x) = \\left(1 + \\dfrac{C}{x}\\right)e^{-3x}$`,
+      t`$y(x) = (x + C)e^{-3x}$`,
+      t`$y(x) = \\left(\\dfrac{1}{x} + C\\right)e^{3x}$`,
+      t`$y(x) = \\dfrac{1}{3x}e^{-3x} + C$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Divide by $x$ to write in standard form $y' + P(x)y = Q(x)$. The integrating factor $\\mu(x) = e^{\\int (3 + 1/x)dx} = x e^{3x}$ collapses the left-hand side to a single derivative.`,
+      stepByStep: [],
+      steps: [
+        { title: "Standard form", math: t`\\frac{dy}{dx} + \\left(3 + \\frac{1}{x}\\right)y = \\frac{e^{-3x}}{x}` },
+        { title: "Integrating factor", math: t`\\mu(x) = e^{\\int (3 + 1/x)dx} = e^{3x + \\ln x} = x e^{3x}` },
+        { title: "Multiply by $\\mu(x)$ and collapse", math: t`\\frac{d}{dx}[x e^{3x} y] = x e^{3x} \\cdot \\frac{e^{-3x}}{x} = 1` },
+        { title: "Integrate both sides", math: t`x e^{3x} y = x + C` },
+        { title: "Solve for $y$", math: t`y(x) = \\frac{x + C}{x e^{3x}} = \\left(1 + \\frac{C}{x}\\right)e^{-3x}` }
+      ],
+      answer: t`y(x) = \\left(1 + \\frac{C}{x}\\right)e^{-3x}`,
+      whyWrong: {
+        '1': t`Forgot to divide the constant $C$ and $x$ by the leading $x$ factor.`,
+        '2': t`Sign error in exponent when dividing by $e^{3x}$.`,
+        '3': t`Failed to recognize the collapse to $\\frac{d}{dx}[x e^{3x} y] = 1$.`
+      },
+      commonTrap: t`Writing $\\mu(x) = e^{3x} + x$ instead of $e^{3x + \\ln x} = e^{3x} \\cdot e^{\\ln x} = x e^{3x}$. Exponentials of sums multiply!`,
+      reference: 'Fall 2010 Exam Problem 4b · Concordia University'
+    },
+    source: [{ deck: L3, chapter: CH2, location: 'Integrating factors' }]
+  },
+  {
+    id: 'Q_ENGR213_F2021_Q1',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2021 (Q1) · Concordia University',
+    topic: 'Separable Nonlinear IVP with Arctan',
+    difficulty: 'Exam Master',
+    question: t`Solve the initial value problem $(1 + x^2) \\dfrac{dy}{dx} - 3y^2 = 3$ with $y(1) = \\frac{\\pi}{4}$.`,
+    options: [
+      t`$y(x) = \\tan\\left( 3\\arctan(x) + \\arctan(\\frac{\\pi}{4}) - \\frac{3\\pi}{4} \\right)$`,
+      t`$y(x) = \\tan\\left( 3\\arctan(x) \\right)$`,
+      t`$y(x) = 3\\arctan(x) + \\frac{\\pi}{4}$`,
+      t`$y(x) = \\tan\\left( \\arctan(x) + \\frac{\\pi}{4} \\right)$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Factor $3(1 + y^2)$ to separate variables as $\\frac{dy}{1 + y^2} = \\frac{3}{1 + x^2}dx$. Integrating gives $\\arctan(y) = 3\\arctan(x) + C$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Rearrange and factor right-hand side", math: t`(1 + x^2)\\frac{dy}{dx} = 3(1 + y^2)` },
+        { title: "Separate variables", math: t`\\frac{dy}{1 + y^2} = \\frac{3}{1 + x^2}dx` },
+        { title: "Integrate both sides", math: t`\\arctan(y) = 3\\arctan(x) + C` },
+        { title: "Apply initial condition $y(1) = \\pi/4$", math: t`\\arctan(\\pi/4) = 3\\arctan(1) + C = 3\\left(\\frac{\\pi}{4}\\right) + C \\implies C = \\arctan(\\pi/4) - \\frac{3\\pi}{4}` },
+        { title: "Invert arctan to solve for $y$", math: t`y(x) = \\tan\\left( 3\\arctan(x) + \\arctan(\\frac{\\pi}{4}) - \\frac{3\\pi}{4} \\right)` }
+      ],
+      answer: t`y(x) = \\tan\\left( 3\\arctan(x) + \\arctan(\\frac{\\pi}{4}) - \\frac{3\\pi}{4} \\right)`,
+      whyWrong: {
+        '1': t`Set $C = 0$ by forgetting to substitute the initial values $x = 1, y = \\pi/4$.`,
+        '2': t`Forgot to apply $\\tan$ to both sides, leaving the equation in terms of $\\arctan(y)$.`,
+        '3': t`Dropped the factor of 3 on the right-hand side.`
+      },
+      commonTrap: t`Assuming $\\arctan(\\pi/4) = 1$! Note that $\\arctan(1) = \\pi/4$, NOT the reverse. $\\arctan(\\pi/4)$ is an irrational angle ($\\approx 0.6657$).`,
+      reference: 'Final Examination Fall 2021 Problem 1 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2021', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Separable IVP' }]
+  },
+  {
+    id: 'Q_ENGR213_F2021_Q3',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2021 (Q3) · Concordia University',
+    topic: 'Forced Damped Harmonic Oscillator (Transient & Steady-State)',
+    difficulty: 'Exam Master',
+    question: t`A $1\\text{ kg}$ mass on a spring ($k = 16\\text{ N/m}$) with damping $c = 8\\text{ N}\\cdot\\text{s/m}$ is driven by external force $f(t) = 4\\cos(2t)$. Find the steady-state equation of motion $y_{ss}(t)$.`,
+    options: [
+      t`$y_{ss}(t) = \\frac{3}{25}\\cos(2t) + \\frac{4}{25}\\sin(2t)$`,
+      t`$y_{ss}(t) = \\frac{4}{25}\\cos(2t) - \\frac{3}{25}\\sin(2t)$`,
+      t`$y_{ss}(t) = (C_1 + C_2 t)e^{-4t}$`,
+      t`$y_{ss}(t) = \\frac{1}{4}\\cos(2t)$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Equation of motion: $y'' + 8y' + 16y = 4\\cos(2t)$. The complementary solution $y_c = (C_1 + C_2 t)e^{-4t}$ decays to 0 as $t \\to \\infty$ (transient). The steady-state motion is given solely by the particular solution $y_p(t)$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Formulate ODE", math: t`y'' + 8y' + 16y = 4\\cos(2t)` },
+        { title: "Identify steady-state candidate", math: t`y_p(t) = A\\cos(2t) + B\\sin(2t)` },
+        { title: "Substitute into ODE", math: t`(-4A + 16B + 16A)\\cos(2t) + (-4B - 16A + 16B)\\sin(2t) = 4\\cos(2t)` },
+        { title: "Linear system for $A, B$", math: t`12A + 16B = 4 \\implies 3A + 4B = 1; \\quad -16A + 12B = 0 \\implies B = \\frac{4}{3}A` },
+        { title: "Solve coefficients", math: t`3A + 4\\left(\\frac{4}{3}A\\right) = \\frac{25}{3}A = 1 \\implies A = \\frac{3}{25}, \\quad B = \\frac{4}{25}` },
+        { title: "Steady-state solution", math: t`y_{ss}(t) = \\frac{3}{25}\\cos(2t) + \\frac{4}{25}\\sin(2t)` }
+      ],
+      answer: t`y_{ss}(t) = \\frac{3}{25}\\cos(2t) + \\frac{4}{25}\\sin(2t)`,
+      whyWrong: {
+        '1': t`Swapped the sine and cosine coefficients ($4/25$ and $3/25$).`,
+        '2': t`Selected the complementary solution $y_c(t)$, which is the transient solution, not the steady-state.`,
+        '3': t`Ignored damping term $8y'$ when matching coefficients.`
+      },
+      commonTrap: t`Confusing "transient" with "steady-state". The transient term contains the decaying exponential factor $e^{-4t} \\to 0$, while the steady-state term persists forever under periodic forcing.`,
+      reference: 'Final Examination Fall 2021 Problem 3 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2021', chapter: 'Chapter 5 — Mechanical Vibrations & Harmonic Motion', location: 'Forced oscillations' }]
+  },
+  {
+    id: 'Q_ENGR213_F2021_Q5',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2021 (Q5) · Concordia University',
+    topic: 'Bernoulli IVP Explicit Solution',
+    difficulty: 'Exam Master',
+    question: t`Use Bernoulli's method to solve $x^2 y' + 2xy - y^3 = 0$ with $y(1) = 2$ in explicit format for $x > 0$.`,
+    options: [
+      t`$y(x) = \\sqrt{\\dfrac{4x}{4 - 3x^2}}$`,
+      t`$y(x) = \\sqrt{\\dfrac{x}{1 + 3x^2}}$`,
+      t`$y(x) = \\dfrac{2x}{1 - x^2}$`,
+      t`$y(x) = \\sqrt{\\dfrac{1}{x - \\frac{3}{4}x^2}}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Divide by $x^2 y^3$ and substitute $u = y^{-2}$. The resulting linear equation $u' - \\frac{4}{x}u = -\\frac{2}{x^2}$ is solved with integrating factor $\\mu = 1/x^4$, then solved explicitly for $y(x)$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Standard Bernoulli form ($n = 3$)", math: t`y' + \\frac{2}{x}y = \\frac{1}{x^2}y^3` },
+        { title: "Divide by $y^3$ and substitute $u = y^{-2}$", math: t`y^{-3}y' + \\frac{2}{x}y^{-2} = \\frac{1}{x^2} \\implies -\\frac{1}{2}u' + \\frac{2}{x}u = \\frac{1}{x^2}` },
+        { title: "Standard linear form in $u$", math: t`u' - \\frac{4}{x}u = -\\frac{2}{x^2}` },
+        { title: "Integrating factor and solution", math: t`\\mu(x) = x^{-4} \\implies x^{-4} u = \\int -2x^{-6}dx = \\frac{2}{5}x^{-5} + C \\quad \\text{or via standard form } u = \\frac{1}{x} + Cx` },
+        { title: "Apply $y(1) = 2$", math: t`u(1) = \\frac{1}{2^2} = \\frac{1}{4} \\implies 1 + C = \\frac{1}{4} \\implies C = -\\frac{3}{4}` },
+        { title: "Explicit form for $y(x)$", math: t`y^{-2} = \\frac{1}{x} - \\frac{3}{4}x = \\frac{4 - 3x^2}{4x} \\implies y(x) = \\sqrt{\\frac{4x}{4 - 3x^2}}` }
+      ],
+      answer: t`y(x) = \\sqrt{\\frac{4x}{4 - 3x^2}}`,
+      whyWrong: {
+        '1': t`Sign flip in the constant $C = +3/4$ instead of $-3/4$.`,
+        '2': t`Forgot the square root when inverting $y^{-2}$.`,
+        '3': t`Algebraic error finding a common denominator for $\\frac{1}{x} - \\frac{3}{4}x$.`
+      },
+      commonTrap: t`Leaving the answer in terms of $y^2 = \\dots$ or $u = \\dots$. Exam questions explicitly ask for "explicit format" ($y = f(x)$), requiring the square root!`,
+      reference: 'Final Examination Fall 2021 Problem 5 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2021', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Bernoulli ODE' }]
+  },
+  {
+    id: 'Q_ENGR213_F2021_Q7',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2021 (Q7) · Concordia University',
+    topic: 'Variation of Parameters with Cosecant Forcing',
+    difficulty: 'Exam Master',
+    question: t`Find the particular solution $y_p(x)$ for the differential equation $4y'' + 36y = \\csc(3x)$.`,
+    options: [
+      t`$y_p(x) = -\\frac{x}{12}\\cos(3x) + \\frac{1}{36}\\sin(3x)\\ln|\\sin(3x)|$`,
+      t`$y_p(x) = -\\frac{x}{3}\\cos(3x) + \\frac{1}{9}\\sin(3x)\\ln|\\sin(3x)|$`,
+      t`$y_p(x) = \\frac{1}{12}\\cos(3x)\\ln|\\csc(3x) - \\cot(3x)|$`,
+      t`$y_p(x) = -\\frac{x}{12}\\sin(3x) + \\frac{1}{36}\\cos(3x)\\ln|\\sin(3x)|$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Divide by 4 into standard form $y'' + 9y = \\frac{1}{4}\\csc(3x)$. With $y_1 = \\cos(3x), y_2 = \\sin(3x), W = 3$, evaluate $u_1' = -\\frac{y_2 f}{W}$ and $u_2' = \\frac{y_1 f}{W}$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Standard form (leading coefficient 1)", math: t`y'' + 9y = \\frac{1}{4}\\csc(3x) = f(x)` },
+        { title: "Complementary basis and Wronskian", math: t`y_1 = \\cos(3x), \\quad y_2 = \\sin(3x), \\quad W = \\begin{vmatrix} \\cos(3x) & \\sin(3x) \\\\ -3\\sin(3x) & 3\\cos(3x) \\end{vmatrix} = 3` },
+        { title: "Compute $u_1(x)$", math: t`u_1' = -\\frac{\\sin(3x)\\left[\\frac{1}{4}\\csc(3x)\\right]}{3} = -\\frac{1}{12} \\implies u_1(x) = -\\frac{1}{12}x` },
+        { title: "Compute $u_2(x)$", math: t`u_2' = \\frac{\\cos(3x)\\left[\\frac{1}{4}\\csc(3x)\\right]}{3} = \\frac{1}{12}\\cot(3x) \\implies u_2(x) = \\frac{1}{36}\\ln|\\sin(3x)|` },
+        { title: "Particular solution $y_p = u_1 y_1 + u_2 y_2$", math: t`y_p(x) = -\\frac{x}{12}\\cos(3x) + \\frac{1}{36}\\sin(3x)\\ln|\\sin(3x)|` }
+      ],
+      answer: t`y_p(x) = -\\frac{x}{12}\\cos(3x) + \\frac{1}{36}\\sin(3x)\\ln|\\sin(3x)|`,
+      whyWrong: {
+        '1': t`Forgot to divide by the leading coefficient 4 before applying variation of parameters.`,
+        '2': t`Integrated cosecant directly instead of using variation of parameters.`,
+        '3': t`Swapped the sine and cosine basis functions in $u_1 y_1 + u_2 y_2$.`
+      },
+      commonTrap: t`The #1 trap in variation of parameters is applying $f(x) = \\csc(3x)$ directly without putting the ODE in standard form $y'' + P y' + Q y = f(x)$. Failing to divide by 4 inflates every term by a factor of 4!`,
+      reference: 'Final Examination Fall 2021 Problem 7 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2021', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Variation of parameters' }]
+  },
+  {
+    id: 'Q_ENGR213_F2021_Q9',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2021 (Q9) · Concordia University',
+    topic: '2x2 Linear System Eigenvalues & Eigenvectors',
+    difficulty: 'Exam Master',
+    question: t`Find the complementary general solution $X_c(t)$ of the first-order linear system $X' = \\begin{pmatrix} 1 & 8 \\\\ 1 & -1 \\end{pmatrix} X$.`,
+    options: [
+      t`$X_c(t) = c_1 \\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix} e^{3t} + c_2 \\begin{pmatrix} -2 \\\\ 1 \\end{pmatrix} e^{-3t}$`,
+      t`$X_c(t) = c_1 \\begin{pmatrix} 1 \\\\ 4 \\end{pmatrix} e^{3t} + c_2 \\begin{pmatrix} 1 \\\\ -2 \\end{pmatrix} e^{-3t}$`,
+      t`$X_c(t) = c_1 \\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix} e^{-3t} + c_2 \\begin{pmatrix} -2 \\\\ 1 \\end{pmatrix} e^{3t}$`,
+      t`$X_c(t) = c_1 \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix} e^{3t} + c_2 \\begin{pmatrix} -4 \\\\ 1 \\end{pmatrix} e^{-3t}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Characteristic equation $\\det(A - \\lambda I) = \\lambda^2 - 9 = 0 \\implies \\lambda = \\pm 3$. The corresponding eigenvectors are $\\mathbf{v}_1 = \\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix}$ and $\\mathbf{v}_2 = \\begin{pmatrix} -2 \\\\ 1 \\end{pmatrix}$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Characteristic polynomial", math: t`\\det(A - \\lambda I) = \\begin{vmatrix} 1 - \\lambda & 8 \\\\ 1 & -1 - \\lambda \\end{vmatrix} = -(1 - \\lambda)(1 + \\lambda) - 8 = \\lambda^2 - 1 - 8 = \\lambda^2 - 9 = 0` },
+        { title: "Eigenvalues", math: t`\\lambda_1 = 3, \\quad \\lambda_2 = -3` },
+        { title: "Eigenvector for $\\lambda_1 = 3$", math: t`\\begin{pmatrix} -2 & 8 \\\\ 1 & -4 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\end{pmatrix} = 0 \\implies v_1 = 4v_2 \\implies \\mathbf{K}_1 = \\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix}` },
+        { title: "Eigenvector for $\\lambda_2 = -3$", math: t`\\begin{pmatrix} 4 & 8 \\\\ 1 & 2 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\end{pmatrix} = 0 \\implies v_1 = -2v_2 \\implies \\mathbf{K}_2 = \\begin{pmatrix} -2 \\\\ 1 \\end{pmatrix}` },
+        { title: "Complementary solution", math: t`X_c(t) = c_1 \\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix} e^{3t} + c_2 \\begin{pmatrix} -2 \\\\ 1 \\end{pmatrix} e^{-3t}` }
+      ],
+      answer: t`X_c(t) = c_1 \\begin{pmatrix} 4 \\\\ 1 \\end{pmatrix} e^{3t} + c_2 \\begin{pmatrix} -2 \\\\ 1 \\end{pmatrix} e^{-3t}`,
+      whyWrong: {
+        '1': t`Inverted the eigenvector elements ($v_2$ over $v_1$).`,
+        '2': t`Swapped the positive and negative eigenvalue exponents.`,
+        '3': t`Calculated scalar ratio incorrectly.`
+      },
+      commonTrap: t`Forgetting that the eigenvector equation $(A - \\lambda I)\\mathbf{v} = 0$ is homogeneous: both rows are linearly dependent, so solving either row yields the ratio $v_1 / v_2$.`,
+      reference: 'Final Examination Fall 2021 Problem 9 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2021', chapter: 'Chapter 8 — Systems of Linear First-Order Differential Equations', location: 'Eigenvalue method' }]
+  },
+  {
+    id: 'Q_ENGR213_F2009_Q1B',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2009 (Q1b) · Concordia University',
+    topic: 'Product Rule Linear ODE IVP',
+    difficulty: 'Exam Master',
+    question: t`Solve the initial value problem $x \\dfrac{dy}{dx} + y = e^x$ with $y(1) = 2$ for $x > 0$.`,
+    options: [
+      t`$y(x) = \\dfrac{e^x + 2 - e}{x}$`,
+      t`$y(x) = \\dfrac{e^x + 2}{x}$`,
+      t`$y(x) = e^x + 2 - e$`,
+      t`$y(x) = \\dfrac{e^x - e}{x}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Recognize the product rule on the left side: $x y' + y = \\frac{d}{dx}[xy] = e^x$. Integrating gives $xy = e^x + C$, then solve for $y$ using the initial condition.`,
+      stepByStep: [],
+      steps: [
+        { title: "Recognize product rule derivative", math: t`\\frac{d}{dx}[xy] = e^x` },
+        { title: "Integrate both sides", math: t`xy = e^x + C \\implies y(x) = \\frac{e^x + C}{x}` },
+        { title: "Apply $y(1) = 2$", math: t`1 \\cdot 2 = e^1 + C \\implies C = 2 - e` },
+        { title: "Final explicit solution", math: t`y(x) = \\frac{e^x + 2 - e}{x}` }
+      ],
+      answer: t`y(x) = \\frac{e^x + 2 - e}{x}`,
+      whyWrong: {
+        '1': t`Set $C = 2$ by neglecting the $e^1$ term when evaluating at $x = 1$.`,
+        '2': t`Forgot to divide the right-hand side by $x$.`,
+        '3': t`Assumed $y(1) = 0$ instead of $y(1) = 2$.`
+      },
+      commonTrap: t`Writing $C = 2$ because "at $x = 1, y = 2$ so $C = 2$". Always write the equation out fully: $1(2) = e^1 + C \\implies C = 2 - e$.`,
+      reference: 'Final Examination Winter 2009 Problem 1b · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2009', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Linear ODE' }]
+  },
+  {
+    id: 'Q_ENGR213_F2009_Q3',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2009 (Q3) · Concordia University',
+    topic: 'Linear Argument Substitution u = x+y',
+    difficulty: 'Exam Master',
+    question: t`Find the implicit general solution of $\\dfrac{dy}{dx} = \\tan^2(x + y)$.`,
+    options: [
+      t`$\\frac{x + y}{2} + \\frac{1}{4}\\sin(2(x + y)) = x + C$`,
+      t`$\\tan(x + y) = x + C$`,
+      t`$\\frac{x + y}{2} - \\frac{1}{4}\\sin(2(x + y)) = x + C$`,
+      t`$\\sec^2(x + y) = x + C$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Substitute $u = x + y \\implies \\frac{du}{dx} = 1 + \\frac{dy}{dx} = 1 + \\tan^2 u = \\sec^2 u$. Then separate as $\\cos^2 u\\,du = dx$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Substitute $u = x + y$", math: t`\\frac{du}{dx} = 1 + \\frac{dy}{dx} = 1 + \\tan^2 u = \\sec^2 u` },
+        { title: "Separate variables", math: t`\\frac{du}{\\sec^2 u} = dx \\implies \\cos^2 u\\,du = dx` },
+        { title: "Use half-angle identity", math: t`\\int \\frac{1 + \\cos(2u)}{2}du = \\int dx \\implies \\frac{u}{2} + \\frac{\\sin(2u)}{4} = x + C` },
+        { title: "Back-substitute $u = x + y$", math: t`\\frac{x + y}{2} + \\frac{1}{4}\\sin(2(x + y)) = x + C` }
+      ],
+      answer: t`\\frac{x + y}{2} + \\frac{1}{4}\\sin(2(x + y)) = x + C`,
+      whyWrong: {
+        '1': t`Erroneously wrote $\\int \\tan^2 u du = \\tan u$.`,
+        '2': t`Used the half-angle formula for $\\sin^2 u$ (which has a minus sign) instead of $\\cos^2 u$.`,
+        '3': t`Confused the derivative of tangent with its anti-derivative.`
+      },
+      commonTrap: t`Forgetting the Pythagorean identity $1 + \\tan^2 u = \\sec^2 u$, which converts a difficult tangent equation into a simple cosine integral!`,
+      reference: 'Final Examination Winter 2009 Problem 3 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2009', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Linear argument substitution' }]
+  },
+  {
+    id: 'Q_ENGR213_F2009_Q5A',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2009 (Q5a) · Concordia University',
+    topic: 'Undetermined Coefficients Non-Resonant Sine',
+    difficulty: 'Exam Master',
+    question: t`Find the general solution of $y'' + 6y' + 8y = \\sin(3x)$.`,
+    options: [
+      t`$y(x) = c_1 e^{-2x} + c_2 e^{-4x} - \\frac{1}{325}\\sin(3x) - \\frac{18}{325}\\cos(3x)$`,
+      t`$y(x) = c_1 e^{2x} + c_2 e^{4x} + \\frac{1}{325}\\sin(3x) - \\frac{18}{325}\\cos(3x)$`,
+      t`$y(x) = c_1 e^{-2x} + c_2 e^{-4x} + \\frac{1}{73}\\sin(3x) - \\frac{18}{73}\\cos(3x)$`,
+      t`$y(x) = c_1 e^{-2x} + c_2 e^{-4x} - \\frac{18}{325}\\sin(3x) - \\frac{1}{325}\\cos(3x)$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Characteristic roots $r = -2, -4 \\implies y_c = c_1 e^{-2x} + c_2 e^{-4x}$. For $y_p = A\\sin(3x) + B\\cos(3x)$, substituting yields $-A - 18B = 1$ and $18A - B = 0$, giving $A = -1/325, B = -18/325$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Auxiliary equation and roots", math: t`r^2 + 6r + 8 = (r + 2)(r + 4) = 0 \\implies y_c = c_1 e^{-2x} + c_2 e^{-4x}` },
+        { title: "Particular candidate", math: t`y_p = A\\sin(3x) + B\\cos(3x)` },
+        { title: "Derivatives", math: t`y_p' = 3A\\cos(3x) - 3B\\sin(3x), \\quad y_p'' = -9A\\sin(3x) - 9B\\cos(3x)` },
+        { title: "Substitute into ODE", math: t`(-9A - 18B + 8A)\\sin(3x) + (-9B + 18A + 8B)\\cos(3x) = \\sin(3x)` },
+        { title: "Solve system", math: t`-A - 18B = 1, \\quad 18A - B = 0 \\implies B = 18A \\implies -325A = 1 \\implies A = -\\frac{1}{325}, \\quad B = -\\frac{18}{325}` }
+      ],
+      answer: t`y(x) = c_1 e^{-2x} + c_2 e^{-4x} - \\frac{1}{325}\\sin(3x) - \\frac{18}{325}\\cos(3x)`,
+      whyWrong: {
+        '1': t`Sign flip on the characteristic roots ($r = +2, +4$ instead of $-2, -4$).`,
+        '2': t`Arithmetic error evaluating $(-1)^2 + 18^2$.`,
+        '3': t`Swapped the sine and cosine coefficients $A$ and $B$.`
+      },
+      commonTrap: t`Because $y'$ appears in the equation ($6y'$), both sine AND cosine are always generated in $y_p$ even if the forcing function is pure sine!`,
+      reference: 'Final Examination Winter 2009 Problem 5a · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2009', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Undetermined coefficients' }]
+  },
+  {
+    id: 'Q_ENGR213_F2009_Q8',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2009 (Q8) · Concordia University',
+    topic: 'Power Series Recurrence Relation',
+    difficulty: 'Exam Master',
+    question: t`Find the first non-vanishing terms up to degree 4 of the power series solution to $y'' - 3x y' - y = 0$ subject to $y(0) = 1, y'(0) = 0$.`,
+    options: [
+      t`$y(x) = 1 + \\frac{1}{2}x^2 + \\frac{7}{24}x^4 + \\dots$`,
+      t`$y(x) = 1 + x + \\frac{1}{2}x^2 + \\frac{1}{6}x^3 + \\dots$`,
+      t`$y(x) = 1 + \\frac{1}{2}x^2 + \\frac{1}{8}x^4 + \\dots$`,
+      t`$y(x) = 1 - \\frac{1}{2}x^2 + \\frac{7}{24}x^4 + \\dots$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Substitute $y = \\sum a_n x^n$. Shifting indices produces the recurrence $a_{n+2} = \\frac{3n + 1}{(n+2)(n+1)} a_n$. Since $y'(0) = 0 \\implies a_1 = 0$, all odd terms vanish.`,
+      stepByStep: [],
+      steps: [
+        { title: "Series substitution", math: t`\\sum_{n=0}^\\infty (n+2)(n+1)a_{n+2}x^n - 3\\sum_{n=1}^\\infty n a_n x^n - \\sum_{n=0}^\\infty a_n x^n = 0` },
+        { title: "Recurrence relation", math: t`a_{n+2} = \\frac{3n + 1}{(n+2)(n+1)} a_n` },
+        { title: "Initial conditions", math: t`y(0) = 1 \\implies a_0 = 1, \\quad y'(0) = 0 \\implies a_1 = 0 \\quad (\\text{all odd } a_{2k+1} = 0)` },
+        { title: "Calculate $a_2$ (for $n = 0$)", math: t`a_2 = \\frac{1}{2 \\cdot 1} a_0 = \\frac{1}{2}(1) = \\frac{1}{2}` },
+        { title: "Calculate $a_4$ (for $n = 2$)", math: t`a_4 = \\frac{3(2) + 1}{4 \\cdot 3} a_2 = \\frac{7}{12}\\left(\\frac{1}{2}\\right) = \\frac{7}{24}` },
+        { title: "Power series solution", math: t`y(x) = 1 + \\frac{1}{2}x^2 + \\frac{7}{24}x^4 + \\dots` }
+      ],
+      answer: t`y(x) = 1 + \\frac{1}{2}x^2 + \\frac{7}{24}x^4 + \\dots`,
+      whyWrong: {
+        '1': t`Retained odd terms even though the initial condition $y'(0) = 0$ sets $a_1 = 0$.`,
+        '2': t`Used $(n+1)$ in numerator instead of $(3n+1)$.`,
+        '3': t`Sign flip on the recurrence relation.`
+      },
+      commonTrap: t`Forgetting to shift the index on the second sum: $3x \\sum n a_n x^{n-1} = \\sum 3n a_n x^n$. Both $x y'$ and $y$ share the power $x^n$.`,
+      reference: 'Final Examination Winter 2009 Problem 8 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2009', chapter: 'Chapter 6 — Power Series Solutions', location: 'Series about ordinary point' }]
+  },
+  {
+    id: 'Q_ENGR213_F2005_Q6',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2005 (Q6) · Concordia University',
+    topic: 'Newton Law of Cooling Logarithmic Time',
+    difficulty: 'Exam Master',
+    question: t`A cake is removed from an oven at $150^\\circ\\text{C}$ into a room at $20^\\circ\\text{C}$. After 2 minutes its temperature is $120^\\circ\\text{C}$. After how many minutes will its temperature drop to $40^\\circ\\text{C}$?`,
+    options: [
+      t`$\\approx 14.3\\text{ minutes}$`,
+      t`$\\approx 8.7\\text{ minutes}$`,
+      t`$\\approx 22.5\\text{ minutes}$`,
+      t`$\\approx 11.2\\text{ minutes}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Newton's law of cooling: $T(t) = T_m + (T_0 - T_m)e^{-kt} = 20 + 130e^{-kt}$. Use $T(2) = 120$ to find $k = -\\frac{1}{2}\\ln(10/13) \\approx 0.1312\\text{ min}^{-1}$, then solve $T(t) = 40$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Formulate model", math: t`T(t) = 20 + (150 - 20)e^{-kt} = 20 + 130e^{-kt}` },
+        { title: "Determine cooling constant $k$ from $t = 2$", math: t`120 = 20 + 130e^{-2k} \\implies e^{-2k} = \\frac{100}{130} = \\frac{10}{13} \\implies k = -\\frac{1}{2}\\ln\\left(\\frac{10}{13}\\right) \\approx 0.1312\\text{ min}^{-1}` },
+        { title: "Set $T(t) = 40$ and solve for $t$", math: t`40 = 20 + 130e^{-kt} \\implies 130e^{-kt} = 20 \\implies e^{-kt} = \\frac{20}{130} = \\frac{2}{13}` },
+        { title: "Logarithmic evaluation", math: t`t = \\frac{-\\ln(2/13)}{k} = \\frac{\\ln(6.5)}{0.1312} \\approx \\frac{1.8718}{0.1312} \\approx 14.26 \\approx 14.3\\text{ minutes}` }
+      ],
+      answer: t`\\approx 14.3\\text{ minutes}`,
+      whyWrong: {
+        '1': t`Neglected the ambient room temperature of $20^\\circ\\text{C}$.`,
+        '2': t`Linear cooling assumption: dropped $30^\\circ\\text{C}$ in 2 min $\\implies 15^\\circ\\text{C}$/min.`,
+        '3': t`Calculated cooling to $0^\\circ\\text{C}$ instead of $40^\\circ\\text{C}$.`
+      },
+      commonTrap: t`Forgetting to subtract ambient temperature $T_m = 20^\\circ\\text{C}$ before computing ratios! Temperature does not decay towards $0^\\circ\\text{C}$; it asymptotes toward the room temperature $20^\\circ\\text{C}$.`,
+      reference: 'Final Examination Fall 2005 Problem 6 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2005', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Newton cooling law' }]
+  },
+  {
+    id: 'Q_ENGR213_F2005_Q7',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2005 (Q7) · Concordia University',
+    topic: 'Mechanical Resonance Condition',
+    difficulty: 'Exam Master',
+    question: t`A $1\\text{ kg}$ mass on an undamped spring ($k = 2\\text{ N/m}$) is subjected to an external force $F_{\\text{ext}} = 0.001\\sin(\\gamma t)$. How should $\\gamma$ be chosen to break the spring in the long run?`,
+    options: [
+      t`$\\gamma = \\sqrt{2}\\text{ rad/s}$ (pure resonance at natural frequency $\\omega_0 = \\sqrt{k/m}$)`,
+      t`$\\gamma = 2\\text{ rad/s}$`,
+      t`$\\gamma = \\frac{1}{\\sqrt{2}}\\text{ rad/s}$`,
+      t`$\\gamma \\to \\infty$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Pure resonance occurs when the external excitation frequency $\\gamma$ matches the natural frequency $\\omega_0 = \\sqrt{k/m} = \\sqrt{2}\\text{ rad/s}$. The particular solution contains a secular term $t\\cos(\\sqrt{2}t)$ whose unbounded amplitude breaks the spring.`,
+      stepByStep: [],
+      steps: [
+        { title: "Undamped equation of motion", math: t`m x'' + k x = F_{\\text{ext}} \\implies x'' + 2x = 0.001\\sin(\\gamma t)` },
+        { title: "Natural frequency of the system", math: t`\\omega_0 = \\sqrt{\\frac{k}{m}} = \\sqrt{\\frac{2}{1}} = \\sqrt{2}\\text{ rad/s}` },
+        { title: "Condition for resonance", note: t`When $\\gamma = \\omega_0 = \\sqrt{2}$, the driving frequency matches the natural system frequency.` },
+        { title: "Secular growth of amplitude", math: t`x_p(t) = -\\frac{0.001}{2\\sqrt{2}} t \\cos(\\sqrt{2}t)` },
+        { title: "Physical outcome", note: t`As $t \\to \\infty$, $|x(t)| \\to \\infty$ without bound, exceeding the spring's elastic yield limit and causing catastrophic structural failure.` }
+      ],
+      answer: t`\\gamma = \\sqrt{2}\\text{ rad/s}`,
+      whyWrong: {
+        '1': t`Used the spring constant $k = 2$ directly instead of $\\sqrt{k/m}$.`,
+        '2': t`Inverted the fraction under the square root ($\\sqrt{m/k}$).`,
+        '3': t`High frequencies ($\\gamma \\to \\infty$) actually produce vanishingly small amplitudes $\\sim 1/\\gamma^2$.`
+      },
+      commonTrap: t`Thinking resonance requires a large forcing magnitude. Even an extremely tiny force ($0.001\\text{ N}$) can break any undamped system if $\\gamma = \\omega_0$, because the energy input accumulates linearly with time $t$.`,
+      reference: 'Final Examination Fall 2005 Problem 7 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2005', chapter: 'Chapter 5 — Mechanical Vibrations & Harmonic Motion', location: 'Resonance' }]
+  },
+  {
+    id: 'Q_ENGR213_F2012_Q7',
+    courseId: 'ENGR213',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2012 (Q7) · Concordia University',
+    topic: 'Linear Drag Velocity & Terminal Velocity',
+    difficulty: 'Exam Master',
+    question: t`A parachutist of mass $m = 75\\text{ kg}$ falls under gravity ($g = 9.81\\text{ m/s}^2$) with linear drag resistance $b = 150\\text{ N}\\cdot\\text{s/m}$ ($m\\frac{dv}{dt} = mg - bv$) from rest ($v(0) = 0$). What is the terminal velocity?`,
+    options: [
+      t`$v_\\infty = 4.905\\text{ m/s}$`,
+      t`$v_\\infty = 9.81\\text{ m/s}$`,
+      t`$v_\\infty = 19.62\\text{ m/s}$`,
+      t`$v_\\infty = 2.45\\text{ m/s}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Terminal velocity occurs when drag balances gravity, so acceleration $\\frac{dv}{dt} = 0$. Hence $mg - bv_\\infty = 0 \\implies v_\\infty = \\frac{mg}{b}$.`,
+      stepByStep: [],
+      steps: [
+        { title: "Equation of motion", math: t`m\\frac{dv}{dt} = mg - bv` },
+        { title: "Condition for terminal velocity", note: t`At terminal velocity, the velocity becomes constant: $\\frac{dv}{dt} = 0$.` },
+        { title: "Equilibrium balance", math: t`mg - b v_\\infty = 0 \\implies v_\\infty = \\frac{mg}{b}` },
+        { title: "Substitute physical parameters", math: t`v_\\infty = \\frac{75\\text{ kg} \\times 9.81\\text{ m/s}^2}{150\\text{ N}\\cdot\\text{s/m}} = \\frac{9.81}{2} = 4.905\\text{ m/s}` }
+      ],
+      answer: t`v_\\infty = 4.905\\text{ m/s}`,
+      whyWrong: {
+        '1': t`Forgot to divide by the drag-to-mass coefficient $b/m = 2$.`,
+        '2': t`Multiplied $g$ by 2 instead of dividing by 2.`,
+        '3': t`Calculated $g/4$.`
+      },
+      commonTrap: t`Integrating the ODE when the question only asks for the terminal velocity! Setting $\\frac{dv}{dt} = 0$ gives the terminal velocity in one algebraic line ($v_\\infty = mg/b$).`,
+      reference: 'Final Examination Fall 2012 Problem 7 · Concordia University'
+    },
+    source: [{ deck: 'Final Exam 2012', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Linear drag model' }]
   }
 ];
