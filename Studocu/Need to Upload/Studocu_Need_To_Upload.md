@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 41
+### Currently Pending Uploads: 43
 
 ---
 
@@ -462,5 +462,28 @@
 * **Title**: MIAE 221 Part 8 - Phase Diagrams & Iron-Carbon Systems 1-Page Rapid Review Sheet
 * **Academic year**: `2025/2026`
 * **Description**: High-yield single-page cheat sheet for MIAE 221 summarizing the condensed Gibbs phase rule, tie-line and inverse lever rule formulas, Pb-Sn eutectic benchmark values, invariant reactions table, and iron-carbon key allotropes and eutectoid pearlite calculations.
+
+---
+
+## 42. `INDU 211 - Midterm Quantitative Problem Guide (Forecasting & Warehouse TSP Heuristics).pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Practice materials`
+* **Title**: INDU 211 - Midterm Quantitative Problem Guide (Forecasting & Warehouse TSP Heuristics)
+* **Academic year**: `2025/2026`
+* **Description**: Complete step-by-step midterm quantitative preparation guide for INDU 211 covering Chapter 7 moving-average forecasting, forecast error analysis, competitive market share estimation, and Chapter 5 warehouse routing traveling salesperson problem (TSP) with nearest neighbor heuristics, sub-optimality proofs, and combinatorial search complexity.
+
+---
+
+## 43. `INDU 211 - Final Exam Quantitative Problem Guide (LP Modeling, Queuing, SPC & PERT).pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Practice materials`
+* **Title**: INDU 211 - Final Exam Quantitative Problem Guide (LP Modeling, Queuing, SPC & PERT)
+* **Academic year**: `2025/2026`
+* **Description**: Master quantitative final exam study guide for INDU 211 covering Chapter 14 linear programming minimization with equality constraints and 1D line-segment feasible regions, multi-product production modeling, Chapter 15 M/M/1 queuing theory evaluation, Chapter 8 statistical process control (X-bar and R charts) with process capability ratio (Cp), and Chapter 17 PERT/CPM project scheduling.
+
 
 
