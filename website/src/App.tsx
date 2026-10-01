@@ -12,6 +12,7 @@ import { DrillPicker } from './components/DrillPicker';
 import { VisitorCounter } from './components/VisitorCounter';
 import { audio } from './utils/audio';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK';
 
@@ -186,6 +187,7 @@ export function App() {
       </footer>
 
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
