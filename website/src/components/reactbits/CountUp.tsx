@@ -17,27 +17,36 @@ const CountUp: React.FC<CountUpProps> = ({
 }) => {
   const [count, setCount] = useState<number>(from);
   const ref = useRef<HTMLSpanElement>(null);
+  const prevToRef = useRef<number>(from);
 
   useEffect(() => {
+    const startFrom = prevToRef.current;
+    if (startFrom === to) {
+      setCount(to);
+      return;
+    }
+
     let startTimestamp: number | null = null;
+    let animId: number;
+
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
-      // Ease out cubic
       const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(from + (to - from) * easeOut);
+      const current = Math.floor(startFrom + (to - startFrom) * easeOut);
       setCount(current);
 
       if (progress < 1) {
-        window.requestAnimationFrame(step);
+        animId = window.requestAnimationFrame(step);
       } else {
         setCount(to);
+        prevToRef.current = to;
       }
     };
 
-    const animId = window.requestAnimationFrame(step);
+    animId = window.requestAnimationFrame(step);
     return () => window.cancelAnimationFrame(animId);
-  }, [to, from, duration]);
+  }, [to, duration]);
 
   const formatted = count.toLocaleString('en-US');
 

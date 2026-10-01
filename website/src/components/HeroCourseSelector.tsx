@@ -55,13 +55,12 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
           Master Your Engineering Courses with{' '}
           <ShinyText
             text="Interactive Precision"
-            speed={5.5}
-            delay={1.2}
-            pauseOnHover={true}
+            speed={4.5}
+            color="#4338ca"
+            shineColor="#ffffff"
             spread={120}
-            shineColor="rgba(255, 255, 255, 0.95)"
-            gradient="linear-gradient(120deg, #818cf8 0%, #c084fc 35%, rgba(255, 255, 255, 0.95) 50%, #c084fc 65%, #f43f5e 100%)"
-            className="gradient-text"
+            pauseOnHover={true}
+            gradient="linear-gradient(120deg, #4338ca 0%, #4f46e5 35%, #ffffff 50%, #4f46e5 65%, #4338ca 100%)"
           />
         </h1>
         <p className="hero-subtext">
