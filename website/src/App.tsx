@@ -9,7 +9,7 @@ import { QuizEngine } from './components/QuizEngine';
 import { QuizResults } from './components/QuizResults';
 import { QuestionBankBrowser } from './components/QuestionBankBrowser';
 import { DrillPicker } from './components/DrillPicker';
-import { VisitorCounter } from './components/VisitorCounter';
+import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
 import { audio } from './utils/audio';
 import { parseHash, formatHash, RouteState } from './utils/navigationRouter';
@@ -304,32 +304,13 @@ export function App() {
         onClose={() => setContactOpen(false)}
       />
 
-      {/* Futuristic Engineering Footer */}
-      <footer className="app-footer">
-        <div className="footer-inner">
-          <div className="footer-left">
-            <span className="footer-brand">CONCORDIA UNIVERSITY</span>
-            <span className="footer-dept">Department of Mechanical, Industrial & Aerospace Engineering (MIAE)</span>
-          </div>
-          <div className="footer-center">
-            <VisitorCounter />
-          </div>
-          <div className="footer-right">
-            <span>Semester 1 Repository · ENGR 213 · INDU 211 · MIAE 215 · MIAE 221</span>
-            <button 
-              className="footer-contact-link"
-              onClick={() => {
-                audio.playClick();
-                setContactOpen(true);
-              }}
-              title="Reach out or submit feedback"
-            >
-              Contact & Feedback
-            </button>
-            <span className="live-status"><span className="pulse-dot"></span> System Operational</span>
-          </div>
-        </div>
-      </footer>
+      {/* High-Fidelity Professional Engineering Footer */}
+      <Footer 
+        onSelectCourse={handleSelectCourse}
+        onStartQuiz={handleStartQuiz}
+        onOpenQuestionBank={handleOpenQuestionBank}
+        onOpenContact={() => setContactOpen(true)}
+      />
 
       <Analytics />
       <SpeedInsights />
