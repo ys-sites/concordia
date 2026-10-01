@@ -1349,27 +1349,27 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     difficulty: 'Exam Master',
     question: t`In a Body-Centered Cubic (BCC) unit cell, what is the planar density of the $(110)$ plane in terms of the atomic radius $R$?`,
     options: [
-      t`$\\dfrac{3}{8\\sqrt{2} R^2}$`,
-      t`$\\dfrac{1}{2\\sqrt{2} R^2}$`,
-      t`$\\dfrac{1}{4\\sqrt{2} R^2}$`,
-      t`$\\dfrac{1}{\\sqrt{2} R^2}$`
+      t`$\dfrac{3}{8\sqrt{2} R^2}$`,
+      t`$\dfrac{1}{2\sqrt{2} R^2}$`,
+      t`$\dfrac{1}{4\sqrt{2} R^2}$`,
+      t`$\dfrac{1}{\sqrt{2} R^2}$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Planar density $PD = \\dfrac{n}{A_P}$. In BCC, the lattice parameter is $a = \\dfrac{4R}{\\sqrt{3}}$, and the $(110)$ plane is a rectangle of dimensions $a \\times a\\sqrt{2}$.`,
+      coreConcept: t`Planar density $PD = \dfrac{n}{A_P}$. In BCC, the lattice parameter is $a = \dfrac{4R}{\sqrt{3}}$, and the $(110)$ plane is a rectangle of dimensions $a \times a\sqrt{2}$.`,
       stepByStep: [],
       steps: [
-        { title: 'Count atoms centered on the plane', math: t`n = 4\\left(\\tfrac{1}{4}\\right)_{\\text{corners}} + 1_{\\text{body-center}} = 2\\text{ atoms}` },
-        { title: 'Calculate area of the $(110)$ rectangle', math: t`A_P = a \\times a\\sqrt{2} = a^2 \\sqrt{2} = \\left(\\frac{4R}{\\sqrt{3}}\\right)^2 \\sqrt{2} = \\frac{16\\sqrt{2}}{3}R^2` },
-        { title: 'Compute planar density', math: t`PD_{(110)} = \\frac{2}{\\frac{16\\sqrt{2}}{3}R^2} = \\frac{6}{16\\sqrt{2}R^2} = \\frac{3}{8\\sqrt{2}R^2}` }
+        { title: 'Count atoms centered on the plane', math: t`n = 4\left(\tfrac{1}{4}\right)_{\text{corners}} + 1_{\text{body-center}} = 2\text{ atoms}` },
+        { title: 'Calculate area of the $(110)$ rectangle', math: t`A_P = a \times a\sqrt{2} = a^2 \sqrt{2} = \left(\frac{4R}{\sqrt{3}}\right)^2 \sqrt{2} = \frac{16\sqrt{2}}{3}R^2` },
+        { title: 'Compute planar density', math: t`PD_{(110)} = \frac{2}{\frac{16\sqrt{2}}{3}R^2} = \frac{6}{16\sqrt{2}R^2} = \frac{3}{8\sqrt{2}R^2}` }
       ],
-      answer: t`PD_{(110)} = \\frac{3}{8\\sqrt{2}R^2}`,
+      answer: t`PD_{(110)} = \frac{3}{8\sqrt{2}R^2}`,
       whyWrong: {
-        '1': t`Exam Trap: The student scan marked $\\frac{1}{2\\sqrt{2}R^2}$ by misapplying FCC formulas ($a = 2\\sqrt{2}R$). BCC has $a = 4R/\\sqrt{3}$!`,
-        '2': t`$\\frac{1}{4\\sqrt{2}R^2}$ is the planar density of $(110)$ in FCC, not BCC.`,
-        '3': t`$\\frac{1}{\\sqrt{2}R^2}$ counts only 1 atom instead of 2 atoms.`
+        '1': t`Exam Trap: The student scan marked $\frac{1}{2\sqrt{2}R^2}$ by misapplying FCC formulas ($a = 2\sqrt{2}R$). BCC has $a = 4R/\sqrt{3}$!`,
+        '2': t`$\frac{1}{4\sqrt{2}R^2}$ is the planar density of $(110)$ in FCC, not BCC.`,
+        '3': t`$\frac{1}{\sqrt{2}R^2}$ counts only 1 atom instead of 2 atoms.`
       },
-      commonTrap: t`Student Mistake Alert: Confusing BCC with FCC. In BCC, the (110) plane passes directly through the body-center atom, giving 2 full atoms and area $\\frac{16\\sqrt{2}}{3}R^2$.`,
+      commonTrap: t`Student Mistake Alert: Confusing BCC with FCC. In BCC, the (110) plane passes directly through the body-center atom, giving 2 full atoms and area $\frac{16\sqrt{2}}{3}R^2$.`,
       reference: 'MIAE 221 Midterm 2025 Version A, Question 4; Callister Chapter 3'
     },
     source: src(L6, CH3, 'Midterm 2025 Q4 (BCC planar density correction)')
@@ -1383,17 +1383,17 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     difficulty: 'Midterm Level',
     question: t`In the tensile stress-strain curves of five materials (Figure 4: A, B, C, D, F), which material exhibits the highest ductility?`,
     options: [
-      t`Material A (largest fracture strain $\\epsilon_f$)`,
+      t`Material A (largest fracture strain $\epsilon_f$)`,
       t`Material D (highest tensile strength)`,
       t`Material F (highest Young's modulus)`,
       t`Material C (intermediate strength and strain)`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Ductility is the measure of the degree of plastic deformation sustained at fracture ($\\%EL = \\epsilon_f \\times 100\\%$). It corresponds strictly to the horizontal strain distance at rupture.`,
+      coreConcept: t`Ductility is the measure of the degree of plastic deformation sustained at fracture ($\\%EL = \epsilon_f \times 100\\%$). It corresponds strictly to the horizontal strain distance at rupture.`,
       stepByStep: [],
       steps: [
-        { title: 'Inspect the horizontal strain axis $\\epsilon$', note: t`The horizontal coordinate of the endpoint represents fracture strain $\\epsilon_f$.` },
+        { title: 'Inspect the horizontal strain axis $\\epsilon$', note: t`The horizontal coordinate of the endpoint represents fracture strain $\epsilon_f$.` },
         { title: 'Compare curve endpoints', note: t`Material A extends significantly further to the right than all other curves (B, C, D, F).` },
         { title: 'Conclude ductility', note: t`Because Material A endures the greatest elongation before breaking, it has the highest ductility.` }
       ],
@@ -1403,7 +1403,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
         '2': t`Material F is brittle with high stiffness but virtually zero ductility.`,
         '3': t`Material C fractures at an intermediate strain lower than A.`
       },
-      commonTrap: t`Student Mistake Alert: Confusing ductility with strength or toughness. High strength often correlates with low ductility. Look strictly at fracture strain $\\epsilon_f$ on the horizontal axis!`,
+      commonTrap: t`Student Mistake Alert: Confusing ductility with strength or toughness. High strength often correlates with low ductility. Look strictly at fracture strain $\epsilon_f$ on the horizontal axis!`,
       reference: 'MIAE 221 Midterm 2025 Version A, Question 20; Callister Chapter 6'
     },
     source: src('Midterm 2025', 'Mechanical Properties', 'Question 20')
@@ -1427,8 +1427,8 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
       coreConcept: t`By fundamental definition, crystalline solids possess long-range periodic translational symmetry, while amorphous solids possess only localized short-range coordination.`,
       stepByStep: [],
       steps: [
-        { title: 'Crystalline definition', note: t`Atoms arrange in periodic 3D lattices repeated over millions of unit cells $\\implies$ both short- and long-range order.` },
-        { title: 'Amorphous definition', note: t`Bond angles and lengths are well-defined only for nearest neighbors (e.g., SiO4 tetrahedra in glass) $\\implies$ short-range order only.` }
+        { title: 'Crystalline definition', note: t`Atoms arrange in periodic 3D lattices repeated over millions of unit cells $\implies$ both short- and long-range order.` },
+        { title: 'Amorphous definition', note: t`Bond angles and lengths are well-defined only for nearest neighbors (e.g., SiO4 tetrahedra in glass) $\implies$ short-range order only.` }
       ],
       answer: t`True`,
       whyWrong: {
@@ -1455,7 +1455,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Due to extremely high melting points and brittleness, ceramics are shaped as powder compacts and densified via solid-state sintering BELOW their melting points ($T \\approx 0.7 - 0.8 T_m$).`,
+      coreConcept: t`Due to extremely high melting points and brittleness, ceramics are shaped as powder compacts and densified via solid-state sintering BELOW their melting points ($T \approx 0.7 - 0.8 T_m$).`,
       stepByStep: [],
       steps: [
         { title: 'Evaluate sintering temperature', note: t`Solid-state diffusion drives pore elimination and neck formation below Tm.` },
@@ -1479,29 +1479,29 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2025 Version A (Q29) · Concordia University',
     topic: 'Diffraction Angle vs Bragg Angle Trap',
     difficulty: 'Midterm Level',
-    question: t`Monochromatic X-radiation ($\\lambda = 0.1542\\text{ nm}$) reflects in first order from the $(113)$ planes of FCC Platinum ($a = 0.3923\\text{ nm}$). The Bragg angle is $\\theta = 40.69^\\circ$. What is the expected diffraction angle $(2\\theta)$?`,
+    question: t`Monochromatic X-radiation ($\lambda = 0.1542\text{ nm}$) reflects in first order from the $(113)$ planes of FCC Platinum ($a = 0.3923\text{ nm}$). The Bragg angle is $\theta = 40.69^\circ$. What is the expected diffraction angle $(2\theta)$?`,
     options: [
-      t`$2\\theta = 81.38^\\circ$`,
-      t`$2\\theta = 40.69^\\circ$`,
-      t`$2\\theta = 20.35^\\circ$`,
-      t`$2\\theta = 121.07^\\circ$`
+      t`$2\theta = 81.38^\circ$`,
+      t`$2\theta = 40.69^\circ$`,
+      t`$2\theta = 20.35^\circ$`,
+      t`$2\theta = 121.07^\circ$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Bragg's Law gives the glancing angle $\\theta$. The physical diffraction angle recorded on a powder diffractometer is $2\\theta$.`,
+      coreConcept: t`Bragg's Law gives the glancing angle $\theta$. The physical diffraction angle recorded on a powder diffractometer is $2\theta$.`,
       stepByStep: [],
       steps: [
-        { title: 'Calculate interplanar spacing', math: t`d_{113} = \\frac{a}{\\sqrt{1^2 + 1^2 + 3^2}} = \\frac{0.3923}{\\sqrt{11}} = 0.11828\\text{ nm}` },
-        { title: 'Apply Bragg Law for theta', math: t`\\sin\\theta = \\frac{\\lambda}{2 d_{113}} = \\frac{0.1542}{2(0.11828)} = 0.6518 \\implies \\theta = 40.69^\\circ` },
-        { title: 'Calculate diffraction angle 2-theta', math: t`2\\theta = 2 \\times 40.69^\\circ = 81.38^\\circ` }
+        { title: 'Calculate interplanar spacing', math: t`d_{113} = \frac{a}{\sqrt{1^2 + 1^2 + 3^2}} = \frac{0.3923}{\sqrt{11}} = 0.11828\text{ nm}` },
+        { title: 'Apply Bragg Law for theta', math: t`\sin\theta = \frac{\lambda}{2 d_{113}} = \frac{0.1542}{2(0.11828)} = 0.6518 \implies \theta = 40.69^\circ` },
+        { title: 'Calculate diffraction angle 2-theta', math: t`2\theta = 2 \times 40.69^\circ = 81.38^\circ` }
       ],
-      answer: t`2\\theta = 81.38^\\circ`,
+      answer: t`2\theta = 81.38^\circ`,
       whyWrong: {
-        '1': t`Exam Trap: Confusing $\\theta$ (Bragg angle) with $2\\theta$ (diffraction angle). If an exam asks for $2\\theta$, $40.69^\\circ$ is wrong!`,
-        '2': t`$20.35^\\circ$ halves $\\theta$ instead of doubling it.`,
-        '3': t`$121.07^\\circ$ adds $40.69^\\circ$ to $2\\theta$.`
+        '1': t`Exam Trap: Confusing $\theta$ (Bragg angle) with $2\theta$ (diffraction angle). If an exam asks for $2\theta$, $40.69^\circ$ is wrong!`,
+        '2': t`$20.35^\circ$ halves $\theta$ instead of doubling it.`,
+        '3': t`$121.07^\circ$ adds $40.69^\circ$ to $2\theta$.`
       },
-      commonTrap: t`Failing to double $\\theta$. Diffractometer charts always display peaks against $2\\theta$ on the horizontal axis!`,
+      commonTrap: t`Failing to double $\theta$. Diffractometer charts always display peaks against $2\theta$ on the horizontal axis!`,
       reference: 'MIAE 221 Midterm 2025 Version A, Question 29; Callister Section 3.16'
     },
     source: src(L6, CH3, 'Midterm 2025 Q29 (XRD diffraction angle)')
@@ -1513,12 +1513,12 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Final Exam Review for MIAE 221 (Q24) · Concordia University',
     topic: 'Porosity Effect on Ceramic Elastic Modulus',
     difficulty: 'Midterm Level',
-    question: t`The modulus of elasticity of beryllium oxide (BeO) with $5\\text{ vol}\\%$ porosity is $310\\text{ GPa}$. What is the modulus of elasticity $E_0$ of the fully dense, non-porous material ($0\\%$ porosity)?`,
+    question: t`The modulus of elasticity of beryllium oxide (BeO) with $5\text{ vol}\\%$ porosity is $310\text{ GPa}$. What is the modulus of elasticity $E_0$ of the fully dense, non-porous material ($0\\%$ porosity)?`,
     options: [
-      t`$341.7\\text{ GPa}$`,
-      t`$281.2\\text{ GPa}$`,
-      t`$326.2\\text{ GPa}$`,
-      t`$243.3\\text{ GPa}$`
+      t`$341.7\text{ GPa}$`,
+      t`$281.2\text{ GPa}$`,
+      t`$326.2\text{ GPa}$`,
+      t`$243.3\text{ GPa}$`
     ],
     correctIndex: 0,
     explanation: {
@@ -1527,13 +1527,13 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
       steps: [
         { title: 'Identify porosity fraction', math: t`P = 0.05` },
         { title: 'Calculate polynomial reduction factor', math: t`1 - 1.9(0.05) + 0.9(0.05)^2 = 1 - 0.095 + 0.00225 = 0.90725` },
-        { title: 'Solve for non-porous modulus E_0', math: t`E_0 = \\frac{E}{0.90725} = \\frac{310\\text{ GPa}}{0.90725} \\approx 341.7\\text{ GPa}` }
+        { title: 'Solve for non-porous modulus E_0', math: t`E_0 = \frac{E}{0.90725} = \frac{310\text{ GPa}}{0.90725} \approx 341.7\text{ GPa}` }
       ],
-      answer: t`E_0 = 341.7\\text{ GPa}`,
+      answer: t`E_0 = 341.7\text{ GPa}`,
       whyWrong: {
-        '1': t`$281.2\\text{ GPa}$ incorrectly multiplies $310 \\times 0.90725$ instead of dividing (non-porous MUST be stiffer!).`,
-        '2': t`$326.2\\text{ GPa}$ uses a linear $1 - P$ rule.`,
-        '3': t`$243.3\\text{ GPa}$ uses flexural strength porosity exponent.`
+        '1': t`$281.2\text{ GPa}$ incorrectly multiplies $310 \times 0.90725$ instead of dividing (non-porous MUST be stiffer!).`,
+        '2': t`$326.2\text{ GPa}$ uses a linear $1 - P$ rule.`,
+        '3': t`$243.3\text{ GPa}$ uses flexural strength porosity exponent.`
       },
       commonTrap: t`Multiplying by the factor instead of dividing. A non-porous ceramic must always be STIFFIER than the porous specimen!`,
       reference: 'MIAE 221 Final Exam Review Question 24; Callister Chapter 12'
@@ -1559,8 +1559,8 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
       coreConcept: t`Metal conductivity is mobility-limited by thermal phonon scattering (resistance rises). Semiconductor conductivity is carrier-limited by exponential thermal excitation across the band gap (resistance drops).`,
       stepByStep: [],
       steps: [
-        { title: 'Metal mechanism', note: t`Carrier concentration is constant. Rising T increases lattice vibrations, scattering electrons $\\implies$ resistance INCREASES.` },
-        { title: 'Semiconductor mechanism', note: t`Thermal energy promotes electrons across Eg, exponentially multiplying electron-hole pairs $\\implies$ resistance DECREASES.` }
+        { title: 'Metal mechanism', note: t`Carrier concentration is constant. Rising T increases lattice vibrations, scattering electrons $\implies$ resistance INCREASES.` },
+        { title: 'Semiconductor mechanism', note: t`Thermal energy promotes electrons across Eg, exponentially multiplying electron-hole pairs $\implies$ resistance DECREASES.` }
       ],
       answer: t`Metal: increases; Semiconductor: decreases`,
       whyWrong: {
@@ -1580,30 +1580,30 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2025 Version A (Q7) · Concordia University',
     topic: 'Steady-State Diffusion Flux and Mass Flow',
     difficulty: 'Exam Master',
-    question: t`Hydrogen gas diffuses through an 8-mm-thick palladium sheet ($A = 1.20\\text{ m}^2$) at $500^\\circ\\text{C}$ with $D = 1.0 \\times 10^{-8}\\text{ m}^2/\\text{s}$. If concentrations on the high- and low-pressure sides are $2.4$ and $0.6\\text{ kg/m}^3$ respectively, calculate the mass of hydrogen passing through per hour.`,
+    question: t`Hydrogen gas diffuses through an 8-mm-thick palladium sheet ($A = 1.20\text{ m}^2$) at $500^\circ\text{C}$ with $D = 1.0 \times 10^{-8}\text{ m}^2/\text{s}$. If concentrations on the high- and low-pressure sides are $2.4$ and $0.6\text{ kg/m}^3$ respectively, calculate the mass of hydrogen passing through per hour.`,
     options: [
-      t`$9.72 \\times 10^{-3}\\text{ kg/h}$`,
-      t`$2.70 \\times 10^{-6}\\text{ kg/h}$`,
-      t`$2.16 \\times 10^{-3}\\text{ kg/h}$`,
-      t`$1.62 \\times 10^{-4}\\text{ kg/h}$`
+      t`$9.72 \times 10^{-3}\text{ kg/h}$`,
+      t`$2.70 \times 10^{-6}\text{ kg/h}$`,
+      t`$2.16 \times 10^{-3}\text{ kg/h}$`,
+      t`$1.62 \times 10^{-4}\text{ kg/h}$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Fick's First Law: $J = -D \\frac{\\Delta C}{\\Delta x}$. Total mass per hour is $M = J \\times A \\times 3600\\text{ s}$.`,
+      coreConcept: t`Fick's First Law: $J = -D \frac{\Delta C}{\Delta x}$. Total mass per hour is $M = J \times A \times 3600\text{ s}$.`,
       stepByStep: [],
       steps: [
-        { title: 'Calculate concentration gradient', math: t`\\frac{\\Delta C}{\\Delta x} = \\frac{2.4 - 0.6}{8 \\times 10^{-3}\\text{ m}} = \\frac{1.8}{0.008} = 225\\text{ kg/m}^4` },
-        { title: 'Calculate diffusion flux J', math: t`J = (1.0 \\times 10^{-8}\\text{ m}^2/\\text{s}) \\times 225 = 2.25 \\times 10^{-6}\\text{ kg/(m}^2\\cdot\\text{s)}` },
-        { title: 'Mass flow per second', math: t`\\dot{M} = J \\cdot A = (2.25 \\times 10^{-6}) \\times 1.20 = 2.70 \\times 10^{-6}\\text{ kg/s}` },
-        { title: 'Convert to mass per hour', math: t`M_{\\text{hour}} = (2.70 \\times 10^{-6}) \\times 3600\\text{ s/h} = 9.72 \\times 10^{-3}\\text{ kg/h}` }
+        { title: 'Calculate concentration gradient', math: t`\frac{\Delta C}{\Delta x} = \frac{2.4 - 0.6}{8 \times 10^{-3}\text{ m}} = \frac{1.8}{0.008} = 225\text{ kg/m}^4` },
+        { title: 'Calculate diffusion flux J', math: t`J = (1.0 \times 10^{-8}\text{ m}^2/\text{s}) \times 225 = 2.25 \times 10^{-6}\text{ kg/(m}^2\cdot\text{s)}` },
+        { title: 'Mass flow per second', math: t`\dot{M} = J \cdot A = (2.25 \times 10^{-6}) \times 1.20 = 2.70 \times 10^{-6}\text{ kg/s}` },
+        { title: 'Convert to mass per hour', math: t`M_{\text{hour}} = (2.70 \times 10^{-6}) \times 3600\text{ s/h} = 9.72 \times 10^{-3}\text{ kg/h}` }
       ],
-      answer: t`9.72 \\times 10^{-3}\\text{ kg/h}`,
+      answer: t`9.72 \times 10^{-3}\text{ kg/h}`,
       whyWrong: {
-        '1': t`$2.70 \\times 10^{-6}$ is the mass flow per SECOND, forgetting to multiply by 3600 seconds per hour.`,
-        '2': t`$2.16 \\times 10^{-3}$ assumes sheet thickness was 10 mm.`,
-        '3': t`$1.62 \\times 10^{-4}$ converts using 60 seconds instead of 3600.`
+        '1': t`$2.70 \times 10^{-6}$ is the mass flow per SECOND, forgetting to multiply by 3600 seconds per hour.`,
+        '2': t`$2.16 \times 10^{-3}$ assumes sheet thickness was 10 mm.`,
+        '3': t`$1.62 \times 10^{-4}$ converts using 60 seconds instead of 3600.`
       },
-      commonTrap: t`Forgetting unit conversion from seconds to hours ($3600\\text{ s/h}$). Check the handwritten calculations on the midterm paper!`,
+      commonTrap: t`Forgetting unit conversion from seconds to hours ($3600\text{ s/h}$). Check the handwritten calculations on the midterm paper!`,
       reference: 'MIAE 221 Midterm 2025 Version A, Question 7; Callister Chapter 5'
     },
     source: src('Midterm 2025', 'Diffusion', 'Question 7')
@@ -1618,26 +1618,26 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     difficulty: 'Foundation',
     question: t`In a cubic crystal structure, the face diagonals belong to which family of crystallographic directions?`,
     options: [
-      t`$\\langle 110 \\rangle$`,
-      t`$\\langle 100 \\rangle$`,
-      t`$\\langle 111 \\rangle$`,
-      t`$\\langle 112 \\rangle$`
+      t`$\langle 110 \rangle$`,
+      t`$\langle 100 \rangle$`,
+      t`$\langle 111 \rangle$`,
+      t`$\langle 112 \rangle$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`In cubic symmetry, indices enclose families of equivalent directions in angle brackets $\\langle uvw \\rangle$. A vector traversing a face diagonal runs 1 unit in $x$, 1 unit in $y$, and 0 in $z$, representing the $\\langle 110 \\rangle$ family (consisting of 12 equivalent directions).`,
+      coreConcept: t`In cubic symmetry, indices enclose families of equivalent directions in angle brackets $\langle uvw \rangle$. A vector traversing a face diagonal runs 1 unit in $x$, 1 unit in $y$, and 0 in $z$, representing the $\langle 110 \rangle$ family (consisting of 12 equivalent directions).`,
       stepByStep: [],
       steps: [
-        { title: 'Vector coordinates', math: t`\\vec{r} = 1\\hat{x} + 1\\hat{y} + 0\\hat{z} \\implies [110]` },
-        { title: 'Family notation', note: t`By cubic symmetry, all 12 face diagonals ($[110], [101], [011], [1\\bar{1}0], \\dots$) form the \\langle 110 \\rangle family.` }
+        { title: 'Vector coordinates', math: t`\vec{r} = 1\hat{x} + 1\hat{y} + 0\hat{z} \implies [110]` },
+        { title: 'Family notation', note: t`By cubic symmetry, all 12 face diagonals ($[110], [101], [011], [1\bar{1}0], \dots$) form the \langle 110 \rangle family.` }
       ],
-      answer: t`\\langle 110 \\rangle`,
+      answer: t`\langle 110 \rangle`,
       whyWrong: {
-        '1': t`$\\langle 100 \\rangle$ is the family of cube edges (6 directions).`,
-        '2': t`$\\langle 111 \\rangle$ is the family of body diagonals (8 directions).`,
-        '3': t`$\\langle 112 \\rangle$ vectors connect corners to edge bisectors.`
+        '1': t`$\langle 100 \rangle$ is the family of cube edges (6 directions).`,
+        '2': t`$\langle 111 \rangle$ is the family of body diagonals (8 directions).`,
+        '3': t`$\langle 112 \rangle$ vectors connect corners to edge bisectors.`
       },
-      commonTrap: t`Confusing body diagonals ($\\langle 111 \\rangle$) with face diagonals ($\\langle 110 \\rangle$).`,
+      commonTrap: t`Confusing body diagonals ($\langle 111 \rangle$) with face diagonals ($\langle 110 \rangle$).`,
       reference: 'MIAE 221 Midterm 2024 Question 1; Callister Chapter 3'
     },
     source: src('Midterm 2024', 'Crystal Directions', 'Question 1')
@@ -1649,23 +1649,23 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2024 (Q2) · Concordia University',
     topic: 'Arrhenius Interstitial Diffusion: BCC vs FCC Iron',
     difficulty: 'Midterm Level',
-    question: t`At $910^\\circ\\text{C}$, the diffusion coefficient of carbon in BCC iron ($\\alpha$-ferrite) is approximately how many times larger than that in FCC iron ($\\gamma$-austenite)?`,
+    question: t`At $910^\circ\text{C}$, the diffusion coefficient of carbon in BCC iron ($\alpha$-ferrite) is approximately how many times larger than that in FCC iron ($\gamma$-austenite)?`,
     options: [
-      t`$\\approx 30\\text{ times faster in BCC}$`,
-      t`$\\approx 30\\text{ times faster in FCC}$`,
+      t`$\approx 30\text{ times faster in BCC}$`,
+      t`$\approx 30\text{ times faster in FCC}$`,
       t`Equal in both phases because the temperature is identical`,
-      t`$\\approx 10{,}000\\text{ times faster in FCC}$`
+      t`$\approx 10{,}000\text{ times faster in FCC}$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`BCC iron has a lower atomic packing factor ($\text{APF} = 0.68$) than FCC ($\text{APF} = 0.74$). The lower packing density and shorter jump distances in BCC result in a significantly lower activation energy ($Q_d \\approx 80\\text{ kJ/mol}$ for BCC vs $148\\text{ kJ/mol}$ for FCC), making carbon diffuse roughly 25–30 times faster in BCC iron at $910^\\circ\\text{C}$.`,
+      coreConcept: t`BCC iron has a lower atomic packing factor ($\text{APF} = 0.68$) than FCC ($\text{APF} = 0.74$). The lower packing density and shorter jump distances in BCC result in a significantly lower activation energy ($Q_d \approx 80\text{ kJ/mol}$ for BCC vs $148\text{ kJ/mol}$ for FCC), making carbon diffuse roughly 25–30 times faster in BCC iron at $910^\circ\text{C}$.`,
       stepByStep: [],
       steps: [
         { title: 'Packing Factor Comparison', note: t`BCC APF = 0.68 (more open structure); FCC APF = 0.74 (close-packed).` },
-        { title: 'Activation Energy', math: t`Q_{d,\\text{BCC}} \\approx 80\\text{ kJ/mol} < Q_{d,\\text{FCC}} \\approx 148\\text{ kJ/mol}` },
-        { title: 'Arrhenius ratio at 1183 K', math: t`\\frac{D_{\\text{BCC}}}{D_{\\text{FCC}}} = \\frac{D_{0,\\text{BCC}} e^{-Q_1/RT}}{D_{0,\\text{FCC}} e^{-Q_2/RT}} \\approx 30` }
+        { title: 'Activation Energy', math: t`Q_{d,\text{BCC}} \approx 80\text{ kJ/mol} < Q_{d,\text{FCC}} \approx 148\text{ kJ/mol}` },
+        { title: 'Arrhenius ratio at 1183 K', math: t`\frac{D_{\text{BCC}}}{D_{\text{FCC}}} = \frac{D_{0,\text{BCC}} e^{-Q_1/RT}}{D_{0,\text{FCC}} e^{-Q_2/RT}} \approx 30` }
       ],
-      answer: t`\\approx 30\\text{ times faster in BCC}`,
+      answer: t`\approx 30\text{ times faster in BCC}`,
       whyWrong: {
         '1': t`FCC has a higher packing factor (0.74), which restricts interstitial jump mobility.`,
         '2': t`Diffusion coefficients depend exponentially on crystal crystal structure and activation energy, not temperature alone.`,
@@ -1692,7 +1692,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Allotropy of carbon. Diamond has each carbon tetrahedral $sp^3$ covalently bonded to 4 neighbors, producing extreme hardness and electrical insulation. Graphite has $sp^2$ hexagonal sheets where delocalized $\\pi$-electrons provide electrical conductivity, while weak interlayer van der Waals bonds allow easy cleavage/lubrication.`,
+      coreConcept: t`Allotropy of carbon. Diamond has each carbon tetrahedral $sp^3$ covalently bonded to 4 neighbors, producing extreme hardness and electrical insulation. Graphite has $sp^2$ hexagonal sheets where delocalized $\pi$-electrons provide electrical conductivity, while weak interlayer van der Waals bonds allow easy cleavage/lubrication.`,
       stepByStep: [],
       steps: [
         { title: 'Diamond Structure', note: t`3D tetrahedral covalent network ($sp^3$); no free electrons, isotropic high stiffness.` },
@@ -1716,27 +1716,27 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2024 (Q4) · Concordia University',
     topic: 'BCC Unit Cell Number Density per Volume',
     difficulty: 'Midterm Level',
-    question: t`Vanadium crystallizes in a BCC unit cell with lattice parameter $a = 0.304\\text{ nm}$. How many unit cells are contained within a volume of $1.0\\text{ mm}^3$?`,
+    question: t`Vanadium crystallizes in a BCC unit cell with lattice parameter $a = 0.304\text{ nm}$. How many unit cells are contained within a volume of $1.0\text{ mm}^3$?`,
     options: [
-      t`$3.56 \\times 10^{19}\\text{ unit cells}$`,
-      t`$7.12 \\times 10^{19}\\text{ unit cells}$`,
-      t`$1.78 \\times 10^{16}\\text{ unit cells}$`,
-      t`$3.56 \\times 10^{22}\\text{ unit cells}$`
+      t`$3.56 \times 10^{19}\text{ unit cells}$`,
+      t`$7.12 \times 10^{19}\text{ unit cells}$`,
+      t`$1.78 \times 10^{16}\text{ unit cells}$`,
+      t`$3.56 \times 10^{22}\text{ unit cells}$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Unit cell volume is $V_c = a^3$. The number of unit cells in total volume $V$ is $N = V / V_c$. Ensure proper metric unit conversion from $\\text{nm}$ to $\\text{mm}$.`,
+      coreConcept: t`Unit cell volume is $V_c = a^3$. The number of unit cells in total volume $V$ is $N = V / V_c$. Ensure proper metric unit conversion from $\text{nm}$ to $\text{mm}$.`,
       stepByStep: [],
       steps: [
-        { title: 'Convert lattice parameter to millimeters', math: t`a = 0.304\\text{ nm} = 0.304 \\times 10^{-6}\\text{ mm}` },
-        { title: 'Compute unit cell volume $V_c$', math: t`V_c = a^3 = (0.304 \\times 10^{-6}\\text{ mm})^3 = 2.8094 \\times 10^{-20}\\text{ mm}^3` },
-        { title: 'Calculate number of unit cells in $1.0\\text{ mm}^3$', math: t`N = \\frac{1.0\\text{ mm}^3}{2.8094 \\times 10^{-20}\\text{ mm}^3} \\approx 3.56 \\times 10^{19}\\text{ unit cells}` }
+        { title: 'Convert lattice parameter to millimeters', math: t`a = 0.304\text{ nm} = 0.304 \times 10^{-6}\text{ mm}` },
+        { title: 'Compute unit cell volume $V_c$', math: t`V_c = a^3 = (0.304 \times 10^{-6}\text{ mm})^3 = 2.8094 \times 10^{-20}\text{ mm}^3` },
+        { title: 'Calculate number of unit cells in $1.0\\text{ mm}^3$', math: t`N = \frac{1.0\text{ mm}^3}{2.8094 \times 10^{-20}\text{ mm}^3} \approx 3.56 \times 10^{19}\text{ unit cells}` }
       ],
-      answer: t`3.56 \\times 10^{19}\\text{ unit cells}`,
+      answer: t`3.56 \times 10^{19}\text{ unit cells}`,
       whyWrong: {
-        '1': t`$7.12 \\times 10^{19}$ is the number of ATOMS ($2 \\times N$ for BCC), not the number of unit cells.`,
-        '2': t`Unit conversion error: converting $\\text{nm}$ as $10^{-7}\\text{ mm}$.`,
-        '3': t`Using $1\\text{ cm}^3$ volume instead of $1\\text{ mm}^3$.`
+        '1': t`$7.12 \times 10^{19}$ is the number of ATOMS ($2 \times N$ for BCC), not the number of unit cells.`,
+        '2': t`Unit conversion error: converting $\text{nm}$ as $10^{-7}\text{ mm}$.`,
+        '3': t`Using $1\text{ cm}^3$ volume instead of $1\text{ mm}^3$.`
       },
       commonTrap: t`Multiplying by 2 (the BCC atom count). The question asks for the number of UNIT CELLS, not the number of atoms!`,
       reference: 'MIAE 221 Midterm 2024 Question 4; Callister Chapter 3'
@@ -1752,20 +1752,20 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     difficulty: 'Foundation',
     question: t`A steel soup can dropped onto a concrete floor sustains a visible permanent dent. This permanent plastic deformation occurred because the impact stresses exceeded the material's:`,
     options: [
-      t`Yield strength ($\\sigma_y$)`,
-      t`Ultimate tensile strength ($\\sigma_{\\text{UTS}}$)`,
+      t`Yield strength ($\sigma_y$)`,
+      t`Ultimate tensile strength ($\sigma_{\text{UTS}}$)`,
       t`Modulus of elasticity ($E$)`,
-      t`Poisson's ratio ($\\nu$)`
+      t`Poisson's ratio ($\nu$)`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Elastic deformation is completely reversible upon load release. Plastic (permanent) deformation begins precisely when the local applied stress exceeds the yield strength ($\\sigma_y$). Below $\\sigma_y$, all deflection is elastic.`,
+      coreConcept: t`Elastic deformation is completely reversible upon load release. Plastic (permanent) deformation begins precisely when the local applied stress exceeds the yield strength ($\sigma_y$). Below $\sigma_y$, all deflection is elastic.`,
       stepByStep: [],
       steps: [
-        { title: 'Deformation Regimes', note: t`$\\sigma < \\sigma_y$: Hookean elastic deformation (recovers 100%).` },
-        { title: 'Onset of Plastic Flow', note: t`$\\sigma \\ge \\sigma_y$: Dislocation motion initiates permanent shape change (plasticity).` }
+        { title: 'Deformation Regimes', note: t`$\sigma < \sigma_y$: Hookean elastic deformation (recovers 100%).` },
+        { title: 'Onset of Plastic Flow', note: t`$\sigma \ge \sigma_y$: Dislocation motion initiates permanent shape change (plasticity).` }
       ],
-      answer: t`Yield strength (\\sigma_y)`,
+      answer: t`Yield strength (\sigma_y)`,
       whyWrong: {
         '1': t`Ultimate tensile strength is the maximum engineering stress before necking and fracture, far beyond the initial yield threshold.`,
         '2': t`Modulus of elasticity measures initial elastic slope/stiffness, not a failure or transition stress.`,
@@ -1783,25 +1783,25 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2024 (Q6) · Concordia University',
     topic: 'Interatomic Potential: Equilibrium Separation Conditions',
     difficulty: 'Foundation',
-    question: t`At the equilibrium interatomic spacing $r_0$ between two bonded atoms, what are the net bonding force $F_{\\text{net}}$ and potential energy $E_{\\text{net}}$?`,
+    question: t`At the equilibrium interatomic spacing $r_0$ between two bonded atoms, what are the net bonding force $F_{\text{net}}$ and potential energy $E_{\text{net}}$?`,
     options: [
-      t`$F_{\\text{net}} = 0$, and $E_{\\text{net}}$ is at a global minimum`,
-      t`$F_{\\text{net}}$ is at a maximum, and $E_{\\text{net}} = 0$`,
-      t`$F_{\\text{net}} = 0$, and $E_{\\text{net}} = 0$`,
-      t`Both $F_{\\text{net}}$ and $E_{\\text{net}}$ are at their absolute maximum`
+      t`$F_{\text{net}} = 0$, and $E_{\text{net}}$ is at a global minimum`,
+      t`$F_{\text{net}}$ is at a maximum, and $E_{\text{net}} = 0$`,
+      t`$F_{\text{net}} = 0$, and $E_{\text{net}} = 0$`,
+      t`Both $F_{\text{net}}$ and $E_{\text{net}}$ are at their absolute maximum`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`By definition, force is the negative derivative of potential energy: $F = -\\dfrac{dE}{dr}$. At equilibrium separation $r_0$, attractive and repulsive forces exactly balance ($F_A + F_R = 0 \\implies F_{\\text{net}} = 0$). This zero-force location corresponds to the bottom of the potential energy well (minimum $E_{\\text{net}}$).`,
+      coreConcept: t`By definition, force is the negative derivative of potential energy: $F = -\dfrac{dE}{dr}$. At equilibrium separation $r_0$, attractive and repulsive forces exactly balance ($F_A + F_R = 0 \implies F_{\text{net}} = 0$). This zero-force location corresponds to the bottom of the potential energy well (minimum $E_{\text{net}}$).`,
       stepByStep: [],
       steps: [
-        { title: 'Force Equilibrium', math: t`F_{\\text{net}}(r_0) = F_A(r_0) + F_R(r_0) = 0` },
-        { title: 'Energy Relationship', math: t`\\frac{dE_{\\text{net}}}{dr}\\Bigg|_{r_0} = -F_{\\text{net}}(r_0) = 0 \\implies E_{\\text{net}}(r_0) = -E_0\\text{ (potential well minimum)}` }
+        { title: 'Force Equilibrium', math: t`F_{\text{net}}(r_0) = F_A(r_0) + F_R(r_0) = 0` },
+        { title: 'Energy Relationship', math: t`\frac{dE_{\text{net}}}{dr}\Bigg|_{r_0} = -F_{\text{net}}(r_0) = 0 \implies E_{\text{net}}(r_0) = -E_0\text{ (potential well minimum)}` }
       ],
-      answer: t`F_{\\text{net}} = 0, and E_{\\text{net}} is at a global minimum`,
+      answer: t`F_{\text{net}} = 0, and E_{\text{net}} is at a global minimum`,
       whyWrong: {
         '1': t`Net force is zero, not maximum. Maximum attractive force occurs at an inflection point $r > r_0$.`,
-        '2': t`$E_{\\text{net}}$ is negative (the bonding energy $-E_0$), not zero.`,
+        '2': t`$E_{\text{net}}$ is negative (the bonding energy $-E_0$), not zero.`,
         '3': t`Energy is at a stable minimum, not a maximum.`
       },
       commonTrap: t`Assuming potential energy must be zero at equilibrium. It is at its deepest negative trough (the bond dissociation energy $E_0$)!`,
@@ -1816,30 +1816,30 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2024 (Q7) · Concordia University',
     topic: 'Non-Steady-State Diffusion: Fick\'s Second Law & Error Function',
     difficulty: 'Exam Master',
-    question: t`A steel gear is carburized at high temperature with surface concentration maintained at $C_s = 4.0\\text{ kg/m}^3$ and initial uniform carbon concentration $C_0 = 0.8\\text{ kg/m}^3$. At a depth where $z = \\dfrac{x}{2\\sqrt{Dt}} = 0.50$ (given $\\text{erf}(0.50) = 0.5205$), what is the carbon concentration $C_x$?`,
+    question: t`A steel gear is carburized at high temperature with surface concentration maintained at $C_s = 4.0\text{ kg/m}^3$ and initial uniform carbon concentration $C_0 = 0.8\text{ kg/m}^3$. At a depth where $z = \dfrac{x}{2\sqrt{Dt}} = 0.50$ (given $\text{erf}(0.50) = 0.5205$), what is the carbon concentration $C_x$?`,
     options: [
-      t`$2.33\\text{ kg/m}^3$`,
-      t`$2.46\\text{ kg/m}^3$`,
-      t`$1.66\\text{ kg/m}^3$`,
-      t`$3.20\\text{ kg/m}^3$`
+      t`$2.33\text{ kg/m}^3$`,
+      t`$2.46\text{ kg/m}^3$`,
+      t`$1.66\text{ kg/m}^3$`,
+      t`$3.20\text{ kg/m}^3$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Fick's Second Law for semi-infinite solid with constant surface concentration: $\\dfrac{C_x - C_0}{C_s - C_0} = 1 - \\text{erf}\\left(\\dfrac{x}{2\\sqrt{Dt}}\\right)$. Solve explicitly for $C_x$.`,
+      coreConcept: t`Fick's Second Law for semi-infinite solid with constant surface concentration: $\dfrac{C_x - C_0}{C_s - C_0} = 1 - \text{erf}\left(\dfrac{x}{2\sqrt{Dt}}\right)$. Solve explicitly for $C_x$.`,
       stepByStep: [],
       steps: [
-        { title: 'Standard Error Function Equation', math: t`\\frac{C_x - C_0}{C_s - C_0} = 1 - \\text{erf}(z)` },
-        { title: 'Substitute given values', math: t`\\frac{C_x - 0.8}{4.0 - 0.8} = 1 - 0.5205 = 0.4795` },
-        { title: 'Multiply by concentration range', math: t`C_x - 0.8 = 0.4795 \\times 3.2 = 1.5344` },
-        { title: 'Add initial concentration $C_0$', math: t`C_x = 0.8 + 1.5344 = 2.3344 \\approx 2.33\\text{ kg/m}^3` }
+        { title: 'Standard Error Function Equation', math: t`\frac{C_x - C_0}{C_s - C_0} = 1 - \text{erf}(z)` },
+        { title: 'Substitute given values', math: t`\frac{C_x - 0.8}{4.0 - 0.8} = 1 - 0.5205 = 0.4795` },
+        { title: 'Multiply by concentration range', math: t`C_x - 0.8 = 0.4795 \times 3.2 = 1.5344` },
+        { title: 'Add initial concentration $C_0$', math: t`C_x = 0.8 + 1.5344 = 2.3344 \approx 2.33\text{ kg/m}^3` }
       ],
-      answer: t`2.33\\text{ kg/m}^3`,
+      answer: t`2.33\text{ kg/m}^3`,
       whyWrong: {
-        '1': t`Using $\\text{erf}(z) = 0.5205$ directly without $1 - \\text{erf}(z)$: $0.8 + 0.5205(3.2) = 2.46\\text{ kg/m}^3$.`,
-        '2': t`$1.66\\text{ kg/m}^3$ forgets to add initial baseline $C_0 = 0.8$.`,
-        '3': t`$3.20\\text{ kg/m}^3$ is simply $(C_s - C_0)$.`
+        '1': t`Using $\text{erf}(z) = 0.5205$ directly without $1 - \text{erf}(z)$: $0.8 + 0.5205(3.2) = 2.46\text{ kg/m}^3$.`,
+        '2': t`$1.66\text{ kg/m}^3$ forgets to add initial baseline $C_0 = 0.8$.`,
+        '3': t`$3.20\text{ kg/m}^3$ is simply $(C_s - C_0)$.`
       },
-      commonTrap: t`Forgetting that the profile uses $1 - \\text{erf}(z)$, not $\\text{erf}(z)$ directly when defining $(C_x - C_0)/(C_s - C_0)$.`,
+      commonTrap: t`Forgetting that the profile uses $1 - \text{erf}(z)$, not $\text{erf}(z)$ directly when defining $(C_x - C_0)/(C_s - C_0)$.`,
       reference: 'MIAE 221 Midterm 2024 Question 7; Callister Chapter 5'
     },
     source: src('Midterm 2024', 'Diffusion', 'Question 7')
@@ -1851,19 +1851,19 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2024 (Q8) · Concordia University',
     topic: 'Elastic Modulus Invariance in Structural Steels',
     difficulty: 'Midterm Level',
-    question: t`A designer considers two steels for a cantilever leaf spring: Steel A (ultra-high strength quenched alloy, $\\sigma_y = 1200\\text{ MPa}$) and Steel B (standard mild carbon steel, $\\sigma_y = 250\\text{ MPa}$). Both beams have identical geometric cross-sections. In the purely elastic regime (small deflections), which beam requires more force to deflect by $2.0\\text{ mm}$?`,
+    question: t`A designer considers two steels for a cantilever leaf spring: Steel A (ultra-high strength quenched alloy, $\sigma_y = 1200\text{ MPa}$) and Steel B (standard mild carbon steel, $\sigma_y = 250\text{ MPa}$). Both beams have identical geometric cross-sections. In the purely elastic regime (small deflections), which beam requires more force to deflect by $2.0\text{ mm}$?`,
     options: [
-      t`Both require identical force because their Modulus of Elasticity ($E \\approx 207\\text{ GPa}$) is virtually identical`,
+      t`Both require identical force because their Modulus of Elasticity ($E \approx 207\text{ GPa}$) is virtually identical`,
       t`Steel A requires nearly 5 times more force because of its higher yield strength`,
       t`Steel B requires more force because lower strength steels have greater stiffness`,
       t`Steel A requires less force due to alloy work softening`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Elastic stiffness is governed entirely by Hooke's Law and Young's modulus $E$. Young's modulus is a structure-insensitive property determined by the iron-iron atomic bond energy curve. Alloying and heat treatment change yield strength (dislocation pinning) but have negligible effect ($< 2\\%$) on $E$ ($E \\approx 207\\text{ GPa}$ for all carbon and low-alloy steels).`,
+      coreConcept: t`Elastic stiffness is governed entirely by Hooke's Law and Young's modulus $E$. Young's modulus is a structure-insensitive property determined by the iron-iron atomic bond energy curve. Alloying and heat treatment change yield strength (dislocation pinning) but have negligible effect ($< 2\\%$) on $E$ ($E \approx 207\text{ GPa}$ for all carbon and low-alloy steels).`,
       stepByStep: [],
       steps: [
-        { title: 'Stiffness Formula', math: t`k = \\frac{F}{\\delta} = \\frac{3EI}{L^3}` },
+        { title: 'Stiffness Formula', math: t`k = \frac{F}{\delta} = \frac{3EI}{L^3}` },
         { title: 'Material Dependency', note: t`The force depends strictly on E and geometry (I, L), NOT on yield strength. Both steels have E = 207 GPa.` }
       ],
       answer: t`Both require identical force because their Young's modulus (E ~ 207 GPa) is identical`,
@@ -1884,29 +1884,29 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2024 (Q9) · Concordia University',
     topic: 'Elastic Elongation of Cylindrical Steel Rod',
     difficulty: 'Midterm Level',
-    question: t`A vertical 10-meter-long cylindrical steel rod ($d = 20\\text{ mm}$, $E = 207\\text{ GPa}$) supports a static suspended weight of mass $m = 1000\\text{ kg}$ ($F = 9800\\text{ N}$). What is the final extended length of the rod under this load?`,
+    question: t`A vertical 10-meter-long cylindrical steel rod ($d = 20\text{ mm}$, $E = 207\text{ GPa}$) supports a static suspended weight of mass $m = 1000\text{ kg}$ ($F = 9800\text{ N}$). What is the final extended length of the rod under this load?`,
     options: [
-      t`$10.00151\\text{ m}$`,
-      t`$10.00603\\text{ m}$`,
-      t`$10.01507\\text{ m}$`,
-      t`$10.00038\\text{ m}$`
+      t`$10.00151\text{ m}$`,
+      t`$10.00603\text{ m}$`,
+      t`$10.01507\text{ m}$`,
+      t`$10.00038\text{ m}$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Hooke's Law: $\\sigma = E \\epsilon \\implies \\dfrac{F}{A} = E \\dfrac{\\Delta L}{L_0} \\implies \\Delta L = \\dfrac{F L_0}{A E}$. Final length is $L_f = L_0 + \\Delta L$.`,
+      coreConcept: t`Hooke's Law: $\sigma = E \epsilon \implies \dfrac{F}{A} = E \dfrac{\Delta L}{L_0} \implies \Delta L = \dfrac{F L_0}{A E}$. Final length is $L_f = L_0 + \Delta L$.`,
       stepByStep: [],
       steps: [
-        { title: 'Calculate cross-sectional area A', math: t`A = \\frac{\\pi}{4}d^2 = \\frac{\\pi}{4}(0.020\\text{ m})^2 = 3.1416 \\times 10^{-4}\\text{ m}^2` },
-        { title: 'Calculate elongation $\\Delta L$', math: t`\\Delta L = \\frac{(9800\\text{ N})(10.0\\text{ m})}{(3.1416 \\times 10^{-4}\\text{ m}^2)(207 \\times 10^9\\text{ N/m}^2)} = \\frac{98000}{6.5031 \\times 10^7} \\approx 1.507 \\times 10^{-3}\\text{ m} = 1.507\\text{ mm}` },
-        { title: 'Compute final length $L_f$', math: t`L_f = 10.0\\text{ m} + 0.001507\\text{ m} = 10.00151\\text{ m}` }
+        { title: 'Calculate cross-sectional area A', math: t`A = \frac{\pi}{4}d^2 = \frac{\pi}{4}(0.020\text{ m})^2 = 3.1416 \times 10^{-4}\text{ m}^2` },
+        { title: 'Calculate elongation $\\Delta L$', math: t`\Delta L = \frac{(9800\text{ N})(10.0\text{ m})}{(3.1416 \times 10^{-4}\text{ m}^2)(207 \times 10^9\text{ N/m}^2)} = \frac{98000}{6.5031 \times 10^7} \approx 1.507 \times 10^{-3}\text{ m} = 1.507\text{ mm}` },
+        { title: 'Compute final length $L_f$', math: t`L_f = 10.0\text{ m} + 0.001507\text{ m} = 10.00151\text{ m}` }
       ],
-      answer: t`10.00151\\text{ m}`,
+      answer: t`10.00151\text{ m}`,
       whyWrong: {
-        '1': t`Using radius $r = 20\\text{ mm}$ instead of diameter $d = 20\\text{ mm}$ ($4\\times$ error in area).`,
+        '1': t`Using radius $r = 20\text{ mm}$ instead of diameter $d = 20\text{ mm}$ ($4\times$ error in area).`,
         '2': t`Decimal place conversion error on GPa ($10^6$ instead of $10^9$).`,
-        '3': t`Using $E = 800\\text{ GPa}$.`
+        '3': t`Using $E = 800\text{ GPa}$.`
       },
-      commonTrap: t`Forgetting to square the diameter in $A = \\pi d^2 / 4$ or confusing radius with diameter.`,
+      commonTrap: t`Forgetting to square the diameter in $A = \pi d^2 / 4$ or confusing radius with diameter.`,
       reference: 'MIAE 221 Midterm 2024 Question 9; Callister Chapter 6'
     },
     source: src('Midterm 2024', 'Mechanical Properties', 'Question 9')
@@ -1920,27 +1920,27 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     difficulty: 'Foundation',
     question: t`A crystallographic plane intersects the coordinate axes at $x = -1$, $y = -1$, and $z = 1$ in terms of lattice parameters. What are the Miller indices of this plane?`,
     options: [
-      t`$(\\bar{1}\\bar{1}1)$`,
-      t`$(11\\bar{1})$`,
-      t`$[\\bar{1}\\bar{1}1]$`,
-      t`$(\\bar{1}11)$`
+      t`$(\bar{1}\bar{1}1)$`,
+      t`$(11\bar{1})$`,
+      t`$[\bar{1}\bar{1}1]$`,
+      t`$(\bar{1}11)$`
     ],
     correctIndex: 0,
     explanation: {
       coreConcept: t`Miller indices $(hkl)$ for planes are obtained by: (1) reading axial intercepts, (2) taking their reciprocals, (3) clearing fractions to smallest integers, and (4) enclosing in parentheses $(hkl)$ with negative signs represented by overbars.`,
       stepByStep: [],
       steps: [
-        { title: 'Intercepts', math: t`x = -1, \\quad y = -1, \\quad z = 1` },
-        { title: 'Take reciprocals', math: t`h = \\frac{1}{-1} = -1, \\quad k = \\frac{1}{-1} = -1, \\quad l = \\frac{1}{1} = 1` },
-        { title: 'Format with overbars in parentheses', math: t`(\\bar{1}\\bar{1}1)` }
+        { title: 'Intercepts', math: t`x = -1, \quad y = -1, \quad z = 1` },
+        { title: 'Take reciprocals', math: t`h = \frac{1}{-1} = -1, \quad k = \frac{1}{-1} = -1, \quad l = \frac{1}{1} = 1` },
+        { title: 'Format with overbars in parentheses', math: t`(\bar{1}\bar{1}1)` }
       ],
-      answer: t`(\\bar{1}\\bar{1}1)`,
+      answer: t`(\bar{1}\bar{1}1)`,
       whyWrong: {
-        '1': t`$(11\\bar{1})$ is the opposite plane (inverted signs on all axes).`,
-        '2': t`Square brackets $[\\bar{1}\\bar{1}1]$ denote a DIRECTION, not a plane. Planes must use parentheses ()!`,
+        '1': t`$(11\bar{1})$ is the opposite plane (inverted signs on all axes).`,
+        '2': t`Square brackets $[\bar{1}\bar{1}1]$ denote a DIRECTION, not a plane. Planes must use parentheses ()!`,
         '3': t`Sign error on the y-axis.`
       },
-      commonTrap: t`Using square brackets $[\\dots]$ instead of parentheses $(\\dots)$. Brackets denote crystallographic directions, whereas parentheses denote planes!`,
+      commonTrap: t`Using square brackets $[\dots]$ instead of parentheses $(\dots)$. Brackets denote crystallographic directions, whereas parentheses denote planes!`,
       reference: 'MIAE 221 Midterm 2024 Question 10; Callister Chapter 3'
     },
     source: src('Midterm 2024', 'Miller Indices', 'Question 10')
@@ -1952,30 +1952,30 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2024 (Q11) · Concordia University',
     topic: 'Bragg\'s Law First-Order Diffraction Angle for Platinum',
     difficulty: 'Exam Master',
-    question: t`Monochromatic X-radiation with wavelength $\\lambda = 0.1542\\text{ nm}$ diffracts from the $(113)$ planes of platinum (FCC, $a = 0.3924\\text{ nm}$). What is the diffraction angle $2\\theta$ for first-order reflection ($n = 1$)?`,
+    question: t`Monochromatic X-radiation with wavelength $\lambda = 0.1542\text{ nm}$ diffracts from the $(113)$ planes of platinum (FCC, $a = 0.3924\text{ nm}$). What is the diffraction angle $2\theta$ for first-order reflection ($n = 1$)?`,
     options: [
-      t`$2\\theta = 81.4^\\circ$`,
-      t`$2\\theta = 40.7^\\circ$`,
-      t`$2\\theta = 53.6^\\circ$`,
-      t`$2\\theta = 90.0^\\circ$`
+      t`$2\theta = 81.4^\circ$`,
+      t`$2\theta = 40.7^\circ$`,
+      t`$2\theta = 53.6^\circ$`,
+      t`$2\theta = 90.0^\circ$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`First calculate interplanar spacing $d_{hkl} = \\dfrac{a}{\\sqrt{h^2+k^2+l^2}}$. Then apply Bragg's Law: $n\\lambda = 2d\\sin\\theta$. Finally, compute the diffraction angle $2\\theta = 2 \\times \\theta$.`,
+      coreConcept: t`First calculate interplanar spacing $d_{hkl} = \dfrac{a}{\sqrt{h^2+k^2+l^2}}$. Then apply Bragg's Law: $n\lambda = 2d\sin\theta$. Finally, compute the diffraction angle $2\theta = 2 \times \theta$.`,
       stepByStep: [],
       steps: [
-        { title: 'Calculate interplanar spacing $d_{113}$', math: t`d_{113} = \\frac{a}{\\sqrt{1^2 + 1^2 + 3^2}} = \\frac{0.3924\\text{ nm}}{\\sqrt{11}} = \\frac{0.3924}{3.3166} = 0.11831\\text{ nm}` },
-        { title: 'Apply Bragg\'s law to find $\\sin\\theta$', math: t`\\sin\\theta = \\frac{\\lambda}{2 d_{113}} = \\frac{0.1542\\text{ nm}}{2(0.11831\\text{ nm})} = \\frac{0.1542}{0.23662} \\approx 0.65168` },
-        { title: 'Compute Bragg angle $\\theta$', math: t`\\theta = \\arcsin(0.65168) \\approx 40.67^\\circ` },
-        { title: 'Compute instrument diffraction angle $2\\theta$', math: t`2\\theta = 2 \\times 40.67^\\circ = 81.34^\\circ \\approx 81.4^\\circ` }
+        { title: 'Calculate interplanar spacing $d_{113}$', math: t`d_{113} = \frac{a}{\sqrt{1^2 + 1^2 + 3^2}} = \frac{0.3924\text{ nm}}{\sqrt{11}} = \frac{0.3924}{3.3166} = 0.11831\text{ nm}` },
+        { title: 'Apply Bragg\'s law to find $\\sin\\theta$', math: t`\sin\theta = \frac{\lambda}{2 d_{113}} = \frac{0.1542\text{ nm}}{2(0.11831\text{ nm})} = \frac{0.1542}{0.23662} \approx 0.65168` },
+        { title: 'Compute Bragg angle $\\theta$', math: t`\theta = \arcsin(0.65168) \approx 40.67^\circ` },
+        { title: 'Compute instrument diffraction angle $2\\theta$', math: t`2\theta = 2 \times 40.67^\circ = 81.34^\circ \approx 81.4^\circ` }
       ],
-      answer: t`2\\theta = 81.4^\\circ`,
+      answer: t`2\theta = 81.4^\circ`,
       whyWrong: {
-        '1': t`Exam Trap: Reporting the Bragg angle $\\theta = 40.7^\\circ$ instead of the instrument diffractometer angle $2\\theta$!`,
-        '2': t`$53.6^\\circ$ assumes diffraction from the (200) plane.`,
-        '3': t`$90.0^\\circ$ assumes $\\sin\\theta = 1$.`
+        '1': t`Exam Trap: Reporting the Bragg angle $\theta = 40.7^\circ$ instead of the instrument diffractometer angle $2\theta$!`,
+        '2': t`$53.6^\circ$ assumes diffraction from the (200) plane.`,
+        '3': t`$90.0^\circ$ assumes $\sin\theta = 1$.`
       },
-      commonTrap: t`Reporting $\\theta$ instead of $2\\theta$. X-ray diffractometers always measure the deflection angle $2\\theta$!`,
+      commonTrap: t`Reporting $\theta$ instead of $2\theta$. X-ray diffractometers always measure the deflection angle $2\theta$!`,
       reference: 'MIAE 221 Midterm 2024 Question 11; Callister Chapter 3'
     },
     source: src('Midterm 2024', 'X-Ray Diffraction', 'Question 11')
@@ -1987,27 +1987,27 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2025 Version A (Q4) · Concordia University',
     topic: 'Student Scanned Error Correction: Planar Density of FCC (110) Plane',
     difficulty: 'Exam Master',
-    question: t`A student's scanned midterm exam marks the planar density of the FCC $(110)$ plane as $PD = \\dfrac{1}{2\\sqrt{2}R^2}$. Is this answer mathematically correct?`,
+    question: t`A student's scanned midterm exam marks the planar density of the FCC $(110)$ plane as $PD = \dfrac{1}{2\sqrt{2}R^2}$. Is this answer mathematically correct?`,
     options: [
-      t`No; the correct planar density is $\\dfrac{1}{4\\sqrt{2}R^2}$. The student undercalculated the rectangular plane area by a factor of 2`,
-      t`Yes; the student's answer of $\\dfrac{1}{2\\sqrt{2}R^2}$ is completely correct`,
-      t`No; the correct planar density is $\\dfrac{1}{8\\sqrt{2}R^2}$`,
+      t`No; the correct planar density is $\dfrac{1}{4\sqrt{2}R^2}$. The student undercalculated the rectangular plane area by a factor of 2`,
+      t`Yes; the student's answer of $\dfrac{1}{2\sqrt{2}R^2}$ is completely correct`,
+      t`No; the correct planar density is $\dfrac{1}{8\sqrt{2}R^2}$`,
       t`No; planar density for FCC (110) is zero because atoms do not touch along this plane`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Scanned Student Mistake Analysis! The FCC $(110)$ plane forms a rectangle with height $a = 2\\sqrt{2}R$ and width equal to the face diagonal $\\sqrt{2}a = 4R$. The area is $A = a \\times \\sqrt{2}a = \\sqrt{2}a^2 = 8\\sqrt{2}R^2$. The plane contains $4(1/4) + 2(1/2) = 2\\text{ atoms}$. Thus $PD = \\frac{2}{8\\sqrt{2}R^2} = \\frac{1}{4\\sqrt{2}R^2}$. The student forgot the face diagonal dimension is $4R$ (not $2R$), halving the true area!`,
+      coreConcept: t`Scanned Student Mistake Analysis! The FCC $(110)$ plane forms a rectangle with height $a = 2\sqrt{2}R$ and width equal to the face diagonal $\sqrt{2}a = 4R$. The area is $A = a \times \sqrt{2}a = \sqrt{2}a^2 = 8\sqrt{2}R^2$. The plane contains $4(1/4) + 2(1/2) = 2\text{ atoms}$. Thus $PD = \frac{2}{8\sqrt{2}R^2} = \frac{1}{4\sqrt{2}R^2}$. The student forgot the face diagonal dimension is $4R$ (not $2R$), halving the true area!`,
       stepByStep: [],
       steps: [
-        { title: 'Count atoms centered on the (110) slice', math: t`n = 4\\left(\\frac{1}{4}\\right) \\text{ [corners]} + 2\\left(\\frac{1}{2}\\right) \\text{ [face centers]} = 1 + 1 = 2\\text{ atoms}` },
-        { title: 'Compute rectangular dimensions of the plane', math: t`\\text{Height} = a = 2\\sqrt{2}R; \\quad \\text{Width} = \\sqrt{2}a = \\sqrt{2}(2\\sqrt{2}R) = 4R` },
-        { title: 'Compute total plane area $A_p$', math: t`A_p = a \\times (\\sqrt{2}a) = \\sqrt{2}a^2 = \\sqrt{2}(2\\sqrt{2}R)^2 = \\sqrt{2}(8R^2) = 8\\sqrt{2}R^2` },
-        { title: 'Compute correct planar density', math: t`PD_{(110)} = \\frac{n}{A_p} = \\frac{2}{8\\sqrt{2}R^2} = \\frac{1}{4\\sqrt{2}R^2}` }
+        { title: 'Count atoms centered on the (110) slice', math: t`n = 4\left(\frac{1}{4}\right) \text{ [corners]} + 2\left(\frac{1}{2}\right) \text{ [face centers]} = 1 + 1 = 2\text{ atoms}` },
+        { title: 'Compute rectangular dimensions of the plane', math: t`\text{Height} = a = 2\sqrt{2}R; \quad \text{Width} = \sqrt{2}a = \sqrt{2}(2\sqrt{2}R) = 4R` },
+        { title: 'Compute total plane area $A_p$', math: t`A_p = a \times (\sqrt{2}a) = \sqrt{2}a^2 = \sqrt{2}(2\sqrt{2}R)^2 = \sqrt{2}(8R^2) = 8\sqrt{2}R^2` },
+        { title: 'Compute correct planar density', math: t`PD_{(110)} = \frac{n}{A_p} = \frac{2}{8\sqrt{2}R^2} = \frac{1}{4\sqrt{2}R^2}` }
       ],
       answer: t`No; correct is 1 / (4*sqrt(2)*R^2). The student undercalculated plane area by a factor of 2`,
       whyWrong: {
-        '1': t`Accepting the student's erroneous answer: $\\frac{1}{2\\sqrt{2}R^2}$ corresponds to an area of $4\\sqrt{2}R^2$, which wrongly assumes face diagonal length is $2R$ instead of $4R$.`,
-        '2': t`$\\frac{1}{8\\sqrt{2}R^2}$ assumes only 1 atom lies in the plane instead of 2.`,
+        '1': t`Accepting the student's erroneous answer: $\frac{1}{2\sqrt{2}R^2}$ corresponds to an area of $4\sqrt{2}R^2$, which wrongly assumes face diagonal length is $2R$ instead of $4R$.`,
+        '2': t`$\frac{1}{8\sqrt{2}R^2}$ assumes only 1 atom lies in the plane instead of 2.`,
         '3': t`Atoms do lie directly in the (110) plane.`
       },
       commonTrap: t`Trusting student handwritten notes on past papers without deriving from first principles. The student missed the full $4R$ face diagonal width!`,
@@ -2022,29 +2022,29 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2025 Version A (Q8) · Concordia University',
     topic: 'Theoretical Density Calculation: BCC Tungsten',
     difficulty: 'Midterm Level',
-    question: t`Tungsten (W) has a BCC crystal structure with atomic mass $A_W = 183.84\\text{ g/mol}$ and atomic radius $R = 0.1371\\text{ nm}$. What is its theoretical mass density $\\rho$?`,
+    question: t`Tungsten (W) has a BCC crystal structure with atomic mass $A_W = 183.84\text{ g/mol}$ and atomic radius $R = 0.1371\text{ nm}$. What is its theoretical mass density $\rho$?`,
     options: [
-      t`$19.3\\text{ g/cm}^3$`,
-      t`$16.5\\text{ g/cm}^3$`,
-      t`$9.65\\text{ g/cm}^3$`,
-      t`$21.4\\text{ g/cm}^3$`
+      t`$19.3\text{ g/cm}^3$`,
+      t`$16.5\text{ g/cm}^3$`,
+      t`$9.65\text{ g/cm}^3$`,
+      t`$21.4\text{ g/cm}^3$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Theoretical density formula: $\\rho = \\dfrac{n A}{V_c N_A}$. For BCC, $n = 2$ atoms/unit cell, and the lattice parameter along the close-packed body diagonal is $a = \\dfrac{4R}{\\sqrt{3}}$.`,
+      coreConcept: t`Theoretical density formula: $\rho = \dfrac{n A}{V_c N_A}$. For BCC, $n = 2$ atoms/unit cell, and the lattice parameter along the close-packed body diagonal is $a = \dfrac{4R}{\sqrt{3}}$.`,
       stepByStep: [],
       steps: [
-        { title: 'Calculate lattice parameter a', math: t`a = \\frac{4R}{\\sqrt{3}} = \\frac{4(0.1371\\text{ nm})}{\\sqrt{3}} = \\frac{0.5484}{1.73205} = 0.31662\\text{ nm} = 3.1662 \\times 10^{-8}\\text{ cm}` },
-        { title: 'Compute unit cell volume $V_c$', math: t`V_c = a^3 = (3.1662 \\times 10^{-8}\\text{ cm})^3 = 3.174 \\times 10^{-23}\\text{ cm}^3` },
-        { title: 'Apply theoretical density formula', math: t`\\rho = \\frac{n A_W}{V_c N_A} = \\frac{2(183.84\\text{ g/mol})}{(3.174 \\times 10^{-23}\\text{ cm}^3)(6.022 \\times 10^{23}\\text{ mol}^{-1})} = \\frac{367.68}{19.114} \\approx 19.24 \\approx 19.3\\text{ g/cm}^3` }
+        { title: 'Calculate lattice parameter a', math: t`a = \frac{4R}{\sqrt{3}} = \frac{4(0.1371\text{ nm})}{\sqrt{3}} = \frac{0.5484}{1.73205} = 0.31662\text{ nm} = 3.1662 \times 10^{-8}\text{ cm}` },
+        { title: 'Compute unit cell volume $V_c$', math: t`V_c = a^3 = (3.1662 \times 10^{-8}\text{ cm})^3 = 3.174 \times 10^{-23}\text{ cm}^3` },
+        { title: 'Apply theoretical density formula', math: t`\rho = \frac{n A_W}{V_c N_A} = \frac{2(183.84\text{ g/mol})}{(3.174 \times 10^{-23}\text{ cm}^3)(6.022 \times 10^{23}\text{ mol}^{-1})} = \frac{367.68}{19.114} \approx 19.24 \approx 19.3\text{ g/cm}^3` }
       ],
-      answer: t`19.3\\text{ g/cm}^3`,
+      answer: t`19.3\text{ g/cm}^3`,
       whyWrong: {
-        '1': t`Using FCC relation $a = 2\\sqrt{2}R$ instead of BCC $a = 4R/\\sqrt{3}$.`,
-        '2': t`Using $n = 1$ (simple cubic) instead of $n = 2$ for BCC: yields half the density ($9.65\\text{ g/cm}^3$).`,
-        '3': t`$21.4\\text{ g/cm}^3$ is the density of platinum (FCC).`
+        '1': t`Using FCC relation $a = 2\sqrt{2}R$ instead of BCC $a = 4R/\sqrt{3}$.`,
+        '2': t`Using $n = 1$ (simple cubic) instead of $n = 2$ for BCC: yields half the density ($9.65\text{ g/cm}^3$).`,
+        '3': t`$21.4\text{ g/cm}^3$ is the density of platinum (FCC).`
       },
-      commonTrap: t`Mixing up BCC ($a = 4R/\\sqrt{3}$) and FCC ($a = 2\\sqrt{2}R$) lattice parameter formulas.`,
+      commonTrap: t`Mixing up BCC ($a = 4R/\sqrt{3}$) and FCC ($a = 2\sqrt{2}R$) lattice parameter formulas.`,
       reference: 'MIAE 221 Midterm 2025 Version A Question 8; Callister Chapter 3'
     },
     source: src('Midterm 2025', 'Theoretical Density', 'Question 8')
@@ -2056,7 +2056,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2024 (Q19) · Concordia University',
     topic: 'Poisson\'s Ratio Determination from Tensile Data',
     difficulty: 'Midterm Level',
-    question: t`A cylindrical metal specimen ($d_0 = 12.8000\\text{ mm}$) subjected to an elastic tensile stress exhibits an axial strain $\\epsilon_z = +0.0020$. Simultaneously, the diameter reduces to $12.7923\\text{ mm}$. What is the Poisson's ratio $\\nu$ of this material?`,
+    question: t`A cylindrical metal specimen ($d_0 = 12.8000\text{ mm}$) subjected to an elastic tensile stress exhibits an axial strain $\epsilon_z = +0.0020$. Simultaneously, the diameter reduces to $12.7923\text{ mm}$. What is the Poisson's ratio $\nu$ of this material?`,
     options: [
       t`$0.30$`,
       t`$0.35$`,
@@ -2065,20 +2065,20 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Poisson's ratio is defined as the negative ratio of lateral strain to axial strain: $\\nu = -\\dfrac{\\epsilon_x}{\\epsilon_z} = -\\dfrac{\\Delta d / d_0}{\\epsilon_z}$.`,
+      coreConcept: t`Poisson's ratio is defined as the negative ratio of lateral strain to axial strain: $\nu = -\dfrac{\epsilon_x}{\epsilon_z} = -\dfrac{\Delta d / d_0}{\epsilon_z}$.`,
       stepByStep: [],
       steps: [
-        { title: 'Calculate diameter change $\\Delta d$', math: t`\\Delta d = 12.7923 - 12.8000 = -0.0077\\text{ mm}` },
-        { title: 'Compute lateral strain $\\epsilon_x$', math: t`\\epsilon_x = \\frac{\\Delta d}{d_0} = \\frac{-0.0077\\text{ mm}}{12.8000\\text{ mm}} = -0.00060156` },
-        { title: 'Compute Poisson\'s ratio', math: t`\\nu = -\\frac{\\epsilon_x}{\\epsilon_z} = -\\frac{-0.00060156}{0.0020} = +0.3008 \\approx 0.30` }
+        { title: 'Calculate diameter change $\\Delta d$', math: t`\Delta d = 12.7923 - 12.8000 = -0.0077\text{ mm}` },
+        { title: 'Compute lateral strain $\\epsilon_x$', math: t`\epsilon_x = \frac{\Delta d}{d_0} = \frac{-0.0077\text{ mm}}{12.8000\text{ mm}} = -0.00060156` },
+        { title: 'Compute Poisson\'s ratio', math: t`\nu = -\frac{\epsilon_x}{\epsilon_z} = -\frac{-0.00060156}{0.0020} = +0.3008 \approx 0.30` }
       ],
       answer: t`0.30`,
       whyWrong: {
         '1': t`Rounding or calculation slip in diameter difference: using $0.0089$ instead of $0.0077$.`,
-        '2': t`$0.25$ assumes $\\Delta d = -0.0064\\text{ mm}$.`,
-        '3': t`Forgetting the negative sign in the definition of Poisson's ratio: $\\nu$ is conventionally positive for stable metals.`
+        '2': t`$0.25$ assumes $\Delta d = -0.0064\text{ mm}$.`,
+        '3': t`Forgetting the negative sign in the definition of Poisson's ratio: $\nu$ is conventionally positive for stable metals.`
       },
-      commonTrap: t`Forgetting that tensile elongation produces lateral contraction (negative $\\Delta d$), which cancels with the minus sign in $\\nu = -\\epsilon_x / \\epsilon_z$.`,
+      commonTrap: t`Forgetting that tensile elongation produces lateral contraction (negative $\Delta d$), which cancels with the minus sign in $\nu = -\epsilon_x / \epsilon_z$.`,
       reference: 'MIAE 221 Midterm 2024 Question 19; Callister Chapter 6'
     },
     source: src('Midterm 2024', 'Mechanical Properties', 'Question 19')
@@ -2093,13 +2093,13 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`Which of the following mechanical properties CANNOT be directly determined from a standard uniaxial tensile stress-strain test?`,
     options: [
       t`Hardness (Rockwell / Brinell indentation resistance)`,
-      t`Yield strength ($\\sigma_y$ at $0.2\\%$ strain offset)`,
-      t`Ultimate tensile strength ($\\sigma_{\\text{UTS}}$)`,
+      t`Yield strength ($\sigma_y$ at $0.2\\%$ strain offset)`,
+      t`Ultimate tensile strength ($\sigma_{\text{UTS}}$)`,
       t`Modulus of elasticity ($E$)`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`A standard tensile test continuously pulls a dogbone specimen uniaxially to measure the stress-strain curve, directly yielding $E$, $\\sigma_y$, $\\sigma_{\\text{UTS}}$, ductiliy ($\\text{\\%EL}$), and modulus of resilience. Hardness, however, measures localized surface resistance to permanent penetration/indentation under a pointed indenter (Rockwell, Brinell, Vickers) and requires a dedicated hardness tester.`,
+      coreConcept: t`A standard tensile test continuously pulls a dogbone specimen uniaxially to measure the stress-strain curve, directly yielding $E$, $\sigma_y$, $\sigma_{\text{UTS}}$, ductiliy ($\text{\\%EL}$), and modulus of resilience. Hardness, however, measures localized surface resistance to permanent penetration/indentation under a pointed indenter (Rockwell, Brinell, Vickers) and requires a dedicated hardness tester.`,
       stepByStep: [],
       steps: [
         { title: 'Tensile Test Outputs', note: t`Yield strength, tensile strength, Young's modulus, and elongation to fracture are all derived from the tensile test curve.` },
@@ -2111,10 +2111,675 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
         '2': t`Ultimate tensile strength is the maximum engineering stress point on the tensile curve.`,
         '3': t`Modulus of elasticity is the slope of the initial linear elastic region.`
       },
-      commonTrap: t`Assuming empirical correlations (e.g. $\\text{TS} \\approx 3.45 \\times \\text{HB}$) mean hardness is directly measured in a tensile test. It is measured via indentation!`,
+      commonTrap: t`Assuming empirical correlations (e.g. $\text{TS} \approx 3.45 \times \text{HB}$) mean hardness is directly measured in a tensile test. It is measured via indentation!`,
       reference: 'MIAE 221 Midterm 2024 Question 20; Callister Chapter 6'
     },
     source: src('Midterm 2024', 'Mechanical Properties', 'Question 20')
   }),
+  
+  // ============================================================ ADDITIONAL PAST-FINAL QUESTIONS (>= 2020)
+  q({
+    id: 'Q_MIAE221_PF01',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2024 (Q1) · Concordia University',
+    topic: 'Iron-Carbon Eutectoid Reaction & Microconstituents',
+    difficulty: 'Exam Master',
+    question: t`In the iron-carbon equilibrium phase diagram, what specific microstructural transformation occurs during slow cooling of austenite ($\gamma$) through the eutectoid temperature of $727^\circ\text{C}$ at $0.76\text{ wt\% C}$?`,
+    options: [
+      t`$\gamma(0.76\text{ wt\% C}) \to \alpha(0.022\text{ wt\% C}) + \text{Fe}_3\text{C}(6.70\text{ wt\% C})$ (Pearlite formation)`,
+      t`$\text{Liquid}(4.3\text{ wt\% C}) \to \gamma(2.14\text{ wt\% C}) + \text{Fe}_3\text{C}(6.70\text{ wt\% C})$ (Ledeburite)`,
+      t`$\delta(0.09\text{ wt\% C}) + \text{Liquid} \to \gamma(0.17\text{ wt\% C})$ (Peritectic)`,
+      t`$\gamma \to \text{Martensite}$ (Diffusionless BCT transformation)`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The eutectoid reaction is an isothermal solid-to-solid reaction: $\gamma(0.76\text{ wt\% C}) \to \alpha(0.022\text{ wt\% C}) + \text{Fe}_3\text{C}(6.70\text{ wt\% C})$. The resulting lamellar microconstituent is pearlite.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Eutectoid Definition', note: t`Solid solution (austenite $\gamma$) decomposes into two distinct solid phases (ferrite $\alpha$ and cementite $\text{Fe}_3\text{C}$) in alternating parallel plates (pearlite).` }
+      ],
+      answer: t`\gamma(0.76\text{ wt\% C}) \to \alpha(0.022\text{ wt\% C}) + \text{Fe}_3\text{C}(6.70\text{ wt\% C})`,
+      whyWrong: {
+        '1': t`This is the eutectic reaction at $1147^\circ\text{C}$, converting liquid to austenite and cementite (ledeburite).`,
+        '2': t`This is the peritectic reaction at $1493^\circ\text{C}$.`,
+        '3': t`Martensite forms upon rapid quenching (non-equilibrium), not slow cooling.`
+      },
+      commonTrap: t`Confusing eutectic (liquid $\to$ two solids) with eutectoid (one solid $\to$ two solids). Eutectoid in steel occurs at $727^\circ\text{C}$ and $0.76\text{ wt\% C}$.`,
+      reference: 'MIAE 221 Final Exam Winter 2024; Callister Chapter 9'
+    },
+    source: src('Final 2024', 'Phase Diagrams & Iron-Carbon', 'Question 1')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF02',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2023 (Q3) · Concordia University',
+    topic: 'Lever Rule for Hypoeutectoid Steel Proeutectoid Ferrite',
+    difficulty: 'Exam Master',
+    question: t`A hypoeutectoid plain-carbon steel containing $0.35\text{ wt\% C}$ is slowly cooled from $950^\circ\text{C}$ to just above the eutectoid temperature ($727^\circ\text{C} + \Delta T$). What is the mass fraction of proeutectoid $\alpha$-ferrite ($W_{\alpha}$) just above $727^\circ\text{C}$? (Given $\alpha$ contains $0.022\text{ wt\% C}$ and $\gamma$ contains $0.76\text{ wt\% C}$).`,
+    options: [
+      t`$W_\alpha = 0.556$ ($55.6\%$)`,
+      t`$W_\alpha = 0.444$ ($44.4\%$)`,
+      t`$W_\alpha = 0.350$ ($35.0\%$)`,
+      t`$W_\alpha = 0.880$ ($88.0\%$)`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Apply the lever rule at $727^\circ\text{C}$ between $\alpha(0.022\text{ wt\% C})$ and $\gamma(0.76\text{ wt\% C})$: $W_\alpha = \frac{C_\gamma - C_0}{C_\gamma - C_\alpha} = \frac{0.76 - 0.35}{0.76 - 0.022} = \frac{0.41}{0.738} \approx 0.5556 = 55.6\%$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Identify tie-line endpoints', math: t`C_\alpha = 0.022\text{ wt\% C}, \quad C_0 = 0.35\text{ wt\% C}, \quad C_\gamma = 0.76\text{ wt\% C}` },
+        { title: 'Opposite lever arm for $\alpha$', math: t`W_\alpha = \frac{C_\gamma - C_0}{C_\gamma - C_\alpha} = \frac{0.76 - 0.35}{0.76 - 0.022} = \frac{0.410}{0.738} \approx 0.556` }
+      ],
+      answer: t`W_\alpha = 0.556`,
+      whyWrong: {
+        '1': t`Calculated the fraction of austenite $W_\gamma = (0.35 - 0.022)/0.738 = 0.328/0.738 = 0.444$ instead of $\alpha$.`,
+        '2': t`Assumed the mass fraction equals the nominal carbon content $0.35$.`,
+        '3': t`Divided by $0.76$ without subtracting $0.022$.`
+      },
+      commonTrap: t`Remember the 'opposite arm' rule: to find the fraction of the phase on the LEFT ($\alpha$), take the length of the lever arm to the RIGHT ($C_\gamma - C_0$).`,
+      reference: 'MIAE 221 Final Exam Fall 2023; Callister Chapter 9'
+    },
+    source: src('Final 2023', 'Lever Rule & Steel Microstructure', 'Question 3')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF03',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2024 (Q5) · Concordia University',
+    topic: 'Martensite Crystal Structure & Hardness Mechanism',
+    difficulty: 'Midterm Level',
+    question: t`Why is as-quenched martensite the hardest and most brittle microstructural constituent obtainable in plain-carbon steels?`,
+    options: [
+      t`Carbon atoms are trapped interstitially in a body-centered tetragonal (BCT) lattice, generating severe lattice strain and preventing dislocation movement`,
+      t`It consists of an amorphous, glass-like network of covalent iron-carbide bonds`,
+      t`It is composed exclusively of coarse spherical cementite particles in pure ferrite`,
+      t`It possesses a close-packed hexagonal (HCP) structure with zero slip systems`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Rapid water quenching prevents carbon diffusion. The carbon atoms remain trapped in octahedral interstitial sites of the transformed BCC lattice, distorting it along one axis into body-centered tetragonal (BCT). This severe lattice strain locks dislocations in place, causing extreme hardness and brittleness.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Transformation Mechanism', note: t`Diffusionless (athermal) shear transformation from FCC $\gamma$ to BCT martensite.` },
+        { title: 'Lattice Distortion', note: t`The distortion of BCT lattice creates immense internal residual stress fields that prevent dislocation motion.` }
+      ],
+      answer: t`Carbon atoms trapped interstitially in BCT lattice, generating severe strain that prevents dislocation movement`,
+      whyWrong: {
+        '1': t`Martensite is fully crystalline (BCT), not amorphous glass.`,
+        '2': t`Coarse spherical cementite in ferrite describes spheroidite, which is the softest and most ductile steel microstructure.`,
+        '3': t`Martensite is BCT, not HCP.`
+      },
+      commonTrap: t`Thinking martensite forms by precipitation of cementite. Martensite is a supersaturated single-phase solid solution containing zero precipitates!`,
+      reference: 'MIAE 221 Final Exam Winter 2024; Callister Chapter 10'
+    },
+    source: src('Final 2024', 'Martensite Phase Transformations', 'Question 5')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF04',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2022 (Q4) · Concordia University',
+    topic: 'Tempering of Martensite Microstructural Evolution',
+    difficulty: 'Midterm Level',
+    question: t`What is the primary industrial objective of tempering as-quenched martensitic steel by reheating it to $250^\circ\text{C}$–$650^\circ\text{C}$ for several hours?`,
+    options: [
+      t`To relieve severe internal stresses and restore ductility and impact toughness by precipitating extremely fine, submicroscopic cementite particles`,
+      t`To transform the steel back into 100% austenitic face-centered cubic structure`,
+      t`To increase the hardness beyond the as-quenched martensitic state`,
+      t`To dissolve all carbon into the grain boundaries to form a continuous carbide film`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`As-quenched martensite is too brittle for structural applications. Tempering heats the BCT martensite below $727^\circ\text{C}$, allowing trapped carbon to diffuse and precipitate as submicroscopic cementite ($\text{Fe}_3\text{C}$) particles embedded in a continuous $\alpha$-ferrite matrix. This restores substantial ductility and toughness.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Reaction equation', math: t`\text{Martensite (BCT)} \to \text{Tempered Martensite (}\alpha + \text{fine Fe}_3\text{C)}` },
+        { title: 'Mechanical Trade-off', note: t`Slightly reduces extreme hardness, but increases fracture toughness and impact energy by orders of magnitude.` }
+      ],
+      answer: t`To relieve internal stresses and restore ductility and impact toughness`,
+      whyWrong: {
+        '1': t`Austenite forms only upon heating above the $A_{c1}$ temperature ($727^\circ\text{C}$); tempering occurs strictly below $727^\circ\text{C}$.`,
+        '2': t`Tempering reduces hardness slightly while boosting toughness.`,
+        '3': t`Continuous carbide films along grain boundaries cause severe embrittlement and are strictly avoided.`
+      },
+      commonTrap: t`Confusing annealing (heating above $727^\circ\text{C}$ to form pearlite) with tempering (reheating quenched martensite below $727^\circ\text{C}$ to form tempered martensite).`,
+      reference: 'MIAE 221 Final Exam Fall 2022; Callister Chapter 10'
+    },
+    source: src('Final 2022', 'Heat Treatment & Tempering', 'Question 4')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF05',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2023 (Q8) · Concordia University',
+    topic: 'Griffith Theory of Brittle Fracture Stress',
+    difficulty: 'Exam Master',
+    question: t`A large plate of soda-lime glass with Young's modulus $E = 69\text{ GPa}$ and surface energy $\gamma_s = 0.30\text{ J/m}^2$ contains an internal through-thickness crack of total length $2a = 4.0\,\mu\text{m}$. According to the Griffith theory of brittle fracture, what is the critical tensile stress $\sigma_c$ required to propagate this crack?`,
+    options: [
+      t`$\sigma_c \approx 81.1\text{ MPa}$`,
+      t`$\sigma_c \approx 57.3\text{ MPa}$`,
+      t`$\sigma_c \approx 114.7\text{ MPa}$`,
+      t`$\sigma_c \approx 25.6\text{ MPa}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Griffith criterion for an internal crack of half-length $a$: $\sigma_c = \sqrt{\frac{2 E \gamma_s}{\pi a}}$. Note: for an internal crack of length $2a = 4.0\,\mu\text{m}$, the half-crack length is $a = 2.0\,\mu\text{m} = 2.0 \times 10^{-6}\text{ m}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Determine half-length a', math: t`2a = 4.0\,\mu\text{m} \implies a = 2.0\,\mu\text{m} = 2.0 \times 10^{-6}\text{ m}` },
+        { title: 'Substitute values into Griffith formula', math: t`\sigma_c = \sqrt{\frac{2(69 \times 10^9)(0.30)}{\pi (2.0 \times 10^{-6})}} \approx 8.117 \times 10^7\text{ Pa} \approx 81.1\text{ MPa}` }
+      ],
+      answer: t`\sigma_c \approx 81.1\text{ MPa}`,
+      whyWrong: {
+        '1': t`Using $a = 4.0\,\mu\text{m}$ (forgetting that total internal crack length is $2a$, so $a = 2.0\,\mu\text{m}$) yields $57.3\text{ MPa}$.`,
+        '2': t`Omitted $\pi$ in the denominator under the square root.`,
+        '3': t`Unit conversion error in $\text{GPa}$ to $\text{Pa}$.`
+      },
+      commonTrap: t`Using the full crack length $2a$ instead of the half-length $a$ in the Griffith formula for an INTERNAL crack. For surface edge cracks, $a$ is the full edge depth.`,
+      reference: 'MIAE 221 Final Exam Fall 2023; Callister Chapter 8'
+    },
+    source: src('Final 2023', 'Fracture Mechanics', 'Question 8')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF06',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2023 (Q7) · Concordia University',
+    topic: 'Stress Intensity Factor & Fracture Toughness K_Ic',
+    difficulty: 'Midterm Level',
+    question: t`A structural steel alloy has a plane strain fracture toughness $K_{Ic} = 45\text{ MPa}\sqrt{\text{m}}$ and yield strength $\sigma_y = 700\text{ MPa}$. A component is loaded in tension to an operating stress $\sigma = 350\text{ MPa}$. Assuming a geometric parameter $Y = 1.12$, what is the critical surface crack length $a_c$ that will cause catastrophic fast fracture?`,
+    options: [
+      t`$a_c \approx 4.19\text{ mm}$`,
+      t`$a_c \approx 1.05\text{ mm}$`,
+      t`$a_c \approx 8.38\text{ mm}$`,
+      t`$a_c \approx 16.7\text{ mm}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Fracture occurs when stress intensity factor equals fracture toughness: $K_I = Y \sigma \sqrt{\pi a_c} = K_{Ic} \implies a_c = \frac{1}{\pi} \left( \frac{K_{Ic}}{Y \sigma} \right)^2$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Isolate critical crack length $a_c$', math: t`a_c = \frac{1}{\pi}\left( \frac{K_{Ic}}{Y \sigma} \right)^2` },
+        { title: 'Substitute parameters', math: t`\frac{K_{Ic}}{Y \sigma} = \frac{45}{1.12 \times 350} = \frac{45}{392} \approx 0.1148\sqrt{\text{m}}` },
+        { title: 'Square and divide by $\pi$', math: t`a_c = \frac{(0.1148)^2}{\pi} \approx 0.00419\text{ m} \approx 4.19\text{ mm}` }
+      ],
+      answer: t`a_c \approx 4.19\text{ mm}`,
+      whyWrong: {
+        '1': t`Used yield strength $\sigma_y = 700\text{ MPa}$ instead of the actual applied operating stress $\sigma = 350\text{ MPa}$.`,
+        '2': t`Forgot to square the term in parentheses.`,
+        '3': t`Forgot the $\pi$ factor in the denominator.`
+      },
+      commonTrap: t`Using yield strength instead of applied tensile stress! $K_{Ic}$ failure depends on the actual operating stress experienced by the component.`,
+      reference: 'MIAE 221 Final Exam Winter 2023; Callister Chapter 8'
+    },
+    source: src('Final 2023', 'Fracture Mechanics & K_Ic', 'Question 7')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF07',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2022 (Q10) · Concordia University',
+    topic: 'Fatigue S-N Curves: Endurance Limit Distinction',
+    difficulty: 'Foundation',
+    question: t`In fatigue testing, how do the stress-life ($S-N$) curves of ferrous alloys (e.g. low-carbon steels) fundamentally differ from non-ferrous alloys (e.g. aluminum and copper)?`,
+    options: [
+      t`Steels exhibit a true fatigue (endurance) limit below which fracture never occurs regardless of the number of cycles; aluminum exhibits no endurance limit and will eventually fail at any stress`,
+      t`Aluminum has an endurance limit whereas steel does not`,
+      t`Both steel and aluminum have identical infinite life endurance limits at $50\%$ of yield strength`,
+      t`Steels only fail under static tension, never under cyclic fatigue loading`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Ferrous alloys and titanium exhibit a well-defined horizontal plateau in their $S-N$ curve termed the endurance (fatigue) limit ($\sim 0.35-0.50\,\sigma_{\text{UTS}}$). Non-ferrous alloys (aluminum, copper, magnesium) continually slope downward; fatigue strength is therefore defined at a specified cycle life (e.g. $10^7$ or $10^8$ cycles).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Ferrous Behavior', note: t`Interstitial carbon/nitrogen atoms pin dislocations, preventing cyclic slip below the endurance limit.` },
+        { title: 'Non-ferrous Behavior', note: t`Dislocations continuously accumulate damage under any cyclic stress amplitude until crack initiation occurs.` }
+      ],
+      answer: t`Steels exhibit an endurance limit; aluminum exhibits no endurance limit`,
+      whyWrong: {
+        '1': t`Inverts the materials: steel has the endurance limit, not aluminum.`,
+        '2': t`Aluminum has no true endurance limit.`,
+        '3': t`Steels are highly susceptible to fatigue under cyclic loads.`
+      },
+      commonTrap: t`Designing aluminum aircraft components assuming a safe 'infinite life' stress threshold. Aluminum components must be designed for finite fatigue life or scheduled retirement!`,
+      reference: 'MIAE 221 Final Exam Fall 2022; Callister Chapter 8'
+    },
+    source: src('Final 2022', 'Fatigue Life & S-N Curves', 'Question 10')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF08',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2024 (Q9) · Concordia University',
+    topic: 'Stages of High-Temperature Creep Deformation',
+    difficulty: 'Foundation',
+    question: t`During constant-load, high-temperature creep testing ($T > 0.4\,T_m$), in which stage is the strain rate $\dot{\epsilon} = \frac{d\epsilon}{dt}$ constant and at its minimum value due to a dynamic balance between strain hardening and recovery?`,
+    options: [
+      t`Secondary (steady-state) creep`,
+      t`Primary (transient) creep`,
+      t`Tertiary creep`,
+      t`Instantaneous elastic strain`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Secondary (steady-state) creep exhibits a constant minimum strain rate $\dot{\epsilon}_s$. In this stage, the rate of dislocation generation (strain hardening) is exactly balanced by the rate of dislocation climb and annihilation (thermal recovery). It represents the longest duration of creep life.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Primary Creep', note: t`Decreasing strain rate due to dominant strain hardening.` },
+        { title: 'Secondary Creep', note: t`Constant minimum strain rate (hardening = thermal recovery).` },
+        { title: 'Tertiary Creep', note: t`Accelerating strain rate due to internal void coalescence, necking, and rupture.` }
+      ],
+      answer: t`Secondary (steady-state) creep`,
+      whyWrong: {
+        '1': t`Primary creep has a continuously decreasing strain rate.`,
+        '2': t`Tertiary creep has an exponentially increasing strain rate leading to rupture.`,
+        '3': t`Instantaneous elastic strain is the initial zero-time elastic deflection.`
+      },
+      commonTrap: t`Confusing primary creep (slowing down) with secondary creep (constant steady state). Design calculations for turbine blades rely primarily on the secondary steady-state creep rate $\dot{\epsilon}_s$.`,
+      reference: 'MIAE 221 Final Exam Winter 2024; Callister Chapter 8'
+    },
+    source: src('Final 2024', 'High-Temperature Creep', 'Question 9')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF09',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2023 (Q11) · Concordia University',
+    topic: 'Galvanic Corrosion & Sacrificial Anode Protection',
+    difficulty: 'Midterm Level',
+    question: t`In galvanized steel, a zinc layer protects the underlying steel (iron) from atmospheric corrosion even if the zinc coating is scratched and steel is exposed. Why does zinc protect the steel sacrificially?`,
+    options: [
+      t`Zinc is more electrochemically active (lower reduction potential) than iron, causing zinc to act as the sacrificial anode ($Zn \to Zn^{2+} + 2e^-$) while iron acts as the protected cathode`,
+      t`Zinc is more noble than iron, so iron corrodes first to protect the zinc layer`,
+      t`Zinc forms an impermeable diamond coating that cannot be scratched`,
+      t`Zinc reacts with nitrogen gas to create an inert gaseous blanket`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`In the galvanic series, zinc is anodic (more active, $E^0 = -0.763\text{ V}$) relative to iron ($E^0 = -0.440\text{ V}$). In a galvanic couple, the more active metal preferentially oxidizes (acts as the anode) and supplies electrons to the more noble metal (the cathode), protecting the iron from oxidation.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Anodic reaction (Zinc corrodes)', math: t`Zn \to Zn^{2+} + 2e^-` },
+        { title: 'Cathodic reaction (Protected steel)', math: t`O_2 + 2H_2O + 4e^- \to 4OH^-` },
+        { title: 'Galvanic Protection', note: t`Electrons flow from zinc to iron, maintaining iron in a cathodic state and preventing $Fe \to Fe^{2+}$.` }
+      ],
+      answer: t`Zinc is more electrochemically active, acting as the sacrificial anode`,
+      whyWrong: {
+        '1': t`Inverts the relationship: iron is more noble than zinc, so zinc corrodes to protect iron.`,
+        '2': t`Zinc is a ductile metal (HCP), not diamond.`,
+        '3': t`Atmospheric galvanic protection involves oxygen and water, not nitrogen blankets.`
+      },
+      commonTrap: t`Contrasting tin-plated steel (tin cans) with galvanized steel: tin is more noble than iron, so if scratched, iron corrodes rapidly! Zinc is less noble (more active), so zinc sacrifices itself to protect the steel.`,
+      reference: 'MIAE 221 Final Exam Fall 2023; Callister Chapter 17'
+    },
+    source: src('Final 2023', 'Corrosion & Degradation', 'Question 11')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF10',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2024 (Q12) · Concordia University',
+    topic: 'Charpy Impact Test & Ductile-to-Brittle Transition (DBTT)',
+    difficulty: 'Foundation',
+    question: t`Which crystallographic crystal structure family NEVER exhibits a Ductile-to-Brittle Transition Temperature (DBTT) and remains tough and ductile even at cryogenic temperatures (e.g. liquid nitrogen at $-196^\circ\text{C}$)?`,
+    options: [
+      t`Face-Centered Cubic (FCC) metals (e.g. Austenitic stainless steel, Copper, Aluminum)`,
+      t`Body-Centered Cubic (BCC) metals (e.g. Low-carbon structural steel, Iron)`,
+      t`Hexagonal Close-Packed (HCP) metals (e.g. Titanium, Magnesium)`,
+      t`Amorphous thermoplastic polymers`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`FCC metals have 12 close-packed slip systems $\{111\}\langle 110\rangle$ with low Peierls-Nabarro lattice friction stress that is relatively insensitive to temperature. Consequently, FCC metals retain high impact energy and ductility down to near absolute zero, making them the standard choice for cryogenic storage tanks.`,
+      stepByStep: [],
+      steps: [
+        { title: 'FCC behavior', note: t`Remains ductile at all cryogenic temperatures; impact energy curve shows no sharp downward cliff.` },
+        { title: 'BCC behavior', note: t`Exhibit high thermal activation barriers for dislocation movement, producing a dramatic drop in impact toughness (DBTT) at lower temperatures.` }
+      ],
+      answer: t`Face-Centered Cubic (FCC) metals (Austenitic stainless steel, Cu, Al)`,
+      whyWrong: {
+        '1': t`BCC metals (like structural carbon steel) are the classic materials that experience catastrophic DBTT embrittlement.`,
+        '2': t`HCP metals have limited slip systems and can become brittle at low temperatures.`,
+        '3': t`Thermoplastic polymers experience glass transition embrittlement.`
+      },
+      commonTrap: t`Selecting structural steel for cryogenic liquid natural gas (LNG) tanks. Structural steel is BCC and fractures catastrophically below its DBTT; austenitic FCC stainless steel or aluminum must be used!`,
+      reference: 'MIAE 221 Final Exam Winter 2024; Callister Chapter 8'
+    },
+    source: src('Final 2024', 'Impact Energy & DBTT', 'Question 12')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF11',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2023 (Q5) · Concordia University',
+    topic: 'Continuous Cooling Transformation (CCT) & Bainite',
+    difficulty: 'Midterm Level',
+    question: t`Why is it virtually impossible to obtain a 100% bainitic microstructure in a plain 1080 carbon steel during continuous cooling from the austenite phase?`,
+    options: [
+      t`The pearlite transformation nose overlaps with the bainite region, so pearlite forms before the steel can cool to bainitic transformation temperatures without alloy additions (e.g. Cr, Mo, Ni)`,
+      t`Bainite requires temperatures above $1000^\circ\text{C}$ to form`,
+      t`Bainite is an equilibrium phase that only forms under zero gravity`,
+      t`Continuous cooling always bypasses all diffusion and produces only martensite`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`In plain carbon steels, the pearlite reaction 'nose' on the CCT diagram extends to very short times ($\approx 1\text{ s}$). During continuous cooling, the cooling curve either intersects the pearlite nose (forming pearlite) or misses it entirely (forming martensite). Obtaining bainite requires isothermal holding (austempering in a salt bath at $250-450^\circ\text{C}$) or alloying elements (Cr, Mo, Ni) that shift the pearlite nose to longer times.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Continuous Cooling Limitation', note: t`Plain carbon steels cannot form 100% bainite on continuous cooling; austempering (isothermal transformation) is required.` }
+      ],
+      answer: t`Pearlite nose overlaps with bainite; isothermal transformation or alloying is required to form bainite`,
+      whyWrong: {
+        '1': t`Bainite forms between $250^\circ\text{C}$ and $550^\circ\text{C}$, well below the $727^\circ\text{C}$ eutectoid temperature.`,
+        '2': t`Bainite is non-equilibrium, but forms under normal atmospheric pressure and gravity.`,
+        '3': t`Continuous cooling at moderate rates produces pearlite, not martensite.`
+      },
+      commonTrap: t`Thinking bainite can be obtained by simple oil quenching in plain carbon steel. Plain carbon steel yields pearlite or martensite; bainite requires austempering!`,
+      reference: 'MIAE 221 Final Exam Fall 2023; Callister Chapter 10'
+    },
+    source: src('Final 2023', 'Phase Transformations & CCT', 'Question 5')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF12',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2024 (Q8) · Concordia University',
+    topic: 'True Stress vs Engineering Stress in Necking',
+    difficulty: 'Midterm Level',
+    question: t`In a uniaxial tensile test of a ductile metal, why does engineering stress $\sigma_{\text{eng}} = \frac{F}{A_0}$ decrease after reaching the ultimate tensile strength (UTS), whereas true stress $\sigma_{\text{true}} = \frac{F}{A_i}$ continues to increase until fracture?`,
+    options: [
+      t`Localized necking causes the instantaneous cross-sectional area $A_i$ to decrease much faster than the load-bearing capacity drops, but engineering stress divides by the fixed initial area $A_0$`,
+      t`The material undergoes phase transformation into a liquid inside the neck`,
+      t`True stress accounts for temperature drops during plastic extension`,
+      t`Engineering stress assumes atomic bonds become stronger after UTS`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Engineering stress uses constant initial gauge area $A_0$: $\sigma_{\text{eng}} = F/A_0$. Once localized necking begins at the UTS, deformation concentrates in the neck, causing the required pulling force $F$ to drop. However, the instantaneous area $A_i$ shrinks even faster, so true stress $\sigma_{\text{true}} = F/A_i$ continuously rises due to ongoing work hardening until final rupture.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Engineering Stress Definition', math: t`\sigma_{\text{eng}} = \frac{F}{A_0} \quad (A_0 = \text{constant})` },
+        { title: 'True Stress Definition', math: t`\sigma_{\text{true}} = \frac{F}{A_i} \quad (A_i = \text{instantaneous decreasing area})` },
+        { title: 'Post-UTS Behavior', note: t`Necking causes $F$ to decrease, but $A_i$ decreases even faster, so $F/A_i$ increases monotonically.` }
+      ],
+      answer: t`Localized necking decreases instantaneous area $A_i$ faster than the load drops`,
+      whyWrong: {
+        '1': t`No phase transformation to liquid occurs during cold mechanical tensile testing.`,
+        '2': t`True stress is defined purely by instantaneous cross-sectional area, not temperature.`,
+        '3': t`Engineering stress makes no assumptions about bond strengthening.`
+      },
+      commonTrap: t`Believing the metal actually 'weakens' after the UTS point. The metal material continuously strain hardens; the drop in the engineering curve is purely an artifact of dividing by the initial undeformed area $A_0$.`,
+      reference: 'MIAE 221 Final Exam Winter 2024; Callister Chapter 6'
+    },
+    source: src('Final 2024', 'True Stress-Strain & Necking', 'Question 8')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF13',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2022 (Q12) · Concordia University',
+    topic: 'Polymer Crystallinity & Glass Transition Temperature Tg',
+    difficulty: 'Foundation',
+    question: t`At temperatures between the glass transition temperature ($T_g$) and the melting temperature ($T_m$), how does a semi-crystalline thermoplastic polymer behave mechanically?`,
+    options: [
+      t`Leathery and ductile (rubbery amorphous regions with rigid crystalline lamellae providing load support)`,
+      t`Hard, rigid, and brittle like inorganic glass`,
+      t`A free-flowing viscous liquid with zero shear modulus`,
+      t`A perfectly elastic metallic crystal`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Below $T_g$, amorphous polymer chains are frozen in place, behaving like brittle glass. Above $T_m$, crystalline domains melt into a viscous liquid. In the intermediate region ($T_g < T < T_m$), amorphous chains are free to rotate and slide (rubbery), while intact crystalline lamellae act as physical crosslinks, giving a tough, leathery, and ductile material (e.g. polyethylene milk jugs at room temperature).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Below $T_g$', note: t`Glassy, rigid, and brittle (chain segments frozen).` },
+        { title: 'Between $T_g$ and $T_m$', note: t`Tough, ductile, and leathery (rubbery amorphous + rigid crystallites).` },
+        { title: 'Above $T_m$', note: t`Viscous polymer melt.` }
+      ],
+      answer: t`Leathery and ductile (rubbery amorphous chains supported by crystalline lamellae)`,
+      whyWrong: {
+        '1': t`Hard and brittle describes behavior below $T_g$.`,
+        '2': t`Viscous liquid behavior occurs above $T_m$.`,
+        '3': t`Polymers have covalent chain backbones and van der Waals bonding, never metallic bonds.`
+      },
+      commonTrap: t`Assuming polymers have a single melting point like pure metals. Amorphous polymers only have $T_g$; semi-crystalline polymers exhibit both $T_g$ (amorphous) and $T_m$ (crystalline).`,
+      reference: 'MIAE 221 Final Exam Fall 2022; Callister Chapter 14'
+    },
+    source: src('Final 2022', 'Polymers & Thermal Transitions', 'Question 12')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF14',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2023 (Q10) · Concordia University',
+    topic: 'Ceramic Fracture: Weibull Modulus & Flaw Sensitivity',
+    difficulty: 'Midterm Level',
+    question: t`Why do structural ceramic components (e.g. silicon nitride $\text{Si}_3\text{N}_4$ or alumina $\text{Al}_2\text{O}_3$) exhibit significant statistical scatter in measured tensile fracture strength, necessitating probabilistic Weibull statistics?`,
+    options: [
+      t`Ceramics lack dislocation plasticity to blunt sharp microcracks, so fracture strength is governed by the random size and spatial distribution of preexisting microflaws`,
+      t`Ceramics change chemical composition when exposed to room temperature air`,
+      t`Ceramics have negative Poisson's ratios that cause spontaneous expansion`,
+      t`Ceramics undergo radioactive decay during mechanical loading`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Because ionic and covalent bonds in ceramics possess huge Peierls-Nabarro stresses, dislocations cannot move at room temperature to blunt crack tips. Therefore, stress concentrations at tiny internal pores, grain boundary microcracks, or machining scratches govern fracture according to $K_{Ic} = Y \sigma \sqrt{\pi a}$. Because flaw sizes vary randomly throughout a batch, fracture strength is statistically distributed (Weibull modulus $m$).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Flaw Sensitivity', note: t`In ductile metals, plastic yielding blunts cracks; in ceramics, zero plasticity causes instantaneous catastrophic brittle fracture at the largest flaw.` }
+      ],
+      answer: t`Ceramics lack dislocation plasticity, so fracture depends on the statistical distribution of preexisting microflaws`,
+      whyWrong: {
+        '1': t`Structural ceramics are chemically inert and stable at ambient conditions.`,
+        '2': t`Most ceramics have positive Poisson's ratios ($\nu \approx 0.2-0.25$).`,
+        '3': t`Structural ceramics are non-radioactive.`
+      },
+      commonTrap: t`Quoting a single 'average' tensile strength for a ceramic part. Ceramic design requires determining the probability of survival $P_s = \exp[-( \sigma / \sigma_0 )^m]$ at a given operating stress!`,
+      reference: 'MIAE 221 Final Exam Winter 2023; Callister Chapter 12'
+    },
+    source: src('Final 2023', 'Ceramics & Weibull Statistics', 'Question 10')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF15',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2023 (Q14) · Concordia University',
+    topic: 'Intergranular Corrosion: Sensitization of Stainless Steels',
+    difficulty: 'Midterm Level',
+    question: t`When austenitic stainless steel (e.g. 304 SS) is heated in the range of $500^\circ\text{C}$–$800^\circ\text{C}$ during welding, it becomes sensitized to rapid intergranular corrosion. What microscopic mechanism causes this sensitization?`,
+    options: [
+      t`Chromium combines with carbon to precipitate chromium carbides ($\text{Cr}_{23}\text{C}_6$) along grain boundaries, leaving adjacent zones severely depleted in chromium ($< 12\text{\% Cr}$) and unable to passivate`,
+      t`Nickel atoms evaporate from the crystal lattice into ambient air`,
+      t`Iron atoms transform into liquid droplets at the grain boundaries`,
+      t`Dislocations coalesce to form macro-cracks throughout the grains`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Sensitization occurs when chromium carbides ($\text{Cr}_{23}\text{C}_6$) precipitate along grain boundaries at $500-800^\circ\text{C}$. Because chromium diffuses slowly, it is drawn from the immediate vicinity of the grain boundaries, depleting local chromium below the critical $12\text{\%}$ threshold required to maintain the protective $\text{Cr}_2\text{O}_3$ passive film. In acidic or corrosive environments, these depleted grain boundary zones dissolve rapidly.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Chromium Carbide Precipitation', math: t`23\text{Cr} + 6\text{C} \to \text{Cr}_{23}\text{C}_6 \quad \text{at grain boundaries}` },
+        { title: 'Depleted Zone Formation', note: t`Local Cr content drops below $12\%$, creating active galvanic micro-anodes along all grain boundaries.` }
+      ],
+      answer: t`Chromium carbide precipitation along grain boundaries depletes local Cr below 12%, preventing passivation`,
+      whyWrong: {
+        '1': t`Nickel does not evaporate at $500-800^\circ\text{C}$.`,
+        '2': t`Melting temperatures are above $1400^\circ\text{C}$.`,
+        '3': t`Dislocation coalescence is not the chemical cause of weld decay corrosion.`
+      },
+      commonTrap: t`Thinking all stainless steels are immune to corrosion under welding. Standard 304 SS requires low-carbon grades (304L) or stabilizing additions (Ti, Nb in 321/347 SS) to prevent sensitization!`,
+      reference: 'MIAE 221 Final Exam Fall 2023; Callister Chapter 17'
+    },
+    source: src('Final 2023', 'Corrosion & Sensitization', 'Question 14')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF16',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2024 (Q11) · Concordia University',
+    topic: 'Non-Steady-State Diffusion: Fick\'s Second Law & Carburizing',
+    difficulty: 'Exam Master',
+    question: t`In gas carburizing of steel at $950^\circ\text{C}$ ($D = 1.6 \times 10^{-11}\text{ m}^2/\text{s}$), the surface carbon content is maintained constant at $C_s = 1.20\text{ wt\% C}$. If the initial steel carbon is $C_0 = 0.20\text{ wt\% C}$, which equation governs the carbon profile $C(x, t)$ at depth $x$ after time $t$?`,
+    options: [
+      t`$\frac{C_x - C_0}{C_s - C_0} = 1 - \text{erf}\left(\frac{x}{2\sqrt{Dt}}\right)$`,
+      t`$J = -D \frac{dC}{dx}$ (Fick's first steady-state law)`,
+      t`$C_x = C_0 \exp\left(-\frac{x}{Dt}\right)$`,
+      t`$\frac{C_x - C_0}{C_s - C_0} = \text{erf}\left(\frac{x}{Dt}\right)$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Non-steady-state diffusion from a constant surface concentration into a semi-infinite solid is governed by the Gaussian error function solution to Fick's second law: $\frac{C_x - C_0}{C_s - C_0} = 1 - \text{erf}\left(\frac{x}{2\sqrt{Dt}}\right)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Fick\'s Second Law', math: t`\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2}` },
+        { title: 'Boundary Conditions', math: t`C(x, 0) = C_0, \quad C(0, t) = C_s, \quad C(\infty, t) = C_0` },
+        { title: 'Analytical Solution', math: t`\frac{C_x - C_0}{C_s - C_0} = 1 - \text{erf}\left(\frac{x}{2\sqrt{Dt}}\right)` }
+      ],
+      answer: t`(C_x - C_0) / (C_s - C_0) = 1 - erf(x / (2*sqrt(Dt)))`,
+      whyWrong: {
+        '1': t`Fick's first law applies strictly to steady-state diffusion where concentration does not vary with time.`,
+        '2': t`Diffusion profiles are error functions, not simple negative exponentials.`,
+        '3': t`Missing the factor of 2 in the denominator and the square root over $Dt$.`
+      },
+      commonTrap: t`Forgetting the factor 2 inside the denominator ($2\sqrt{Dt}$) or forgetting to take the square root of $t$. Depth scales with $\sqrt{t}$, meaning doubling case depth requires quadrupling the time!`,
+      reference: 'MIAE 221 Final Exam Winter 2024; Callister Chapter 5'
+    },
+    source: src('Final 2024', 'Diffusion & Fick\'s Second Law', 'Question 11')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF17',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2022 (Q8) · Concordia University',
+    topic: 'Cold Work Annealing: Recovery, Recrystallization, Grain Growth',
+    difficulty: 'Midterm Level',
+    question: t`A heavily cold-worked brass sheet is heated in a furnace. During which annealing stage do new, strain-free, equiaxed grains nucleate and consume the deformed elongated grains, drastically reducing hardness and restoring ductility?`,
+    options: [
+      t`Recrystallization`,
+      t`Recovery`,
+      t`Grain growth`,
+      t`Spheroidization`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Annealing of cold-worked metals occurs in three distinct stages: (1) Recovery (dislocation annihilation/rearrangement into low-angle cell walls, internal stresses relieved, electrical conductivity restored, mechanical properties change very little); (2) Recrystallization (nucleation and growth of new strain-free equiaxed grains driven by stored deformation energy; hardness drops steeply, ductility surges); (3) Grain growth (coarsening of grains to minimize grain boundary area).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Stage 1: Recovery', note: t`Dislocation density drops slightly via climb; hardness remains high.` },
+        { title: 'Stage 2: Recrystallization', note: t`New strain-free grains replace deformed structure; massive reduction in strength, major increase in ductility.` },
+        { title: 'Stage 3: Grain Growth', note: t`Average grain diameter increases; boundaries migrate.` }
+      ],
+      answer: t`Recrystallization`,
+      whyWrong: {
+        '1': t`Recovery only relieves residual stresses and restores conductivity; grain structure remains cold-worked and hard.`,
+        '2': t`Grain growth occurs after recrystallization is complete, as grains coarsen to lower boundary surface energy.`,
+        '3': t`Spheroidization is a specialized steel heat treatment for high-carbon pearlite.`
+      },
+      commonTrap: t`Confusing recovery with recrystallization. Recovery restores physical properties (electrical conductivity) without changing the cold-worked grain shape; recrystallization forms completely new grains!`,
+      reference: 'MIAE 221 Final Exam Fall 2022; Callister Chapter 7'
+    },
+    source: src('Final 2022', 'Annealing & Recrystallization', 'Question 8')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF18',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2023 (Q15) · Concordia University',
+    topic: 'Congruent vs Incongruent Phase Transformations',
+    difficulty: 'Midterm Level',
+    question: t`In binary phase diagrams, what defines a 'congruent' phase transformation (such as the melting of an intermediate compound like $\text{Mg}_2\text{Pb}$ at a peak)?`,
+    options: [
+      t`The transformation occurs with NO change in chemical composition between the reacting and resulting phases`,
+      t`The transformation converts liquid directly into two distinct solid phases`,
+      t`The transformation requires the absorption of gaseous hydrogen`,
+      t`The phase transformation is irreversible under all thermodynamic conditions`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`A congruent phase transformation involves no change in composition (e.g. pure metal melting $L \leftrightarrow \alpha$, allotropic transformation $\alpha \leftrightarrow \gamma$, or an intermetallic compound melting congruently). Incongruent transformations (like peritectic reactions) involve phases with differing compositions.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Congruent Definition', note: t`Phase change without composition change (vertical line on phase diagram).` }
+      ],
+      answer: t`Transformation occurs with NO change in chemical composition between phases`,
+      whyWrong: {
+        '1': t`Converting liquid into two solids is a eutectic reaction (incongruent).`,
+        '2': t`Hydrogen absorption is unrelated to congruent phase transformation definitions.`,
+        '3': t`Equilibrium phase transformations are thermodynamically reversible.`
+      },
+      commonTrap: t`Confusing congruent melting with eutectic melting. Eutectic changes composition ($L \to \alpha + \beta$); congruent melting melts directly into liquid of the identical composition ($AB_2 \to L$).`,
+      reference: 'MIAE 221 Final Exam Winter 2023; Callister Chapter 9'
+    },
+    source: src('Final 2023', 'Phase Transformations & Thermodynamics', 'Question 15')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF19',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Fall 2023 (Q9) · Concordia University',
+    topic: 'Solid Solution Strengthening Mechanism',
+    difficulty: 'Foundation',
+    question: t`Why does adding solute impurity atoms (such as zinc in copper to form brass, or carbon in iron) significantly increase the yield strength of the host metal?`,
+    options: [
+      t`Solute atoms generate localized lattice strain fields (tensile or compressive) that interact with and pin dislocations, requiring higher applied shear stress to move them`,
+      t`Solute atoms evaporate the grain boundaries to eliminate all grains`,
+      t`Solute atoms melt the core of the crystal`,
+      t`Solute atoms turn the metal into an amorphous polymer`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Smaller substitutional or interstitial solute atoms introduce tensile lattice strain, while larger solute atoms introduce compressive strain. These strain fields interact with edge and screw dislocations, effectively pinning them in energy valleys. Greater shear stress is required to pull dislocations away from solute atmospheres, increasing yield strength $\Delta\sigma_y \propto \sqrt{c}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Lattice Strain Fields', note: t`Solute atoms segregate to dislocation cores to relieve overall strain energy.` },
+        { title: 'Dislocation Pinning', note: t`Higher applied shear stress $\tau$ is required to overcome solute barriers.` }
+      ],
+      answer: t`Lattice strain fields from solute atoms pin dislocations, requiring higher stress to move them`,
+      whyWrong: {
+        '1': t`Grain boundaries remain intact and are crucial for strengthening.`,
+        '2': t`Solid solution alloys remain completely solid below the solidus temperature.`,
+        '3': t`Solid solution alloys remain crystalline metals.`
+      },
+      commonTrap: t`Thinking solid solutions weaken metals because impurities are 'defects'. On the contrary, atomic defects (solutes) impede dislocation motion, making the alloy substantially stronger than pure host metal!`,
+      reference: 'MIAE 221 Final Exam Fall 2023; Callister Chapter 7'
+    },
+    source: src('Final 2023', 'Strengthening Mechanisms', 'Question 9')
+  }),
+
+  q({
+    id: 'Q_MIAE221_PF20',
+    chapter: 'past-final',
+    pastPaper: 'Final Examination Winter 2024 (Q15) · Concordia University',
+    topic: 'Cathodic Protection: Impressed Current Method',
+    difficulty: 'Midterm Level',
+    question: t`In cathodic protection of an underground municipal gas pipeline, an external direct current (DC) power source is connected between the pipeline and an inert scrap iron ground bed. How does impressed current prevent pipeline corrosion?`,
+    options: [
+      t`The negative terminal is connected to the pipeline, forcing electrons into the pipeline to make it the non-corroding cathode, while the scrap ground bed is oxidized as the sacrificial anode`,
+      t`The positive terminal is connected to the pipeline, driving iron dissolution`,
+      t`The AC current vibrates the steel to shake off rust flakes`,
+      t`The DC power heats the pipeline above $500^\circ\text{C}$ to vaporize groundwater`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Impressed Current Cathodic Protection (ICCP) connects the structure to be protected to the negative terminal of a DC power supply ($e^-$ supplier), converting the entire pipeline surface into a cathode where reduction ($O_2 + 2H_2O + 4e^- \to 4OH^-$) occurs. The positive terminal connects to inert ground-bed anodes that supply electrons and oxidize instead.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Circuit Connection', note: t`Negative terminal $\to$ Pipeline (Cathode, protected from oxidation).` },
+        { title: 'Anode Connection', note: t`Positive terminal $\to$ Ground bed (Anode, consumes scrap metal or releases oxygen).` }
+      ],
+      answer: t`Negative terminal forces electrons into the pipeline making it the non-corroding cathode`,
+      whyWrong: {
+        '1': t`Connecting positive terminal to the pipeline would accelerate corrosion exponentially (electrolytic dissolution).`,
+        '2': t`AC current cannot provide unidirectional cathodic electron supply.`,
+        '3': t`ICCP operating voltages are low ($12-50\text{ V}$), with negligible ohmic heating.`
+      },
+      commonTrap: t`Connecting the pipeline to the POSITIVE terminal! Positive terminal connection makes the structure an anode, causing catastrophic rapid electrolytic corrosion. Negative terminal connection provides cathodic protection.`,
+      reference: 'MIAE 221 Final Exam Winter 2024; Callister Chapter 17'
+    },
+    source: src('Final 2024', 'Corrosion & Cathodic Protection', 'Question 15')
+  }),
+
   ...MIAE221_ENHANCEMENTS
 ];

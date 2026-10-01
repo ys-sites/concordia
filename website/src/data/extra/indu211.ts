@@ -1892,7 +1892,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2020 (Problem 2) · Concordia University',
     topic: 'Warehouse Forklift Routing: Nearest Neighbor Heuristic',
     difficulty: 'Exam Master',
-    question: t`A warehouse forklift visits 5 departments (A, B, C, D, E) starting from and returning to depot P. Using the Nearest Neighbor heuristic yields the route $P \\to E \\to A \\to B \\to D \\to C \\to P$ with total distance 91. Using Second-Nearest First yields $P \\to A \\to B \\to D \\to E \\to C \\to P$ with distance 89. Is either solution guaranteed to be optimal?`,
+    question: t`A warehouse forklift visits 5 departments (A, B, C, D, E) starting from and returning to depot P. Using the Nearest Neighbor heuristic yields the route $P \to E \to A \to B \to D \to C \to P$ with total distance 91. Using Second-Nearest First yields $P \to A \to B \to D \to E \to C \to P$ with distance 89. Is either solution guaranteed to be optimal?`,
     options: [
       t`Neither solution is optimal; Nearest Neighbor is a greedy heuristic that often incurs a severe penalty on the final return leg (true optimal is 72)`,
       t`Yes, Nearest Neighbor is guaranteed to find the global optimum for the Traveling Salesperson Problem`,
@@ -1904,10 +1904,10 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
       coreConcept: t`Traveling Salesperson Problem (TSP) heuristics. Nearest Neighbor makes greedy, myopic local choices that neglect the overall network, frequently forcing a catastrophic last-leg penalty to return to the depot.`,
       stepByStep: [],
       steps: [
-        { title: 'Evaluate Nearest Neighbor Route', math: t`P \\xrightarrow{13} E \\xrightarrow{9} A \\xrightarrow{12} B \\xrightarrow{15} D \\xrightarrow{20} C \\xrightarrow{22} P \\implies \\text{Total} = 91` },
+        { title: 'Evaluate Nearest Neighbor Route', math: t`P \xrightarrow{13} E \xrightarrow{9} A \xrightarrow{12} B \xrightarrow{15} D \xrightarrow{20} C \xrightarrow{22} P \implies \text{Total} = 91` },
         { title: 'Notice the last-leg trap', note: t`Visiting C last leaves the truck with a costly return trip from C to P (22 units).` },
-        { title: 'Evaluate Second-Nearest First Route', math: t`P \\xrightarrow{15} A \\xrightarrow{12} B \\xrightarrow{15} D \\xrightarrow{12} E \\xrightarrow{13} C \\xrightarrow{22} P \\implies \\text{Total} = 89` },
-        { title: 'Compute True Global Optimum (via full permutation)', math: t`P \\xrightarrow{13} E \\xrightarrow{13} C \\xrightarrow{12} B \\xrightarrow{15} D \\xrightarrow{10} A \\xrightarrow{9} P \\implies \\text{Total} = 72` }
+        { title: 'Evaluate Second-Nearest First Route', math: t`P \xrightarrow{15} A \xrightarrow{12} B \xrightarrow{15} D \xrightarrow{12} E \xrightarrow{13} C \xrightarrow{22} P \implies \text{Total} = 89` },
+        { title: 'Compute True Global Optimum (via full permutation)', math: t`P \xrightarrow{13} E \xrightarrow{13} C \xrightarrow{12} B \xrightarrow{15} D \xrightarrow{10} A \xrightarrow{9} P \implies \text{Total} = 72` }
       ],
       answer: t`Neither solution is optimal; Nearest Neighbor is a greedy heuristic (true optimal is 72)`,
       whyWrong: {
@@ -1936,15 +1936,15 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`The classic EOQ model ($Q^* = \\sqrt{\\frac{2DS}{H}}$) balances ordering costs ($S \\frac{D}{Q}$) against holding costs ($H \\frac{Q}{2}$). Unit purchase cost is constant and unaffected by $Q$.`,
+      coreConcept: t`The classic EOQ model ($Q^* = \sqrt{\frac{2DS}{H}}$) balances ordering costs ($S \frac{D}{Q}$) against holding costs ($H \frac{Q}{2}$). Unit purchase cost is constant and unaffected by $Q$.`,
       stepByStep: [],
       steps: [
-        { title: 'Identify relevant annual variable inventory costs', math: t`TC(Q) = S\\left(\\frac{D}{Q}\\right) + H\\left(\\frac{Q}{2}\\right)` },
-        { title: 'Differentiate with respect to Q and set to zero', math: t`\\frac{dTC}{dQ} = -\\frac{DS}{Q^2} + \\frac{H}{2} = 0 \\implies Q^* = \\sqrt{\\frac{2DS}{H}}` }
+        { title: 'Identify relevant annual variable inventory costs', math: t`TC(Q) = S\left(\frac{D}{Q}\right) + H\left(\frac{Q}{2}\right)` },
+        { title: 'Differentiate with respect to Q and set to zero', math: t`\frac{dTC}{dQ} = -\frac{DS}{Q^2} + \frac{H}{2} = 0 \implies Q^* = \sqrt{\frac{2DS}{H}}` }
       ],
       answer: t`Minimizes the sum of annual material ordering costs and annual inventory holding costs`,
       whyWrong: {
-        '1': t`In basic EOQ without quantity discounts, purchasing cost $P \\times D$ is fixed and unaffected by batch size.`,
+        '1': t`In basic EOQ without quantity discounts, purchasing cost $P \times D$ is fixed and unaffected by batch size.`,
         '2': t`Omits ordering setup costs.`,
         '3': t`Safety stock is zero in deterministic EOQ.`
       },
@@ -2073,11 +2073,11 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
       coreConcept: t`The Lowest-Unit-Cost heuristic greedily assigns maximum allowable volume to the route with the lowest cell cost in the entire table, updating remaining supplies and demands iteratively until all are satisfied.`,
       stepByStep: [],
       steps: [
-        { title: 'Allocate to lowest overall cost cell ($c = 6$)', math: t`\\text{Winnipeg} \\to \\text{Ottawa}: \\min(20, 30) = 20 \\text{ units at } \\$6 = \\$120. \\; (\\text{Winnipeg exhausted, Ottawa needs } 10)` },
-        { title: 'Allocate to next lowest cost cell ($c = 9$)', math: t`\\text{Saskatoon} \\to \\text{Toronto}: \\min(80, 60) = 60 \\text{ units at } \\$9 = \\$540. \\; (\\text{Toronto satisfied, Saskatoon has } 20 \\text{ left})` },
-        { title: 'Allocate to cells with cost $c = 10$', math: t`\\text{Saskatoon} \\to \\text{Montreal}: 20 \\text{ units at } \\$10 = \\$200. \\; (\\text{Saskatoon exhausted, Montreal needs } 30); \\quad \\text{Edmonton} \\to \\text{Ottawa}: 10 \\text{ units at } \\$10 = \\$100. \\; (\\text{Ottawa satisfied, Edmonton has } 30 \\text{ left})` },
-        { title: 'Allocate remaining demand to Edmonton ($c = 12$)', math: t`\\text{Edmonton} \\to \\text{Montreal}: 30 \\text{ units at } \\$12 = \\$360. \\; (\\text{All supplies and demands satisfied})` },
-        { title: 'Compute total shipping cost', math: t`\\text{Total Cost} = 120 + 540 + 200 + 100 + 360 = \\$1{,}320` }
+        { title: 'Allocate to lowest overall cost cell ($c = 6$)', math: t`\text{Winnipeg} \to \text{Ottawa}: \min(20, 30) = 20 \text{ units at } \\$6 = \\$120. \\; (\text{Winnipeg exhausted, Ottawa needs } 10)` },
+        { title: 'Allocate to next lowest cost cell ($c = 9$)', math: t`\text{Saskatoon} \to \text{Toronto}: \min(80, 60) = 60 \text{ units at } \\$9 = \\$540. \\; (\text{Toronto satisfied, Saskatoon has } 20 \text{ left})` },
+        { title: 'Allocate to cells with cost $c = 10$', math: t`\text{Saskatoon} \to \text{Montreal}: 20 \text{ units at } \\$10 = \\$200. \\; (\text{Saskatoon exhausted, Montreal needs } 30); \quad \text{Edmonton} \to \text{Ottawa}: 10 \text{ units at } \\$10 = \\$100. \\; (\text{Ottawa satisfied, Edmonton has } 30 \text{ left})` },
+        { title: 'Allocate remaining demand to Edmonton ($c = 12$)', math: t`\text{Edmonton} \to \text{Montreal}: 30 \text{ units at } \\$12 = \\$360. \\; (\text{All supplies and demands satisfied})` },
+        { title: 'Compute total shipping cost', math: t`\text{Total Cost} = 120 + 540 + 200 + 100 + 360 = \\$1{,}320` }
       ],
       answer: t`\\$1{,}320`,
       whyWrong: {
@@ -2176,7 +2176,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
       coreConcept: t`ERP evolved from Material Requirements Planning (MRP) and Manufacturing Resource Planning (MRP II) into an enterprise-wide software architecture. Its defining attribute is real-time data integration across all corporate divisions through a single unified database.`,
       stepByStep: [],
       steps: [
-        { title: 'Evolution', note: t`MRP (materials) $\\to$ MRP II (manufacturing resources + capacity) $\\to$ ERP (enterprise-wide integration).` },
+        { title: 'Evolution', note: t`MRP (materials) $\to$ MRP II (manufacturing resources + capacity) $\to$ ERP (enterprise-wide integration).` },
         { title: 'Centralized Database', note: t`All transactions immediately update inventory, accounting, order fulfillment, and production schedules without redundant data entry.` }
       ],
       answer: t`An integrated multi-module suite built on a common centralized database coordinating all business functions`,
@@ -2239,7 +2239,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`CPM (Critical Path Method) was developed for industrial plant maintenance where task durations are well known (deterministic). PERT (Program Evaluation and Review Technique) was developed for novel R&D projects (Polaris missile) where task times are stochastic and modeled with a beta distribution: $\\mu = \\frac{a + 4m + b}{6}, \\; \\sigma^2 = \\left(\\frac{b - a}{6}\\right)^2$.`,
+      coreConcept: t`CPM (Critical Path Method) was developed for industrial plant maintenance where task durations are well known (deterministic). PERT (Program Evaluation and Review Technique) was developed for novel R&D projects (Polaris missile) where task times are stochastic and modeled with a beta distribution: $\mu = \frac{a + 4m + b}{6}, \\; \sigma^2 = \left(\frac{b - a}{6}\right)^2$.`,
       stepByStep: [],
       steps: [
         { title: 'CPM', note: t`Deterministic: single time estimate per activity.` },
@@ -2251,7 +2251,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '2': t`Both CPM and PERT calculate the critical path through early/late forward and backward pass times.`,
         '3': t`Both methods handle schedule networks; CPM was also extended with cost slope crashing (CPM cost accounting).`
       },
-      commonTrap: t`Forgetting that the beta distribution formula in PERT weights the most likely time $m$ by 4: $\\mu = (a + 4m + b)/6$.`,
+      commonTrap: t`Forgetting that the beta distribution formula in PERT weights the most likely time $m$ by 4: $\mu = (a + 4m + b)/6$.`,
       reference: 'INDU 211 Final Exam Fall 2020 Question 9; Turner Chapter 17'
     },
     source: src('Final 2020', 'Project Management', 'Question 9')
@@ -2299,20 +2299,20 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     difficulty: 'Foundation',
     question: t`Historical weekly demand for Product 1 was recorded as: Week 1 = 60, Week 2 = 65, Week 3 = 50, Week 4 = 55, Week 5 = 45. What is the forecast for Week 6 using a 3-week simple moving average?`,
     options: [
-      t`$50\\text{ units}$`,
-      t`$55\\text{ units}$`,
-      t`$45\\text{ units}$`,
-      t`$52.5\\text{ units}$`
+      t`$50\text{ units}$`,
+      t`$55\text{ units}$`,
+      t`$45\text{ units}$`,
+      t`$52.5\text{ units}$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`A $k$-period simple moving average forecasts the next period as the arithmetic mean of the most recent $k$ actual demands: $F_{t+1} = \\dfrac{1}{k}\\sum_{i=0}^{k-1} D_{t-i}$.`,
+      coreConcept: t`A $k$-period simple moving average forecasts the next period as the arithmetic mean of the most recent $k$ actual demands: $F_{t+1} = \dfrac{1}{k}\sum_{i=0}^{k-1} D_{t-i}$.`,
       stepByStep: [],
       steps: [
         { title: 'Identify the 3 most recent historical observations', note: t`For Week 6 ($t=5$), the previous 3 weeks are Week 5 ($D_5 = 45$), Week 4 ($D_4 = 55$), and Week 3 ($D_3 = 50$).` },
-        { title: 'Compute arithmetic average', math: t`F_6 = \\frac{D_5 + D_4 + D_3}{3} = \\frac{45 + 55 + 50}{3} = \\frac{150}{3} = 50\\text{ units}` }
+        { title: 'Compute arithmetic average', math: t`F_6 = \frac{D_5 + D_4 + D_3}{3} = \frac{45 + 55 + 50}{3} = \frac{150}{3} = 50\text{ units}` }
       ],
-      answer: t`50\\text{ units}`,
+      answer: t`50\text{ units}`,
       whyWrong: {
         '1': t`55 is the average of Weeks 1 and 2, which are the oldest data points.`,
         '2': t`45 is the demand of Week 5 only (naive forecast).`,
@@ -2330,23 +2330,23 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2024 (Problem 5) · Concordia University',
     topic: 'Manufacturing Economics: Make-or-Buy Break-Even Volume',
     difficulty: 'Midterm Level',
-    question: t`A company needs a stamped metal bracket. An external supplier offers to sell the part for $\$18/\\text{unit}$ with zero fixed setup cost. Alternatively, the company can produce the part in-house by purchasing dedicated tooling for $\$60{,}000/\\text{year}$ with a variable unit cost of $\$6/\\text{unit}$. At what annual production volume does making in-house become more economical than purchasing?`,
+    question: t`A company needs a stamped metal bracket. An external supplier offers to sell the part for $\$18/\text{unit}$ with zero fixed setup cost. Alternatively, the company can produce the part in-house by purchasing dedicated tooling for $\$60{,}000/\text{year}$ with a variable unit cost of $\$6/\text{unit}$. At what annual production volume does making in-house become more economical than purchasing?`,
     options: [
-      t`$Q > 5{,}000\\text{ units/year}$`,
-      t`$Q > 3{,}333\\text{ units/year}$`,
-      t`$Q > 10{,}000\\text{ units/year}$`,
-      t`$Q > 2{,}500\\text{ units/year}$`
+      t`$Q > 5{,}000\text{ units/year}$`,
+      t`$Q > 3{,}333\text{ units/year}$`,
+      t`$Q > 10{,}000\text{ units/year}$`,
+      t`$Q > 2{,}500\text{ units/year}$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Make-or-Buy break-even balances total costs: $TC_{\\text{buy}} = P \\times Q$ versus $TC_{\\text{make}} = FC + VC \\times Q$. The break-even volume is $Q^* = \\dfrac{FC}{P - VC}$.`,
+      coreConcept: t`Make-or-Buy break-even balances total costs: $TC_{\text{buy}} = P \times Q$ versus $TC_{\text{make}} = FC + VC \times Q$. The break-even volume is $Q^* = \dfrac{FC}{P - VC}$.`,
       stepByStep: [],
       steps: [
-        { title: 'Equate total costs', math: t`TC_{\\text{buy}} = 18Q, \\quad TC_{\\text{make}} = 60{,}000 + 6Q` },
-        { title: 'Set $TC_{\\text{buy}} = TC_{\\text{make}}$ and solve for $Q^*$', math: t`18Q = 60{,}000 + 6Q \\implies 12Q = 60{,}000 \\implies Q^* = \\frac{60{,}000}{12} = 5{,}000\\text{ units}` },
+        { title: 'Equate total costs', math: t`TC_{\text{buy}} = 18Q, \quad TC_{\text{make}} = 60{,}000 + 6Q` },
+        { title: 'Set $TC_{\\text{buy}} = TC_{\\text{make}}$ and solve for $Q^*$', math: t`18Q = 60{,}000 + 6Q \implies 12Q = 60{,}000 \implies Q^* = \frac{60{,}000}{12} = 5{,}000\text{ units}` },
         { title: 'Decision rule', note: t`Because making has a lower variable cost ($\$6 < \$18$), each unit produced beyond 5,000 saves $\$12$, making in-house production more profitable for $Q > 5{,}000$.` }
       ],
-      answer: t`Q > 5{,}000\\text{ units/year}`,
+      answer: t`Q > 5{,}000\text{ units/year}`,
       whyWrong: {
         '1': t`Dividing fixed cost by purchase price: $60{,}000 / 18 = 3{,}333$. Ignores in-house variable costs.`,
         '2': t`Dividing fixed cost by in-house variable cost: $60{,}000 / 6 = 10{,}000$. Ignores external supplier price.`,
@@ -2428,33 +2428,434 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Final Examination Fall 2020 (Q15) · Concordia University',
     topic: 'Statistical Quality Control: p-Chart Control Limits',
     difficulty: 'Midterm Level',
-    question: t`A quality engineer inspects 20 successive samples of $n = 100$ items each from a high-speed packaging line. Across all 20 samples, a total of 180 defective items were detected. What are the upper and lower $3\\sigma$ control limits ($UCL$ and $LCL$) for the process $p$-chart?`,
+    question: t`A quality engineer inspects 20 successive samples of $n = 100$ items each from a high-speed packaging line. Across all 20 samples, a total of 180 defective items were detected. What are the upper and lower $3\sigma$ control limits ($UCL$ and $LCL$) for the process $p$-chart?`,
     options: [
-      t`$UCL = 0.1758, \\quad LCL = 0.0042$`,
-      t`$UCL = 0.1186, \\quad LCL = 0.0614$`,
-      t`$UCL = 0.1800, \\quad LCL = 0.0000$`,
-      t`$UCL = 0.2700, \\quad LCL = 0.0300$`
+      t`$UCL = 0.1758, \quad LCL = 0.0042$`,
+      t`$UCL = 0.1186, \quad LCL = 0.0614$`,
+      t`$UCL = 0.1800, \quad LCL = 0.0000$`,
+      t`$UCL = 0.2700, \quad LCL = 0.0300$`
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`For a $p$-chart with sample size $n$, the center line is the average fraction defective $\\bar{p} = \\frac{\\sum D}{k \\cdot n}$. Control limits are $\\bar{p} \\pm 3 \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}}$, with $LCL = \\max(0, \\dots)$.`,
+      coreConcept: t`For a $p$-chart with sample size $n$, the center line is the average fraction defective $\bar{p} = \frac{\sum D}{k \cdot n}$. Control limits are $\bar{p} \pm 3 \sqrt{\frac{\bar{p}(1-\bar{p})}{n}}$, with $LCL = \max(0, \dots)$.`,
       stepByStep: [],
       steps: [
-        { title: 'Calculate overall fraction defective $\\bar{p}$', math: t`\\bar{p} = \\frac{\\text{Total Defects}}{\\text{Total Inspected}} = \\frac{180}{20 \\times 100} = \\frac{180}{2000} = 0.09` },
-        { title: 'Compute standard error of the proportion $\\sigma_p$', math: t`\\sigma_p = \\sqrt{\\frac{\\bar{p}(1 - \\bar{p})}{n}} = \\sqrt{\\frac{0.09(0.91)}{100}} = \\sqrt{\\frac{0.0819}{100}} = \\sqrt{0.000819} \\approx 0.028618` },
-        { title: 'Compute $3\\sigma$ margin', math: t`3\\sigma_p = 3 \\times 0.028618 \\approx 0.08585` },
-        { title: 'Determine Upper Control Limit ($UCL$)', math: t`UCL = \\bar{p} + 3\\sigma_p = 0.09 + 0.08585 = 0.17585 \\approx 0.1758` },
-        { title: 'Determine Lower Control Limit ($LCL$)', math: t`LCL = \\bar{p} - 3\\sigma_p = 0.09 - 0.08585 = 0.00415 \\approx 0.0042` }
+        { title: 'Calculate overall fraction defective $\\bar{p}$', math: t`\bar{p} = \frac{\text{Total Defects}}{\text{Total Inspected}} = \frac{180}{20 \times 100} = \frac{180}{2000} = 0.09` },
+        { title: 'Compute standard error of the proportion $\\sigma_p$', math: t`\sigma_p = \sqrt{\frac{\bar{p}(1 - \bar{p})}{n}} = \sqrt{\frac{0.09(0.91)}{100}} = \sqrt{\frac{0.0819}{100}} = \sqrt{0.000819} \approx 0.028618` },
+        { title: 'Compute $3\\sigma$ margin', math: t`3\sigma_p = 3 \times 0.028618 \approx 0.08585` },
+        { title: 'Determine Upper Control Limit ($UCL$)', math: t`UCL = \bar{p} + 3\sigma_p = 0.09 + 0.08585 = 0.17585 \approx 0.1758` },
+        { title: 'Determine Lower Control Limit ($LCL$)', math: t`LCL = \bar{p} - 3\sigma_p = 0.09 - 0.08585 = 0.00415 \approx 0.0042` }
       ],
-      answer: t`UCL = 0.1758, \\quad LCL = 0.0042`,
+      answer: t`UCL = 0.1758, \quad LCL = 0.0042`,
       whyWrong: {
-        '1': t`Divides by total inspected items $2000$ in $\\sigma_p$ instead of sample size $n = 100$: $\\sqrt{0.0819/2000} = 0.0064$.`,
-        '2': t`Assumes $\\bar{p} = 180 / 1000 = 0.18$.`,
+        '1': t`Divides by total inspected items $2000$ in $\sigma_p$ instead of sample size $n = 100$: $\sqrt{0.0819/2000} = 0.0064$.`,
+        '2': t`Assumes $\bar{p} = 180 / 1000 = 0.18$.`,
         '3': t`Omits the square root when computing standard error.`
       },
-      commonTrap: t`Using the total inspected items $k \\cdot n = 2000$ in the denominator of $\\sigma_p$ instead of individual sample subgroup size $n = 100$.`,
+      commonTrap: t`Using the total inspected items $k \cdot n = 2000$ in the denominator of $\sigma_p$ instead of individual sample subgroup size $n = 100$.`,
       reference: 'INDU 211 Final Exam Fall 2020 Question 15; Turner Chapter 8'
     },
     source: src('Final 2020', 'Quality Control & SPC', 'Question 15')
+  }),
+
+  // ============================================================ ADDITIONAL PAST-MID QUESTIONS (>= 2019)
+  q({
+    id: 'Q_INDU211_PM01',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Fall 2021 (Q1) · Concordia University',
+    topic: 'Manufacturing Break-Even Analysis',
+    difficulty: 'Midterm Level',
+    question: t`A manufacturing plant is considering two production machines for a new mechanical valve. Machine A has a fixed annual cost of $\$40{,}000$ and variable cost of $\$15$/unit. Machine B has a fixed annual cost of $\$70{,}000$ and variable cost of $\$9$/unit. At what annual production volume $Q$ are both machines equally economical?`,
+    options: [
+      t`$Q = 5{,}000\text{ units}$`,
+      t`$Q = 3{,}333\text{ units}$`,
+      t`$Q = 7{,}500\text{ units}$`,
+      t`$Q = 11{,}667\text{ units}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The break-even crossover volume occurs where total costs are equal: $TC_A(Q) = TC_B(Q) \implies FC_A + VC_A \cdot Q = FC_B + VC_B \cdot Q$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Set total cost equations equal', math: t`40{,}000 + 15Q = 70{,}000 + 9Q` },
+        { title: 'Group terms', math: t`(15 - 9)Q = 70{,}000 - 40{,}000 \implies 6Q = 30{,}000` },
+        { title: 'Solve for crossover quantity', math: t`Q = \frac{30{,}000}{6} = 5{,}000\text{ units}` }
+      ],
+      answer: t`Q = 5{,}000\text{ units}`,
+      whyWrong: {
+        '1': t`Divided by the sum of variable costs ($15 + 9 = 24$): $30{,}000 / 24 = 1{,}250$.`,
+        '2': t`Divided $70{,}000$ by $6$.`,
+        '3': t`Calculated $(70{,}000 + 40{,}000) / 6 = 18{,}333$.`
+      },
+      commonTrap: t`Forgetting that beyond 5,000 units, Machine B is more profitable because its lower variable cost ($9/unit vs $15/unit) outweighs its higher fixed cost.`,
+      reference: 'INDU 211 Midterm Fall 2021; Turner Chapter 3'
+    },
+    source: src('Midterm 2021', 'Manufacturing Engineering', 'Question 1')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM02',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Winter 2022 (Q3) · Concordia University',
+    topic: 'Facilities Location: Center of Gravity Method',
+    difficulty: 'Midterm Level',
+    question: t`A distribution warehouse serves three regional distribution centers: $D_1(2, 4)$ with volume $W_1 = 200\text{ tons}$, $D_2(8, 2)$ with $W_2 = 500\text{ tons}$, and $D_3(6, 10)$ with $W_3 = 300\text{ tons}$. What are the coordinates $(x^*, y^*)$ of the center of gravity?`,
+    options: [
+      t`$(x^*, y^*) = (6.2, 4.8)$`,
+      t`$(x^*, y^*) = (5.3, 5.3)$`,
+      t`$(x^*, y^*) = (6.0, 5.0)$`,
+      t`$(x^*, y^*) = (4.8, 6.2)$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Center of gravity coordinates are volume-weighted averages: $x^* = \frac{\sum W_i x_i}{\sum W_i}$ and $y^* = \frac{\sum W_i y_i}{\sum W_i}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Total weight', math: t`\sum W_i = 200 + 500 + 300 = 1{,}000\text{ tons}` },
+        { title: 'Weighted x-coordinate', math: t`x^* = \frac{200(2) + 500(8) + 300(6)}{1{,}000} = \frac{400 + 4{,}000 + 1{,}800}{1{,}000} = \frac{6{,}200}{1{,}000} = 6.2` },
+        { title: 'Weighted y-coordinate', math: t`y^* = \frac{200(4) + 500(2) + 300(10)}{1{,}000} = \frac{800 + 1{,}000 + 3{,}000}{1{,}000} = \frac{4{,}800}{1{,}000} = 4.8` }
+      ],
+      answer: t`(x^*, y^*) = (6.2, 4.8)`,
+      whyWrong: {
+        '1': t`Unweighted arithmetic mean of coordinates: $(2+8+6)/3 = 5.33, (4+2+10)/3 = 5.33$.`,
+        '2': t`Swapped $x$ and $y$ coordinate values.`,
+        '3': t`Calculated without the $D_2$ weight.`
+      },
+      commonTrap: t`Taking a simple geometric centroid without weighting by shipment volumes $W_i$. High-volume centers pull the optimum closer to them.`,
+      reference: 'INDU 211 Midterm Winter 2022; Turner Chapter 4'
+    },
+    source: src('Midterm 2022', 'Facilities Location', 'Question 3')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM03',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Fall 2022 (Q2) · Concordia University',
+    topic: 'Rectilinear vs Euclidean Distance Metrics',
+    difficulty: 'Foundation',
+    question: t`Two factory work cells are located at coordinates $A(12, 18)$ and $B(28, 6)$ in meters. In an automated guided vehicle (AGV) system traveling exclusively along orthogonal grid aisles, what is the travel distance between $A$ and $B$?`,
+    options: [
+      t`$28\text{ m}$ (Rectilinear Manhattan distance $L_1$)`,
+      t`$20\text{ m}$ (Euclidean straight-line distance $L_2$)`,
+      t`$400\text{ m}$ (Squared Euclidean distance)`,
+      t`$16\text{ m}$ (Horizontal span only)`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Aisle-based AGVs travel along orthogonal grid lines (Manhattan metric $L_1$): $d_1(A, B) = |x_A - x_B| + |y_A - y_B|$. Euclidean distance $L_2$ applies only to line-of-sight conveyors or aerial drones.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Compute horizontal displacement', math: t`|x_A - x_B| = |12 - 28| = 16\text{ m}` },
+        { title: 'Compute vertical displacement', math: t`|y_A - y_B| = |18 - 6| = 12\text{ m}` },
+        { title: 'Sum rectilinear distances', math: t`d_1 = 16 + 12 = 28\text{ m}` }
+      ],
+      answer: t`28\text{ m}`,
+      whyWrong: {
+        '1': t`Calculated Euclidean distance $\sqrt{16^2 + 12^2} = \sqrt{256 + 144} = \sqrt{400} = 20\text{ m}$, which is impossible inside grid aisles because the AGV cannot travel diagonally through walls/equipment.`,
+        '2': t`Gave the squared Euclidean distance $16^2 + 12^2 = 400$.`,
+        '3': t`Calculated only the horizontal component.`
+      },
+      commonTrap: t`Using $\sqrt{\Delta x^2 + \Delta y^2}$ on factory layout problems. Unless explicitly stated otherwise, industrial plant floors operate under rectilinear Manhattan distance.`,
+      reference: 'INDU 211 Midterm Fall 2022; Turner Chapter 4'
+    },
+    source: src('Midterm 2022', 'Facilities Layout', 'Question 2')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM04',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Winter 2023 (Q4) · Concordia University',
+    topic: 'Material Handling Equipment Principles',
+    difficulty: 'Midterm Level',
+    question: t`According to the 10 Principles of Material Handling published by the Material Handling Institute (MHI), which principle states that 'methods, equipment, controls, and software should be standardized across the enterprise without sacrificing needed flexibility'?`,
+    options: [
+      t`Standardization Principle`,
+      t`Work Minimization Principle`,
+      t`Unit Load Principle`,
+      t`Ergonomic Principle`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The Standardization Principle mandates uniform material handling equipment, containers, and pallet sizes across plants to reduce spare parts inventory, streamline maintenance, and improve operator cross-training.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Standardization Benefit', note: t`Reduces capital costs, training time, and parts variety while maximizing interoperability between suppliers and warehouses.` }
+      ],
+      answer: t`Standardization Principle`,
+      whyWrong: {
+        '1': t`Work Minimization Principle focuses on reducing motion, handling steps, and total distance traveled.`,
+        '2': t`Unit Load Principle dictates consolidating multiple individual items into a single pallet or container.`,
+        '3': t`Ergonomic Principle adapts handling tasks to human physical capabilities.`
+      },
+      commonTrap: t`Confusing the Unit Load Principle (which consolidates items) with Standardization (which makes equipment and processes uniform).`,
+      reference: 'INDU 211 Midterm Winter 2023; Turner Chapter 5'
+    },
+    source: src('Midterm 2023', 'Material Handling Principles', 'Question 4')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM05',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Fall 2023 (Q1) · Concordia University',
+    topic: 'Unit Load Principle & Pallet Utilization',
+    difficulty: 'Midterm Level',
+    question: t`Cartons measuring $400\text{ mm} \times 300\text{ mm} \times 200\text{ mm}$ are to be palletized onto standard North American wooden GMA pallets ($1200\text{ mm} \times 1000\text{ mm}$). If cartons are stacked 5 layers high without overhang, what is the total number of cartons per pallet?`,
+    options: [
+      t`$50\text{ cartons}$ (10 cartons/layer $\times 5$ layers)`,
+      t`$40\text{ cartons}$ (8 cartons/layer $\times 5$ layers)`,
+      t`$60\text{ cartons}$ (12 cartons/layer $\times 5$ layers)`,
+      t`$45\text{ cartons}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`A standard $1200 \times 1000\text{ mm}$ pallet surface accommodates cartons by arranging a 10-carton interlocking pattern ($400 \times 300\text{ mm}$): area efficiency is $\frac{10 \times (0.4 \times 0.3)}{1.2 \times 1.0} = \frac{1.2}{1.2} = 100\%$. With 5 layers, $10 \times 5 = 50\text{ cartons}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Single layer layout', math: t`\text{Area of pallet} = 1200 \times 1000 = 1{,}200{,}000\text{ mm}^2, \quad \text{Area of carton} = 400 \times 300 = 120{,}000\text{ mm}^2` },
+        { title: 'Maximum cartons per layer', math: t`\frac{1{,}200{,}000}{120{,}000} = 10\text{ cartons/layer (arranged 2 along 1000mm side, 3 along 1200mm side or interlocked)}` },
+        { title: 'Total cartons for 5 layers', math: t`N = 10 \times 5 = 50\text{ cartons}` }
+      ],
+      answer: t`50\text{ cartons}`,
+      whyWrong: {
+        '1': t`Assumed non-interlocking grid orientation with wasted pallet area (8 cartons/layer).`,
+        '2': t`Exceeded pallet boundary area dimensions.`,
+        '3': t`Calculated 9 cartons per layer.`
+      },
+      commonTrap: t`Neglecting interlocking stacking patterns that achieve 100% pallet floor coverage with $400 \times 300$ cartons on a $1200 \times 1000$ base.`,
+      reference: 'INDU 211 Midterm Fall 2023; Turner Chapter 5'
+    },
+    source: src('Midterm 2023', 'Material Handling & Unit Load', 'Question 1')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM06',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Winter 2024 (Q2) · Concordia University',
+    topic: 'Concurrent Engineering vs Sequential Design',
+    difficulty: 'Foundation',
+    question: t`What is the primary advantage of Concurrent Engineering over traditional sequential 'over-the-wall' product development?`,
+    options: [
+      t`Cross-functional teams design products and manufacturing processes simultaneously, dramatically reducing engineering change orders (ECOs) and time-to-market`,
+      t`Manufacturing engineers are only consulted after product drawings are 100% finalized by the R&D team`,
+      t`It completely eliminates the need for product testing or prototyping`,
+      t`It minimizes supplier communication until mass production begins`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Concurrent Engineering integrates product design, manufacturing engineering, quality, purchasing, and marketing from Day 1. This prevents costly late redesigns when tooling is already manufactured.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Concurrent Engineering Impact', note: t`Over 70% of total product lifecycle cost is locked in during the initial concept phase. Early manufacturing feedback prevents expensive later tooling modifications.` }
+      ],
+      answer: t`Cross-functional teams design products and manufacturing processes simultaneously`,
+      whyWrong: {
+        '1': t`Describes the outdated 'over-the-wall' approach that concurrent engineering explicitly replaces.`,
+        '2': t`Prototyping and testing remain vital in concurrent engineering.`,
+        '3': t`Early supplier involvement is a fundamental pillar of concurrent engineering.`
+      },
+      commonTrap: t`Thinking concurrent engineering means rushing into production without testing. It means parallel multidisciplinary design collaboration.`,
+      reference: 'INDU 211 Midterm Winter 2024; Turner Chapter 3'
+    },
+    source: src('Midterm 2024', 'Concurrent Engineering', 'Question 2')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM07',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Fall 2024 (Q5) · Concordia University',
+    topic: 'Bill of Materials (BOM) & Product Structure Tree',
+    difficulty: 'Midterm Level',
+    question: t`In a multi-level Bill of Materials (BOM), each finished product (Item A) requires 2 subassemblies B and 3 subassemblies C. Each B requires 4 parts D and 1 part E. Each C requires 2 parts D and 5 parts F. To produce 50 units of finished product A, how many total units of part D are required?`,
+    options: [
+      t`$700\text{ units of D}$`,
+      t`$400\text{ units of D}$`,
+      t`$300\text{ units of D}$`,
+      t`$500\text{ units of D}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Calculate total requirement per unit of A by summing through all branches: $\text{Usage}(D) = (\text{B per A}) \times (\text{D per B}) + (\text{C per A}) \times (\text{D per C}) = (2 \times 4) + (3 \times 2) = 8 + 6 = 14\text{ units of D per A}$. For 50 units of A: $50 \times 14 = 700\text{ units}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'D required via subassembly B', math: t`2\text{ B/A} \times 4\text{ D/B} = 8\text{ D per A}` },
+        { title: 'D required via subassembly C', math: t`3\text{ C/A} \times 2\text{ D/C} = 6\text{ D per A}` },
+        { title: 'Total D per unit of A', math: t`8 + 6 = 14\text{ D per A}` },
+        { title: 'Gross requirements for 50 A', math: t`50 \times 14 = 700\text{ units of D}` }
+      ],
+      answer: t`700\text{ units of D}`,
+      whyWrong: {
+        '1': t`Only counted D through branch B: $50 \times 8 = 400$.`,
+        '2': t`Only counted D through branch C: $50 \times 6 = 300$.`,
+        '3': t`Calculated without the multiple multipliers: $50 \times (4 + 2) = 300 + 200 = 500$.`
+      },
+      commonTrap: t`Forgetting that the same component (D) appears in multiple branches of the product structure tree. Both branches must be evaluated and summed.`,
+      reference: 'INDU 211 Midterm Fall 2024; Turner Chapter 3'
+    },
+    source: src('Midterm 2024', 'Bill of Materials', 'Question 5')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM08',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Winter 2023 (Q1) · Concordia University',
+    topic: 'Assembly Line Balancing: Cycle Time & Workstations',
+    difficulty: 'Midterm Level',
+    question: t`An assembly line operates for $8\text{ hours}$ per day ($28{,}800\text{ seconds}$) with a required daily production output of $480\text{ units}$. The sum of all task times is $\sum t_i = 150\text{ seconds}$. What is the required cycle time $C$ and the theoretical minimum number of workstations $N_{\min}$?`,
+    options: [
+      t`$C = 60\text{ seconds/unit}, \quad N_{\min} = 3\text{ workstations}$`,
+      t`$C = 60\text{ seconds/unit}, \quad N_{\min} = 2.5\text{ workstations}$`,
+      t`$C = 50\text{ seconds/unit}, \quad N_{\min} = 3\text{ workstations}$`,
+      t`$C = 96\text{ seconds/unit}, \quad N_{\min} = 2\text{ workstations}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Cycle time is available time divided by required demand: $C = \frac{T_{\text{available}}}{D} = \frac{28{,}800\text{ s}}{480\text{ units}} = 60\text{ s/unit}$. Theoretical minimum workstations is $N_{\min} = \left\lceil \frac{\sum t_i}{C} \right\rceil = \left\lceil \frac{150}{60} \right\rceil = \lceil 2.5 \rceil = 3$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Compute cycle time $C$', math: t`C = \frac{8 \times 3600\text{ s}}{480\text{ units}} = \frac{28{,}800}{480} = 60\text{ s/unit}` },
+        { title: 'Compute theoretical minimum stations $N_{\min}$', math: t`N_{\min} = \left\lceil \frac{\sum t_i}{C} \right\rceil = \left\lceil \frac{150}{60} \right\rceil = \lceil 2.5 \rceil = 3\text{ stations}` }
+      ],
+      answer: t`C = 60\text{ s}, \quad N_{\min} = 3\text{ workstations}`,
+      whyWrong: {
+        '1': t`Left $N_{\min}$ as a fraction ($2.5$); fractional workstations cannot physically exist on a factory floor.`,
+        '2': t`Incorrect cycle time arithmetic.`,
+        '3': t`Rounded down to 2 workstations, which would make meeting demand physically impossible.`
+      },
+      commonTrap: t`Forgetting the ceiling function $\lceil \cdot \rceil$. You cannot build 2.5 workstations; you must round UP to 3 workstations to satisfy demand.`,
+      reference: 'INDU 211 Midterm Winter 2023; Turner Chapter 4'
+    },
+    source: src('Midterm 2023', 'Line Balancing', 'Question 1')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM09',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Fall 2021 (Q4) · Concordia University',
+    topic: 'REL Chart Closeness Ratings (Muther SLP)',
+    difficulty: 'Foundation',
+    question: t`In Richard Muther's Systematic Layout Planning (SLP), which relationship chart closeness rating letter indicates that two departments should 'ABSOLUTELY NOT' be placed adjacent to one another (e.g. explosive solvent storage adjacent to an open-flame welding cell)?`,
+    options: [
+      t`Rating 'X' (Undesirable / Prohibited)`,
+      t`Rating 'A' (Absolutely Necessary)`,
+      t`Rating 'E' (Especially Important)`,
+      t`Rating 'U' (Unimportant)`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Muther's SLP closeness scale uses vowel codes: A (Absolutely Necessary), E (Especially Important), I (Important), O (Ordinary Closeness), U (Unimportant), and X (Undesirable / Prohibited proximity).`,
+      stepByStep: [],
+      steps: [
+        { title: 'SLP Relationship Hierarchy', note: t`A = 4, E = 3, I = 2, O = 1, U = 0, X = -1 (or negative penalty). X rating overrides all other proximity incentives due to safety, contamination, vibration, or noise conflicts.` }
+      ],
+      answer: t`Rating 'X' (Undesirable / Prohibited)`,
+      whyWrong: {
+        '1': t`'A' denotes the highest positive affinity: the two departments MUST be placed directly adjacent.`,
+        '2': t`'E' is second highest positive affinity.`,
+        '3': t`'U' means adjacency makes no difference (neutral).`
+      },
+      commonTrap: t`Confusing 'U' (Unimportant) with 'X' (Undesirable). 'U' has zero preference; 'X' actively forbids adjacency.`,
+      reference: 'INDU 211 Midterm Fall 2021; Turner Chapter 4'
+    },
+    source: src('Midterm 2021', 'Facilities Layout & SLP', 'Question 4')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM10',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Winter 2024 (Q4) · Concordia University',
+    topic: 'Historical Foundations: Taylor, Gilbreth, and Ford',
+    difficulty: 'Foundation',
+    question: t`Which pioneering contributor to Industrial Engineering introduced micro-motion analysis, time-study cyclographs, and classified all manual work motions into 17 fundamental basic elements termed 'therbligs'?`,
+    options: [
+      t`Frank and Lillian Gilbreth`,
+      t`Frederick Winslow Taylor`,
+      t`Henry L. Gantt`,
+      t`Henry Ford`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Frank and Lillian Gilbreth revolutionized motion study by breaking down human movements into 17 therbligs ('Gilbreth' spelled backwards with transposed 'th'). Taylor focused on stopwatch time study and piece-rate compensation.`,
+      stepByStep: [],
+      steps: [
+        { title: 'The Gilbreth Legacy', note: t`While Taylor emphasized timing entire tasks, the Gilbreths analyzed individual micro-motions (reach, grasp, hold, position) to eliminate fatigue and unnecessary physical motions.` }
+      ],
+      answer: t`Frank and Lillian Gilbreth`,
+      whyWrong: {
+        '1': t`Frederick W. Taylor is the father of Scientific Management (stopwatch timing and functional foremanship), but did not invent therbligs.`,
+        '2': t`Henry Gantt created the milestone bar chart (Gantt Chart) for project scheduling.`,
+        '3': t`Henry Ford created the moving assembly line for automobile mass manufacturing.`
+      },
+      commonTrap: t`Attributing therbligs to Taylor. Taylor = Time Study; Gilbreths = Motion Study & Therbligs.`,
+      reference: 'INDU 211 Midterm Winter 2024; Turner Chapter 1'
+    },
+    source: src('Midterm 2024', 'IE Chronology & History', 'Question 4')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM11',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Fall 2022 (Q5) · Concordia University',
+    topic: 'Process Layout vs Product Layout',
+    difficulty: 'Midterm Level',
+    question: t`A heavy equipment manufacturer produces a wide variety of custom replacement gears in small batch sizes. Machines are grouped into dedicated departments by functional capability (all lathes in Department A, all milling machines in Department B, all grinding machines in Department C). What type of facility layout does this represent?`,
+    options: [
+      t`Process (Functional) Layout`,
+      t`Product (Flow-line) Layout`,
+      t`Fixed-Position Layout`,
+      t`Cellular (Group Technology) Layout`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`A Process Layout groups identical machines by function. It offers maximum flexibility for low-volume, high-variety custom production, despite higher material handling travel distances and work-in-process (WIP) inventory.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Layout Trade-off', note: t`Process layouts handle custom high-variety orders well; Product layouts optimize dedicated high-volume standard product assembly lines.` }
+      ],
+      answer: t`Process (Functional) Layout`,
+      whyWrong: {
+        '1': t`Product layout arranges machinery sequentially in the exact order of product assembly (assembly line).`,
+        '2': t`Fixed-position layout keeps the product static (shipbuilding, aircraft) while tools/workers move around it.`,
+        '3': t`Cellular layout groups dissimilar machines into U-shaped manufacturing cells dedicated to part families.`
+      },
+      commonTrap: t`Confusing Process layout with Product layout. Process = grouped by process type (lathes together); Product = ordered along the product flow path.`,
+      reference: 'INDU 211 Midterm Fall 2022; Turner Chapter 4'
+    },
+    source: src('Midterm 2022', 'Facilities Layout Types', 'Question 5')
+  }),
+
+  q({
+    id: 'Q_INDU211_PM12',
+    chapter: 'past-mid',
+    pastPaper: 'Midterm Examination Winter 2022 (Q5) · Concordia University',
+    topic: 'Vehicle Routing & Clarke-Wright Savings Method',
+    difficulty: 'Exam Master',
+    question: t`In the Clarke-Wright Savings algorithm for vehicle routing, a central depot $D(0)$ serves customers $i$ and $j$. The travel distances from depot are $d(0, i) = 15\text{ km}$ and $d(0, j) = 22\text{ km}$. The direct distance between customers is $d(i, j) = 18\text{ km}$. What is the savings value $s(i, j)$ obtained by linking customer $i$ and customer $j$ onto a single route?`,
+    options: [
+      t`$s(i, j) = 19\text{ km}$`,
+      t`$s(i, j) = 37\text{ km}$`,
+      t`$s(i, j) = 55\text{ km}$`,
+      t`$s(i, j) = 11\text{ km}$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The Clarke-Wright savings formula evaluates the distance saved by combining two separate back-and-forth trips into a single loop: $s(i, j) = d(0, i) + d(0, j) - d(i, j)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Separate trip total distance', math: t`2 \cdot d(0, i) + 2 \cdot d(0, j) = 2(15) + 2(22) = 30 + 44 = 74\text{ km}` },
+        { title: 'Combined loop distance', math: t`d(0, i) + d(i, j) + d(j, 0) = 15 + 18 + 22 = 55\text{ km}` },
+        { title: 'Distance saved', math: t`s(i, j) = 74 - 55 = 19\text{ km}` },
+        { title: 'Direct formula check', math: t`s(i, j) = d(0, i) + d(0, j) - d(i, j) = 15 + 22 - 18 = 19\text{ km}` }
+      ],
+      answer: t`s(i, j) = 19\text{ km}`,
+      whyWrong: {
+        '1': t`Calculated $d(0, i) + d(0, j) = 37\text{ km}$ without subtracting the inter-customer distance $d(i, j)$.`,
+        '2': t`Calculated total combined loop distance ($55\text{ km}$) instead of the savings.`,
+        '3': t`Subtracted $d(0, i)$ from $d(0, j) - d(i, j)$.`
+      },
+      commonTrap: t`Thinking the savings formula includes a factor of 2. The formula is $d(0,i) + d(0,j) - d(i,j)$ because one link from $0 \to i$ and one link from $j \to 0$ are retained in the combined loop.`,
+      reference: 'INDU 211 Midterm Winter 2022; Turner Chapter 5'
+    },
+    source: src('Midterm 2022', 'Vehicle Routing & Logistics', 'Question 5')
   })
+
 ];

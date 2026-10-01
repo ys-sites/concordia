@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { CourseId, CourseDocument } from './types';
 import { COURSES_DATA } from './data/coursesData';
 import { Navbar } from './components/Navbar';
@@ -12,22 +12,108 @@ import { DrillPicker } from './components/DrillPicker';
 import { VisitorCounter } from './components/VisitorCounter';
 import { ContactModal } from './components/ContactModal';
 import { audio } from './utils/audio';
+import { parseHash, formatHash, RouteState } from './utils/navigationRouter';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK';
 
+function findDoc(courseId: CourseId | null, docPath: string | null): CourseDocument | null {
+  if (!docPath) return null;
+  const decoded = decodeURIComponent(docPath);
+  for (const course of COURSES_DATA) {
+    if (!courseId || course.id === courseId) {
+      const found = course.documents.find(
+        (d) => d.relativePath === decoded || d.relativePath === docPath || d.id === decoded || d.filename === decoded
+      );
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
 export function App() {
-  const [viewMode, setViewMode] = useState<ViewMode>('HERO');
-  const [selectedCourseId, setSelectedCourseId] = useState<CourseId | null>(null);
-  const [quizTarget, setQuizTarget] = useState<{ courseId: CourseId; sectionId: string } | null>(null);
-  const [drillRun, setDrillRun] = useState<number>(0); // remounts the engine for a fresh shuffle
+  const initialRoute = useMemo(() => parseHash(window.location.hash), []);
+
+  const [viewMode, setViewMode] = useState<ViewMode>(initialRoute.viewMode);
+  const [selectedCourseId, setSelectedCourseId] = useState<CourseId | null>(initialRoute.courseId);
+  const [folderPath, setFolderPath] = useState<string[]>(initialRoute.folderPath);
+  const [quizTarget, setQuizTarget] = useState<{ courseId: CourseId; sectionId: string } | null>(initialRoute.quizTarget);
+  const [drillRun, setDrillRun] = useState<number>(0);
   const [pickerOpen, setPickerOpen] = useState<boolean>(false);
   const [pickerCourse, setPickerCourse] = useState<CourseId | null>(null);
-  const [activePdfDoc, setActivePdfDoc] = useState<CourseDocument | null>(null);
+  const [activePdfDoc, setActivePdfDoc] = useState<CourseDocument | null>(() =>
+    findDoc(initialRoute.courseId, initialRoute.docPath)
+  );
   const [contactOpen, setContactOpen] = useState<boolean>(false);
   const [quizResults, setQuizResults] = useState<any>(null);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
+
+  // Initialize hash if empty
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.history.replaceState(null, '', '#/');
+    }
+  }, []);
+
+  // Listen to browser Back/Forward (popstate) and hashchange
+  useEffect(() => {
+    const handleHashChange = () => {
+      const route = parseHash(window.location.hash);
+      setViewMode(route.viewMode);
+      setSelectedCourseId(route.courseId);
+      setFolderPath(route.folderPath);
+      setQuizTarget(route.quizTarget);
+      if (route.docPath) {
+        setActivePdfDoc(findDoc(route.courseId, route.docPath));
+      } else {
+        setActivePdfDoc(null);
+      }
+    };
+
+    window.addEventListener('popstate', handleHashChange);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => {
+      window.removeEventListener('popstate', handleHashChange);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  // Central state & history pusher
+  const navigateTo = (nextState: Partial<RouteState>, replace = false) => {
+    const fullState: RouteState = {
+      viewMode: nextState.viewMode !== undefined ? nextState.viewMode : viewMode,
+      courseId: nextState.courseId !== undefined ? nextState.courseId : selectedCourseId,
+      folderPath:
+        nextState.folderPath !== undefined
+          ? nextState.folderPath
+          : nextState.courseId !== undefined && nextState.courseId !== selectedCourseId
+          ? []
+          : folderPath,
+      docPath: nextState.docPath !== undefined ? nextState.docPath : null,
+      quizTarget: nextState.quizTarget !== undefined ? nextState.quizTarget : null,
+    };
+
+    const newHash = formatHash(fullState);
+    if (window.location.hash !== newHash) {
+      if (replace) {
+        window.history.replaceState(null, '', newHash);
+      } else {
+        window.history.pushState(null, '', newHash);
+      }
+    }
+
+    setViewMode(fullState.viewMode);
+    setSelectedCourseId(fullState.courseId);
+    setFolderPath(fullState.folderPath);
+    setQuizTarget(fullState.quizTarget);
+    if (fullState.docPath) {
+      setActivePdfDoc(findDoc(fullState.courseId, fullState.docPath));
+    } else {
+      setActivePdfDoc(null);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Toggle sound
   const handleToggleSound = () => {
@@ -39,16 +125,33 @@ export function App() {
   // Switch Course
   const handleSelectCourse = (courseId: CourseId | null) => {
     if (courseId === null) {
-      setSelectedCourseId(null);
-      setViewMode('HERO');
+      navigateTo({ viewMode: 'HERO', courseId: null, folderPath: [], docPath: null, quizTarget: null });
     } else {
-      setSelectedCourseId(courseId);
-      setViewMode('WORKSPACE');
+      navigateTo({ viewMode: 'WORKSPACE', courseId, folderPath: [], docPath: null, quizTarget: null });
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Every drill button opens the picker (course → midterm or chapter); drills never mix courses
+  // Folder navigation inside a course workspace
+  const handleFolderChange = (nextPath: string[]) => {
+    navigateTo({ viewMode: 'WORKSPACE', courseId: selectedCourseId, folderPath: nextPath, docPath: null });
+  };
+
+  // View PDF Document
+  const handleViewPdf = (doc: CourseDocument) => {
+    navigateTo({ viewMode: 'WORKSPACE', courseId: doc.courseId, folderPath, docPath: doc.relativePath });
+  };
+
+  // Close PDF Document
+  const handleClosePdf = () => {
+    const cur = parseHash(window.location.hash);
+    if (cur.docPath) {
+      window.history.back();
+    } else {
+      setActivePdfDoc(null);
+    }
+  };
+
+  // Start quiz picker
   const handleStartQuiz = (courseId: CourseId | 'ALL') => {
     setPickerCourse(courseId === 'ALL' ? null : courseId);
     setPickerOpen(true);
@@ -56,26 +159,42 @@ export function App() {
 
   const launchDrill = (courseId: CourseId, sectionId: string) => {
     setPickerOpen(false);
-    setQuizTarget({ courseId, sectionId });
     setDrillRun((n) => n + 1);
-    setViewMode('QUIZ');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigateTo({
+      viewMode: 'QUIZ',
+      courseId,
+      folderPath: [],
+      docPath: null,
+      quizTarget: { courseId, sectionId }
+    });
   };
 
   // Complete Quiz Drill
   const handleQuizComplete = (results: any) => {
     setQuizResults(results);
-    setViewMode('RESULTS');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigateTo({
+      viewMode: 'RESULTS',
+      courseId: results.courseId,
+      folderPath: [],
+      docPath: null,
+      quizTarget: { courseId: results.courseId, sectionId: quizTarget?.sectionId || 'drill' }
+    });
   };
 
   // Open Full Question Bank
   const handleOpenQuestionBank = () => {
-    setViewMode('QUESTION_BANK');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigateTo({ viewMode: 'QUESTION_BANK', courseId: selectedCourseId, folderPath: [], docPath: null });
   };
 
-  const currentCourse = COURSES_DATA.find(c => c.id === selectedCourseId) || null;
+  const handleExitQuiz = () => {
+    if (selectedCourseId) {
+      navigateTo({ viewMode: 'WORKSPACE', courseId: selectedCourseId, folderPath: [], docPath: null });
+    } else {
+      navigateTo({ viewMode: 'HERO', courseId: null, folderPath: [], docPath: null });
+    }
+  };
+
+  const currentCourse = COURSES_DATA.find((c) => c.id === selectedCourseId) || null;
 
   return (
     <div className="app-root">
@@ -103,9 +222,17 @@ export function App() {
         {viewMode === 'WORKSPACE' && currentCourse && (
           <CourseWorkspace 
             course={currentCourse}
-            onBack={() => setViewMode('HERO')}
+            folderPath={folderPath}
+            onNavigateFolder={handleFolderChange}
+            onBack={() => {
+              if (window.history.length > 1) {
+                window.history.back();
+              } else {
+                handleSelectCourse(null);
+              }
+            }}
             onStartQuiz={handleStartQuiz}
-            onViewPdf={(doc) => setActivePdfDoc(doc)}
+            onViewPdf={handleViewPdf}
           />
         )}
 
@@ -114,13 +241,7 @@ export function App() {
             key={drillRun}
             courseId={quizTarget.courseId}
             sectionId={quizTarget.sectionId}
-            onExit={() => {
-              if (selectedCourseId) {
-                setViewMode('WORKSPACE');
-              } else {
-                setViewMode('HERO');
-              }
-            }}
+            onExit={handleExitQuiz}
             onComplete={handleQuizComplete}
           />
         )}
@@ -130,16 +251,20 @@ export function App() {
             results={quizResults}
             onRestartNewCycle={() => {
               setDrillRun((n) => n + 1);
-              setViewMode('QUIZ');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              navigateTo({
+                viewMode: 'QUIZ',
+                courseId: quizResults.courseId,
+                folderPath: [],
+                docPath: null,
+                quizTarget: { courseId: quizResults.courseId, sectionId: quizTarget?.sectionId || 'drill' }
+              });
             }}
             onBackToCourse={() => {
               if (selectedCourseId) {
-                setViewMode('WORKSPACE');
+                navigateTo({ viewMode: 'WORKSPACE', courseId: selectedCourseId, folderPath: [], docPath: null });
               } else {
-                setViewMode('HERO');
+                navigateTo({ viewMode: 'HERO', courseId: null, folderPath: [], docPath: null });
               }
-              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
         )}
@@ -147,12 +272,13 @@ export function App() {
         {viewMode === 'QUESTION_BANK' && (
           <QuestionBankBrowser 
             onBack={() => {
-              if (selectedCourseId) {
-                setViewMode('WORKSPACE');
+              if (window.history.length > 1) {
+                window.history.back();
+              } else if (selectedCourseId) {
+                navigateTo({ viewMode: 'WORKSPACE', courseId: selectedCourseId, folderPath: [], docPath: null });
               } else {
-                setViewMode('HERO');
+                navigateTo({ viewMode: 'HERO', courseId: null, folderPath: [], docPath: null });
               }
-              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onStartQuiz={handleStartQuiz}
           />
@@ -169,7 +295,7 @@ export function App() {
       {/* Embedded PDF Viewer Modal */}
       <PdfViewerModal 
         document={activePdfDoc}
-        onClose={() => setActivePdfDoc(null)}
+        onClose={handleClosePdf}
       />
 
       {/* FormSubmit Contact Modal */}

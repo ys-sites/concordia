@@ -41,6 +41,8 @@ import {
 
 interface CourseWorkspaceProps {
   course: CourseWithDocs;
+  folderPath?: string[];
+  onNavigateFolder?: (path: string[]) => void;
   onBack: () => void;
   onStartQuiz: (courseId: CourseId) => void;
   onViewPdf: (doc: CourseDocument) => void;
@@ -79,26 +81,36 @@ const folderMeta = (node: FolderNode) => {
 
 export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
   course,
+  folderPath = [],
+  onNavigateFolder,
   onBack,
   onStartQuiz,
   onViewPdf
 }) => {
-  const [path, setPath] = useState<string[]>([]);
+  const [internalPath, setInternalPath] = useState<string[]>(folderPath);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const tree = useMemo(() => buildFolderTree(course.documents), [course]);
-  const current = findFolder(tree, path) ?? tree;
-
-  // Start at the course root whenever the course changes
+  // Keep internalPath synchronized with prop from navigationRouter
   useEffect(() => {
-    setPath([]);
+    setInternalPath(folderPath);
+  }, [folderPath]);
+
+  const activePath = folderPath !== undefined && folderPath.length >= 0 ? folderPath : internalPath;
+  const tree = useMemo(() => buildFolderTree(course.documents), [course]);
+  const current = findFolder(tree, activePath) ?? tree;
+
+  // Reset search when course changes
+  useEffect(() => {
     setSearchQuery('');
   }, [course.id]);
 
   const openPath = (next: string[]) => {
     audio.playClick();
-    setPath(next);
+    setInternalPath(next);
     setSearchQuery('');
+    if (onNavigateFolder) {
+      onNavigateFolder(next);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -222,11 +234,15 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           className="back-btn"
           onClick={() => {
             audio.playClick();
-            onBack();
+            if (activePath.length > 0) {
+              openPath(activePath.slice(0, -1));
+            } else {
+              onBack();
+            }
           }}
         >
           <ArrowLeft size={16} />
-          <span>Back to All Courses</span>
+          <span>{activePath.length > 0 ? 'Back to Parent Folder' : 'Back to All Courses'}</span>
         </button>
 
         <div className="workspace-title-row">
@@ -256,16 +272,16 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
       {/* Breadcrumb + search */}
       <div className="fx-toolbar">
         <nav className="fx-breadcrumb" aria-label="Folder path">
-          <button className={`fx-crumb ${path.length === 0 ? 'current' : ''}`} onClick={() => openPath([])}>
+          <button className={`fx-crumb ${activePath.length === 0 ? 'current' : ''}`} onClick={() => openPath([])}>
             <Home size={14} />
             <span>{course.code}</span>
           </button>
-          {path.map((seg, i) => (
+          {activePath.map((seg, i) => (
             <React.Fragment key={seg}>
               <ChevronRight size={14} className="fx-crumb-sep" />
               <button
-                className={`fx-crumb ${i === path.length - 1 ? 'current' : ''}`}
-                onClick={() => openPath(path.slice(0, i + 1))}
+                className={`fx-crumb ${i === activePath.length - 1 ? 'current' : ''}`}
+                onClick={() => openPath(activePath.slice(0, i + 1))}
               >
                 {splitFolderName(seg).name}
               </button>
@@ -304,7 +320,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             <ol className="fx-file-list">{searchResults.map((doc, i) => renderFileRow(doc, i + 1, true))}</ol>
           )}
         </section>
-      ) : path.length === 0 ? (
+      ) : activePath.length === 0 ? (
         <section>
           <h2 className="fx-section-title">Course folders</h2>
           <div className="fx-folder-grid">{tree.folders.map(renderFolderTile)}</div>

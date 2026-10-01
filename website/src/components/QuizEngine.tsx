@@ -13,6 +13,9 @@ import {
   CheckCircle2, 
   XCircle, 
   ArrowRight, 
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
   HelpCircle, 
   AlertTriangle,
   RotateCcw,
@@ -85,6 +88,24 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
     return () => clearInterval(timer);
   }, [startTime]);
 
+  // Keyboard navigation: ArrowLeft to go back, ArrowRight to advance if answered
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if (e.key === 'ArrowLeft') {
+        if (currentIndex > 0) {
+          handlePrevious();
+        }
+      } else if (e.key === 'ArrowRight') {
+        if (selectedAnswers[currentIndex] !== undefined) {
+          handleNext();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex, selectedAnswers, sessionQuestions.length]);
+
   const currentQ = sessionQuestions[currentIndex];
   const isAnswered = selectedAnswers[currentIndex] !== undefined;
   const userSelectedIndex = selectedAnswers[currentIndex];
@@ -114,6 +135,20 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
     } else {
       audio.playIncorrect();
       setStreak(0);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      audio.playClick();
+      setCurrentIndex(prev => prev - 1);
+    }
+  };
+
+  const handleJumpTo = (index: number) => {
+    if (index >= 0 && index < sessionQuestions.length) {
+      audio.playClick();
+      setCurrentIndex(index);
     }
   };
 
@@ -219,11 +254,80 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
         />
       </div>
 
+      {/* Interactive Question Navigation Bar */}
+      <div className="quiz-pills-bar" aria-label="Question Navigation">
+        <button 
+          className="quiz-pill-nav-btn"
+          onClick={handlePrevious}
+          disabled={currentIndex === 0}
+          title="Previous Question (Left Arrow)"
+        >
+          <ChevronLeft size={16} />
+          <span>Prev</span>
+        </button>
+
+        <div className="quiz-pills-scroll">
+          {sessionQuestions.map((q, idx) => {
+            const answered = selectedAnswers[idx] !== undefined;
+            const correct = answered && selectedAnswers[idx] === q.correctIndex;
+            const isCurrent = idx === currentIndex;
+            let statusClass = 'pill-unanswered';
+            if (answered) {
+              statusClass = correct ? 'pill-correct' : 'pill-incorrect';
+            }
+            if (isCurrent) statusClass += ' pill-active';
+
+            return (
+              <button
+                key={idx}
+                className={`quiz-q-pill ${statusClass}`}
+                onClick={() => handleJumpTo(idx)}
+                title={`Question ${idx + 1}${answered ? (correct ? ' (Correct)' : ' (Incorrect)') : ' (Not answered yet)'}`}
+              >
+                {answered && correct && <CheckCircle2 size={11} className="pill-status-ico" />}
+                {answered && !correct && <XCircle size={11} className="pill-status-ico" />}
+                <span>{idx + 1}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        <button 
+          className="quiz-pill-nav-btn"
+          onClick={handleNext}
+          title={currentIndex === sessionQuestions.length - 1 ? 'Finish Drill' : 'Next Question (Right Arrow)'}
+        >
+          <span>{currentIndex === sessionQuestions.length - 1 ? 'Finish' : 'Next'}</span>
+          <ChevronRight size={16} />
+        </button>
+      </div>
+
       {/* Main Question Card Area */}
       <div className="quiz-card-container">
         <div className="quiz-card-header">
-          <div className="question-number-badge">
-            Question <strong>{currentIndex + 1}</strong> of {sessionQuestions.length}
+          <div className="header-nav-group">
+            <button
+              className="quiz-step-btn"
+              onClick={handlePrevious}
+              disabled={currentIndex === 0}
+              title="Previous Question"
+            >
+              <ChevronLeft size={16} />
+              <span>Back</span>
+            </button>
+            <div className="question-number-badge">
+              Question <strong>{currentIndex + 1}</strong> of {sessionQuestions.length}
+            </div>
+            {currentIndex < sessionQuestions.length - 1 && (
+              <button
+                className="quiz-step-btn"
+                onClick={handleNext}
+                title="Next Question"
+              >
+                <span>Next</span>
+                <ChevronRight size={16} />
+              </button>
+            )}
           </div>
 
           <div className="question-meta-group">
@@ -291,6 +395,16 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
           })}
         </div>
 
+        {/* Unanswered back review helper */}
+        {!isAnswered && currentIndex > 0 && (
+          <div className="unanswered-nav-row">
+            <button className="quiz-prev-subtle-btn" onClick={handlePrevious}>
+              <ArrowLeft size={15} />
+              <span>Review Previous Question (Q{currentIndex})</span>
+            </button>
+          </div>
+        )}
+
         {/* Immediate Explanation Drawer */}
         {isAnswered && (
           <div className={`explanation-drawer ${isCorrect ? 'drawer-correct' : 'drawer-incorrect'}`}>
@@ -319,8 +433,17 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
               />
             </div>
 
-            {/* Next Question CTA */}
+            {/* Next / Prev Question CTA */}
             <div className="drawer-footer">
+              <button 
+                className="prev-question-btn" 
+                onClick={handlePrevious}
+                disabled={currentIndex === 0}
+              >
+                <ArrowLeft size={18} />
+                <span>Previous Question</span>
+              </button>
+
               <button className="next-question-btn" onClick={handleNext}>
                 <span>{currentIndex === sessionQuestions.length - 1 ? 'Finish Drill & View Readiness Score' : 'Next Question'}</span>
                 <ArrowRight size={18} />

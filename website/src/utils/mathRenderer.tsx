@@ -50,9 +50,17 @@ export const splitMath = (input: string): Segment[] => {
   return out;
 };
 
+const sanitizeTex = (tex: string): string => {
+  // If a command was accidentally double-escaped (e.g. \\frac, \\dfrac, \\partial, \\sin, \\cos, \\text),
+  // KaTeX treats the leading \\ as a line break and renders the command name as plain text (e.g. "fracddx").
+  // Normalize \\command to \command when directly followed by letters, preserving matrix row breaks.
+  return tex.replace(/\\\\([a-zA-Z]+)/g, '\\$1');
+};
+
 const renderTex = (tex: string, displayMode: boolean): string => {
   try {
-    return katex.renderToString(tex, { displayMode, throwOnError: false, strict: 'ignore', trust: false });
+    const cleanTex = sanitizeTex(tex);
+    return katex.renderToString(cleanTex, { displayMode, throwOnError: false, strict: 'ignore', trust: false });
   } catch {
     return tex.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c] as string);
   }

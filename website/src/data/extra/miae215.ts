@@ -277,8 +277,8 @@ cout << "count = " << count << endl;`,
       ],
       answer: t`count = 3`,
       whyWrong: {
-        '1': t`safe\\ncount = 4 assumes !found was true and short-circuited --count. But !1 is 0 (false).`,
-        '2': t`safe\\ncount = 3 assumes the if condition evaluated to true.`,
+        '1': t`safe\ncount = 4 assumes !found was true and short-circuited --count. But !1 is 0 (false).`,
+        '2': t`safe\ncount = 3 assumes the if condition evaluated to true.`,
         '3': t`count = 4 assumes that || always short-circuits, leaving count unmodified.`
       },
       commonTrap: t`Exam Trap: Believing || skips the second condition when the first is false. Logical OR only short-circuits on TRUE; if the first condition is false, it must evaluate the second!`,
@@ -495,9 +495,9 @@ cout << A[i];`,
       stepByStep: [],
       steps: [
         { title: 'Evaluate modulo in first parentheses', math: t`5 \\% 2 = 1` },
-        { title: 'Evaluate arithmetic in second parentheses', math: t`1.5 + 2 = 3.5\\text{ (promoted to double)}` },
-        { title: 'Apply integer cast', math: t`\\text{int}(3.5) = 3\\text{ (fractional part truncated)}` },
-        { title: 'Multiply results', math: t`1 \\times 3 = 3` }
+        { title: 'Evaluate arithmetic in second parentheses', math: t`1.5 + 2 = 3.5\text{ (promoted to double)}` },
+        { title: 'Apply integer cast', math: t`\text{int}(3.5) = 3\text{ (fractional part truncated)}` },
+        { title: 'Multiply results', math: t`1 \times 3 = 3` }
       ],
       answer: t`3`,
       whyWrong: {
@@ -529,9 +529,9 @@ cout << A[i];`,
       coreConcept: t`\`pow(double base, double exp)\` performs floating-point exponentiation. $2.75 = 11/4$, and $(11/4)^2 = 121/16 = 7.5625$. Both arguments are represented in double-precision without integer truncation.`,
       stepByStep: [],
       steps: [
-        { title: 'Convert to fraction', math: t`2.75 = \\frac{11}{4}` },
-        { title: 'Square the fraction', math: t`\\left(\\frac{11}{4}\\right)^2 = \\frac{121}{16} = 7 + \\frac{9}{16}` },
-        { title: 'Convert back to decimal', math: t`\\frac{9}{16} = 0.5625 \\implies 7.5625` }
+        { title: 'Convert to fraction', math: t`2.75 = \frac{11}{4}` },
+        { title: 'Square the fraction', math: t`\left(\frac{11}{4}\right)^2 = \frac{121}{16} = 7 + \frac{9}{16}` },
+        { title: 'Convert back to decimal', math: t`\frac{9}{16} = 0.5625 \implies 7.5625` }
       ],
       answer: t`7.5625`,
       whyWrong: {
@@ -567,7 +567,7 @@ cout << A[i];`,
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Scanned Exam Trap! At $i = 9$, $\\sqrt{9} == 3$, but $9 \\% 4 = 1 \\neq 2$, so the FIRST condition \`i % 4 != 2\` is true and executes \`continue\`! The \`else if (sqrt(i) == 3) break;\` branch is DEAD CODE and is never reached!`,
+      coreConcept: t`Scanned Exam Trap! At $i = 9$, $\sqrt{9} == 3$, but $9 \\% 4 = 1 \neq 2$, so the FIRST condition \`i % 4 != 2\` is true and executes \`continue\`! The \`else if (sqrt(i) == 3) break;\` branch is DEAD CODE and is never reached!`,
       stepByStep: [],
       steps: [
         { title: 'i = 0, 1', note: t`0%4 = 0 != 2, 1%4 = 1 != 2 -> continue` },
@@ -580,8 +580,8 @@ cout << A[i];`,
       ],
       answer: t`2 6 10 `,
       whyWrong: {
-        '1': t`Authentic Student Exam Error: Assuming the loop breaks when $i = 9$ because $\\sqrt{9} = 3$. The first \`if\` condition executes \`continue\` before \`else if\` can ever be evaluated!`,
-        '2': t`9 is not printed because $9 \\% 4 = 1 \\neq 2$ triggers \`continue\`.`,
+        '1': t`Authentic Student Exam Error: Assuming the loop breaks when $i = 9$ because $\sqrt{9} = 3$. The first \`if\` condition executes \`continue\` before \`else if\` can ever be evaluated!`,
+        '2': t`9 is not printed because $9 \\% 4 = 1 \neq 2$ triggers \`continue\`.`,
         '3': t`9 is never reached by \`cout\`.`
       },
       commonTrap: t`Failing to trace the \`if\` condition hierarchy. An \`else if\` branch will NEVER execute if the preceding \`if\` condition is met!`,
@@ -614,10 +614,10 @@ cout << a;`,
       coreConcept: t`Each iteration divides \`num\` by 10 using integer division, stripping off one rightmost decimal digit. The loop runs exactly once per digit in the base-10 integer.`,
       stepByStep: [],
       steps: [
-        { title: 'Iteration 1', math: t`num = 4321 / 10 = 432, \\quad a = 1` },
-        { title: 'Iteration 2', math: t`num = 432 / 10 = 43, \\quad a = 2` },
-        { title: 'Iteration 3', math: t`num = 43 / 10 = 4, \\quad a = 3` },
-        { title: 'Iteration 4', math: t`num = 4 / 10 = 0, \\quad a = 4` },
+        { title: 'Iteration 1', math: t`num = 4321 / 10 = 432, \quad a = 1` },
+        { title: 'Iteration 2', math: t`num = 432 / 10 = 43, \quad a = 2` },
+        { title: 'Iteration 3', math: t`num = 43 / 10 = 4, \quad a = 3` },
+        { title: 'Iteration 4', math: t`num = 4 / 10 = 0, \quad a = 4` },
         { title: 'Termination', note: t`num > 0 is now 0 > 0 (false). Loop exits with a = 4.` }
       ],
       answer: t`4`,
@@ -703,7 +703,7 @@ cout << result;`,
       steps: [
         { title: 'i = 1, 2', note: t`1%3 = 1 != 0, 2%3 = 2 != 0 -> inner loop skipped.` },
         { title: 'i = 3', note: t`3%3 = 0 -> enters inner loop for j = 3, 4, 5.` },
-        { title: 'Inner loop accumulation', math: t`\\text{result} = 3 + 4 + 5 = 12` },
+        { title: 'Inner loop accumulation', math: t`\text{result} = 3 + 4 + 5 = 12` },
         { title: 'i = 4', note: t`4%3 = 1 != 0 -> inner loop skipped.` }
       ],
       answer: t`12`,
@@ -741,9 +741,9 @@ cout << count;`,
       coreConcept: t`Short-circuit evaluation rule for \`||\`: if the first operand is false, the second operand MUST be evaluated! Here \`found = 1\`, so \`!found\` is \`0\` (false). Therefore, C++ evaluates \`--count == 0\`, decrementing \`count\` from 4 to 3. Since \`3 == 0\` is false, the \`if\` body is not entered, leaving \`count = 3\`.`,
       stepByStep: [],
       steps: [
-        { title: 'Evaluate first condition of ||', math: t`\\text{found} = 1 \\implies !\\text{found} = 0\\text{ (false)}` },
+        { title: 'Evaluate first condition of ||', math: t`\text{found} = 1 \implies !\text{found} = 0\text{ (false)}` },
         { title: 'Check short-circuit rule', note: t`Because the LHS of || is false, C++ MUST evaluate the RHS to determine the boolean outcome!` },
-        { title: 'Evaluate --count == 0', math: t`--\\text{count} \\text{ pre-decrements count from 4 to 3}. \\; 3 == 0 \\text{ is false}.` },
+        { title: 'Evaluate --count == 0', math: t`--\text{count} \text{ pre-decrements count from 4 to 3}. \\; 3 == 0 \text{ is false}.` },
         { title: 'Outcome', note: t`Both sides are false -> if-body (count += 10) is skipped. count remains 3.` }
       ],
       answer: t`3`,
@@ -833,15 +833,15 @@ for (int k = 0; k < 4; k++) {
       coreConcept: t`The loop executes exactly 4 times ($k = 0, 1, 2, 3$). Compute the closed form progression for each variable over 4 steps.`,
       stepByStep: [],
       steps: [
-        { title: 'Variable x (geometric)', math: t`x = 4 \\times (1.5)^4 = 4 \\times 5.0625 = 20.25` },
-        { title: 'Variable y (doubling)', math: t`y = 4 \\times 2^4 = 4 \\times 16 = 64` },
+        { title: 'Variable x (geometric)', math: t`x = 4 \times (1.5)^4 = 4 \times 5.0625 = 20.25` },
+        { title: 'Variable y (doubling)', math: t`y = 4 \times 2^4 = 4 \times 16 = 64` },
         { title: 'Variable z (floating halving)', math: t`z = 4 / 2^4 = 4 / 16 = 0.25` },
-        { title: 'Variable q (arithmetic accumulation)', math: t`q = 4 + (4 \\times 4) = 20` }
+        { title: 'Variable q (arithmetic accumulation)', math: t`q = 4 + (4 \times 4) = 20` }
       ],
       answer: t`x = 20.25, y = 64, z = 0.25, q = 20`,
       whyWrong: {
         '1': t`Performs only 3 iterations ($k < 3$).`,
-        '2': t`Computes x as $4 \\times 1.5 \\times 3 = 18.0$ linearly instead of multiplying by $1.5^4$.`,
+        '2': t`Computes x as $4 \times 1.5 \times 3 = 18.0$ linearly instead of multiplying by $1.5^4$.`,
         '3': t`Assumes integer truncation on z, but z is a double divided by 2.0.`
       },
       commonTrap: t`Treating geometric multiplication as linear addition, or truncating the double variable \`z\` to zero.`,
@@ -874,9 +874,9 @@ if (i / j < 2.1) {
       coreConcept: t`Scanned Exam Trap! In \`i / j\`, both \`i\` and \`j\` are \`int\`, so integer division truncates $9 / 4 = 2$. Then \`2 < 2.1\` is TRUE! The \`if\` branch executes, printing \`i / j = 2\`.`,
       stepByStep: [],
       steps: [
-        { title: 'Evaluate i / j', math: t`9 / 4 = 2\\text{ (integer division)}` },
-        { title: 'Evaluate relational condition', math: t`2 < 2.1 \\implies \\text{TRUE}` },
-        { title: 'Execute if branch', math: t`\\text{cout} \\ll i / j \\implies \\text{prints } 2` }
+        { title: 'Evaluate i / j', math: t`9 / 4 = 2\text{ (integer division)}` },
+        { title: 'Evaluate relational condition', math: t`2 < 2.1 \implies \text{TRUE}` },
+        { title: 'Execute if branch', math: t`\text{cout} \ll i / j \implies \text{prints } 2` }
       ],
       answer: t`2`,
       whyWrong: {
