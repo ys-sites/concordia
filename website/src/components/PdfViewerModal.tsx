@@ -3,7 +3,7 @@ import { CourseDocument } from '../types';
 import { X, ExternalLink, FileText, Maximize2, Video } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
-import { displayTitle, getVideoUrl } from '../utils/docOrganization';
+import { displayTitle, getVideoUrl, getTutorialExamInfo } from '../utils/docOrganization';
 
 // PDF.js is large: load it only when a document is opened
 const PdfCanvasViewer = lazy(() => import('./PdfCanvasViewer'));
@@ -36,6 +36,7 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
 
   const pdfUrl = getPdfUrl(doc.relativePath);
   const title = displayTitle(doc);
+  const examInfo = getTutorialExamInfo(doc);
   const close = () => {
     audio.playClick();
     onClose();
@@ -56,7 +57,24 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
               <FileText size={18} />
             </div>
             <div className="modal-heading">
-              <div className="modal-category">{doc.courseId} · {doc.categoryTitle}</div>
+              <div className="modal-category" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span>{doc.courseId} · {doc.categoryTitle}</span>
+                {examInfo && (
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 700,
+                      padding: '1px 8px',
+                      borderRadius: '9999px',
+                      color: examInfo.badgeColor,
+                      backgroundColor: examInfo.badgeBg,
+                      border: `1px solid ${examInfo.badgeColor}33`
+                    }}
+                  >
+                    {examInfo.badgeText}
+                  </span>
+                )}
+              </div>
               <h2 className="modal-title" title={title}>{title}</h2>
             </div>
           </div>

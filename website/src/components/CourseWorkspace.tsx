@@ -35,7 +35,8 @@ import {
   findFolder,
   FolderNode,
   splitFolderName,
-  getVideoUrl
+  getVideoUrl,
+  getTutorialExamInfo
 } from '../utils/docOrganization';
 
 interface CourseWorkspaceProps {
@@ -131,6 +132,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
   const renderFileRow = (doc: CourseDocument, number: number, showLocation = false) => {
     const url = getPdfUrl(doc.relativePath);
     const location = doc.relativePath.split('/').slice(1, -1).map((f) => splitFolderName(f).name);
+    const examInfo = getTutorialExamInfo(doc);
     return (
       <li key={doc.id} className="fx-file-row">
         <span className="fx-file-number">{number}</span>
@@ -146,6 +148,24 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           <span className="fx-file-meta">
             {showLocation && location.length > 0 && <span className="fx-file-location">{location.join(' › ')}</span>}
             <span>PDF{doc.fileSizeBytes ? ` · ${formatFileSize(doc.fileSizeBytes)}` : ''}</span>
+            {examInfo && (
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  padding: '2px 8px',
+                  borderRadius: '9999px',
+                  color: examInfo.badgeColor,
+                  backgroundColor: examInfo.badgeBg,
+                  border: `1px solid ${examInfo.badgeColor}33`,
+                  marginLeft: '4px'
+                }}
+              >
+                {examInfo.badgeText}
+              </span>
+            )}
           </span>
         </button>
         <div className="fx-file-actions">
@@ -304,6 +324,34 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             </div>
             <span className="fx-panel-meta">{folderMeta(current)}</span>
           </header>
+
+          {/youtube|tutorial/i.test(current.name) && (
+            <div
+              style={{
+                margin: '12px 16px 4px',
+                padding: '12px 16px',
+                borderRadius: '8px',
+                background: 'rgba(234, 179, 8, 0.08)',
+                border: '1px solid rgba(234, 179, 8, 0.25)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '6px',
+                fontSize: '12px',
+                lineHeight: '1.45',
+                color: 'var(--text-secondary)'
+              }}
+            >
+              <div style={{ fontWeight: 700, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span>🎯 Midterm Coverage Notice (Midterm covers Chapters 1–5):</span>
+              </div>
+              <div>
+                • <strong style={{ color: '#16a34a' }}>Required for Midterm</strong>: <strong>05 - Traveling Salesperson Problem</strong> (Chapter 5: Materials Handling & Warehouse Routing — <em>2020 Midterm Exam Problem 2</em>).
+              </div>
+              <div style={{ color: 'var(--text-muted)' }}>
+                • <strong>Final Exam Scope (After Chapter 5)</strong>: <strong>01</strong> (Forecasting - Ch 7), <strong>02 & 06</strong> (Linear Programming - Ch 14), <strong>04</strong> (Queuing - Ch 15), <strong>07</strong> (SPC & Cp - Ch 8), and <strong>03</strong> (PERT/CPM - Ch 17).
+              </div>
+            </div>
+          )}
 
           {current.folders.length > 0 && (
             <div className="fx-folder-grid fx-subfolders">{current.folders.map(renderFolderTile)}</div>

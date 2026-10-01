@@ -343,7 +343,38 @@ h1, h2, h3, h4, h5 {
   font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+}
+
+.hero-disclaimer-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 820px;
+  margin: 0 auto 24px;
+  padding: 10px 16px;
+  background: color-mix(in srgb, var(--accent, #4f46e5) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent, #4f46e5) 20%, transparent);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.hero-disclaimer-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--accent, #4f46e5);
+}
+
+.hero-disclaimer-text {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.hero-disclaimer-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 /* Metric Pills */

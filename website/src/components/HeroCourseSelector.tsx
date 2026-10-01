@@ -13,7 +13,8 @@ import {
   Sparkles, 
   Flame, 
   GraduationCap,
-  ShieldCheck
+  ShieldCheck,
+  Info
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
@@ -66,6 +67,13 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
         <p className="hero-subtext">
           Study the step-by-step guides, summaries and rapid review sheets for each course, then test yourself with <strong>midterm or chapter-by-chapter drills</strong> built for exam mastery.
         </p>
+
+        <div className="hero-disclaimer-card" role="note" aria-label="Academic Disclaimer">
+          <Info size={16} className="hero-disclaimer-icon" />
+          <p className="hero-disclaimer-text">
+            <strong>Academic Disclaimer:</strong> This portal was created solely for comprehensive course review and interactive learning. While designed to help bridge foundational concepts and build intuition, it is not a substitute for official instruction. Please always consult your professor’s official lecture notes, course syllabus, and assigned textbook readings to further expand your knowledge and verify specific exam expectations.
+          </p>
+        </div>
 
         {/* Global Key Metric Pills */}
         <div className="metric-pills-row">

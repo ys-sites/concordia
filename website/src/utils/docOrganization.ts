@@ -162,7 +162,20 @@ export const YOUTUBE_VIDEO_MAP: Record<string, string> = {
   '04 - Queuing Theory (M-M-1 Congestion & Waiting Line Models)': 'https://www.youtube.com/watch?v=XT1EgQRcqmU',
   '05 - Traveling Salesperson Problem (Warehouse Forklift Routing)': 'https://www.youtube.com/watch?v=ayqA56IHMZ0',
   '06 - Linear Programming Production Modeling (Multi-Constraint Formulation)': 'https://www.youtube.com/watch?v=Rwc_f6IzUQk',
-  '07 - Statistical Quality Control (X-bar & R Charts and Process Capability)': 'https://www.youtube.com/watch?v=1BcAZosLMb0'
+  '07 - Statistical Quality Control (X-bar & R Charts and Process Capability)': 'https://www.youtube.com/watch?v=1BcAZosLMb0',
+
+  // Professor Leonard Differential Equations Master Series
+  'The Plan for Differential Equations': 'https://www.youtube.com/watch?v=xf-3ATzFyKA',
+  'Introduction to Differential Equations (Lesson 2)': 'https://www.youtube.com/watch?v=EWVSxND_iWA',
+  'Checking Solutions in Differential Equations': 'https://www.youtube.com/watch?v=5LkQEOPwqfk',
+  'Introduction to Initial Value Problems': 'https://www.youtube.com/watch?v=HjioXdmwze0',
+  'Introduction to Time Rate of Change': 'https://www.youtube.com/watch?v=yhklHobbuyg',
+  'Solving Basic Differential Equations with Integration': 'https://www.youtube.com/watch?v=_4Bq6I68Yn4',
+  'Differential Equations with Velocity and Acceleration': 'https://www.youtube.com/watch?v=MlUDvnj4E1U',
+  'Problem Solving with Velocity and Acceleration': 'https://www.youtube.com/watch?v=pH7oxUCSfQY',
+  'Introduction to Slope Fields': 'https://www.youtube.com/watch?v=m9Y8U9f9_Bw',
+  'Applications of Slope Fields': 'https://www.youtube.com/watch?v=i_f6tC0BKxI',
+  'Professor Leonard - Differential Equations Complete Roadmap': 'https://www.youtube.com/playlist?list=PLDesaqWTN6ESPaHy2QUKVaXNZuQNxkYQ_'
 };
 
 export const getVideoUrl = (doc: CourseDocument): string | null => {
@@ -173,4 +186,126 @@ export const getVideoUrl = (doc: CourseDocument): string | null => {
   }
   return null;
 };
+
+export interface TutorialExamInfo {
+  scope: 'midterm' | 'final' | 'overview';
+  chapter: string;
+  badgeText: string;
+  badgeColor: string;
+  badgeBg: string;
+}
+
+export const getTutorialExamInfo = (doc: CourseDocument): TutorialExamInfo | null => {
+  const t = doc.title || doc.filename;
+  if (/05 - Traveling Salesperson/i.test(t)) {
+    return {
+      scope: 'midterm',
+      chapter: 'Chapter 5',
+      badgeText: '🎯 Required for Midterm (Ch 5)',
+      badgeColor: '#16a34a',
+      badgeBg: 'rgba(22, 163, 74, 0.14)'
+    };
+  }
+  if (/01 - Demand Forecasting/i.test(t)) {
+    return {
+      scope: 'final',
+      chapter: 'Chapter 7',
+      badgeText: '🏁 Final Exam Scope (Ch 7)',
+      badgeColor: '#6366f1',
+      badgeBg: 'rgba(99, 102, 241, 0.12)'
+    };
+  }
+  if (/02 - Linear Programming Minimization/i.test(t)) {
+    return {
+      scope: 'final',
+      chapter: 'Chapter 14',
+      badgeText: '🏁 Final Exam Scope (Ch 14)',
+      badgeColor: '#6366f1',
+      badgeBg: 'rgba(99, 102, 241, 0.12)'
+    };
+  }
+  if (/03 - Project Management/i.test(t)) {
+    return {
+      scope: 'final',
+      chapter: 'Chapter 17',
+      badgeText: '🏁 Final Exam Scope (Ch 17)',
+      badgeColor: '#6366f1',
+      badgeBg: 'rgba(99, 102, 241, 0.12)'
+    };
+  }
+  if (/04 - Queuing Theory/i.test(t)) {
+    return {
+      scope: 'final',
+      chapter: 'Chapter 15',
+      badgeText: '🏁 Final Exam Scope (Ch 15)',
+      badgeColor: '#6366f1',
+      badgeBg: 'rgba(99, 102, 241, 0.12)'
+    };
+  }
+  if (/06 - Linear Programming Production/i.test(t)) {
+    return {
+      scope: 'final',
+      chapter: 'Chapter 14',
+      badgeText: '🏁 Final Exam Scope (Ch 14)',
+      badgeColor: '#6366f1',
+      badgeBg: 'rgba(99, 102, 241, 0.12)'
+    };
+  }
+  if (/07 - Statistical Quality Control/i.test(t)) {
+    return {
+      scope: 'final',
+      chapter: 'Chapter 8',
+      badgeText: '🏁 Final Exam Scope (Ch 8)',
+      badgeColor: '#6366f1',
+      badgeBg: 'rgba(99, 102, 241, 0.12)'
+    };
+  }
+  if (/00 - INDU 211 - Problem Solutions Complete Roadmap/i.test(t)) {
+    return {
+      scope: 'overview',
+      chapter: 'All Chapters',
+      badgeText: '📋 Full Playlist Roadmap',
+      badgeColor: '#f59e0b',
+      badgeBg: 'rgba(245, 158, 11, 0.14)'
+    };
+  }
+  if (/Professor Leonard - Differential Equations Complete Roadmap/i.test(t)) {
+    return {
+      scope: 'overview',
+      chapter: 'All Lessons',
+      badgeText: '📋 Full Series Roadmap',
+      badgeColor: '#f59e0b',
+      badgeBg: 'rgba(245, 158, 11, 0.14)'
+    };
+  }
+  if (/Lesson\s*([1-9]|10)\b/i.test(t) || /The Plan for Differential|Checking Solutions|Slope Fields|Time Rate of Change|Velocity and Acceleration/i.test(t)) {
+    return {
+      scope: 'midterm',
+      chapter: 'Chapter 1',
+      badgeText: '🎯 Required for Midterm (Ch 1)',
+      badgeColor: '#16a34a',
+      badgeBg: 'rgba(22, 163, 74, 0.14)'
+    };
+  }
+  if (/Lesson\s*(1[1-9]|2[0-9]|3[0-9])\b/i.test(t) || /Separable|Integrating Factor|Bernoulli|Exact Differential|Population Models|Homogeneous/i.test(t)) {
+    return {
+      scope: 'midterm',
+      chapter: 'Chapter 2',
+      badgeText: '🎯 Required for Midterm (Ch 2)',
+      badgeColor: '#16a34a',
+      badgeBg: 'rgba(22, 163, 74, 0.14)'
+    };
+  }
+  if (/Second-Order|Undetermined Coefficients|Variation of Parameters|Oscillations|Laplace|Linear Systems/i.test(t)) {
+    return {
+      scope: 'final',
+      chapter: 'Chapters 3-4',
+      badgeText: '🏁 Final Exam Scope (Ch 3-4)',
+      badgeColor: '#6366f1',
+      badgeBg: 'rgba(99, 102, 241, 0.12)'
+    };
+  }
+  return null;
+};
+
 
