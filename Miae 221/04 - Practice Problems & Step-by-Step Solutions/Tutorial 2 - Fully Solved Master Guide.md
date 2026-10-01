@@ -1,5 +1,5 @@
 # MIAE 221: Materials Science for Engineers
-# Practice Problem Set #2: Fully Solved & Annotated Master Guide
+# Tutorial 2: Fully Solved & Annotated Master Guide
 
 *Tutorial 2 — Crystal Structures, Miller Indices, Densities & Defects (Fall 2026)*
 
@@ -225,4 +225,4 @@ $$T_2 = 1.129 \times 1073\ \text{K} = \mathbf{1211\ K} = \mathbf{938^\circ C}$$
 
 ---
 
-*End of Practice Problem Set #2 — fully solved master guide. Source: MIAE 221 Tutorial 2 (Fall 2026), worked solutions as presented in class.*
+*End of Tutorial 2 — fully solved master guide. Source: MIAE 221 Tutorial 2 (Fall 2026), worked solutions as presented in class.*

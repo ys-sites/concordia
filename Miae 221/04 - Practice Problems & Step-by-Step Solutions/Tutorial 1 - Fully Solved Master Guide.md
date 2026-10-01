@@ -1,5 +1,5 @@
 # MIAE 221: Materials Science for Engineers
-# Practice Problem Set #1: Fully Solved & Annotated Master Guide
+# Tutorial 1: Fully Solved & Annotated Master Guide
 
 ---
 
