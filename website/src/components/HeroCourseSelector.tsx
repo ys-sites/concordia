@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
-import { ShinyText, SpotlightCard, CountUp } from './reactbits';
+import { ShinyText, CountUp } from './reactbits';
 
 interface HeroCourseSelectorProps {
   onSelectCourse: (id: CourseId) => void;
@@ -117,11 +117,9 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
       <div className="course-cards-grid">
         {COURSES_DATA.map((course) => {
           return (
-            <SpotlightCard 
+            <div 
               key={course.id} 
               className={`course-card card-${course.color}`}
-              spotlightColor={course.borderGlow || 'rgba(129, 140, 248, 0.18)'}
-              radius={340}
               style={{ '--accent-glow': course.borderGlow } as React.CSSProperties}
               onClick={() => {
                 audio.playClick();
@@ -201,7 +199,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
                   <span>Practice Drill</span>
                 </button>
               </div>
-            </SpotlightCard>
+            </div>
           );
         })}
       </div>
