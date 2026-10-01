@@ -125,7 +125,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             </div>
             <h3 className="success-title">Message Sent!</h3>
             <p className="success-desc">
-              Thank you for reaching out. Your note has been delivered to <strong>sharafath2001@hotmail.com</strong>. I'll review it and get back to you as soon as possible.
+              Thank you for reaching out. Your note has been delivered. We will review it and get back to you as soon as possible.
             </p>
             <div className="success-actions">
               <button 
@@ -160,7 +160,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             {status === 'error' && (
               <div className="contact-error-banner">
                 <AlertCircle size={16} />
-                <span>{errorMessage || 'Failed to send. You can also email directly at sharafath2001@hotmail.com.'}</span>
+                <span>{errorMessage || 'Failed to send message. Please check your connection and try again.'}</span>
               </div>
             )}
 
@@ -235,10 +235,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               </div>
 
               <div className="contact-form-footer">
-                <span className="contact-disclaimer">
-                  Delivered via FormSubmit to <strong>sharafath2001@hotmail.com</strong>
-                </span>
-
                 <button
                   type="submit"
                   disabled={status === 'submitting' || !email.trim() || !message.trim()}
