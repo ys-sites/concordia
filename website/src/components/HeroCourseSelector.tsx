@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
+import { ShinyText, SpotlightCard, CountUp, Magnet } from './reactbits';
 
 interface HeroCourseSelectorProps {
   onSelectCourse: (id: CourseId) => void;
@@ -51,7 +52,15 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
         </div>
 
         <h1 className="hero-headline">
-          Master Your Engineering Courses with <span className="gradient-text">Interactive Precision</span>
+          Master Your Engineering Courses with{' '}
+          <ShinyText
+            text="Interactive Precision"
+            speed={2.8}
+            spread={120}
+            shineColor="rgba(255, 255, 255, 0.95)"
+            gradient="linear-gradient(120deg, #818cf8 0%, #c084fc 25%, #ffffff 50%, #c084fc 75%, #f43f5e 100%)"
+            className="gradient-text"
+          />
         </h1>
         <p className="hero-subtext">
           Study the step-by-step guides, summaries and rapid review sheets for each course, then test yourself with <strong>midterm or chapter-by-chapter drills</strong> built for exam mastery.
@@ -61,11 +70,11 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
         <div className="metric-pills-row">
           <div className="metric-pill">
             <FileText size={16} className="text-indigo" />
-            <span><strong>{totalDocs}</strong> Verified PDFs & Guides</span>
+            <span><strong><CountUp to={totalDocs} duration={1.2} /></strong> Verified PDFs & Guides</span>
           </div>
           <div className="metric-pill">
             <Brain size={16} className="text-emerald" />
-            <span><strong>{PRACTICE_QUESTIONS.length}</strong> Curated Practice & Drill Questions</span>
+            <span><strong><CountUp to={PRACTICE_QUESTIONS.length} duration={1.4} /></strong> Curated Practice & Drill Questions</span>
           </div>
           <div className="metric-pill">
             <Flame size={16} className="text-rose" />
@@ -88,17 +97,19 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
           </div>
         </div>
         <div className="prompt-right">
-          <button 
-            className="all-classes-drill-btn"
-            onClick={() => {
-              audio.playClick();
-              onStartQuiz('ALL');
-            }}
-          >
-            <Brain size={16} />
-            <span>Start a Practice Drill</span>
-            <ArrowRight size={15} />
-          </button>
+          <Magnet padding={35} magnetStrength={3.5}>
+            <button 
+              className="all-classes-drill-btn"
+              onClick={() => {
+                audio.playClick();
+                onStartQuiz('ALL');
+              }}
+            >
+              <Brain size={16} />
+              <span>Start a Practice Drill</span>
+              <ArrowRight size={15} />
+            </button>
+          </Magnet>
         </div>
       </div>
 
@@ -106,9 +117,11 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
       <div className="course-cards-grid">
         {COURSES_DATA.map((course) => {
           return (
-            <div 
+            <SpotlightCard 
               key={course.id} 
               className={`course-card card-${course.color}`}
+              spotlightColor={course.borderGlow || 'rgba(129, 140, 248, 0.18)'}
+              radius={340}
               style={{ '--accent-glow': course.borderGlow } as React.CSSProperties}
             >
               {/* Card Header */}
@@ -174,7 +187,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
                   <span>Practice Drill</span>
                 </button>
               </div>
-            </div>
+            </SpotlightCard>
           );
         })}
       </div>

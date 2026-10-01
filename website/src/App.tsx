@@ -9,6 +9,7 @@ import { QuizEngine } from './components/QuizEngine';
 import { QuizResults } from './components/QuizResults';
 import { QuestionBankBrowser } from './components/QuestionBankBrowser';
 import { DrillPicker } from './components/DrillPicker';
+import { VisitorCounter } from './components/VisitorCounter';
 import { audio } from './utils/audio';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -173,6 +174,9 @@ export function App() {
           <div className="footer-left">
             <span className="footer-brand">CONCORDIA UNIVERSITY</span>
             <span className="footer-dept">Department of Mechanical, Industrial & Aerospace Engineering (MIAE)</span>
+          </div>
+          <div className="footer-center">
+            <VisitorCounter />
           </div>
           <div className="footer-right">
             <span>Semester 1 Repository · ENGR 213 · INDU 211 · MIAE 215 · MIAE 221</span>
