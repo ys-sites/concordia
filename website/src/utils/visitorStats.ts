@@ -18,15 +18,24 @@ export interface LiveVisitorData {
 }
 
 const STORAGE_KEYS = {
-  TOTAL: 'concordia_eng_total_visits',
-  TODAY: 'concordia_eng_today_visits',
-  LAST_DATE: 'concordia_eng_last_visit_date',
-  SESSION_FLAG: 'concordia_eng_session_counted',
-  SESSION_ID: 'concordia_eng_session_id'
+  TOTAL: 'concordia_real_total_visits_v2',
+  TODAY: 'concordia_real_today_visits_v2',
+  LAST_DATE: 'concordia_real_last_visit_date_v2',
+  SESSION_FLAG: 'concordia_real_session_counted_v2',
+  SESSION_ID: 'concordia_real_session_id_v2'
 };
 
-const BASE_TOTAL = 1481;
-const BASE_TODAY = 87;
+function cleanupOldKeys() {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem('concordia_eng_total_visits');
+    localStorage.removeItem('concordia_eng_today_visits');
+    localStorage.removeItem('concordia_eng_last_visit_date');
+    sessionStorage.removeItem('concordia_eng_session_counted');
+  } catch {
+    // Ignore storage errors
+  }
+}
 
 function getSessionId(): string {
   if (typeof window === 'undefined') return 'server_session';
@@ -45,24 +54,25 @@ function getTodayString(): string {
 
 export function getLocalFallbackStats(): LiveVisitorData {
   if (typeof window === 'undefined') {
-    return { live: 1, today: BASE_TODAY, total: BASE_TOTAL, configured: true };
+    return { live: 1, today: 1, total: 1, configured: true };
   }
+
+  cleanupOldKeys();
 
   const todayStr = getTodayString();
   const lastRecordedDate = localStorage.getItem(STORAGE_KEYS.LAST_DATE);
   const sessionCounted = sessionStorage.getItem(STORAGE_KEYS.SESSION_FLAG);
 
-  let total = parseInt(localStorage.getItem(STORAGE_KEYS.TOTAL) || BASE_TOTAL.toString(), 10);
-  let today = parseInt(localStorage.getItem(STORAGE_KEYS.TODAY) || BASE_TODAY.toString(), 10);
+  let total = parseInt(localStorage.getItem(STORAGE_KEYS.TOTAL) || '1', 10);
+  let today = parseInt(localStorage.getItem(STORAGE_KEYS.TODAY) || '1', 10);
 
-  if (total < BASE_TOTAL) total = BASE_TOTAL;
+  if (isNaN(total) || total < 1) total = 1;
+  if (isNaN(today) || today < 1) today = 1;
 
   if (lastRecordedDate !== todayStr) {
-    today = BASE_TODAY;
+    today = 1;
     localStorage.setItem(STORAGE_KEYS.LAST_DATE, todayStr);
     localStorage.setItem(STORAGE_KEYS.TODAY, today.toString());
-  } else if (today < BASE_TODAY) {
-    today = BASE_TODAY;
   }
 
   if (!sessionCounted) {
@@ -97,11 +107,11 @@ export async function pingAndGetStats(isHeartbeat = false): Promise<LiveVisitorD
     if (res.ok) {
       const data = await res.json();
       if (typeof data.total === 'number' && typeof data.today === 'number') {
-        const storedTotal = parseInt(localStorage.getItem(STORAGE_KEYS.TOTAL) || BASE_TOTAL.toString(), 10);
-        const storedToday = parseInt(localStorage.getItem(STORAGE_KEYS.TODAY) || BASE_TODAY.toString(), 10);
+        const storedTotal = parseInt(localStorage.getItem(STORAGE_KEYS.TOTAL) || '1', 10);
+        const storedToday = parseInt(localStorage.getItem(STORAGE_KEYS.TODAY) || '1', 10);
 
-        const total = Math.max(storedTotal, data.total);
-        const today = Math.max(storedToday, data.today);
+        const total = Math.max(isNaN(storedTotal) ? 1 : storedTotal, data.total);
+        const today = Math.max(isNaN(storedToday) ? 1 : storedToday, data.today);
 
         localStorage.setItem(STORAGE_KEYS.TOTAL, total.toString());
         localStorage.setItem(STORAGE_KEYS.TODAY, today.toString());

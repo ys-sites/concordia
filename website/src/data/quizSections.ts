@@ -87,12 +87,12 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
     midterm: {
       label: 'Midterm Review — Chapters 1 to 7',
       detail: 'Comprehensive midterm review: bonding, crystals, XRD, defects, diffusion, mechanical properties, and past papers',
-      sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mixed', 'past']
+      sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mechanical', 'strengthening', 'phase', 'mixed', 'past']
     },
     final: {
       label: 'Final Exam Review — All Materials Chapters',
       detail: 'Comprehensive materials science review across all course topics and past papers',
-      sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mixed', 'past', 'past-final']
+      sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mechanical', 'strengthening', 'phase', 'mixed', 'past', 'past-final']
     },
     sections: [
       { id: 'intro', label: 'Ch. 1 · Introduction & Classes of Materials', detail: 'Science vs engineering, properties, material classes, failures' },
@@ -100,6 +100,9 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
       { id: 'crystal', label: 'Ch. 3 · Crystal Structures', detail: 'Unit cells, APF, CN, stacking, density, Miller indices' },
       { id: 'densities', label: 'Ch. 3 · Atomic Densities & X-Ray Diffraction', detail: 'Linear & planar density, slip, single vs polycrystals, Bragg’s law, powder XRD' },
       { id: 'defects', label: 'Ch. 4 · Imperfections in Solids', detail: 'Vacancies & Arrhenius, impurities, solid solutions, Hume-Rothery, wt% ↔ at.%, dislocations' },
+      { id: 'mechanical', label: 'Ch. 6 · Mechanical Properties of Metals', detail: 'Tensile test, Hooke’s law, Poisson’s ratio, yield strength 0.002 offset, ductility, hardness' },
+      { id: 'strengthening', label: 'Ch. 7 · Dislocations & Strengthening', detail: 'Slip systems, Schmid’s law, Hall-Petch, cold work & recovery-recrystallization' },
+      { id: 'phase', label: 'Ch. 9 · Phase Diagrams & Iron-Carbon', detail: 'Lever rule, binary eutectic (Pb-Sn), Fe-Fe3C system, pearlite, hypoeutectoid steels' },
       { id: 'past', label: 'Past Papers', detail: 'Quiz drill from past papers' },
       { id: 'past-final', label: 'Past Papers — Final Exam', detail: 'Quiz drill from past papers' }
     ]

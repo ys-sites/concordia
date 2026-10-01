@@ -10,6 +10,7 @@ import { QuizResults } from './components/QuizResults';
 import { QuestionBankBrowser } from './components/QuestionBankBrowser';
 import { DrillPicker } from './components/DrillPicker';
 import { VisitorCounter } from './components/VisitorCounter';
+import { ContactModal } from './components/ContactModal';
 import { audio } from './utils/audio';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
@@ -24,6 +25,7 @@ export function App() {
   const [pickerOpen, setPickerOpen] = useState<boolean>(false);
   const [pickerCourse, setPickerCourse] = useState<CourseId | null>(null);
   const [activePdfDoc, setActivePdfDoc] = useState<CourseDocument | null>(null);
+  const [contactOpen, setContactOpen] = useState<boolean>(false);
   const [quizResults, setQuizResults] = useState<any>(null);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
 
@@ -83,6 +85,7 @@ export function App() {
         onSelectCourse={handleSelectCourse}
         onStartQuiz={handleStartQuiz}
         onOpenQuestionBank={handleOpenQuestionBank}
+        onOpenContact={() => setContactOpen(true)}
         soundEnabled={soundEnabled}
         onToggleSound={handleToggleSound}
       />
@@ -169,6 +172,12 @@ export function App() {
         onClose={() => setActivePdfDoc(null)}
       />
 
+      {/* FormSubmit Contact Modal */}
+      <ContactModal 
+        isOpen={contactOpen}
+        onClose={() => setContactOpen(false)}
+      />
+
       {/* Futuristic Engineering Footer */}
       <footer className="app-footer">
         <div className="footer-inner">
@@ -181,6 +190,16 @@ export function App() {
           </div>
           <div className="footer-right">
             <span>Semester 1 Repository · ENGR 213 · INDU 211 · MIAE 215 · MIAE 221</span>
+            <button 
+              className="footer-contact-link"
+              onClick={() => {
+                audio.playClick();
+                setContactOpen(true);
+              }}
+              title="Reach out or submit feedback"
+            >
+              Contact & Feedback
+            </button>
             <span className="live-status"><span className="pulse-dot"></span> System Operational</span>
           </div>
         </div>

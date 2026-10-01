@@ -1,5 +1,6 @@
 import { PracticeQuestion, QuestionSource } from '../../types';
 import { t } from '../solutions/types';
+import { MIAE221_ENHANCEMENTS } from './miae221_enhancements';
 
 // MIAE 221 — Lecture 6 (atomic densities, single vs polycrystals, X-ray diffraction, polymorphism),
 // Lecture 7 (point defects, solid solutions, composition, dislocations) and past-midterm practice
@@ -2114,5 +2115,6 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
       reference: 'MIAE 221 Midterm 2024 Question 20; Callister Chapter 6'
     },
     source: src('Midterm 2024', 'Mechanical Properties', 'Question 20')
-  })
+  }),
+  ...MIAE221_ENHANCEMENTS
 ];

@@ -8,9 +8,7 @@ const UPSTASH_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_RES
 const UPSTASH_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
 const CLOUD_KV_BASE = 'https://abacus.jasoncameron.dev';
-const NAMESPACE = 'concordia_eng_hub_2026';
-const BASE_TOTAL = 1481;
-const BASE_TODAY = 87;
+const NAMESPACE = 'concordia_real_visitors_v2';
 
 // In-memory sliding session tracker for Live Active Visitors
 const activeSessions = new Map();
@@ -92,8 +90,8 @@ export default async function handler(req, res) {
         });
         const results = await resp.json();
 
-        const total = parseInt(results[0]?.result || 0, 10) + BASE_TOTAL;
-        const today = parseInt(results[1]?.result || 0, 10) + BASE_TODAY;
+        const total = Math.max(1, parseInt(results[0]?.result || 1, 10));
+        const today = Math.max(1, parseInt(results[1]?.result || 1, 10));
         const activeKeys = results[3]?.result || [];
         const live = Math.max(liveCount, activeKeys.length);
 
@@ -111,8 +109,8 @@ export default async function handler(req, res) {
         ])
       });
       const results = await resp.json();
-      const total = parseInt(results[0]?.result || 0, 10) + BASE_TOTAL;
-      const today = parseInt(results[1]?.result || 0, 10) + BASE_TODAY;
+      const total = Math.max(1, parseInt(results[0]?.result || 1, 10));
+      const today = Math.max(1, parseInt(results[1]?.result || 1, 10));
       const activeKeys = results[2]?.result || [];
       const live = Math.max(liveCount, activeKeys.length);
 
@@ -130,8 +128,8 @@ export default async function handler(req, res) {
     getOrHitCloudCounter(`daily_${todayStr}`, isIncrement)
   ]);
 
-  const total = BASE_TOTAL + Math.max(0, rawTotal - 1);
-  const today = BASE_TODAY + Math.max(0, rawDaily - 1);
+  const total = Math.max(1, rawTotal);
+  const today = Math.max(1, rawDaily);
 
   return res.status(200).json({
     live: liveCount,

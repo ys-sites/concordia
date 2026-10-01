@@ -31,6 +31,9 @@ export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   // All Studocu downloads and folders (kept local only)
   /studocu/i,
 
+  // Another teacher notes (reference only, never published to website)
+  /another teacher notes/i,
+
   // Quiz, midterm, exam, and test prep folders (kept local only)
   /(^|\/)06 - Quiz & Midterm Exam Prep(\/|$)/i,
 

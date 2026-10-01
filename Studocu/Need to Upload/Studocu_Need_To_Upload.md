@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 35
+### Currently Pending Uploads: 41
 
 ---
 
@@ -396,4 +396,71 @@
 * **Title**: MIAE 215 - Week 4 In-Person Lecture Problems Fully Solved Master Guide
 * **Academic year**: `2025/2026`
 * **Description**: Pedagogical 12-page master solution manual for MIAE 215 Week 4 Lecture 1 in-person classroom code examples (`example1`, `example2b`, `control_statements1_part3`, `control_statements2_part1_A`). Includes full operator precedence evaluation hierarchy drills, dynamic keyboard stream sentinel counting, 1D double array streaming, defensive mean calculation with zero-division guards, an architectural comparison between `break` and loop index mutation (`i = nmax`), and infinite loops in robotics.
+ 
+---
+
+## 36. `Part 6 - Mechanical Properties of Metals Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 6 - Mechanical Properties of Metals Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive master study guide for MIAE 221 covering stress-strain mechanics, Hooke's Law and Young's modulus derivation from interatomic potential wells, Poisson's ratio, 0.002 offset yield strength, necking instability, ductility metrics (%EL and %RA), resilience, true stress-strain Hollomon law, Brinell hardness cap derivation, and fully solved tensile test exam problems.
+
+---
+
+## 37. `Part 6 - Mechanical Properties of Metals - One-Page Review Sheet.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 6 - Mechanical Properties of Metals 1-Page Rapid Review Sheet
+* **Academic year**: `2025/2026`
+* **Description**: High-yield single-page exam review sheet for MIAE 221 covering engineering stress-strain equations, Hooke's law, Poisson's ratio, 0.002 yield offset, ductility formulas, modulus of resilience, true stress-strain relations, and Brinell/Rockwell hardness comparison.
+
+---
+
+## 38. `Part 7 - Dislocations & Strengthening Mechanisms Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 7 - Dislocations & Strengthening Mechanisms Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: In-depth master guide for MIAE 221 covering edge, screw, and mixed dislocation mechanics, Burgers vector geometry, slip systems comparison across FCC (12 systems), BCC (48 systems), and HCP (3 systems), Von Mises polycrystal criteria, Schmid's Law resolved shear stress, Hall-Petch grain size strengthening, solid solution misfit strain fields, cold work strain hardening, and annealing stages (recovery, recrystallization, grain growth).
+
+---
+
+## 39. `Part 7 - Dislocations & Strengthening Mechanisms - One-Page Review Sheet.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 7 - Dislocations & Strengthening 1-Page Rapid Review Sheet
+* **Academic year**: `2025/2026`
+* **Description**: Ultra-compact 1-page rapid revision sheet for MIAE 221 featuring crystal slip systems summary table, Schmid's law formulas, Hall-Petch equation, cold work percentage formula, and comparison table of annealing stages (recovery vs recrystallization vs grain growth).
+
+---
+
+## 40. `Part 8 - Phase Diagrams & Iron-Carbon Systems Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 8 - Phase Diagrams & Iron-Carbon Systems Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Complete pedagogical master guide for MIAE 221 covering the condensed Gibbs phase rule, binary isomorphous tie-lines, step-by-step inverse lever rule derivations, binary eutectic systems (Pb-Sn), microconstituent calculations (primary proeutectic vs eutectic mixture), invariant reactions classification, and the Fe-Fe3C phase diagram (ferrite, austenite, cementite, pearlite, hypoeutectoid steels).
+
+---
+
+## 41. `Part 8 - Phase Diagrams & Iron-Carbon Systems - One-Page Review Sheet.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 8 - Phase Diagrams & Iron-Carbon Systems 1-Page Rapid Review Sheet
+* **Academic year**: `2025/2026`
+* **Description**: High-yield single-page cheat sheet for MIAE 221 summarizing the condensed Gibbs phase rule, tie-line and inverse lever rule formulas, Pb-Sn eutectic benchmark values, invariant reactions table, and iron-carbon key allotropes and eutectoid pearlite calculations.
+
 

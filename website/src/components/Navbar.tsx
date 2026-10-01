@@ -1,7 +1,7 @@
 import React from 'react';
 import { CourseId } from '../types';
 import { COURSES_DATA } from '../data/coursesData';
-import { Sparkles, Brain, BookOpen, Volume2, VolumeX, Layers, Compass } from 'lucide-react';
+import { Sparkles, Brain, BookOpen, Volume2, VolumeX, Layers, Compass, Mail } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { BrandMark } from './BrandMark';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
@@ -11,6 +11,7 @@ interface NavbarProps {
   onSelectCourse: (id: CourseId | null) => void;
   onStartQuiz: (courseId: CourseId | 'ALL') => void;
   onOpenQuestionBank: () => void;
+  onOpenContact?: () => void;
   soundEnabled: boolean;
   onToggleSound: () => void;
 }
@@ -20,6 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSelectCourse,
   onStartQuiz,
   onOpenQuestionBank,
+  onOpenContact,
   soundEnabled,
   onToggleSound
 }) => {
@@ -87,6 +89,21 @@ export const Navbar: React.FC<NavbarProps> = ({
             <BookOpen size={16} />
             <span className="btn-text">Question Bank ({PRACTICE_QUESTIONS.length})</span>
           </button>
+
+          {/* Contact & Feedback */}
+          {onOpenContact && (
+            <button
+              className="action-btn secondary-btn"
+              onClick={() => {
+                audio.playClick();
+                onOpenContact();
+              }}
+              title="Reach out or submit feedback"
+            >
+              <Mail size={15} />
+              <span className="btn-text">Contact</span>
+            </button>
+          )}
 
           {/* Sound Toggle */}
           <button
