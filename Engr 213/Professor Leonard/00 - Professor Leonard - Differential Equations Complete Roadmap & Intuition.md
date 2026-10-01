@@ -1,20 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Script to comprehensively enrich all 17 Professor Leonard Differential Equations topic guides
-with EVERY problem, whiteboard breakdown, baby-step solution, and exam trap from his lectures.
-"""
-import os
-import sys
-
-target_dir = r"c:\Users\Sharafath\Documents\iCloudDrive\Concodia\Semester 1\Engr 213\Professor Leonard"
-os.makedirs(target_dir, exist_ok=True)
-
-guides = {}
-
-# ==============================================================================
-# TOPIC 00
-# ==============================================================================
-guides["00 - Professor Leonard - Differential Equations Complete Roadmap & Intuition.md"] = """# Professor Leonard Master Series: Differential Equations Complete Roadmap & Intuition
+# Professor Leonard Master Series: Differential Equations Complete Roadmap & Intuition
 ### Applied Ordinary Differential Equations (ENGR 213 Companion)
 
 ---
@@ -231,7 +215,3 @@ $$y'' - 4y' + 4y = 0$$
 """
 
 print("Base files 00 and 01 prepared.")
-"""
-
-with open(r"c:\Users\Sharafath\Documents\iCloudDrive\Concodia\Semester 1\scratch\enrich_all_leonard.py", "w", encoding="utf-8") as f:
-    f.write(guides["00 - Professor Leonard - Differential Equations Complete Roadmap & Intuition.md"])
