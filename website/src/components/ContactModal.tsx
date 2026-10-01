@@ -55,7 +55,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          name: name.trim() || 'Concordia Student',
+          name: name.trim() || 'Visitor',
           email: email.trim(),
           _subject: `[Concordia Hub] ${subject}`,
           category: subject,
@@ -194,7 +194,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="student@mail.concordia.ca"
+                    placeholder="your.email@example.com"
                     className="contact-input"
                     disabled={status === 'submitting'}
                   />
