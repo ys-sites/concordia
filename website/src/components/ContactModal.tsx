@@ -10,7 +10,7 @@ interface ContactModalProps {
 export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('Question Erratum / Feedback');
+  const [subject, setSubject] = useState('General Feedback or Collaboration');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -153,7 +153,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               </div>
               <h2 className="contact-modal-title">Reach Out</h2>
               <p className="contact-modal-subtitle">
-                Found a typo, have a question regarding lecture guides, or want to suggest new practice problems? Send a message directly.
+                Have feedback regarding practice questions, suggestions for the study hub, or want to connect? Send a message directly.
               </p>
             </div>
 
@@ -214,11 +214,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   className="contact-select"
                   disabled={status === 'submitting'}
                 >
-                  <option value="Question Erratum / Typo">Question Erratum or Typo in Notes</option>
-                  <option value="Topic Explanation Request">Request Detailed Explanation for a Topic</option>
+                  <option value="General Feedback or Collaboration">General Feedback or Collaboration</option>
                   <option value="Practice Drill Feedback">Practice Drill / Quiz Question Feedback</option>
-                  <option value="Course Resource Sharing">Course Resource or Practice Exam Sharing</option>
-                  <option value="General Feedback / Inquiry">General Feedback or Collaboration</option>
                 </select>
               </div>
 
@@ -232,7 +229,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   rows={4}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Describe your question, erratum, or feedback in detail..."
+                  placeholder="Share your feedback, suggestions, or comments here..."
                   className="contact-textarea"
                   disabled={status === 'submitting'}
                 />

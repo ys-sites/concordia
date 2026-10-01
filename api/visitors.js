@@ -8,7 +8,7 @@ const UPSTASH_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_RES
 const UPSTASH_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
 const CLOUD_KV_BASE = 'https://abacus.jasoncameron.dev';
-const NAMESPACE = 'concordia_real_visitors_v2';
+const NAMESPACE = 'concordia_live_v3';
 
 // In-memory sliding session tracker for Live Active Visitors
 const activeSessions = new Map();

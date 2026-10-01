@@ -18,20 +18,42 @@ export interface LiveVisitorData {
 }
 
 const STORAGE_KEYS = {
-  TOTAL: 'concordia_real_total_visits_v2',
-  TODAY: 'concordia_real_today_visits_v2',
-  LAST_DATE: 'concordia_real_last_visit_date_v2',
-  SESSION_FLAG: 'concordia_real_session_counted_v2',
-  SESSION_ID: 'concordia_real_session_id_v2'
+  TOTAL: 'concordia_live_v3_total',
+  TODAY: 'concordia_live_v3_today',
+  LAST_DATE: 'concordia_live_v3_date',
+  SESSION_FLAG: 'concordia_live_v3_session_counted',
+  SESSION_ID: 'concordia_live_v3_session_id'
 };
 
 function cleanupOldKeys() {
   if (typeof window === 'undefined') return;
   try {
-    localStorage.removeItem('concordia_eng_total_visits');
-    localStorage.removeItem('concordia_eng_today_visits');
-    localStorage.removeItem('concordia_eng_last_visit_date');
-    sessionStorage.removeItem('concordia_eng_session_counted');
+    const obsolete = [
+      'concordia_real_total_visits_v2',
+      'concordia_real_today_visits_v2',
+      'concordia_real_last_visit_date_v2',
+      'concordia_real_session_counted_v2',
+      'concordia_real_session_id_v2',
+      'concordia_eng_total_visits',
+      'concordia_eng_today_visits',
+      'concordia_eng_last_visit_date',
+      'concordia_eng_session_counted',
+      'concordia_eng_session_id'
+    ];
+    for (const k of obsolete) {
+      localStorage.removeItem(k);
+      sessionStorage.removeItem(k);
+    }
+
+    // Safety reset: if total or today in localStorage is greater than 100 (from previous artificial base), reset to 1
+    const curTotal = parseInt(localStorage.getItem(STORAGE_KEYS.TOTAL) || '0', 10);
+    if (curTotal > 100) {
+      localStorage.setItem(STORAGE_KEYS.TOTAL, '1');
+    }
+    const curToday = parseInt(localStorage.getItem(STORAGE_KEYS.TODAY) || '0', 10);
+    if (curToday > 100) {
+      localStorage.setItem(STORAGE_KEYS.TODAY, '1');
+    }
   } catch {
     // Ignore storage errors
   }
@@ -110,8 +132,11 @@ export async function pingAndGetStats(isHeartbeat = false): Promise<LiveVisitorD
         const storedTotal = parseInt(localStorage.getItem(STORAGE_KEYS.TOTAL) || '1', 10);
         const storedToday = parseInt(localStorage.getItem(STORAGE_KEYS.TODAY) || '1', 10);
 
-        const total = Math.max(isNaN(storedTotal) ? 1 : storedTotal, data.total);
-        const today = Math.max(isNaN(storedToday) ? 1 : storedToday, data.today);
+        const safeStoredTotal = (isNaN(storedTotal) || storedTotal > 100) ? 1 : storedTotal;
+        const safeStoredToday = (isNaN(storedToday) || storedToday > 100) ? 1 : storedToday;
+
+        const total = (data.total > 0 && data.total < 500) ? data.total : safeStoredTotal;
+        const today = (data.today > 0 && data.today < 500) ? data.today : safeStoredToday;
 
         localStorage.setItem(STORAGE_KEYS.TOTAL, total.toString());
         localStorage.setItem(STORAGE_KEYS.TODAY, today.toString());
