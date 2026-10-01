@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 34
+### Currently Pending Uploads: 35
 
 ---
 
@@ -385,3 +385,15 @@
 * **Title**: ENGR 213 - Professor Leonard Laplace Transforms & Operational Calculus Guide
 * **Academic year**: `2025/2026`
 * **Description**: Operational calculus master guide explaining the time-to-frequency domain transformation machine, table of elementary transforms, derivative shift theorems, and solving second-order initial-value problems through algebraic partial fraction inversion.
+
+---
+
+## 35. `MIAE 215 - Week 4 In-Person Lecture Problems - Fully Solved Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Mechanical, Industrial & Aerospace engineering (MIAE 215)`
+* **Category**: `Practice materials`
+* **Title**: MIAE 215 - Week 4 In-Person Lecture Problems Fully Solved Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Pedagogical 12-page master solution manual for MIAE 215 Week 4 Lecture 1 in-person classroom code examples (`example1`, `example2b`, `control_statements1_part3`, `control_statements2_part1_A`). Includes full operator precedence evaluation hierarchy drills, dynamic keyboard stream sentinel counting, 1D double array streaming, defensive mean calculation with zero-division guards, an architectural comparison between `break` and loop index mutation (`i = nmax`), and infinite loops in robotics.
+

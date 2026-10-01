@@ -17,6 +17,9 @@
 10. [Teacher Lesson Code Walkthrough: `control_statements1.cpp` & Assignment 1 Problems](#10-teacher-lesson-code-walkthrough-control_statements1cpp--assignment-1-problems)
 11. [Week 3 In-Person Lecture Deep-Dive: Input Stream Processing, Negative Exit Guards & Double Accumulation](#11-week-3-in-person-lecture-deep-dive-input-stream-processing-negative-exit-guards--double-accumulation)
 12. [Loop Statements: the for Loop, Exit Values & Nested Loops](#12-loop-statements-the-for-loop-exit-values--nested-loops)
+13. [Operator Precedence & Evaluation Order Hierarchy (Control Statements I Part 3)](#13-operator-precedence--evaluation-order-hierarchy-control-statements-i-part-3)
+14. [Indefinite Iteration: `while` Loops & Robotics Infinite Executions (Control Statements II Part 1)](#14-indefinite-iteration-while-loops--robotics-infinite-executions-control-statements-ii-part-1)
+15. [Loop Control Alteration: `break` vs. `continue` & Sentinel Filtering](#15-loop-control-alteration-break-vs-continue--sentinel-filtering)
 
 ---
 
@@ -516,4 +519,113 @@ The update does not have to be `i++`. Trace each one by listing the values that 
 *Figure 6: Nested loops, Control Statements I (part 2), p. 7.*
 
 **Reading the slide:** the outer loop (`i`, the row) runs 3 times; for **each** value of `i`, the inner loop (`j`, the column) runs 3 times. So the inner body runs $3 \times 3 = 9$ times, and it fills the 2D array one row at a time with `A[i][j] = 1.0 + i + j` (for example $A[2][1] = 1 + 2 + 1 = 4$). In general, the inner body runs (outer count) × (inner count) times.
+
+---
+
+## 13. Operator Precedence & Evaluation Order Hierarchy (Control Statements I Part 3)
+
+When evaluating compound boolean expressions, C++ follows an unambiguous operator precedence hierarchy analogous to mathematical arithmetic order ($BEDMAS$). 
+
+### The Evaluation Hierarchy
+
+```
+Highest Precedence  -------------------------------------------------------------
+  1.  ()                     Parentheses (force grouping and override precedence)
+  2.  !, +, -                Unary NOT, unary positive, unary negative
+  3.  *, /, %                Multiplicative arithmetic
+  4.  +, -                   Additive arithmetic
+  5.  <, <=, >, >=           Relational comparison
+  6.  ==, !=                 Equality / inequality
+  7.  &&                     Logical AND (left-to-right, short-circuits)
+  8.  ||                     Logical OR (left-to-right, short-circuits)
+  9.  =, +=, -=, *=, /=      Assignment operators (right-to-left)
+Lowest Precedence   -------------------------------------------------------------
+```
+
+### Precedence Tracing Rules & Examples
+Given variables: `i = 3`, `k = 1`, `x = 1.1`:
+
+1. **Arithmetic before Relational before Logical OR:**
+   ```cpp
+   if ( i + k > 0 || i < k ) // Step 1: 3 + 1 = 4; Step 2: 4 > 0 (true); Step 3: short-circuit -> true
+   ```
+2. **Unary NOT (`!`) binds tightly:**
+   ```cpp
+   if ( k > 0 || !(i < k) )  // Step 1: k > 0 (true); short-circuit -> true
+   ```
+3. **`&&` binds before `||`:**
+   ```cpp
+   if ( i > 0 && i < k || i < 7 )
+   // Evaluates as: ((i > 0) && (i < k)) || (i < 7)
+   // (true && false) || true  ==>  false || true  ==>  true
+   ```
+4. **Logical Expressions as Integers:**
+   In C++, `0` represents `false` and any non-zero integer represents `true`. Logical operators evaluate to integer `1` (`true`) or integer `0` (`false`):
+   ```cpp
+   int i1 = 1, i2 = 0, i3;
+   bool b1 = true, b2 = false;
+   i3 = i2 || i1 + 1 && b1 && b2;
+   // 1. i1 + 1 = 2 (non-zero => true)
+   // 2. 2 && true && false => false (0)
+   // 3. 0 || 0 => 0
+   // Result: i3 = 0
+   ```
+
+---
+
+## 14. Indefinite Iteration: `while` Loops & Robotics Infinite Executions (Control Statements II Part 1)
+
+While `for` loops are optimal when the number of iterations $n$ is known *a priori*, `while` loops govern **indefinite iteration**—where execution continues until an external event, user input, or sensor threshold is reached.
+
+### Structure of a `while` Loop
+```cpp
+int i = 1; // Manual initialization required before loop header!
+while( i < 10 ) {
+    cout << "\ni = " << i;
+    i++;   // Index update MUST occur inside the body!
+}
+// Exit state: i = 10 immediately upon loop termination
+```
+
+### Infinite Control Loops in Mechatronics & Robotics
+In embedded microcontrollers (such as Arduino systems controlling mobile robots), execution never exits. The controller continuously loops to read sensors and actuate motors:
+```cpp
+while ( 1 ) {
+    // 1. Sample ultrasonic sensor
+    // 2. Compute error e(t)
+    // 3. Drive PWM motor H-bridge
+}
+```
+
+---
+
+## 15. Loop Control Alteration: `break` vs. `continue` & Sentinel Filtering
+
+C++ provides two jump statements that alter standard loop iteration flow:
+
+### 1. The `break` Statement (Immediate Exit)
+Terminates the innermost enclosing loop immediately and transfers control to the first statement following the loop:
+```cpp
+while( 1 ) {
+    cin >> k;
+    if( k < 0 ) break; // Immediately breaks out; does NOT execute downstream lines
+    if( k > 7 ) count++;
+}
+```
+
+#### Why `break` is Superior to Index Mutation (`i = nmax`):
+Setting `i = nmax` inside a `for` loop body does **not** stop the current iteration immediately—any subsequent lines in the loop body still run on the invalid data. `break` stops immediately, ensuring defensive data isolation.
+
+### 2. The `continue` Statement (Iteration Skip)
+Skips the remaining statements in the **current pass** and jumps directly to the loop update/condition:
+```cpp
+for(int i = 1; i <= 10; i++) {
+    if( i > 5 ) continue; // For i = 6..10, skips the line below
+    cout << " loop";
+}
+```
+
+> [!WARNING]
+> In a `while` loop, executing `continue` before updating the loop index variable will cause an **accidental infinite loop**, because the update statement is skipped! Always place index increments before `continue` in `while` structures.
+
 
