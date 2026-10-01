@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Mail, CheckCircle2, AlertCircle, MessageSquare, User, AtSign, Loader2 } from 'lucide-react';
 import { audio } from '../utils/audio';
 
@@ -14,12 +14,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const isSubmittingRef = useRef(false);
 
   // Reset status when opened
   useEffect(() => {
     if (isOpen) {
       setStatus('idle');
       setErrorMessage('');
+      isSubmittingRef.current = false;
     }
   }, [isOpen]);
 
@@ -38,13 +40,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmittingRef.current || status === 'submitting') return;
     if (!email.trim() || !message.trim()) return;
 
+    isSubmittingRef.current = true;
     setStatus('submitting');
     audio.playClick();
 
     try {
-      // Use FormSubmit AJAX endpoint
       const response = await fetch('https://formsubmit.co/ajax/sharafath2001@hotmail.com', {
         method: 'POST',
         headers: {
@@ -62,43 +65,39 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         })
       });
 
-      const data = await response.json();
+      let isSuccess = false;
+      let errText = '';
 
-      if (response.ok && (data.success === 'true' || data.success === true)) {
+      try {
+        const data = await response.json();
+        if (response.ok && (data.success === 'true' || data.success === true || response.status === 200)) {
+          isSuccess = true;
+        } else {
+          errText = data.message || 'Submission could not be completed.';
+        }
+      } catch {
+        if (response.ok) {
+          isSuccess = true;
+        } else {
+          errText = 'Could not send message. Please try again.';
+        }
+      }
+
+      if (isSuccess) {
         setStatus('success');
         audio.playCorrect();
         setName('');
         setEmail('');
         setMessage('');
       } else {
-        throw new Error(data.message || 'Submission failed');
-      }
-    } catch {
-      // Fallback: If fetch is blocked by an ad-blocker or CORS, submit standard form
-      try {
-        const formData = new FormData();
-        formData.append('name', name.trim() || 'Concordia Student');
-        formData.append('email', email.trim());
-        formData.append('_subject', `[Concordia Hub] ${subject}`);
-        formData.append('category', subject);
-        formData.append('message', message.trim());
-        formData.append('_captcha', 'false');
-
-        await fetch('https://formsubmit.co/sharafath2001@hotmail.com', {
-          method: 'POST',
-          body: formData,
-          mode: 'no-cors'
-        });
-
-        setStatus('success');
-        audio.playCorrect();
-        setName('');
-        setEmail('');
-        setMessage('');
-      } catch (err: unknown) {
         setStatus('error');
-        setErrorMessage(err instanceof Error ? err.message : 'Could not send message. Please try again or email directly.');
+        setErrorMessage(errText || 'Could not send message. Please try again or email directly.');
       }
+    } catch (err: unknown) {
+      setStatus('error');
+      setErrorMessage(err instanceof Error ? err.message : 'Could not send message. Please check your connection and try again.');
+    } finally {
+      isSubmittingRef.current = false;
     }
   };
 
