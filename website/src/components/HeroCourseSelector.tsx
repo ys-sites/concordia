@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
-import { ShinyText, SpotlightCard, CountUp, Magnet } from './reactbits';
+import { ShinyText, SpotlightCard, CountUp } from './reactbits';
 
 interface HeroCourseSelectorProps {
   onSelectCourse: (id: CourseId) => void;
@@ -55,10 +55,12 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
           Master Your Engineering Courses with{' '}
           <ShinyText
             text="Interactive Precision"
-            speed={2.8}
+            speed={5.5}
+            delay={1.2}
+            pauseOnHover={true}
             spread={120}
             shineColor="rgba(255, 255, 255, 0.95)"
-            gradient="linear-gradient(120deg, #818cf8 0%, #c084fc 25%, #ffffff 50%, #c084fc 75%, #f43f5e 100%)"
+            gradient="linear-gradient(120deg, #818cf8 0%, #c084fc 35%, rgba(255, 255, 255, 0.95) 50%, #c084fc 65%, #f43f5e 100%)"
             className="gradient-text"
           />
         </h1>
@@ -97,19 +99,17 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
           </div>
         </div>
         <div className="prompt-right">
-          <Magnet padding={35} magnetStrength={3.5}>
-            <button 
-              className="all-classes-drill-btn"
-              onClick={() => {
-                audio.playClick();
-                onStartQuiz('ALL');
-              }}
-            >
-              <Brain size={16} />
-              <span>Start a Practice Drill</span>
-              <ArrowRight size={15} />
-            </button>
-          </Magnet>
+          <button 
+            className="all-classes-drill-btn"
+            onClick={() => {
+              audio.playClick();
+              onStartQuiz('ALL');
+            }}
+          >
+            <Brain size={16} />
+            <span>Start a Practice Drill</span>
+            <ArrowRight size={15} />
+          </button>
         </div>
       </div>
 
@@ -123,6 +123,18 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
               spotlightColor={course.borderGlow || 'rgba(129, 140, 248, 0.18)'}
               radius={340}
               style={{ '--accent-glow': course.borderGlow } as React.CSSProperties}
+              onClick={() => {
+                audio.playClick();
+                onSelectCourse(course.id);
+              }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  audio.playClick();
+                  onSelectCourse(course.id);
+                }
+              }}
             >
               {/* Card Header */}
               <div className="card-top">
@@ -166,7 +178,8 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
               <div className="card-actions">
                 <button 
                   className="card-btn-explore"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     audio.playClick();
                     onSelectCourse(course.id);
                   }}
@@ -177,7 +190,8 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
 
                 <button 
                   className="card-btn-quiz"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     audio.playClick();
                     onStartQuiz(course.id);
                   }}

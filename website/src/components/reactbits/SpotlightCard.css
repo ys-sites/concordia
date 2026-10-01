@@ -1,7 +1,7 @@
 .spotlight-card {
   position: relative;
   overflow: hidden;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease;
 }
 
 .spotlight-card-overlay {
