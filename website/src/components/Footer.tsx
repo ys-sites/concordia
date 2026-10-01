@@ -58,7 +58,7 @@ export const Footer: React.FC<FooterProps> = ({
               <BrandMark size={36} />
               <div className="brand-header-text">
                 <span className="brand-school-title">CONCORDIA <span className="brand-gradient-word">ENGINEERING</span></span>
-                <span className="brand-school-sub">Gina Cody School of ECS</span>
+                <span className="brand-school-sub">Student Academic Study Hub</span>
               </div>
             </div>
 
@@ -200,13 +200,13 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Bottom Sub-bar */}
         <div className="footer-bottom-bar">
           <div className="footer-copyright-text">
-            <span>© 2025–2026 Concordia University</span>
+            <span>© 2025–2026 Concordia University Students</span>
             <span className="footer-dot-sep">·</span>
-            <span>Department of Mechanical, Industrial &amp; Aerospace Engineering (MIAE)</span>
+            <span>Semester 1 Engineering Hub</span>
           </div>
 
           <div className="footer-bottom-actions">
-            <span className="footer-tag-academic">Gina Cody School of ECS</span>
+            <span className="footer-tag-academic">Unofficial Study Portal</span>
             <button 
               className="footer-scroll-top-btn" 
               onClick={scrollToTop}

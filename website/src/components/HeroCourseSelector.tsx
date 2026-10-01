@@ -48,7 +48,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
       <div className="hero-header-box">
         <div className="status-chip">
           <Sparkles size={14} className="text-amber animate-spin-slow" />
-          <span>Fall 2026 Concordia Engineering · Gina Cody School of ECS</span>
+          <span>Fall 2026 Concordia Engineering Study Hub</span>
           <span className="live-dot" />
         </div>
 
