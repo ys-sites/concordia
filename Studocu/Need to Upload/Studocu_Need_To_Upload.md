@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 46
+### Currently Pending Uploads: 51
 
 ---
 
@@ -517,35 +517,57 @@
 * **Title**: MIAE 221 - Midterm Master Solutions & Video Solutions Guide (Winter 2026 / Fall 2025)
 * **Academic year**: `2025/2026`
 * **Description**: Complete 40-question comprehensive exam solutions and curriculum mapping for MIAE 221 Materials Science. Includes step-by-step Miller indices derivations, APF and planar density proofs, Bragg's Law XRD calculations, vacancy thermodynamics, Fick's first law diffusion, tensile stress-strain curve calculations (Young's modulus, 0.2% yield strength, necking, ductility), and complete True/False rationale mapped to teacher slides, Callister 10th edition, and curated Organic Chemistry Tutor video links.
+---
 
-### ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf
-- **University:** Concordia University
-- **Course:** Applied Ordinary Differential Equations (ENGR 213)
-- **Category:** Practice materials
-- **Title:** ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)
-- **Academic year:** 2025/2026
-- **Description:** Complete 14-question solved examination bank covering official in-class Quizzes 1-4, Term Test 1 Version 2, and Term Test 2 for ENGR 213 Applied Ordinary Differential Equations. Contains full step-by-step analytical derivations for separable ODEs, integrating factors, exact equations, complex numbers, forensic Newton's law of cooling, logistic growth, Cauchy-Euler equations, variation of parameters, power series about ordinary points, and damped/forced mechanical vibration models.
+## 47. `ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf`
 
-### Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf
-- **University:** Concordia University
-- **Course:** Applied Ordinary Differential Equations (ENGR 213)
-- **Category:** Lecture notes
-- **Title:** ENGR 213 - Paradis Notes: In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium
-- **Academic year:** 2025/2026
-- **Description:** Complete regenerated in-class master compendium of Dr. Alexandre Paradis's ENGR 213 curriculum (Lectures 1–5, Tutorials 1 & 3, Homework Sets 1–3, and Midterm 1 Scope). Features full proofs and step-by-step analytical solutions for ODE order and linearity, autonomous phase line stability, separable equations, integrating factors, substitutions (Bernoulli, homogeneous, linear), exact equations with potential functions, radioactive decay and forensic Newton's law of cooling, logistic population models, and complex variables in Cartesian and polar form.
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Practice materials`
+* **Title**: ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)
+* **Academic year**: `2025/2026`
+* **Description**: Complete 14-question solved examination bank covering official in-class Quizzes 1-4, Term Test 1 Version 2, and Term Test 2 for ENGR 213 Applied Ordinary Differential Equations. Contains full step-by-step analytical derivations for separable ODEs, integrating factors, exact equations, complex numbers, forensic Newton's law of cooling, logistic growth, Cauchy-Euler equations, variation of parameters, power series about ordinary points, and damped/forced mechanical vibration models.
 
-### ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf
-- **University:** Concordia University
-- **Course:** Applied Ordinary Differential Equations (ENGR 213)
-- **Category:** Practice materials
-- **Title:** ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)
-- **Academic year:** 2025/2026
-- **Description:** Complete 14-question solved examination bank covering official in-class Quizzes 1-4, Term Test 1 Version 2, and Term Test 2 for ENGR 213 Applied Ordinary Differential Equations. Contains full step-by-step analytical derivations for separable ODEs, integrating factors, exact equations, complex numbers, forensic Newton's law of cooling, logistic growth, Cauchy-Euler equations, variation of parameters, power series about ordinary points, and damped/forced mechanical vibration models.
+---
 
-### ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf
-- **University:** Concordia University
-- **Course:** Applied Ordinary Differential Equations (ENGR 213)
-- **Category:** Practice materials
-- **Title:** ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)
-- **Academic year:** 2025/2026
-- **Description:** Complete 14-question solved examination bank covering official in-class Quizzes 1-4, Term Test 1 Version 2, and Term Test 2 for ENGR 213 Applied Ordinary Differential Equations. Contains full step-by-step analytical derivations for separable ODEs, integrating factors, exact equations, complex numbers, forensic Newton's law of cooling, logistic growth, Cauchy-Euler equations, variation of parameters, power series about ordinary points, and damped/forced mechanical vibration models.
+## 48. `Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Paradis Notes: In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium
+* **Academic year**: `2025/2026`
+* **Description**: Complete regenerated in-class master compendium of Dr. Alexandre Paradis's ENGR 213 curriculum (Lectures 1–5, Tutorials 1 & 3, Homework Sets 1–3, and Midterm 1 Scope). Features full proofs and step-by-step analytical solutions for ODE order and linearity, autonomous phase line stability, separable equations, integrating factors, substitutions (Bernoulli, homogeneous, linear), exact equations with potential functions, radioactive decay and forensic Newton's law of cooling, logistic population models, and complex variables in Cartesian and polar form.
+
+---
+
+## 49. `Lecture 8 - Complex Numbers, Powers & Roots (Explained).pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Lecture 8: Complex Numbers, Powers & Roots (Explained)
+* **Academic year**: `2025/2026`
+* **Description**: Expanded lecture notes for ENGR 213 Lecture 8 (Zill Sections 17.1–17.2) covering complex arithmetic, conjugates, the complex plane, the triangle inequality, polar form, multiplication and division in polar form, De Moivre's formula and nth roots. All three in-class examples (division and reciprocal, polar form of 1 − √3i, fourth roots of 1 + i) are fully solved, with quadrant rules for the argument, exam pitfalls and the link to complex roots of second-order ODEs.
+
+---
+
+## 50. `Part 5B - Grain Boundaries, Stacking Faults, Volume Defects & Microscopy Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Lecture notes`
+* **Title**: MIAE 221 - Part 5B: Grain Boundaries, Stacking Faults, Volume Defects & Microscopy Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Master guide for MIAE 221 Lecture 8 (Defects 2) and Callister Chapter 4 covering polycrystalline solidification, high- and low-angle grain boundaries (tilt/twist dislocation walls, θ ≈ b/D), grain boundary energy, etching and optical contrast, ASTM grain size by counting and intercept methods, stacking faults and stacking fault energy, and volumetric defects. Compares optical, SEM, TEM and SPM microscopy with a resolution table, slide fill-in answers and solved clicker questions.
+
+---
+
+## 51. `Part 5B - Grain Boundaries, Stacking Faults & Microscopy - One-Page Review Sheet.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 - Part 5B: Grain Boundaries, Stacking Faults & Microscopy One-Page Review Sheet
+* **Academic year**: `2025/2026`
+* **Description**: One-page exam review sheet for MIAE 221 Lecture 8 covering grain boundaries and low-angle dislocation walls, etching, ASTM grain size formulas, FCC/HCP stacking faults and stacking fault energy, volumetric defects, and a comparison table of optical, SEM, TEM and SPM resolution and uses. Ideal for last-minute midterm and final review.
