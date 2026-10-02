@@ -31,7 +31,7 @@ interface FilteredDocumentSectionProps {
   onStartMidtermDrill: () => void;
 }
 
-const PASSWORD_KEY = '1001Nuit';
+const isPasswordValid = (input: string) => input.trim().toLowerCase() === '1001nuit';
 const SESSION_STORAGE_KEY = 'miae221_filtered_doc_unlocked';
 
 export const DOC_FALL_2024: CourseDocument = {
@@ -105,7 +105,7 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault();
     setHasAttempted(true);
-    if (passwordInput === PASSWORD_KEY) {
+    if (isPasswordValid(passwordInput)) {
       audio.playCorrect();
       setIsUnlocked(true);
       sessionStorage.setItem(SESSION_STORAGE_KEY, '1');
@@ -230,7 +230,7 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
           </form>
 
           {/* Note when password doesn't work */}
-          {hasAttempted && passwordInput !== PASSWORD_KEY && (
+          {hasAttempted && !isPasswordValid(passwordInput) && (
             <div
               style={{
                 marginTop: '20px',
