@@ -57,7 +57,10 @@ Thumbs.db
 
 # Local-only: assignment/lab solutions & INDU 211 term paper (never publish).
 # Keep in sync with src/data/localOnly.ts
-Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/
+# Term paper vault: only the anonymized deliverable PDFs are published (not .md/.docx or Moodle pages)
+Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/*
+!Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper*.pdf
+!Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Term Paper Description.pdf
 Indu 211/05 - Assignments & Solutions/Assignment */*Solution*
 Indu 211/05 - Assignments & Solutions/Assignment */README.md
 Indu 211/05 - Assignments & Solutions/Assignment 1/BOM_Tree_Diagram.*

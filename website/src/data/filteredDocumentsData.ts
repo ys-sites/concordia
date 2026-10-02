@@ -21,7 +21,11 @@ export interface FilteredCourseConfig {
   termPaperDocs?: FilteredDocItem[];
 }
 
-export const ALL_FILTERED_RELATIVE_PATHS: string[] = [
+// Moodle pages and submission instructions are not shown in the vault: only the assignments and their solutions
+export const isSubmissionInstructionDoc = (relativePath: string): boolean =>
+  /moodle|submission instructions|submission - /i.test(relativePath.split('/').pop() ?? '');
+
+const RAW_FILTERED_RELATIVE_PATHS: string[] = [
   "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
   "Engr 213/ENGR 213.pdf",
@@ -218,8 +222,11 @@ export const ALL_FILTERED_RELATIVE_PATHS: string[] = [
   "Miae 221/07 - Studocu - Finals and Reviews/MIAE 221 Final Exam Guidelines and Important Equations.pdf"
 ];
 
+export const ALL_FILTERED_RELATIVE_PATHS: string[] = RAW_FILTERED_RELATIVE_PATHS.filter((p) => !isSubmissionInstructionDoc(p));
+
 export const isFilteredDocumentRelativePath = (relativePath: string): boolean => {
   const normalized = relativePath.replace(/\\/g, '/');
+  if (isSubmissionInstructionDoc(normalized)) return false;
   return ALL_FILTERED_RELATIVE_PATHS.includes(normalized) ||
          /Filtered document.*\.pdf$/i.test(normalized) ||
          /Term Paper & Final Project/i.test(normalized) ||
@@ -246,7 +253,7 @@ export const hasFilteredDocumentUnder = (dirPath: string): boolean => {
 };
 
 
-export const INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = [
+const RAW_INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = [
   {
     id: 'INDU211:filtered:tp-desc',
     courseId: 'INDU211',
@@ -340,7 +347,9 @@ export const INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = [
   }
 ];
 
-export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
+export const INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = RAW_INDU211_TERM_PAPER_DOCS.filter((d) => !isSubmissionInstructionDoc(d.relativePath));
+
+const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
   'ENGR213': {
     courseId: 'ENGR213',
     code: "ENGR 213",
@@ -3884,3 +3893,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     ]
   },
 };
+
+// Each vault lists only its own course's files (the ENGR 213 Paradis notes & exam bank stay in ENGR 213),
+// and no Moodle pages or submission instructions
+const ownDocsOnly = (docs: FilteredDocItem[], courseId: CourseId) =>
+  docs.filter((d) => d.courseId === courseId && !isSubmissionInstructionDoc(d.relativePath));
+
+export const FILTERED_COURSES_DATA = Object.fromEntries(
+  (Object.entries(RAW_FILTERED_COURSES_DATA) as [CourseId, FilteredCourseConfig][]).map(([id, cfg]) => [
+    id,
+    {
+      ...cfg,
+      assessmentDocs: ownDocsOnly(cfg.assessmentDocs, id),
+      midtermPrepDocs: ownDocsOnly(cfg.midtermPrepDocs, id),
+      termPaperDocs: cfg.termPaperDocs && ownDocsOnly(cfg.termPaperDocs, id)
+    }
+  ])
+) as Record<CourseId, FilteredCourseConfig>;

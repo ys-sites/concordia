@@ -5,7 +5,7 @@ import {
   KeyRound,
   FileText,
   Eye,
-  Download,
+  ExternalLink,
   Calendar,
   Video,
   Award,
@@ -338,7 +338,7 @@ export const TermPaperVaultSection: React.FC<TermPaperVaultSectionProps> = ({
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
             <span className="fx-panel-icon"><Layers size={20} /></span>
             <div className="fx-panel-heading">
-              <h2>Project Deliverables & Moodle Submission Instructions</h2>
+              <h2>Project Deliverables</h2>
             </div>
             <span className="fx-panel-meta">{projectDocs.length} files available</span>
           </div>
@@ -394,12 +394,13 @@ export const TermPaperVaultSection: React.FC<TermPaperVaultSectionProps> = ({
                   <a
                     className="fx-btn fx-btn-tab"
                     href={url}
-                    download
-                    title="Download PDF directly"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open in a new tab"
                     onClick={() => audio.playClick()}
                   >
-                    <Download size={14} />
-                    <span>Download</span>
+                    <ExternalLink size={14} />
+                    <span>New Tab</span>
                   </a>
                 </div>
               </li>

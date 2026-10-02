@@ -23,7 +23,6 @@ import {
   Cpu,
   Layers,
   Sparkles,
-  Download,
   Calendar,
   Award,
   Clock
@@ -549,11 +548,13 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                   <a
                     className="fx-btn fx-btn-tab"
                     href={getPdfUrl('Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf')}
-                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open in a new tab"
                     onClick={() => audio.playClick()}
                   >
-                    <Download size={14} />
-                    <span>PDF</span>
+                    <ExternalLink size={14} />
+                    <span>New Tab</span>
                   </a>
                 </div>
               </div>
@@ -608,11 +609,13 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                   <a
                     className="fx-btn fx-btn-tab"
                     href={getPdfUrl('Engr 213/ENGR 213.pdf')}
-                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open in a new tab"
                     onClick={() => audio.playClick()}
                   >
-                    <Download size={14} />
-                    <span>PDF</span>
+                    <ExternalLink size={14} />
+                    <span>New Tab</span>
                   </a>
                 </div>
               </div>
@@ -667,11 +670,13 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                   <a
                     className="fx-btn fx-btn-tab"
                     href={getPdfUrl('Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf')}
-                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open in a new tab"
                     onClick={() => audio.playClick()}
                   >
-                    <Download size={14} />
-                    <span>PDF</span>
+                    <ExternalLink size={14} />
+                    <span>New Tab</span>
                   </a>
                 </div>
               </div>
@@ -823,12 +828,13 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                         <a
                           className="fx-btn fx-btn-tab"
                           href={url}
-                          download
-                          title="Download document directly"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Open in a new tab"
                           onClick={() => audio.playClick()}
                         >
-                          <Download size={14} />
-                          <span>PDF</span>
+                          <ExternalLink size={14} />
+                          <span>New Tab</span>
                         </a>
                       </div>
                     </li>

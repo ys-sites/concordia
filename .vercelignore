@@ -9,7 +9,10 @@ node_modules
 001 Main/api
 
 # Local-only: assignment/lab solutions & term paper (see src/data/localOnly.ts)
-Indu 211/05 - Assignments & Solutions/Term Paper & Final Project
+# Term paper vault: only the anonymized deliverable PDFs are published (not .md/.docx or Moodle pages)
+Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/*
+!Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper*.pdf
+!Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Term Paper Description.pdf
 Indu 211/05 - Assignments & Solutions/Assignment */*Solution*
 Miae 215/04 - Practice Problems & Code Solutions/Assignment *Fully Solved*
 Miae 215/04 - Practice Problems & Code Solutions/code_solutions/assignment*
