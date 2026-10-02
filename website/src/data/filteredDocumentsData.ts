@@ -62,16 +62,44 @@ export const ALL_FILTERED_RELATIVE_PATHS: string[] = [
   "Engr 213/07 - Studocu - Quizzes/90666823 - ENGR 213 Quiz 2 Winter - A Small Practice Quiz for First Order Differential Equations.pdf",
   "Engr 213/07 - Studocu - Quizzes/9728374 - Quiz 4 19 October 2020 - Questions.pdf",
   "Engr 213/07 - Studocu - Quizzes/99390214 - ENGR213 Quiz 1 Solutions - Applied Ordinary Differential Equations.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2005 Fall Problems.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2007 Winter Problems.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2007 Winter Solutions.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2009 Winter Problems.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2009 Winter Solutions.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2010 Winter Problems.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2011 Fall Problems.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2012 Fall Problems.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2013 Fall Solutions.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2013 Winter Problems.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2016 Winter Version A.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2016 Winter Version B.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2017 Winter 1.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2017 Winter 2.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2018 Fall Problems.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/2021 Fall Problems with Solutions.pdf",
   "Engr 213/08 - Studocu - Midterms and Tests/54487617 - ENGR 213 Midterm 2 Study Guide and Review Notes.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/Sample Final.pdf",
+  "Engr 213/08 - Studocu - Midterms and Tests/Sample Midterm.pdf",
   "Engr 213/08 - Studocu - Midterms and Tests/[studocu.com] - Engr 213 Midterm 1 Solutions & Steps - Winter 2026.pdf",
   "Engr 213/08 - Studocu - Midterms and Tests/[studocu.com] - ENGR 213 Midterm Exam Sample Solutions and Notes.pdf",
   "Engr 213/08 - Studocu - Midterms and Tests/[studocu.com] - ENGR 213 Midterm II - Homogeneous ODEs & Initial Value Problems.pdf",
   "Engr 213/08 - Studocu - Midterms and Tests/[studocu.com] - ENGR 213 Midterm.pdf",
   "Engr 213/09 - Studocu - Finals and Reviews/101183879 - ENGR 213 Final Exam Review - Fall 2020.pdf",
   "Engr 213/09 - Studocu - Finals and Reviews/112857739 - ENGR 213 Final Exam Notes Applied Ordinary Differential Equations 2023.pdf",
+  "Engr 213/09 - Studocu - Finals and Reviews/2005 Fall Problems.pdf",
+  "Engr 213/09 - Studocu - Finals and Reviews/2007 Winter Problems.pdf",
+  "Engr 213/09 - Studocu - Finals and Reviews/2007 Winter Solutions.pdf",
+  "Engr 213/09 - Studocu - Finals and Reviews/2009 Winter Problems.pdf",
+  "Engr 213/09 - Studocu - Finals and Reviews/2009 Winter Solutions.pdf",
+  "Engr 213/09 - Studocu - Finals and Reviews/2010 Winter Problems.pdf",
+  "Engr 213/09 - Studocu - Finals and Reviews/2012 Fall Problems.pdf",
+  "Engr 213/09 - Studocu - Finals and Reviews/2013 Fall Solutions.pdf",
+  "Engr 213/09 - Studocu - Finals and Reviews/2021 Fall Problems with Solutions.pdf",
   "Engr 213/09 - Studocu - Finals and Reviews/91100516 - ENGR 213 Final Exam Study Guide.pdf",
   "Engr 213/09 - Studocu - Finals and Reviews/ENGR 213 Final Exam Study Guide.pdf",
   "Engr 213/09 - Studocu - Finals and Reviews/ENGR 213 Final Winter 2023.pdf",
+  "Engr 213/09 - Studocu - Finals and Reviews/Sample Final.pdf",
   "Engr 213/Final/2005 Fall Problems.pdf",
   "Engr 213/Final/2007 Winter Problems.pdf",
   "Engr 213/Final/2007 Winter Solutions.pdf",
@@ -203,7 +231,98 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     midtermDrillSectionId: 'midterm',
     assessmentDocs: [
       {
-        id: "ENGR213:filtered:62",
+        id: "ENGR213:filtered:42",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2005 Fall Problems",
+        filename: "2005 Fall Problems.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2005 Fall Problems.pdf",
+        fileSizeBytes: 41775,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:43",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2007 Winter Problems",
+        filename: "2007 Winter Problems.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2007 Winter Problems.pdf",
+        fileSizeBytes: 279637,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:44",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2007 Winter Solutions",
+        filename: "2007 Winter Solutions.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2007 Winter Solutions.pdf",
+        fileSizeBytes: 1183153,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:45",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2009 Winter Problems",
+        filename: "2009 Winter Problems.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2009 Winter Problems.pdf",
+        fileSizeBytes: 36211,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:46",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2009 Winter Solutions",
+        filename: "2009 Winter Solutions.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2009 Winter Solutions.pdf",
+        fileSizeBytes: 87099,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:47",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2010 Winter Problems",
+        filename: "2010 Winter Problems.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2010 Winter Problems.pdf",
+        fileSizeBytes: 126659,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:48",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2011 Fall Problems",
+        filename: "2011 Fall Problems.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2011 Fall Problems.pdf",
+        fileSizeBytes: 56029,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:90",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -216,7 +335,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam"]
       },
       {
-        id: "ENGR213:filtered:63",
+        id: "ENGR213:filtered:49",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2012 Fall Problems",
+        filename: "2012 Fall Problems.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2012 Fall Problems.pdf",
+        fileSizeBytes: 313155,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:91",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -229,7 +361,33 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam"]
       },
       {
-        id: "ENGR213:filtered:64",
+        id: "ENGR213:filtered:50",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2013 Fall Solutions",
+        filename: "2013 Fall Solutions.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2013 Fall Solutions.pdf",
+        fileSizeBytes: 564866,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:51",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2013 Winter Problems",
+        filename: "2013 Winter Problems.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2013 Winter Problems.pdf",
+        fileSizeBytes: 56666,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:92",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -242,7 +400,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam"]
       },
       {
-        id: "ENGR213:filtered:65",
+        id: "ENGR213:filtered:52",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2016 Winter Version A",
+        filename: "2016 Winter Version A.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2016 Winter Version A.pdf",
+        fileSizeBytes: 41871,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:93",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -255,7 +426,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam"]
       },
       {
-        id: "ENGR213:filtered:66",
+        id: "ENGR213:filtered:53",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2016 Winter Version B",
+        filename: "2016 Winter Version B.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2016 Winter Version B.pdf",
+        fileSizeBytes: 40413,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:94",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -268,7 +452,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam"]
       },
       {
-        id: "ENGR213:filtered:67",
+        id: "ENGR213:filtered:54",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2017 Winter 1",
+        filename: "2017 Winter 1.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2017 Winter 1.pdf",
+        fileSizeBytes: 337007,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:95",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -281,7 +478,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam"]
       },
       {
-        id: "ENGR213:filtered:68",
+        id: "ENGR213:filtered:55",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2017 Winter 2",
+        filename: "2017 Winter 2.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2017 Winter 2.pdf",
+        fileSizeBytes: 358064,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:96",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -294,7 +504,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam"]
       },
       {
-        id: "ENGR213:filtered:69",
+        id: "ENGR213:filtered:56",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2018 Fall Problems",
+        filename: "2018 Fall Problems.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2018 Fall Problems.pdf",
+        fileSizeBytes: 37077,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:97",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -302,6 +525,19 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         filename: "2018 Fall Problems.pdf",
         relativePath: "Engr 213/Midterm/2018 Fall Problems.pdf",
         fileSizeBytes: 37077,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:57",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2021 Fall Problems with Solutions",
+        filename: "2021 Fall Problems with Solutions.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/2021 Fall Problems with Solutions.pdf",
+        fileSizeBytes: 9140125,
         categoryType: 'Midterm Exam',
         isMidtermPrep: false,
         tags: ["Midterm Exam"]
@@ -372,7 +608,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam"]
       },
       {
-        id: "ENGR213:filtered:46",
+        id: "ENGR213:filtered:64",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -385,7 +621,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:42",
+        id: "ENGR213:filtered:58",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -398,7 +634,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:44",
+        id: "ENGR213:filtered:62",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -411,7 +647,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:45",
+        id: "ENGR213:filtered:63",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -424,7 +660,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:43",
+        id: "ENGR213:filtered:61",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -437,7 +673,33 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:70",
+        id: "ENGR213:filtered:59",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "Sample Final",
+        filename: "Sample Final.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/Sample Final.pdf",
+        fileSizeBytes: 80130,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: false,
+        tags: ["Midterm Exam"]
+      },
+      {
+        id: "ENGR213:filtered:60",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "Sample Midterm",
+        filename: "Sample Midterm.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/Sample Midterm.pdf",
+        fileSizeBytes: 44023,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Midterm Exam", "Midterm Prep"]
+      },
+      {
+        id: "ENGR213:filtered:98",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -775,7 +1037,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Quiz / Test"]
       },
       {
-        id: "ENGR213:filtered:71",
+        id: "ENGR213:filtered:99",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -788,7 +1050,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Quiz / Test"]
       },
       {
-        id: "ENGR213:filtered:72",
+        id: "ENGR213:filtered:100",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -944,7 +1206,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Lab / Project"]
       },
       {
-        id: "ENGR213:filtered:52",
+        id: "ENGR213:filtered:67",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2005 Fall Problems",
+        filename: "2005 Fall Problems.pdf",
+        relativePath: "Engr 213/09 - Studocu - Finals and Reviews/2005 Fall Problems.pdf",
+        fileSizeBytes: 41775,
+        categoryType: 'Final Exam',
+        isMidtermPrep: false,
+        tags: ["Final Exam"]
+      },
+      {
+        id: "ENGR213:filtered:80",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -957,7 +1232,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:53",
+        id: "ENGR213:filtered:68",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2007 Winter Problems",
+        filename: "2007 Winter Problems.pdf",
+        relativePath: "Engr 213/09 - Studocu - Finals and Reviews/2007 Winter Problems.pdf",
+        fileSizeBytes: 279637,
+        categoryType: 'Final Exam',
+        isMidtermPrep: false,
+        tags: ["Final Exam"]
+      },
+      {
+        id: "ENGR213:filtered:81",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -970,7 +1258,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:54",
+        id: "ENGR213:filtered:69",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2007 Winter Solutions",
+        filename: "2007 Winter Solutions.pdf",
+        relativePath: "Engr 213/09 - Studocu - Finals and Reviews/2007 Winter Solutions.pdf",
+        fileSizeBytes: 1183153,
+        categoryType: 'Final Exam',
+        isMidtermPrep: false,
+        tags: ["Final Exam"]
+      },
+      {
+        id: "ENGR213:filtered:82",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -983,7 +1284,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:55",
+        id: "ENGR213:filtered:70",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2009 Winter Problems",
+        filename: "2009 Winter Problems.pdf",
+        relativePath: "Engr 213/09 - Studocu - Finals and Reviews/2009 Winter Problems.pdf",
+        fileSizeBytes: 36211,
+        categoryType: 'Final Exam',
+        isMidtermPrep: false,
+        tags: ["Final Exam"]
+      },
+      {
+        id: "ENGR213:filtered:83",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -996,7 +1310,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:56",
+        id: "ENGR213:filtered:71",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2009 Winter Solutions",
+        filename: "2009 Winter Solutions.pdf",
+        relativePath: "Engr 213/09 - Studocu - Finals and Reviews/2009 Winter Solutions.pdf",
+        fileSizeBytes: 87099,
+        categoryType: 'Final Exam',
+        isMidtermPrep: false,
+        tags: ["Final Exam"]
+      },
+      {
+        id: "ENGR213:filtered:84",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1009,7 +1336,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:57",
+        id: "ENGR213:filtered:72",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2010 Winter Problems",
+        filename: "2010 Winter Problems.pdf",
+        relativePath: "Engr 213/09 - Studocu - Finals and Reviews/2010 Winter Problems.pdf",
+        fileSizeBytes: 126659,
+        categoryType: 'Final Exam',
+        isMidtermPrep: false,
+        tags: ["Final Exam"]
+      },
+      {
+        id: "ENGR213:filtered:85",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1022,7 +1362,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:58",
+        id: "ENGR213:filtered:73",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2012 Fall Problems",
+        filename: "2012 Fall Problems.pdf",
+        relativePath: "Engr 213/09 - Studocu - Finals and Reviews/2012 Fall Problems.pdf",
+        fileSizeBytes: 313155,
+        categoryType: 'Final Exam',
+        isMidtermPrep: false,
+        tags: ["Final Exam"]
+      },
+      {
+        id: "ENGR213:filtered:86",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1035,7 +1388,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:59",
+        id: "ENGR213:filtered:74",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2013 Fall Solutions",
+        filename: "2013 Fall Solutions.pdf",
+        relativePath: "Engr 213/09 - Studocu - Finals and Reviews/2013 Fall Solutions.pdf",
+        fileSizeBytes: 564866,
+        categoryType: 'Final Exam',
+        isMidtermPrep: false,
+        tags: ["Final Exam"]
+      },
+      {
+        id: "ENGR213:filtered:87",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1048,7 +1414,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:60",
+        id: "ENGR213:filtered:75",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "2021 Fall Problems with Solutions",
+        filename: "2021 Fall Problems with Solutions.pdf",
+        relativePath: "Engr 213/09 - Studocu - Finals and Reviews/2021 Fall Problems with Solutions.pdf",
+        fileSizeBytes: 9140125,
+        categoryType: 'Final Exam',
+        isMidtermPrep: false,
+        tags: ["Final Exam"]
+      },
+      {
+        id: "ENGR213:filtered:88",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1061,7 +1440,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:48",
+        id: "ENGR213:filtered:66",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1074,7 +1453,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:47",
+        id: "ENGR213:filtered:65",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1087,7 +1466,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:49",
+        id: "ENGR213:filtered:76",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1100,7 +1479,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:50",
+        id: "ENGR213:filtered:77",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1113,7 +1492,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:51",
+        id: "ENGR213:filtered:78",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1126,7 +1505,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Final Exam"]
       },
       {
-        id: "ENGR213:filtered:61",
+        id: "ENGR213:filtered:79",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "Sample Final",
+        filename: "Sample Final.pdf",
+        relativePath: "Engr 213/09 - Studocu - Finals and Reviews/Sample Final.pdf",
+        fileSizeBytes: 80130,
+        categoryType: 'Final Exam',
+        isMidtermPrep: false,
+        tags: ["Final Exam"]
+      },
+      {
+        id: "ENGR213:filtered:89",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
         categoryTitle: 'Assessment Vault',
@@ -1167,7 +1559,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:46",
+        id: "ENGR213:filtered:64",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Midterm-Prep',
         categoryTitle: 'Midterm Preparation',
@@ -1180,7 +1572,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:42",
+        id: "ENGR213:filtered:58",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Midterm-Prep',
         categoryTitle: 'Midterm Preparation',
@@ -1193,7 +1585,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:44",
+        id: "ENGR213:filtered:62",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Midterm-Prep',
         categoryTitle: 'Midterm Preparation',
@@ -1206,7 +1598,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:45",
+        id: "ENGR213:filtered:63",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Midterm-Prep',
         categoryTitle: 'Midterm Preparation',
@@ -1219,7 +1611,7 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:43",
+        id: "ENGR213:filtered:61",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Midterm-Prep',
         categoryTitle: 'Midterm Preparation',
@@ -1232,7 +1624,20 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Midterm Exam", "Midterm Prep"]
       },
       {
-        id: "ENGR213:filtered:70",
+        id: "ENGR213:filtered:60",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Midterm-Prep',
+        categoryTitle: 'Midterm Preparation',
+        title: "Sample Midterm",
+        filename: "Sample Midterm.pdf",
+        relativePath: "Engr 213/08 - Studocu - Midterms and Tests/Sample Midterm.pdf",
+        fileSizeBytes: 44023,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Midterm Exam", "Midterm Prep"]
+      },
+      {
+        id: "ENGR213:filtered:98",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Midterm-Prep',
         categoryTitle: 'Midterm Preparation',
