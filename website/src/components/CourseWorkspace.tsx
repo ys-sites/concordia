@@ -339,34 +339,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
       ) : activePath.length === 0 ? (
         <section>
           <h2 className="fx-section-title">Course folders</h2>
-          <div className="fx-folder-grid">
-            {course.id === 'MIAE221' && (
-              <a
-                href="/filtered.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fx-folder-tile"
-                onClick={() => audio.playClick()}
-                style={{
-                  borderColor: 'rgba(244, 63, 94, 0.35)',
-                  backgroundColor: 'rgba(244, 63, 94, 0.05)',
-                  textDecoration: 'none'
-                }}
-              >
-                <span className="fx-folder-icon" style={{ color: '#f43f5e' }}>
-                  <Lock size={22} />
-                </span>
-                <span className="fx-folder-text">
-                  <span className="fx-folder-name" style={{ color: '#f43f5e', fontWeight: 700 }}>
-                    Filtered document
-                  </span>
-                  <span className="fx-folder-meta">Midterm Sub-site Gateway · 3 files</span>
-                </span>
-                <ExternalLink size={18} className="fx-folder-chevron" />
-              </a>
-            )}
-            {tree.folders.map(renderFolderTile)}
-          </div>
+          <div className="fx-folder-grid">{tree.folders.map(renderFolderTile)}</div>
           {tree.docs.length > 0 && (
             <section className="fx-panel">
               <ol className="fx-file-list">{tree.docs.map((doc, i) => renderFileRow(doc, i + 1))}</ol>

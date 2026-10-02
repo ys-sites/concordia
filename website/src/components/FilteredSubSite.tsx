@@ -21,7 +21,9 @@ import {
   Volume2,
   VolumeX,
   Layers,
-  HelpCircle
+  Home,
+  Folder,
+  Brain
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
@@ -29,6 +31,7 @@ import { CourseDocument } from '../types';
 import { MathText } from '../utils/mathRenderer';
 import { MIAE221_MIDTERM_QUESTIONS, MidtermQuestionDetail } from '../data/extra/miae221_midterm';
 import { PdfViewerModal } from './PdfViewerModal';
+import { BrandMark } from './BrandMark';
 import { Footer } from './Footer';
 
 const PASSWORD_KEY = '1001Nuit';
@@ -75,6 +78,14 @@ export const DOC_FILTERED_GUIDE: CourseDocument = {
   isMasterGuide: true,
   tags: ['Filtered document', 'Master Guide', 'Winter 2026', 'Video Solutions'],
   summary: 'Complete 40-question midterm master solution guide with slide mappings and YouTube video links.'
+};
+
+const REFERENCE_DOCS = [DOC_FALL_2024, DOC_WINTER_2025, DOC_FILTERED_GUIDE];
+
+const formatFileSize = (bytes?: number) => {
+  if (!bytes) return '';
+  if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  return `${Math.round(bytes / 1024)} KB`;
 };
 
 export const FilteredSubSite: React.FC = () => {
@@ -170,630 +181,291 @@ export const FilteredSubSite: React.FC = () => {
 
   return (
     <div className="app-root" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Sub-site Header Navigation */}
-      <header className="navbar-header" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
-        <div className="nav-container">
-          <div className="nav-left">
-            <a href="/#/" className="nav-logo" onClick={() => audio.playClick()}>
-              <div className="nav-logo-mark" style={{ backgroundColor: '#f43f5e' }}>
-                <Lock size={18} color="#ffffff" />
-              </div>
-              <div className="nav-logo-text">
-                <span className="nav-title">Filtered document</span>
-                <span className="nav-subtitle" style={{ color: '#f43f5e' }}>MIAE 221 · Sub-site Gateway</span>
-              </div>
-            </a>
+      {/* Standard Concordia Engineering Navbar */}
+      <header className="navbar-container">
+        <div className="navbar-inner">
+          <div 
+            className="brand-group" 
+            onClick={() => {
+              audio.playClick();
+              window.location.href = '/#/';
+            }}
+            title="Return to Main Portal"
+            style={{ cursor: 'pointer' }}
+          >
+            <BrandMark size={38} />
+            <div className="brand-text-block">
+              <div className="brand-title">CONCORDIA <span className="brand-highlight">ENGINEERING</span></div>
+              <div className="brand-sub">MIAE 221 · Filtered Document Gateway</div>
+            </div>
           </div>
 
-          <div className="nav-right" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div className="nav-actions">
             <a
-              href="/#/course/MIAE221"
-              className="nav-btn nav-ghost-btn"
+              href="/#/"
+              className="action-btn secondary-btn"
               onClick={() => audio.playClick()}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                textDecoration: 'none',
-                color: 'var(--text-secondary)'
-              }}
+              title="Return to Main Portal"
             >
-              <ArrowLeft size={16} />
-              <span>Back to MIAE 221</span>
+              <ArrowLeft size={15} />
+              <span className="btn-text">Back to All Courses</span>
             </a>
 
             <button
-              className="nav-btn nav-ghost-btn"
+              className="action-icon-btn"
               onClick={handleToggleSound}
-              title={soundEnabled ? 'Disable Audio Effects' : 'Enable Audio Effects'}
+              title={soundEnabled ? 'Mute sound effects' : 'Turn on sound effects'}
               aria-label="Toggle sound"
             >
-              {soundEnabled ? <Volume2 size={18} color="#10b981" /> : <VolumeX size={18} color="#94a3b8" />}
+              {soundEnabled ? <Volume2 size={18} className="text-emerald" /> : <VolumeX size={18} className="text-muted" />}
             </button>
 
             {isUnlocked && (
               <button
                 onClick={handleLockAgain}
-                className="nav-btn"
-                style={{
-                  background: 'rgba(244, 63, 94, 0.12)',
-                  borderColor: 'rgba(244, 63, 94, 0.35)',
-                  color: '#f43f5e',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px'
-                }}
+                className="action-btn secondary-btn"
+                title="Lock session"
               >
-                <Lock size={14} />
-                <span>Lock Session</span>
+                <Lock size={15} />
+                <span className="btn-text">Lock Session</span>
               </button>
             )}
           </div>
         </div>
       </header>
 
-      {/* Main Sub-Site Viewport */}
-      <main className="main-content-layout" style={{ flex: 1, padding: '32px 20px', maxWidth: '1200px', margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
+      {/* Main Dynamic Viewport */}
+      <main className="main-content-layout" style={{ flex: 1 }}>
         {!isUnlocked ? (
-          /* Password Protected Lock Screen */
-          <div
-            style={{
-              maxWidth: '480px',
-              margin: '60px auto',
-              padding: '40px 32px',
-              backgroundColor: 'rgba(15, 23, 42, 0.75)',
-              backdropFilter: 'blur(16px)',
-              border: '1px solid rgba(244, 63, 94, 0.3)',
-              borderRadius: '16px',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 35px rgba(244, 63, 94, 0.12)',
-              textAlign: 'center'
-            }}
-          >
+          /* Step 1: Verification prompt in the exact same window */
+          <div className="workspace-container" style={{ padding: '60px 20px' }}>
             <div
+              className="fx-panel"
               style={{
-                width: '68px',
-                height: '68px',
-                borderRadius: '18px',
-                backgroundColor: 'rgba(244, 63, 94, 0.12)',
-                color: '#f43f5e',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 24px',
-                border: '1px solid rgba(244, 63, 94, 0.3)'
+                maxWidth: '460px',
+                margin: '0 auto',
+                padding: '36px 30px',
+                textAlign: 'center',
+                boxShadow: 'var(--shadow-md)'
               }}
             >
-              <KeyRound size={34} />
-            </div>
-
-            <h1 style={{ margin: '0 0 10px', fontSize: '22px', fontWeight: 800, letterSpacing: '-0.02em', color: '#f8fafc' }}>
-              Access Filtered document
-            </h1>
-            <p style={{ margin: '0 auto 28px', fontSize: '14px', color: '#94a3b8', lineHeight: 1.5 }}>
-              This sub-site contains protected examination review solutions and question analysis. Enter the access password to continue.
-            </p>
-
-            <form onSubmit={handleUnlock}>
-              <div style={{ position: 'relative', marginBottom: '16px' }}>
-                <input
-                  type="password"
-                  value={passwordInput}
-                  onChange={(e) => setPasswordInput(e.target.value)}
-                  placeholder="Enter access password…"
-                  autoFocus
-                  style={{
-                    width: '100%',
-                    boxSizing: 'border-box',
-                    padding: '14px 18px',
-                    borderRadius: '10px',
-                    border: '1px solid rgba(255, 255, 255, 0.18)',
-                    backgroundColor: 'rgba(15, 23, 42, 0.9)',
-                    color: '#f8fafc',
-                    fontSize: '15px',
-                    outline: 'none',
-                    textAlign: 'center',
-                    letterSpacing: '0.12em'
-                  }}
-                />
-              </div>
-
-              <button
-                type="submit"
+              <div
                 style={{
-                  width: '100%',
-                  padding: '13px',
-                  borderRadius: '10px',
-                  border: 'none',
-                  backgroundColor: '#f43f5e',
-                  color: '#ffffff',
-                  fontWeight: 700,
-                  fontSize: '15px',
-                  cursor: 'pointer',
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '14px',
+                  backgroundColor: 'rgba(79, 70, 229, 0.08)',
+                  color: 'var(--engr-accent)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
-                  boxShadow: '0 4px 18px rgba(244, 63, 94, 0.45)',
-                  transition: 'transform 0.15s ease'
+                  margin: '0 auto 20px',
+                  border: '1px solid rgba(79, 70, 229, 0.2)'
                 }}
               >
-                <Unlock size={18} />
-                <span>Unlock Sub-site</span>
-              </button>
-            </form>
-
-            {/* Note when password doesn't work */}
-            {hasAttempted && passwordInput !== PASSWORD_KEY && (
-              <div
-                style={{
-                  marginTop: '24px',
-                  padding: '14px 18px',
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(234, 179, 8, 0.12)',
-                  border: '1px solid rgba(234, 179, 8, 0.35)',
-                  color: '#fde047',
-                  fontSize: '13.5px',
-                  fontWeight: 500,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '10px',
-                  lineHeight: 1.4
-                }}
-              >
-                <AlertTriangle size={18} style={{ flexShrink: 0 }} />
-                <span>This file contains data of the quiz, so its not importent</span>
-              </div>
-            )}
-          </div>
-        ) : (
-          /* Unlocked Full Sub-Site Hub */
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-            {/* Top Hub Banner */}
-            <div
-              style={{
-                padding: '24px 28px',
-                borderRadius: '14px',
-                background: 'linear-gradient(135deg, rgba(244, 63, 94, 0.12) 0%, rgba(30, 41, 59, 0.6) 100%)',
-                border: '1px solid rgba(244, 63, 94, 0.25)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: '16px'
-              }}
-            >
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      fontWeight: 800,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.06em',
-                      padding: '3px 9px',
-                      borderRadius: '9999px',
-                      backgroundColor: 'rgba(16, 185, 129, 0.15)',
-                      color: '#10b981',
-                      border: '1px solid rgba(16, 185, 129, 0.3)'
-                    }}
-                  >
-                    Unlocked Master Sub-site
-                  </span>
-                  <span style={{ fontSize: '13px', color: '#94a3b8' }}>Materials Science (MIAE 221)</span>
-                </div>
-                <h1 style={{ margin: 0, fontSize: '24px', fontWeight: 800, letterSpacing: '-0.02em', color: '#f8fafc' }}>
-                  Filtered document · Midterm Master Solutions & Readiness Portal
-                </h1>
-                <p style={{ margin: '6px 0 0', fontSize: '13.5px', color: '#94a3b8' }}>
-                  Curriculum-grounded analysis of 40 exam problems mapped to Dr. Medraj's slides, Callister 10th edition, and Organic Chemistry Tutor video tutorials.
-                </p>
+                <KeyRound size={28} />
               </div>
 
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <a
-                  href="/#/quiz/MIAE221/midterm-drill"
-                  className="nav-btn"
-                  onClick={() => audio.playClick()}
-                  style={{
-                    backgroundColor: '#f43f5e',
-                    color: '#fff',
-                    border: 'none',
-                    fontWeight: 700,
-                    textDecoration: 'none',
-                    padding: '10px 18px',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    boxShadow: '0 4px 14px rgba(244, 63, 94, 0.4)'
-                  }}
-                >
-                  <Sparkles size={16} />
-                  <span>Launch Midterm Drill</span>
-                </a>
-              </div>
-            </div>
+              <h1 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px', letterSpacing: '-0.02em' }}>
+                Course Document Verification
+              </h1>
+              <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: 1.5 }}>
+                Enter the access key to continue to the protected course subsection.
+              </p>
 
-            {/* Special Exam Skill Drill Highlight Banner */}
-            <div
-              style={{
-                background: 'linear-gradient(135deg, rgba(244, 63, 94, 0.18) 0%, rgba(99, 102, 241, 0.15) 100%)',
-                border: '1px solid rgba(244, 63, 94, 0.35)',
-                borderRadius: '12px',
-                padding: '22px 24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: '16px'
-              }}
-            >
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                  <Sparkles size={18} color="#f43f5e" />
-                  <span style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#f43f5e' }}>
-                    Special Exam Skill Drill
-                  </span>
-                </div>
-                <h2 style={{ margin: '0 0 4px', fontSize: '18px', fontWeight: 800, color: '#f8fafc' }}>
-                  Winter 2026 / 2025 Midterm Exam Drill (40 Questions)
-                </h2>
-                <p style={{ margin: 0, fontSize: '13px', color: '#94a3b8' }}>
-                  Practice all 40 official midterm exam questions with instant scoring, KaTeX equations, and worked derivations.
-                </p>
-              </div>
-
-              <a
-                href="/#/quiz/MIAE221/midterm-drill"
-                onClick={() => audio.playClick()}
-                style={{
-                  padding: '10px 20px',
-                  borderRadius: '8px',
-                  backgroundColor: '#f43f5e',
-                  color: '#ffffff',
-                  fontWeight: 700,
-                  fontSize: '13.5px',
-                  textDecoration: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  boxShadow: '0 4px 16px rgba(244, 63, 94, 0.45)',
-                  cursor: 'pointer'
-                }}
-              >
-                <PlayCircle size={18} />
-                <span>Launch Midterm Drill</span>
-                <ArrowRight size={16} />
-              </a>
-            </div>
-
-            {/* 3 Published Reference Files Cards */}
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-                <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <FileText size={18} color="#f43f5e" />
-                  <span>3 Published Reference Files</span>
-                </h3>
-                <span style={{ fontSize: '12px', color: '#94a3b8' }}>Full text and scanned PDF reference materials</span>
-              </div>
-
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                  gap: '16px'
-                }}
-              >
-                {/* Doc 1: Fall 2024 */}
-                <div
-                  style={{
-                    backgroundColor: 'rgba(30, 41, 59, 0.6)',
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                    borderRadius: '12px',
-                    padding: '18px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    gap: '14px'
-                  }}
-                >
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                      <span
-                        style={{
-                          fontSize: '11px',
-                          fontWeight: 700,
-                          backgroundColor: 'rgba(59, 130, 246, 0.15)',
-                          color: '#60a5fa',
-                          padding: '2px 8px',
-                          borderRadius: '6px',
-                          border: '1px solid rgba(59, 130, 246, 0.3)'
-                        }}
-                      >
-                        Fall 2024 Review
-                      </span>
-                      <span style={{ fontSize: '11px', color: '#94a3b8' }}>1.5 MB · 6 Pages</span>
-                    </div>
-                    <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '4px', lineHeight: 1.4 }}>
-                      112451179 - Midterm Solutions for MIAE 221 - Fall 2024 Exam Review
-                    </div>
-                    <div style={{ fontSize: '12px', color: '#94a3b8' }}>
-                      Authentic exam solutions by Dr. Martin Pugh with worked derivations and Scantron answers.
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
-                    <button
-                      onClick={() => {
-                        audio.playClick();
-                        setActivePdfDoc(DOC_FALL_2024);
-                      }}
-                      style={{
-                        flex: 1,
-                        padding: '9px 14px',
-                        borderRadius: '6px',
-                        backgroundColor: '#f43f5e',
-                        border: 'none',
-                        color: '#fff',
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px'
-                      }}
-                    >
-                      <Eye size={14} />
-                      <span>View in Viewer</span>
-                    </button>
-                    <a
-                      href={getPdfUrl(DOC_FALL_2024.relativePath)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        padding: '9px 14px',
-                        borderRadius: '6px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                        border: '1px solid rgba(255, 255, 255, 0.15)',
-                        color: '#f8fafc',
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        textDecoration: 'none',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px'
-                      }}
-                    >
-                      <ExternalLink size={14} />
-                      <span>New Tab</span>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Doc 2: Midterm A 2025 */}
-                <div
-                  style={{
-                    backgroundColor: 'rgba(30, 41, 59, 0.6)',
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                    borderRadius: '12px',
-                    padding: '18px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    gap: '14px'
-                  }}
-                >
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                      <span
-                        style={{
-                          fontSize: '11px',
-                          fontWeight: 700,
-                          backgroundColor: 'rgba(16, 185, 129, 0.15)',
-                          color: '#34d399',
-                          padding: '2px 8px',
-                          borderRadius: '6px',
-                          border: '1px solid rgba(16, 185, 129, 0.3)'
-                        }}
-                      >
-                        Midterm A 2025
-                      </span>
-                      <span style={{ fontSize: '11px', color: '#94a3b8' }}>1.4 MB · 6 Pages</span>
-                    </div>
-                    <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '4px', lineHeight: 1.4 }}>
-                      124560047 - MIAE 221-Midterm A-2025 Exam Solutions and Key Concepts
-                    </div>
-                    <div style={{ fontSize: '12px', color: '#94a3b8' }}>
-                      Full exam solutions with step-by-step calculations and key conceptual highlights.
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
-                    <button
-                      onClick={() => {
-                        audio.playClick();
-                        setActivePdfDoc(DOC_WINTER_2025);
-                      }}
-                      style={{
-                        flex: 1,
-                        padding: '9px 14px',
-                        borderRadius: '6px',
-                        backgroundColor: '#f43f5e',
-                        border: 'none',
-                        color: '#fff',
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px'
-                      }}
-                    >
-                      <Eye size={14} />
-                      <span>View in Viewer</span>
-                    </button>
-                    <a
-                      href={getPdfUrl(DOC_WINTER_2025.relativePath)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        padding: '9px 14px',
-                        borderRadius: '6px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                        border: '1px solid rgba(255, 255, 255, 0.15)',
-                        color: '#f8fafc',
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        textDecoration: 'none',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px'
-                      }}
-                    >
-                      <ExternalLink size={14} />
-                      <span>New Tab</span>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Doc 3: Master Guide */}
-                <div
-                  style={{
-                    backgroundColor: 'rgba(30, 41, 59, 0.6)',
-                    border: '1px solid rgba(244, 63, 94, 0.25)',
-                    borderRadius: '12px',
-                    padding: '18px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    gap: '14px'
-                  }}
-                >
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                      <span
-                        style={{
-                          fontSize: '11px',
-                          fontWeight: 700,
-                          backgroundColor: 'rgba(244, 63, 94, 0.2)',
-                          color: '#fb7185',
-                          padding: '2px 8px',
-                          borderRadius: '6px',
-                          border: '1px solid rgba(244, 63, 94, 0.35)'
-                        }}
-                      >
-                        Master Guide PDF
-                      </span>
-                      <span style={{ fontSize: '11px', color: '#94a3b8' }}>456 KB · Complete Solution Sheet</span>
-                    </div>
-                    <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '4px', lineHeight: 1.4 }}>
-                      Filtered document - Midterm Master Solutions & Video Guide
-                    </div>
-                    <div style={{ fontSize: '12px', color: '#94a3b8' }}>
-                      Comprehensive question-by-question breakdown, teacher slide citations, and textbook links.
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
-                    <button
-                      onClick={() => {
-                        audio.playClick();
-                        setActivePdfDoc(DOC_FILTERED_GUIDE);
-                      }}
-                      style={{
-                        flex: 1,
-                        padding: '9px 14px',
-                        borderRadius: '6px',
-                        backgroundColor: '#f43f5e',
-                        border: 'none',
-                        color: '#fff',
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px'
-                      }}
-                    >
-                      <Eye size={14} />
-                      <span>View in Viewer</span>
-                    </button>
-                    <a
-                      href={getPdfUrl(DOC_FILTERED_GUIDE.relativePath)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        padding: '9px 14px',
-                        borderRadius: '6px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                        border: '1px solid rgba(255, 255, 255, 0.15)',
-                        color: '#f8fafc',
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        textDecoration: 'none',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px'
-                      }}
-                    >
-                      <ExternalLink size={14} />
-                      <span>New Tab</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Curriculum-Mapped Question Explorer */}
-            <div>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  flexWrap: 'wrap',
-                  gap: '12px',
-                  marginBottom: '16px'
-                }}
-              >
-                <div>
-                  <h3 style={{ margin: 0, fontSize: '17px', fontWeight: 700 }}>
-                    Official Midterm Question Mappings ({filteredQuestions.length} Questions)
-                  </h3>
-                  <p style={{ margin: '2px 0 0', fontSize: '12.5px', color: '#94a3b8' }}>
-                    Every question mapped to Teacher Slides, Callister Textbook, and Organic Chemistry Tutor videos
-                  </p>
-                </div>
-
-                {/* Search Bar */}
-                <div style={{ position: 'relative', width: '280px' }}>
-                  <Search
-                    size={15}
-                    style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}
-                  />
+              <form onSubmit={handleUnlock}>
+                <div style={{ marginBottom: '16px' }}>
                   <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search topics, questions…"
+                    type="password"
+                    value={passwordInput}
+                    onChange={(e) => setPasswordInput(e.target.value)}
+                    placeholder="Enter access key…"
+                    autoFocus
                     style={{
                       width: '100%',
                       boxSizing: 'border-box',
-                      padding: '8px 12px 8px 34px',
+                      padding: '12px 16px',
                       borderRadius: '8px',
-                      backgroundColor: 'rgba(15, 23, 42, 0.7)',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
-                      color: '#f8fafc',
-                      fontSize: '13px',
-                      outline: 'none'
+                      border: '1px solid var(--border-highlight)',
+                      backgroundColor: 'var(--bg-card-subtle)',
+                      color: 'var(--text-primary)',
+                      fontSize: '14px',
+                      outline: 'none',
+                      textAlign: 'center',
+                      letterSpacing: '0.1em'
                     }}
                   />
                 </div>
+
+                <button
+                  type="submit"
+                  className="action-btn primary-glow-btn"
+                  style={{ width: '100%', justifyContent: 'center', padding: '12px', borderRadius: '8px', fontSize: '14px' }}
+                >
+                  <Unlock size={16} />
+                  <span>Verify Access</span>
+                </button>
+              </form>
+
+              {/* Note when password doesn't work */}
+              {hasAttempted && passwordInput !== PASSWORD_KEY && (
+                <div
+                  style={{
+                    marginTop: '20px',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
+                    backgroundColor: 'rgba(217, 119, 6, 0.08)',
+                    border: '1px solid rgba(217, 119, 6, 0.25)',
+                    color: 'var(--status-warning)',
+                    fontSize: '13px',
+                    fontWeight: 500,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    lineHeight: 1.4
+                  }}
+                >
+                  <AlertTriangle size={16} style={{ flexShrink: 0 }} />
+                  <span>This file contains data of the quiz, so its not importent</span>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          /* Step 2: Once verified, continue to that subsection which is the literal view */
+          <div className="workspace-container" style={{ '--accent': '#e11d48' } as React.CSSProperties}>
+            {/* Standard Course Workspace Header */}
+            <div className="workspace-header">
+              <a
+                href="/#/"
+                className="back-btn"
+                onClick={() => audio.playClick()}
+              >
+                <ArrowLeft size={16} />
+                <span>Return to All Courses</span>
+              </a>
+
+              <div className="workspace-title-row">
+                <div>
+                  <div className="course-badge" style={{ backgroundColor: '#e11d48' }}>
+                    MIAE 221
+                  </div>
+                  <h1 className="course-main-title">Filtered document · Midterm Master Examination System</h1>
+                  <p className="course-sub-description">
+                    Complete authentic examination solutions, Callister 10th edition textbook citations, and curated video walkthroughs.
+                  </p>
+                </div>
+
+                <div className="workspace-header-actions">
+                  <a
+                    href="/#/quiz/MIAE221/midterm-drill"
+                    className="workspace-quiz-btn"
+                    onClick={() => audio.playClick()}
+                    title="Launch the 40-question Midterm Exam Drill"
+                  >
+                    <Brain size={18} />
+                    <span>Start a Practice Drill</span>
+                  </a>
+                </div>
               </div>
+            </div>
+
+            {/* Standard Breadcrumb Toolbar */}
+            <div className="fx-toolbar">
+              <nav className="fx-breadcrumb" aria-label="Folder path">
+                <span className="fx-crumb current">
+                  <Home size={14} />
+                  <span>MIAE 221 / Filtered document</span>
+                </span>
+              </nav>
+            </div>
+
+            {/* Section 1: Literal View of Examination Reference Files */}
+            <section className="fx-panel">
+              <header className="fx-panel-header">
+                <span className="fx-panel-icon"><Folder size={20} /></span>
+                <div className="fx-panel-heading">
+                  <h2>Course Examination Files</h2>
+                </div>
+                <span className="fx-panel-meta">3 files</span>
+              </header>
+
+              <ol className="fx-file-list">
+                {REFERENCE_DOCS.map((doc, idx) => {
+                  const url = getPdfUrl(doc.relativePath);
+                  return (
+                    <li key={doc.id} className="fx-file-row">
+                      <span className="fx-file-index">{idx + 1}</span>
+                      <span className="fx-file-icon">
+                        <FileText size={18} />
+                      </span>
+                      <button
+                        className="fx-file-info"
+                        onClick={() => {
+                          audio.playClick();
+                          setActivePdfDoc(doc);
+                        }}
+                      >
+                        <span className="fx-file-title">{doc.title}</span>
+                        <span className="fx-file-sub">
+                          <span className="fx-file-size">{formatFileSize(doc.fileSizeBytes)}</span>
+                          {doc.tags?.slice(0, 3).map((tag) => (
+                            <span key={tag} className="fx-tag">
+                              {tag}
+                            </span>
+                          ))}
+                        </span>
+                      </button>
+                      <div className="fx-file-actions">
+                        <button
+                          className="fx-btn fx-btn-primary"
+                          onClick={() => {
+                            audio.playClick();
+                            setActivePdfDoc(doc);
+                          }}
+                          title="Open in modal PDF viewer"
+                        >
+                          <Eye size={14} />
+                          <span>View</span>
+                        </button>
+                        <a
+                          className="fx-btn fx-btn-tab"
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Open PDF directly in a new window / tab"
+                          onClick={() => audio.playClick()}
+                        >
+                          <ExternalLink size={14} />
+                          <span>New Tab</span>
+                        </a>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ol>
+            </section>
+
+            {/* Section 2: Curriculum-Mapped Question Explorer */}
+            <section className="fx-panel" style={{ marginTop: '24px' }}>
+              <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
+                <span className="fx-panel-icon"><BookOpen size={20} /></span>
+                <div className="fx-panel-heading" style={{ flex: 1 }}>
+                  <h2>Curriculum-Mapped Midterm Questions ({filteredQuestions.length})</h2>
+                </div>
+
+                {/* Search Box */}
+                <div className="fx-search-box" style={{ maxWidth: '300px' }}>
+                  <Search size={15} />
+                  <input
+                    type="search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search questions or topics…"
+                  />
+                </div>
+              </header>
 
               {/* Filter Tabs */}
               <div
@@ -801,7 +473,9 @@ export const FilteredSubSite: React.FC = () => {
                   display: 'flex',
                   flexWrap: 'wrap',
                   gap: '8px',
-                  marginBottom: '20px'
+                  padding: '14px 18px',
+                  borderBottom: '1px solid var(--border-subtle)',
+                  background: 'var(--bg-card-subtle)'
                 }}
               >
                 {[
@@ -819,49 +493,39 @@ export const FilteredSubSite: React.FC = () => {
                       audio.playClick();
                       setSelectedFilter(f.id);
                     }}
-                    style={{
-                      padding: '6px 14px',
-                      borderRadius: '20px',
-                      fontSize: '12px',
-                      fontWeight: selectedFilter === f.id ? 700 : 500,
-                      backgroundColor: selectedFilter === f.id ? 'rgba(244, 63, 94, 0.2)' : 'rgba(255, 255, 255, 0.05)',
-                      color: selectedFilter === f.id ? '#fb7185' : '#94a3b8',
-                      border: selectedFilter === f.id ? '1px solid rgba(244, 63, 94, 0.4)' : '1px solid rgba(255, 255, 255, 0.08)',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease'
-                    }}
+                    className={`pill-btn ${selectedFilter === f.id ? 'active' : ''}`}
+                    style={{ fontSize: '12px', padding: '5px 12px' }}
                   >
-                    {f.label}
+                    <span>{f.label}</span>
                   </button>
                 ))}
               </div>
 
-              {/* Question List */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {filteredQuestions.map((q) => {
+              {/* Question Rows */}
+              <ol className="fx-file-list">
+                {filteredQuestions.map((q, idx) => {
                   const isExpanded = expandedQuestions[q.id] || false;
                   return (
-                    <div
+                    <li
                       key={q.id}
                       style={{
-                        backgroundColor: 'rgba(30, 41, 59, 0.55)',
-                        border: '1px solid rgba(255, 255, 255, 0.08)',
-                        borderRadius: '12px',
-                        overflow: 'hidden',
-                        transition: 'border-color 0.2s ease'
+                        listStyle: 'none',
+                        borderBottom: '1px solid var(--border-subtle)',
+                        padding: '16px 20px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '12px'
                       }}
                     >
-                      {/* Question Header Card */}
+                      {/* Question Top Header */}
                       <div
                         onClick={() => toggleExpand(q.id)}
                         style={{
-                          padding: '16px 20px',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'space-between',
-                          gap: '16px',
-                          cursor: 'pointer',
-                          backgroundColor: isExpanded ? 'rgba(244, 63, 94, 0.06)' : 'transparent'
+                          gap: '12px',
+                          cursor: 'pointer'
                         }}
                       >
                         <div style={{ flex: 1 }}>
@@ -869,24 +533,25 @@ export const FilteredSubSite: React.FC = () => {
                             <span
                               style={{
                                 fontSize: '11px',
-                                fontWeight: 800,
-                                color: '#f43f5e',
-                                backgroundColor: 'rgba(244, 63, 94, 0.15)',
+                                fontWeight: 700,
+                                color: 'var(--miae221-accent)',
+                                backgroundColor: 'rgba(225, 29, 72, 0.1)',
                                 padding: '2px 8px',
-                                borderRadius: '6px'
+                                borderRadius: '4px'
                               }}
                             >
                               {q.id.replace('Q_MIAE221_MID_', 'Question ')}
                             </span>
-                            <span style={{ fontSize: '12px', color: '#94a3b8' }}>•</span>
-                            <span style={{ fontSize: '12.5px', fontWeight: 600, color: '#e2e8f0' }}>{q.topic}</span>
+                            <span style={{ fontSize: '12.5px', fontWeight: 600, color: 'var(--text-primary)' }}>
+                              {q.topic}
+                            </span>
                             <span
                               style={{
                                 marginLeft: 'auto',
                                 fontSize: '11px',
-                                color: '#94a3b8',
-                                backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                                padding: '2px 6px',
+                                color: 'var(--text-muted)',
+                                backgroundColor: 'var(--bg-card-subtle)',
+                                padding: '2px 8px',
                                 borderRadius: '4px'
                               }}
                             >
@@ -894,31 +559,33 @@ export const FilteredSubSite: React.FC = () => {
                             </span>
                           </div>
 
-                          <div style={{ fontSize: '14px', color: '#f8fafc', lineHeight: 1.5 }}>
+                          <div style={{ fontSize: '14px', color: 'var(--text-primary)', lineHeight: 1.5 }}>
                             <MathText text={q.question} />
                           </div>
                         </div>
 
-                        <div style={{ color: '#94a3b8', flexShrink: 0 }}>
-                          {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                        <div style={{ color: 'var(--text-muted)', flexShrink: 0 }}>
+                          {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                         </div>
                       </div>
 
-                      {/* Expandable Worked Derivation & Curriculum Citations */}
+                      {/* Expandable Worked Proof & References */}
                       {isExpanded && (
                         <div
                           style={{
-                            padding: '18px 20px',
-                            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                            backgroundColor: 'rgba(15, 23, 42, 0.45)',
+                            marginTop: '8px',
+                            padding: '16px',
+                            borderRadius: '8px',
+                            backgroundColor: 'var(--bg-card-subtle)',
+                            border: '1px solid var(--border-subtle)',
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '16px'
+                            gap: '14px'
                           }}
                         >
-                          {/* Options */}
+                          {/* Answer Choices */}
                           <div>
-                            <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginBottom: '8px' }}>
+                            <div style={{ fontSize: '11.5px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '8px' }}>
                               Answer Choices
                             </div>
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '8px' }}>
@@ -930,16 +597,16 @@ export const FilteredSubSite: React.FC = () => {
                                     style={{
                                       padding: '10px 14px',
                                       borderRadius: '8px',
-                                      backgroundColor: isCorrect ? 'rgba(16, 185, 129, 0.12)' : 'rgba(255, 255, 255, 0.04)',
-                                      border: isCorrect ? '1px solid rgba(16, 185, 129, 0.35)' : '1px solid rgba(255, 255, 255, 0.06)',
-                                      color: isCorrect ? '#34d399' : '#cbd5e1',
+                                      backgroundColor: isCorrect ? 'rgba(5, 150, 105, 0.08)' : 'var(--bg-surface)',
+                                      border: isCorrect ? '1px solid rgba(5, 150, 105, 0.35)' : '1px solid var(--border-subtle)',
+                                      color: isCorrect ? 'var(--status-correct)' : 'var(--text-secondary)',
                                       fontSize: '13px',
                                       display: 'flex',
                                       alignItems: 'center',
                                       gap: '8px'
                                     }}
                                   >
-                                    <span style={{ fontWeight: 700, fontSize: '12px', minWidth: '18px' }}>
+                                    <span style={{ fontWeight: 700, fontSize: '12px' }}>
                                       {String.fromCharCode(65 + i)}.
                                     </span>
                                     <span>
@@ -952,80 +619,80 @@ export const FilteredSubSite: React.FC = () => {
                             </div>
                           </div>
 
-                          {/* Worked Solution & Rationale */}
+                          {/* Derivation & Rationale */}
                           <div
                             style={{
                               padding: '14px 16px',
                               borderRadius: '8px',
-                              backgroundColor: 'rgba(16, 185, 129, 0.08)',
-                              border: '1px solid rgba(16, 185, 129, 0.2)'
+                              backgroundColor: 'rgba(5, 150, 105, 0.06)',
+                              border: '1px solid rgba(5, 150, 105, 0.2)'
                             }}
                           >
-                            <div style={{ fontWeight: 700, fontSize: '13px', color: '#10b981', marginBottom: '6px' }}>
+                            <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--status-correct)', marginBottom: '6px' }}>
                               Worked Derivation & Core Concept
                             </div>
-                            <div style={{ fontSize: '13.5px', color: '#e2e8f0', lineHeight: 1.5, marginBottom: '8px' }}>
+                            <div style={{ fontSize: '13.5px', color: 'var(--text-primary)', lineHeight: 1.5, marginBottom: '8px' }}>
                               <MathText text={q.explanation.coreConcept} />
                             </div>
                             {q.explanation.stepByStep && q.explanation.stepByStep.length > 0 && (
-                              <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '13px', color: '#cbd5e1', lineHeight: 1.5 }}>
-                                {q.explanation.stepByStep.map((step, idx) => (
-                                  <li key={idx} style={{ marginBottom: '4px' }}>
+                              <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                                {q.explanation.stepByStep.map((step, sIdx) => (
+                                  <li key={sIdx} style={{ marginBottom: '4px' }}>
                                     <MathText text={step} />
                                   </li>
                                 ))}
                               </ul>
                             )}
                             {q.explanation.commonTrap && (
-                              <div style={{ marginTop: '8px', fontSize: '12.5px', color: '#fde047', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                              <div style={{ marginTop: '8px', fontSize: '12.5px', color: 'var(--status-warning)', display: 'flex', alignItems: 'center', gap: '6px' }}>
                                 <AlertTriangle size={14} style={{ flexShrink: 0 }} />
                                 <span>Exam Trap: {q.explanation.commonTrap}</span>
                               </div>
                             )}
                           </div>
 
-                          {/* Teacher Slides, Textbook & Video Triad */}
+                          {/* Triad: Lecture Deck, Textbook & Video */}
                           <div
                             style={{
                               display: 'grid',
-                              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
                               gap: '12px'
                             }}
                           >
-                            {/* Teacher Slide Citation */}
+                            {/* Dr. Medraj Deck */}
                             <div
                               style={{
                                 padding: '12px 14px',
                                 borderRadius: '8px',
-                                backgroundColor: 'rgba(59, 130, 246, 0.08)',
-                                border: '1px solid rgba(59, 130, 246, 0.2)'
+                                backgroundColor: 'var(--bg-surface)',
+                                border: '1px solid var(--border-subtle)'
                               }}
                             >
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 700, color: '#60a5fa', marginBottom: '4px' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 700, color: 'var(--engr-accent)', marginBottom: '4px' }}>
                                 <GraduationCap size={15} />
                                 <span>Dr. Medraj's Lecture Deck</span>
                               </div>
-                              <div style={{ fontSize: '12.5px', color: '#f8fafc', fontWeight: 600 }}>{q.teacherDeck}</div>
-                              <div style={{ fontSize: '11.5px', color: '#94a3b8', marginTop: '2px' }}>{q.teacherSlides}</div>
+                              <div style={{ fontSize: '12.5px', color: 'var(--text-primary)', fontWeight: 600 }}>{q.teacherDeck}</div>
+                              <div style={{ fontSize: '11.5px', color: 'var(--text-muted)', marginTop: '2px' }}>{q.teacherSlides}</div>
                             </div>
 
-                            {/* Callister Textbook Citation */}
+                            {/* Callister Textbook */}
                             <div
                               style={{
                                 padding: '12px 14px',
                                 borderRadius: '8px',
-                                backgroundColor: 'rgba(168, 85, 247, 0.08)',
-                                border: '1px solid rgba(168, 85, 247, 0.2)'
+                                backgroundColor: 'var(--bg-surface)',
+                                border: '1px solid var(--border-subtle)'
                               }}
                             >
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 700, color: '#c084fc', marginBottom: '4px' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 700, color: 'var(--indu-accent)', marginBottom: '4px' }}>
                                 <BookOpen size={15} />
                                 <span>Callister 10th Ed. Textbook</span>
                               </div>
-                              <div style={{ fontSize: '12.5px', color: '#f8fafc', fontWeight: 600 }}>{q.textbookRef}</div>
+                              <div style={{ fontSize: '12.5px', color: 'var(--text-primary)', fontWeight: 600 }}>{q.textbookRef}</div>
                             </div>
 
-                            {/* YouTube Organic Chemistry Tutor Link */}
+                            {/* YouTube Video Link */}
                             {q.youtubeUrl && (
                               <a
                                 href={q.youtubeUrl}
@@ -1034,35 +701,34 @@ export const FilteredSubSite: React.FC = () => {
                                 style={{
                                   padding: '12px 14px',
                                   borderRadius: '8px',
-                                  backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                                  border: '1px solid rgba(239, 68, 68, 0.3)',
+                                  backgroundColor: 'rgba(239, 68, 68, 0.08)',
+                                  border: '1px solid rgba(239, 68, 68, 0.25)',
                                   textDecoration: 'none',
                                   display: 'flex',
                                   alignItems: 'center',
-                                  justifyContent: 'space-between',
-                                  transition: 'background 0.15s ease'
+                                  justifyContent: 'space-between'
                                 }}
                               >
                                 <div>
-                                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 700, color: '#f87171', marginBottom: '4px' }}>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 700, color: '#ef4444', marginBottom: '4px' }}>
                                     <Video size={15} />
                                     <span>The Organic Chemistry Tutor</span>
                                   </div>
-                                  <div style={{ fontSize: '12px', color: '#f8fafc', fontWeight: 600 }}>
-                                    Watch Video Tutorial on Topic
+                                  <div style={{ fontSize: '12px', color: 'var(--text-primary)', fontWeight: 600 }}>
+                                    Watch Video Tutorial
                                   </div>
                                 </div>
-                                <ExternalLink size={16} color="#f87171" />
+                                <ExternalLink size={15} color="#ef4444" />
                               </a>
                             )}
                           </div>
                         </div>
                       )}
-                    </div>
+                    </li>
                   );
                 })}
-              </div>
-            </div>
+              </ol>
+            </section>
           </div>
         )}
       </main>
