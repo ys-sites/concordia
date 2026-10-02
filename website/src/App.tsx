@@ -11,12 +11,13 @@ import { QuestionBankBrowser } from './components/QuestionBankBrowser';
 import { DrillPicker } from './components/DrillPicker';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
+import { FilteredSubSite } from './components/FilteredSubSite';
 import { audio } from './utils/audio';
 import { parseHash, formatHash, RouteState } from './utils/navigationRouter';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
-type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK';
+type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK' | 'FILTERED_DOCUMENT';
 
 function findDoc(courseId: CourseId | null, docPath: string | null): CourseDocument | null {
   if (!docPath) return null;
@@ -202,6 +203,16 @@ export function App() {
   };
 
   const currentCourse = COURSES_DATA.find((c) => c.id === selectedCourseId) || null;
+
+  if (viewMode === 'FILTERED_DOCUMENT') {
+    return (
+      <>
+        <FilteredSubSite />
+        <Analytics />
+        <SpeedInsights />
+      </>
+    );
+  }
 
   return (
     <div className="app-root">

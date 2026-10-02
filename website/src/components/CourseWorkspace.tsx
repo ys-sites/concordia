@@ -27,7 +27,6 @@ import {
   Video,
   Lock
 } from 'lucide-react';
-import { FilteredDocumentModal } from './FilteredDocumentModal';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
 import {
@@ -93,7 +92,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
 }) => {
   const [internalPath, setInternalPath] = useState<string[]>(folderPath);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [isFilteredModalOpen, setIsFilteredModalOpen] = useState(false);
 
   // Keep internalPath synchronized with prop from navigationRouter
   useEffect(() => {
@@ -273,24 +271,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           </div>
 
           <div className="workspace-header-actions">
-            {course.id === 'MIAE221' && (
-              <button
-                className="workspace-quiz-btn"
-                onClick={() => {
-                  audio.playClick();
-                  setIsFilteredModalOpen(true);
-                }}
-                style={{
-                  backgroundColor: 'rgba(244, 63, 94, 0.12)',
-                  borderColor: 'rgba(244, 63, 94, 0.35)',
-                  color: '#f43f5e'
-                }}
-                title="Open Filtered document (Password Protected Midterm Study System)"
-              >
-                <Lock size={16} />
-                <span>Filtered document</span>
-              </button>
-            )}
             <button
               className="workspace-quiz-btn"
               onClick={() => {
@@ -361,15 +341,16 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           <h2 className="fx-section-title">Course folders</h2>
           <div className="fx-folder-grid">
             {course.id === 'MIAE221' && (
-              <button
+              <a
+                href="/filtered.html"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="fx-folder-tile"
-                onClick={() => {
-                  audio.playClick();
-                  setIsFilteredModalOpen(true);
-                }}
+                onClick={() => audio.playClick()}
                 style={{
                   borderColor: 'rgba(244, 63, 94, 0.35)',
-                  backgroundColor: 'rgba(244, 63, 94, 0.05)'
+                  backgroundColor: 'rgba(244, 63, 94, 0.05)',
+                  textDecoration: 'none'
                 }}
               >
                 <span className="fx-folder-icon" style={{ color: '#f43f5e' }}>
@@ -379,10 +360,10 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                   <span className="fx-folder-name" style={{ color: '#f43f5e', fontWeight: 700 }}>
                     Filtered document
                   </span>
-                  <span className="fx-folder-meta">Password Protected · 3 files</span>
+                  <span className="fx-folder-meta">Midterm Sub-site Gateway · 3 files</span>
                 </span>
-                <ChevronRight size={18} className="fx-folder-chevron" />
-              </button>
+                <ExternalLink size={18} className="fx-folder-chevron" />
+              </a>
             )}
             {tree.folders.map(renderFolderTile)}
           </div>
@@ -445,21 +426,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             )
           )}
         </section>
-      )}
-
-      {course.id === 'MIAE221' && (
-        <FilteredDocumentModal
-          isOpen={isFilteredModalOpen}
-          onClose={() => setIsFilteredModalOpen(false)}
-          onViewPdf={onViewPdf}
-          onStartMidtermDrill={() => {
-            if (onLaunchDrill) {
-              onLaunchDrill(course.id, 'midterm-drill');
-            } else {
-              onStartQuiz(course.id);
-            }
-          }}
-        />
       )}
     </div>
   );

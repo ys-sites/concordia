@@ -1,7 +1,7 @@
 import { CourseId } from '../types';
 
 export interface RouteState {
-  viewMode: 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK';
+  viewMode: 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK' | 'FILTERED_DOCUMENT';
   courseId: CourseId | null;
   folderPath: string[];
   docPath: string | null;
@@ -12,6 +12,17 @@ export function parseHash(hash: string): RouteState {
   const clean = hash.replace(/^#\/?/, '');
   if (!clean) {
     return { viewMode: 'HERO', courseId: null, folderPath: [], docPath: null, quizTarget: null };
+  }
+
+  // Filtered document sub-site: #/filtered or #/filtered-document
+  if (clean.startsWith('filtered')) {
+    return {
+      viewMode: 'FILTERED_DOCUMENT',
+      courseId: 'MIAE221',
+      folderPath: [],
+      docPath: null,
+      quizTarget: null
+    };
   }
 
   // Question bank: #/bank or #/bank/:courseId
@@ -77,6 +88,8 @@ export function formatHash(state: RouteState): string {
   switch (state.viewMode) {
     case 'HERO':
       return '#/';
+    case 'FILTERED_DOCUMENT':
+      return '#/filtered-document';
     case 'QUESTION_BANK':
       return state.courseId ? `#/bank/${state.courseId}` : '#/bank';
     case 'QUIZ':
