@@ -39,6 +39,7 @@ import {
   getVideoUrl,
   getTutorialExamInfo
 } from '../utils/docOrganization';
+import { FilteredDocumentSection } from './FilteredDocumentSection';
 
 interface CourseWorkspaceProps {
   course: CourseWithDocs;
@@ -65,6 +66,7 @@ const folderIcon = (name: string, size = 22) => {
   if (/video|youtube|tutorial|problem solutions/i.test(n)) return <Video size={size} />;
   if (/mini course|lesson|leonard/i.test(n)) return <GraduationCap size={size} />;
   if (/summary|chapter|calculus/.test(n)) return <Layers size={size} />;
+  if (/filtered/.test(n)) return <Lock size={size} />;
   return <Folder size={size} />;
 };
 
@@ -339,13 +341,43 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
       ) : activePath.length === 0 ? (
         <section>
           <h2 className="fx-section-title">Course folders</h2>
-          <div className="fx-folder-grid">{tree.folders.map(renderFolderTile)}</div>
+          <div className="fx-folder-grid">
+            {tree.folders.map(renderFolderTile)}
+            {course.id === 'MIAE221' && (
+              <button
+                key="filtered-document"
+                className="fx-folder-tile"
+                onClick={() => openPath(['Filtered document'])}
+              >
+                <span className="fx-folder-icon">
+                  <Lock size={22} />
+                </span>
+                <span className="fx-folder-text">
+                  <span className="fx-folder-index">05</span>
+                  <span className="fx-folder-name">Filtered document</span>
+                  <span className="fx-folder-meta">3 files</span>
+                </span>
+                <ChevronRight size={18} className="fx-folder-chevron" />
+              </button>
+            )}
+          </div>
           {tree.docs.length > 0 && (
             <section className="fx-panel">
               <ol className="fx-file-list">{tree.docs.map((doc, i) => renderFileRow(doc, i + 1))}</ol>
             </section>
           )}
         </section>
+      ) : activePath[0] === 'Filtered document' ? (
+        <FilteredDocumentSection
+          onViewPdf={onViewPdf}
+          onStartMidtermDrill={() => {
+            if (onLaunchDrill) {
+              onLaunchDrill(course.id, 'midterm-drill');
+            } else {
+              onStartQuiz(course.id);
+            }
+          }}
+        />
       ) : (
         <section className="fx-panel">
           <header className="fx-panel-header">
