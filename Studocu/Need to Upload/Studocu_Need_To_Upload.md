@@ -517,3 +517,19 @@
 * **Title**: MIAE 221 - Midterm Master Solutions & Video Solutions Guide (Winter 2026 / Fall 2025)
 * **Academic year**: `2025/2026`
 * **Description**: Complete 40-question comprehensive exam solutions and curriculum mapping for MIAE 221 Materials Science. Includes step-by-step Miller indices derivations, APF and planar density proofs, Bragg's Law XRD calculations, vacancy thermodynamics, Fick's first law diffusion, tensile stress-strain curve calculations (Young's modulus, 0.2% yield strength, necking, ductility), and complete True/False rationale mapped to teacher slides, Callister 10th edition, and curated Organic Chemistry Tutor video links.
+
+### ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf
+- **University:** Concordia University
+- **Course:** Applied Ordinary Differential Equations (ENGR 213)
+- **Category:** Practice materials
+- **Title:** ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)
+- **Academic year:** 2025/2026
+- **Description:** Complete 14-question solved examination bank covering official in-class Quizzes 1-4, Term Test 1 Version 2, and Term Test 2 for ENGR 213 Applied Ordinary Differential Equations. Contains full step-by-step analytical derivations for separable ODEs, integrating factors, exact equations, complex numbers, forensic Newton's law of cooling, logistic growth, Cauchy-Euler equations, variation of parameters, power series about ordinary points, and damped/forced mechanical vibration models.
+
+### Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf
+- **University:** Concordia University
+- **Course:** Applied Ordinary Differential Equations (ENGR 213)
+- **Category:** Lecture notes
+- **Title:** ENGR 213 - Paradis Notes: In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium
+- **Academic year:** 2025/2026
+- **Description:** Complete regenerated in-class master compendium of Dr. Alexandre Paradis's ENGR 213 curriculum (Lectures 1–5, Tutorials 1 & 3, Homework Sets 1–3, and Midterm 1 Scope). Features full proofs and step-by-step analytical solutions for ODE order and linearity, autonomous phase line stability, separable equations, integrating factors, substitutions (Bernoulli, homogeneous, linear), exact equations with potential functions, radioactive decay and forensic Newton's law of cooling, logistic population models, and complex variables in Cartesian and polar form.

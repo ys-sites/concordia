@@ -40,6 +40,7 @@ import {
   getTutorialExamInfo
 } from '../utils/docOrganization';
 import { FilteredDocumentSection } from './FilteredDocumentSection';
+import { TermPaperVaultSection } from './TermPaperVaultSection';
 
 interface CourseWorkspaceProps {
   course: CourseWithDocs;
@@ -116,7 +117,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
     if (onNavigateFolder) {
       onNavigateFolder(next);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   };
 
   const searchResults = useMemo(() => {
@@ -343,6 +344,23 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           <h2 className="fx-section-title">Course folders</h2>
           <div className="fx-folder-grid">
             {tree.folders.map(renderFolderTile)}
+            {course.id === 'INDU211' && (
+              <button
+                key="term-paper-vault"
+                className="fx-folder-tile"
+                onClick={() => openPath(['Term Paper & Final Project'])}
+              >
+                <span className="fx-folder-icon" style={{ color: '#059669', backgroundColor: 'rgba(16, 185, 129, 0.08)' }}>
+                  <Lock size={22} />
+                </span>
+                <span className="fx-folder-text">
+                  <span className="fx-folder-index">05</span>
+                  <span className="fx-folder-name">Term Paper & Final Project</span>
+                  <span className="fx-folder-meta">Protected Vault · GenAI Project</span>
+                </span>
+                <ChevronRight size={18} className="fx-folder-chevron" />
+              </button>
+            )}
             <button
               key="filtered-document"
               className="fx-folder-tile"
@@ -367,6 +385,8 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             </section>
           )}
         </section>
+      ) : activePath[0] === 'Term Paper & Final Project' ? (
+        <TermPaperVaultSection course={course} onViewPdf={onViewPdf} />
       ) : activePath[0] === 'Filtered document' ? (
         <FilteredDocumentSection
           course={course}

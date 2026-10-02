@@ -20,7 +20,12 @@ import {
   FileCheck,
   ClipboardList,
   Cpu,
-  Layers
+  Layers,
+  Sparkles,
+  Download,
+  Calendar,
+  Award,
+  Clock
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
@@ -49,6 +54,49 @@ const formatFileSize = (bytes?: number) => {
   return `${Math.round(bytes / 1024)} KB`;
 };
 
+
+export const extractExamDateScore = (doc: FilteredDocItem): number => {
+  const str = `${doc.title} ${doc.filename} ${doc.relativePath}`;
+  
+  // 1. Explicit 4-digit years
+  const yearMatches = str.match(/\b(19\d\d|20\d\d)\b/g);
+  let year = 0;
+  if (yearMatches && yearMatches.length > 0) {
+    const years = yearMatches.map(y => parseInt(y, 10)).filter(y => y >= 1990 && y <= 2030);
+    if (years.length > 0) {
+      year = Math.max(...years);
+    }
+  }
+  if (year === 0) {
+    if (/2026|paradis|term paper|assignment/i.test(str)) {
+      year = 2026;
+    } else if (/final|midterm|quiz|test/i.test(str)) {
+      year = 2020;
+    } else {
+      year = 2021;
+    }
+  }
+
+  // 2. Term / Season bonus within the year (Fall > Summer > Winter)
+  let termBonus = 0.5;
+  if (/\bfall\b|\bautumn\b|\bf2\d|\bfall\s*20\d\d/i.test(str)) {
+    termBonus = 0.75;
+  } else if (/\bsummer\b|\bsum\b|\bs2\d/i.test(str)) {
+    termBonus = 0.50;
+  } else if (/\bwinter\b|\bwin\b|\bw2\d|\bwinter\s*20\d\d/i.test(str)) {
+    termBonus = 0.25;
+  }
+
+  // 3. Quiz / Test number bonus (Test 2 > Test 1, Quiz 5 > Quiz 1)
+  let numberBonus = 0;
+  const testNumMatch = str.match(/(?:test|quiz|midterm|exam)\s*#?\s*(\d+)/i);
+  if (testNumMatch) {
+    numberBonus = Math.min(parseInt(testNumMatch[1], 10), 10) * 0.01;
+  }
+
+  return year + termBonus + numberBonus;
+};
+
 const getCategoryBadgeStyle = (category: AssessmentCategory) => {
   switch (category) {
     case 'Midterm Exam':
@@ -72,7 +120,13 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
   onStartMidtermDrill
 }) => {
   const [passwordInput, setPasswordInput] = useState('');
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState<boolean>(() => {
+    try {
+      return typeof window !== 'undefined' && sessionStorage.getItem(SESSION_STORAGE_KEY) === '1';
+    } catch {
+      return false;
+    }
+  });
   const [hasAttempted, setHasAttempted] = useState(false);
 
   // Section 1: Assessment Vault Filters
@@ -85,6 +139,13 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
   const [expandedQuestions, setExpandedQuestions] = useState<Record<string, boolean>>({});
 
   const courseConfig = FILTERED_COURSES_DATA[course.id as keyof typeof FILTERED_COURSES_DATA];
+
+  useEffect(() => {
+    setAssessmentFilter('all');
+    setAssessmentSearch('');
+    setMidtermFilter('all');
+    setMidtermSearch('');
+  }, [course.id]);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && sessionStorage.getItem(SESSION_STORAGE_KEY) === '1') {
@@ -112,7 +173,7 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
   // Section 1: Filtered assessment documents
   const allAssessmentDocs: FilteredDocItem[] = courseConfig?.assessmentDocs ?? [];
   const filteredAssessmentDocs = useMemo<FilteredDocItem[]>(() => {
-    return allAssessmentDocs.filter((doc: FilteredDocItem) => {
+    const list = allAssessmentDocs.filter((doc: FilteredDocItem) => {
       // Category filter
       if (assessmentFilter !== 'all' && doc.categoryType !== assessmentFilter) {
         return false;
@@ -127,10 +188,16 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
       }
       return true;
     });
+
+    // Sort chronologically from most recent dates at the top to oldest at the bottom
+    return [...list].sort((a, b) => extractExamDateScore(b) - extractExamDateScore(a));
   }, [allAssessmentDocs, assessmentFilter, assessmentSearch]);
 
   // Section 2: Curated midterm prep docs
   const midtermPrepDocs: FilteredDocItem[] = courseConfig?.midtermPrepDocs ?? [];
+  const sortedMidtermPrepDocs = useMemo(() => {
+    return [...midtermPrepDocs].sort((a, b) => extractExamDateScore(b) - extractExamDateScore(a));
+  }, [midtermPrepDocs]);
 
   // Section 2: MIAE 221 Question Explorer
   const filteredQuestions = useMemo(() => {
@@ -323,6 +390,391 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
           <span>Launch Midterm Drill</span>
         </button>
       </div>
+
+
+      {/* ========================================================================= */}
+      {/* FEATURED SHOWCASE: ENGR 213 PARADIS NOTES                                 */}
+      {/* ========================================================================= */}
+      {course.id === 'ENGR213' && (
+        <section
+          className="fx-panel"
+          style={{
+            border: '1.5px solid rgba(2, 132, 199, 0.3)',
+            background: 'linear-gradient(180deg, rgba(2, 132, 199, 0.04) 0%, rgba(2, 132, 199, 0.01) 100%)',
+            boxShadow: '0 4px 20px -4px rgba(2, 132, 199, 0.08)'
+          }}
+        >
+          <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
+              <span className="fx-panel-icon" style={{ color: '#0284c7' }}><Sparkles size={20} /></span>
+              <div className="fx-panel-heading">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  <h2 style={{ color: '#0369a1' }}>Featured: Paradis notes — In-Class Lecture & Tutorial Master Compendium</h2>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      padding: '2px 8px',
+                      borderRadius: '6px',
+                      backgroundColor: 'rgba(2, 132, 199, 0.12)',
+                      color: '#0284c7',
+                      textTransform: 'uppercase'
+                    }}
+                  >
+                    Fall 2026 · Midterm 1 Scope
+                  </span>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
+              Regenerated from Dr. Alexandre Paradis's official handwritten whiteboard notes and OneNote exports.
+              Covers <strong>Lectures 1–5</strong>, <strong>Tutorials 1 & 3</strong>, <strong>Homework Sets 1–3</strong>, and the complete <strong>Midterm #1 Syllabus (Oct 19: Chapter 2 + §17.1 & §17.2)</strong>.
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
+              {/* Card 1: Regenerated Master Compendium */}
+              <div
+                style={{
+                  padding: '14px 16px',
+                  borderRadius: '10px',
+                  backgroundColor: 'var(--bg-surface)',
+                  border: '1.5px solid rgba(2, 132, 199, 0.3)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: '11px', fontWeight: 800, color: '#0284c7', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    🌟 Regenerated Master Guide
+                  </span>
+                  <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>300 KB · PDF</span>
+                </div>
+                <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
+                  Paradis notes — In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium
+                </div>
+                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                  Typeset LaTeX formatting with complete proofs, autonomous phase lines, Bernoulli substitutions, exact differential equations, forensic cooling models, and complex variables.
+                </div>
+                <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
+                  <button
+                    className="fx-btn fx-btn-primary"
+                    style={{ flex: 1, justifyContent: 'center' }}
+                    onClick={() => {
+                      audio.playClick();
+                      onViewPdf({
+                        id: 'ENGR213:filtered:paradis-master-guide',
+                        courseId: 'ENGR213',
+                        categoryId: 'Filtered-Vault',
+                        categoryTitle: 'Paradis notes',
+                        title: 'Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)',
+                        filename: 'Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf',
+                        relativePath: 'Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf',
+                        fileSizeBytes: 300265,
+                        tags: ['Paradis notes', 'Regenerated Master Guide', 'Midterm 1 Scope'],
+                        summary: 'Paradis notes master compendium (Fall 2026)'
+                      });
+                    }}
+                  >
+                    <Eye size={14} />
+                    <span>View Guide</span>
+                  </button>
+                  <a
+                    className="fx-btn fx-btn-tab"
+                    href={getPdfUrl('Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf')}
+                    download
+                    onClick={() => audio.playClick()}
+                  >
+                    <Download size={14} />
+                    <span>PDF</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Card 2: Original In-Class Handwritten Notes */}
+              <div
+                style={{
+                  padding: '14px 16px',
+                  borderRadius: '10px',
+                  backgroundColor: 'var(--bg-surface)',
+                  border: '1px solid var(--border-subtle)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    📝 Original Handwritten Notes
+                  </span>
+                  <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>19.1 MB · 56 Pages</span>
+                </div>
+                <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
+                  Paradis notes — In-Class Handwritten Lecture & Tutorial Notes (Dr. Alexandre Paradis)
+                </div>
+                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                  Original raw OneNote digital ink export containing Dr. Paradis's in-class slides, whiteboard diagrams, problem numbers, and student quiz prep.
+                </div>
+                <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
+                  <button
+                    className="fx-btn fx-btn-primary"
+                    style={{ flex: 1, justifyContent: 'center' }}
+                    onClick={() => {
+                      audio.playClick();
+                      onViewPdf({
+                        id: 'ENGR213:filtered:paradis-notes',
+                        courseId: 'ENGR213',
+                        categoryId: 'Filtered-Vault',
+                        categoryTitle: 'Paradis notes',
+                        title: 'Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Alexandre Paradis)',
+                        filename: 'ENGR 213.pdf',
+                        relativePath: 'Engr 213/ENGR 213.pdf',
+                        fileSizeBytes: 19124434,
+                        tags: ['Paradis notes', 'In-Class Notes', 'Lectures 1–5'],
+                        summary: 'Paradis notes in-class handwritten lecture and tutorial notes'
+                      });
+                    }}
+                  >
+                    <Eye size={14} />
+                    <span>View Notes</span>
+                  </button>
+                  <a
+                    className="fx-btn fx-btn-tab"
+                    href={getPdfUrl('Engr 213/ENGR 213.pdf')}
+                    download
+                    onClick={() => audio.playClick()}
+                  >
+                    <Download size={14} />
+                    <span>PDF</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Card 3: Solved Examination Bank (Winter 2025) */}
+              <div
+                style={{
+                  padding: '14px 16px',
+                  borderRadius: '10px',
+                  backgroundColor: 'var(--bg-surface)',
+                  border: '1px solid var(--border-subtle)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: '11px', fontWeight: 700, color: '#d97706', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    🎯 Solved Quizzes & Tests Bank
+                  </span>
+                  <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>424 KB · 14 Solved Problems</span>
+                </div>
+                <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
+                  ENGR 213 — Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)
+                </div>
+                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                  Full sequential solutions (Questions 1 to 14) for Quizzes 1–4, Test 1 Version 2, and Test 2 with complete analytical derivations.
+                </div>
+                <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
+                  <button
+                    className="fx-btn fx-btn-primary"
+                    style={{ flex: 1, justifyContent: 'center' }}
+                    onClick={() => {
+                      audio.playClick();
+                      onViewPdf({
+                        id: 'ENGR213:filtered:quiz-test-bank-2025',
+                        courseId: 'ENGR213',
+                        categoryId: 'Filtered-Vault',
+                        categoryTitle: 'Assessment Vault',
+                        title: 'ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)',
+                        filename: 'ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf',
+                        relativePath: 'Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf',
+                        fileSizeBytes: 424102,
+                        tags: ['Quizzes 1–4', 'Test 1 V2', 'Test 2', '14 Solved Questions'],
+                        summary: 'Official Solved Examination Bank (Winter 2025)'
+                      });
+                    }}
+                  >
+                    <Eye size={14} />
+                    <span>View Exam Bank</span>
+                  </button>
+                  <a
+                    className="fx-btn fx-btn-tab"
+                    href={getPdfUrl('Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf')}
+                    download
+                    onClick={() => audio.playClick()}
+                  >
+                    <Download size={14} />
+                    <span>PDF</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* FEATURED SHOWCASE: INDU 211 TERM PAPER & FINAL PROJECT                    */}
+      {/* ========================================================================= */}
+      {course.id === 'INDU211' && (
+        <section
+          className="fx-panel"
+          style={{
+            border: '1.5px solid rgba(16, 185, 129, 0.3)',
+            background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.04) 0%, rgba(16, 185, 129, 0.01) 100%)',
+            boxShadow: '0 4px 20px -4px rgba(16, 185, 129, 0.08)'
+          }}
+        >
+          <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
+              <span className="fx-panel-icon" style={{ color: '#059669' }}><Layers size={20} /></span>
+              <div className="fx-panel-heading">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  <h2 style={{ color: '#047857' }}>Featured: INDU 211 Term Paper & Final Project Hub</h2>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      padding: '2px 8px',
+                      borderRadius: '6px',
+                      backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                      color: '#059669',
+                      textTransform: 'uppercase'
+                    }}
+                  >
+                    20% Course Weight · Group Deliverable
+                  </span>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div>
+              <h3 style={{ fontSize: '14.5px', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 4px 0' }}>
+                Topic: "The Future of Industrial Engineering in the Generative AI (GenAI) Era"
+              </h3>
+              <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
+                Comprehensive investigation into GenAI, LLMs, and foundation models transforming industrial automation, lean supply chains, predictive quality control, and human factors engineering.
+              </p>
+            </div>
+
+            {/* 3 Milestones */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '10px' }}>
+              <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#059669', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase' }}>
+                  <Calendar size={13} />
+                  <span>Phase 1: Proposal</span>
+                </div>
+                <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--text-primary)', marginTop: '4px' }}>
+                  1-Page Official Form (Due Oct 8)
+                </div>
+                <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                  Group roster, chosen GenAI thesis, methodology & industry scope.
+                </div>
+              </div>
+
+              <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#d97706', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase' }}>
+                  <Video size={13} />
+                  <span>Phase 2: Presentation</span>
+                </div>
+                <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--text-primary)', marginTop: '4px' }}>
+                  15-Min Video & Script (Due Dec 1)
+                </div>
+                <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                  Slide deck presentation guide & synchronized narration video script.
+                </div>
+              </div>
+
+              <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#7c3aed', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase' }}>
+                  <Award size={13} />
+                  <span>Phase 3: Final Paper</span>
+                </div>
+                <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--text-primary)', marginTop: '4px' }}>
+                  10-Page Master Report (Final Exam Date)
+                </div>
+                <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                  In-depth analytical paper with mathematical formulation & case studies.
+                </div>
+              </div>
+            </div>
+
+            {/* Document Deliverables List */}
+            <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '12px' }}>
+              <div style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Official Project Deliverables & Submission Guides:
+              </div>
+              <ol className="fx-file-list" style={{ margin: 0 }}>
+                {(courseConfig?.termPaperDocs || []).map((doc: FilteredDocItem, idx: number) => {
+                  const url = getPdfUrl(doc.relativePath);
+                  return (
+                    <li key={doc.id} className="fx-file-row">
+                      <span className="fx-file-number">{idx + 1}</span>
+                      <FileText size={18} className="fx-file-icon" />
+                      <button
+                        className="fx-file-main"
+                        onClick={() => {
+                          audio.playClick();
+                          onViewPdf({ ...doc, summary: doc.summary || doc.title });
+                        }}
+                      >
+                        <span className="fx-file-title">{doc.title}</span>
+                        <span className="fx-file-meta">
+                          <span className="fx-file-size">{formatFileSize(doc.fileSizeBytes)}</span>
+                          {(doc.tags || []).map((tag, tIdx) => (
+                            <span
+                              key={tIdx}
+                              style={{
+                                fontSize: '10.5px',
+                                fontWeight: 700,
+                                padding: '1px 6px',
+                                borderRadius: '4px',
+                                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                color: '#059669',
+                                border: '1px solid rgba(16, 185, 129, 0.2)'
+                              }}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </span>
+                      </button>
+                      <div className="fx-file-actions">
+                        <button
+                          className="fx-btn fx-btn-primary"
+                          onClick={() => {
+                            audio.playClick();
+                            onViewPdf({ ...doc, summary: doc.summary || doc.title });
+                          }}
+                          title="Open in modal PDF viewer"
+                        >
+                          <Eye size={14} />
+                          <span>View</span>
+                        </button>
+                        <a
+                          className="fx-btn fx-btn-tab"
+                          href={url}
+                          download
+                          title="Download document directly"
+                          onClick={() => audio.playClick()}
+                        >
+                          <Download size={14} />
+                          <span>PDF</span>
+                        </a>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ========================================================================= */}
       {/* SECTION 1: ALL ASSIGNMENTS, QUIZZES, EXAMS, LABS & PROJECTS               */}
@@ -520,7 +972,7 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
 
         {/* Curated Midterm Prep Documents */}
         <ol className="fx-file-list">
-          {midtermPrepDocs.map((doc: FilteredDocItem, idx: number) => {
+          {sortedMidtermPrepDocs.map((doc: FilteredDocItem, idx: number) => {
             const url = getPdfUrl(doc.relativePath);
             return (
               <li key={doc.id} className="fx-file-row">

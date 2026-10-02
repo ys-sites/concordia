@@ -18,9 +18,13 @@ export interface FilteredCourseConfig {
   midtermDrillSectionId: string;
   assessmentDocs: FilteredDocItem[];
   midtermPrepDocs: FilteredDocItem[];
+  termPaperDocs?: FilteredDocItem[];
 }
 
 export const ALL_FILTERED_RELATIVE_PATHS: string[] = [
+  "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+  "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+  "Engr 213/ENGR 213.pdf",
   "Engr 213/00 - Course Syllabus & Textbook/Calculus for Differential Equations - Master Sheet.pdf",
   "Engr 213/00 - Course Syllabus & Textbook/ENGR 213 - Course Outline Fall 2026.pdf",
   "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Advanced_Engineering_Mathematics_Solutions_Manual.pdf",
@@ -218,18 +222,156 @@ export const isFilteredDocumentRelativePath = (relativePath: string): boolean =>
   const normalized = relativePath.replace(/\\/g, '/');
   return ALL_FILTERED_RELATIVE_PATHS.includes(normalized) ||
          /Filtered document.*\.pdf$/i.test(normalized) ||
+         /Term Paper & Final Project/i.test(normalized) ||
+         /ENGR 213\.pdf$/i.test(normalized) ||
+         /Paradis notes/i.test(normalized) ||
+         /Quizzes & Term Tests/i.test(normalized) ||
          /112451179.*\.pdf$/i.test(normalized) ||
          /124560047.*\.pdf$/i.test(normalized);
 };
+
+
+export const INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = [
+  {
+    id: 'INDU211:filtered:tp-desc',
+    courseId: 'INDU211',
+    categoryId: 'Filtered-Vault',
+    categoryTitle: 'Term Paper & Final Project',
+    title: 'Term Paper Description & Evaluation Guidelines (Fall 2026 Official)',
+    filename: 'Term Paper Description.pdf',
+    relativePath: 'Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Term Paper Description.pdf',
+    fileSizeBytes: 78656,
+    categoryType: 'Lab / Project',
+    isMidtermPrep: false,
+    tags: ['Term Paper Handout', 'Topic Guidelines', 'Rubric']
+  },
+  {
+    id: 'INDU211:filtered:tp-prop',
+    courseId: 'INDU211',
+    categoryId: 'Filtered-Vault',
+    categoryTitle: 'Term Paper & Final Project',
+    title: 'INDU 211 - Term Paper Group Proposal (1-Page Official Submission)',
+    filename: 'INDU 211 - Term Paper Group Proposal (1-Page Official).pdf',
+    relativePath: 'Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Group Proposal (1-Page Official).pdf',
+    fileSizeBytes: 92564,
+    categoryType: 'Lab / Project',
+    isMidtermPrep: false,
+    tags: ['Milestone 1', '1-Page Official Proposal', 'Due Oct 8']
+  },
+  {
+    id: 'INDU211:filtered:tp-report',
+    courseId: 'INDU211',
+    categoryId: 'Filtered-Vault',
+    categoryTitle: 'Term Paper & Final Project',
+    title: 'INDU 211 - Term Paper Master Report: The Future of IE in the GenAI Era (10-Page Final)',
+    filename: 'INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era).pdf',
+    relativePath: 'Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era).pdf',
+    fileSizeBytes: 289250,
+    categoryType: 'Lab / Project',
+    isMidtermPrep: false,
+    tags: ['Milestone 3', '10-Page Master Report', 'Final Exam Date']
+  },
+  {
+    id: 'INDU211:filtered:tp-presentation',
+    courseId: 'INDU211',
+    categoryId: 'Filtered-Vault',
+    categoryTitle: 'Term Paper & Final Project',
+    title: 'INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script',
+    filename: 'INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script.pdf',
+    relativePath: 'Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script.pdf',
+    fileSizeBytes: 141278,
+    categoryType: 'Lab / Project',
+    isMidtermPrep: false,
+    tags: ['Milestone 2', '15-Min Video Script', 'Due Dec 1']
+  },
+  {
+    id: 'INDU211:filtered:tp-moodle-prop',
+    courseId: 'INDU211',
+    categoryId: 'Filtered-Vault',
+    categoryTitle: 'Term Paper & Final Project',
+    title: 'Term Paper Group Proposal - Moodle Submission Instructions',
+    filename: 'Term paper group proposal - Moodle instructions.pdf',
+    relativePath: 'Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Term paper group proposal - Moodle instructions.pdf',
+    fileSizeBytes: 48847,
+    categoryType: 'Lab / Project',
+    isMidtermPrep: false,
+    tags: ['Moodle Instructions', 'Proposal Submission']
+  },
+  {
+    id: 'INDU211:filtered:tp-moodle-video',
+    courseId: 'INDU211',
+    categoryId: 'Filtered-Vault',
+    categoryTitle: 'Term Paper & Final Project',
+    title: 'Project Video Submission - Moodle Instructions',
+    filename: 'Project video submission - Moodle instructions.pdf',
+    relativePath: 'Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Project video submission - Moodle instructions.pdf',
+    fileSizeBytes: 66642,
+    categoryType: 'Lab / Project',
+    isMidtermPrep: false,
+    tags: ['Moodle Instructions', 'Video Submission']
+  },
+  {
+    id: 'INDU211:filtered:tp-moodle-final',
+    courseId: 'INDU211',
+    categoryId: 'Filtered-Vault',
+    categoryTitle: 'Term Paper & Final Project',
+    title: 'Final Project Submission - Moodle Instructions',
+    filename: 'Final project submission - Moodle instructions.pdf',
+    relativePath: 'Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Final project submission - Moodle instructions.pdf',
+    fileSizeBytes: 43885,
+    categoryType: 'Lab / Project',
+    isMidtermPrep: false,
+    tags: ['Moodle Instructions', 'Final Submission']
+  }
+];
 
 export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
   'ENGR213': {
     courseId: 'ENGR213',
     code: "ENGR 213",
     name: "Applied Ordinary Differential Equations",
-    midtermScope: "Midterm coverage: Chapters 1 & 2 (Direction fields, Separable ODEs, First-Order Linear Integrating Factors, Exact Differential Equations & Integrating Factors, and Substitutions including Homogeneous & Bernoulli).",
+    midtermScope: "Dr. Paradis Midterm #1 Scope (Exam Date Oct 19): Chapter 2 (Separable ODEs, First-Order Linear Integrating Factors, Exact Equations & Integrating Factors, Solutions by Substitution, Bernoulli & Homogeneous) + §17.1 & §17.2 (Complex Numbers & Second-Order Initial Value Problems). Covers Lectures 1–5, Tutorials 1 & 3, and Homework Sets 1–3.",
     midtermDrillSectionId: 'midterm',
     assessmentDocs: [
+      {
+        id: "ENGR213:filtered:paradis-master-guide",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
+        filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        fileSizeBytes: 300265,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
+        id: "ENGR213:filtered:quiz-test-bank-2025",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)",
+        filename: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        relativePath: "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        fileSizeBytes: 424102,
+        categoryType: 'Quiz / Test',
+        isMidtermPrep: true,
+        tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
+      },
+      {
+        id: "ENGR213:filtered:paradis-notes",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
+        filename: "ENGR 213.pdf",
+        relativePath: "Engr 213/ENGR 213.pdf",
+        fileSizeBytes: 19124434,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
       {
         id: "ENGR213:filtered:42",
         courseId: 'ENGR213',
@@ -1533,6 +1675,45 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     ],
     midtermPrepDocs: [
       {
+        id: "ENGR213:filtered:paradis-master-guide",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
+        filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        fileSizeBytes: 300265,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
+        id: "ENGR213:filtered:quiz-test-bank-2025",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)",
+        filename: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        relativePath: "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        fileSizeBytes: 424102,
+        categoryType: 'Quiz / Test',
+        isMidtermPrep: true,
+        tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
+      },
+      {
+        id: "ENGR213:filtered:paradis-notes",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
+        filename: "ENGR 213.pdf",
+        relativePath: "Engr 213/ENGR 213.pdf",
+        fileSizeBytes: 19124434,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
         id: "ENGR213:filtered:14",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Midterm-Prep',
@@ -1809,11 +1990,51 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
   },
   'INDU211': {
     courseId: 'INDU211',
+    termPaperDocs: INDU211_TERM_PAPER_DOCS,
     code: "INDU 211",
     name: "Introduction to Production and Manufacturing Systems",
     midtermScope: "Midterm coverage: Chapters 1 to 5 (Engineering foundations, Manufacturing processes, Concurrent engineering, Break-Even analysis, Facilities Location & Center-of-Gravity, Layout types, and Material Handling & TSP warehouse routing).",
     midtermDrillSectionId: 'midterm',
     assessmentDocs: [
+      {
+        id: "ENGR213:filtered:paradis-master-guide",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
+        filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        fileSizeBytes: 300265,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
+        id: "ENGR213:filtered:quiz-test-bank-2025",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)",
+        filename: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        relativePath: "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        fileSizeBytes: 424102,
+        categoryType: 'Quiz / Test',
+        isMidtermPrep: true,
+        tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
+      },
+      {
+        id: "ENGR213:filtered:paradis-notes",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
+        filename: "ENGR 213.pdf",
+        relativePath: "Engr 213/ENGR 213.pdf",
+        fileSizeBytes: 19124434,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
       {
         id: "INDU211:filtered:4",
         courseId: 'INDU211',
@@ -2467,6 +2688,45 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     ],
     midtermPrepDocs: [
       {
+        id: "ENGR213:filtered:paradis-master-guide",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
+        filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        fileSizeBytes: 300265,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
+        id: "ENGR213:filtered:quiz-test-bank-2025",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)",
+        filename: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        relativePath: "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        fileSizeBytes: 424102,
+        categoryType: 'Quiz / Test',
+        isMidtermPrep: true,
+        tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
+      },
+      {
+        id: "ENGR213:filtered:paradis-notes",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
+        filename: "ENGR 213.pdf",
+        relativePath: "Engr 213/ENGR 213.pdf",
+        fileSizeBytes: 19124434,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
         id: "INDU211:filtered:4",
         courseId: 'INDU211',
         categoryId: 'Filtered-Midterm-Prep',
@@ -2709,6 +2969,45 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     midtermScope: "Midterm coverage: Computing architecture, C++ primitive types, expressions, operator precedence, type casting, if/else control flow, switch statements, while/for loops, and 1D/2D arrays.",
     midtermDrillSectionId: 'midterm',
     assessmentDocs: [
+      {
+        id: "ENGR213:filtered:paradis-master-guide",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
+        filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        fileSizeBytes: 300265,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
+        id: "ENGR213:filtered:quiz-test-bank-2025",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)",
+        filename: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        relativePath: "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        fileSizeBytes: 424102,
+        categoryType: 'Quiz / Test',
+        isMidtermPrep: true,
+        tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
+      },
+      {
+        id: "ENGR213:filtered:paradis-notes",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
+        filename: "ENGR 213.pdf",
+        relativePath: "Engr 213/ENGR 213.pdf",
+        fileSizeBytes: 19124434,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
       {
         id: "MIAE215:filtered:12",
         courseId: 'MIAE215',
@@ -3128,6 +3427,45 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     ],
     midtermPrepDocs: [
       {
+        id: "ENGR213:filtered:paradis-master-guide",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
+        filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        fileSizeBytes: 300265,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
+        id: "ENGR213:filtered:quiz-test-bank-2025",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)",
+        filename: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        relativePath: "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        fileSizeBytes: 424102,
+        categoryType: 'Quiz / Test',
+        isMidtermPrep: true,
+        tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
+      },
+      {
+        id: "ENGR213:filtered:paradis-notes",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
+        filename: "ENGR 213.pdf",
+        relativePath: "Engr 213/ENGR 213.pdf",
+        fileSizeBytes: 19124434,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
         id: "MIAE215:filtered:12",
         courseId: 'MIAE215',
         categoryId: 'Filtered-Midterm-Prep',
@@ -3280,6 +3618,45 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     midtermDrillSectionId: 'midterm-drill',
     assessmentDocs: [
       {
+        id: "ENGR213:filtered:paradis-master-guide",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
+        filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        fileSizeBytes: 300265,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
+        id: "ENGR213:filtered:quiz-test-bank-2025",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)",
+        filename: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        relativePath: "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        fileSizeBytes: 424102,
+        categoryType: 'Quiz / Test',
+        isMidtermPrep: true,
+        tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
+      },
+      {
+        id: "ENGR213:filtered:paradis-notes",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
+        filename: "ENGR 213.pdf",
+        relativePath: "Engr 213/ENGR 213.pdf",
+        fileSizeBytes: 19124434,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
         id: "MIAE221:filtered:4",
         courseId: 'MIAE221',
         categoryId: 'Filtered-Vault',
@@ -3398,6 +3775,45 @@ export const FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
       },
     ],
     midtermPrepDocs: [
+      {
+        id: "ENGR213:filtered:paradis-master-guide",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
+        filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
+        fileSizeBytes: 300265,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
+        id: "ENGR213:filtered:quiz-test-bank-2025",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)",
+        filename: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        relativePath: "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
+        fileSizeBytes: 424102,
+        categoryType: 'Quiz / Test',
+        isMidtermPrep: true,
+        tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
+      },
+      {
+        id: "ENGR213:filtered:paradis-notes",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Paradis notes',
+        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
+        filename: "ENGR 213.pdf",
+        relativePath: "Engr 213/ENGR 213.pdf",
+        fileSizeBytes: 19124434,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
       {
         id: "MIAE221:filtered:4",
         courseId: 'MIAE221',

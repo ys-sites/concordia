@@ -12,6 +12,7 @@ import { DrillPicker } from './components/DrillPicker';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
 import { FilteredSubSite } from './components/FilteredSubSite';
+import { FILTERED_COURSES_DATA } from './data/filteredDocumentsData';
 import { audio } from './utils/audio';
 import { parseHash, formatHash, RouteState } from './utils/navigationRouter';
 import { Analytics } from '@vercel/analytics/react';
@@ -28,6 +29,17 @@ function findDoc(courseId: CourseId | null, docPath: string | null): CourseDocum
         (d) => d.relativePath === decoded || d.relativePath === docPath || d.id === decoded || d.filename === decoded
       );
       if (found) return found;
+    }
+  }
+  // Check Filtered Document Vault for all courses
+  for (const key of Object.keys(FILTERED_COURSES_DATA) as CourseId[]) {
+    if (!courseId || key === courseId) {
+      const cfg = FILTERED_COURSES_DATA[key];
+      const allDocs = [...cfg.assessmentDocs, ...cfg.midtermPrepDocs, ...(cfg.termPaperDocs || [])];
+      const found = allDocs.find(
+        (d) => d.relativePath === decoded || d.relativePath === docPath || d.id === decoded || d.filename === decoded
+      );
+      if (found) return { ...found, summary: found.summary || found.title };
     }
   }
   return null;
@@ -114,7 +126,7 @@ export function App() {
     } else {
       setActivePdfDoc(null);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   };
 
   // Toggle sound
@@ -141,9 +153,8 @@ export function App() {
   // View PDF Document (optionally jumping directly to a slide/page)
   const handleViewPdf = (doc: CourseDocument, initialPage?: number) => {
     setActivePdfPage(initialPage);
-    if (viewMode === 'QUIZ' || viewMode === 'RESULTS' || viewMode === 'QUESTION_BANK') {
-      setActivePdfDoc(doc);
-    } else {
+    setActivePdfDoc(doc);
+    if (viewMode !== 'QUIZ' && viewMode !== 'RESULTS' && viewMode !== 'QUESTION_BANK') {
       navigateTo({ viewMode: 'WORKSPACE', courseId: doc.courseId, folderPath, docPath: doc.relativePath });
     }
   };
