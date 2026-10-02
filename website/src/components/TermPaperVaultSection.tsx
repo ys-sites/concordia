@@ -49,23 +49,43 @@ export const TermPaperVaultSection: React.FC<TermPaperVaultSectionProps> = ({
       return false;
     }
   });
+  const [isUnlocking, setIsUnlocking] = useState(false);
+  const [isShaking, setIsShaking] = useState(false);
   const [hasAttempted, setHasAttempted] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && sessionStorage.getItem(SESSION_STORAGE_KEY) === '1') {
-      setIsUnlocked(true);
-    }
-  }, []);
 
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault();
-    setHasAttempted(true);
+    if (!passwordInput.trim() || isUnlocking) return;
+
     if (isPasswordValid(passwordInput)) {
       audio.playCorrect();
-      setIsUnlocked(true);
-      sessionStorage.setItem(SESSION_STORAGE_KEY, '1');
+      setIsUnlocking(true);
+      setTimeout(() => {
+        setIsUnlocked(true);
+        setIsUnlocking(false);
+        try {
+          sessionStorage.setItem(SESSION_STORAGE_KEY, '1');
+        } catch {
+          // ignore
+        }
+      }, 350);
     } else {
       audio.playIncorrect();
+      setHasAttempted(true);
+      setIsShaking(true);
+      setTimeout(() => setIsShaking(false), 450);
+    }
+  };
+
+  const handleLockAgain = () => {
+    audio.playClick();
+    setIsUnlocked(false);
+    setPasswordInput('');
+    setHasAttempted(false);
+    try {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    } catch {
+      // ignore
     }
   };
 
@@ -74,23 +94,28 @@ export const TermPaperVaultSection: React.FC<TermPaperVaultSectionProps> = ({
 
   if (!isUnlocked) {
     return (
-      <section className="fx-panel" style={{ padding: '56px 24px', textAlign: 'center' }}>
+      <section
+        className={`fx-panel vault-card-enter ${isShaking ? 'shake-incorrect' : ''}`}
+        style={{ padding: '56px 24px', textAlign: 'center', transition: 'all 0.2s ease' }}
+      >
         <div style={{ maxWidth: '440px', margin: '0 auto' }}>
           <div
             style={{
               width: '60px',
               height: '60px',
               borderRadius: '16px',
-              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+              backgroundColor: isUnlocking ? 'rgba(16, 185, 129, 0.2)' : 'rgba(16, 185, 129, 0.1)',
               color: '#059669',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               margin: '0 auto 20px',
-              border: '1.5px solid rgba(16, 185, 129, 0.25)'
+              border: '1.5px solid rgba(16, 185, 129, 0.25)',
+              transition: 'all 0.25s ease'
             }}
+            className={isUnlocking ? 'pulse-correct' : ''}
           >
-            <KeyRound size={30} />
+            {isUnlocking ? <Unlock size={30} /> : <KeyRound size={30} />}
           </div>
 
           <h2 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px', letterSpacing: '-0.02em' }}>
@@ -105,7 +130,11 @@ export const TermPaperVaultSection: React.FC<TermPaperVaultSectionProps> = ({
               <input
                 type="password"
                 value={passwordInput}
-                onChange={(e) => setPasswordInput(e.target.value)}
+                onChange={(e) => {
+                  setPasswordInput(e.target.value);
+                  if (hasAttempted) setHasAttempted(false);
+                }}
+                disabled={isUnlocking}
                 placeholder="Enter access key…"
                 autoFocus
                 style={{
@@ -126,6 +155,7 @@ export const TermPaperVaultSection: React.FC<TermPaperVaultSectionProps> = ({
 
             <button
               type="submit"
+              disabled={isUnlocking}
               className="action-btn primary-glow-btn"
               style={{
                 width: '100%',
@@ -138,7 +168,7 @@ export const TermPaperVaultSection: React.FC<TermPaperVaultSectionProps> = ({
               }}
             >
               <Unlock size={16} />
-              <span>Unlock Term Paper Vault</span>
+              <span>{isUnlocking ? 'Access Granted…' : 'Unlock Term Paper Vault'}</span>
             </button>
           </form>
 
@@ -170,7 +200,7 @@ export const TermPaperVaultSection: React.FC<TermPaperVaultSectionProps> = ({
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+    <div className="vault-unlocked-enter" style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
       {/* Top Banner */}
       <div
         style={{
@@ -226,6 +256,25 @@ export const TermPaperVaultSection: React.FC<TermPaperVaultSectionProps> = ({
             </p>
           </div>
         </div>
+
+        <button
+          onClick={handleLockAgain}
+          className="fx-btn"
+          style={{
+            fontSize: '12.5px',
+            padding: '7px 14px',
+            color: 'var(--text-secondary)',
+            border: '1px solid var(--border-subtle)',
+            background: 'var(--bg-card-subtle)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+          title="Re-lock this vault"
+        >
+          <Lock size={14} />
+          <span>Lock Vault</span>
+        </button>
       </div>
 
       {/* Project Theme & Instructions Panel */}

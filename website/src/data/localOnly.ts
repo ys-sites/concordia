@@ -61,18 +61,25 @@ export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   /(^|\/)[^/]*Advanced Engineering Mathematics\s*\(7th Edition\)[^/]*\.pdf$/i
 ];
 
-import { isFilteredDocumentRelativePath } from './filteredDocumentsData';
+import { isFilteredDocumentRelativePath, hasFilteredDocumentUnder } from './filteredDocumentsData';
 
 export const isFilteredDocumentPdf = (relativePath: string): boolean => {
   return isFilteredDocumentRelativePath(relativePath);
 };
 
 // Everything that must not appear on (or be deployed with) the website
-export const isHiddenFromSite = (relativePath: string): boolean => {
+export const isHiddenFromSite = (relativePath: string, isDirectory = false): boolean => {
   const p = relativePath.replace(/\\/g, '/');
+  if (isDirectory) {
+    if (hasFilteredDocumentUnder(p)) {
+      return false; // Whitelist directory traversal so protected vault PDFs are found
+    }
+    return isLocalOnly(p) || SITE_EXCLUDED_PATTERNS.some((re) => re.test(p));
+  }
   if (isFilteredDocumentPdf(p)) {
     return false; // Whitelist for password-protected Filtered Document access
   }
   return isLocalOnly(p) || SITE_EXCLUDED_PATTERNS.some((re) => re.test(p));
 };
+
 

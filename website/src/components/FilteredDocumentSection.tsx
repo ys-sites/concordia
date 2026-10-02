@@ -18,6 +18,7 @@ import {
   Brain,
   Target,
   FileCheck,
+  CheckCircle2,
   ClipboardList,
   Cpu,
   Layers,
@@ -122,11 +123,16 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
   const [passwordInput, setPasswordInput] = useState('');
   const [isUnlocked, setIsUnlocked] = useState<boolean>(() => {
     try {
-      return typeof window !== 'undefined' && sessionStorage.getItem(SESSION_STORAGE_KEY) === '1';
+      return typeof window !== 'undefined' && (
+        sessionStorage.getItem(SESSION_STORAGE_KEY) === '1' ||
+        sessionStorage.getItem('miae221_filtered_doc_unlocked') === '1'
+      );
     } catch {
       return false;
     }
   });
+  const [isUnlocking, setIsUnlocking] = useState(false);
+  const [isShaking, setIsShaking] = useState(false);
   const [hasAttempted, setHasAttempted] = useState(false);
 
   // Section 1: Assessment Vault Filters
@@ -147,21 +153,41 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
     setMidtermSearch('');
   }, [course.id]);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && sessionStorage.getItem(SESSION_STORAGE_KEY) === '1') {
-      setIsUnlocked(true);
-    }
-  }, []);
-
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault();
-    setHasAttempted(true);
+    if (!passwordInput.trim() || isUnlocking) return;
+
     if (isPasswordValid(passwordInput)) {
       audio.playCorrect();
-      setIsUnlocked(true);
-      sessionStorage.setItem(SESSION_STORAGE_KEY, '1');
+      setIsUnlocking(true);
+      setTimeout(() => {
+        setIsUnlocked(true);
+        setIsUnlocking(false);
+        try {
+          sessionStorage.setItem(SESSION_STORAGE_KEY, '1');
+          sessionStorage.setItem('miae221_filtered_doc_unlocked', '1');
+        } catch {
+          // ignore
+        }
+      }, 350);
     } else {
       audio.playIncorrect();
+      setHasAttempted(true);
+      setIsShaking(true);
+      setTimeout(() => setIsShaking(false), 450);
+    }
+  };
+
+  const handleLockAgain = () => {
+    audio.playClick();
+    setIsUnlocked(false);
+    setPasswordInput('');
+    setHasAttempted(false);
+    try {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem('miae221_filtered_doc_unlocked');
+    } catch {
+      // ignore
     }
   };
 
@@ -251,23 +277,28 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
 
   if (!isUnlocked) {
     return (
-      <section className="fx-panel" style={{ padding: '48px 24px', textAlign: 'center' }}>
+      <section
+        className={`fx-panel vault-card-enter ${isShaking ? 'shake-incorrect' : ''}`}
+        style={{ padding: '48px 24px', textAlign: 'center', transition: 'all 0.2s ease' }}
+      >
         <div style={{ maxWidth: '440px', margin: '0 auto' }}>
           <div
             style={{
               width: '56px',
               height: '56px',
               borderRadius: '14px',
-              backgroundColor: 'rgba(79, 70, 229, 0.08)',
-              color: 'var(--engr-accent)',
+              backgroundColor: isUnlocking ? 'rgba(34, 197, 94, 0.12)' : 'rgba(79, 70, 229, 0.08)',
+              color: isUnlocking ? 'var(--status-success)' : 'var(--engr-accent)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               margin: '0 auto 20px',
-              border: '1px solid rgba(79, 70, 229, 0.2)'
+              border: `1.5px solid ${isUnlocking ? 'rgba(34, 197, 94, 0.35)' : 'rgba(79, 70, 229, 0.2)'}`,
+              transition: 'all 0.25s ease'
             }}
+            className={isUnlocking ? 'pulse-correct' : ''}
           >
-            <KeyRound size={28} />
+            {isUnlocking ? <CheckCircle2 size={30} /> : <KeyRound size={28} />}
           </div>
 
           <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px', letterSpacing: '-0.02em' }}>
@@ -282,7 +313,11 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
               <input
                 type="password"
                 value={passwordInput}
-                onChange={(e) => setPasswordInput(e.target.value)}
+                onChange={(e) => {
+                  setPasswordInput(e.target.value);
+                  if (hasAttempted) setHasAttempted(false);
+                }}
+                disabled={isUnlocking}
                 placeholder="Enter access key…"
                 autoFocus
                 style={{
@@ -303,11 +338,20 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
 
             <button
               type="submit"
+              disabled={isUnlocking}
               className="action-btn primary-glow-btn"
-              style={{ width: '100%', justifyContent: 'center', padding: '12px', borderRadius: '8px', fontSize: '14px' }}
+              style={{
+                width: '100%',
+                justifyContent: 'center',
+                padding: '12px',
+                borderRadius: '8px',
+                fontSize: '14px',
+                backgroundColor: isUnlocking ? '#16a34a' : undefined,
+                borderColor: isUnlocking ? '#16a34a' : undefined
+              }}
             >
               <Unlock size={16} />
-              <span>Verify Access</span>
+              <span>{isUnlocking ? 'Access Granted…' : 'Verify Access'}</span>
             </button>
           </form>
 
@@ -317,9 +361,9 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                 marginTop: '20px',
                 padding: '12px 16px',
                 borderRadius: '8px',
-                backgroundColor: 'rgba(217, 119, 6, 0.08)',
-                border: '1px solid rgba(217, 119, 6, 0.25)',
-                color: 'var(--status-warning)',
+                backgroundColor: 'rgba(239, 68, 68, 0.08)',
+                border: '1px solid rgba(239, 68, 68, 0.25)',
+                color: '#dc2626',
                 fontSize: '13px',
                 fontWeight: 500,
                 display: 'flex',
@@ -330,7 +374,7 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
               }}
             >
               <AlertTriangle size={16} style={{ flexShrink: 0 }} />
-              <span>This file contains data of the quiz, so its not importent</span>
+              <span>Incorrect access key. Please verify your credentials and try again.</span>
             </div>
           )}
         </div>
@@ -339,7 +383,7 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+    <div className="vault-unlocked-enter" style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
       {/* Overview Banner */}
       <div
         style={{
@@ -378,17 +422,37 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
           </div>
         </div>
 
-        <button
-          onClick={() => {
-            audio.playClick();
-            onStartMidtermDrill(courseConfig?.midtermDrillSectionId);
-          }}
-          className="workspace-quiz-btn"
-          style={{ fontSize: '13px', padding: '8px 16px' }}
-        >
-          <Brain size={16} />
-          <span>Launch Midterm Drill</span>
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <button
+            onClick={handleLockAgain}
+            className="fx-btn"
+            style={{
+              fontSize: '12.5px',
+              padding: '7px 12px',
+              color: 'var(--text-secondary)',
+              border: '1px solid var(--border-subtle)',
+              background: 'var(--bg-card-subtle)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+            title="Re-lock this vault"
+          >
+            <Lock size={14} />
+            <span>Lock Vault</span>
+          </button>
+          <button
+            onClick={() => {
+              audio.playClick();
+              onStartMidtermDrill(courseConfig?.midtermDrillSectionId);
+            }}
+            className="workspace-quiz-btn"
+            style={{ fontSize: '13px', padding: '8px 16px' }}
+          >
+            <Brain size={16} />
+            <span>Launch Midterm Drill</span>
+          </button>
+        </div>
       </div>
 
 

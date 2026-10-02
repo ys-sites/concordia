@@ -45,13 +45,14 @@ export function listPublishedFiles(semesterRoot: string): PublishedFile[] {
       if (isSkippedName(entry.name)) continue;
       const source = path.join(dir, entry.name);
       const relativePath = path.relative(semesterRoot, source).replace(/\\/g, '/');
-      if (isHiddenFromSite(relativePath)) continue;
 
       if (entry.isDirectory()) {
+        if (isHiddenFromSite(relativePath, true)) continue;
         walk(source);
         continue;
       }
       if (!entry.isFile() || !COPIED_EXTENSIONS.includes(path.extname(entry.name).toLowerCase())) continue;
+      if (isHiddenFromSite(relativePath, false)) continue;
 
       const publishedPath = relativePath.split('/').map(slugSegment).join('/');
       const clash = seen.get(publishedPath.toLowerCase());

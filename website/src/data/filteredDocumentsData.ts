@@ -230,6 +230,21 @@ export const isFilteredDocumentRelativePath = (relativePath: string): boolean =>
          /124560047.*\.pdf$/i.test(normalized);
 };
 
+export const hasFilteredDocumentUnder = (dirPath: string): boolean => {
+  const normalized = dirPath.replace(/\\/g, '/').replace(/\/$/, '').toLowerCase() + '/';
+  if (
+    normalized.includes('term paper & final project') ||
+    normalized.includes('06 - quiz & midterm exam prep') ||
+    normalized.includes('05 - assignments & solutions') ||
+    normalized.includes('06 - studocu') ||
+    normalized.includes('07 - studocu') ||
+    normalized.includes('05 - studocu')
+  ) {
+    return true;
+  }
+  return ALL_FILTERED_RELATIVE_PATHS.some((p) => p.toLowerCase().startsWith(normalized));
+};
+
 
 export const INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = [
   {

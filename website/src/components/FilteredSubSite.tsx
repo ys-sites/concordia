@@ -90,20 +90,25 @@ const formatFileSize = (bytes?: number) => {
 
 export const FilteredSubSite: React.FC = () => {
   const [passwordInput, setPasswordInput] = useState('');
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState<boolean>(() => {
+    try {
+      return (
+        typeof window !== 'undefined' &&
+        (sessionStorage.getItem(SESSION_STORAGE_KEY) === '1' ||
+          sessionStorage.getItem('concordia_filtered_doc_unlocked') === '1')
+      );
+    } catch {
+      return false;
+    }
+  });
+  const [isUnlocking, setIsUnlocking] = useState(false);
+  const [isShaking, setIsShaking] = useState(false);
   const [hasAttempted, setHasAttempted] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedQuestions, setExpandedQuestions] = useState<Record<string, boolean>>({});
   const [activePdfDoc, setActivePdfDoc] = useState<CourseDocument | null>(null);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
-
-  // Check session storage on mount
-  useEffect(() => {
-    if (typeof window !== 'undefined' && sessionStorage.getItem(SESSION_STORAGE_KEY) === '1') {
-      setIsUnlocked(true);
-    }
-  }, []);
 
   const handleToggleSound = () => {
     const next = !soundEnabled;
@@ -113,20 +118,37 @@ export const FilteredSubSite: React.FC = () => {
 
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault();
-    setHasAttempted(true);
+    if (!passwordInput.trim() || isUnlocking) return;
     if (isPasswordValid(passwordInput)) {
       audio.playCorrect();
-      setIsUnlocked(true);
-      sessionStorage.setItem(SESSION_STORAGE_KEY, '1');
+      setIsUnlocking(true);
+      setTimeout(() => {
+        setIsUnlocked(true);
+        setIsUnlocking(false);
+        try {
+          sessionStorage.setItem(SESSION_STORAGE_KEY, '1');
+          sessionStorage.setItem('concordia_filtered_doc_unlocked', '1');
+        } catch {
+          // ignore
+        }
+      }, 350);
     } else {
       audio.playIncorrect();
+      setHasAttempted(true);
+      setIsShaking(true);
+      setTimeout(() => setIsShaking(false), 450);
     }
   };
 
   const handleLockAgain = () => {
     audio.playClick();
     setIsUnlocked(false);
-    sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    try {
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem('concordia_filtered_doc_unlocked');
+    } catch {
+      // ignore
+    }
     setPasswordInput('');
     setHasAttempted(false);
   };
@@ -240,13 +262,14 @@ export const FilteredSubSite: React.FC = () => {
           /* Step 1: Verification prompt in the exact same window */
           <div className="workspace-container" style={{ padding: '60px 20px' }}>
             <div
-              className="fx-panel"
+              className={`fx-panel vault-card-enter ${isShaking ? 'shake-incorrect' : ''}`}
               style={{
                 maxWidth: '460px',
                 margin: '0 auto',
                 padding: '36px 30px',
                 textAlign: 'center',
-                boxShadow: 'var(--shadow-md)'
+                boxShadow: 'var(--shadow-md)',
+                transition: 'all 0.2s ease'
               }}
             >
               <div
@@ -254,16 +277,18 @@ export const FilteredSubSite: React.FC = () => {
                   width: '56px',
                   height: '56px',
                   borderRadius: '14px',
-                  backgroundColor: 'rgba(79, 70, 229, 0.08)',
-                  color: 'var(--engr-accent)',
+                  backgroundColor: isUnlocking ? 'rgba(34, 197, 94, 0.12)' : 'rgba(79, 70, 229, 0.08)',
+                  color: isUnlocking ? 'var(--status-success)' : 'var(--engr-accent)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 20px',
-                  border: '1px solid rgba(79, 70, 229, 0.2)'
+                  border: `1.5px solid ${isUnlocking ? 'rgba(34, 197, 94, 0.35)' : 'rgba(79, 70, 229, 0.2)'}`,
+                  transition: 'all 0.25s ease'
                 }}
+                className={isUnlocking ? 'pulse-correct' : ''}
               >
-                <KeyRound size={28} />
+                {isUnlocking ? <CheckCircle2 size={30} /> : <KeyRound size={28} />}
               </div>
 
               <h1 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px', letterSpacing: '-0.02em' }}>
@@ -278,7 +303,11 @@ export const FilteredSubSite: React.FC = () => {
                   <input
                     type="password"
                     value={passwordInput}
-                    onChange={(e) => setPasswordInput(e.target.value)}
+                    onChange={(e) => {
+                      setPasswordInput(e.target.value);
+                      if (hasAttempted) setHasAttempted(false);
+                    }}
+                    disabled={isUnlocking}
                     placeholder="Enter access key…"
                     autoFocus
                     style={{
@@ -299,11 +328,20 @@ export const FilteredSubSite: React.FC = () => {
 
                 <button
                   type="submit"
+                  disabled={isUnlocking}
                   className="action-btn primary-glow-btn"
-                  style={{ width: '100%', justifyContent: 'center', padding: '12px', borderRadius: '8px', fontSize: '14px' }}
+                  style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    padding: '12px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    backgroundColor: isUnlocking ? '#16a34a' : undefined,
+                    borderColor: isUnlocking ? '#16a34a' : undefined
+                  }}
                 >
                   <Unlock size={16} />
-                  <span>Verify Access</span>
+                  <span>{isUnlocking ? 'Access Granted…' : 'Verify Access'}</span>
                 </button>
               </form>
 
@@ -314,9 +352,9 @@ export const FilteredSubSite: React.FC = () => {
                     marginTop: '20px',
                     padding: '12px 16px',
                     borderRadius: '8px',
-                    backgroundColor: 'rgba(217, 119, 6, 0.08)',
-                    border: '1px solid rgba(217, 119, 6, 0.25)',
-                    color: 'var(--status-warning)',
+                    backgroundColor: 'rgba(239, 68, 68, 0.08)',
+                    border: '1px solid rgba(239, 68, 68, 0.25)',
+                    color: '#dc2626',
                     fontSize: '13px',
                     fontWeight: 500,
                     display: 'flex',
@@ -327,14 +365,14 @@ export const FilteredSubSite: React.FC = () => {
                   }}
                 >
                   <AlertTriangle size={16} style={{ flexShrink: 0 }} />
-                  <span>This file contains data of the quiz, so its not importent</span>
+                  <span>Incorrect access key. Please verify your credentials and try again.</span>
                 </div>
               )}
             </div>
           </div>
         ) : (
           /* Step 2: Once verified, continue to that subsection which is the literal view */
-          <div className="workspace-container" style={{ '--accent': '#e11d48' } as React.CSSProperties}>
+          <div className="workspace-container vault-unlocked-enter" style={{ '--accent': '#e11d48' } as React.CSSProperties}>
             {/* Standard Course Workspace Header */}
             <div className="workspace-header">
               <a
