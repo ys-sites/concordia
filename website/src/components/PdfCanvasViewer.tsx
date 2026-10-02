@@ -243,12 +243,28 @@ export const PdfCanvasViewer: React.FC<PdfCanvasViewerProps> = ({ url, title, in
 
       <div ref={scrollRef} className="pdfv-scroll" aria-label={title}>
         {error && (
-          <div className="pdfv-status pdfv-error">
-            <AlertTriangle size={22} />
-            <p>This document could not be displayed here.</p>
-            <a href={url} target="_blank" rel="noopener noreferrer" className="pdfv-fallback-link">
-              <ExternalLink size={14} /> Open the PDF directly
-            </a>
+          <div style={{ width: '100%', height: '100%', minHeight: '650px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+            <div
+              style={{
+                padding: '8px 16px',
+                background: 'var(--bg-card-subtle)',
+                borderBottom: '1px solid var(--border-subtle)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                fontSize: '12px'
+              }}
+            >
+              <span style={{ color: 'var(--text-muted)' }}>Embedded Document Viewer</span>
+              <a href={url} target="_blank" rel="noopener noreferrer" className="pdfv-fallback-link" style={{ fontSize: '12px' }}>
+                <ExternalLink size={13} /> Open in New Tab
+              </a>
+            </div>
+            <iframe
+              src={`${url}#toolbar=1`}
+              title={title}
+              style={{ width: '100%', height: '100%', minHeight: '620px', border: 'none', flex: 1, backgroundColor: '#525659' }}
+            />
           </div>
         )}
         {!pdf && !error && (
