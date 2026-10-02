@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CourseId, PracticeQuestion } from '../types';
+import { CourseId, CourseDocument, PracticeQuestion } from '../types';
 import { MathText } from '../utils/mathRenderer';
 import { WorkedSolution } from './WorkedSolution';
 import { SourceList } from './SourceList';
@@ -38,12 +38,14 @@ interface QuizResultsProps {
   };
   onRestartNewCycle: () => void;
   onBackToCourse: () => void;
+  onOpenPdf?: (doc: CourseDocument, pageNumber?: number) => void;
 }
 
 export const QuizResults: React.FC<QuizResultsProps> = ({
   results,
   onRestartNewCycle,
-  onBackToCourse
+  onBackToCourse,
+  onOpenPdf
 }) => {
   const [reviewMode, setReviewMode] = useState<'step' | 'list'>('step');
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
@@ -394,7 +396,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
                         : `Your answer was Option ${['A', 'B', 'C', 'D'][activeItem.selectedIndex] ?? 'None'} · Correct is Option ${['A', 'B', 'C', 'D'][activeQ.correctIndex]}`}
                     </span>
                   </div>
-                  <SourceList question={activeQ} />
+                  <SourceList question={activeQ} onOpenPdf={onOpenPdf} />
                 </div>
 
                 <div className="drawer-body">
@@ -523,7 +525,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
 
                         <div className="review-derivation-box">
                           <WorkedSolution question={q} selectedIndex={item.selectedIndex} mode="review" />
-                          <SourceList question={q} />
+                          <SourceList question={q} onOpenPdf={onOpenPdf} />
                         </div>
                       </div>
                     )}

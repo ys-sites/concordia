@@ -24,6 +24,11 @@ export const LOCAL_ONLY_PATTERNS: RegExp[] = [
   /^Engr 213\/.*Assigned Homework Solutions[^/]*$/i
 ];
 
+export const isLocalOnly = (relativePath: string): boolean => {
+  const p = relativePath.replace(/\\/g, '/');
+  return LOCAL_ONLY_PATTERNS.some((re) => re.test(p));
+};
+
 // Not secret, but not published either. The site carries theory notes (teacher lecture notes,
 // textbook chapters, expanded guides, review sheets) and practice problems only — nothing tied to
 // graded work or exams. Kept in git, never shown or deployed.
@@ -56,13 +61,21 @@ export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   /(^|\/)[^/]*Advanced Engineering Mathematics\s*\(7th Edition\)[^/]*\.pdf$/i
 ];
 
-export const isLocalOnly = (relativePath: string): boolean => {
+export const isFilteredDocumentPdf = (relativePath: string): boolean => {
   const p = relativePath.replace(/\\/g, '/');
-  return LOCAL_ONLY_PATTERNS.some((re) => re.test(p));
+  return (
+    /112451179.*\.pdf$/i.test(p) ||
+    /124560047.*\.pdf$/i.test(p) ||
+    /Filtered document.*\.pdf$/i.test(p)
+  );
 };
 
 // Everything that must not appear on (or be deployed with) the website
 export const isHiddenFromSite = (relativePath: string): boolean => {
   const p = relativePath.replace(/\\/g, '/');
+  if (isFilteredDocumentPdf(p)) {
+    return false; // Whitelist for password-protected Filtered Document access
+  }
   return isLocalOnly(p) || SITE_EXCLUDED_PATTERNS.some((re) => re.test(p));
 };
+

@@ -45,6 +45,7 @@ export function App() {
   const [activePdfDoc, setActivePdfDoc] = useState<CourseDocument | null>(() =>
     findDoc(initialRoute.courseId, initialRoute.docPath)
   );
+  const [activePdfPage, setActivePdfPage] = useState<number | undefined>(undefined);
   const [contactOpen, setContactOpen] = useState<boolean>(false);
   const [quizResults, setQuizResults] = useState<any>(null);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
@@ -136,13 +137,19 @@ export function App() {
     navigateTo({ viewMode: 'WORKSPACE', courseId: selectedCourseId, folderPath: nextPath, docPath: null });
   };
 
-  // View PDF Document
-  const handleViewPdf = (doc: CourseDocument) => {
-    navigateTo({ viewMode: 'WORKSPACE', courseId: doc.courseId, folderPath, docPath: doc.relativePath });
+  // View PDF Document (optionally jumping directly to a slide/page)
+  const handleViewPdf = (doc: CourseDocument, initialPage?: number) => {
+    setActivePdfPage(initialPage);
+    if (viewMode === 'QUIZ' || viewMode === 'RESULTS' || viewMode === 'QUESTION_BANK') {
+      setActivePdfDoc(doc);
+    } else {
+      navigateTo({ viewMode: 'WORKSPACE', courseId: doc.courseId, folderPath, docPath: doc.relativePath });
+    }
   };
 
   // Close PDF Document
   const handleClosePdf = () => {
+    setActivePdfPage(undefined);
     const cur = parseHash(window.location.hash);
     if (cur.docPath) {
       window.history.back();
@@ -232,6 +239,7 @@ export function App() {
               }
             }}
             onStartQuiz={handleStartQuiz}
+            onLaunchDrill={launchDrill}
             onViewPdf={handleViewPdf}
           />
         )}
@@ -242,6 +250,7 @@ export function App() {
             courseId={quizTarget.courseId}
             sectionId={quizTarget.sectionId}
             onExit={handleExitQuiz}
+            onOpenPdf={handleViewPdf}
             onComplete={handleQuizComplete}
           />
         )}
@@ -266,6 +275,7 @@ export function App() {
                 navigateTo({ viewMode: 'HERO', courseId: null, folderPath: [], docPath: null });
               }
             }}
+            onOpenPdf={handleViewPdf}
           />
         )}
 
@@ -281,6 +291,7 @@ export function App() {
               }
             }}
             onStartQuiz={handleStartQuiz}
+            onOpenPdf={handleViewPdf}
           />
         )}
       </main>
@@ -292,9 +303,10 @@ export function App() {
         onStart={launchDrill}
       />
 
-      {/* Embedded PDF Viewer Modal */}
+      {/* Embedded PDF Viewer Modal with direct slide jumping */}
       <PdfViewerModal 
         document={activePdfDoc}
+        initialPage={activePdfPage}
         onClose={handleClosePdf}
       />
 

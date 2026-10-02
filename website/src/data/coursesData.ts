@@ -65,8 +65,12 @@ const COURSE_INFO: CourseInfo[] = [
   }
 ];
 
+import { isFilteredDocumentPdf } from './localOnly';
+
 const documentsFor = (courseId: CourseId): CourseDocument[] =>
-  (PUBLISHED_DOCUMENTS as CourseDocument[]).filter((d) => d.courseId === courseId);
+  (PUBLISHED_DOCUMENTS as CourseDocument[]).filter(
+    (d) => d.courseId === courseId && !isFilteredDocumentPdf(d.relativePath)
+  );
 
 export const COURSES_DATA: CourseWithDocs[] = COURSE_INFO.map((info) => {
   const documents = documentsFor(info.id);

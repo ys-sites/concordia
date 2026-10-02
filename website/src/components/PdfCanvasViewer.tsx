@@ -23,6 +23,7 @@ interface PageSize {
 interface PdfCanvasViewerProps {
   url: string;
   title: string;
+  initialPage?: number;
 }
 
 const PdfPage: React.FC<{
@@ -101,7 +102,7 @@ const PdfPage: React.FC<{
   );
 };
 
-export const PdfCanvasViewer: React.FC<PdfCanvasViewerProps> = ({ url, title }) => {
+export const PdfCanvasViewer: React.FC<PdfCanvasViewerProps> = ({ url, title, initialPage }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [pdf, setPdf] = useState<PDFDocumentProxy | null>(null);
   const [sizes, setSizes] = useState<PageSize[]>([]);
@@ -109,7 +110,30 @@ export const PdfCanvasViewer: React.FC<PdfCanvasViewerProps> = ({ url, title }) 
   const [progress, setProgress] = useState<number>(0);
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const [zoom, setZoom] = useState<number>(1); // 1 = fit width
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(initialPage || 1);
+
+  // Scroll to requested initialPage once document is loaded
+  useEffect(() => {
+    if (!pdf || !initialPage || initialPage <= 1) return;
+    const targetPage = Math.min(initialPage, pdf.numPages);
+    setCurrentPage(targetPage);
+
+    const scrollToPage = () => {
+      const target = scrollRef.current?.querySelector<HTMLElement>(`[data-page="${targetPage}"]`);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    const t1 = setTimeout(scrollToPage, 120);
+    const t2 = setTimeout(scrollToPage, 450);
+    const t3 = setTimeout(scrollToPage, 900);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, [pdf, initialPage]);
 
   // Load the document
   useEffect(() => {

@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 45
+### Currently Pending Uploads: 46
 
 ---
 
@@ -506,3 +506,14 @@
 * **Title**: ENGR 213 - Past Final Examinations Solved Master Guide (2005-2021)
 * **Academic year**: `2025/2026`
 * **Description**: Comprehensive master preparation manual for Concordia University ENGR 213 Final Examinations (2005–2021). Features fully solved exam problems covering nonlinear separable arctan IVPs, exact trigonometric potentials, forced damped harmonic oscillators (transient vs steady-state analysis), third-order IVPs, Bernoulli explicit forms, cosecant variation of parameters, non-homogeneous 2x2 first-order linear systems, and power series ordinary point recurrence relations.
+
+---
+
+## 46. `Filtered document - Midterm Master Solutions & Video Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Practice materials`
+* **Title**: MIAE 221 - Midterm Master Solutions & Video Solutions Guide (Winter 2026 / Fall 2025)
+* **Academic year**: `2025/2026`
+* **Description**: Complete 40-question comprehensive exam solutions and curriculum mapping for MIAE 221 Materials Science. Includes step-by-step Miller indices derivations, APF and planar density proofs, Bragg's Law XRD calculations, vacancy thermodynamics, Fick's first law diffusion, tensile stress-strain curve calculations (Young's modulus, 0.2% yield strength, necking, ductility), and complete True/False rationale mapped to teacher slides, Callister 10th edition, and curated Organic Chemistry Tutor video links.

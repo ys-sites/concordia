@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { CourseId, PracticeQuestion } from '../types';
+import { CourseId, CourseDocument, PracticeQuestion } from '../types';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
 import { COURSES_DATA } from '../data/coursesData';
 import { MathText } from '../utils/mathRenderer';
@@ -23,9 +23,10 @@ import {
 interface QuestionBankBrowserProps {
   onBack: () => void;
   onStartQuiz: (courseId: CourseId | 'ALL') => void;
+  onOpenPdf?: (doc: CourseDocument, pageNumber?: number) => void;
 }
 
-export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack, onStartQuiz }) => {
+export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack, onStartQuiz, onOpenPdf }) => {
   const [selectedCourse, setSelectedCourse] = useState<CourseId | 'ALL'>('ALL');
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -195,7 +196,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
                   <div className="explanation-section">
                     <WorkedSolution question={q} mode="review" />
 
-                    <SourceList question={q} />
+                    <SourceList question={q} onOpenPdf={onOpenPdf} />
                   </div>
                 </div>
               )}

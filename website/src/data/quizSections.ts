@@ -87,12 +87,12 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
     midterm: {
       label: 'Midterm Review — Chapters 1 to 7',
       detail: 'Comprehensive midterm review: bonding, crystals, XRD, defects, diffusion, mechanical properties, and past papers',
-      sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mechanical', 'strengthening', 'phase', 'mixed', 'past']
+      sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mechanical', 'strengthening', 'phase', 'mixed', 'past', 'midterm-drill']
     },
     final: {
       label: 'Final Exam Review — All Materials Chapters',
       detail: 'Comprehensive materials science review across all course topics and past papers',
-      sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mechanical', 'strengthening', 'phase', 'mixed', 'past', 'past-final']
+      sections: ['intro', 'bonding', 'crystal', 'densities', 'defects', 'mechanical', 'strengthening', 'phase', 'mixed', 'past', 'past-final', 'midterm-drill']
     },
     sections: [
       { id: 'intro', label: 'Ch. 1 · Introduction & Classes of Materials', detail: 'Science vs engineering, properties, material classes, failures' },
@@ -103,6 +103,7 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
       { id: 'mechanical', label: 'Ch. 6 · Mechanical Properties of Metals', detail: 'Tensile test, Hooke’s law, Poisson’s ratio, yield strength 0.002 offset, ductility, hardness' },
       { id: 'strengthening', label: 'Ch. 7 · Dislocations & Strengthening', detail: 'Slip systems, Schmid’s law, Hall-Petch, cold work & recovery-recrystallization' },
       { id: 'phase', label: 'Ch. 9 · Phase Diagrams & Iron-Carbon', detail: 'Lever rule, binary eutectic (Pb-Sn), Fe-Fe3C system, pearlite, hypoeutectoid steels' },
+      { id: 'midterm-drill', label: 'Midterm Exam Drill (Winter 2026 / 2025)', detail: 'Authentic 40-question midterm exam drill with solutions & video mappings' },
       { id: 'past', label: 'Past Papers', detail: 'Quiz drill from past papers' },
       { id: 'past-final', label: 'Past Papers — Final Exam', detail: 'Quiz drill from past papers' }
     ]

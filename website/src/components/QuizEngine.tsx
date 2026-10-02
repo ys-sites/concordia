@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { CourseId, PracticeQuestion, QuizSessionState } from '../types';
+import { CourseId, CourseDocument, PracticeQuestion, QuizSessionState } from '../types';
 import { questionPool, sectionLabel, DRILL_LENGTH } from '../data/quizSections';
 import { MathText } from '../utils/mathRenderer';
 import { SourceList } from './SourceList';
@@ -19,7 +19,7 @@ import {
   HelpCircle, 
   AlertTriangle,
   RotateCcw,
-  Sparkles,
+  Sparkles, 
   BookOpen,
   X
 } from 'lucide-react';
@@ -29,6 +29,7 @@ interface QuizEngineProps {
   courseId: CourseId;
   sectionId: string;
   onExit: () => void;
+  onOpenPdf?: (doc: CourseDocument, pageNumber?: number) => void;
   onComplete: (results: {
     courseId: CourseId;
     sectionLabel: string;
@@ -40,7 +41,7 @@ interface QuizEngineProps {
   }) => void;
 }
 
-export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onExit, onComplete }) => {
+export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onExit, onOpenPdf, onComplete }) => {
   // Up to 20 random questions from this course + section only (never mixed across courses)
   const sessionQuestions = useMemo(() => {
     const pool = questionPool(courseId, sectionId);
@@ -421,7 +422,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
                 </div>
               )}
 
-              <SourceList question={currentQ} />
+              <SourceList question={currentQ} onOpenPdf={onOpenPdf} />
             </div>
 
             <div className="drawer-body">

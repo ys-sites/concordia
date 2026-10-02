@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { CourseDocument } from '../types';
-import { X, ExternalLink, FileText, Maximize2, Video } from 'lucide-react';
+import { X, ExternalLink, FileText, Video, Bookmark } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
 import { displayTitle, getVideoUrl, getTutorialExamInfo } from '../utils/docOrganization';
@@ -10,10 +10,11 @@ const PdfCanvasViewer = lazy(() => import('./PdfCanvasViewer'));
 
 interface PdfViewerModalProps {
   document: CourseDocument | null;
+  initialPage?: number;
   onClose: () => void;
 }
 
-export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, onClose }) => {
+export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, initialPage, onClose }) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -35,8 +36,10 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
   if (!doc) return null;
 
   const pdfUrl = getPdfUrl(doc.relativePath);
+  const pdfUrlWithPage = initialPage && initialPage > 1 ? `${pdfUrl}#page=${initialPage}` : pdfUrl;
   const title = displayTitle(doc);
   const examInfo = getTutorialExamInfo(doc);
+
   const close = () => {
     audio.playClick();
     onClose();
@@ -57,8 +60,14 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
               <FileText size={18} />
             </div>
             <div className="modal-heading">
-              <div className="modal-category" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div className="modal-category" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                 <span>{doc.courseId} · {doc.categoryTitle}</span>
+                {initialPage && initialPage > 0 && (
+                  <span className="modal-slide-focus-pill">
+                    <Bookmark size={11} />
+                    <span>Jumped to Slide {initialPage}</span>
+                  </span>
+                )}
                 {examInfo && (
                   <span
                     style={{
@@ -100,7 +109,7 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
               </a>
             )}
             <a
-              href={pdfUrl}
+              href={pdfUrlWithPage}
               target="_blank"
               rel="noopener noreferrer"
               className="modal-action-btn"
@@ -117,29 +126,42 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ document: doc, o
           </div>
         </div>
 
-        {/* Mobile quick actions bar for instant access */}
+        {/* Mobile quick actions bar with clean alignment and touch targets */}
         <div className="pdf-modal-subbar">
-          <span className="pdf-subbar-text">Document: <strong>{doc.filename}</strong></span>
+          <div className="pdf-subbar-text">
+            <span>Doc:</span>
+            <strong title={doc.filename}>{doc.filename}</strong>
+            {initialPage && initialPage > 0 && (
+              <span className="pdf-subbar-slide-tag">Slide {initialPage}</span>
+            )}
+          </div>
           <div className="pdf-subbar-actions">
             <a
-              href={pdfUrl}
+              href={pdfUrlWithPage}
               target="_blank"
               rel="noopener noreferrer"
               className="pdf-subbar-link"
               onClick={() => audio.playClick()}
+              title="Open PDF directly in a new window / tab"
             >
-              <Maximize2 size={13} />
-              <span>Fullscreen Tab</span>
+              <ExternalLink size={13} />
+              <span>Open in New Tab</span>
             </a>
           </div>
         </div>
 
         <div className="pdf-modal-body">
           <Suspense fallback={<div className="pdfv-status">Loading viewer…</div>}>
-            <PdfCanvasViewer key={pdfUrl} url={pdfUrl} title={title} />
+            <PdfCanvasViewer 
+              key={`${pdfUrl}#p${initialPage || 1}`} 
+              url={pdfUrl} 
+              title={title} 
+              initialPage={initialPage} 
+            />
           </Suspense>
         </div>
       </div>
     </div>
   );
 };
+export default PdfViewerModal;
