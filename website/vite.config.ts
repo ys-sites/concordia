@@ -80,15 +80,19 @@ function coursePdfPlugin() {
     },
     closeBundle() {
       const distCoursesDir = path.resolve(__dirname, 'dist', 'courses');
-      fs.rmSync(distCoursesDir, { recursive: true, force: true });
       const files = listPublishedFiles(semester1Root);
-      console.log(`[Vercel Build] Bundling ${files.length} course files into dist/courses...`);
+      console.log(`[Vercel Build] Syncing ${files.length} course files into dist/courses...`);
+      let copied = 0;
       for (const f of files) {
         const dest = path.join(distCoursesDir, f.publishedPath);
-        fs.mkdirSync(path.dirname(dest), { recursive: true });
-        fs.copyFileSync(f.source, dest);
+        const needCopy = !fs.existsSync(dest) || fs.statSync(f.source).size !== fs.statSync(dest).size;
+        if (needCopy) {
+          fs.mkdirSync(path.dirname(dest), { recursive: true });
+          fs.copyFileSync(f.source, dest);
+          copied++;
+        }
       }
-      console.log('[Vercel Build] Course assets bundled.');
+      console.log(`[Vercel Build] Course assets synced (${copied} copied/updated).`);
     }
   };
 }

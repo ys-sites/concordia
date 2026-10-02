@@ -343,23 +343,23 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           <h2 className="fx-section-title">Course folders</h2>
           <div className="fx-folder-grid">
             {tree.folders.map(renderFolderTile)}
-            {course.id === 'MIAE221' && (
-              <button
-                key="filtered-document"
-                className="fx-folder-tile"
-                onClick={() => openPath(['Filtered document'])}
-              >
-                <span className="fx-folder-icon">
-                  <Lock size={22} />
+            <button
+              key="filtered-document"
+              className="fx-folder-tile"
+              onClick={() => openPath(['Filtered document'])}
+            >
+              <span className="fx-folder-icon">
+                <Lock size={22} />
+              </span>
+              <span className="fx-folder-text">
+                <span className="fx-folder-index">
+                  {tree.folders.length < 9 ? `0${tree.folders.length}` : tree.folders.length}
                 </span>
-                <span className="fx-folder-text">
-                  <span className="fx-folder-index">05</span>
-                  <span className="fx-folder-name">Filtered document</span>
-                  <span className="fx-folder-meta">3 files</span>
-                </span>
-                <ChevronRight size={18} className="fx-folder-chevron" />
-              </button>
-            )}
+                <span className="fx-folder-name">Filtered document</span>
+                <span className="fx-folder-meta">2 Sections · Assessment Vault</span>
+              </span>
+              <ChevronRight size={18} className="fx-folder-chevron" />
+            </button>
           </div>
           {tree.docs.length > 0 && (
             <section className="fx-panel">
@@ -369,10 +369,11 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
         </section>
       ) : activePath[0] === 'Filtered document' ? (
         <FilteredDocumentSection
+          course={course}
           onViewPdf={onViewPdf}
-          onStartMidtermDrill={() => {
+          onStartMidtermDrill={(sectionId) => {
             if (onLaunchDrill) {
-              onLaunchDrill(course.id, 'midterm-drill');
+              onLaunchDrill(course.id, sectionId || 'midterm');
             } else {
               onStartQuiz(course.id);
             }

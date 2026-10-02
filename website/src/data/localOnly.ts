@@ -61,13 +61,10 @@ export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   /(^|\/)[^/]*Advanced Engineering Mathematics\s*\(7th Edition\)[^/]*\.pdf$/i
 ];
 
+import { isFilteredDocumentRelativePath } from './filteredDocumentsData';
+
 export const isFilteredDocumentPdf = (relativePath: string): boolean => {
-  const p = relativePath.replace(/\\/g, '/');
-  return (
-    /112451179.*\.pdf$/i.test(p) ||
-    /124560047.*\.pdf$/i.test(p) ||
-    /Filtered document.*\.pdf$/i.test(p)
-  );
+  return isFilteredDocumentRelativePath(relativePath);
 };
 
 // Everything that must not appear on (or be deployed with) the website
