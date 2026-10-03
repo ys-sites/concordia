@@ -65,7 +65,7 @@ const folderIcon = (name: string, size = 22) => {
   if (/quiz|exam|midterm/.test(n)) return <Target size={size} />;
   if (/software|flowchart|code/.test(n)) return <Code size={size} />;
   if (/video|youtube|tutorial|problem solutions/i.test(n)) return <Video size={size} />;
-  if (/mini course|lesson|leonard/i.test(n)) return <GraduationCap size={size} />;
+  if (/mini course|lesson|leonard|dave/i.test(n)) return <GraduationCap size={size} />;
   if (/summary|chapter|calculus/.test(n)) return <Layers size={size} />;
   if (/filtered/.test(n)) return <Lock size={size} />;
   return <Folder size={size} />;

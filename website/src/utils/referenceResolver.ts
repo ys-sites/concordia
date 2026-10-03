@@ -230,6 +230,16 @@ export function resolveQuestionReferences(
       }
     }
 
+    // D2. Match Professor Dave Lessons (e.g. Professor Dave Lesson 3, Dave Lesson 15)
+    if (!matchedDoc && (lowerText.includes('dave') || lowerText.includes('professor dave'))) {
+      const lesMatch = lowerText.match(/lesson\s*(\d+)/i);
+      if (lesMatch) {
+        const lesNum = parseInt(lesMatch[1], 10);
+        const prefix = String(lesNum).padStart(2, '0');
+        matchedDoc = docs.find((d) => d.filename.toLowerCase().startsWith(prefix) && d.relativePath.toLowerCase().includes('professor dave')) || null;
+      }
+    }
+
     // E. Match Mini-Course Lessons for MIAE 215
     if (!matchedDoc && q.courseId === 'MIAE215' && lowerText.includes('lesson')) {
       const lesMatch = lowerText.match(/lesson\s*(\d+)/i);

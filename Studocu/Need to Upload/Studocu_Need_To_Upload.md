@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 51
+### Currently Pending Uploads: 79
 
 ---
 
@@ -571,3 +571,312 @@
 * **Title**: MIAE 221 - Part 5B: Grain Boundaries, Stacking Faults & Microscopy One-Page Review Sheet
 * **Academic year**: `2025/2026`
 * **Description**: One-page exam review sheet for MIAE 221 Lecture 8 covering grain boundaries and low-angle dislocation walls, etching, ASTM grain size formulas, FCC/HCP stacking faults and stacking fault energy, volumetric defects, and a comparison table of optical, SEM, TEM and SPM resolution and uses. Ideal for last-minute midterm and final review.
+
+---
+
+## 52. `00 - Professor Dave - Differential Equations Complete Roadmap & Intuition.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Summaries`
+* **Title**: ENGR 213 - Professor Dave Complete Differential Equations Roadmap & Intuition Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive pedagogical course roadmap and whiteboard intuition guide based on Professor Dave Explains' 27-video Differential Equations masterclass. Maps core concepts, algebraic solution engines, physical analogies, and exam trapdoor avoidance to the Concordia ENGR 213 curriculum.
+
+---
+
+## 53. `01 - Introduction to Differential Equations.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Introduction to Differential Equations Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide covering Professor Dave's Lesson 1 on the foundations of differential equations. Details the inverse nature of ODEs, dependent vs independent variables, one-parameter solution families, and initial value problems.
+
+---
+
+## 54. `02 - Classification of Differential Equations.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Classification of Differential Equations Guide
+* **Academic year**: `2025/2026`
+* **Description**: Rigorous lecture guide on differential equation taxonomy. Covers ordinary vs partial (ODE vs PDE), order, linearity rules, degree distinctions, and diagnosing nonlinear offending terms for Concordia exams.
+
+---
+
+## 55. `03 - Separable First-Order Differential Equations.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Separable First-Order Differential Equations Guide
+* **Academic year**: `2025/2026`
+* **Description**: Master lecture guide on separable ODEs. Covers differential separation, algebraic factoring, loss of singular equilibrium solutions, initial value branches, and domain of existence analysis.
+
+---
+
+## 56. `04 - Linear First-Order Differential Equations.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Linear First-Order Differential Equations Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on the Integrating Factor method for first-order linear ODEs. Features the reverse product rule derivation, 5-step standard recipe, transient vs steady-state response, and algebraic traps.
+
+---
+
+## 57. `05 - Exact First-Order Differential Equations.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Exact First-Order Differential Equations Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on exact differential equations. Covers Clairaut's mixed partials theorem, potential function phi(x,y) = C reconstruction, and calculating integrating multipliers for non-exact equations.
+
+---
+
+## 58. `06 - Homogeneous & Bernoulli Differential Equations.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Homogeneous & Bernoulli Differential Equations Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on nonlinear substitution methods. Details homogeneous equations via y = vx, and Bernoulli equations via the linearizing power substitution u = y^(1-n).
+
+---
+
+## 59. `07 - Linear Second-Order ODEs - Homogeneous Case.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Linear Second-Order ODEs Homogeneous Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on second-order linear homogeneous ODEs with constant coefficients. Details the characteristic auxiliary equation, the 3 root regimes, Euler's formula, and the Wronskian determinant.
+
+---
+
+## 60. `08 - Linear Second-Order ODEs - Non-Homogeneous Case.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Linear Second-Order ODEs Non-Homogeneous Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on non-homogeneous second-order ODEs. Features the Method of Undetermined Coefficients, the resonance multiplication rule, and Variation of Parameters via Cramer's Wronskian formulas.
+
+---
+
+## 61. `09 - Special Second-Order ODEs - Cauchy-Euler & Nonlinear.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Special Second-Order ODEs Cauchy-Euler Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on Cauchy-Euler equidimensional ODEs and reduction of order methods for nonlinear second-order equations with missing dependent or independent variables.
+
+---
+
+## 62. `10 - Numerical Methods for Differential Equations.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Numerical Methods for Differential Equations Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on numerical methods for ODEs. Covers Euler's method, local truncation error O(h^2) vs global error O(h), Improved Euler (Heun's predictor-corrector), and Runge-Kutta 4th Order (RK4).
+
+---
+
+## 63. `11 - Power Series Solutions - Leibniz Method.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Power Series Solutions Leibniz Method Guide
+* **Academic year**: `2025/2026`
+* **Description**: Master lecture guide on power series solutions about ordinary points. Details index shifting, dummy summation variables, equating like powers of x, two-term recurrence relations, and basis decomposition.
+
+---
+
+## 64. `12 - Power Series Solutions - Frobenius Method.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Power Series Solutions Frobenius Method Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on the Method of Frobenius around regular singular points. Details the indicial equation, root difference cases (non-integer, repeated, integer difference), and Bessel's equation.
+
+---
+
+## 65. `13 - Systems of Differential Equations - Modeling & Elimination.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Systems of ODEs Modeling & Elimination Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on coupled systems of first-order ODEs. Features interconnected fluid tank mixing models, differential operator D notation, and systematic algebraic elimination.
+
+---
+
+## 66. `14 - Systems of Differential Equations - Matrices & Stability.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Systems of ODEs Matrices & Stability Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on linear matrix systems x' = Ax. Features eigenvalue/eigenvector decompositions, phase portraits, critical point classification (nodes, saddles, spiral sinks/sources, centers), and trace-determinant stability.
+
+---
+
+## 67. `15 - Laplace Transforms - Solving Differential Equations.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Laplace Transforms Solving ODEs Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on operational Laplace transforms. Features elementary transform tables, derivative transform rules, First Translation (s-shift) theorem, partial fraction inversions, and IVP solutions.
+
+---
+
+## 68. `16 - Laplace Transforms - Convolutions & LTI Systems.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Laplace Convolutions & LTI Systems Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on advanced Laplace transforms. Covers the Convolution Theorem, Volterra integral equations, Dirac delta impulses, Heaviside unit step switches, and LTI transfer functions.
+
+---
+
+## 69. `17 - Difference Equations & Z-Transforms.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Difference Equations & Z-Transforms Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on discrete-time systems. Covers linear recurrence relations, Fibonacci dynamics, the unilateral Z-Transform definition, Region of Convergence (ROC), and discrete frequency inversion.
+
+---
+
+## 70. `18 - Introduction to Partial Differential Equations & Differential Operators.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Introduction to PDEs & Operators Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on the transition from ODEs to continuum PDEs. Covers second-order linear PDE classification via the discriminant B^2 - 4AC (elliptic, hyperbolic, parabolic), and the gradient, divergence, and Laplacian operators.
+
+---
+
+## 71. `19 - Quasi-Linear First-Order PDEs - Lagrange's Method.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Quasi-Linear First-Order PDEs Lagrange Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on first-order quasi-linear PDEs and the Method of Characteristics. Covers the Lagrange-Charpit system, characteristic curves, first integrals, and Cauchy initial value problems.
+
+---
+
+## 72. `20 - Laplace's Equation & Separation of Variables.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Laplace's Equation & Separation of Variables Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on Laplace's potential equation nabla^2 u = 0 in two dimensions. Covers Dirichlet boundary value problems, the method of separation of variables, eigenvalue Sturm-Liouville problems, and Fourier series synthesis.
+
+---
+
+## 73. `21 - Fourier Series & Frequency Analysis.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Fourier Series & Frequency Analysis Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on trigonometric Fourier series. Covers orthogonal function spaces, Euler-Fourier coefficient formulas, even/odd symmetry simplifications, and Dirichlet convergence conditions.
+
+---
+
+## 74. `22 - Fourier Transforms, Power Spectra & K-Space.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Fourier Transforms & K-Space Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on the continuous Fourier Transform. Covers the transition from discrete series to continuous integrals (L -> infinity), Parseval's energy theorem, Power Spectral Density, and K-Space wavevectors in crystallography.
+
+---
+
+## 75. `23 - The Wave Equation - Vibrations in 1D.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Wave Equation 1D Vibrations Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on the one-dimensional Wave Equation. Features Newton's derivation from elastic string tension, fixed boundary conditions, standing normal modes, and d'Alembert's traveling wave formulation.
+
+---
+
+## 76. `24 - The Wave Equation - Multidimensional Waves & Dispersion.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Wave Equation Multidimensional & Dispersion Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on multidimensional wave equations. Covers 2D vibrating rectangular and circular membranes (drumheads), Bessel radial functions, dispersion relations, phase velocity vs group velocity.
+
+---
+
+## 77. `25 - The Diffusion Equation - Separation of Variables.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Diffusion Equation Separation of Variables Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on the one-dimensional Heat/Diffusion Equation. Covers Fourier's law of thermal conduction, Dirichlet boundary dissipation, spatial Fourier modes, temporal exponential decay, and smoothing properties.
+
+---
+
+## 78. `26 - The Diffusion Equation - Dimensional Analysis & Self-Similarity.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Diffusion Dimensional Analysis & Similarity Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on similarity solutions for infinite and semi-infinite diffusion. Covers the Buckingham Pi theorem, dimensionless similarity variable eta = x / sqrt(4Dt), the Gaussian distribution, and the Error Function (erf/erfc).
+
+---
+
+## 79. `27 - The Diffusion Equation - Green's Functions.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 - Professor Dave Diffusion Green's Functions Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive lecture guide on Green's function methods and the fundamental heat kernel. Covers the point-source impulse response to Dirac delta u(x,0) = delta(x), integral convolutions, and the method of images.
+

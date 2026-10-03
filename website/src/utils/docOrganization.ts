@@ -175,7 +175,37 @@ export const YOUTUBE_VIDEO_MAP: Record<string, string> = {
   'Problem Solving with Velocity and Acceleration': 'https://www.youtube.com/watch?v=pH7oxUCSfQY',
   'Introduction to Slope Fields': 'https://www.youtube.com/watch?v=m9Y8U9f9_Bw',
   'Applications of Slope Fields': 'https://www.youtube.com/watch?v=i_f6tC0BKxI',
-  'Professor Leonard - Differential Equations Complete Roadmap': 'https://www.youtube.com/playlist?list=PLDesaqWTN6ESPaHy2QUKVaXNZuQNxkYQ_'
+  'Professor Leonard - Differential Equations Complete Roadmap': 'https://www.youtube.com/playlist?list=PLDesaqWTN6ESPaHy2QUKVaXNZuQNxkYQ_',
+
+  // Professor Dave Explains Differential Equations Master Series
+  'Professor Dave - Differential Equations Complete Roadmap': 'https://www.youtube.com/playlist?list=PLybg94GvOJ9FwwFOmp8sGTHZRiTWPYSs1',
+  '01 - Introduction to Differential Equations': 'https://www.youtube.com/watch?v=QbkWlNf2Xtw',
+  '02 - Classification of Differential Equations': 'https://www.youtube.com/watch?v=lwed4VVYuHo',
+  '03 - Separable First-Order Differential Equations': 'https://www.youtube.com/watch?v=lbAX_LDjV5o',
+  '04 - Linear First-Order Differential Equations': 'https://www.youtube.com/watch?v=rO31HNxBedg',
+  '05 - Exact First-Order Differential Equations': 'https://www.youtube.com/watch?v=sJQIH4m0L_c',
+  '06 - Homogeneous & Bernoulli Differential Equations': 'https://www.youtube.com/watch?v=o1AHVHEEChA',
+  '07 - Linear Second-Order ODEs - Homogeneous Case': 'https://www.youtube.com/watch?v=MaZatB5UiwU',
+  '08 - Linear Second-Order ODEs - Non-Homogeneous Case': 'https://www.youtube.com/watch?v=bojO7brQtE8',
+  '09 - Special Second-Order ODEs - Cauchy-Euler & Nonlinear': 'https://www.youtube.com/watch?v=fsjcKgXcTVg',
+  '10 - Numerical Methods for Differential Equations': 'https://www.youtube.com/watch?v=A1JnGhaVJsQ',
+  '11 - Power Series Solutions - Leibniz Method': 'https://www.youtube.com/watch?v=g8iReAhrJcE',
+  '12 - Power Series Solutions - Frobenius Method': 'https://www.youtube.com/watch?v=58_qJyfVl-Y',
+  '13 - Systems of Differential Equations - Modeling & Elimination': 'https://www.youtube.com/watch?v=MW97ZFavZ0g',
+  '14 - Systems of Differential Equations - Matrices & Stability': 'https://www.youtube.com/watch?v=LrzyMJ8CS1g',
+  '15 - Laplace Transforms - Solving Differential Equations': 'https://www.youtube.com/watch?v=rrlBRs_etts',
+  '16 - Laplace Transforms - Convolutions & LTI Systems': 'https://www.youtube.com/watch?v=RecYAjxdcEg',
+  '17 - Difference Equations & Z-Transforms': 'https://www.youtube.com/watch?v=7eZ3p5RM89s',
+  '18 - Introduction to Partial Differential Equations & Differential Operators': 'https://www.youtube.com/watch?v=4Ou2FtsD8X8',
+  '19 - Quasi-Linear First-Order PDEs - Lagrange\'s Method': 'https://www.youtube.com/watch?v=LzMCBbxSMts',
+  '20 - Laplace\'s Equation & Separation of Variables': 'https://www.youtube.com/watch?v=8jOqXM8OFh8',
+  '21 - Fourier Series & Frequency Analysis': 'https://www.youtube.com/watch?v=Eta7T0DoYu8',
+  '22 - Fourier Transforms, Power Spectra & K-Space': 'https://www.youtube.com/watch?v=CO8NX6qnWko',
+  '23 - The Wave Equation - Vibrations in 1D': 'https://www.youtube.com/watch?v=ETowl5rNz40',
+  '24 - The Wave Equation - Multidimensional Waves & Dispersion': 'https://www.youtube.com/watch?v=BKhc7nJ4QAY',
+  '25 - The Diffusion Equation - Separation of Variables': 'https://www.youtube.com/watch?v=kRih2ctI3QM',
+  '26 - The Diffusion Equation - Dimensional Analysis & Self-Similarity': 'https://www.youtube.com/watch?v=mMVjgURyiB0',
+  '27 - The Diffusion Equation - Green\'s Functions': 'https://www.youtube.com/watch?v=Ghobc7v1-Js'
 };
 
 export const getVideoUrl = (doc: CourseDocument): string | null => {
@@ -276,6 +306,55 @@ export const getTutorialExamInfo = (doc: CourseDocument): TutorialExamInfo | nul
       badgeText: '📋 Full Series Roadmap',
       badgeColor: '#f59e0b',
       badgeBg: 'rgba(245, 158, 11, 0.14)'
+    };
+  }
+  if (/Professor Dave - Differential Equations Complete Roadmap/i.test(t)) {
+    return {
+      scope: 'overview',
+      chapter: 'All Lessons',
+      badgeText: '📋 Full Series Roadmap',
+      badgeColor: '#f59e0b',
+      badgeBg: 'rgba(245, 158, 11, 0.14)'
+    };
+  }
+  if (/0[1-6]\s*-\s*.*(Separable|Linear First|Exact First|Homogeneous|Bernoulli|Classification|Introduction to Differential)/i.test(t) ||
+      /Professor Dave.*(Lesson\s*0?[1-6]\b|Separable|Linear First|Exact First|Homogeneous|Bernoulli|Classification|Introduction)/i.test(t)) {
+    return {
+      scope: 'midterm',
+      chapter: 'Chapters 1-2',
+      badgeText: '🎯 Required for Midterm (Ch 1-2)',
+      badgeColor: '#16a34a',
+      badgeBg: 'rgba(22, 163, 74, 0.14)'
+    };
+  }
+  if (/0[7-9]\s*-\s*.*(Linear Second|Special Second|Cauchy-Euler)/i.test(t) ||
+      /Professor Dave.*(Lesson\s*0?[7-9]\b|Linear Second|Special Second|Cauchy-Euler)/i.test(t)) {
+    return {
+      scope: 'midterm',
+      chapter: 'Chapter 3',
+      badgeText: '🎯 Required for Midterm (Ch 3)',
+      badgeColor: '#16a34a',
+      badgeBg: 'rgba(22, 163, 74, 0.14)'
+    };
+  }
+  if (/(1[0-6])\s*-\s*.*(Numerical|Power Series|Systems of Differential|Laplace)/i.test(t) ||
+      /Professor Dave.*(Lesson\s*(1[0-6])\b|Numerical|Power Series|Systems|Laplace)/i.test(t)) {
+    return {
+      scope: 'final',
+      chapter: 'Chapters 4-5, 10',
+      badgeText: '🏁 Final Exam Scope (Ch 4-5, 10)',
+      badgeColor: '#6366f1',
+      badgeBg: 'rgba(99, 102, 241, 0.12)'
+    };
+  }
+  if (/(1[7-9]|2[0-7])\s*-\s*.*(Difference Equations|Partial Differential|Lagrange|Fourier|Wave Equation|Diffusion)/i.test(t) ||
+      /Professor Dave.*(Lesson\s*(1[7-9]|2[0-7])\b|Difference|PDE|Lagrange|Fourier|Wave|Diffusion)/i.test(t)) {
+    return {
+      scope: 'overview',
+      chapter: 'Advanced Topics',
+      badgeText: '🚀 Advanced ODE & PDE Scope',
+      badgeColor: '#d97706',
+      badgeBg: 'rgba(217, 119, 6, 0.12)'
     };
   }
   if (/Lesson\s*([1-9]|10)\b/i.test(t) || /The Plan for Differential|Checking Solutions|Slope Fields|Time Rate of Change|Velocity and Acceleration/i.test(t)) {

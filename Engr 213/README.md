@@ -60,6 +60,39 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 
 ---
 
+### `Professor Dave`
+> **Serie Maestra de Ecuaciones Diferenciales (27 Lecciones en Video & Animación - Step-by-Step Mathematical Clarity):**
+* **`00 - Professor Dave - Differential Equations Complete Roadmap & Intuition.pdf` & `.md`**: Professor Dave - Differential Equations Complete Roadmap & Intuition (Course Overview · Complete Syllabus Architecture).
+* **`01 - Introduction to Differential Equations.pdf` & `.md`**: Introduction to Differential Equations (Midterm 1 Scope · Chapter 1.1).
+* **`02 - Classification of Differential Equations.pdf` & `.md`**: Classification of Differential Equations (Midterm 1 Scope · Chapter 1.1).
+* **`03 - Separable First-Order Differential Equations.pdf` & `.md`**: Separable First-Order Differential Equations (Midterm 1 Scope · Chapter 2.2).
+* **`04 - Linear First-Order Differential Equations.pdf` & `.md`**: Linear First-Order Differential Equations (Midterm 1 Scope · Chapter 2.3).
+* **`05 - Exact First-Order Differential Equations.pdf` & `.md`**: Exact First-Order Differential Equations (Midterm 1 Scope · Chapter 2.4).
+* **`06 - Homogeneous & Bernoulli Differential Equations.pdf` & `.md`**: Homogeneous & Bernoulli Differential Equations (Midterm 1 Scope · Chapter 2.5).
+* **`07 - Linear Second-Order ODEs - Homogeneous Case.pdf` & `.md`**: Linear Second-Order ODEs - Homogeneous Case (Midterm 2 Scope · Chapter 3.1 & 3.3).
+* **`08 - Linear Second-Order ODEs - Non-Homogeneous Case.pdf` & `.md`**: Linear Second-Order ODEs - Non-Homogeneous Case (Midterm 2 Scope · Chapter 3.4 & 3.5).
+* **`09 - Special Second-Order ODEs - Cauchy-Euler & Nonlinear.pdf` & `.md`**: Special Second-Order ODEs - Cauchy-Euler & Nonlinear (Midterm 2 Scope · Chapter 3.6).
+* **`10 - Numerical Methods for Differential Equations.pdf` & `.md`**: Numerical Methods for Solving Differential Equations (Midterm / Final Scope · Chapter 2.6).
+* **`11 - Power Series Solutions - Leibniz Method.pdf` & `.md`**: Power Series Solutions - Leibniz Method (Final Exam Scope · Chapter 5.1 & 5.2).
+* **`12 - Power Series Solutions - Frobenius Method.pdf` & `.md`**: Power Series Solutions - Frobenius Method (Final Exam Scope · Chapter 5.3).
+* **`13 - Systems of Differential Equations - Modeling & Elimination.pdf` & `.md`**: Systems of Differential Equations - Modeling & Elimination (Final Exam Scope · Chapter 10.1 & 10.2).
+* **`14 - Systems of Differential Equations - Matrices & Stability.pdf` & `.md`**: Systems of Differential Equations - Matrices & Stability (Final Exam Scope · Chapter 10.3 & 10.4).
+* **`15 - Laplace Transforms - Solving Differential Equations.pdf` & `.md`**: Laplace Transforms - Solving Differential Equations (Final Exam Scope · Chapter 4.1, 4.2, 4.3).
+* **`16 - Laplace Transforms - Convolutions & LTI Systems.pdf` & `.md`**: Laplace Transforms - Convolutions & LTI Systems (Final Exam Scope · Chapter 4.4 & 4.5).
+* **`17 - Difference Equations & Z-Transforms.pdf` & `.md`**: Difference Equations and Z-Transforms (Advanced Engineering Scope · Discrete Systems).
+* **`18 - Introduction to Partial Differential Equations & Differential Operators.pdf` & `.md`**: Introduction to Partial Differential Equations & Differential Operators (Advanced Mathematics & PDE Scope).
+* **`19 - Quasi-Linear First-Order PDEs - Lagrange's Method.pdf` & `.md`**: Quasi-Linear First-Order PDEs - Lagrange's Method (Advanced PDE Scope · Method of Characteristics).
+* **`20 - Laplace's Equation & Separation of Variables.pdf` & `.md`**: Laplace's Equation & Separation of Variables (Advanced Boundary Value Problems Scope).
+* **`21 - Fourier Series & Frequency Analysis.pdf` & `.md`**: Fourier Series & Frequency Analysis (Advanced Mathematics & Signal Scope).
+* **`22 - Fourier Transforms, Power Spectra & K-Space.pdf` & `.md`**: Fourier Transforms, Power Spectra & K-Space (Advanced Transforms & Quantum Scope).
+* **`23 - The Wave Equation - Vibrations in 1D.pdf` & `.md`**: The Wave Equation - Vibrations in 1D (Advanced Hyperbolic PDE Scope).
+* **`24 - The Wave Equation - Multidimensional Waves & Dispersion.pdf` & `.md`**: The Wave Equation - Multidimensional Waves & Dispersion (Advanced Multidimensional PDEs).
+* **`25 - The Diffusion Equation - Separation of Variables.pdf` & `.md`**: The Diffusion Equation - Separation of Variables (Advanced Parabolic PDE Scope · Heat Transfer).
+* **`26 - The Diffusion Equation - Dimensional Analysis & Self-Similarity.pdf` & `.md`**: The Diffusion Equation - Dimensional Analysis & Self-Similarity (Advanced Materials Science & Transport Scope).
+* **`27 - The Diffusion Equation - Green's Functions.pdf` & `.md`**: The Diffusion Equation - Green's Functions (Advanced Theoretical Physics & Operators Scope).
+
+---
+
 ### `01 - Teacher Lecture Notes`
 > **Diapositivas originales del profesor (Dr. A. Haghighat):**
 * **`Lecture 1 - Introduction to Differential Equations.pdf`**: Introducción a las EDOs, clasificación, orden y linealidad (9 de Septiembre).
