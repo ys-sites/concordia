@@ -668,7 +668,7 @@ export const ENGR213_SUBSECTION_QUESTIONS: PracticeQuestion[] = [
       steps: [
         { title: 'Substitute $u = x + y$', math: t`\frac{du}{dx} = 1 + \frac{dy}{dx} = 1 + \tan^2(u) = \sec^2(u)` },
         { title: 'Separate variables', math: t`\frac{du}{\sec^2(u)} = dx \implies \cos^2(u)\,du = dx` },
-        { title: 'Use half-angle identity $\cos^2(u) = \frac{1+\cos(2u)}{2}$', math: t`\int \frac{1+\cos(2u)}{2}\,du = \int dx \implies \frac{u}{2} + \frac{\sin(2u)}{4} = x + C` },
+        { title: t`Use half-angle identity $\cos^2(u) = \frac{1+\cos(2u)}{2}$`, math: t`\int \frac{1+\cos(2u)}{2}\,du = \int dx \implies \frac{u}{2} + \frac{\sin(2u)}{4} = x + C` },
         { title: 'Multiply by 2 and substitute $u = x + y$', math: t`x + y + \frac{1}{2}\sin(2(x+y)) = 2x + C_1 \implies y - x + \sin(x+y)\cos(x+y) = C_1` }
       ],
       answer: t`y - x + \sin(x+y)\cos(x+y) = C`,
@@ -1300,5 +1300,354 @@ export const ENGR213_SUBSECTION_QUESTIONS: PracticeQuestion[] = [
       reference: `${L4} · Pages 14–18`
     },
     source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Integrating Factors' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_EXA_03',
+    courseId: 'ENGR213',
+    chapter: 'exact',
+    pastPaper: 'Winter 2025 Term Test 1 (Version 2, Q3)',
+    topic: 'Exact Differential Equation IVP (Official Winter 2025 Test 1)',
+    difficulty: 'Exam Master',
+    question: t`Solve the initial value problem $(5y + 3t - 5)\,dt + (6y + 5t)\,dy = 0$, $y(-1) = 0$.`,
+    options: [
+      t`$6y^2 + 10ty + 3t^2 - 10t = 13$`,
+      t`$3y^2 + 5ty + 3t^2 - 5t = 13$`,
+      t`$6y^2 + 5ty + 3t^2 - 10t = -7$`,
+      t`$6y^2 + 10ty + \frac{3}{2}t^2 - 10t = 0$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Verify exactness by checking $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial t}$. Find potential function $\Psi(t, y)$ such that $\frac{\partial \Psi}{\partial t} = M$ and $\frac{\partial \Psi}{\partial y} = N$. Finally apply $y(-1)=0$ to determine $C$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Check exactness condition', math: t`\frac{\partial M}{\partial y} = \frac{\partial}{\partial y}(5y + 3t - 5) = 5, \quad \frac{\partial N}{\partial t} = \frac{\partial}{\partial t}(6y + 5t) = 5 \implies \text{Exact}` },
+        { title: 'Integrate $M(t, y)$ with respect to $t$', math: t`\Psi(t, y) = \int (5y + 3t - 5)\,dt = 5yt + \frac{3}{2}t^2 - 5t + h(y)` },
+        { title: 'Differentiate with respect to $y$ and match $N(t, y)$', math: t`\frac{\partial \Psi}{\partial y} = 5t + h'(y) = 6y + 5t \implies h'(y) = 6y \implies h(y) = 3y^2` },
+        { title: 'Formulate general implicit solution', math: t`3y^2 + 5ty + \frac{3}{2}t^2 - 5t = C` },
+        { title: 'Apply the initial condition $y(-1) = 0$', math: t`3(0)^2 + 5(-1)(0) + \frac{3}{2}(-1)^2 - 5(-1) = \frac{3}{2} + 5 = \frac{13}{2} = C` },
+        { title: 'Clear fractions by multiplying by 2', math: t`6y^2 + 10ty + 3t^2 - 10t = 13` }
+      ],
+      answer: t`6y^2 + 10ty + 3t^2 - 10t = 13`,
+      whyWrong: {
+        '1': t`Forgot to multiply the terms $3y^2$ and $5ty$ by 2 when clearing the denominator $13/2$.`,
+        '2': t`Made a sign error when evaluating $-5(-1) = +5$, mistakenly subtracting 5 to get $C = -7/2$.`,
+        '3': t`Assumed the constant $C = 0$ without evaluating at $t = -1, y = 0$.`
+      },
+      commonTrap: t`Careless arithmetic with negative signs when evaluating $-5t$ at $t = -1$. Remember $-5(-1) = +5$.`,
+      reference: `Official Winter 2025 Term Test 1 (Version 2, Q3) · ${L4} Pages 3–6`
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Lecture 4 & Winter 2025 Test 1' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_EXA_04',
+    courseId: 'ENGR213',
+    chapter: 'exact',
+    pastPaper: 'Concordia Midterm Archive (Exactness Parameter)',
+    topic: 'Determining Unknown Constant k for Exactness',
+    difficulty: 'Midterm Level',
+    question: t`For what value of the constant $k$ is the differential equation $(k x y^3 + y \cos(x y))\,dx + (3 x^2 y^2 + x \cos(x y))\,dy = 0$ exact?`,
+    options: [
+      t`$k = 2$`,
+      t`$k = 3$`,
+      t`$k = 6$`,
+      t`$k = 1$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`A differential equation $M(x,y)\,dx + N(x,y)\,dy = 0$ is exact if and only if $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$. Compute both partial derivatives and equate coefficients to solve for $k$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Differentiate $M$ with respect to $y$', math: t`\frac{\partial M}{\partial y} = \frac{\partial}{\partial y}\big[k x y^3 + y\cos(xy)\big] = 3k x y^2 + \cos(xy) - x y\sin(xy)` },
+        { title: 'Differentiate $N$ with respect to $x$', math: t`\frac{\partial N}{\partial x} = \frac{\partial}{\partial x}\big[3x^2 y^2 + x\cos(xy)\big] = 6x y^2 + \cos(xy) - x y\sin(xy)` },
+        { title: 'Equate $\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}$', math: t`3k x y^2 + \cos(xy) - xy\sin(xy) = 6x y^2 + \cos(xy) - xy\sin(xy) \implies 3k x y^2 = 6x y^2` },
+        { title: 'Solve for $k$', math: t`3k = 6 \implies k = 2` }
+      ],
+      answer: t`k = 2`,
+      whyWrong: {
+        '1': t`Set $k = 3$ by directly copying the coefficient in $3x^2 y^2$ without dividing by the derivative exponent 3.`,
+        '2': t`Set $k = 6$ forgetting to divide by the power of $y^3$ differentiated ($3$).`,
+        '3': t`Calculated $3k - 6 = 1 \implies k = 1$.`
+      },
+      commonTrap: t`Forgetting to apply the product rule to $y\cos(xy)$ and $x\cos(xy)$, though fortuitously the product rule terms cancel.`,
+      reference: `${L4} · Pages 4–6`
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Test for Exactness' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_EXA_05',
+    courseId: 'ENGR213',
+    chapter: 'exact',
+    topic: 'Exact Differential Equation with Exponential Terms',
+    difficulty: 'Midterm Level',
+    question: t`Find the implicit general solution to $(2x e^y + y^3)\,dx + (x^2 e^y + 3x y^2 - 4y)\,dy = 0$.`,
+    options: [
+      t`$x^2 e^y + x y^3 - 2y^2 = C$`,
+      t`$x^2 e^y + 3x y^2 - 4y^2 = C$`,
+      t`$2x e^y + x y^3 - y^4 = C$`,
+      t`$x^2 e^y + x y^3 - 4y = C$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Verify that $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$, then integrate $M$ with respect to $x$ treating $y$ as a constant, and differentiate the result with respect to $y$ to determine the missing function $g(y)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Test exactness', math: t`\frac{\partial M}{\partial y} = 2x e^y + 3y^2, \quad \frac{\partial N}{\partial x} = 2x e^y + 3y^2 \implies \text{Exact}` },
+        { title: 'Integrate $M$ with respect to $x$', math: t`\Psi(x, y) = \int (2x e^y + y^3)\,dx = x^2 e^y + x y^3 + g(y)` },
+        { title: 'Differentiate with respect to $y$ and equate to $N$', math: t`\frac{\partial \Psi}{\partial y} = x^2 e^y + 3x y^2 + g'(y) = x^2 e^y + 3x y^2 - 4y \implies g'(y) = -4y` },
+        { title: 'Integrate $g\'(y)$', math: t`g(y) = \int -4y\,dy = -2y^2` },
+        { title: 'Write general solution $\\Psi(x, y) = C$', math: t`x^2 e^y + x y^3 - 2y^2 = C` }
+      ],
+      answer: t`x^2 e^y + x y^3 - 2y^2 = C`,
+      whyWrong: {
+        '1': t`Forgot to integrate $3x y^2$ with respect to $x$ when constructing the first term.`,
+        '2': t`Forgot to integrate $2x$ to $x^2$ when integrating with respect to $x$.`,
+        '3': t`Integrated $g'(y) = -4y$ as $-4y$ instead of $-2y^2$.`
+      },
+      commonTrap: t`Forgetting to integrate $-4y$ into $-2y^2$, treating it as a constant instead of a function of $y$.`,
+      reference: `${L4} · Pages 5–8`
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Method of Solution' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_EXA_06',
+    courseId: 'ENGR213',
+    chapter: 'exact',
+    topic: 'Exact Trigonometric Differential Equation',
+    difficulty: 'Midterm Level',
+    question: t`Solve the exact differential equation $(\cos(y) + y\cos(x))\,dx + (\sin(x) - x\sin(y))\,dy = 0$.`,
+    options: [
+      t`$x\cos(y) + y\sin(x) = C$`,
+      t`$x\sin(y) + y\cos(x) = C$`,
+      t`$\cos(x)\cos(y) - \sin(x)\sin(y) = C$`,
+      t`$x\cos(y) - y\sin(x) = C$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Identify $M = \cos(y) + y\cos(x)$ and $N = \sin(x) - x\sin(y)$. Compute partial derivatives to verify exactness, then integrate $M\,dx$ to find $\Psi(x, y)$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Compute partial derivatives', math: t`\frac{\partial M}{\partial y} = -\sin(y) + \cos(x), \quad \frac{\partial N}{\partial x} = \cos(x) - \sin(y) \implies \text{Exact}` },
+        { title: 'Integrate $M$ with respect to $x$', math: t`\Psi(x, y) = \int \big(\cos(y) + y\cos(x)\big)\,dx = x\cos(y) + y\sin(x) + g(y)` },
+        { title: 'Differentiate with respect to $y$', math: t`\frac{\partial \Psi}{\partial y} = -x\sin(y) + \sin(x) + g'(y) = N = \sin(x) - x\sin(y) \implies g'(y) = 0` },
+        { title: 'Conclusion', math: t`g(y) = C_0 \implies x\cos(y) + y\sin(x) = C` }
+      ],
+      answer: t`x\cos(y) + y\sin(x) = C`,
+      whyWrong: {
+        '1': t`Swapped sines and cosines during integration.`,
+        '2': t`Multiplied the trigonometric terms instead of using the potential function sum.`,
+        '3': t`Introduced a minus sign between the terms instead of a plus sign.`
+      },
+      commonTrap: t`Confusing $\int \cos(x)\,dx = \sin(x)$ with $\frac{d}{dx}\cos(x) = -\sin(x)$.`,
+      reference: `${L4} · Pages 6–9`
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Trigonometric Examples' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_EXA_07',
+    courseId: 'ENGR213',
+    chapter: 'exact',
+    topic: 'Special Integrating Factor μ(y) Depending Exclusively on y',
+    difficulty: 'Exam Master',
+    question: t`Find the integrating factor $\mu(y)$ that makes the non-exact ODE $y\,dx + (2x - y e^y)\,dy = 0$ exact.`,
+    options: [
+      t`$\mu(y) = y$`,
+      t`$\mu(y) = \frac{1}{y}$`,
+      t`$\mu(y) = e^y$`,
+      t`$\mu(y) = y^2$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`When an equation $M\,dx + N\,dy = 0$ is not exact, test $\frac{\frac{\partial N}{\partial x} - \frac{\partial M}{\partial y}}{M}$. If it depends solely on $y$, then $\mu(y) = \exp\left(\int \frac{N_x - M_y}{M}\,dy\right)$ is an integrating factor.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Compute partial derivatives', math: t`M = y \implies \frac{\partial M}{\partial y} = 1, \qquad N = 2x - y e^y \implies \frac{\partial N}{\partial x} = 2` },
+        { title: 'Check exactness', math: t`\frac{\partial M}{\partial y} \neq \frac{\partial N}{\partial x} \quad (1 \neq 2) \implies \text{Not exact}` },
+        { title: 'Evaluate the $y$-quotient condition', math: t`\frac{\frac{\partial N}{\partial x} - \frac{\partial M}{\partial y}}{M} = \frac{2 - 1}{y} = \frac{1}{y} \quad (\text{Depends only on } y)` },
+        { title: 'Compute integrating factor $\mu(y)$', math: t`\mu(y) = e^{\int \frac{1}{y}\,dy} = e^{\ln(y)} = y` },
+        { title: 'Verify exactness of multiplied ODE', math: t`y^2\,dx + (2xy - y^2 e^y)\,dy = 0 \implies \frac{\partial}{\partial y}(y^2) = 2y = \frac{\partial}{\partial x}(2xy - y^2 e^y) = 2y \quad \checkmark` }
+      ],
+      answer: t`\mu(y) = y`,
+      whyWrong: {
+        '1': t`Inverted the sign in $\frac{N_x - M_y}{M}$ to get $-1/y \implies \mu = 1/y$.`,
+        '2': t`Assumed the exponential factor in $N$ determined the integrating factor.`,
+        '3': t`Calculated $\int \frac{1}{y}dy = \ln(y^2)$.`
+      },
+      commonTrap: t`Forgetting that the quotient for $\mu(y)$ has $N_x - M_y$ in the numerator, opposite to the $M_y - N_x$ for $\mu(x)$.`,
+      reference: `${L4} · Pages 12–15`
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Special Integrating Factors μ(y)' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_EXA_08',
+    courseId: 'ENGR213',
+    chapter: 'exact',
+    topic: 'Exact Differential Equation with Logarithmic & Rational Terms IVP',
+    difficulty: 'Exam Master',
+    question: t`Solve the initial value problem $\left(\frac{1}{x} + 2x y\right)\,dx + \left(x^2 - \frac{1}{y}\right)\,dy = 0$, $y(1) = 1$ (for $x > 0, y > 0$).`,
+    options: [
+      t`$\ln(x) + x^2 y - \ln(y) = 1$`,
+      t`$\ln(x) + 2x^2 y - \ln(y) = 2$`,
+      t`$\frac{1}{x^2} + x^2 y - \ln(y) = 1$`,
+      t`$\ln(x) + x y^2 - \frac{1}{y} = 0$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Verify exactness with $\frac{\partial M}{\partial y} = 2x = \frac{\partial N}{\partial x}$. Integrate to form $\Psi(x, y) = C$, and use the initial point $(1, 1)$ to fix the arbitrary constant.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Check exactness', math: t`\frac{\partial M}{\partial y} = \frac{\partial}{\partial y}\left(\frac{1}{x} + 2xy\right) = 2x, \quad \frac{\partial N}{\partial x} = \frac{\partial}{\partial x}\left(x^2 - \frac{1}{y}\right) = 2x \implies \text{Exact}` },
+        { title: 'Integrate $M$ with respect to $x$', math: t`\Psi(x, y) = \int \left(\frac{1}{x} + 2xy\right)\,dx = \ln(x) + x^2 y + g(y)` },
+        { title: 'Match $\\frac{\\partial \\Psi}{\\partial y} = N$', math: t`x^2 + g'(y) = x^2 - \frac{1}{y} \implies g'(y) = -\frac{1}{y} \implies g(y) = -\ln(y)` },
+        { title: 'General implicit solution', math: t`\ln(x) + x^2 y - \ln(y) = C` },
+        { title: 'Apply initial condition $y(1) = 1$', math: t`\ln(1) + (1)^2(1) - \ln(1) = 0 + 1 - 0 = 1 \implies C = 1` }
+      ],
+      answer: t`\ln(x) + x^2 y - \ln(y) = 1`,
+      whyWrong: {
+        '1': t`Forgot to divide by 2 when integrating $2xy\,dx$ with respect to $x$.`,
+        '2': t`Differentiated $1/x$ as $-1/x^2$ instead of integrating to $\ln(x)$.`,
+        '3': t`Calculated $g(y) = -1/y$ instead of $-\ln(y)$.`
+      },
+      commonTrap: t`Mixing up integration and differentiation of rational functions: $\int \frac{1}{y}\,dy = \ln(y)$, not $-\frac{1}{y^2}$.`,
+      reference: `${L4} · Pages 7–10`
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Initial Value Problems' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_EXA_09',
+    courseId: 'ENGR213',
+    chapter: 'exact',
+    topic: 'Method of Inspection & Exact Grouping d(xy)',
+    difficulty: 'Foundation',
+    question: t`Using the exact differential group $d(xy) = x\,dy + y\,dx$, solve the differential equation $(y + x^2)\,dx + x\,dy = 0$.`,
+    options: [
+      t`$xy + \frac{x^3}{3} = C$`,
+      t`$xy + \frac{x^2}{2} = C$`,
+      t`$x^2 y + x^3 = C$`,
+      t`$x + y + \frac{x^3}{3} = C$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Recognize standard differential combinations: $y\,dx + x\,dy = d(xy)$. Group the terms into exact differentials and integrate directly term by term.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Regroup into exact differential blocks', math: t`(y\,dx + x\,dy) + x^2\,dx = 0` },
+        { title: 'Substitute $d(xy)$', math: t`d(xy) + x^2\,dx = 0` },
+        { title: 'Integrate both sides', math: t`\int d(xy) + \int x^2\,dx = C \implies xy + \frac{x^3}{3} = C` },
+        { title: 'Standard exactness verification', math: t`M = y + x^2 \implies M_y = 1; \quad N = x \implies N_x = 1 \implies M_y = N_x \quad \checkmark` }
+      ],
+      answer: t`xy + \frac{x^3}{3} = C`,
+      whyWrong: {
+        '1': t`Integrated $x^2\,dx$ as $x^2/2$ instead of $x^3/3$.`,
+        '2': t`Squared $x$ in the $xy$ term without mathematical justification.`,
+        '3': t`Dropped the differential $d(xy)$ and treated $y\,dx + x\,dy$ as $x+y$.`
+      },
+      commonTrap: t`Failing to recognize $x\,dy + y\,dx$ as the exact product differential $d(xy)$.`,
+      reference: `${L4} · Pages 2–5; Zill §2.4`
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Method of Inspection' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_EXA_10',
+    courseId: 'ENGR213',
+    chapter: 'exact',
+    topic: 'Integrating Factor μ(x) Yielding Polynomial Potential',
+    difficulty: 'Midterm Level',
+    question: t`Find the integrating factor $\mu(x)$ and explicit potential function $\Psi(x, y) = C$ for $(x^2 + y^2 + x)\,dx + xy\,dy = 0$.`,
+    options: [
+      t`$\mu(x) = x \implies \frac{x^4}{4} + \frac{x^2 y^2}{2} + \frac{x^3}{3} = C$`,
+      t`$\mu(x) = x^2 \implies \frac{x^5}{5} + \frac{x^3 y^2}{3} = C$`,
+      t`$\mu(x) = e^x \implies e^x(x^2 + y^2) = C$`,
+      t`$\mu(y) = y \implies \frac{x^2 y^2}{2} + \frac{y^4}{4} = C$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Calculate $\frac{M_y - N_x}{N}$. Here $M_y = 2y$ and $N_x = y$, so $\frac{M_y - N_x}{N} = \frac{y}{xy} = \frac{1}{x}$, a function of $x$ alone. The integrating factor is $\mu(x) = e^{\int \frac{1}{x}dx} = x$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Test for exactness', math: t`M_y = 2y, \quad N_x = y \implies M_y - N_x = y \neq 0 \quad \text{(Not exact)}` },
+        { title: 'Form the $x$-quotient', math: t`\frac{M_y - N_x}{N} = \frac{y}{xy} = \frac{1}{x}` },
+        { title: 'Compute integrating factor', math: t`\mu(x) = e^{\int \frac{1}{x}\,dx} = e^{\ln(x)} = x` },
+        { title: 'Multiply the entire ODE by $x$', math: t`(x^3 + x y^2 + x^2)\,dx + x^2 y\,dy = 0` },
+        { title: 'Integrate the new $M$ with respect to $x$', math: t`\Psi(x, y) = \int (x^3 + x y^2 + x^2)\,dx = \frac{x^4}{4} + \frac{x^2 y^2}{2} + \frac{x^3}{3} + g(y)` },
+        { title: 'Verify against new $N$', math: t`\frac{\partial \Psi}{\partial y} = x^2 y + g'(y) = x^2 y \implies g'(y) = 0 \implies g(y) = 0` }
+      ],
+      answer: t`\mu(x) = x \implies \frac{x^4}{4} + \frac{x^2 y^2}{2} + \frac{x^3}{3} = C`,
+      whyWrong: {
+        '1': t`Took the integrating factor to be $x^2$ instead of $x$.`,
+        '2': t`Substituted $\mu(x) = e^x$ assuming the quotient was a constant 1.`,
+        '3': t`Tested $\frac{N_x - M_y}{M}$ incorrectly and declared $\mu(y) = y$.`
+      },
+      commonTrap: t`Forgetting to multiply all terms of $M(x, y)$ by the integrating factor $\mu(x) = x$.`,
+      reference: `${L4} · Pages 14–17`
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Integrating Factors' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_EXA_11',
+    courseId: 'ENGR213',
+    chapter: 'exact',
+    pastPaper: 'Concordia Midterm 2013 Exam Archive',
+    topic: 'Determining Parameter A for Exactness (Past Midterm Drill)',
+    difficulty: 'Midterm Level',
+    question: t`Find the value of the constant $A$ that makes $(A x^2 y + 2y^2)\,dx + (2x^3 + 4xy)\,dy = 0$ exact.`,
+    options: [
+      t`$A = 6$`,
+      t`$A = 2$`,
+      t`$A = 4$`,
+      t`$A = 3$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Exactness requires $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$. Differentiate both functions and equate coefficients of corresponding powers of $x$ and $y$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Compute $\\frac{\\partial M}{\\partial y}$', math: t`\frac{\partial M}{\partial y} = \frac{\partial}{\partial y}(A x^2 y + 2y^2) = A x^2 + 4y` },
+        { title: 'Compute $\\frac{\\partial N}{\\partial x}$', math: t`\frac{\partial N}{\partial x} = \frac{\partial}{\partial x}(2x^3 + 4xy) = 6x^2 + 4y` },
+        { title: 'Equate partial derivatives', math: t`A x^2 + 4y = 6x^2 + 4y \implies A x^2 = 6x^2 \implies A = 6` }
+      ],
+      answer: t`A = 6`,
+      whyWrong: {
+        '1': t`Set $A = 2$ by directly copying the coefficient in front of $x^3$.`,
+        '2': t`Set $A = 4$ by equating to the coefficient of $4y$.`,
+        '3': t`Calculated $\frac{6}{2} = 3$ unnecessarily dividing by the original coefficient.`
+      },
+      commonTrap: t`Forgetting to differentiate $2x^3$ with respect to $x$ ($3 \times 2 = 6$).`,
+      reference: `${L4} · Pages 4–6`
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Test for Exactness' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_EXA_12',
+    courseId: 'ENGR213',
+    chapter: 'exact',
+    topic: 'Exact Differential Equation with Trigonometric Secant & Tangent Products',
+    difficulty: 'Midterm Level',
+    question: t`Solve the exact differential equation $(\sec(x)\tan(x) + 2x y)\,dx + (x^2 + 3y^2)\,dy = 0$.`,
+    options: [
+      t`$\sec(x) + x^2 y + y^3 = C$`,
+      t`$\tan(x) + x^2 y + y^3 = C$`,
+      t`$\sec(x) + 2x^2 y + 3y^3 = C$`,
+      t`$\sec^2(x) + x^2 y + y^3 = C$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Check $M_y = 2x = N_x$. The equation is exact. Integrate $M$ with respect to $x$ remembering $\int \sec(x)\tan(x)\,dx = \sec(x)$, then match with $N$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Exactness test', math: t`\frac{\partial M}{\partial y} = 2x, \quad \frac{\partial N}{\partial x} = 2x \implies \text{Exact}` },
+        { title: 'Integrate $M$ with respect to $x$', math: t`\Psi(x, y) = \int \big(\sec(x)\tan(x) + 2xy\big)\,dx = \sec(x) + x^2 y + g(y)` },
+        { title: 'Differentiate with respect to $y$ and match $N$', math: t`\frac{\partial \Psi}{\partial y} = x^2 + g'(y) = x^2 + 3y^2 \implies g'(y) = 3y^2 \implies g(y) = y^3` },
+        { title: 'Assemble general solution', math: t`\sec(x) + x^2 y + y^3 = C` }
+      ],
+      answer: t`\sec(x) + x^2 y + y^3 = C`,
+      whyWrong: {
+        '1': t`Integrated $\sec(x)\tan(x)$ incorrectly as $\tan(x)$ instead of $\sec(x)$.`,
+        '2': t`Forgot to divide by 2 when integrating $2xy\,dx$, leaving $2x^2 y$.`,
+        '3': t`Integrated $\sec(x)\tan(x)$ as $\sec^2(x)$.`
+      },
+      commonTrap: t`Confusing the antiderivative of $\sec(x)\tan(x)$ ($\sec(x)$) with that of $\sec^2(x)$ ($\tan(x)$).`,
+      reference: `${L4} · Pages 7–11`
+    },
+    source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Method of Solution' }]
   }
 ];

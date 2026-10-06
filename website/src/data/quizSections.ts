@@ -24,9 +24,9 @@ export const DRILL_LENGTH = 20;
 export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   ENGR213: {
     midterm: {
-      label: 'Midterm Review — All First-Order Topics & Past Exams',
-      detail: 'Comprehensive 20-question mixed review: separable, linear, exact, substitutions, models, complex numbers, and past midterms',
-      sections: ['separable', 'linear', 'homogeneous', 'bernoulli', 'substitutions-mix', 'applications', 'complex', 'exact', 'ch1', 'ch2', 'mixed', 'past']
+      label: 'Midterm 1 Review — Chapter 2 & Sections 17.1, 17.2',
+      detail: 'Official Midterm 1 syllabus: Chapter 2 (Separable, Linear, Exact, Substitutions, Linear Models) and §17.1 & §17.2 (Complex Numbers & Auxiliary Equations), plus authentic past midterms',
+      sections: ['separable', 'linear', 'homogeneous', 'bernoulli', 'substitutions-mix', 'applications', 'complex', 'exact', 'ch2', 'mixed', 'past']
     },
     final: {
       label: 'Final Exam Review — Comprehensive All Topics',

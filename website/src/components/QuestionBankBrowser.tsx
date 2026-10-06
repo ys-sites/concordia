@@ -151,6 +151,19 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
                 <div className="header-left">
                   <span className="q-badge-num">{q.courseId} · #{idx + 1}</span>
                   <span className="topic-tag">{q.topic}</span>
+                  {q.pastPaper ? (
+                    <span className="past-paper-badge" style={{ fontSize: '11px', padding: '2px 8px' }} title={`Exam Paper: ${q.pastPaper}`}>
+                      🏛️ {q.pastPaper}
+                    </span>
+                  ) : q.source?.[0] ? (
+                    <span className="source-origin-badge" style={{ fontSize: '11px', padding: '2px 8px' }} title={`Curriculum Slide: ${q.source[0].deck}`}>
+                      📖 {q.source[0].deck.replace('.pdf', '')}{q.source[0].location ? ` (${q.source[0].location})` : ''}
+                    </span>
+                  ) : q.explanation?.reference ? (
+                    <span className="source-origin-badge" style={{ fontSize: '11px', padding: '2px 8px' }} title={`Reference: ${q.explanation.reference}`}>
+                      📖 {q.explanation.reference.split(';')[0].replace('.pdf', '')}
+                    </span>
+                  ) : null}
                   <span className={`diff-pill diff-${q.difficulty.toLowerCase().replace(' ', '-')}`}>
                     {q.difficulty}
                   </span>

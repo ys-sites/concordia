@@ -495,8 +495,8 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
 
           <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
-              Regenerated from Dr. Alexandre Paradis's official handwritten whiteboard notes and OneNote exports.
-              Covers <strong>Lectures 1–5</strong>, <strong>Tutorials 1 & 3</strong>, <strong>Homework Sets 1–3</strong>, and the complete <strong>Midterm #1 Syllabus (Oct 19: Chapter 2 + §17.1 & §17.2)</strong>.
+              Comprehensive preparation compendium and official solved examination bank.
+              Covers <strong>Lectures 1–5</strong>, <strong>Tutorials 1 & 3</strong>, <strong>Homework Sets 1–3</strong>, and the complete <strong>Midterm 1 Examination Syllabus: Chapter 2 + §17.1 & §17.2</strong>.
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
@@ -561,68 +561,7 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                 </div>
               </div>
 
-              {/* Card 2: Original In-Class Handwritten Notes */}
-              <div
-                style={{
-                  padding: '14px 16px',
-                  borderRadius: '10px',
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1px solid var(--border-subtle)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                    📝 Original Handwritten Notes
-                  </span>
-                  <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>19.1 MB · 56 Pages</span>
-                </div>
-                <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
-                  Paradis notes — In-Class Handwritten Lecture & Tutorial Notes (Dr. Alexandre Paradis)
-                </div>
-                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                  Original raw OneNote digital ink export containing Dr. Paradis's in-class slides, whiteboard diagrams, problem numbers, and student quiz prep.
-                </div>
-                <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
-                  <button
-                    className="fx-btn fx-btn-primary"
-                    style={{ flex: 1, justifyContent: 'center' }}
-                    onClick={() => {
-                      audio.playClick();
-                      onViewPdf({
-                        id: 'ENGR213:filtered:paradis-notes',
-                        courseId: 'ENGR213',
-                        categoryId: 'Filtered-Vault',
-                        categoryTitle: 'Paradis notes',
-                        title: 'Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Alexandre Paradis)',
-                        filename: 'ENGR 213.pdf',
-                        relativePath: 'Engr 213/ENGR 213.pdf',
-                        fileSizeBytes: 19124434,
-                        tags: ['Paradis notes', 'In-Class Notes', 'Lectures 1–5'],
-                        summary: 'Paradis notes in-class handwritten lecture and tutorial notes'
-                      });
-                    }}
-                  >
-                    <Eye size={14} />
-                    <span>View Notes</span>
-                  </button>
-                  <a
-                    className="fx-btn fx-btn-tab"
-                    href={getPdfUrl('Engr 213/ENGR 213.pdf')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Open in a new tab"
-                    onClick={() => audio.playClick()}
-                  >
-                    <ExternalLink size={14} />
-                    <span>New Tab</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Card 3: Solved Examination Bank (Winter 2025) */}
+              {/* Card 2: Solved Examination Bank (Winter 2025) */}
               <div
                 style={{
                   padding: '14px 16px',

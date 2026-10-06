@@ -16,8 +16,41 @@ interface SourceListProps {
 export const SourceList: React.FC<SourceListProps> = ({ question, onOpenPdf }) => {
   const { isPastPaper, items } = resolveQuestionReferences(question);
 
-  // Requirement: "except for the past paer exam, dont show reference"
-  if (isPastPaper || items.length === 0) {
+  if (question.pastPaper) {
+    return (
+      <div className="q-source-card" role="region" aria-label="Official Exam Provenance">
+        <div className="q-source-header">
+          <Bookmark size={13} className="text-amber" />
+          <span className="q-source-heading">Official Exam & Paper Source</span>
+        </div>
+        <div className="q-source-items-group">
+          <div className="q-source-item-static">
+            <FileText size={14} className="q-source-icon" />
+            <span className="q-source-title">{question.pastPaper}</span>
+            <span className="q-source-slide-badge static-badge">Official Concordia Exam</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (items.length === 0) {
+    if (question.explanation?.reference) {
+      return (
+        <div className="q-source-card" role="region" aria-label="Curriculum References">
+          <div className="q-source-header">
+            <BookOpen size={13} className="text-amber" />
+            <span className="q-source-heading">Curriculum Reference</span>
+          </div>
+          <div className="q-source-items-group">
+            <div className="q-source-item-static">
+              <FileText size={14} className="q-source-icon" />
+              <span className="q-source-title">{question.explanation.reference}</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
     return null;
   }
 

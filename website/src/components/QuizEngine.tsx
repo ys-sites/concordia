@@ -333,9 +333,21 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
 
           <div className="question-meta-group">
             <span className="topic-badge">{currentQ.topic}</span>
-            {(currentQ.pastPaper || currentQ.chapter.startsWith('past')) && (
-              <span className="past-paper-badge">Quiz drill from Past papers</span>
-            )}
+            {currentQ.pastPaper ? (
+              <span className="past-paper-badge" title={`Official Paper Origin: ${currentQ.pastPaper}`}>
+                🏛️ {currentQ.pastPaper}
+              </span>
+            ) : currentQ.chapter.startsWith('past') ? (
+              <span className="past-paper-badge">🏛️ Past Paper Drill</span>
+            ) : currentQ.source?.[0] ? (
+              <span className="source-origin-badge" title={`Curriculum Slide: ${currentQ.source[0].deck}`}>
+                📖 {currentQ.source[0].deck.replace('.pdf', '')}{currentQ.source[0].location ? ` (${currentQ.source[0].location})` : ''}
+              </span>
+            ) : currentQ.explanation?.reference ? (
+              <span className="source-origin-badge" title={`Curriculum Reference: ${currentQ.explanation.reference}`}>
+                📖 {currentQ.explanation.reference.split(';')[0].replace('.pdf', '')}
+              </span>
+            ) : null}
             <span className={`difficulty-badge diff-${currentQ.difficulty.toLowerCase().replace(' ', '-')}`}>
               {currentQ.difficulty}
             </span>

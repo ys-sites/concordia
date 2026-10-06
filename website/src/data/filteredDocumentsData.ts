@@ -31,7 +31,6 @@ export const isTermPaperDoc = (relativePath: string): boolean =>
 const RAW_FILTERED_RELATIVE_PATHS: string[] = [
   "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-  "Engr 213/ENGR 213.pdf",
   "Engr 213/00 - Course Syllabus & Textbook/Calculus for Differential Equations - Master Sheet.pdf",
   "Engr 213/00 - Course Syllabus & Textbook/ENGR 213 - Course Outline Fall 2026.pdf",
   "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Advanced_Engineering_Mathematics_Solutions_Manual.pdf",
@@ -226,7 +225,6 @@ export const isFilteredDocumentRelativePath = (relativePath: string): boolean =>
   return ALL_FILTERED_RELATIVE_PATHS.includes(normalized) ||
          /Filtered document.*\.pdf$/i.test(normalized) ||
          /Term Paper & Final Project/i.test(normalized) ||
-         /ENGR 213\.pdf$/i.test(normalized) ||
          /Paradis notes/i.test(normalized) ||
          /Quizzes & Term Tests/i.test(normalized) ||
          /112451179.*\.pdf$/i.test(normalized) ||
@@ -350,7 +348,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     courseId: 'ENGR213',
     code: "ENGR 213",
     name: "Applied Ordinary Differential Equations",
-    midtermScope: "Dr. Paradis Midterm #1 Scope (Exam Date Oct 19): Chapter 2 (Separable ODEs, First-Order Linear Integrating Factors, Exact Equations & Integrating Factors, Solutions by Substitution, Bernoulli & Homogeneous) + §17.1 & §17.2 (Complex Numbers & Second-Order Initial Value Problems). Covers Lectures 1–5, Tutorials 1 & 3, and Homework Sets 1–3.",
+    midtermScope: "Official Midterm 1 Scope: Chapter 2 (Separable ODEs §2.2, Linear ODEs & Integrating Factors §2.3, Exact Equations & Integrating Factors §2.4, Solutions by Substitution: Homogeneous & Bernoulli §2.5, Linear Models & Applications §2.7–§2.8) and Sections 17.1 & 17.2 (Complex Numbers, Polar/Cartesian Forms, Euler's Formula, Roots & Second-Order Initial Value Problems). Covers Lectures 1–5, Tutorials 1 & 3, and Homework Sets 1–3.",
     midtermDrillSectionId: 'midterm',
     assessmentDocs: [
       {
@@ -379,20 +377,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         isMidtermPrep: true,
         tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
       },
-      {
-        id: "ENGR213:filtered:paradis-notes",
-        courseId: 'ENGR213',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Paradis notes',
-        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
-        filename: "ENGR 213.pdf",
-        relativePath: "Engr 213/ENGR 213.pdf",
-        fileSizeBytes: 19124434,
-        categoryType: 'Midterm Exam',
-        isMidtermPrep: true,
-        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
-      },
-      {
+            {
         id: "ENGR213:filtered:42",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
@@ -1720,20 +1705,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         isMidtermPrep: true,
         tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
       },
-      {
-        id: "ENGR213:filtered:paradis-notes",
-        courseId: 'ENGR213',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Paradis notes',
-        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
-        filename: "ENGR 213.pdf",
-        relativePath: "Engr 213/ENGR 213.pdf",
-        fileSizeBytes: 19124434,
-        categoryType: 'Midterm Exam',
-        isMidtermPrep: true,
-        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
-      },
-      {
+            {
         id: "ENGR213:filtered:14",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Midterm-Prep',
@@ -2042,20 +2014,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         isMidtermPrep: true,
         tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
       },
-      {
-        id: "ENGR213:filtered:paradis-notes",
-        courseId: 'ENGR213',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Paradis notes',
-        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
-        filename: "ENGR 213.pdf",
-        relativePath: "Engr 213/ENGR 213.pdf",
-        fileSizeBytes: 19124434,
-        categoryType: 'Midterm Exam',
-        isMidtermPrep: true,
-        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
-      },
-      {
+            {
         id: "INDU211:filtered:4",
         courseId: 'INDU211',
         categoryId: 'Filtered-Vault',
@@ -2642,20 +2601,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         isMidtermPrep: true,
         tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
       },
-      {
-        id: "ENGR213:filtered:paradis-notes",
-        courseId: 'ENGR213',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Paradis notes',
-        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
-        filename: "ENGR 213.pdf",
-        relativePath: "Engr 213/ENGR 213.pdf",
-        fileSizeBytes: 19124434,
-        categoryType: 'Midterm Exam',
-        isMidtermPrep: true,
-        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
-      },
-      {
+            {
         id: "INDU211:filtered:4",
         courseId: 'INDU211',
         categoryId: 'Filtered-Midterm-Prep',
@@ -2924,20 +2870,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         isMidtermPrep: true,
         tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
       },
-      {
-        id: "ENGR213:filtered:paradis-notes",
-        courseId: 'ENGR213',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Paradis notes',
-        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
-        filename: "ENGR 213.pdf",
-        relativePath: "Engr 213/ENGR 213.pdf",
-        fileSizeBytes: 19124434,
-        categoryType: 'Midterm Exam',
-        isMidtermPrep: true,
-        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
-      },
-      {
+            {
         id: "MIAE215:filtered:12",
         courseId: 'MIAE215',
         categoryId: 'Filtered-Vault',
@@ -3290,20 +3223,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         isMidtermPrep: true,
         tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
       },
-      {
-        id: "ENGR213:filtered:paradis-notes",
-        courseId: 'ENGR213',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Paradis notes',
-        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
-        filename: "ENGR 213.pdf",
-        relativePath: "Engr 213/ENGR 213.pdf",
-        fileSizeBytes: 19124434,
-        categoryType: 'Midterm Exam',
-        isMidtermPrep: true,
-        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
-      },
-      {
+            {
         id: "MIAE215:filtered:12",
         courseId: 'MIAE215',
         categoryId: 'Filtered-Midterm-Prep',
@@ -3481,20 +3401,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         isMidtermPrep: true,
         tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
       },
-      {
-        id: "ENGR213:filtered:paradis-notes",
-        courseId: 'ENGR213',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Paradis notes',
-        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
-        filename: "ENGR 213.pdf",
-        relativePath: "Engr 213/ENGR 213.pdf",
-        fileSizeBytes: 19124434,
-        categoryType: 'Midterm Exam',
-        isMidtermPrep: true,
-        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
-      },
-      {
+            {
         id: "MIAE221:filtered:4",
         courseId: 'MIAE221',
         categoryId: 'Filtered-Vault',
@@ -3639,20 +3546,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         isMidtermPrep: true,
         tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
       },
-      {
-        id: "ENGR213:filtered:paradis-notes",
-        courseId: 'ENGR213',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Paradis notes',
-        title: "Paradis notes - In-Class Handwritten Lecture & Tutorial Notes (Dr. Paradis)",
-        filename: "ENGR 213.pdf",
-        relativePath: "Engr 213/ENGR 213.pdf",
-        fileSizeBytes: 19124434,
-        categoryType: 'Midterm Exam',
-        isMidtermPrep: true,
-        tags: ["Paradis notes", "In-Class Notes", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
-      },
-      {
+            {
         id: "MIAE221:filtered:4",
         courseId: 'MIAE221',
         categoryId: 'Filtered-Midterm-Prep',
