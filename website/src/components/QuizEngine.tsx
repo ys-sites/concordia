@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { CourseId, CourseDocument, PracticeQuestion, QuizSessionState } from '../types';
 import { questionPool, sectionLabel, DRILL_LENGTH } from '../data/quizSections';
 import { MathText } from '../utils/mathRenderer';
 import { SourceList } from './SourceList';
 import { WorkedSolution } from './WorkedSolution';
 import { audio } from '../utils/audio';
+import { speechEngine } from '../utils/speechEngine';
 import { 
   Brain, 
   Flame, 
@@ -21,7 +22,10 @@ import {
   RotateCcw,
   Sparkles, 
   BookOpen,
-  X
+  X,
+  Volume2,
+  Bot,
+  Square
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -81,6 +85,17 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
   const [startTime] = useState<number>(Date.now());
   const [elapsedSeconds, setElapsedSeconds] = useState<number>(0);
 
+  // Text-to-speech state: which voice action is currently talking
+  const voiceSupported = speechEngine.isSupported();
+  const [speakingMode, setSpeakingMode] = useState<'none' | 'listen' | 'robot'>('none');
+  const [autoRead, setAutoRead] = useState<boolean>(() => {
+    try { return localStorage.getItem('quiz-auto-read') === '1'; } catch { return false; }
+  });
+
+  // Scroll target: top of the question card (so "Next" lands on the question, not the footer)
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isFirstQuestionRender = useRef(true);
+
   // Timer interval
   useEffect(() => {
     const timer = setInterval(() => {
@@ -112,8 +127,90 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
   const userSelectedIndex = selectedAnswers[currentIndex];
   const isCorrect = isAnswered && userSelectedIndex === currentQ.correctIndex;
 
+  // ---------- Voice: read the question aloud ----------
+  const stopSpeaking = useCallback(() => {
+    speechEngine.stop();
+    setSpeakingMode('none');
+  }, []);
+
+  const buildQuestionScript = (q: PracticeQuestion, index: number) => {
+    const letters = ['A', 'B', 'C', 'D'];
+    const options = q.options.map((opt, i) => `Option ${letters[i]}: ${opt}.`).join(' ');
+    const code = q.codeSnippet ? ' A code snippet is shown on screen.' : '';
+    return `Question ${index + 1}. ${q.question}${code} ${options}`;
+  };
+
+  const speakQuestion = useCallback((mode: 'listen' | 'robot') => {
+    if (!voiceSupported) return;
+    const q = sessionQuestions[currentIndex];
+    const script = mode === 'listen'
+      ? buildQuestionScript(q, currentIndex)
+      : `Sure! Here's question ${currentIndex + 1} again. ${q.question}`;
+    audio.playVoiceCue();
+    speechEngine.speak(script, {
+      // The robot repeats a little slower and warmer so it's easier to follow the second time
+      rate: mode === 'robot' ? 0.88 : 0.95,
+      pitch: mode === 'robot' ? 1.05 : 1.0,
+      onStart: () => setSpeakingMode(mode),
+      onEnd: () => setSpeakingMode('none'),
+      onError: () => setSpeakingMode('none')
+    });
+    setSpeakingMode(mode);
+  }, [voiceSupported, sessionQuestions, currentIndex]);
+
+  const handleVoiceButton = (mode: 'listen' | 'robot') => {
+    if (speakingMode === mode) {
+      audio.playVoiceStop();
+      stopSpeaking();
+      return;
+    }
+    speakQuestion(mode);
+  };
+
+  const toggleAutoRead = () => {
+    const next = !autoRead;
+    setAutoRead(next);
+    try { localStorage.setItem('quiz-auto-read', next ? '1' : '0'); } catch { /* storage unavailable */ }
+    if (next) speakQuestion('listen');
+    else stopSpeaking();
+  };
+
+  // Stop talking when leaving the drill
+  useEffect(() => () => speechEngine.stop(), []);
+
+  // On every question change: silence the previous question, bring the new question's top into view,
+  // and (optionally) auto-read it
+  useEffect(() => {
+    stopSpeaking();
+
+    if (isFirstQuestionRender.current) {
+      isFirstQuestionRender.current = false;
+    } else {
+      const el = cardRef.current;
+      if (el) {
+        // Wait one frame so the previous explanation drawer has collapsed before measuring
+        requestAnimationFrame(() => {
+          const nav = document.querySelector<HTMLElement>('.navbar-container');
+          const navIsPinned = nav && ['sticky', 'fixed'].includes(getComputedStyle(nav).position);
+          const offset = (navIsPinned && nav ? nav.getBoundingClientRect().height : 0) + 12;
+          const top = el.getBoundingClientRect().top;
+          // Only scroll if the question's start isn't already comfortably on screen
+          if (top < offset || top > window.innerHeight * 0.35) {
+            el.style.scrollMarginTop = `${offset}px`;
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            el.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+          }
+        });
+      }
+    }
+
+    if (autoRead) speakQuestion('listen');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex]);
+
   const handleSelectOption = (optionIndex: number) => {
     if (isAnswered) return; // prevent changing
+    stopSpeaking();
 
     const correct = optionIndex === currentQ.correctIndex;
     setSelectedAnswers(prev => ({ ...prev, [currentIndex]: optionIndex }));
@@ -304,7 +401,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
       </div>
 
       {/* Main Question Card Area */}
-      <div className="quiz-card-container">
+      <div className="quiz-card-container" ref={cardRef}>
         <div className="quiz-card-header">
           <div className="header-nav-group">
             <button
@@ -356,6 +453,52 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
 
         {/* Question Statement */}
         <div className="question-statement-box">
+          {voiceSupported && (
+            <div className="question-voice-bar" role="group" aria-label="Read question aloud">
+              <button
+                type="button"
+                className={`voice-btn voice-listen-btn ${speakingMode === 'listen' ? 'is-speaking' : ''}`}
+                onClick={() => handleVoiceButton('listen')}
+                aria-pressed={speakingMode === 'listen'}
+                title={speakingMode === 'listen' ? 'Stop reading' : 'Listen to the question and its options'}
+                id="quiz-listen-btn"
+              >
+                {speakingMode === 'listen' ? <Square size={14} /> : <Volume2 size={17} />}
+                <span>{speakingMode === 'listen' ? 'Stop' : 'Listen'}</span>
+                {speakingMode === 'listen' && (
+                  <span className="voice-wave" aria-hidden="true"><i /><i /><i /><i /></span>
+                )}
+              </button>
+
+              <button
+                type="button"
+                className={`voice-btn voice-robot-btn ${speakingMode === 'robot' ? 'is-speaking' : ''}`}
+                onClick={() => handleVoiceButton('robot')}
+                aria-pressed={speakingMode === 'robot'}
+                title={speakingMode === 'robot' ? 'Stop repeating' : 'Ask the voice assistant to repeat the question'}
+                id="quiz-robot-repeat-btn"
+              >
+                <span className="robot-avatar" aria-hidden="true"><Bot size={18} /></span>
+                <span>{speakingMode === 'robot' ? 'Repeating…' : 'Repeat'}</span>
+                {speakingMode === 'robot' && (
+                  <span className="voice-wave" aria-hidden="true"><i /><i /><i /><i /></span>
+                )}
+              </button>
+
+              <button
+                type="button"
+                className={`auto-read-toggle ${autoRead ? 'is-on' : ''}`}
+                onClick={toggleAutoRead}
+                role="switch"
+                aria-checked={autoRead}
+                title="Automatically read each new question aloud"
+                id="quiz-auto-read-toggle"
+              >
+                <span className="toggle-track"><span className="toggle-thumb" /></span>
+                <span>Auto-read</span>
+              </button>
+            </div>
+          )}
           <h2 className="statement-text">
             <MathText text={currentQ.question} />
           </h2>

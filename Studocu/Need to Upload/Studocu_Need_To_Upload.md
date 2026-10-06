@@ -900,7 +900,7 @@
 * **Category**: `Practical`
 * **Title**: INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script
 * **Academic year**: `2025/2026`
-* **Description**: Comprehensive slide-by-slide 15-minute video presentation guide and verbatim rehearsal script for the INDU 211 Term Paper project. Formatted with 5 speaker segments (3 minutes each), technical transition cues, slide display prompts, and coverage of core production systems automation, AI failure modes, human-in-the-loop oversight, and OIQ engineering ethics.
+* **Description**: Comprehensive slide-by-slide 15-minute video presentation guide and verbatim rehearsal script for the INDU 211 Term Paper project. Formatted with 6 speaker segments (2.5 minutes each across 12 structured slides), technical transition cues, slide display prompts, and coverage of core production systems automation, AI failure modes, human-in-the-loop oversight, and OIQ engineering ethics.
  
 ---
 
