@@ -25,6 +25,9 @@ export interface FilteredCourseConfig {
 export const isSubmissionInstructionDoc = (relativePath: string): boolean =>
   /moodle|submission instructions|submission - /i.test(relativePath.split('/').pop() ?? '');
 
+export const isTermPaperDoc = (relativePath: string): boolean =>
+  /Term Paper & Final Project/i.test(relativePath);
+
 const RAW_FILTERED_RELATIVE_PATHS: string[] = [
   "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
@@ -268,7 +271,7 @@ const RAW_INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = [
     title: 'INDU 211 - Term Paper Group Proposal (1-Page Official Submission)',
     filename: 'INDU 211 - Term Paper Group Proposal (1-Page Official).pdf',
     relativePath: 'Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Group Proposal (1-Page Official).pdf',
-    fileSizeBytes: 92564,
+    fileSizeBytes: 146141,
     categoryType: 'Lab / Project',
     isMidtermPrep: false,
     tags: ['Milestone 1', '1-Page Official Proposal', 'Due Oct 8']
@@ -281,7 +284,7 @@ const RAW_INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = [
     title: 'INDU 211 - Term Paper Master Report: The Future of IE in the GenAI Era (10-Page Final)',
     filename: 'INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era).pdf',
     relativePath: 'Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era).pdf',
-    fileSizeBytes: 289250,
+    fileSizeBytes: 326910,
     categoryType: 'Lab / Project',
     isMidtermPrep: false,
     tags: ['Milestone 3', '10-Page Master Report', 'Final Exam Date']
@@ -294,7 +297,7 @@ const RAW_INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = [
     title: 'INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script',
     filename: 'INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script.pdf',
     relativePath: 'Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script.pdf',
-    fileSizeBytes: 141278,
+    fileSizeBytes: 157576,
     categoryType: 'Lab / Project',
     isMidtermPrep: false,
     tags: ['Milestone 2', '15-Min Video Script', 'Due Dec 1']
@@ -340,7 +343,7 @@ const RAW_INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = [
   }
 ];
 
-export const INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = RAW_INDU211_TERM_PAPER_DOCS.filter((d) => !isSubmissionInstructionDoc(d.relativePath));
+export const INDU211_TERM_PAPER_DOCS: FilteredDocItem[] = RAW_INDU211_TERM_PAPER_DOCS;
 
 const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
   'ENGR213': {
@@ -2495,19 +2498,6 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Lab / Project"]
       },
       {
-        id: "INDU211:filtered:18",
-        courseId: 'INDU211',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Assessment Vault',
-        title: "Final project submission - Moodle instructions",
-        filename: "Final project submission - Moodle instructions.pdf",
-        relativePath: "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Final project submission - Moodle instructions.pdf",
-        fileSizeBytes: 43885,
-        categoryType: 'Final Exam',
-        isMidtermPrep: false,
-        tags: ["Final Exam"]
-      },
-      {
         id: "INDU211:filtered:3",
         courseId: 'INDU211',
         categoryId: 'Filtered-Vault',
@@ -2516,45 +2506,6 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         filename: "INDU 211 - Final Exam Quantitative Problem Guide (LP Modeling, Queuing, SPC & PERT).pdf",
         relativePath: "Indu 211/04 - Worked Problems & Quantitative Analysis/INDU 211 - Final Exam Quantitative Problem Guide (LP Modeling, Queuing, SPC & PERT).pdf",
         fileSizeBytes: 327125,
-        categoryType: 'Final Exam',
-        isMidtermPrep: false,
-        tags: ["Final Exam"]
-      },
-      {
-        id: "INDU211:filtered:19",
-        courseId: 'INDU211',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Assessment Vault',
-        title: "INDU 211 - Term Paper Group Proposal (1-Page Official)",
-        filename: "INDU 211 - Term Paper Group Proposal (1-Page Official).pdf",
-        relativePath: "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Group Proposal (1-Page Official).pdf",
-        fileSizeBytes: 91485,
-        categoryType: 'Final Exam',
-        isMidtermPrep: false,
-        tags: ["Final Exam"]
-      },
-      {
-        id: "INDU211:filtered:20",
-        courseId: 'INDU211',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Assessment Vault',
-        title: "INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era)",
-        filename: "INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era).pdf",
-        relativePath: "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Master Report (The Future of IE in the GenAI Era).pdf",
-        fileSizeBytes: 362964,
-        categoryType: 'Final Exam',
-        isMidtermPrep: false,
-        tags: ["Final Exam"]
-      },
-      {
-        id: "INDU211:filtered:21",
-        courseId: 'INDU211',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Assessment Vault',
-        title: "INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script",
-        filename: "INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script.pdf",
-        relativePath: "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script.pdf",
-        fileSizeBytes: 141280,
         categoryType: 'Final Exam',
         isMidtermPrep: false,
         tags: ["Final Exam"]
@@ -2662,46 +2613,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         categoryType: 'Final Exam',
         isMidtermPrep: false,
         tags: ["Final Exam"]
-      },
-      {
-        id: "INDU211:filtered:22",
-        courseId: 'INDU211',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Assessment Vault',
-        title: "Project video submission - Moodle instructions",
-        filename: "Project video submission - Moodle instructions.pdf",
-        relativePath: "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Project video submission - Moodle instructions.pdf",
-        fileSizeBytes: 66642,
-        categoryType: 'Final Exam',
-        isMidtermPrep: false,
-        tags: ["Final Exam"]
-      },
-      {
-        id: "INDU211:filtered:23",
-        courseId: 'INDU211',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Assessment Vault',
-        title: "Term Paper Description",
-        filename: "Term Paper Description.pdf",
-        relativePath: "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Term Paper Description.pdf",
-        fileSizeBytes: 78656,
-        categoryType: 'Final Exam',
-        isMidtermPrep: false,
-        tags: ["Final Exam"]
-      },
-      {
-        id: "INDU211:filtered:24",
-        courseId: 'INDU211',
-        categoryId: 'Filtered-Vault',
-        categoryTitle: 'Assessment Vault',
-        title: "Term paper group proposal - Moodle instructions",
-        filename: "Term paper group proposal - Moodle instructions.pdf",
-        relativePath: "Indu 211/05 - Assignments & Solutions/Term Paper & Final Project/Term paper group proposal - Moodle instructions.pdf",
-        fileSizeBytes: 48847,
-        categoryType: 'Final Exam',
-        isMidtermPrep: false,
-        tags: ["Final Exam"]
-      },
+      }
     ],
     midtermPrepDocs: [
       {
@@ -3797,9 +3709,14 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
 };
 
 // Each vault lists only its own course's files (the ENGR 213 Paradis notes & exam bank stay in ENGR 213),
-// and no Moodle pages or submission instructions
+// and no Moodle pages, submission instructions, or Term Paper documents (which are isolated in the Term Paper Vault)
 const ownDocsOnly = (docs: FilteredDocItem[], courseId: CourseId) =>
-  docs.filter((d) => d.courseId === courseId && !isSubmissionInstructionDoc(d.relativePath));
+  docs.filter(
+    (d) =>
+      d.courseId === courseId &&
+      !isSubmissionInstructionDoc(d.relativePath) &&
+      !isTermPaperDoc(d.relativePath)
+  );
 
 export const FILTERED_COURSES_DATA = Object.fromEntries(
   (Object.entries(RAW_FILTERED_COURSES_DATA) as [CourseId, FilteredCourseConfig][]).map(([id, cfg]) => [
@@ -3808,7 +3725,7 @@ export const FILTERED_COURSES_DATA = Object.fromEntries(
       ...cfg,
       assessmentDocs: ownDocsOnly(cfg.assessmentDocs, id),
       midtermPrepDocs: ownDocsOnly(cfg.midtermPrepDocs, id),
-      termPaperDocs: cfg.termPaperDocs && ownDocsOnly(cfg.termPaperDocs, id)
+      termPaperDocs: cfg.termPaperDocs ? cfg.termPaperDocs.filter((d) => d.courseId === id) : undefined
     }
   ])
 ) as Record<CourseId, FilteredCourseConfig>;

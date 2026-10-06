@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 79
+### Currently Pending Uploads: 81
 
 ---
 
@@ -879,4 +879,27 @@
 * **Title**: ENGR 213 - Professor Dave Diffusion Green's Functions Guide
 * **Academic year**: `2025/2026`
 * **Description**: Comprehensive lecture guide on Green's function methods and the fundamental heat kernel. Covers the point-source impulse response to Dirac delta u(x,0) = delta(x), integral convolutions, and the method of images.
+
+---
+
+## 80. `INDU 211 - Term Paper Group Proposal (1-Page Official).pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Mandatory assignments`
+* **Title**: INDU 211 - Term Paper Group Proposal (1-Page Official)
+* **Academic year**: `2025/2026`
+* **Description**: Official 1-page team proposal for the INDU 211 Term Paper on the Future of Industrial Engineering in the Generative AI era. Features team member roles, research questions, alignment with core production systems topics, a 10-page final report outline, and preliminary peer-reviewed academic references.
+
+---
+
+## 81. `INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script.pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Practical`
+* **Title**: INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive slide-by-slide 15-minute video presentation guide and verbatim rehearsal script for the INDU 211 Term Paper project. Formatted with 5 speaker segments (3 minutes each), technical transition cues, slide display prompts, and coverage of core production systems automation, AI failure modes, human-in-the-loop oversight, and OIQ engineering ethics.
+
 

@@ -7,6 +7,8 @@ export interface QuizSection {
   id: string;
   label: string;
   detail: string;
+  group?: string;
+  subSections?: string[];
 }
 
 export interface CourseQuizPlan {
@@ -22,20 +24,83 @@ export const DRILL_LENGTH = 20;
 export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   ENGR213: {
     midterm: {
-      label: 'Midterm Review — Chapters 1 & 2',
-      detail: 'Mixed review from Chapters 1 and 2, including first-order past paper problems',
-      sections: ['ch1', 'ch2', 'mixed', 'past']
+      label: 'Midterm Review — All First-Order Topics & Past Exams',
+      detail: 'Comprehensive 20-question mixed review: separable, linear, exact, substitutions, models, complex numbers, and past midterms',
+      sections: ['separable', 'linear', 'homogeneous', 'bernoulli', 'substitutions-mix', 'applications', 'complex', 'exact', 'ch1', 'ch2', 'mixed', 'past']
     },
     final: {
       label: 'Final Exam Review — Comprehensive All Topics',
-      detail: 'Comprehensive ODE curriculum: first-order, higher-order, systems, Cauchy-Euler, resonance, and Laplace transforms',
-      sections: ['ch1', 'ch2', 'mixed', 'past', 'past-final']
+      detail: 'Comprehensive ODE curriculum: first-order, higher-order, systems, Cauchy-Euler, resonance, complex numbers, and Laplace transforms',
+      sections: ['separable', 'linear', 'homogeneous', 'bernoulli', 'substitutions-mix', 'applications', 'complex', 'exact', 'ch1', 'ch2', 'mixed', 'past', 'past-final']
     },
     sections: [
-      { id: 'ch1', label: 'Chapter 1 — Introduction to Differential Equations', detail: 'Textbook §1.1–1.2: terminology, solutions, IVPs, existence & uniqueness' },
-      { id: 'ch2', label: 'Chapter 2 — First-Order Differential Equations', detail: 'Textbook §2.1–2.5, 2.7: direction fields, separable, linear, exact, substitutions, linear models' },
-      { id: 'past', label: 'Past Papers — Midterm Exam', detail: 'Authentic Concordia midterm exam drills (2011–2018)' },
-      { id: 'past-final', label: 'Past Papers — Final Exam', detail: 'Authentic Concordia final exam drills (2005–2021)' }
+      {
+        id: 'separable',
+        label: 'Separable Differential Equations',
+        detail: 'Separable ODEs, explicit vs implicit forms, singular/lost solutions, and initial value problems',
+        group: 'First-Order Solving Methods'
+      },
+      {
+        id: 'linear',
+        label: 'Linear First-Order Differential Equations',
+        detail: 'Standard form y\' + P(x)y = Q(x), integrating factor μ(x) = exp(∫P dx), transient/steady-state, and IVPs',
+        group: 'First-Order Solving Methods'
+      },
+      {
+        id: 'exact',
+        label: 'Exact Equations & Integrating Factors',
+        detail: 'Exactness condition ∂M/∂y = ∂N/∂x, potential function Ψ(x,y) = C, and special factors μ(x), μ(y)',
+        group: 'First-Order Solving Methods'
+      },
+      {
+        id: 'homogeneous',
+        label: 'Homogeneous Substitution (v = y/x)',
+        detail: 'Testing homogeneity of degree k, transformations y = ux / x = vy, and separation of variables',
+        group: 'Substitutions & Reductions'
+      },
+      {
+        id: 'bernoulli',
+        label: 'Bernoulli Differential Equations',
+        detail: 'Standard form y\' + P(x)y = Q(x)y^n, canonical substitution u = y^(1-n), and linear reduction',
+        group: 'Substitutions & Reductions'
+      },
+      {
+        id: 'substitutions-mix',
+        label: '3-Type Substitution Mix',
+        detail: 'Synthesis drill mixing all 3 types: Homogeneous (y=ux), Bernoulli (u=y^(1-n)), and Linear (u=Ax+By+C)',
+        group: 'Substitutions & Reductions',
+        subSections: ['substitutions-mix', 'homogeneous', 'bernoulli']
+      },
+      {
+        id: 'applications',
+        label: 'Real-World Applications & Modelling',
+        detail: 'Mixture tanks (single/variable volume), Newton\'s cooling, series RL/RC circuits, and decay/growth',
+        group: 'Physical Applications'
+      },
+      {
+        id: 'complex',
+        label: 'Complex Numbers & Euler\'s Formula',
+        detail: 'Cartesian/polar forms, Arg(z), Euler\'s formula, De Moivre powers, roots, and ODE auxiliary roots',
+        group: 'Foundations & Complex Numbers'
+      },
+      {
+        id: 'ch1',
+        label: 'Chapter 1 — Classification, IVPs & Direction Fields',
+        detail: 'Order, linearity, n-parameter families, Existence & Uniqueness Theorem, and autonomous phase lines',
+        group: 'Foundations & Complex Numbers'
+      },
+      {
+        id: 'past',
+        label: 'Past Papers — Midterm Exam',
+        detail: 'Authentic Concordia midterm exam drills (2011–2018 & Winter 2025)',
+        group: 'Past Exam Drills'
+      },
+      {
+        id: 'past-final',
+        label: 'Past Papers — Final Exam',
+        detail: 'Authentic Concordia final exam drills (2005–2021)',
+        group: 'Past Exam Drills'
+      }
     ]
   },
   INDU211: {
@@ -120,12 +185,22 @@ export const sectionLabel = (courseId: CourseId, sectionId: string): string => {
 // All questions belonging to one course + section (the midterm mixes its sections)
 export const questionPool = (courseId: CourseId, sectionId: string): PracticeQuestion[] => {
   const plan = QUIZ_PLANS[courseId];
-  const chapters =
-    sectionId === MIDTERM_SECTION_ID
-      ? plan.midterm.sections
-      : sectionId === FINAL_SECTION_ID && plan.final
-        ? plan.final.sections
-        : [sectionId];
+  if (!plan) return [];
+
+  let chapters: string[] = [];
+  if (sectionId === MIDTERM_SECTION_ID) {
+    chapters = plan.midterm.sections;
+  } else if (sectionId === FINAL_SECTION_ID && plan.final) {
+    chapters = plan.final.sections;
+  } else {
+    const sec = plan.sections.find((s) => s.id === sectionId);
+    if (sec?.subSections && sec.subSections.length > 0) {
+      chapters = sec.subSections;
+    } else {
+      chapters = [sectionId];
+    }
+  }
+
   return PRACTICE_QUESTIONS.filter((q) => q.courseId === courseId && chapters.includes(q.chapter));
 };
 

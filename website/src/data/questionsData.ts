@@ -32,7 +32,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 10"
       }
     ]
@@ -63,7 +63,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 9"
       }
     ]
@@ -95,7 +95,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 15"
       }
     ]
@@ -127,7 +127,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 13"
       }
     ]
@@ -158,7 +158,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 7"
       }
     ]
@@ -189,7 +189,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 16"
       }
     ]
@@ -219,7 +219,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 4"
       }
     ]
@@ -251,7 +251,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 5"
       }
     ]
@@ -282,7 +282,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 8"
       }
     ]
@@ -314,7 +314,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 8"
       }
     ]
@@ -322,7 +322,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_011",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "ch1",
     "topic": "Direction Fields",
     "difficulty": "Foundation",
     "question": "For $\\dfrac{dy}{dx} = 0.2xy$, what is the slope of the lineal element at the point $(2, 3)$?",
@@ -344,7 +344,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "ch1",
         "location": "Page 11"
       }
     ]
@@ -352,7 +352,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_012",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "ch1",
     "topic": "Autonomous ODEs",
     "difficulty": "Midterm Level",
     "question": "For the autonomous ODE $\\frac{dy}{dx} = y(y - 3)$, what are the critical points?",
@@ -375,7 +375,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "ch1",
         "location": "Page 14"
       }
     ]
@@ -383,7 +383,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_013",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "separable",
     "topic": "Separable ODEs",
     "difficulty": "Midterm Level",
     "question": "solve the IVP $\\dfrac{dy}{dx} = -\\dfrac{x}{y}$, $y(4) = -3$.",
@@ -407,7 +407,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "separable",
         "location": "Page 5"
       }
     ]
@@ -415,7 +415,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_014",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "separable",
     "topic": "Separable ODEs – Lost Solutions",
     "difficulty": "Midterm Level",
     "question": "solving $\\dfrac{dy}{dx} = y^2 - 4$ by separation gives the family $y = 2\\,\\dfrac{1 + c e^{4x}}{1 - c e^{4x}}$. Which constant solution is a singular (lost) solution?",
@@ -439,7 +439,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "separable",
         "location": "Page 6"
       }
     ]
@@ -447,7 +447,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_015",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "linear",
     "topic": "Linear First-Order ODEs",
     "difficulty": "Exam Master",
     "question": "solve $(x^2 - 9)\\dfrac{dy}{dx} + xy = 0$ for $x > 3$.",
@@ -471,7 +471,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "linear",
         "location": "Page 13"
       }
     ]
@@ -479,7 +479,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_016",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "linear",
     "topic": "Linear First-Order ODEs",
     "difficulty": "Midterm Level",
     "question": "What is the integrating factor for $\\frac{dy}{dx} - 2y = e^{2x}$?",
@@ -501,7 +501,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "linear",
         "location": "Page 9"
       }
     ]
@@ -509,7 +509,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_017",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "linear",
     "topic": "Linear First-Order ODEs",
     "difficulty": "Midterm Level",
     "question": "find the general solution of $\\dfrac{dy}{dx} - 3y = 6$.",
@@ -534,7 +534,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "linear",
         "location": "Page 12"
       }
     ]
@@ -542,7 +542,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_018",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "exact",
     "topic": "Exact Equations",
     "difficulty": "Midterm Level",
     "question": "Which condition proves that $M(x, y)dx + N(x, y)dy = 0$ is an exact differential equation?",
@@ -566,7 +566,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "exact",
         "location": "Page 4"
       }
     ]
@@ -574,7 +574,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_019",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "exact",
     "topic": "Exact Equations",
     "difficulty": "Midterm Level",
     "question": "solve $2xy\\,dx + (x^2 - 1)\\,dy = 0$.",
@@ -599,7 +599,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "exact",
         "location": "Page 8"
       }
     ]
@@ -607,7 +607,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_020",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "exact",
     "topic": "Integrating Factors",
     "difficulty": "Exam Master",
     "question": "If $\\frac{1}{N}\\left(\\frac{\\partial M}{\\partial y} - \\frac{\\partial N}{\\partial x}\\right) = g(x)$ depends only on $x$, what is the integrating factor $\\mu(x)$?",
@@ -632,7 +632,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "exact",
         "location": "Page 10"
       }
     ]
@@ -640,7 +640,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_021",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "exact",
     "topic": "Integrating Factor (Exact)",
     "difficulty": "Exam Master",
     "question": "which integrating factor makes $xy\\,dx + (2x^2 + 3y^2 - 20)\\,dy = 0$ exact?",
@@ -665,7 +665,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "exact",
         "location": "Page 10"
       }
     ]
@@ -673,7 +673,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_022",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "homogeneous",
     "topic": "Substitutions",
     "difficulty": "Midterm Level",
     "question": "A function $f(x, y)$ is homogeneous of degree $k$ if $f(tx, ty) = t^k f(x, y)$. What substitution solves $(x^2 + y^2)dx + (x^2 - xy)dy = 0$?",
@@ -697,7 +697,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "homogeneous",
         "location": "Page 8"
       }
     ]
@@ -705,7 +705,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_023",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "bernoulli",
     "topic": "Bernoulli Equations",
     "difficulty": "Midterm Level",
     "question": "For the Bernoulli equation $\\frac{dy}{dx} + P(x)y = Q(x)y^n$ with $n \\ne 0, 1$, what is the appropriate substitution to linearize it?",
@@ -729,7 +729,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "bernoulli",
         "location": "Page 10"
       }
     ]
@@ -737,7 +737,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_024",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "bernoulli",
     "topic": "Bernoulli's Equation",
     "difficulty": "Exam Master",
     "question": "solve $x\\dfrac{dy}{dx} + y = x^2 y^2$.",
@@ -762,7 +762,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "bernoulli",
         "location": "Page 11"
       }
     ]
@@ -770,7 +770,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_025",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "separable",
     "topic": "Reduction to Separation of Variables",
     "difficulty": "Midterm Level",
     "question": "What substitution reduces $\\dfrac{dy}{dx} = \\sin(x + y)$ to a separable equation?",
@@ -793,7 +793,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "separable",
         "location": "Page 12"
       }
     ]
@@ -801,7 +801,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_026",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "applications",
     "topic": "Linear Models",
     "difficulty": "Foundation",
     "question": "In the Malthusian population model $\\frac{dP}{dt} = kP$, if a culture doubles in 5 hours, what is the growth constant $k$?",
@@ -825,7 +825,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "applications",
         "location": "Page 5"
       }
     ]
@@ -833,7 +833,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_027",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "applications",
     "topic": "Growth Model (Bacteria)",
     "difficulty": "Midterm Level",
     "question": "a culture starts with $P_0$ bacteria and has $\\tfrac32 P_0$ after 1 hour. If the growth rate is proportional to $P$, when does the population triple?",
@@ -856,7 +856,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "applications",
         "location": "Page 6"
       }
     ]
@@ -864,7 +864,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_028",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "applications",
     "topic": "Mixture of Two Salt Solutions",
     "difficulty": "Midterm Level",
     "question": "a 300 gal tank starts with 50 lb of salt. Brine at 2 lb/gal enters at 3 gal/min, and the well-mixed solution leaves at 3 gal/min. How much salt is in the tank after a long time?",
@@ -888,7 +888,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "applications",
         "location": "Page 12"
       }
     ]
@@ -896,7 +896,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_029",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "applications",
     "topic": "Linear Models",
     "difficulty": "Midterm Level",
     "question": "A thermometer reading $70^\\circ\\text{F}$ is placed in an oven at constant temperature $T_m = 350^\\circ\\text{F}$. If $\\frac{dT}{dt} = k(T - T_m)$, what is the general form of $T(t)$?",
@@ -921,7 +921,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "applications",
         "location": "Page 8"
       }
     ]
@@ -929,7 +929,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_030",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "applications",
     "topic": "Newton's Law of Cooling",
     "difficulty": "Exam Master",
     "question": "a cake leaves the oven at $300^\\circ$F and is $200^\\circ$F three minutes later, in a $70^\\circ$F room. Which statement is correct?",
@@ -953,7 +953,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "applications",
         "location": "Page 9"
       }
     ]
@@ -961,7 +961,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_031",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "applications",
     "topic": "Mixture Problems",
     "difficulty": "Midterm Level",
     "question": "A 100-gallon tank contains 20 lbs of salt. Pure water enters at $3\\text{ gal/min}$, and the well-stirred mixture leaves at $3\\text{ gal/min}$. What is the salt amount $A(t)$ after $t$ minutes?",
@@ -985,7 +985,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "applications",
         "location": "Page 11"
       }
     ]
@@ -993,7 +993,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_032",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "applications",
     "topic": "Mixture Problems",
     "difficulty": "Exam Master",
     "question": "In a brine tank with initial volume $V_0 = 500\\text{ L}$, solution enters at $r_{\\text{in}} = 5\\text{ L/min}$ and drains at $r_{\\text{out}} = 3\\text{ L/min}$. What is the volume $V(t)$ in the tank at time $t$?",
@@ -1016,7 +1016,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "applications",
         "location": "Page 11"
       }
     ]
@@ -1024,7 +1024,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_033",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "applications",
     "topic": "LR-Series Circuit",
     "difficulty": "Midterm Level",
     "question": "a 12 V battery is connected to an LR-series circuit with $L = 0.5$ H and $R = 10\\,\\Omega$. If $i(0) = 0$, find $i(t)$.",
@@ -1048,7 +1048,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "applications",
         "location": "Page 16"
       }
     ]
@@ -1078,7 +1078,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 3"
       }
     ]
@@ -1086,7 +1086,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_035",
     "courseId": "ENGR213",
-    "chapter": "ch1",
+    "chapter": "applications",
     "topic": "Where DEs Appear",
     "difficulty": "Foundation",
     "question": "In mathematical modeling, what fundamental characteristic is shared by Newton's law of cooling, vehicle dynamics, chemical kinetics, and population growth?",
@@ -1109,7 +1109,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "applications",
         "location": "Page 4"
       }
     ]
@@ -1117,7 +1117,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_036",
     "courseId": "ENGR213",
-    "chapter": "ch1",
+    "chapter": "applications",
     "topic": "Dependent vs Independent Variables",
     "difficulty": "Foundation",
     "question": "In the population model $\\dfrac{dP}{dt} = rP\\left(1 - \\dfrac{P}{K}\\right)$, which is the dependent variable and which is the independent variable?",
@@ -1139,7 +1139,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "applications",
         "location": "Page 6"
       }
     ]
@@ -1169,7 +1169,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 6"
       }
     ]
@@ -1199,7 +1199,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 8"
       }
     ]
@@ -1229,7 +1229,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 9"
       }
     ]
@@ -1259,7 +1259,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 9"
       }
     ]
@@ -1267,7 +1267,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_041",
     "courseId": "ENGR213",
-    "chapter": "ch1",
+    "chapter": "linear",
     "topic": "Linear ODE Characteristics",
     "difficulty": "Foundation",
     "question": "Which condition is required for an $n$th-order ODE to be linear in $y$?",
@@ -1289,7 +1289,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "linear",
         "location": "Page 10"
       }
     ]
@@ -1319,7 +1319,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 11"
       }
     ]
@@ -1349,7 +1349,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 13"
       }
     ]
@@ -1379,7 +1379,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 14"
       }
     ]
@@ -1410,7 +1410,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 14"
       }
     ]
@@ -1440,7 +1440,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 18"
       }
     ]
@@ -1471,7 +1471,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 19"
       }
     ]
@@ -1502,7 +1502,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 19"
       }
     ]
@@ -1532,7 +1532,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 20"
       }
     ]
@@ -1562,7 +1562,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 3"
       }
     ]
@@ -1592,7 +1592,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 8"
       }
     ]
@@ -1622,7 +1622,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 8"
       }
     ]
@@ -1652,7 +1652,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 1 — Introduction to Differential Equations",
+        "chapter": "ch1",
         "location": "Page 7"
       }
     ]
@@ -1660,7 +1660,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_054",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "ch1",
     "topic": "Direction Fields",
     "difficulty": "Foundation",
     "question": "What is a direction field (slope field)?",
@@ -1682,7 +1682,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "ch1",
         "location": "Page 12"
       }
     ]
@@ -1690,7 +1690,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_055",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "ch1",
     "topic": "Phase Portrait Stability",
     "difficulty": "Midterm Level",
     "question": "For the autonomous differential equation $y' = y(1 - y)$, classify the critical point $y = 0$.",
@@ -1714,7 +1714,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "ch1",
         "location": "Page 15"
       }
     ]
@@ -1722,7 +1722,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_056",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "ch1",
     "topic": "Semi-Stable Critical Points",
     "difficulty": "Exam Master",
     "question": "Classify the critical point $y = 2$ of $y' = (y - 2)^2$.",
@@ -1745,7 +1745,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "ch1",
         "location": "Page 17"
       }
     ]
@@ -1753,7 +1753,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_057",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "separable",
     "topic": "Separable ODEs",
     "difficulty": "Foundation",
     "question": "solve $(1 + x)\\,dy - y\\,dx = 0$.",
@@ -1776,7 +1776,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "separable",
         "location": "Page 4"
       }
     ]
@@ -1784,7 +1784,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_058",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "separable",
     "topic": "Recognizing Separable Equations",
     "difficulty": "Foundation",
     "question": "Which equation is separable?",
@@ -1806,7 +1806,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "separable",
         "location": "Page 3"
       }
     ]
@@ -1814,7 +1814,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_059",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "linear",
     "topic": "Linear Equation Structure",
     "difficulty": "Midterm Level",
     "question": "For a linear first-order ODE in standard form $y' + P(x)y = f(x)$, how is the general solution built?",
@@ -1836,7 +1836,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "linear",
         "location": "Page 9"
       }
     ]
@@ -1844,7 +1844,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_060",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "linear",
     "topic": "Piecewise-Linear ODE",
     "difficulty": "Exam Master",
     "question": "For the initial value problem $y' + y = f(x)$, $y(0) = 0$, where $f(x) = 1$ for $0 \\le x \\le 1$ and $f(x) = 0$ for $x > 1$, what is the solution $y(x)$ for $x > 1$?",
@@ -1868,7 +1868,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "linear",
         "location": "Page 14"
       }
     ]
@@ -1876,7 +1876,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_061",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "exact",
     "topic": "Exact IVP",
     "difficulty": "Exam Master",
     "question": "solve $\\dfrac{dy}{dx} = \\dfrac{xy^2 - \\cos x \\sin x}{y(1 - x^2)}$, $y(0) = 2$.",
@@ -1900,7 +1900,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "exact",
         "location": "Page 9"
       }
     ]
@@ -1908,7 +1908,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_062",
     "courseId": "ENGR213",
-    "chapter": "ch2",
+    "chapter": "separable",
     "topic": "Reduction to Separable",
     "difficulty": "Midterm Level",
     "question": "with $u = -2x + y$, what does $\\dfrac{dy}{dx} = (-2x + y)^2 - 7$ become?",
@@ -1931,7 +1931,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 — First-Order Differential Equations",
+        "chapter": "separable",
         "location": "Page 12"
       }
     ]
@@ -1939,7 +1939,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_063",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "ch1",
     "topic": "Choosing a Method",
     "difficulty": "Foundation",
     "question": "What is the most direct method for $\\dfrac{dy}{dx} = e^{3x + 2y}$?",
@@ -1966,7 +1966,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
       },
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 (§1.1)",
+        "chapter": "ch1",
         "location": "Page 10"
       }
     ]
@@ -1974,7 +1974,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_064",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "linear",
     "topic": "Linear ODE",
     "difficulty": "Midterm Level",
     "question": "Solve $xy' + 4y = x^3 - x$ for $x > 0$.",
@@ -1997,7 +1997,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "linear",
         "location": "Page 10"
       }
     ]
@@ -2005,7 +2005,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_065",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "separable",
     "topic": "Exact and Separable",
     "difficulty": "Foundation",
     "question": "Solve $(2x - 1)\\,dx + (3y + 7)\\,dy = 0$.",
@@ -2027,7 +2027,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (§2.4)",
+        "chapter": "separable",
         "location": "Page 8"
       }
     ]
@@ -2035,7 +2035,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_066",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "homogeneous",
     "topic": "Linear or Homogeneous",
     "difficulty": "Midterm Level",
     "question": "Solve $\\dfrac{dy}{dx} = \\dfrac{x - y}{x}$ for $x > 0$.",
@@ -2063,7 +2063,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
       },
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (§2.5)",
+        "chapter": "homogeneous",
         "location": "Page 8"
       }
     ]
@@ -2071,7 +2071,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_067",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "bernoulli",
     "topic": "Bernoulli with n = 4",
     "difficulty": "Exam Master",
     "question": "Solve $\\dfrac{dy}{dx} = y(xy^3 - 1)$.",
@@ -2094,7 +2094,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (§2.5)",
+        "chapter": "bernoulli",
         "location": "Page 10"
       }
     ]
@@ -2102,7 +2102,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_068",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "substitutions-mix",
     "topic": "Reduction u = x + y + 1",
     "difficulty": "Midterm Level",
     "question": "Solve $\\dfrac{dy}{dx} = (x + y + 1)^2$.",
@@ -2125,7 +2125,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (§2.5)",
+        "chapter": "substitutions-mix",
         "location": "Page 12"
       }
     ]
@@ -2133,7 +2133,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_069",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "linear",
     "topic": "Linear IVP",
     "difficulty": "Midterm Level",
     "question": "Solve $\\dfrac{dy}{dx} + 2xy = x$, $y(0) = -3$.",
@@ -2161,7 +2161,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
       },
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1–2 (§1.2, §2.1)",
+        "chapter": "linear",
         "location": "Page 4"
       }
     ]
@@ -2169,7 +2169,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_070",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "ch1",
     "topic": "Uniqueness at a Point",
     "difficulty": "Exam Master",
     "question": "For $y' = \\sqrt{y - x}$, through which point is a unique solution guaranteed?",
@@ -2193,7 +2193,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1–2 (§1.2, §2.1)",
+        "chapter": "ch1",
         "location": "Page 8"
       }
     ]
@@ -2201,7 +2201,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_071",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "ch1",
     "topic": "Classifying and Solving",
     "difficulty": "Midterm Level",
     "question": "Which description fits $(y^2 - 1)\\,dx + x\\,dy = 0$?",
@@ -2228,7 +2228,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
       },
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "ch1",
         "location": "Page 3"
       }
     ]
@@ -2236,7 +2236,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_072",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Logistic Phase Line",
     "difficulty": "Midterm Level",
     "question": "For $\\dfrac{dP}{dt} = P(4 - P)$ with $P(0) = 1$, what does $P(t)$ approach as $t \\to \\infty$?",
@@ -2258,7 +2258,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1–2 (§1.2, §2.1)",
+        "chapter": "applications",
         "location": "Page 17"
       }
     ]
@@ -2266,7 +2266,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_073",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Mixture at a Given Time",
     "difficulty": "Midterm Level",
     "question": "In a mixing tank problem where the amount of salt is modeled by $A(t) = 600 - 550e^{-t/100}$ lb, how much salt is present at $t = 100\\text{ min}$?",
@@ -2288,7 +2288,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 12"
       }
     ]
@@ -2296,7 +2296,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_074",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Cooling Time",
     "difficulty": "Exam Master",
     "question": "According to Newton's law of cooling, a cooling cake has temperature $T(t) = 70 + 230e^{kt}\\ ^\\circ\\text{F}$ with $k \\approx -0.19018\\text{ min}^{-1}$. At what time $t$ does the temperature reach $75\\ ^\\circ\\text{F}$?",
@@ -2318,7 +2318,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 9"
       }
     ]
@@ -2326,7 +2326,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_075",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Radioactive Decay",
     "difficulty": "Midterm Level",
     "question": "A radioactive substance decays by $dA/dt = kA$. If 3% has decayed after 100 years, what is its half-life?",
@@ -2349,7 +2349,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 5"
       }
     ]
@@ -2357,7 +2357,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_076",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "LR Circuit Time",
     "difficulty": "Midterm Level",
     "question": "In an LR series circuit where the current builds according to $i(t) = 1.2(1 - e^{-20t})\\text{ A}$, at what time $t$ does the current reach $1.0\\text{ A}$?",
@@ -2379,7 +2379,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 16"
       }
     ]
@@ -2387,7 +2387,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_077",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Doubling Growth",
     "difficulty": "Midterm Level",
     "question": "A population obeying $dP/dt = kP$ doubles in 3 h. How long until it is 10 times the initial size?",
@@ -2409,7 +2409,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 5"
       }
     ]
@@ -2417,7 +2417,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_078",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "exact",
     "topic": "Exact Equation",
     "difficulty": "Midterm Level",
     "question": "Solve $(5x + 4y)\\,dx + (4x - 8y^3)\\,dy = 0$.",
@@ -2440,7 +2440,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (§2.4)",
+        "chapter": "exact",
         "location": "Page 5"
       }
     ]
@@ -2448,7 +2448,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_079",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "exact",
     "topic": "Exact IVP",
     "difficulty": "Exam Master",
     "question": "Solve $(y^2\\cos x - 3x^2y - 2x)\\,dx + (2y\\sin x - x^3 + \\ln y)\\,dy = 0$, $y(0) = e$.",
@@ -2471,7 +2471,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (§2.4)",
+        "chapter": "exact",
         "location": "Page 5"
       }
     ]
@@ -2479,7 +2479,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_080",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "exact",
     "topic": "Integrating Factor μ(x)",
     "difficulty": "Exam Master",
     "question": "Find the integrating factor and solution of $(2y^2 + 3x)\\,dx + 2xy\\,dy = 0$.",
@@ -2502,7 +2502,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (§2.4)",
+        "chapter": "exact",
         "location": "Page 10"
       }
     ]
@@ -2510,7 +2510,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_081",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "homogeneous",
     "topic": "Homogeneous Equation",
     "difficulty": "Exam Master",
     "question": "the solution of $(x^2 + y^2)\\,dx + (x^2 - xy)\\,dy = 0$ can be written as:",
@@ -2533,7 +2533,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (§2.5)",
+        "chapter": "homogeneous",
         "location": "Page 9"
       }
     ]
@@ -2541,7 +2541,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_082",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Autonomous Model Equilibrium",
     "difficulty": "Midterm Level",
     "question": "For Newton's law $dT/dt = k(T - T_m)$ with $k < 0$, the constant solution $T = T_m$ is:",
@@ -2568,7 +2568,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
       },
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 8"
       }
     ]
@@ -2576,7 +2576,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_083",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Mixture Setup, Unequal Rates",
     "difficulty": "Exam Master",
     "question": "A 500 L tank of pure water receives brine (2 kg/L) at 5 L/min and drains at 3 L/min. Which ODE models the salt $A(t)$?",
@@ -2598,7 +2598,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 11"
       }
     ]
@@ -2606,7 +2606,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_084",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "bernoulli",
     "topic": "Bernoulli Identification",
     "difficulty": "Midterm Level",
     "question": "For $x\\dfrac{dy}{dx} - (1 + x)y = xy^2$, what are $n$ and the substitution?",
@@ -2628,7 +2628,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (§2.5)",
+        "chapter": "bernoulli",
         "location": "Page 10"
       }
     ]
@@ -2636,7 +2636,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_085",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "separable",
     "topic": "Separable IVP",
     "difficulty": "Midterm Level",
     "question": "Solve $\\dfrac{dy}{dx} = 3x^2(1 + y^2)$, $y(0) = 1$.",
@@ -2658,7 +2658,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "separable",
         "location": "Page 5"
       }
     ]
@@ -2666,7 +2666,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_086",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "ch1",
     "topic": "Interval of an IVP Solution",
     "difficulty": "Exam Master",
     "question": "$y = \\dfrac{1}{1 - x}$ solves $y' = y^2$, $y(0) = 1$. What is the largest interval of definition of this IVP solution?",
@@ -2693,7 +2693,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
       },
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1–2 (§1.2, §2.1)",
+        "chapter": "ch1",
         "location": "Page 3"
       }
     ]
@@ -2701,7 +2701,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_087",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "homogeneous",
     "topic": "Homogeneous Substitution",
     "difficulty": "Exam Master",
     "question": "Solve $\\dfrac{dy}{dx} = \\dfrac{y^2 + xy}{x^2}$.",
@@ -2724,7 +2724,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (§2.5)",
+        "chapter": "homogeneous",
         "location": "Page 8"
       }
     ]
@@ -2732,7 +2732,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_088",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "ch1",
     "topic": "Which Methods Apply",
     "difficulty": "Midterm Level",
     "question": "Which statement about $\\dfrac{dy}{dx} = x + y$ is true?",
@@ -2759,7 +2759,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
       },
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (§2.5)",
+        "chapter": "ch1",
         "location": "Page 12"
       }
     ]
@@ -2767,7 +2767,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_089",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Bacteria After 5 Hours",
     "difficulty": "Foundation",
     "question": "For an exponentially growing bacterial culture with $P(1) = 1.5 P_0$, what is the relative population size after 5 hours?",
@@ -2789,7 +2789,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 6"
       }
     ]
@@ -2797,7 +2797,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_090",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Classifying a Model",
     "difficulty": "Foundation",
     "question": "Kirchhoff's law for an LR circuit, $L\\dfrac{di}{dt} + Ri = E(t)$, is:",
@@ -2824,7 +2824,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
       },
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 (§1.1)",
+        "chapter": "applications",
         "location": "Page 9"
       }
     ]
@@ -2832,7 +2832,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_091",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "ch1",
     "topic": "Critical Point Classification",
     "difficulty": "Exam Master",
     "question": "For $y' = y^2(4 - y^2)$, classify the critical point $y = 0$.",
@@ -2854,7 +2854,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1–2 (§1.2, §2.1)",
+        "chapter": "ch1",
         "location": "Page 17"
       }
     ]
@@ -2862,7 +2862,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_092",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "exact",
     "topic": "Choosing Between Exact and Linear",
     "difficulty": "Midterm Level",
     "question": "$(x^2 + 2y)\\,dx - x\\,dy = 0$ is best solved as:",
@@ -2889,7 +2889,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
       },
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "exact",
         "location": "Page 10"
       }
     ]
@@ -2897,7 +2897,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_093",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "linear",
     "topic": "Linear Solution Check",
     "difficulty": "Midterm Level",
     "question": "Which is the general solution of $x^2y' + xy = 1$ for $x > 0$?",
@@ -2919,7 +2919,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "linear",
         "location": "Page 10"
       }
     ]
@@ -2927,7 +2927,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_094",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "ch1",
     "topic": "Explicit vs Implicit",
     "difficulty": "Foundation",
     "question": "Solving $y\\,dy = -x\\,dx$ gives $x^2 + y^2 = c$. This relation is:",
@@ -2954,7 +2954,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
       },
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "ch1",
         "location": "Page 4"
       }
     ]
@@ -2962,7 +2962,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_095",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "exact",
     "topic": "Exactness Test",
     "difficulty": "Foundation",
     "question": "For which equation is the exactness condition $M_y = N_x$ satisfied?",
@@ -2984,7 +2984,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (§2.4)",
+        "chapter": "exact",
         "location": "Page 4"
       }
     ]
@@ -2992,7 +2992,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_096",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Warming Model",
     "difficulty": "Midterm Level",
     "question": "A 70 °F object is placed in a 350 °F oven: $T(t) = 350 - 280e^{kt}$. If $T(1) = 110$ °F, what is $k$?",
@@ -3014,7 +3014,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 8"
       }
     ]
@@ -3022,7 +3022,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_097",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "ch1",
     "topic": "Order of an IVP",
     "difficulty": "Foundation",
     "question": "How many initial conditions does the IVP for $y''' - y = e^x$ need?",
@@ -3044,7 +3044,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1–2 (§1.2, §2.1)",
+        "chapter": "ch1",
         "location": "Page 3"
       }
     ]
@@ -3052,7 +3052,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_098",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "separable",
     "topic": "Separable with Lost Solution",
     "difficulty": "Exam Master",
     "question": "Separating $\\dfrac{dy}{dx} = xy^2$ gives $y = -\\dfrac{2}{x^2 + c}$. Which solution is lost?",
@@ -3074,7 +3074,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "separable",
         "location": "Page 6"
       }
     ]
@@ -3082,7 +3082,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_099",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "ch1",
     "topic": "Direction Field Reading",
     "difficulty": "Foundation",
     "question": "For $y' = x - y$, what is the slope of the lineal element at $(3, 1)$?",
@@ -3104,7 +3104,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1–2 (§1.2, §2.1)",
+        "chapter": "ch1",
         "location": "Page 11"
       }
     ]
@@ -3112,7 +3112,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_100",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Model Building Steps",
     "difficulty": "Foundation",
     "question": "In engineering modeling, what should be done if an initial differential model's predictions compare poorly with experimental data?",
@@ -3134,7 +3134,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 3"
       }
     ]
@@ -3142,7 +3142,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_101",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "substitutions-mix",
     "topic": "Substitution Goal",
     "difficulty": "Foundation",
     "question": "In solving differential equations, what is the primary objective of applying a substitution (change of variable)?",
@@ -3164,7 +3164,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 5, September 23 2026.pdf",
-        "chapter": "Chapter 2 (§2.5)",
+        "chapter": "substitutions-mix",
         "location": "Page 6"
       }
     ]
@@ -3172,7 +3172,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_ENGR213_102",
     "courseId": "ENGR213",
-    "chapter": "mixed",
+    "chapter": "applications",
     "topic": "Linear Model Identification",
     "difficulty": "Midterm Level",
     "question": "Which of the following mathematical models is NOT governed by a linear first-order differential equation?",
@@ -3194,7 +3194,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "applications",
         "location": "Page 2"
       }
     ]

@@ -195,8 +195,10 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
     setExpandedQuestions((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  // Section 1: Filtered assessment documents
-  const allAssessmentDocs: FilteredDocItem[] = courseConfig?.assessmentDocs ?? [];
+  // Section 1: Filtered assessment documents (excludes Term Paper files which belong exclusively to the Term Paper Vault)
+  const allAssessmentDocs: FilteredDocItem[] = (courseConfig?.assessmentDocs ?? []).filter(
+    (doc) => !/Term Paper & Final Project/i.test(doc.relativePath)
+  );
   const filteredAssessmentDocs = useMemo<FilteredDocItem[]>(() => {
     const list = allAssessmentDocs.filter((doc: FilteredDocItem) => {
       // Category filter
@@ -685,166 +687,7 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
         </section>
       )}
 
-      {/* ========================================================================= */}
-      {/* FEATURED SHOWCASE: INDU 211 TERM PAPER & FINAL PROJECT                    */}
-      {/* ========================================================================= */}
-      {course.id === 'INDU211' && (
-        <section
-          className="fx-panel"
-          style={{
-            border: '1.5px solid rgba(16, 185, 129, 0.3)',
-            background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.04) 0%, rgba(16, 185, 129, 0.01) 100%)',
-            boxShadow: '0 4px 20px -4px rgba(16, 185, 129, 0.08)'
-          }}
-        >
-          <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
-              <span className="fx-panel-icon" style={{ color: '#059669' }}><Layers size={20} /></span>
-              <div className="fx-panel-heading">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                  <h2 style={{ color: '#047857' }}>Featured: INDU 211 Term Paper & Final Project Hub</h2>
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      fontWeight: 800,
-                      padding: '2px 8px',
-                      borderRadius: '6px',
-                      backgroundColor: 'rgba(16, 185, 129, 0.12)',
-                      color: '#059669',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    20% Course Weight · Group Deliverable
-                  </span>
-                </div>
-              </div>
-            </div>
-          </header>
 
-          <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <div>
-              <h3 style={{ fontSize: '14.5px', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 4px 0' }}>
-                Topic: "The Future of Industrial Engineering in the Generative AI (GenAI) Era"
-              </h3>
-              <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                Comprehensive investigation into GenAI, LLMs, and foundation models transforming industrial automation, lean supply chains, predictive quality control, and human factors engineering.
-              </p>
-            </div>
-
-            {/* 3 Milestones */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '10px' }}>
-              <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#059669', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase' }}>
-                  <Calendar size={13} />
-                  <span>Phase 1: Proposal</span>
-                </div>
-                <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--text-primary)', marginTop: '4px' }}>
-                  1-Page Official Form (Due Oct 8)
-                </div>
-                <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                  Group roster, chosen GenAI thesis, methodology & industry scope.
-                </div>
-              </div>
-
-              <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#d97706', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase' }}>
-                  <Video size={13} />
-                  <span>Phase 2: Presentation</span>
-                </div>
-                <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--text-primary)', marginTop: '4px' }}>
-                  15-Min Video & Script (Due Dec 1)
-                </div>
-                <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                  Slide deck presentation guide & synchronized narration video script.
-                </div>
-              </div>
-
-              <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#7c3aed', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase' }}>
-                  <Award size={13} />
-                  <span>Phase 3: Final Paper</span>
-                </div>
-                <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--text-primary)', marginTop: '4px' }}>
-                  10-Page Master Report (Final Exam Date)
-                </div>
-                <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                  In-depth analytical paper with mathematical formulation & case studies.
-                </div>
-              </div>
-            </div>
-
-            {/* Document Deliverables List */}
-            <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '12px' }}>
-              <div style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Official Project Deliverables & Submission Guides:
-              </div>
-              <ol className="fx-file-list" style={{ margin: 0 }}>
-                {(courseConfig?.termPaperDocs || []).map((doc: FilteredDocItem, idx: number) => {
-                  const url = getPdfUrl(doc.relativePath);
-                  return (
-                    <li key={doc.id} className="fx-file-row">
-                      <span className="fx-file-number">{idx + 1}</span>
-                      <FileText size={18} className="fx-file-icon" />
-                      <button
-                        className="fx-file-main"
-                        onClick={() => {
-                          audio.playClick();
-                          onViewPdf({ ...doc, summary: doc.summary || doc.title });
-                        }}
-                      >
-                        <span className="fx-file-title">{doc.title}</span>
-                        <span className="fx-file-meta">
-                          <span className="fx-file-size">{formatFileSize(doc.fileSizeBytes)}</span>
-                          {(doc.tags || []).map((tag, tIdx) => (
-                            <span
-                              key={tIdx}
-                              style={{
-                                fontSize: '10.5px',
-                                fontWeight: 700,
-                                padding: '1px 6px',
-                                borderRadius: '4px',
-                                backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                                color: '#059669',
-                                border: '1px solid rgba(16, 185, 129, 0.2)'
-                              }}
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </span>
-                      </button>
-                      <div className="fx-file-actions">
-                        <button
-                          className="fx-btn fx-btn-primary"
-                          onClick={() => {
-                            audio.playClick();
-                            onViewPdf({ ...doc, summary: doc.summary || doc.title });
-                          }}
-                          title="Open in modal PDF viewer"
-                        >
-                          <Eye size={14} />
-                          <span>View</span>
-                        </button>
-                        <a
-                          className="fx-btn fx-btn-tab"
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title="Open in a new tab"
-                          onClick={() => audio.playClick()}
-                        >
-                          <ExternalLink size={14} />
-                          <span>New Tab</span>
-                        </a>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ol>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ========================================================================= */}
       {/* SECTION 1: ALL ASSIGNMENTS, QUIZZES, EXAMS, LABS & PROJECTS               */}

@@ -121,23 +121,37 @@ export const DrillPicker: React.FC<DrillPickerProps> = ({ open, initialCourseId,
               </button>
             )}
 
-            <p className="dp-divider">or review one chapter</p>
+            <p className="dp-divider">or choose a specific topic / sub-section</p>
 
-            {plan.sections.map((s) => (
-              <button key={s.id} className="dp-option" onClick={() => start(s.id)}>
-                <span className="dp-option-icon">
-                  <BookOpen size={18} />
-                </span>
-                <span className="dp-option-text">
-                  <strong>{s.label}</strong>
-                  <span>{s.detail}</span>
-                </span>
-                <span className="dp-count">
-                  {drillSize(course.id, s.id)} Q
-                  <small>of {questionPool(course.id, s.id).length}</small>
-                </span>
-              </button>
-            ))}
+            {(() => {
+              let lastGroup: string | undefined = undefined;
+              return plan.sections.map((s) => {
+                const showGroupHeader = s.group && s.group !== lastGroup;
+                if (s.group) lastGroup = s.group;
+                return (
+                  <React.Fragment key={s.id}>
+                    {showGroupHeader && (
+                      <div className="dp-group-header">
+                        <span>{s.group}</span>
+                      </div>
+                    )}
+                    <button className="dp-option" onClick={() => start(s.id)}>
+                      <span className="dp-option-icon">
+                        <BookOpen size={18} />
+                      </span>
+                      <span className="dp-option-text">
+                        <strong>{s.label}</strong>
+                        <span>{s.detail}</span>
+                      </span>
+                      <span className="dp-count">
+                        {drillSize(course.id, s.id)} Q
+                        <small>of {questionPool(course.id, s.id).length}</small>
+                      </span>
+                    </button>
+                  </React.Fragment>
+                );
+              });
+            })()}
           </div>
         )}
       </div>

@@ -332,82 +332,134 @@ export const TermPaperVaultSection: React.FC<TermPaperVaultSectionProps> = ({
         </div>
       </section>
 
-      {/* Deliverables List Panel */}
-      <section className="fx-panel">
-        <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
-            <span className="fx-panel-icon"><Layers size={20} /></span>
-            <div className="fx-panel-heading">
-              <h2>Project Deliverables</h2>
-            </div>
-            <span className="fx-panel-meta">{projectDocs.length} files available</span>
-          </div>
-        </header>
+      {/* Categorized Document Groups */}
+      {(() => {
+        const deliverables = projectDocs.filter(
+          (d) => !d.filename.toLowerCase().includes('moodle') && !d.filename.toLowerCase().includes('description')
+        );
+        const instructions = projectDocs.filter((d) => d.filename.toLowerCase().includes('description'));
+        const moodleGuides = projectDocs.filter((d) => d.filename.toLowerCase().includes('moodle'));
 
-        <ol className="fx-file-list">
-          {projectDocs.map((doc: FilteredDocItem, idx: number) => {
-            const url = getPdfUrl(doc.relativePath);
-            return (
-              <li key={doc.id} className="fx-file-row">
-                <span className="fx-file-number">{idx + 1}</span>
-                <FileText size={18} className="fx-file-icon" />
+        const renderDocRow = (doc: FilteredDocItem, idx: number, badgeColor: string, badgeBg: string, badgeBorder: string) => {
+          const url = getPdfUrl(doc.relativePath);
+          return (
+            <li key={doc.id} className="fx-file-row">
+              <span className="fx-file-number">{idx + 1}</span>
+              <FileText size={18} className="fx-file-icon" />
+              <button
+                className="fx-file-main"
+                onClick={() => {
+                  audio.playClick();
+                  onViewPdf({ ...doc, summary: doc.summary || doc.title });
+                }}
+              >
+                <span className="fx-file-title">{doc.title}</span>
+                <span className="fx-file-meta">
+                  <span className="fx-file-size">{formatFileSize(doc.fileSizeBytes)}</span>
+                  {(doc.tags || []).map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      style={{
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        padding: '1px 6px',
+                        borderRadius: '4px',
+                        backgroundColor: badgeBg,
+                        color: badgeColor,
+                        border: `1px solid ${badgeBorder}`
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </span>
+              </button>
+              <div className="fx-file-actions">
                 <button
-                  className="fx-file-main"
+                  className="fx-btn fx-btn-primary"
                   onClick={() => {
                     audio.playClick();
                     onViewPdf({ ...doc, summary: doc.summary || doc.title });
                   }}
+                  title="Open in modal PDF viewer"
                 >
-                  <span className="fx-file-title">{doc.title}</span>
-                  <span className="fx-file-meta">
-                    <span className="fx-file-size">{formatFileSize(doc.fileSizeBytes)}</span>
-                    {(doc.tags || []).map((tag, tIdx) => (
-                      <span
-                        key={tIdx}
-                        style={{
-                          fontSize: '11px',
-                          fontWeight: 700,
-                          padding: '1px 6px',
-                          borderRadius: '4px',
-                          backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                          color: '#059669',
-                          border: '1px solid rgba(16, 185, 129, 0.2)'
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </span>
+                  <Eye size={14} />
+                  <span>View</span>
                 </button>
-                <div className="fx-file-actions">
-                  <button
-                    className="fx-btn fx-btn-primary"
-                    onClick={() => {
-                      audio.playClick();
-                      onViewPdf({ ...doc, summary: doc.summary || doc.title });
-                    }}
-                    title="Open in modal PDF viewer"
-                  >
-                    <Eye size={14} />
-                    <span>View</span>
-                  </button>
-                  <a
-                    className="fx-btn fx-btn-tab"
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Open in a new tab"
-                    onClick={() => audio.playClick()}
-                  >
-                    <ExternalLink size={14} />
-                    <span>New Tab</span>
-                  </a>
+                <a
+                  className="fx-btn fx-btn-tab"
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open in a new tab"
+                  onClick={() => audio.playClick()}
+                >
+                  <ExternalLink size={14} />
+                  <span>New Tab</span>
+                </a>
+              </div>
+            </li>
+          );
+        };
+
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {/* Group 1: Official Student Deliverables */}
+            <section className="fx-panel">
+              <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
+                  <span className="fx-panel-icon" style={{ color: '#059669' }}><Award size={20} /></span>
+                  <div className="fx-panel-heading">
+                    <h2>Official Team Deliverables (Milestones 1, 2 & 3)</h2>
+                  </div>
+                  <span className="fx-panel-meta">{deliverables.length} files · Master Submissions</span>
                 </div>
-              </li>
-            );
-          })}
-        </ol>
-      </section>
+              </header>
+              <ol className="fx-file-list">
+                {deliverables.map((doc, idx) =>
+                  renderDocRow(doc, idx, '#059669', 'rgba(16, 185, 129, 0.1)', 'rgba(16, 185, 129, 0.25)')
+                )}
+              </ol>
+            </section>
+
+            {/* Group 2: Professor Guidelines & Rubric */}
+            <section className="fx-panel">
+              <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
+                  <span className="fx-panel-icon" style={{ color: '#d97706' }}><FileText size={20} /></span>
+                  <div className="fx-panel-heading">
+                    <h2>Professor Handout & Evaluation Criteria</h2>
+                  </div>
+                  <span className="fx-panel-meta">{instructions.length} file · Fall 2026 Rubric</span>
+                </div>
+              </header>
+              <ol className="fx-file-list">
+                {instructions.map((doc, idx) =>
+                  renderDocRow(doc, idx, '#d97706', 'rgba(217, 119, 6, 0.1)', 'rgba(217, 119, 6, 0.25)')
+                )}
+              </ol>
+            </section>
+
+            {/* Group 3: Moodle Submission Instructions */}
+            <section className="fx-panel">
+              <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
+                  <span className="fx-panel-icon" style={{ color: '#6366f1' }}><Layers size={20} /></span>
+                  <div className="fx-panel-heading">
+                    <h2>Moodle Submission Procedures</h2>
+                  </div>
+                  <span className="fx-panel-meta">{moodleGuides.length} files · Step-by-Step Guides</span>
+                </div>
+              </header>
+              <ol className="fx-file-list">
+                {moodleGuides.map((doc, idx) =>
+                  renderDocRow(doc, idx, '#6366f1', 'rgba(99, 102, 241, 0.1)', 'rgba(99, 102, 241, 0.25)')
+                )}
+              </ol>
+            </section>
+          </div>
+        );
+      })()}
     </div>
   );
 };
