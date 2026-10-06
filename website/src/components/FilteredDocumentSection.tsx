@@ -143,6 +143,60 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
   const [midtermSearch, setMidtermSearch] = useState<string>('');
   const [expandedQuestions, setExpandedQuestions] = useState<Record<string, boolean>>({});
 
+  // -------------------------------------------------------------------------
+  // Gradesaver Private Encrypted Tutor Vault (Key: sobhi)
+  // -------------------------------------------------------------------------
+  const GRADESAVER_STORAGE_KEY = 'concordia_gradesaver_vault_unlocked';
+  const isGradesaverPasswordValid = (input: string) => input.trim().toLowerCase() === 'sobhi';
+  const [gradesaverPasswordInput, setGradesaverPasswordInput] = useState('');
+  const [isGradesaverUnlocked, setIsGradesaverUnlocked] = useState<boolean>(() => {
+    try {
+      return typeof window !== 'undefined' && sessionStorage.getItem('concordia_gradesaver_vault_unlocked') === '1';
+    } catch {
+      return false;
+    }
+  });
+  const [isGradesaverUnlocking, setIsGradesaverUnlocking] = useState(false);
+  const [isGradesaverShaking, setIsGradesaverShaking] = useState(false);
+  const [hasGradesaverAttempted, setHasGradesaverAttempted] = useState(false);
+  const [activeGradesaverTab, setActiveGradesaverTab] = useState<'separable' | 'linear' | 'exact' | 'substitution' | 'modeling'>('separable');
+
+  const handleGradesaverUnlock = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!gradesaverPasswordInput.trim() || isGradesaverUnlocking) return;
+
+    if (isGradesaverPasswordValid(gradesaverPasswordInput)) {
+      audio.playCorrect();
+      setIsGradesaverUnlocking(true);
+      setTimeout(() => {
+        setIsGradesaverUnlocked(true);
+        setIsGradesaverUnlocking(false);
+        try {
+          sessionStorage.setItem(GRADESAVER_STORAGE_KEY, '1');
+        } catch {
+          // ignore
+        }
+      }, 350);
+    } else {
+      audio.playIncorrect();
+      setHasGradesaverAttempted(true);
+      setIsGradesaverShaking(true);
+      setTimeout(() => setIsGradesaverShaking(false), 450);
+    }
+  };
+
+  const handleGradesaverLockAgain = () => {
+    audio.playClick();
+    setIsGradesaverUnlocked(false);
+    setGradesaverPasswordInput('');
+    setHasGradesaverAttempted(false);
+    try {
+      sessionStorage.removeItem(GRADESAVER_STORAGE_KEY);
+    } catch {
+      // ignore
+    }
+  };
+
   const courseConfig = FILTERED_COURSES_DATA[course.id as keyof typeof FILTERED_COURSES_DATA];
 
   useEffect(() => {
@@ -627,6 +681,425 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
       )}
 
 
+
+      {/* ========================================================================= */}
+      {/* GRADESAVER PRIVATE TUTOR VAULT (ENCRYPTED · PASSWORD: sobhi)              */}
+      {/* ========================================================================= */}
+      {course.id === 'ENGR213' && (
+        <section
+          className={`fx-panel ${isGradesaverShaking ? 'shake-incorrect' : ''}`}
+          style={{
+            border: '1.5px solid rgba(147, 51, 234, 0.35)',
+            background: isGradesaverUnlocked
+              ? 'linear-gradient(180deg, rgba(147, 51, 234, 0.05) 0%, rgba(147, 51, 234, 0.01) 100%)'
+              : 'linear-gradient(180deg, rgba(147, 51, 234, 0.06) 0%, rgba(147, 51, 234, 0.02) 100%)',
+            boxShadow: '0 4px 24px -4px rgba(147, 51, 234, 0.12)',
+            transition: 'all 0.25s ease'
+          }}
+        >
+          {!isGradesaverUnlocked ? (
+            /* LOCKED GRADESAVER STATE */
+            <div style={{ padding: '36px 24px', textAlign: 'center', maxWidth: '480px', margin: '0 auto' }}>
+              <div
+                style={{
+                  width: '54px',
+                  height: '54px',
+                  borderRadius: '14px',
+                  backgroundColor: isGradesaverUnlocking ? 'rgba(34, 197, 94, 0.15)' : 'rgba(147, 51, 234, 0.12)',
+                  color: isGradesaverUnlocking ? 'var(--status-success)' : '#9333ea',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 16px',
+                  border: '1.5px solid rgba(147, 51, 234, 0.3)',
+                  transition: 'all 0.25s ease'
+                }}
+                className={isGradesaverUnlocking ? 'pulse-correct' : ''}
+              >
+                {isGradesaverUnlocking ? <Unlock size={28} /> : <Lock size={26} />}
+              </div>
+
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '3px 10px', borderRadius: '12px', backgroundColor: 'rgba(147, 51, 234, 0.12)', color: '#9333ea', fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>
+                <KeyRound size={12} />
+                <span>Encrypted Tutor Vault · Access Key Required</span>
+              </div>
+
+              <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
+                Gradesaver Private Tutor Vault
+              </h2>
+              <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '20px', lineHeight: 1.5 }}>
+                Enter the authorization key to decrypt personal student tutor notes, the 5-phase universal solution protocol, and handwritten exam walkthroughs.
+              </p>
+
+              <form onSubmit={handleGradesaverUnlock} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <input
+                  type="password"
+                  value={gradesaverPasswordInput}
+                  onChange={(e) => {
+                    setGradesaverPasswordInput(e.target.value);
+                    if (hasGradesaverAttempted) setHasGradesaverAttempted(false);
+                  }}
+                  disabled={isGradesaverUnlocking}
+                  placeholder="Enter access key (sobhi)…"
+                  style={{
+                    width: '100%',
+                    boxSizing: 'border-box',
+                    padding: '11px 16px',
+                    borderRadius: '8px',
+                    border: '1px solid rgba(147, 51, 234, 0.35)',
+                    backgroundColor: 'var(--bg-card-subtle)',
+                    color: 'var(--text-primary)',
+                    fontSize: '14px',
+                    outline: 'none',
+                    textAlign: 'center',
+                    letterSpacing: '0.12em'
+                  }}
+                />
+
+                <button
+                  type="submit"
+                  disabled={isGradesaverUnlocking}
+                  className="action-btn"
+                  style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    padding: '11px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: 700,
+                    backgroundColor: isGradesaverUnlocking ? '#16a34a' : '#9333ea',
+                    color: '#ffffff',
+                    border: 'none',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 14px rgba(147, 51, 234, 0.3)'
+                  }}
+                >
+                  <Unlock size={15} />
+                  <span>{isGradesaverUnlocking ? 'Decrypting Vault…' : 'Decrypt Gradesaver Vault'}</span>
+                </button>
+              </form>
+
+              {hasGradesaverAttempted && !isGradesaverPasswordValid(gradesaverPasswordInput) && (
+                <div style={{ marginTop: '14px', padding: '10px 14px', borderRadius: '8px', backgroundColor: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.25)', color: '#dc2626', fontSize: '12.5px', fontWeight: 600 }}>
+                  Incorrect access key. Authorization denied.
+                </div>
+              )}
+            </div>
+          ) : (
+            /* UNLOCKED GRADESAVER STATE */
+            <div>
+              <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px', borderBottom: '1px solid rgba(147, 51, 234, 0.2)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
+                  <span className="fx-panel-icon" style={{ color: '#9333ea' }}><Sparkles size={20} /></span>
+                  <div className="fx-panel-heading">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                      <h2 style={{ color: '#7e22ce' }}>Gradesaver — In-Depth Tutor Notes & System of Solving Blueprint</h2>
+                      <span
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 800,
+                          padding: '2px 8px',
+                          borderRadius: '6px',
+                          backgroundColor: 'rgba(147, 51, 234, 0.12)',
+                          color: '#9333ea',
+                          textTransform: 'uppercase'
+                        }}
+                      >
+                        🔓 Decrypted · Key: sobhi
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleGradesaverLockAgain}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '6px 12px',
+                    borderRadius: '6px',
+                    backgroundColor: 'rgba(147, 51, 234, 0.1)',
+                    border: '1px solid rgba(147, 51, 234, 0.25)',
+                    color: '#9333ea',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    cursor: 'pointer'
+                  }}
+                  title="Re-lock Gradesaver Vault"
+                >
+                  <Lock size={13} />
+                  <span>Re-Lock Vault</span>
+                </button>
+              </header>
+
+              <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
+                  Personal student tutor repository and systematic 5-phase solution protocol for ENGR 213. Contains the raw 43-page handwritten notes and the expanded typeset master guide.
+                </p>
+
+                {/* 2 Master Vault Cards */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
+                  {/* Card 1: Original Handwritten Tutor Notes */}
+                  <div
+                    style={{
+                      padding: '14px 16px',
+                      borderRadius: '10px',
+                      backgroundColor: 'var(--bg-surface)',
+                      border: '1.5px solid rgba(147, 51, 234, 0.3)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '8px'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: '11px', fontWeight: 800, color: '#9333ea', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                        📝 Original Student Tutor Notes
+                      </span>
+                      <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>62.4 MB · 43 Pages</span>
+                    </div>
+                    <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
+                      Engr 213 Tutor — Handwritten In-Depth Tutor Notes & Exam Method
+                    </div>
+                    <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                      Original raw handwritten OneNote/GoodNotes export with complete derivations, substitution blueprints, Newton cooling forensic oven problem, variable volume mixture tanks, and circuit kinetics.
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
+                      <button
+                        className="fx-btn fx-btn-primary"
+                        style={{ flex: 1, justifyContent: 'center', backgroundColor: '#9333ea', borderColor: '#9333ea' }}
+                        onClick={() => {
+                          audio.playClick();
+                          onViewPdf({
+                            id: 'ENGR213:filtered:gradesaver-tutor-notes',
+                            courseId: 'ENGR213',
+                            categoryId: 'Filtered-Vault',
+                            categoryTitle: 'Gradesaver',
+                            title: 'Engr 213 Tutor — Handwritten In-Depth Tutor Notes & Exam Method',
+                            filename: 'Engr 213 Tutor.pdf',
+                            relativePath: 'Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Engr 213 Tutor.pdf',
+                            fileSizeBytes: 62357032,
+                            tags: ['Tutor Notes', 'Handwritten Blueprint', '43 Pages'],
+                            summary: 'Original 43-page handwritten tutor compendium'
+                          });
+                        }}
+                      >
+                        <Eye size={14} />
+                        <span>View Notes</span>
+                      </button>
+                      <a
+                        className="fx-btn fx-btn-tab"
+                        href={getPdfUrl('Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Engr 213 Tutor.pdf')}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Open handwritten notes in a new tab"
+                        onClick={() => audio.playClick()}
+                      >
+                        <ExternalLink size={14} />
+                        <span>New Tab</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Card 2: Typeset Gradesaver Master Guide */}
+                  <div
+                    style={{
+                      padding: '14px 16px',
+                      borderRadius: '10px',
+                      backgroundColor: 'var(--bg-surface)',
+                      border: '1.5px solid rgba(147, 51, 234, 0.3)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '8px'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: '11px', fontWeight: 800, color: '#9333ea', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                        ⚡ Gradesaver Master Guide
+                      </span>
+                      <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>256 KB · 10 Pages</span>
+                    </div>
+                    <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
+                      ENGR 213 — Gradesaver Master Solving System & Exam Blueprint (Tutor Edition)
+                    </div>
+                    <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                      Typeset LaTeX compendium with the 5-Phase Universal Solution Protocol, 4-Gate Classifier, tutor heuristics ('The Move Here'), and 10 fully worked exemplar problems from the tutor notebook.
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
+                      <button
+                        className="fx-btn fx-btn-primary"
+                        style={{ flex: 1, justifyContent: 'center', backgroundColor: '#9333ea', borderColor: '#9333ea' }}
+                        onClick={() => {
+                          audio.playClick();
+                          onViewPdf({
+                            id: 'ENGR213:filtered:gradesaver-master-guide',
+                            courseId: 'ENGR213',
+                            categoryId: 'Filtered-Vault',
+                            categoryTitle: 'Gradesaver',
+                            title: 'ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition)',
+                            filename: 'ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf',
+                            relativePath: 'Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf',
+                            fileSizeBytes: 255853,
+                            tags: ['Gradesaver', '5-Phase Protocol', 'Tutor Edition'],
+                            summary: 'Gradesaver analytical problem-solving blueprint'
+                          });
+                        }}
+                      >
+                        <Eye size={14} />
+                        <span>View Blueprint</span>
+                      </button>
+                      <a
+                        className="fx-btn fx-btn-tab"
+                        href={getPdfUrl('Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf')}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Open master guide in a new tab"
+                        onClick={() => audio.playClick()}
+                      >
+                        <ExternalLink size={14} />
+                        <span>New Tab</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Interactive System of Solving Tabs */}
+                <div style={{ borderTop: '1px solid rgba(147, 51, 234, 0.2)', paddingTop: '14px' }}>
+                  <div style={{ fontSize: '13px', fontWeight: 800, color: '#7e22ce', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Target size={15} />
+                    <span>System of Solving: Tutor Heuristics & 5-Phase Execution Protocols</span>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '6px', overflowX: 'auto', paddingBottom: '6px' }}>
+                    {[
+                      { key: 'separable', label: '1. Separable Equations' },
+                      { key: 'linear', label: '2. Linear 1st Order' },
+                      { key: 'exact', label: '3. Exact & Integrating Factors' },
+                      { key: 'substitution', label: '4. Substitutions (Ax+By+C, Bernoulli)' },
+                      { key: 'modeling', label: '5. Engineering Applications' }
+                    ].map((tab) => (
+                      <button
+                        key={tab.key}
+                        onClick={() => {
+                          audio.playClick();
+                          setActiveGradesaverTab(tab.key as any);
+                        }}
+                        style={{
+                          padding: '6px 12px',
+                          borderRadius: '6px',
+                          fontSize: '12px',
+                          fontWeight: activeGradesaverTab === tab.key ? 700 : 500,
+                          backgroundColor: activeGradesaverTab === tab.key ? '#9333ea' : 'var(--bg-surface)',
+                          color: activeGradesaverTab === tab.key ? '#ffffff' : 'var(--text-secondary)',
+                          border: activeGradesaverTab === tab.key ? '1px solid #9333ea' : '1px solid var(--border-subtle)',
+                          cursor: 'pointer',
+                          whiteSpace: 'nowrap',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Active Tab Panel */}
+                  <div style={{ marginTop: '12px', padding: '14px 16px', borderRadius: '8px', backgroundColor: 'var(--bg-surface)', border: '1px solid rgba(147, 51, 234, 0.25)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    {activeGradesaverTab === 'separable' && (
+                      <>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '11px', fontWeight: 800, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(147, 51, 234, 0.15)', color: '#9333ea' }}>THE MOVE HERE</span>
+                          <strong style={{ fontSize: '13.5px', color: 'var(--text-primary)' }}>Factor onto differentials and check for equilibrium singularities h(y) = 0.</strong>
+                        </div>
+                        <div style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                          <strong>5-Phase Sequence:</strong> 1) Factor into M(x)dx + N(y)dy = 0; 2) Divide by coefficients to separate variables; 3) Integrate both sides: ∫ [1/h(y)] dy = ∫ g(x) dx + C; 4) Exponentiate ln|y| into |y| = K exp(∫ g dx); 5) Apply IVP before inverting algebraically.
+                        </div>
+                        <div style={{ padding: '10px 12px', borderRadius: '6px', backgroundColor: 'rgba(147, 51, 234, 0.04)', border: '1px dashed rgba(147, 51, 234, 0.3)', fontSize: '12.5px', lineHeight: 1.5 }}>
+                          <div style={{ fontWeight: 700, color: '#7e22ce', marginBottom: '4px' }}>🎯 Exemplar from Tutor Notes (Page 7):</div>
+                          <div style={{ marginBottom: '4px' }}>Solve IVP: <MathText text="\\frac{dy}{dx} = 3x^2(y^2 + 1), \\quad y(0) = 1" /></div>
+                          <div style={{ marginBottom: '4px' }}><MathText text="\\implies \\int \\frac{dy}{y^2+1} = \\int 3x^2 dx \\implies \\arctan(y) = x^3 + C" />. At x = 0, y = 1: <MathText text="\\arctan(1) = \\frac{\\pi}{4} = C" />.</div>
+                          <div><strong>Explicit Solution:</strong> <MathText text="y(x) = \\tan(x^3 + \\pi/4)" /> on interval <MathText text="I = (-(3\\pi/4)^{1/3}, (\\pi/4)^{1/3})" />.</div>
+                        </div>
+                      </>
+                    )}
+
+                    {activeGradesaverTab === 'linear' && (
+                      <>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '11px', fontWeight: 800, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(147, 51, 234, 0.15)', color: '#9333ea' }}>THE MOVE HERE</span>
+                          <strong style={{ fontSize: '13.5px', color: 'var(--text-primary)' }}>Standardize to y' + P(x)y = f(x), collapse LHS with integrating factor I(x) = exp(∫ P dx).</strong>
+                        </div>
+                        <div style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                          <strong>5-Phase Sequence:</strong> 1) Normalize leading coefficient a1(x) ≠ 0; 2) Integrate P(x) to find I(x) = exp(∫ P dx); 3) Collapse LHS: d/dx[I(x) y] = I(x) f(x); 4) Integrate RHS: I(x) y = ∫ I(x) f(x) dx + C; 5) Divide by I(x) and check continuity interval.
+                        </div>
+                        <div style={{ padding: '10px 12px', borderRadius: '6px', backgroundColor: 'rgba(147, 51, 234, 0.04)', border: '1px dashed rgba(147, 51, 234, 0.3)', fontSize: '12.5px', lineHeight: 1.5 }}>
+                          <div style={{ fontWeight: 700, color: '#7e22ce', marginBottom: '4px' }}>🎯 Exemplar from Tutor Notes (Page 6 & 8):</div>
+                          <div style={{ marginBottom: '4px' }}>Solve: <MathText text="x y' - 3y = x^3, \\quad x > 0 \\implies y' - \\frac{3}{x}y = x^2" />.</div>
+                          <div style={{ marginBottom: '4px' }}><MathText text="\\implies I(x) = e^{\\int -3/x dx} = x^{-3}" />. Collapse: <MathText text="\\frac{d}{dx}[x^{-3} y] = x^{-3} \\cdot x^2 = \\frac{1}{x} \\implies x^{-3} y = \\ln(x) + C" />.</div>
+                          <div><strong>Explicit Solution:</strong> <MathText text="y(x) = x^3(\\ln(x) + C)" />.</div>
+                        </div>
+                      </>
+                    )}
+
+                    {activeGradesaverTab === 'exact' && (
+                      <>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '11px', fontWeight: 800, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(147, 51, 234, 0.15)', color: '#9333ea' }}>THE MOVE HERE</span>
+                          <strong style={{ fontSize: '13.5px', color: 'var(--text-primary)' }}>Cross-partial test My = Nx. If not exact, construct μ(x) = exp(∫ [(My - Nx)/N] dx).</strong>
+                        </div>
+                        <div style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                          <strong>5-Phase Sequence:</strong> 1) Verify symmetric differential form M dx + N dy = 0; 2) Compute ∂M/∂y and ∂N/∂x; 3) If unequal, find 1-variable integrating factor μ(x) or μ(y); 4) Integrate potential function Ψ(x,y) = ∫ M dx + g(y); 5) Set Ψ(x,y) = C.
+                        </div>
+                        <div style={{ padding: '10px 12px', borderRadius: '6px', backgroundColor: 'rgba(147, 51, 234, 0.04)', border: '1px dashed rgba(147, 51, 234, 0.3)', fontSize: '12.5px', lineHeight: 1.5 }}>
+                          <div style={{ fontWeight: 700, color: '#7e22ce', marginBottom: '4px' }}>🎯 Exemplar from Tutor Notes (Page 20–21):</div>
+                          <div style={{ marginBottom: '4px' }}>Solve: <MathText text="(x+y)dx + x\\ln(x)dy = 0, \\quad x > 1" />. <MathText text="M_y = 1, N_x = \\ln(x) + 1 \\implies \\frac{M_y - N_x}{N} = -\\frac{1}{x} = f(x)" />.</div>
+                          <div style={{ marginBottom: '4px' }}>Integrating Factor: <MathText text="\\mu(x) = e^{\\int -1/x dx} = \\frac{1}{x} \\implies \\left(1 + \\frac{y}{x}\\right)dx + \\ln(x)dy = 0" /> (Exact).</div>
+                          <div><strong>Potential Function:</strong> <MathText text="\\Psi(x,y) = y\\ln(x) + x = C \\implies y(x) = \\frac{C - x}{\\ln(x)}" />.</div>
+                        </div>
+                      </>
+                    )}
+
+                    {activeGradesaverTab === 'substitution' && (
+                      <>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '11px', fontWeight: 800, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(147, 51, 234, 0.15)', color: '#9333ea' }}>THE MOVE HERE</span>
+                          <strong style={{ fontSize: '13.5px', color: 'var(--text-primary)' }}>Linear combo u = Ax+By+C; Bernoulli u = y^(1-n); Homogeneous y = ux.</strong>
+                        </div>
+                        <div style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                          <strong>5-Phase Sequence:</strong> 1) Identify structural argument; 2) Compute derivative du/dx; 3) Substitute to convert into a separable or linear equation in u; 4) Integrate explicitly for u(x); 5) Invert back to physical variable y(x).
+                        </div>
+                        <div style={{ padding: '10px 12px', borderRadius: '6px', backgroundColor: 'rgba(147, 51, 234, 0.04)', border: '1px dashed rgba(147, 51, 234, 0.3)', fontSize: '12.5px', lineHeight: 1.5 }}>
+                          <div style={{ fontWeight: 700, color: '#7e22ce', marginBottom: '4px' }}>🎯 Exemplar from Tutor Notes (Page 32):</div>
+                          <div style={{ marginBottom: '4px' }}>Solve IVP: <MathText text="y' - (4x - y + 1)^2 = 0, \\quad y(0) = 1" />. Let <MathText text="u = 4x - y + 1 \\implies y' = 4 - u'" />.</div>
+                          <div style={{ marginBottom: '4px' }}><MathText text="\\implies 4 - u' = u^2 \\implies \\frac{du}{u^2 - 4} = -dx \\implies \\frac{u-2}{u+2} = -e^{-4x} \\implies u(x) = 2\\tanh(2x)" />.</div>
+                          <div><strong>Back-Substitute:</strong> <MathText text="4x - y + 1 = 2\\tanh(2x) \\implies y(x) = 4x + 1 - 2\\tanh(2x)" />.</div>
+                        </div>
+                      </>
+                    )}
+
+                    {activeGradesaverTab === 'modeling' && (
+                      <>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '11px', fontWeight: 800, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(147, 51, 234, 0.15)', color: '#9333ea' }}>THE MOVE HERE</span>
+                          <strong style={{ fontSize: '13.5px', color: 'var(--text-primary)' }}>Set up rate balance dA/dt = Rin - Rout, cooling T' = k(T-Tm), or circuit L i' + Ri = E(t).</strong>
+                        </div>
+                        <div style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                          <strong>5-Phase Sequence:</strong> 1) Physical conservation law; 2) Compute volume function V(t) = V0 + (rin - rout)t; 3) Set up standard linear ODE; 4) Integrate with initial condition; 5) Evaluate target query time.
+                        </div>
+                        <div style={{ padding: '10px 12px', borderRadius: '6px', backgroundColor: 'rgba(147, 51, 234, 0.04)', border: '1px dashed rgba(147, 51, 234, 0.3)', fontSize: '12.5px', lineHeight: 1.5 }}>
+                          <div style={{ fontWeight: 700, color: '#7e22ce', marginBottom: '4px' }}>🎯 Forensic Oven 3-Point Problem from Tutor Notes (Page 35):</div>
+                          <div style={{ marginBottom: '4px' }}>Thermometer in oven reads 70°F at t = 0, 110°F at t = 0.5, and 145°F at t = 1.0 min. Find oven temp Tm.</div>
+                          <div style={{ marginBottom: '4px' }}><MathText text="T(t) = T_m + (70 - T_m)e^{kt}" />. At t = 0.5: <MathText text="e^{0.5k} = \\frac{110-T_m}{70-T_m}" />. At t = 1.0: <MathText text="\\frac{145-T_m}{70-T_m} = \\left(\\frac{110-T_m}{70-T_m}\\right)^2" />.</div>
+                          <div>Cross-multiply: <MathText text="(145 - T_m)(70 - T_m) = (110 - T_m)^2 \\implies 5T_m = 1950 \\implies T_m = 390^\\circ\\text{F}" />.</div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+      )}
 
       {/* ========================================================================= */}
       {/* SECTION 1: ALL ASSIGNMENTS, QUIZZES, EXAMS, LABS & PROJECTS               */}

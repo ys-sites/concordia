@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 81
+### Currently Pending Uploads: 84
 
 ---
 
@@ -901,5 +901,33 @@
 * **Title**: INDU 211 - Term Paper Presentation Guide & 15-Minute Video Script
 * **Academic year**: `2025/2026`
 * **Description**: Comprehensive slide-by-slide 15-minute video presentation guide and verbatim rehearsal script for the INDU 211 Term Paper project. Formatted with 5 speaker segments (3 minutes each), technical transition cues, slide display prompts, and coverage of core production systems automation, AI failure modes, human-in-the-loop oversight, and OIQ engineering ethics.
+ 
+---
 
+## 82. `Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Summaries`
+* **Title**: ENGR 213 - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive master preparation compendium covering the entire ENGR 213 Midterm 1 syllabus: Chapter 2 (Separable ODEs §2.2, Linear First-Order ODEs §2.3, Exact Equations §2.4, Solutions by Substitution: Homogeneous & Bernoulli §2.5, Physical Models §2.7–§2.8) and Sections 17.1–17.2 (Complex Numbers, Polar/Cartesian Forms, Euler's Formula, De Moivre Powers, All Distinct Roots & Second-Order Auxiliary Equations). Features a dedicated Get Ready for Midterm 1 mastery section with an active 7-day revision system, 3-phase diagnostic checklist, and fully worked step-by-step problem walkthroughs for every exam topic.
+
+### 83. ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf
+* **File Name**: ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf
+* **University**: Concordia University
+* **Course**: Applied Ordinary Differential Equations (ENGR 213)
+* **Category**: Summaries
+* **Title**: ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition)
+* **Academic year**: 2025/2026
+* **Description**: Complete analytical framework and 5-phase universal solution protocol for ENGR 213 first-order differential equations. Features tutor heuristics ('The Move Here') and step-by-step exam walkthroughs for separable, integrating factor linear, exact equations with integrating factors, substitutions (+By+C$, homogeneous, Bernoulli), and forensic modeling (Newton cooling, mixture tanks, LR circuits, decay).
+
+### 84. Part 5 - Program Architecture, Output Tracing & Algorithmic Patterns.pdf
+* **File Name**: Part 5 - Program Architecture, Output Tracing & Algorithmic Patterns.pdf
+* **University**: Concordia University
+* **Course**: Mechanical, Industrial & Aerospace engineering (MIAE 215)
+* **Category**: Lecture notes
+* **Title**: MIAE 215 - Program Architecture, Output Tracing & Algorithmic Patterns (Part 5)
+* **Academic year**: 2025/2026
+* **Description**: In-depth architectural guide for C++ programming in MIAE 215 based on in-person lecture modules. Details the 7-step universal engineering program structure (Declare to Debug), signed/unsigned data type modifiers, methodical table-based execution tracing for exam output questions, streaming statistics with Euclidean vector norm, defensive menu validation, and array extremum linear search.
 

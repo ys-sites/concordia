@@ -25,81 +25,151 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   ENGR213: {
     midterm: {
       label: 'Midterm 1 Review — Chapter 2 & Sections 17.1, 17.2',
-      detail: 'Official Midterm 1 syllabus: Chapter 2 (Separable, Linear, Exact, Substitutions, Linear Models) and §17.1 & §17.2 (Complex Numbers & Auxiliary Equations), plus authentic past midterms',
-      sections: ['separable', 'linear', 'homogeneous', 'bernoulli', 'substitutions-mix', 'applications', 'complex', 'exact', 'ch2', 'mixed', 'past']
+      detail: 'Official Midterm 1 syllabus: Chapter 2 (Separable, Linear, Exact, Substitutions, Linear & Nonlinear Models) and §17.1 & §17.2 (Complex Numbers & Auxiliary Equations), plus authentic past midterms',
+      sections: [
+        'classification',
+        'autonomous-phase',
+        'separable',
+        'linear',
+        'exact',
+        'homogeneous',
+        'bernoulli',
+        'sub-linear',
+        'substitutions-mix',
+        'applications',
+        'nonlinear-models',
+        'complex',
+        'past'
+      ]
     },
     final: {
       label: 'Final Exam Review — Comprehensive All Topics',
       detail: 'Comprehensive ODE curriculum: first-order, higher-order, systems, Cauchy-Euler, resonance, complex numbers, and Laplace transforms',
-      sections: ['separable', 'linear', 'homogeneous', 'bernoulli', 'substitutions-mix', 'applications', 'complex', 'exact', 'ch1', 'ch2', 'mixed', 'past', 'past-final']
+      sections: [
+        'classification',
+        'autonomous-phase',
+        'separable',
+        'linear',
+        'exact',
+        'homogeneous',
+        'bernoulli',
+        'sub-linear',
+        'substitutions-mix',
+        'applications',
+        'nonlinear-models',
+        'complex',
+        'past',
+        'past-final'
+      ]
     },
     sections: [
+      // -----------------------------------------------------------------------
+      // LECTURES 1 & 2: FOUNDATIONS, IVPS & AUTONOMOUS PHASE LINES
+      // -----------------------------------------------------------------------
+      {
+        id: 'classification',
+        label: 'Lecture 1 · ODE Order, Linearity & Solution Verification',
+        detail: 'Classifying order, degree, linear vs nonlinear differential equations, and verifying explicit/implicit solutions',
+        group: 'Lectures 1 & 2: Foundations & Phase Lines'
+      },
+      {
+        id: 'autonomous-phase',
+        label: 'Lecture 2 · Autonomous ODEs & 1D Phase Line Stability',
+        detail: 'Equilibrium critical points, 1D phase portraits, and stability classification: attractor/sink, repeller/source, semi-stable',
+        group: 'Lectures 1 & 2: Foundations & Phase Lines'
+      },
+
+      // -----------------------------------------------------------------------
+      // LECTURES 3 & 4: FIRST-ORDER SOLVING METHODS (§2.2–§2.4)
+      // -----------------------------------------------------------------------
       {
         id: 'separable',
-        label: 'Separable Differential Equations',
+        label: 'Lecture 3 · Separable Equations & Singular Lost Solutions (§2.2)',
         detail: 'Separable ODEs, explicit vs implicit forms, singular/lost solutions, and initial value problems',
-        group: 'First-Order Solving Methods'
+        group: 'Lectures 3 & 4: Core Solving Methods'
       },
       {
         id: 'linear',
-        label: 'Linear First-Order Differential Equations',
-        detail: 'Standard form y\' + P(x)y = Q(x), integrating factor μ(x) = exp(∫P dx), transient/steady-state, and IVPs',
-        group: 'First-Order Solving Methods'
+        label: 'Lecture 3 · Linear First-Order ODEs & Integrating Factor (§2.3)',
+        detail: 'Standard form y\' + P(x)y = f(x), integrating factor I(x) = exp(∫P dx), transient/steady-state, and continuity intervals',
+        group: 'Lectures 3 & 4: Core Solving Methods'
       },
       {
         id: 'exact',
-        label: 'Exact Equations & Integrating Factors',
+        label: 'Lecture 4 · Exact Equations & Potential Function Ψ(x,y) (§2.4)',
         detail: 'Exactness condition ∂M/∂y = ∂N/∂x, potential function Ψ(x,y) = C, and special factors μ(x), μ(y)',
-        group: 'First-Order Solving Methods'
+        group: 'Lectures 3 & 4: Core Solving Methods'
       },
+
+      // -----------------------------------------------------------------------
+      // LECTURE 5: SUBSTITUTIONS & REDUCTIONS (§2.5)
+      // -----------------------------------------------------------------------
       {
         id: 'homogeneous',
-        label: 'Homogeneous Substitution (v = y/x)',
-        detail: 'Testing homogeneity of degree k, transformations y = ux / x = vy, and separation of variables',
-        group: 'Substitutions & Reductions'
+        label: 'Lecture 5 · Homogeneous Equations (y = ux) (§2.5)',
+        detail: 'Testing homogeneity of degree k, transformations y = ux or x = vy, and separation of variables',
+        group: 'Lecture 5: Substitutions & Reductions'
       },
       {
         id: 'bernoulli',
-        label: 'Bernoulli Differential Equations',
-        detail: 'Standard form y\' + P(x)y = Q(x)y^n, canonical substitution u = y^(1-n), and linear reduction',
-        group: 'Substitutions & Reductions'
+        label: 'Lecture 5 · Bernoulli Differential Equations (§2.5)',
+        detail: 'Standard form y\' + P(x)y = f(x)y^n, canonical substitution u = y^(1-n), and reduction to linear ODE',
+        group: 'Lecture 5: Substitutions & Reductions'
+      },
+      {
+        id: 'sub-linear',
+        label: 'Lecture 5 · Linear Arguments u = Ax + By + C (§2.5)',
+        detail: 'Equations of the form y\' = f(Ax + By + C), substitution u = Ax + By + C, and reduction to separable form',
+        group: 'Lecture 5: Substitutions & Reductions'
       },
       {
         id: 'substitutions-mix',
-        label: '3-Type Substitution Mix',
+        label: 'Lecture 5 · 3-Type Substitution Synthesis Drill',
         detail: 'Synthesis drill mixing all 3 types: Homogeneous (y=ux), Bernoulli (u=y^(1-n)), and Linear (u=Ax+By+C)',
-        group: 'Substitutions & Reductions',
-        subSections: ['substitutions-mix', 'homogeneous', 'bernoulli']
+        group: 'Lecture 5: Substitutions & Reductions',
+        subSections: ['substitutions-mix', 'homogeneous', 'bernoulli', 'sub-linear']
       },
+
+      // -----------------------------------------------------------------------
+      // LECTURES 6 & 7: PHYSICAL MODELING (§2.7 & §2.8)
+      // -----------------------------------------------------------------------
       {
         id: 'applications',
-        label: 'Real-World Applications & Modelling',
-        detail: 'Mixture tanks (single/variable volume), Newton\'s cooling, series RL/RC circuits, and decay/growth',
-        group: 'Physical Applications'
+        label: 'Lecture 6 · Linear Models: Cooling, Mixture Tanks & Circuits (§2.7)',
+        detail: 'Newton\'s cooling, variable/constant volume mixture tanks, series LR/RC electric circuits, and decay',
+        group: 'Lectures 6 & 7: Physical Modeling'
       },
+      {
+        id: 'nonlinear-models',
+        label: 'Lecture 7 · Nonlinear Models: Logistic Population Dynamics (§2.8)',
+        detail: 'The logistic equation dP/dt = P(a - bP), carrying capacity K = a/b, harvesting models, and inflection points',
+        group: 'Lectures 6 & 7: Physical Modeling'
+      },
+
+      // -----------------------------------------------------------------------
+      // LECTURE 8: COMPLEX NUMBERS & AUXILIARY EQUATIONS (§17.1 & §17.2)
+      // -----------------------------------------------------------------------
       {
         id: 'complex',
-        label: 'Complex Numbers & Euler\'s Formula',
-        detail: 'Cartesian/polar forms, Arg(z), Euler\'s formula, De Moivre powers, roots, and ODE auxiliary roots',
-        group: 'Foundations & Complex Numbers'
+        label: 'Lecture 8 · Complex Numbers, Euler, Roots & Auxiliary ODEs (§17.1–§17.2)',
+        detail: 'Cartesian/polar forms, Arg(z), Euler\'s formula, De Moivre powers, complex roots, and second-order auxiliary equations',
+        group: 'Lecture 8: Complex Numbers (§17.1 & §17.2)'
       },
-      {
-        id: 'ch1',
-        label: 'Chapter 1 — Classification, IVPs & Direction Fields',
-        detail: 'Order, linearity, n-parameter families, Existence & Uniqueness Theorem, and autonomous phase lines',
-        group: 'Foundations & Complex Numbers'
-      },
+
+      // -----------------------------------------------------------------------
+      // PAST EXAMINATION DRILLS
+      // -----------------------------------------------------------------------
       {
         id: 'past',
-        label: 'Past Papers — Midterm Exam',
+        label: 'Past Papers · Midterm Exam Master Drill',
         detail: 'Authentic Concordia midterm exam drills (2011–2018 & Winter 2025)',
-        group: 'Past Exam Drills'
+        group: 'Past Examination Drills'
       },
       {
         id: 'past-final',
-        label: 'Past Papers — Final Exam',
+        label: 'Past Papers · Final Exam Master Drill',
         detail: 'Authentic Concordia final exam drills (2005–2021)',
-        group: 'Past Exam Drills'
+        group: 'Past Examination Drills'
       }
     ]
   },

@@ -101,8 +101,17 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
     setInternalPath(folderPath);
   }, [folderPath]);
 
+  const tree = useMemo(() => {
+    const filteredDocs = course.documents.filter(
+      (d) =>
+        d.relativePath.split('/').length > 2 &&
+        !/^(ENGR 213\.pdf|Paradis notes\.pdf|Engr 213 Tutor\.pdf)$/i.test(d.filename) &&
+        !/^Engr 213\/ENGR 213\.pdf$/i.test(d.relativePath)
+    );
+    return buildFolderTree(filteredDocs);
+  }, [course]);
+
   const activePath = folderPath !== undefined && folderPath.length >= 0 ? folderPath : internalPath;
-  const tree = useMemo(() => buildFolderTree(course.documents), [course]);
   const current = findFolder(tree, activePath) ?? tree;
 
   // Reset search when course changes
@@ -379,11 +388,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
               <ChevronRight size={18} className="fx-folder-chevron" />
             </button>
           </div>
-          {tree.docs.length > 0 && (
-            <section className="fx-panel">
-              <ol className="fx-file-list">{tree.docs.map((doc, i) => renderFileRow(doc, i + 1))}</ol>
-            </section>
-          )}
         </section>
       ) : activePath[0] === 'Term Paper & Final Project' ? (
         <TermPaperVaultSection course={course} onViewPdf={onViewPdf} />

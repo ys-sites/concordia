@@ -20,8 +20,12 @@ export const LOCAL_ONLY_PATTERNS: RegExp[] = [
   /^Miae 215\/06 - Arduino Labs & Term Project\/Lab [23] [^/]*\/README\.md$/i,
   /^Miae 215\/06 - Arduino Labs & Term Project\/MIAE 215 - Arduino Labs & Mechatronics Project Master Guide\.[a-z]+$/i,
 
-  // ENGR 213 — assigned homework solutions
-  /^Engr 213\/.*Assigned Homework Solutions[^/]*$/i
+  // ENGR 213 — raw handwritten notes & assigned homework solutions
+  /^Engr 213\/ENGR 213\.pdf$/i,
+  /^Engr 213\/Engr 213 Tutor\.pdf$/i,
+  /^Engr 213\/.*Assigned Homework Solutions[^/]*$/i,
+  // Any unorganized loose PDF directly in a course root folder
+  /^[A-Za-z0-9 _]+\/[^/]+\.pdf$/i
 ];
 
 export const isLocalOnly = (relativePath: string): boolean => {
@@ -33,6 +37,9 @@ export const isLocalOnly = (relativePath: string): boolean => {
 // textbook chapters, expanded guides, review sheets) and practice problems only — nothing tied to
 // graded work or exams. Kept in git, never shown or deployed.
 export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
+  // Loose unorganized PDFs at root of course folders
+  /^[A-Za-z0-9 _]+\/[^/]+\.pdf$/i,
+
   // All Studocu downloads and folders (kept local only)
   /studocu/i,
 
@@ -43,6 +50,7 @@ export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   /(^|\/)06 - Quiz & Midterm Exam Prep(\/|$)/i,
 
   // Specific past tests, quizzes, and midterm exam files
+  /(^|\/)ENGR 213\.pdf$/i,
   /(^|\/)[^/]*(practice\s*exam|midterm|quiz\s*\d|test\s*\d)[^/]*\.(pdf|docx?|txt|md)$/i,
 
   // Course outlines and syllabi

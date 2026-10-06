@@ -1649,5 +1649,231 @@ export const ENGR213_SUBSECTION_QUESTIONS: PracticeQuestion[] = [
       reference: `${L4} · Pages 7–11`
     },
     source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Method of Solution' }]
-  }
+  },
+
+  // ==========================================
+  // LECTURE 1: CLASSIFICATION, ORDER & LINEARITY (classification)
+  // ==========================================
+  {
+    id: 'Q_ENGR213_SUB_CLS_01',
+    courseId: 'ENGR213',
+    chapter: 'classification',
+    topic: 'ODE Order, Degree & Linearity Classification',
+    difficulty: 'Midterm Level',
+    question: t`Classify the ordinary differential equation $(1 - y^2)y'' + 2x y' + y = \sin(x)$ in terms of order and linearity.`,
+    options: [
+      t`Second-order, non-linear (due to the coefficient $(1 - y^2)$ depending on $y$)`,
+      t`Second-order, linear with variable coefficients`,
+      t`First-order, non-linear because of the power $y^2$`,
+      t`Third-order, linear non-homogeneous`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`The order of an ODE is the highest derivative present ($y'' \implies$ second-order). An ODE is linear if the dependent variable $y$ and all its derivatives appear only to the first power and are not multiplied together or inside nonlinear functions. Coefficients of derivatives must depend solely on the independent variable $x$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Determine the order', math: t`\text{Highest derivative is } y'' \implies \text{Order } 2` },
+        { title: 'Check linearity conditions', note: t`The coefficient of $y''$ is $(1 - y^2)$, which is a function of the dependent variable $y$. In a linear ODE, coefficients of $y$ and its derivatives can only depend on $x$.` },
+        { title: 'Conclude classification', note: t`Therefore, the equation is second-order and non-linear.` }
+      ],
+      answer: t`Second-order, non-linear`,
+      whyWrong: {
+        '1': t`Overlooked that the coefficient of $y''$ contains $y^2$, which violates linearity.`,
+        '2': t`Confused the highest derivative $y''$ (order 2) with the degree of $y$.`,
+        '3': t`Miscalibrated order as 3.`
+      },
+      commonTrap: t`Thinking that variable coefficients only violate linearity if they depend on $x$. Linearity requires coefficients of $y, y', y''$ to depend ONLY on the independent variable $x$, never $y$.`,
+      reference: `Lecture 1 - Introduction to Differential Equations.pdf · Pages 4–7`
+    },
+    source: [{ deck: 'Lecture 1 - Introduction to Differential Equations.pdf', chapter: 'Chapter 1', location: 'Classification & Linearity' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_CLS_02',
+    courseId: 'ENGR213',
+    chapter: 'classification',
+    topic: 'Verifying Two-Parameter Solution Family',
+    difficulty: 'Midterm Level',
+    question: t`Determine whether the two-parameter family $y = c_1 e^{2x} + c_2 e^{-2x}$ is an explicit solution to the ODE $y'' - 4y = 0$ on $(-\infty, \infty)$.`,
+    options: [
+      t`Yes, it satisfies the differential equation identically for any constants $c_1, c_2$.`,
+      t`No, it only satisfies the equation if $c_1 = c_2 = 0$.`,
+      t`No, the second derivative produces $+4y''$, resulting in $8y = 0$.`,
+      t`Yes, but only on the positive half-line $x > 0$.`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`To verify that a family is an explicit solution, compute the necessary derivatives and substitute into the left-hand side of the ODE to verify that it reduces to $0$ identically.`,
+      stepByStep: [],
+      steps: [
+        { title: 'First derivative', math: t`y' = 2c_1 e^{2x} - 2c_2 e^{-2x}` },
+        { title: 'Second derivative', math: t`y'' = 4c_1 e^{2x} + 4c_2 e^{-2x} = 4(c_1 e^{2x} + c_2 e^{-2x}) = 4y` },
+        { title: 'Substitute into ODE', math: t`y'' - 4y = 4y - 4y = 0` },
+        { title: 'Domain evaluation', note: t`Exponentials $e^{\pm 2x}$ are smooth and continuous on $(-\infty, \infty)$.` }
+      ],
+      answer: t`Yes, it satisfies the differential equation identically for any constants $c_1, c_2$.`,
+      whyWrong: {
+        '1': t`The solution is valid for all arbitrary constants $c_1, c_2 \in \mathbb{R}$, not merely trivial zero.`,
+        '2': t`Derivatives were differentiated with algebraic sign errors.`,
+        '3': t`Exponentials have no singularities at $x \le 0$.`
+      },
+      commonTrap: t`Failing to compute the chain rule properly on $e^{-2x}$, which gives $(-2)(-2) = +4$.`,
+      reference: `Lecture 1 - Introduction to Differential Equations.pdf · Pages 8–11`
+    },
+    source: [{ deck: 'Lecture 1 - Introduction to Differential Equations.pdf', chapter: 'Chapter 1', location: 'Solution Verification' }]
+  },
+
+  // ==========================================
+  // LECTURE 2: AUTONOMOUS ODES & 1D PHASE LINE (autonomous-phase)
+  // ==========================================
+  {
+    id: 'Q_ENGR213_SUB_AUT_01',
+    courseId: 'ENGR213',
+    chapter: 'autonomous-phase',
+    topic: 'Autonomous ODE Critical Points & Stability',
+    difficulty: 'Midterm Level',
+    question: t`Find all critical points (equilibrium solutions) of the autonomous differential equation $\frac{dy}{dx} = y^2(4 - y)(y + 2)$ and classify their stability.`,
+    options: [
+      t`$y = 4$ is an attractor (stable), $y = -2$ is a repeller (unstable), $y = 0$ is semi-stable.`,
+      t`$y = 4$ is a repeller, $y = -2$ is an attractor, $y = 0$ is stable.`,
+      t`All three equilibrium solutions are stable attractors.`,
+      t`$y = 4$ is an attractor, $y = 0$ is a repeller, $y = -2$ is semi-stable.`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Critical points are real roots of $f(y) = 0$. On a 1D phase line, if $f(y) > 0$, arrows point upward; if $f(y) < 0$, arrows point downward. A point is an attractor (stable) if arrows on both sides converge toward it; a repeller (unstable) if arrows diverge away; semi-stable if arrows point toward it from one side and away on the other (characteristic of repeated even roots like $y^2$).`,
+      stepByStep: [],
+      steps: [
+        { title: 'Find roots of $f(y) = 0$', math: t`y^2(4-y)(y+2) = 0 \implies y = -2, \; y = 0, \; y = 4` },
+        { title: 'Test interval $y > 4$', math: t`y = 5 \implies (+)(-) (+) = - \implies y' < 0 \text{ (downward)}` },
+        { title: 'Test interval $0 < y < 4$', math: t`y = 2 \implies (+)(+)(+) = + \implies y' > 0 \text{ (upward)}` },
+        { title: 'Evaluate $y = 4$', note: t`Above 4 arrows point down; below 4 arrows point up. Both converge toward $y = 4 \implies$ Attractor (Asymptotically Stable).` },
+        { title: 'Test interval $-2 < y < 0$', math: t`y = -1 \implies (+)(+)(+) = + \implies y' > 0 \text{ (upward)}` },
+        { title: 'Evaluate $y = 0$', note: t`Arrows point up both below $0$ and above $0$ (due to $y^2 \ge 0$). $\implies$ Semi-stable.` },
+        { title: 'Test interval $y < -2$', math: t`y = -3 \implies (+)(+)(-) = - \implies y' < 0 \text{ (downward)}` },
+        { title: 'Evaluate $y = -2$', note: t`Above $-2$ arrows point up; below $-2$ arrows point down. Both diverge away from $-2 \implies$ Repeller (Unstable).` }
+      ],
+      answer: t`$y = 4$ is an attractor (stable), $y = -2$ is a repeller (unstable), $y = 0$ is semi-stable.`,
+      whyWrong: {
+        '1': t`Inverted the sign test in the regions $y > 4$ and $y < -2$.`,
+        '2': t`Failed to recognize that $y^2$ does not change sign across $y = 0$.`,
+        '3': t`Misassembled critical point stability classifications.`
+      },
+      commonTrap: t`Assuming every critical point alternates between stable and unstable. Repeated roots with even multiplicity like $y^2$ do not change sign, creating semi-stable nodes.`,
+      reference: `Lecture 2 - IVPs and Direction Fields.pdf · Pages 9–14`
+    },
+    source: [{ deck: 'Lecture 2 - IVPs and Direction Fields.pdf', chapter: 'Chapter 2', location: 'Autonomous Equations & Phase Line' }]
+  },
+
+  // ==========================================
+  // LECTURE 5: LINEAR ARGUMENT SUBSTITUTION (sub-linear)
+  // ==========================================
+  {
+    id: 'Q_ENGR213_SUB_LINARG_01',
+    courseId: 'ENGR213',
+    chapter: 'sub-linear',
+    topic: 'Linear Argument Substitution u = Ax + By + C',
+    difficulty: 'Midterm Level',
+    question: t`Solve the differential equation $\frac{dy}{dx} = (x + y + 2)^2$ using an appropriate substitution.`,
+    options: [
+      t`$y = \tan(x + C) - x - 2$`,
+      t`$y = \tan(x + C) + x + 2$`,
+      t`$y = \frac{1}{x + C} - x - 2$`,
+      t`$y = (x + C)^3 - x - 2$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`An equation of the form $\frac{dy}{dx} = f(Ax + By + C)$ is transformed into a separable ODE by setting $u = Ax + By + C \implies \frac{du}{dx} = A + B\frac{dy}{dx}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Set substitution', math: t`u = x + y + 2 \implies \frac{du}{dx} = 1 + \frac{dy}{dx} \implies \frac{dy}{dx} = \frac{du}{dx} - 1` },
+        { title: 'Substitute into ODE', math: t`\frac{du}{dx} - 1 = u^2 \implies \frac{du}{dx} = u^2 + 1` },
+        { title: 'Separate variables and integrate', math: t`\int \frac{du}{u^2 + 1} = \int dx \implies \arctan(u) = x + C` },
+        { title: 'Isolate u', math: t`u = \tan(x + C)` },
+        { title: 'Back-substitute u = x + y + 2', math: t`x + y + 2 = \tan(x + C) \implies y = \tan(x + C) - x - 2` }
+      ],
+      answer: t`y = \tan(x + C) - x - 2`,
+      whyWrong: {
+        '1': t`Forgot to subtract $(x+2)$ when inverting the substitution for $y$.`,
+        '2': t`Integrated $\frac{1}{u^2+1}$ as $-\frac{1}{u}$ instead of $\arctan(u)$.`,
+        '3': t`Integrated incorrectly as a power function.`
+      },
+      commonTrap: t`Forgetting that $\frac{du}{dx} = 1 + y'$, which gives $u' = u^2 + 1$ rather than $u' = u^2$.`,
+      reference: `Lecture 5, September 23 2026.pdf · Pages 11–14`
+    },
+    source: [{ deck: 'Lecture 5, September 23 2026.pdf', chapter: 'Chapter 2', location: 'Linear Argument Substitutions' }]
+  },
+
+  // ==========================================
+  // LECTURE 7: NONLINEAR MODELS — LOGISTIC EQUATION (nonlinear-models)
+  // ==========================================
+  {
+    id: 'Q_ENGR213_SUB_NLM_01',
+    courseId: 'ENGR213',
+    chapter: 'nonlinear-models',
+    topic: 'The Logistic Equation & Carrying Capacity',
+    difficulty: 'Midterm Level',
+    question: t`A population $P(t)$ obeys the logistic differential equation $\frac{dP}{dt} = 0.04 P - 0.0001 P^2$. Determine the carrying capacity $K$ of the environment and the population at which growth rate is maximized.`,
+    options: [
+      t`Carrying capacity $K = 400$, maximum growth rate occurs at $P = 200$.`,
+      t`Carrying capacity $K = 4000$, maximum growth rate occurs at $P = 2000$.`,
+      t`Carrying capacity $K = 100$, maximum growth rate occurs at $P = 50$.`,
+      t`Carrying capacity $K = 400$, maximum growth rate occurs at $P = 400$.`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`In the standard logistic equation $\frac{dP}{dt} = P(a - bP)$, the stable non-zero equilibrium (carrying capacity) is $K = \frac{a}{b}$. Because the growth rate $f(P) = aP - bP^2$ is a downward parabola with vertex at $P = \frac{a}{2b} = \frac{K}{2}$, maximum population growth rate always occurs at exactly half the carrying capacity.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Identify parameters', math: t`a = 0.04, \quad b = 0.0001` },
+        { title: 'Compute carrying capacity K', math: t`K = \frac{a}{b} = \frac{0.04}{0.0001} = 400` },
+        { title: 'Find population for maximum growth rate', math: t`P_{\text{max growth}} = \frac{K}{2} = \frac{400}{2} = 200` },
+        { title: 'Verify with derivative', math: t`f'(P) = 0.04 - 0.0002 P = 0 \implies P = \frac{0.04}{0.0002} = 200` }
+      ],
+      answer: t`Carrying capacity $K = 400$, maximum growth rate occurs at $P = 200$.`,
+      whyWrong: {
+        '1': t`Divided by $0.00001$ instead of $0.0001$, introducing an order-of-magnitude error.`,
+        '2': t`Inverted the coefficient division as $0.0001/0.04$.`,
+        '3': t`Confused the carrying capacity $K$ (where growth rate is $0$) with the maximum growth point.`
+      },
+      commonTrap: t`Believing that maximum growth occurs at carrying capacity $K$. At $K$, $dP/dt = 0$ (growth stops completely). The inflection point is always at $K/2$.`,
+      reference: `ENGR213, Lecture 7, September 30 2026.pdf · Pages 3–8`
+    },
+    source: [{ deck: 'ENGR213, Lecture 7, September 30 2026.pdf', chapter: 'Chapter 2', location: 'Logistic Growth & Carrying Capacity' }]
+  },
+  {
+    id: 'Q_ENGR213_SUB_NLM_02',
+    courseId: 'ENGR213',
+    chapter: 'nonlinear-models',
+    topic: 'Logistic Differential Equation Analytical Solution',
+    difficulty: 'Midterm Level',
+    question: t`Solve the logistic IVP $\frac{dP}{dt} = P(1 - P)$, $P(0) = \frac{1}{3}$, and find $\lim_{t \to \infty} P(t)$.`,
+    options: [
+      t`$P(t) = \frac{1}{1 + 2e^{-t}}$, and $\lim_{t \to \infty} P(t) = 1$`,
+      t`$P(t) = \frac{1}{3} e^t$, and $\lim_{t \to \infty} P(t) = \infty$`,
+      t`$P(t) = \frac{1}{1 + \frac{1}{3}e^{-t}}$, and $\lim_{t \to \infty} P(t) = 1$`,
+      t`$P(t) = \frac{1}{1 - 2e^{-t}}$, and $\lim_{t \to \infty} P(t) = 1$`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: t`Separate variables $\frac{dP}{P(1-P)} = dt$, apply partial fractions $\frac{1}{P} + \frac{1}{1-P}$, integrate to get $\frac{P}{1-P} = C e^t$, and invert to obtain $P(t) = \frac{P_0}{P_0 + (1-P_0)e^{-t}}$.`,
+      stepByStep: [],
+      steps: [
+        { title: 'Separate variables', math: t`\left(\frac{1}{P} + \frac{1}{1-P}\right)dP = dt` },
+        { title: 'Integrate', math: t`\ln|P| - \ln|1-P| = t + C_0 \implies \ln\left|\frac{P}{1-P}\right| = t + C_0` },
+        { title: 'Apply initial condition P(0) = 1/3', math: t`\frac{1/3}{1 - 1/3} = \frac{1/3}{2/3} = \frac{1}{2} = e^{C_0}` },
+        { title: 'Express ratio', math: t`\frac{P}{1-P} = \frac{1}{2}e^t \implies \frac{1-P}{P} = 2e^{-t} \implies \frac{1}{P} - 1 = 2e^{-t}` },
+        { title: 'Isolate P(t)', math: t`\frac{1}{P} = 1 + 2e^{-t} \implies P(t) = \frac{1}{1 + 2e^{-t}}` },
+        { title: 'Evaluate limit as t -> infinity', math: t`\lim_{t \to \infty} e^{-t} = 0 \implies P(\infty) = \frac{1}{1 + 0} = 1` }
+      ],
+      answer: t`$P(t) = \frac{1}{1 + 2e^{-t}}$, and $\lim_{t \to \infty} P(t) = 1$`,
+      whyWrong: {
+        '1': t`Treated the logistic equation as an exponential growth model $dP/dt = P$.`,
+        '2': t`Calculated the constant $C_0$ incorrectly from $P(0)$.`,
+        '3': t`Sign error inside the denominator $1 - 2e^{-t}$ which blows up to infinity.`
+      },
+      commonTrap: t`Forgetting that the partial fraction of $\frac{1}{1-P}$ integrates to $-\ln|1-P|$, not $+\ln|1-P|$.`,
+      reference: `ENGR213, Lecture 7, September 30 2026.pdf · Pages 5–9`
+    },
+    source: [{ deck: 'ENGR213, Lecture 7, September 30 2026.pdf', chapter: 'Chapter 2', location: 'Logistic IVP Analytical Derivation' }]
+  },
 ];

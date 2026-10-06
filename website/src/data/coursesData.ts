@@ -69,7 +69,11 @@ import { isFilteredDocumentPdf } from './localOnly';
 
 const documentsFor = (courseId: CourseId): CourseDocument[] =>
   (PUBLISHED_DOCUMENTS as CourseDocument[]).filter(
-    (d) => d.courseId === courseId && !isFilteredDocumentPdf(d.relativePath)
+    (d) =>
+      d.courseId === courseId &&
+      !isFilteredDocumentPdf(d.relativePath) &&
+      d.relativePath.split('/').length > 2 &&
+      !/^(ENGR 213\.pdf|Paradis notes\.pdf|Engr 213 Tutor\.pdf)$/i.test(d.filename)
   );
 
 export const COURSES_DATA: CourseWithDocs[] = COURSE_INFO.map((info) => {

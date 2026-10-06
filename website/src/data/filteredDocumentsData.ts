@@ -29,6 +29,10 @@ export const isTermPaperDoc = (relativePath: string): boolean =>
   /Term Paper & Final Project/i.test(relativePath);
 
 const RAW_FILTERED_RELATIVE_PATHS: string[] = [
+  "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf",
+  "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Engr 213 Tutor.pdf",
+  "Miae 215/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Part 5 - Program Architecture, Output Tracing & Algorithmic Patterns.pdf",
+  "Miae 215/01 - Teacher Lecture Notes & Slides/variable_types2_type_modifiers.pdf",
   "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
   "Engr 213/00 - Course Syllabus & Textbook/Calculus for Differential Equations - Master Sheet.pdf",
@@ -363,6 +367,32 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
         tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+      },
+      {
+        id: "ENGR213:filtered:gradesaver-master-guide",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Gradesaver',
+        title: "ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition)",
+        filename: "ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf",
+        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf",
+        fileSizeBytes: 255853,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Gradesaver", "Tutor Blueprint", "5-Phase System", "Exam Walkthroughs"]
+      },
+      {
+        id: "ENGR213:filtered:gradesaver-tutor-notes",
+        courseId: 'ENGR213',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Gradesaver',
+        title: "Engr 213 Tutor — Handwritten In-Depth Tutor Notes & Exam Method",
+        filename: "Engr 213 Tutor.pdf",
+        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Engr 213 Tutor.pdf",
+        fileSizeBytes: 62357032,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Tutor Notes", "Handwritten Blueprint", "43 Pages", "OneNote Export"]
       },
       {
         id: "ENGR213:filtered:quiz-test-bank-2025",
@@ -1680,30 +1710,30 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     ],
     midtermPrepDocs: [
       {
-        id: "ENGR213:filtered:paradis-master-guide",
-        courseId: 'ENGR213',
+        id: "MIAE215:filtered:part5-guide",
+        courseId: 'MIAE215',
         categoryId: 'Filtered-Vault',
-        categoryTitle: 'Paradis notes',
-        title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
-        filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-        relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-        fileSizeBytes: 537853,
+        categoryTitle: 'Topic Guides',
+        title: "MIAE 215 - Program Architecture, Output Tracing & Algorithmic Patterns (Part 5)",
+        filename: "Part 5 - Program Architecture, Output Tracing & Algorithmic Patterns.pdf",
+        relativePath: "Miae 215/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Part 5 - Program Architecture, Output Tracing & Algorithmic Patterns.pdf",
+        fileSizeBytes: 461415,
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
-        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+        tags: ["Part 5 Guide", "7-Step Architecture", "Table Tracing", "Algorithm Legos"]
       },
       {
-        id: "ENGR213:filtered:quiz-test-bank-2025",
-        courseId: 'ENGR213',
+        id: "MIAE215:filtered:type-modifiers",
+        courseId: 'MIAE215',
         categoryId: 'Filtered-Vault',
-        categoryTitle: 'Assessment Vault',
-        title: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)",
-        filename: "ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
-        relativePath: "Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf",
-        fileSizeBytes: 424102,
-        categoryType: 'Quiz / Test',
+        categoryTitle: 'Lecture Slides',
+        title: "MIAE 215 - Variable Types & Type Modifiers (Lecture Slides)",
+        filename: "variable_types2_type_modifiers.pdf",
+        relativePath: "Miae 215/01 - Teacher Lecture Notes & Slides/variable_types2_type_modifiers.pdf",
+        fileSizeBytes: 297017,
+        categoryType: 'Midterm Exam',
         isMidtermPrep: true,
-        tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
+        tags: ["Teacher Slides", "Type Modifiers", "Signed/Unsigned", "Memory Architecture"]
       },
             {
         id: "ENGR213:filtered:14",

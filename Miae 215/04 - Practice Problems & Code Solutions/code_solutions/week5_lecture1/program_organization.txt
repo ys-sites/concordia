@@ -1,0 +1,148 @@
+
+Students often have difficulty with the following problems
+
+- where to start a program ?
+- how to organize a program ?
+- how to finish a program ?
+- how to get part marks on tests and exams ?
+- how to get "unstuck" ?
+
+The following list of steps provides a more organized / structured
+approach to programming that can help with the above problems
+
+                    PROGRAM ORGANIZATION
+
+* The following steps should be followed in order if possible
+when designing and coding your program
+
+* These steps cover basic C++ programs up to this point
+
+* more information will be added to the list in the future 
+as we cover new C++ features and solve different types of problems
+
+
+1. DECLARE
+
+- identify variables needed from the problem statement
+
+- you should declare ALL variables at the beginning of the program
+
+- leave room at the top of the program to add more variables 
+later if needed
+
+
+2. INITIALIZE
+
+- set / assign variables to initial values
+
+- uninitialized variables hold garbage and yield garbage in expressions
+
+- initialize ALL variables if possible just after declaration
+
+- initialize using constants, expressions, INPUT (step #3), etc.
+
+
+3. INPUT
+
+- an input is any information supplied to the program from an 
+external source -- calculations from expressions, etc. don't count
+
+- inputs include constant parameters, keyboard input, file input, 
+Arduino sensor input, joystick input, etc.
+
+- might need to call functions (2D graphics library, Arduino, etc.)
+to get some inputs
+
+- identify program inputs from the problem statement / requirements
+(eg input, keyboard, read, etc.)
+
+- input can also occur in step #2 (initialize) or 
+step #4 (control statements) inside of them
+
+- in a question you should check your inputs for errors
+if they say check for errors, otherwise assume the input
+doesn't have errors
+
+- in the real world you should always check your inputs
+for errors if possible
+
+4. CONTROL STATEMENTS
+
+- control statements control the flow / path of the program
+based on logical test conditions
+
+- control statements provide the overall skeleton / structure of the 
+program, so it's best to select / program these early on (by step #4)
+
+- select the important control statements for the problem
+
+- wording / requirements of problem can sometimes provide clues
+
+- use your experience to identify parts / blocks of similar programs 
+you have seen (ie Lego blocks) and re-use the Legos to solve the 
+problem (eg nested for loops to access 2D arrays)
+
+*** you should be building up your own box of C++ Legos
+in this course when you solve problems and look at lecture examples
+-- then use them when needed
+
+-- however, sometimes you might need to modify a Lego or make
+your own Lego for some problems -- start from basic control statements
+
+* small handwritten examples can also help guide you
+-- solve the problem by hand then write down a list of steps 
+that you use to solve the example and then program the 
+control statements for the general case
+
+- control statements can include INPUT (step #3), 
+expressions (step #5), and OUTPUT (step #6) inside of them
+
+- write control statements leaving blanks for these unknown parts
+
+- this leaves a skeleton / template you can add to later
+
+5. EXPRESSIONS
+
+- use expressions and operators to calculate variables needed 
+for the program -- OUTPUT (step #6) and other calculations
+
+- the problem statement often provides equations you need to use
+
+- put the required expressions in the control statements from step #4
+(ie fill in the skeleton / template)
+
+6. OUTPUT
+
+- an output is any information provided from the program to an 
+external recipient (ie the answer your program calculates)
+
+- outputs can include screen output, graphics, audio, file output, 
+Arduino actuator output, etc.
+
+- identify program outputs from the problem statement / requirements
+(eg output, print out, write, etc.)
+
+- outputs can also occur inside step #4 (control statements)
+
+- might need to call functions (2D graphics library, Arduino, etc.)
+to set some outputs
+
+7. DEBUG / TEST
+
+- a program may not compile (compile-time errors) or 
+run properly (run-time errors)
+
+- debugging is the process of finding and correcting errors (bugs)
+
+- this can be done using a debugger or modifying the program
+(to output key variables, etc.) -- more on this later
+
+- testing is the process of thoroughly verifying the program works 
+for a set of test inputs
+
+- this will help detect more subtle errors than debugging and help 
+verify the program works when no errors are found 
+(for a sufficiently large set of test inputs)
+-- this is very important in industry to catch software errors
+
+-- more on program testing later in the term
