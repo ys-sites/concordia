@@ -516,13 +516,13 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                   <span style={{ fontSize: '11px', fontWeight: 800, color: '#0284c7', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     🌟 Regenerated Master Guide
                   </span>
-                  <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>300 KB · PDF</span>
+                  <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>538 KB · 17 Pages</span>
                 </div>
                 <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
                   Paradis notes — In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium
                 </div>
                 <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                  Typeset LaTeX formatting with complete proofs, autonomous phase lines, Bernoulli substitutions, exact differential equations, forensic cooling models, and complex variables.
+                  Typeset LaTeX compendium featuring Module 9: Get Ready for Midterm 1 (7-Day Active Revision Protocol, 8 step-by-step topic mastery walkthroughs for Ch 2 &amp; §17.1–§17.2, and error audit log).
                 </div>
                 <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
                   <button
@@ -538,8 +538,8 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                         title: 'Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)',
                         filename: 'Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf',
                         relativePath: 'Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf',
-                        fileSizeBytes: 300265,
-                        tags: ['Paradis notes', 'Regenerated Master Guide', 'Midterm 1 Scope'],
+                        fileSizeBytes: 537853,
+                        tags: ['Paradis notes', 'Regenerated Master Guide', 'Midterm 1 Scope', '17 Pages'],
                         summary: 'Paradis notes master compendium (Fall 2026)'
                       });
                     }}

@@ -359,7 +359,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
         filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
         relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-        fileSizeBytes: 300265,
+        fileSizeBytes: 537853,
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
         tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
@@ -1687,7 +1687,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
         filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
         relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-        fileSizeBytes: 300265,
+        fileSizeBytes: 537853,
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
         tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
@@ -1996,7 +1996,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
         filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
         relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-        fileSizeBytes: 300265,
+        fileSizeBytes: 537853,
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
         tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
@@ -2583,7 +2583,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
         filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
         relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-        fileSizeBytes: 300265,
+        fileSizeBytes: 537853,
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
         tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
@@ -2852,7 +2852,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
         filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
         relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-        fileSizeBytes: 300265,
+        fileSizeBytes: 537853,
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
         tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
@@ -3205,7 +3205,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
         filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
         relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-        fileSizeBytes: 300265,
+        fileSizeBytes: 537853,
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
         tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
@@ -3383,7 +3383,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
         filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
         relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-        fileSizeBytes: 300265,
+        fileSizeBytes: 537853,
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
         tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
@@ -3528,7 +3528,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         title: "Paradis notes - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium (Fall 2026)",
         filename: "Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
         relativePath: "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf",
-        fileSizeBytes: 300265,
+        fileSizeBytes: 537853,
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
         tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
