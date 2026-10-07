@@ -15,9 +15,10 @@ A centralized, interactive educational repository and web portal for Concordia U
 Deploy this entire portal to Vercel with zero configuration:
 
 1. Import this repository (`https://github.com/ys-sites/concordia.git`) into **[Vercel](https://vercel.com/)**.
-2. **Build Settings**: Vercel automatically detects the **Vite** framework at the root:
+2. **Build Settings**: Set **Root Directory** to `website`:
+   - **Root Directory**: `website`
    - **Framework Preset**: `Vite`
-   - **Build Command**: `npm run build` (or `vite build`)
+   - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 3. Click **Deploy**!
 
@@ -54,7 +55,7 @@ Clone the repository and run the development server:
 ```bash
 # Clone repository
 git clone https://github.com/ys-sites/concordia.git
-cd concordia
+cd concordia/website
 
 # Install dependencies
 npm install
@@ -70,6 +71,7 @@ Visit **`http://localhost:5173/`** in your browser.
 ## 📦 Building for Production
 
 ```bash
+cd website
 npm run build
 ```
 

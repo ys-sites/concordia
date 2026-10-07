@@ -94,3 +94,12 @@ Engr 213/06 - Quiz & Midterm Exam Prep/IMG_*.jpg
 scratch/
 scratch_test_img.pdf
 .work/
+
+# Root-level website files (all website code, config, and files live in website/)
+/api/
+/package.json
+/package-lock.json
+/vercel.json
+/.vercelignore
+/001 Main/
+
