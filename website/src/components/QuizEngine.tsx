@@ -84,6 +84,15 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
   const [speakingMode, setSpeakingMode] = useState<'none' | 'listen' | 'robot'>('none');
   // Non-null while the neural voice model downloads on first use (0-100)
   const [voiceLoadPct, setVoiceLoadPct] = useState<number | null>(null);
+  // Visible voice failure message (auto-clears) so problems never fail silently
+  const [voiceError, setVoiceError] = useState<string | null>(null);
+  const voiceErrorTimer = React.useRef<number | null>(null);
+  const showVoiceError = (err: unknown) => {
+    const msg = err instanceof Error ? err.message : String(err);
+    setVoiceError(msg || 'Unknown voice error');
+    if (voiceErrorTimer.current) window.clearTimeout(voiceErrorTimer.current);
+    voiceErrorTimer.current = window.setTimeout(() => setVoiceError(null), 12000);
+  };
   const [autoRead, setAutoRead] = useState<boolean>(() => {
     try { return localStorage.getItem('quiz-auto-read') === '1'; } catch { return false; }
   });
@@ -149,9 +158,9 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
       rate: mode === 'robot' ? 0.88 : 0.95,
       pitch: mode === 'robot' ? 1.05 : 1.0,
       onLoading: (pct) => setVoiceLoadPct(pct),
-      onStart: () => { setVoiceLoadPct(null); setSpeakingMode(mode); },
+      onStart: () => { setVoiceLoadPct(null); setVoiceError(null); setSpeakingMode(mode); },
       onEnd: () => { setVoiceLoadPct(null); setSpeakingMode('none'); },
-      onError: () => { setVoiceLoadPct(null); setSpeakingMode('none'); }
+      onError: (err) => { setVoiceLoadPct(null); setSpeakingMode('none'); showVoiceError(err); }
     });
     setSpeakingMode(mode);
   }, [voiceSupported, sessionQuestions, currentIndex]);
@@ -498,6 +507,12 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
                 <span className="toggle-track"><span className="toggle-thumb" /></span>
                 <span>Auto-read</span>
               </button>
+              {voiceError && (
+                <div className="voice-error" role="alert">
+                  <span>Voice failed: {voiceError}</span>
+                  <button type="button" onClick={() => setVoiceError(null)} aria-label="Dismiss">×</button>
+                </div>
+              )}
             </div>
           )}
           <h2 className="statement-text">
