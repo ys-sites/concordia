@@ -59,16 +59,50 @@ export function prewarmVoice(delayMs = 1500): void {
 }
 
 /** Load (once) the Kokoro voice engine. Safe to call from many places. */
-export function loadKokoroVoice(onProgress?: (pct: number) => void): Promise<KokoroTTSType> {
+let voiceReady = false;
+let lastLoadPct = 0;
+const loadProgressListeners = new Set<(pct: number) => void>();
+
+function emitLoadProgress(pct: number) {
+  lastLoadPct = pct;
+  loadProgressListeners.forEach((l) => {
+    try { l(pct); } catch { /* ignore listener errors */ }
+  });
+}
+
+/**
+ * Subscribe to model-download progress. Immediately receives the current
+ * value (0-100), so late subscribers (e.g. a tap during a background
+ * pre-warm) still see live progress instead of a dead button.
+ */
+export function onVoiceLoadProgress(fn: (pct: number) => void): () => void {
+  loadProgressListeners.add(fn);
+  fn(voiceReady ? 100 : lastLoadPct);
+  return () => {
+    loadProgressListeners.delete(fn);
+  };
+}
+
+export function isVoiceReady(): boolean {
+  return voiceReady;
+}
+
+export function loadKokoroVoice(): Promise<KokoroTTSType> {
   if (!kokoroPromise) {
     kokoroPromise = import('kokoro-js').then(({ KokoroTTS }) =>
       KokoroTTS.from_pretrained(KOKORO_MODEL_ID, {
-        dtype: 'q8',
+        // q4: ~41MB download (vs ~90MB q8) and faster on-device inference —
+        // still a natural human voice, much kinder to phones.
+        dtype: 'q4',
         progress_callback: (info: any) => {
-          if (info && typeof info.progress === 'number') onProgress?.(Math.round(info.progress));
+          if (info && typeof info.progress === 'number') emitLoadProgress(Math.round(info.progress));
         },
       }),
-    ).catch((err) => {
+    ).then((tts) => {
+      voiceReady = true;
+      emitLoadProgress(100);
+      return tts;
+    }).catch((err) => {
       kokoroPromise = null;
       throw err;
     });
@@ -145,7 +179,13 @@ export async function speakText(rawText: string): Promise<void> {
   unlockAudioPlayback();
   stopSpeaking();
   setStatus('loading', 0);
-  const tts = await loadKokoroVoice((p) => setStatus('loading', p));
+  const unsub = onVoiceLoadProgress((pct) => setStatus('loading', pct));
+  let tts;
+  try {
+    tts = await loadKokoroVoice();
+  } finally {
+    unsub();
+  }
   setStatus('speaking');
   try {
     const audio = await tts.generate(text, { voice: KOKORO_VOICE });

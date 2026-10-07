@@ -7,7 +7,7 @@
 // - Speaks long text as a queue of short generated chunks so playback starts fast.
 
 import { splitMath } from './mathRenderer';
-import { loadKokoroVoice, KOKORO_VOICE, unlockAudioPlayback } from './humanVoice';
+import { loadKokoroVoice, KOKORO_VOICE, unlockAudioPlayback, onVoiceLoadProgress } from './humanVoice';
 
 /* ----------------------------------------------------------------------------
  * Math (LaTeX) -> spoken English
@@ -349,11 +349,14 @@ class SpeechEngine {
     this.lastText = rawText;
     const session = this.session;
     const speed = options.rate ?? 1.0; // Kokoro speed ~= old speechSynthesis rate mapping
-    const chunks = splitIntoChunks(spoken);
+    const chunks = splitIntoChunks(spoken, 120); // smaller chunks => faster first audio on phones
 
     const alive = () => session === this.session;
 
-    loadKokoroVoice((pct) => options.onLoading?.(pct))
+    const unsubProgress = onVoiceLoadProgress((pct) => options.onLoading?.(pct));
+    const settle = () => unsubProgress();
+
+    loadKokoroVoice()
       .then(async (tts) => {
         for (let i = 0; i < chunks.length; i++) {
           if (!alive()) return;
@@ -368,12 +371,14 @@ class SpeechEngine {
             alive,
           });
         }
+        settle();
         if (alive()) {
           this.teardownAudio();
           options.onEnd?.();
         }
       })
       .catch((err) => {
+        settle();
         if (!alive()) return;
         this.teardownAudio();
         options.onError?.(err);
