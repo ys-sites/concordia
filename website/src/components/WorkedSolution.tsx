@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PracticeQuestion, SolutionStep } from '../types';
 import { MathBlock, MathText } from '../utils/mathRenderer';
 import { ReadAloudButton } from './ReadAloudButton';
+import { prewarmVoice } from '../utils/humanVoice';
 import {
   Lightbulb,
   Search,
@@ -98,6 +99,9 @@ function resolveSteps(q: PracticeQuestion, isCalc: boolean): SolutionStep[] {
 }
 
 export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, selectedIndex, mode }) => {
+  // Warm up the neural voice in the background so the Listen button speaks fast
+  useEffect(() => { prewarmVoice(); }, []);
+
   const isCalc = isCalculationQuestion(question);
   const steps = resolveSteps(question, isCalc);
   const hasSteps = steps.length > 0;

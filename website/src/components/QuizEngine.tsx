@@ -7,6 +7,7 @@ import { SourceList } from './SourceList';
 import { WorkedSolution } from './WorkedSolution';
 import { audio } from '../utils/audio';
 import { speechEngine } from '../utils/speechEngine';
+import { prewarmVoice } from '../utils/humanVoice';
 import { 
   Brain, 
   Flame, 
@@ -171,6 +172,9 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
     if (next) speakQuestion('listen');
     else stopSpeaking();
   };
+
+  // Warm up the neural voice in the background so the first Listen tap speaks fast
+  useEffect(() => { prewarmVoice(); }, []);
 
   // Stop talking when leaving the drill
   useEffect(() => () => speechEngine.stop(), []);

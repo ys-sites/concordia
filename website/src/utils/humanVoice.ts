@@ -40,6 +40,24 @@ export function unlockAudioPlayback(): void {
   }
 }
 
+/* ----------------------------------------------------------------------------
+ * Background pre-warm: start downloading the voice model as soon as a quiz
+ * page mounts (short delay so it never competes with rendering). By the time
+ * the user taps Listen, the model is usually already cached and playback
+ * starts in seconds — no "loading" purgatory. If the pre-warm fails
+ * (offline etc.), the real tap retries the load.
+ * ------------------------------------------------------------------------- */
+let prewarmStarted = false;
+export function prewarmVoice(delayMs = 1500): void {
+  if (prewarmStarted || typeof window === 'undefined') return;
+  prewarmStarted = true;
+  window.setTimeout(() => {
+    void loadKokoroVoice().catch(() => {
+      /* ignored — speak() will retry on the actual tap */
+    });
+  }, delayMs);
+}
+
 /** Load (once) the Kokoro voice engine. Safe to call from many places. */
 export function loadKokoroVoice(onProgress?: (pct: number) => void): Promise<KokoroTTSType> {
   if (!kokoroPromise) {
