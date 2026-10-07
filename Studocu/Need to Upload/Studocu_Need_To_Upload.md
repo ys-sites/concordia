@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 84
+### Currently Pending Uploads: 86
 
 ---
 
@@ -930,4 +930,28 @@
 * **Title**: MIAE 215 - Program Architecture, Output Tracing & Algorithmic Patterns (Part 5)
 * **Academic year**: 2025/2026
 * **Description**: In-depth architectural guide for C++ programming in MIAE 215 based on in-person lecture modules. Details the 7-step universal engineering program structure (Declare to Debug), signed/unsigned data type modifiers, methodical table-based execution tracing for exam output questions, streaming statistics with Euclidean vector norm, defensive menu validation, and array extremum linear search.
+
+---
+
+## 85. `Part 9 - Diffusion in Solids Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 9 - Diffusion in Solids Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive master study guide for Dr. Medraj's MIAE 221 Lecture 9 and Callister Chapter 5 covering self-diffusion vs interdiffusion, atomic mechanisms (vacancy vs interstitial), steady-state Fick's first law with palladium hydrogen purification, gear case hardening, non-steady state Fick's second law error function solutions with step-by-step linear interpolation, constant-concentration scaling laws, and Arrhenius activation energy determinations. Includes fully solved quantitative lecture problems and verified student slide fill-in answers.
+
+---
+
+## 86. `Part 9 - Diffusion in Solids - One-Page Review Sheet.pdf`
+
+* **University**: Concordia University
+* **Course**: `Materials Science (MIAE 221)`
+* **Category**: `Summaries`
+* **Title**: MIAE 221 Part 9 - Diffusion in Solids 1-Page Rapid Review Sheet
+* **Academic year**: `2025/2026`
+* **Description**: High-yield single-page exam summary sheet for MIAE 221 Lecture 9 featuring governing formulas for Fick's first and second laws, semi-infinite error function solutions with Gaussian error function lookup table, constant-concentration depth-time scaling rules, Arrhenius temperature equations with linear slope relations, and core exam rules of thumb for open vs close-packed structures and bond types.
+
+---
 
