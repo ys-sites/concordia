@@ -141,9 +141,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which of the following is a partial differential equation (PDE)?",
     "options": [
       "$\\dfrac{\\partial^2 u}{\\partial x^2} + \\dfrac{\\partial^2 u}{\\partial y^2} = 0$",
-      "$\\dfrac{dy}{dx} + 5y = e^x$",
-      "$(y - x)\\,dx + 4x\\,dy = 0$",
-      "$\\dfrac{d^2x}{dt^2} + 16x = 0$"
+      "$\\dfrac{dy}{dx} + 5y = e^x$, a first-order ODE with constant coefficients in $x$",
+      "$(y - x)\\,dx + 4x\\,dy = 0$, an ODE in differential form with independent variable $x$",
+      "$\\dfrac{d^2x}{dt^2} + 16x = 0$, a second-order ODE for $x(t)$ with independent variable $t$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -265,9 +265,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "For $\\dfrac{dy}{dx} = \\dfrac{y}{x}$, does the existence–uniqueness theorem guarantee a unique solution through $(0, 1)$?",
     "options": [
       "No. $f(x,y) = y/x$ is not continuous at $x = 0$, so the theorem does not apply",
-      "Yes, a unique solution exists",
-      "Yes, because $\\partial f/\\partial y = 1/x$ exists",
-      "The theorem guarantees infinitely many solutions"
+      "Yes, a unique solution exists, since $f$ and $\\partial f/\\partial y$ are continuous near $(0, 1)$",
+      "Yes, because $\\partial f/\\partial y = 1/x$ exists at $x = 0$ and that is all the theorem needs",
+      "The theorem guarantees infinitely many solutions through $(0, 1)$, one for each $c$ in $y = cx$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -296,9 +296,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "the IVP $\\dfrac{dy}{dx} = x y^{1/2}$, $y(0) = 0$ has two solutions, $y = 0$ and $y = \\dfrac{x^4}{16}$. Why doesn't this contradict the existence–uniqueness theorem?",
     "options": [
       "$\\partial f/\\partial y = \\dfrac{x}{2\\sqrt{y}}$ is not continuous at $y = 0$, so uniqueness is not guaranteed at $(0,0)$",
-      "$f(x, y) = x y^{1/2}$ is not continuous at $(0, 0)$",
-      "$y = x^4/16$ does not actually satisfy the ODE",
-      "The theorem only applies to linear equations"
+      "$f(x, y) = x y^{1/2}$ is not continuous at $(0, 0)$, so even existence of a solution fails there",
+      "$y = x^4/16$ does not actually satisfy the ODE, so the IVP really has just the single solution $y = 0$",
+      "The theorem only applies to linear equations, so for this nonlinear IVP it is outside its scope"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -839,9 +839,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "a culture starts with $P_0$ bacteria and has $\\tfrac32 P_0$ after 1 hour. If the growth rate is proportional to $P$, when does the population triple?",
     "options": [
       "$t = \\dfrac{\\ln 3}{\\ln 1.5} \\approx 2.71$ h",
-      "$t = 4$ h",
-      "$t = 3$ h",
-      "$t = 2$ h"
+      "$t = \\dfrac{\\ln 3}{1.5} \\approx 0.73$ h",
+      "$t = 3$ h, since $1.5^3 = 3.375 \\approx 3$",
+      "$t = \\dfrac{3}{1.5} = 2$ h since $1.5 \\times 2 = 3$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1092,9 +1092,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In mathematical modeling, what fundamental characteristic is shared by Newton's law of cooling, vehicle dynamics, chemical kinetics, and population growth?",
     "options": [
       "An unknown quantity is related to one or more of its derivatives",
-      "They all use the same equation",
-      "They are all second-order equations",
-      "None of them depends on time"
+      "They all use the same equation, just with different letters for the variables",
+      "They are all second-order equations, since real systems need two derivatives",
+      "None of them depends on time, because time is never a variable in these models"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1273,9 +1273,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which condition is required for an $n$th-order ODE to be linear in $y$?",
     "options": [
       "The coefficients of $y, y', \\dots, y^{(n)}$ depend at most on the independent variable $x$",
-      "All coefficients must be constants",
-      "The right-hand side $g(x)$ must be zero",
-      "The equation must be first order"
+      "All coefficients must be constants, since variable coefficients always make an ODE nonlinear",
+      "The right-hand side $g(x)$ must be zero, because a nonzero $g(x)$ destroys linearity",
+      "The equation must be first order, because linearity is only defined for first-order ODEs"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1333,9 +1333,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "For a function $\\varphi$ to be a solution of an $n$th-order ODE on an interval $I$, it must:",
     "options": [
       "Possess at least $n$ derivatives continuous on $I$ and reduce the ODE to an identity on $I$",
-      "Be a polynomial of degree $n$",
-      "Satisfy the ODE at one point only",
-      "Be defined only at $x = 0$"
+      "Be a polynomial of degree $n$ with exactly $n$ real roots on the interval $I$",
+      "Satisfy the ODE at one point only, namely the initial point $x_0$, and nowhere else",
+      "Be defined only at $x = 0$, since every ODE solution must pass through the origin"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1363,9 +1363,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "$y = \\sin x$ solves $y'' + y = 0$ on $(-\\infty, \\infty)$. What is the trivial solution of this ODE?",
     "options": [
       "$y = 0$, a solution that is identically zero on the interval",
-      "$y = \\cos x$",
-      "$y = 1$",
-      "$y = x$"
+      "$y = \\cos x$, which equals one at the origin and oscillates",
+      "$y = 1$, a solution that is identically one on the interval",
+      "$y = x$, a solution that is identically zero at the origin"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1393,9 +1393,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Verify: which statement about $y = \\sin x$ and the ODE $y'' + y = 0$ is correct?",
     "options": [
       "$y'' = -\\sin x$, so $y'' + y = -\\sin x + \\sin x = 0$: it is a solution on $(-\\infty, \\infty)$",
-      "$y'' = \\sin x$, so it is not a solution",
-      "It is a solution only for $x > 0$",
-      "It is a solution only at $x = 0$"
+      "$y'' = \\sin x$, so $y'' + y = 2\\sin x \\neq 0$: it is not a solution on $(-\\infty, \\infty)$",
+      "It is a solution only for $x > 0$, because $\\sin x$ changes sign for negative $x$",
+      "It is a solution only at $x = 0$, the only point where $y'' + y$ is exactly zero"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1516,9 +1516,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the definition of a system of ordinary differential equations?",
     "options": [
       "Two or more equations involving the derivatives of two or more unknown functions of a single independent variable",
-      "One equation with two independent variables",
-      "A single ODE solved twice",
-      "A PDE written in differential form"
+      "One equation with two independent variables, where $y$ depends on both $x$ and $t$ simultaneously",
+      "A single ODE solved twice, once separately for each of the two dependent variables it contains",
+      "A PDE written in differential form, such as $u_x\\,dx + u_y\\,dy = 0$ with two independent variables"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1546,9 +1546,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "For an $n$th-order IVP, where are the initial conditions specified?",
     "options": [
       "$y$ and its first $n - 1$ derivatives at a single point $x_0$",
-      "$y$ at $n$ different points",
-      "Only $y^{(n)}$ at $x_0$",
-      "At the endpoints of the interval"
+      "$y$ at $n$ different points $x_1, \\dots, x_n$, one condition at each",
+      "Only $y^{(n)}$ at $x_0$, since it determines all the lower derivatives",
+      "At the endpoints of the interval, with half the conditions at each endpoint"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1606,9 +1606,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "For $y' = x y^{1/2}$, is a unique solution guaranteed through the point $(2, 1)$?",
     "options": [
       "Yes. $f$ and $\\partial f/\\partial y = \\dfrac{x}{2\\sqrt{y}}$ are continuous near $(2, 1)$ since $y > 0$ there",
-      "No, because the IVP with $y(0) = 0$ has two solutions",
-      "No, because $f$ is nonlinear",
-      "Only if $x = 0$"
+      "No, because the IVP with $y(0) = 0$ has two solutions, and that failure spreads to every point nearby",
+      "No, because $f$ is nonlinear, so the existence–uniqueness theorem can never guarantee uniqueness for it",
+      "Only if $x = 0$, because the theorem requires the initial point to sit on the $x$-axis"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1666,9 +1666,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is a direction field (slope field)?",
     "options": [
       "The collection of lineal elements drawn at many points $(x, y)$ with slopes $f(x, y)$",
-      "The graph of one particular solution",
-      "A plot of $f(x, y) = 0$",
-      "The set of critical points"
+      "The graph of one particular solution curve passing through a chosen initial point $(x_0, y_0)$",
+      "A plot of $f(x, y) = 0$, showing the curve where the slope of the ODE is zero",
+      "The set of critical points of the ODE, marked as dots at each $(x, y)$ where $f = 0$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1696,9 +1696,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "For the autonomous differential equation $y' = y(1 - y)$, classify the critical point $y = 0$.",
     "options": [
       "Unstable (repeller): solutions move away from 0 on both sides",
-      "Asymptotically stable (attractor)",
-      "Semi-stable",
-      "Not a critical point"
+      "Asymptotically stable (attractor), with solutions converging toward $y = 0$",
+      "Semi-stable: solutions approach $y = 0$ from below but move away from above",
+      "Not a critical point, because $f(y) = y(1-y)$ is nonzero at $y = 0$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1728,9 +1728,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Classify the critical point $y = 2$ of $y' = (y - 2)^2$.",
     "options": [
       "Semi-stable: solutions approach from below and move away above",
-      "Asymptotically stable",
-      "Unstable (repeller)",
-      "It is not a critical point"
+      "Asymptotically stable, since solutions below converge upward toward $y = 2$",
+      "Unstable (repeller), with solutions moving away from $y = 2$ on both sides",
+      "It is not a critical point, because $(y-2)^2 > 0$ for every value of $y$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1820,9 +1820,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "For a linear first-order ODE in standard form $y' + P(x)y = f(x)$, how is the general solution built?",
     "options": [
       "$y = y_c + y_p$: $y_c$ solves the homogeneous equation and $y_p$ is a particular solution",
-      "$y = y_c \\cdot y_p$",
-      "Only $y_p$ is needed",
-      "$y = y_c - y_p$"
+      "$y = y_c \\cdot y_p$: $y_c$ solves the homogeneous equation and $y_p$ multiplies it",
+      "Only $y_p$ is needed, since $y_c$ is already absorbed into the integrating factor",
+      "$y = y_c - y_p$: $y_c$ solves the homogeneous equation and the particular solution is subtracted"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -1945,9 +1945,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the most direct method for $\\dfrac{dy}{dx} = e^{3x + 2y}$?",
     "options": [
       "Separation of variables, since $e^{3x+2y} = e^{3x}e^{2y}$",
-      "Integrating factor (linear)",
-      "Exact equation",
-      "Bernoulli substitution"
+      "Integrating factor (linear), treating $e^{2y}$ as coefficient $P(x)$",
+      "Exact equation, using the differential form $e^{-2y}\\,dy = e^{3x}\\,dx$",
+      "Bernoulli substitution, setting $u = e^{-2y}$ to remove the exponential"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -2547,9 +2547,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "For Newton's law $dT/dt = k(T - T_m)$ with $k < 0$, the constant solution $T = T_m$ is:",
     "options": [
       "An asymptotically stable critical point (attractor)",
-      "An unstable critical point",
-      "Semi-stable",
-      "Not a solution"
+      "An unstable critical point, with all solutions drifting away",
+      "Semi-stable: stable from above $T_m$ but unstable from below",
+      "Not a solution, because $dT/dt$ can never equal zero for $k < 0$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -2738,9 +2738,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which statement about $\\dfrac{dy}{dx} = x + y$ is true?",
     "options": [
       "It is linear (and $u = x + y$ also reduces it to separable form), but it is not separable as written",
-      "It is separable",
-      "It is exact as written in the form $dy - (x + y)dx = 0$",
-      "It is a Bernoulli equation with $n = 2$"
+      "It is separable, since $x + y$ splits into a product of a function of $x$ and a function of $y$",
+      "It is exact as written in the form $dy - (x + y)dx = 0$, because $M_y$ equals $N_x$ here",
+      "It is a Bernoulli equation with $n = 2$, solvable via the substitution $u = y^{-1}$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -2868,9 +2868,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "$(x^2 + 2y)\\,dx - x\\,dy = 0$ is best solved as:",
     "options": [
       "A linear equation $y' - \\tfrac{2}{x}y = x$ (it is not exact)",
-      "An exact equation",
-      "A separable equation",
-      "A Bernoulli equation with $n = 2$"
+      "An exact equation, since every $M\\,dx + N\\,dy = 0$ form is exact",
+      "A separable equation, since it can be written as $g(x)h(y)\\,dx + dy = 0$",
+      "A Bernoulli equation with $n = 2$, using the substitution $u = y^{-1}$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -2933,9 +2933,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Solving $y\\,dy = -x\\,dx$ gives $x^2 + y^2 = c$. This relation is:",
     "options": [
       "An implicit solution (a one-parameter family)",
-      "An explicit solution",
-      "A singular solution",
-      "Not a solution"
+      "An explicit solution for $y$ as a function of $x$",
+      "A singular solution, not obtainable for any value of $c$",
+      "Not a solution, because $y\\,dy = -x\\,dx$ has none"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -3028,9 +3028,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "How many initial conditions does the IVP for $y''' - y = e^x$ need?",
     "options": [
       "Three: $y(x_0)$, $y'(x_0)$, $y''(x_0)$",
-      "One",
-      "Two",
-      "Four"
+      "Two: $y(x_0)$ and $y'(x_0)$ suffice",
+      "One: only the value $y(x_0)$ matters",
+      "Four: all derivatives up to $y'''(x_0)$"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -3148,9 +3148,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In solving differential equations, what is the primary objective of applying a substitution (change of variable)?",
     "options": [
       "To convert the ODE into a familiar solvable form, such as separable or linear",
-      "To create a brand-new solution method",
-      "To raise the order of the equation",
-      "To remove the independent variable entirely"
+      "To create a brand-new solution method that works without any of the known techniques",
+      "To raise the order of the equation, making more solution methods applicable",
+      "To remove the independent variable entirely, so the ODE becomes purely algebraic"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -3178,9 +3178,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which of the following mathematical models is NOT governed by a linear first-order differential equation?",
     "options": [
       "None: growth/decay, cooling, mixtures and LR circuits are all linear first-order models",
-      "Newton's law of cooling",
-      "The LR-series circuit",
-      "The mixture model"
+      "Newton's law of cooling, because the temperature difference makes it second-order",
+      "The LR-series circuit, since inductors always produce second-order equations",
+      "The mixture model, because the term $A/V$ makes the equation nonlinear"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -3493,9 +3493,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the main goal of Concurrent (simultaneous) Engineering?",
     "options": [
       "Integrate design, manufacturing and other functions from the outset to reduce the time needed to bring a new product to market",
-      "Eliminate the need for manufacturing engineers",
-      "Design the product first, then pass it to manufacturing when the design is frozen",
-      "Outsource all fabrication to the lowest bidder"
+      "Eliminate manufacturing engineers from the process entirely, letting design teams finalize products alone",
+      "Design the product first in isolation, then hand the frozen design to manufacturing engineers for production planning",
+      "Outsource all fabrication work to the lowest bidder in order to shorten the product development cycle"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -3555,9 +3555,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In an alloy steel shaft manufacturing routing (turning → drilling → grooving → heat treatment → grinding), why is precision grinding scheduled after heat treatment rather than before?",
     "options": [
       "Heat treatment hardens and can distort the part, so grinding is done afterwards to reach the final tolerance and surface finish on the hard metal",
-      "Grinding softens the metal so that heat treatment is more effective",
-      "Heat treatment is needed to remove the burrs left by grinding",
-      "The order does not matter as long as all operations are completed"
+      "Grinding before heat treatment is better, because the metal is softer and grinds faster, so precision grinding should precede hardening",
+      "Heat treatment should follow grinding to remove the burrs and scale left by the grinding wheel before final inspection",
+      "The operation sequence does not affect quality, as long as turning, drilling, grooving, heat treatment and grinding are all performed"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -3587,9 +3587,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which statement correctly contrasts cold working with hot working in metal forming?",
     "options": [
       "Cold working holds close tolerances with a good surface finish; hot working (above recrystallization temperature) suits unusual shapes",
-      "Cold working is done above the recrystallization temperature",
-      "Hot working gives better surface finish and tighter tolerances than cold working",
-      "Only hot working can be used for rolling"
+      "Cold working is performed above the recrystallization temperature, where the metal flows most easily into complex shapes",
+      "Hot working produces a better surface finish and holds tighter tolerances than cold working because the heat smooths the metal",
+      "Rolling can only be performed as a hot working process, since cold rolling would crack the metal immediately"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -3619,9 +3619,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the difference between a jig and a fixture?",
     "options": [
       "A jig holds the workpiece and guides the cutting tool (e.g., a drilling jig); a fixture only holds and locates the workpiece (e.g., a vise)",
-      "A fixture guides the cutting tool, while a jig only holds the workpiece",
-      "They are synonyms with no technical distinction",
-      "Jigs are used only for welding and fixtures only for casting"
+      "A fixture guides the cutting tool into the workpiece, while a jig only holds and locates the workpiece without guiding anything",
+      "They are exact synonyms with no technical distinction between them, so either word can be used for any work-holding device",
+      "Jigs are used only for welding operations, while fixtures are used only for casting operations and nothing else"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -3840,9 +3840,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which of the following is a limitation of a product (line-flow) layout?",
     "options": [
       "A breakdown of one machine can stop the entire line, and the pace of production is set by the slowest machine",
-      "Large amounts of work-in-process inventory tie up capital",
-      "Material handling is more expensive because flow varies by product",
-      "Operators need a higher grade of skill"
+      "Large amounts of work-in-process inventory tie up capital in queues between departments",
+      "Material handling is expensive because material flow varies with each different product",
+      "Operators need a higher grade of skill because they must master many different machine operations"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -3902,9 +3902,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Compared with a process layout, what is the main improvement of a cellular layout?",
     "options": [
       "Smoother flow within cells, with less material handling and work-in-process",
-      "It needs much more floor space",
-      "It maximizes the flexibility to make any product",
-      "Workers operate in complete isolation"
+      "It needs much more floor space because each cell duplicates equipment",
+      "It maximizes the flexibility to manufacture any product in any volume",
+      "Workers operate in complete isolation, each assigned to a single cell alone"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4120,9 +4120,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "VRP example: truck capacity is 25,000 units. Demands: B 5,000, C 7,000, D 10,000, E 4,000, F 6,000, G 10,000. Clark-Wright has built the route Depot–F–C–D–Depot. The next saving on the ranked list is B–F (28). What happens to it?",
     "options": [
       "It is rejected: adding B raises the route load to 28,000 units, which exceeds the 25,000 truck capacity",
-      "It is accepted, because it has the next-highest saving",
-      "It is rejected, because B must always be served on its own truck",
-      "It is accepted, and D is removed to make room"
+      "It is accepted because it has the next-highest saving, and Clark-Wright always accepts savings in rank order",
+      "It is rejected because customer B must always be served on its own dedicated truck",
+      "It is accepted, and customer D is removed from the route to make room for B's demand"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4152,9 +4152,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "According to Chapter 1, what best distinguishes engineering from science?",
     "options": [
       "Engineering applies established scientific knowledge to solve real-world problems; science seeks basic knowledge validated by controlled experiments",
-      "Science builds physical systems; engineering only develops theories",
-      "Engineering relies only on experiments, never on mathematics",
-      "There is no difference; the two terms are interchangeable"
+      "Science designs and builds physical systems such as bridges and machines, while engineering only develops abstract theories without applying them",
+      "Engineering relies only on physical experiments and never uses mathematics, since math belongs exclusively to the sciences",
+      "There is no meaningful difference between the two; the terms science and engineering are fully interchangeable in every context"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4183,9 +4183,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "The words \"engineer\" and \"ingenious\" both come from which Latin word?",
     "options": [
       "Ingenium (talent, natural capacity, cleverness)",
-      "Ingenuus (freeborn)",
-      "Genus (kind, type)",
-      "Machina (device)"
+      "Ingenuus, the Latin word for a person born free",
+      "Genus, meaning kind or type in classical Latin",
+      "Machina, the Latin word for a device or machine"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4213,9 +4213,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In the Chapter 2 production-system model (Inputs → Conversion process → Outputs), what makes it a closed-loop system?",
     "options": [
       "Market feedback and performance monitoring that trigger corrective action on the inputs/process",
-      "Using only primary resources as inputs",
-      "Producing a physical product instead of a service",
-      "Running the conversion process at constant speed"
+      "Using only primary resources as inputs, with no secondary or capital resources allowed",
+      "Producing a physical product instead of a service, since services cannot be in closed-loop systems",
+      "Running the conversion process at a constant speed so outputs never vary over time"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4338,9 +4338,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What distinguishes a transportation routing problem (VRP) from a multiple travelling salesman problem?",
     "options": [
       "In the VRP one truck cannot carry the entire load, so vehicle capacity and demand satisfaction must be enforced",
-      "The VRP always uses exactly one truck",
-      "The multiple TSP has capacity constraints but the VRP does not",
-      "The VRP ignores distances and only balances loads"
+      "A VRP always deploys exactly one truck, while a multiple TSP requires several trucks on separate routes",
+      "The multiple TSP enforces truck capacity constraints, whereas the VRP only minimizes total distance without capacity limits",
+      "The VRP ignores travel distance entirely and only balances customer loads evenly across the available trucks"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4458,9 +4458,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "According to Chapter 1, what is a scientific theory?",
     "options": [
       "A scientific conjecture that has been verified through physical experiments",
-      "Any idea proposed by a scientist",
-      "An engineering design that works",
-      "A conjecture that has never been tested"
+      "Any idea or hypothesis proposed by a scientist, tested or not",
+      "An engineering design that has been built successfully and works",
+      "A scientific conjecture that has never been put to experimental test"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4488,9 +4488,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why is behavioural science especially important to industrial engineers?",
     "options": [
       "Systems designed by IEs involve people as basic components",
-      "IEs design only software",
-      "IEs never work with machines",
-      "It replaces mathematics in IE"
+      "IEs design only software systems and never deal with people",
+      "IEs work only with machines and never with human operators",
+      "It replaces the need for mathematics in industrial engineering"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4518,9 +4518,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "After 1750, the increased size and complexity of manufacturing (mass production) created a need for:",
     "options": [
       "Interchangeability of parts, specialization of labour and better management systems",
-      "Fewer workers and no management",
-      "Only hand-crafted products",
-      "Eliminating standard parts"
+      "Fewer workers and the complete elimination of management systems and supervision",
+      "Only hand-crafted products made by skilled artisans without any machinery",
+      "Eliminating standard and interchangeable parts to keep each product unique"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4548,9 +4548,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "How is engineering regulated in Canada, according to Chapter 1?",
     "options": [
       "It is a regulated profession, with provincial associations and a national organization (Engineers Canada)",
-      "Anyone can practise engineering without a licence",
-      "Only the federal government licenses engineers",
-      "Universities license engineers directly"
+      "Anyone may practise engineering without holding any licence, since degrees are optional in Canada",
+      "Only the federal government issues engineering licences, with no role for any provincial association",
+      "Universities grant practising licences directly to their engineering graduates upon graduation"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4578,9 +4578,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "The \"practice of engineering\" is any act of planning, designing, evaluating, advising, etc. that:",
     "options": [
       "Requires engineering principles and concerns safeguarding life, health, property, economic interests, public welfare or the environment",
-      "Is done in a factory",
-      "Involves computers",
-      "Is paid by an employer"
+      "Is performed anywhere in the world, since the legal definition depends on the workplace where the engineering act occurs",
+      "Involves the use of scientific instruments or engineering software to produce technical drawings and calculations",
+      "Is carried out by a person holding a job title that includes the word engineer, regardless of the nature of the work"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4608,9 +4608,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In the engineering design process, what is the fundamental difference between analysis and synthesis?",
     "options": [
       "Analysis resolves something into basic elements (existing system); synthesis combines elements into a whole (new system)",
-      "Analysis builds new systems; synthesis studies old ones",
-      "They are two words for the same step",
-      "Synthesis always comes before analysis"
+      "Analysis builds and creates new systems from basic elements, while synthesis studies existing systems to break them into parts",
+      "Analysis and synthesis are two words describing exactly the same step of the engineering design process, used interchangeably",
+      "Synthesis always comes before analysis in the engineering design process, since alternatives must be combined before being examined"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4668,9 +4668,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "According to the chronology, what enabled Henry Ford's mass production and assembly lines?",
     "options": [
       "Interchangeable manufacture and machines that could be operated by workers with minimal training",
-      "Hand-crafting every part to fit",
-      "Statistical quality control charts",
-      "Operations research software"
+      "Hand-crafting every part individually so that each one fits its unique assembly",
+      "Statistical quality control charts developed by Shewhart for process monitoring",
+      "Modern operations research software for optimizing production schedules and plant layouts"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4758,9 +4758,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Industrial Engineering is concerned with the design, improvement and installation of integrated systems of:",
     "options": [
       "People, materials, information, equipment and energy",
-      "Only machines and tools",
-      "Only software and data",
-      "Only buildings and roads"
+      "Only machines, tools and production equipment",
+      "Only software, computers and digital data systems",
+      "Only buildings, bridges and road infrastructure"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4848,9 +4848,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In the discipline comparison, how are mechanical and civil engineering distinguished?",
     "options": [
       "Mechanical: products that move (dynamics); civil: products that do not move (statics)",
-      "Mechanical: buildings; civil: machines",
-      "Both deal only with electricity",
-      "Civil uses dynamics, mechanical uses statics"
+      "Mechanical engineers design buildings and structures; civil engineers design machines",
+      "Both disciplines deal only with electrical systems and circuits, never with mechanics",
+      "Civil engineering uses dynamics while mechanical engineering uses statics"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4938,9 +4938,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What does Chapter 1 say about industrial engineering in the age of AI?",
     "options": [
       "AI is enhancing IE, not displacing it; IEs design and manage AI-powered systems",
-      "AI will replace all industrial engineers",
-      "AI is irrelevant to IE",
-      "IEs are forbidden from using AI"
+      "AI will soon replace all industrial engineers and eliminate the profession entirely",
+      "AI is completely irrelevant to industrial engineering and will never affect it",
+      "Industrial engineers are forbidden from using AI tools in any of their work"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4968,9 +4968,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the role of the Canadian Engineering Accreditation Board (CEAB)?",
     "options": [
       "It accredits Canadian undergraduate engineering programs that meet the profession's education standards",
-      "It licenses individual engineers in Quebec",
-      "It sets engineering salaries",
-      "It runs the IISE student chapters"
+      "It licenses individual engineers to practise in Quebec through its provincial authority",
+      "It sets and negotiates the salaries and working conditions of engineers across Canada",
+      "It runs the student chapters of the Institute of Industrial and Systems Engineers in Canada"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -4998,9 +4998,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Engineers Canada is best described as:",
     "options": [
       "The national organization of the 12 provincial and territorial associations that regulate engineering",
-      "The regulator of engineers in Quebec only",
-      "A university",
-      "An international IE society"
+      "The provincial association that regulates the engineering profession in Quebec and issues licences there",
+      "A university faculty that grants engineering degrees and sets admission requirements for students",
+      "An international society for industrial engineers that publishes journals and organizes conferences"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5028,9 +5028,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which task belongs to manufacturing engineering as defined in Chapter 3?",
     "options": [
       "Designing work-holding devices (jigs and fixtures) and selecting cutting speed and depth of cut",
-      "Designing the product's marketing campaign",
-      "Setting the company's stock price",
-      "Recruiting sales staff"
+      "Designing the advertising and marketing campaign that promotes the finished product",
+      "Setting the company's stock price and managing relationships with its investors",
+      "Recruiting, interviewing and hiring the company's sales representatives each year"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5058,9 +5058,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In the product–production design interaction, what does product design evaluate?",
     "options": [
       "The ability of the part to perform its function (size, shape, strength)",
-      "The cost of producing the part",
-      "The factory layout",
-      "The shipping routes"
+      "The cost of producing the part, including labour and machine time",
+      "The layout of the factory floor and the placement of machines",
+      "The routes used to ship the finished product to the customer"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5118,9 +5118,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which list matches the elements of process engineering in Chapter 3?",
     "options": [
       "Product structure & specifications, component manufacturability, cost of each alternative process, operations sequence, documentation",
-      "Marketing, sales, delivery, invoicing",
-      "Only choosing a machine",
-      "Hiring, training, payroll"
+      "Market research, advertising campaigns, distribution logistics and customer service for the finished product",
+      "Selecting one machine tool for a single operation, based only on the purchase price of the equipment",
+      "Staffing the plant: hiring the operators, organizing training sessions and managing the payroll department"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5238,9 +5238,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In the same example (BEP = 280 units), what should the company do if total estimated demand is below 280 units?",
     "options": [
       "Not set up the system, because the fixed cost cannot be recovered",
-      "Set it up anyway to gain market share",
-      "Double the price automatically",
-      "Ignore the fixed cost"
+      "Set it up anyway, since below-BEP sales still build market share for the future",
+      "Double the unit price automatically until demand exceeds 280 units",
+      "Ignore the fixed cost because only variable costs matter for the decision"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5300,9 +5300,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In break-even analysis, if process B has fixed cost \\$70,000 and variable cost \\$5/unit, why must the minimum selling price be at least \\$12/unit to break even at 10,000 units?",
     "options": [
       "Total cost of B at 10,000 units is $\\$120{,}000$, i.e. $\\$12$ per unit",
-      "Variable cost of B is \\$12",
-      "Fixed cost divided by 12 equals 10,000",
-      "It is the price of process C"
+      "The variable cost of process B is \\$12 per unit at any volume",
+      "Dividing the \\$70{,}000 fixed cost by \\$12 gives the 10{,}000-unit volume",
+      "The \\$12 comes from process C's cost structure, not process B's"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5420,9 +5420,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the difference between refining and alloying?",
     "options": [
       "Refining improves the usefulness of metal ore (e.g. iron ore → steel); alloying transforms metals (heat treating, combining metals) to improve hardness, strength, workability",
-      "Refining combines metals; alloying removes impurities",
-      "They are identical processes",
-      "Alloying only applies to plastics"
+      "Refining combines two or more metals into a blend with improved properties, while alloying removes impurities from raw ore in a furnace",
+      "Refining and alloying are two names for exactly the same metallurgical process, so the terms are fully interchangeable in every technical context",
+      "Alloying is a process that applies only to plastics and ceramics, since refined metals cannot be blended together once they leave the furnace"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5450,9 +5450,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is casting, and when does Chapter 3 say sand casting becomes expensive?",
     "options": [
       "Pouring liquid metal into a mold to solidify into an approximate shape; sand casting is expensive for high production volumes (use permanent molds)",
-      "Hammering metal repeatedly; expensive for small parts",
-      "Cutting metal with a saw; expensive for thin parts",
-      "Bonding two metals with heat; expensive for steel"
+      "Hammering metal repeatedly with a press or hammer; the process becomes expensive when producing small parts in low volumes",
+      "Cutting metal to size with a saw or blade; the process becomes expensive when cutting thin parts that warp under the blade",
+      "Bonding two metals together with heat and pressure; the process becomes expensive when working with steel because of its high melting point"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5510,9 +5510,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "How does forging differ from extrusion?",
     "options": [
       "Forging applies single or intermittent applications of pressure (e.g. hammering a horseshoe); extrusion forces metal beyond its elastic limit through an opening",
-      "Forging melts the metal; extrusion cuts it",
-      "They are the same process",
-      "Extrusion is intermittent hammering; forging is continuous pushing"
+      "Forging first melts the metal completely and then pours it into a die, while extrusion shapes metal by cutting it with saw blades",
+      "Forging and extrusion are the same metal-forming process and differ only in the traditional name the operator gives to the machine",
+      "Extrusion shapes the metal by applying intermittent hammer blows to the workpiece, while forging pushes heated metal continuously through a die"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5540,9 +5540,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In shaping and planing (metal cutting), which statement is correct?",
     "options": [
       "Shaping: the workpiece is stationary and the tool reciprocates; planing: the tool is stationary",
-      "Shaping: the tool is stationary; planing: the workpiece is stationary",
-      "Both use a rotating multi-tooth cutter",
-      "Both are casting processes"
+      "Shaping: the workpiece moves under a stationary tool; planing: the tool reciprocates past a stationary workpiece",
+      "Both shaping and planing use a revolving multi-tooth cutter, just like milling does",
+      "Both shaping and planing are metal casting processes that pour molten metal"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5630,9 +5630,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "According to Chapter 3, what is welding?",
     "options": [
       "Bonding two pieces of the same metal by applying heat, pressure or both",
-      "Pouring liquid metal into a mold",
-      "Removing metal with a revolving tool",
-      "Forcing metal through a die"
+      "Pouring molten metal into a mold to create the desired part shape",
+      "Removing material from a workpiece with a rotating multi-tooth cutting tool",
+      "Forcing heated metal through a shaped die to form long cross-section parts"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5660,9 +5660,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Among the ancillary functions of manufacturing engineering, how does maintenance systems design treat machines?",
     "options": [
       "Preventive maintenance for exceptionally important machines; emergency maintenance for machines that occasionally break",
-      "Emergency maintenance only",
-      "No maintenance is planned",
-      "Replace every machine yearly"
+      "Emergency maintenance for every machine in the plant, since no maintenance schedule is ever planned in advance",
+      "Corrective repairs only after a breakdown occurs, regardless of how important or unreliable the machine is",
+      "Replacing every machine with a new one each year, so that no maintenance program is ever required"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5690,9 +5690,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Chapter 4 separates facility location into:",
     "options": [
       "General location and exact site (long-term strategic), and internal location (facility layout, material handling)",
-      "Only the building colour",
-      "Daily scheduling decisions",
-      "Only the choice of machines"
+      "Only the exterior appearance of the building, such as the colour of the facade and the signage",
+      "Daily operational scheduling decisions, which are short-term choices made by supervisors each morning",
+      "Only the selection of production machines, without considering transportation or handling costs"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5840,9 +5840,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which analytical tools for locating facilities are listed in Chapter 4?",
     "options": [
       "Transportation method, center of gravity method, linear (mixed-integer) programming",
-      "Gantt charts, PERT, CPM",
-      "Break-even analysis only",
-      "Time study and motion study"
+      "Gantt charts, the PERT network and the critical path method for project scheduling",
+      "Break-even analysis on its own, with no other analytical method used for siting facilities",
+      "Time study and motion study of operators performing each manual work element"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5870,9 +5870,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In the transportation method for facility location, what are the decision variables and goal?",
     "options": [
       "Units shipped from each source to each destination; minimize shipment cost (repeat for each candidate site)",
-      "Number of factories; maximize distance",
-      "Selling price; maximize revenue",
-      "Number of workers; minimize wages"
+      "The number of factories to build in each region; maximize the distance between plants and markets",
+      "The selling price of the product at each destination; maximize total revenue from sales",
+      "The number of workers hired at each candidate site; minimize the total wages paid to them"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -5900,9 +5900,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In the least-cost assignment method, how is each allocation chosen?",
     "options": [
       "Select the smallest remaining unit cost and allocate as much as possible to meet demand or use up supply",
-      "Allocate to the largest unit cost first",
-      "Allocate equally to every cell",
-      "Allocate in alphabetical order"
+      "Allocate first to the cell with the largest unit cost, then continue with the next largest cost",
+      "Divide the total supply equally among all the cells, without considering any unit costs",
+      "Allocate row by row in alphabetical order of the source names, ignoring all cost values"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6111,9 +6111,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which is listed as a reason a new layout decision may be needed?",
     "options": [
       "Changes in the volume of output or the mix of products",
-      "A change in company logo",
-      "A new CEO's preference only",
-      "Lower interest rates"
+      "A change in the company logo or the brand colours",
+      "A new CEO's personal preference for a different office style",
+      "A drop in the interest rates offered by the banks"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6141,9 +6141,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In industrial facility layout planning, layout configurations and alternatives are primarily constrained by:",
     "options": [
       "The amount and type of space required and available",
-      "The colour of the machines",
-      "The number of shareholders",
-      "The product price"
+      "The colour of the machines and the overall visual appearance",
+      "The number of shareholders on the company's board",
+      "The current selling price of the company's products"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6201,9 +6201,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which is an ADVANTAGE of a product layout?",
     "options": [
       "Little operator skill is required and in-process inventory is small",
-      "Very high flexibility for product changes",
-      "Lower investment in machines",
-      "Higher operator satisfaction"
+      "Very high flexibility for frequent product changes and new models",
+      "Lower investment in machines because general-purpose equipment is used",
+      "Higher operator satisfaction from performing varied skilled tasks"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6231,9 +6231,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which is an ADVANTAGE of a process layout?",
     "options": [
       "Better machine utilization and a high degree of flexibility",
-      "Small work-in-process inventory",
-      "Cheap material handling",
-      "Little operator skill needed"
+      "Small work-in-process inventory between machines",
+      "Cheap and simple material handling between stations",
+      "Little operator skill needed since tasks are repetitive"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6411,9 +6411,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "An AGV is:",
     "options": [
       "A driverless vehicle that follows predetermined paths",
-      "A crane with a computer",
-      "A manually driven forklift",
-      "A gravity-fed bin"
+      "A computer-controlled overhead crane for storage aisles",
+      "A forklift that is driven manually by an operator",
+      "A bin that feeds parts downward using only gravity"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6621,9 +6621,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which pair appears in the list of materials-handling principles?",
     "options": [
       "Maintenance (preventive and emergency) and safety (of the operator)",
-      "Marketing and sales",
-      "Break-even and pricing",
-      "Forecasting and budgeting"
+      "Marketing and sales of the material-handling equipment to external customers",
+      "Break-even analysis and product pricing decisions for the handled goods",
+      "Forecasting future demand and budgeting the handling department's expenses"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6651,9 +6651,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In Chapter 5 Example 1, the travelling salesman problem asks the truck to:",
     "options": [
       "Start at the plant, visit every warehouse once, and return, minimizing total distance",
-      "Visit only the nearest warehouse",
-      "Deliver with several trucks under capacity limits",
-      "Maximize the distance travelled"
+      "Visit only the nearest warehouse and return directly to the plant afterwards",
+      "Deliver using several trucks, each one limited by its own load capacity",
+      "Maximize the total distance that the truck travels during its complete tour"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6681,9 +6681,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why are heuristics such as the Nearest Neighbor method used for the TSP?",
     "options": [
       "The TSP is very difficult to solve optimally when the problem is large",
-      "Heuristics always give the optimal route",
-      "The TSP has no feasible solutions",
-      "Computers cannot store distance matrices"
+      "Heuristics always find the optimal route, just with less computation than exact methods",
+      "The TSP has no feasible solutions for large instances, so heuristics invent one",
+      "Computers cannot store the distance matrices of large TSP instances in memory"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6803,9 +6803,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the correct order of the Clark-Wright procedure?",
     "options": [
       "Initial routes → compute pairing savings → rank savings descending → add links while capacity and feasibility hold",
-      "Rank distances ascending → pick the shortest edge → stop",
-      "Choose a random route → improve by swapping",
-      "Assign each stop its own truck and stop"
+      "Rank all the distances in ascending order, pick the shortest available edge, and then stop the procedure",
+      "Choose a completely random initial route and then improve it by repeatedly swapping pairs of stops",
+      "Assign each stop its own dedicated truck and never merge any routes, keeping the fleet at maximum size"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6923,9 +6923,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What does Chapter 5 conclude about solving TSP and VRP problems?",
     "options": [
       "They are easy to formulate but very hard to solve optimally; simple methods can find good solutions",
-      "They are always solved optimally by hand",
-      "They cannot be formulated mathematically",
-      "Only one version of each problem exists"
+      "They are always solved to optimality by hand, since every instance is small enough",
+      "They cannot be formulated as mathematical models, so no algorithm can represent them",
+      "Only one single version of each problem exists, with no extended variants in theory or practice"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -6953,9 +6953,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In computer science, how does a compiler differ fundamentally from an interpreter?",
     "options": [
       "A compiler translates the whole C/C++ program into machine language at once; an interpreter (e.g. Python) translates one instruction at a time, which is slower but flexible",
-      "A compiler runs the program line by line; an interpreter translates it all at once",
-      "Compilers are only used for Python; interpreters are only used for C++",
-      "There is no difference; both terms describe the linker"
+      "A compiler executes the program line by line at run time, while an interpreter translates the whole program into machine language at once before anything runs, which is why interpreted programs always run faster",
+      "Compilers are only used for Python scripts, while interpreters are only used for C++ programs, since C++ code must be executed one statement at a time in an interactive session",
+      "There is no real difference between them; both terms describe the linker, the tool that joins source files together before the operating system loads the final program into memory"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -7075,9 +7075,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In computer architecture, what is the primary role of an operating system (OS)?",
     "options": [
       "Software that manages all other programs and provides services (disk, graphics, etc.) for them",
-      "The CPU and memory hardware of the computer",
-      "A program that translates C++ into machine language",
-      "Any sequence of instructions written by a user"
+      "The CPU and memory hardware itself, since the operating system is the processor and RAM that run everything",
+      "A program that translates C++ code into machine language, which must run before any program can execute",
+      "Any sequence of instructions written by a user, since every user program manages the computer's resources as it runs"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -7105,9 +7105,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "A computer is defined as a digital electronic system composed of:",
     "options": [
       "CPU (processors), memory (RAM, disk, etc.) and Input/Output (IO)",
-      "Compiler, linker and editor",
-      "Keyboard and monitor only",
-      "Operating system and applications only"
+      "Compiler, linker, and editor: three programs that together make up a computer",
+      "Only a keyboard and a monitor, since input and output are all that matter",
+      "The operating system and its applications only; the hardware is just a container"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -7260,9 +7260,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why does z print as 1.0000000?",
     "options": [
       "float keeps only about 8 significant digits, so the tiny 1.0e-10 is lost when added to 1.0 (round-off error)",
-      "Adding a small number to 1.0 is illegal in C++",
-      "y underflows to Inf",
-      "cout always rounds to 7 decimal places"
+      "Adding a small number to 1.0 is illegal in C++; the compiler rejects the statement",
+      "y underflows to Inf, since $1.0\\times 10^{-10}$ is smaller than the smallest value a float can hold",
+      "cout always rounds its output to 7 decimal places, so the stored value is still exact"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -7849,9 +7849,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why is direct equality comparison if( x == 0.0 ) strongly discouraged for float/double variables in C++, and what approach should be used instead?",
     "options": [
       "Round-off error makes exact equality unlikely; use a tolerance: if( abs(x) < eps ) with a small eps such as 1.0e-9",
-      "C++ does not allow == with doubles",
-      "It causes an infinite loop; use a for loop instead",
-      "0.0 is not a valid double constant; use 0 instead"
+      "The == operator is not defined for doubles in C++, so the compiler rejects the comparison and the program cannot be built with that test",
+      "Comparing a double with == makes the loop run forever, so every while loop testing a double must be rewritten as a for loop to terminate",
+      "The literal 0.0 is not a valid double constant in C++, so x == 0.0 fails to compile; the test must use the integer 0 instead"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -7946,9 +7946,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In an if-else ladder, why is it recommended programming practice to include a final default else clause?",
     "options": [
       "Without it the ladder is no longer a true fork, and the default case is often used to check for errors",
-      "The program will not compile without it",
-      "It makes the ladder run faster",
-      "It forces every condition to be checked twice"
+      "The program will not compile without a final else, since the ladder syntax requires one",
+      "It makes the ladder run faster by telling the compiler to skip the earlier tests",
+      "It forces every condition in the ladder to be checked twice, for extra safety"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -8164,9 +8164,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In software engineering, a computer program is defined as:",
     "options": [
       "A sequence of instructions for the computer, often referred to as software",
-      "The CPU and memory",
-      "Only the operating system",
-      "A physical input device"
+      "The physical hardware: the CPU and memory that run the instructions",
+      "Only the operating system, which is the single program a computer runs",
+      "A physical input device such as a keyboard or mouse that sends data to the CPU"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -8194,9 +8194,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the primary definition and role of a programming language?",
     "options": [
       "A system that lets humans give written instructions that are then translated into a form the computer can use (machine language)",
-      "The 1s and 0s the processor runs",
-      "An operating system",
-      "A type of computer memory"
+      "The stream of 1s and 0s (machine language) that the processor executes directly as its instruction set",
+      "A systems-level operating system that manages the hardware and schedules which programs get to run and when",
+      "A hardware component such as RAM or a hard drive where instructions and data are stored while running"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -8284,9 +8284,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In the C++ build process diagram, which file types does the editor produce?",
     "options": [
       "*.cpp and *.h (source/text files)",
-      "*.obj",
-      "*.exe",
-      "*.lib"
+      "*.obj files from the compiler",
+      "*.exe files from the linker",
+      "*.lib files from the libraries"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -8374,9 +8374,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "During the Execute phase, what happens to the .exe file?",
     "options": [
       "It is loaded from disk into computer memory (RAM) and run by the processor",
-      "It is converted back into .cpp",
-      "It is sent to the linker",
-      "It is deleted"
+      "It is converted back into .cpp source code so the programmer can edit it again",
+      "It is sent to the linker so that library object files can be combined with it",
+      "It is deleted from the disk once execution finishes to free up storage space"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -8404,9 +8404,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In C++, what are single-line // comments used for?",
     "options": [
       "Documentation, and intentionally disabling parts of the program — they are not compiled",
-      "Printing text to the screen",
-      "Including libraries",
-      "Ending a program line"
+      "Printing text and values to the screen so the user can read the program's output",
+      "Including library header files so built-in functions can be used in the program",
+      "Ending each program line, since the compiler treats // as a line terminator"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -8434,9 +8434,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In C++, what does an #include preprocessor directive do?",
     "options": [
       "It lets you use a built-in C++ library (e.g. iostream for console I/O); include files are called header files",
-      "It declares a variable",
-      "It starts the main function",
-      "It pauses the program"
+      "It declares a variable with a name and a type so the program can store and reuse a value",
+      "It marks the start of the main function, where program execution begins at runtime",
+      "It pauses the running program and waits for the user to press a key before continuing"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -8494,9 +8494,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What role does main() play in a C++ program?",
     "options": [
       "It is the starting point of the program; all C++ programs have one",
-      "It is an optional comment",
-      "It includes libraries",
-      "It ends the program early"
+      "It is an optional comment that documents what the program does for the reader",
+      "It includes library header files so built-in functions can be used in the program",
+      "It ends the program early by returning control to the operating system"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -8674,9 +8674,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In standard C++, how are statements inside the main() function executed by default?",
     "options": [
       "Sequentially, one line at a time, from the start to the end of main",
-      "All lines at the same time",
-      "Starting from the last line",
-      "Randomly"
+      "All lines of the program run at the same time, in parallel on multiple cores",
+      "Starting from the last line of main and working backwards to the first line",
+      "In a random order, since the compiler schedules statements however it wants"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -8945,9 +8945,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which of the following is NOT a valid way to initialize or assign a variable in C++?",
     "options": [
       "From the compiler's default value (variables start at 0 automatically)",
-      "During declaration: int x = 1;",
-      "From the keyboard: cin >> y;",
-      "From an expression: y = x + 1;"
+      "With an initializer at declaration, like writing int x = 5; in the declaration itself",
+      "From user keyboard input using the extraction operator, as in cin >> y;",
+      "From the value of another expression, for example y = x + 1; after x is known"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9006,9 +9006,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why is the result of ch = (char)x; meaningless here?",
     "options": [
       "x is out of char's range (−128..127), so only the first byte of x is used and information is lost",
-      "Casting to char is not allowed",
-      "x becomes 3000 characters long",
-      "char and int are the same size"
+      "Casting to char is not allowed in C++; the compiler rejects (char)x outright",
+      "x becomes 3000 characters long, because the cast expands the int into a char array",
+      "char and int are the same size in C++, so the cast copies every byte losslessly"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9097,9 +9097,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "On many 32/64-bit compilers (such as 64-bit Windows), why does sizeof(long int) == sizeof(int)?",
     "options": [
       "A long/short modifier changes the size only if possible — the compiler may ignore the request",
-      "long is always half of int",
-      "long only applies to doubles",
-      "It is a compiler bug"
+      "long always doubles the size of int, so sizeof(long int) must equal 2*sizeof(int)",
+      "long is a modifier that can only be applied to doubles and never to integer types",
+      "It is a compiler bug that any serious programmer should report and work around"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9188,9 +9188,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What compiler errors or bugs exist in the following C++ code?",
     "options": [
       "Missing semicolons, c = 2*b overflows the double range (→ inf), and a is used uninitialized",
-      "Only the variable names are invalid",
-      "Nothing is wrong",
-      "cout cannot print doubles"
+      "Only the variable names are invalid, and fixing them removes every error in the code",
+      "Nothing is wrong; the code compiles cleanly and runs exactly as written",
+      "cout cannot print doubles, so the program fails when it tries to output a double value"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9219,9 +9219,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In C++, what is the definition of an expression?",
     "options": [
       "A combination of operators and operands (variables) that performs some task",
-      "A single variable declaration",
-      "A comment",
-      "A header file"
+      "A single variable declaration that reserves memory and gives a name to a value",
+      "A comment written by the programmer that is ignored by the compiler",
+      "A header file that is included so library functions can be used in the program"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9249,9 +9249,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In i = 7 + 3; which happens first?",
     "options": [
       "The addition, because arithmetic operators are executed before the assignment operator",
-      "The assignment",
-      "They happen at the same time",
-      "Neither; it is a comparison"
+      "The assignment happens first, since = has the highest precedence in the expression",
+      "Both the addition and the assignment happen at the same time in a single step",
+      "Neither; i = 7 + 3 is a comparison that tests whether i equals 10"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9400,9 +9400,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In C++, what does log(x) compute?",
     "options": [
       "The natural logarithm (base e); use log10 for base 10",
-      "The base-10 logarithm",
-      "The base-2 logarithm",
-      "x to the power 10"
+      "The base-10 logarithm, the same as the log key on most calculators",
+      "The base-2 logarithm, used for computing powers of two in memory",
+      "x raised to the power of 10, the inverse of the antilog operation"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9614,9 +9614,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In C++, why does the statement 2*a = a + 1; cause a compilation error?",
     "options": [
       "The left side of = must be a variable, not an expression",
-      "a is a double",
-      "The semicolon is missing",
-      "You cannot add 1 to a double"
+      "Variables cannot be multiplied by numbers on the left of an assignment",
+      "A double cannot hold the result of adding 1 to another double",
+      "Assignment needs parentheses around both sides of the equals sign"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9674,9 +9674,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In C++, why does evaluating double r4 = 1.0 - (1.0 - 1.0e-20); evaluate to 0?",
     "options": [
       "A double keeps about 16 significant digits, so 1.0 − 1.0e-20 rounds to exactly 1.0",
-      "Subtraction is not allowed with doubles",
-      "1.0e-20 is an integer",
-      "The compiler removes the parentheses"
+      "C++ does not allow subtracting doubles, so 1.0 - 1.0e-20 is undefined and evaluates to 0",
+      "1.0e-20 is an integer literal, so 1.0 - 1.0e-20 runs as integer arithmetic and truncates to 0",
+      "The compiler removes the parentheses, so 1.0 - 1.0 - 1.0e-20 runs left to right and is exactly 0"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9737,9 +9737,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In floating-point arithmetic (IEEE 754 in C++), what does division by zero produce?",
     "options": [
       "\"Exception\" values such as NaN (not a number) or Inf",
-      "Always 0",
-      "Always 1",
-      "The largest int"
+      "Always 0, since floating-point division by zero yields zero",
+      "Always 1, since dividing by zero returns the identity value",
+      "The largest int, because overflow is rounded up to INT_MAX"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9798,9 +9798,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What does y hold after double y; y = 3; ?",
     "options": [
       "3.0 (the int 3 is converted to a double before = is applied)",
-      "3 as an int",
-      "An error",
-      "0"
+      "0.0, because y keeps its default value when an int is assigned to it",
+      "3 as an integer, since assigning an int into a double narrows the type",
+      "A compile-time error, because C++ forbids assigning an int to a double"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9828,9 +9828,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What do control statements do?",
     "options": [
       "Allow specific parts of the program to be executed under certain conditions (control the flow of the program)",
-      "Declare variables",
-      "Include libraries",
-      "Compile the program"
+      "Declare and initialize variables with names and types before they can be used in a program",
+      "Include header files so that built-in library functions can be used in the program",
+      "Translate the source code into machine language so that the processor can execute it directly"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9858,9 +9858,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "When is the test condition of an if statement evaluated?",
     "options": [
       "With the current values of the variables at that line of the program",
-      "Once, when the program starts",
-      "At the end of the program",
-      "Every time a variable changes"
+      "Once when the program starts; the stored result is reused each time the if runs",
+      "Only at the end of the program, once all variables have their final values",
+      "Every time a variable used in the condition changes, even before the if line runs"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -9978,9 +9978,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "With i = 1 and k = 2, does if( !(i > k) ) cout << \"yes\"; print?",
     "options": [
       "Yes, because i > k is false and ! makes it true",
-      "No",
-      "Only if k is 0",
-      "It does not compile"
+      "No, because ! does not change the result of the comparison",
+      "Only if k is 0, since !(i > k) needs k to be zero to run",
+      "It does not compile: !(...) cannot apply to a comparison"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10008,9 +10008,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why is an if-else statement described as a \"fork in the road\"?",
     "options": [
       "The program must follow exactly one of the two code paths",
-      "Both blocks always run",
-      "It repeats code",
-      "It skips both blocks"
+      "Both blocks always run, one after the other, whenever the if is reached",
+      "The program repeats the chosen block until the test becomes false",
+      "Both blocks are always skipped, so an if-else never does anything"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10098,9 +10098,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In for( i = 0; i < 5; i++ ) { … }, which steps repeat until the test is false?",
     "options": [
       "Test the condition → execute the codeblock → update the index (initialization happens once)",
-      "Initialize → update only",
-      "Execute the codeblock once, then stop",
-      "Initialize every time"
+      "Initialize the index, then update it each pass without ever testing the condition",
+      "Execute the codeblock exactly once, then stop looping regardless of the test",
+      "Re-initialize the index to 0 at the start of every repetition of the loop"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10343,9 +10343,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the fundamental difference between materials science and materials engineering?",
     "options": [
       "Science studies the relationships between structure and properties; engineering designs the structure to obtain desired properties",
-      "Science designs products; engineering studies atoms",
-      "Science deals only with metals; engineering deals only with polymers",
-      "They are identical fields with different names"
+      "Science designs finished products for the market while engineering studies individual atoms, since engineers work at smaller scales than scientists",
+      "Science deals only with metals and their crystal structures, while engineering deals only with polymers and plastics, with no overlap between them",
+      "They are identical fields with different names; both do exactly the same work and the distinction is purely historical terminology"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10373,9 +10373,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In materials science, how is a material property defined?",
     "options": [
       "The response of a material to an external stimulus (mechanical, thermal, electrical, magnetic, optical), independent of shape and size",
-      "The shape and size of a part",
-      "The chemical formula of a material",
-      "The cost of a material per kilogram"
+      "The geometry of a finished part: its shape, its size, and all of its dimensions as it was manufactured",
+      "The chemical formula of the material, which lists all the atoms it contains in their exact proportions",
+      "The cost of the material per kilogram, which determines whether it is economical to use it in a design"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10463,9 +10463,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In engineering failure analysis, which famous structural failure is correctly paired with its primary material mechanism?",
     "options": [
       "Liberty ships (WWII): ductile-to-brittle transition in BCC Fe; Challenger (1986): failure of a polymer O-ring seal",
-      "Liberty ships: polymer O-ring failure; Challenger: metal fatigue at rivet holes",
-      "Tacoma Narrows Bridge: turbine blade inclusion; DC-10: crosswind stiffening",
-      "de Havilland Comet: overstressed walkway rods; Hyatt Regency: metal fatigue"
+      "Liberty ships (WWII): failure of a polymer O-ring seal in cold water; Challenger (1986): metal fatigue initiating at rivet holes in the hull",
+      "Tacoma Narrows Bridge: inclusion cracking in a turbine blade; DC-10: insufficient crosswind stiffening of the wing structure",
+      "de Havilland Comet: overstressed walkway support rods; Hyatt Regency walkway: metal fatigue at the window rivet holes"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10493,9 +10493,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In aerospace turbine-blade design, how does eliminating grain boundaries (progressing from equiaxed to columnar to single-crystal superalloys) permit substantially higher operating temperatures?",
     "options": [
       "Grain boundaries creep at high temperature, so eliminating them improves high-temperature performance",
-      "Single crystals are cheaper to cast",
-      "Grain boundaries increase the melting point",
-      "Columnar grains conduct heat away from the blade"
+      "Single crystals are cheaper to cast than equiaxed grains, so manufacturers choose them mainly to cut production costs",
+      "Grain boundaries raise the alloy's melting point, so removing them lets the blade operate closer to melting without softening",
+      "Columnar grains conduct heat away from the blade faster, keeping the alloy below the temperature where creep starts"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10523,9 +10523,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why is the reported atomic mass of carbon 12.011 g/mol rather than exactly 12?",
     "options": [
       "It is the abundance-weighted average of its isotopes (¹²C and ¹³C), which have the same Z but different N",
-      "Electrons add 0.011 g/mol",
-      "Carbon has 12.011 protons on average",
-      "It is a rounding error in the periodic table"
+      "Electrons have mass, and their 0.011 g/mol contribution is added to the 12 of the nucleus",
+      "Carbon atoms have 12.011 protons on average, since protons are created and destroyed in bonds",
+      "It is a rounding error in the periodic table, since every element should have a whole-number mass"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10615,9 +10615,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "On the interatomic energy–distance curve, what do the equilibrium separation r₀ and the bonding energy E₀ correspond to?",
     "options": [
       "r₀ is where the net force is zero (the energy minimum); E₀ is the depth of that minimum, the energy needed to separate the atoms completely",
-      "r₀ is where the attractive force is maximum; E₀ is the repulsive energy at r₀",
-      "r₀ is where the energy is zero; E₀ is the slope of the curve",
-      "r₀ and E₀ are both measured at infinite separation"
+      "r₀ is the separation where the attractive force reaches its maximum value, and E₀ is the repulsive energy stored at r₀ that must be overcome to pull the atoms apart",
+      "r₀ is the separation where the interatomic energy crosses zero, and E₀ is the slope of the energy curve at that crossing point, which measures the stiffness of the bond",
+      "r₀ and E₀ are both measured at infinite atomic separation, where the atoms no longer interact and the energy curve flattens out to its reference value"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10675,9 +10675,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which of the following statements regarding primary atomic bonding is true?",
     "options": [
       "Ionic bonding requires electron transfer and a large electronegativity difference; covalent bonding shares electrons and is highly directional",
-      "Ionic bonding shares electrons; covalent bonding transfers them",
-      "Covalent bonds are always weaker than van der Waals bonds",
-      "Ionic materials are ductile and electrically conductive"
+      "Ionic bonding works by sharing electrons between atoms of similar electronegativity, while covalent bonding transfers electrons completely and is therefore non-directional",
+      "Covalent bonds are always weaker than van der Waals bonds, because shared electron pairs are easier to pull apart than the attraction between permanent dipoles",
+      "Ionic materials are highly ductile and conductive in the solid state, since mobile ions carry charge freely and non-directional bonds let ion planes slide easily"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10802,9 +10802,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What physical mechanism creates London dispersion forces (secondary van der Waals bonds)?",
     "options": [
       "Fluctuating instantaneous induced atomic dipoles due to asymmetric electron cloud distributions",
-      "Complete transfer of valence electrons",
-      "Mutual sharing of directional electron pairs",
-      "Nuclear magnetic resonance"
+      "Complete transfer of valence electrons from one atom to another, forming ions",
+      "Mutual sharing of directional electron pairs between two neighbouring atoms",
+      "Nuclear magnetic resonance coupling between the nuclei of the two interacting atoms"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10832,9 +10832,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which of the following statements regarding hydrogen bonding is correct?",
     "options": [
       "It is a special, stronger case of secondary bonding, arising from the unshielded proton in H–O, H–F and H–N bonds",
-      "It is a primary bond stronger than ionic bonding",
-      "It occurs only between metal atoms",
-      "It is weaker than all other van der Waals interactions"
+      "It is a primary chemical bond stronger than ionic bonding, formed when the hydrogen proton creates a full covalent bridge between two atoms",
+      "It occurs only between metal atoms in alloys, where hydrogen sits in interstitial sites and forms direct metal-hydrogen ionic bonds",
+      "It is weaker than every other van der Waals force, since hydrogen's small size gives it almost no polarizability"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10862,9 +10862,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "How does a deeper, narrower interatomic potential energy well ($E_0$) correlate with material physical properties?",
     "options": [
       "Higher melting temperature $T_m$, higher elastic modulus $E$, and lower thermal expansion coefficient $\\alpha$",
-      "Lower melting temperature and higher thermal expansion",
-      "Higher ductility and lower stiffness",
-      "Lower density and lower bond energy"
+      "Lower melting temperature $T_m$, lower elastic modulus $E$, and higher thermal expansion coefficient $\\alpha$",
+      "Higher ductility and lower stiffness, since deep wells let atoms slide past each other easily",
+      "Lower density and lower bond energy, because deep potential wells pack the atoms loosely together"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -10892,9 +10892,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Under what solidification conditions do non-crystalline (amorphous) materials typically form?",
     "options": [
       "With complex structures or rapid cooling, when atoms have no periodic packing",
-      "Only in pure metals cooled slowly",
-      "Whenever the material is a metal",
-      "Only above the melting temperature"
+      "Only in pure metals cooled very slowly, so the atoms freeze before they can order themselves",
+      "Whenever the material is a metal, since metals always solidify as non-crystalline glasses",
+      "Only above the melting temperature, while the material is still in the liquid state"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -11167,9 +11167,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What does it mean that elemental iron is allotropic (polymorphic)?",
     "options": [
       "Iron changes its crystal structure with temperature: BCC ($\\alpha$-ferrite) below $912^\\circ\\text{C}$ and FCC ($\\gamma$-austenite) between $912^\\circ\\text{C}$ and $1394^\\circ\\text{C}$",
-      "Iron has multiple chemical valencies in rust",
-      "Iron can be magnetized",
-      "Iron melts at two different temperatures"
+      "Iron exhibits several chemical oxidation states ($\\mathrm{Fe}^{2+}$ and $\\mathrm{Fe}^{3+}$) in its oxides and rust, which is what allotropic means",
+      "Iron becomes ferromagnetic only above the Curie temperature ($768^\\circ\\text{C}$), and that magnetic phase change is what allotropic means",
+      "Iron melts at $1394^\\circ\\text{C}$ from the BCC phase and then melts a second time at $1538^\\circ\\text{C}$, so allotropy means it has two distinct melting points"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -11197,9 +11197,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "How many crystal systems and Bravais lattices are there, and what defines the cubic system?",
     "options": [
       "7 systems, 14 Bravais lattices; cubic has a = b = c and α = β = γ = 90°",
-      "14 systems, 7 lattices; cubic has a ≠ b ≠ c",
-      "3 systems (SC, BCC, FCC), 3 lattices",
-      "7 systems, 7 lattices; cubic has a = b ≠ c"
+      "14 systems and 7 lattices; cubic is defined by a ≠ b ≠ c with all angles at 90°",
+      "3 crystal systems — SC, BCC, and FCC — giving 3 Bravais lattices in total",
+      "7 systems and 7 lattices; the cubic system is defined by a = b ≠ c and α = β = γ = 90°"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -11350,9 +11350,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "In a cubic crystal, which directions belong to the family ⟨123⟩?",
     "options": [
       "[123], [213], [312], [132], [231], [321] (all orders, and signs)",
-      "Only [123]",
-      "[123] and [321] only",
-      "Any direction with a 1 in it"
+      "Only [123] belongs to the family, since each family has exactly one direction",
+      "[123] and [321] only, because the middle index must stay in the middle",
+      "Any direction that contains a 1, since the family is named after its first index"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -11381,9 +11381,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What does it mean that a single crystal material is 'anisotropic'?",
     "options": [
       "Its physical and mechanical properties (e.g. elastic modulus, conductivity) vary depending on the crystallographic direction of measurement",
-      "Its properties are identical in all directions",
-      "It has no crystal defects",
-      "It is completely transparent to light"
+      "Its mechanical and physical properties are perfectly identical in every crystallographic direction of measurement",
+      "It contains no crystal defects at all, so dislocations, vacancies and grain boundaries are entirely absent",
+      "It transmits all visible light perfectly, so every single crystal behaves exactly like a completely transparent glass"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -11645,9 +11645,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What caused the United DC-10 crash at Sioux City (1989)?",
     "options": [
       "An inclusion and cracking in the primary #2 engine turbine blade",
-      "Walkway support rods",
-      "A polymer seal",
-      "Wind-induced vibration"
+      "Failure of the walkway support rods that held the tail engine pylon in place",
+      "A polymer O-ring seal that failed at low temperature, letting hot gas escape",
+      "Wind-induced vibration of the fuselage that caused resonant fatigue cracking"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -11673,9 +11673,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why did the de Havilland Comet (first commercial jet) fail in 1954?",
     "options": [
       "Metal fatigue, aggravated by high stresses around rivet holes near window openings",
-      "Excessive jackscrew wear",
-      "An O-ring failure",
-      "Insufficient crosswind stiffening"
+      "Excessive wear of the jackscrew that controlled the tailplane trim angle",
+      "An O-ring failure in a solid rocket booster that leaked hot gas through the joint",
+      "Insufficient stiffening against crosswinds, which let the wing twist and fail"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -11791,9 +11791,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Comparing a 1 cm cube and a 10 cm cube of identical pure copper at room temperature, how do their intensive material properties compare?",
     "options": [
       "They are the same — properties are independent of shape and size",
-      "The larger cube is always stronger",
-      "The smaller cube conducts better",
-      "Properties depend only on shape"
+      "The larger cube is always stronger, since strength increases with total volume",
+      "The smaller cube conducts better, since current travels less distance",
+      "Properties depend only on shape, so copper cubes and spheres behave differently"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -11819,9 +11819,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What determines the nature of the chemical bond between atoms?",
     "options": [
       "Electronic structure (distribution of electrons in orbitals) and electronegativity",
-      "The size of the sample",
-      "The colour of the atoms",
-      "Only the number of neutrons"
+      "The size of the sample, since larger samples form stronger bonds between atoms",
+      "The colour of the atoms, which indicates which type of bond they prefer",
+      "Only the number of neutrons, since neutrons hold the bonding electrons together"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -11879,9 +11879,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the key idea of the wave-mechanical (quantum-mechanical) model?",
     "options": [
       "An electron's position is known only as a probability distribution, and it has both particle and wave character",
-      "Electrons move in fixed circular orbits",
-      "Electrons are stationary",
-      "Atoms have no nucleus"
+      "Electrons circle the nucleus in fixed, discrete circular orbits like planets around the sun",
+      "Electrons sit stationary at fixed positions between the nucleus and the electron cloud",
+      "Atoms consist of a nucleus made of electrons with no protons, surrounded by neutron shells"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -11907,9 +11907,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the atomic number Z?",
     "options": [
       "The number of protons (1 for hydrogen up to 94 for plutonium on the slide)",
-      "The number of neutrons",
-      "Protons plus neutrons",
-      "The number of electron shells"
+      "The number of neutrons in the nucleus, which determines the isotope of the element",
+      "The sum of protons plus neutrons, giving the total mass of the nucleus",
+      "The number of electron shells, which sets the row of the element in the table"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -12111,9 +12111,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "How does bonding energy relate to the state of a substance at room temperature?",
     "options": [
       "Solids have large bonding energies, liquids moderate, gases small",
-      "Gases have the largest bonding energies",
-      "State does not depend on bonding energy",
-      "Liquids always have zero bonding energy"
+      "Gases have the largest bonding energies of all three states of matter",
+      "Bonding energy has no effect on state; only the applied pressure determines it",
+      "Liquids always have zero bonding energy, which is why they flow so easily"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -12169,9 +12169,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why is it hard to assign general characteristics to covalently bonded materials?",
     "options": [
       "Bond strength and properties vary widely: diamond (Tm > 3550 °C) vs bismuth (Tm = 270 °C); GaAs conducts while diamond insulates",
-      "All covalent materials melt at the same temperature",
-      "Covalent bonds are always weak",
-      "Covalent materials are always metals"
+      "All covalent materials melt at the same temperature, because covalent bond energy is identical everywhere",
+      "Covalent bonds are always weak, so covalent materials are always soft, very ductile and low-melting",
+      "Covalent materials are always metals, because shared electron pairs create a free sea of electrons like in metals"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -12197,9 +12197,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Which example shows that metallic bonding can be weak or strong?",
     "options": [
       "Hg ≈ 68 kJ/mol (0.7 eV/atom) vs W ≈ 850 kJ/mol (8.8 eV/atom)",
-      "NaCl vs MgO",
-      "Diamond vs bismuth",
-      "H₂O vs HF"
+      "NaCl vs MgO, which shows how ionic charges change the bond energy",
+      "Diamond vs bismuth, showing covalent bonds from strong to weak",
+      "$\\text{H}_2\\text{O}$ vs HF, comparing weak and strong hydrogen bonds"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -12225,9 +12225,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why does metallic bonding give rise to ductility?",
     "options": [
       "Valence electrons are loosely held and move easily, allowing atoms to slide past each other",
-      "Metal atoms are not bonded at all",
-      "Metallic bonds are highly directional",
-      "Electrons are transferred permanently"
+      "Metal atoms are not bonded at all, so they offer no resistance when layers are pushed past one another",
+      "Metallic bonds are highly directional, forcing whole planes of atoms to rotate in lockstep as they deform",
+      "Electrons transfer permanently between atoms, letting each sliding layer form brand-new ionic bonds as it moves"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -12281,9 +12281,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "From their positions in the periodic table, what is the bonding in AlP and in BaS?",
     "options": [
       "AlP: predominantly covalent (some ionic); BaS: predominantly ionic (some covalent)",
-      "Both purely ionic",
-      "Both metallic",
-      "AlP ionic; BaS van der Waals"
+      "Both compounds are purely ionic, since a metal plus a non-metal always transfers electrons",
+      "Both are metallic, because aluminum and barium are metals that donate electrons freely",
+      "AlP is ionic and BaS is van der Waals, since sulphur's polarizability dominates"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -12399,9 +12399,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is the difference between atomic structure and crystal structure?",
     "options": [
       "Atomic structure concerns protons, neutrons and electrons of an atom; crystal structure is the arrangement of atoms in the solid",
-      "They are the same thing",
-      "Crystal structure concerns the nucleus only",
-      "Atomic structure is the arrangement of grains"
+      "They are the same thing: both terms describe how individual atoms are packed together in a solid",
+      "Crystal structure concerns only the atomic nucleus, while atomic structure describes the electrons around it",
+      "Atomic structure is the arrangement of grains and grain boundaries in the solid, on a larger scale"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -12457,9 +12457,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "What is a lattice parameter?",
     "options": [
       "The length of a unit-cell axis — typically a few ångströms (a few tenths of a nanometre)",
-      "The number of atoms per unit cell",
-      "The angle between planes",
-      "The density of the crystal"
+      "The number of atoms contained in one unit cell, such as 4 atoms for an FCC cell",
+      "The angle between two crystallographic planes, measured in degrees or radians",
+      "The density of the crystal, calculated from the atomic mass and the cell volume"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -12923,9 +12923,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Rubber and nylon are composed mainly of C and H. Which statement fits them?",
     "options": [
       "Covalent bonding within chains with some van der Waals bonding, giving low conductivity",
-      "Metallic bonding, giving high conductivity",
-      "Purely ionic bonding, making them brittle",
-      "Hydrogen bonding only"
+      "Metallic bonding between carbon and hydrogen atoms, giving the polymer a high electrical conductivity",
+      "Purely ionic bonding between the polymer chains, which makes rubber and nylon hard and brittle like salts",
+      "Only hydrogen bonding between the carbon and hydrogen atoms, with no primary covalent bonds in the chains"
     ],
     "correctIndex": 0,
     "explanation": {
@@ -13063,9 +13063,9 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "question": "Why are metals usually found in dense structures such as FCC, BCC and HCP?",
     "options": [
       "Metallic bonding is non-directional, and dense regular packing has lower energy",
-      "Metallic bonds are highly directional",
-      "Metals have no bonding",
-      "Dense packing has higher energy"
+      "The electron sea forces metal atoms into simple cubic lattices only, excluding FCC, BCC and HCP",
+      "Metallic bonds are highly directional, so metal atoms must align at perfectly fixed angles",
+      "Metals form ionic lattices needing strict charge balance, which only dense packing can provide"
     ],
     "correctIndex": 0,
     "explanation": {

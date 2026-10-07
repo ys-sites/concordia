@@ -284,9 +284,9 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
     question: t`Why is the $0.002$ ($0.2\%$) strain offset method universally utilized to determine the yield strength $\sigma_y$ of ductile metals?`,
     options: [
       t`Because most metallic alloys transition gradually from elastic to plastic deformation without a distinct yield point, requiring a standardized convention for the onset of plastic flow.`,
-      t`Because at $0.002$ strain, all dislocations in the crystal lattice cease motion.`,
-      t`Because $0.002$ is the universal strain where necking and ultimate tensile failure initiate.`,
-      t`Because Hooke's law ceases to be valid for any material beyond a strain of exactly $0.0002$.`
+      t`At exactly $0.002$ strain, every dislocation in the crystal lattice simultaneously ceases all motion, so the measured stress is by definition the highest stress the metal can ever support`,
+      t`$0.002$ is the universal strain at which necking and ultimate tensile failure begin in every metal, so the offset line simply marks the point where the specimen starts to break`,
+      t`Hooke's law ceases to be valid for every material beyond a strain of exactly $0.0002$, so the $0.002$ offset is placed ten times further out to keep the measurement in the elastic region`
     ],
     correctIndex: 0,
     explanation: {
@@ -444,9 +444,9 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
     question: t`In a standard tensile test, why does the engineering stress curve reach a maximum (the UTS) and subsequently drop, while the true stress continues to increase monotonically until fracture?`,
     options: [
       t`Because engineering stress is calculated using the constant original area $A_0$, while true stress uses the instantaneous area $A_i$, which shrinks rapidly in the localized neck after UTS.`,
-      t`Because the specimen begins to work-soften after the UTS due to dislocation annihilation.`,
-      t`Because elastic deformation begins again after the UTS, reducing the required load.`,
-      t`Because true stress accounts for the temperature rise produced by adiabatic heating.`
+      t`The specimen begins to work-soften right after the UTS because massive dislocation annihilation wipes out the strain hardening, so the metal genuinely needs less and less stress to keep deforming until it fractures`,
+      t`Elastic deformation begins again after the UTS, so the atomic bonds stretch reversibly instead of breaking; this elastic recovery lowers the load the machine must apply, which shows up as the drop in the engineering curve`,
+      t`True stress corrects for the temperature rise from adiabatic heating during the test while engineering stress ignores it; the hotter the neck gets, the softer it becomes, which explains the drop in the engineering curve`
     ],
     correctIndex: 0,
     explanation: {
@@ -512,9 +512,9 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
     question: t`Why do FCC metals (such as copper and aluminum) demonstrate exceptional ductility even at very low temperatures, whereas HCP metals (such as zinc and magnesium) are comparatively brittle?`,
     options: [
       t`FCC possesses 12 close-packed slip systems ($\{111\}\langle 110 \rangle$) with four distinct slip planes, whereas HCP has only 3 primary basal slip systems ($\{0001\}\langle 11\bar{2}0 \rangle$), severely restricting plastic deformation across random grain orientations.`,
-      t`HCP metals have no dislocations in their crystal structure, so they can only deform elastically.`,
-      t`FCC metals have lower atomic packing factor than HCP, allowing more free space for atoms to move.`,
-      t`BCC metals have more slip systems (48) than FCC, making BCC metals the most ductile at sub-zero cryogenic temperatures.`
+      t`HCP metals such as zinc and magnesium contain virtually no dislocations because their dense packing locks all defects out of the lattice, so they can only deform elastically until the applied stress suddenly cleaves the crystal apart`,
+      t`FCC metals have a much lower atomic packing factor (about $0.52$) than HCP metals (about $0.74$), so the extra empty space between FCC atoms gives them more room to shift positions, which is what allows such large plastic deformation before fracture`,
+      t`BCC metals possess 48 independent slip systems on $\{110\}$, $\{112\}$ and $\{123\}$ planes, which makes them the most ductile metals at sub-zero cryogenic temperatures, since a higher slip-system count always guarantees easier dislocation motion regardless of thermal activation barriers`
     ],
     correctIndex: 0,
     explanation: {
@@ -611,9 +611,9 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
     question: t`Why does alloying pure copper with zinc (to make brass) produce a significant increase in tensile strength and hardness?`,
     options: [
       t`Solute zinc atoms introduce localized lattice misfit strain fields (compression/tension) that interact with and pin dislocation strain fields, requiring higher shear stress for dislocations to move.`,
-      t`Zinc atoms completely fill all vacancies, eliminating all defects from the copper lattice.`,
-      t`Zinc forms an impermeable covalent crust on the exterior surface of the alloy.`,
-      t`Zinc atoms chemically bind to all dislocations and transform them into brittle ceramic particles.`
+      t`Zinc atoms diffuse into copper and completely fill every vacancy, eliminating all defects from the lattice; with the crystal now perfect, dislocations need far higher shear stress to nucleate and move, raising strength and hardness`,
+      t`Zinc atoms migrate to the exterior surface and form an impermeable covalent crust that seals the copper grains inside, and this hard outer shell is what resists indentation and raises the measured tensile strength`,
+      t`Each zinc atom chemically reacts with nearby dislocations and transforms them into tiny brittle ceramic particles, so the alloy hardens because it now contains a dispersion of hard ceramic precipitates throughout the copper matrix`
     ],
     correctIndex: 0,
     explanation: {
@@ -644,9 +644,9 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
     question: t`What is the underlying physical mechanism that causes a metal to become stronger and harder during cold working (plastic deformation below recrystallization temperature)?`,
     options: [
       t`Dislocation density multiplies dramatically (from $\sim 10^5-10^6\text{ cm}^{-2}$ up to $\sim 10^9-10^{10}\text{ cm}^{-2}$), causing dislocations to entangle and mutually obstruct each other's movement.`,
-      t`The crystal grains break apart into individual amorphous molecules.`,
-      t`Vacancies cluster to form microscopic voids that absorb applied mechanical stresses.`,
-      t`Atoms lose their valence electrons, converting metallic bonds into stronger covalent bonds.`
+      t`Cold working shatters the crystal grains into individual amorphous molecules that pack more tightly together, and this complete loss of long-range order is what makes the metal harder and stronger`,
+      t`Cold working sweeps vacancies together into microscopic voids that act as cushions, absorbing the applied stress before it reaches the lattice so the metal becomes harder and stronger`,
+      t`During cold work the metal atoms permanently lose their valence electrons, converting the weak metallic bonds into much stronger directional covalent bonds that resist deformation`
     ],
     correctIndex: 0,
     explanation: {
@@ -879,9 +879,9 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
     question: t`In the $\text{Fe-Fe}_3\text{C}$ system, why does FCC $\gamma$-austenite exhibit a maximum carbon solid solubility of $2.14\text{ wt}\%$, whereas BCC $\alpha$-ferrite can only dissolve a maximum of $0.022\text{ wt}\%\text{ C}$, even though BCC is less densely packed ($APF = 0.68$) than FCC ($APF = 0.74$)?`,
     options: [
       t`Because the octahedral interstitial sites in FCC are symmetrical and significantly larger ($r_{\text{site}} \approx 0.414\,R$) than the highly cramped, distorted octahedral sites in BCC ($r_{\text{site}} \approx 0.155\,R$).`,
-      t`Because carbon atoms in ferrite evaporate as gaseous monoxide at room temperature.`,
-      t`Because ferrite possesses no interstitial positions whatsoever within its unit cell.`,
-      t`Because austenite contains ionic bonds that electrostatically attract carbon ions.`
+      t`Because carbon atoms in ferrite slowly evaporate from the solid lattice as gaseous carbon monoxide at room temperature, leaving almost no carbon dissolved in the BCC iron`,
+      t`Because ferrite possesses absolutely no interstitial positions whatsoever within its unit cell, so carbon atoms simply cannot fit at all anywhere inside the BCC iron lattice`,
+      t`Because austenite contains ionic bonds whose electrostatic attraction pulls carbon ions into the lattice, greatly raising its carbon solubility compared with metallic ferrite`
     ],
     correctIndex: 0,
     explanation: {
@@ -912,9 +912,9 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
     question: t`In plain carbon steel of eutectoid composition ($0.76\text{ wt}\%\text{ C}$), what microconstituent forms upon slow cooling below the eutectoid temperature ($727^\circ\text{C}$), and what is its physical morphology?`,
     options: [
       t`Pearlite, consisting of alternating lamellae (plates) of ductile $\alpha$-ferrite ($0.022\text{ wt}\%\text{ C}$) and hard, brittle cementite $\text{Fe}_3\text{C}$ ($6.70\text{ wt}\%\text{ C}$).`,
-      t`Bainite, consisting of needle-like cementite particles embedded in an amorphous matrix.`,
-      t`Martensite, consisting of a diffusionless body-centered tetragonal (BCT) supersaturated solid solution.`,
-      t`Ledeburite, consisting of spherical nodules of graphite surrounded by austenite.`
+      t`Bainite, consisting of fine needle-like cementite particles embedded in an amorphous metallic matrix, nucleating directly from austenite during slow furnace cooling below $727^{\circ}\text{C}$`,
+      t`Martensite, consisting of a diffusionless body-centered tetragonal (BCT) supersaturated solid solution that forms directly from austenite during slow furnace cooling below the eutectoid temperature`,
+      t`Ledeburite, consisting of spherical graphite nodules surrounded by an austenite matrix, which precipitates when a $0.76\text{ wt}\%\text{ C}$ steel is slowly cooled below $727^{\circ}\text{C}$`
     ],
     correctIndex: 0,
     explanation: {

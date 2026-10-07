@@ -246,9 +246,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`What distinguishes ERP from MRP II?`,
     options: [
       t`ERP ties customer orders to enterprise-wide resources and suppliers in a single integrated database`,
-      t`ERP only computes component requirements from a master schedule`,
-      t`ERP removes the need for a bill of materials`,
-      t`ERP is a manual paper-based system`
+      t`ERP only computes component requirements from the master schedule, just like basic MRP`,
+      t`ERP removes the need for a bill of materials, since parts are tracked automatically`,
+      t`ERP is a manual paper-based ledger system that replaced the earlier MRP records`
     ],
     correctIndex: 0,
     explanation: {
@@ -507,9 +507,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`What makes a mathematical programming model a linear program?`,
     options: [
       t`The objective and all constraints are linear functions of the decision variables`,
-      t`It has exactly two decision variables`,
-      t`All decision variables must be integers`,
-      t`It uses probabilities for the parameters`
+      t`It has exactly two decision variables, so it can be drawn on a two-dimensional graph`,
+      t`All decision variables must take only integer values for the model to be linear`,
+      t`It uses probability distributions for its parameters, such as expected demand`
     ],
     correctIndex: 0,
     explanation: {
@@ -1159,9 +1159,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`Which statement is correct?`,
     options: [
       t`CPM uses deterministic durations; PERT uses probabilistic (three-point) estimates. Both find a critical path.`,
-      t`Both CPM and PERT use probabilistic information`,
-      t`CPM is probabilistic and PERT is deterministic`,
-      t`Only CPM finds a critical path`
+      t`Both CPM and PERT rely on probabilistic duration estimates, with no deterministic technique among the two`,
+      t`CPM uses probabilistic estimates while PERT uses deterministic durations, reversing the two techniques`,
+      t`Only CPM can determine a critical path, while PERT only computes project variance and never finds one`
     ],
     correctIndex: 0,
     explanation: {
@@ -1254,9 +1254,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`As discussed in class, a supply chain system typically refers to:`,
     options: [
       t`A complex production system with components and final products made by different entities, with physical, information and commercial links`,
-      t`A process that fabricates and supplies metal chains`,
-      t`One supplier selling to a chain of retailers`,
-      t`A physical system supplying electricity to a chain of communities`
+      t`A manufacturing process that fabricates and supplies physical metal chains to industrial and retail customers`,
+      t`One single supplier selling its products directly to a chain of retail stores, with no other links or parties involved`,
+      t`A physical utility system that supplies electricity to a chain of connected communities through its power lines`
     ],
     correctIndex: 0,
     explanation: {
@@ -1488,9 +1488,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`For a basic MRP system, which statement is correct?`,
     options: [
       t`It needs the product structure (BOM) and the inventory on hand to determine how much to order`,
-      t`Order quantities are always optimised with EOQ`,
-      t`It explicitly models demand uncertainty`,
-      t`It is based on the just-in-time pull approach`
+      t`Lot sizes are always optimised with the EOQ formula to minimize total cost`,
+      t`It explicitly models demand uncertainty with probabilistic safety stock buffers`,
+      t`It is based on the just-in-time pull approach, using kanban signals to trigger orders`
     ],
     correctIndex: 0,
     explanation: {
@@ -1670,9 +1670,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`A company faces demand $D = 10{,}000$ units/year, ordering cost $PC = \$40$/order, and carrying cost rate $i = 20\%$ of unit price. The normal price is $\$5.00$ ($Q < 1{,}000$), with an all-units discount to $\$4.80$ if $Q \ge 1{,}000$. What should the company do?`,
     options: [
       t`Order $Q = 1{,}000$; total annual cost decreases by $\approx \$2{,}014$ due to purchase price savings`,
-      t`Order $EOQ = 894$; ordering $1{,}000$ units increases carrying cost too much`,
-      t`Do not order; ordering cost increases when order size increases`,
-      t`Order $Q = 2{,}000$ to maximize the discount further`
+      t`Order $EOQ = 894$; moving to $Q = 1{,}000$ raises carrying cost from $\$447$ to $\$480$, wiping out the discount`,
+      t`Do not order at all, since ordering cost increases whenever the order size increases`,
+      t`Order $Q = 2{,}000$ to capture an even deeper discount and lower the unit price further`
     ],
     correctIndex: 0,
     explanation: {
@@ -1857,9 +1857,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`A project manager must compress a critical path by $1\text{ day}$. Two critical activities can be crashed: Activity A (Normal: 5 days, \$1,000; Crash: 3 days, \$1,600) and Activity B (Normal: 6 days, \$2,000; Crash: 4 days, \$2,800). Which activity should be crashed first?`,
     options: [
       t`Crash Activity A; cost slope is $\$300/\text{day}$ (cheaper than B's $\$400/\text{day}$)`,
-      t`Crash Activity B; cost slope is $\$400/\text{day}$`,
-      t`Crash both activities simultaneously`,
-      t`Crash Activity B because it has a longer duration`
+      t`Crash Activity B; its cost slope of $\$400/\text{day}$ is lower than Activity A's $\$800/\text{day}$`,
+      t`Crash both activities simultaneously so the critical path shortens by 2 days at the lowest combined cost`,
+      t`Crash Activity B because its 6-day normal duration is longer, so it offers the most compressible time`
     ],
     correctIndex: 0,
     explanation: {
@@ -1895,9 +1895,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`A warehouse forklift visits 5 departments (A, B, C, D, E) starting from and returning to depot P. Using the Nearest Neighbor heuristic yields the route $P \to E \to A \to B \to D \to C \to P$ with total distance 91. Using Second-Nearest First yields $P \to A \to B \to D \to E \to C \to P$ with distance 89. Is either solution guaranteed to be optimal?`,
     options: [
       t`Neither solution is optimal; Nearest Neighbor is a greedy heuristic that often incurs a severe penalty on the final return leg (true optimal is 72)`,
-      t`Yes, Nearest Neighbor is guaranteed to find the global optimum for the Traveling Salesperson Problem`,
-      t`Yes, the Second-Nearest First route of 89 is mathematically optimal`,
-      t`Only an exhaustive search over 6! = 720 routes is capable of finding a feasible path`
+      t`Yes, the Nearest Neighbor heuristic is guaranteed to find the global optimum for the Traveling Salesperson Problem`,
+      t`Yes, the Second-Nearest First route of 89 is mathematically optimal, since it beats the Nearest Neighbor total of 91`,
+      t`Only an exhaustive search over all $6! = 720$ possible routes can produce any feasible path, since heuristics cannot guarantee feasibility`
     ],
     correctIndex: 0,
     explanation: {
@@ -1997,9 +1997,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`In Canada, engineering is a regulated profession. To obtain the title of Professional Engineer (P.Eng. / ing.), an applicant must:`,
     options: [
       t`Complete an undergraduate engineering program accredited by the Canadian Engineering Accreditation Board (CEAB) and fulfill provincial licensure requirements (e.g. OIQ/PEO)`,
-      t`Obtain a Ph.D. degree in natural science or mathematics from any recognized university`,
-      t`Complete ISO quality management certification authorized by the federal government`,
-      t`Complete a two-year college diploma in industrial technology approved by a municipality`
+      t`Obtain a Ph.D. degree in natural science or mathematics from any recognized university, since advanced science study substitutes for an engineering degree`,
+      t`Complete ISO 9001 quality management certification authorized by the federal government as the main proof of engineering competence`,
+      t`Complete a two-year college diploma in industrial technology approved by a municipality, which grants the P.Eng. engineering title directly`
     ],
     correctIndex: 0,
     explanation: {
@@ -2030,9 +2030,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`In modern industrial manufacturing systems, 'Concurrent Engineering' fundamentally refers to:`,
     options: [
       t`A systematic approach where product design and manufacturing process development are integrated simultaneously from the earliest phase`,
-      t`Designing a product entirely first, and then handing it 'over the wall' to manufacturing engineers`,
-      t`Running two identical assembly lines concurrently to double production throughput`,
-      t`A software method exclusively used for concurrent multithreaded cloud computing`
+      t`Designing the product entirely first, then handing it 'over the wall' to manufacturing engineers for production`,
+      t`Running two identical factory assembly lines concurrently in order to double total production throughput`,
+      t`A software engineering method used exclusively for concurrent multithreaded cloud computing applications`
     ],
     correctIndex: 0,
     explanation: {
@@ -2100,9 +2100,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`In the foundational definition of engineering, what is the primary distinction between science and engineering?`,
     options: [
       t`Science is the quest for basic knowledge and understanding natural laws; engineering applies that knowledge to solve practical human and societal problems`,
-      t`Science creates physical products and structures, whereas engineering develops abstract theoretical proofs`,
-      t`Engineering is purely theoretical research, while science is solely trade craftsmanship`,
-      t`There is no recognized distinction; Canadian engineering legislation treats them identically`
+      t`Science creates physical products and structures, whereas engineering develops abstract mathematical proofs and theorems`,
+      t`Engineering is purely theoretical research, while science is solely hands-on trade craftsmanship with no underlying theory`,
+      t`There is no recognized distinction between the two; Canadian engineering legislation treats science and engineering identically`
     ],
     correctIndex: 0,
     explanation: {
@@ -2133,9 +2133,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`Which statement best defines a modern industrial 'Supply Chain'?`,
     options: [
       t`A complex production network where components are fabricated by multiple entities interconnected by physical material, information, and financial flows`,
-      t`A linear conveyor belt connecting machines inside a single machining department`,
-      t`An internal accounting department that records employee payroll transactions`,
-      t`A fleet of delivery trucks owned exclusively by a single municipal retail store`
+      t`A linear conveyor belt connecting machines inside a single machining department, moving parts from one station to the next`,
+      t`An internal accounting department that records employee payroll transactions and manages employee benefits administration`,
+      t`A fleet of delivery trucks owned exclusively by a single municipal retail store, used for its own local customer deliveries`
     ],
     correctIndex: 0,
     explanation: {
@@ -2167,9 +2167,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`In enterprise systems, an Enterprise Resource Planning (ERP) software system is fundamentally characterized as:`,
     options: [
       t`An integrated, multi-module suite built on a common centralized database that coordinates all business functions (procurement, production, finance, sales, HR)`,
-      t`A standalone shop-floor CAD software used exclusively for CNC toolpath generation`,
-      t`A single-user desktop spreadsheet for tracking annual office stationery supplies`,
-      t`A hardware interface linking barcode scanners to warehouse forklifts`
+      t`A standalone shop-floor CAD/CAM software package used exclusively for CNC toolpath generation and machining simulation`,
+      t`A single-user desktop spreadsheet system used for tracking annual office stationery supplies and small-business department budgets`,
+      t`A specialized hardware interface module that links barcode scanners and RFID readers to warehouse forklifts and conveyor belts`
     ],
     correctIndex: 0,
     explanation: {
@@ -2200,9 +2200,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`What is the primary operational mechanism of a Just-In-Time (JIT) production system?`,
     options: [
       t`A demand-driven pull system where downstream operations signal upstream processes to produce parts only as needed, minimizing WIP inventory`,
-      t`A forecast-driven push system that mass-produces large batches to keep machine utilization at 100%`,
-      t`Building large buffers of safety stock at every workstation to prevent stockouts`,
-      t`Inspecting 100% of finished goods at the end of the line to eliminate customer defects`
+      t`A forecast-driven push system that mass-produces large batches to keep machine utilization at 100% at all times`,
+      t`Building large buffers of safety stock at every workstation to prevent stockouts and smooth out production`,
+      t`Inspecting 100% of finished goods at the end of the line to eliminate defects before they reach the customer`
     ],
     correctIndex: 0,
     explanation: {
@@ -2233,9 +2233,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`What is the fundamental difference in activity duration assumptions between CPM and PERT in project network analysis?`,
     options: [
       t`CPM assumes deterministic activity durations (known with certainty); PERT models uncertain durations using three probabilistic time estimates (a, m, b)`,
-      t`CPM is probabilistic with beta distributions; PERT is strictly deterministic`,
-      t`CPM cannot determine a critical path, whereas PERT identifies multiple critical paths simultaneously`,
-      t`PERT requires dollar cost budgeting, whereas CPM only measures calendar days`
+      t`CPM is probabilistic with beta-distributed activity durations, while PERT assumes strictly deterministic single times`,
+      t`CPM cannot determine a critical path at all, whereas PERT always identifies several simultaneous critical paths across its network`,
+      t`PERT requires dollar-cost budgeting for every activity, whereas CPM measures only calendar days and ignores cost entirely`
     ],
     correctIndex: 0,
     explanation: {
@@ -2266,9 +2266,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`In a project network diagram, which statement is always TRUE regarding the Critical Path?`,
     options: [
       t`It is the longest path through the network, determines the shortest time to complete the project, and all activities on it have zero total slack`,
-      t`It is the shortest path through the network and has the maximum total slack`,
-      t`Activities on the critical path can be delayed without affecting the project completion date`,
-      t`A project can never have more than one critical path under any circumstance`
+      t`It is the shortest path through the network, and all of its activities enjoy the maximum possible total slack`,
+      t`Activities on the critical path can be delayed freely without any effect on the project's scheduled completion date`,
+      t`A project can never have more than one critical path under any circumstance, because only the single longest chain counts`
     ],
     correctIndex: 0,
     explanation: {
@@ -2399,9 +2399,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`According to the Institute of Industrial and Systems Engineers (IISE), what distinguishes Industrial Engineering from traditional engineering disciplines?`,
     options: [
       t`It is concerned with the design, improvement, and installation of integrated systems of people, materials, information, equipment, and energy`,
-      t`It focuses exclusively on subatomic particle interactions and quantum computing algorithms`,
-      t`It deals solely with designing reinforced concrete bridges and highway pavements`,
-      t`It is limited to writing legal contracts for commercial real estate acquisitions`
+      t`It focuses exclusively on subatomic particle interactions and quantum computing algorithms rather than systems`,
+      t`It deals solely with designing reinforced concrete bridges and highway pavements for public infrastructure`,
+      t`It is limited to writing legal contracts only for commercial real estate acquisitions and leasing agreements`
     ],
     correctIndex: 0,
     explanation: {
@@ -2636,9 +2636,9 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     question: t`What is the primary advantage of Concurrent Engineering over traditional sequential 'over-the-wall' product development?`,
     options: [
       t`Cross-functional teams design products and manufacturing processes simultaneously, dramatically reducing engineering change orders (ECOs) and time-to-market`,
-      t`Manufacturing engineers are only consulted after product drawings are 100% finalized by the R&D team`,
-      t`It completely eliminates the need for product testing or prototyping`,
-      t`It minimizes supplier communication until mass production begins`
+      t`Manufacturing engineers are consulted only after product drawings are 100% finalized by the R&D team and tooling is ordered`,
+      t`It completely eliminates the need for product testing or prototyping, since parallel teams catch every design flaw on paper`,
+      t`It minimizes all supplier communication until mass production begins, keeping early designs confidential from outside vendors`
     ],
     correctIndex: 0,
     explanation: {

@@ -90,9 +90,9 @@ export const ENGR213_SUBSECTION_QUESTIONS: PracticeQuestion[] = [
     question: t`Consider the ODE $\frac{dy}{dx} = \frac{y^2 - 1}{x}$. Which of the following statements is completely correct regarding singular (lost) solutions?`,
     options: [
       t`Both $y = 1$ and $y = -1$ are constant equilibrium solutions; dividing by $y^2 - 1$ temporarily loses them unless absorbed by the arbitrary constant.`,
-      t`Only $y = 1$ is lost; $y = -1$ is impossible because $y^2 - 1 \ge 0$.`,
-      t`There are no lost solutions because every separable ODE has a fully inclusive general solution.`,
-      t`$y = 0$ is the only lost solution because $x = 0$ is a vertical asymptote.`
+      t`Only $y = 1$ is lost; $y = -1$ is impossible because $y^2 - 1 \ge 0$ for real $y$, so $-1$ cannot make the denominator zero.`,
+      t`There are no lost solutions, because dividing by $y^2 - 1$ is valid for every real number $y$, including $y = \pm 1$.`,
+      t`$y = 0$ is the only lost solution, because $x = 0$ makes the right-hand side undefined and creates a vertical asymptote there.`
     ],
     correctIndex: 0,
     explanation: {
@@ -590,9 +590,9 @@ export const ENGR213_SUBSECTION_QUESTIONS: PracticeQuestion[] = [
 (III) $\frac{dy}{dx} = (2x + 3y - 5)^2$`,
     options: [
       t`(I) Homogeneous ($y = ux$), (II) Bernoulli ($u = y^{-3}$), (III) Linear inside function ($u = 2x + 3y - 5$)`,
-      t`(I) Bernoulli, (II) Homogeneous, (III) Separable without substitution`,
-      t`(I) Linear substitution, (II) Exact equation, (III) Bernoulli`,
-      t`(I) Homogeneous ($u = x/y$), (II) Linear in $x$, (III) Cauchy-Euler`
+      t`(I) Bernoulli, (II) Homogeneous, (III) Separable without substitution, since none needs a change of variable`,
+      t`(I) Linear substitution, (II) Exact equation, (III) Bernoulli with $u = (2x + 3y - 5)^{-1}$`,
+      t`(I) Homogeneous ($u = x/y$), (II) Linear in $x$ with $u = x^{-3}$, (III) Cauchy-Euler`
     ],
     correctIndex: 0,
     explanation: {
@@ -657,9 +657,9 @@ export const ENGR213_SUBSECTION_QUESTIONS: PracticeQuestion[] = [
     question: t`Solve $\frac{dy}{dx} = \tan^2(x + y)$.`,
     options: [
       t`$x + y - \frac{1}{2}\sin(2(x+y)) = 2x + C$ or equivalently $\sin(x+y)\cos(x+y) = y - x + C$`,
-      t`$\tan(x+y) = x + C$`,
-      t`$\ln|\sec(x+y)| = x + C$`,
-      t`$\cos(x+y) = x + C$`
+      t`$\tan(x+y) = x + C$, obtained by integrating $\sec^2(u)$ in $u = x+y$`,
+      t`$\ln|\sec(x+y)| = x + C$, the integral of $\tan(u)$ with $u = x+y$ substituted`,
+      t`$\cos(x+y) = x + C$, from integrating $\cos(u)\,du = dx$ after dividing by $\tan^2$`
     ],
     correctIndex: 0,
     explanation: {
@@ -1663,9 +1663,9 @@ export const ENGR213_SUBSECTION_QUESTIONS: PracticeQuestion[] = [
     question: t`Classify the ordinary differential equation $(1 - y^2)y'' + 2x y' + y = \sin(x)$ in terms of order and linearity.`,
     options: [
       t`Second-order, non-linear (due to the coefficient $(1 - y^2)$ depending on $y$)`,
-      t`Second-order, linear with variable coefficients`,
-      t`First-order, non-linear because of the power $y^2$`,
-      t`Third-order, linear non-homogeneous`
+      t`Second-order, linear with variable coefficients, since $2x$ and $(1 - y^2)$ depend only on $x$`,
+      t`First-order, non-linear because of the power $y^2$, since the highest power of $y$ sets the order`,
+      t`Third-order, linear non-homogeneous, since the term $2xy'$ raises the order to three`
     ],
     correctIndex: 0,
     explanation: {

@@ -141,9 +141,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`Single-crystal BCC iron has a modulus that depends on direction, yet a polycrystalline iron bar has $E \approx 210$ GPa in every direction. Why?`,
     options: [
       t`Its grains are randomly oriented, so the directional properties average out (isotropic)`,
-      t`Polycrystals have no crystal structure`,
-      t`Grain boundaries make every grain the same orientation`,
-      t`The modulus of iron never depends on direction`
+      t`Polycrystals have no crystal structure, so no directionality remains for the modulus to depend on`,
+      t`Grain boundaries rotate every grain into the same orientation, so the bar behaves like one uniform crystal`,
+      t`The modulus of iron never depends on direction; single-crystal BCC iron has the same E along every axis`
     ],
     correctIndex: 0,
     explanation: {
@@ -172,9 +172,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`Why are X-rays (rather than visible light) used to study crystal planes?`,
     options: [
       t`Their wavelength is comparable to interatomic spacings, so the regularly spaced atoms diffract them`,
-      t`They are cheaper than visible light`,
-      t`They pass through without interacting with atoms`,
-      t`Only X-rays can travel through a vacuum`
+      t`They are cheaper to produce than visible light, so crystallography labs choose X-rays mainly to keep equipment costs down`,
+      t`They pass through the crystal without interacting with atoms, reaching deep planes that visible light cannot penetrate`,
+      t`Only X-rays can travel through a vacuum, so in the evacuated diffractometer chamber visible light cannot reach the sample`
     ],
     correctIndex: 0,
     explanation: {
@@ -202,9 +202,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`Why does the diffractometer technique use a powder (polycrystalline) sample?`,
     options: [
       t`So that some particles are oriented to satisfy Bragg's law for every set of planes`,
-      t`Powders have a higher density than solids`,
-      t`Powders remove the need for a monochromatic beam`,
-      t`Powders are amorphous, so they give no peaks`
+      t`Powders are denser than solid samples, so the X-ray beam hits more atoms and gives stronger peaks`,
+      t`A powder removes the need for a monochromatic beam, since grains separate the wavelengths themselves`,
+      t`Powders are amorphous like glass, so they give no sharp peaks that could confuse the analysis`
     ],
     correctIndex: 0,
     explanation: {
@@ -556,9 +556,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`Which statement about defects in solids is MOST correct (Lecture 7 summary question)?`,
     options: [
       t`Defects may be desirable or undesirable, and may be introduced intentionally or occur naturally`,
-      t`All defects are undesirable because they disrupt the crystal`,
-      t`Desirable defects are always introduced intentionally`,
-      t`Unintentional defects are always harmful`
+      t`All defects are undesirable since they disrupt the crystal, so engineers must eliminate every defect from materials`,
+      t`Desirable defects are always introduced intentionally; no useful defect ever appears in a material by itself`,
+      t`Unintentional defects are always harmful, so alloying elements must never be allowed to enter a crystal by accident`
     ],
     correctIndex: 0,
     explanation: {
@@ -909,9 +909,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`True or false: covalent bonding is a primary bond based on permanent or induced (temporary) dipoles.`,
     options: [
       t`False: dipole attraction is secondary (van der Waals) bonding; covalent bonding shares electrons`,
-      t`True: covalent bonds are dipole bonds`,
-      t`False: covalent bonding transfers electrons`,
-      t`True: all primary bonds are dipole interactions`
+      t`True: covalent bonds are dipole bonds, since shared electrons create permanent dipoles that hold molecules together`,
+      t`False: covalent bonding transfers electrons completely, while dipole attraction is what holds metals together`,
+      t`True: all primary bonds are dipole interactions, since ionic, covalent and metallic bonds all arise from dipoles`
     ],
     correctIndex: 0,
     explanation: {
@@ -1159,9 +1159,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`In a Face-Centered Cubic (FCC) crystal with atomic radius $R$, what is the planar atomic density of the close-packed $(111)$ plane?`,
     options: [
       t`$\dfrac{1}{2\sqrt{3}\,R^2} \approx \dfrac{0.289}{R^2}$`,
-      t`$\dfrac{1}{4\sqrt{2}\,R^2}$`,
-      t`$\dfrac{1}{4\sqrt{3}\,R^2}$`,
-      t`$\dfrac{3}{8\sqrt{2}\,R^2}$`
+      t`$\dfrac{1}{\sqrt{3}\,R^2} \approx \dfrac{0.577}{R^2}$`,
+      t`$\dfrac{1}{4\sqrt{3}\,R^2} \approx \dfrac{0.144}{R^2}$`,
+      t`$\dfrac{2}{\sqrt{3}\,R^2} \approx \dfrac{1.155}{R^2}$`
     ],
     correctIndex: 0,
     explanation: {
@@ -1273,9 +1273,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`Why do Copper (Cu) and Nickel (Ni) form a complete solid solution across all compositions, whereas Copper and Zinc (Zn) have only limited solid solubility?`,
     options: [
       t`Cu and Ni have identical FCC structures, atomic radii within $2.5\%$, and nearly identical electronegativities, satisfying all 4 Hume-Rothery rules.`,
-      t`Cu and Ni form strong ionic bonds with each other, preventing phase segregation.`,
-      t`Ni is an interstitial solute in Cu because its atoms fit into octahedral interstices.`,
-      t`Cu and Ni have different crystal structures (FCC vs BCC), allowing mechanical interlocking.`
+      t`Cu and Ni form strong ionic bonds with each other, and this electrostatic attraction locks the atoms in place so they can never segregate into separate phases`,
+      t`Ni is an interstitial solute in Cu, since its atoms fit into the octahedral interstices of the FCC lattice without distorting the copper framework at all`,
+      t`Cu and Ni have different crystal structures (FCC vs BCC), and the atomic-scale interlocking of these two incompatible lattices holds the solid solution together`
     ],
     correctIndex: 0,
     explanation: {
@@ -1686,9 +1686,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`What fundamentally accounts for the dramatic difference in mechanical and electrical properties between diamond and graphite?`,
     options: [
       t`Diamond forms a 3D covalent network of $sp^3$ bonds; graphite consists of $sp^2$ covalent layered sheets bound by weak secondary van der Waals forces`,
-      t`Diamond has metallic bonding with free electrons; graphite has purely ionic bonding`,
-      t`Diamond is amorphous glass; graphite is an ordered single crystal`,
-      t`Diamond contains high concentrations of interstitial metallic impurities`
+      t`Diamond has metallic bonding with free electrons while graphite is purely ionic, and this switch in primary bond type explains their different hardness and conductivity`,
+      t`Diamond is an amorphous glass with no long-range order, while graphite is a perfect ordered single crystal; the random network of diamond is what makes it so much harder`,
+      t`Diamond contains high concentrations of interstitial metallic impurities that lock its lattice rigid, while graphite is pure carbon, and these impurities give diamond extreme hardness`
     ],
     correctIndex: 0,
     explanation: {
@@ -1854,9 +1854,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`A designer considers two steels for a cantilever leaf spring: Steel A (ultra-high strength quenched alloy, $\sigma_y = 1200\text{ MPa}$) and Steel B (standard mild carbon steel, $\sigma_y = 250\text{ MPa}$). Both beams have identical geometric cross-sections. In the purely elastic regime (small deflections), which beam requires more force to deflect by $2.0\text{ mm}$?`,
     options: [
       t`Both require identical force because their Modulus of Elasticity ($E \approx 207\text{ GPa}$) is virtually identical`,
-      t`Steel A requires nearly 5 times more force because of its higher yield strength`,
-      t`Steel B requires more force because lower strength steels have greater stiffness`,
-      t`Steel A requires less force due to alloy work softening`
+      t`Steel A requires nearly 5 times more force to deflect, because its yield strength of 1200 MPa is almost five times the 250 MPa of Steel B`,
+      t`Steel B requires more force because lower-strength steels are stiffer, so the mild steel beam resists bending more than the alloy beam`,
+      t`Steel A requires less force because alloying work-softens the steel, lowering its elastic modulus well below that of mild steel`
     ],
     correctIndex: 0,
     explanation: {
@@ -1990,9 +1990,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`A student's scanned midterm exam marks the planar density of the FCC $(110)$ plane as $PD = \dfrac{1}{2\sqrt{2}R^2}$. Is this answer mathematically correct?`,
     options: [
       t`No; the correct planar density is $\dfrac{1}{4\sqrt{2}R^2}$. The student undercalculated the rectangular plane area by a factor of 2`,
-      t`Yes; the student's answer of $\dfrac{1}{2\sqrt{2}R^2}$ is completely correct`,
-      t`No; the correct planar density is $\dfrac{1}{8\sqrt{2}R^2}$`,
-      t`No; planar density for FCC (110) is zero because atoms do not touch along this plane`
+      t`Yes; the student's answer of $\dfrac{1}{2\sqrt{2}R^2}$ is completely correct because the rectangular plane contains exactly 2 atoms over an area of $4\sqrt{2}R^2$`,
+      t`No; the correct planar density is $\dfrac{1}{8\sqrt{2}R^2}$, because only 1 full atom actually lies within the boundaries of the rectangular (110) plane`,
+      t`No; the planar density of FCC (110) is zero because the atoms along this plane do not touch, leaving only empty space with no atomic centers in the rectangle`
     ],
     correctIndex: 0,
     explanation: {
@@ -2192,9 +2192,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`Why is as-quenched martensite the hardest and most brittle microstructural constituent obtainable in plain-carbon steels?`,
     options: [
       t`Carbon atoms are trapped interstitially in a body-centered tetragonal (BCT) lattice, generating severe lattice strain and preventing dislocation movement`,
-      t`It consists of an amorphous, glass-like network of covalent iron-carbide bonds`,
-      t`It is composed exclusively of coarse spherical cementite particles in pure ferrite`,
-      t`It possesses a close-packed hexagonal (HCP) structure with zero slip systems`
+      t`It consists of an amorphous, glass-like network of covalent iron-carbide bonds, because the rapid quench freezes the liquid structure in place before any crystals can nucleate`,
+      t`It is composed exclusively of coarse spherical cementite particles in pure ferrite, and these hard spheres are what make the quenched steel so hard and brittle`,
+      t`It possesses a close-packed hexagonal (HCP) structure with zero active slip systems at room temperature, so no dislocation motion is possible and the steel cannot deform plastically at all`
     ],
     correctIndex: 0,
     explanation: {
@@ -2225,9 +2225,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`What is the primary industrial objective of tempering as-quenched martensitic steel by reheating it to $250^\circ\text{C}$–$650^\circ\text{C}$ for several hours?`,
     options: [
       t`To relieve severe internal stresses and restore ductility and impact toughness by precipitating extremely fine, submicroscopic cementite particles`,
-      t`To transform the steel back into 100% austenitic face-centered cubic structure`,
-      t`To increase the hardness beyond the as-quenched martensitic state`,
-      t`To dissolve all carbon into the grain boundaries to form a continuous carbide film`
+      t`To transform the steel fully back into 100% austenitic FCC structure, because reheating to $400^{\circ}\text{C}$ re-dissolves all the carbon into austenite`,
+      t`To increase the hardness even further beyond the as-quenched martensitic state, since reheating lets the trapped carbon form additional ultra-hard martensite plates`,
+      t`To dissolve all the carbon into the grain boundaries to form a continuous carbide film, which seals each grain and blocks dislocation motion for maximum hardness`
     ],
     correctIndex: 0,
     explanation: {
@@ -2325,9 +2325,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`In fatigue testing, how do the stress-life ($S-N$) curves of ferrous alloys (e.g. low-carbon steels) fundamentally differ from non-ferrous alloys (e.g. aluminum and copper)?`,
     options: [
       t`Steels exhibit a true fatigue (endurance) limit below which fracture never occurs regardless of the number of cycles; aluminum exhibits no endurance limit and will eventually fail at any stress`,
-      t`Aluminum has an endurance limit whereas steel does not`,
-      t`Both steel and aluminum have identical infinite life endurance limits at $50\%$ of yield strength`,
-      t`Steels only fail under static tension, never under cyclic fatigue loading`
+      t`Aluminum alloys display a sharp horizontal endurance limit on their $S-N$ curve below which fatigue failure never occurs, whereas low-carbon steels show a continuously sloping curve and will eventually fail at any applied cyclic stress`,
+      t`Both steel and aluminum exhibit identical infinite-life endurance limits at roughly $50\%$ of their yield strength, so the same safe design stress fraction can be applied to either material without adjustment`,
+      t`Low-carbon steels are completely immune to fatigue failure and can only fail under a single static tensile overload, so the $S-N$ curve for steel is a horizontal line at every stress level and cycle count`
     ],
     correctIndex: 0,
     explanation: {
@@ -2392,9 +2392,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`In galvanized steel, a zinc layer protects the underlying steel (iron) from atmospheric corrosion even if the zinc coating is scratched and steel is exposed. Why does zinc protect the steel sacrificially?`,
     options: [
       t`Zinc is more electrochemically active (lower reduction potential) than iron, causing zinc to act as the sacrificial anode ($Zn \to Zn^{2+} + 2e^-$) while iron acts as the protected cathode`,
-      t`Zinc is more noble than iron, so iron corrodes first to protect the zinc layer`,
-      t`Zinc forms an impermeable diamond coating that cannot be scratched`,
-      t`Zinc reacts with nitrogen gas to create an inert gaseous blanket`
+      t`Zinc is more noble (higher reduction potential) than iron, so the exposed iron corrodes first and the resulting rust layer seals and protects the underlying zinc`,
+      t`Zinc forms an impermeable diamond-like carbon coating over the steel that is too hard to be scratched, so the steel underneath never contacts the air`,
+      t`Zinc reacts with nitrogen gas in the air to create an inert gaseous blanket around the scratch that shields the exposed steel from oxygen and water`
     ],
     correctIndex: 0,
     explanation: {
@@ -2459,9 +2459,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`Why is it virtually impossible to obtain a 100% bainitic microstructure in a plain 1080 carbon steel during continuous cooling from the austenite phase?`,
     options: [
       t`The pearlite transformation nose overlaps with the bainite region, so pearlite forms before the steel can cool to bainitic transformation temperatures without alloy additions (e.g. Cr, Mo, Ni)`,
-      t`Bainite requires temperatures above $1000^\circ\text{C}$ to form`,
-      t`Bainite is an equilibrium phase that only forms under zero gravity`,
-      t`Continuous cooling always bypasses all diffusion and produces only martensite`
+      t`Bainite requires holding above $1000^\circ\text{C}$ to nucleate, so continuous cooling from the austenite phase can never reach the temperatures where bainite forms`,
+      t`Bainite is an equilibrium phase that only nucleates under zero gravity, so no terrestrial continuous-cooling experiment can ever produce it in plain carbon steel`,
+      t`Continuous cooling is too fast for any diffusion-controlled reaction, so the steel always bypasses pearlite and bainite and produces only martensite`
     ],
     correctIndex: 0,
     explanation: {
@@ -2491,9 +2491,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`In a uniaxial tensile test of a ductile metal, why does engineering stress $\sigma_{\text{eng}} = \frac{F}{A_0}$ decrease after reaching the ultimate tensile strength (UTS), whereas true stress $\sigma_{\text{true}} = \frac{F}{A_i}$ continues to increase until fracture?`,
     options: [
       t`Localized necking causes the instantaneous cross-sectional area $A_i$ to decrease much faster than the load-bearing capacity drops, but engineering stress divides by the fixed initial area $A_0$`,
-      t`The material undergoes phase transformation into a liquid inside the neck`,
-      t`True stress accounts for temperature drops during plastic extension`,
-      t`Engineering stress assumes atomic bonds become stronger after UTS`
+      t`The material undergoes a solid-to-liquid phase transformation inside the neck, and the partially molten metal can carry less load, so the engineering stress curve drops`,
+      t`True stress accounts for the cooling and temperature drop that occurs during plastic extension, while engineering stress ignores this thermal effect, so the two curves diverge`,
+      t`Engineering stress assumes the atomic bonds strengthen after the UTS is reached, and this strengthening assumption over-corrects the post-necking values downward`
     ],
     correctIndex: 0,
     explanation: {
@@ -2525,9 +2525,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`At temperatures between the glass transition temperature ($T_g$) and the melting temperature ($T_m$), how does a semi-crystalline thermoplastic polymer behave mechanically?`,
     options: [
       t`Leathery and ductile (rubbery amorphous regions with rigid crystalline lamellae providing load support)`,
-      t`Hard, rigid, and brittle like inorganic glass`,
-      t`A free-flowing viscous liquid with zero shear modulus`,
-      t`A perfectly elastic metallic crystal`
+      t`Hard, rigid, and brittle like inorganic window glass, because between $T_g$ and $T_m$ the chains are completely frozen in place`,
+      t`A free-flowing viscous liquid with zero shear modulus, since the crystalline lamellae melt as soon as temperature passes $T_g$`,
+      t`A perfectly elastic metallic crystal, since the carbon chains form a body-centered cubic lattice between $T_g$ and $T_m$`
     ],
     correctIndex: 0,
     explanation: {
@@ -2559,9 +2559,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`Why do structural ceramic components (e.g. silicon nitride $\text{Si}_3\text{N}_4$ or alumina $\text{Al}_2\text{O}_3$) exhibit significant statistical scatter in measured tensile fracture strength, necessitating probabilistic Weibull statistics?`,
     options: [
       t`Ceramics lack dislocation plasticity to blunt sharp microcracks, so fracture strength is governed by the random size and spatial distribution of preexisting microflaws`,
-      t`Ceramics change chemical composition when exposed to room temperature air`,
-      t`Ceramics have negative Poisson's ratios that cause spontaneous expansion`,
-      t`Ceramics undergo radioactive decay during mechanical loading`
+      t`Ceramics continuously change their chemical composition when exposed to room-temperature air, so every specimen tested has slightly different chemistry and therefore a different measured fracture strength`,
+      t`Ceramics possess negative Poisson's ratios, so pulling on a specimen makes it expand sideways on its own, and this spontaneous auxetic expansion triggers fracture at unpredictable stress levels`,
+      t`Ceramics undergo slow radioactive decay during mechanical loading, and the random timing of individual decay events weakening the atomic bonds produces the observed scatter in strength`
     ],
     correctIndex: 0,
     explanation: {
@@ -2591,9 +2591,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`When austenitic stainless steel (e.g. 304 SS) is heated in the range of $500^\circ\text{C}$–$800^\circ\text{C}$ during welding, it becomes sensitized to rapid intergranular corrosion. What microscopic mechanism causes this sensitization?`,
     options: [
       t`Chromium combines with carbon to precipitate chromium carbides ($\text{Cr}_{23}\text{C}_6$) along grain boundaries, leaving adjacent zones severely depleted in chromium ($< 12\text{\% Cr}$) and unable to passivate`,
-      t`Nickel atoms evaporate from the crystal lattice into ambient air`,
-      t`Iron atoms transform into liquid droplets at the grain boundaries`,
-      t`Dislocations coalesce to form macro-cracks throughout the grains`
+      t`Nickel atoms diffuse rapidly to the hot surface and evaporate into the ambient air during welding, leaving nickel-poor grain boundaries that corrode preferentially`,
+      t`Iron atoms melt locally and resolidify as liquid droplets at the grain boundaries, because $500^\circ\text{C}$ exceeds the melting point of iron in the heat-affected zone`,
+      t`Dislocations migrate and coalesce into macroscopic cracks that run throughout every grain, and this mechanical damage is the chemical cause of the weld-decay corrosion`
     ],
     correctIndex: 0,
     explanation: {
@@ -2692,9 +2692,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`In binary phase diagrams, what defines a 'congruent' phase transformation (such as the melting of an intermediate compound like $\text{Mg}_2\text{Pb}$ at a peak)?`,
     options: [
       t`The transformation occurs with NO change in chemical composition between the reacting and resulting phases`,
-      t`The transformation converts liquid directly into two distinct solid phases`,
-      t`The transformation requires the absorption of gaseous hydrogen`,
-      t`The phase transformation is irreversible under all thermodynamic conditions`
+      t`The transformation converts liquid directly into two distinct solid phases of different compositions at one temperature`,
+      t`The transformation requires the absorption of gaseous hydrogen, which diffuses in and triggers the structural rearrangement`,
+      t`The transformation is irreversible under all conditions, so a congruently melted compound can never re-form when cooled`
     ],
     correctIndex: 0,
     explanation: {
@@ -2724,9 +2724,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`Why does adding solute impurity atoms (such as zinc in copper to form brass, or carbon in iron) significantly increase the yield strength of the host metal?`,
     options: [
       t`Solute atoms generate localized lattice strain fields (tensile or compressive) that interact with and pin dislocations, requiring higher applied shear stress to move them`,
-      t`Solute atoms evaporate the grain boundaries to eliminate all grains`,
-      t`Solute atoms melt the core of the crystal`,
-      t`Solute atoms turn the metal into an amorphous polymer`
+      t`Solute atoms dissolve the grain boundaries, eliminating all grains so that a single large crystal remains, which is stronger because dislocations cannot cross boundaries`,
+      t`Solute atoms melt the crystalline core of each grain, and the resulting supercooled liquid regions resist deformation more than the original solid crystal`,
+      t`Solute atoms break up the crystalline lattice and turn the metal into an amorphous polymer, and this non-metallic structure has no dislocations left to move`
     ],
     correctIndex: 0,
     explanation: {
@@ -2757,9 +2757,9 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     question: t`In cathodic protection of an underground municipal gas pipeline, an external direct current (DC) power source is connected between the pipeline and an inert scrap iron ground bed. How does impressed current prevent pipeline corrosion?`,
     options: [
       t`The negative terminal is connected to the pipeline, forcing electrons into the pipeline to make it the non-corroding cathode, while the scrap ground bed is oxidized as the sacrificial anode`,
-      t`The positive terminal is connected to the pipeline, driving iron dissolution`,
-      t`The AC current vibrates the steel to shake off rust flakes`,
-      t`The DC power heats the pipeline above $500^\circ\text{C}$ to vaporize groundwater`
+      t`The positive terminal is connected to the pipeline, drawing electrons out of the steel to make it the anode; since the surface is already losing electrons, oxidation cannot occur and corrosion stops`,
+      t`An alternating current source is connected between the pipeline and the ground bed, reversing the electron flow each half-cycle so that metal dissolved anodically is redeposited cathodically, leaving the surface intact`,
+      t`The DC power supply drives a large heating current through the pipeline steel so the pipe wall stays above $500^{\circ}\text{C}$, vaporizing groundwater on contact and keeping the surface too hot for any corrosion reactions to proceed`
     ],
     correctIndex: 0,
     explanation: {

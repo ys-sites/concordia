@@ -258,7 +258,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     topic: 'Atomic Bonding & Energy',
     difficulty: 'Foundation',
     question: "Which of the following statements regarding atomic bonding is CORRECT?",
-    options: ["The three primary bonds are ionic, metallic, and van der Waals", "Intermolecular secondary bonds are usually stronger than primary atomic bonds", "Metallic bonds are the result of attraction between ions of opposite charge", "Atoms experience attraction and repulsion forces, and lowest potential energy occurs when these forces cancel each other"],
+    options: ["The three primary atomic bonds are ionic, metallic, and van der Waals, which together account for all the strong chemical bonding observed in solids", "Secondary intermolecular bonds are usually stronger than primary atomic bonds, which is why van der Waals solids have such high melting points", "Metallic bonds result from attraction between ions of opposite charge, with positive cores pulling on the fixed negative ions around them", "Atoms experience attraction and repulsion forces, and lowest potential energy occurs when these forces cancel each other"],
     correctIndex: 3,
     explanation: {
       coreConcept: "Equilibrium bond spacing r_0 occurs where net force F_N = 0, which corresponds mathematically to the minimum of the potential energy well.",

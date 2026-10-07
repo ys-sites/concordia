@@ -1112,9 +1112,9 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
     question: t`Determine whether the systems $S_1 = \\{2, x^{-2}, x^{-2}\ln x\\}$ and $S_2 = \\{\sin x, \cos(2x), 1 - \sin x - 2\sin^2 x\\}$ are linearly independent on $(0, \infty)$.`,
     options: [
       t`$S_1$ is linearly independent ($W = 4x^{-7} > 0$); $S_2$ is linearly dependent ($f_3 = f_2 - f_1$).`,
-      t`Both $S_1$ and $S_2$ are linearly independent.`,
-      t`Both $S_1$ and $S_2$ are linearly dependent.`,
-      t`$S_1$ is linearly dependent ($W = 0$); $S_2$ is linearly independent.`
+      t`Both $S_1$ and $S_2$ are linearly independent, since no obvious relation connects the functions in either set.`,
+      t`Both $S_1$ and $S_2$ are linearly dependent, since three functions in one dimension must always be dependent.`,
+      t`$S_1$ is linearly dependent ($W = 0$); $S_2$ is linearly independent ($W \neq 0$).`
     ],
     correctIndex: 0,
     explanation: {
@@ -1360,9 +1360,9 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
     question: t`Solve the initial value problem $(1 + x^2) \dfrac{dy}{dx} - 3y^2 = 3$ with $y(1) = \frac{\pi}{4}$.`,
     options: [
       t`$y(x) = \tan\left( 3\arctan(x) + \arctan(\frac{\pi}{4}) - \frac{3\pi}{4} \right)$`,
-      t`$y(x) = \tan\left( 3\arctan(x) \right)$`,
-      t`$y(x) = 3\arctan(x) + \frac{\pi}{4}$`,
-      t`$y(x) = \tan\left( \arctan(x) + \frac{\pi}{4} \right)$`
+      t`$y(x) = \tan\left( 3\arctan(x) - \frac{3\pi}{4} \right)$, using $C = -3\pi/4$ from $x = 1$`,
+      t`$y(x) = 3\arctan(x) + \frac{\pi}{4}$, applying the initial condition directly to $\arctan(y)$`,
+      t`$y(x) = \tan\left( \arctan(x) + \arctan(\frac{\pi}{4}) - \frac{\pi}{4} \right)$`
     ],
     correctIndex: 0,
     explanation: {
