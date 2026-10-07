@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, lazy, Suspense } from 'react';
 import { CourseWithDocs } from '../data/coursesData';
 import { CourseDocument, CourseId } from '../types';
 import {
@@ -41,6 +41,11 @@ import {
 } from '../utils/docOrganization';
 import { FilteredDocumentSection } from './FilteredDocumentSection';
 import { TermPaperVaultSection } from './TermPaperVaultSection';
+import { GateGlyph } from './vault/GateGlyph';
+
+// Hidden MIAE 221 folder, opened from the glyph after the course title. Loaded on demand.
+const MidtermGate = lazy(() => import('./vault/MidtermGate'));
+const GATE_FOLDER = 'Midterm Gate';
 
 interface CourseWorkspaceProps {
   course: CourseWithDocs;
@@ -49,7 +54,7 @@ interface CourseWorkspaceProps {
   onBack: () => void;
   onStartQuiz: (courseId: CourseId) => void;
   onLaunchDrill?: (courseId: CourseId, sectionId: string) => void;
-  onViewPdf: (doc: CourseDocument) => void;
+  onViewPdf: (doc: CourseDocument, page?: number) => void;
 }
 
 const folderIcon = (name: string, size = 22) => {
@@ -278,7 +283,20 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             <div className="course-badge" style={{ backgroundColor: course.accentHex }}>
               {course.code}
             </div>
-            <h1 className="course-main-title">{course.name}</h1>
+            <h1 className="course-main-title">
+              {course.id === 'MIAE221' ? (
+                <>
+                  {course.name.split(' ').slice(0, -1).join(' ')}{' '}
+                  {/* keep the glyph on the same line as the last word */}
+                  <span style={{ whiteSpace: 'nowrap' }}>
+                    {course.name.split(' ').slice(-1)}
+                    <GateGlyph onOpen={() => openPath([GATE_FOLDER])} />
+                  </span>
+                </>
+              ) : (
+                course.name
+              )}
+            </h1>
             <p className="course-sub-description">{course.description}</p>
           </div>
 
@@ -389,6 +407,10 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             </button>
           </div>
         </section>
+      ) : activePath[0] === GATE_FOLDER && course.id === 'MIAE221' ? (
+        <Suspense fallback={<p className="fx-empty">Opening…</p>}>
+          <MidtermGate course={course} onViewPdf={onViewPdf} />
+        </Suspense>
       ) : activePath[0] === 'Term Paper & Final Project' ? (
         <TermPaperVaultSection course={course} onViewPdf={onViewPdf} />
       ) : activePath[0] === 'Filtered document' ? (
