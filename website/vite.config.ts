@@ -99,6 +99,9 @@ function coursePdfPlugin() {
 
 export default defineConfig({
   plugins: [react(), coursePdfPlugin()],
+  build: {
+    emptyOutDir: false
+  },
   server: {
     port: 5173,
     open: true,
