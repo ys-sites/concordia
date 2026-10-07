@@ -30,6 +30,21 @@ for (const q of PRACTICE_QUESTIONS) {
   const sectionIds = [...plan.sections.map((s) => s.id), ...plan.midterm.sections];
   if (!sectionIds.includes(q.chapter)) errors.push(`${q.id}: chapter "${q.chapter}" is not a drill section`);
   if (new Set(q.options).size !== 4) errors.push(`${q.id}: duplicate options`);
+  // Length-balance audit: the correct option must not be the conspicuously longest one,
+  // otherwise "pick the longest answer" becomes a cheat. Keep distractors comparable
+  // in length and detail to the correct option.
+  {
+    const lens = q.options.map((o) => o.replace(/\s+/g, ' ').trim().length);
+    const correctLen = lens[q.correctIndex];
+    const others = lens.filter((_, i) => i !== q.correctIndex);
+    const maxOther = Math.max(...others);
+    const meanOther = others.reduce((a, b) => a + b, 0) / others.length;
+    if (correctLen > maxOther && meanOther > 0 && correctLen / meanOther >= 1.35 && correctLen - maxOther >= 25) {
+      errors.push(
+        `${q.id}: length tell — correct option is longest (${correctLen}ch vs distractors [${others.join(', ')}]); pad distractors to match`,
+      );
+    }
+  }
   check(q.id, 'question', q.question);
   q.options.forEach((o, i) => check(q.id, `option ${i}`, o));
   const e = q.explanation;

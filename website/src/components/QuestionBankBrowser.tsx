@@ -3,21 +3,24 @@ import { CourseId, CourseDocument, PracticeQuestion } from '../types';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
 import { COURSES_DATA } from '../data/coursesData';
 import { MathText } from '../utils/mathRenderer';
+import { shuffled, shuffleOptions } from '../utils/shuffle';
 import { WorkedSolution } from './WorkedSolution';
 import { SourceList } from './SourceList';
 import { audio } from '../utils/audio';
-import { 
-  BookOpen, 
-  Search, 
-  Filter, 
-  Brain, 
-  ChevronDown, 
-  ChevronUp, 
-  CheckCircle2, 
+import {
+  BookOpen,
+  Search,
+  Filter,
+  Brain,
+  ChevronDown,
+  ChevronUp,
+  CheckCircle2,
   ArrowLeft,
   Sparkles,
   HelpCircle,
-  Tag
+  Tag,
+  Shuffle,
+  Dices
 } from 'lucide-react';
 
 interface QuestionBankBrowserProps {
@@ -31,6 +34,10 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  // Practice invariant: question order AND answer-option order are always mixed,
+  // so students learn the material, never the positions.
+  const [shuffleMode, setShuffleMode] = useState(true);
+  const [shuffleSeed, setShuffleSeed] = useState(0);
 
   const filteredQuestions = useMemo(() => {
     return PRACTICE_QUESTIONS.filter(q => {
@@ -46,6 +53,25 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
       return true;
     });
   }, [selectedCourse, selectedDifficulty, searchQuery]);
+
+  const displayQuestions = useMemo(() => {
+    if (!shuffleMode) return filteredQuestions;
+    void shuffleSeed; // re-roll on demand
+    return shuffled(filteredQuestions).map((q) => {
+      const { options, correctIndex, order } = shuffleOptions(q.options, q.correctIndex);
+      const whyWrong = q.explanation.whyWrong
+        ? Object.fromEntries(
+            Object.entries(q.explanation.whyWrong).map(([orig, text]) => [String(order.indexOf(Number(orig))), text])
+          )
+        : undefined;
+      return {
+        ...q,
+        options: options as PracticeQuestion['options'],
+        correctIndex: correctIndex as PracticeQuestion['correctIndex'],
+        explanation: { ...q.explanation, whyWrong },
+      };
+    });
+  }, [filteredQuestions, shuffleMode, shuffleSeed]);
 
   return (
     <div className="bank-browser-container">
@@ -125,6 +151,36 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
               <button className="clear-btn" onClick={() => setSearchQuery('')}>×</button>
             )}
           </div>
+
+          {/* Shuffle controls: question order + answer order always mixed for practice */}
+          <div className="bank-shuffle-group">
+            <button
+              className={`filter-btn ${shuffleMode ? 'active' : ''}`}
+              title={shuffleMode ? 'Shuffle ON: questions & answers are mixed' : 'Shuffle OFF: original order'}
+              onClick={() => {
+                audio.playClick();
+                setShuffleMode((v) => !v);
+                setShuffleSeed((n) => n + 1);
+              }}
+            >
+              <Shuffle size={14} />
+              <span>Shuffle {shuffleMode ? 'ON' : 'OFF'}</span>
+            </button>
+            {shuffleMode && (
+              <button
+                className="filter-btn"
+                title="Re-shuffle questions and answers"
+                onClick={() => {
+                  audio.playClick();
+                  setExpandedId(null);
+                  setShuffleSeed((n) => n + 1);
+                }}
+              >
+                <Dices size={14} />
+                <span>Re-shuffle</span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -135,7 +191,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
 
       {/* Question Cards Accordion List */}
       <div className="bank-questions-list">
-        {filteredQuestions.map((q, idx) => {
+        {displayQuestions.map((q, idx) => {
           const isExpanded = expandedId === q.id;
           const letter = ['A', 'B', 'C', 'D'][q.correctIndex];
 

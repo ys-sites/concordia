@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PracticeQuestion, SolutionStep } from '../types';
 import { MathBlock, MathText } from '../utils/mathRenderer';
+import { ReadAloudButton } from './ReadAloudButton';
 import {
   Lightbulb,
   Search,
@@ -110,6 +111,12 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
       ? question.explanation.whyWrong?.[String(selectedIndex) as '0' | '1' | '2' | '3']
       : undefined;
 
+  // Human voice read-aloud: core concept + solution steps (LaTeX cleaned automatically)
+  const solutionSpeech = [
+    question.explanation.coreConcept,
+    ...steps.flatMap((s) => [s.title, s.note].filter(Boolean) as string[]),
+  ].join(' ');
+
   const chosenOptionText =
     selectedIndex !== undefined && question.options[selectedIndex]
       ? question.options[selectedIndex]
@@ -132,6 +139,7 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
             Step {Math.min(shown, steps.length)} of {steps.length}
           </div>
         )}
+        <ReadAloudButton text={solutionSpeech} stopKey={question.id + mode} label="Listen" />
       </div>
 
       {/* Where Answer X Comes From (Diagnosis on Wrong Selection) */}

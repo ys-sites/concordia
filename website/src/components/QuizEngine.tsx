@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import { CourseId, CourseDocument, PracticeQuestion, QuizSessionState } from '../types';
 import { questionPool, sectionLabel, DRILL_LENGTH } from '../data/quizSections';
 import { MathText } from '../utils/mathRenderer';
+import { shuffled, shuffleOptions } from '../utils/shuffle';
 import { SourceList } from './SourceList';
 import { WorkedSolution } from './WorkedSolution';
 import { audio } from '../utils/audio';
@@ -46,22 +47,14 @@ interface QuizEngineProps {
 }
 
 export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onExit, onOpenPdf, onComplete }) => {
-  // Up to 20 random questions from this course + section only (never mixed across courses)
+  // Up to 20 random questions from this course + section only (never mixed across courses).
+  // Practice invariant: question order AND each question's answer-option order are
+  // freshly shuffled on every drill start, so the correct answer never sits in a
+  // learnable position. (Remount via key={drillRun} re-runs this on every retake.)
   const sessionQuestions = useMemo(() => {
     const pool = questionPool(courseId, sectionId);
-    // Fisher-Yates shuffle
-    const shuffled = [...pool];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    // Take up to 20 questions, shuffling each question's options so the answer isn't always "A"
-    return shuffled.slice(0, DRILL_LENGTH).map((q): PracticeQuestion => {
-      const order = [0, 1, 2, 3];
-      for (let i = order.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [order[i], order[j]] = [order[j], order[i]];
-      }
+    return shuffled(pool).slice(0, DRILL_LENGTH).map((q): PracticeQuestion => {
+      const { options, correctIndex, order } = shuffleOptions(q.options, q.correctIndex);
       // Wrong-answer diagnoses are keyed by option index, so they move with their options
       const whyWrong = q.explanation.whyWrong
         ? Object.fromEntries(
@@ -70,8 +63,8 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
         : undefined;
       return {
         ...q,
-        options: order.map(i => q.options[i]) as PracticeQuestion['options'],
-        correctIndex: order.indexOf(q.correctIndex) as PracticeQuestion['correctIndex'],
+        options: options as PracticeQuestion['options'],
+        correctIndex: correctIndex as PracticeQuestion['correctIndex'],
         explanation: { ...q.explanation, whyWrong }
       };
     });

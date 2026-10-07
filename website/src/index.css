@@ -1,5 +1,4 @@
-﻿/* ==========================================================================
-   CONCORDIA ENGINEERING HUB & NEURAL EXAM ENGINE — DESIGN SYSTEM TOKENS
+/* ===================================================================   CONCORDIA ENGINEERING HUB & NEURAL EXAM ENGINE — DESIGN SYSTEM TOKENS
    Aesthetic: Obsidian Glassmorphism · Cyber-Engineering · Premium Dark Mode
    ========================================================================== */
 
@@ -143,8 +142,7 @@ h1, h2, h3, h4, h5 {
   min-height: 100vh;
 }
 
-/* ==========================================================================
-   NAVBAR COMPONENT
+/* ===================================================================   NAVBAR COMPONENT
    ========================================================================== */
 .navbar-container {
   position: sticky;
@@ -312,8 +310,7 @@ h1, h2, h3, h4, h5 {
   color: #0f172a;
 }
 
-/* ==========================================================================
-   HERO COURSE SELECTOR (STEP 1)
+/* ===================================================================   HERO COURSE SELECTOR (STEP 1)
    ========================================================================== */
 .hero-selector-section {
   max-width: 1400px;
@@ -736,8 +733,7 @@ h1, h2, h3, h4, h5 {
   border-color: #f43f5e;
 }
 
-/* ==========================================================================
-   COURSE WORKSPACE COMPONENT (ORGANIZED CATEGORIES & PDF ACCESS)
+/* ===================================================================   COURSE WORKSPACE COMPONENT (ORGANIZED CATEGORIES & PDF ACCESS)
    ========================================================================== */
 .workspace-container {
   max-width: 1400px;
@@ -1097,8 +1093,7 @@ h1, h2, h3, h4, h5 {
   border-color: #cbd5e1;
 }
 
-/* ==========================================================================
-   CATEGORY ACCORDION & DIRECTORY TREE EXPLORER (LOCAL FOLDER REPLICATION)
+/* ===================================================================   CATEGORY ACCORDION & DIRECTORY TREE EXPLORER (LOCAL FOLDER REPLICATION)
    ========================================================================== */
 .view-mode-pill {
   display: flex;
@@ -1452,8 +1447,7 @@ h1, h2, h3, h4, h5 {
 }
 
 
-/* ==========================================================================
-   QUIZ ENGINE COMPONENT (20-QUESTION BRAIN PROGRAMMING DRILL)
+/* ===================================================================   QUIZ ENGINE COMPONENT (20-QUESTION BRAIN PROGRAMMING DRILL)
    ========================================================================== */
 .quiz-session-wrapper {
   max-width: 900px;
@@ -2140,8 +2134,7 @@ h1, h2, h3, h4, h5 {
   box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
 }
 
-/* ==========================================================================
-   QUIZ RESULTS COMPONENT
+/* ===================================================================   QUIZ RESULTS COMPONENT
    ========================================================================== */
 .results-wrapper {
   max-width: 950px;
@@ -2485,8 +2478,7 @@ h1, h2, h3, h4, h5 {
   margin-top: 8px;
 }
 
-/* ==========================================================================
-   QUESTION BANK BROWSER COMPONENT
+/* ===================================================================   QUESTION BANK BROWSER COMPONENT
    ========================================================================== */
 .bank-browser-container {
   max-width: 1300px;
@@ -2720,8 +2712,7 @@ h1, h2, h3, h4, h5 {
   font-style: italic;
 }
 
-/* ==========================================================================
-   PDF VIEWER MODAL
+/* ===================================================================   PDF VIEWER MODAL
    ========================================================================== */
 .modal-backdrop {
   position: fixed;
@@ -2909,8 +2900,7 @@ h1, h2, h3, h4, h5 {
   border-color: var(--border-highlight);
 }
 
-/* ==========================================================================
-   FOOTER COMPONENT
+/* ===================================================================   FOOTER COMPONENT
    ========================================================================== */
 .app-footer {
   margin-top: auto;
@@ -3024,8 +3014,7 @@ h1, h2, h3, h4, h5 {
   color: var(--text-muted);
 }
 
-/* ==========================================================================
-   ANIMATIONS & MEDIA QUERIES
+/* ===================================================================   ANIMATIONS & MEDIA QUERIES
    ========================================================================== */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
@@ -3050,8 +3039,7 @@ h1, h2, h3, h4, h5 {
   50% { filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.9)); }
 }
 
-/* ==========================================================================
-   MOBILE & TABLET RESPONSIVE SYSTEM (NO OVERLAPPING · CLEAN LAYERING)
+/* ===================================================================   MOBILE & TABLET RESPONSIVE SYSTEM (NO OVERLAPPING · CLEAN LAYERING)
    ========================================================================== */
 @media (max-width: 768px) {
   .navbar-container {
@@ -3769,8 +3757,7 @@ h1, h2, h3, h4, h5 {
   text-rendering: optimizeLegibility;
 }
 
-/* ==========================================================================
-   FOLDER EXPLORER (COURSE WORKSPACE)
+/* ===================================================================   FOLDER EXPLORER (COURSE WORKSPACE)
    ========================================================================== */
 .fx-toolbar {
   display: flex;
@@ -4210,8 +4197,7 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-/* ==========================================================================
-   DRILL PICKER (course → midterm review or chapter)
+/* ===================================================================   DRILL PICKER (course → midterm review or chapter)
    ========================================================================== */
 .dp-backdrop {
   position: fixed;
@@ -5236,8 +5222,7 @@ h1, h2, h3, h4, h5 {
   text-overflow: ellipsis;
 }
 
-/* ==========================================================================
-   Contact Modal & FormSubmit UI
+/* ===================================================================   Contact Modal & FormSubmit UI
    ========================================================================== */
 .contact-modal-backdrop {
   position: fixed;
@@ -5458,8 +5443,7 @@ h1, h2, h3, h4, h5 {
   gap: 12px;
 }
 
-/* ==========================================================================
-   HIGH-FIDELITY ACADEMIC PORTAL FOOTER
+/* ===================================================================   HIGH-FIDELITY ACADEMIC PORTAL FOOTER
    ========================================================================== */
 .portal-footer {
   background: linear-gradient(180deg, #0f172a 0%, #090d16 100%);
@@ -5842,8 +5826,7 @@ h1, h2, h3, h4, h5 {
 
 
 
-/* ==========================================================================
-   QUIZ VOICE BAR (Listen / Robot Repeat / Auto-read)
+/* ===================================================================   QUIZ VOICE BAR (Listen / Robot Repeat / Auto-read)
    ========================================================================== */
 .question-voice-bar {
   display: flex;
@@ -6002,4 +5985,52 @@ h1, h2, h3, h4, h5 {
   .voice-wave i,
   .voice-robot-btn.is-speaking .robot-avatar,
   .voice-robot-btn:hover .robot-avatar { animation: none; }
+}
+
+/* ---- Human voice read-aloud button (Kokoro TTS) ---- */
+.read-aloud-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #4338ca;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.read-aloud-btn:hover:not(:disabled) {
+  background: #e0e7ff;
+  border-color: #a5b4fc;
+}
+.read-aloud-btn:disabled {
+  opacity: 0.75;
+  cursor: wait;
+}
+.read-aloud-btn.is-speaking {
+  background: #4338ca;
+  border-color: #4338ca;
+  color: #ffffff;
+}
+.read-aloud-btn .spin {
+  animation: read-aloud-spin 1s linear infinite;
+}
+@keyframes read-aloud-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Question bank shuffle controls ---- */
+.bank-shuffle-group {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.bank-shuffle-group .filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
