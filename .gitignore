@@ -93,3 +93,4 @@ Engr 213/06 - Quiz & Midterm Exam Prep/IMG_*.jpg
 # Local build/helper scripts from previous agent sessions (contain machine-specific paths)
 scratch/
 scratch_test_img.pdf
+.work/

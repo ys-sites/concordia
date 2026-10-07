@@ -2,10 +2,12 @@
 // - Splits text into prose and LaTeX math (same delimiters as MathText) and converts each separately,
 //   so "material's" or "stress-strain" in prose are read normally while "$y'' + 4y = 0$" becomes
 //   "y double prime plus 4 y equals 0".
-// - Picks the most natural-sounding installed voice (Edge "Natural"/neural, Google, Apple Enhanced/Premium).
-// - Speaks long text as a queue of short sentence chunks (Chrome silently stops utterances after ~15 s).
+// - Speaks with a human-quality neural voice (Kokoro-82M, 100% in-browser via ONNX — no server,
+//   no API key). The model downloads once on first use (~90MB, cached afterwards).
+// - Speaks long text as a queue of short generated chunks so playback starts fast.
 
 import { splitMath } from './mathRenderer';
+import { loadKokoroVoice, KOKORO_VOICE, unlockAudioPlayback } from './humanVoice';
 
 /* ----------------------------------------------------------------------------
  * Math (LaTeX) -> spoken English
@@ -242,6 +244,8 @@ export interface SpeakOptions {
   onStart?: () => void;
   onEnd?: () => void;
   onError?: (err: unknown) => void;
+  /** Fired with 0-100 while the neural voice model downloads (first use). */
+  onLoading?: (pct: number) => void;
 }
 
 function splitIntoChunks(text: string, maxLen = 180): string[] {
@@ -283,7 +287,6 @@ function splitIntoChunks(text: string, maxLen = 180): string[] {
  * Neural voice backend: Kokoro-82M (human-quality, 100% in-browser)
  * ------------------------------------------------------------------------- */
 
-import { loadKokoroVoice, KOKORO_VOICE } from './humanVoice';
 
 class SpeechEngine {
   private session = 0; // increments on every speak/stop so stale async work is ignored
@@ -341,6 +344,7 @@ class SpeechEngine {
     const spoken = cleanTextForSpeech(rawText);
     if (!spoken) return;
 
+    unlockAudioPlayback();
     this.stop();
     this.lastText = rawText;
     const session = this.session;
@@ -349,7 +353,7 @@ class SpeechEngine {
 
     const alive = () => session === this.session;
 
-    loadKokoroVoice()
+    loadKokoroVoice((pct) => options.onLoading?.(pct))
       .then(async (tts) => {
         for (let i = 0; i < chunks.length; i++) {
           if (!alive()) return;

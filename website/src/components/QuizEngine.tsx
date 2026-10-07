@@ -81,6 +81,8 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
   // Text-to-speech state: which voice action is currently talking
   const voiceSupported = speechEngine.isSupported();
   const [speakingMode, setSpeakingMode] = useState<'none' | 'listen' | 'robot'>('none');
+  // Non-null while the neural voice model downloads on first use (0-100)
+  const [voiceLoadPct, setVoiceLoadPct] = useState<number | null>(null);
   const [autoRead, setAutoRead] = useState<boolean>(() => {
     try { return localStorage.getItem('quiz-auto-read') === '1'; } catch { return false; }
   });
@@ -124,6 +126,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
   const stopSpeaking = useCallback(() => {
     speechEngine.stop();
     setSpeakingMode('none');
+    setVoiceLoadPct(null);
   }, []);
 
   const buildQuestionScript = (q: PracticeQuestion, index: number) => {
@@ -144,9 +147,10 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
       // The robot repeats a little slower and warmer so it's easier to follow the second time
       rate: mode === 'robot' ? 0.88 : 0.95,
       pitch: mode === 'robot' ? 1.05 : 1.0,
-      onStart: () => setSpeakingMode(mode),
-      onEnd: () => setSpeakingMode('none'),
-      onError: () => setSpeakingMode('none')
+      onLoading: (pct) => setVoiceLoadPct(pct),
+      onStart: () => { setVoiceLoadPct(null); setSpeakingMode(mode); },
+      onEnd: () => { setVoiceLoadPct(null); setSpeakingMode('none'); },
+      onError: () => { setVoiceLoadPct(null); setSpeakingMode('none'); }
     });
     setSpeakingMode(mode);
   }, [voiceSupported, sessionQuestions, currentIndex]);
@@ -457,7 +461,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
                 id="quiz-listen-btn"
               >
                 {speakingMode === 'listen' ? <Square size={14} /> : <Volume2 size={17} />}
-                <span>{speakingMode === 'listen' ? 'Stop' : 'Listen'}</span>
+                <span>{speakingMode === 'listen' ? (voiceLoadPct !== null ? `Loading voice… ${voiceLoadPct}%` : 'Stop') : 'Listen'}</span>
                 {speakingMode === 'listen' && (
                   <span className="voice-wave" aria-hidden="true"><i /><i /><i /><i /></span>
                 )}
@@ -472,7 +476,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
                 id="quiz-robot-repeat-btn"
               >
                 <span className="robot-avatar" aria-hidden="true"><Bot size={18} /></span>
-                <span>{speakingMode === 'robot' ? 'Repeating…' : 'Repeat'}</span>
+                <span>{speakingMode === 'robot' ? (voiceLoadPct !== null ? `Loading voice… ${voiceLoadPct}%` : 'Repeating…') : 'Repeat'}</span>
                 {speakingMode === 'robot' && (
                   <span className="voice-wave" aria-hidden="true"><i /><i /><i /><i /></span>
                 )}

@@ -5978,7 +5978,9 @@ h1, h2, h3, h4, h5 {
   .question-voice-bar { gap: 6px; }
   .voice-btn { padding: 6px 12px; font-size: 12.5px; }
   .voice-robot-btn { padding-left: 5px; }
-  .auto-read-toggle { padding: 6px 4px; }
+  /* On narrow screens the toggle wraps to its own row: dock it to the start
+     instead of floating orphaned on the right via margin-left: auto. */
+  .auto-read-toggle { margin-left: 0; padding: 6px 4px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
