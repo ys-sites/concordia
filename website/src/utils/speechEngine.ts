@@ -2,12 +2,10 @@
 // - Splits text into prose and LaTeX math (same delimiters as MathText) and converts each separately,
 //   so "material's" or "stress-strain" in prose are read normally while "$y'' + 4y = 0$" becomes
 //   "y double prime plus 4 y equals 0".
-// - Speaks with a human-quality neural voice (Kokoro-82M, 100% in-browser via ONNX — no server,
-//   no API key). The model downloads once on first use (~90MB, cached afterwards).
-// - Speaks long text as a queue of short generated chunks so playback starts fast.
+// - Picks the most natural-sounding installed voice (Edge "Natural"/neural, Google, Apple Enhanced/Premium).
+// - Speaks long text as a queue of short sentence chunks (Chrome silently stops utterances after ~15 s).
 
 import { splitMath } from './mathRenderer';
-import { loadKokoroVoice, KOKORO_VOICE, unlockAudioPlayback, onVoiceLoadProgress } from './humanVoice';
 
 /* ----------------------------------------------------------------------------
  * Math (LaTeX) -> spoken English
@@ -237,15 +235,33 @@ export function cleanTextForSpeech(rawText: string): string {
     .trim();
 }
 
-export interface SpeakOptions {
-  rate?: number;   // maps to Kokoro speed (1 = normal)
-  pitch?: number;  // reserved: not used by the neural backend
-  volume?: number; // reserved: not used by the neural backend
-  onStart?: () => void;
-  onEnd?: () => void;
-  onError?: (err: unknown) => void;
-  /** Fired with 0-100 while the neural voice model downloads (first use). */
-  onLoading?: (pct: number) => void;
+/* ----------------------------------------------------------------------------
+ * Voice selection + playback
+ * ------------------------------------------------------------------------- */
+
+// macOS novelty voices that sound robotic or silly
+const NOVELTY_VOICES = /albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|jester|organ|superstar|trinoids|whisper|wobble|zarvox|ralph|fred|junior|kathy|grandma|grandpa|eddy|flo|reed|rocko|sandy|shelley/i;
+
+function scoreVoice(v: SpeechSynthesisVoice): number {
+  const name = v.name.toLowerCase();
+  const lang = (v.lang || '').toLowerCase().replace('_', '-');
+  if (!lang.startsWith('en')) return -1000;
+  if (NOVELTY_VOICES.test(name)) return -500;
+
+  let s = 0;
+  if (/natural/.test(name)) s += 100;                       // Edge / Windows neural "Online (Natural)"
+  if (/neural|wavenet|studio/.test(name)) s += 90;
+  if (/premium/.test(name)) s += 85;                        // Apple premium
+  if (/enhanced/.test(name)) s += 75;                       // Apple enhanced
+  if (/google/.test(name)) s += 70;                         // Chrome network voices
+  if (/\b(aria|jenny|ava|emma|michelle|guy|andrew|brian|christopher|eric|steffan)\b/.test(name)) s += 25;
+  if (/\b(samantha|allison|susan|serena|daniel|karen|moira|tessa)\b/.test(name)) s += 20;
+  if (/\b(zira|david|mark|hazel|george)\b/.test(name)) s += 5; // older Windows SAPI voices
+  if (lang === 'en-us') s += 12;
+  else if (lang === 'en-ca' || lang === 'en-gb') s += 9;
+  else s += 4;
+  if (!v.localService) s += 3;                               // network voices are usually higher quality
+  return s;
 }
 
 function splitIntoChunks(text: string, maxLen = 180): string[] {
@@ -283,31 +299,56 @@ function splitIntoChunks(text: string, maxLen = 180): string[] {
   return chunks;
 }
 
-/* ----------------------------------------------------------------------------
- * Neural voice backend: Kokoro-82M (human-quality, 100% in-browser)
- * ------------------------------------------------------------------------- */
-
+export interface SpeakOptions {
+  rate?: number;
+  pitch?: number;
+  volume?: number;
+  onStart?: () => void;
+  onEnd?: () => void;
+  onError?: (err: unknown) => void;
+  /** Unused by the instant device-voice engine (kept for caller compatibility). */
+  onLoading?: (pct: number) => void;
+}
 
 class SpeechEngine {
-  private session = 0; // increments on every speak/stop so stale async work is ignored
-  private audio: HTMLAudioElement | null = null;
-  private audioUrl: string | null = null;
+  private voice: SpeechSynthesisVoice | null = null;
+  private session = 0;            // increments on every speak/stop so stale callbacks are ignored
+  private activeQueue: SpeechSynthesisUtterance[] = []; // strong refs: Chromium GCs utterances mid-speech otherwise
   private lastText = '';
 
+  constructor() {
+    if (!this.isSupported()) return;
+    this.pickVoice();
+    const synth = window.speechSynthesis;
+    if (typeof synth.addEventListener === 'function') synth.addEventListener('voiceschanged', () => this.pickVoice());
+    else (synth as SpeechSynthesis).onvoiceschanged = () => this.pickVoice();
+  }
+
   public isSupported(): boolean {
-    return (
-      typeof window !== 'undefined' &&
-      typeof window.Audio !== 'undefined' &&
-      typeof window.WebAssembly !== 'undefined'
-    );
+    return typeof window !== 'undefined' && 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  }
+
+  private pickVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    if (!voices.length) return;
+    let best: SpeechSynthesisVoice | null = null;
+    let bestScore = -Infinity;
+    for (const v of voices) {
+      const s = scoreVoice(v);
+      if (s > bestScore) {
+        bestScore = s;
+        best = v;
+      }
+    }
+    this.voice = bestScore > -1000 ? best : null;
   }
 
   public getVoiceName(): string {
-    return 'Kokoro Neural (af_heart)';
+    return this.voice?.name ?? 'Default voice';
   }
 
   public isSpeaking(): boolean {
-    return this.audio !== null;
+    return this.isSupported() && window.speechSynthesis.speaking;
   }
 
   public get lastSpokenText(): string {
@@ -315,107 +356,60 @@ class SpeechEngine {
   }
 
   public stop() {
+    if (!this.isSupported()) return;
     this.session++;
-    this.teardownAudio();
+    this.activeQueue = [];
+    window.speechSynthesis.cancel();
   }
 
-  private teardownAudio() {
-    if (this.audio) {
-      this.audio.pause();
-      this.audio.src = '';
-      this.audio = null;
-    }
-    if (this.audioUrl) {
-      URL.revokeObjectURL(this.audioUrl);
-      this.audioUrl = null;
-    }
-  }
-
-  /**
-   * Speak text that may contain LaTeX (converted to spoken English first).
-   * The neural model downloads on first use (~90MB, cached afterwards);
-   * playback starts as soon as the first chunk is ready.
-   */
+  /** Speak text that may contain LaTeX. Must be called from a user gesture the first time on iOS. */
   public speak(rawText: string, options: SpeakOptions = {}) {
     if (!this.isSupported()) {
-      options.onError?.(new Error('Neural voice is not supported in this browser'));
+      options.onError?.(new Error('Speech synthesis is not supported in this browser'));
       return;
     }
     const spoken = cleanTextForSpeech(rawText);
     if (!spoken) return;
 
-    unlockAudioPlayback();
     this.stop();
+    if (!this.voice) this.pickVoice();
     this.lastText = rawText;
+
     const session = this.session;
-    const speed = options.rate ?? 1.0; // Kokoro speed ~= old speechSynthesis rate mapping
-    const chunks = splitIntoChunks(spoken, 120); // smaller chunks => faster first audio on phones
+    const synth = window.speechSynthesis;
+    const chunks = splitIntoChunks(spoken);
 
-    const alive = () => session === this.session;
-
-    const unsubProgress = onVoiceLoadProgress((pct) => options.onLoading?.(pct));
-    const settle = () => unsubProgress();
-
-    loadKokoroVoice()
-      .then(async (tts) => {
-        for (let i = 0; i < chunks.length; i++) {
-          if (!alive()) return;
-          const chunkAudio = await tts.generate(chunks[i], { voice: KOKORO_VOICE, speed });
-          if (!alive()) return;
-          await this.playChunk(chunkAudio.toBlob(), {
-            isFirst: i === 0,
-            isLast: i === chunks.length - 1,
-            onStart: options.onStart,
-            onEnd: options.onEnd,
-            onError: options.onError,
-            alive,
-          });
-        }
-        settle();
-        if (alive()) {
-          this.teardownAudio();
+    const utterances = chunks.map((chunk, i) => {
+      const u = new SpeechSynthesisUtterance(chunk);
+      if (this.voice) u.voice = this.voice;
+      u.lang = this.voice?.lang || 'en-US';
+      u.rate = options.rate ?? 0.95;   // slightly slower than default: clearer for technical content
+      u.pitch = options.pitch ?? 1.0;
+      u.volume = options.volume ?? 1.0;
+      if (i === 0) u.onstart = () => session === this.session && options.onStart?.();
+      if (i === chunks.length - 1) {
+        u.onend = () => {
+          if (session !== this.session) return;
+          this.activeQueue = [];
           options.onEnd?.();
-        }
-      })
-      .catch((err) => {
-        settle();
-        if (!alive()) return;
-        this.teardownAudio();
-        options.onError?.(err);
+        };
+      }
+      u.onerror = (e) => {
+        if (session !== this.session) return;
+        // "interrupted"/"canceled" are raised by our own stop(); not real errors
+        if (e.error === 'interrupted' || e.error === 'canceled') return;
+        this.activeQueue = [];
+        options.onError?.(e);
         options.onEnd?.();
-      });
-  }
-
-  private playChunk(
-    blob: Blob,
-    ctx: {
-      isFirst: boolean;
-      isLast: boolean;
-      onStart?: () => void;
-      onEnd?: () => void;
-      onError?: (err: unknown) => void;
-      alive: () => boolean;
-    },
-  ): Promise<void> {
-    return new Promise((resolve) => {
-      if (!ctx.alive()) return resolve();
-      const url = URL.createObjectURL(blob);
-      // Revoke the previous chunk's URL once the next one is ready
-      if (this.audioUrl) URL.revokeObjectURL(this.audioUrl);
-      this.audioUrl = url;
-      const el = new Audio(url);
-      this.audio = el;
-      el.onended = () => resolve();
-      el.onerror = () => {
-        if (ctx.alive()) ctx.onError?.(new Error('Voice playback failed'));
-        resolve();
       };
-      if (ctx.isFirst) ctx.onStart?.();
-      el.play().catch((e) => {
-        if (ctx.alive()) ctx.onError?.(e);
-        resolve();
-      });
+      return u;
     });
+
+    this.activeQueue = utterances;
+    // Chrome can get stuck in a paused state after tab switches
+    if (synth.paused) synth.resume();
+    // Queue synchronously (no setTimeout) so iOS Safari still treats this as part of the tap gesture
+    utterances.forEach(u => synth.speak(u));
   }
 }
 

@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Volume2, VolumeX, Loader2 } from 'lucide-react';
-import {
-  speakText,
-  stopSpeaking,
-  subscribeVoiceStatus,
-  getVoiceStatus,
-  type VoiceStatus,
-} from '../utils/humanVoice';
+import { Volume2, VolumeX } from 'lucide-react';
+import { speechEngine } from '../utils/speechEngine';
 
 interface ReadAloudButtonProps {
   /** Raw text to speak (LaTeX/markdown is cleaned automatically) */
@@ -18,63 +12,49 @@ interface ReadAloudButtonProps {
 }
 
 /**
- * Speaker button that reads text aloud with a human Kokoro neural voice.
- * First tap downloads the voice model once (~90MB, cached); afterwards it's instant.
+ * Speaker button that reads text aloud with the device's best voice —
+ * instant, no downloads. (The pre-rendered human voice MP3s, generated
+ * overnight for all questions, will take over this button when they land.)
  */
 export const ReadAloudButton: React.FC<ReadAloudButtonProps> = ({
   text,
   stopKey,
-  label = 'Read aloud',
+  label = 'Listen',
   className = '',
 }) => {
-  const [status, setStatus] = useState<VoiceStatus>(getVoiceStatus());
-  const [progress, setProgress] = useState(0);
-  const [failed, setFailed] = useState(false);
-
-  useEffect(() => subscribeVoiceStatus((s, p) => {
-    setStatus(s);
-    if (typeof p === 'number') setProgress(p);
-    if (s === 'error') setFailed(true);
-  }), []);
+  const [speaking, setSpeaking] = useState(false);
 
   // Stop playback when the underlying content changes (e.g. next question)
   useEffect(() => {
-    stopSpeaking();
+    speechEngine.stop();
+    setSpeaking(false);
   }, [stopKey]);
 
-  useEffect(() => () => stopSpeaking(), []);
+  useEffect(() => () => speechEngine.stop(), []);
 
-  const handleClick = async () => {
-    if (status === 'speaking') {
-      stopSpeaking();
+  const handleClick = () => {
+    if (speaking) {
+      speechEngine.stop();
+      setSpeaking(false);
       return;
     }
-    setFailed(false);
-    try {
-      await speakText(text);
-    } catch {
-      setFailed(true);
-    }
+    speechEngine.speak(text, {
+      rate: 0.95,
+      onStart: () => setSpeaking(true),
+      onEnd: () => setSpeaking(false),
+      onError: () => setSpeaking(false),
+    });
   };
-
-  const isLoading = status === 'loading';
-  const isSpeaking = status === 'speaking';
 
   return (
     <button
       type="button"
       onClick={handleClick}
-      disabled={isLoading}
-      title={isSpeaking ? 'Stop reading' : failed ? 'Voice failed — tap to retry' : label}
-      aria-label={isSpeaking ? 'Stop reading aloud' : label}
-      className={`read-aloud-btn ${isSpeaking ? 'is-speaking' : ''} ${className}`}
+      title={speaking ? 'Stop reading' : label}
+      aria-label={speaking ? 'Stop reading aloud' : label}
+      className={`read-aloud-btn ${speaking ? 'is-speaking' : ''} ${className}`}
     >
-      {isLoading ? (
-        <>
-          <Loader2 size={16} className="spin" />
-          <span>Loading voice{progress > 0 ? ` ${progress}%` : '…'}</span>
-        </>
-      ) : isSpeaking ? (
+      {speaking ? (
         <>
           <VolumeX size={16} />
           <span>Stop</span>
@@ -82,7 +62,7 @@ export const ReadAloudButton: React.FC<ReadAloudButtonProps> = ({
       ) : (
         <>
           <Volume2 size={16} />
-          <span>{failed ? 'Retry voice' : label}</span>
+          <span>{label}</span>
         </>
       )}
     </button>
