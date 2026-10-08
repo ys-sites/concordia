@@ -5,6 +5,6 @@
     { "source": "/api/pdf", "destination": "/api/pdf.js" },
     { "source": "/api/visitors", "destination": "/api/visitors.js" },
     { "source": "/filtered", "destination": "/filtered.html" },
-    { "source": "/((?!api|courses|filtered).*)", "destination": "/index.html" }
+    { "source": "/((?!api|courses|filtered|assets/).*)", "destination": "/index.html" }
   ]
 }

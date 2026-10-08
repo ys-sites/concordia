@@ -57,13 +57,25 @@ const sanitizeTex = (tex: string): string => {
   return tex.replace(/\\\\([a-zA-Z]+)/g, '\\$1');
 };
 
+// KaTeX is the slowest thing on most pages, and the same formulas re-render on every keystroke
+// in a quiz. Rendered HTML is cached by (mode, tex) so each formula is typeset once per session.
+const TEX_CACHE = new Map<string, string>();
+const TEX_CACHE_MAX = 4000;
+
 const renderTex = (tex: string, displayMode: boolean): string => {
+  const key = (displayMode ? 'D' : 'I') + tex;
+  const hit = TEX_CACHE.get(key);
+  if (hit !== undefined) return hit;
+  let html: string;
   try {
     const cleanTex = sanitizeTex(tex);
-    return katex.renderToString(cleanTex, { displayMode, throwOnError: false, strict: 'ignore', trust: false });
+    html = katex.renderToString(cleanTex, { displayMode, throwOnError: false, strict: 'ignore', trust: false });
   } catch {
-    return tex.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c] as string);
+    html = tex.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c] as string);
   }
+  if (TEX_CACHE.size >= TEX_CACHE_MAX) TEX_CACHE.delete(TEX_CACHE.keys().next().value as string);
+  TEX_CACHE.set(key, html);
+  return html;
 };
 
 interface MathTextProps {
@@ -71,7 +83,7 @@ interface MathTextProps {
   className?: string;
 }
 
-export const MathText: React.FC<MathTextProps> = ({ text, className = '' }) => {
+const MathTextInner: React.FC<MathTextProps> = ({ text, className = '' }) => {
   const segments = useMemo(() => splitMath(text ?? ''), [text]);
   return (
     <span className={`math-content ${className}`}>
@@ -89,6 +101,9 @@ export const MathText: React.FC<MathTextProps> = ({ text, className = '' }) => {
     </span>
   );
 };
+
+// Memoized: a parent re-render with the same text does no work at all
+export const MathText = React.memo(MathTextInner);
 
 // A display equation given as bare LaTeX (no delimiters), e.g. a line of working in a solution
 export const MathBlock: React.FC<{ tex: string; className?: string }> = ({ tex, className = '' }) => {

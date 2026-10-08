@@ -2594,6 +2594,18 @@ h1, h2, h3, h4, h5 {
   border-color: var(--border-highlight);
 }
 
+/* Off-screen cards skip style, layout and paint until they scroll into view */
+.bank-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 140px;
+}
+
+.bank-more {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0 8px;
+}
+
 .bank-card-header {
   padding: 16px 20px;
   display: flex;

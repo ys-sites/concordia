@@ -28,6 +28,9 @@ export interface DrillItem {
   steps?: string[];
   hint?: string;
   qid?: string;
+  // lesson practice items: the lesson they come from and an explicit source line
+  lesson?: string;
+  src?: string;
   regen?: () => DrillItem | null;
 }
 
@@ -111,7 +114,7 @@ export const texIndices = (tex: string): number[] =>
 
 const fill = (q: string, values: Record<string, string | number>) => q.replace(/\{(\w+)\}/g, (m, k) => (k in values ? showNum(values[k]) : m));
 
-const fromCalc = (item: Extract<QuizItem, { type: 'calc' }>, key: string, label: string, topic: string, first: boolean): DrillItem | null => {
+const fromCalc = (item: Extract<QuizItem, { type: 'calc' }>, key: string, label: string, topic: string, first: boolean, lesson?: string): DrillItem | null => {
   const calc = CALCULATORS[item.calc];
   if (!calc) return null;
   for (let attempt = 0; attempt < 12; attempt++) {
@@ -122,8 +125,8 @@ const fromCalc = (item: Extract<QuizItem, { type: 'calc' }>, key: string, label:
     if (r.error) continue;
     const row = r.rows.find((x) => x.label === item.row) ?? r.rows.find((x) => x.label.startsWith(item.row));
     if (!row) continue;
-    const regen = item.vary?.length ? () => fromCalc(item, key, label, topic, false) : undefined;
-    const common = { key, label, badge: item.badge, topic, prompt: fill(item.q, values), code: item.code, steps: r.steps, hint: item.hint, regen };
+    const regen = item.vary?.length ? () => fromCalc(item, key, label, topic, false, lesson) : undefined;
+    const common = { key, label, badge: item.badge, topic, lesson, src: item.src, prompt: fill(item.q, values), code: item.code, steps: r.steps, hint: item.hint, regen };
     if (/^\[|^\(/.test(row.tex)) {
       const ints = texIndices(row.tex);
       return { ...common, kind: 'indices', ints, anySign: item.anySign, correct: [ints.join(' ')], answerText: `$${row.tex}$` };
@@ -142,8 +145,8 @@ export const fromQuizItem = (item: QuizItem, f: Formula, i: number, idx: GateInd
     const q = idx.q.get(item.id);
     return q ? fromQuestion(q, idx) : null;
   }
-  if (item.type === 'calc') return fromCalc(item, key, label, f.topic, true);
-  const common = { key, label, badge: item.badge, topic: f.topic };
+  if (item.type === 'calc') return fromCalc(item, key, label, f.topic, true, f.id);
+  const common = { key, label, badge: item.badge, topic: f.topic, lesson: f.id, src: item.src };
   if (item.type === 'value')
     return { ...common, prompt: item.q, kind: 'num', value: item.answer, tol: item.tol ?? 0.02, unit: item.unit, correct: [String(item.answer)], answerText: `${showNum(item.answer)} ${item.unit}`, steps: item.steps };
   if (item.type === 'mc')

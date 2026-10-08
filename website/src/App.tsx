@@ -1,22 +1,24 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import { CourseId, CourseDocument } from './types';
 import { COURSES_DATA } from './data/coursesData';
 import { Navbar } from './components/Navbar';
 import { HeroCourseSelector } from './components/HeroCourseSelector';
 import { CourseWorkspace } from './components/CourseWorkspace';
 import { PdfViewerModal } from './components/PdfViewerModal';
-import { QuizEngine } from './components/QuizEngine';
-import { QuizResults } from './components/QuizResults';
-import { QuestionBankBrowser } from './components/QuestionBankBrowser';
-import { DrillPicker } from './components/DrillPicker';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
-import { FilteredSubSite } from './components/FilteredSubSite';
 import { FILTERED_COURSES_DATA } from './data/filteredDocumentsData';
 import { audio } from './utils/audio';
 import { parseHash, formatHash, RouteState } from './utils/navigationRouter';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+
+// Screens that need the ~1 MB question bank load on demand, so the first page paints fast
+const QuizEngine = lazy(() => import('./components/QuizEngine').then((m) => ({ default: m.QuizEngine })));
+const QuizResults = lazy(() => import('./components/QuizResults').then((m) => ({ default: m.QuizResults })));
+const QuestionBankBrowser = lazy(() => import('./components/QuestionBankBrowser').then((m) => ({ default: m.QuestionBankBrowser })));
+const DrillPicker = lazy(() => import('./components/DrillPicker').then((m) => ({ default: m.DrillPicker })));
+const FilteredSubSite = lazy(() => import('./components/FilteredSubSite').then((m) => ({ default: m.FilteredSubSite })));
 
 type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK' | 'FILTERED_DOCUMENT';
 
@@ -218,7 +220,9 @@ export function App() {
   if (viewMode === 'FILTERED_DOCUMENT') {
     return (
       <>
-        <FilteredSubSite />
+        <Suspense fallback={null}>
+          <FilteredSubSite />
+        </Suspense>
         <Analytics />
         <SpeedInsights />
       </>
@@ -240,6 +244,7 @@ export function App() {
 
       {/* Main Dynamic Viewport */}
       <main className="main-content-layout">
+        <Suspense fallback={<div className="route-loading" aria-busy="true" />}>
         {viewMode === 'HERO' && (
           <HeroCourseSelector 
             onSelectCourse={handleSelectCourse}
@@ -316,14 +321,14 @@ export function App() {
             onOpenPdf={handleViewPdf}
           />
         )}
+        </Suspense>
       </main>
 
-      <DrillPicker
-        open={pickerOpen}
-        initialCourseId={pickerCourse}
-        onClose={() => setPickerOpen(false)}
-        onStart={launchDrill}
-      />
+      {pickerOpen && (
+        <Suspense fallback={null}>
+          <DrillPicker open={pickerOpen} initialCourseId={pickerCourse} onClose={() => setPickerOpen(false)} onStart={launchDrill} />
+        </Suspense>
+      )}
 
       {/* Embedded PDF Viewer Modal with direct slide jumping */}
       <PdfViewerModal 

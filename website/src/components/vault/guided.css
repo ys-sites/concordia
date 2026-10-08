@@ -1,0 +1,728 @@
+/* Midterm Gate: guided plan (gp-*) and Skill Quiz (sq-*). Loaded with midtermGate.css. */
+
+/* ── shared video card ── */
+.gp-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+.gp-video {
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.gp-video iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
+}
+.gp-video-body {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.gp-video-body ul {
+  margin: 2px 0 0;
+  padding-left: 16px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.gp-video.compact {
+  display: grid;
+  grid-template-columns: minmax(200px, 300px) 1fr;
+}
+.gp-video.compact .mg-thumb,
+.gp-video.compact iframe {
+  align-self: start;
+}
+
+/* ── guided plan: phase timeline ── */
+.gp-timeline {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+}
+.gp-timeline button {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text-primary);
+}
+.gp-timeline button:hover {
+  border-color: var(--mg-accent-line);
+}
+.gp-timeline .ph {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.gp-timeline .t {
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.gp-timeline .d {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+}
+.gp-timeline .bar,
+.gp-chapter-bar,
+.sq-sum-row .bar {
+  display: block;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--bg-card-subtle);
+  overflow: hidden;
+  margin-top: 4px;
+}
+.gp-timeline .bar > span,
+.gp-chapter-bar > span,
+.sq-sum-row .bar > span {
+  display: block;
+  height: 100%;
+  background: var(--mg-accent);
+  border-radius: 99px;
+}
+.gp-timeline li.now button {
+  border-color: var(--mg-accent);
+  background: var(--mg-accent-soft);
+}
+.gp-timeline li.now .ph {
+  color: var(--mg-accent);
+}
+.gp-timeline li.ok .ph {
+  color: var(--status-correct);
+}
+.gp-timeline li.ok .bar > span {
+  background: var(--status-correct);
+}
+.gp-timeline li.late .d {
+  color: var(--status-warning);
+  font-weight: 700;
+}
+
+/* ── guided plan: "you are here" ── */
+.gp-here {
+  border: 2px solid var(--mg-accent);
+  border-radius: 14px;
+  background: var(--bg-surface);
+  padding: 16px 18px;
+  box-shadow: 0 8px 24px rgba(225, 29, 72, 0.08);
+  min-width: 0;
+}
+.gp-here-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+.gp-pin {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--mg-accent);
+}
+.gp-due {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700;
+  color: var(--mg-accent);
+}
+.gp-due.ok,
+.gp-due-inline.ok {
+  color: var(--status-correct);
+}
+.gp-due.late,
+.gp-due-inline.late {
+  color: var(--status-warning);
+}
+.gp-due-inline {
+  font-weight: 700;
+}
+.gp-here-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 12px 0 4px;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+.gp-here-title .ic {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  color: var(--mg-accent);
+  background: var(--mg-accent-soft);
+}
+.gp-here-meta {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-left: 40px;
+}
+.gp-here-body {
+  margin-top: 14px;
+  min-width: 0;
+}
+.gp-here-body > .mg-panel {
+  border: 1px solid var(--border-subtle);
+  box-shadow: none;
+}
+.gp-here-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+.mg-plan-step.gp-current {
+  background: var(--mg-accent-soft);
+  border-radius: 8px;
+}
+
+/* ── guided plan: reading focus ── */
+.gp-doc-open {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--bg-card-subtle);
+  color: var(--text-primary);
+}
+.gp-doc-open > span {
+  flex: 1;
+  min-width: 180px;
+}
+.gp-focus-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+.gp-focus {
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 11px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.gp-focus-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--text-primary);
+}
+.gp-focus-idea {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── guided plan: chapters at a glance ── */
+.gp-glance {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+.gp-chapter {
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 11px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13.5px;
+  color: var(--text-primary);
+}
+.gp-chapter-acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* ── skill quiz: stepper ── */
+.sq-stepper {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.sq-stepper li {
+  flex: 1;
+  min-width: 120px;
+}
+.sq-stepper button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.sq-stepper button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.sq-stepper .n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 11.5px;
+  background: var(--bg-card-subtle);
+  flex-shrink: 0;
+}
+.sq-stepper li.now button {
+  border-color: var(--mg-accent);
+  color: var(--mg-accent);
+  background: var(--mg-accent-soft);
+}
+.sq-stepper li.now .n {
+  background: var(--mg-accent);
+  color: #fff;
+}
+.sq-stepper li.past .n {
+  background: var(--status-correct);
+  color: #fff;
+}
+
+/* ── skill quiz: what to cover ── */
+.sq-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.sq-subjects {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sq-subject {
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+.sq-subject.all {
+  border-color: var(--mg-accent);
+}
+.sq-subject.part {
+  border-color: var(--mg-accent-line);
+}
+.sq-subject-head {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 13px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+.sq-subject.all .sq-subject-head {
+  background: var(--mg-accent-soft);
+}
+.sq-subject-name {
+  display: block;
+  margin-top: 5px;
+  font-size: 14.5px;
+  font-weight: 800;
+}
+.sq-subject-meta {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.sq-check {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-highlight);
+  font-weight: 800;
+  color: var(--mg-accent);
+  background: var(--bg-surface);
+}
+.sq-subject.all .sq-check,
+.sq-cat.on .sq-check {
+  background: var(--mg-accent);
+  border-color: var(--mg-accent);
+  color: #fff;
+}
+.sq-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 13px 12px 43px;
+}
+.sq-topics .mg-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.sq-n {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.sq-rep {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #be123c;
+}
+
+/* ── skill quiz: question types ── */
+.sq-cats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+.sq-cat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 12px 13px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-subtle);
+  background: var(--bg-surface);
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+.sq-cat:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.sq-cat.on {
+  border-color: var(--mg-accent);
+  background: var(--mg-accent-soft);
+}
+.sq-cat-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sq-cat b {
+  font-size: 14px;
+}
+.sq-cat span:not(.mg-badge):not(.sq-check):not(.sq-cat-top) {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.sq-cat strong {
+  margin-top: auto;
+  font-size: 13px;
+  color: var(--mg-accent);
+}
+.sq-table-wrap {
+  margin-top: 14px;
+  overflow-x: auto;
+}
+.sq-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.sq-table th,
+.sq-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: center;
+  white-space: nowrap;
+}
+.sq-table th:first-child,
+.sq-table td:first-child {
+  text-align: left;
+  white-space: normal;
+}
+.sq-table th {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.sq-table td {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.sq-table .off {
+  opacity: 0.35;
+}
+.sq-table td.zero {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ── skill quiz: setup & run ── */
+.sq-setup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.sq-setup .mg-refs-label {
+  display: block;
+  margin-bottom: 6px;
+}
+.sq-setup .mg-presets {
+  margin-bottom: 0;
+}
+.sq-setup .mg-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.sq-run-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.sq-lesson-drawer {
+  width: min(820px, 100%);
+}
+
+/* ── after-answer explanation ── */
+.sq-explain {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-highlight);
+}
+.sq-ex-block {
+  min-width: 0;
+}
+.sq-ex-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.sq-depth {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: auto;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.sq-origin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+.sq-origin-sub {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+.sq-learn {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sq-learn-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+.sq-learn-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: 128px;
+  flex-shrink: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+.sq-learn-row .mg-refs {
+  margin: 0;
+}
+
+/* ── skill quiz: summary ── */
+.sq-summary {
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--bg-card-subtle);
+}
+.sq-sum-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 1.4fr) minmax(80px, 1fr) 44px auto;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+.sq-sum-row .bar {
+  margin: 0;
+}
+.sq-sum-row.weak .bar > span {
+  background: var(--status-warning);
+}
+.sq-sum-row .score {
+  font-weight: 800;
+  text-align: right;
+}
+.sq-sum-row .acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+@media (max-width: 640px) {
+  .gp-here {
+    padding: 12px;
+  }
+  .gp-here-title {
+    font-size: 16px;
+  }
+  .gp-here-meta {
+    margin-left: 0;
+  }
+  .gp-here-actions .mg-btn {
+    flex: 1;
+    justify-content: center;
+  }
+  .gp-video.compact {
+    grid-template-columns: 1fr;
+  }
+  .sq-topics {
+    padding-left: 13px;
+  }
+  .sq-learn-label {
+    width: 100%;
+  }
+  .sq-sum-row {
+    grid-template-columns: 1fr 44px;
+  }
+  .sq-sum-row .bar,
+  .sq-sum-row .acts {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── Skill Quiz stands apart from the other documents ── */
+.mg-tab.skill {
+  border-color: var(--mg-accent);
+  color: var(--mg-accent);
+  background: var(--mg-accent-soft);
+}
+.mg-tab.skill.active {
+  background: var(--mg-accent);
+  border-color: var(--mg-accent);
+  color: #fff;
+}
+.mg-doc-row.skill {
+  background: var(--mg-accent-soft);
+}
+.mg-skill-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 99px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+  color: #fff;
+  background: var(--mg-accent);
+}

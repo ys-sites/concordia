@@ -17,7 +17,7 @@ import {
   Info
 } from 'lucide-react';
 import { audio } from '../utils/audio';
-import { PRACTICE_QUESTIONS } from '../data/questionsData';
+import { useQuestions } from '../data/questionStore';
 import { ShinyText, CountUp } from './reactbits';
 
 interface HeroCourseSelectorProps {
@@ -31,6 +31,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
   onStartQuiz,
   onOpenQuestionBank
 }) => {
+  const questions = useQuestions();
   const getCourseIcon = (id: CourseId) => {
     switch (id) {
       case 'ENGR213': return <Sigma size={32} className="course-icon icon-engr" />;
@@ -83,7 +84,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
           </div>
           <div className="metric-pill">
             <Brain size={16} className="text-emerald" />
-            <span><strong><CountUp to={PRACTICE_QUESTIONS.length} duration={1.4} /></strong> Curated Practice & Drill Questions</span>
+            <span><strong><CountUp to={questions?.length ?? 0} duration={1.4} /></strong> Curated Practice & Drill Questions</span>
           </div>
           <div className="metric-pill">
             <Flame size={16} className="text-rose" />
@@ -153,7 +154,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
                   </span>
                   <span className="badge q-badge">
                     <Brain size={12} />
-                    {PRACTICE_QUESTIONS.filter(q => q.courseId === course.id).length} Questions
+                    {questions ? questions.filter((q) => q.courseId === course.id).length : '…'} Questions
                   </span>
                 </div>
               </div>

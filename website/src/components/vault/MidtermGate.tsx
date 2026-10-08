@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, CalendarClock, ChevronRight, ClipboardList, FileLock2, FileText, KeyRound, Loader2, Lock, Repeat, Sigma, Sparkles, Trophy, Video, X } from 'lucide-react';
+import { ArrowLeft, CalendarClock, ChevronRight, ClipboardList, FileLock2, FileText, KeyRound, Loader2, Lock, Repeat, Sigma, Sparkles, Target, Video, X } from 'lucide-react';
 import type { CourseWithDocs } from '../../data/coursesData';
 import type { CourseDocument } from '../../types';
 import { audio } from '../../utils/audio';
 import { MathText } from '../../utils/mathRenderer';
-import type { DrillTarget, GateContent, GateDoc, GateNav, LectureRef } from './vaultTypes';
+import type { DrillTarget, GateContent, GateDoc, GateNav, LectureRef, QuizPreset } from './vaultTypes';
 import { GateCourse, lockGate, resumeGate, unlockGate } from './vaultCrypto';
 import { MatchBadge, QuestionCard, useGateIndex } from './shared';
 import { buildDrill, DrillItem, loadStats } from './drill';
@@ -14,9 +14,10 @@ import { VideoPath } from './VideoPath';
 import { StudyPlan, daysUntil } from './StudyPlan';
 import { GradesaverDoc } from './GradesaverDoc';
 import { DrillRunner } from './DrillRunner';
-import { HiddenQuiz } from './HiddenQuiz';
+import { SkillQuiz } from './SkillQuiz';
 import './midtermGate.css';
 import './gateExtras.css';
+import './guided.css';
 
 // Public, non-sensitive labels shown before the folder is unlocked
 const LAB_TITLE: Record<GateCourse, string> = {
@@ -35,11 +36,11 @@ interface DocDef {
 
 const docList = (course: GateCourse, content: GateContent | null): DocDef[] => {
   const docs: DocDef[] = [
-    { id: 'plan', title: 'Midterm Prep Plan', sub: 'Your step-by-step path to the midterm: what to read first, what to practise next, with a checklist.', icon: <ClipboardList size={20} /> },
+    { id: 'plan', title: 'Midterm Prep Plan', sub: 'Start here. Your guided path to the midterm with finish-by dates: every lesson, video, reading focus and drill opens right inside the plan.', icon: <ClipboardList size={20} /> },
     { id: 'analyzer', title: 'Pattern Analyzer & Drills', sub: 'Past-paper questions sorted by subject and subtopic, what repeats, and a drill for every group.', icon: <Repeat size={20} /> },
     { id: 'formulas', title: content?.labTitle ?? LAB_TITLE[course], sub: 'Each method in four steps: understand it, follow a worked example, try the calculator, then a practice quiz.', icon: <Sigma size={20} /> },
     { id: 'videos', title: 'Video Revision Path', sub: 'One stop per topic: a specific video to learn it, what to watch for, and the questions to do next.', icon: <Video size={20} /> },
-    { id: 'quiz', title: 'Hidden Quiz', sub: 'Drill every repeated and past-paper question with read-aloud and worked step-by-step solutions. Midterm material only.', icon: <Trophy size={20} /> }
+    { id: 'quiz', title: 'Skill Quiz', sub: 'Build a quiz for a whole chapter or just the subtopics you choose: repeated, similar, asked-once or new possible questions, with the source and a video after every answer.', icon: <Target size={20} /> }
   ];
   if (course === 'ENGR213') docs.push({ id: 'gradesaver', title: 'Gradesaver Tutor Vault', sub: 'The handwritten tutor notes, the typeset blueprint, and the 5-phase solving system.', icon: <Sparkles size={20} /> });
   return docs;
@@ -71,6 +72,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
   const [focusVideoTopic, setFocusVideoTopic] = useState<string | null>(null);
   const [drawerQ, setDrawerQ] = useState<string | null>(null);
   const [drill, setDrill] = useState<{ title: string; items: DrillItem[] } | null>(null);
+  const [quizPreset, setQuizPreset] = useState<(QuizPreset & { nonce: number }) | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
 
@@ -196,6 +198,13 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
         if (!content || !idx) return;
         setDrawerQ(null);
         setDrill({ title, items: buildDrill(target, content, idx, loadStats(content.course)) });
+      },
+      openQuiz: (preset?: QuizPreset) => {
+        setDrawerQ(null);
+        setDrill(null);
+        setQuizPreset(preset ? { ...preset, nonce: Date.now() } : null);
+        setDoc('quiz');
+        scrollTop();
       }
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -240,13 +249,16 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
           <ol className="mg-doc-list" style={{ borderTop: '1px solid var(--border-subtle)' }}>
             {DOCS.map((d, i) => (
               <li key={d.id}>
-                <button type="button" className="mg-doc-row" onClick={() => openDoc(d.id)}>
+                <button type="button" className={`mg-doc-row ${d.id === 'quiz' ? 'skill' : ''}`} onClick={() => openDoc(d.id)}>
                   <span className="mg-doc-num">0{i + 1}</span>
                   <span className="mg-icon-tile" style={{ width: 40, height: 40 }}>
                     {content ? d.icon : <Lock size={18} />}
                   </span>
                   <span>
-                    <span className="mg-doc-title">{d.title}</span>
+                    <span className="mg-doc-title">
+                      {d.title}
+                      {d.id === 'quiz' && <span className="mg-skill-tag">Build your own quiz</span>}
+                    </span>
                     <span className="mg-doc-sub">{d.sub}</span>
                   </span>
                   <span className="mg-doc-open">
@@ -298,7 +310,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
             </button>
             <div className="mg-tabs" role="tablist">
               {DOCS.map((d, i) => (
-                <button key={d.id} type="button" role="tab" aria-selected={doc === d.id} className={`mg-tab ${doc === d.id ? 'active' : ''}`} onClick={() => openDoc(d.id)}>
+                <button key={d.id} type="button" role="tab" aria-selected={doc === d.id} className={`mg-tab ${doc === d.id ? 'active' : ''} ${d.id === 'quiz' ? 'skill' : ''}`} onClick={() => openDoc(d.id)}>
                   {d.icon}
                   <span>
                     0{i + 1} {d.title}
@@ -311,7 +323,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
           {doc === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
           {doc === 'formulas' && <FormulaLab content={content} idx={idx} nav={nav} focusFormula={focusFormula} />}
           {doc === 'videos' && <VideoPath content={content} idx={idx} nav={nav} focusTopic={focusVideoTopic} />}
-          {doc === 'quiz' && <HiddenQuiz content={content} idx={idx} nav={nav} />}
+          {doc === 'quiz' && <SkillQuiz content={content} idx={idx} nav={nav} preset={quizPreset} />}
           {doc === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
         </>
       )}

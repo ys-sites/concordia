@@ -1,5 +1,5 @@
 import { CourseMeta, CourseDocument, CourseId } from '../types';
-import { PRACTICE_QUESTIONS } from './questionsData';
+import { cachedQuestions } from './questionStore';
 // Generated at build time from the course folders by website/build/publishedFiles.ts:
 // every published PDF, after the study-material-only filter in ./localOnly.ts
 import PUBLISHED_DOCUMENTS from 'virtual:course-documents';
@@ -90,6 +90,14 @@ export const COURSES_DATA: CourseWithDocs[] = COURSE_INFO.map((info) => {
       description: `Course materials for ${title}`
     };
   });
-  const totalQuestions = PRACTICE_QUESTIONS.filter((q) => q.courseId === info.id).length;
-  return { ...info, categories, documents, totalDocuments: documents.length, totalQuestions };
+  // the question bank loads on demand (see questionStore); 0 until it has arrived
+  return {
+    ...info,
+    categories,
+    documents,
+    totalDocuments: documents.length,
+    get totalQuestions() {
+      return cachedQuestions()?.filter((q) => q.courseId === info.id).length ?? 0;
+    }
+  };
 });

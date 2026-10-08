@@ -17,7 +17,7 @@ const BADGE: Record<string, { text: string; cls: string }> = {
   concept: { text: 'Concept check', cls: 'concept' }
 };
 
-interface Result {
+export interface Result {
   item: DrillItem;
   ok: boolean;
 }
@@ -36,9 +36,13 @@ interface Props {
   idx?: GateIndex;
   content?: GateContent;
   nav?: GateNav;
+  /** Extra panel under the feedback (Skill Quiz: sources + concept video) */
+  renderExplain?: (item: DrillItem) => React.ReactNode;
+  /** Extra block in the end-of-drill summary */
+  renderSummary?: (results: Result[]) => React.ReactNode;
 }
 
-export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, embedded = false, onClose, onOpenQuestion, readAloud = false, showReferences = false, idx, content, nav }) => {
+export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, embedded = false, onClose, onOpenQuestion, readAloud = false, showReferences = false, idx, content, nav, renderExplain, renderSummary }) => {
   const [items, setItems] = useState<DrillItem[]>(initial);
   const [i, setI] = useState(0);
   const [choice, setChoice] = useState<string[]>([]);
@@ -172,6 +176,7 @@ export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, em
               <div className="mg-small mg-muted">{score === items.length ? 'Clean sweep. Move on to the next topic.' : `${missed.length} to review: they are saved under “Everything I missed”.`}</div>
             </div>
           </div>
+          {renderSummary?.(results)}
           {missed.length > 0 && (
             <ul className="dr-missed">
               {missed.map((m) => (
@@ -326,7 +331,8 @@ export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, em
                   <MathText text={item.note} />
                 </div>
               )}
-              {showReferences && idx && content && nav && item.topic && <LearnMore topic={item.topic} idx={idx} content={content} nav={nav} />}
+              {renderExplain?.(item)}
+              {!renderExplain && showReferences && idx && content && nav && item.topic && <LearnMore topic={item.topic} idx={idx} content={content} nav={nav} />}
             </div>
           )}
 

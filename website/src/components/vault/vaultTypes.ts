@@ -87,6 +87,7 @@ export type QuizItem =
   | {
       type: 'calc';
       badge: string;
+      src?: string;
       q: string;
       code?: string;
       calc: string;
@@ -98,11 +99,11 @@ export type QuizItem =
       hint?: string;
       anySign?: boolean;
     }
-  | { type: 'value'; badge: string; q: string; answer: number; unit: string; tol?: number; steps: string[] }
-  | { type: 'mc'; badge: string; q: string; code?: string; opts: string[]; ans: string; why: string }
-  | { type: 'tf'; badge: string; q: string; code?: string; ans: boolean; why: string }
-  | { type: 'output'; badge: string; q?: string; code: string; ans: string; why?: string }
-  | { type: 'open'; badge: string; q: string; ans: string; steps?: string[]; solution?: string };
+  | { type: 'value'; badge: string; src?: string; q: string; answer: number; unit: string; tol?: number; steps: string[] }
+  | { type: 'mc'; badge: string; src?: string; q: string; code?: string; opts: string[]; ans: string; why: string }
+  | { type: 'tf'; badge: string; src?: string; q: string; code?: string; ans: boolean; why: string }
+  | { type: 'output'; badge: string; src?: string; q?: string; code: string; ans: string; why?: string }
+  | { type: 'open'; badge: string; src?: string; q: string; ans: string; steps?: string[]; solution?: string };
 
 export type VarySpec =
   | { key: string; min: number; max: number; dp: number; mul?: number }
@@ -218,6 +219,14 @@ export interface GateContent {
   };
 }
 
+// Skill Quiz question types: repeated on past papers, similar, asked once, other possible questions
+export type QuizCat = 'repeat' | 'similar' | 'once' | 'possible';
+export interface QuizPreset {
+  topics?: string[];
+  subjects?: string[];
+  cats?: QuizCat[];
+}
+
 export type GateDoc = 'plan' | 'analyzer' | 'formulas' | 'videos' | 'gradesaver' | 'quiz';
 export interface GateNav {
   openQuestion: (id: string) => void;
@@ -228,4 +237,5 @@ export interface GateNav {
   openGuide: (part: string) => void;
   startDrill: (target: DrillTarget, title: string) => void;
   showTopic: (topic: string) => void;
+  openQuiz: (preset?: QuizPreset) => void;
 }

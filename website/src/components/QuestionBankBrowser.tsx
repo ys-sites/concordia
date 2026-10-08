@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { CourseId, CourseDocument, PracticeQuestion } from '../types';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
 import { COURSES_DATA } from '../data/coursesData';
@@ -54,6 +54,12 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
     });
   }, [selectedCourse, selectedDifficulty, searchQuery]);
 
+  // Rendering all ~800 cards at once builds ~27,000 DOM nodes and makes every later
+  // interaction janky. Show a page at a time and add more as the list nears the viewport.
+  const PAGE = 40;
+  const [limit, setLimit] = useState(PAGE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
   const displayQuestions = useMemo(() => {
     if (!shuffleMode) return filteredQuestions;
     void shuffleSeed; // re-roll on demand
@@ -72,6 +78,17 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
       };
     });
   }, [filteredQuestions, shuffleMode, shuffleSeed]);
+
+  useEffect(() => setLimit(PAGE), [displayQuestions]);
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting) setLimit((l) => l + PAGE);
+    }, { rootMargin: '900px 0px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [limit, displayQuestions]);
 
   return (
     <div className="bank-browser-container">
@@ -191,7 +208,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
 
       {/* Question Cards Accordion List */}
       <div className="bank-questions-list">
-        {displayQuestions.map((q, idx) => {
+        {displayQuestions.slice(0, limit).map((q, idx) => {
           const isExpanded = expandedId === q.id;
           const letter = ['A', 'B', 'C', 'D'][q.correctIndex];
 
@@ -272,6 +289,13 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
             </div>
           );
         })}
+        {limit < displayQuestions.length && (
+          <div ref={sentinelRef} className="bank-more">
+            <button type="button" className="filter-btn" onClick={() => setLimit((l) => l + PAGE)}>
+              Show more ({displayQuestions.length - limit} left)
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

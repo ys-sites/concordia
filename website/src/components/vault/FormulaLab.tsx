@@ -40,7 +40,9 @@ export const FormulaLab: React.FC<Props> = ({ content, idx, nav, focusFormula })
       .filter((g) => g.items.length > 0);
   }, [content, filter]);
 
-  const lessonMastery = (f: Formula) => mastery(lessonItems(f, idx).map((it) => it.key), stats);
+  // lesson item keys are stable, so build them once rather than re-running every calculator on each render
+  const lessonKeys = useMemo(() => new Map(content.formulas.map((f) => [f.id, lessonItems(f, idx).map((it) => it.key)])), [content, idx]);
+  const lessonMastery = (f: Formula) => mastery(lessonKeys.get(f.id) ?? [], stats);
   const active = idx.formula.get(activeId) ?? content.formulas[0];
   if (!active) return <p className="mg-small mg-muted">No lessons yet.</p>;
 
@@ -97,7 +99,7 @@ export const FormulaLab: React.FC<Props> = ({ content, idx, nav, focusFormula })
   );
 };
 
-const LessonCard: React.FC<{ f: Formula; content: GateContent; idx: GateIndex; nav: GateNav }> = ({ f, content, idx, nav }) => {
+export const LessonCard: React.FC<{ f: Formula; content: GateContent; idx: GateIndex; nav: GateNav }> = ({ f, content, idx, nav }) => {
   const learn = f.learn;
   const hasCalc = !!(f.calc && CALCULATORS[f.calc]);
   const items = useMemo(() => lessonItems(f, idx), [f, idx]);
