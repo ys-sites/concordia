@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { BookOpen, Layers, Repeat, Trophy, XCircle } from 'lucide-react';
+import { BookOpen, Layers, Repeat, Trophy } from 'lucide-react';
 import { MathText } from '../../utils/mathRenderer';
 import type { DrillTarget, GateContent, GateNav } from './vaultTypes';
 import type { GateIndex } from './shared';
@@ -81,7 +81,6 @@ export const HiddenQuiz: React.FC<Props> = ({ content, idx, nav }) => {
   const subjects = useMemo(() => content.subjects.filter((s) => s.topics.some((t) => midtermTopics.has(t))), [content, midtermTopics]);
 
   const repeats = useMemo(() => papers.filter((q) => repeatTypeOf(q.id, idx) && isDrillable(q)), [papers, idx]);
-  const missedCount = Object.values(stats).filter((s) => s.last === 0).length;
   const allCount = useMemo(() => papers.filter(isDrillable).length, [papers]);
   const m = useMemo(() => {
     const keys = papers.filter(isDrillable).map((q) => q.id);
@@ -118,7 +117,7 @@ export const HiddenQuiz: React.FC<Props> = ({ content, idx, nav }) => {
           <Trophy size={17} /> Quiz drill
         </h3>
         <p className="mg-section-sub">
-          The full drill experience — every repeat, everything you missed, every past-paper question — with read-aloud and worked step-by-step solutions. Midterm
+          The full drill experience — every repeat, every past-paper question — with read-aloud and worked step-by-step solutions. Midterm
           material only. You have mastered {m.done} of {m.total} past-paper questions so far.
         </p>
         <div className="mg-quick">
@@ -127,12 +126,6 @@ export const HiddenQuiz: React.FC<Props> = ({ content, idx, nav }) => {
               <Repeat size={15} /> Every repeated question ({repeats.length})
             </b>
             <span>The highest-value set: everything asked on more than one paper.</span>
-          </button>
-          <button type="button" onClick={() => start({ scope: 'missed' }, 'Everything I missed')} disabled={!missedCount}>
-            <b>
-              <XCircle size={15} /> Everything I missed ({missedCount})
-            </b>
-            <span>Questions and practice items whose last attempt was wrong.</span>
           </button>
           <button type="button" onClick={() => start({ scope: 'all' }, 'All past-paper questions')} disabled={!allCount}>
             <b>
