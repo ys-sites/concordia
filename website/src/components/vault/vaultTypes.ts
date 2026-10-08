@@ -227,7 +227,7 @@ export interface QuizPreset {
   cats?: QuizCat[];
 }
 
-export type GateDoc = 'plan' | 'topics' | 'quiz' | 'gradesaver';
+export type GateDoc = 'plan' | 'topics' | 'analyzer' | 'quiz' | 'gradesaver';
 export interface GateNav {
   openQuestion: (id: string) => void;
   openFormula: (id: string) => void;
@@ -238,4 +238,5 @@ export interface GateNav {
   startDrill: (target: DrillTarget, title: string) => void;
   showTopic: (topic: string) => void;
   openQuiz: (preset?: QuizPreset) => void;
+  openAnalytics: () => void;
 }

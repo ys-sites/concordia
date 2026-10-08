@@ -1092,3 +1092,23 @@
     justify-content: center;
   }
 }
+
+.th-analytics-link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 9px;
+  border: 1px dashed var(--border-highlight);
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.th-analytics-link:hover {
+  color: var(--mg-accent);
+  border-color: var(--mg-accent);
+}

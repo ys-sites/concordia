@@ -1,11 +1,10 @@
 // "Topics": every midterm subtopic in the order of the teacher's notes, each with three
 // actions (Watch · Learn · Practice) and its past-paper questions folded underneath.
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AlertTriangle, BarChart3, BookOpen, ChevronDown, ChevronRight, Eye, EyeOff, Grid3x3, PlayCircle, Sigma, Video } from 'lucide-react';
+import { BarChart3, BookOpen, ChevronDown, ChevronRight, Eye, EyeOff, PlayCircle, Sigma, Video } from 'lucide-react';
 import { MathText } from '../../utils/mathRenderer';
 import type { Cluster, Expectation, GateContent, GateNav, MatchType, Subject } from './vaultTypes';
 import { GateIndex, MatchBadge, QuestionCard, RefsRow, repeatTypeOf } from './shared';
-import { RepeatStatsBar } from './DrillsMenu';
 import { isDrillable, lessonItems, loadStats, mastery, Stats } from './drill';
 import { hasVideo } from './Drawers';
 
@@ -59,7 +58,6 @@ export const TopicsHub: React.FC<Props> = ({ content, idx, nav, focusTopic }) =>
   const drillable = papers.filter(isDrillable);
   const m = mastery(drillable.map((q) => q.id), stats);
   const backPct = papers.length ? Math.round((100 * (byType.exact + byType.template)) / papers.length) : 0;
-  const corrections = content.questions.filter((q) => q.status === 'corrected');
 
   return (
     <div className="mg-root" style={{ gap: 14 }}>
@@ -117,73 +115,9 @@ export const TopicsHub: React.FC<Props> = ({ content, idx, nav, focusTopic }) =>
         />
       ))}
 
-      <details className="mg-panel mg-panel-pad th-more">
-        <summary>
-          <BarChart3 size={16} /> Exam statistics
-        </summary>
-        <ul className="mg-points" style={{ marginTop: 10 }}>
-          {content.overview.points.map((p, i) => (
-            <li key={i}>
-              <MathText text={p} />
-            </li>
-          ))}
-        </ul>
-        <RepeatStatsBar stats={byType} />
-      </details>
-
-      {corrections.length > 0 && (
-        <details className="mg-panel mg-panel-pad th-more">
-          <summary>
-            <AlertTriangle size={16} /> Answer-key corrections ({corrections.length})
-          </summary>
-          <p className="mg-section-sub" style={{ marginTop: 8 }}>
-            The posted solutions are wrong on these. Learn the corrected answer.
-          </p>
-          {corrections.map((q) => (
-            <QuestionCard key={q.id} q={q} idx={idx} nav={nav} showTopic />
-          ))}
-        </details>
-      )}
-
-      <details className="mg-panel mg-panel-pad th-more">
-        <summary>
-          <Grid3x3 size={16} /> Paper × topic map
-        </summary>
-        <p className="mg-section-sub" style={{ marginTop: 8 }}>
-          How many questions each paper asked on each topic. Click a topic to jump to it.
-        </p>
-        <div className="mg-heat-wrap">
-          <table className="mg-heat">
-            <thead>
-              <tr>
-                <th>Topic</th>
-                {content.exams.map((e) => (
-                  <th key={e.id}>{e.short}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {content.topics.map((t) => {
-                const counts = content.exams.map((e) => content.questions.filter((q) => q.topic === t.id && q.exam === e.id).length);
-                const max = Math.max(1, ...counts);
-                return (
-                  <tr key={t.id}>
-                    <td className="topic" onClick={() => nav.showTopic(t.id)}>
-                      <span className="mg-muted mg-small">{t.ch} · </span>
-                      {t.name}
-                    </td>
-                    {counts.map((n, i) => (
-                      <td key={i} className={n === 0 ? 'zero' : ''} style={n ? { background: `rgba(225, 29, 72, ${0.1 + (0.5 * n) / max})` } : undefined}>
-                        {n || '·'}
-                      </td>
-                    ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </details>
+      <button type="button" className="th-analytics-link" onClick={nav.openAnalytics}>
+        <BarChart3 size={15} /> See the full exam analytics: what repeats, corrections, paper × topic map
+      </button>
     </div>
   );
 };

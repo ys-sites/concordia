@@ -33,15 +33,15 @@ export const RepeatStatsBar: React.FC<{ stats: RepeatStats }> = ({ stats: s }) =
         </div>
         <div className="mg-kpi">
           <div className="mg-kpi-value">{s.exact}</div>
-          <div className="mg-kpi-label">{MATCH_LABEL.exact.toLowerCase()}s</div>
+          <div className="mg-kpi-label">exact repeats</div>
         </div>
         <div className="mg-kpi">
           <div className="mg-kpi-value">{s.template}</div>
-          <div className="mg-kpi-label">{MATCH_LABEL.template.toLowerCase()}s</div>
+          <div className="mg-kpi-label">same question, new numbers</div>
         </div>
         <div className="mg-kpi">
           <div className="mg-kpi-value">{s.concept}</div>
-          <div className="mg-kpi-label">{MATCH_LABEL.concept.toLowerCase()}s</div>
+          <div className="mg-kpi-label">same idea, new angles</div>
         </div>
         <div className="mg-kpi">
           <div className="mg-kpi-value">{s.once}</div>

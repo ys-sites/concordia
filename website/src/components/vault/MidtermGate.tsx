@@ -9,6 +9,7 @@ import { GateCourse, lockGate, resumeGate, unlockGate } from './vaultCrypto';
 import { MatchBadge, QuestionCard, useGateIndex } from './shared';
 import { buildDrill, DrillItem, loadStats } from './drill';
 import { TopicsHub } from './TopicsHub';
+import { PatternAnalyzer } from './PatternAnalyzer';
 import { LessonDrawer, VideoDrawer } from './Drawers';
 import { StudyPlan, daysUntil } from './StudyPlan';
 import { GradesaverDoc } from './GradesaverDoc';
@@ -31,6 +32,7 @@ const docList = (course: GateCourse): DocDef[] => {
   const docs: DocDef[] = [
     { id: 'plan', title: 'Start here: your midterm plan', short: 'Start here', sub: 'One step at a time, with finish-by dates. Each step opens right inside the plan.', icon: <ClipboardList size={20} /> },
     { id: 'topics', title: 'Topics', short: 'Topics', sub: 'Every subtopic in the order of the teacher’s notes: watch a video, learn it step by step, practise it, and see its past questions.', icon: <BookOpen size={20} /> },
+    { id: 'analyzer', title: 'Exam analytics', short: 'Exam analytics', sub: 'What repeats on past papers: % repeated, subject by subject, repeat groups, answer-key corrections and the paper × topic map, with a drill for every group.', icon: <Repeat size={20} /> },
     { id: 'quiz', title: 'Skill Quiz', short: 'Skill Quiz', sub: 'Build your own quiz: choose the chapter or subtopics and the kind of questions; get the source and a video after every answer.', icon: <Target size={20} /> }
   ];
   if (course === 'ENGR213') docs.push({ id: 'gradesaver', title: 'Tutor notes (Gradesaver)', short: 'Tutor notes', sub: 'The handwritten tutor notes, the typeset blueprint, and the 5-phase solving system.', icon: <Sparkles size={20} /> });
@@ -38,7 +40,7 @@ const docList = (course: GateCourse): DocDef[] => {
 };
 
 // Tabs from the older layout land on the page that replaced them
-const LEGACY: Record<string, GateDoc> = { analyzer: 'topics', formulas: 'topics', videos: 'topics' };
+const LEGACY: Record<string, GateDoc> = { formulas: 'topics', videos: 'topics' };
 
 interface Props {
   course: CourseWithDocs;
@@ -63,6 +65,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
     }
   });
   const [focusTopic, setFocusTopic] = useState<string | null>(null);
+  const [analyzerTopic, setAnalyzerTopic] = useState<string | null>(null);
   const [lessonId, setLessonId] = useState<string | null>(null);
   const [videoTopic, setVideoTopic] = useState<string | null>(null);
   const [drawerQ, setDrawerQ] = useState<string | null>(null);
@@ -190,6 +193,11 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
         setDrawerQ(null);
         setDrill({ title, items: buildDrill(target, content, idx, loadStats(content.course)) });
       },
+      openAnalytics: () => {
+        setDrawerQ(null);
+        setDoc('analyzer');
+        scrollTop();
+      },
       openQuiz: (preset?: QuizPreset) => {
         setDrawerQ(null);
         setDrill(null);
@@ -310,6 +318,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
           </div>
           {doc === 'plan' && <StudyPlan content={content} idx={idx} nav={nav} />}
           {doc === 'topics' && <TopicsHub content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
+          {doc === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} focusTopic={analyzerTopic} />}
           {doc === 'quiz' && <SkillQuiz content={content} idx={idx} nav={nav} preset={quizPreset} />}
           {doc === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
         </>
