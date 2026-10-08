@@ -1,54 +1,56 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, CalendarClock, ChevronRight, FileLock2, FileText, KeyRound, Loader2, Lock, Repeat, Sigma, Video, X } from 'lucide-react';
+import { ArrowLeft, CalendarClock, ChevronRight, ClipboardList, FileLock2, FileText, KeyRound, Loader2, Lock, Repeat, Sigma, Sparkles, Video, X } from 'lucide-react';
 import type { CourseWithDocs } from '../../data/coursesData';
 import type { CourseDocument } from '../../types';
 import { audio } from '../../utils/audio';
 import { MathText } from '../../utils/mathRenderer';
-import type { GateContent, GateDoc, GateNav, LectureRef } from './vaultTypes';
-import { lockGate, resumeGate, unlockGate } from './vaultCrypto';
+import type { DrillTarget, GateContent, GateDoc, GateNav, LectureRef } from './vaultTypes';
+import { GateCourse, lockGate, resumeGate, unlockGate } from './vaultCrypto';
 import { MatchBadge, QuestionCard, useGateIndex } from './shared';
+import { buildDrill, DrillItem, loadStats } from './drill';
 import { PatternAnalyzer } from './PatternAnalyzer';
 import { FormulaLab } from './FormulaLab';
 import { VideoPath } from './VideoPath';
+import { StudyPlan, daysUntil } from './StudyPlan';
+import { GradesaverDoc } from './GradesaverDoc';
+import { DrillRunner } from './DrillRunner';
 import './midtermGate.css';
+import './gateExtras.css';
 
-const DOC_KEY = 'miae221_gate_doc';
+// Public, non-sensitive labels shown before the folder is unlocked
+const LAB_TITLE: Record<GateCourse, string> = {
+  MIAE221: 'Formula Lab',
+  MIAE215: 'Code Tracing Lab',
+  ENGR213: 'Method Lab',
+  INDU211: 'Calculation Lab'
+};
 
-const DOCS: { id: GateDoc; title: string; sub: string; icon: React.ReactNode }[] = [
-  {
-    id: 'analyzer',
-    title: 'Midterm Pattern Analyzer',
-    sub: 'Which questions repeat across the past midterms, what changed each time, and what in the teacher’s notes to study for each.',
-    icon: <Repeat size={20} />
-  },
-  {
-    id: 'formulas',
-    title: 'Formula Lab',
-    sub: 'Every calculation for the midterm as a live calculator, loaded with real exam numbers and mapped to slides and Callister examples.',
-    icon: <Sigma size={20} />
-  },
-  {
-    id: 'videos',
-    title: 'Video Revision Path',
-    sub: 'One stop per topic: a specific video to learn it, a worked example, what to watch for, and the exam questions to do next.',
-    icon: <Video size={20} />
-  }
-];
+interface DocDef {
+  id: GateDoc;
+  title: string;
+  sub: string;
+  icon: React.ReactNode;
+}
+
+const docList = (course: GateCourse, content: GateContent | null): DocDef[] => {
+  const docs: DocDef[] = [
+    { id: 'plan', title: 'Midterm Prep Plan', sub: 'Your step-by-step path to the midterm: what to read first, what to practise next, with a checklist.', icon: <ClipboardList size={20} /> },
+    { id: 'analyzer', title: 'Pattern Analyzer & Drills', sub: 'Past-paper questions sorted by subject and subtopic, what repeats, and a drill for every group.', icon: <Repeat size={20} /> },
+    { id: 'formulas', title: content?.labTitle ?? LAB_TITLE[course], sub: 'Each method in four steps: understand it, follow a worked example, try the calculator, then a practice quiz.', icon: <Sigma size={20} /> },
+    { id: 'videos', title: 'Video Revision Path', sub: 'One stop per topic: a specific video to learn it, what to watch for, and the questions to do next.', icon: <Video size={20} /> }
+  ];
+  if (course === 'ENGR213') docs.push({ id: 'gradesaver', title: 'Gradesaver Tutor Vault', sub: 'The handwritten tutor notes, the typeset blueprint, and the 5-phase solving system.', icon: <Sparkles size={20} /> });
+  return docs;
+};
 
 interface Props {
   course: CourseWithDocs;
   onViewPdf: (doc: CourseDocument, page?: number) => void;
 }
 
-const daysUntil = (iso: string) => {
-  const [y, m, d] = iso.split('-').map(Number);
-  const target = new Date(y, m - 1, d).getTime();
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-  return Math.round((target - today) / 86400000);
-};
-
 export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
+  const courseId = course.id as GateCourse;
+  const DOC_KEY = `gate_doc_${courseId}`;
   const [content, setContent] = useState<GateContent | null>(null);
   const [checking, setChecking] = useState(true);
   const [password, setPassword] = useState('');
@@ -64,14 +66,16 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
   });
   const [focusFormula, setFocusFormula] = useState<string | null>(null);
   const [focusTopic, setFocusTopic] = useState<string | null>(null);
-  const [topicFilter, setTopicFilter] = useState<string | null>(null);
+  const [focusVideoTopic, setFocusVideoTopic] = useState<string | null>(null);
   const [drawerQ, setDrawerQ] = useState<string | null>(null);
+  const [drill, setDrill] = useState<{ title: string; items: DrillItem[] } | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let alive = true;
-    resumeGate().then((c) => {
+    setChecking(true);
+    resumeGate(courseId).then((c) => {
       if (!alive) return;
       setContent(c);
       setChecking(false);
@@ -79,7 +83,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [courseId]);
 
   useEffect(() => {
     try {
@@ -88,7 +92,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
     } catch {
       // ignore
     }
-  }, [doc]);
+  }, [doc, DOC_KEY]);
 
   useEffect(() => {
     if (!drawerQ) return;
@@ -102,12 +106,13 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
     if (!password.trim() || busy) return;
     setBusy(true);
     setWrong(false);
-    const c = await unlockGate(password).catch(() => null);
+    const c = await unlockGate(courseId, password).catch(() => null);
     setBusy(false);
     if (c) {
       audio.playCorrect();
       setContent(c);
       setPassword('');
+      if (!doc) setDoc('plan');
     } else {
       audio.playIncorrect();
       setWrong(true);
@@ -123,6 +128,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
     setDoc(null);
   };
 
+  const scrollTop = () => topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const openDoc = (d: GateDoc | null) => {
     audio.playClick();
     if (!content) {
@@ -130,43 +136,75 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
       return;
     }
     setDoc(d);
-    topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollTop();
   };
 
-  const findLecture = (l: number) => course.documents.find((d) => new RegExp(`^lecture ${l}-`, 'i').test(d.filename));
+  const idx = useGateIndexMaybe(content);
+
+  const findDoc = (path: string) => course.documents.find((d) => d.relativePath === path);
+  const viewPath = (path: string, title: string, page?: number) => {
+    const d =
+      findDoc(path) ??
+      ({ id: `${courseId}:gate:${path}`, courseId, categoryId: 'Midterm Gate', categoryTitle: 'Midterm Gate', title, filename: path.split('/').pop()!, relativePath: path, tags: [], summary: title } as CourseDocument);
+    onViewPdf(d, page);
+  };
+
   const nav: GateNav = useMemo(
     () => ({
       openQuestion: (id) => setDrawerQ(id),
       openFormula: (id) => {
         setDrawerQ(null);
-        setFocusFormula(id);
+        setDrill(null);
+        setFocusFormula(null);
+        setTimeout(() => setFocusFormula(id), 0);
         setDoc('formulas');
-        topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        scrollTop();
       },
       openTopicVideos: (topic) => {
         setDrawerQ(null);
         setDoc('videos');
+        setFocusVideoTopic(null);
+        setTimeout(() => setFocusVideoTopic(topic), 50);
+      },
+      showTopic: (topic) => {
+        setDrawerQ(null);
+        setDoc('analyzer');
         setFocusTopic(null);
         setTimeout(() => setFocusTopic(topic), 50);
       },
       openLecture: (r: LectureRef) => {
-        const d = findLecture(r.l);
-        if (d) onViewPdf(d, r.s);
+        if (!content) return;
+        if (r.d && content.docs[r.d]) return viewPath(content.docs[r.d].path, content.docs[r.d].title, r.s);
+        if (r.l !== undefined) {
+          const re = new RegExp((content.lectureMatch ?? '^lecture {l}-').replace('{l}', String(r.l)), 'i');
+          const d = course.documents.find((x) => re.test(x.filename));
+          if (d) onViewPdf(d, r.s);
+        }
+      },
+      openDoc: (key, page) => {
+        if (!content) return;
+        const d = content.docs[key];
+        if (d) viewPath(d.path, d.title, page);
       },
       openGuide: (part: string) => {
         const d = course.documents.find((x) => /Comprehensive Topic Guides/i.test(x.relativePath) && x.filename.startsWith(`${part} - `));
         if (d) onViewPdf(d);
+      },
+      startDrill: (target: DrillTarget, title: string) => {
+        if (!content || !idx) return;
+        setDrawerQ(null);
+        setDrill({ title, items: buildDrill(target, content, idx, loadStats(content.course)) });
       }
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [course, onViewPdf]
+    [course, onViewPdf, content, idx]
   );
 
-  const days = content ? daysUntil(content.midtermDate) : null;
+  const days = content ? daysUntil(content.midterm.date) : null;
+  const DOCS = docList(courseId, content);
 
   return (
     <div className="mg-root" ref={topRef} style={{ scrollMarginTop: 90 }}>
-      {/* Folder header */}
       <section className="fx-panel">
         <div className="mg-panel-pad">
           <div className="mg-gate-head">
@@ -174,14 +212,17 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
               <span className="mg-icon-tile">{content ? <FileText size={20} /> : <FileLock2 size={20} />}</span>
               <div>
                 <h2>Midterm Gate</h2>
-                <p>MIAE 221 · hidden folder · 3 documents</p>
+                <p>
+                  {course.code} · hidden folder · {DOCS.length} documents
+                </p>
               </div>
             </div>
             <div className="mg-head-actions">
-              {days !== null && days >= 0 && (
+              {content && (
                 <span className="mg-countdown">
                   <CalendarClock size={14} />
-                  {days === 0 ? 'Midterm today' : `${days} day${days === 1 ? '' : 's'} to the midterm`} · Fri Oct 30
+                  {days !== null && days >= 0 ? `${days === 0 ? 'Midterm today' : `${days} day${days === 1 ? '' : 's'} to the midterm`} · ` : ''}
+                  {content.midterm.label}
                 </span>
               )}
               {content && (
@@ -214,28 +255,8 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
             ))}
           </ol>
         )}
-
-        {content && !doc && (
-          <div className="mg-loop">
-            <b style={{ color: 'var(--text-primary)' }}>How to use this before Oct 30:</b>
-            <ol>
-              <li>
-                <b>Pattern Analyzer:</b> start with the “Very likely” clusters. These questions came back on paper after paper.
-              </li>
-              <li>
-                <b>Video Revision Path:</b> for any cluster you can’t answer cold, watch that topic’s stop and do the listed questions.
-              </li>
-              <li>
-                <b>Formula Lab:</b> load each calculation preset, solve on paper first, then check. Change one number and solve again; the next
-                exam will change it too.
-              </li>
-              <li>Last 48 h: Analyzer in self-test mode (answers hidden) for all T/F clusters.</li>
-            </ol>
-          </div>
-        )}
       </section>
 
-      {/* Lock screen */}
       {!content && (
         <section className={`fx-panel ${shake ? 'shake-incorrect' : ''}`}>
           <div className="mg-lock">
@@ -267,72 +288,62 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
         </section>
       )}
 
-      {/* Open document */}
-      {content && doc && (
-        <GateDocument
-          content={content}
-          doc={doc}
-          setDoc={openDoc}
-          nav={nav}
-          focusFormula={focusFormula}
-          focusTopic={focusTopic}
-          topicFilter={topicFilter}
-          setTopicFilter={setTopicFilter}
-        />
+      {content && idx && doc && (
+        <>
+          <div className="mg-gate-head">
+            <button type="button" className="mg-btn" onClick={() => openDoc(null)}>
+              <ArrowLeft size={14} /> Folder
+            </button>
+            <div className="mg-tabs" role="tablist">
+              {DOCS.map((d, i) => (
+                <button key={d.id} type="button" role="tab" aria-selected={doc === d.id} className={`mg-tab ${doc === d.id ? 'active' : ''}`} onClick={() => openDoc(d.id)}>
+                  {d.icon}
+                  <span>
+                    0{i + 1} {d.title}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+          {doc === 'plan' && <StudyPlan content={content} idx={idx} nav={nav} />}
+          {doc === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
+          {doc === 'formulas' && <FormulaLab content={content} idx={idx} nav={nav} focusFormula={focusFormula} />}
+          {doc === 'videos' && <VideoPath content={content} idx={idx} nav={nav} focusTopic={focusVideoTopic} />}
+          {doc === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
+        </>
       )}
 
-      {content && drawerQ && <QuestionDrawer content={content} id={drawerQ} nav={nav} onClose={() => setDrawerQ(null)} onShowCluster={(topic) => {
-        setDrawerQ(null);
-        setTopicFilter(topic);
-        setDoc('analyzer');
-      }} />}
+      {content && idx && drawerQ && <QuestionDrawer content={content} idx={idx} id={drawerQ} nav={nav} onClose={() => setDrawerQ(null)} />}
+      {content && drill && <DrillRunner course={content.course} title={drill.title} items={drill.items} onClose={() => setDrill(null)} onOpenQuestion={(id) => setDrawerQ(id)} />}
     </div>
   );
 };
 
-const GateDocument: React.FC<{
-  content: GateContent;
-  doc: GateDoc;
-  setDoc: (d: GateDoc | null) => void;
-  nav: GateNav;
-  focusFormula: string | null;
-  focusTopic: string | null;
-  topicFilter: string | null;
-  setTopicFilter: (t: string | null) => void;
-}> = ({ content, doc, setDoc, nav, focusFormula, focusTopic, topicFilter, setTopicFilter }) => {
-  const idx = useGateIndex(content);
-  return (
-    <>
-      <div className="mg-gate-head">
-        <button type="button" className="mg-btn" onClick={() => setDoc(null)}>
-          <ArrowLeft size={14} /> Folder
-        </button>
-        <div className="mg-tabs" role="tablist">
-          {DOCS.map((d, i) => (
-            <button key={d.id} type="button" role="tab" aria-selected={doc === d.id} className={`mg-tab ${doc === d.id ? 'active' : ''}`} onClick={() => setDoc(d.id)}>
-              {d.icon}
-              <span>
-                0{i + 1} {d.title}
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
-      {doc === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} topicFilter={topicFilter} setTopicFilter={setTopicFilter} />}
-      {doc === 'formulas' && <FormulaLab content={content} idx={idx} nav={nav} focusFormula={focusFormula} />}
-      {doc === 'videos' && <VideoPath content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
-    </>
-  );
+// useGateIndex needs content; keep hook order stable while locked
+const EMPTY: GateContent = {
+  version: 0,
+  course: '',
+  builtFor: '',
+  midterm: { date: null, label: '', scope: '' },
+  labTitle: '',
+  labBlurb: '',
+  docs: {},
+  overview: { headline: '', points: [] },
+  exams: [],
+  subjects: [],
+  topics: [],
+  questions: [],
+  clusters: [],
+  formulas: [],
+  videoStops: [],
+  plan: { intro: '', phases: [] }
+};
+const useGateIndexMaybe = (c: GateContent | null) => {
+  const idx = useGateIndex(c ?? EMPTY);
+  return c ? idx : null;
 };
 
-const QuestionDrawer: React.FC<{
-  content: GateContent;
-  id: string;
-  nav: GateNav;
-  onClose: () => void;
-  onShowCluster: (topic: string) => void;
-}> = ({ content, id, nav, onClose, onShowCluster }) => {
-  const idx = useGateIndex(content);
+const QuestionDrawer: React.FC<{ content: GateContent; idx: ReturnType<typeof useGateIndex>; id: string; nav: GateNav; onClose: () => void }> = ({ idx, id, nav, onClose }) => {
   const q = idx.q.get(id);
   if (!q) return null;
   const clusters = idx.clustersOfQ.get(id) ?? [];
@@ -348,7 +359,7 @@ const QuestionDrawer: React.FC<{
         <QuestionCard q={q} idx={idx} nav={nav} hideAnswer showTopic />
         {clusters.map((c) => (
           <div key={c.id} className="mg-callout">
-            <b>Part of a repeat cluster</b>
+            <b>Repeats in this group</b>
             <div style={{ fontWeight: 700, marginBottom: 6 }}>
               <MathText text={c.title} />
             </div>
@@ -356,9 +367,14 @@ const QuestionDrawer: React.FC<{
             <div style={{ marginTop: 8 }}>
               <MathText text={c.changes} />
             </div>
-            <button type="button" className="mg-btn small" style={{ marginTop: 8 }} onClick={() => onShowCluster(c.topic)}>
-              <Repeat size={12} /> Open in the Pattern Analyzer
-            </button>
+            <div className="dr-actions">
+              <button type="button" className="mg-btn small" onClick={() => nav.startDrill({ scope: 'cluster', id: c.id }, 'This repeat group')}>
+                Drill this group
+              </button>
+              <button type="button" className="mg-btn small" onClick={() => nav.showTopic(c.topic)}>
+                <Repeat size={12} /> Open in the analyzer
+              </button>
+            </div>
           </div>
         ))}
       </aside>

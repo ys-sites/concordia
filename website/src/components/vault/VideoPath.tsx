@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { CheckCircle2, ExternalLink, Play, Route, Sigma } from 'lucide-react';
 import { MathText } from '../../utils/mathRenderer';
 import type { GateContent, GateNav, Video } from './vaultTypes';
-import { ExamTag, GateIndex, marksOf } from './shared';
+import { ExamTag, GateIndex } from './shared';
 
 const WATCHED_KEY = 'miae221_gate_watched';
 
@@ -66,8 +66,7 @@ export const VideoPath: React.FC<Props> = ({ content, idx, nav, focusTopic }) =>
         </h3>
         <p className="mg-section-sub">
           One stop per midterm topic. Each stop has a short “learn it” video, a worked example, what to watch for, and the past-exam questions
-          to do straight after. Mostly Taylor Sparks (Univ. of Utah materials science) and The Organic Chemistry Tutor, plus a few others where
-          they had a better video for a specific step. Every link was checked on YouTube.
+          to do straight after. The channels used are listed below; every link was checked on YouTube.
         </p>
         <div className="mg-refs">
           {channels.map(([ch, n]) => (
@@ -89,7 +88,7 @@ export const VideoPath: React.FC<Props> = ({ content, idx, nav, focusTopic }) =>
           const topic = idx.topic.get(stop.topic);
           const tq = content.questions.filter((q) => q.topic === stop.topic && idx.midtermIds.includes(q.exam));
           const hits = idx.midtermIds.filter((m) => tq.some((q) => q.exam === m)).length;
-          const marks = tq.reduce((s, q) => s + marksOf(q), 0);
+
           const done = stop.videos.filter((v) => v.role !== 'extra').every((v) => watched.has(v.id));
           return (
             <article
@@ -104,8 +103,8 @@ export const VideoPath: React.FC<Props> = ({ content, idx, nav, focusTopic }) =>
               <div style={{ minWidth: 0 }}>
                 <div className="mg-q-head" style={{ marginBottom: 0 }}>
                   <span className="mg-badge neutral">{topic?.ch}</span>
-                  <span className={`mg-badge ${hits === 3 ? 'exact' : hits === 2 ? 'template' : hits === 1 ? 'concept' : 'neutral'}`}>
-                    on {hits}/3 midterms · {marks} marks
+                  <span className={`mg-badge ${hits >= 3 ? 'exact' : hits === 2 ? 'template' : hits === 1 ? 'concept' : 'neutral'}`}>
+                    {tq.length} Q · on {hits}/{idx.paperIds.length} past papers
                   </span>
                 </div>
                 <h4>{stop.title}</h4>
@@ -129,7 +128,7 @@ export const VideoPath: React.FC<Props> = ({ content, idx, nav, focusTopic }) =>
                           <span className="play">
                             <Play size={34} fill="currentColor" />
                           </span>
-                          <span className="len">{v.len}</span>
+                          {v.len && <span className="len">{v.len}</span>}
                         </button>
                       )}
                       <div className="mg-video-body">

@@ -12,6 +12,7 @@ interface BaseInput {
 export type CalcInput =
   | (BaseInput & { type: 'number'; def: string })
   | (BaseInput & { type: 'text'; def: string; hint?: string })
+  | (BaseInput & { type: 'area'; def: string; hint?: string; rows?: number })
   | (BaseInput & { type: 'select'; def: string; options: { value: string; label: string }[] });
 
 export interface CalcRow {
@@ -67,8 +68,8 @@ export const fmt = (x: number, sig = 4): string => {
   return String(Number(x.toPrecision(sig)));
 };
 
-const fail = (error: string): CalcResult => ({ rows: [], steps: [], error });
-const need = (...xs: number[]) => xs.every((x) => Number.isFinite(x));
+export const fail = (error: string): CalcResult => ({ rows: [], steps: [], error });
+export const need = (...xs: number[]) => xs.every((x) => Number.isFinite(x));
 const deg = (r: number) => (r * 180) / Math.PI;
 const rad = (d: number) => (d * Math.PI) / 180;
 
@@ -974,6 +975,9 @@ export const CALCULATORS: Record<string, Calculator> = {
     }
   }
 };
+
+import { MORE_CALCULATORS } from './calculators2';
+Object.assign(CALCULATORS, MORE_CALCULATORS);
 
 export const defaultsFor = (calc: Calculator): CalcValues => {
   const v: CalcValues = {};

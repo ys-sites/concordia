@@ -42,6 +42,8 @@ import {
 import { FilteredDocumentSection } from './FilteredDocumentSection';
 import { TermPaperVaultSection } from './TermPaperVaultSection';
 import { GateGlyph } from './vault/GateGlyph';
+import { hasGate } from './vault/gateCourses';
+import { WeeklyPath, WEEKLY_FOLDER, hasWeeklyPath } from './WeeklyPath';
 
 // Hidden MIAE 221 folder, opened from the glyph after the course title. Loaded on demand.
 const MidtermGate = lazy(() => import('./vault/MidtermGate'));
@@ -284,7 +286,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
               {course.code}
             </div>
             <h1 className="course-main-title">
-              {course.id === 'MIAE221' ? (
+              {hasGate(course.id) ? (
                 <>
                   {course.name.split(' ').slice(0, -1).join(' ')}{' '}
                   {/* keep the glyph on the same line as the last word */}
@@ -371,6 +373,19 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           <h2 className="fx-section-title">Course folders</h2>
           <div className="fx-folder-grid">
             {tree.folders.map(renderFolderTile)}
+            {hasWeeklyPath(course.id) && (
+              <button key="weekly-path" className="fx-folder-tile" onClick={() => openPath([WEEKLY_FOLDER])}>
+                <span className="fx-folder-icon">
+                  <Layers size={22} />
+                </span>
+                <span className="fx-folder-text">
+                  <span className="fx-folder-index">★</span>
+                  <span className="fx-folder-name">{WEEKLY_FOLDER}</span>
+                  <span className="fx-folder-meta">Teacher’s notes + expanded guides, week by week</span>
+                </span>
+                <ChevronRight size={18} className="fx-folder-chevron" />
+              </button>
+            )}
             {course.id === 'INDU211' && (
               <button
                 key="term-paper-vault"
@@ -407,10 +422,12 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             </button>
           </div>
         </section>
-      ) : activePath[0] === GATE_FOLDER && course.id === 'MIAE221' ? (
+      ) : activePath[0] === GATE_FOLDER && hasGate(course.id) ? (
         <Suspense fallback={<p className="fx-empty">Opening…</p>}>
           <MidtermGate course={course} onViewPdf={onViewPdf} />
         </Suspense>
+      ) : activePath[0] === WEEKLY_FOLDER && hasWeeklyPath(course.id) ? (
+        <WeeklyPath course={course} onViewPdf={onViewPdf} />
       ) : activePath[0] === 'Term Paper & Final Project' ? (
         <TermPaperVaultSection course={course} onViewPdf={onViewPdf} />
       ) : activePath[0] === 'Filtered document' ? (
