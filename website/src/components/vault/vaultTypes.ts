@@ -218,7 +218,7 @@ export interface GateContent {
   };
 }
 
-export type GateDoc = 'plan' | 'analyzer' | 'formulas' | 'videos' | 'gradesaver';
+export type GateDoc = 'plan' | 'analyzer' | 'formulas' | 'videos' | 'gradesaver' | 'quiz';
 export interface GateNav {
   openQuestion: (id: string) => void;
   openFormula: (id: string) => void;

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, CalendarClock, ChevronRight, ClipboardList, FileLock2, FileText, KeyRound, Loader2, Lock, Repeat, Sigma, Sparkles, Video, X } from 'lucide-react';
+import { ArrowLeft, CalendarClock, ChevronRight, ClipboardList, FileLock2, FileText, KeyRound, Loader2, Lock, Repeat, Sigma, Sparkles, Trophy, Video, X } from 'lucide-react';
 import type { CourseWithDocs } from '../../data/coursesData';
 import type { CourseDocument } from '../../types';
 import { audio } from '../../utils/audio';
@@ -14,6 +14,7 @@ import { VideoPath } from './VideoPath';
 import { StudyPlan, daysUntil } from './StudyPlan';
 import { GradesaverDoc } from './GradesaverDoc';
 import { DrillRunner } from './DrillRunner';
+import { HiddenQuiz } from './HiddenQuiz';
 import './midtermGate.css';
 import './gateExtras.css';
 
@@ -37,7 +38,8 @@ const docList = (course: GateCourse, content: GateContent | null): DocDef[] => {
     { id: 'plan', title: 'Midterm Prep Plan', sub: 'Your step-by-step path to the midterm: what to read first, what to practise next, with a checklist.', icon: <ClipboardList size={20} /> },
     { id: 'analyzer', title: 'Pattern Analyzer & Drills', sub: 'Past-paper questions sorted by subject and subtopic, what repeats, and a drill for every group.', icon: <Repeat size={20} /> },
     { id: 'formulas', title: content?.labTitle ?? LAB_TITLE[course], sub: 'Each method in four steps: understand it, follow a worked example, try the calculator, then a practice quiz.', icon: <Sigma size={20} /> },
-    { id: 'videos', title: 'Video Revision Path', sub: 'One stop per topic: a specific video to learn it, what to watch for, and the questions to do next.', icon: <Video size={20} /> }
+    { id: 'videos', title: 'Video Revision Path', sub: 'One stop per topic: a specific video to learn it, what to watch for, and the questions to do next.', icon: <Video size={20} /> },
+    { id: 'quiz', title: 'Hidden Quiz', sub: 'Drill every repeated and past-paper question with read-aloud and worked step-by-step solutions. Midterm material only.', icon: <Trophy size={20} /> }
   ];
   if (course === 'ENGR213') docs.push({ id: 'gradesaver', title: 'Gradesaver Tutor Vault', sub: 'The handwritten tutor notes, the typeset blueprint, and the 5-phase solving system.', icon: <Sparkles size={20} /> });
   return docs;
@@ -309,6 +311,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
           {doc === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
           {doc === 'formulas' && <FormulaLab content={content} idx={idx} nav={nav} focusFormula={focusFormula} />}
           {doc === 'videos' && <VideoPath content={content} idx={idx} nav={nav} focusTopic={focusVideoTopic} />}
+          {doc === 'quiz' && <HiddenQuiz content={content} idx={idx} nav={nav} />}
           {doc === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
         </>
       )}

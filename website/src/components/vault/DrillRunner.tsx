@@ -1,9 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, Check, CheckCircle2, Eye, Lightbulb, RefreshCw, RotateCcw, Shuffle, Trophy, X, XCircle } from 'lucide-react';
+import { ArrowRight, Check, CheckCircle2, ChevronDown, Eye, Lightbulb, Play, RefreshCw, RotateCcw, Shuffle, Trophy, X, XCircle } from 'lucide-react';
 import { MathText } from '../../utils/mathRenderer';
 import { audio } from '../../utils/audio';
+import { ReadAloudButton } from '../ReadAloudButton';
 import { DrillItem, grade, letter, recordResult } from './drill';
-import { CodeBlock } from './shared';
+import { CodeBlock, LectureButton } from './shared';
+import type { GateIndex } from './shared';
+import type { GateContent, GateNav } from './vaultTypes';
 
 const BADGE: Record<string, { text: string; cls: string }> = {
   exam: { text: 'Past exam', cls: 'exact' },
@@ -26,9 +29,16 @@ interface Props {
   embedded?: boolean;
   onClose?: () => void;
   onOpenQuestion?: (id: string) => void;
+  /** Hidden-quiz extras (all default off, so the shared/public drill path is unchanged) */
+  readAloud?: boolean;
+  /** Show the "Learn more" teacher-notes + video row under worked steps (hidden quiz only) */
+  showReferences?: boolean;
+  idx?: GateIndex;
+  content?: GateContent;
+  nav?: GateNav;
 }
 
-export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, embedded = false, onClose, onOpenQuestion }) => {
+export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, embedded = false, onClose, onOpenQuestion, readAloud = false, showReferences = false, idx, content, nav }) => {
   const [items, setItems] = useState<DrillItem[]>(initial);
   const [i, setI] = useState(0);
   const [choice, setChoice] = useState<string[]>([]);
@@ -36,6 +46,7 @@ export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, em
   const [checked, setChecked] = useState<null | boolean>(null);
   const [revealed, setRevealed] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [stepsOpen, setStepsOpen] = useState(false);
   const [results, setResults] = useState<Result[]>([]);
   const inputRef = useRef<HTMLInputElement & HTMLTextAreaElement>(null);
 
@@ -64,11 +75,24 @@ export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, em
     setChecked(null);
     setRevealed(false);
     setShowHint(false);
+    setStepsOpen(false);
   };
 
   const item = items[i];
   const done = i >= items.length;
   const score = results.filter((r) => r.ok).length;
+
+  // Spoken form of the current question (prompt + options); LaTeX is cleaned by the speech engine.
+  const speakText = useMemo(() => {
+    if (!item) return '';
+    let t = item.prompt;
+    if ((item.kind === 'mc' || item.kind === 'multi') && item.opts) {
+      t += ' ' + item.opts.map((o, k) => `${letter(k)}) ${o}`).join(' ');
+    } else if (item.kind === 'tf') {
+      t += ' True, or false?';
+    }
+    return t;
+  }, [item]);
 
   const finish = (ok: boolean) => {
     setChecked(ok);
@@ -185,6 +209,7 @@ export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, em
             <span className="mg-exam">{item.label}</span>
             {BADGE[item.badge] && <span className={`mg-badge ${BADGE[item.badge].cls}`}>{BADGE[item.badge].text}</span>}
             {item.kind === 'multi' && <span className="mg-badge info">Select all that apply</span>}
+            {readAloud && <ReadAloudButton text={speakText} stopKey={`${item.key}:${i}`} label="Read aloud" />}
           </div>
           <div className="dr-prompt">
             <MathText text={item.prompt} />
@@ -286,20 +311,22 @@ export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, em
                 {item.kind === 'num' && item.unit ? ` ${item.unit}` : ''}
               </div>
               {item.solution && <CodeBlock code={item.solution} />}
-              {item.steps && item.steps.length > 0 && (
-                <ol className="mg-steps">
-                  {item.steps.map((s, k) => (
-                    <li key={k}>
-                      <MathText text={s} />
-                    </li>
-                  ))}
-                </ol>
+              {item.steps && item.steps.length > 0 ? (
+                <StepsList steps={item.steps} open={stepsOpen} onToggle={() => setStepsOpen((v) => !v)} />
+              ) : (
+                !item.solution && (
+                  <div className="mg-note">
+                    No worked steps were authored for this question yet. The correct answer is shown above
+                    {idx && item.topic ? ` — it tests ${idx.topic.get(item.topic)?.name ?? 'this topic'}` : ''}. Review the lesson notes and try it again with new numbers.
+                  </div>
+                )
               )}
               {item.note && (
                 <div className="mg-small" style={{ marginTop: 6, lineHeight: 1.55 }}>
                   <MathText text={item.note} />
                 </div>
               )}
+              {showReferences && idx && content && nav && item.topic && <LearnMore topic={item.topic} idx={idx} content={content} nav={nav} />}
             </div>
           )}
 
@@ -354,6 +381,54 @@ export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, em
       <div onClick={(e) => e.stopPropagation()} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         {body}
       </div>
+    </div>
+  );
+};
+
+// Worked steps: shown in full when short, collapsed behind an expander when long.
+const STEPS_INLINE = 4;
+const StepsList: React.FC<{ steps: string[]; open: boolean; onToggle: () => void }> = ({ steps, open, onToggle }) => {
+  const shown = open ? steps : steps.slice(0, STEPS_INLINE);
+  return (
+    <div>
+      <ol className="mg-steps">
+        {shown.map((s, k) => (
+          <li key={k}>
+            <MathText text={s} />
+          </li>
+        ))}
+      </ol>
+      {steps.length > STEPS_INLINE && (
+        <button type="button" className="mg-btn small" onClick={onToggle} style={{ marginTop: 6 }}>
+          <ChevronDown size={13} style={{ transform: open ? 'rotate(180deg)' : undefined, transition: 'transform 0.15s' }} />
+          {open ? 'Show fewer steps' : `Show all ${steps.length} steps`}
+        </button>
+      )}
+    </div>
+  );
+};
+
+// "Learn more" row under the worked steps: teacher-notes references and the
+// verified video for this topic. Rendered only in the hidden quiz (showReferences).
+// A line is omitted entirely when no mapping exists — nothing is invented.
+const LearnMore: React.FC<{ topic: string; idx: GateIndex; content: GateContent; nav: GateNav }> = ({ topic, idx, content, nav }) => {
+  const t = idx.topic.get(topic);
+  const lecRefs = (t?.lec ?? []).slice(0, 2);
+  const stop = content.videoStops.find((s) => s.topic === topic);
+  const video = stop?.videos.find((v) => v.role === 'learn') ?? stop?.videos[0];
+  if (!lecRefs.length && !video) return null;
+  return (
+    <div className="mg-refs" style={{ marginTop: 10 }}>
+      <span className="mg-refs-label">Learn more</span>
+      {lecRefs.map((r, i) => (
+        <LectureButton key={i} r={r} nav={nav} content={content} />
+      ))}
+      {video && (
+        <button type="button" className="mg-btn small" onClick={() => nav.openTopicVideos(topic)} title={`Watch: ${video.title} (${video.channel})`}>
+          <Play size={13} />
+          <span>Watch: {video.title}</span>
+        </button>
+      )}
     </div>
   );
 };
