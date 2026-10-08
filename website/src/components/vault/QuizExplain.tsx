@@ -225,7 +225,7 @@ export const SourcePanel: React.FC<PanelProps> = ({ item, idx, content, nav, dep
                     · <MathText text={item.src} />
                   </>
                 ) : lesson ? (
-                  ` · ${content.labTitle}: ${lesson.name}`
+                  ` · lesson: ${lesson.name}`
                 ) : null}
               </span>
             </div>

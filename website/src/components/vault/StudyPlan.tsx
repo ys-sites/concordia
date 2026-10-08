@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, BookOpen, CalendarClock, Check, CheckSquare, FileText, Flag, MapPin, PlayCircle, Repeat, SkipForward, Sigma, Target, Undo2, Video } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, CalendarClock, Check, CheckSquare, ChevronDown, ChevronRight, FileText, Flag, MapPin, PlayCircle, Repeat, SkipForward, Sigma, Target, Undo2, Video } from 'lucide-react';
 import { MathText } from '../../utils/mathRenderer';
 import type { GateContent, GateNav, LectureRef, PlanPhase, PlanStep } from './vaultTypes';
 import type { GateIndex } from './shared';
@@ -8,7 +8,8 @@ import { buildDrill, DrillItem, fromQuestion, isDrillable, lessonItems, loadStat
 import { DrillRunner } from './DrillRunner';
 import { LessonCard } from './FormulaLab';
 import { SourcePanel, TopicVideos, VideoDepth } from './QuizExplain';
-import { LessonDrawer, prepQuizItem } from './SkillQuiz';
+import { prepQuizItem } from './SkillQuiz';
+import { hasVideo } from './Drawers';
 
 // ── progress & dates (this browser only) ─────────────────────────────────────────
 const planKey = (course: string) => `gate_plan_${course}`;
@@ -128,16 +129,10 @@ export const StudyPlan: React.FC<{ content: GateContent; idx: GateIndex; nav: Ga
   const [done, setDone] = useState<Set<string>>(() => loadDone(content.course));
   const [cur, setCur] = useState<string | null>(null);
   const [depth, setDepth] = useState<VideoDepth>('quick');
-  const [peek, setPeek] = useState<string | null>(null);
-  const [stats, setStats] = useState(() => loadStats(content.course));
+  const [openPhase, setOpenPhase] = useState<Record<number, boolean>>({});
   const hereRef = useRef<HTMLElement>(null);
 
   useEffect(() => setDone(loadDone(content.course)), [content.course]);
-  useEffect(() => {
-    const on = () => setStats(loadStats(content.course));
-    window.addEventListener('gate-stats', on);
-    return () => window.removeEventListener('gate-stats', on);
-  }, [content.course]);
 
   const save = (next: Set<string>) => {
     try {
@@ -187,31 +182,23 @@ export const StudyPlan: React.FC<{ content: GateContent; idx: GateIndex; nav: Ga
     return { cls: '', text: dl ? `Finish by ${fmtDay(dl)} (${relText(dl)})` : 'No date' };
   };
 
+  const doneCount = all.filter((x) => done.has(x.s.id)).length;
+
   return (
     <div className="mg-root" style={{ gap: 14 }}>
       <section className="mg-panel mg-panel-pad">
-        <h3 className="mg-section-title">
-          <CalendarClock size={17} /> Midterm preparation · {content.midterm.label}
-        </h3>
-        <p className="mg-section-sub" style={{ marginBottom: 8 }}>
-          <b>Scope:</b> <MathText text={content.midterm.scope} />
-          {days !== null && days >= 0 && (
-            <>
-              {' '}
-              · <b>{days === 0 ? 'Today' : `${days} day${days === 1 ? '' : 's'} left`}</b>
-            </>
-          )}
-        </p>
-        <p style={{ fontSize: 14, lineHeight: 1.65, color: 'var(--text-primary)', margin: 0 }}>
-          <MathText text={content.plan.intro} />
-        </p>
-        <div className="mg-progress" style={{ marginTop: 12 }}>
-          <span style={{ width: `${(100 * all.filter((x) => done.has(x.s.id)).length) / Math.max(1, all.length)}%` }} />
+        <div className="gp-head">
+          <h3 className="mg-section-title" style={{ margin: 0 }}>
+            <CalendarClock size={17} /> {days !== null && days >= 0 ? `${days === 0 ? 'Midterm today' : `${days} day${days === 1 ? '' : 's'} to go`} · ` : ''}
+            {content.midterm.label}
+          </h3>
+          <span className="mg-small mg-muted">
+            {doneCount} of {all.length} steps done
+          </span>
         </div>
-        <div className="mg-small mg-muted" style={{ marginTop: 6 }}>
-          {all.filter((x) => done.has(x.s.id)).length} of {all.length} steps done · everything below opens right here, no need to leave this page
+        <div className="mg-progress" style={{ marginTop: 10 }}>
+          <span style={{ width: `${(100 * doneCount) / Math.max(1, all.length)}%` }} />
         </div>
-
         <ol className="gp-timeline">
           {phases.map((p, pi) => {
             const pd = p.steps.filter((s) => done.has(s.id)).length;
@@ -223,7 +210,7 @@ export const StudyPlan: React.FC<{ content: GateContent; idx: GateIndex; nav: Ga
                     {st.cls === 'ok' ? <Check size={12} /> : null} Phase {pi + 1}
                   </span>
                   <span className="t">{p.title}</span>
-                  <span className="d">{deadlines[pi] ? fmtDay(deadlines[pi]!) : p.when}</span>
+                  <span className="d">{deadlines[pi] ? `by ${fmtDay(deadlines[pi]!)}` : p.when}</span>
                   <span className="bar">
                     <span style={{ width: `${(100 * pd) / Math.max(1, p.steps.length)}%` }} />
                   </span>
@@ -232,19 +219,29 @@ export const StudyPlan: React.FC<{ content: GateContent; idx: GateIndex; nav: Ga
             );
           })}
         </ol>
+        <details className="gp-more">
+          <summary>What’s on the midterm and how this plan works</summary>
+          <p>
+            <b>Scope:</b> <MathText text={content.midterm.scope} />
+          </p>
+          <p>
+            <MathText text={content.plan.intro} />
+          </p>
+          <p className="mg-muted">
+            Do the step in the red box, press “Done, next step”, repeat. Lessons and videos open on the side, so you never lose your place. Progress is saved on this
+            device.
+          </p>
+        </details>
       </section>
 
       {here && (
         <section className="gp-here" ref={hereRef} style={{ scrollMarginTop: 90 }}>
           <div className="gp-here-top">
             <span className="gp-pin">
-              <MapPin size={13} /> {allDone ? 'All steps done: keep revising' : 'You are here'}
+              <MapPin size={13} /> {allDone ? 'All done: keep revising' : 'Do this now'}
             </span>
             <span>
-              Phase {here.pi + 1} of {phases.length} · {phases[here.pi].title}
-            </span>
-            <span>
-              Step {here.si + 1} of {phases[here.pi].steps.length}
+              Phase {here.pi + 1} · step {here.si + 1} of {phases[here.pi].steps.length}
             </span>
             {(() => {
               const st = phaseStatus(here.pi);
@@ -261,20 +258,20 @@ export const StudyPlan: React.FC<{ content: GateContent; idx: GateIndex; nav: Ga
           </h3>
           <div className="gp-here-meta">
             {KIND_LABEL[here.s.kind]}
-            {here.s.minutes ? ` · ≈ ${here.s.minutes} min` : ''}
-            {done.has(here.s.id) ? ' · done ✓' : ''} · goal of this phase: <MathText text={phases[here.pi].goal} />
+            {here.s.minutes ? ` · about ${here.s.minutes} min` : ''}
+            {done.has(here.s.id) ? ' · done ✓' : ''}
           </div>
 
           <div className="gp-here-body">
-            <StepBody key={here.s.id} step={here.s} phase={phases[here.pi]} content={content} idx={idx} nav={nav} depth={depth} onDepth={setDepth} onLesson={setPeek} />
+            <StepBody key={here.s.id} step={here.s} phase={phases[here.pi]} content={content} idx={idx} nav={nav} depth={depth} onDepth={setDepth} onLesson={nav.openFormula} />
           </div>
 
           <div className="gp-here-actions">
             <button type="button" className="mg-btn" disabled={hereIdx <= 0} onClick={() => go(all[hereIdx - 1]?.s.id)}>
-              <ArrowLeft size={14} /> Previous
+              <ArrowLeft size={14} /> Back
             </button>
             <button type="button" className="mg-btn" disabled={hereIdx >= all.length - 1} onClick={() => go(all[hereIdx + 1]?.s.id)}>
-              <SkipForward size={14} /> Skip for now
+              <SkipForward size={14} /> Skip
             </button>
             {done.has(here.s.id) ? (
               <button type="button" className="mg-btn" onClick={() => setStepDone(here.s.id, false)}>
@@ -289,70 +286,44 @@ export const StudyPlan: React.FC<{ content: GateContent; idx: GateIndex; nav: Ga
         </section>
       )}
 
-      <ChapterGlance content={content} idx={idx} nav={nav} stats={stats} onLesson={setPeek} />
-
-      {phases.map((p, pi) => {
-        const pd = p.steps.filter((s) => done.has(s.id)).length;
-        const st = phaseStatus(pi);
-        return (
-          <section key={pi} className="mg-phase">
-            <div className="mg-phase-head">
-              <div className="mg-small mg-muted">
-                Phase {pi + 1} · {p.when} · {pd}/{p.steps.length} · <span className={`gp-due-inline ${st.cls}`}>{st.text}</span>
-              </div>
-              <h4>{p.title}</h4>
-              <div className="mg-small" style={{ color: 'var(--text-secondary)' }}>
-                <MathText text={p.goal} />
-              </div>
-            </div>
-            {p.steps.map((s) => (
-              <div key={s.id} className={`mg-plan-step ${done.has(s.id) ? 'done' : ''} ${here?.s.id === s.id ? 'gp-current' : ''}`}>
-                <input type="checkbox" checked={done.has(s.id)} onChange={() => setStepDone(s.id, !done.has(s.id))} aria-label="Done" />
-                <div className="txt">
-                  <MathText text={s.text} />
-                  <div className="meta">
-                    {KIND_LABEL[s.kind]}
-                    {s.minutes ? ` · ≈ ${s.minutes} min` : ''}
-                    {here?.s.id === s.id ? ' · you are here' : ''}
-                  </div>
-                </div>
-                <button type="button" className="mg-btn small" onClick={() => go(s.id)}>
-                  {ICON[s.kind]} Open here
-                </button>
-              </div>
-            ))}
-          </section>
-        );
-      })}
-
       <section className="mg-panel mg-panel-pad">
-        <h3 className="mg-section-title">
-          <BookOpen size={17} /> How the folder fits together
+        <h3 className="mg-section-title" style={{ marginBottom: 8 }}>
+          <CheckSquare size={17} /> All steps
         </h3>
-        <ul className="mg-points">
-          <li>
-            <b>This plan</b> is the main road: every step opens here with its lesson, video, reading focus or drill.
-          </li>
-          <li>
-            <b>Pattern Analyzer & Drills</b>: what repeats on past papers, subject by subject.
-          </li>
-          <li>
-            <b>{content.labTitle}</b>: every method in four steps (understand → worked example → calculator → practice quiz).
-          </li>
-          <li>
-            <b>Video Revision Path</b>: all the videos, topic by topic.
-          </li>
-          <li>
-            <b>Skill Quiz</b>: build a quiz for exactly the chapter or subtopics you want, with sources and a video after every answer.
-          </li>
-          <li>Your ticks, scores and missed questions stay on this device only.</li>
-        </ul>
-        <div className="mg-small mg-muted" style={{ marginTop: 8 }}>
-          {idx.paperIds.length} past papers analysed · {content.formulas.length} lessons · {content.videoStops.length} video stops
-        </div>
+        {phases.map((p, pi) => {
+          const pd = p.steps.filter((s) => done.has(s.id)).length;
+          const st = phaseStatus(pi);
+          const isOpen = openPhase[pi] ?? here?.pi === pi;
+          return (
+            <div key={pi} className={`gp-phase ${isOpen ? 'open' : ''}`}>
+              <button type="button" className="gp-phase-head" onClick={() => setOpenPhase((o) => ({ ...o, [pi]: !isOpen }))} aria-expanded={isOpen}>
+                {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                <span className="t">
+                  Phase {pi + 1} · {p.title}
+                </span>
+                <span className={`gp-due-inline ${st.cls}`}>{st.cls === 'ok' ? 'Done' : deadlines[pi] ? `by ${fmtDay(deadlines[pi]!)}` : p.when}</span>
+                <span className="n">
+                  {pd}/{p.steps.length}
+                </span>
+              </button>
+              {isOpen &&
+                p.steps.map((s) => (
+                  <div key={s.id} className={`mg-plan-step ${done.has(s.id) ? 'done' : ''} ${here?.s.id === s.id ? 'gp-current' : ''}`}>
+                    <input type="checkbox" checked={done.has(s.id)} onChange={() => setStepDone(s.id, !done.has(s.id))} aria-label="Done" />
+                    <button type="button" className="txt gp-step-link" onClick={() => go(s.id)}>
+                      <MathText text={s.text} />
+                      <span className="meta">
+                        {KIND_LABEL[s.kind]}
+                        {s.minutes ? ` · ${s.minutes} min` : ''}
+                        {here?.s.id === s.id ? ' · now' : ''}
+                      </span>
+                    </button>
+                  </div>
+                ))}
+            </div>
+          );
+        })}
       </section>
-
-      {peek && <LessonDrawer id={peek} content={content} idx={idx} nav={nav} onClose={() => setPeek(null)} note="your plan stays where you left it" />}
     </div>
   );
 };
@@ -471,47 +442,13 @@ const StepBody: React.FC<StepProps> = (props) => {
         </div>
         {topics.length > 0 && (
           <>
-            <div className="mg-refs-label" style={{ margin: '12px 0 6px' }}>
-              Read it with a purpose: what to get out of it
+            <div className="mg-refs-label" style={{ margin: '14px 0 6px' }}>
+              What to get out of it
             </div>
-            <div className="gp-focus-list">
-              {topics.map((tid) => {
-                const t = idx.topic.get(tid);
-                if (!t) return null;
-                const tq = content.questions.filter((q) => q.topic === tid && idx.paperIds.includes(q.exam));
-                const rep = tq.filter((q) => repeatTypeOf(q.id, idx)).length;
-                const lesson = content.formulas.find((f) => f.topic === tid);
-                const refs = [...t.lec, ...(lesson?.lec ?? [])].filter(inDoc).slice(0, 3);
-                return (
-                  <div key={tid} className="gp-focus">
-                    <div className="gp-focus-head">
-                      <b>{t.name}</b>
-                      <span className={`mg-badge ${tq.length >= 5 ? 'exact' : tq.length >= 2 ? 'template' : tq.length ? 'concept' : 'neutral'}`}>
-                        {tq.length ? `asked ${tq.length}× on past papers` : 'not asked yet'}
-                        {rep ? ` · ${rep} repeated` : ''}
-                      </span>
-                    </div>
-                    {lesson && (
-                      <p className="gp-focus-idea">
-                        <MathText text={lesson.learn?.idea ?? lesson.meaning} />
-                      </p>
-                    )}
-                    <div className="mg-refs">
-                      {refs.map((r, i) => (
-                        <LectureButton key={i} r={r} nav={nav} content={content} />
-                      ))}
-                      {lesson && (
-                        <button type="button" className="mg-btn small" onClick={() => onLesson(lesson.id)}>
-                          <Sigma size={13} /> Lesson
-                        </button>
-                      )}
-                      <button type="button" className="mg-btn small" onClick={() => nav.openQuiz({ topics: [tid] })}>
-                        <Target size={13} /> Quiz this
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+            <div className="gp-focus-rows">
+              {topics.map((tid) => (
+                <FocusRow key={tid} tid={tid} content={content} idx={idx} nav={nav} inDoc={inDoc} />
+              ))}
             </div>
           </>
         )}
@@ -532,53 +469,62 @@ const StepBody: React.FC<StepProps> = (props) => {
   return <div className="mg-note">Do this one away from the screen, then mark it done.</div>;
 };
 
-// ── chapters at a glance ─────────────────────────────────────────────────────────
-const ChapterGlance: React.FC<{ content: GateContent; idx: GateIndex; nav: GateNav; stats: ReturnType<typeof loadStats>; onLesson: (id: string) => void }> = ({ content, idx, nav, stats, onLesson }) => (
-  <section className="mg-panel mg-panel-pad">
-    <h3 className="mg-section-title">
-      <Target size={17} /> Your chapters at a glance
-    </h3>
-    <p className="mg-section-sub">Mastery = past-paper questions you got right on your last try. Quiz a chapter, open its first lesson, or watch its videos from here.</p>
-    <div className="gp-glance">
-      {content.subjects.map((s) => {
-        const qs = content.questions.filter((q) => s.topics.includes(q.topic) && idx.paperIds.includes(q.exam) && isDrillable(q));
-        const ok = qs.filter((q) => stats[q.id]?.last === 1).length;
-        const rep = qs.filter((q) => repeatTypeOf(q.id, idx)).length;
-        const lesson = content.formulas.find((f) => s.topics.includes(f.topic));
-        const vid = content.videoStops.find((v) => s.topics.includes(v.topic));
-        const pct = qs.length ? Math.round((100 * ok) / qs.length) : 0;
-        return (
-          <div key={s.id} className="gp-chapter">
-            <div className="mg-small mg-muted">{s.ch}</div>
-            <b>
-              <MathText text={s.name} />
-            </b>
-            <div className="gp-chapter-bar" aria-label={`${pct}% mastered`}>
-              <span style={{ width: `${pct}%` }} />
-            </div>
-            <div className="mg-small mg-muted">
-              {qs.length ? `${ok}/${qs.length} mastered · ${rep} repeated` : 'no past-paper questions yet'}
-            </div>
-            <div className="gp-chapter-acts">
-              <button type="button" className="mg-btn small primary" onClick={() => nav.openQuiz({ subjects: [s.id] })}>
-                <Target size={12} /> Quiz
-              </button>
-              {lesson && (
-                <button type="button" className="mg-btn small" onClick={() => onLesson(lesson.id)}>
-                  <Sigma size={12} /> Lesson
-                </button>
-              )}
-              {vid && (
-                <button type="button" className="mg-btn small" onClick={() => nav.openTopicVideos(vid.topic)}>
-                  <Video size={12} /> Videos
-                </button>
-              )}
-            </div>
+// One topic to look for while reading: a two-line summary ("more" for the rest) and the three actions
+const FocusRow: React.FC<{ tid: string; content: GateContent; idx: GateIndex; nav: GateNav; inDoc: (r: LectureRef) => boolean }> = ({ tid, content, idx, nav, inDoc }) => {
+  const [more, setMore] = useState(false);
+  const t = idx.topic.get(tid);
+  if (!t) return null;
+  const tq = content.questions.filter((q) => q.topic === tid && idx.paperIds.includes(q.exam));
+  const td = tq.filter(isDrillable);
+  const lesson = content.formulas.find((f) => f.topic === tid);
+  const refs = [...t.lec, ...(lesson?.lec ?? [])].filter(inDoc).slice(0, 3);
+  const idea = lesson?.learn?.idea ?? lesson?.meaning;
+  const practice = () =>
+    td.length ? nav.startDrill({ scope: 'topic', id: tid, mode: 'all' }, t.name) : nav.startDrill({ scope: 'topic', id: tid, mode: 'practice' }, `${t.name}: practice`);
+  return (
+    <div className="gp-focus-row">
+      <div className="gp-focus-main">
+        <div className="gp-focus-name">
+          <b>{t.name}</b>
+          <span className={`mg-badge ${tq.length >= 5 ? 'exact' : tq.length >= 2 ? 'template' : tq.length ? 'concept' : 'neutral'}`}>{tq.length ? `asked ${tq.length}×` : 'not asked yet'}</span>
+        </div>
+        {idea && (
+          <div className={`gp-focus-idea ${more ? 'open' : ''}`}>
+            <MathText text={idea} />
           </div>
-        );
-      })}
+        )}
+        {(idea || refs.length > 0) && (
+          <button type="button" className="gp-more-link" onClick={() => setMore((v) => !v)}>
+            {more ? 'less' : 'more'}
+          </button>
+        )}
+        {more && refs.length > 0 && (
+          <div className="mg-refs" style={{ marginTop: 6 }}>
+            {refs.map((r, i) => (
+              <LectureButton key={i} r={r} nav={nav} content={content} />
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="th-actions">
+        <button type="button" className="th-act" disabled={!hasVideo(tid, content, idx)} onClick={() => nav.openTopicVideos(tid)}>
+          <Video size={15} /> Watch
+        </button>
+        <button
+          type="button"
+          className="th-act"
+          disabled={!lesson && !t.lec.length}
+          title={lesson ? undefined : 'No written lesson yet: opens the teacher’s slides on this topic'}
+          onClick={() => (lesson ? nav.openFormula(lesson.id) : nav.openLecture(t.lec[0]))}
+        >
+          <Sigma size={15} /> Learn
+        </button>
+        <button type="button" className="th-act primary" disabled={!td.length && !lesson?.learn?.quiz.length} onClick={practice}>
+          <PlayCircle size={15} /> Practice
+        </button>
+      </div>
     </div>
-  </section>
-);
+  );
+};
 
 export default StudyPlan;

@@ -9,7 +9,6 @@ import { DrillRunner, Result } from './DrillRunner';
 import { DrillModeCards } from './DrillsMenu';
 import { buildPool, CAT_INFO, PoolEntry, pickQuiz, QUIZ_CATS } from './quizPool';
 import { SourcePanel, VideoDepth } from './QuizExplain';
-import { LessonCard } from './FormulaLab';
 
 // ── quiz item prep ───────────────────────────────────────────────────────────────
 // 1. Multi-answer questions say so in the stem itself (more visible than a badge).
@@ -98,7 +97,6 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
   const [depth, setDepth] = useState<VideoDepth>(initial.depth);
   const [stage, setStage] = useState<Stage>('cover');
   const [run, setRun] = useState<{ title: string; items: DrillItem[]; nonce: number } | null>(null);
-  const [peek, setPeek] = useState<string | null>(null);
 
   useEffect(() => {
     try {
@@ -432,39 +430,12 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
             embedded
             readAloud
             onOpenQuestion={nav.openQuestion}
-            renderExplain={(item) => <SourcePanel item={item} idx={idx} content={content} nav={nav} depth={depth} onDepth={setDepth} onLesson={setPeek} />}
-            renderSummary={(results) => <QuizSummary results={results} idx={idx} content={content} onLesson={setPeek} onAgain={startTopicAgain} />}
+            renderExplain={(item) => <SourcePanel item={item} idx={idx} content={content} nav={nav} depth={depth} onDepth={setDepth} onLesson={nav.openFormula} />}
+            renderSummary={(results) => <QuizSummary results={results} idx={idx} content={content} onLesson={nav.openFormula} onAgain={startTopicAgain} />}
           />
         </>
       )}
 
-      {peek && <LessonDrawer id={peek} content={content} idx={idx} nav={nav} onClose={() => setPeek(null)} note="your quiz is still open behind this" />}
-    </div>
-  );
-};
-
-// A lesson opened on top of the quiz or plan, so you don't lose your place
-export const LessonDrawer: React.FC<{ id: string; content: GateContent; idx: GateIndex; nav: GateNav; onClose: () => void; note: string }> = ({ id, content, idx, nav, onClose, note }) => {
-  const f = idx.formula.get(id);
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [onClose]);
-  if (!f) return null;
-  return (
-    <div className="mg-drawer-backdrop" onClick={onClose}>
-      <aside className="mg-drawer sq-lesson-drawer" role="dialog" aria-modal="true" aria-label="Lesson" onClick={(e) => e.stopPropagation()}>
-        <div className="mg-drawer-head">
-          <strong style={{ fontSize: 14, color: 'var(--text-primary)' }}>
-            <Sigma size={14} style={{ verticalAlign: -2 }} /> Lesson · {note}
-          </strong>
-          <button type="button" className="mg-btn small" onClick={onClose} aria-label="Close">
-            <X size={14} />
-          </button>
-        </div>
-        <LessonCard key={f.id} f={f} content={content} idx={idx} nav={nav} />
-      </aside>
     </div>
   );
 };

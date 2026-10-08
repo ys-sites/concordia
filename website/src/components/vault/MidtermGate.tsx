@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, CalendarClock, ChevronRight, ClipboardList, FileLock2, FileText, KeyRound, Loader2, Lock, Repeat, Sigma, Sparkles, Target, Video, X } from 'lucide-react';
+import { ArrowLeft, BookOpen, CalendarClock, ChevronRight, ClipboardList, FileLock2, FileText, KeyRound, Loader2, Lock, Repeat, Sparkles, Target, X } from 'lucide-react';
 import type { CourseWithDocs } from '../../data/coursesData';
 import type { CourseDocument } from '../../types';
 import { audio } from '../../utils/audio';
@@ -8,9 +8,8 @@ import type { DrillTarget, GateContent, GateDoc, GateNav, LectureRef, QuizPreset
 import { GateCourse, lockGate, resumeGate, unlockGate } from './vaultCrypto';
 import { MatchBadge, QuestionCard, useGateIndex } from './shared';
 import { buildDrill, DrillItem, loadStats } from './drill';
-import { PatternAnalyzer } from './PatternAnalyzer';
-import { FormulaLab } from './FormulaLab';
-import { VideoPath } from './VideoPath';
+import { TopicsHub } from './TopicsHub';
+import { LessonDrawer, VideoDrawer } from './Drawers';
 import { StudyPlan, daysUntil } from './StudyPlan';
 import { GradesaverDoc } from './GradesaverDoc';
 import { DrillRunner } from './DrillRunner';
@@ -19,32 +18,27 @@ import './midtermGate.css';
 import './gateExtras.css';
 import './guided.css';
 
-// Public, non-sensitive labels shown before the folder is unlocked
-const LAB_TITLE: Record<GateCourse, string> = {
-  MIAE221: 'Formula Lab',
-  MIAE215: 'Code Tracing Lab',
-  ENGR213: 'Method Lab',
-  INDU211: 'Calculation Lab'
-};
-
 interface DocDef {
   id: GateDoc;
   title: string;
+  short: string;
   sub: string;
   icon: React.ReactNode;
 }
 
-const docList = (course: GateCourse, content: GateContent | null): DocDef[] => {
+// Four simple documents. Lessons and videos open in side panels from any of them.
+const docList = (course: GateCourse): DocDef[] => {
   const docs: DocDef[] = [
-    { id: 'plan', title: 'Midterm Prep Plan', sub: 'Start here. Your guided path to the midterm with finish-by dates: every lesson, video, reading focus and drill opens right inside the plan.', icon: <ClipboardList size={20} /> },
-    { id: 'analyzer', title: 'Pattern Analyzer & Drills', sub: 'Past-paper questions sorted by subject and subtopic, what repeats, and a drill for every group.', icon: <Repeat size={20} /> },
-    { id: 'formulas', title: content?.labTitle ?? LAB_TITLE[course], sub: 'Each method in four steps: understand it, follow a worked example, try the calculator, then a practice quiz.', icon: <Sigma size={20} /> },
-    { id: 'videos', title: 'Video Revision Path', sub: 'One stop per topic: a specific video to learn it, what to watch for, and the questions to do next.', icon: <Video size={20} /> },
-    { id: 'quiz', title: 'Skill Quiz', sub: 'Build a quiz for a whole chapter or just the subtopics you choose: repeated, similar, asked-once or new possible questions, with the source and a video after every answer.', icon: <Target size={20} /> }
+    { id: 'plan', title: 'Start here: your midterm plan', short: 'Start here', sub: 'One step at a time, with finish-by dates. Each step opens right inside the plan.', icon: <ClipboardList size={20} /> },
+    { id: 'topics', title: 'Topics', short: 'Topics', sub: 'Every subtopic in the order of the teacher’s notes: watch a video, learn it step by step, practise it, and see its past questions.', icon: <BookOpen size={20} /> },
+    { id: 'quiz', title: 'Skill Quiz', short: 'Skill Quiz', sub: 'Build your own quiz: choose the chapter or subtopics and the kind of questions; get the source and a video after every answer.', icon: <Target size={20} /> }
   ];
-  if (course === 'ENGR213') docs.push({ id: 'gradesaver', title: 'Gradesaver Tutor Vault', sub: 'The handwritten tutor notes, the typeset blueprint, and the 5-phase solving system.', icon: <Sparkles size={20} /> });
+  if (course === 'ENGR213') docs.push({ id: 'gradesaver', title: 'Tutor notes (Gradesaver)', short: 'Tutor notes', sub: 'The handwritten tutor notes, the typeset blueprint, and the 5-phase solving system.', icon: <Sparkles size={20} /> });
   return docs;
 };
+
+// Tabs from the older layout land on the page that replaced them
+const LEGACY: Record<string, GateDoc> = { analyzer: 'topics', formulas: 'topics', videos: 'topics' };
 
 interface Props {
   course: CourseWithDocs;
@@ -62,14 +56,15 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
   const [shake, setShake] = useState(false);
   const [doc, setDoc] = useState<GateDoc | null>(() => {
     try {
-      return (sessionStorage.getItem(DOC_KEY) as GateDoc | null) || null;
+      const saved = sessionStorage.getItem(DOC_KEY);
+      return saved ? LEGACY[saved] ?? (saved as GateDoc) : null;
     } catch {
       return null;
     }
   });
-  const [focusFormula, setFocusFormula] = useState<string | null>(null);
   const [focusTopic, setFocusTopic] = useState<string | null>(null);
-  const [focusVideoTopic, setFocusVideoTopic] = useState<string | null>(null);
+  const [lessonId, setLessonId] = useState<string | null>(null);
+  const [videoTopic, setVideoTopic] = useState<string | null>(null);
   const [drawerQ, setDrawerQ] = useState<string | null>(null);
   const [drill, setDrill] = useState<{ title: string; items: DrillItem[] } | null>(null);
   const [quizPreset, setQuizPreset] = useState<(QuizPreset & { nonce: number }) | null>(null);
@@ -158,21 +153,17 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
       openQuestion: (id) => setDrawerQ(id),
       openFormula: (id) => {
         setDrawerQ(null);
-        setDrill(null);
-        setFocusFormula(null);
-        setTimeout(() => setFocusFormula(id), 0);
-        setDoc('formulas');
-        scrollTop();
+        setVideoTopic(null);
+        setLessonId(id);
       },
       openTopicVideos: (topic) => {
         setDrawerQ(null);
-        setDoc('videos');
-        setFocusVideoTopic(null);
-        setTimeout(() => setFocusVideoTopic(topic), 50);
+        setLessonId(null);
+        setVideoTopic(topic);
       },
       showTopic: (topic) => {
         setDrawerQ(null);
-        setDoc('analyzer');
+        setDoc('topics');
         setFocusTopic(null);
         setTimeout(() => setFocusTopic(topic), 50);
       },
@@ -212,7 +203,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
   );
 
   const days = content ? daysUntil(content.midterm.date) : null;
-  const DOCS = docList(courseId, content);
+  const DOCS = docList(courseId);
 
   return (
     <div className="mg-root" ref={topRef} style={{ scrollMarginTop: 90 }}>
@@ -312,23 +303,21 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
               {DOCS.map((d, i) => (
                 <button key={d.id} type="button" role="tab" aria-selected={doc === d.id} className={`mg-tab ${doc === d.id ? 'active' : ''} ${d.id === 'quiz' ? 'skill' : ''}`} onClick={() => openDoc(d.id)}>
                   {d.icon}
-                  <span>
-                    0{i + 1} {d.title}
-                  </span>
+                  <span>{d.short}</span>
                 </button>
               ))}
             </div>
           </div>
           {doc === 'plan' && <StudyPlan content={content} idx={idx} nav={nav} />}
-          {doc === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
-          {doc === 'formulas' && <FormulaLab content={content} idx={idx} nav={nav} focusFormula={focusFormula} />}
-          {doc === 'videos' && <VideoPath content={content} idx={idx} nav={nav} focusTopic={focusVideoTopic} />}
+          {doc === 'topics' && <TopicsHub content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
           {doc === 'quiz' && <SkillQuiz content={content} idx={idx} nav={nav} preset={quizPreset} />}
           {doc === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
         </>
       )}
 
       {content && idx && drawerQ && <QuestionDrawer content={content} idx={idx} id={drawerQ} nav={nav} onClose={() => setDrawerQ(null)} />}
+      {content && idx && lessonId && <LessonDrawer id={lessonId} content={content} idx={idx} nav={nav} onClose={() => setLessonId(null)} />}
+      {content && idx && videoTopic && <VideoDrawer topic={videoTopic} content={content} idx={idx} nav={nav} onClose={() => setVideoTopic(null)} />}
       {content && drill && <DrillRunner course={content.course} title={drill.title} items={drill.items} onClose={() => setDrill(null)} onOpenQuestion={(id) => setDrawerQ(id)} />}
     </div>
   );

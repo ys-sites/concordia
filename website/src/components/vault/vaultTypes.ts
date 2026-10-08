@@ -227,7 +227,7 @@ export interface QuizPreset {
   cats?: QuizCat[];
 }
 
-export type GateDoc = 'plan' | 'analyzer' | 'formulas' | 'videos' | 'gradesaver' | 'quiz';
+export type GateDoc = 'plan' | 'topics' | 'quiz' | 'gradesaver';
 export interface GateNav {
   openQuestion: (id: string) => void;
   openFormula: (id: string) => void;

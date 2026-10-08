@@ -7,98 +7,9 @@ import { CodeBlock, ExamTag, GateIndex, RefsRow } from './shared';
 import { lessonItems, loadStats, mastery } from './drill';
 import { DrillRunner } from './DrillRunner';
 
-interface Props {
-  content: GateContent;
-  idx: GateIndex;
-  nav: GateNav;
-  focusFormula: string | null;
-}
-
 type Step = 'learn' | 'example' | 'calc' | 'practice';
 
-export const FormulaLab: React.FC<Props> = ({ content, idx, nav, focusFormula }) => {
-  const [activeId, setActiveId] = useState<string>(focusFormula ?? content.formulas[0]?.id);
-  const [filter, setFilter] = useState('');
-  const [stats, setStats] = useState(() => loadStats(content.course));
-
-  useEffect(() => {
-    if (focusFormula) setActiveId(focusFormula);
-  }, [focusFormula]);
-  useEffect(() => {
-    const on = () => setStats(loadStats(content.course));
-    window.addEventListener('gate-stats', on);
-    return () => window.removeEventListener('gate-stats', on);
-  }, [content.course]);
-
-  const groups = useMemo(() => {
-    const fl = filter.trim().toLowerCase();
-    return content.topics
-      .map((t) => ({
-        topic: t,
-        items: content.formulas.filter((f) => f.topic === t.id && (!fl || f.name.toLowerCase().includes(fl) || f.meaning.toLowerCase().includes(fl) || t.name.toLowerCase().includes(fl)))
-      }))
-      .filter((g) => g.items.length > 0);
-  }, [content, filter]);
-
-  // lesson item keys are stable, so build them once rather than re-running every calculator on each render
-  const lessonKeys = useMemo(() => new Map(content.formulas.map((f) => [f.id, lessonItems(f, idx).map((it) => it.key)])), [content, idx]);
-  const lessonMastery = (f: Formula) => mastery(lessonKeys.get(f.id) ?? [], stats);
-  const active = idx.formula.get(activeId) ?? content.formulas[0];
-  if (!active) return <p className="mg-small mg-muted">No lessons yet.</p>;
-
-  return (
-    <div className="mg-root" style={{ gap: 14 }}>
-      <section className="mg-panel mg-panel-pad">
-        <h3 className="mg-section-title">
-          <CalcIcon size={17} /> {content.labTitle}
-        </h3>
-        <p className="mg-section-sub" style={{ marginBottom: 0 }}>
-          <MathText text={content.labBlurb} />
-        </p>
-      </section>
-
-      <select className="mg-lab-select" value={active.id} onChange={(e) => setActiveId(e.target.value)} aria-label="Choose a lesson">
-        {groups.map((g) => (
-          <optgroup key={g.topic.id} label={`${g.topic.ch} · ${g.topic.name}`}>
-            {g.items.map((f) => (
-              <option key={f.id} value={f.id}>
-                {f.name}
-              </option>
-            ))}
-          </optgroup>
-        ))}
-      </select>
-
-      <div className="mg-lab">
-        <nav className="mg-panel mg-lab-nav" aria-label="Lessons">
-          <div className="mg-filters" style={{ marginBottom: 4 }}>
-            <Search size={14} className="mg-muted" />
-            <input className="mg-search" style={{ minWidth: 0 }} value={filter} onChange={(e) => setFilter(e.target.value)} placeholder="Filter…" />
-          </div>
-          {groups.map((g) => (
-            <div key={g.topic.id}>
-              <div className="mg-lab-group">
-                {g.topic.ch} · {g.topic.name}
-              </div>
-              {g.items.map((f) => {
-                const lm = lessonMastery(f);
-                return (
-                  <button key={f.id} type="button" className={`mg-lab-item ${f.id === active.id ? 'active' : ''}`} onClick={() => setActiveId(f.id)}>
-                    <span>{f.name}</span>
-                    {lm.total > 0 && lm.done === lm.total ? <small className="tick">✓</small> : lm.total > 0 ? <small>{lm.done}/{lm.total}</small> : null}
-                  </button>
-                );
-              })}
-            </div>
-          ))}
-        </nav>
-
-        <LessonCard key={active.id} f={active} content={content} idx={idx} nav={nav} />
-      </div>
-    </div>
-  );
-};
-
+// One lesson in four steps (understand, worked example, calculator, practice). Opened in the gate side panel.
 export const LessonCard: React.FC<{ f: Formula; content: GateContent; idx: GateIndex; nav: GateNav }> = ({ f, content, idx, nav }) => {
   const learn = f.learn;
   const hasCalc = !!(f.calc && CALCULATORS[f.calc]);
@@ -439,4 +350,4 @@ const CalcPanel: React.FC<{ f: Formula; idx: GateIndex }> = ({ f, idx }) => {
   );
 };
 
-export default FormulaLab;
+export default LessonCard;
