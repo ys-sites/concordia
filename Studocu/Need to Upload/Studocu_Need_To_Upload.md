@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 86
+### Currently Pending Uploads: 88
 
 ---
 
@@ -952,6 +952,28 @@
 * **Title**: MIAE 221 Part 9 - Diffusion in Solids 1-Page Rapid Review Sheet
 * **Academic year**: `2025/2026`
 * **Description**: High-yield single-page exam summary sheet for MIAE 221 Lecture 9 featuring governing formulas for Fick's first and second laws, semi-infinite error function solutions with Gaussian error function lookup table, constant-concentration depth-time scaling rules, Arrhenius temperature equations with linear slope relations, and core exam rules of thumb for open vs close-packed structures and bond types.
+
+---
+
+## 87. `Lecture 9 - Theory of Higher-Order Linear Equations (Explained).pdf`
+
+* **University**: Concordia University
+* **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+* **Category**: `Lecture notes`
+* **Title**: ENGR 213 Lecture 9 - Theory of Higher-Order Linear Equations (Explained)
+* **Academic year**: `2025/2026`
+* **Description**: Expanded step-by-step notes for Dr. Haghighat's Lecture 9 (Oct 7, 2026; Zill Section 3.1) covering existence and uniqueness for nth-order linear IVPs, boundary-value problems with zero, one or infinitely many solutions, differential operators, superposition, linear independence and the Wronskian, fundamental sets, and the general solution y = yc + yp. All seven in-class examples are fully solved, including Wronskian determinants and building a particular solution piece by piece, with an exam pitfall checklist.
+
+---
+
+## 88. `MIAE 215 - Assignment 3 & Week 5 In-Person Lecture Problems - Fully Solved Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Mechanical, Industrial & Aerospace engineering (MIAE 215)`
+* **Category**: `Practice materials`
+* **Title**: MIAE 215 - Assignment 3 & Week 5 In-Person Lecture Problems - Fully Solved Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Fully solved C++ guide for MIAE 215 Assignment 3 and the Week 5 Lecture 2 in-person examples, organized with the 7-step program organization method (declare, initialize, input, control statements, expressions, output, debug/test). Covers the labelled Flowgorithm flowchart for the maximum-value program, repeated polynomial evaluation with a sentinel, the Taylor series for exp(x) to a tolerance, 1-based vector addition, sentinel array input and reversal, and writing a CSV table to a file with ofstream. Every program was compiled and run, with real outputs, execution traces and common exam pitfalls.
 
 ---
 
