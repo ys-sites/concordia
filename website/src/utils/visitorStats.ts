@@ -135,8 +135,9 @@ export async function pingAndGetStats(isHeartbeat = false): Promise<LiveVisitorD
         const safeStoredTotal = (isNaN(storedTotal) || storedTotal > 100) ? 1 : storedTotal;
         const safeStoredToday = (isNaN(storedToday) || storedToday > 100) ? 1 : storedToday;
 
-        const total = (data.total > 0 && data.total < 500) ? data.total : safeStoredTotal;
-        const today = (data.today > 0 && data.today < 500) ? data.today : safeStoredToday;
+        // Trust the server's real counts at any size (the old < 500 cap hid real traffic)
+        const total = data.total > 0 ? data.total : safeStoredTotal;
+        const today = data.today > 0 ? data.today : safeStoredToday;
 
         localStorage.setItem(STORAGE_KEYS.TOTAL, total.toString());
         localStorage.setItem(STORAGE_KEYS.TODAY, today.toString());
