@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { BookOpen, Layers, Repeat, Trophy } from 'lucide-react';
+import { BookOpen, Layers, Repeat, Shuffle, Trophy } from 'lucide-react';
 import { MathText } from '../../utils/mathRenderer';
 import type { DrillTarget, GateContent, GateNav } from './vaultTypes';
 import type { GateIndex } from './shared';
 import { repeatTypeOf } from './shared';
 import { buildDrill, DrillItem, isDrillable, letter, loadStats, Stats } from './drill';
 import { DrillRunner } from './DrillRunner';
+import { DrillModeCards, RepeatStats, RepeatStatsBar } from './DrillsMenu';
 
 interface Props {
   content: GateContent;
@@ -87,6 +88,11 @@ export const HiddenQuiz: React.FC<Props> = ({ content, idx, nav }) => {
     const done = keys.filter((k) => stats[k]?.last === 1).length;
     return { done, total: keys.length };
   }, [papers, stats]);
+  const stats0 = useMemo(() => {
+    const by: RepeatStats = { exact: 0, template: 0, concept: 0, once: 0 };
+    for (const q of papers) by[repeatTypeOf(q.id, idx) ?? 'once'] += 1;
+    return by;
+  }, [papers, idx]);
 
   const start = (target: DrillTarget, title: string) => {
     const items = buildDrill(target, content, idx, loadStats(content.course)).map(prepHiddenItem);
@@ -116,25 +122,35 @@ export const HiddenQuiz: React.FC<Props> = ({ content, idx, nav }) => {
         <h3 className="mg-section-title">
           <Trophy size={17} /> Quiz drill
         </h3>
-        <p className="mg-section-sub">
-          The full drill experience — every repeat, every past-paper question — with read-aloud and worked step-by-step solutions. Midterm
-          material only. You have mastered {m.done} of {m.total} past-paper questions so far.
-        </p>
-        <div className="mg-quick">
-          <button type="button" onClick={() => start({ scope: 'repeats' }, 'Every repeated question')} disabled={!repeats.length}>
-            <b>
-              <Repeat size={15} /> Every repeated question ({repeats.length})
-            </b>
-            <span>The highest-value set: everything asked on more than one paper.</span>
-          </button>
-          <button type="button" onClick={() => start({ scope: 'all' }, 'All past-paper questions')} disabled={!allCount}>
-            <b>
-              <Layers size={15} /> All past-paper questions ({allCount})
-            </b>
-            <span>Every question from every paper, in order.</span>
-          </button>
-        </div>
+        <p className="mg-section-sub">Midterm material only.</p>
+        <RepeatStatsBar stats={stats0} />
       </section>
+      <DrillModeCards
+        masteredText={`You have mastered ${m.done} of ${m.total} past-paper questions so far.`}
+        modes={[
+          {
+            icon: <Shuffle size={15} />,
+            title: <>Mock midterm</>,
+            desc: '20 random questions, weighted towards the ones that keep coming back.',
+            disabled: !allCount,
+            onClick: () => start({ scope: 'mock' }, 'Mock midterm'),
+          },
+          {
+            icon: <Repeat size={15} />,
+            title: <>All repeated questions ({repeats.length})</>,
+            desc: 'The highest-value set: everything asked on more than one paper.',
+            disabled: !repeats.length,
+            onClick: () => start({ scope: 'repeats' }, 'Every repeated question'),
+          },
+          {
+            icon: <Layers size={15} />,
+            title: <>All past-paper questions ({allCount})</>,
+            desc: 'Every question from every paper, in order.',
+            disabled: !allCount,
+            onClick: () => start({ scope: 'all' }, 'All past-paper questions'),
+          },
+        ]}
+      />
 
       <section>
         <h3 className="mg-section-title" style={{ marginBottom: 10 }}>

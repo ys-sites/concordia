@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AlertTriangle, ChevronDown, ChevronRight, Grid3x3, Layers, PlayCircle, Repeat, Shuffle, Sigma, Target, Video, XCircle } from 'lucide-react';
+import { AlertTriangle, ChevronDown, ChevronRight, Grid3x3, Layers, PlayCircle, Repeat, Shuffle, Sigma, Video, XCircle } from 'lucide-react';
 import { MathText } from '../../utils/mathRenderer';
 import type { Cluster, Expectation, GateContent, GateNav, MatchType, Subject } from './vaultTypes';
-import { GateIndex, MatchBadge, MATCH_LABEL, QuestionCard, RefsRow, repeatTypeOf } from './shared';
+import { GateIndex, MatchBadge, QuestionCard, RefsRow, repeatTypeOf } from './shared';
+import { DrillModeCards, RepeatStatsBar } from './DrillsMenu';
 import { isDrillable, lessonItems, loadStats, mastery, Stats } from './drill';
 
 const EXPECT_RANK: Record<Expectation, number> = { 'Very likely': 0, Likely: 1, Possible: 2 };
@@ -46,8 +47,6 @@ export const PatternAnalyzer: React.FC<Props> = ({ content, idx, nav, focusTopic
     for (const q of papers) by[repeatTypeOf(q.id, idx) ?? 'once'] += 1;
     return by;
   }, [papers, idx]);
-  const total = papers.length || 1;
-  const pct = (n: number) => `${Math.round((100 * n) / total)}%`;
   const repeats = papers.filter((q) => repeatTypeOf(q.id, idx) && isDrillable(q));
   const missedCount = Object.values(stats).filter((s) => s.last === 0).length;
   const paperExams = content.exams.filter((e) => idx.paperIds.includes(e.id));
@@ -73,83 +72,43 @@ export const PatternAnalyzer: React.FC<Props> = ({ content, idx, nav, focusTopic
             </li>
           ))}
         </ul>
-        <div className="mg-kpis">
-          <div className="mg-kpi accent">
-            <div className="mg-kpi-value">{pct(stats0.exact + stats0.template)}</div>
-            <div className="mg-kpi-label">of past-paper questions were asked again word for word or with new numbers ({pct(stats0.exact + stats0.template + stats0.concept)} counting same-idea twins)</div>
-          </div>
-          <div className="mg-kpi">
-            <div className="mg-kpi-value">{stats0.exact}</div>
-            <div className="mg-kpi-label">{MATCH_LABEL.exact.toLowerCase()}s</div>
-          </div>
-          <div className="mg-kpi">
-            <div className="mg-kpi-value">{stats0.template}</div>
-            <div className="mg-kpi-label">{MATCH_LABEL.template.toLowerCase()}</div>
-          </div>
-          <div className="mg-kpi">
-            <div className="mg-kpi-value">{stats0.concept}</div>
-            <div className="mg-kpi-label">{MATCH_LABEL.concept.toLowerCase()}</div>
-          </div>
-          <div className="mg-kpi">
-            <div className="mg-kpi-value">{stats0.once}</div>
-            <div className="mg-kpi-label">asked only once</div>
-          </div>
-        </div>
-        <div className="mg-stack" role="img" aria-label="Share of past-paper questions by repeat type">
-          {(['exact', 'template', 'concept', 'once'] as const).map((k) => (
-            <span key={k} className={`m-${k}`} style={{ width: pct(stats0[k]) }} />
-          ))}
-        </div>
-        <div className="mg-legend">
-          {(['exact', 'template', 'concept'] as const).map((k) => (
-            <span key={k}>
-              <i className={`m-${k}`} />
-              {MATCH_LABEL[k]} · {pct(stats0[k])}
-            </span>
-          ))}
-          <span>
-            <i className="m-once" />
-            Asked once · {pct(stats0.once)}
-          </span>
-        </div>
+        <RepeatStatsBar stats={stats0} />
       </section>
 
       {/* Quick drills */}
-      <section className="mg-panel mg-panel-pad">
-        <h3 className="mg-section-title">
-          <Target size={17} /> Drills
-        </h3>
-        <p className="mg-section-sub">
-          Every drill checks your answer, shows the worked solution, and remembers what you missed on this device. You have mastered {m.done} of {m.total} past-paper questions so
-          far.
-        </p>
-        <div className="mg-quick">
-          <button type="button" onClick={() => nav.startDrill({ scope: 'mock' }, 'Mock midterm')} disabled={!allPaperKeys.length}>
-            <b>
-              <Shuffle size={15} /> Mock midterm
-            </b>
-            <span>20 random questions, weighted towards the ones that keep coming back.</span>
-          </button>
-          <button type="button" onClick={() => nav.startDrill({ scope: 'repeats' }, 'Every repeated question')} disabled={!repeats.length}>
-            <b>
-              <Repeat size={15} /> All repeated questions ({repeats.length})
-            </b>
-            <span>The highest-value set: everything asked on more than one paper.</span>
-          </button>
-          <button type="button" onClick={() => nav.startDrill({ scope: 'missed' }, 'Everything I missed')} disabled={!missedCount}>
-            <b>
-              <XCircle size={15} /> Everything I missed ({missedCount})
-            </b>
-            <span>Questions and practice items whose last attempt was wrong.</span>
-          </button>
-          <button type="button" onClick={() => nav.startDrill({ scope: 'all' }, 'All past-paper questions')} disabled={!allPaperKeys.length}>
-            <b>
-              <Layers size={15} /> All past-paper questions ({allPaperKeys.length})
-            </b>
-            <span>Every question from every paper, in order.</span>
-          </button>
-        </div>
-      </section>
+      <DrillModeCards
+        masteredText={`You have mastered ${m.done} of ${m.total} past-paper questions so far.`}
+        modes={[
+          {
+            icon: <Shuffle size={15} />,
+            title: <>Mock midterm</>,
+            desc: '20 random questions, weighted towards the ones that keep coming back.',
+            disabled: !allPaperKeys.length,
+            onClick: () => nav.startDrill({ scope: 'mock' }, 'Mock midterm'),
+          },
+          {
+            icon: <Repeat size={15} />,
+            title: <>All repeated questions ({repeats.length})</>,
+            desc: 'The highest-value set: everything asked on more than one paper.',
+            disabled: !repeats.length,
+            onClick: () => nav.startDrill({ scope: 'repeats' }, 'Every repeated question'),
+          },
+          {
+            icon: <XCircle size={15} />,
+            title: <>Everything I missed ({missedCount})</>,
+            desc: 'Questions and practice items whose last attempt was wrong.',
+            disabled: !missedCount,
+            onClick: () => nav.startDrill({ scope: 'missed' }, 'Everything I missed'),
+          },
+          {
+            icon: <Layers size={15} />,
+            title: <>All past-paper questions ({allPaperKeys.length})</>,
+            desc: 'Every question from every paper, in order.',
+            disabled: !allPaperKeys.length,
+            onClick: () => nav.startDrill({ scope: 'all' }, 'All past-paper questions'),
+          },
+        ]}
+      />
 
       {/* Subjects */}
       <section>
