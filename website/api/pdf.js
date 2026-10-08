@@ -15,5 +15,7 @@ export default function handler(req, res) {
 
   // Redirect to the static course asset served via the Vercel CDN
   const cleanPath = decodeURIComponent(filePath).replace(/^\/+/, '');
+  // The redirect target never changes for a path, so let the CDN answer repeat requests
+  res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=86400');
   return res.redirect(302, `/courses/${cleanPath.split('/').map(slugSegment).join('/')}`);
 }

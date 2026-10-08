@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import fs from 'fs';
 import { buildDocumentRegistry, listPublishedFiles } from './build/publishedFiles';
+import { build as esbuild } from 'esbuild';
 
 const VIRTUAL_DOCS_ID = 'virtual:course-documents';
 const RESOLVED_VIRTUAL_DOCS_ID = '\0' + VIRTUAL_DOCS_ID;
@@ -97,8 +98,33 @@ function coursePdfPlugin() {
   };
 }
 
+// Question counts for the navbar and home page, computed from the question bank at build time.
+// The bank itself (~1 MB) then only loads when someone opens a quiz or the question bank.
+function questionCountsPlugin() {
+  const ID = 'virtual:question-counts';
+  const RESOLVED = '\0' + ID;
+  const entry = path.resolve(__dirname, 'src/data/questionsData.ts');
+  return {
+    name: 'question-counts',
+    resolveId(id: string) {
+      return id === ID ? RESOLVED : null;
+    },
+    async load(this: any, id: string) {
+      if (id !== RESOLVED) return null;
+      const out = await esbuild({ entryPoints: [entry], bundle: true, write: false, format: 'esm', platform: 'node', metafile: true, logLevel: 'silent' });
+      for (const input of Object.keys(out.metafile!.inputs)) this.addWatchFile(path.resolve(__dirname, input));
+      const code = out.outputFiles[0].text;
+      const mod = await import('data:text/javascript;base64,' + Buffer.from(code).toString('base64'));
+      const qs: { courseId: string }[] = mod.PRACTICE_QUESTIONS;
+      const byCourse: Record<string, number> = {};
+      for (const q of qs) byCourse[q.courseId] = (byCourse[q.courseId] ?? 0) + 1;
+      return `export default ${JSON.stringify({ total: qs.length, byCourse })};`;
+    }
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), coursePdfPlugin()],
+  plugins: [react(), coursePdfPlugin(), questionCountsPlugin()],
   build: {
     emptyOutDir: false
   },

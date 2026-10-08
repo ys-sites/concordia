@@ -13,8 +13,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  will-change: background-position;
-  animation: shinyTextShimmer var(--shiny-speed, 4.5s) ease-in-out infinite;
+  animation: shinyTextShimmer var(--shiny-speed, 4.5s) ease-in-out 3;
 }
 
 .shiny-text.pause-on-hover:hover {

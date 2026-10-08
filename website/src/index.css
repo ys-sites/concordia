@@ -3043,12 +3043,24 @@ h1, h2, h3, h4, h5 {
 }
 
 .pulse-glow {
+  filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.8));
+  will-change: opacity;
   animation: pulseGlow 2s infinite;
 }
 
 @keyframes pulseGlow {
-  0%, 100% { filter: drop-shadow(0 0 2px rgba(99, 102, 241, 0.6)); }
-  50% { filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.9)); }
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Respect the system "reduce motion" setting: no looping decorations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-iteration-count: 1 !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ===================================================================   MOBILE & TABLET RESPONSIVE SYSTEM (NO OVERLAPPING · CLEAN LAYERING)
@@ -3621,7 +3633,13 @@ h1, h2, h3, h4, h5 {
   }
 
   /* Portal Footer */
-  .portal-footer {
+  /* The footer sits below the fold: skip its layout and paint until it scrolls into view */
+.portal-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 560px;
+}
+
+.portal-footer {
     margin-top: 40px;
   }
 

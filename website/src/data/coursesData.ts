@@ -1,5 +1,5 @@
 import { CourseMeta, CourseDocument, CourseId } from '../types';
-import { cachedQuestions } from './questionStore';
+import { QUESTION_COUNTS } from './questionStore';
 // Generated at build time from the course folders by website/build/publishedFiles.ts:
 // every published PDF, after the study-material-only filter in ./localOnly.ts
 import PUBLISHED_DOCUMENTS from 'virtual:course-documents';
@@ -90,14 +90,6 @@ export const COURSES_DATA: CourseWithDocs[] = COURSE_INFO.map((info) => {
       description: `Course materials for ${title}`
     };
   });
-  // the question bank loads on demand (see questionStore); 0 until it has arrived
-  return {
-    ...info,
-    categories,
-    documents,
-    totalDocuments: documents.length,
-    get totalQuestions() {
-      return cachedQuestions()?.filter((q) => q.courseId === info.id).length ?? 0;
-    }
-  };
+  // counts come from the build; the question bank itself loads on demand (see questionStore)
+  return { ...info, categories, documents, totalDocuments: documents.length, totalQuestions: QUESTION_COUNTS.byCourse[info.id] ?? 0 };
 });

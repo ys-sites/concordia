@@ -3,7 +3,6 @@ import { CourseId, CourseDocument } from './types';
 import { COURSES_DATA } from './data/coursesData';
 import { Navbar } from './components/Navbar';
 import { HeroCourseSelector } from './components/HeroCourseSelector';
-import { CourseWorkspace } from './components/CourseWorkspace';
 import { PdfViewerModal } from './components/PdfViewerModal';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
@@ -18,6 +17,16 @@ const QuizEngine = lazy(() => import('./components/QuizEngine').then((m) => ({ d
 const QuizResults = lazy(() => import('./components/QuizResults').then((m) => ({ default: m.QuizResults })));
 const QuestionBankBrowser = lazy(() => import('./components/QuestionBankBrowser').then((m) => ({ default: m.QuestionBankBrowser })));
 const DrillPicker = lazy(() => import('./components/DrillPicker').then((m) => ({ default: m.DrillPicker })));
+// The course page carries KaTeX and the document lists; it is prefetched while idle after the first paint
+const loadWorkspace = () => import('./components/CourseWorkspace');
+const CourseWorkspace = lazy(() => loadWorkspace().then((m) => ({ default: m.CourseWorkspace })));
+if (typeof window !== 'undefined') {
+  // after the page has fully loaded, in idle time, so it never competes with the first render
+  const idle = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => void }).requestIdleCallback;
+  const prefetch = () => (idle ? idle(() => void loadWorkspace(), { timeout: 4000 }) : setTimeout(() => void loadWorkspace(), 1500));
+  if (document.readyState === 'complete') prefetch();
+  else window.addEventListener('load', prefetch, { once: true });
+}
 const FilteredSubSite = lazy(() => import('./components/FilteredSubSite').then((m) => ({ default: m.FilteredSubSite })));
 
 type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK' | 'FILTERED_DOCUMENT';

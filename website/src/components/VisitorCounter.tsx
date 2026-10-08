@@ -16,16 +16,27 @@ export const VisitorCounter: React.FC = () => {
       if (isMounted) setStats(data);
     });
 
-    // 3. Heartbeat every 25 seconds to track active live users
-    const interval = setInterval(() => {
-      pingAndGetStats(true).then(data => {
+    // 3. Heartbeat every 60 s while the tab is visible (the server keeps a visitor live for 90 s).
+    //    Background tabs send nothing, which keeps server load flat as traffic grows.
+    const BEAT_MS = 60000;
+    let last = Date.now();
+    const beat = () => {
+      if (document.hidden) return;
+      last = Date.now();
+      pingAndGetStats(true).then((data) => {
         if (isMounted) setStats(data);
       });
-    }, 25000);
+    };
+    const interval = setInterval(beat, BEAT_MS);
+    const onVisible = () => {
+      if (!document.hidden && Date.now() - last > BEAT_MS) beat();
+    };
+    document.addEventListener('visibilitychange', onVisible);
 
     return () => {
       isMounted = false;
       clearInterval(interval);
+      document.removeEventListener('visibilitychange', onVisible);
     };
   }, []);
 

@@ -2,9 +2,41 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/api/pdf", "destination": "/api/pdf.js" },
-    { "source": "/api/visitors", "destination": "/api/visitors.js" },
-    { "source": "/filtered", "destination": "/filtered.html" },
-    { "source": "/((?!api|courses|filtered|assets/).*)", "destination": "/index.html" }
+    {
+      "source": "/api/pdf",
+      "destination": "/api/pdf.js"
+    },
+    {
+      "source": "/api/visitors",
+      "destination": "/api/visitors.js"
+    },
+    {
+      "source": "/filtered",
+      "destination": "/filtered.html"
+    },
+    {
+      "source": "/((?!api|courses|filtered|assets/).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/courses/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    }
   ]
 }

@@ -4,7 +4,7 @@ import { COURSES_DATA } from '../data/coursesData';
 import { Sparkles, Brain, BookOpen, Volume2, VolumeX, Layers, Compass, Mail } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { BrandMark } from './BrandMark';
-import { useQuestions } from '../data/questionStore';
+import { QUESTION_COUNTS } from '../data/questionStore';
 
 interface NavbarProps {
   activeCourseId: CourseId | null;
@@ -25,7 +25,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   soundEnabled,
   onToggleSound
 }) => {
-  const questions = useQuestions();
   return (
     <header className="navbar-container">
       <div className="navbar-inner">
@@ -88,7 +87,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             title="Browse the full question bank"
           >
             <BookOpen size={16} />
-            <span className="btn-text">Question Bank{questions ? ` (${questions.length})` : ''}</span>
+            <span className="btn-text">Question Bank ({QUESTION_COUNTS.total})</span>
           </button>
 
           {/* Contact & Feedback */}
