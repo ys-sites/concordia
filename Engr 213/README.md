@@ -101,7 +101,7 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 * **`Lecture 4 - Exact Equations.pdf`**: Ecuaciones exactas y factores integrantes para ecuaciones no exactas (18 de Septiembre).
 * **`Lecture 5, September 23 2026.pdf`**: Soluciones por sustitución (Bernoulli, homogéneas, argumentos lineales).
 * **`Lecture 6 - Linear Models, September 25 2026.pdf`**: Modelado matemático con ecuaciones diferenciales lineales de primer orden: crecimiento/decaimiento, enfriamiento de Newton, mezclas en tanques y circuitos LR/RC (25 de Septiembre).
-* **`ENGR213, Lecture 7, September 30 2026.pdf`**: Modelado matemático con ecuaciones diferenciales no lineales (§2.8): dinámica de poblaciones (ecuación logística), reacciones químicas de segundo orden y drenaje de tanques según la ley de Torricelli (30 de Septiembre).
+* **`ENGR213, Lecture 7, September 30 2026.pdf`**: Modelado matemático con ecuaciones diferenciales no lineales (CH 2.8): dinámica de poblaciones (ecuación logística), reacciones químicas de segundo orden y drenaje de tanques según la ley de Torricelli (30 de Septiembre).
 
 ---
 
@@ -112,8 +112,8 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 * **`Lecture 3 - Separable and Linear Equations (Explained).pdf`**: Guía completa de 10 páginas para ecuaciones separables y lineales.
 * **`Lecture 4 - Exact Equations (Explained).pdf`**: Guía paso a paso para dominar ecuaciones exactas y el método de reconstrucción.
 * **`Lecture 5 - Solutions by Substitutions (Explained).pdf`**: Guía completa para ecuaciones homogéneas ($y=ux$), Bernoulli ($u=y^{1-n}$) y argumentos lineales ($u=Ax+By+C$) con soluciones paso a paso de los ejemplos de clase.
-* **`Lecture 6 - Linear Mathematical Models (Explained).pdf` & `.md`**: Guía paso a paso completa para la clase 6 (§2.7) cubriendo la formulación de leyes de tasa, crecimiento bacteriano, ley de enfriamiento de Newton, mezcla en tanques con factor integrante y respuesta transitoria/permanente en circuitos LR.
-* **`Lecture 7 - Non-Linear Models (Explained).pdf` & `.md`**: Guía paso a paso completa para la clase 7 (§2.8) cubriendo dinámica de poblaciones dependiente de densidad, ecuación logística y capacidad de carga, cinética de reacciones químicas bimoleculares de segundo orden con reactivo limitante, y drenaje de tanques según la ley de Torricelli con tiempo exacto de vaciado.
+* **`Lecture 6 - Linear Mathematical Models (Explained).pdf` & `.md`**: Guía paso a paso completa para la clase 6 (CH 2.7) cubriendo la formulación de leyes de tasa, crecimiento bacteriano, ley de enfriamiento de Newton, mezcla en tanques con factor integrante y respuesta transitoria/permanente en circuitos LR.
+* **`Lecture 7 - Non-Linear Models (Explained).pdf` & `.md`**: Guía paso a paso completa para la clase 7 (CH 2.8) cubriendo dinámica de poblaciones dependiente de densidad, ecuación logística y capacidad de carga, cinética de reacciones químicas bimoleculares de segundo orden con reactivo limitante, y drenaje de tanques según la ley de Torricelli con tiempo exacto de vaciado.
 * **`Archive & Alternatives/`**: Borradores previos y notas expandidas de cálculos detallados.
 
 ---
@@ -154,7 +154,7 @@ Este directorio ha sido completamente reorganizado para que todo sea intuitivo, 
 
 ### `06 - Quiz & Midterm Exam Prep`
 > **Material de Preparación, Team Projects y Simulacros de Examen:**
-* **`ENGR 213 - Team Project 1 & Tutorial Preparation Master Guide (Linear Models).pdf` & `.md`**: Guía estratégica y técnica completa para el **Team Project 1** de 1 hora en tutorial (equipos de 2 a 3 estudiantes). Incluye protocolo de división de tiempo, desglose de los 4 arquetipos de modelos lineales (§2.7) y 8 problemas de examen resueltos paso a paso con advertencias de trampas y checklist pre-entrega.
+* **`ENGR 213 - Team Project 1 & Tutorial Preparation Master Guide (Linear Models).pdf` & `.md`**: Guía estratégica y técnica completa para el **Team Project 1** de 1 hora en tutorial (equipos de 2 a 3 estudiantes). Incluye protocolo de división de tiempo, desglose de los 4 arquetipos de modelos lineales (CH 2.7) y 8 problemas de examen resueltos paso a paso con advertencias de trampas y checklist pre-entrega.
 * **`ENGR 213 - Quiz 1 Practice Exam & Master Solutions Guide.pdf`**: Compendio maestro de 25 páginas para el Quiz 1 con 14 problemas de alto rendimiento cubriendo todo el temario evaluado hasta Ecuaciones Exactas (Problemas del Tutorial 1, Diapositivas del Profesor Dr. Haghighat de Clases 1 a 4 y problemas clave del temario). Incluye soluciones matemáticas paso a paso y la sección inferior explicativa para cada ejercicio sobre fundamentos teóricos y trampas de examen.
 * **`ENGR 213 - Master Step-by-Step Solutions & Method Expansions.pdf`**: Manual maestro de 9 páginas que aplica el formato ultra-explicado de `exact_ode_step_by_step.pdf` a todos los arquetipos de problemas (Lecturas 1 a 5), con pasos numerados, teoría antes del cálculo y caja "Pattern to Remember".
 * **`ENGR 213 - Master Step-by-Step Solutions & Method Expansions.md`**: Versión completa en Markdown para consulta y edición rápida.

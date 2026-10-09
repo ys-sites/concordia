@@ -3,7 +3,7 @@
 ### Department of Mechanical, Industrial & Aerospace Engineering · Concordia University
 **Academic Session:** Fall 2026 / Winter 2025 · **Course Code:** ENGR 213  
 **Instructor:** Dr. Alexandre Paradis, ing. Ph.D.  
-**Curriculum Mapping:** Lectures 1–5 · Tutorials 1 & 3 · Homework Sets 1–3 · Midterm #1 Examination Scope (October 19: Chapter 2 + §17.1 & §17.2)
+**Curriculum Mapping:** Lectures 1–5 · Tutorials 1 & 3 · Homework Sets 1–3 · Midterm #1 Examination Scope (October 19: Chapter 2 + CH 17.1 & CH 17.2)
 
 ---
 
@@ -12,15 +12,15 @@ This compendium provides an authoritative, rigorously structured, and comprehens
 
 | Curriculum Phase | Topics & Sections Covered | Primary Analytical Competencies |
 | :--- | :--- | :--- |
-| **Module 1 (Lecture 1)** | §1.1, §1.2: ODE vs. PDE, Order, Degree, Linearity | Classification criteria, Leibniz/Lagrange notations, Linearity Rules |
-| **Module 2 (Tutorial 1 & HW 1)** | §1.1, §2.1: Solution Verification, Phase Line Stability | Radical domain restrictions, autonomous critical points, attractors vs. repellers |
-| **Module 3 (Lecture 2 & HW 2)** | §2.2: Separation of Variables, Singular Solutions | Differential separation, lost equilibrium solutions, explicit IVP intervals |
-| **Module 4 (Lecture 3 & HW 3)** | §2.3: First-Order Linear Equations & Integrating Factors | Standard form normalization, integrating factor $I(x) = e^{\int P(x)dx}$, transient terms |
-| **Module 5 (Tutorial 3 & Lecture 4)** | §2.4, §2.7: Exact Equations & Physical Models | Test for exactness, potential function $\Psi(x,y)$, radioactive decay, Newton's cooling |
-| **Module 6 (Lecture 4)** | §2.5, §2.8: Substitutions & Nonlinear Models | Bernoulli $u = y^{1-n}$, homogeneous $y = ux$, logistic growth, Torricelli's tank |
-| **Module 7 (Lecture 5)** | §17.1, §17.2: Complex Variables & Polar Forms | Modulus, principal argument in radians, Euler's formula, De Moivre's theorem, $n$-th roots |
+| **Module 1 (Lecture 1)** | CH 1.1, CH 1.2: ODE vs. PDE, Order, Degree, Linearity | Classification criteria, Leibniz/Lagrange notations, Linearity Rules |
+| **Module 2 (Tutorial 1 & HW 1)** | CH 1.1, CH 2.1: Solution Verification, Phase Line Stability | Radical domain restrictions, autonomous critical points, attractors vs. repellers |
+| **Module 3 (Lecture 2 & HW 2)** | CH 2.2: Separation of Variables, Singular Solutions | Differential separation, lost equilibrium solutions, explicit IVP intervals |
+| **Module 4 (Lecture 3 & HW 3)** | CH 2.3: First-Order Linear Equations & Integrating Factors | Standard form normalization, integrating factor $I(x) = e^{\int P(x)dx}$, transient terms |
+| **Module 5 (Tutorial 3 & Lecture 4)** | CH 2.4, CH 2.7: Exact Equations & Physical Models | Test for exactness, potential function $\Psi(x,y)$, radioactive decay, Newton's cooling |
+| **Module 6 (Lecture 4)** | CH 2.5, CH 2.8: Substitutions & Nonlinear Models | Bernoulli $u = y^{1-n}$, homogeneous $y = ux$, logistic growth, Torricelli's tank |
+| **Module 7 (Lecture 5)** | CH 17.1, CH 17.2: Complex Variables & Polar Forms | Modulus, principal argument in radians, Euler's formula, De Moivre's theorem, $n$-th roots |
 | **Module 8 (Midterm 1 Strategy)** | Midterm 1 Examination Synthesis & Pitfalls | 10 high-yield exam traps, rapid check algorithms, calculator policy |
-| **Module 9 (Get Ready for Midterm 1)** | Complete Midterm 1 Scope (§2.1–§2.8, §17.1, §17.2) | Active 7-day revision system, 3-phase diagnostic checklist, and in-depth step-by-step problem guides for every exam topic |
+| **Module 9 (Get Ready for Midterm 1)** | Complete Midterm 1 Scope (CH 2.1–CH 2.8, CH 17.1, CH 17.2) | Active 7-day revision system, 3-phase diagnostic checklist, and in-depth step-by-step problem guides for every exam topic |
 
 ---
 
@@ -73,7 +73,7 @@ $$a_n(x) \frac{d^n y}{dx^n} + a_{n-1}(x) \frac{d^{n-1} y}{dx^{n-1}} + \dots + a_
 # Module 2: In-Class Tutorial 1 & Homework 1 Solutions
 **Date Delivered:** September 14, 2026 · **Focus:** Solution Verification, Radical Domains & Autonomous Phase Portraits
 
-### 2.1 Problem §1.1 Q13: First-Order Linear Verification
+### 2.1 Problem CH 1.1 Q13: First-Order Linear Verification
 * **Given ODE & Trial Solution:**
   $$2y' + y = 0, \quad y(x) = e^{-x/2}$$
 * **Step-by-Step Analytical Derivation:**
@@ -85,7 +85,7 @@ $$a_n(x) \frac{d^n y}{dx^n} + a_{n-1}(x) \frac{d^{n-1} y}{dx^{n-1}} + \dots + a_
 * **Interval of Definition:**
   $$I = (-\infty, +\infty)$$
 
-### 2.2 Problem §1.1 Q17: Radical Solution & Domain Restriction
+### 2.2 Problem CH 1.1 Q17: Radical Solution & Domain Restriction
 * **Given ODE & Trial Solution:**
   $$(y - x) y' = y - x + 8, \quad y(x) = x + 4\sqrt{x + 2}$$
 * **Step-by-Step Analytical Derivation:**
@@ -101,7 +101,7 @@ $$a_n(x) \frac{d^n y}{dx^n} + a_{n-1}(x) \frac{d^{n-1} y}{dx^{n-1}} + \dots + a_
   The square root $\sqrt{x+2}$ requires $x + 2 \ge 0 \implies x \ge -2$. However, in the derivative $y'(x) = 1 + \frac{2}{\sqrt{x+2}}$, the term $\sqrt{x+2}$ appears in the denominator, requiring $x + 2 \neq 0 \implies x > -2$.
   $$\mathbf{I = (-2, +\infty)}$$
 
-### 2.3 Problem §1.1 Q25: Second-Order Homogeneous Verification
+### 2.3 Problem CH 1.1 Q25: Second-Order Homogeneous Verification
 * **Given ODE & Trial Solution:**
   $$y'' - 4y' + 4y = 0, \quad y(x) = c_1 e^{2x} + c_2 x e^{2x}$$
 * **Step-by-Step Analytical Derivation:**
@@ -115,7 +115,7 @@ $$a_n(x) \frac{d^n y}{dx^n} + a_{n-1}(x) \frac{d^{n-1} y}{dx^{n-1}} + \dots + a_
      $$= e^{2x} \left[ (4c_1 - 8c_1 + 4c_1) + (4c_2 - 4c_2) + (4c_2 x - 8c_2 x + 4c_2 x) \right] = e^{2x} [0] \equiv 0$$
 * **Interval of Definition:** $I = (-\infty, +\infty)$.
 
-### 2.4 Problem §2.1 Q21: Autonomous Direction Fields & Stability
+### 2.4 Problem CH 2.1 Q21: Autonomous Direction Fields & Stability
 * **Given Autonomous ODE:**
   $$\frac{dy}{dx} = y^2 - 3y = y(y - 3)$$
 * **Critical Points (Equilibrium Solutions):**
@@ -166,7 +166,7 @@ $$\frac{dy}{dx} = g(x) f(y)$$
 * **Interval of Definition:**
   The solution is valid on the open interval containing $x = 0$ where the radicand remains strictly positive: $8x - \frac{2}{3}x^3 + 4 > 0$.
 
-### 3.3 Problem §2.2 Q17: Algebraic Factorization Separable ODE
+### 3.3 Problem CH 2.2 Q17: Algebraic Factorization Separable ODE
 * **Given ODE:**
   $$\frac{dy}{dx} = \frac{xy + 3x - y - 3}{xy - 2x + 4y - 8}$$
 * **Analytical Derivation:**
@@ -215,7 +215,7 @@ $$y(x) = y_c(x) + y_p(x) = \frac{C}{I(x)} + \frac{1}{I(x)}\int I(x) Q(x) \, dx$$
   $$\lim_{x \to \infty} y_{\text{transient}}(x) = 0$$
 * **Steady-State Term:** The persistent long-term behavior of the system as $x \to +\infty$.
 
-### 4.5 Problem §2.3 Q21: Singular Points and Interval of Definition
+### 4.5 Problem CH 2.3 Q21: Singular Points and Interval of Definition
 * **Given Equation:**
   $$x \frac{dy}{dx} + 2y = 3, \quad x > 0$$
 * **Step-by-Step Derivation:**
@@ -235,7 +235,7 @@ $$y(x) = y_c(x) + y_p(x) = \frac{C}{I(x)} + \frac{1}{I(x)}\int I(x) Q(x) \, dx$$
 # Module 5: Exact Equations & Physical Modeling (Tutorial 3 & Lecture 4)
 **Dates Delivered:** September 28 & 29, 2026 · **Textbook Reference:** Zill, Sections 2.4, 2.7 & 2.8
 
-### 5.1 Test for Exactness (§2.4)
+### 5.1 Test for Exactness (CH 2.4)
 A first-order differential expression in differential form:
 $$M(x, y) \, dx + N(x, y) \, dy = 0$$
 is an **exact differential** in a simply connected region $R$ if and only if:
@@ -258,7 +258,7 @@ If $\frac{\partial M}{\partial y} \neq \frac{\partial N}{\partial x}$, compute t
 * **Function of $y$ alone:**
   $$\frac{N_x - M_y}{M} = g(y) \implies \mathbf{\mu(y) = e^{\int g(y) \, dy}}$$
 
-### 5.4 Tutorial 3 Worked Problem 1: Radioactive Decay (§2.7)
+### 5.4 Tutorial 3 Worked Problem 1: Radioactive Decay (CH 2.7)
 * **Problem Statement:** An initial radioactive mass $A(0) = 100\text{ mg}$ decreases by $3\%$ after 6 hours. Find the remaining mass at $t = 24\text{ hours}$.
 * **Analytical Derivation:**
   1. Decay model: $\frac{dA}{dt} = -k A \implies A(t) = A_0 e^{-kt} = 100 e^{-kt}$.
@@ -267,7 +267,7 @@ If $\frac{\partial M}{\partial y} \neq \frac{\partial N}{\partial x}$, compute t
   3. At $t = 24 = 4 \times 6\text{ hours}$:
      $$A(24) = 100 e^{-24k} = 100 \left(e^{-6k}\right)^4 = 100 (0.97)^4 \approx \mathbf{88.53\text{ mg}}$$
 
-### 5.5 Tutorial 3 Worked Problem 2: Forensic Newton's Law of Cooling (§2.7)
+### 5.5 Tutorial 3 Worked Problem 2: Forensic Newton's Law of Cooling (CH 2.7)
 * **Problem Statement:** A body is discovered in a room maintained at constant ambient temperature $T_m = 70^\circ\text{F}$. At time of discovery $t_d$, the body temperature is $85^\circ\text{F}$. One hour later ($t_d + 1$), the temperature drops to $80^\circ\text{F}$. Assuming living body temperature was $T(0) = 98.6^\circ\text{F}$, estimate the time of death.
 * **Analytical Derivation:**
   1. Newton's Cooling ODE:
@@ -311,7 +311,7 @@ $$\mathbf{u = Ax + By + C \implies \frac{du}{dx} = A + B \frac{dy}{dx} \implies 
 Separated form:
 $$\mathbf{\frac{du}{A + B f(u)} = dx}$$
 
-### 6.4 Nonlinear Physical Models (§2.8)
+### 6.4 Nonlinear Physical Models (CH 2.8)
 * **Logistic Population Growth:**
   $$\frac{dP}{dt} = P(a - bP) = aP\left(1 - \frac{P}{K}\right), \quad K = \frac{a}{b} \text{ (Carrying Capacity)}$$
   Analytical solution via partial fractions or Bernoulli substitution ($n=2$):
@@ -326,7 +326,7 @@ $$\mathbf{\frac{du}{A + B f(u)} = dx}$$
 # Module 7: Complex Numbers & Polar Coordinates (Lectures 4 & 5)
 **Dates Delivered:** September 29 & October 1, 2026 · **Textbook Reference:** Zill, Chapter 17 (Sections 17.1 & 17.2)
 
-### 7.1 Cartesian Representation (§17.1)
+### 7.1 Cartesian Representation (CH 17.1)
 A complex number $z \in \mathbb{C}$ is defined as an ordered pair of real numbers $(x, y)$:
 $$z = x + iy \quad (i = \sqrt{-1}, \; i^2 = -1)$$
 * **Real Part:** $\text{Re}(z) = x$
@@ -337,7 +337,7 @@ $$z = x + iy \quad (i = \sqrt{-1}, \; i^2 = -1)$$
 * **Division by Conjugate Rationalization:**
   $$\frac{z_1}{z_2} = \frac{z_1 \bar{z}_2}{z_2 \bar{z}_2} = \frac{(x_1 + i y_1)(x_2 - i y_2)}{x_2^2 + y_2^2} = \frac{(x_1 x_2 + y_1 y_2) + i(x_2 y_1 - x_1 y_2)}{x_2^2 + y_2^2}$$
 
-### 7.2 Polar & Exponential Representation (§17.2)
+### 7.2 Polar & Exponential Representation (CH 17.2)
 * **Modulus (Length):**
   $$r = |z| = \sqrt{x^2 + y^2}$$
 * **Argument (Phase Angle):**
@@ -388,12 +388,12 @@ Let $z_1 = r_1 e^{i\theta_1}$ and $z_2 = r_2 e^{i\theta_2}$:
 To achieve mastery in ENGR 213 Midterm 1, passive review must be replaced with structured active retrieval and diagnostic problem-solving. The examination syllabus strictly comprises **Chapter 2 (Sections 2.1–2.8)** and **Chapter 17 (Sections 17.1 & 17.2)**.
 
 #### 1. The 7-Day Precision Revision Timeline
-* **Day 7 (Qualitative & Separable Foundations — §2.1, §2.2):** Review autonomous equations $\frac{dy}{dx} = f(y)$, 1D phase portraits, attractors, repellers, and semi-stable equilibria. Practice separable ODEs, always checking for lost constant solutions when dividing by $g(y) = 0$.
-* **Day 6 (Linear First-Order Equations — §2.3):** Normalize to $y' + P(x)y = Q(x)$ before computing integrating factor $I(x) = \exp(\int P(x)dx)$. Practice handling absolute values in logarithms ($e^{\ln|x|} = |x|$), separating transient from steady-state components, and finding intervals of definition bounded by singular points.
-* **Day 5 (Exact Equations & Special Integrating Factors — §2.4):** Test exactness via $\partial M/\partial y = \partial N/\partial x$. Build the potential function $\Psi(x,y) = C$ methodically. Practice identifying special integrating factors $\mu(x) = \exp(\int \frac{M_y - N_x}{N}dx)$ and $\mu(y) = \exp(\int \frac{N_x - M_y}{M}dy)$.
-* **Day 4 (Substitutions & Reductions — §2.5):** Test homogeneity of degree $k$ and substitute $y = ux$ or $x = vy$. Master Bernoulli ODE reduction $u = y^{1-n}$ and linear combination shifts $u = Ax + By + C$.
-* **Day 3 (Physical Modeling & Initial Value Applications — §2.7, §2.8):** Formulate variable-volume mixture tanks $\frac{dA}{dt} = R_{\text{in}} - R_{\text{out}}$, Newton's Law of Cooling $\frac{dT}{dt} = -k(T - T_m)$, Torricelli's tank draining, and logistic growth $dN/dt = rN(1 - N/K)$.
-* **Day 2 (Complex Numbers & Polar Forms — §17.1, §17.2):** Master Cartesian conjugate division, exact polar conversion ($r = |z|, \Theta = \text{Arg}(z) \in (-\pi, \pi]$ strictly in radians), Euler's formula $e^{i\theta}$, De Moivre's theorem $z^n = r^n e^{in\theta}$, calculating all $n$ distinct roots $w_k$, and solving second-order auxiliary equations with complex roots.
+* **Day 7 (Qualitative & Separable Foundations — CH 2.1, CH 2.2):** Review autonomous equations $\frac{dy}{dx} = f(y)$, 1D phase portraits, attractors, repellers, and semi-stable equilibria. Practice separable ODEs, always checking for lost constant solutions when dividing by $g(y) = 0$.
+* **Day 6 (Linear First-Order Equations — CH 2.3):** Normalize to $y' + P(x)y = Q(x)$ before computing integrating factor $I(x) = \exp(\int P(x)dx)$. Practice handling absolute values in logarithms ($e^{\ln|x|} = |x|$), separating transient from steady-state components, and finding intervals of definition bounded by singular points.
+* **Day 5 (Exact Equations & Special Integrating Factors — CH 2.4):** Test exactness via $\partial M/\partial y = \partial N/\partial x$. Build the potential function $\Psi(x,y) = C$ methodically. Practice identifying special integrating factors $\mu(x) = \exp(\int \frac{M_y - N_x}{N}dx)$ and $\mu(y) = \exp(\int \frac{N_x - M_y}{M}dy)$.
+* **Day 4 (Substitutions & Reductions — CH 2.5):** Test homogeneity of degree $k$ and substitute $y = ux$ or $x = vy$. Master Bernoulli ODE reduction $u = y^{1-n}$ and linear combination shifts $u = Ax + By + C$.
+* **Day 3 (Physical Modeling & Initial Value Applications — CH 2.7, CH 2.8):** Formulate variable-volume mixture tanks $\frac{dA}{dt} = R_{\text{in}} - R_{\text{out}}$, Newton's Law of Cooling $\frac{dT}{dt} = -k(T - T_m)$, Torricelli's tank draining, and logistic growth $dN/dt = rN(1 - N/K)$.
+* **Day 2 (Complex Numbers & Polar Forms — CH 17.1, CH 17.2):** Master Cartesian conjugate division, exact polar conversion ($r = |z|, \Theta = \text{Arg}(z) \in (-\pi, \pi]$ strictly in radians), Euler's formula $e^{i\theta}$, De Moivre's theorem $z^n = r^n e^{in\theta}$, calculating all $n$ distinct roots $w_k$, and solving second-order auxiliary equations with complex roots.
 * **Day 1 (Full-Length Timed Simulation):** Complete an authentic past midterm (e.g. Winter 2025 Term Test 1) under closed-book, timed (75 minutes) conditions using only an approved ENCS calculator. Grade strictly and audit mistakes in the Error Log.
 
 #### 2. The 3-Phase Problem Solving Diagnostic Checklist
@@ -453,7 +453,7 @@ Keep a dedicated error tracking sheet during midterm revision:
 
 ### 9.2 In-Depth Step-by-Step Topic Mastery & Exemplar Problem Walkthroughs
 
-#### Topic 1: Autonomous First-Order ODEs, Critical Points & Phase Lines (§2.1)
+#### Topic 1: Autonomous First-Order ODEs, Critical Points & Phase Lines (CH 2.1)
 * **Core Theory:** An ODE is autonomous if $\frac{dy}{dx} = f(y)$ has no explicit dependence on the independent variable $x$. Critical (equilibrium) points satisfy $f(c) = 0$. On a 1D vertical phase line:
   - If $f(y) > 0$ for $y > c$ and $f(y) < 0$ for $y < c$, solutions diverge away: **Repeller (Unstable)**.
   - If $f(y) < 0$ for $y > c$ and $f(y) > 0$ for $y < c$, solutions converge toward $c$: **Attractor (Asymptotically Stable)**.
@@ -482,7 +482,7 @@ Keep a dedicated error tracking sheet during midterm revision:
 
 ---
 
-#### Topic 2: Separable Differential Equations & Initial Value Problems (§2.2)
+#### Topic 2: Separable Differential Equations & Initial Value Problems (CH 2.2)
 * **Core Theory:** A separable equation can be expressed as $g(y)dy = f(x)dx$. To solve an IVP: separate, integrate both sides, solve for the constant $C$ before manipulating the expression, and select the unique square root or algebraic branch determined by $y(x_0)$.
 
 * **Exemplar Examination Problem:**
@@ -508,7 +508,7 @@ Keep a dedicated error tracking sheet during midterm revision:
 
 ---
 
-#### Topic 3: First-Order Linear Equations & Integrating Factors (§2.3)
+#### Topic 3: First-Order Linear Equations & Integrating Factors (CH 2.3)
 * **Core Theory:** Normalize to $y' + P(x)y = Q(x)$. The integrating factor is $I(x) = \exp(\int P(x)dx)$. Multiplying through collapses the LHS into $\frac{d}{dx}[I(x)y] = I(x)Q(x)$. Integrate and divide by $I(x)$.
 
 * **Exemplar Examination Problem:**
@@ -538,7 +538,7 @@ Keep a dedicated error tracking sheet during midterm revision:
 
 ---
 
-#### Topic 4: Exact Equations & Special Integrating Factors (§2.4)
+#### Topic 4: Exact Equations & Special Integrating Factors (CH 2.4)
 * **Core Theory:** For $M(x,y)dx + N(x,y)dy = 0$, if $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$, then $\Psi(x,y) = C$ exists. If not exact, test:
   $$\frac{M_y - N_x}{N} = f(x) \implies \mu(x) = e^{\int f(x)dx} \quad \text{or} \quad \frac{N_x - M_y}{M} = g(y) \implies \mu(y) = e^{\int g(y)dy}$$
 
@@ -570,7 +570,7 @@ Keep a dedicated error tracking sheet during midterm revision:
 
 ---
 
-#### Topic 5: Solutions by Substitution: Bernoulli Equations (§2.5)
+#### Topic 5: Solutions by Substitution: Bernoulli Equations (CH 2.5)
 * **Core Theory:** A Bernoulli ODE has the form $y' + P(x)y = Q(x)y^n$. Divide by $y^n$: $y^{-n}y' + P(x)y^{1-n} = Q(x)$. Substitute $u = y^{1-n} \implies u' = (1-n)y^{-n}y'$, transforming the ODE into a linear equation:
   $$\frac{du}{dx} + (1-n)P(x)u = (1-n)Q(x)$$
 
@@ -604,7 +604,7 @@ Keep a dedicated error tracking sheet during midterm revision:
 
 ---
 
-#### Topic 6: Physical Modeling: Variable-Volume Mixture Tanks (§2.7, §2.8)
+#### Topic 6: Physical Modeling: Variable-Volume Mixture Tanks (CH 2.7, CH 2.8)
 * **Core Theory:** For a salt solution in a tank, the mass of salt $A(t)$ satisfies:
   $$\frac{dA}{dt} = R_{\text{in}} - R_{\text{out}} = c_{\text{in}} r_{\text{in}} - c_{\text{out}} r_{\text{out}} = c_{\text{in}} r_{\text{in}} - \left(\frac{A(t)}{V(t)}\right) r_{\text{out}}$$
   where $V(t) = V_0 + (r_{\text{in}} - r_{\text{out}})t$. When $r_{\text{in}} \neq r_{\text{out}}$, volume varies with time, producing a variable-coefficient linear ODE.
@@ -636,7 +636,7 @@ Keep a dedicated error tracking sheet during midterm revision:
 
 ---
 
-#### Topic 7: Complex Numbers: Arithmetic, Conjugates & Polar Forms (§17.1)
+#### Topic 7: Complex Numbers: Arithmetic, Conjugates & Polar Forms (CH 17.1)
 * **Core Theory:** A complex number $z = x + iy$ has modulus $r = |z| = \sqrt{x^2 + y^2}$ and principal argument $\Theta = \text{Arg}(z) \in (-\pi, \pi]$ (strictly computed in radians). Division is carried out by multiplying numerator and denominator by the complex conjugate $\bar{z}_2 = x_2 - i y_2$.
 
 * **Exemplar Examination Problem:**
@@ -670,7 +670,7 @@ Keep a dedicated error tracking sheet during midterm revision:
 
 ---
 
-#### Topic 8: De Moivre's Powers, Roots & Second-Order Complex Auxiliary IVPs (§17.2)
+#### Topic 8: De Moivre's Powers, Roots & Second-Order Complex Auxiliary IVPs (CH 17.2)
 * **Core Theory:**
   - **De Moivre's Theorem:** $z^n = r^n [\cos(n\theta) + i\sin(n\theta)] = r^n e^{i n\theta}$.
   - **The $n$-th Roots:** The $n$ distinct roots of $z = r e^{i\theta}$ are $w_k = \sqrt[n]{r} \exp\left(i \frac{\theta + 2k\pi}{n}\right)$ for $k = 0, 1, \dots, n-1$.

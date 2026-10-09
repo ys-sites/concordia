@@ -25,7 +25,7 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   ENGR213: {
     midterm: {
       label: 'Midterm 1 Review — Chapter 2 & Sections 17.1, 17.2',
-      detail: 'Official Midterm 1 syllabus: Chapter 2 (Separable, Linear, Exact, Substitutions, Linear & Nonlinear Models) and §17.1 & §17.2 (Complex Numbers & Auxiliary Equations), plus authentic past midterms',
+      detail: 'Official Midterm 1 syllabus: Chapter 2 (Separable, Linear, Exact, Substitutions, Linear & Nonlinear Models) and CH 17.1 & CH 17.2 (Complex Numbers & Auxiliary Equations), plus authentic past midterms',
       sections: [
         'classification',
         'autonomous-phase',
@@ -80,45 +80,45 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
       },
 
       // -----------------------------------------------------------------------
-      // LECTURES 3 & 4: FIRST-ORDER SOLVING METHODS (§2.2–§2.4)
+      // LECTURES 3 & 4: FIRST-ORDER SOLVING METHODS (CH 2.2–2.4)
       // -----------------------------------------------------------------------
       {
         id: 'separable',
-        label: 'Lecture 3 · Separable Equations & Singular Lost Solutions (§2.2)',
+        label: 'Lecture 3 · Separable Equations & Singular Lost Solutions (CH 2.2)',
         detail: 'Separable ODEs, explicit vs implicit forms, singular/lost solutions, and initial value problems',
         group: 'Lectures 3 & 4: Core Solving Methods'
       },
       {
         id: 'linear',
-        label: 'Lecture 3 · Linear First-Order ODEs & Integrating Factor (§2.3)',
+        label: 'Lecture 3 · Linear First-Order ODEs & Integrating Factor (CH 2.3)',
         detail: 'Standard form y\' + P(x)y = f(x), integrating factor I(x) = exp(∫P dx), transient/steady-state, and continuity intervals',
         group: 'Lectures 3 & 4: Core Solving Methods'
       },
       {
         id: 'exact',
-        label: 'Lecture 4 · Exact Equations & Potential Function Ψ(x,y) (§2.4)',
+        label: 'Lecture 4 · Exact Equations & Potential Function Ψ(x,y) (CH 2.4)',
         detail: 'Exactness condition ∂M/∂y = ∂N/∂x, potential function Ψ(x,y) = C, and special factors μ(x), μ(y)',
         group: 'Lectures 3 & 4: Core Solving Methods'
       },
 
       // -----------------------------------------------------------------------
-      // LECTURE 5: SUBSTITUTIONS & REDUCTIONS (§2.5)
+      // LECTURE 5: SUBSTITUTIONS & REDUCTIONS (CH 2.5)
       // -----------------------------------------------------------------------
       {
         id: 'homogeneous',
-        label: 'Lecture 5 · Homogeneous Equations (y = ux) (§2.5)',
+        label: 'Lecture 5 · Homogeneous Equations (y = ux) (CH 2.5)',
         detail: 'Testing homogeneity of degree k, transformations y = ux or x = vy, and separation of variables',
         group: 'Lecture 5: Substitutions & Reductions'
       },
       {
         id: 'bernoulli',
-        label: 'Lecture 5 · Bernoulli Differential Equations (§2.5)',
+        label: 'Lecture 5 · Bernoulli Differential Equations (CH 2.5)',
         detail: 'Standard form y\' + P(x)y = f(x)y^n, canonical substitution u = y^(1-n), and reduction to linear ODE',
         group: 'Lecture 5: Substitutions & Reductions'
       },
       {
         id: 'sub-linear',
-        label: 'Lecture 5 · Linear Arguments u = Ax + By + C (§2.5)',
+        label: 'Lecture 5 · Linear Arguments u = Ax + By + C (CH 2.5)',
         detail: 'Equations of the form y\' = f(Ax + By + C), substitution u = Ax + By + C, and reduction to separable form',
         group: 'Lecture 5: Substitutions & Reductions'
       },
@@ -131,29 +131,29 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
       },
 
       // -----------------------------------------------------------------------
-      // LECTURES 6 & 7: PHYSICAL MODELING (§2.7 & §2.8)
+      // LECTURES 6 & 7: PHYSICAL MODELING (CH 2.7 & CH 2.8)
       // -----------------------------------------------------------------------
       {
         id: 'applications',
-        label: 'Lecture 6 · Linear Models: Cooling, Mixture Tanks & Circuits (§2.7)',
+        label: 'Lecture 6 · Linear Models: Cooling, Mixture Tanks & Circuits (CH 2.7)',
         detail: 'Newton\'s cooling, variable/constant volume mixture tanks, series LR/RC electric circuits, and decay',
         group: 'Lectures 6 & 7: Physical Modeling'
       },
       {
         id: 'nonlinear-models',
-        label: 'Lecture 7 · Nonlinear Models: Logistic Population Dynamics (§2.8)',
+        label: 'Lecture 7 · Nonlinear Models: Logistic Population Dynamics (CH 2.8)',
         detail: 'The logistic equation dP/dt = P(a - bP), carrying capacity K = a/b, harvesting models, and inflection points',
         group: 'Lectures 6 & 7: Physical Modeling'
       },
 
       // -----------------------------------------------------------------------
-      // LECTURE 8: COMPLEX NUMBERS & AUXILIARY EQUATIONS (§17.1 & §17.2)
+      // LECTURE 8: COMPLEX NUMBERS & AUXILIARY EQUATIONS (CH 17.1 & CH 17.2)
       // -----------------------------------------------------------------------
       {
         id: 'complex',
-        label: 'Lecture 8 · Complex Numbers, Euler, Roots & Auxiliary ODEs (§17.1–§17.2)',
+        label: 'Lecture 8 · Complex Numbers, Euler, Roots & Auxiliary ODEs (CH 17.1–17.2)',
         detail: 'Cartesian/polar forms, Arg(z), Euler\'s formula, De Moivre powers, complex roots, and second-order auxiliary equations',
-        group: 'Lecture 8: Complex Numbers (§17.1 & §17.2)'
+        group: 'Lecture 8: Complex Numbers (CH 17.1 & CH 17.2)'
       },
 
       // -----------------------------------------------------------------------

@@ -1542,7 +1542,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '3': t`$(20, 50)$ is the single heaviest workstation location ($w=15$), but not the median.`
       },
       commonTrap: t`Confusing the Center of Gravity (which takes weighted averages: $\bar{x} = \sum w_i x_i / W$) with the Rectilinear 1-Median (which sorts and finds the 50% cumulative weight point). Rectilinear distance ALWAYS uses the median!`,
-      reference: `${TB} · Chapter 4 (§4.3); ${D4a} · Slide 14`
+      reference: `${TB} · Chapter 4 (CH 4.3); ${D4a} · Slide 14`
     },
     source: [
       { deck: TB, chapter: C4, location: 'Section 4.3 (Single Facility Location Models)' },
@@ -1579,7 +1579,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '3': t`O represents "Ordinary Closeness" (priority rank 4).`
       },
       commonTrap: t`Confusing E (Especially Important) with I (Important). In Muther's scale, E ranks above I.`,
-      reference: `${TB} · Chapter 4 (§4.5); ${D4b} · Slides 18–20`
+      reference: `${TB} · Chapter 4 (CH 4.5); ${D4b} · Slides 18–20`
     },
     source: [
       { deck: TB, chapter: C4, location: 'Section 4.5 (Layout Planning & Relationship Charts)' },
@@ -1616,7 +1616,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '3': t`8 AGVs doubles the necessary fleet size.`
       },
       commonTrap: t`Multiplying by the traffic factor instead of dividing the workload ($240 \times 0.8 = 192$). Congestion reduces available time, requiring MORE vehicles ($N_v \propto 1/TF$).`,
-      reference: `${TB} · Chapter 5 (§5.3); ${D5} · Slide 12`
+      reference: `${TB} · Chapter 5 (CH 5.3); ${D5} · Slide 12`
     },
     source: [
       { deck: TB, chapter: C5, location: 'Section 5.3 (Material Handling Equipment Fleet Sizing)' },
@@ -1653,7 +1653,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '3': t`466 units uses $z = 0.8$, which provides only an ~79% service level.`
       },
       commonTrap: t`Forgetting that $\sigma_L$ is already the standard deviation over the FULL lead time. If given daily standard deviation $\sigma_d$, then $\sigma_L = \sqrt{L}\cdot\sigma_d$.`,
-      reference: `${TB} · Chapter 7 (§7.2); ${D7a} · Slide 22`
+      reference: `${TB} · Chapter 7 (CH 7.2); ${D7a} · Slide 22`
     },
     source: [
       { deck: TB, chapter: C7, location: 'Section 7.2 (Inventory Management & Safety Stock)' },
@@ -1691,7 +1691,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '3': t`There is no further discount above 1,000 units, so ordering 2,000 would needlessly inflate inventory holding costs.`
       },
       commonTrap: t`Focusing only on the inventory trade-off ($CC$ vs $PC$) and forgetting the purchase cost $D \times P$. A 20-cent discount across 10,000 units is a \$2,000 direct saving!`,
-      reference: `${TB} · Chapter 7 (§7.2); ${D7a} · Slide 20`
+      reference: `${TB} · Chapter 7 (CH 7.2); ${D7a} · Slide 20`
     },
     source: [
       { deck: TB, chapter: C7, location: 'Section 7.2 (Quantity Discount Inventory Models)' },
@@ -1729,7 +1729,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '3': t`Divides by $3\sigma$ in $C_p$ instead of $6\sigma$.`
       },
       commonTrap: t`Assuming $C_p > 1.33$ guarantees zero defects. If the mean drifts ($C_{pk} < C_p$), parts will violate the nearer specification limit despite a high $C_p$.`,
-      reference: `${TB} · Chapter 8 (§8.4); ${D8} · Slide 65`
+      reference: `${TB} · Chapter 8 (CH 8.4); ${D8} · Slide 65`
     },
     source: [
       { deck: TB, chapter: C8, location: 'Section 8.4 (Process Capability Indices Cp and Cpk)' },
@@ -1766,7 +1766,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '3': t`2.12 minutes ($1.80 / 0.85$) applies allowance on total job time ($ST = NT / (1 - AF)$), rather than on normal time.`
       },
       commonTrap: t`Forgetting to apply the performance rating before adding allowances. Always pace-rate first ($NT$), then add allowances ($ST$).`,
-      reference: `${TB} · Chapter 6 (§6.3); ${D611} · Slides 26–28`
+      reference: `${TB} · Chapter 6 (CH 6.3); ${D611} · Slides 26–28`
     },
     source: [
       { deck: TB, chapter: C611, location: 'Section 6.3 (Work Measurement & Standard Time)' },
@@ -1803,7 +1803,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '3': t`Profit definitely changes because the milling constraint was binding (resource was fully utilized).`
       },
       commonTrap: t`Confusing shadow price with market price. Shadow price is the internal opportunity value to the firm's optimal product mix.`,
-      reference: `${TB} · Chapter 14 (§14.2); ${D14} · Slides 10–12`
+      reference: `${TB} · Chapter 14 (CH 14.2); ${D14} · Slides 10–12`
     },
     source: [
       { deck: TB, chapter: C14, location: 'Section 14.2 (Linear Programming Duality & Shadow Prices)' },
@@ -1840,7 +1840,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '3': t`$\rho = 1.25$ inverts the ratio ($30/24$).`
       },
       commonTrap: t`Confusing server utilization $\rho = \frac{\lambda}{s\mu}$ with workload parameter $r = \frac{\lambda}{\mu}$. The average number of busy servers is $r = 2.4$, but each individual server is utilized at $\rho = 80\%$.`,
-      reference: `${TB} · Chapter 15 (§15.3); ${D15} · Slide 8`
+      reference: `${TB} · Chapter 15 (CH 15.3); ${D15} · Slide 8`
     },
     source: [
       { deck: TB, chapter: C15, location: 'Section 15.3 (Multi-Server Queueing Models)' },
@@ -1877,7 +1877,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
         '3': t`Initial duration is irrelevant; only the marginal cost per day saved ($\text{Slope}$) determines optimal crashing.`
       },
       commonTrap: t`Comparing total crash costs (\$1,600 vs \$2,800) instead of the marginal cost per day saved ($\Delta \text{Cost} / \Delta \text{Time}$). Always compute the slope!`,
-      reference: `${TB} · Chapter 17 (§17.3); ${D17} · Slide 14`
+      reference: `${TB} · Chapter 17 (CH 17.3); ${D17} · Slide 14`
     },
     source: [
       { deck: TB, chapter: C17, location: 'Section 17.3 (Project Crashing and Time-Cost Trade-Offs)' },

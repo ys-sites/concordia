@@ -1,7 +1,7 @@
 import { SolutionUpgrade, t } from './types';
 
 // ENGR 213 — baby-step solutions for the calculation questions in questionsData.ts.
-// Methods follow the teacher's Lectures 1–6 (Zill 7th ed. §1.1–1.3, §2.1–2.5, §2.7).
+// Methods follow the teacher's Lectures 1–6 (Zill 7th ed. CH 1.1–1.3, CH 2.1–2.5, CH 2.7).
 export const ENGR213_SOLUTIONS: Record<string, SolutionUpgrade> = {
   Q_ENGR213_004: {
     steps: [

@@ -1542,7 +1542,7 @@ export const ENGR213_SUBSECTION_QUESTIONS: PracticeQuestion[] = [
         '3': t`Dropped the differential $d(xy)$ and treated $y\,dx + x\,dy$ as $x+y$.`
       },
       commonTrap: t`Failing to recognize $x\,dy + y\,dx$ as the exact product differential $d(xy)$.`,
-      reference: `${L4} · Pages 2–5; Zill §2.4`
+      reference: `${L4} · Pages 2–5; Zill CH 2.4`
     },
     source: [{ deck: L4, chapter: CH2, location: 'Exact Differential Equations — Method of Inspection' }]
   },

@@ -1961,7 +1961,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "Chapter 2 (CH 2.2–2.3)",
         "location": "Page 3"
       },
       {
@@ -2058,7 +2058,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "Chapter 2 (CH 2.2–2.3)",
         "location": "Page 10"
       },
       {
@@ -2156,7 +2156,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "Chapter 2 (CH 2.2–2.3)",
         "location": "Page 10"
       },
       {
@@ -2223,7 +2223,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 (§1.1)",
+        "chapter": "Chapter 1 (CH 1.1)",
         "location": "Page 10"
       },
       {
@@ -2563,7 +2563,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 2 - IVPs and Direction Fields.pdf",
-        "chapter": "Chapters 1–2 (§1.2, §2.1)",
+        "chapter": "Chapters 1–2 (CH 1.2, CH 2.1)",
         "location": "Page 14"
       },
       {
@@ -2688,7 +2688,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 (§1.1)",
+        "chapter": "Chapter 1 (CH 1.1)",
         "location": "Page 13"
       },
       {
@@ -2754,7 +2754,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 3 - Separable and Linear Equations.pdf",
-        "chapter": "Chapter 2 (§2.2–2.3)",
+        "chapter": "Chapter 2 (CH 2.2–2.3)",
         "location": "Page 10"
       },
       {
@@ -2819,7 +2819,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 6 - Linear Models, September 25 2026.pdf",
-        "chapter": "Chapter 2 (§2.7)",
+        "chapter": "Chapter 2 (CH 2.7)",
         "location": "Page 16"
       },
       {
@@ -2884,7 +2884,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 4 - Exact Equations.pdf",
-        "chapter": "Chapter 2 (§2.4)",
+        "chapter": "Chapter 2 (CH 2.4)",
         "location": "Page 4"
       },
       {
@@ -2949,7 +2949,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "source": [
       {
         "deck": "Lecture 1 - Introduction to Differential Equations.pdf",
-        "chapter": "Chapter 1 (§1.1)",
+        "chapter": "Chapter 1 (CH 1.1)",
         "location": "Page 16"
       },
       {
@@ -3186,7 +3186,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "explanation": {
       "coreConcept": "All four are of the form $y' + P(t)y = f(t)$.",
       "stepByStep": [
-        "That is why they are grouped as \"linear models\" (§2.7)."
+        "That is why they are grouped as \"linear models\" (CH 2.7)."
       ],
       "commonTrap": "Thinking the mixture model is nonlinear because of $A/V$.",
       "reference": "Lecture 6 - Linear Models, September 25 2026.pdf · Page 2"

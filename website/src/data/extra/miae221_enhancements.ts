@@ -138,7 +138,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$5.7 \times 10^{26}$ uses $Q_v = 0.5\text{ eV}$ or forgets the negative sign in the exponential.`
       },
       commonTrap: t`Forgetting to convert temperature from Celsius to Kelvin ($1000 + 273 = 1273\text{ K}$), or forgetting to convert $\text{cm}^3$ to $\text{m}^3$ ($1\text{ m}^3 = 10^6\text{ cm}^3$).`,
-      reference: 'Chapter 4 Notes · Slide 10; Callister §4.2'
+      reference: 'Chapter 4 Notes · Slide 10; Callister CH 4.2'
     },
     source: src('Chapter 4', 'Imperfections in Solids', 'Slide 10')
   }),
@@ -170,7 +170,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$1.21\text{ eV}$ occurs when using $1000/T$ without scaling back by $10^3$.`
       },
       commonTrap: t`Forgetting that the slope is negative ($-Q_v/k$), so $Q_v$ must be positive.`,
-      reference: 'Chapter 4 Notes · Slide 10; Callister §4.2'
+      reference: 'Chapter 4 Notes · Slide 10; Callister CH 4.2'
     },
     source: src('Chapter 4', 'Imperfections in Solids', 'Arrhenius Analysis')
   }),
@@ -204,7 +204,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Electronegativity proximity is required so ionic/covalent intermediate compounds do not precipitate.`
       },
       commonTrap: t`Assuming density governs solid solubility. Density depends on atomic weight and packing, but atomic radius and crystal structure are what dictate lattice fitting.`,
-      reference: 'Chapter 4 Notes · Slide 16; Callister §4.3'
+      reference: 'Chapter 4 Notes · Slide 16; Callister CH 4.3'
     },
     source: src('Chapter 4', 'Imperfections in Solids', 'Slide 16')
   }),
@@ -236,7 +236,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$1.52 \times 10^{-2}\text{ mm}$ takes the reciprocal ($9.1 / 60$).`
       },
       commonTrap: t`Forgetting to divide by the magnification $M$, which results in reporting the apparent millimeter size on the printed micrograph instead of the true microstructural grain dimension.`,
-      reference: 'Chapter 4 Notes · Slide 29; Callister §4.10'
+      reference: 'Chapter 4 Notes · Slide 29; Callister CH 4.10'
     },
     source: src('Chapter 4', 'Imperfections in Solids', 'Slide 29')
   }),
@@ -271,7 +271,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$9.38\text{ MPa}$ makes a unit prefix error of $10^3$.`
       },
       commonTrap: t`Confusing megapascals ($\text{MPa} = 10^6\text{ Pa}$) with gigapascals ($\text{GPa} = 10^9\text{ Pa}$). Dividing $150\text{ MPa}$ by $0.0016$ yields $93,750\text{ MPa} = 93.8\text{ GPa}$.`,
-      reference: 'Chapter 6 Notes · Slide 38; Callister §6.3'
+      reference: 'Chapter 6 Notes · Slide 38; Callister CH 6.3'
     },
     source: src('Chapter 6', 'Mechanical Properties', 'Slide 38a')
   }),
@@ -303,7 +303,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Hooke's law validity ends at the proportional limit, which varies for every material.`
       },
       commonTrap: t`Thinking the $0.002$ offset is an inherent fundamental law of physics. It is an internationally agreed engineering convention (ASTM standard) to ensure reproducibility.`,
-      reference: 'Chapter 6 Notes · Slide 38; Callister §6.6'
+      reference: 'Chapter 6 Notes · Slide 38; Callister CH 6.6'
     },
     source: src('Chapter 6', 'Mechanical Properties', 'Slide 38b')
   }),
@@ -335,7 +335,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$23.2\text{ kN}$ uses the yield strength ($250\text{ MPa}$) instead of the tensile strength ($450\text{ MPa}$).`
       },
       commonTrap: t`Using yield strength instead of ultimate tensile strength. The maximum load sustained corresponds to the peak of the engineering stress curve ($\sigma_{\text{UTS}}$).`,
-      reference: 'Chapter 6 Notes · Slide 38; Callister §6.6'
+      reference: 'Chapter 6 Notes · Slide 38; Callister CH 6.6'
     },
     source: src('Chapter 6', 'Mechanical Properties', 'Slide 38c')
   }),
@@ -367,7 +367,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$25.0\text{ mm}$ assumes a strain of $0.10$.`
       },
       commonTrap: t`Attempting to use Hooke's law $\Delta l = \sigma l_0 / E$ at $345\text{ MPa}$. Since $345\text{ MPa} > \sigma_y$ ($250\text{ MPa}$), deformation is plastic, so one must read the total strain $\epsilon$ directly from the curve!`,
-      reference: 'Chapter 6 Notes · Slide 38; Callister §6.6'
+      reference: 'Chapter 6 Notes · Slide 38; Callister CH 6.6'
     },
     source: src('Chapter 6', 'Mechanical Properties', 'Slide 38d')
   }),
@@ -399,7 +399,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$72.1\%$ takes $l_f$ as the percentage directly.`
       },
       commonTrap: t`Calculating the linear percentage reduction in diameter instead of squaring diameters to compute area reduction. Remember that area scales as $d^2$.`,
-      reference: 'Chapter 6 Notes · Slide 45; Callister §6.6'
+      reference: 'Chapter 6 Notes · Slide 45; Callister CH 6.6'
     },
     source: src('Chapter 6', 'Mechanical Properties', 'Slide 45')
   }),
@@ -431,7 +431,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$900\text{ kJ/m}^3$ forgets both the 2 in the denominator and has power-of-ten errors.`
       },
       commonTrap: t`Forgetting that the elastic region is a right triangle, so the area is $\frac{1}{2} \times \text{base} \times \text{height} = \frac{\sigma_y^2}{2E}$.`,
-      reference: 'Chapter 6 Notes · Slide 46; Callister §6.6'
+      reference: 'Chapter 6 Notes · Slide 46; Callister CH 6.6'
     },
     source: src('Chapter 6', 'Mechanical Properties', 'Resilience')
   }),
@@ -464,7 +464,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Adiabatic heating is not the fundamental mechanical cause of the $\sigma - \sigma_T$ divergence.`
       },
       commonTrap: t`Believing that the material actually becomes weaker when the engineering curve turns downwards after UTS. The material is actually at its strongest inside the neck!`,
-      reference: 'Chapter 6 Notes · Slide 41; Callister §6.7'
+      reference: 'Chapter 6 Notes · Slide 41; Callister CH 6.7'
     },
     source: src('Chapter 6', 'Mechanical Properties', 'Slide 41')
   }),
@@ -496,7 +496,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Reverses signs and places indenter diameter terms in the denominator incorrectly.`
       },
       commonTrap: t`Using the projected circle area ($\frac{\pi}{4}d^2$) instead of the curved spherical cap area. Brinell hardness measures load per unit curved surface contact area.`,
-      reference: 'Chapter 6 Notes · Slide 50; Callister §6.10'
+      reference: 'Chapter 6 Notes · Slide 50; Callister CH 6.10'
     },
     source: src('Chapter 6', 'Mechanical Properties', 'Slide 50')
   }),
@@ -532,7 +532,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Although BCC has 48 slip systems, BCC undergoes a ductile-to-brittle transition (DBTT) at cold temperatures due to high thermal activation barriers (Peierls stress) for dislocation motion.`
       },
       commonTrap: t`Assuming BCC is always more ductile because it has 48 slip systems. BCC slip planes (\{110\}, \{112\}, \{123\}) are not close-packed, which gives BCC high yield strength and a severe ductile-to-brittle transition temperature (DBTT).`,
-      reference: 'Chapter 7 Notes · Slide 13; Callister §7.4'
+      reference: 'Chapter 7 Notes · Slide 13; Callister CH 7.4'
     },
     source: src('Chapter 7', 'Dislocations & Strengthening', 'Slide 13')
   }),
@@ -566,7 +566,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Inverts the cosine terms into the denominator.`
       },
       commonTrap: t`Believing $\tau_R$ can equal $\sigma$. Because $\phi + \lambda \ge 90^\circ$, the maximum resolved shear stress in uniaxial tension is always $\tau_R = 0.5\,\sigma$.`,
-      reference: 'Chapter 7 Notes · Slide 14; Callister §7.5'
+      reference: 'Chapter 7 Notes · Slide 14; Callister CH 7.5'
     },
     source: src('Chapter 7', 'Dislocations & Strengthening', 'Schmid\'s Law')
   }),
@@ -598,7 +598,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Smaller grains strengthen the metal, so the yield contribution must increase, not decrease.`
       },
       commonTrap: t`Forgetting the square root power $-1/2$. A 4-fold reduction in grain diameter yields a $\sqrt{4} = 2$-fold increase in the boundary strengthening term.`,
-      reference: 'Chapter 7 Notes · Slide 14; Callister §7.8'
+      reference: 'Chapter 7 Notes · Slide 14; Callister CH 7.8'
     },
     source: src('Chapter 7', 'Dislocations & Strengthening', 'Hall-Petch')
   }),
@@ -631,7 +631,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Zinc forms a metallic solid solution with copper, not ceramic particles.`
       },
       commonTrap: t`Thinking solid solution strengthening happens by chemical reactions. It is a purely mechanical interaction between elastic stress fields in the crystal lattice.`,
-      reference: 'Chapter 7 Notes · Slide 14; Callister §7.9'
+      reference: 'Chapter 7 Notes · Slide 14; Callister CH 7.9'
     },
     source: src('Chapter 7', 'Dislocations & Strengthening', 'Solid Solution')
   }),
@@ -664,7 +664,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Metallic bonding character is preserved throughout cold work.`
       },
       commonTrap: t`Believing cold work eliminates dislocations. Cold work actually creates billions of new dislocations, but packs them so tightly together that they cannot move.`,
-      reference: 'Chapter 7 Notes · Slide 15; Callister §7.10'
+      reference: 'Chapter 7 Notes · Slide 15; Callister CH 7.10'
     },
     source: src('Chapter 7', 'Dislocations & Strengthening', 'Cold Work')
   }),
@@ -697,7 +697,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Ostwald ripening describes precipitate coarsening, not grain recrystallization.`
       },
       commonTrap: t`Confusing Recovery with Recrystallization. Recovery does NOT form new grains. New strain-free grains appear exclusively during Recrystallization.`,
-      reference: 'Chapter 7 Notes · Slide 15; Callister §7.11–7.13'
+      reference: 'Chapter 7 Notes · Slide 15; Callister CH 7.11–7.13'
     },
     source: src('Chapter 7', 'Dislocations & Strengthening', 'Annealing')
   }),
@@ -733,7 +733,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$F = 3$ is impossible in a condensed binary system.`
       },
       commonTrap: t`Using the standard Gibbs phase rule $P + F = C + 2$ which allows pressure to vary. In condensed metallurgical systems at 1 atm, the condensed rule $P + F = C + 1$ must be used.`,
-      reference: 'Chapter 9 Notes · Slide 15; Callister §9.4'
+      reference: 'Chapter 9 Notes · Slide 15; Callister CH 9.4'
     },
     source: src('Chapter 9', 'Phase Diagrams', 'Slide 15')
   }),
@@ -767,7 +767,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$60/40$ simply reports the alloy composition ($60\text{ wt}\%\text{ Pb}, 40\text{ wt}\%\text{ Sn}$) instead of phase fractions.`
       },
       commonTrap: t`Using the adjacent tie-line segment rather than the opposite arm. To find the fraction of the phase on the left ($\alpha$), you must measure the segment on the right ($C_\beta - C_0$).`,
-      reference: 'Chapter 9 Notes · Slide 30; Callister §9.7'
+      reference: 'Chapter 9 Notes · Slide 30; Callister CH 9.7'
     },
     source: src('Chapter 9', 'Phase Diagrams', 'Slide 30')
   }),
@@ -800,7 +800,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$50.0\text{ wt}\\%$ is an arbitrary midpoint estimate.`
       },
       commonTrap: t`Confusing phase composition ($C_L = 46\text{ wt}\%\text{ Sn}$) with phase amount ($W_L = 79.3\text{ wt}\\%$). $C_L$ tells what the liquid is made of; $W_L$ tells how much liquid is in the crucible!`,
-      reference: 'Chapter 9 Notes · Slide 31; Callister §9.7'
+      reference: 'Chapter 9 Notes · Slide 31; Callister CH 9.7'
     },
     source: src('Chapter 9', 'Phase Diagrams', 'Slide 31')
   }),
@@ -833,7 +833,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$21.9\text{ wt}\\%$ is the numerator length ($61.9 - 40.0$), forgotten to divide by $43.6$.`
       },
       commonTrap: t`Failing to distinguish between total phase amount ($W_\alpha$) and microconstituent amount ($W_{\alpha'}$). Total $\alpha$ includes both primary $\alpha'$ dendrites and the fine $\alpha$ lamellae inside the eutectic structure!`,
-      reference: 'Chapter 9 Notes · Slides 43–44; Callister §9.8'
+      reference: 'Chapter 9 Notes · Slides 43–44; Callister CH 9.8'
     },
     source: src('Chapter 9', 'Phase Diagrams', 'Slides 43–44')
   }),
@@ -866,7 +866,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Scrambles all three reactions.`
       },
       commonTrap: t`Confusing Eutectic with Eutectoid. Remember that 'eutectoid' has an 'o' for 'one solid' decomposing into two solids (like austenite decomposing into pearlite).`,
-      reference: 'Chapter 9 Notes · Slide 50; Callister §9.11'
+      reference: 'Chapter 9 Notes · Slide 50; Callister CH 9.11'
     },
     source: src('Chapter 9', 'Phase Diagrams', 'Slide 50')
   }),
@@ -899,7 +899,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Both ferrite and austenite are metallic iron allotropes with interstitial carbon; no ionic bonding is present.`
       },
       commonTrap: t`Assuming lower packing factor automatically means larger interstitial holes. BCC has more total empty volume, but the individual hole sizes are much smaller than in FCC!`,
-      reference: 'Chapter 9 Notes · Slides 60–62; Callister §9.18'
+      reference: 'Chapter 9 Notes · Slides 60–62; Callister CH 9.18'
     },
     source: src('Chapter 9', 'Phase Diagrams', 'Slides 60–62')
   }),
@@ -931,7 +931,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`Ledeburite is the eutectic microconstituent formed in cast irons at $1147^\circ\text{C}$ ($4.3\text{ wt}\%\text{ C}$).`
       },
       commonTrap: t`Calling pearlite a 'phase'. Pearlite is NOT a phase; it is a two-phase microconstituent composed of the $\alpha$-ferrite phase and the $\text{Fe}_3\text{C}$ phase.`,
-      reference: 'Chapter 9 Notes · Slides 63–66; Callister §9.19'
+      reference: 'Chapter 9 Notes · Slides 63–66; Callister CH 9.19'
     },
     source: src('Chapter 9', 'Phase Diagrams', 'Slides 63–66')
   }),
@@ -965,7 +965,7 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
         '3': t`$40/60$ is simply reporting the carbon wt% number directly without performing lever rule.`
       },
       commonTrap: t`Failing to distinguish between TOTAL ferrite $W_\alpha$ ($94.3\%$) and PROEUTECTOID ferrite $W_{\alpha'}$ ($48.8\%$). Pearlite itself is mostly ferrite ($88\%$) layered with cementite ($12\%$)!`,
-      reference: 'Chapter 9 Notes · Slide 68; Callister §9.19'
+      reference: 'Chapter 9 Notes · Slide 68; Callister CH 9.19'
     },
     source: src('Chapter 9', 'Phase Diagrams', 'Slide 68')
   })

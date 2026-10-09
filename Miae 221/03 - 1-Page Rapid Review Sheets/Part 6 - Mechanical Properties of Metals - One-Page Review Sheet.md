@@ -3,13 +3,15 @@
 
 ---
 
-### 1. Stress, Strain & Elasticity
-* **Engineering Stress**: $\sigma = \dfrac{F}{A_0}$ ($\text{MPa} = \text{N/mm}^2$ or $\text{GPa} = 10^3\text{ MPa}$).
-* **Engineering Strain**: $\epsilon = \dfrac{\Delta l}{l_0} = \dfrac{l_i - l_0}{l_0}$ (dimensionless or $\%$).
-* **Hooke's Law (Elasticity)**: $\sigma = E \cdot \epsilon \implies E = \dfrac{\Delta \sigma}{\Delta \epsilon}$ (Young's Modulus, measure of stiffness).
-* **Atomic Origin of $E$**: $E \propto \left(\dfrac{dF}{dr}\right)_{r_0} = \left(\dfrac{d^2 E_{\text{pot}}}{dr^2}\right)_{r_0}$ (curvature of interatomic potential well). Deep, steep well $\implies$ High $E$, High $T_m$, Low $\alpha$.
-* **Poisson's Ratio**: $\nu = -\dfrac{\epsilon_{\text{lateral}}}{\epsilon_{\text{axial}}} = -\dfrac{\Delta d / d_0}{\Delta l / l_0}$ (typically $0.25 - 0.35$ for metals).
-* **Shear Modulus**: $G = \dfrac{E}{2(1 + \nu)}$ ($\tau = G \cdot \gamma$).
+### 1. Stress, Strain & Elasticity (Lecture 10)
+* **Loading modes**: tension, compression (σ and ε negative by convention), shear, torsion (shafts, axles, drills).
+* **Engineering Stress**: $\sigma = \dfrac{F}{A_0}$, shear $\tau = \dfrac{F_s}{A_0}$ ($\text{MPa} = \text{N/mm}^2$). Original area $A_0$; actual area gives true stress.
+* **Engineering Strain**: $\epsilon = \dfrac{\Delta l}{l_0}$, lateral $\epsilon_L = \dfrac{-\delta_L}{w_0}$, shear $\gamma = \tan\theta$. Always dimensionless.
+* **Hooke's Law**: $\sigma = E\epsilon \iff \dfrac{F}{A_0} = E\dfrac{\Delta l}{l_0}$. $E$ = stiffness = elastic slope: W, Ta, Mo **steep**; Al, Cu, Ag **shallow**. Ceramics 300, steel 207, Cu 110, plastics 3 GPa. Slide 11 wire: $E = \dfrac{17.24/0.55\text{ mm}^2}{1.68/10\,000} \approx 187$ GPa.
+* **Atomic Origin of $E$**: $E \propto \left(\dfrac{dF}{dr}\right)_{r_0}$. Strong bonds $\implies$ high $E$, high $T_m$, low $\alpha$. **$E$ falls as $T$ rises**: thermal expansion moves atoms to a less steep part of the force curve.
+* **Non-linear elastic** (cast iron, concrete, some polymers): **tangent** modulus = slope of tangent at $\sigma$; **secant** modulus = slope of line from origin to $\sigma$.
+* **Poisson's Ratio**: $\nu = -\dfrac{\epsilon_x}{\epsilon_z} = -\dfrac{\Delta d / d_0}{\Delta l / l_0}$ (0.2–0.5; metals ≈ 0.3). **Isotropic**: $E = 2G(1 + \nu)$, $\tau = G\gamma$ (not for composites or single crystals).
+* **Anelasticity**: time-dependent but fully recoverable elastic strain; small in metals, significant in polymers (viscoelastic).
 
 ---
 

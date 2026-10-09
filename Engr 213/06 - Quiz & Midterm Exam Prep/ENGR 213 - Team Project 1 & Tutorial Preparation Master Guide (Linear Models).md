@@ -54,7 +54,7 @@ To ensure top marks within the 1-hour time constraint, divide responsibilities d
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                 LINEAR MODELING MASTER FORMULARY (§2.7)                                      │
+│                                 LINEAR MODELING MASTER FORMULARY (CH 2.7)                                      │
 ├──────────────────────┬───────────────────────────────┬───────────────────────────────────────────────────────┤
 │ Archetype            │ Differential Equation         │ Master Integrated Solution                            │
 ├──────────────────────┼───────────────────────────────┼───────────────────────────────────────────────────────┤

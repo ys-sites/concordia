@@ -29,7 +29,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 5: Crystal Structure 2",
     teacherSlides: "Slides 14–24 (Crystallographic Directions)",
-    textbookRef: "Callister 10th Ed. §3.8, pp. 62–67 (Equations 3.4–3.6)",
+    textbookRef: "Callister 10th Ed. CH 3.8, pp. 62–67 (Equations 3.4–3.6)",
     youtubeTitle: "Miller Indices For Crystallographic Directions - Unit Cells",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+miller+indices+crystallographic+directions"
@@ -53,7 +53,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 5: Crystal Structure 2",
     teacherSlides: "Slides 18–26 (Direction vector decomposition)",
-    textbookRef: "Callister 10th Ed. §3.8, pp. 62–67",
+    textbookRef: "Callister 10th Ed. CH 3.8, pp. 62–67",
     youtubeTitle: "Miller Indices: Directions in a Cubic Unit Cell",
     youtubeChannel: "Brian Neff - Engineering Materials",
     youtubeUrl: "https://www.youtube.com/results?search_query=brian+neff+miller+indices+directions"
@@ -77,7 +77,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 5: Crystal Structure 2",
     teacherSlides: "Slides 27–42 (Crystallographic Planes)",
-    textbookRef: "Callister 10th Ed. §3.9, pp. 67–75",
+    textbookRef: "Callister 10th Ed. CH 3.9, pp. 67–75",
     youtubeTitle: "Miller Indices For Crystallographic Planes - Unit Cells",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+miller+indices+planes"
@@ -101,7 +101,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 5: Crystal Structure 2",
     teacherSlides: "Slides 32–40 (Planes not passing through origin)",
-    textbookRef: "Callister 10th Ed. §3.9, pp. 67–75",
+    textbookRef: "Callister 10th Ed. CH 3.9, pp. 67–75",
     youtubeTitle: "How To Find Miller Indices of Planes (Step-by-Step)",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=miller+indices+planes+organic+chemistry+tutor"
@@ -125,7 +125,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 4: Crystal Structure 1",
     teacherSlides: "Slides 12–22 (BCC, FCC, and HCP atomic packing factors)",
-    textbookRef: "Callister 10th Ed. §3.4, pp. 52–56",
+    textbookRef: "Callister 10th Ed. CH 3.4, pp. 52–56",
     youtubeTitle: "Atomic Packing Factor - FCC, BCC, HCP, Simple Cubic",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+atomic+packing+factor"
@@ -149,7 +149,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 6: Crystal Structure 3",
     teacherSlides: "Slides 4–11 (Linear and Planar Densities)",
-    textbookRef: "Callister 10th Ed. §3.11, pp. 75–78 (Equation 3.11)",
+    textbookRef: "Callister 10th Ed. CH 3.11, pp. 75–78 (Equation 3.11)",
     youtubeTitle: "Planar Density Calculations - Unit Cells",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+planar+density"
@@ -173,7 +173,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 6: Crystal Structure 3",
     teacherSlides: "Slides 20–35 (X-Ray Diffraction & Bragg's Law)",
-    textbookRef: "Callister 10th Ed. §3.16, pp. 84–89 (Equations 3.16 & 3.17)",
+    textbookRef: "Callister 10th Ed. CH 3.16, pp. 84–89 (Equations 3.16 & 3.17)",
     youtubeTitle: "Bragg's Law Equation - X-Ray Diffraction (XRD) Problems",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+bragg%27s+law"
@@ -197,7 +197,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7: Defects 1",
     teacherSlides: "Slides 5–15 (Point Defects & Arrhenius relation)",
-    textbookRef: "Callister 10th Ed. §4.2, pp. 104–106 (Equation 4.1)",
+    textbookRef: "Callister 10th Ed. CH 4.2, pp. 104–106 (Equation 4.1)",
     youtubeTitle: "Vacancies and Defects in Solids - Imperfections in Solids",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+vacancies+and+defects"
@@ -221,7 +221,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7: Defects 1",
     teacherSlides: "Slides 16–22 (Solid Solutions: Substitutional vs. Interstitial)",
-    textbookRef: "Callister 10th Ed. §4.3, pp. 106–109",
+    textbookRef: "Callister 10th Ed. CH 4.3, pp. 106–109",
     youtubeTitle: "Solid Solutions - Substitutional and Interstitial",
     youtubeChannel: "Materials Science with Prof. David Dye",
     youtubeUrl: "https://www.youtube.com/results?search_query=solid+solutions+substitutional+interstitial+materials+science"
@@ -245,7 +245,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7: Defects 1",
     teacherSlides: "Slides 28–42 (Dislocations - Linear Defects)",
-    textbookRef: "Callister 10th Ed. §4.5, pp. 112–117",
+    textbookRef: "Callister 10th Ed. CH 4.5, pp. 112–117",
     youtubeTitle: "Dislocations in Materials Science - Edge vs Screw Dislocations",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+dislocations"
@@ -269,7 +269,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 2 & 3: Review Chemistry & Bonding",
     teacherSlides: "Slides 12–25 (Interatomic Forces & Potential Energy Curves)",
-    textbookRef: "Callister 10th Ed. §2.5, pp. 28–34 (Figures 2.8 & 2.9)",
+    textbookRef: "Callister 10th Ed. CH 2.5, pp. 28–34 (Figures 2.8 & 2.9)",
     youtubeTitle: "Interatomic Potential Energy Curves and Bonding Forces",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=interatomic+potential+energy+curve+organic+chemistry+tutor"
@@ -293,7 +293,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Diffusion",
     teacherSlides: "Diffusion deck: Temperature dependence D = D_0 exp(-Q/RT)",
-    textbookRef: "Callister 10th Ed. §5.3, pp. 143–150 (Table 5.2)",
+    textbookRef: "Callister 10th Ed. CH 5.3, pp. 143–150 (Table 5.2)",
     youtubeTitle: "Diffusion in Solids - Temperature Dependence & Activation Energy",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+diffusion+in+solids"
@@ -317,7 +317,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Diffusion",
     teacherSlides: "Fick's First Law J = -D dC/dx, steady-state membrane purification",
-    textbookRef: "Callister 10th Ed. §5.2, pp. 138–140 (Example Problem 5.1)",
+    textbookRef: "Callister 10th Ed. CH 5.2, pp. 138–140 (Example Problem 5.1)",
     youtubeTitle: "Fick's First Law of Diffusion - Steady State Diffusion Problems",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+fick%27s+first+law"
@@ -341,7 +341,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 3: Review Chemistry 2",
     teacherSlides: "Slides 4–12 (Primary Interatomic Bonds: Covalent)",
-    textbookRef: "Callister 10th Ed. §2.6, pp. 34–37",
+    textbookRef: "Callister 10th Ed. CH 2.6, pp. 34–37",
     youtubeTitle: "Types of Chemical Bonds - Ionic, Covalent, and Metallic",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+covalent+bonding"
@@ -365,7 +365,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Mechanical Properties",
     teacherSlides: "Tensile testing setup, load-elongation vs indentation hardness",
-    textbookRef: "Callister 10th Ed. §6.2 & §6.10, pp. 162–165, 189–195",
+    textbookRef: "Callister 10th Ed. CH 6.2 & CH 6.10, pp. 162–165, 189–195",
     youtubeTitle: "Tensile Testing - Stress Strain Curve & Mechanical Properties",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+tensile+test"
@@ -389,7 +389,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Mechanical Properties",
     teacherSlides: "Hooke's Law in tension, elastic slope E",
-    textbookRef: "Callister 10th Ed. §6.3, pp. 165–170",
+    textbookRef: "Callister 10th Ed. CH 6.3, pp. 165–170",
     youtubeTitle: "Young's Modulus of Elasticity - Stress & Strain Formula",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+young%27s+modulus"
@@ -413,7 +413,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Mechanical Properties",
     teacherSlides: "0.002 offset yield strength determination",
-    textbookRef: "Callister 10th Ed. §6.6, pp. 174–177 (Figure 6.10)",
+    textbookRef: "Callister 10th Ed. CH 6.6, pp. 174–177 (Figure 6.10)",
     youtubeTitle: "How to Find 0.2% Offset Yield Strength from a Stress-Strain Curve",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=0.2+offset+yield+strength+stress+strain+curve"
@@ -437,7 +437,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Mechanical Properties",
     teacherSlides: "Ductility %EL and %RA definitions",
-    textbookRef: "Callister 10th Ed. §6.6, pp. 177–180 (Equation 6.11)",
+    textbookRef: "Callister 10th Ed. CH 6.6, pp. 177–180 (Equation 6.11)",
     youtubeTitle: "Ductility, Malleability, Toughness, and Brittleness in Materials",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=the+organic+chemistry+tutor+ductility"
@@ -461,7 +461,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Mechanical Properties",
     teacherSlides: "Maximum engineering stress and localized necking",
-    textbookRef: "Callister 10th Ed. §6.6, pp. 177–178 (Figure 6.11)",
+    textbookRef: "Callister 10th Ed. CH 6.6, pp. 177–178 (Figure 6.11)",
     youtubeTitle: "Ultimate Tensile Strength, Necking, and Fracture Point",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=tensile+strength+necking+organic+chemistry+tutor"
@@ -485,7 +485,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Mechanical Properties",
     teacherSlides: "Elastic recovery after plastic deformation and unloading springback",
-    textbookRef: "Callister 10th Ed. §6.7, pp. 182–183 (Figure 6.17)",
+    textbookRef: "Callister 10th Ed. CH 6.7, pp. 182–183 (Figure 6.17)",
     youtubeTitle: "Elastic Recovery and Plastic Deformation Problems",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=elastic+recovery+plastic+deformation+materials+science"
@@ -509,7 +509,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 2 & 7: Bonding & Mechanical",
     teacherSlides: "Temperature dependence of elastic modulus",
-    textbookRef: "Callister 10th Ed. §6.3, pp. 165–170",
+    textbookRef: "Callister 10th Ed. CH 6.3, pp. 165–170",
     youtubeTitle: "Temperature Dependence of Young's Modulus",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=temperature+dependence+young%27s+modulus+materials+science"
@@ -533,7 +533,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 3: Review Chemistry 2",
     teacherSlides: "Polymer bonding and secondary van der Waals interactions",
-    textbookRef: "Callister 10th Ed. §2.7, pp. 37–41",
+    textbookRef: "Callister 10th Ed. CH 2.7, pp. 37–41",
     youtubeTitle: "Secondary Bonding in Polymers - Van der Waals Forces",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=secondary+bonding+polymers+materials+science"
@@ -557,7 +557,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 6: Crystal Structure 3",
     teacherSlides: "Single crystals vs polycrystals, anisotropy vs isotropy",
-    textbookRef: "Callister 10th Ed. §3.15, pp. 83–84",
+    textbookRef: "Callister 10th Ed. CH 3.15, pp. 83–84",
     youtubeTitle: "Anisotropy vs Isotropy in Single Crystals & Polycrystals",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=anisotropy+isotropy+single+crystals+materials+science"
@@ -581,7 +581,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 6: Crystal Structure 3",
     teacherSlides: "Polymorphism / Allotropy definitions",
-    textbookRef: "Callister 10th Ed. §3.6 & §3.14, pp. 58–59, 82–83",
+    textbookRef: "Callister 10th Ed. CH 3.6 & CH 3.14, pp. 58–59, 82–83",
     youtubeTitle: "Polymorphism and Allotropy in Materials Science",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=polymorphism+allotropy+materials+science"
@@ -605,7 +605,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7: Defects 1",
     teacherSlides: "Microscopic examination & etching of grain boundaries",
-    textbookRef: "Callister 10th Ed. §4.10, pp. 123–128",
+    textbookRef: "Callister 10th Ed. CH 4.10, pp. 123–128",
     youtubeTitle: "Metallography: Polishing and Etching Grain Boundaries",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=metallography+etching+grain+boundaries"
@@ -629,7 +629,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Mechanical Properties",
     teacherSlides: "Yield strength 0.002 offset concept",
-    textbookRef: "Callister 10th Ed. §6.6, pp. 174–177",
+    textbookRef: "Callister 10th Ed. CH 6.6, pp. 174–177",
     youtubeTitle: "Yield Strength and Plastic Deformation Explained",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=yield+strength+plastic+deformation+materials+science"
@@ -653,7 +653,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 4: Crystal Structure 1",
     teacherSlides: "Close-packed crystal structures: FCC vs HCP stacking",
-    textbookRef: "Callister 10th Ed. §3.12, pp. 78–82",
+    textbookRef: "Callister 10th Ed. CH 3.12, pp. 78–82",
     youtubeTitle: "Close Packed Structures - FCC vs HCP Stacking Sequences",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=close+packed+structures+fcc+vs+hcp+stacking"
@@ -677,7 +677,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 4 & 5: Crystal Structure 1 & 2",
     teacherSlides: "Linear densities and close-packed directions",
-    textbookRef: "Callister 10th Ed. §3.11, pp. 75–78",
+    textbookRef: "Callister 10th Ed. CH 3.11, pp. 75–78",
     youtubeTitle: "Close Packed Directions and Slip Systems in Metals",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=close+packed+directions+fcc+bcc+slip"
@@ -701,7 +701,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 5: Crystal Structure 2",
     teacherSlides: "Cubic crystal relationships: [hkl] perpendicular to (hkl)",
-    textbookRef: "Callister 10th Ed. §3.10, pp. 74–75",
+    textbookRef: "Callister 10th Ed. CH 3.10, pp. 74–75",
     youtubeTitle: "Planes and Directions in Cubic Crystals",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=cubic+crystal+planes+and+directions+perpendicular"
@@ -725,7 +725,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 2: Review Chemistry",
     teacherSlides: "Thermal expansion and potential energy curve asymmetry",
-    textbookRef: "Callister 10th Ed. §2.5, pp. 28–34",
+    textbookRef: "Callister 10th Ed. CH 2.5, pp. 28–34",
     youtubeTitle: "Thermal Expansion Coefficient and Interatomic Potential Well",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=thermal+expansion+coefficient+potential+energy+well"
@@ -749,7 +749,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 3: Review Chemistry 2",
     teacherSlides: "Primary bonding: Ionic bonds & electron transfer",
-    textbookRef: "Callister 10th Ed. §2.6, pp. 34–37",
+    textbookRef: "Callister 10th Ed. CH 2.6, pp. 34–37",
     youtubeTitle: "Ionic Bonding and Electron Transfer Explained",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=ionic+bonding+electron+transfer+organic+chemistry+tutor"
@@ -773,7 +773,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Mechanical Properties",
     teacherSlides: "True stress vs engineering stress relations",
-    textbookRef: "Callister 10th Ed. §6.7, pp. 180–182",
+    textbookRef: "Callister 10th Ed. CH 6.7, pp. 180–182",
     youtubeTitle: "True Stress and True Strain vs Engineering Stress and Strain",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=true+stress+vs+engineering+stress+organic+chemistry+tutor"
@@ -797,7 +797,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7: Defects 1",
     teacherSlides: "Point defects: Vacancy temperature dependence",
-    textbookRef: "Callister 10th Ed. §4.2, pp. 104–106",
+    textbookRef: "Callister 10th Ed. CH 4.2, pp. 104–106",
     youtubeTitle: "Equilibrium Concentration of Vacancies",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=equilibrium+concentration+of+vacancies+materials+science"
@@ -821,7 +821,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 3: Review Chemistry 2",
     teacherSlides: "Carbon allotropes: Diamond vs Graphite",
-    textbookRef: "Callister 10th Ed. §12.4, pp. 490–493",
+    textbookRef: "Callister 10th Ed. CH 12.4, pp. 490–493",
     youtubeTitle: "Carbon Allotropes - Diamond vs Graphite Bonding",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=diamond+vs+graphite+bonding+organic+chemistry+tutor"
@@ -845,7 +845,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Mechanical Properties",
     teacherSlides: "Ductility vs Brittleness definitions",
-    textbookRef: "Callister 10th Ed. §6.6, pp. 177–180",
+    textbookRef: "Callister 10th Ed. CH 6.6, pp. 177–180",
     youtubeTitle: "Ductility vs Brittleness in Materials Science",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=ductility+vs+brittleness+materials+science"
@@ -869,7 +869,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 2: Review Chemistry",
     teacherSlides: "Atomic structure & valence electrons",
-    textbookRef: "Callister 10th Ed. §2.3, pp. 20–25",
+    textbookRef: "Callister 10th Ed. CH 2.3, pp. 20–25",
     youtubeTitle: "Valence Electrons and Chemical Bonding",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=valence+electrons+chemical+bonding+organic+chemistry+tutor"
@@ -893,7 +893,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 7 / Diffusion",
     teacherSlides: "Fick's Second Law & Non-steady state diffusion",
-    textbookRef: "Callister 10th Ed. §5.3, pp. 140–143",
+    textbookRef: "Callister 10th Ed. CH 5.3, pp. 140–143",
     youtubeTitle: "Fick's Second Law of Diffusion - Non-Steady State",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=fick%27s+second+law+diffusion+organic+chemistry+tutor"
@@ -917,7 +917,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 6 & 7: Crystals & Defects",
     teacherSlides: "Grains, crystallite orientation, and grain boundary interfaces",
-    textbookRef: "Callister 10th Ed. §3.14 & §4.6, pp. 82–83, 117–120",
+    textbookRef: "Callister 10th Ed. CH 3.14 & CH 4.6, pp. 82–83, 117–120",
     youtubeTitle: "Grains and Grain Boundaries in Polycrystalline Metals",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=grains+and+grain+boundaries+polycrystalline"
@@ -941,7 +941,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 3: Review Chemistry 2",
     teacherSlides: "Directionality of covalent bonds & hybridization",
-    textbookRef: "Callister 10th Ed. §2.6, pp. 34–37",
+    textbookRef: "Callister 10th Ed. CH 2.6, pp. 34–37",
     youtubeTitle: "Directional vs Non-Directional Chemical Bonds",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=directional+vs+non-directional+bonds+materials+science"
@@ -965,7 +965,7 @@ export const MIAE221_MIDTERM_QUESTIONS: MidtermQuestionDetail[] = [
     },
     teacherDeck: "Lecture 6: Crystal Structure 3",
     teacherSlides: "Crystalline vs Non-crystalline (amorphous) solids",
-    textbookRef: "Callister 10th Ed. §3.17, pp. 89–90",
+    textbookRef: "Callister 10th Ed. CH 3.17, pp. 89–90",
     youtubeTitle: "Crystalline vs Amorphous Solids Explained",
     youtubeChannel: "The Organic Chemistry Tutor",
     youtubeUrl: "https://www.youtube.com/results?search_query=crystalline+vs+amorphous+solids+organic+chemistry+tutor"

@@ -10,21 +10,21 @@
 
 | Textbook Section | Lecture Topic & Scope | Governing Mathematical Engine | Key Exam Archetype |
 | :--- | :--- | :--- | :--- |
-| **§1.1 & §1.2** | Definitions, Terminology & IVPs | Order, Linearity, Normal Form $\frac{dy}{dx} = f(x,y)$, Picard Existence | Continuity of $f$ and $\frac{\partial f}{\partial y}$ at $(x_0, y_0)$ |
-| **§2.1** | Solution Curves Without a Solution | Direction Fields, Autonomous DEs, Phase Lines | Classifying attractors, repellers & semi-stable nodes |
-| **§2.2** | Separable Equations | $\int \frac{dy}{h(y)} = \int g(x)dx + C$ | Tracking singular lost solutions when $h(y) = 0$ |
-| **§2.3** | First-Order Linear Equations | Integrating Factor $\mu(x) = e^{\int P(x)dx}$, $\frac{d}{dx}[\mu y] = \mu Q$ | Standardizing leading coefficient to 1 |
-| **§2.4** | Exact Differential Equations | Test $M_y = N_x$, Potential function $F(x,y) = C$ | Non-exact integrating factors $\mu(x)$ or $\mu(y)$ |
-| **§2.5** | Solutions by Substitutions | Homogeneous ($y=ux$), Bernoulli ($u=y^{1-n}$), Linear ($u=Ax+By+C$) | Bernoulli linearization to 1st-order linear |
-| **§2.7 & §2.8** | Linear & Non-Linear Physical Models | Mass balance $\frac{dA}{dt} = R_{\text{in}} - R_{\text{out}}$, Logistic $\frac{dP}{dt} = r P(1 - P/K)$ | Draining brine tanks with dynamic liquid volumes |
-| **§17.1 & §17.2** | Complex Numbers & Powers | Polar form $z = r e^{i\theta}$, De Moivre's $[r e^{i\theta}]^n = r^n e^{i n\theta}$ | Finding all $n$-th roots on symmetric circles |
-| **§3.1 & §3.3** | Constant-Coefficient Linear Equations | Characteristic Eq $a r^2 + b r + c = 0$, Wronskian $W \neq 0$ | 3 Cases: Distinct real, repeated, complex conjugate |
-| **§3.4 & §3.5** | Non-Homogeneous Equations | Undetermined Coefficients (Table/Annihilator), Variation of Params | Duplication rule ($x^k$) and universal Wronskian $u_1, u_2$ |
-| **§3.6 & §3.7** | Cauchy-Euler & Reduction of Order | Equidimensional $a x^2 y'' + b x y' + c y = 0$, $y_2 = y_1 \int \frac{e^{-\int P dx}}{y_1^2}dx$ | Auxiliary eq $a m(m-1) + b m + c = 0$ |
-| **§3.8** | Mechanical & Electrical Oscillators | Mass-Spring $m x'' + \beta x' + k x = F(t)$, RLC Circuit | Underdamped envelope decay, resonance envelope $t \sin(\omega t)$ |
-| **§4.1 – §4.3** | The Laplace Transform Engine | $\mathcal{L}\{f(t)\} = \int_0^\infty e^{-st}f(t)dt$, Frequency shift $\mathcal{L}\{e^{at}f\} = F(s-a)$ | Solving 2nd-order IVPs via algebraic partial fractions |
-| **§5.1.2** | Power Series Solutions | $y = \sum c_n x^n$ about ordinary points, Recurrence relations | Aligning index shifts to $x^k$ and peeling off terms |
-| **§10.1 – §10.4**| Systems of Linear DEs | Normal form $\mathbf{X}' = \mathbf{A}\mathbf{X}$, Eigenvalues $\det(\mathbf{A}-\lambda\mathbf{I})=0$ | Phase plane trajectories, nodes, saddles, centers, spirals |
+| **CH 1.1 & CH 1.2** | Definitions, Terminology & IVPs | Order, Linearity, Normal Form $\frac{dy}{dx} = f(x,y)$, Picard Existence | Continuity of $f$ and $\frac{\partial f}{\partial y}$ at $(x_0, y_0)$ |
+| **CH 2.1** | Solution Curves Without a Solution | Direction Fields, Autonomous DEs, Phase Lines | Classifying attractors, repellers & semi-stable nodes |
+| **CH 2.2** | Separable Equations | $\int \frac{dy}{h(y)} = \int g(x)dx + C$ | Tracking singular lost solutions when $h(y) = 0$ |
+| **CH 2.3** | First-Order Linear Equations | Integrating Factor $\mu(x) = e^{\int P(x)dx}$, $\frac{d}{dx}[\mu y] = \mu Q$ | Standardizing leading coefficient to 1 |
+| **CH 2.4** | Exact Differential Equations | Test $M_y = N_x$, Potential function $F(x,y) = C$ | Non-exact integrating factors $\mu(x)$ or $\mu(y)$ |
+| **CH 2.5** | Solutions by Substitutions | Homogeneous ($y=ux$), Bernoulli ($u=y^{1-n}$), Linear ($u=Ax+By+C$) | Bernoulli linearization to 1st-order linear |
+| **CH 2.7 & CH 2.8** | Linear & Non-Linear Physical Models | Mass balance $\frac{dA}{dt} = R_{\text{in}} - R_{\text{out}}$, Logistic $\frac{dP}{dt} = r P(1 - P/K)$ | Draining brine tanks with dynamic liquid volumes |
+| **CH 17.1 & CH 17.2** | Complex Numbers & Powers | Polar form $z = r e^{i\theta}$, De Moivre's $[r e^{i\theta}]^n = r^n e^{i n\theta}$ | Finding all $n$-th roots on symmetric circles |
+| **CH 3.1 & CH 3.3** | Constant-Coefficient Linear Equations | Characteristic Eq $a r^2 + b r + c = 0$, Wronskian $W \neq 0$ | 3 Cases: Distinct real, repeated, complex conjugate |
+| **CH 3.4 & CH 3.5** | Non-Homogeneous Equations | Undetermined Coefficients (Table/Annihilator), Variation of Params | Duplication rule ($x^k$) and universal Wronskian $u_1, u_2$ |
+| **CH 3.6 & CH 3.7** | Cauchy-Euler & Reduction of Order | Equidimensional $a x^2 y'' + b x y' + c y = 0$, $y_2 = y_1 \int \frac{e^{-\int P dx}}{y_1^2}dx$ | Auxiliary eq $a m(m-1) + b m + c = 0$ |
+| **CH 3.8** | Mechanical & Electrical Oscillators | Mass-Spring $m x'' + \beta x' + k x = F(t)$, RLC Circuit | Underdamped envelope decay, resonance envelope $t \sin(\omega t)$ |
+| **CH 4.1 – CH 4.3** | The Laplace Transform Engine | $\mathcal{L}\{f(t)\} = \int_0^\infty e^{-st}f(t)dt$, Frequency shift $\mathcal{L}\{e^{at}f\} = F(s-a)$ | Solving 2nd-order IVPs via algebraic partial fractions |
+| **CH 5.1.2** | Power Series Solutions | $y = \sum c_n x^n$ about ordinary points, Recurrence relations | Aligning index shifts to $x^k$ and peeling off terms |
+| **CH 10.1 – CH 10.4**| Systems of Linear DEs | Normal form $\mathbf{X}' = \mathbf{A}\mathbf{X}$, Eigenvalues $\det(\mathbf{A}-\lambda\mathbf{I})=0$ | Phase plane trajectories, nodes, saddles, centers, spirals |
 
 ---
 

@@ -117,7 +117,7 @@
 * **Category**: `Tutorial work`
 * **Title**: ENGR 213 - Team Project 1 & Tutorial Preparation Master Guide (Linear Models)
 * **Academic year**: `2025/2026`
-* **Description**: Comprehensive high-yield tutorial preparation manual for the 1-hour in-person Team Project 1 (§2.7 / Dr. Haghighat Lecture 6). Features complete mathematical derivations and 8 step-by-step solved engineering problems across all 4 modeling archetypes: population growth/decay, Newton's law of cooling/warming, single-tank brine mixtures (both equal flow and unequal flow with overflow limits), and first-order LR/RC series circuits with DC and sinusoidal AC voltage sources.
+* **Description**: Comprehensive high-yield tutorial preparation manual for the 1-hour in-person Team Project 1 (CH 2.7 / Dr. Haghighat Lecture 6). Features complete mathematical derivations and 8 step-by-step solved engineering problems across all 4 modeling archetypes: population growth/decay, Newton's law of cooling/warming, single-tank brine mixtures (both equal flow and unequal flow with overflow limits), and first-order LR/RC series circuits with DC and sinusoidal AC voltage sources.
 
 ---
 
@@ -128,7 +128,7 @@
 * **Category**: `Lecture notes`
 * **Title**: ENGR 213 Lecture 6 - Linear Mathematical Models (Explained)
 * **Academic year**: `2025/2026`
-* **Description**: Fully expanded, step-by-step master lecture notes for Dr. Haghighat's Lecture 6 (September 25, 2026) on First-Order Linear Mathematical Modeling (§2.7). Covers physical rate hypothesis formulation, exponential bacterial growth and tripling time, Newtonian cooling of a cake with asymptotic equilibrium analysis, stirred salt solution tank dynamics with integrating factors, and series LR circuit transient vs. steady-state current response.
+* **Description**: Fully expanded, step-by-step master lecture notes for Dr. Haghighat's Lecture 6 (September 25, 2026) on First-Order Linear Mathematical Modeling (CH 2.7). Covers physical rate hypothesis formulation, exponential bacterial growth and tripling time, Newtonian cooling of a cake with asymptotic equilibrium analysis, stirred salt solution tank dynamics with integrating factors, and series LR circuit transient vs. steady-state current response.
 
 ---
 
@@ -295,7 +295,7 @@
 * **Category**: `Lecture notes`
 * **Title**: ENGR 213 Lecture 7 - Non-Linear Models (Explained)
 * **Academic year**: `2025/2026`
-* **Description**: Complete step-by-step master lecture notes for Dr. Haghighat's Lecture 7 (September 30, 2026) on Non-Linear Mathematical Models (§2.8). Covers density-dependent population dynamics and the logistic equation with carrying capacity derivations, second-order bimolecular chemical reaction kinetics with limiting reactant analysis, and Torricelli's leaking tank efflux dynamics with exact emptying time calculations.
+* **Description**: Complete step-by-step master lecture notes for Dr. Haghighat's Lecture 7 (September 30, 2026) on Non-Linear Mathematical Models (CH 2.8). Covers density-dependent population dynamics and the logistic equation with carrying capacity derivations, second-order bimolecular chemical reaction kinetics with limiting reactant analysis, and Torricelli's leaking tank efflux dynamics with exact emptying time calculations.
 
 
 ---
@@ -406,7 +406,7 @@
 * **Category**: `Summaries`
 * **Title**: MIAE 221 Part 6 - Mechanical Properties of Metals Master Guide
 * **Academic year**: `2025/2026`
-* **Description**: Comprehensive master study guide for MIAE 221 covering stress-strain mechanics, Hooke's Law and Young's modulus derivation from interatomic potential wells, Poisson's ratio, 0.002 offset yield strength, necking instability, ductility metrics (%EL and %RA), resilience, true stress-strain Hollomon law, Brinell hardness cap derivation, and fully solved tensile test exam problems.
+* **Description**: Master study guide for Dr. Medraj's MIAE 221 Lecture 10 (Mechanical Properties I) and Callister Chapter 6, rebuilt around the lecture slides with every fill-in blank answered. Covers loading modes, engineering stress and strain, Hooke's law with the slide 11 steel-wire modulus example, why E falls with temperature, tangent and secant modulus, Poisson's ratio and E = 2G(1+v), and anelasticity, then the full stress-strain curve: 0.2% offset yield, tensile strength, ductility, resilience, toughness, true stress-strain and hardness, with solved problems and an exam pitfall table.
 
 ---
 
@@ -417,7 +417,7 @@
 * **Category**: `Summaries`
 * **Title**: MIAE 221 Part 6 - Mechanical Properties of Metals 1-Page Rapid Review Sheet
 * **Academic year**: `2025/2026`
-* **Description**: High-yield single-page exam review sheet for MIAE 221 covering engineering stress-strain equations, Hooke's law, Poisson's ratio, 0.002 yield offset, ductility formulas, modulus of resilience, true stress-strain relations, and Brinell/Rockwell hardness comparison.
+* **Description**: High-yield single-page review sheet for MIAE 221 Lecture 10 and Callister Chapter 6: loading modes, stress and strain definitions (normal, lateral, shear), Hooke's law and typical E values, E versus temperature, tangent and secant modulus, Poisson's ratio and the isotropic E-G relation, anelasticity, 0.2% offset yield, tensile strength, ductility, resilience, true stress-strain and hardness formulas.
 
 ---
 
@@ -911,7 +911,7 @@
 * **Category**: `Summaries`
 * **Title**: ENGR 213 - In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium
 * **Academic year**: `2025/2026`
-* **Description**: Comprehensive master preparation compendium covering the entire ENGR 213 Midterm 1 syllabus: Chapter 2 (Separable ODEs §2.2, Linear First-Order ODEs §2.3, Exact Equations §2.4, Solutions by Substitution: Homogeneous & Bernoulli §2.5, Physical Models §2.7–§2.8) and Sections 17.1–17.2 (Complex Numbers, Polar/Cartesian Forms, Euler's Formula, De Moivre Powers, All Distinct Roots & Second-Order Auxiliary Equations). Features a dedicated Get Ready for Midterm 1 mastery section with an active 7-day revision system, 3-phase diagnostic checklist, and fully worked step-by-step problem walkthroughs for every exam topic.
+* **Description**: Comprehensive master preparation compendium covering the entire ENGR 213 Midterm 1 syllabus: Chapter 2 (Separable ODEs CH 2.2, Linear First-Order ODEs CH 2.3, Exact Equations CH 2.4, Solutions by Substitution: Homogeneous & Bernoulli CH 2.5, Physical Models CH 2.7–CH 2.8) and Sections 17.1–17.2 (Complex Numbers, Polar/Cartesian Forms, Euler's Formula, De Moivre Powers, All Distinct Roots & Second-Order Auxiliary Equations). Features a dedicated Get Ready for Midterm 1 mastery section with an active 7-day revision system, 3-phase diagnostic checklist, and fully worked step-by-step problem walkthroughs for every exam topic.
 
 ### 83. ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf
 * **File Name**: ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf

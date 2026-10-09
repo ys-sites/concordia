@@ -1,7 +1,7 @@
 # Chapter 02: First-Order Differential Equations & Modeling
 ### Concordia University · Department of Mechanical, Industrial & Aerospace Engineering
 **Course**: Applied Ordinary Differential Equations (ENGR 213)  
-**Textbook**: *Advanced Engineering Mathematics* (7th Edition) by Dennis G. Zill — Chapter 2 (§2.1, §2.2, §2.3, §2.4, §2.5, §2.7, §2.8)
+**Textbook**: *Advanced Engineering Mathematics* (7th Edition) by Dennis G. Zill — Chapter 2 (CH 2.1, CH 2.2, CH 2.3, CH 2.4, CH 2.5, CH 2.7, CH 2.8)
 
 ---
 
@@ -10,26 +10,26 @@
 Chapter 2 forms the analytical and practical core of first-order ordinary differential equations. In this chapter, we master the complete toolkit for analyzing, solving, and interpreting first-order equations:
 
 ```
-First-Order Differential Equations (§2.1 - §2.8)
- ├── Qualitative Analysis (§2.1)
+First-Order Differential Equations (CH 2.1 - CH 2.8)
+ ├── Qualitative Analysis (CH 2.1)
  │     ├── Direction fields & lineal elements
  │     └── Autonomous ODEs, phase line portraits & stability (attractor, repeller, semi-stable)
- ├── Analytical Methods (§2.2 - §2.5)
- │     ├── §2.2 Separation of Variables: g(x)dx = h(y)dy & lost singular solutions
- │     ├── §2.3 First-Order Linear: y' + P(x)y = f(x) via Integrating Factor μ(x) = exp(∫P dx)
- │     ├── §2.4 Exact Equations: M dx + N dy = 0 (My = Nx) & integrating multipliers
- │     └── §2.5 Substitutions:
+ ├── Analytical Methods (CH 2.2 - CH 2.5)
+ │     ├── CH 2.2 Separation of Variables: g(x)dx = h(y)dy & lost singular solutions
+ │     ├── CH 2.3 First-Order Linear: y' + P(x)y = f(x) via Integrating Factor μ(x) = exp(∫P dx)
+ │     ├── CH 2.4 Exact Equations: M dx + N dy = 0 (My = Nx) & integrating multipliers
+ │     └── CH 2.5 Substitutions:
  │           ├── Homogeneous equations: y = u·x
  │           ├── Bernoulli equations: w = y^(1-n)
  │           └── Linear composition: u = Ax + By + C
- └── Physical Modeling (§2.7 - §2.8)
-       ├── §2.7 Linear Models: growth/decay, Newton cooling, mixture tanks (equal/unequal rates), LR/RC circuits
-       └── §2.8 Nonlinear Models: logistic population dynamics, carrying capacity, Torricelli tank draining
+ └── Physical Modeling (CH 2.7 - CH 2.8)
+       ├── CH 2.7 Linear Models: growth/decay, Newton cooling, mixture tanks (equal/unequal rates), LR/RC circuits
+       └── CH 2.8 Nonlinear Models: logistic population dynamics, carrying capacity, Torricelli tank draining
 ```
 
 ---
 
-## 2. Qualitative Analysis: Direction Fields & Stability (§2.1)
+## 2. Qualitative Analysis: Direction Fields & Stability (CH 2.1)
 
 ### 2.1 Direction Fields and Flow Trajectories
 When an analytical formula for the solution of $\frac{dy}{dx} = f(x, y)$ cannot be obtained, or when global behavior must be visualized immediately, we employ **Direction Fields** (also known as slope fields).
@@ -92,9 +92,9 @@ If $y(x)$ is a solution of an autonomous ODE $\frac{dy}{dx} = f(y)$, then $y(x -
 
 ---
 
-## 3. Analytical Solution Engine (§2.2 - §2.5)
+## 3. Analytical Solution Engine (CH 2.2 - CH 2.5)
 
-### 3.1 Separation of Variables (§2.2)
+### 3.1 Separation of Variables (CH 2.2)
 
 An equation is separable if it can be factored into a product of a function of $x$ and a function of $y$:
 $$\frac{dy}{dx} = g(x)h(y)$$
@@ -110,7 +110,7 @@ $$\frac{dy}{dx} = g(x)h(y)$$
 
 ---
 
-### 3.2 First-Order Linear Equations (§2.3)
+### 3.2 First-Order Linear Equations (CH 2.3)
 
 A first-order linear ODE can always be written in **standard form**:
 $$\frac{dy}{dx} + P(x)y = f(x)$$
@@ -139,7 +139,7 @@ If $P(x)$ and $f(x)$ are continuous on an open interval $I$ containing $x_0$, th
 
 ---
 
-### 3.3 Exact Equations & Integrating Multipliers (§2.4)
+### 3.3 Exact Equations & Integrating Multipliers (CH 2.4)
 
 A differential expression $M(x, y)dx + N(x, y)dy$ is an **exact differential** in a region $R$ of the $xy$-plane if it corresponds to the total differential $df$ of some multivariable potential function $f(x, y)$:
 $$df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy = M(x, y)dx + N(x, y)dy$$
@@ -173,10 +173,10 @@ If $M_y \ne N_x$, multiply by an integrating factor $\mu(x, y)$ such that $(\mu 
 
 ---
 
-### 3.4 Solutions by Substitution (§2.5)
+### 3.4 Solutions by Substitution (CH 2.5)
 
 ```
-Substitutions Toolkit (§2.5)
+Substitutions Toolkit (CH 2.5)
  ├── 1. Homogeneous Equations: M(tx, ty) = tⁿ M(x, y) & N(tx, ty) = tⁿ N(x, y)
  │     └── Substitute y = u·x  ==>  dy = u dx + x du  (Separable in u and x)
  ├── 2. Bernoulli Equations: y' + P(x)y = Q(x)yⁿ
@@ -217,7 +217,7 @@ An ODE of the form $\frac{dy}{dx} = f(Ax + By + C)$ with $B \ne 0$:
 
 ---
 
-## 4. Applied Physical Modeling Engine (§2.7 - §2.8)
+## 4. Applied Physical Modeling Engine (CH 2.7 - CH 2.8)
 
 ### 4.1 Industrial Mixture Tanks (Equal vs. Unequal Flow Rates)
 
@@ -244,7 +244,7 @@ An ODE of the form $\frac{dy}{dx} = f(Ax + By + C)$ with $B \ne 0$:
 
 ---
 
-### 4.2 Nonlinear Population Dynamics: The Logistic Model (§2.8)
+### 4.2 Nonlinear Population Dynamics: The Logistic Model (CH 2.8)
 
 In 1840, Pierre François Verhulst modified the Malthusian law by adding an environment-limiting competition term $-b P^2$:
 $$\frac{dP}{dt} = P(a - b P), \quad a, b > 0$$
