@@ -209,10 +209,20 @@ export const LessonCard: React.FC<{ f: Formula; content: GateContent; idx: GateI
       )}
 
       {step === 'practice' && items.length > 0 && (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <p className="mg-section-sub">
             Real exam questions plus new questions in the same style. Questions marked “Similar · new numbers” can be re-rolled as many times as you like.
           </p>
+          <div>
+            <button
+              type="button"
+              className="mg-btn primary"
+              onClick={() => nav.startDrill({ scope: 'custom', items }, `${f.name}: Practice`)}
+              style={{ padding: '8px 16px', fontWeight: 700 }}
+            >
+              <span>⚡ Open as Full-Screen Quiz Drill Sub-Page ({items.length} questions)</span>
+            </button>
+          </div>
           <DrillRunner course={content.course} title={`${f.name}: practice`} items={items} embedded onOpenQuestion={nav.openQuestion} />
         </div>
       )}

@@ -256,6 +256,8 @@ export const buildDrill = (target: DrillTarget, c: GateContent, idx: GateIndex, 
     mode === 'repeats' ? qs.filter((q) => repeatTypeOf(q.id, idx)) : mode === 'oneoffs' ? qs.filter((q) => !repeatTypeOf(q.id, idx)) : qs;
   const lessonsFor = (topics: string[]) => c.formulas.filter((f) => topics.includes(f.topic)).flatMap((f) => lessonItems(f, idx).filter((it) => it.badge !== 'exam' && it.badge !== 'homework'));
   switch (target.scope) {
+    case 'custom':
+      return target.items as DrillItem[];
     case 'subject':
     case 'topic': {
       const topics = target.scope === 'subject' ? c.subjects.find((s) => s.id === target.id)?.topics ?? [] : [target.id];

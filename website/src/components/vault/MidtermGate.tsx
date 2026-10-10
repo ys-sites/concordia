@@ -10,11 +10,12 @@ import { MatchBadge, QuestionCard, useGateIndex } from './shared';
 import { buildDrill, DrillItem, loadStats } from './drill';
 import { TopicsHub } from './TopicsHub';
 import { PatternAnalyzer } from './PatternAnalyzer';
-import { LessonDrawer, VideoDrawer } from './Drawers';
+import { VideoDrawer } from './Drawers';
 import { StudyPlan, daysUntil } from './StudyPlan';
 import { GradesaverDoc } from './GradesaverDoc';
-import { DrillRunner } from './DrillRunner';
 import { SkillQuiz } from './SkillQuiz';
+import { VaultLessonSubPage } from './VaultLessonSubPage';
+import { VaultQuizSubPage } from './VaultQuizSubPage';
 import './midtermGate.css';
 import './gateExtras.css';
 import './guided.css';
@@ -42,6 +43,10 @@ const docList = (course: GateCourse): DocDef[] => {
 // Tabs from the older layout land on the page that replaced them
 const LEGACY: Record<string, GateDoc> = { formulas: 'topics', videos: 'topics' };
 
+export type GateSubView =
+  | { type: 'lesson'; formulaId: string; fromDoc?: GateDoc }
+  | { type: 'drill'; title: string; items: DrillItem[]; fromLessonId?: string; fromDoc?: GateDoc };
+
 interface Props {
   course: CourseWithDocs;
   onViewPdf: (doc: CourseDocument, page?: number) => void;
@@ -66,10 +71,9 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
   });
   const [focusTopic, setFocusTopic] = useState<string | null>(null);
   const [analyzerTopic, setAnalyzerTopic] = useState<string | null>(null);
-  const [lessonId, setLessonId] = useState<string | null>(null);
+  const [subView, setSubView] = useState<GateSubView | null>(null);
   const [videoTopic, setVideoTopic] = useState<string | null>(null);
   const [drawerQ, setDrawerQ] = useState<string | null>(null);
-  const [drill, setDrill] = useState<{ title: string; items: DrillItem[] } | null>(null);
   const [quizPreset, setQuizPreset] = useState<(QuizPreset & { nonce: number }) | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
@@ -128,11 +132,13 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
     lockGate();
     setContent(null);
     setDoc(null);
+    setSubView(null);
   };
 
   const scrollTop = () => topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const openDoc = (d: GateDoc | null) => {
     audio.playClick();
+    setSubView(null);
     if (!content) {
       inputRef.current?.focus();
       return;
@@ -157,18 +163,21 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
       openFormula: (id) => {
         setDrawerQ(null);
         setVideoTopic(null);
-        setLessonId(id);
+        setSubView({ type: 'lesson', formulaId: id, fromDoc: doc ?? 'topics' });
+        scrollTop();
       },
       openTopicVideos: (topic) => {
         setDrawerQ(null);
-        setLessonId(null);
+        setSubView(null);
         setVideoTopic(topic);
       },
       showTopic: (topic) => {
         setDrawerQ(null);
+        setSubView(null);
         setDoc('topics');
         setFocusTopic(null);
         setTimeout(() => setFocusTopic(topic), 50);
+        scrollTop();
       },
       openLecture: (r: LectureRef) => {
         if (!content) return;
@@ -191,23 +200,26 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
       startDrill: (target: DrillTarget, title: string) => {
         if (!content || !idx) return;
         setDrawerQ(null);
-        setDrill({ title, items: buildDrill(target, content, idx, loadStats(content.course)) });
+        const items = buildDrill(target, content, idx, loadStats(content.course));
+        setSubView({ type: 'drill', title, items, fromDoc: doc ?? 'topics' });
+        scrollTop();
       },
       openAnalytics: () => {
         setDrawerQ(null);
+        setSubView(null);
         setDoc('analyzer');
         scrollTop();
       },
       openQuiz: (preset?: QuizPreset) => {
         setDrawerQ(null);
-        setDrill(null);
+        setSubView(null);
         setQuizPreset(preset ? { ...preset, nonce: Date.now() } : null);
         setDoc('quiz');
         scrollTop();
       }
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [course, onViewPdf, content, idx]
+    [course, onViewPdf, content, idx, doc]
   );
 
   const days = content ? daysUntil(content.midterm.date) : null;
@@ -304,30 +316,99 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
       {content && idx && doc && (
         <>
           <div className="mg-gate-head">
-            <button type="button" className="mg-btn" onClick={() => openDoc(null)}>
+            <button
+              type="button"
+              className="mg-btn"
+              onClick={() => {
+                setSubView(null);
+                openDoc(null);
+              }}
+            >
               <ArrowLeft size={14} /> Folder
             </button>
             <div className="mg-tabs" role="tablist">
-              {DOCS.map((d, i) => (
-                <button key={d.id} type="button" role="tab" aria-selected={doc === d.id} className={`mg-tab ${doc === d.id ? 'active' : ''} ${d.id === 'quiz' ? 'skill' : ''}`} onClick={() => openDoc(d.id)}>
+              {DOCS.map((d) => (
+                <button
+                  key={d.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={doc === d.id && !subView}
+                  className={`mg-tab ${doc === d.id && !subView ? 'active' : ''} ${d.id === 'quiz' ? 'skill' : ''}`}
+                  onClick={() => openDoc(d.id)}
+                >
                   {d.icon}
                   <span>{d.short}</span>
                 </button>
               ))}
             </div>
           </div>
-          {doc === 'plan' && <StudyPlan content={content} idx={idx} nav={nav} />}
-          {doc === 'topics' && <TopicsHub content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
-          {doc === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} focusTopic={analyzerTopic} />}
-          {doc === 'quiz' && <SkillQuiz content={content} idx={idx} nav={nav} preset={quizPreset} />}
-          {doc === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
+
+          {subView?.type === 'lesson' && (
+            <VaultLessonSubPage
+              formulaId={subView.formulaId}
+              content={content}
+              idx={idx}
+              nav={nav}
+              course={course}
+              backLabel={subView.fromDoc ? DOCS.find((d) => d.id === subView.fromDoc)?.short ?? 'Topics' : 'Topics'}
+              onBack={() => {
+                setSubView(null);
+                scrollTop();
+              }}
+              onViewPdf={onViewPdf}
+              onStartPractice={(f, items) => {
+                setSubView({
+                  type: 'drill',
+                  title: `${f.name}: Practice`,
+                  items,
+                  fromLessonId: f.id,
+                  fromDoc: subView.fromDoc
+                });
+                scrollTop();
+              }}
+            />
+          )}
+
+          {subView?.type === 'drill' && (
+            <VaultQuizSubPage
+              course={course}
+              content={content}
+              idx={idx}
+              nav={nav}
+              title={subView.title}
+              items={subView.items}
+              fromLessonId={subView.fromLessonId}
+              onViewPdf={onViewPdf}
+              onBack={() => {
+                if (subView.fromLessonId) {
+                  setSubView({
+                    type: 'lesson',
+                    formulaId: subView.fromLessonId,
+                    fromDoc: subView.fromDoc
+                  });
+                } else {
+                  setSubView(null);
+                }
+                scrollTop();
+              }}
+              onOpenQuestion={(id) => setDrawerQ(id)}
+            />
+          )}
+
+          {!subView && (
+            <>
+              {doc === 'plan' && <StudyPlan content={content} idx={idx} nav={nav} />}
+              {doc === 'topics' && <TopicsHub content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
+              {doc === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} focusTopic={analyzerTopic} />}
+              {doc === 'quiz' && <SkillQuiz content={content} idx={idx} nav={nav} preset={quizPreset} />}
+              {doc === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
+            </>
+          )}
         </>
       )}
 
       {content && idx && drawerQ && <QuestionDrawer content={content} idx={idx} id={drawerQ} nav={nav} onClose={() => setDrawerQ(null)} />}
-      {content && idx && lessonId && <LessonDrawer id={lessonId} content={content} idx={idx} nav={nav} onClose={() => setLessonId(null)} />}
       {content && idx && videoTopic && <VideoDrawer topic={videoTopic} content={content} idx={idx} nav={nav} onClose={() => setVideoTopic(null)} />}
-      {content && drill && <DrillRunner course={content.course} title={drill.title} items={drill.items} onClose={() => setDrill(null)} onOpenQuestion={(id) => setDrawerQ(id)} />}
     </div>
   );
 };

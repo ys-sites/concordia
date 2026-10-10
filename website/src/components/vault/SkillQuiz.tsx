@@ -160,8 +160,7 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
   };
 
   const start = (entries: PoolEntry[], title: string) => {
-    setRun({ title, items: entries.map((e) => prepQuizItem(e.item)), nonce: Date.now() });
-    setStage('run');
+    nav.startDrill({ scope: 'custom', items: entries.map((e) => prepQuizItem(e.item)) }, title);
   };
   const startCustom = () => start(pickQuiz(quizPool, take, order, topicOrder), `Skill quiz: ${quizTitle()}`);
   const startTopicAgain = (topic: string) => {
@@ -169,8 +168,7 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
     start(pickQuiz(pool.length ? pool : allPool.filter((e) => e.topic === topic), 10, order, [topic]), `Skill quiz: ${idx.topic.get(topic)?.name ?? topic}`);
   };
   const startMode = (target: DrillTarget, title: string) => {
-    setRun({ title, items: buildDrill(target, content, idx, loadStats(content.course)).map(prepQuizItem), nonce: Date.now() });
-    setStage('run');
+    nav.startDrill(target, title);
   };
 
   // quick-start modes, past papers only

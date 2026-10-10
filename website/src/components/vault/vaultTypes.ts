@@ -166,7 +166,8 @@ export interface VideoStop {
 
 export type DrillTarget =
   | { scope: 'subject' | 'topic' | 'cluster'; id: string; mode?: 'all' | 'repeats' | 'oneoffs' | 'practice' }
-  | { scope: 'repeats' | 'mock' | 'missed' | 'all' };
+  | { scope: 'repeats' | 'mock' | 'missed' | 'all' }
+  | { scope: 'custom'; items: any[] };
 
 export interface PlanStep {
   id: string;
