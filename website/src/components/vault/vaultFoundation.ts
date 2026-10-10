@@ -3,6 +3,7 @@ import type { CourseDocument } from '../../types';
 import type { DrillItem } from './drill';
 import type { Formula, GateContent, LectureRef, Question, Topic, Video } from './vaultTypes';
 import type { GateIndex } from './shared';
+import { SOLUTION_UPGRADES, EXTRA_QUESTIONS } from '../../data/questionBank';
 
 export interface ResolvedFoundation {
   exam: {
@@ -249,30 +250,127 @@ export interface StepItem {
  * Builds structured step-by-step mathematical derivation regardless of whether
  * the user answered correctly or incorrectly.
  */
-export function buildStepByStepSolution(item: DrillItem, formula?: Formula): StepItem[] {
-  // If the item already has custom steps
-  if (item.steps && item.steps.length > 0) {
-    return item.steps.map((st, i) => {
-      // Split out potential math block if formatted as LaTeX
-      const mathMatch = st.match(/\$\$?([^$]+)\$\$?/);
+export function buildStepByStepSolution(item: DrillItem, formula?: Formula, qObj?: Question): StepItem[] {
+  // 1. Check verified SOLUTION_UPGRADES
+  const qId = item.qid || item.key;
+  const upgrade = (item.qid ? SOLUTION_UPGRADES[item.qid] : undefined) || SOLUTION_UPGRADES[item.key];
+  if (upgrade?.steps && upgrade.steps.length > 0) {
+    return upgrade.steps.map((st, i) => ({
+      number: i + 1,
+      title: st.title,
+      math: st.math,
+      explanation: st.note || ''
+    }));
+  }
+
+  // 2. Check EXTRA_QUESTIONS matching prompt or ID
+  const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const promptNorm = norm(item.prompt);
+  const foundExtra = EXTRA_QUESTIONS.find(
+    (eq) => eq.id === qId || (promptNorm.length > 15 && norm(eq.question).includes(promptNorm.slice(0, 35)))
+  );
+  if (foundExtra?.explanation?.steps && foundExtra.explanation.steps.length > 0) {
+    return foundExtra.explanation.steps.map((st, i) => ({
+      number: i + 1,
+      title: st.title,
+      math: st.math,
+      explanation: st.note || ''
+    }));
+  }
+
+  // 3. Parse explicit question steps if available
+  const rawSteps = (item.steps && item.steps.length > 0) ? item.steps : (qObj?.steps && qObj.steps.length > 0) ? qObj.steps : undefined;
+  if (rawSteps && rawSteps.length > 0) {
+    return rawSteps.map((st, i) => {
+      let title = '';
+      let body = st;
+
+      const colonIdx = st.indexOf(':');
+      if (colonIdx > 0 && colonIdx < 45 && !st.slice(0, colonIdx).includes('$')) {
+        title = st.slice(0, colonIdx).trim().replace(/^[:·\-]\s*/, '');
+        body = st.slice(colonIdx + 1).trim();
+      }
+
+      // Extract LaTeX math block
+      const mathMatch = body.match(/\$\$?([^$]+)\$\$?/);
       let math: string | undefined;
-      let text = st;
+      let text = body;
 
       if (mathMatch) {
-        math = mathMatch[1];
-        text = st.replace(/\$\$?[^$]+\$\$?/, '').trim().replace(/^[:·\-]\s*/, '');
+        math = mathMatch[1].trim();
+        text = body.replace(/\$\$?[^$]+\$\$?/, '').trim().replace(/^[:·\-]\s*/, '');
+      }
+
+      if (!title) {
+        const lower = st.toLowerCase();
+        if (lower.includes('order') || lower.includes('highest derivative')) {
+          title = 'Determine the Order';
+        } else if (lower.includes('linear') || lower.includes('dependent variable')) {
+          title = 'Check Linearity Conditions';
+        } else if (lower.includes('separate')) {
+          title = 'Separate Variables';
+        } else if (lower.includes('integrat')) {
+          title = 'Integrate Both Sides';
+        } else if (lower.includes('substitut') || lower.includes('let u =') || lower.includes('let v =') || lower.includes('y = vx')) {
+          title = 'Perform Variable Substitution';
+        } else if (lower.includes('integrating factor') || lower.includes('\\mu')) {
+          title = 'Compute Integrating Factor';
+        } else if (lower.includes('initial condition') || lower.includes('ivp') || /y\(\d+\)/.test(st)) {
+          title = 'Apply Initial Condition';
+        } else if (lower.includes('exponentiat') || lower.includes('solve for y')) {
+          title = 'Solve for Dependent Variable';
+        } else if (lower.includes('modulus') || lower.includes('polar')) {
+          title = 'Compute Polar / Modulus Form';
+        } else if (i === 0) {
+          title = 'Formulate Problem & Initial Setup';
+        } else if (i === rawSteps.length - 1) {
+          title = 'Conclude & Final Result';
+        } else {
+          title = `Derivation Step ${i + 1}`;
+        }
       }
 
       return {
         number: i + 1,
-        title: i === 0 ? 'Setup & Given Parameters' : i === item.steps!.length - 1 ? 'Final Evaluation & Result' : `Derivation Step ${i + 1}`,
+        title,
         math,
-        explanation: text || st
+        explanation: text
       };
     });
   }
 
-  // If formula steps exist
+  // 4. ODE Classification questions (e.g. W17-1a through W17-1e)
+  const isClassify =
+    item.topic === 'classify' ||
+    /order|linear/i.test(item.prompt) ||
+    /1st order|2nd order|nonlinear|linear/i.test(item.answerText);
+  if (isClassify) {
+    return [
+      {
+        number: 1,
+        title: 'Determine the order',
+        math: item.note && /y['\(\d\)]+/.test(item.note)
+          ? `\\text{Highest derivative present} \\implies \\text{${item.answerText.includes('2nd') ? 'Order 2' : item.answerText.includes('8th') ? 'Order 8' : item.answerText.includes('4th') ? 'Order 4' : 'Order 1'}}`
+          : undefined,
+        explanation: item.note
+          ? item.note.split('.')[0] + '.'
+          : 'Identify the highest-order derivative appearing in the differential equation.'
+      },
+      {
+        number: 2,
+        title: 'Check linearity conditions',
+        explanation:
+          'In a linear ODE, the dependent variable and all its derivatives must appear only to the first power, cannot be multiplied together, and their coefficients must depend solely on the independent variable.'
+      },
+      {
+        number: 3,
+        title: 'Conclude classification',
+        explanation: `Therefore, the equation is ${item.answerText}.`
+      }
+    ];
+  }
+
+  // 5. If formula steps exist
   if (formula?.steps && formula.steps.length > 0) {
     return formula.steps.map((st, i) => ({
       number: i + 1,
@@ -282,10 +380,8 @@ export function buildStepByStepSolution(item: DrillItem, formula?: Formula): Ste
     }));
   }
 
-  // Synthesize clean atomic steps
+  // 6. Pedagogical atomic baby steps
   const steps: StepItem[] = [];
-
-  // Step 1: Formulation
   steps.push({
     number: 1,
     title: 'Problem Formulation & Governing Principle',
@@ -295,7 +391,6 @@ export function buildStepByStepSolution(item: DrillItem, formula?: Formula): Ste
     math: formula?.tex
   });
 
-  // Step 2: Evaluation
   steps.push({
     number: 2,
     title: 'Algebraic / Analytical Evaluation',
@@ -303,10 +398,9 @@ export function buildStepByStepSolution(item: DrillItem, formula?: Formula): Ste
       ? item.solution
       : item.note
       ? item.note
-      : `Evaluate the expression to determine the correct result: ${item.answerText}.`
+      : `Evaluate the expression algebraically to determine the correct result: ${item.answerText}.`
   });
 
-  // Step 3: Conclusion & Check
   steps.push({
     number: 3,
     title: 'Conclusion & Sanity Check',

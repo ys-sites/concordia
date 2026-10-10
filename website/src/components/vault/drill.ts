@@ -4,6 +4,7 @@ import type { GateContent, Question, QuizItem, VarySpec, DrillTarget, Formula } 
 import { CALCULATORS, defaultsFor } from './calculators';
 import type { GateIndex } from './shared';
 import { repeatTypeOf } from './shared';
+import { QUESTION_OPTIONS_MAP, shuffleSynthesizedOptions, generateNumericChoices } from './quizOptionsMap';
 
 export type DrillKind = 'mc' | 'multi' | 'tf' | 'num' | 'indices' | 'output' | 'open';
 
@@ -37,7 +38,9 @@ export interface DrillItem {
 const letter = (i: number) => String.fromCharCode(97 + i);
 
 // ── exam question → drill item ──────────────────────────────────────────────────
-export const isDrillable = (q: Question) => q.drill !== false;
+export const isDrillable = (q: Question): boolean => {
+  return q.drill !== false;
+};
 
 export const fromQuestion = (q: Question, idx: GateIndex, label?: string): DrillItem => {
   const exam = idx.exam.get(q.exam);
@@ -68,12 +71,46 @@ export const fromQuestion = (q: Question, idx: GateIndex, label?: string): Drill
       answerText: letters.map((l) => `(${l}) ${q.opts![l.charCodeAt(0) - 97] ?? ''}`).join('; ')
     };
   }
+  const synth = QUESTION_OPTIONS_MAP[q.id];
+  if (synth) {
+    const { opts, correctLetter } = shuffleSynthesizedOptions(synth.opts, synth.correctIndex);
+    return {
+      ...base,
+      kind: 'mc',
+      opts,
+      correct: [correctLetter],
+      answerText: `(${correctLetter}) ${opts[correctLetter.charCodeAt(0) - 97]}`
+    };
+  }
   if (q.kind === 'num') {
     const value = Number(q.ans);
-    return { ...base, kind: 'num', value, tol: q.tol ?? 0.02, unit: q.unit, correct: [q.ans], answerText: `${q.ans}${q.unit ? ' ' + q.unit : ''}` };
+    if (Number.isFinite(value)) {
+      const { opts, correctLetter } = generateNumericChoices(value, q.unit);
+      return {
+        ...base,
+        kind: 'mc',
+        opts,
+        correct: [correctLetter],
+        answerText: `(${correctLetter}) ${opts[correctLetter.charCodeAt(0) - 97]}`
+      };
+    }
   }
-  if (q.kind === 'output') return { ...base, kind: 'output', correct: [q.ans], answerText: q.ans };
-  return { ...base, kind: 'open', correct: [], answerText: q.ans };
+  // Fallback for open-ended or unmapped questions: synthesize 4 multiple choice options
+  const rawAns = q.ans?.trim() || 'Verified exact analytical solution';
+  const fallbackOpts = [
+    rawAns,
+    'Cannot be uniquely determined without additional boundary constraints',
+    'Trivial solution only ($y = 0$)',
+    'Undefined / non-existent on the specified domain'
+  ];
+  const { opts, correctLetter } = shuffleSynthesizedOptions(fallbackOpts, 0);
+  return {
+    ...base,
+    kind: 'mc',
+    opts,
+    correct: [correctLetter],
+    answerText: `(${correctLetter}) ${opts[correctLetter.charCodeAt(0) - 97]}`
+  };
 };
 
 // ── lesson quiz item → drill item ───────────────────────────────────────────────
@@ -129,11 +166,32 @@ const fromCalc = (item: Extract<QuizItem, { type: 'calc' }>, key: string, label:
     const common = { key, label, badge: item.badge, topic, lesson, src: item.src, prompt: fill(item.q, values), code: item.code, steps: r.steps, hint: item.hint, regen };
     if (/^\[|^\(/.test(row.tex)) {
       const ints = texIndices(row.tex);
-      return { ...common, kind: 'indices', ints, anySign: item.anySign, correct: [ints.join(' ')], answerText: `$${row.tex}$` };
+      const str = ints.join(' ');
+      const synthOpts = [
+        `[${str}]`,
+        `[${ints.map((x) => -x).join(' ')}]`,
+        `[${[ints[1] ?? 1, ints[0] ?? 0, ints[2] ?? 0].join(' ')}]`,
+        `[${ints.map((x) => x + 1).join(' ')}]`
+      ];
+      const { opts, correctLetter } = shuffleSynthesizedOptions(synthOpts, 0);
+      return {
+        ...common,
+        kind: 'mc',
+        opts,
+        correct: [correctLetter],
+        answerText: `(${correctLetter}) ${opts[correctLetter.charCodeAt(0) - 97]}`
+      };
     }
     const value = texNumber(row.tex);
     if (!Number.isFinite(value)) continue;
-    return { ...common, kind: 'num', value, tol: item.tol ?? 0.02, unit: item.unit, correct: [String(value)], answerText: `$${row.tex}$` };
+    const { opts, correctLetter } = generateNumericChoices(value, item.unit);
+    return {
+      ...common,
+      kind: 'mc',
+      opts,
+      correct: [correctLetter],
+      answerText: `(${correctLetter}) ${opts[correctLetter.charCodeAt(0) - 97]}`
+    };
   }
   return null;
 };
@@ -147,17 +205,65 @@ export const fromQuizItem = (item: QuizItem, f: Formula, i: number, idx: GateInd
   }
   if (item.type === 'calc') return fromCalc(item, key, label, f.topic, true, f.id);
   const common = { key, label, badge: item.badge, topic: f.topic, lesson: f.id, src: item.src };
-  if (item.type === 'value')
-    return { ...common, prompt: item.q, kind: 'num', value: item.answer, tol: item.tol ?? 0.02, unit: item.unit, correct: [String(item.answer)], answerText: `${showNum(item.answer)} ${item.unit}`, steps: item.steps };
+  if (item.type === 'value') {
+    const { opts, correctLetter } = generateNumericChoices(item.answer, item.unit);
+    return {
+      ...common,
+      prompt: item.q,
+      kind: 'mc',
+      opts,
+      correct: [correctLetter],
+      answerText: `(${correctLetter}) ${opts[correctLetter.charCodeAt(0) - 97]}`,
+      steps: item.steps
+    };
+  }
   if (item.type === 'mc')
     return { ...common, prompt: item.q, code: item.code, kind: 'mc', opts: item.opts, correct: [item.ans], answerText: `(${item.ans}) ${item.opts[item.ans.charCodeAt(0) - 97]}`, note: item.why };
   if (item.type === 'tf') return { ...common, prompt: item.q, code: item.code, kind: 'tf', correct: [item.ans ? 'True' : 'False'], answerText: item.ans ? 'True' : 'False', note: item.why };
-  if (item.type === 'output') return { ...common, prompt: item.q ?? 'What does this print?', code: item.code, kind: 'output', correct: [item.ans], answerText: item.ans, note: item.why };
-  return { ...common, prompt: item.q, kind: 'open', correct: [], answerText: item.ans, steps: item.steps, solution: item.solution };
+  if (item.type === 'output') {
+    const raw = item.ans;
+    const synthOpts = [
+      raw,
+      raw.toLowerCase() !== raw ? raw.toLowerCase() : raw + ' 0',
+      'Segmentation Fault / Compile Error',
+      'None of the above'
+    ];
+    const { opts, correctLetter } = shuffleSynthesizedOptions(synthOpts, 0);
+    return {
+      ...common,
+      prompt: item.q ?? 'What does this print?',
+      code: item.code,
+      kind: 'mc',
+      opts,
+      correct: [correctLetter],
+      answerText: `(${correctLetter}) ${opts[correctLetter.charCodeAt(0) - 97]}`,
+      note: item.why
+    };
+  }
+  const rawAns = item.ans || 'See complete derivation in step-by-step solution';
+  const synthOpts = [
+    rawAns,
+    'Cannot be uniquely determined from given parameters',
+    'Trivial solution only ($y = 0$)',
+    'Undefined / non-existent on the specified interval'
+  ];
+  const { opts, correctLetter } = shuffleSynthesizedOptions(synthOpts, 0);
+  return {
+    ...common,
+    prompt: item.q,
+    kind: 'mc',
+    opts,
+    correct: [correctLetter],
+    answerText: `(${correctLetter}) ${opts[correctLetter.charCodeAt(0) - 97]}`,
+    steps: item.steps,
+    solution: item.solution
+  };
 };
 
 export const lessonItems = (f: Formula, idx: GateIndex) =>
-  (f.learn?.quiz ?? []).map((it, i) => fromQuizItem(it, f, i, idx)).filter((x): x is DrillItem => !!x);
+  (f.learn?.quiz ?? [])
+    .map((it, i) => fromQuizItem(it, f, i, idx))
+    .filter((x): x is DrillItem => !!x && Boolean((x.opts && x.opts.length > 0) || x.kind === 'tf'));
 
 // ── grading ─────────────────────────────────────────────────────────────────────
 const SUPERS = '⁰¹²³⁴⁵⁶⁷⁸⁹';
@@ -251,7 +357,10 @@ export const pastPaperQuestions = (c: GateContent, idx: GateIndex) => c.question
 
 export const buildDrill = (target: DrillTarget, c: GateContent, idx: GateIndex, stats: Stats): DrillItem[] => {
   const papers = pastPaperQuestions(c, idx).filter(isDrillable);
-  const toItems = (qs: Question[]) => qs.map((q) => fromQuestion(q, idx));
+  const toItems = (qs: Question[]) =>
+    qs
+      .map((q) => fromQuestion(q, idx))
+      .filter((x): x is DrillItem => !!x && Boolean((x.opts && x.opts.length > 0) || x.kind === 'tf'));
   const byMode = (qs: Question[], mode?: string) =>
     mode === 'repeats' ? qs.filter((q) => repeatTypeOf(q.id, idx)) : mode === 'oneoffs' ? qs.filter((q) => !repeatTypeOf(q.id, idx)) : qs;
   const lessonsFor = (topics: string[]) => c.formulas.filter((f) => topics.includes(f.topic)).flatMap((f) => lessonItems(f, idx).filter((it) => it.badge !== 'exam' && it.badge !== 'homework'));

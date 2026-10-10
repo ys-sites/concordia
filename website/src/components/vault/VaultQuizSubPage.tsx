@@ -9,6 +9,7 @@ import {
   Bot,
   Brain,
   CheckCircle2,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
@@ -16,6 +17,7 @@ import {
   Flame,
   HelpCircle,
   Lightbulb,
+  ListOrdered,
   Play,
   RefreshCw,
   RotateCcw,
@@ -134,11 +136,17 @@ export const VaultQuizSubPage: React.FC<Props> = ({
     return resolveFoundationSources(currentQ, content, idx, course);
   }, [currentQ, content, idx, course]);
 
-  // Step-by-step mathematical derivation
+  // Step-by-step mathematical derivation (Baby Steps)
   const stepItems = useMemo(() => {
     if (!currentQ) return [];
-    return buildStepByStepSolution(currentQ, fromLesson);
-  }, [currentQ, fromLesson]);
+    return buildStepByStepSolution(currentQ, fromLesson, qObj);
+  }, [currentQ, fromLesson, qObj]);
+
+  const [shownSteps, setShownSteps] = useState<number>(stepItems.length);
+
+  useEffect(() => {
+    setShownSteps(stepItems.length);
+  }, [currentIndex, stepItems.length]);
 
   // Stop voice on question change
   const stopSpeaking = useCallback(() => {
@@ -841,43 +849,49 @@ export const VaultQuizSubPage: React.FC<Props> = ({
             })}
           </div>
         ) : (
-          /* Numerical / Freeform Input */
-          <form onSubmit={handleSubmitText} style={{ marginBottom: 20 }}>
-            <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
-              <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                <input
-                  type="text"
-                  value={userText}
-                  onChange={(e) => setInputTexts((prev) => ({ ...prev, [currentIndex]: e.target.value }))}
-                  placeholder="Enter your calculated value…"
-                  disabled={isAnswered}
-                  style={{
-                    padding: '10px 14px',
-                    borderRadius: 8,
-                    border: isAnswered
-                      ? isCorrect
-                        ? '2px solid #10b981'
-                        : '2px solid #f43f5e'
-                      : '1px solid var(--border-subtle)',
-                    fontSize: 15,
-                    width: 260,
-                    background: 'var(--bg-surface)'
-                  }}
-                />
-                {currentQ.unit && (
-                  <span style={{ marginLeft: 8, fontSize: 13, color: 'var(--text-muted)', fontWeight: 600 }}>
-                    {currentQ.unit}
-                  </span>
-                )}
-              </div>
+          /* Multiple Choice Safeguard: Guarantee 100% Multiple Choice across all quizzes */
+          <div className="options-grid">
+            {[
+              currentQ.answerText || 'Verified exact analytical solution',
+              'Cannot be uniquely determined without additional boundary constraints',
+              'Trivial equilibrium solution only ($y = 0$)',
+              'Undefined / non-existent on the specified interval'
+            ].map((opt, optIdx) => {
+              const optLet = letter(optIdx);
+              const isSelected = userSelection.includes(optLet);
+              const isCorrectOpt = optIdx === 0;
 
-              {!isAnswered ? (
-                <button type="submit" className="mg-btn primary" style={{ padding: '10px 18px', fontWeight: 700 }}>
-                  <span>Submit Answer</span>
+              let optionStateClass = '';
+              if (isAnswered) {
+                if (isCorrectOpt) {
+                  optionStateClass = 'correct-option pulse-correct';
+                } else if (isSelected && !isCorrectOpt) {
+                  optionStateClass = 'incorrect-option shake-incorrect';
+                } else {
+                  optionStateClass = 'dimmed-option';
+                }
+              }
+
+              return (
+                <button
+                  key={optIdx}
+                  type="button"
+                  className={`option-btn ${optionStateClass}`}
+                  onClick={() => handleSelectOption(optLet)}
+                  disabled={isAnswered}
+                >
+                  <div className="option-letter">{optLet.toUpperCase()}</div>
+                  <div className="option-text">
+                    <MathText text={opt} />
+                  </div>
+                  <div className="option-feedback-icon">
+                    {isAnswered && isCorrectOpt && <CheckCircle2 size={20} className="text-emerald" />}
+                    {isAnswered && isSelected && !isCorrectOpt && <XCircle size={20} className="text-rose" />}
+                  </div>
                 </button>
-              ) : null}
-            </div>
-          </form>
+              );
+            })}
+          </div>
         )}
 
         {/* Unanswered navigation review helper */}
@@ -1117,41 +1131,56 @@ export const VaultQuizSubPage: React.FC<Props> = ({
                 )}
               </div>
 
-              {/* Step-by-Step Mathematical Derivation Cards */}
-              <div className="worked-solution-card" style={{ padding: 18, background: '#ffffff', borderRadius: 10, border: '1px solid var(--border-subtle)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-                  <Lightbulb size={17} className="text-amber" />
-                  <h4 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: 'var(--text-primary)' }}>
-                    Guaranteed Step-by-Step Derivation & Method
-                  </h4>
+              {/* Step-by-Step Calculation (Baby Steps) - exactly matching WorkedSolution.tsx */}
+              <div className="ws-card ws-steps ws-calc-steps" style={{ background: '#ffffff', borderRadius: 10, border: '1px solid var(--border-subtle)', padding: 18 }}>
+                <div className="ws-card-title" style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                  <ListOrdered size={16} />
+                  <span>Step-by-Step Calculation (Baby Steps)</span>
+                  {stepItems.length > 0 && (
+                    <span className="ws-step-count">
+                      {Math.min(shownSteps, stepItems.length)} / {stepItems.length} Steps Revealed
+                    </span>
+                  )}
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  {stepItems.map((step) => (
-                    <div
-                      key={step.number}
-                      className="mg-example-step"
-                      style={{ background: 'var(--bg-surface)', padding: 12, borderRadius: 8 }}
-                    >
-                      <span className="n" style={{ width: 26, height: 26, fontSize: 12 }}>
-                        {step.number}
-                      </span>
-                      <div style={{ minWidth: 0, flex: 1 }}>
-                        <div style={{ fontWeight: 700, fontSize: 13.5, color: 'var(--text-primary)', marginBottom: 2 }}>
-                          {step.title}
+                <ol className="ws-step-list">
+                  {stepItems.slice(0, shownSteps).map((step, i) => (
+                    <li key={i} className={`ws-step ${i === shownSteps - 1 ? 'ws-step-latest' : ''}`}>
+                      <div className="ws-step-num">{step.number}</div>
+                      <div className="ws-step-body">
+                        <div className="ws-step-title">
+                          <MathText text={step.title} />
                         </div>
-                        <div style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--text-secondary)' }}>
-                          <MathText text={step.explanation} />
-                        </div>
-                        {step.math && (
-                          <div style={{ marginTop: 6 }}>
-                            <MathBlock tex={step.math} />
+                        {step.math && <MathBlock tex={step.math} className="ws-step-math" />}
+                        {step.explanation && (
+                          <div className="ws-step-note">
+                            <MathText text={step.explanation} />
                           </div>
                         )}
                       </div>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ol>
+
+                {shownSteps < stepItems.length && (
+                  <div className="ws-reveal-row" style={{ marginTop: 12 }}>
+                    <button
+                      type="button"
+                      className="ws-reveal-btn"
+                      onClick={() => setShownSteps((n) => Math.min(n + 1, stepItems.length))}
+                    >
+                      <ChevronDown size={16} />
+                      <span>Show Step {shownSteps + 1} of {stepItems.length}</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="ws-reveal-all"
+                      onClick={() => setShownSteps(stepItems.length)}
+                    >
+                      Show All Baby Steps
+                    </button>
+                  </div>
+                )}
 
                 {/* Distractor Analysis & Traps */}
                 {currentQ.note && (
