@@ -291,12 +291,39 @@ const parseIndices = (raw: string): number[] => {
 export const normOutput = (s: string) => s.replace(/\r/g, '').replace(/\\n/g, '\n').replace(/\s+/g, ' ').trim();
 
 export const grade = (item: DrillItem, answer: string[]): boolean => {
+  if (!answer || answer.length === 0) return false;
   switch (item.kind) {
-    case 'mc':
-    case 'tf':
-      return answer[0] === item.correct[0];
-    case 'multi':
-      return answer.length === item.correct.length && item.correct.every((c) => answer.includes(c));
+    case 'tf': {
+      const u = (answer[0] ?? '').trim().toLowerCase();
+      const c = (item.correct[0] ?? '').trim().toLowerCase();
+      const uBool = /^t/i.test(u);
+      const cBool = /^t/i.test(c);
+      return uBool === cBool;
+    }
+    case 'mc': {
+      const u = (answer[0] ?? '').trim().toLowerCase();
+      const c = (item.correct[0] ?? '').trim().toLowerCase();
+      if (u === c) return true;
+      if (item.opts && item.opts.length > 0) {
+        const uIdx = u.length === 1 && u >= 'a' && u <= 'z' ? u.charCodeAt(0) - 97 : -1;
+        const cIdx = c.length === 1 && c >= 'a' && c <= 'z' ? c.charCodeAt(0) - 97 : -1;
+        if (uIdx >= 0 && cIdx >= 0) return uIdx === cIdx;
+        if (uIdx >= 0 && item.opts[uIdx]?.trim().toLowerCase() === c) return true;
+        if (cIdx >= 0 && item.opts[cIdx]?.trim().toLowerCase() === u) return true;
+        for (let i = 0; i < item.opts.length; i++) {
+          const optText = item.opts[i]?.trim().toLowerCase();
+          if ((u === optText && (c === letter(i) || cIdx === i)) || (c === optText && (u === letter(i) || uIdx === i))) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+    case 'multi': {
+      const u = answer.map((x) => x.trim().toLowerCase()).sort();
+      const c = item.correct.map((x) => x.trim().toLowerCase()).sort();
+      return u.length === c.length && u.every((val, i) => val === c[i]);
+    }
     case 'num': {
       const x = parseUserNumber(answer[0] ?? '');
       const v = item.value!;
@@ -310,9 +337,9 @@ export const grade = (item: DrillItem, answer: string[]): boolean => {
       return same(u) || (!!item.anySign && same(u.map((x) => -x)));
     }
     case 'output':
-      return normOutput(answer[0] ?? '') === normOutput(item.correct[0]);
+      return normOutput(answer[0] ?? '').toLowerCase() === normOutput(item.correct[0] ?? '').toLowerCase();
     default:
-      return answer[0] === 'self-yes';
+      return (answer[0] ?? '').trim().toLowerCase() === (item.correct[0] ?? '').trim().toLowerCase();
   }
 };
 

@@ -243,7 +243,7 @@ export const VaultQuizSubPage: React.FC<Props> = ({
 
   const handleSelectOption = (optLetter: string) => {
     if (isAnswered || !currentQ) return;
-    const ans = [optLetter.toLowerCase()];
+    const ans = [optLetter.trim()];
     setSelectedAnswers((prev) => ({ ...prev, [currentIndex]: ans }));
     const ok = grade(currentQ, ans);
     setGradedResults((prev) => ({ ...prev, [currentIndex]: ok }));
@@ -777,8 +777,8 @@ export const VaultQuizSubPage: React.FC<Props> = ({
           <div className="options-grid">
             {currentQ.opts.map((opt, optIdx) => {
               const optLet = letter(optIdx);
-              const isSelected = userSelection.includes(optLet);
-              const isCorrectOpt = currentQ.correct.map((c) => c.toLowerCase()).includes(optLet);
+              const isSelected = userSelection.map((s) => s.toLowerCase()).includes(optLet.toLowerCase());
+              const isCorrectOpt = grade(currentQ, [optLet]);
 
               let optionStateClass = '';
               if (isAnswered) {
@@ -815,7 +815,7 @@ export const VaultQuizSubPage: React.FC<Props> = ({
           <div className="options-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
             {['True', 'False'].map((tfVal) => {
               const isSelected = userSelection.map((s) => s.toLowerCase()).includes(tfVal.toLowerCase());
-              const isCorrectOpt = currentQ.correct.map((c) => c.toLowerCase()).includes(tfVal.toLowerCase());
+              const isCorrectOpt = grade(currentQ, [tfVal]);
 
               let optionStateClass = '';
               if (isAnswered) {
@@ -858,8 +858,8 @@ export const VaultQuizSubPage: React.FC<Props> = ({
               'Undefined / non-existent on the specified interval'
             ].map((opt, optIdx) => {
               const optLet = letter(optIdx);
-              const isSelected = userSelection.includes(optLet);
-              const isCorrectOpt = optIdx === 0;
+              const isSelected = userSelection.map((s) => s.toLowerCase()).includes(optLet.toLowerCase());
+              const isCorrectOpt = grade(currentQ, [optLet]);
 
               let optionStateClass = '';
               if (isAnswered) {
