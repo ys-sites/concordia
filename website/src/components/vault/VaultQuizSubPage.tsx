@@ -40,7 +40,7 @@ import { grade, letter, recordResult } from './drill';
 import type { DrillItem } from './drill';
 import type { GateContent, GateNav } from './vaultTypes';
 import type { GateIndex } from './shared';
-import { buildStepByStepSolution, resolveFoundationSources } from './vaultFoundation';
+import { buildStepByStepSolution, getDetailedWorkedSolution, resolveFoundationSources } from './vaultFoundation';
 import { VideoPlayer } from './QuizExplain';
 import './midtermGate.css';
 import './gateExtras.css';
@@ -136,11 +136,21 @@ export const VaultQuizSubPage: React.FC<Props> = ({
     return resolveFoundationSources(currentQ, content, idx, course);
   }, [currentQ, content, idx, course]);
 
-  // Step-by-step mathematical derivation (Baby Steps)
-  const stepItems = useMemo(() => {
-    if (!currentQ) return [];
-    return buildStepByStepSolution(currentQ, fromLesson, qObj);
+  // Step-by-step mathematical derivation (Baby Steps) & Detailed Worked Solution
+  const workedSolution = useMemo(() => {
+    if (!currentQ) return null;
+    return getDetailedWorkedSolution(currentQ, fromLesson, qObj);
   }, [currentQ, fromLesson, qObj]);
+
+  const stepItems = useMemo(() => {
+    if (!workedSolution) return [];
+    return workedSolution.steps.map((st, i) => ({
+      number: i + 1,
+      title: st.title,
+      math: st.math,
+      explanation: st.explanation || ''
+    }));
+  }, [workedSolution]);
 
   const [shownSteps, setShownSteps] = useState<number>(stepItems.length);
 
@@ -1143,6 +1153,32 @@ export const VaultQuizSubPage: React.FC<Props> = ({
                   )}
                 </div>
 
+                {/* Problem Setup & Governing Formulation if present */}
+                {workedSolution?.setup && (workedSolution.setup.eq || workedSolution.setup.ic || workedSolution.setup.goal) && (
+                  <div className="ws-setup-box" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 8, padding: '12px 16px', marginBottom: 16 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, fontWeight: 700, color: '#475569', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
+                      <Target size={13} className="text-amber" />
+                      <span>Initial Problem Setup & Objective</span>
+                    </div>
+                    {workedSolution.setup.eq && (
+                      <div style={{ marginBottom: 6 }}>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: '#64748b', marginRight: 6 }}>Governing Equation / Model:</span>
+                        <MathBlock tex={workedSolution.setup.eq} />
+                      </div>
+                    )}
+                    {workedSolution.setup.ic && (
+                      <div style={{ fontSize: 13, color: '#334155', marginBottom: 4 }}>
+                        <strong>Initial Condition:</strong> <MathText text={workedSolution.setup.ic} />
+                      </div>
+                    )}
+                    {workedSolution.setup.goal && (
+                      <div style={{ fontSize: 13, color: '#334155' }}>
+                        <strong>Target Goal:</strong> <MathText text={workedSolution.setup.goal} />
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 <ol className="ws-step-list">
                   {stepItems.slice(0, shownSteps).map((step, i) => (
                     <li key={i} className={`ws-step ${i === shownSteps - 1 ? 'ws-step-latest' : ''}`}>
@@ -1182,19 +1218,54 @@ export const VaultQuizSubPage: React.FC<Props> = ({
                   </div>
                 )}
 
-                {/* Distractor Analysis & Traps */}
-                {currentQ.note && (
+                {/* Prominent Boxed Final Answer (matching ChatGPT dissection) */}
+                <div className="ws-final-answer-card" style={{ marginTop: 18, padding: '14px 18px', background: '#f0fdf4', border: '1.5px solid #86efac', borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <div style={{ fontSize: 13, fontWeight: 800, color: '#166534', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                    Final Answer
+                  </div>
+                  <div style={{ fontSize: 16 }}>
+                    <MathBlock
+                      tex={
+                        workedSolution?.finalAnswer
+                          ? (workedSolution.finalAnswer.startsWith('\\boxed{')
+                              ? workedSolution.finalAnswer
+                              : workedSolution.finalAnswer.startsWith('$') && workedSolution.finalAnswer.endsWith('$')
+                              ? `\\boxed{${workedSolution.finalAnswer.slice(1, -1)}}`
+                              : `\\boxed{${workedSolution.finalAnswer}}`)
+                          : currentQ.answerText
+                          ? (currentQ.answerText.startsWith('\\boxed{')
+                              ? currentQ.answerText
+                              : currentQ.answerText.startsWith('$') && currentQ.answerText.endsWith('$')
+                              ? `\\boxed{${currentQ.answerText.slice(1, -1)}}`
+                              : `\\boxed{\\text{${currentQ.answerText}}}`)
+                          : '\\boxed{\\checkmark}'
+                      }
+                    />
+                  </div>
+                </div>
+
+                {/* Dedicated Important Exam Tip Callout (matching ChatGPT dissection) */}
+                {(workedSolution?.tip || currentQ.note) && (
                   <div
-                    className="mg-callout trap"
-                    style={{ marginTop: 14, padding: '12px 16px', borderRadius: 8 }}
+                    className="ws-exam-tip-callout"
+                    style={{
+                      marginTop: 14,
+                      padding: '14px 18px',
+                      borderRadius: 8,
+                      background: '#fffbeb',
+                      border: '1.5px solid #fde68a',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 6
+                    }}
                   >
-                    <b>
-                      <AlertTriangle size={13} style={{ verticalAlign: -1, marginRight: 4 }} />
-                      Distractor Analysis & Common Pitfalls
-                    </b>
-                    <p style={{ margin: '4px 0 0', fontSize: 13.5, lineHeight: 1.55 }}>
-                      <MathText text={currentQ.note} />
-                    </p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 800, color: '#b45309' }}>
+                      <AlertTriangle size={15} />
+                      <span>Important exam tip:</span>
+                    </div>
+                    <div style={{ fontSize: 13.5, lineHeight: 1.55, color: '#78350f' }}>
+                      <MathText text={workedSolution?.tip || currentQ.note || ''} />
+                    </div>
                   </div>
                 )}
               </div>

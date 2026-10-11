@@ -4,6 +4,8 @@ import type { DrillItem } from './drill';
 import type { Formula, GateContent, LectureRef, Question, Topic, Video } from './vaultTypes';
 import type { GateIndex } from './shared';
 import { SOLUTION_UPGRADES, EXTRA_QUESTIONS } from '../../data/questionBank';
+import { VAULT_WORKED_SOLUTIONS, DetailedWorkedSolution } from './vaultWorkedSolutions';
+export type { DetailedWorkedSolution };
 
 export interface ResolvedFoundation {
   exam: {
@@ -247,12 +249,81 @@ export interface StepItem {
 }
 
 /**
+ * Resolves comprehensive worked solution with setup, microscopic baby steps,
+ * verification checkpoint, and high-yield exam tip.
+ */
+export function getDetailedWorkedSolution(
+  item: DrillItem,
+  formula?: Formula,
+  qObj?: Question
+): DetailedWorkedSolution {
+  const qId = item.qid || item.key;
+  if (VAULT_WORKED_SOLUTIONS[qId]) {
+    return VAULT_WORKED_SOLUTIONS[qId];
+  }
+  const matchedKey = Object.keys(VAULT_WORKED_SOLUTIONS).find(
+    (k) => qId.includes(k) || (item.label && item.label.includes(k))
+  );
+  if (matchedKey && VAULT_WORKED_SOLUTIONS[matchedKey]) {
+    return VAULT_WORKED_SOLUTIONS[matchedKey];
+  }
+
+  // Construct structured fallback
+  const baseSteps = buildStepByStepSolution(item, formula, qObj);
+  const mathInPrompt = item.prompt.match(/\$\$?([^$]+)\$\$?/);
+  const eq = mathInPrompt ? mathInPrompt[1].trim() : undefined;
+  const icMatch = item.prompt.match(/[yxt]\([0-9\.\-]+\)\s*=\s*[^,$\s]+/i);
+  const ic = icMatch ? icMatch[0].trim() : undefined;
+
+  let cleanFinal = item.answerText || '';
+  if (cleanFinal.startsWith('(') && cleanFinal.length > 4) {
+    cleanFinal = cleanFinal.slice(4).trim();
+  }
+
+  return {
+    setup: {
+      eq,
+      ic,
+      goal: item.prompt.replace(/\$\$?[^$]+\$\$?/g, '').trim().slice(0, 100) || undefined
+    },
+    steps: baseSteps.map((s) => ({
+      title: s.title,
+      math: s.math,
+      explanation: s.explanation
+    })),
+    finalAnswer: cleanFinal,
+    tip: item.note || undefined
+  };
+}
+
+/**
  * Builds structured step-by-step mathematical derivation regardless of whether
  * the user answered correctly or incorrectly.
  */
 export function buildStepByStepSolution(item: DrillItem, formula?: Formula, qObj?: Question): StepItem[] {
-  // 1. Check verified SOLUTION_UPGRADES
+  // 1. Check verified VAULT_WORKED_SOLUTIONS first
   const qId = item.qid || item.key;
+  if (VAULT_WORKED_SOLUTIONS[qId]) {
+    return VAULT_WORKED_SOLUTIONS[qId].steps.map((st, i) => ({
+      number: i + 1,
+      title: st.title,
+      math: st.math,
+      explanation: st.explanation || ''
+    }));
+  }
+  const matchedKey = Object.keys(VAULT_WORKED_SOLUTIONS).find(
+    (k) => qId.includes(k) || (item.label && item.label.includes(k))
+  );
+  if (matchedKey && VAULT_WORKED_SOLUTIONS[matchedKey]) {
+    return VAULT_WORKED_SOLUTIONS[matchedKey].steps.map((st, i) => ({
+      number: i + 1,
+      title: st.title,
+      math: st.math,
+      explanation: st.explanation || ''
+    }));
+  }
+
+  // 2. Check verified SOLUTION_UPGRADES
   const upgrade = (item.qid ? SOLUTION_UPGRADES[item.qid] : undefined) || SOLUTION_UPGRADES[item.key];
   if (upgrade?.steps && upgrade.steps.length > 0) {
     return upgrade.steps.map((st, i) => ({
