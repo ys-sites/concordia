@@ -29,7 +29,8 @@ The course evaluates conceptual mastery, quantitative derivation skills, and mic
 | :--- | :---: | :--- |
 | **Tutorial Quizzes & In-Class Tests** | **~15–20%** | Administered during weekly tutorials. Problems are directly derived from the assigned Practice Problem Sets. Master the problem sets to secure full points here. |
 | **Laboratory Component & Reports** | **~15%** | Hands-on metallurgical mounting, polishing, tensile testing, and hardness measurements (Rockwell / Brinell). Rigorous error analysis is expected. |
-| **Midterm Examination** | **~25–30%** | **Scheduled for Friday, October 30th**. Covers Chapters 1 through 7 (Atomic Structure, Bonding, Crystal Structures, Imperfections, and Diffusion). |
+| **Midterm Examination** | **25%** | **Confirmed for Friday, October 30th** (announced via Moodle, Oct 14) — during regular class time. Covers everything up to and including Lecture 12 (end of Mechanical Properties). Exam room assigned by student ID, sent via Moodle message. |
+| **Term Assignment** | **10%** | **Due Friday, November 27th.** Topic: "The use of AI to analyze an XRD pattern" (posted Oct 8). Individual or team of two; 1500–2000 words in your own words, with references and diagrams. Can be submitted early. |
 | **Final Examination** | **~40–50%** | Comprehensive 3-hour exam covering the entire semester (including Phase Diagrams, TTT curves, Heat Treatment, and Mechanical Properties). |
 
 > [!IMPORTANT]
