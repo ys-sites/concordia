@@ -14,7 +14,8 @@ import {
   Flame, 
   GraduationCap,
   ShieldCheck,
-  Info
+  Info,
+  Target
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { QUESTION_COUNTS } from '../data/questionStore';
@@ -24,12 +25,14 @@ interface HeroCourseSelectorProps {
   onSelectCourse: (id: CourseId) => void;
   onStartQuiz: (courseId: CourseId | 'ALL') => void;
   onOpenQuestionBank: () => void;
+  onOpenTeacherPractice?: (id: CourseId) => void;
 }
 
 export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
   onSelectCourse,
   onStartQuiz,
-  onOpenQuestionBank
+  onOpenQuestionBank,
+  onOpenTeacherPractice
 }) => {
   const getCourseIcon = (id: CourseId) => {
     switch (id) {
@@ -96,6 +99,48 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
         </div>
       </div>
 
+      {/* Teacher Midterm Practice Fast-Track Aspect Banner */}
+      <div className="hero-teacher-practice-banner">
+        <div className="htp-left">
+          <div className="htp-icon-badge">
+            <Target size={24} />
+          </div>
+          <div className="htp-info">
+            <div className="htp-badge-row">
+              <span className="htp-pill-highlight">★ Confirmed Midterms &amp; Blueprints</span>
+              <span className="htp-pill-date">MIAE 221: Friday, Oct 30, 2026</span>
+            </div>
+            <h2 className="htp-title">Teacher Exam &amp; Midterm Practice Hub</h2>
+            <p className="htp-desc">
+              Study instructor-provided sample examinations, official marking keys, Dr. Gordon’s C++ memory trace lab, and professor exam traps.
+            </p>
+          </div>
+        </div>
+        <div className="htp-actions">
+          {COURSES_DATA.map((c) => (
+            <button
+              key={c.id}
+              className="htp-course-btn"
+              onClick={() => {
+                audio.playClick();
+                if (onOpenTeacherPractice) {
+                  onOpenTeacherPractice(c.id);
+                } else {
+                  onSelectCourse(c.id);
+                }
+              }}
+              title={`Open ${c.code} Teacher Midterm Practice`}
+            >
+              <span className="htp-btn-dot" style={{ backgroundColor: c.accentHex }} />
+              <span className="htp-btn-code">{c.code}</span>
+              <span className="htp-btn-sub">
+                {c.id === 'MIAE221' ? 'Exam Oct 30' : 'Sample Exam'}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Main Choice Prompt */}
       <div className="course-prompt-banner">
         <div className="prompt-left">
@@ -155,6 +200,10 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
                     <Brain size={12} />
                     {QUESTION_COUNTS.byCourse[course.id] ?? 0} Questions
                   </span>
+                  <span className="badge teacher-badge" title="Teacher Midterm Practice Available">
+                    <Target size={12} />
+                    Exam Practice
+                  </span>
                 </div>
               </div>
 
@@ -204,6 +253,23 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
                 >
                   <Brain size={15} />
                   <span>Practice Drill</span>
+                </button>
+
+                <button 
+                  className="card-btn-teacher"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    audio.playClick();
+                    if (onOpenTeacherPractice) {
+                      onOpenTeacherPractice(course.id);
+                    } else {
+                      onSelectCourse(course.id);
+                    }
+                  }}
+                  title="Study official teacher sample midterms and exam traps"
+                >
+                  <Target size={15} />
+                  <span>Teacher Midterm</span>
                 </button>
               </div>
             </div>

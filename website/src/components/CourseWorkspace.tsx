@@ -49,6 +49,9 @@ import { WeeklyPath, WEEKLY_FOLDER, hasWeeklyPath } from './WeeklyPath';
 const MidtermGate = lazy(() => import('./vault/MidtermGate'));
 const GATE_FOLDER = 'Midterm Gate';
 
+import { TeacherMidtermPracticeSection } from './TeacherMidtermPracticeSection';
+const TEACHER_PRACTICE_FOLDER = 'Teacher Midterm Practice';
+
 interface CourseWorkspaceProps {
   course: CourseWithDocs;
   folderPath?: string[];
@@ -304,6 +307,18 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
 
           <div className="workspace-header-actions">
             <button
+              className="workspace-teacher-practice-btn"
+              onClick={() => {
+                audio.playClick();
+                openPath([TEACHER_PRACTICE_FOLDER]);
+              }}
+              title="Official teacher midterm exams, solutions keys, traps & scope blueprint"
+            >
+              <Target size={18} />
+              <span>Teacher Midterm Practice</span>
+            </button>
+
+            <button
               className="workspace-quiz-btn"
               onClick={() => {
                 audio.playClick();
@@ -315,6 +330,35 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Study Aspect Switcher Tabs */}
+      <div className="workspace-aspect-tabs">
+        <button
+          className={`aspect-tab-btn ${activePath[0] !== TEACHER_PRACTICE_FOLDER ? 'active' : ''}`}
+          onClick={() => {
+            if (activePath[0] === TEACHER_PRACTICE_FOLDER) {
+              openPath([]);
+            }
+          }}
+        >
+          <BookOpen size={16} />
+          <span>Course Materials &amp; Guides</span>
+        </button>
+
+        <button
+          className={`aspect-tab-btn aspect-tab-teacher ${activePath[0] === TEACHER_PRACTICE_FOLDER ? 'active' : ''}`}
+          onClick={() => {
+            audio.playClick();
+            openPath([TEACHER_PRACTICE_FOLDER]);
+          }}
+        >
+          <Target size={16} />
+          <span>Teacher Midterm Practice</span>
+          <span className="aspect-badge-confirmed">
+            {course.id === 'MIAE221' ? 'Exam Oct 30' : 'Official Prep'}
+          </span>
+        </button>
       </div>
 
       {/* Breadcrumb + search */}
@@ -372,6 +416,23 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
         <section>
           <h2 className="fx-section-title">Course folders</h2>
           <div className="fx-folder-grid">
+            <button
+              key="teacher-midterm-practice-tile"
+              className="fx-folder-tile fx-folder-tile-teacher-practice"
+              onClick={() => openPath([TEACHER_PRACTICE_FOLDER])}
+            >
+              <span className="fx-folder-icon" style={{ color: '#ec4899', backgroundColor: 'rgba(236, 72, 153, 0.12)' }}>
+                <Target size={22} />
+              </span>
+              <span className="fx-folder-text">
+                <span className="fx-folder-index" style={{ color: '#ec4899', fontWeight: 800 }}>★</span>
+                <span className="fx-folder-name" style={{ fontWeight: 700 }}>Teacher Midterm Practice</span>
+                <span className="fx-folder-meta">
+                  {course.id === 'MIAE221' ? 'Confirmed Exam Oct 30 · 2017 Sample & Marking Key' : 'Official Sample Midterms · Solution Keys · Traps'}
+                </span>
+              </span>
+              <ChevronRight size={18} className="fx-folder-chevron" />
+            </button>
             {tree.folders.map(renderFolderTile)}
             {hasWeeklyPath(course.id) && (
               <button key="weekly-path" className="fx-folder-tile" onClick={() => openPath([WEEKLY_FOLDER])}>
@@ -422,6 +483,14 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             </button>
           </div>
         </section>
+      ) : activePath[0] === TEACHER_PRACTICE_FOLDER ? (
+        <TeacherMidtermPracticeSection
+          course={course}
+          onViewPdf={onViewPdf}
+          onLaunchDrill={onLaunchDrill}
+          onStartQuiz={onStartQuiz}
+          onBack={() => openPath([])}
+        />
       ) : activePath[0] === GATE_FOLDER && hasGate(course.id) ? (
         <Suspense fallback={<p className="fx-empty">Opening…</p>}>
           <MidtermGate course={course} onViewPdf={onViewPdf} />

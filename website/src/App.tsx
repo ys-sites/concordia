@@ -259,6 +259,14 @@ export function App() {
             onSelectCourse={handleSelectCourse}
             onStartQuiz={handleStartQuiz}
             onOpenQuestionBank={handleOpenQuestionBank}
+            onOpenTeacherPractice={(courseId: CourseId) => {
+              navigateTo({
+                viewMode: 'WORKSPACE',
+                courseId,
+                folderPath: ['Teacher Midterm Practice'],
+                docPath: null
+              });
+            }}
           />
         )}
 

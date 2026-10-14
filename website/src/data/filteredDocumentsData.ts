@@ -231,6 +231,12 @@ export const isFilteredDocumentRelativePath = (relativePath: string): boolean =>
          /Term Paper & Final Project/i.test(normalized) ||
          /Paradis notes/i.test(normalized) ||
          /Quizzes & Term Tests/i.test(normalized) ||
+         /Sample Midterm/i.test(normalized) ||
+         /MIAE_215_midterm/i.test(normalized) ||
+         /MIAE_215_quiz/i.test(normalized) ||
+         /Past Midterm Examinations/i.test(normalized) ||
+         /Midterm Quantitative Problem Guide/i.test(normalized) ||
+         /teacher midterm practice/i.test(normalized) ||
          /112451179.*\.pdf$/i.test(normalized) ||
          /124560047.*\.pdf$/i.test(normalized);
 };
