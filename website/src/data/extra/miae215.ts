@@ -418,7 +418,7 @@ cout << "\\n" << sum << " " << a << " " << b;`,
         { title: 'Iteration 4 (i = 3)', math: t`\text{sum} = 24 + 5 = 29, \quad i > 2 (3 > 2) \text{ is TRUE} \;\Rightarrow\; \text{break!}` },
         { title: 'Post-Loop Execution', math: t`b = \text{sum} - i = 29 - 3 = 26. \quad \text{Prints } 29\ 19\ 26` }
       ],
-      answer: t`1 8\n2 14\n3 19\n29 19 26`,
+      answer: t`\begin{array}{l} 1\ \ 8 \\ 2\ \ 14 \\ 3\ \ 19 \\ 29\ \ 19\ \ 26 \end{array}`,
       whyWrong: {
         '1': t`Assumes the loop ran a 4th time, updating a and printing 4 24 before breaking.`,
         '2': t`Prints i before incrementing (0 instead of 1).`,

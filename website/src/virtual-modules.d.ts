@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 declare module 'virtual:course-documents' {
-  import type { CourseDocument } from './types';
-  const documents: CourseDocument[];
+  // [relativePath, sizeBytes] per published PDF (see build/publishedFiles.ts)
+  const documents: [string, number][];
   export default documents;
 }
 

@@ -3,7 +3,8 @@
 import katex from 'katex';
 import { PRACTICE_QUESTIONS } from '../src/data/questionsData';
 import { QUIZ_PLANS } from '../src/data/quizSections';
-import { splitMath } from '../src/utils/mathRenderer';
+import { TEACHER_EXAM_QUESTIONS, TEACHER_EXAM_CHAPTER, TEACHER_EXAM_SETS } from '../src/data/teacherExamQuestions';
+import { splitMath, hasInlineMath } from '../src/utils/mathRenderer';
 
 const errors: string[] = [];
 const check = (id: string, where: string, text: string | undefined, bare = false) => {
@@ -23,17 +24,26 @@ const check = (id: string, where: string, text: string | undefined, bare = false
 };
 
 const ids = new Set<string>();
-for (const q of PRACTICE_QUESTIONS) {
+const teacherIds = new Set(TEACHER_EXAM_QUESTIONS.map((q) => q.id));
+for (const q of [...PRACTICE_QUESTIONS, ...TEACHER_EXAM_QUESTIONS]) {
   if (ids.has(q.id)) errors.push(`${q.id}: duplicate id`);
   ids.add(q.id);
-  const plan = QUIZ_PLANS[q.courseId];
-  const sectionIds = [...plan.sections.map((s) => s.id), ...plan.midterm.sections];
-  if (!sectionIds.includes(q.chapter)) errors.push(`${q.id}: chapter "${q.chapter}" is not a drill section`);
-  if (new Set(q.options).size !== 4) errors.push(`${q.id}: duplicate options`);
+  if (teacherIds.has(q.id)) {
+    // Teacher papers: 2 (true/false) to 5 options, topic must be one of the course's drill topics
+    if (q.chapter !== TEACHER_EXAM_CHAPTER) errors.push(`${q.id}: teacher question outside chapter "${TEACHER_EXAM_CHAPTER}"`);
+    if (!TEACHER_EXAM_SETS[q.courseId]?.topics.some((tp) => tp.label === q.topic)) errors.push(`${q.id}: topic "${q.topic}" is not a teacher-drill topic`);
+    if (q.options.length < 2 || q.options.length > 5 || new Set(q.options).size !== q.options.length) errors.push(`${q.id}: needs 2–5 distinct options`);
+    if (q.correctIndex < 0 || q.correctIndex >= q.options.length) errors.push(`${q.id}: correctIndex out of range`);
+  } else {
+    const plan = QUIZ_PLANS[q.courseId];
+    const sectionIds = [...plan.sections.map((s) => s.id), ...plan.midterm.sections];
+    if (!sectionIds.includes(q.chapter)) errors.push(`${q.id}: chapter "${q.chapter}" is not a drill section`);
+    if (new Set(q.options).size !== 4) errors.push(`${q.id}: duplicate options`);
+  }
   // Length-balance audit: the correct option must not be the conspicuously longest one,
   // otherwise "pick the longest answer" becomes a cheat. Keep distractors comparable
-  // in length and detail to the correct option.
-  {
+  // in length and detail to the correct option. (Teacher papers keep the instructor's own wording.)
+  if (!q.keepOptionOrder) {
     const lens = q.options.map((o) => o.replace(/\s+/g, ' ').trim().length);
     const correctLen = lens[q.correctIndex];
     const others = lens.filter((_, i) => i !== q.correctIndex);
@@ -53,19 +63,20 @@ for (const q of PRACTICE_QUESTIONS) {
   e.stepByStep.forEach((s, i) => check(q.id, `stepByStep ${i}`, s));
   e.steps?.forEach((s, i) => {
     check(q.id, `step ${i} title`, s.title);
-    check(q.id, `step ${i} math`, s.math, true);
+    check(q.id, `step ${i} math`, s.math, !hasInlineMath(s.math));
     check(q.id, `step ${i} note`, s.note);
   });
-  check(q.id, 'answer', e.answer, true);
+  check(q.id, 'answer', e.answer, !hasInlineMath(e.answer));
   for (const [k, v] of Object.entries(e.whyWrong ?? {})) {
     if (Number(k) === q.correctIndex) errors.push(`${q.id}: whyWrong given for the correct option ${k}`);
+    if (Number(k) >= q.options.length) errors.push(`${q.id}: whyWrong for missing option ${k}`);
     check(q.id, `whyWrong ${k}`, v);
   }
   if (!e.steps?.length && !e.stepByStep.length) errors.push(`${q.id}: no explanation steps`);
 }
 
 const byCourse: Record<string, { total: number; stepped: number; diagnosed: number; past: number }> = {};
-for (const q of PRACTICE_QUESTIONS) {
+for (const q of [...PRACTICE_QUESTIONS, ...TEACHER_EXAM_QUESTIONS]) {
   const c = (byCourse[q.courseId] ??= { total: 0, stepped: 0, diagnosed: 0, past: 0 });
   c.total++;
   if (q.explanation.steps?.length) c.stepped++;
@@ -77,4 +88,4 @@ if (errors.length) {
   console.error(`${errors.length} problem(s):\n` + errors.join('\n'));
   process.exit(1);
 }
-console.log(`OK: ${PRACTICE_QUESTIONS.length} questions validated`);
+console.log(`OK: ${PRACTICE_QUESTIONS.length} bank + ${TEACHER_EXAM_QUESTIONS.length} teacher-exam questions validated`);

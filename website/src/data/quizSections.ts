@@ -1,5 +1,7 @@
 import { CourseId, PracticeQuestion } from '../types';
 import { PRACTICE_QUESTIONS } from './questionsData';
+import { parseTeacherDrillId, teacherDrillPool, teacherDrillLabel } from './teacherExamQuestions';
+import { shuffled } from '../utils/shuffle';
 
 // Drill sections per course. Every question's `chapter` must match one of these ids.
 // `midterm` lists the sections the midterm covers; a "Midterm Review" drill mixes them.
@@ -246,6 +248,8 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
 };
 
 export const sectionLabel = (courseId: CourseId, sectionId: string): string => {
+  const teacher = parseTeacherDrillId(sectionId);
+  if (teacher) return teacherDrillLabel(courseId, teacher);
   const plan = QUIZ_PLANS[courseId];
   if (sectionId === MIDTERM_SECTION_ID) return plan.midterm.label;
   if (sectionId === FINAL_SECTION_ID && plan.final) return plan.final.label;
@@ -254,6 +258,8 @@ export const sectionLabel = (courseId: CourseId, sectionId: string): string => {
 
 // All questions belonging to one course + section (the midterm mixes its sections)
 export const questionPool = (courseId: CourseId, sectionId: string): PracticeQuestion[] => {
+  const teacher = parseTeacherDrillId(sectionId);
+  if (teacher) return teacherDrillPool(courseId, teacher);
   const plan = QUIZ_PLANS[courseId];
   if (!plan) return [];
 
@@ -274,5 +280,17 @@ export const questionPool = (courseId: CourseId, sectionId: string): PracticeQue
   return PRACTICE_QUESTIONS.filter((q) => q.courseId === courseId && chapters.includes(q.chapter));
 };
 
-export const drillSize = (courseId: CourseId, sectionId: string): number =>
-  Math.min(DRILL_LENGTH, questionPool(courseId, sectionId).length);
+export const drillSize = (courseId: CourseId, sectionId: string): number => {
+  const teacher = parseTeacherDrillId(sectionId);
+  const pool = questionPool(courseId, sectionId).length;
+  if (teacher) return teacher.count === 'all' ? pool : Math.min(teacher.count, pool);
+  return Math.min(DRILL_LENGTH, pool);
+};
+
+// The questions of one drill run: up to drillSize of the pool, shuffled — except a teacher-exam
+// drill in paper order, which keeps the order of the paper
+export const drillQuestions = (courseId: CourseId, sectionId: string): PracticeQuestion[] => {
+  const pool = questionPool(courseId, sectionId);
+  const ordered = parseTeacherDrillId(sectionId)?.ordered ?? false;
+  return (ordered ? pool : shuffled(pool)).slice(0, drillSize(courseId, sectionId));
+};

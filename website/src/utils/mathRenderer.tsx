@@ -22,6 +22,10 @@ const findUnescaped = (s: string, token: string, from: number): number => {
   return i;
 };
 
+// True for prose with $…$ formulas (as opposed to one bare formula). Such strings must go through
+// MathText; typesetting them as a single equation makes KaTeX print its error text.
+export const hasInlineMath = (s: string | undefined): boolean => !!s && /(^|[^\\])\$/.test(s);
+
 export const splitMath = (input: string): Segment[] => {
   const out: Segment[] = [];
   let text = '';

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CourseId, CourseDocument, PracticeQuestion } from '../types';
 import { MathText } from '../utils/mathRenderer';
+import { QuestionFigure, optionLetter } from './QuestionFigure';
 import { WorkedSolution } from './WorkedSolution';
 import { SourceList } from './SourceList';
 import { audio } from '../utils/audio';
@@ -358,12 +359,13 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
                     <code>{activeQ.codeSnippet}</code>
                   </pre>
                 )}
+                {activeQ.figure && <QuestionFigure figure={activeQ.figure} />}
               </div>
 
               {/* Options Breakdown */}
               <div className="options-grid">
                 {activeQ.options.map((opt, oIdx) => {
-                  const letter = ['A', 'B', 'C', 'D'][oIdx];
+                  const letter = optionLetter(oIdx);
                   const isCorrect = oIdx === activeQ.correctIndex;
                   const isSelected = oIdx === activeItem.selectedIndex;
                   let optClass = 'opt-neutral';
@@ -393,7 +395,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
                     <span>
                       {activeItem.isCorrect 
                         ? 'You solved this correctly!' 
-                        : `Your answer was Option ${['A', 'B', 'C', 'D'][activeItem.selectedIndex] ?? 'None'} · Correct is Option ${['A', 'B', 'C', 'D'][activeQ.correctIndex]}`}
+                        : `Your answer was Option ${(activeItem.selectedIndex !== undefined ? optionLetter(activeItem.selectedIndex) : 'None')} · Correct is Option ${optionLetter(activeQ.correctIndex)}`}
                     </span>
                   </div>
                   <SourceList question={activeQ} onOpenPdf={onOpenPdf} />
@@ -463,8 +465,8 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
               {filteredQuestions.map((item, idx) => {
                 const isExpanded = expandedIndex === idx;
                 const q = item.question;
-                const letter = ['A', 'B', 'C', 'D'][q.correctIndex];
-                const userLetter = item.selectedIndex !== undefined ? ['A', 'B', 'C', 'D'][item.selectedIndex] : 'None';
+                const letter = optionLetter(q.correctIndex);
+                const userLetter = item.selectedIndex !== undefined ? optionLetter(item.selectedIndex) : 'None';
 
                 return (
                   <div 
@@ -514,7 +516,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
 
                             return (
                               <div key={oIdx} className={`review-opt-box ${optClass}`}>
-                                <span className="opt-label">{['A', 'B', 'C', 'D'][oIdx]}:</span>
+                                <span className="opt-label">{optionLetter(oIdx)}:</span>
                                 <span className="opt-val"><MathText text={opt} /></span>
                                 {isCorrectOption && <span className="verified-tag">✓ Correct Answer</span>}
                                 {isChosenOption && !isCorrectOption && <span className="your-choice-tag">✗ Your Selection</span>}

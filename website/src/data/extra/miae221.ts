@@ -1237,7 +1237,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
       t`$T \approx 1134\text{ K} \quad (861^\circ\text{C})$`,
       t`$T \approx 567\text{ K} \quad (294^\circ\text{C})$`,
       t`$T \approx 1356\text{ K} \quad (1083^\circ\text{C}, \text{melting point})$`,
-      t`$T \approx 298\text{ K} \quad (25^\circ\text{C})`
+      t`$T \approx 298\text{ K} \quad (25^\circ\text{C})$`
     ],
     correctIndex: 0,
     explanation: {
@@ -1390,7 +1390,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`Ductility is the measure of the degree of plastic deformation sustained at fracture ($\\%EL = \epsilon_f \times 100\\%$). It corresponds strictly to the horizontal strain distance at rupture.`,
+      coreConcept: t`Ductility is the measure of the degree of plastic deformation sustained at fracture ($\%EL = \epsilon_f \times 100\%$). It corresponds strictly to the horizontal strain distance at rupture.`,
       stepByStep: [],
       steps: [
         { title: 'Inspect the horizontal strain axis $\\epsilon$', note: t`The horizontal coordinate of the endpoint represents fracture strain $\epsilon_f$.` },
@@ -2099,7 +2099,7 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     ],
     correctIndex: 0,
     explanation: {
-      coreConcept: t`A standard tensile test continuously pulls a dogbone specimen uniaxially to measure the stress-strain curve, directly yielding $E$, $\sigma_y$, $\sigma_{\text{UTS}}$, ductiliy ($\text{\\%EL}$), and modulus of resilience. Hardness, however, measures localized surface resistance to permanent penetration/indentation under a pointed indenter (Rockwell, Brinell, Vickers) and requires a dedicated hardness tester.`,
+      coreConcept: t`A standard tensile test continuously pulls a dogbone specimen uniaxially to measure the stress-strain curve, directly yielding $E$, $\sigma_y$, $\sigma_{\text{UTS}}$, ductility ($\%\text{EL}$), and modulus of resilience. Hardness, however, measures localized surface resistance to permanent penetration/indentation under a pointed indenter (Rockwell, Brinell, Vickers) and requires a dedicated hardness tester.`,
       stepByStep: [],
       steps: [
         { title: 'Tensile Test Outputs', note: t`Yield strength, tensile strength, Young's modulus, and elongation to fracture are all derived from the tensile test curve.` },

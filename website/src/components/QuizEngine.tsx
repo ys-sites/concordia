@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { CourseId, CourseDocument, PracticeQuestion, QuizSessionState } from '../types';
-import { questionPool, sectionLabel, DRILL_LENGTH } from '../data/quizSections';
+import { drillQuestions, sectionLabel } from '../data/quizSections';
 import { MathText } from '../utils/mathRenderer';
-import { shuffled, shuffleOptions } from '../utils/shuffle';
+import { shuffleOptions } from '../utils/shuffle';
 import { SourceList } from './SourceList';
 import { WorkedSolution } from './WorkedSolution';
 import { audio } from '../utils/audio';
@@ -29,6 +29,7 @@ import {
   Square
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { QuestionFigure, optionLetter } from './QuestionFigure';
 
 interface QuizEngineProps {
   courseId: CourseId;
@@ -51,9 +52,11 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
   // Practice invariant: question order AND each question's answer-option order are
   // freshly shuffled on every drill start, so the correct answer never sits in a
   // learnable position. (Remount via key={drillRun} re-runs this on every retake.)
+  // Teacher-exam questions marked keepOptionOrder keep the paper's lettering, and a teacher drill
+  // in paper order keeps the paper's question order (see drillQuestions).
   const sessionQuestions = useMemo(() => {
-    const pool = questionPool(courseId, sectionId);
-    return shuffled(pool).slice(0, DRILL_LENGTH).map((q): PracticeQuestion => {
+    return drillQuestions(courseId, sectionId).map((q): PracticeQuestion => {
+      if (q.keepOptionOrder) return q;
       const { options, correctIndex, order } = shuffleOptions(q.options, q.correctIndex);
       // Wrong-answer diagnoses are keyed by option index, so they move with their options
       const whyWrong = q.explanation.whyWrong
@@ -61,12 +64,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
             Object.entries(q.explanation.whyWrong).map(([orig, text]) => [String(order.indexOf(Number(orig))), text])
           )
         : undefined;
-      return {
-        ...q,
-        options: options as PracticeQuestion['options'],
-        correctIndex: correctIndex as PracticeQuestion['correctIndex'],
-        explanation: { ...q.explanation, whyWrong }
-      };
+      return { ...q, options, correctIndex, explanation: { ...q.explanation, whyWrong } };
     });
   }, [courseId, sectionId]);
 
@@ -139,8 +137,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
   }, []);
 
   const buildQuestionScript = (q: PracticeQuestion, index: number) => {
-    const letters = ['A', 'B', 'C', 'D'];
-    const options = q.options.map((opt, i) => `Option ${letters[i]}: ${opt}.`).join(' ');
+    const options = q.options.map((opt, i) => `Option ${optionLetter(i)}: ${opt}.`).join(' ');
     const code = q.codeSnippet ? ' A code snippet is shown on screen.' : '';
     return `Question ${index + 1}. ${q.question}${code} ${options}`;
   };
@@ -520,12 +517,14 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
               <code>{currentQ.codeSnippet}</code>
             </pre>
           )}
+
+          {currentQ.figure && <QuestionFigure figure={currentQ.figure} />}
         </div>
 
-        {/* 4 Interactive Choix de Réponse Options */}
+        {/* Answer options (4 in the practice bank; 5 or True/False on teacher papers) */}
         <div className="options-grid">
           {currentQ.options.map((opt, optIdx) => {
-            const letter = ['A', 'B', 'C', 'D'][optIdx];
+            const letter = optionLetter(optIdx);
             let optionStateClass = '';
 
             if (isAnswered) {

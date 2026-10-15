@@ -1,5 +1,6 @@
 import { CourseMeta, CourseDocument, CourseId } from '../types';
 import { QUESTION_COUNTS } from './questionStore';
+import { publicCoursePath } from '../utils/pdfUrl';
 // Generated at build time from the course folders by website/build/publishedFiles.ts:
 // every published PDF, after the study-material-only filter in ./localOnly.ts
 import PUBLISHED_DOCUMENTS from 'virtual:course-documents';
@@ -65,13 +66,47 @@ const COURSE_INFO: CourseInfo[] = [
   }
 ];
 
-import { isFilteredDocumentPdf } from './localOnly';
+const COURSE_DIRS: Record<string, CourseId> = {
+  'Engr 213': 'ENGR213',
+  'Indu 211': 'INDU211',
+  'Miae 215': 'MIAE215',
+  'Miae 221': 'MIAE221'
+};
+
+// Builds a CourseDocument from a course file path ("Miae 221/01 - .../Lecture 1.pdf").
+// Also used for deep links to documents that are not in the course folders.
+export const documentFromPath = (relativePath: string, fileSizeBytes?: number): CourseDocument | null => {
+  const segments = relativePath.split('/');
+  const courseDir = segments[0];
+  const courseId = COURSE_DIRS[courseDir];
+  if (!courseId || segments.length < 2) return null;
+  const filename = segments[segments.length - 1];
+  const folders = segments.slice(1, -1);
+  const title = filename.replace(/\.pdf$/i, '');
+  return {
+    id: `${courseId}:${publicCoursePath(relativePath)}`,
+    courseId,
+    categoryId: folders.join('/') || 'General',
+    categoryTitle: folders[folders.length - 1] ?? 'General',
+    title,
+    filename,
+    relativePath,
+    fileSizeBytes,
+    isMasterGuide: /master|comprehensive|expanded/i.test(relativePath),
+    isHighYield: /review sheet|summary|rapid/i.test(relativePath),
+    tags: [...folders, courseDir.toUpperCase()],
+    summary: `${courseDir.toUpperCase()} · ${title}`
+  };
+};
+
+const ALL_DOCUMENTS = PUBLISHED_DOCUMENTS.map(([path, size]) => documentFromPath(path, size)).filter(
+  (d): d is CourseDocument => d !== null
+);
 
 const documentsFor = (courseId: CourseId): CourseDocument[] =>
-  (PUBLISHED_DOCUMENTS as CourseDocument[]).filter(
+  ALL_DOCUMENTS.filter(
     (d) =>
       d.courseId === courseId &&
-      !isFilteredDocumentPdf(d.relativePath) &&
       d.relativePath.split('/').length > 2 &&
       !/^(ENGR 213\.pdf|Paradis notes\.pdf|Engr 213 Tutor\.pdf)$/i.test(d.filename)
   );

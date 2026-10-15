@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import { CourseId, CourseDocument } from './types';
-import { COURSES_DATA } from './data/coursesData';
+import { COURSES_DATA, documentFromPath } from './data/coursesData';
 import { Navbar } from './components/Navbar';
 import { HeroCourseSelector } from './components/HeroCourseSelector';
-import { PdfViewerModal } from './components/PdfViewerModal';
 import { Footer } from './components/Footer';
-import { ContactModal } from './components/ContactModal';
-import { FILTERED_COURSES_DATA } from './data/filteredDocumentsData';
+import { TEACHER_PRACTICE_FOLDER } from './data/teacherPracticeCourses';
 import { audio } from './utils/audio';
 import { parseHash, formatHash, RouteState } from './utils/navigationRouter';
 import { Analytics } from '@vercel/analytics/react';
@@ -27,6 +25,9 @@ if (typeof window !== 'undefined') {
   if (document.readyState === 'complete') prefetch();
   else window.addEventListener('load', prefetch, { once: true });
 }
+// Opened on demand, so neither ships in the first-load bundle
+const PdfViewerModal = lazy(() => import('./components/PdfViewerModal').then((m) => ({ default: m.PdfViewerModal })));
+const ContactModal = lazy(() => import('./components/ContactModal').then((m) => ({ default: m.ContactModal })));
 const FilteredSubSite = lazy(() => import('./components/FilteredSubSite').then((m) => ({ default: m.FilteredSubSite })));
 
 type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK' | 'FILTERED_DOCUMENT';
@@ -42,16 +43,10 @@ function findDoc(courseId: CourseId | null, docPath: string | null): CourseDocum
       if (found) return found;
     }
   }
-  // Check Filtered Document Vault for all courses
-  for (const key of Object.keys(FILTERED_COURSES_DATA) as CourseId[]) {
-    if (!courseId || key === courseId) {
-      const cfg = FILTERED_COURSES_DATA[key];
-      const allDocs = [...cfg.assessmentDocs, ...cfg.midtermPrepDocs, ...(cfg.termPaperDocs || [])];
-      const found = allDocs.find(
-        (d) => d.relativePath === decoded || d.relativePath === docPath || d.id === decoded || d.filename === decoded
-      );
-      if (found) return { ...found, summary: found.summary || found.title };
-    }
+  // Documents outside the course folders (protected sections, teacher exams): build the entry from its path
+  if (/\.pdf$/i.test(decoded)) {
+    const doc = documentFromPath(decoded);
+    if (doc && (!courseId || doc.courseId === courseId)) return doc;
   }
   return null;
 }
@@ -263,7 +258,7 @@ export function App() {
               navigateTo({
                 viewMode: 'WORKSPACE',
                 courseId,
-                folderPath: ['Teacher Midterm Practice'],
+                folderPath: [TEACHER_PRACTICE_FOLDER],
                 docPath: null
               });
             }}
@@ -348,17 +343,18 @@ export function App() {
       )}
 
       {/* Embedded PDF Viewer Modal with direct slide jumping */}
-      <PdfViewerModal 
-        document={activePdfDoc}
-        initialPage={activePdfPage}
-        onClose={handleClosePdf}
-      />
+      {activePdfDoc && (
+        <Suspense fallback={null}>
+          <PdfViewerModal document={activePdfDoc} initialPage={activePdfPage} onClose={handleClosePdf} />
+        </Suspense>
+      )}
 
       {/* FormSubmit Contact Modal */}
-      <ContactModal 
-        isOpen={contactOpen}
-        onClose={() => setContactOpen(false)}
-      />
+      {contactOpen && (
+        <Suspense fallback={null}>
+          <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} />
+        </Suspense>
+      )}
 
       {/* High-Fidelity Professional Engineering Footer */}
       <Footer 

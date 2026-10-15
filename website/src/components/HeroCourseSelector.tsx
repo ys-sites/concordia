@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { QUESTION_COUNTS } from '../data/questionStore';
+import { hasTeacherPractice } from '../data/teacherPracticeCourses';
 import { ShinyText, CountUp } from './reactbits';
 
 interface HeroCourseSelectorProps {
@@ -112,12 +113,12 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
             </div>
             <h2 className="htp-title">Teacher Exam &amp; Midterm Practice Hub</h2>
             <p className="htp-desc">
-              Study instructor-provided sample examinations, official marking keys, Dr. Gordon’s C++ memory trace lab, and professor exam traps.
+              Drill every question from the practice exams the MIAE 221 and MIAE 215 instructors handed out, with the official marking keys, Dr. Gordon’s C++ trace lab, and exam traps.
             </p>
           </div>
         </div>
         <div className="htp-actions">
-          {COURSES_DATA.map((c) => (
+          {COURSES_DATA.filter((c) => hasTeacherPractice(c.id)).map((c) => (
             <button
               key={c.id}
               className="htp-course-btn"
@@ -200,10 +201,12 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
                     <Brain size={12} />
                     {QUESTION_COUNTS.byCourse[course.id] ?? 0} Questions
                   </span>
-                  <span className="badge teacher-badge" title="Teacher Midterm Practice Available">
-                    <Target size={12} />
-                    Exam Practice
-                  </span>
+                  {hasTeacherPractice(course.id) && (
+                    <span className="badge teacher-badge" title="Teacher Midterm Practice Available">
+                      <Target size={12} />
+                      Exam Practice
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -255,22 +258,24 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
                   <span>Practice Drill</span>
                 </button>
 
-                <button 
-                  className="card-btn-teacher"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    audio.playClick();
-                    if (onOpenTeacherPractice) {
-                      onOpenTeacherPractice(course.id);
-                    } else {
-                      onSelectCourse(course.id);
-                    }
-                  }}
-                  title="Study official teacher sample midterms and exam traps"
-                >
-                  <Target size={15} />
-                  <span>Teacher Midterm</span>
-                </button>
+                {hasTeacherPractice(course.id) && (
+                  <button
+                    className="card-btn-teacher"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      audio.playClick();
+                      if (onOpenTeacherPractice) {
+                        onOpenTeacherPractice(course.id);
+                      } else {
+                        onSelectCourse(course.id);
+                      }
+                    }}
+                    title="Drill the teacher's practice exam questions"
+                  >
+                    <Target size={15} />
+                    <span>Teacher Midterm</span>
+                  </button>
+                )}
               </div>
             </div>
           );

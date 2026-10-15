@@ -1679,12 +1679,12 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
       coreConcept: t`To evaluate all-units quantity discounts, calculate total cost (purchase cost $D\cdot P$ + ordering $(D/Q)PC$ + holding $(Q/2)CC$) at the base $EOQ$ and compare it against the total cost at the discount breakpoint $Q = 1{,}000$.`,
       stepByStep: [],
       steps: [
-        { title: 'Evaluate total annual cost at normal price $P = \$5.00$ ($EOQ = 894$)', math: t`CC_1 = 0.20(5.00) = \$1.00 \implies EOQ_1 = \sqrt{\frac{2(10{,}000)(40)}{1.00}} \approx 894.4\text{ units}` },
+        { title: 'Evaluate total annual cost at normal price $P = \\$5.00$ ($EOQ = 894$)', math: t`CC_1 = 0.20(5.00) = \$1.00 \implies EOQ_1 = \sqrt{\frac{2(10{,}000)(40)}{1.00}} \approx 894.4\text{ units}` },
         { title: 'Calculate total cost at $EOQ_1 = 894$', math: t`TC_1 = 10{,}000(5.00) + \frac{10{,}000}{894}(40) + \frac{894}{2}(1.00) = 50{,}000 + 447.4 + 447.0 = \$50{,}894.40` },
-        { title: 'Evaluate total annual cost at discount breakpoint $Q = 1{,}000$ ($P = \$4.80$)', math: t`CC_2 = 0.20(4.80) = \$0.96 \implies TC_2 = 10{,}000(4.80) + \frac{10{,}000}{1000}(40) + \frac{1000}{2}(0.96) = 48{,}000 + 400 + 480 = \$48{,}880.00` },
+        { title: 'Evaluate total annual cost at discount breakpoint $Q = 1{,}000$ ($P = \\$4.80$)', math: t`CC_2 = 0.20(4.80) = \$0.96 \implies TC_2 = 10{,}000(4.80) + \frac{10{,}000}{1000}(40) + \frac{1000}{2}(0.96) = 48{,}000 + 400 + 480 = \$48{,}880.00` },
         { title: 'Compare total costs', math: t`\Delta TC = 50{,}894.40 - 48{,}880.00 = +\$2{,}014.40\ \text{annual net savings}` }
       ],
-      answer: t`Order $Q = 1{,}000\ (\approx \$2{,}014\ \text{savings})`,
+      answer: t`Order $Q = 1{,}000$ (about \$2,014 saved per year)`,
       whyWrong: {
         '1': t`While holding cost increases from \$447 to \$480 (a \$33 rise), purchase cost drops by \$2,000, overwhelmingly favoring the discount.`,
         '2': t`Ordering cost actually decreases with larger order sizes ($(10{,}000/1{,}000)(40) = \$400 < \$447$).`,
@@ -2061,7 +2061,7 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Exam 2019 / 2024 (Problem 3) · Concordia University',
     topic: 'Transportation Method: Lowest-Unit-Cost Allocation',
     difficulty: 'Exam Master',
-    question: t`Three warehouses supply three retail outlets with unit shipping costs: Edmonton supply 40 (Montreal $12, Ottawa $10, Toronto $15), Winnipeg supply 20 (Montreal $8, Ottawa $6, Toronto $10), and Saskatoon supply 80 (Montreal $10, Ottawa $12, Toronto $9). Demands are Montreal 50, Ottawa 30, Toronto 60. Using the Lowest-Unit-Cost heuristic, what is the total initial shipping cost?`,
+    question: t`Three warehouses supply three retail outlets with unit shipping costs: Edmonton supply 40 (Montreal \$12, Ottawa \$10, Toronto \$15), Winnipeg supply 20 (Montreal \$8, Ottawa \$6, Toronto \$10), and Saskatoon supply 80 (Montreal \$10, Ottawa \$12, Toronto \$9). Demands are Montreal 50, Ottawa 30, Toronto 60. Using the Lowest-Unit-Cost heuristic, what is the total initial shipping cost?`,
     options: [
       t`$\$1{,}320$`,
       t`$\$1{,}280$`,
@@ -2073,16 +2073,16 @@ export const INDU211_EXTRA: PracticeQuestion[] = [
       coreConcept: t`The Lowest-Unit-Cost heuristic greedily assigns maximum allowable volume to the route with the lowest cell cost in the entire table, updating remaining supplies and demands iteratively until all are satisfied.`,
       stepByStep: [],
       steps: [
-        { title: 'Allocate to lowest overall cost cell ($c = 6$)', math: t`\text{Winnipeg} \to \text{Ottawa}: \min(20, 30) = 20 \text{ units at } \\$6 = \\$120. \\; (\text{Winnipeg exhausted, Ottawa needs } 10)` },
-        { title: 'Allocate to next lowest cost cell ($c = 9$)', math: t`\text{Saskatoon} \to \text{Toronto}: \min(80, 60) = 60 \text{ units at } \\$9 = \\$540. \\; (\text{Toronto satisfied, Saskatoon has } 20 \text{ left})` },
-        { title: 'Allocate to cells with cost $c = 10$', math: t`\text{Saskatoon} \to \text{Montreal}: 20 \text{ units at } \\$10 = \\$200. \\; (\text{Saskatoon exhausted, Montreal needs } 30); \quad \text{Edmonton} \to \text{Ottawa}: 10 \text{ units at } \\$10 = \\$100. \\; (\text{Ottawa satisfied, Edmonton has } 30 \text{ left})` },
-        { title: 'Allocate remaining demand to Edmonton ($c = 12$)', math: t`\text{Edmonton} \to \text{Montreal}: 30 \text{ units at } \\$12 = \\$360. \\; (\text{All supplies and demands satisfied})` },
-        { title: 'Compute total shipping cost', math: t`\text{Total Cost} = 120 + 540 + 200 + 100 + 360 = \\$1{,}320` }
+        { title: 'Allocate to lowest overall cost cell ($c = 6$)', math: t`\text{Winnipeg} \to \text{Ottawa}: \min(20, 30) = 20 \text{ units at } \$6 = \$120. \; (\text{Winnipeg exhausted, Ottawa needs } 10)` },
+        { title: 'Allocate to next lowest cost cell ($c = 9$)', math: t`\text{Saskatoon} \to \text{Toronto}: \min(80, 60) = 60 \text{ units at } \$9 = \$540. \; (\text{Toronto satisfied, Saskatoon has } 20 \text{ left})` },
+        { title: 'Allocate to cells with cost $c = 10$', math: t`\text{Saskatoon} \to \text{Montreal}: 20 \text{ units at } \$10 = \$200. \; (\text{Saskatoon exhausted, Montreal needs } 30); \quad \text{Edmonton} \to \text{Ottawa}: 10 \text{ units at } \$10 = \$100. \; (\text{Ottawa satisfied, Edmonton has } 30 \text{ left})` },
+        { title: 'Allocate remaining demand to Edmonton ($c = 12$)', math: t`\text{Edmonton} \to \text{Montreal}: 30 \text{ units at } \$12 = \$360. \; (\text{All supplies and demands satisfied})` },
+        { title: 'Compute total shipping cost', math: t`\text{Total Cost} = 120 + 540 + 200 + 100 + 360 = \$1{,}320` }
       ],
-      answer: t`\\$1{,}320`,
+      answer: t`\$1{,}320`,
       whyWrong: {
         '1': t`Exam Trap: Assigning Winnipeg to Montreal first ($c = 8$) leaves Ottawa to be supplied entirely from Edmonton at $c = 10$, giving $\$1{,}280$ but violating greedy lowest-unit-cost priority ($6 < 8$).`,
-        '2': t`Northwest corner rule allocation: $40(12) + 10(8) + 10(6) + 20(12) + 60(9) = \\$1{,}460$.`,
+        '2': t`Northwest corner rule allocation: $40(12) + 10(8) + 10(6) + 20(12) + 60(9) = \$1{,}460$.`,
         '3': t`Omits the final Edmonton-Montreal shipment.`
       },
       commonTrap: t`Failing to exhaust the absolute minimum cost cell ($c = 6$) first. Lowest-unit-cost must prioritize cells in strictly increasing cost order.`,

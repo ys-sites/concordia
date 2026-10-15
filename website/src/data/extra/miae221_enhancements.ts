@@ -757,8 +757,8 @@ export const MIAE221_ENHANCEMENTS: PracticeQuestion[] = [
       steps: [
         { title: 'Identify tie-line bounds and overall composition', math: t`C_\alpha = 11, \quad C_0 = 40, \quad C_\beta = 99` },
         { title: 'Total tie-line length', math: t`L = C_\beta - C_\alpha = 99 - 11 = 88` },
-        { title: 'Calculate $W_\alpha$ (opposite arm)', math: t`W_\alpha = \frac{C_\beta - C_0}{C_\beta - C_\alpha} = \frac{99 - 40}{88} = \frac{59}{88} = 0.6705 \approx 67.0\text{ wt}\%` },
-        { title: 'Calculate $W_\beta$', math: t`W_\beta = \frac{C_0 - C_\alpha}{C_\beta - C_\alpha} = \frac{40 - 11}{88} = \frac{29}{88} = 0.3295 \approx 33.0\text{ wt}\%` }
+        { title: 'Calculate $W_\\alpha$ (opposite arm)', math: t`W_\alpha = \frac{C_\beta - C_0}{C_\beta - C_\alpha} = \frac{99 - 40}{88} = \frac{59}{88} = 0.6705 \approx 67.0\text{ wt}\%` },
+        { title: 'Calculate $W_\\beta$', math: t`W_\beta = \frac{C_0 - C_\alpha}{C_\beta - C_\alpha} = \frac{40 - 11}{88} = \frac{29}{88} = 0.3295 \approx 33.0\text{ wt}\%` }
       ],
       answer: t`W_\alpha = 67.0\text{ wt}\%,\ W_\beta = 33.0\text{ wt}\%`,
       whyWrong: {

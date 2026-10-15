@@ -39,8 +39,9 @@ import {
   getVideoUrl,
   getTutorialExamInfo
 } from '../utils/docOrganization';
-import { FilteredDocumentSection } from './FilteredDocumentSection';
-import { TermPaperVaultSection } from './TermPaperVaultSection';
+// Password-protected sections carry the large protected-document list: load them only when opened
+const FilteredDocumentSection = lazy(() => import('./FilteredDocumentSection').then((m) => ({ default: m.FilteredDocumentSection })));
+const TermPaperVaultSection = lazy(() => import('./TermPaperVaultSection').then((m) => ({ default: m.TermPaperVaultSection })));
 import { GateGlyph } from './vault/GateGlyph';
 import { hasGate } from './vault/gateCourses';
 import { WeeklyPath, WEEKLY_FOLDER, hasWeeklyPath } from './WeeklyPath';
@@ -49,8 +50,11 @@ import { WeeklyPath, WEEKLY_FOLDER, hasWeeklyPath } from './WeeklyPath';
 const MidtermGate = lazy(() => import('./vault/MidtermGate'));
 const GATE_FOLDER = 'Midterm Gate';
 
-import { TeacherMidtermPracticeSection } from './TeacherMidtermPracticeSection';
-const TEACHER_PRACTICE_FOLDER = 'Teacher Midterm Practice';
+// Only MIAE 221 and MIAE 215 have teacher practice papers; the section (and its question data) loads on demand
+const TeacherMidtermPracticeSection = lazy(() =>
+  import('./TeacherMidtermPracticeSection').then((m) => ({ default: m.TeacherMidtermPracticeSection }))
+);
+import { TEACHER_PRACTICE_FOLDER, hasTeacherPractice } from '../data/teacherPracticeCourses';
 
 interface CourseWorkspaceProps {
   course: CourseWithDocs;
@@ -105,6 +109,8 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
 }) => {
   const [internalPath, setInternalPath] = useState<string[]>(folderPath);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  // Bumped when the Teacher Midterm Practice tab is clicked while already open: resets the section to its drill setup
+  const [teacherResetKey, setTeacherResetKey] = useState<number>(0);
 
   // Keep internalPath synchronized with prop from navigationRouter
   useEffect(() => {
@@ -122,6 +128,9 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
   }, [course]);
 
   const activePath = folderPath !== undefined && folderPath.length >= 0 ? folderPath : internalPath;
+  // Every course has a midterm blueprint; only MIAE 221 / MIAE 215 also have teacher practice papers (the exam drill)
+  const hasPapers = hasTeacherPractice(course.id);
+  const inTeacherPractice = activePath[0] === TEACHER_PRACTICE_FOLDER;
   const current = findFolder(tree, activePath) ?? tree;
 
   // Reset search when course changes
@@ -307,18 +316,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
 
           <div className="workspace-header-actions">
             <button
-              className="workspace-teacher-practice-btn"
-              onClick={() => {
-                audio.playClick();
-                openPath([TEACHER_PRACTICE_FOLDER]);
-              }}
-              title="Official teacher midterm exams, solutions keys, traps & scope blueprint"
-            >
-              <Target size={18} />
-              <span>Teacher Midterm Practice</span>
-            </button>
-
-            <button
               className="workspace-quiz-btn"
               onClick={() => {
                 audio.playClick();
@@ -332,34 +329,45 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
         </div>
       </div>
 
-      {/* Study Aspect Switcher Tabs */}
-      <div className="workspace-aspect-tabs">
-        <button
-          className={`aspect-tab-btn ${activePath[0] !== TEACHER_PRACTICE_FOLDER ? 'active' : ''}`}
-          onClick={() => {
-            if (activePath[0] === TEACHER_PRACTICE_FOLDER) {
-              openPath([]);
-            }
-          }}
-        >
-          <BookOpen size={16} />
-          <span>Course Materials &amp; Guides</span>
-        </button>
+      {/* Study Aspect Switcher Tabs: course folders vs the midterm section (exam drill + blueprint) */}
+      {(
+        <div className="workspace-aspect-tabs" role="tablist" aria-label="Course sections">
+          <button
+            className={`aspect-tab-btn ${!inTeacherPractice ? 'active' : ''}`}
+            role="tab"
+            aria-selected={!inTeacherPractice}
+            onClick={() => {
+              if (inTeacherPractice) openPath([]);
+            }}
+          >
+            <BookOpen size={16} />
+            <span>Course Materials &amp; Guides</span>
+          </button>
 
-        <button
-          className={`aspect-tab-btn aspect-tab-teacher ${activePath[0] === TEACHER_PRACTICE_FOLDER ? 'active' : ''}`}
-          onClick={() => {
-            audio.playClick();
-            openPath([TEACHER_PRACTICE_FOLDER]);
-          }}
-        >
-          <Target size={16} />
-          <span>Teacher Midterm Practice</span>
-          <span className="aspect-badge-confirmed">
-            {course.id === 'MIAE221' ? 'Exam Oct 30' : 'Official Prep'}
-          </span>
-        </button>
-      </div>
+          <button
+            className={`aspect-tab-btn aspect-tab-teacher ${inTeacherPractice ? 'active' : ''}`}
+            role="tab"
+            aria-selected={inTeacherPractice}
+            title={hasPapers ? "Drill every question from the teacher's practice exam" : 'Midterm scope, format, instructor notes and traps'}
+            onClick={() => {
+              if (inTeacherPractice) {
+                // Already open: back to the section's first tab at the top instead of doing nothing
+                audio.playClick();
+                setTeacherResetKey((k) => k + 1);
+                window.scrollTo(0, 0);
+              } else {
+                openPath([TEACHER_PRACTICE_FOLDER]);
+              }
+            }}
+          >
+            <Target size={16} />
+            <span>{hasPapers ? 'Teacher Midterm Practice' : 'Midterm Blueprint'}</span>
+            {hasPapers && (
+              <span className="aspect-badge-confirmed">{course.id === 'MIAE221' ? 'Exam Oct 30' : 'Official Prep'}</span>
+            )}
+          </button>
+        </div>
+      )}
 
       {/* Breadcrumb + search */}
       <div className="fx-toolbar">
@@ -416,23 +424,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
         <section>
           <h2 className="fx-section-title">Course folders</h2>
           <div className="fx-folder-grid">
-            <button
-              key="teacher-midterm-practice-tile"
-              className="fx-folder-tile fx-folder-tile-teacher-practice"
-              onClick={() => openPath([TEACHER_PRACTICE_FOLDER])}
-            >
-              <span className="fx-folder-icon" style={{ color: '#ec4899', backgroundColor: 'rgba(236, 72, 153, 0.12)' }}>
-                <Target size={22} />
-              </span>
-              <span className="fx-folder-text">
-                <span className="fx-folder-index" style={{ color: '#ec4899', fontWeight: 800 }}>★</span>
-                <span className="fx-folder-name" style={{ fontWeight: 700 }}>Teacher Midterm Practice</span>
-                <span className="fx-folder-meta">
-                  {course.id === 'MIAE221' ? 'Confirmed Exam Oct 30 · 2017 Sample & Marking Key' : 'Official Sample Midterms · Solution Keys · Traps'}
-                </span>
-              </span>
-              <ChevronRight size={18} className="fx-folder-chevron" />
-            </button>
             {tree.folders.map(renderFolderTile)}
             {hasWeeklyPath(course.id) && (
               <button key="weekly-path" className="fx-folder-tile" onClick={() => openPath([WEEKLY_FOLDER])}>
@@ -483,14 +474,16 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             </button>
           </div>
         </section>
-      ) : activePath[0] === TEACHER_PRACTICE_FOLDER ? (
-        <TeacherMidtermPracticeSection
-          course={course}
-          onViewPdf={onViewPdf}
-          onLaunchDrill={onLaunchDrill}
-          onStartQuiz={onStartQuiz}
-          onBack={() => openPath([])}
-        />
+      ) : inTeacherPractice ? (
+        <Suspense fallback={<p className="fx-empty">Opening…</p>}>
+          <TeacherMidtermPracticeSection
+            key={teacherResetKey}
+            course={course}
+            onViewPdf={onViewPdf}
+            onLaunchDrill={(courseId, sectionId) => (onLaunchDrill ? onLaunchDrill(courseId, sectionId) : onStartQuiz(courseId))}
+            onBack={() => openPath([])}
+          />
+        </Suspense>
       ) : activePath[0] === GATE_FOLDER && hasGate(course.id) ? (
         <Suspense fallback={<p className="fx-empty">Opening…</p>}>
           <MidtermGate course={course} onViewPdf={onViewPdf} />
@@ -498,8 +491,11 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
       ) : activePath[0] === WEEKLY_FOLDER && hasWeeklyPath(course.id) ? (
         <WeeklyPath course={course} onViewPdf={onViewPdf} />
       ) : activePath[0] === 'Term Paper & Final Project' ? (
-        <TermPaperVaultSection course={course} onViewPdf={onViewPdf} />
+        <Suspense fallback={<p className="fx-empty">Opening…</p>}>
+          <TermPaperVaultSection course={course} onViewPdf={onViewPdf} />
+        </Suspense>
       ) : activePath[0] === 'Filtered document' ? (
+        <Suspense fallback={<p className="fx-empty">Opening…</p>}>
         <FilteredDocumentSection
           course={course}
           onViewPdf={onViewPdf}
@@ -511,6 +507,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             }
           }}
         />
+        </Suspense>
       ) : (
         <section className="fx-panel">
           <header className="fx-panel-header">

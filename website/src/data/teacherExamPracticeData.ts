@@ -189,16 +189,52 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         keyTopics: ['Array Input (cin)', 'Equality Flags', 'Break Conditions', 'Console Formatting']
       },
       {
-        id: '215-quiz-collection',
-        title: 'MIAE 215 Official Quizzes Examination Pack (Quizzes 1 & 2)',
+        id: '215-quiz1-tue',
+        title: 'MIAE 215 Quiz #1 (Tuesday Section)',
         filename: 'MIAE_215_quiz1_Tuesday.pdf',
         relativePath: 'Miae 215/04 - Practice Problems & Code Solutions/MIAE_215_quiz1_Tuesday.pdf',
         instructor: 'Dr. Brandon Gordon',
-        termYear: 'Fall 2026 In-Class Quizzes',
+        termYear: 'Quiz #1',
         badge: 'Quiz Collection',
         fileType: 'pdf',
-        description: 'Pack of official in-class quizzes (Tuesday, Wednesday, and Thursday sessions) testing handwritten C++ program composition, syntax rules, conditional branches, and loops under timed conditions.',
-        keyTopics: ['Handwritten Code', 'Console Input/Output', 'Conditional Logic', 'Timed Composition']
+        description: 'Handwritten programs: average of three real numbers with a 7.5 check, an 11-row x / sin(x) / exp(x) table in e-notation, and finding the largest unsigned long by counting up.',
+        keyTopics: ['Console I/O', 'iomanip Formatting', 'Variable Limits', 'Overflow']
+      },
+      {
+        id: '215-quiz1-wed',
+        title: 'MIAE 215 Quiz #1 (Wednesday Section)',
+        filename: 'MIAE_215_quiz1_Wednesday.pdf',
+        relativePath: 'Miae 215/04 - Practice Problems & Code Solutions/MIAE_215_quiz1_Wednesday.pdf',
+        instructor: 'Dr. Brandon Gordon',
+        termYear: 'Quiz #1',
+        badge: 'Quiz Collection',
+        fileType: 'pdf',
+        description: 'Handwritten programs: three characters printed in reverse with an ‘x’ check, counting cos(x) > 0.9 over a million-step loop, and estimating the largest double by multiplying by 10.',
+        keyTopics: ['char Input', 'Counting Loops', 'Floating-Point Range', 'inf Detection']
+      },
+      {
+        id: '215-quiz2-thu',
+        title: 'MIAE 215 Quiz #2 (Thursday Section)',
+        filename: 'MIAE_215_quiz2_Thursday.pdf',
+        relativePath: 'Miae 215/04 - Practice Problems & Code Solutions/MIAE_215_quiz2_Thursday.pdf',
+        instructor: 'Dr. Brandon Gordon',
+        termYear: 'Quiz #2',
+        badge: 'Quiz Collection',
+        fileType: 'pdf',
+        description: 'Compiler quiz: alternating input of two arrays with a sentinel, vector addition, minimum, sum, product, and an infinite loop for the first k with |x^k / k!| < 1e-9.',
+        keyTopics: ['1D Arrays', 'Sentinel Input', 'Min / Sum / Product', 'Infinite Loops']
+      },
+      {
+        id: '215-quiz2-wed',
+        title: 'MIAE 215 Quiz #2 (Wednesday Section)',
+        filename: 'MIAE_215_quiz2_Wednesday.pdf',
+        relativePath: 'Miae 215/04 - Practice Problems & Code Solutions/MIAE_215_quiz2_Wednesday.pdf',
+        instructor: 'Dr. Brandon Gordon',
+        termYear: 'Quiz #2',
+        badge: 'Quiz Collection',
+        fileType: 'pdf',
+        description: 'Compiler quiz: validated input of n ≤ 100, a k = 1/2/3 menu (average, minimum, dot product) that repeats until every item has been chosen.',
+        keyTopics: ['Input Validation', 'Menus', 'Dot Product', 'Loop Conditions']
       }
     ],
     featuredDrillSectionId: 'midterm'
@@ -239,44 +275,7 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         commonTrap: 'Using $u = y^n$ or forgetting the factor $(1-n)$ in the derivative.'
       }
     ],
-    practiceFiles: [
-      {
-        id: '213-winter-2025-bank',
-        title: 'ENGR 213 Quizzes & Term Tests Official Solved Examination Bank (Winter 2025)',
-        filename: 'ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf',
-        relativePath: 'Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Quizzes & Term Tests Official Solved Examination Bank (Winter 2025).pdf',
-        instructor: 'Concordia Differential Equations Faculty',
-        termYear: 'Winter 2025 Official Bank',
-        badge: 'Exam Bank',
-        fileType: 'pdf',
-        description: '14 multi-part questions from official Winter 2025 examinations with step-by-step master solutions, method expansions, and common error alerts.',
-        keyTopics: ['Winter 2025 Tests', 'Separable ODEs', 'Exact ODEs', 'Linear Models', 'Substitutions']
-      },
-      {
-        id: '213-paradis-compendium',
-        title: 'Paradis Notes — In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium',
-        filename: 'Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf',
-        relativePath: 'Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Paradis notes - ENGR 213 In-Class Lecture, Tutorial & Midterm 1 Preparation Master Compendium.pdf',
-        instructor: 'Dr. Paradis',
-        termYear: 'Midterm 1 Core',
-        badge: 'Review Pack',
-        fileType: 'pdf',
-        description: 'Complete compendium compiled from Dr. Paradis’s in-class board lectures, tutorial preparation problem breakdowns, and midterm blueprints.',
-        keyTopics: ['Paradis Board Proofs', 'Tutorial Problems', 'Midterm 1 Blueprint', 'Method Summary']
-      },
-      {
-        id: '213-past-midterms-solved',
-        title: 'ENGR 213 Past Midterm Examinations Solved Master Guide (2011–2018)',
-        filename: 'ENGR 213 - Past Midterm Examinations Solved Master Guide (2011-2018).pdf',
-        relativePath: 'Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Past Midterm Examinations Solved Master Guide (2011-2018).pdf',
-        instructor: 'Department of Mathematics & Statistics',
-        termYear: '2011–2018 Archives',
-        badge: 'Official Sample Midterm',
-        fileType: 'pdf',
-        description: 'Comprehensive historical midterm examination package covering 8 academic years with complete typeset solutions and mark breakdowns.',
-        keyTopics: ['Historical Midterms', 'IVPs', 'Integrating Factors', 'Orthogonal Trajectories']
-      }
-    ],
+    practiceFiles: [],
     featuredDrillSectionId: 'midterm'
   },
   INDU211: {
@@ -308,32 +307,7 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         commonTrap: 'Stopping after reaching the last destination node and forgetting to close the loop back to the depot.'
       }
     ],
-    practiceFiles: [
-      {
-        id: '211-midterm-quant',
-        title: 'INDU 211 Midterm Quantitative Problem Guide (Forecasting & Facility Layout TSP)',
-        filename: 'INDU 211 - Midterm Quantitative Problem Guide (Forecasting & Warehouse TSP Heuristics).pdf',
-        relativePath: 'Studocu/Need to Upload/INDU 211 - Midterm Quantitative Problem Guide (Forecasting & Warehouse TSP Heuristics).pdf',
-        instructor: 'Concordia Industrial Engineering Department',
-        termYear: 'Midterm Prep Master',
-        badge: 'Official Sample Midterm',
-        fileType: 'pdf',
-        description: 'Complete quantitative preparation guide containing fully solved problems for Break-Even Analysis, Center of Gravity, Pairwise Layout Exchange, and Warehouse TSP Heuristics.',
-        keyTopics: ['Break-Even Analysis', 'Center of Gravity', 'Pairwise Layout', 'TSP Heuristics']
-      },
-      {
-        id: '211-step-by-step',
-        title: 'INDU 211 Step-by-Step Quantitative Operations Guide',
-        filename: 'INDU 211 - Step-by-Step Quantitative Operations Guide.pdf',
-        relativePath: 'Studocu/Need to Upload/INDU 211 - Step-by-Step Quantitative Operations Guide.pdf',
-        instructor: 'Course Teaching Assistants',
-        termYear: 'Fall 2026 Core',
-        badge: 'Review Pack',
-        fileType: 'pdf',
-        description: 'Hand-computed pedagogical problem breakdowns illustrating every mathematical formula required for midterm and final assessments.',
-        keyTopics: ['Forecasting Calculations', 'Production Economics', 'Network Routing']
-      }
-    ],
+    practiceFiles: [],
     featuredDrillSectionId: 'midterm'
   }
 };

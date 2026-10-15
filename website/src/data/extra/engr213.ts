@@ -587,7 +587,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
       stepByStep: [],
       steps: [
         { title: 'Partial fractions', math: t`\frac{1}{s(s+2)} = \frac{1}{2}\left(\frac{1}{s} - \frac{1}{s+2}\right)` },
-        { title: 'Pre-shift inverse', math: t`f(t) = \mathcal{L}^{-1}\left\\{\frac{1}{2}\left(\frac{1}{s} - \frac{1}{s+2}\right)\right\\} = \frac{1}{2}(1 - e^{-2t})` },
+        { title: 'Pre-shift inverse', math: t`f(t) = \mathcal{L}^{-1}\left\{\frac{1}{2}\left(\frac{1}{s} - \frac{1}{s+2}\right)\right\} = \frac{1}{2}(1 - e^{-2t})` },
         { title: 'Apply second shift theorem', math: t`y(t) = f(t-3)u(t-3) = \frac{1}{2}\left(1 - e^{-2(t-3)}\right)u(t-3)` }
       ],
       answer: t`y(t) = \frac{1}{2}\left(1 - e^{-2(t-3)}\right)u(t-3)`,
@@ -1039,7 +1039,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
     pastPaper: 'Midterm Test 1 Fall 2018 (Q4) · Concordia University',
     topic: 'Homogeneous Substitution IVP',
     difficulty: 'Midterm Level',
-    question: t`Solve the initial value problem $(x^3 + y^3)\\,dx - 3xy^2\\,dy = 0$ with $y(1) = 1$.`,
+    question: t`Solve the initial value problem $(x^3 + y^3)\,dx - 3xy^2\,dy = 0$ with $y(1) = 1$.`,
     options: [
       t`$x^3 - 2y^3 = -x$`,
       t`$x^3 + 2y^3 = 3x$`,
@@ -1315,7 +1315,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
     source: [{ deck: 'Midterm 2016', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Characteristic roots' }]
   },
   {
-    id: 'Q_ENGR213_M2018_Q1',
+    id: 'Q_ENGR213_M2018_Q1_B',
     courseId: 'ENGR213',
     chapter: 'past',
     pastPaper: 'Midterm Examination 1 Fall 2018 (Q1) · Concordia University',
@@ -1533,7 +1533,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
     source: [{ deck: 'Final Exam 2021', chapter: 'Chapter 8 — Systems of Linear First-Order Differential Equations', location: 'Eigenvalue method' }]
   },
   {
-    id: 'Q_ENGR213_M2018_Q2',
+    id: 'Q_ENGR213_M2018_Q2_B',
     courseId: 'ENGR213',
     chapter: 'past-final',
     pastPaper: 'Midterm Examination 1 Fall 2018 (Q2) · Concordia University',
@@ -1570,7 +1570,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
     source: [{ deck: 'Midterm Fall 2018', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Bernoulli equation' }]
   },
   {
-    id: 'Q_ENGR213_M2018_Q4',
+    id: 'Q_ENGR213_M2018_Q4_B',
     courseId: 'ENGR213',
     chapter: 'past-final',
     pastPaper: 'Midterm Examination 1 Fall 2018 (Q4) · Concordia University',
@@ -1607,7 +1607,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
     source: [{ deck: 'Midterm Fall 2018', chapter: 'Chapter 2 — First-Order Differential Equations', location: 'Homogeneous substitution' }]
   },
   {
-    id: 'Q_ENGR213_F2021_Q3',
+    id: 'Q_ENGR213_F2021_Q3_B',
     courseId: 'ENGR213',
     chapter: 'past-final',
     pastPaper: 'Final Examination Fall 2021 (Q3) · Concordia University',
@@ -1644,7 +1644,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
     source: [{ deck: 'Final Exam 2021', chapter: 'Chapter 5 — Mechanical Vibrations & Harmonic Motion', location: 'Forced oscillations' }]
   },
   {
-    id: 'Q_ENGR213_F2021_Q7',
+    id: 'Q_ENGR213_F2021_Q7_B',
     courseId: 'ENGR213',
     chapter: 'past-final',
     pastPaper: 'Final Examination Fall 2021 (Q7) · Concordia University',
@@ -1680,7 +1680,7 @@ export const ENGR213_EXTRA: PracticeQuestion[] = [
     source: [{ deck: 'Final Exam 2021', chapter: 'Chapter 4 — Higher-Order Linear Equations', location: 'Variation of parameters' }]
   },
   {
-    id: 'Q_ENGR213_M2018_Q5',
+    id: 'Q_ENGR213_M2018_Q5_B',
     courseId: 'ENGR213',
     chapter: 'past-final',
     pastPaper: 'Midterm Examination 1 Fall 2018 (Q5) · Concordia University',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PracticeQuestion, SolutionStep } from '../types';
-import { MathBlock, MathText } from '../utils/mathRenderer';
+import { MathBlock, MathText, hasInlineMath } from '../utils/mathRenderer';
 import { ReadAloudButton } from './ReadAloudButton';
 import {
   Lightbulb,
@@ -14,7 +14,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 
-const LETTERS = ['A', 'B', 'C', 'D'];
+const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 
 interface WorkedSolutionProps {
   question: PracticeQuestion; // options / whyWrong already in display order
@@ -201,7 +201,14 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
                     <div className="ws-step-title">
                       <MathText text={step.title} />
                     </div>
-                    {step.math && <MathBlock tex={step.math} className="ws-step-math" />}
+                    {step.math &&
+                      (hasInlineMath(step.math) ? (
+                        <div className="ws-step-math">
+                          <MathText text={step.math} />
+                        </div>
+                      ) : (
+                        <MathBlock tex={step.math} className="ws-step-math" />
+                      ))}
                     {step.note && (
                       <div className="ws-step-note">
                         <MathText text={step.note} />
@@ -261,7 +268,11 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
             <Flag size={16} />
             <span>Correct Answer · Option {LETTERS[question.correctIndex]}</span>
           </div>
-          {question.explanation.answer ? (
+          {question.explanation.answer && hasInlineMath(question.explanation.answer) ? (
+            <p className="ws-answer-text">
+              <MathText text={question.explanation.answer} />
+            </p>
+          ) : question.explanation.answer ? (
             <MathBlock tex={`\\boxed{${question.explanation.answer}}`} />
           ) : (
             <p className="ws-answer-text">

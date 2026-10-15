@@ -18,7 +18,10 @@ import {
   HelpCircle,
   PlayCircle,
   FileCode,
-  GraduationCap
+  GraduationCap,
+  ListChecks,
+  Shuffle,
+  Zap
 } from 'lucide-react';
 import { CourseWithDocs } from '../data/coursesData';
 import { CourseDocument, CourseId } from '../types';
@@ -26,16 +29,17 @@ import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
 import { MathText } from '../utils/mathRenderer';
 import { TEACHER_EXAM_PRACTICE_DATA, TeacherExamFile } from '../data/teacherExamPracticeData';
+import { TEACHER_EXAM_SETS, teacherQuestionsFor, teacherDrillId } from '../data/teacherExamQuestions';
+import './TeacherMidtermPractice.css';
 
 interface TeacherMidtermPracticeSectionProps {
   course: CourseWithDocs;
   onViewPdf: (doc: CourseDocument, page?: number) => void;
-  onLaunchDrill?: (courseId: CourseId, sectionId: string) => void;
-  onStartQuiz: (courseId: CourseId) => void;
+  onLaunchDrill: (courseId: CourseId, sectionId: string) => void;
   onBack: () => void;
 }
 
-type TabType = 'blueprint' | 'files' | 'traps' | 'trace';
+type TabType = 'drill' | 'blueprint' | 'files' | 'traps' | 'trace';
 
 const DAY_MS = 86400000;
 
@@ -43,13 +47,12 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
   course,
   onViewPdf,
   onLaunchDrill,
-  onStartQuiz,
   onBack
 }) => {
-  const [activeTab, setActiveTab] = useState<TabType>('blueprint');
-  const [selectedFile, setSelectedFile] = useState<TeacherExamFile | null>(null);
-
   const blueprint = TEACHER_EXAM_PRACTICE_DATA[course.id];
+  const examQuestionCount = useMemo(() => teacherQuestionsFor(course.id).length, [course.id]);
+  const hasPapers = examQuestionCount > 0;
+  const [activeTab, setActiveTab] = useState<TabType>(hasPapers ? 'drill' : 'blueprint');
 
   // Calculate live countdown days
   const daysToGo = useMemo(() => {
@@ -91,13 +94,16 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
     }
   };
 
-  const startPracticeDrill = () => {
+  // The whole paper, in the paper's order: the closest thing to sitting the exam
+  const startFullExam = () => {
     audio.playClick();
-    if (onLaunchDrill && blueprint?.featuredDrillSectionId) {
-      onLaunchDrill(course.id, blueprint.featuredDrillSectionId);
-    } else {
-      onStartQuiz(course.id);
-    }
+    onLaunchDrill(course.id, teacherDrillId({ topic: 'all', count: 'all', ordered: true }));
+  };
+
+  // No teacher papers: the course's own Midterm Review drill (built from the lecture material)
+  const startMidtermReview = () => {
+    audio.playClick();
+    onLaunchDrill(course.id, blueprint?.featuredDrillSectionId ?? 'midterm');
   };
 
   if (!blueprint) {
@@ -127,13 +133,15 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
             {course.code}
           </span>
           <span className="tp-verified-badge">
-            <Sparkles size={14} /> Official Teacher Exam Materials
+            <Sparkles size={14} /> {hasPapers ? 'Official Teacher Exam Materials' : 'Midterm Blueprint'}
           </span>
         </div>
 
-        <h1 className="tp-main-title">Teacher Midterm Practice & Blueprint</h1>
+        <h1 className="tp-main-title">{hasPapers ? 'Teacher Midterm Practice & Blueprint' : 'Midterm Blueprint & Scope'}</h1>
         <p className="tp-subtitle">
-          Instructor-provided sample examinations, official memory trace code, verified marking rubrics, and confirmed curriculum scope.
+          {hasPapers
+            ? 'Instructor-provided sample examinations, official marking keys, exam traps, and the confirmed curriculum scope.'
+            : 'Confirmed midterm scope, exam format, calculator policy, instructor notes and common traps. No practice exam has been handed out for this course.'}
         </p>
 
         {/* Exam Countdown Card */}
@@ -158,15 +166,36 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
                 <span className="tp-days-label">{daysToGo === 1 ? 'day to go' : 'days to go'}</span>
               </div>
             )}
-            <button className="tp-start-drill-btn" onClick={startPracticeDrill}>
-              <Brain size={18} />
-              <span>Launch Practice Drill</span>
-            </button>
+            {hasPapers ? (
+              <button className="tp-start-drill-btn" onClick={startFullExam}>
+                <Brain size={18} />
+                <span>Start Full Exam Drill ({examQuestionCount} Q)</span>
+              </button>
+            ) : (
+              <button className="tp-start-drill-btn" onClick={startMidtermReview}>
+                <Brain size={18} />
+                <span>Start Midterm Review Drill</span>
+              </button>
+            )}
           </div>
         </div>
 
         {/* Tab Navigation */}
         <div className="tp-tab-row" role="tablist">
+          {examQuestionCount > 0 && (
+            <button
+              className={`tp-tab-btn ${activeTab === 'drill' ? 'active' : ''}`}
+              role="tab"
+              aria-selected={activeTab === 'drill'}
+              onClick={() => {
+                audio.playClick();
+                setActiveTab('drill');
+              }}
+            >
+              <ListChecks size={16} />
+              <span>Exam Drill ({examQuestionCount})</span>
+            </button>
+          )}
           <button
             className={`tp-tab-btn ${activeTab === 'blueprint' ? 'active' : ''}`}
             onClick={() => {
@@ -177,16 +206,18 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
             <BookOpen size={16} />
             <span>Confirmed Scope & Format</span>
           </button>
-          <button
-            className={`tp-tab-btn ${activeTab === 'files' ? 'active' : ''}`}
-            onClick={() => {
-              audio.playClick();
-              setActiveTab('files');
-            }}
-          >
-            <FileText size={16} />
-            <span>Official Teacher Exams ({blueprint.practiceFiles.length})</span>
-          </button>
+          {blueprint.practiceFiles.length > 0 && (
+            <button
+              className={`tp-tab-btn ${activeTab === 'files' ? 'active' : ''}`}
+              onClick={() => {
+                audio.playClick();
+                setActiveTab('files');
+              }}
+            >
+              <FileText size={16} />
+              <span>Official Teacher Exams ({blueprint.practiceFiles.length})</span>
+            </button>
+          )}
           <button
             className={`tp-tab-btn ${activeTab === 'traps' ? 'active' : ''}`}
             onClick={() => {
@@ -212,6 +243,11 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
         </div>
       </div>
 
+      {/* Tab 0: Exam Drill built from every question on the teacher's papers */}
+      {activeTab === 'drill' && examQuestionCount > 0 && (
+        <TeacherExamDrillSetup courseId={course.id} onStart={(id) => onLaunchDrill(course.id, id)} />
+      )}
+
       {/* Tab 1: Confirmed Scope & Format */}
       {activeTab === 'blueprint' && (
         <div className="tp-tab-content">
@@ -233,11 +269,15 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
               </div>
               <div className="tp-policy-block">
                 <strong>Exam Structure:</strong>
-                <p>{blueprint.formatOverview}</p>
+                <p>
+                  <MathText text={blueprint.formatOverview} />
+                </p>
               </div>
               <div className="tp-policy-block" style={{ marginTop: '0.75rem' }}>
                 <strong>Calculator Policy:</strong>
-                <p>{blueprint.calculatorPolicy}</p>
+                <p>
+                  <MathText text={blueprint.calculatorPolicy} />
+                </p>
               </div>
             </div>
           </div>
@@ -251,7 +291,9 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
               {blueprint.instructorNotes.map((note, idx) => (
                 <li key={idx}>
                   <CheckCircle2 size={16} className="tp-bullet-icon" />
-                  <span>{note}</span>
+                  <span>
+                    <MathText text={note} />
+                  </span>
                 </li>
               ))}
             </ul>
@@ -482,6 +524,129 @@ cout << "\\n" << A[i]; // i = 4 (out of bounds -> Garbage!)`}
           </div>
         </div>
       )}
+    </div>
+  );
+};
+
+const COUNT_CHOICES = [5, 10, 20] as const;
+
+// Drill options: which subject (or everything), how many questions, and shuffled vs paper order
+const TeacherExamDrillSetup: React.FC<{ courseId: CourseId; onStart: (sectionId: string) => void }> = ({ courseId, onStart }) => {
+  const set = TEACHER_EXAM_SETS[courseId]!;
+  const questions = useMemo(() => teacherQuestionsFor(courseId), [courseId]);
+  const topicCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const q of questions) counts[q.topic] = (counts[q.topic] ?? 0) + 1;
+    return counts;
+  }, [questions]);
+
+  const [topic, setTopic] = useState<string>('all');
+  const [count, setCount] = useState<number | 'all'>('all');
+  const [ordered, setOrdered] = useState<boolean>(false);
+
+  const topicLabel = set.topics.find((tp) => tp.id === topic)?.label;
+  const poolSize = topic === 'all' ? questions.length : topicCounts[topicLabel ?? ''] ?? 0;
+  const useAll = count === 'all' || count >= poolSize;
+  const size = useAll ? poolSize : (count as number);
+
+  const pick = (fn: () => void) => {
+    audio.playClick();
+    fn();
+  };
+
+  const start = (sectionId: string) => {
+    audio.playClick();
+    onStart(sectionId);
+  };
+
+  return (
+    <div className="tp-tab-content tp-drill">
+      <p className="tp-drill-intro">
+        Every question from the teacher’s practice paper{courseId === 'MIAE215' ? 's' : ''} ({set.paper}). After each answer you get the
+        worked solution, why each wrong option is wrong, and the exact question it came from.
+      </p>
+
+      <div className="tp-drill-quick">
+        <button className="tp-drill-quick-btn" onClick={() => start(teacherDrillId({ topic: 'all', count: 'all', ordered: true }))}>
+          <FileText size={20} />
+          <strong>Full practice exam</strong>
+          <span>All {questions.length} questions in the paper’s order</span>
+        </button>
+        <button className="tp-drill-quick-btn" onClick={() => start(teacherDrillId({ topic: 'all', count: 'all', ordered: false }))}>
+          <Shuffle size={20} />
+          <strong>Everything, shuffled</strong>
+          <span>All {questions.length} questions in random order</span>
+        </button>
+        <button className="tp-drill-quick-btn" onClick={() => start(teacherDrillId({ topic: 'all', count: 10, ordered: false }))}>
+          <Zap size={20} />
+          <strong>Quick 10</strong>
+          <span>10 random questions from every subject</span>
+        </button>
+      </div>
+
+      <div className="tp-info-card tp-drill-custom">
+        <div className="tp-card-header">
+          <Target size={18} style={{ color: 'var(--accent)' }} />
+          <h3>Build your own drill</h3>
+        </div>
+
+        <div className="tp-drill-label" id="tp-drill-subject">Subject</div>
+        <div className="tp-chip-row" role="radiogroup" aria-labelledby="tp-drill-subject">
+          <button className={`tp-chip ${topic === 'all' ? 'active' : ''}`} role="radio" aria-checked={topic === 'all'} onClick={() => pick(() => setTopic('all'))}>
+            All subjects <small>{questions.length}</small>
+          </button>
+          {set.topics.map((tp) => (
+            <button
+              key={tp.id}
+              className={`tp-chip ${topic === tp.id ? 'active' : ''}`}
+              role="radio"
+              aria-checked={topic === tp.id}
+              onClick={() => pick(() => setTopic(tp.id))}
+            >
+              {tp.label} <small>{topicCounts[tp.label] ?? 0}</small>
+            </button>
+          ))}
+        </div>
+
+        <div className="tp-drill-label" id="tp-drill-count">Number of questions</div>
+        <div className="tp-chip-row" role="radiogroup" aria-labelledby="tp-drill-count">
+          {COUNT_CHOICES.filter((c) => c < poolSize).map((c) => (
+            <button
+              key={c}
+              className={`tp-chip ${!useAll && count === c ? 'active' : ''}`}
+              role="radio"
+              aria-checked={!useAll && count === c}
+              onClick={() => pick(() => setCount(c))}
+            >
+              {c}
+            </button>
+          ))}
+          <button className={`tp-chip ${useAll ? 'active' : ''}`} role="radio" aria-checked={useAll} onClick={() => pick(() => setCount('all'))}>
+            All {poolSize}
+          </button>
+        </div>
+
+        <div className="tp-drill-label" id="tp-drill-order">Order</div>
+        <div className="tp-chip-row" role="radiogroup" aria-labelledby="tp-drill-order">
+          <button className={`tp-chip ${!ordered ? 'active' : ''}`} role="radio" aria-checked={!ordered} onClick={() => pick(() => setOrdered(false))}>
+            Shuffled
+          </button>
+          <button className={`tp-chip ${ordered ? 'active' : ''}`} role="radio" aria-checked={ordered} onClick={() => pick(() => setOrdered(true))}>
+            Paper order
+          </button>
+        </div>
+
+        <button
+          className="tp-start-drill-btn tp-drill-start"
+          disabled={size === 0}
+          onClick={() => start(teacherDrillId({ topic, count: useAll ? 'all' : size, ordered }))}
+        >
+          <Brain size={18} />
+          <span>
+            Start {size}-question drill{topicLabel ? ` · ${topicLabel}` : ''}
+          </span>
+        </button>
+      </div>
     </div>
   );
 };

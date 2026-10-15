@@ -3,7 +3,7 @@
 // registry (virtual:course-documents), so the portal only ever lists files that were deployed.
 import path from 'path';
 import fs from 'fs';
-import { isHiddenFromSite } from '../src/data/localOnly';
+import { isHiddenFromSite, isFilteredDocumentPdf } from '../src/data/localOnly';
 import { slugSegment } from '../src/utils/pdfUrl';
 
 export const COURSE_DIRS: Record<string, string> = {
@@ -77,31 +77,12 @@ export function listPublishedFiles(semesterRoot: string): PublishedFile[] {
   return out;
 }
 
-// Registry entries for every published PDF (shape of CourseDocument in src/types.ts)
-export function buildDocumentRegistry(semesterRoot: string) {
+// Registry for the course pages: [relativePath, sizeBytes] for every published PDF that is listed in
+// the course folders. Kept compact because it ships in the first-load bundle; src/data/coursesData.ts
+// expands each entry into a CourseDocument. Password-protected documents are left out (their own
+// sections carry their metadata), so the filter list never has to load on the home page.
+export function buildDocumentRegistry(semesterRoot: string): [string, number][] {
   return listPublishedFiles(semesterRoot)
-    .filter((f) => f.relativePath.toLowerCase().endsWith('.pdf'))
-    .map((f) => {
-      const segments = f.relativePath.split('/');
-      const courseDir = segments[0];
-      const courseId = COURSE_DIRS[courseDir];
-      const filename = segments[segments.length - 1];
-      const folders = segments.slice(1, -1);
-      const categoryId = folders.join('/') || 'General';
-      const title = filename.replace(/\.pdf$/i, '');
-      return {
-        id: `${courseId}:${f.publishedPath}`,
-        courseId,
-        categoryId,
-        categoryTitle: folders[folders.length - 1] ?? 'General',
-        title,
-        filename,
-        relativePath: f.relativePath,
-        fileSizeBytes: f.sizeBytes,
-        isMasterGuide: /master|comprehensive|expanded/i.test(f.relativePath),
-        isHighYield: /review sheet|summary|rapid/i.test(f.relativePath),
-        tags: [...folders, courseDir.toUpperCase()],
-        summary: `${courseDir.toUpperCase()} · ${title}`
-      };
-    });
+    .filter((f) => f.relativePath.toLowerCase().endsWith('.pdf') && !isFilteredDocumentPdf(f.relativePath))
+    .map((f) => [f.relativePath, f.sizeBytes]);
 }

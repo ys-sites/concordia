@@ -68,8 +68,14 @@ export interface PracticeQuestion {
   question: string;
   codeSnippet?: string;
   formula?: string;
-  options: [string, string, string, string];
-  correctIndex: 0 | 1 | 2 | 3;
+  // Figure from the source paper, shown under the question (path under website/public)
+  figure?: { src: string; alt: string; caption?: string };
+  // Practice-bank questions have exactly 4 options; teacher exam questions keep the paper's own
+  // choices (5 for multiple choice, 2 for true/false)
+  options: string[];
+  correctIndex: number;
+  // Keep the paper's option order (options that refer to each other, e.g. "Answers (a) and (b)")
+  keepOptionOrder?: boolean;
   explanation: {
     coreConcept: string;
     // Short reasoning lines (conceptual questions). Calculation questions use `steps` instead.
@@ -79,7 +85,7 @@ export interface PracticeQuestion {
     // The boxed final result, bare LaTeX (e.g. "y = Ce^{-2x} + \\tfrac12")
     answer?: string;
     // Keyed by the ORIGINAL option index: the specific slip that produces that wrong option
-    whyWrong?: Partial<Record<'0' | '1' | '2' | '3', string>>;
+    whyWrong?: Partial<Record<string, string>>;
     commonTrap: string;
     reference: string;
   };
