@@ -79,6 +79,8 @@ interface Props {
   idx: GateIndex;
   nav: GateNav;
   preset: (QuizPreset & { nonce: number }) | null;
+  // label of last year's paper when this is the course badge's Skill Drill (content holds that paper only)
+  paper?: string;
 }
 
 const STAGES: { id: Stage; label: string }[] = [
@@ -88,10 +90,12 @@ const STAGES: { id: Stage; label: string }[] = [
   { id: 'run', label: 'Quiz' }
 ];
 
-export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
-  const initial = useMemo(() => loadSettings(content.course), [content.course]);
+export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset, paper }) => {
+  const key = paper ? `${content.course}_paper` : content.course;
+  const initial = useMemo(() => loadSettings(key), [key]);
   const [topics, setTopics] = useState<Set<string>>(() => new Set(initial.topics.filter((t) => idx.topic.has(t))));
-  const [cats, setCats] = useState<Set<QuizCat>>(() => new Set(initial.cats));
+  // every question of a single paper is "asked once", so the paper drill always takes all of them
+  const [cats, setCats] = useState<Set<QuizCat>>(() => new Set(paper ? QUIZ_CATS : initial.cats));
   const [n, setN] = useState(initial.n);
   const [order, setOrder] = useState(initial.order);
   const [depth, setDepth] = useState<VideoDepth>(initial.depth);
@@ -100,11 +104,12 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
 
   useEffect(() => {
     try {
-      localStorage.setItem(settingsKey(content.course), JSON.stringify({ topics: [...topics], cats: [...cats], n, order, depth }));
+      localStorage.setItem(settingsKey(key), JSON.stringify({ topics: [...topics], cats: [...cats], n, order, depth }));
     } catch {
       // settings just won't persist
     }
-  }, [content.course, topics, cats, n, order, depth]);
+  }, [key, topics, cats, n, order, depth]);
+  const stages = paper ? STAGES.filter((s) => s.id !== 'kind') : STAGES;
 
   // Arriving from the plan or the analyzer with a chapter already chosen
   useEffect(() => {
@@ -114,8 +119,8 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
     if (t.length) setTopics(new Set(t));
     if (preset.cats?.length) setCats(new Set(preset.cats));
     setRun(null);
-    setStage('kind');
-  }, [preset, idx]);
+    setStage(paper ? 'setup' : 'kind');
+  }, [preset, idx, paper]);
 
   const allTopicIds = useMemo(() => content.topics.map((t) => t.id), [content]);
   const allPool = useMemo(() => buildPool(content, idx, new Set(allTopicIds)), [content, idx, allTopicIds]);
@@ -162,7 +167,7 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
   const start = (entries: PoolEntry[], title: string) => {
     nav.startDrill({ scope: 'custom', items: entries.map((e) => prepQuizItem(e.item)) }, title);
   };
-  const startCustom = () => start(pickQuiz(quizPool, take, order, topicOrder), `Skill quiz: ${quizTitle()}`);
+  const startCustom = () => start(pickQuiz(quizPool, take, order, topicOrder), `${paper ? 'Skill drill' : 'Skill quiz'}: ${quizTitle()}`);
   const startTopicAgain = (topic: string) => {
     const pool = allPool.filter((e) => e.topic === topic && cats.has(e.cat));
     start(pickQuiz(pool.length ? pool : allPool.filter((e) => e.topic === topic), 10, order, [topic]), `Skill quiz: ${idx.topic.get(topic)?.name ?? topic}`);
@@ -182,15 +187,16 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
     <div className="mg-root" style={{ gap: 14 }}>
       <section className="mg-panel mg-panel-pad">
         <h3 className="mg-section-title">
-          <Target size={17} /> Skill Quiz
+          <Target size={17} /> {paper ? `Skill Drill: ${paper}` : 'Skill Quiz'}
         </h3>
         <p className="mg-section-sub" style={{ marginBottom: 12 }}>
-          Build your own quiz: choose the chapter or just the subtopics you need, choose which kind of questions, and go. After every answer you get the worked
-          solution, where the question comes from (past paper, teacher’s notes, textbook, your guides) and a video on the concept.
+          {paper
+            ? 'Drill last year’s midterm skill by skill: take the whole paper or only the chapters you need. After every answer you get the worked solution, the chapter, the teacher’s slides and textbook section it comes from, and a video on the concept.'
+            : 'Build your own quiz: choose the chapter or just the subtopics you need, choose which kind of questions, and go. After every answer you get the worked solution, where the question comes from (past paper, teacher’s notes, textbook, your guides) and a video on the concept.'}
         </p>
         <ol className="sq-stepper">
-          {STAGES.map((s, i) => {
-            const at = STAGES.findIndex((x) => x.id === stage);
+          {stages.map((s, i) => {
+            const at = stages.findIndex((x) => x.id === stage);
             const can = s.id === 'cover' || (s.id === 'kind' && topics.size > 0) || (s.id === 'setup' && topics.size > 0 && total > 0) || (s.id === 'run' && !!run);
             return (
               <li key={s.id} className={`${i === at ? 'now' : ''} ${i < at ? 'past' : ''}`}>
@@ -239,7 +245,7 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
                           <MathText text={s.name} />
                         </span>
                         <span className="sq-subject-meta">
-                          {paperN} past-paper · {repN} repeated · {allN} in total
+                          {paper ? `${allN} question${allN === 1 ? '' : 's'} on this paper` : `${paperN} past-paper · ${repN} repeated · ${allN} in total`}
                         </span>
                       </span>
                     </button>
@@ -267,15 +273,18 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
               })}
             </div>
             <div className="dr-actions" style={{ marginTop: 14 }}>
-              <button type="button" className="mg-btn primary" disabled={!topics.size} onClick={() => setStage('kind')}>
-                Next: question types <ArrowRight size={14} />
+              <button type="button" className="mg-btn primary" disabled={!topics.size || (paper !== undefined && !total)} onClick={() => setStage(paper ? 'setup' : 'kind')}>
+                {paper ? 'Next: set up' : 'Next: question types'} <ArrowRight size={14} />
               </button>
             </div>
           </section>
 
           <DrillModeCards
-            masteredText={`Or jump straight in. You have mastered ${mastered} of ${papers.length} past-paper questions so far.`}
-            modes={[
+            masteredText={`Or jump straight in. You have mastered ${mastered} of ${papers.length} ${paper ? 'questions on this paper' : 'past-paper questions'} so far.`}
+            modes={paper ? [
+              { icon: <Layers size={15} />, title: <>The whole paper ({papers.length})</>, desc: 'Every question in the order of the exam.', disabled: !papers.length, onClick: () => startMode({ scope: 'all' }, `${paper}: whole paper`) },
+              { icon: <Shuffle size={15} />, title: <>Mixed order</>, desc: 'The same questions shuffled, so you cannot lean on the order.', disabled: !papers.length, onClick: () => start(pickQuiz(allPool, allPool.length, 'mixed', allTopicIds), `${paper}: mixed order`) }
+            ] : [
               { icon: <Shuffle size={15} />, title: <>Mock midterm</>, desc: '20 random past-paper questions, weighted towards the ones that keep coming back.', disabled: !papers.length, onClick: () => startMode({ scope: 'mock' }, 'Mock midterm') },
               { icon: <Repeat size={15} />, title: <>All repeated questions ({repeats.length})</>, desc: 'Everything asked on more than one paper.', disabled: !repeats.length, onClick: () => startMode({ scope: 'repeats' }, 'Every repeated question') },
               { icon: <Layers size={15} />, title: <>All past-paper questions ({papers.length})</>, desc: 'Every question from every paper, in order.', disabled: !papers.length, onClick: () => startMode({ scope: 'all' }, 'All past-paper questions') }
@@ -395,14 +404,16 @@ export const SkillQuiz: React.FC<Props> = ({ content, idx, nav, preset }) => {
           </div>
           <div className="mg-callout" style={{ marginTop: 14 }}>
             <b>Your quiz</b>
-            {take} question{take === 1 ? '' : 's'} on {quizTitle()}, from:{' '}
-            {QUIZ_CATS.filter((c) => cats.has(c))
-              .map((c) => CAT_INFO[c].title.toLowerCase())
-              .join(', ')}
-            . Questions are spread across every subtopic you picked, repeated ones first. After each answer: the solution, its source, and a {depth === 'quick' ? 'short' : 'longer'} concept video.
+            {take} question{take === 1 ? '' : 's'} on {quizTitle()}, from{' '}
+            {paper
+              ? paper
+              : `: ${QUIZ_CATS.filter((c) => cats.has(c))
+                  .map((c) => CAT_INFO[c].title.toLowerCase())
+                  .join(', ')}`}
+            . Questions are spread across every subtopic you picked{paper ? '' : ', repeated ones first'}. After each answer: the solution, its source, and a {depth === 'quick' ? 'short' : 'longer'} concept video.
           </div>
           <div className="dr-actions" style={{ marginTop: 14 }}>
-            <button type="button" className="mg-btn" onClick={() => setStage('kind')}>
+            <button type="button" className="mg-btn" onClick={() => setStage(paper ? 'cover' : 'kind')}>
               <ArrowLeft size={14} /> Back
             </button>
             <button type="button" className="mg-btn primary" disabled={!take} onClick={startCustom}>

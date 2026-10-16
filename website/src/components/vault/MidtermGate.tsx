@@ -14,6 +14,7 @@ import { VideoDrawer } from './Drawers';
 import { StudyPlan, daysUntil } from './StudyPlan';
 import { GradesaverDoc } from './GradesaverDoc';
 import { SkillQuiz } from './SkillQuiz';
+import { onlyPaper, paperDrillOf, withoutPaper } from './paperDrill';
 import { VaultLessonSubPage } from './VaultLessonSubPage';
 import { VaultQuizSubPage } from './VaultQuizSubPage';
 import './midtermGate.css';
@@ -50,12 +51,16 @@ export type GateSubView =
 interface Props {
   course: CourseWithDocs;
   onViewPdf: (doc: CourseDocument, page?: number) => void;
+  // true: the course badge's Skill Drill on last year's paper (and nothing else); false: the hidden folder without that paper
+  paper?: boolean;
 }
 
-export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
+export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false }) => {
   const courseId = course.id as GateCourse;
   const DOC_KEY = `gate_doc_${courseId}`;
-  const [content, setContent] = useState<GateContent | null>(null);
+  const paperDef = paperDrillOf(courseId);
+  const [raw, setRaw] = useState<GateContent | null>(null);
+  const content = useMemo(() => (raw && paperDef ? (paper ? onlyPaper(raw, paperDef) : withoutPaper(raw, paperDef)) : raw), [raw, paper, paperDef]);
   const [checking, setChecking] = useState(true);
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
@@ -83,7 +88,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
     setChecking(true);
     resumeGate(courseId).then((c) => {
       if (!alive) return;
-      setContent(c);
+      setRaw(c);
       setChecking(false);
     });
     return () => {
@@ -116,7 +121,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
     setBusy(false);
     if (c) {
       audio.playCorrect();
-      setContent(c);
+      setRaw(c);
       setPassword('');
       if (!doc) setDoc('plan');
     } else {
@@ -130,7 +135,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
   const lock = () => {
     audio.playClick();
     lockGate();
-    setContent(null);
+    setRaw(null);
     setDoc(null);
     setSubView(null);
   };
@@ -223,7 +228,12 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
   );
 
   const days = content ? daysUntil(content.midterm.date) : null;
-  const DOCS = docList(courseId);
+  const paperExam = paper && content ? content.exams[0] : undefined;
+  const DOCS: DocDef[] = paper
+    ? [{ id: 'quiz', title: 'Skill Drill: last year’s midterm', short: 'Skill Drill', sub: 'Every question of last year’s paper: pick the chapters, then get the worked solution, the chapter, the teacher’s slides and a video after each answer.', icon: <Target size={20} /> }]
+    : docList(courseId);
+  // the badge drill has one page only
+  const view: GateDoc | null = paper ? 'quiz' : doc;
 
   return (
     <div className="mg-root" ref={topRef} style={{ scrollMarginTop: 90 }}>
@@ -233,9 +243,11 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
             <div className="mg-gate-title">
               <span className="mg-icon-tile">{content ? <FileText size={20} /> : <FileLock2 size={20} />}</span>
               <div>
-                <h2>Midterm Gate</h2>
+                <h2>{paper ? 'Skill Drill · last year’s midterm' : 'Midterm Gate'}</h2>
                 <p>
-                  {course.code} · hidden folder · {DOCS.length} documents
+                  {paper
+                    ? `${course.code} · ${paperExam ? `${paperExam.label} · ${content!.questions.length} questions` : 'locked'}`
+                    : `${course.code} · hidden folder · ${DOCS.length} documents`}
                 </p>
               </div>
             </div>
@@ -256,7 +268,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
           </div>
         </div>
 
-        {(!content || !doc) && (
+        {(!content || !view) && (
           <ol className="mg-doc-list" style={{ borderTop: '1px solid var(--border-subtle)' }}>
             {DOCS.map((d, i) => (
               <li key={d.id}>
@@ -313,8 +325,9 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
         </section>
       )}
 
-      {content && idx && doc && (
+      {content && idx && view && (
         <>
+          {!paper && (
           <div className="mg-gate-head">
             <button
               type="button"
@@ -342,6 +355,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
               ))}
             </div>
           </div>
+          )}
 
           {subView?.type === 'lesson' && (
             <VaultLessonSubPage
@@ -397,17 +411,17 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf }) => {
 
           {!subView && (
             <>
-              {doc === 'plan' && <StudyPlan content={content} idx={idx} nav={nav} />}
-              {doc === 'topics' && <TopicsHub content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
-              {doc === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} focusTopic={analyzerTopic} />}
-              {doc === 'quiz' && <SkillQuiz content={content} idx={idx} nav={nav} preset={quizPreset} />}
-              {doc === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
+              {view === 'plan' && <StudyPlan content={content} idx={idx} nav={nav} />}
+              {view === 'topics' && <TopicsHub content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
+              {view === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} focusTopic={analyzerTopic} />}
+              {view === 'quiz' && <SkillQuiz content={content} idx={idx} nav={nav} preset={quizPreset} paper={paper ? paperExam?.label ?? 'Last year’s paper' : undefined} />}
+              {view === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
             </>
           )}
         </>
       )}
 
-      {content && idx && drawerQ && <QuestionDrawer content={content} idx={idx} id={drawerQ} nav={nav} onClose={() => setDrawerQ(null)} />}
+      {content && idx && drawerQ && <QuestionDrawer content={content} idx={idx} id={drawerQ} nav={nav} paper={paper} onClose={() => setDrawerQ(null)} />}
       {content && idx && videoTopic && <VideoDrawer topic={videoTopic} content={content} idx={idx} nav={nav} onClose={() => setVideoTopic(null)} />}
     </div>
   );
@@ -437,7 +451,7 @@ const useGateIndexMaybe = (c: GateContent | null) => {
   return c ? idx : null;
 };
 
-const QuestionDrawer: React.FC<{ content: GateContent; idx: ReturnType<typeof useGateIndex>; id: string; nav: GateNav; onClose: () => void }> = ({ idx, id, nav, onClose }) => {
+const QuestionDrawer: React.FC<{ content: GateContent; idx: ReturnType<typeof useGateIndex>; id: string; nav: GateNav; paper?: boolean; onClose: () => void }> = ({ idx, id, nav, paper, onClose }) => {
   const q = idx.q.get(id);
   if (!q) return null;
   const clusters = idx.clustersOfQ.get(id) ?? [];
@@ -465,9 +479,11 @@ const QuestionDrawer: React.FC<{ content: GateContent; idx: ReturnType<typeof us
               <button type="button" className="mg-btn small" onClick={() => nav.startDrill({ scope: 'cluster', id: c.id }, 'This repeat group')}>
                 Drill this group
               </button>
-              <button type="button" className="mg-btn small" onClick={() => nav.showTopic(c.topic)}>
-                <Repeat size={12} /> Open in the analyzer
-              </button>
+              {!paper && (
+                <button type="button" className="mg-btn small" onClick={() => nav.showTopic(c.topic)}>
+                  <Repeat size={12} /> Open in the analyzer
+                </button>
+              )}
             </div>
           </div>
         ))}

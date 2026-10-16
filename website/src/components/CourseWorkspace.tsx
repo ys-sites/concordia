@@ -51,6 +51,7 @@ import { WeeklyPath, WEEKLY_FOLDER, hasWeeklyPath } from './WeeklyPath';
 // Hidden MIAE 221 folder, opened from the glyph after the course title. Loaded on demand.
 const MidtermGate = lazy(() => import('./vault/MidtermGate'));
 const GATE_FOLDER = 'Midterm Gate';
+import { paperDrillOf } from './vault/paperDrill';
 
 // Only MIAE 221 and MIAE 215 have teacher practice papers; the section (and its question data) loads on demand
 const TeacherMidtermPracticeSection = lazy(() =>
@@ -58,6 +59,7 @@ const TeacherMidtermPracticeSection = lazy(() =>
 );
 import { TEACHER_PRACTICE_FOLDER, hasTeacherPractice } from '../data/teacherPracticeCourses';
 
+// The course badge opens a Skill Drill on last year's midterm paper (kept out of the hidden folder)
 export const INDU_PREP_FOLDER = 'Industrial Engineering Midterm Preparation';
 
 interface CourseWorkspaceProps {
@@ -299,12 +301,12 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
 
         <div className="workspace-title-row">
           <div>
-            {course.id === 'INDU211' ? (
+            {paperDrillOf(course.id) ? (
               <button
                 type="button"
                 className="course-badge"
-                onClick={() => openPath([GATE_FOLDER])}
-                title="INDU 211 Midterm Gate"
+                onClick={() => openPath([INDU_PREP_FOLDER])}
+                title="Skill Drill: last year’s midterm paper"
                 style={{
                   backgroundColor: course.accentHex,
                   cursor: 'pointer',
@@ -506,9 +508,13 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             onBack={() => openPath([])}
           />
         </Suspense>
-      ) : (activePath[0] === GATE_FOLDER || activePath[0] === INDU_PREP_FOLDER) && hasGate(course.id) ? (
+      ) : activePath[0] === INDU_PREP_FOLDER && paperDrillOf(course.id) ? (
         <Suspense fallback={<p className="fx-empty">Opening…</p>}>
-          <MidtermGate course={course} onViewPdf={onViewPdf} />
+          <MidtermGate key="paper" course={course} onViewPdf={onViewPdf} paper />
+        </Suspense>
+      ) : activePath[0] === GATE_FOLDER && hasGate(course.id) ? (
+        <Suspense fallback={<p className="fx-empty">Opening…</p>}>
+          <MidtermGate key="gate" course={course} onViewPdf={onViewPdf} />
         </Suspense>
       ) : activePath[0] === WEEKLY_FOLDER && hasWeeklyPath(course.id) ? (
         <WeeklyPath course={course} onViewPdf={onViewPdf} />
