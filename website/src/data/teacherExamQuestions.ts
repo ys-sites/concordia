@@ -1,13 +1,12 @@
 import { CourseId, PracticeQuestion } from '../types';
 import { t } from './solutions/types';
 import { MIAE215_TEACHER_EXAM } from './teacherExamMiae215';
-import { INDU211_TEACHER_EXAM } from './teacherExamIndu211';
 
 // Questions taken from the practice papers the instructors handed out (Teacher Midterm Practice).
-// MIAE 221, MIAE 215, and INDU 211 have teacher-provided papers.
-// MIAE 221: 2017 sample midterm verbatim with official marking key.
-// MIAE 215: Write-a-program quizzes and output-tracing problems.
-// INDU 211: Official Fall 2025 Midterm Exam (Paper A, 50 Marks) verbatim with full step-by-step marking key.
+// Only MIAE 221 and MIAE 215 have teacher-provided papers. MIAE 221 questions are the 2017 sample
+// midterm verbatim (answers from the official marking key); options keep the paper's order and
+// lettering. MIAE 215 papers are write-a-program quizzes and output-tracing problems, turned into
+// multiple choice with every output checked by compiling the code with the course's MinGW compiler.
 
 export const TEACHER_EXAM_CHAPTER = 'teacher-exam';
 
@@ -22,18 +21,6 @@ export interface TeacherExamSet {
 }
 
 export const TEACHER_EXAM_SETS: Partial<Record<CourseId, TeacherExamSet>> = {
-  INDU211: {
-    paper: 'Official Midterm Exam Paper A (Fall 2025, 50 Marks) with Complete Step-by-Step Marking Key',
-    topics: [
-      { id: 'foundations', label: 'Engineering Foundations & Ethics (Ch. 1–2)' },
-      { id: 'systems', label: 'Industrial Systems & Human Activity (Ch. 2)' },
-      { id: 'breakeven', label: 'Break-Even & Process Selection (Ch. 3)' },
-      { id: 'bom', label: 'Bill of Materials (BOM) Explosion (Ch. 3)' },
-      { id: 'layout', label: 'Facility Layout & Material Handling (Ch. 4–5)' },
-      { id: 'transportation', label: 'Transportation Method & Feasibility (Ch. 4)' },
-      { id: 'tsp', label: 'Traveling Salesperson AGV Routing (Ch. 5)' }
-    ]
-  },
   MIAE221: {
     paper: '2017 Sample Midterm, Version A (Drs. Pugh & Medraj) with the official marking key',
     topics: [
@@ -873,7 +860,7 @@ const MIAE221_TEACHER_EXAM: PracticeQuestion[] = [
   })
 ];
 
-export const TEACHER_EXAM_QUESTIONS: PracticeQuestion[] = [...MIAE221_TEACHER_EXAM, ...MIAE215_TEACHER_EXAM, ...INDU211_TEACHER_EXAM];
+export const TEACHER_EXAM_QUESTIONS: PracticeQuestion[] = [...MIAE221_TEACHER_EXAM, ...MIAE215_TEACHER_EXAM];
 
 export const teacherQuestionsFor = (courseId: CourseId): PracticeQuestion[] =>
   TEACHER_EXAM_QUESTIONS.filter((q) => q.courseId === courseId);

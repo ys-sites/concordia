@@ -281,72 +281,33 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
   INDU211: {
     courseId: 'INDU211',
     courseCode: 'INDU 211',
-    courseName: 'Introduction to Production and Manufacturing Systems',
-    confirmedDate: '2025-10-21',
-    dateLabel: 'Official Midterm Examination (Paper A)',
-    timeAndLocation: 'In-person examination hall (75 Minutes, Closed Book, 50 Marks)',
-    confirmedScope: 'Chapters 1 through 5: Chapter 1 & 2 (Foundations of Engineering & IE, OIQ Professional Regulation, Human Activity Systems), Chapter 3 (Manufacturing & Process Selection, Concurrent Engineering, Break-Even Economics, Multi-Level Bill of Materials BOM Explosion), Chapter 4 (Facility Layout Types, Line vs Job Shop, Transportation Linear Programming & Northwest Corner / Lowest Cost Heuristics), and Chapter 5 (Material Handling Modernization, Automated Guided Vehicles AGVs, Traveling Salesperson Problem TSP Nearest-Neighbor Heuristics & Optimality Analysis).',
-    formatOverview: '50 Total Marks: Problem 1 (12 MCQs, 12 marks) testing science vs engineering, professional licensure, single-product break-even, crossover volume, and layout types; Problem 2 (10 marks) on multi-level BOM explosion across Product 1 and Product 2; Problem 3 (16 marks) on Transportation Problem solving via Northwest Corner (S1 = $935) and Lowest Cost First (S2 = $725) with optimality true/false proofs; Problem 4 (12 marks) on AGV routing TSP sequences via Nearest-Neighbor heuristic from Storage S (T1 = 9.0 min) and from M1 (T2 = 7.9 min) with multi-start heuristic limits.',
-    calculatorPolicy: 'Standard ENCS Faculty-approved calculator with sticker. Closed book, closed notes.',
+    courseName: 'Introduction to Production & Manufacturing Systems',
+    confirmedDate: null,
+    dateLabel: 'Fall 2026 Midterm Examination',
+    timeAndLocation: 'In-person examination hall',
+    confirmedScope: 'Chapters 1 through 5: Chapter 1 & 2 (Foundations of IE & Production Systems), Chapter 3 (Manufacturing & Process Engineering, Break-Even Analysis, Line Balancing), Chapter 4 (Facilities Location, Center of Gravity, Pairwise Exchange Layout), and Chapter 5 (Material Handling, Distribution Routing, Nearest Neighbor & Clarke-Wright TSP).',
+    formatOverview: 'Multi-part calculation and design problem examination. Requires detailed formula statements, coordinate computations, routing sequence tables, and unit cost comparisons.',
+    calculatorPolicy: 'Standard ENCS-approved calculator with faculty sticker.',
     instructorNotes: [
-      'Total value: 50 marks. Time limit: 1 hour 15 minutes (75 minutes).',
-      'Problem 1 (12 Marks): 12 multiple choice questions (1 mark each). If more than one choice is circled, 0 marks are awarded.',
-      'Problem 2 (10 Marks): Multi-level BOM table. Each subassembly and component cell carries 1 mark. Avoid inverted roll-up errors!',
-      'Problem 3 (16 Marks): Transportation table. Verify total supply equals total demand (80 = 80, balanced problem). Compare Northwest Corner vs Least Cost first.',
-      'Problem 4 (12 Marks): AGV routing. Note that the travel time matrix is ASYMMETRIC (c_ij != c_ji). Always read outwards along the row of the current vertex!'
+      'Break-even analysis frequently includes make-vs-buy decisions with multiple supplier cost structures.',
+      'In warehouse TSP routing, state the complete distance matrix and show the step-by-step additions for Nearest Neighbor.',
+      'Center of Gravity requires weighted coordinates: $x^* = \\frac{\\sum x_i W_i}{\\sum W_i}$ and $y^* = \\frac{\\sum y_i W_i}{\\sum W_i}$.'
     ],
     trapsAndTricks: [
       {
-        title: 'Asymmetric Distance Matrix (TSP Directionality)',
-        description: 'Question 4.1 on the midterm asks for the nearest neighbor tour starting from Storage room S.',
-        correctMethod: 'Read along the ROW corresponding to the current station. From M3, look across row M3: to M4 is 1.0, to M1 is 1.3, to M2 is 1.6, and to M5 is 1.9. The minimum is M4 (1.0).',
-        commonTrap: 'Looking down column M3 and seeing 0.6 (which is travel from M2 to M3, NOT from M3 to M2!). This single directional slip cost students 3 marks on the midterm.'
+        title: 'Break-Even Cross-Over Points (3 Processes)',
+        description: 'Determining which production process is most economical over different volume ranges.',
+        correctMethod: 'Calculate pair-wise intersection volumes where total costs are equal: $TC_1(Q) = TC_2(Q)$ and $TC_2(Q) = TC_3(Q)$. Define explicit volume ranges for each optimal process.',
+        commonTrap: 'Selecting a process based on lowest fixed cost alone without checking if expected demand exceeds the cross-over threshold.'
       },
       {
-        title: 'BOM Hierarchy Inversion (Explosion vs Summation)',
-        description: 'Problem 2 requires determining gross requirements for subassemblies S-1 to S-5 and components C-1 to C-5.',
-        correctMethod: 'Multiply the parent product weekly demand by the parent branch bracket quantity: S-1 = 10 * 2 = 20. For common subassemblies like S-3, sum both parent contributions: (10 * 3) + (20 * 2) = 70. Explode components from subassemblies: C-1 = 20(3) + 20(2) + 40(2) + 60(2) = 300.',
-        commonTrap: 'Summing child component multipliers underneath a subassembly (e.g. 3+3+2=8) and multiplying backwards into the subassembly cell, resulting in 0/10 on the problem.'
-      },
-      {
-        title: 'Heuristics Do Not Guarantee Global Optimality',
-        description: 'Questions 3.4 and 4.3 test whether heuristic solutions (Lowest Cost First, Nearest Neighbor) are optimal.',
-        correctMethod: 'A heuristic provides a feasible starting solution; it may or may not be the global minimum. Its optimality without rigorous verification (e.g. MODI method for transportation, branch-and-bound for TSP) is MTF (May be True or False). If a strictly cheaper feasible tour exists, the worse tour is FALSE for optimal.',
-        commonTrap: 'Assuming that because a heuristic found a low-cost solution, it is automatically True for optimal, or that multi-start nearest neighbor guarantees global optimum for NP-hard TSP.'
-      },
-      {
-        title: 'Process Crossover Volume vs Annual Demand',
-        description: 'Question 8 gives Process A ($50k fixed, $10/unit) and Process B ($80k fixed, $5/unit) at demand 5,200 units.',
-        correctMethod: 'Calculate indifference crossover point: Q* = (80k - 50k) / (10 - 5) = 6,000 units. For demand Q = 5,200 < 6,000, Process A has lower total cost ($102k vs $106k) and reaches break-even earlier.',
-        commonTrap: 'Selecting Process B blindly because its variable cost ($5) is lower than Process A ($10), ignoring the $30,000 higher fixed cost.'
+        title: 'Nearest Neighbor Return Leg',
+        description: 'Calculating total tour distance for the Travelling Salesperson Problem.',
+        correctMethod: 'After visiting all stops, you MUST add the return distance from the final node back to the originating depot (Node 1).',
+        commonTrap: 'Stopping after reaching the last destination node and forgetting to close the loop back to the depot.'
       }
     ],
-    practiceFiles: [
-      {
-        id: 'indu211-midterm-paper-a-2025',
-        title: 'Official INDU 211 Midterm Exam (Paper A) — Master Solved Study Guide',
-        filename: 'INDU 211 - Midterm Exam Master Study Guide & Complete Solved Practice Paper (Fall 2025 Paper A).pdf',
-        relativePath: 'Indu 211/06 - Studocu - Midterms and Tests/INDU 211 - Midterm Exam Master Study Guide & Complete Solved Practice Paper (Fall 2025 Paper A).pdf',
-        instructor: 'Concordia INDU 211 Faculty',
-        termYear: 'Fall 2025 (Paper A)',
-        badge: 'Official Sample Midterm',
-        fileType: 'pdf',
-        description: 'Complete 50-mark authentic midterm examination paper featuring 12 multiple choice questions (science vs engineering, provincial licensure, break-even pricing, process crossover, facility layout), 10-mark multi-level BOM explosion, 16-mark Transportation Linear Programming (Northwest Corner vs Lowest Cost First and optimality proofs), and 12-mark AGV routing via Nearest-Neighbor heuristics.',
-        keyTopics: ['Break-Even & Crossover', 'Bill of Materials (BOM)', 'Transportation Tableaus', 'Northwest Corner & Least Cost', 'TSP & AGV Routing', 'OIQ Regulation']
-      },
-      {
-        id: 'indu211-quant-guide',
-        title: 'INDU 211 — Step-by-Step Quantitative Operations & Decision Guide',
-        filename: 'INDU 211 - Step-by-Step Quantitative Operations Guide.pdf',
-        relativePath: 'Indu 211/04 - Worked Problems & Quantitative Analysis/INDU 211 - Step-by-Step Quantitative Operations Guide.pdf',
-        instructor: 'Concordia INDU 211 Faculty',
-        termYear: 'Semester 1 Mastery',
-        badge: 'Exam Bank',
-        fileType: 'pdf',
-        description: 'Comprehensive worked problem manual covering break-even volume, target pricing, process crossover selection, volume-weighted Center of Gravity, cycle time, line balancing, and material handling calculations.',
-        keyTopics: ['Break-Even', 'Process Crossover', 'Center of Gravity', 'Line Balancing', 'Cycle Time']
-      }
-    ],
-    featuredDrillSectionId: 'past-mid'
+    practiceFiles: [],
+    featuredDrillSectionId: 'midterm'
   }
 };
