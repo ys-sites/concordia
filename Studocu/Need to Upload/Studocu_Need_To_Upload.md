@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 88
+### Currently Pending Uploads: 89
 
 ---
 
@@ -977,3 +977,13 @@
 
 ---
 
+## 89. `INDU 211 - Midterm Exam Master Study Guide & Complete Solved Practice Paper (Fall 2025 Paper A).pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Practice materials`
+* **Title**: INDU 211 - Midterm Exam Master Study Guide & Complete Solved Practice Paper (Fall 2025 Paper A)
+* **Academic year**: `2025/2026`
+* **Description**: Complete pedagogical master study guide and step-by-step worked solutions for the INDU 211 Midterm Examination (Fall 2025 Paper A, 50 Marks). Features comprehensive derivations and visual breakdowns for all 12 multiple choice questions (science vs. engineering, provincial regulation, break-even economics, process selection, facility layouts), 10-mark multi-level Bill of Materials (BOM) explosion, 16-mark Transportation Problem (Northwest Corner vs. Lowest Cost First heuristics with optimality proofs), and 12-mark Traveling Salesperson Problem (TSP) AGV routing via Nearest-Neighbor heuristics. Includes exam traps, marking rubrics, and conceptual diagnostics.
+
+---

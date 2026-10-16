@@ -25,7 +25,9 @@ import {
   Archive,
   FolderOpen,
   Video,
-  Lock
+  Lock,
+  X,
+  AlertTriangle
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
@@ -55,6 +57,12 @@ const TeacherMidtermPracticeSection = lazy(() =>
   import('./TeacherMidtermPracticeSection').then((m) => ({ default: m.TeacherMidtermPracticeSection }))
 );
 import { TEACHER_PRACTICE_FOLDER, hasTeacherPractice } from '../data/teacherPracticeCourses';
+
+// Dedicated Industrial Engineering Midterm Preparation (Fall 2025 Paper A)
+const InduMidtermPrepSection = lazy(() =>
+  import('./InduMidtermPrepSection').then((m) => ({ default: m.InduMidtermPrepSection }))
+);
+export const INDU_PREP_FOLDER = 'Industrial Engineering Midterm Preparation';
 
 interface CourseWorkspaceProps {
   course: CourseWithDocs;
@@ -111,6 +119,46 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>('');
   // Bumped when the Teacher Midterm Practice tab is clicked while already open: resets the section to its drill setup
   const [teacherResetKey, setTeacherResetKey] = useState<number>(0);
+
+  // INDU 211 Midterm Preparation password access
+  const [showInduPasswordModal, setShowInduPasswordModal] = useState<boolean>(false);
+  const [induPasswordInput, setInduPasswordInput] = useState<string>('');
+  const [induPasswordError, setInduPasswordError] = useState<string>('');
+  const [isInduUnlocked, setIsInduUnlocked] = useState<boolean>(() => {
+    try {
+      return sessionStorage.getItem('indu211_prep_unlocked') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const handleOpenInduPrep = () => {
+    audio.playClick();
+    if (isInduUnlocked) {
+      openPath([INDU_PREP_FOLDER]);
+    } else {
+      setInduPasswordInput('');
+      setInduPasswordError('');
+      setShowInduPasswordModal(true);
+    }
+  };
+
+  const handleInduPasswordSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const clean = induPasswordInput.trim().toLowerCase();
+    if (clean === 'mohamed') {
+      audio.playCorrect();
+      try {
+        sessionStorage.setItem('indu211_prep_unlocked', 'true');
+      } catch {}
+      setIsInduUnlocked(true);
+      setShowInduPasswordModal(false);
+      openPath([INDU_PREP_FOLDER]);
+    } else {
+      audio.playIncorrect();
+      setInduPasswordError('Incorrect password. Please try again.');
+    }
+  };
 
   // Keep internalPath synchronized with prop from navigationRouter
   useEffect(() => {
@@ -294,11 +342,41 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
 
         <div className="workspace-title-row">
           <div>
-            <div className="course-badge" style={{ backgroundColor: course.accentHex }}>
-              {course.code}
-            </div>
+            {course.id === 'INDU211' ? (
+              <button
+                type="button"
+                className="course-badge"
+                onClick={handleOpenInduPrep}
+                title="Click to open Industrial Engineering Midterm Preparation (Password Required)"
+                style={{
+                  backgroundColor: course.accentHex,
+                  cursor: 'pointer',
+                  border: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  boxShadow: '0 2px 10px rgba(245, 158, 11, 0.45)',
+                  transition: 'transform 0.15s ease'
+                }}
+              >
+                <span>{course.code}</span>
+                <span style={{ fontSize: '10px', opacity: 0.9 }}>• Midterm Prep 🔒</span>
+              </button>
+            ) : (
+              <div className="course-badge" style={{ backgroundColor: course.accentHex }}>
+                {course.code}
+              </div>
+            )}
             <h1 className="course-main-title">
-              {hasGate(course.id) ? (
+              {course.id === 'INDU211' ? (
+                <>
+                  {course.name.split(' ').slice(0, -1).join(' ')}{' '}
+                  <span style={{ whiteSpace: 'nowrap' }}>
+                    {course.name.split(' ').slice(-1)}
+                    <GateGlyph onOpen={handleOpenInduPrep} />
+                  </span>
+                </>
+              ) : hasGate(course.id) ? (
                 <>
                   {course.name.split(' ').slice(0, -1).join(' ')}{' '}
                   {/* keep the glyph on the same line as the last word */}
@@ -440,6 +518,24 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             )}
             {course.id === 'INDU211' && (
               <button
+                key="indu-prep-folder-tile"
+                className="fx-folder-tile"
+                onClick={handleOpenInduPrep}
+                style={{ borderLeft: '4px solid #f59e0b' }}
+              >
+                <span className="fx-folder-icon" style={{ color: '#d97706', backgroundColor: 'rgba(245, 158, 11, 0.12)' }}>
+                  <Target size={22} />
+                </span>
+                <span className="fx-folder-text">
+                  <span className="fx-folder-index">★ Official Prep</span>
+                  <span className="fx-folder-name">Industrial Engineering Midterm Preparation</span>
+                  <span className="fx-folder-meta">Fall 2025 Paper A · 50 Marks · Solved Guide &amp; Question System</span>
+                </span>
+                <ChevronRight size={18} className="fx-folder-chevron" />
+              </button>
+            )}
+            {course.id === 'INDU211' && (
+              <button
                 key="term-paper-vault"
                 className="fx-folder-tile"
                 onClick={() => openPath(['Term Paper & Final Project'])}
@@ -482,6 +578,14 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             onViewPdf={onViewPdf}
             onLaunchDrill={(courseId, sectionId) => (onLaunchDrill ? onLaunchDrill(courseId, sectionId) : onStartQuiz(courseId))}
             onBack={() => openPath([])}
+          />
+        </Suspense>
+      ) : activePath[0] === INDU_PREP_FOLDER ? (
+        <Suspense fallback={<p className="fx-empty">Opening Industrial Engineering Midterm Preparation…</p>}>
+          <InduMidtermPrepSection
+            course={course}
+            onBack={() => openPath([])}
+            onViewPdf={onViewPdf}
           />
         </Suspense>
       ) : activePath[0] === GATE_FOLDER && hasGate(course.id) ? (
@@ -561,6 +665,52 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             )
           )}
         </section>
+      )}
+
+      {/* Password Modal for INDU 211 Midterm Preparation */}
+      {showInduPasswordModal && (
+        <div className="indu-modal-backdrop" onClick={() => setShowInduPasswordModal(false)}>
+          <div className="indu-modal-card" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="indu-modal-close"
+              onClick={() => setShowInduPasswordModal(false)}
+              aria-label="Close"
+            >
+              <X size={18} />
+            </button>
+            <div className="indu-modal-icon-wrap">
+              <Lock size={26} />
+            </div>
+            <h3 className="indu-modal-title">Industrial Engineering Midterm Preparation</h3>
+            <p className="indu-modal-sub">
+              Enter password to unlock the official Fall 2025 Midterm Exam Paper A master study guide, curriculum chapter breakdowns, and interactive 50-mark question system.
+            </p>
+            <form onSubmit={handleInduPasswordSubmit}>
+              <div className="indu-modal-input-group">
+                <input
+                  type="password"
+                  autoFocus
+                  placeholder="Enter password…"
+                  className="indu-modal-input"
+                  value={induPasswordInput}
+                  onChange={(e) => {
+                    setInduPasswordInput(e.target.value);
+                    if (induPasswordError) setInduPasswordError('');
+                  }}
+                />
+                {induPasswordError && (
+                  <div className="indu-modal-error">
+                    <AlertTriangle size={14} />
+                    <span>{induPasswordError}</span>
+                  </div>
+                )}
+              </div>
+              <button type="submit" className="indu-modal-btn">
+                Unlock Midterm Preparation
+              </button>
+            </form>
+          </div>
+        </div>
       )}
     </div>
   );
