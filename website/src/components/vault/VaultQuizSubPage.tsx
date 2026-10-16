@@ -251,9 +251,29 @@ export const VaultQuizSubPage: React.FC<Props> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   });
 
+  const isMulti = currentQ?.kind === 'multi';
+
+  // Correct options for highlighting: every correct letter on a select-all question, else the graded one
+  const isCorrectOption = (optLet: string) =>
+    isMulti ? currentQ.correct.map((c) => c.toLowerCase()).includes(optLet.toLowerCase()) : grade(currentQ, [optLet]);
+
   const handleSelectOption = (optLetter: string) => {
     if (isAnswered || !currentQ) return;
-    const ans = [optLetter.trim()];
+    if (isMulti) {
+      // Select-all-that-apply: toggle letters, graded only when the student presses Check answer
+      audio.playClick();
+      const l = optLetter.trim().toLowerCase();
+      setSelectedAnswers((prev) => {
+        const cur = prev[currentIndex] || [];
+        return { ...prev, [currentIndex]: cur.includes(l) ? cur.filter((x) => x !== l) : [...cur, l] };
+      });
+      return;
+    }
+    submitChoice([optLetter.trim()]);
+  };
+
+  const submitChoice = (ans: string[]) => {
+    if (isAnswered || !currentQ || ans.length === 0) return;
     setSelectedAnswers((prev) => ({ ...prev, [currentIndex]: ans }));
     const ok = grade(currentQ, ans);
     setGradedResults((prev) => ({ ...prev, [currentIndex]: ok }));
@@ -782,23 +802,34 @@ export const VaultQuizSubPage: React.FC<Props> = ({
           )}
         </div>
 
+        {isMulti && currentQ.opts && currentQ.opts.length > 0 && (
+          <div className="vq-multi-hint" role="note">
+            <strong>Select all that apply</strong>
+            <span>
+              {currentQ.correct.length} correct answers · pick every one, then press Check answer
+            </span>
+          </div>
+        )}
+
         {/* Interactive Answer Options Grid (MC / T/F / Numeric) */}
         {currentQ.opts && currentQ.opts.length > 0 ? (
-          <div className="options-grid">
+          <div className="options-grid" role={isMulti ? 'group' : undefined} aria-label={isMulti ? 'Select all that apply' : undefined}>
             {currentQ.opts.map((opt, optIdx) => {
               const optLet = letter(optIdx);
               const isSelected = userSelection.map((s) => s.toLowerCase()).includes(optLet.toLowerCase());
-              const isCorrectOpt = grade(currentQ, [optLet]);
+              const isCorrectOpt = isCorrectOption(optLet);
 
               let optionStateClass = '';
               if (isAnswered) {
                 if (isCorrectOpt) {
-                  optionStateClass = 'correct-option pulse-correct';
+                  optionStateClass = isMulti && !isSelected ? 'correct-option vq-missed-option' : 'correct-option pulse-correct';
                 } else if (isSelected && !isCorrectOpt) {
                   optionStateClass = 'incorrect-option shake-incorrect';
                 } else {
                   optionStateClass = 'dimmed-option';
                 }
+              } else if (isMulti && isSelected) {
+                optionStateClass = 'vq-picked-option';
               }
 
               return (
@@ -808,10 +839,12 @@ export const VaultQuizSubPage: React.FC<Props> = ({
                   className={`option-btn ${optionStateClass}`}
                   onClick={() => handleSelectOption(optLet)}
                   disabled={isAnswered}
+                  aria-pressed={isMulti ? isSelected : undefined}
                 >
-                  <div className="option-letter">{optLet.toUpperCase()}</div>
+                  <div className="option-letter">{isMulti && !isAnswered && isSelected ? '✓' : optLet.toUpperCase()}</div>
                   <div className="option-text">
                     <MathText text={opt} />
+                    {isAnswered && isMulti && isCorrectOpt && !isSelected && <span className="vq-missed-tag">Missed</span>}
                   </div>
                   <div className="option-feedback-icon">
                     {isAnswered && isCorrectOpt && <CheckCircle2 size={20} className="text-emerald" />}
@@ -820,6 +853,18 @@ export const VaultQuizSubPage: React.FC<Props> = ({
                 </button>
               );
             })}
+            {isMulti && !isAnswered && (
+              <button
+                type="button"
+                className="next-question-btn vq-check-btn"
+                disabled={userSelection.length === 0}
+                onClick={() => submitChoice(userSelection)}
+              >
+                <span>
+                  Check answer ({userSelection.length} of {currentQ.correct.length} selected)
+                </span>
+              </button>
+            )}
           </div>
         ) : currentQ.kind === 'tf' ? (
           <div className="options-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
