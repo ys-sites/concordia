@@ -11,6 +11,7 @@ export interface GateIndex {
   exam: Map<string, Exam>;
   formula: Map<string, Formula>;
   clustersOfQ: Map<string, Cluster[]>;
+  docs: GateContent['docs'];
   // exams that count as past papers (midterms and in-class quizzes/tests)
   paperIds: string[];
   // kept for older call sites
@@ -32,6 +33,7 @@ export const useGateIndex = (c: GateContent): GateIndex =>
       exam: new Map(c.exams.map((x) => [x.id, x])),
       formula: new Map(c.formulas.map((x) => [x.id, x])),
       clustersOfQ,
+      docs: c.docs,
       paperIds,
       midtermIds: paperIds
     };
@@ -78,15 +80,15 @@ export const StatusBadge: React.FC<{ q: Question }> = ({ q }) => {
   return null;
 };
 
-const refText = (r: LectureRef, c?: GateContent) => {
-  const name = r.d ? c?.docs[r.d]?.title ?? r.d : `L${r.l}`;
+const refText = (r: LectureRef, docs?: GateContent['docs']) => {
+  const name = r.d ? docs?.[r.d]?.title ?? r.d : `L${r.l}`;
   return `${name}${r.s ? ` · s${r.s}` : ''}${r.label ? ` — ${r.label}` : ''}`;
 };
 
-export const LectureButton: React.FC<{ r: LectureRef; nav: GateNav; content?: GateContent }> = ({ r, nav, content }) => (
+export const LectureButton: React.FC<{ r: LectureRef; nav: GateNav; content?: GateContent; docs?: GateContent['docs'] }> = ({ r, nav, content, docs }) => (
   <button type="button" className="mg-btn small" onClick={() => nav.openLecture(r)} title="Open the teacher's slides at this page">
     <Presentation size={13} />
-    <span>{refText(r, content)}</span>
+    <span>{refText(r, docs ?? content?.docs)}</span>
   </button>
 );
 
@@ -114,6 +116,25 @@ export const RefsRow: React.FC<{ lec?: LectureRef[]; cal?: string; guide?: strin
   </div>
 );
 
+// Where a question is taught: its repeat groups' slides first, then its lesson's, then the topic's (no duplicates)
+export const questionRefs = (q: Question, idx: GateIndex) => {
+  const topic = idx.topic.get(q.topic);
+  const clusters = idx.clustersOfQ.get(q.id) ?? [];
+  const lesson = q.f?.length ? idx.formula.get(q.f[0]) : undefined;
+  const seen = new Set<string>();
+  const lec = [...clusters.flatMap((cl) => cl.refs.lec ?? []), ...(lesson?.lec ?? []), ...(topic?.lec ?? [])].filter((r) => {
+    const k = `${r.d ?? ''}|${r.l ?? ''}|${r.s ?? ''}`;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+  return {
+    lec: lec.slice(0, 3),
+    cal: clusters.find((cl) => cl.refs.cal)?.refs.cal ?? topic?.cal ?? lesson?.cal,
+    guide: clusters.find((cl) => cl.refs.guide)?.refs.guide ?? topic?.guide ?? lesson?.guide
+  };
+};
+
 export const CodeBlock: React.FC<{ code: string }> = ({ code }) => <pre className="mg-code">{code}</pre>;
 
 const letter = (i: number) => String.fromCharCode(97 + i);
@@ -129,11 +150,18 @@ export const QuestionCard: React.FC<{
   const show = !hideAnswer || revealed;
   const answers = q.opts ? q.ans.split(/[\s,]+/).map((s) => s.toLowerCase().charCodeAt(0) - 97) : [];
   const keyIndex = q.keyAns ? q.keyAns.charCodeAt(0) - 97 : -1;
+  const topic = idx.topic.get(q.topic);
+  const refs = questionRefs(q, idx);
   return (
     <div className="mg-q">
       <div className="mg-q-head">
         <ExamTag q={q} idx={idx} />
-        {showTopic && <span className="mg-badge neutral">{idx.topic.get(q.topic)?.name}</span>}
+        {topic?.ch && (
+          <span className="mg-badge info" title={topic.name}>
+            {topic.ch}
+          </span>
+        )}
+        {showTopic && <span className="mg-badge neutral">{topic?.name}</span>}
         <StatusBadge q={q} />
         {q.kind === 'multi' && <span className="mg-badge info">Select all that apply</span>}
       </div>
@@ -151,6 +179,25 @@ export const QuestionCard: React.FC<{
               </span>
             </div>
           ))}
+        </div>
+      )}
+      {(refs.lec.length > 0 || refs.guide || refs.cal) && (
+        <div className="mg-refs" style={{ marginTop: 8 }}>
+          <span className="mg-refs-label">Learn it from</span>
+          {refs.lec.map((r, i) => (
+            <LectureButton key={i} r={r} nav={nav} docs={idx.docs} />
+          ))}
+          {refs.guide && (
+            <button type="button" className="mg-btn small" onClick={() => nav.openGuide(refs.guide!)}>
+              <BookOpen size={13} />
+              <span>Expanded guide {refs.guide}</span>
+            </button>
+          )}
+          {refs.cal && (
+            <span className="mg-badge info" title="Textbook section">
+              {refs.cal}
+            </span>
+          )}
         </div>
       )}
       {show ? (

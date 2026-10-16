@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AlertTriangle, ChevronDown, ChevronRight, Grid3x3, Layers, PlayCircle, Repeat, Shuffle, Sigma, Video, XCircle } from 'lucide-react';
+import { AlertTriangle, ChevronDown, ChevronRight, FileText, Grid3x3, Layers, PlayCircle, Repeat, Shuffle, Sigma, Video, XCircle } from 'lucide-react';
 import { MathText } from '../../utils/mathRenderer';
 import type { Cluster, Expectation, GateContent, GateNav, MatchType, Subject } from './vaultTypes';
 import { GateIndex, MatchBadge, QuestionCard, RefsRow, repeatTypeOf } from './shared';
@@ -136,6 +136,30 @@ export const PatternAnalyzer: React.FC<Props> = ({ content, idx, nav, focusTopic
           />
         ))}
       </section>
+
+      {/* Every past paper, question by question, with chapter and slide references */}
+      <details className="mg-panel mg-panel-pad">
+        <summary className="mg-section-title" style={{ cursor: 'pointer' }}>
+          <FileText size={17} /> Questions by paper
+        </summary>
+        <p className="mg-section-sub">Each paper in its original order. Every question shows its chapter and where the teacher’s notes cover it.</p>
+        {paperExams.map((e) => {
+          const qs = papers.filter((q) => q.exam === e.id);
+          return (
+            <details key={e.id} className="mg-paper" style={{ marginTop: 8 }}>
+              <summary style={{ cursor: 'pointer' }}>
+                <b>{e.label}</b> <span className="mg-badge neutral">{qs.length} Q</span>
+              </summary>
+              <p className="mg-small mg-muted" style={{ margin: '6px 0' }}>
+                <MathText text={e.detail} />
+              </p>
+              {qs.map((q) => (
+                <QuestionCard key={q.id} q={q} idx={idx} nav={nav} hideAnswer={selfTest} showTopic />
+              ))}
+            </details>
+          );
+        })}
+      </details>
 
       {/* Corrections */}
       {corrections.length > 0 && (
