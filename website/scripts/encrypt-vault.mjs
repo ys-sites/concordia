@@ -3,6 +3,10 @@
 //   MIDTERM_GATE_KEY=<password> node scripts/encrypt-vault.mjs            (all courses)
 //   MIDTERM_GATE_KEY=<password> node scripts/encrypt-vault.mjs MIAE215    (one course)
 //
+// A course in PAPER_DRILL also needs PAPER_DRILL_KEY: last year's paper is split out of the hidden
+// folder into its own blob (<course>-paper-drill.enc.json, the course badge's Skill Drill), encrypted
+// under that second password.
+//
 // The plaintext sources live in each course's "* - Studocu - *" folder (gitignored); only the
 // ciphertext is committed. The password never appears in the repository: the page derives the AES
 // key from what the viewer types (PBKDF2-SHA-256). Keep in sync with src/components/vault/vaultCrypto.ts.
@@ -26,7 +30,11 @@ const KNOWN_CALCS = new Set([
   'growth', 'cooling', 'logistic', 'complex', 'breakeven', 'transport', 'cog', 'tsp', 'savings', 'eoq', 'forecast'
 ]);
 
+// course → exam id of last year's paper, kept out of the hidden folder
+const PAPER_DRILL = { INDU211: 'M25' };
+
 const password = process.env.MIDTERM_GATE_KEY;
+const paperPassword = process.env.PAPER_DRILL_KEY;
 if (!password) {
   console.error('Set MIDTERM_GATE_KEY to the vault password.');
   process.exit(1);
@@ -110,6 +118,39 @@ const deepFix = (v) =>
 const b64 = (u8) => Buffer.from(u8).toString('base64');
 const enc = new TextEncoder();
 
+const encryptTo = async (out, content, pw) => {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const baseKey = await crypto.subtle.importKey('raw', enc.encode(pw.trim().toLowerCase()), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt, iterations: ITERATIONS, hash: 'SHA-256' }, baseKey, { name: 'AES-GCM', length: 256 }, false, ['encrypt']);
+  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(JSON.stringify(content)));
+  fs.mkdirSync(path.dirname(out), { recursive: true });
+  fs.writeFileSync(out, JSON.stringify({ v: 2, kdf: 'PBKDF2-SHA256', iter: ITERATIONS, salt: b64(salt), iv: b64(iv), ct: b64(new Uint8Array(ct)) }));
+};
+
+// Keep only the questions whose exam passes `keep`, and drop every reference to the others
+const keepExams = (c, keep) => {
+  const ids = new Set(c.questions.filter((q) => keep(q.exam)).map((q) => q.id));
+  return {
+    ...c,
+    exams: c.exams.filter((e) => keep(e.id)),
+    questions: c.questions.filter((q) => ids.has(q.id)),
+    clusters: c.clusters.map((cl) => ({ ...cl, members: cl.members.filter((m) => ids.has(m)) })).filter((cl) => cl.members.length > 0),
+    formulas: c.formulas.map((f) => ({
+      ...f,
+      seen: f.seen.filter((s) => ids.has(s)),
+      presets: f.presets?.filter((p) => !p.from || ids.has(p.from)),
+      learn: f.learn && { ...f.learn, quiz: f.learn.quiz.filter((it) => it.type !== 'exam' || ids.has(it.id)) }
+    })),
+    videoStops: c.videoStops.map((v) => ({ ...v, gate: v.gate.filter((g) => ids.has(g)) }))
+  };
+};
+// The badge drill: that paper only, with lesson practice trimmed to its questions so the pool is exactly the paper
+const onlyPaper = (c, exam) => {
+  const p = keepExams(c, (e) => e === exam);
+  return { ...p, formulas: p.formulas.map((f) => ({ ...f, learn: f.learn && { ...f.learn, quiz: f.learn.quiz.filter((it) => it.type === 'exam') } })) };
+};
+
 const only = process.argv[2];
 let failed = false;
 for (const [course, rel] of Object.entries(SOURCES)) {
@@ -123,19 +164,22 @@ for (const [course, rel] of Object.entries(SOURCES)) {
   const problems = validate(content, course);
   const fixed = deepFix(content);
   if (JSON.stringify(fixed).includes(BAR)) problems.push(`${course}: a combining overbar is outside [ ] or ( ); write it as $\\bar{n}$`);
+  const paperExam = PAPER_DRILL[course];
+  if (paperExam && !paperPassword) problems.push(`${course}: set PAPER_DRILL_KEY (the badge drill password) to split out ${paperExam}`);
+  if (paperExam && !content.exams.some((e) => e.id === paperExam)) problems.push(`${course}: paper drill exam ${paperExam} not found`);
   if (problems.length) {
     console.error(problems.join('\n'));
     failed = true;
     continue;
   }
-  const salt = crypto.getRandomValues(new Uint8Array(16));
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const baseKey = await crypto.subtle.importKey('raw', enc.encode(password.trim().toLowerCase()), 'PBKDF2', false, ['deriveKey']);
-  const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt, iterations: ITERATIONS, hash: 'SHA-256' }, baseKey, { name: 'AES-GCM', length: 256 }, false, ['encrypt']);
-  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(JSON.stringify(fixed)));
   const out = path.join(here, `../src/data/vault/${course.toLowerCase()}-midterm-gate.enc.json`);
-  fs.mkdirSync(path.dirname(out), { recursive: true });
-  fs.writeFileSync(out, JSON.stringify({ v: 2, kdf: 'PBKDF2-SHA256', iter: ITERATIONS, salt: b64(salt), iv: b64(iv), ct: b64(new Uint8Array(ct)) }));
+  await encryptTo(out, paperExam ? keepExams(fixed, (e) => e !== paperExam) : fixed, password);
+  if (paperExam) {
+    const paper = onlyPaper(fixed, paperExam);
+    const paperOut = path.join(here, `../src/data/vault/${course.toLowerCase()}-paper-drill.enc.json`);
+    await encryptTo(paperOut, paper, paperPassword);
+    console.log(`${course}: paper drill ${paperExam}: ${paper.questions.length} questions → ${Math.round(fs.statSync(paperOut).size / 1024)} KB (kept out of the hidden folder)`);
+  }
   const quizItems = content.formulas.reduce((n, f) => n + (f.learn?.quiz.length ?? 0), 0);
   console.log(
     `${course}: ${content.questions.length} questions, ${content.clusters.length} clusters, ${content.formulas.length} lessons (${quizItems} practice items), ` +

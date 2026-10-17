@@ -51,25 +51,64 @@ const deriveKey = async (blob: Blob, password: string) => {
   );
 };
 
-const remember = async (course: GateCourse, key: CryptoKey) => {
+const remember = async (storeKey: string, key: CryptoKey) => {
   try {
-    sessionStorage.setItem(sessionKey(course), toB64(new Uint8Array(await crypto.subtle.exportKey('raw', key))));
+    sessionStorage.setItem(storeKey, toB64(new Uint8Array(await crypto.subtle.exportKey('raw', key))));
   } catch {
     // storage unavailable: the viewer re-enters the password next time
   }
 };
 
-const tryUnlock = async (course: GateCourse, password: string): Promise<GateContent | null> => {
-  const blob = await loadBlob(course);
+const unlockBlob = async (blob: Blob, storeKey: string, password: string): Promise<GateContent | null> => {
   const key = await deriveKey(blob, password);
   try {
     const content = await decryptWith(blob, key);
-    await remember(course, key);
+    await remember(storeKey, key);
     return content;
   } catch {
     return null;
   }
 };
+
+const resumeBlob = async (load: () => Promise<Blob>, storeKey: string): Promise<GateContent | null> => {
+  let saved: string | null = null;
+  try {
+    saved = sessionStorage.getItem(storeKey);
+  } catch {
+    return null;
+  }
+  if (!saved) return null;
+  try {
+    return await decryptWith(await load(), await importAesKey(fromB64(saved)));
+  } catch {
+    try {
+      sessionStorage.removeItem(storeKey);
+    } catch {
+      // ignore
+    }
+    return null;
+  }
+};
+
+const tryUnlock = async (course: GateCourse, password: string) => unlockBlob(await loadBlob(course), sessionKey(course), password);
+
+// Last year's paper (the course badge's Skill Drill): its own blob and its own password, never unlocked
+// together with the hidden folders.
+const PAPER_LOADERS: Partial<Record<GateCourse, () => Promise<{ default: unknown }>>> = {
+  INDU211: () => import('../../data/vault/indu211-paper-drill.enc.json')
+};
+const paperKey = (course: GateCourse) => `paper_key_${course}`;
+const loadPaper = async (course: GateCourse): Promise<Blob> => (await PAPER_LOADERS[course]!()).default as Blob;
+
+export const unlockPaper = async (course: GateCourse, password: string) => unlockBlob(await loadPaper(course), paperKey(course), password);
+export const resumePaper = (course: GateCourse) => resumeBlob(() => loadPaper(course), paperKey(course));
+export function lockPaper(course: GateCourse) {
+  try {
+    sessionStorage.removeItem(paperKey(course));
+  } catch {
+    // ignore
+  }
+}
 
 // Returns null when the password is wrong. On success the other courses are unlocked in the background,
 // so the password is typed once per tab (only derived keys are stored, never the password).
@@ -84,21 +123,7 @@ export async function unlockGate(course: GateCourse, password: string): Promise<
 }
 
 // Re-opens a gate already unlocked in this tab.
-export async function resumeGate(course: GateCourse): Promise<GateContent | null> {
-  let saved: string | null = null;
-  try {
-    saved = sessionStorage.getItem(sessionKey(course));
-  } catch {
-    return null;
-  }
-  if (!saved) return null;
-  try {
-    return await decryptWith(await loadBlob(course), await importAesKey(fromB64(saved)));
-  } catch {
-    lockGate();
-    return null;
-  }
-}
+export const resumeGate = (course: GateCourse): Promise<GateContent | null> => resumeBlob(() => loadBlob(course), sessionKey(course));
 
 export function lockGate() {
   try {

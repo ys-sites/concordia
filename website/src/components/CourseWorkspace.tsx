@@ -45,13 +45,12 @@ import {
 const FilteredDocumentSection = lazy(() => import('./FilteredDocumentSection').then((m) => ({ default: m.FilteredDocumentSection })));
 const TermPaperVaultSection = lazy(() => import('./TermPaperVaultSection').then((m) => ({ default: m.TermPaperVaultSection })));
 import { GateGlyph } from './vault/GateGlyph';
-import { hasGate } from './vault/gateCourses';
+import { hasGate, hasPaperDrill } from './vault/gateCourses';
 import { WeeklyPath, WEEKLY_FOLDER, hasWeeklyPath } from './WeeklyPath';
 
 // Hidden MIAE 221 folder, opened from the glyph after the course title. Loaded on demand.
 const MidtermGate = lazy(() => import('./vault/MidtermGate'));
 const GATE_FOLDER = 'Midterm Gate';
-import { paperDrillOf } from './vault/paperDrill';
 
 // Only MIAE 221 and MIAE 215 have teacher practice papers; the section (and its question data) loads on demand
 const TeacherMidtermPracticeSection = lazy(() =>
@@ -301,7 +300,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
 
         <div className="workspace-title-row">
           <div>
-            {paperDrillOf(course.id) ? (
+            {hasPaperDrill(course.id) ? (
               <button
                 type="button"
                 className="course-badge"
@@ -508,7 +507,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             onBack={() => openPath([])}
           />
         </Suspense>
-      ) : activePath[0] === INDU_PREP_FOLDER && paperDrillOf(course.id) ? (
+      ) : activePath[0] === INDU_PREP_FOLDER && hasPaperDrill(course.id) ? (
         <Suspense fallback={<p className="fx-empty">Opening…</p>}>
           <MidtermGate key="paper" course={course} onViewPdf={onViewPdf} paper />
         </Suspense>

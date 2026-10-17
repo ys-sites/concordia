@@ -5,7 +5,7 @@ import type { CourseDocument } from '../../types';
 import { audio } from '../../utils/audio';
 import { MathText } from '../../utils/mathRenderer';
 import type { DrillTarget, GateContent, GateDoc, GateNav, LectureRef, QuizPreset } from './vaultTypes';
-import { GateCourse, lockGate, resumeGate, unlockGate } from './vaultCrypto';
+import { GateCourse, lockGate, lockPaper, resumeGate, resumePaper, unlockGate, unlockPaper } from './vaultCrypto';
 import { MatchBadge, QuestionCard, useGateIndex } from './shared';
 import { buildDrill, DrillItem, loadStats } from './drill';
 import { TopicsHub } from './TopicsHub';
@@ -14,7 +14,6 @@ import { VideoDrawer } from './Drawers';
 import { StudyPlan, daysUntil } from './StudyPlan';
 import { GradesaverDoc } from './GradesaverDoc';
 import { SkillQuiz } from './SkillQuiz';
-import { onlyPaper, paperDrillOf, withoutPaper } from './paperDrill';
 import { VaultLessonSubPage } from './VaultLessonSubPage';
 import { VaultQuizSubPage } from './VaultQuizSubPage';
 import './midtermGate.css';
@@ -51,16 +50,14 @@ export type GateSubView =
 interface Props {
   course: CourseWithDocs;
   onViewPdf: (doc: CourseDocument, page?: number) => void;
-  // true: the course badge's Skill Drill on last year's paper (and nothing else); false: the hidden folder without that paper
+  // true: the course badge's Skill Drill on last year's paper (its own blob and password, see vaultCrypto)
   paper?: boolean;
 }
 
 export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false }) => {
   const courseId = course.id as GateCourse;
   const DOC_KEY = `gate_doc_${courseId}`;
-  const paperDef = paperDrillOf(courseId);
-  const [raw, setRaw] = useState<GateContent | null>(null);
-  const content = useMemo(() => (raw && paperDef ? (paper ? onlyPaper(raw, paperDef) : withoutPaper(raw, paperDef)) : raw), [raw, paper, paperDef]);
+  const [content, setContent] = useState<GateContent | null>(null);
   const [checking, setChecking] = useState(true);
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
@@ -86,15 +83,15 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
   useEffect(() => {
     let alive = true;
     setChecking(true);
-    resumeGate(courseId).then((c) => {
+    (paper ? resumePaper(courseId) : resumeGate(courseId)).then((c) => {
       if (!alive) return;
-      setRaw(c);
+      setContent(c);
       setChecking(false);
     });
     return () => {
       alive = false;
     };
-  }, [courseId]);
+  }, [courseId, paper]);
 
   useEffect(() => {
     try {
@@ -117,11 +114,11 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
     if (!password.trim() || busy) return;
     setBusy(true);
     setWrong(false);
-    const c = await unlockGate(courseId, password).catch(() => null);
+    const c = await (paper ? unlockPaper(courseId, password) : unlockGate(courseId, password)).catch(() => null);
     setBusy(false);
     if (c) {
       audio.playCorrect();
-      setRaw(c);
+      setContent(c);
       setPassword('');
       if (!doc) setDoc('plan');
     } else {
@@ -134,8 +131,9 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
 
   const lock = () => {
     audio.playClick();
-    lockGate();
-    setRaw(null);
+    if (paper) lockPaper(courseId);
+    else lockGate();
+    setContent(null);
     setDoc(null);
     setSubView(null);
   };
