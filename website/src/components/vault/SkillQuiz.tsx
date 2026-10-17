@@ -18,6 +18,7 @@ import { SourcePanel, VideoDepth } from './QuizExplain';
 const MULTI_STEM = '(Select all that apply)';
 const PIN_LAST = /^(none|all) of the above\b/i;
 const LETTER_REF = /\([a-e]\)/i;
+const KEEP_ORDER = /\bMTF\b/; // T / F / MTF answers stay in that order
 
 const shuffleOptions = (it: DrillItem): DrillItem => {
   const opts = it.opts!;
@@ -40,7 +41,7 @@ export const prepQuizItem = (it: DrillItem): DrillItem => {
   if (out.kind === 'multi' && !out.prompt.includes(MULTI_STEM)) out = { ...out, prompt: `${out.prompt} ${MULTI_STEM}` };
   if ((out.kind === 'mc' || out.kind === 'multi') && out.opts && out.opts.length > 1) {
     const stepsCiteLetters = (out.steps ?? []).some((s) => LETTER_REF.test(s));
-    if (!stepsCiteLetters) out = shuffleOptions(out);
+    if (!stepsCiteLetters && !out.opts.some((o) => KEEP_ORDER.test(o))) out = shuffleOptions(out);
   }
   if (out.regen) {
     const orig = out.regen;

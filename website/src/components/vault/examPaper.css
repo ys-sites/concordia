@@ -1,0 +1,321 @@
+/* Exam replica (ExamPaper.tsx): looks like the printed paper, prints as the paper alone. */
+.xp-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.xp-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+.xp-bar-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.xp-gap {
+  flex: 1 1 auto;
+}
+
+.xp-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  min-height: 1060px;
+  padding: 56px 64px 72px;
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.05);
+  font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.xp-sheet .katex {
+  font-size: 1em;
+}
+.xp-paper-a {
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.xp-header {
+  margin: -6px 0 16px;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: right;
+  text-decoration: underline;
+  font-family: inherit;
+}
+.xp-instr {
+  margin: 0 0 18px;
+}
+.xp-h {
+  margin: 0 0 14px;
+  text-align: justify;
+}
+.xp-p {
+  margin: 0 0 14px;
+  text-align: justify;
+}
+.xp-note {
+  margin: 8px 0 0;
+  text-align: center;
+}
+.xp-quote {
+  margin: 8px 24px 14px;
+  text-align: justify;
+}
+.xp-mc {
+  margin: 0 0 16px 18px;
+}
+.xp-mc-q {
+  display: flex;
+  gap: 8px;
+}
+.xp-n {
+  flex: none;
+  min-width: 22px;
+  font-weight: 400;
+}
+.xp-opts {
+  margin: 2px 0 0 30px;
+  padding-left: 24px;
+  list-style: lower-alpha;
+}
+.xp-opts li {
+  padding-left: 4px;
+}
+.xp-opts li::marker {
+  content: counter(list-item, lower-alpha) '. ';
+}
+.xp-sub {
+  margin: 14px 0 10px 18px;
+}
+.xp-answers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 6px 26px;
+  margin: 10px 0 4px 30px;
+}
+.xp-blank-row {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+.xp-blank {
+  display: inline-block;
+  width: 220px;
+  border-bottom: 1px solid #111111;
+  height: 1.1em;
+}
+.xp-blank.short {
+  width: 90px;
+}
+.xp-tf {
+  margin: 8px 0 12px 52px;
+}
+.xp-tf-row {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  align-items: end;
+  gap: 8px;
+  padding: 3px 0;
+}
+.xp-tf-a {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+/* tables: thin black rules like the paper */
+.xp-fig {
+  margin: 10px 0 16px;
+}
+.xp-fig.small {
+  display: flex;
+  justify-content: flex-end;
+  margin: 6px 0 6px;
+}
+.xp-table-title {
+  margin-bottom: 4px;
+  text-align: center;
+}
+.xp-table-wrap {
+  overflow-x: auto;
+}
+.xp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.xp-fig.small .xp-table {
+  width: auto;
+}
+.xp-table th,
+.xp-table td {
+  border: 1px solid #111111;
+  padding: 3px 10px;
+  text-align: center;
+  height: 24px;
+}
+.xp-table th {
+  font-weight: 700;
+}
+.xp-table.wide {
+  min-width: 600px;
+}
+.xp-table.wide th,
+.xp-table.wide td {
+  padding: 4px 6px;
+  height: 30px;
+  white-space: nowrap;
+}
+.xp-rowhead {
+  text-align: left !important;
+}
+.xp-italic {
+  font-style: italic;
+}
+.xp-diag {
+  position: relative;
+  width: 150px;
+  min-width: 120px;
+  height: 42px !important;
+  padding: 0 !important;
+  background: linear-gradient(to top right, transparent calc(50% - 0.6px), #111111 calc(50% - 0.6px), #111111 calc(50% + 0.6px), transparent calc(50% + 0.6px));
+  font-weight: 400 !important;
+}
+.xp-diag-top {
+  position: absolute;
+  top: 3px;
+  right: 30%;
+}
+.xp-diag-bottom {
+  position: absolute;
+  bottom: 3px;
+  left: 6px;
+}
+
+/* BOM diagrams in print style */
+.xp-bom-fig {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin: 18px 0;
+}
+.xp-bom {
+  width: 100%;
+  height: auto;
+}
+.xp-bom .pg-edge {
+  stroke: #111111;
+  stroke-width: 1.2;
+}
+.xp-bom .pg-qty {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  font-weight: 400;
+  fill: #111111;
+}
+.xp-bom .pg-node {
+  cursor: default;
+}
+.xp-bom .pg-node rect {
+  rx: 0;
+  fill: #ffffff;
+  stroke: #111111;
+  stroke-width: 1.2;
+}
+.xp-bom .pg-node text {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13.5px;
+  font-weight: 400;
+  fill: #111111;
+}
+
+.xp-foot {
+  position: absolute;
+  left: 64px;
+  bottom: 28px;
+  font-size: 15px;
+}
+
+@media (max-width: 760px) {
+  .xp-sheet {
+    min-height: 0;
+    padding: 28px 18px 56px;
+    font-size: 14.5px;
+  }
+  .xp-header {
+    text-align: left;
+    font-size: 15px;
+  }
+  .xp-mc,
+  .xp-sub {
+    margin-left: 0;
+  }
+  .xp-opts {
+    margin-left: 8px;
+  }
+  .xp-tf {
+    margin-left: 4px;
+  }
+  .xp-tf-row {
+    grid-template-columns: 22px 1fr;
+  }
+  .xp-tf-a {
+    grid-column: 2;
+  }
+  .xp-answers {
+    margin-left: 0;
+  }
+  .xp-blank {
+    width: 150px;
+  }
+  .xp-foot {
+    left: 18px;
+    bottom: 18px;
+  }
+}
+
+/* print only the paper, one sheet per page */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .xp-root,
+  .xp-root * {
+    visibility: visible;
+  }
+  .xp-root {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    gap: 0;
+  }
+  .xp-bar {
+    display: none;
+  }
+  .xp-sheet {
+    max-width: none;
+    min-height: 0;
+    border: 0;
+    box-shadow: none;
+    padding: 0 0 40px;
+    break-after: page;
+  }
+  .xp-foot {
+    left: 0;
+    bottom: 0;
+  }
+}

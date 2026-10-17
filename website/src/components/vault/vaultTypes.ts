@@ -213,6 +213,7 @@ export interface GateContent {
   formulas: Formula[];
   videoStops: VideoStop[];
   plan: { intro: string; phases: PlanPhase[] };
+  paperDoc?: PaperDoc;
   gradesaver?: {
     intro: string;
     docs: { title: string; path: string; size: number; tag: string; blurb: string }[];
@@ -228,7 +229,83 @@ export interface QuizPreset {
   cats?: QuizCat[];
 }
 
-export type GateDoc = 'plan' | 'topics' | 'analyzer' | 'quiz' | 'gradesaver';
+export type GateDoc = 'plan' | 'topics' | 'analyzer' | 'quiz' | 'gradesaver' | 'solved' | 'exam';
+
+// ── solved-paper page (course badge only; see paper-a.mjs in the INDU 211 gate source) ──
+export type DocCell = string | { v: string; c?: number; hl?: boolean };
+export interface BomNode {
+  n: string;
+  q?: number; // units per one unit of the parent
+  note?: string;
+  k?: BomNode[];
+}
+export type DocBlock =
+  | { type: 'p'; text: string }
+  | { type: 'list'; title?: string; items: string[] }
+  | { type: 'steps'; title?: string; items: { say: string; tex?: string }[] }
+  | { type: 'formula'; tex: string; caption?: string }
+  | { type: 'callout'; tone: 'study' | 'trap' | 'tip'; title: string; text: string }
+  | { type: 'compare'; cols: { title: string; items: string[] }[] }
+  | { type: 'table'; head: string[]; rows: DocCell[][]; caption?: string }
+  | { type: 'bom'; trees: BomNode[]; caption?: string }
+  | { type: 'costchart'; caption?: string; qMax: number; demand?: number; lines: { name: string; F: number; v: number }[]; cross: { q: number; label: string }[] }
+  | { type: 'ranges'; caption?: string; max: number; segs: { from: number; to: number; label: string }[] };
+
+export interface PaperPart {
+  id: string; // the drill question with the same id
+  n: string;
+  marks: number;
+  part?: string;
+  topic: string;
+  lesson?: string;
+  lec: LectureRef[];
+  q: string;
+  opts?: string[];
+  ans?: string;
+  figure?: DocBlock;
+  answerTable?: { head: string[]; rows: string[][] };
+  think: string[];
+  steps: string[];
+  trap?: string;
+  graded?: string;
+}
+
+// The exam itself, page by page as handed out ("**bold**" in text)
+export type ExamCell = string | { v: string; i?: boolean };
+export interface ExamTable {
+  type: 'table';
+  head: string[];
+  rows: ExamCell[][];
+  diag?: [string, string]; // top-left cell split diagonally, e.g. ["To", "From"]
+  title?: string;
+  wide?: boolean;
+}
+export type ExamBlock =
+  | { type: 'instructions'; text: string }
+  | { type: 'h'; text: string; after?: string }
+  | { type: 'p'; text: string }
+  | { type: 'note'; text: string }
+  | { type: 'quote'; text: string }
+  | { type: 'mc'; n: string; q: string; opts: string[]; table?: ExamTable }
+  | ExamTable
+  | { type: 'bom'; trees: BomNode[] }
+  | { type: 'sub'; n: string; text: string; answers?: string[] }
+  | { type: 'tf'; items: [string, string][] };
+export interface ExamDoc {
+  header: string;
+  pages: ExamBlock[][];
+}
+
+export interface PaperDoc {
+  exam?: ExamDoc;
+  title: string;
+  subtitle: string;
+  facts: [string, string][];
+  byChapter: { ch: string; name: string; marks: number; where: string }[];
+  howTo: string[];
+  problems: { id: string; title: string; marks: number; ch?: string; lec?: LectureRef[]; intro: string; figures?: DocBlock[]; note?: string; items: PaperPart[] }[];
+  ch3: { title: string; intro: string; sections: { id: string; title: string; lec: LectureRef[]; blocks: DocBlock[] }[]; checklist: string[] };
+}
 export interface GateNav {
   openQuestion: (id: string) => void;
   openFormula: (id: string) => void;

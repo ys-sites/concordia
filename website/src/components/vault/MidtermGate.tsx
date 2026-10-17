@@ -14,6 +14,8 @@ import { VideoDrawer } from './Drawers';
 import { StudyPlan, daysUntil } from './StudyPlan';
 import { GradesaverDoc } from './GradesaverDoc';
 import { SkillQuiz } from './SkillQuiz';
+import { PaperGuide } from './PaperGuide';
+import { ExamPaper } from './ExamPaper';
 import { VaultLessonSubPage } from './VaultLessonSubPage';
 import { VaultQuizSubPage } from './VaultQuizSubPage';
 import './midtermGate.css';
@@ -56,7 +58,7 @@ interface Props {
 
 export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false }) => {
   const courseId = course.id as GateCourse;
-  const DOC_KEY = `gate_doc_${courseId}`;
+  const DOC_KEY = `gate_doc_${courseId}${paper ? '_paper' : ''}`;
   const [content, setContent] = useState<GateContent | null>(null);
   const [checking, setChecking] = useState(true);
   const [password, setPassword] = useState('');
@@ -66,9 +68,9 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
   const [doc, setDoc] = useState<GateDoc | null>(() => {
     try {
       const saved = sessionStorage.getItem(DOC_KEY);
-      return saved ? LEGACY[saved] ?? (saved as GateDoc) : null;
+      return saved ? LEGACY[saved] ?? (saved as GateDoc) : paper ? 'exam' : null;
     } catch {
-      return null;
+      return paper ? 'exam' : null;
     }
   });
   const [focusTopic, setFocusTopic] = useState<string | null>(null);
@@ -120,7 +122,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
       audio.playCorrect();
       setContent(c);
       setPassword('');
-      if (!doc) setDoc('plan');
+      if (!doc) setDoc(paper ? 'exam' : 'plan');
     } else {
       audio.playIncorrect();
       setWrong(true);
@@ -228,10 +230,14 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
   const days = content ? daysUntil(content.midterm.date) : null;
   const paperExam = paper && content ? content.exams[0] : undefined;
   const DOCS: DocDef[] = paper
-    ? [{ id: 'quiz', title: 'Skill Drill: last year’s midterm', short: 'Skill Drill', sub: 'Every question of last year’s paper: pick the chapters, then get the worked solution, the chapter, the teacher’s slides and a video after each answer.', icon: <Target size={20} /> }]
+    ? [
+        { id: 'exam', title: 'The exam paper', short: 'Exam paper', sub: 'All five pages exactly as they were set, with blank answer spaces. Print it or do it on screen.', icon: <ClipboardList size={20} /> },
+        { id: 'solved', title: 'Solved paper & study guide', short: 'Solved paper', sub: 'Every question as asked, with its chapter and slides, how to think about it, the worked solution and the trap; plus Chapter 3 from zero.', icon: <FileText size={20} /> },
+        { id: 'quiz', title: 'Skill Drill: last year’s midterm', short: 'Skill Drill', sub: 'Every question of last year’s paper: pick the chapters, then get the worked solution, the chapter, the teacher’s slides and a video after each answer.', icon: <Target size={20} /> }
+      ]
     : docList(courseId);
-  // the badge drill has one page only
-  const view: GateDoc | null = paper ? 'quiz' : doc;
+  // a page from the other view (e.g. a saved tab) falls back to the document list
+  const view: GateDoc | null = doc && DOCS.some((d) => d.id === doc) ? doc : null;
 
   return (
     <div className="mg-root" ref={topRef} style={{ scrollMarginTop: 90 }}>
@@ -241,10 +247,10 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
             <div className="mg-gate-title">
               <span className="mg-icon-tile">{content ? <FileText size={20} /> : <FileLock2 size={20} />}</span>
               <div>
-                <h2>{paper ? 'Skill Drill · last year’s midterm' : 'Midterm Gate'}</h2>
+                <h2>{paper ? 'Last year’s midterm' : 'Midterm Gate'}</h2>
                 <p>
                   {paper
-                    ? `${course.code} · ${paperExam ? `${paperExam.label} · ${content!.questions.length} questions` : 'locked'}`
+                    ? `${course.code} · ${paperExam ? `${paperExam.label} · ${content!.questions.length} gradeable parts` : 'locked'}`
                     : `${course.code} · hidden folder · ${DOCS.length} documents`}
                 </p>
               </div>
@@ -325,7 +331,6 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
 
       {content && idx && view && (
         <>
-          {!paper && (
           <div className="mg-gate-head">
             <button
               type="button"
@@ -353,7 +358,6 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
               ))}
             </div>
           </div>
-          )}
 
           {subView?.type === 'lesson' && (
             <VaultLessonSubPage
@@ -412,6 +416,8 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
               {view === 'plan' && <StudyPlan content={content} idx={idx} nav={nav} />}
               {view === 'topics' && <TopicsHub content={content} idx={idx} nav={nav} focusTopic={focusTopic} />}
               {view === 'analyzer' && <PatternAnalyzer content={content} idx={idx} nav={nav} focusTopic={analyzerTopic} />}
+              {view === 'exam' && content.paperDoc?.exam && <ExamPaper exam={content.paperDoc.exam} onSolutions={() => openDoc('solved')} onDrill={() => openDoc('quiz')} />}
+              {view === 'solved' && content.paperDoc && <PaperGuide content={content} idx={idx} nav={nav} onDrill={() => openDoc('quiz')} />}
               {view === 'quiz' && <SkillQuiz content={content} idx={idx} nav={nav} preset={quizPreset} paper={paper ? paperExam?.label ?? 'Last year’s paper' : undefined} />}
               {view === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
             </>

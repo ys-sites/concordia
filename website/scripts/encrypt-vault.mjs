@@ -90,6 +90,17 @@ const validate = (c, course) => {
     for (const f of v.formulas) need(fids.has(f), `video stop ${v.title}: unknown lesson ${f}`);
     for (const vid of v.videos) need(/^[\w-]{11}$/.test(vid.id), `video ${vid.title}: bad id`);
   }
+  if (c.paperDoc) {
+    const d = c.paperDoc;
+    for (const p of d.problems) {
+      for (const r of p.lec ?? []) checkRef(r, `paper page ${p.id}`);
+      for (const it of p.items) {
+        need(it && qids.has(it.id), `paper page ${p.id}: unknown part ${it?.id}`);
+        for (const r of it?.lec ?? []) checkRef(r, `paper part ${it.id}`);
+      }
+    }
+    for (const sec of d.ch3?.sections ?? []) for (const r of sec.lec ?? []) checkRef(r, `chapter 3 page ${sec.id}`);
+  }
   const stepIds = new Set();
   for (const p of c.plan.phases)
     for (const s of p.steps) {
@@ -173,7 +184,8 @@ for (const [course, rel] of Object.entries(SOURCES)) {
     continue;
   }
   const out = path.join(here, `../src/data/vault/${course.toLowerCase()}-midterm-gate.enc.json`);
-  await encryptTo(out, paperExam ? keepExams(fixed, (e) => e !== paperExam) : fixed, password);
+  // the hidden folder never carries the paper or its solved page
+  await encryptTo(out, paperExam ? { ...keepExams(fixed, (e) => e !== paperExam), paperDoc: undefined } : fixed, password);
   if (paperExam) {
     const paper = onlyPaper(fixed, paperExam);
     const paperOut = path.join(here, `../src/data/vault/${course.toLowerCase()}-paper-drill.enc.json`);
