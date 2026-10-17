@@ -268,6 +268,8 @@ export interface PaperPart {
   steps: string[];
   trap?: string;
   graded?: string;
+  // vs the earlier exams: asked before / same idea from a new angle / first time
+  compare?: { match: 'repeat' | 'similar' | 'new'; with: { src: string; q: string }[]; changed: string };
 }
 
 // The exam itself, page by page as handed out ("**bold**" in text)
@@ -298,6 +300,7 @@ export interface ExamDoc {
 
 export interface PaperDoc {
   exam?: ExamDoc;
+  compareIntro?: string;
   title: string;
   subtitle: string;
   facts: [string, string][];

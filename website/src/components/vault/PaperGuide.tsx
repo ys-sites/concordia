@@ -2,7 +2,7 @@
 // how to think, worked steps, trap, what the graded copy did) and a "Chapter 3 from zero" explainer.
 // Everything comes from content.paperDoc (encrypted with the paper, see encrypt-vault.mjs).
 import React, { useMemo, useRef, useState } from 'react';
-import { AlertTriangle, BookOpen, CheckCircle2, ChevronDown, ChevronUp, ClipboardCheck, Eye, EyeOff, Layers, Lightbulb, ListChecks, Play, Sigma, Target } from 'lucide-react';
+import { AlertTriangle, BookOpen, CheckCircle2, ChevronDown, ChevronUp, ClipboardCheck, Eye, EyeOff, History, Layers, Lightbulb, ListChecks, Play, Sigma, Target } from 'lucide-react';
 import { MathBlock, MathText } from '../../utils/mathRenderer';
 import type { BomNode, DocBlock, DocCell, GateContent, GateNav, LectureRef, PaperDoc, PaperPart } from './vaultTypes';
 import { GateIndex, LectureButton } from './shared';
@@ -18,6 +18,122 @@ interface Props {
 }
 
 const letter = (i: number) => String.fromCharCode(97 + i);
+
+// ── Paper A vs the earlier exams ───────────────────────────────────────────────────────────
+type Match = NonNullable<PaperPart['compare']>['match'];
+const MATCHES: { id: Match; label: string; short: string; desc: string }[] = [
+  { id: 'repeat', label: 'Asked before', short: 'Asked before', desc: 'Same question in new words or with new numbers' },
+  { id: 'similar', label: 'Same idea, new angle', short: 'New angle', desc: 'The concept was tested before, the question was not' },
+  { id: 'new', label: 'First time', short: 'First time', desc: 'Never on an earlier paper' }
+];
+const MATCH_INFO = Object.fromEntries(MATCHES.map((m) => [m.id, m])) as Record<Match, (typeof MATCHES)[number]>;
+const chapterOf = (topicCh: string | undefined) => (topicCh === 'Ch 1' || topicCh === 'Ch 2' ? 'Ch 1–2' : topicCh ?? '?');
+const partLabel = (n: string) => (/^\d+$/.test(n) ? `Q${n}` : n);
+
+const MatchChip: React.FC<{ c: NonNullable<PaperPart['compare']> }> = ({ c }) => (
+  <span className={`pg-match ${c.match}`} title={c.with.map((w) => w.src).join(' · ') || MATCH_INFO[c.match].desc}>
+    {MATCH_INFO[c.match].short}
+    {c.with.length > 0 && <small> · {c.with[0].src.split(' · ')[0]}</small>}
+  </span>
+);
+
+const CompareSection: React.FC<{ doc: PaperDoc; idx: GateIndex; onJump: (id: string) => void }> = ({ doc, idx, onJump }) => {
+  const parts = useMemo(() => doc.problems.flatMap((p) => p.items.map((it) => ({ it, problem: p.id }))).filter((x) => x.it.compare), [doc]);
+  const total = parts.reduce((n, x) => n + x.it.marks, 0);
+  const sum = (m: Match, ch?: string) => parts.filter((x) => x.it.compare!.match === m && (!ch || chapterOf(idx.topic.get(x.it.topic)?.ch) === ch)).reduce((n, x) => n + x.it.marks, 0);
+  const chapters = doc.byChapter.map((c) => c.ch);
+  const [filter, setFilter] = useState<Match | 'all'>('all');
+  if (!parts.length) return null;
+  const shown = parts.filter((x) => filter === 'all' || x.it.compare!.match === filter);
+  return (
+    <section id="pg-compare" className="mg-panel mg-panel-pad pg-problem">
+      <h3 className="mg-section-title">
+        <History size={17} /> Paper A vs the earlier exams
+      </h3>
+      {doc.compareIntro && <p className="mg-section-sub">{doc.compareIntro}</p>}
+
+      <div className="pg-stats">
+        {MATCHES.map((m) => (
+          <button key={m.id} type="button" className={`pg-stat ${m.id} ${filter === m.id ? 'on' : ''}`} onClick={() => setFilter(filter === m.id ? 'all' : m.id)} aria-pressed={filter === m.id}>
+            <span className="pg-stat-num">
+              {sum(m.id)}
+              <small> / {total} marks</small>
+            </span>
+            <span className="pg-stat-pct">{Math.round((100 * sum(m.id)) / total)}%</span>
+            <b>{m.label}</b>
+            <span>{m.desc}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="pg-sol-label" style={{ marginTop: 14 }}>
+        By chapter (marks)
+      </div>
+      <div className="pg-chapmix">
+        {chapters.map((ch) => {
+          const tot = MATCHES.reduce((n, m) => n + sum(m.id, ch), 0);
+          return (
+            <div key={ch} className="pg-chapmix-row">
+              <span className="pg-chapmix-ch">{ch}</span>
+              <div className="pg-chapmix-bar" role="img" aria-label={MATCHES.map((m) => `${m.label} ${sum(m.id, ch)}`).join(', ')}>
+                {MATCHES.map((m) => {
+                  const v = sum(m.id, ch);
+                  return v ? (
+                    <span key={m.id} className={m.id} style={{ flexGrow: v }} title={`${m.label}: ${v} marks`}>
+                      {v}
+                    </span>
+                  ) : null;
+                })}
+              </div>
+              <span className="pg-chapmix-tot">{tot}</span>
+            </div>
+          );
+        })}
+        <div className="pg-chapmix-key">
+          {MATCHES.map((m) => (
+            <span key={m.id}>
+              <i className={m.id} /> {m.label}
+            </span>
+          ))}
+        </div>
+      </div>
+      {sum('new', 'Ch 3') > 0 && (
+        <div className="mg-callout trap" style={{ marginTop: 12 }}>
+          <b>Why Chapter 3 felt impossible</b>
+          {sum('new', 'Ch 3')} of the {MATCHES.reduce((n, m) => n + sum(m.id, 'Ch 3'), 0)} Chapter 3 marks had never been on an earlier paper (break-even, process selection, BOM). Old papers could not prepare anyone for them; the slides can. Chapter 3 from zero below covers exactly those slides.
+        </div>
+      )}
+
+      <div className="pg-sol-label" style={{ marginTop: 14 }}>
+        Part by part {filter !== 'all' && `· ${MATCH_INFO[filter].label}`}
+      </div>
+      <div className="pg-cmp-list">
+        {shown.map(({ it, problem }) => (
+          <button key={it.id} type="button" className="pg-cmp-row" onClick={() => onJump(problem)}>
+            <span className="pg-num">{partLabel(it.n)}</span>
+            <span className="pg-cmp-main">
+              <span className="pg-cmp-top">
+                <span className={`pg-match ${it.compare!.match}`}>{MATCH_INFO[it.compare!.match].short}</span>
+                <span className="mg-badge info">{idx.topic.get(it.topic)?.ch}</span>
+                <span className="pg-cmp-marks">
+                  {it.marks} mark{it.marks === 1 ? '' : 's'}
+                </span>
+                {it.compare!.with.map((w) => (
+                  <span key={w.src} className="mg-exam">
+                    {w.src}
+                  </span>
+                ))}
+              </span>
+              <span className="pg-cmp-changed">
+                <MathText text={it.compare!.changed} />
+              </span>
+            </span>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+};
 const money = (n: number) => `$${n.toLocaleString('en-US')}`;
 
 const Slides: React.FC<{ lec?: LectureRef[]; idx: GateIndex; nav: GateNav }> = ({ lec, idx, nav }) =>
@@ -91,6 +207,8 @@ export const PaperGuide: React.FC<Props> = ({ content, idx, nav, onDrill }) => {
         </div>
       </section>
 
+      <CompareSection doc={doc} idx={idx} onJump={jump} />
+
       {/* how to use + contents */}
       <section className="mg-panel mg-panel-pad">
         <h3 className="mg-section-title">
@@ -111,6 +229,9 @@ export const PaperGuide: React.FC<Props> = ({ content, idx, nav, onDrill }) => {
           ))}
           <button type="button" className="mg-chip active" onClick={() => jump('ch3')}>
             <Sigma size={12} /> Chapter 3 from zero
+          </button>
+          <button type="button" className="mg-chip" onClick={() => jump('compare')}>
+            <History size={12} /> vs past exams
           </button>
           <span className="pg-toc-gap" />
           <button type="button" className="mg-btn small" onClick={() => setAllOpen((o) => !o)}>
@@ -238,6 +359,7 @@ const PartCard: React.FC<{ it: PaperPart; idx: GateIndex; nav: GateNav; forceOpe
           </span>
         )}
         {topic && <span className="pg-topic">{topic.name}</span>}
+        {it.compare && <MatchChip c={it.compare} />}
       </header>
       <div className="pg-q">
         <MathText text={it.q} />
@@ -332,6 +454,22 @@ const PartCard: React.FC<{ it: PaperPart; idx: GateIndex; nav: GateNav; forceOpe
             </div>
           )}
           <div className="pg-sol-foot">
+            {it.compare && it.compare.with.length > 0 && (
+              <div className="pg-past">
+                <div className="pg-sol-label">
+                  <History size={13} /> {it.compare.match === 'repeat' ? 'Asked before' : 'Same idea before'}
+                </div>
+                {it.compare.with.map((w) => (
+                  <div key={w.src} className="pg-past-q">
+                    <span className="mg-exam">{w.src}</span>
+                    <MathText text={w.q} />
+                  </div>
+                ))}
+                <div className="pg-past-changed">
+                  <b>What changed in 2025:</b> <MathText text={it.compare.changed} />
+                </div>
+              </div>
+            )}
             {it.graded && (
               <span className={`pg-graded ${/correct/.test(it.graded) && !/wrong/.test(it.graded) ? 'ok' : 'bad'}`}>
                 On the graded copy: <MathText text={it.graded} />
