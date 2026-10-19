@@ -142,6 +142,7 @@ const RAW_FILTERED_RELATIVE_PATHS: string[] = [
   "Indu 211/05 - Assignments & Solutions/Assignment 1/Assignment 1 - Solutions.pdf",
   "Indu 211/05 - Assignments & Solutions/Assignment 1/Assignment 1.pdf",
   "Indu 211/05 - Assignments & Solutions/Assignment 2/Assignment 2 - Moodle instructions.pdf",
+  "Indu 211/05 - Assignments & Solutions/Assignment 2/Assignment 2 - Solutions.pdf",
   "Indu 211/05 - Assignments & Solutions/Assignment 2/Assignment 2.pdf",
   "Indu 211/05 - Assignments & Solutions/Assignment 3/Assignment 3 - Moodle instructions.pdf",
   "Indu 211/05 - Assignments & Solutions/Assignment 3/Assignment 3 - submission instructions.pdf",
@@ -2319,6 +2320,19 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         filename: "Assignment 2.pdf",
         relativePath: "Indu 211/05 - Assignments & Solutions/Assignment 2/Assignment 2.pdf",
         fileSizeBytes: 507281,
+        categoryType: 'Assignment',
+        isMidtermPrep: false,
+        tags: ["Assignment"]
+      },
+      {
+        id: "INDU211:filtered:8-sol",
+        courseId: 'INDU211',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "Assignment 2 - Solutions",
+        filename: "Assignment 2 - Solutions.pdf",
+        relativePath: "Indu 211/05 - Assignments & Solutions/Assignment 2/Assignment 2 - Solutions.pdf",
+        fileSizeBytes: 1032306,
         categoryType: 'Assignment',
         isMidtermPrep: false,
         tags: ["Assignment"]

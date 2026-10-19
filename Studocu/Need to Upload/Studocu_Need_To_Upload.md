@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 89
+### Currently Pending Uploads: 90
 
 ---
 
@@ -985,5 +985,16 @@
 * **Title**: INDU 211 - Midterm Exam Master Study Guide & Complete Solved Practice Paper (Fall 2025 Paper A)
 * **Academic year**: `2025/2026`
 * **Description**: Complete pedagogical master study guide and step-by-step worked solutions for the INDU 211 Midterm Examination (Fall 2025 Paper A, 50 Marks). Features comprehensive derivations and visual breakdowns for all 12 multiple choice questions (science vs. engineering, provincial regulation, break-even economics, process selection, facility layouts), 10-mark multi-level Bill of Materials (BOM) explosion, 16-mark Transportation Problem (Northwest Corner vs. Lowest Cost First heuristics with optimality proofs), and 12-mark Traveling Salesperson Problem (TSP) AGV routing via Nearest-Neighbor heuristics. Includes exam traps, marking rubrics, and conceptual diagnostics.
+
+---
+
+## 90. `INDU 211 - Assignment 2 Complete Step-by-Step Solutions Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Mandatory assignments`
+* **Title**: INDU 211 - Assignment 2 Complete Step-by-Step Solutions Guide
+* **Academic year**: `2025/2026`
+* **Description**: Complete master solution manual and pedagogical guide for INDU 211 Assignment 2 (Facility Location, Transportation Problems & Routing Heuristics). Includes rigorous analysis of the 10-part Transportation Model conceptual true/false questions, lowest-cost-first balanced distribution allocation from wholesale centers to retail stores, linear programming formulation and transportation tableau solving for plant fork truck relocation, and formal TSP formulation with nearest-neighbor and next-nearest-neighbor heuristic routing for warehouse fork truck logistics with optimality proofs and combinatorial search space evaluations.
 
 ---

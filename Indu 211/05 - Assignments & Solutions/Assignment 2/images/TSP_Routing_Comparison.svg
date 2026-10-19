@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 520" width="950" height="520" style="background:#ffffff; font-family:'Segoe UI',Roboto,Helvetica,sans-serif;">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed" />
+    </marker>
+  </defs>
+
+  <!-- Title & Subtitle -->
+  <text x="475" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#0f172a">Problem 4: Traveling Salesman Problem (TSP) Heuristics & Route Comparison</text>
+  <text x="475" y="56" text-anchor="middle" font-size="13" fill="#64748b">Comparison between Nearest-Neighbor (Heuristic), Next-Nearest-Neighbor, and Globally Optimal Tour</text>
+
+  <!-- Left Card: Nearest Neighbor Tour -->
+  <g transform="translate(30, 75)">
+    <rect width="280" height="425" rx="10" fill="#f8fafc" stroke="#93c5fd" stroke-width="2" filter="url(#shadow)"/>
+    <rect width="280" height="42" rx="10" fill="#eff6ff"/>
+    <text x="140" y="26" text-anchor="middle" font-size="14" font-weight="bold" fill="#1d4ed8">1. Nearest-Neighbor Tour</text>
+    
+    <!-- Sub-network diagram -->
+    <!-- Nodes: A=(140,80), B=(225,145), E=(65,150), D=(200,245), C=(80,245) -->
+    <!-- Edges: A->B (4), B->E (6), E->D (3), D->C (5), C->A (10) -->
+    <line x1="140" y1="80" x2="225" y2="145" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)"/>
+    <line x1="225" y1="145" x2="65" y2="150" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)"/>
+    <line x1="65" y1="150" x2="200" y2="245" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)"/>
+    <line x1="200" y1="245" x2="80" y2="245" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)"/>
+    <line x1="80" y1="245" x2="140" y2="80" stroke="#dc2626" stroke-width="3" stroke-dasharray="4,3" marker-end="url(#arrow-blue)"/>
+
+    <!-- Edge Distance Badges -->
+    <rect x="180" y="98" width="22" height="16" rx="4" fill="#ffffff" stroke="#2563eb"/>
+    <text x="191" y="110" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb">4</text>
+    
+    <rect x="135" y="138" width="22" height="16" rx="4" fill="#ffffff" stroke="#2563eb"/>
+    <text x="146" y="150" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb">6</text>
+
+    <rect x="125" y="195" width="22" height="16" rx="4" fill="#ffffff" stroke="#2563eb"/>
+    <text x="136" y="207" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb">3</text>
+
+    <rect x="135" y="235" width="22" height="16" rx="4" fill="#ffffff" stroke="#2563eb"/>
+    <text x="146" y="247" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb">5</text>
+
+    <rect x="95" y="150" width="26" height="16" rx="4" fill="#ffffff" stroke="#dc2626"/>
+    <text x="108" y="162" text-anchor="middle" font-size="10" font-weight="bold" fill="#dc2626">10</text>
+
+    <!-- Node Circles -->
+    <circle cx="140" cy="80" r="16" fill="#1e40af"/>
+    <text x="140" y="85" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">A</text>
+
+    <circle cx="225" cy="145" r="14" fill="#3b82f6"/>
+    <text x="225" y="150" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">B</text>
+
+    <circle cx="65" cy="150" r="14" fill="#3b82f6"/>
+    <text x="65" y="155" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">E</text>
+
+    <circle cx="200" cy="245" r="14" fill="#3b82f6"/>
+    <text x="200" y="250" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">D</text>
+
+    <circle cx="80" cy="245" r="14" fill="#3b82f6"/>
+    <text x="80" y="250" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">C</text>
+
+    <!-- Details Box -->
+    <rect x="15" y="275" width="250" height="135" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="25" y="295" font-size="11" font-weight="bold" fill="#1e293b">Tour Path:</text>
+    <text x="25" y="313" font-size="11" font-weight="bold" fill="#2563eb">A → B → E → D → C → A</text>
+    <text x="25" y="333" font-size="11" fill="#475569">Legs: 4 + 6 + 3 + 5 + 10</text>
+    <text x="25" y="353" font-size="12" font-weight="bold" fill="#1e293b">Total Round Distance: <tspan fill="#2563eb">28</tspan></text>
+    <text x="25" y="371" font-size="10.5" fill="#64748b">(One-way without return to A: 18)</text>
+    <text x="25" y="393" font-size="10" fill="#dc2626">⚠️ Suffers greedy penalty return (C→A=10)</text>
+  </g>
+
+  <!-- Middle Card: Next-Nearest-Neighbor Tour -->
+  <g transform="translate(335, 75)">
+    <rect width="280" height="425" rx="10" fill="#f8fafc" stroke="#c084fc" stroke-width="2" filter="url(#shadow)"/>
+    <rect width="280" height="42" rx="10" fill="#faf5ff"/>
+    <text x="140" y="26" text-anchor="middle" font-size="14" font-weight="bold" fill="#6b21a8">2. Next-Nearest-Neighbor</text>
+    
+    <!-- Edges: A->E (7), E->C (4), C->B (12), B->D (7), D->A (8) -->
+    <line x1="140" y1="80" x2="65" y2="150" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-purple)"/>
+    <line x1="65" y1="150" x2="80" y2="245" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-purple)"/>
+    <line x1="80" y1="245" x2="225" y2="145" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-purple)"/>
+    <line x1="225" y1="145" x2="200" y2="245" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-purple)"/>
+    <line x1="200" y1="245" x2="140" y2="80" stroke="#7c3aed" stroke-width="3" stroke-dasharray="4,3" marker-end="url(#arrow-purple)"/>
+
+    <!-- Badges -->
+    <rect x="90" y="105" width="22" height="16" rx="4" fill="#ffffff" stroke="#7c3aed"/>
+    <text x="101" y="117" text-anchor="middle" font-size="10" font-weight="bold" fill="#7c3aed">7</text>
+
+    <rect x="60" y="195" width="22" height="16" rx="4" fill="#ffffff" stroke="#7c3aed"/>
+    <text x="71" y="207" text-anchor="middle" font-size="10" font-weight="bold" fill="#7c3aed">4</text>
+
+    <rect x="145" y="180" width="24" height="16" rx="4" fill="#ffffff" stroke="#dc2626"/>
+    <text x="157" y="192" text-anchor="middle" font-size="10" font-weight="bold" fill="#dc2626">12</text>
+
+    <rect x="215" y="190" width="22" height="16" rx="4" fill="#ffffff" stroke="#7c3aed"/>
+    <text x="226" y="202" text-anchor="middle" font-size="10" font-weight="bold" fill="#7c3aed">7</text>
+
+    <rect x="175" y="150" width="22" height="16" rx="4" fill="#ffffff" stroke="#7c3aed"/>
+    <text x="186" y="162" text-anchor="middle" font-size="10" font-weight="bold" fill="#7c3aed">8</text>
+
+    <!-- Node Circles -->
+    <circle cx="140" cy="80" r="16" fill="#581c87"/>
+    <text x="140" y="85" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">A</text>
+
+    <circle cx="65" cy="150" r="14" fill="#9333ea"/>
+    <text x="65" y="155" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">E</text>
+
+    <circle cx="80" cy="245" r="14" fill="#9333ea"/>
+    <text x="80" y="250" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">C</text>
+
+    <circle cx="225" cy="145" r="14" fill="#9333ea"/>
+    <text x="225" y="150" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">B</text>
+
+    <circle cx="200" cy="245" r="14" fill="#9333ea"/>
+    <text x="200" y="250" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">D</text>
+
+    <!-- Details Box -->
+    <rect x="15" y="275" width="250" height="135" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="25" y="295" font-size="11" font-weight="bold" fill="#1e293b">Tour Path (Literal Heuristic):</text>
+    <text x="25" y="313" font-size="11" font-weight="bold" fill="#7c3aed">A → E → C → B → D → A</text>
+    <text x="25" y="333" font-size="11" fill="#475569">Legs: 7 + 4 + 12 + 7 + 8</text>
+    <text x="25" y="353" font-size="12" font-weight="bold" fill="#1e293b">Total Round Distance: <tspan fill="#7c3aed">38</tspan></text>
+    <text x="25" y="371" font-size="10.5" fill="#64748b">(Midterm 1st-step variant: 31)</text>
+    <text x="25" y="393" font-size="10" fill="#64748b">Sub-optimal due to long cross-leg C→B=12</text>
+  </g>
+
+  <!-- Right Card: Global Optimal Tour -->
+  <g transform="translate(640, 75)">
+    <rect width="280" height="425" rx="10" fill="#f8fafc" stroke="#86efac" stroke-width="2" filter="url(#shadow)"/>
+    <rect width="280" height="42" rx="10" fill="#f0fdf4"/>
+    <text x="140" y="26" text-anchor="middle" font-size="14" font-weight="bold" fill="#15803d">3. True Global Optimal Tour</text>
+    
+    <!-- Edges: A->B (4), B->D (7), D->C (5), C->E (4), E->A (7) -->
+    <line x1="140" y1="80" x2="225" y2="145" stroke="#059669" stroke-width="3" marker-end="url(#arrow-green)"/>
+    <line x1="225" y1="145" x2="200" y2="245" stroke="#059669" stroke-width="3" marker-end="url(#arrow-green)"/>
+    <line x1="200" y1="245" x2="80" y2="245" stroke="#059669" stroke-width="3" marker-end="url(#arrow-green)"/>
+    <line x1="80" y1="245" x2="65" y2="150" stroke="#059669" stroke-width="3" marker-end="url(#arrow-green)"/>
+    <line x1="65" y1="150" x2="140" y2="80" stroke="#059669" stroke-width="3" stroke-dasharray="4,3" marker-end="url(#arrow-green)"/>
+
+    <!-- Badges -->
+    <rect x="180" y="98" width="22" height="16" rx="4" fill="#ffffff" stroke="#059669"/>
+    <text x="191" y="110" text-anchor="middle" font-size="10" font-weight="bold" fill="#059669">4</text>
+
+    <rect x="215" y="190" width="22" height="16" rx="4" fill="#ffffff" stroke="#059669"/>
+    <text x="226" y="202" text-anchor="middle" font-size="10" font-weight="bold" fill="#059669">7</text>
+
+    <rect x="135" y="235" width="22" height="16" rx="4" fill="#ffffff" stroke="#059669"/>
+    <text x="146" y="247" text-anchor="middle" font-size="10" font-weight="bold" fill="#059669">5</text>
+
+    <rect x="60" y="195" width="22" height="16" rx="4" fill="#ffffff" stroke="#059669"/>
+    <text x="71" y="207" text-anchor="middle" font-size="10" font-weight="bold" fill="#059669">4</text>
+
+    <rect x="90" y="105" width="22" height="16" rx="4" fill="#ffffff" stroke="#059669"/>
+    <text x="101" y="117" text-anchor="middle" font-size="10" font-weight="bold" fill="#059669">7</text>
+
+    <!-- Node Circles -->
+    <circle cx="140" cy="80" r="16" fill="#065f46"/>
+    <text x="140" y="85" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">A</text>
+
+    <circle cx="225" cy="145" r="14" fill="#10b981"/>
+    <text x="225" y="150" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">B</text>
+
+    <circle cx="200" cy="245" r="14" fill="#10b981"/>
+    <text x="200" y="250" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">D</text>
+
+    <circle cx="80" cy="245" r="14" fill="#10b981"/>
+    <text x="80" y="250" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">C</text>
+
+    <circle cx="65" cy="150" r="14" fill="#10b981"/>
+    <text x="65" y="155" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">E</text>
+
+    <!-- Details Box -->
+    <rect x="15" y="275" width="250" height="135" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="25" y="295" font-size="11" font-weight="bold" fill="#1e293b">Global Minimum Tour (Exact):</text>
+    <text x="25" y="313" font-size="11" font-weight="bold" fill="#059669">A → B → D → C → E → A</text>
+    <text x="25" y="333" font-size="11" fill="#475569">Legs: 4 + 7 + 5 + 4 + 7</text>
+    <text x="25" y="353" font-size="12" font-weight="bold" fill="#1e293b">Total Round Distance: <tspan fill="#059669">27</tspan></text>
+    <text x="25" y="371" font-size="10.5" fill="#64748b">(Absolute lowest possible in (5-1)! tours)</text>
+    <text x="25" y="393" font-size="10" fill="#059669">⭐ Proves NN (28) is sub-optimal by +1</text>
+  </g>
+</svg>
