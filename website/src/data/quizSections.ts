@@ -294,5 +294,22 @@ export const drillSize = (courseId: CourseId, sectionId: string): number => {
 export const drillQuestions = (courseId: CourseId, sectionId: string): PracticeQuestion[] => {
   const pool = questionPool(courseId, sectionId);
   const ordered = parseTeacherDrillId(sectionId)?.ordered ?? false;
+  // MIAE 215 midterm follows the teacher's handwritten-exam format: 40% program-output
+  // tracing, 60% writing a program. Compose the drill to that mix.
+  if (courseId === 'MIAE215' && sectionId === MIDTERM_SECTION_ID && !ordered) {
+    const size = drillSize(courseId, sectionId);
+    const nOut = Math.round(size * 0.4);
+    const nWrite = size - nOut;
+    const outputs = shuffled(pool.filter((q) => q.kind === 'output'));
+    const writes = shuffled(pool.filter((q) => q.kind === 'write'));
+    const picked: PracticeQuestion[] = [...outputs.slice(0, nOut), ...writes.slice(0, nWrite)];
+    // Fill any shortfall from the other kind first, then the rest of the pool.
+    const rest = shuffled(pool.filter((q) => q.kind !== 'output' && q.kind !== 'write'));
+    const need = size - picked.length;
+    if (need > 0) picked.push(...outputs.slice(nOut, nOut + need), ...writes.slice(nWrite));
+    const need2 = size - picked.length;
+    if (need2 > 0) picked.push(...rest.slice(0, need2));
+    return shuffled(picked.slice(0, size));
+  }
   return (ordered ? pool : shuffled(pool)).slice(0, drillSize(courseId, sectionId));
 };

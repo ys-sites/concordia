@@ -7130,6 +7130,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_009",
     "courseId": "MIAE215",
     "chapter": "types",
+    "kind": "output",
     "topic": "int Overflow",
     "difficulty": "Midterm Level",
     "question": "For a 4-byte int, what is stored in x after x = 2147483647 + 1; ?",
@@ -7191,6 +7192,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_011",
     "courseId": "MIAE215",
     "chapter": "types",
+    "kind": "output",
     "topic": "Uninitialized Variables",
     "difficulty": "Foundation",
     "question": "What is printed?",
@@ -7255,6 +7257,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_013",
     "courseId": "MIAE215",
     "chapter": "types",
+    "kind": "output",
     "topic": "Round-off Error",
     "difficulty": "Midterm Level",
     "question": "Why does z print as 1.0000000?",
@@ -7408,6 +7411,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_018",
     "courseId": "MIAE215",
     "chapter": "types",
+    "kind": "write",
     "topic": "Type Casting",
     "difficulty": "Midterm Level",
     "question": "With int a = 7, b = 2; which statement stores 3.5 in res?",
@@ -7439,6 +7443,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_019",
     "courseId": "MIAE215",
     "chapter": "types",
+    "kind": "output",
     "topic": "Implicit Conversion",
     "difficulty": "Midterm Level",
     "question": "After this code, what is stored in i1?",
@@ -7532,6 +7537,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_022",
     "courseId": "MIAE215",
     "chapter": "expr",
+    "kind": "output",
     "topic": "C++ Integer Division",
     "difficulty": "Foundation",
     "question": "What is the output of the C++ expression: int result = 7 / 2;?",
@@ -7562,6 +7568,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_023",
     "courseId": "MIAE215",
     "chapter": "expr",
+    "kind": "output",
     "topic": "Mixed-Type Expressions",
     "difficulty": "Midterm Level",
     "question": "What values are stored in d1 and d2?",
@@ -7624,6 +7631,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_025",
     "courseId": "MIAE215",
     "chapter": "expr",
+    "kind": "output",
     "topic": "The % Operator",
     "difficulty": "Foundation",
     "question": "What is the value of r?",
@@ -7655,6 +7663,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_026",
     "courseId": "MIAE215",
     "chapter": "expr",
+    "kind": "output",
     "topic": "Pre-increment vs Post-increment",
     "difficulty": "Midterm Level",
     "question": "What are the values of a and b after: int a = 5; int b = a++;?",
@@ -7685,6 +7694,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_027",
     "courseId": "MIAE215",
     "chapter": "expr",
+    "kind": "output",
     "topic": "Generalized Increment Operators",
     "difficulty": "Midterm Level",
     "question": "What is the final value of x?",
@@ -7718,6 +7728,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_028",
     "courseId": "MIAE215",
     "chapter": "expr",
+    "kind": "output",
     "topic": "Operator Precedence",
     "difficulty": "Midterm Level",
     "question": "What is the value of r?",
@@ -7812,6 +7823,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_031",
     "courseId": "MIAE215",
     "chapter": "expr",
+    "kind": "output",
     "topic": "Math Library Errors",
     "difficulty": "Midterm Level",
     "question": "Why does this code NOT print 0.5?",
@@ -7909,6 +7921,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_034",
     "courseId": "MIAE215",
     "chapter": "control",
+    "kind": "output",
     "topic": "if-else Ladders",
     "difficulty": "Midterm Level",
     "question": "With i = 2, what is printed by this if-else ladder?",
@@ -7971,6 +7984,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_036",
     "courseId": "MIAE215",
     "chapter": "control",
+    "kind": "output",
     "topic": "Codeblocks & Braces",
     "difficulty": "Midterm Level",
     "question": "With i = -1, what is printed?",
@@ -8033,6 +8047,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_038",
     "courseId": "MIAE215",
     "chapter": "control",
+    "kind": "output",
     "topic": "For Loop Execution Count",
     "difficulty": "Foundation",
     "question": "How many times does the loop body execute: for (int i = 0; i < 10; i += 2)?",
@@ -8063,6 +8078,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_039",
     "courseId": "MIAE215",
     "chapter": "control",
+    "kind": "output",
     "topic": "for Loop Exit Value",
     "difficulty": "Midterm Level",
     "question": "What is printed after the loop finishes?",
@@ -8095,6 +8111,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_040",
     "courseId": "MIAE215",
     "chapter": "control",
+    "kind": "output",
     "topic": "Loops with Multiplicative Update",
     "difficulty": "Exam Master",
     "question": "How many times does the loop body execute?",
@@ -8849,6 +8866,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_069",
     "courseId": "MIAE215",
     "chapter": "types",
+    "kind": "output",
     "topic": "Integer Division Rounding",
     "difficulty": "Foundation",
     "question": "With int z; what is stored by z = 1/3; ?",
@@ -9334,6 +9352,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_085",
     "courseId": "MIAE215",
     "chapter": "expr",
+    "kind": "output",
     "topic": "Sequential Logic",
     "difficulty": "Midterm Level",
     "question": "What is printed?",
@@ -9575,6 +9594,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
     "id": "Q_MIAE215_093",
     "courseId": "MIAE215",
     "chapter": "expr",
+    "kind": "output",
     "topic": "Tracing Variables",
     "difficulty": "Exam Master",
     "question": "In C++, what is the final value of variable w after executing this code?",
@@ -13088,7 +13108,449 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
         "location": "Page 2"
       }
     ]
-  }
+  },
+  {
+    "chapter": "control",
+    "correctIndex": 0,
+    "courseId": "MIAE215",
+    "difficulty": "Foundation",
+    "explanation": {
+      "answer": "for (int i = 1; i <= 5; i++) cout << i << \" \";",
+      "commonTrap": "Mixing up < and <=, or starting at 0 out of habit when the task needs 1.",
+      "coreConcept": "A for loop runs while its condition is true. Starting at 1 with i <= 5 gives the five values 1, 2, 3, 4, 5.",
+      "reference": "control_statements1_part2.pdf · for loops and bounds",
+      "stepByStep": [
+        "Start value 1, keep going while i <= 5, add 1 each time.",
+        "Values taken: 1, 2, 3, 4, 5 — then i becomes 6 and the loop stops."
+      ],
+      "whyWrong": {
+        "1": "Starts at 0 and stops before 5: prints 0 1 2 3 4.",
+        "2": "Stops while i < 5, so 5 is never printed: prints 1 2 3 4.",
+        "3": "Runs 0 through 5 inclusive: prints 0 1 2 3 4 5 — six values."
+      }
+    },
+    "id": "Q_MIAE215_W01",
+    "kind": "write",
+    "options": [
+      "for (int i = 1; i <= 5; i++) cout << i << \" \";",
+      "for (int i = 0; i < 5; i++) cout << i << \" \";",
+      "for (int i = 1; i < 5; i++) cout << i << \" \";",
+      "for (int i = 0; i <= 5; i++) cout << i << \" \";"
+    ],
+    "question": "Which loop prints exactly: 1 2 3 4 5",
+    "topic": "for Loop Bounds"
+  },
+  {
+    "chapter": "control",
+    "correctIndex": 1,
+    "courseId": "MIAE215",
+    "difficulty": "Midterm Level",
+    "explanation": {
+      "answer": "int sum = 0; for (int i = 1; i <= 100; i++) sum += i;",
+      "commonTrap": "Forgetting to initialize the accumulator, or using = instead of +=.",
+      "coreConcept": "An accumulator must start at the identity value (0 for sums) and add each term to itself.",
+      "reference": "control_statements1_part2.pdf · accumulator pattern",
+      "stepByStep": [
+        "sum starts at 0.",
+        "Each pass adds the current i: 1, then 2, ... up to 100.",
+        "Final sum = 5050."
+      ],
+      "whyWrong": {
+        "0": "sum is never initialized — adding to garbage gives garbage.",
+        "2": "Runs i = 0..99: computes the sum of 0 to 99 (4950), missing 100.",
+        "3": "sum = i overwrites instead of accumulating — ends with just 100."
+      }
+    },
+    "id": "Q_MIAE215_W02",
+    "kind": "write",
+    "options": [
+      "int sum; for (int i = 1; i <= 100; i++) sum += i;",
+      "int sum = 0; for (int i = 1; i <= 100; i++) sum += i;",
+      "int sum = 0; for (int i = 0; i < 100; i++) sum += i;",
+      "int sum = 0; for (int i = 1; i <= 100; i++) sum = i;"
+    ],
+    "question": "Which code correctly computes the sum of the integers from 1 to 100?",
+    "topic": "Accumulator Pattern"
+  },
+  {
+    "chapter": "control",
+    "correctIndex": 0,
+    "courseId": "MIAE215",
+    "difficulty": "Foundation",
+    "explanation": {
+      "answer": "int n = 10; while (n >= 1) { cout << n << \" \"; n--; }",
+      "commonTrap": "Forgetting the update step inside a while loop, or stopping one value too early.",
+      "coreConcept": "A countdown loop starts high, keeps going while the value is still wanted, and steps down each pass.",
+      "reference": "control_statements1_part2.pdf · while loops",
+      "stepByStep": [
+        "n starts at 10; the loop runs while n >= 1.",
+        "Each pass prints n, then n-- lowers it.",
+        "Last printed value is 1; then n becomes 0 and the loop stops."
+      ],
+      "whyWrong": {
+        "1": "n never changes — infinite loop printing 10 forever.",
+        "2": "Stops when n reaches 1 without printing it: prints 10 down to 2.",
+        "3": "Counts up from 1: prints 1 2 3 ... 10 — the reverse order."
+      }
+    },
+    "id": "Q_MIAE215_W03",
+    "kind": "write",
+    "options": [
+      "int n = 10; while (n >= 1) { cout << n << \" \"; n--; }",
+      "int n = 10; while (n >= 1) { cout << n << \" \"; }",
+      "int n = 10; while (n > 1) { cout << n << \" \"; n--; }",
+      "int n = 1; while (n <= 10) { cout << n << \" \"; n++; }"
+    ],
+    "question": "Which while loop prints exactly: 10 9 8 7 6 5 4 3 2 1",
+    "topic": "while Loop Countdown"
+  },
+  {
+    "chapter": "control",
+    "correctIndex": 0,
+    "courseId": "MIAE215",
+    "difficulty": "Exam Master",
+    "explanation": {
+      "answer": "3 rows × 4 columns of stars.",
+      "commonTrap": "Putting the newline in the wrong loop, or swapping the row/column bounds.",
+      "coreConcept": "The outer loop counts rows, the inner loop prints one full row, and the newline goes after the inner loop finishes.",
+      "reference": "control_statements1_part2.pdf · nested loops",
+      "stepByStep": [
+        "Outer loop runs 3 times (3 rows).",
+        "Inner loop prints 4 stars per row.",
+        "cout << \"\\n\" after the inner loop moves to the next row."
+      ],
+      "whyWrong": {
+        "1": "The newline is inside the inner loop — every star lands on its own line (12 lines).",
+        "2": "Bounds are swapped: 4 rows of 3 stars — wrong shape.",
+        "3": "No newline at all: all 12 stars print on a single line."
+      }
+    },
+    "id": "Q_MIAE215_W04",
+    "kind": "write",
+    "options": [
+      "for (int r = 0; r < 3; r++) { for (int c = 0; c < 4; c++) cout << \"*\"; cout << \"\\n\"; }",
+      "for (int r = 0; r < 3; r++) { for (int c = 0; c < 4; c++) { cout << \"*\"; cout << \"\\n\"; } }",
+      "for (int r = 0; r < 4; r++) { for (int c = 0; c < 3; c++) cout << \"*\"; cout << \"\\n\"; }",
+      "for (int r = 0; r < 3; r++) for (int c = 0; c < 4; c++) cout << \"*\";"
+    ],
+    "question": "Which nested loops print a rectangle of stars with 3 rows and 4 columns?\n***\n***\n***",
+    "topic": "Nested Loops"
+  },
+  {
+    "chapter": "control",
+    "correctIndex": 1,
+    "courseId": "MIAE215",
+    "difficulty": "Midterm Level",
+    "explanation": {
+      "answer": "Test >= 90, then >= 80, then >= 70, chained with else-if.",
+      "commonTrap": "Testing boundaries in the wrong order, or using > when the boundary value belongs to the higher grade.",
+      "coreConcept": "A ladder must test from the highest boundary down, using else-if so exactly one branch runs.",
+      "reference": "control_statements1.pdf · if-else ladders",
+      "stepByStep": [
+        "score = 95 hits the first test (>= 90) → A, and the rest are skipped.",
+        "score = 85 fails the first, passes >= 80 → B.",
+        "score = 60 fails all three → F."
+      ],
+      "whyWrong": {
+        "0": "Tests lowest first: a 95 passes >= 70 immediately and prints C.",
+        "2": "Separate ifs are not exclusive — a 95 prints A, B and C.",
+        "3": "Uses > instead of >=: a score of exactly 90 prints B, not A."
+      }
+    },
+    "id": "Q_MIAE215_W05",
+    "kind": "write",
+    "options": [
+      "if (score >= 70) cout << \"C\"; else if (score >= 80) cout << \"B\"; else if (score >= 90) cout << \"A\"; else cout << \"F\";",
+      "if (score >= 90) cout << \"A\"; else if (score >= 80) cout << \"B\"; else if (score >= 70) cout << \"C\"; else cout << \"F\";",
+      "if (score >= 90) cout << \"A\"; if (score >= 80) cout << \"B\"; if (score >= 70) cout << \"C\"; else cout << \"F\";",
+      "if (score > 90) cout << \"A\"; else if (score > 80) cout << \"B\"; else if (score > 70) cout << \"C\"; else cout << \"F\";"
+    ],
+    "question": "Which code correctly prints the letter grade for score (90+: A, 80+: B, 70+: C, otherwise F)?",
+    "topic": "if-else Ladder"
+  },
+  {
+    "chapter": "control",
+    "correctIndex": 1,
+    "courseId": "MIAE215",
+    "difficulty": "Midterm Level",
+    "explanation": {
+      "answer": "int m = a; if (b > m) m = b; if (c > m) m = c;",
+      "commonTrap": "Comparing against a fixed variable instead of the running maximum, or seeding with 0.",
+      "coreConcept": "Track the running maximum: start with one value, replace it whenever a larger one appears.",
+      "reference": "control_statements1.pdf · if statements",
+      "stepByStep": [
+        "m starts as a.",
+        "If b beats the current m, m becomes b.",
+        "If c beats the current m, m becomes c — m is always the biggest seen so far."
+      ],
+      "whyWrong": {
+        "0": "Compares against the original a, not the running m: with a=1, b=5, c=3, c > a sets m = 3, losing b = 5.",
+        "2": "The second if/else overwrites blindly: with a=9, b=1, c=2, m ends as 2.",
+        "3": "Starting m at 0 fails for all-negative inputs, e.g. a=-5, b=-2, c=-8 gives m = 0."
+      }
+    },
+    "id": "Q_MIAE215_W06",
+    "kind": "write",
+    "options": [
+      "int m = a; if (b > a) m = b; if (c > a) m = c;",
+      "int m = a; if (b > m) m = b; if (c > m) m = c;",
+      "int m; if (a > b && a > c) m = a; if (b > c) m = b; else m = c;",
+      "int m = 0; if (a > m) m = a; if (b > m) m = b; if (c > m) m = c;"
+    ],
+    "question": "Which code correctly stores the largest of a, b, c in m?",
+    "topic": "Maximum of Three"
+  },
+  {
+    "chapter": "control",
+    "correctIndex": 2,
+    "courseId": "MIAE215",
+    "difficulty": "Foundation",
+    "explanation": {
+      "answer": "for (int i = 0; i < 10; i++) — 10 trips.",
+      "commonTrap": "Off-by-one on the boundary, or forgetting the step size changes the count.",
+      "coreConcept": "Trip count = how many integers satisfy start <= i < stop with the given step.",
+      "reference": "control_statements1_part2.pdf · for loop trip counts",
+      "stepByStep": [
+        "i = 0, 1, ..., 9 with i < 10: ten values.",
+        "Each value runs the body once."
+      ],
+      "whyWrong": {
+        "0": "i <= 10 includes 10: eleven trips (0..10).",
+        "1": "i = 1..8: nine trips.",
+        "3": "Steps of 2 through 0,2,4,6,8: five trips."
+      }
+    },
+    "id": "Q_MIAE215_W07",
+    "kind": "write",
+    "options": [
+      "for (int i = 0; i <= 10; i++)",
+      "for (int i = 1; i < 10; i++)",
+      "for (int i = 0; i < 10; i++)",
+      "for (int i = 0; i <= 9; i += 2)"
+    ],
+    "question": "Which loop body executes exactly 10 times?",
+    "topic": "Loop Trip Count"
+  },
+  {
+    "chapter": "expr",
+    "correctIndex": 1,
+    "courseId": "MIAE215",
+    "difficulty": "Midterm Level",
+    "explanation": {
+      "answer": "double res = static_cast<double>(a) / b; // 3.5",
+      "commonTrap": "Casting the result of an integer division instead of casting before dividing.",
+      "coreConcept": "The division is performed in the type of its operands. Cast one operand BEFORE dividing to get floating-point division.",
+      "reference": "expressions.pdf · mixed-type arithmetic and casts",
+      "stepByStep": [
+        "static_cast<double>(a) / b → 7.0 / 2 → 3.5.",
+        "Assignment into double keeps 3.5."
+      ],
+      "whyWrong": {
+        "0": "a / b is int division = 3, then stored as 3.0 — the cast-by-assignment comes too late.",
+        "2": "The cast applies after a / b already truncated to 3: stores 3.0.",
+        "3": "int res cannot hold 3.5 at all; stores 3."
+      }
+    },
+    "id": "Q_MIAE215_W08",
+    "kind": "write",
+    "options": [
+      "double res = a / b;",
+      "double res = static_cast<double>(a) / b;",
+      "double res = (double)(a / b);",
+      "int res = a / b;"
+    ],
+    "question": "With int a = 7, b = 2; which statement stores 3.5 in the double res?",
+    "topic": "Mixed-Type Division"
+  },
+  {
+    "chapter": "expr",
+    "correctIndex": 2,
+    "courseId": "MIAE215",
+    "difficulty": "Foundation",
+    "explanation": {
+      "answer": "n % 10",
+      "commonTrap": "Reaching for division when the remainder operator is the digit tool.",
+      "coreConcept": "n % 10 is the remainder after dividing by 10 — exactly the ones digit.",
+      "reference": "expressions.pdf · the % operator",
+      "stepByStep": [
+        "473 / 10 = 47 remainder 3.",
+        "The remainder 3 is the last digit."
+      ],
+      "whyWrong": {
+        "0": "Integer division drops the last digit: 473 → 47.",
+        "1": "Gives the last TWO digits: 473 → 73.",
+        "3": "Drops the last two digits: 473 → 4."
+      }
+    },
+    "id": "Q_MIAE215_W09",
+    "kind": "write",
+    "options": [
+      "n / 10",
+      "n % 100",
+      "n % 10",
+      "n / 100"
+    ],
+    "question": "Which expression gives the last digit of a positive int n (e.g. 473 → 3)?",
+    "topic": "Modulo for Digits"
+  },
+  {
+    "chapter": "types",
+    "correctIndex": 2,
+    "courseId": "MIAE215",
+    "difficulty": "Exam Master",
+    "explanation": {
+      "answer": "long long x = 100000LL * 100000;",
+      "commonTrap": "Widening the destination without widening the computation.",
+      "coreConcept": "The multiplication happens in int BEFORE the assignment. 10^10 overflows 32-bit int, so at least one operand must be long long first.",
+      "reference": "types.pdf · integer ranges and overflow",
+      "stepByStep": [
+        "100000 * 100000 as ints overflows (max ~2.1e9 < 1e10) — garbage.",
+        "100000LL * 100000 promotes the whole product to long long: 10000000000.",
+        "Assignment into long long x keeps it exactly."
+      ],
+      "whyWrong": {
+        "0": "int cannot hold 1e10 — overflow, undefined result.",
+        "1": "The product still overflows as int before being widened into x.",
+        "3": "Same int overflow happens first; double also cannot represent it exactly."
+      }
+    },
+    "id": "Q_MIAE215_W10",
+    "kind": "write",
+    "options": [
+      "int x = 100000 * 100000;",
+      "long long x = 100000 * 100000;",
+      "long long x = 100000LL * 100000;",
+      "double x = 100000 * 100000;"
+    ],
+    "question": "Which declaration correctly stores the value of 100000 * 100000?",
+    "topic": "Overflow-Aware Declaration"
+  },
+  {
+    "chapter": "control",
+    "correctIndex": 1,
+    "courseId": "MIAE215",
+    "difficulty": "Midterm Level",
+    "explanation": {
+      "answer": "for (int i = 2; i <= 20; i += 2) cout << i << \" \";",
+      "commonTrap": "Starting the step at 0, or cutting the endpoint with <.",
+      "coreConcept": "Step the loop by 2 from the first wanted value, and include the endpoint with <=.",
+      "reference": "control_statements1_part2.pdf · stepped for loops",
+      "stepByStep": [
+        "i takes 2, 4, 6, ..., 20.",
+        "i <= 20 keeps 20 in; i += 2 skips the odds."
+      ],
+      "whyWrong": {
+        "0": "i < 20 drops the final 20.",
+        "2": "Starts at 0 — prints 0 too.",
+        "3": "The filter is inverted (== 1 keeps odds) — prints 3 5 ... 19."
+      }
+    },
+    "id": "Q_MIAE215_W11",
+    "kind": "write",
+    "options": [
+      "for (int i = 2; i < 20; i += 2) cout << i << \" \";",
+      "for (int i = 2; i <= 20; i += 2) cout << i << \" \";",
+      "for (int i = 0; i <= 20; i += 2) cout << i << \" \";",
+      "for (int i = 2; i <= 20; i++) if (i % 2 == 1) cout << i << \" \";"
+    ],
+    "question": "Which loop prints exactly the even numbers from 2 to 20?",
+    "topic": "Stepped Loop"
+  },
+  {
+    "chapter": "control",
+    "correctIndex": 1,
+    "courseId": "MIAE215",
+    "difficulty": "Exam Master",
+    "explanation": {
+      "answer": "int f = 1; for (int i = 2; i <= n; i++) f *= i;",
+      "commonTrap": "Initializing a product accumulator to 0, or using += out of habit.",
+      "coreConcept": "A product accumulator starts at 1 (the multiplicative identity) and multiplies each factor in.",
+      "reference": "control_statements1_part2.pdf · product accumulators",
+      "stepByStep": [
+        "f starts at 1.",
+        "Each pass multiplies by the next i: 2, 3, ..., n.",
+        "Result: 1·2·3·...·n = n!."
+      ],
+      "whyWrong": {
+        "0": "Starting at 0 poisons the product — everything times 0 is 0.",
+        "2": "+= accumulates a sum, not a product.",
+        "3": "i < n stops one factor early: computes (n-1)!."
+      }
+    },
+    "id": "Q_MIAE215_W12",
+    "kind": "write",
+    "options": [
+      "int f = 0; for (int i = 1; i <= n; i++) f *= i;",
+      "int f = 1; for (int i = 2; i <= n; i++) f *= i;",
+      "int f = 1; for (int i = 1; i <= n; i++) f += i;",
+      "int f = 1; for (int i = 1; i < n; i++) f *= i;"
+    ],
+    "question": "Which code correctly computes n! (n factorial) for n >= 1?",
+    "topic": "Factorial Accumulator"
+  },
+  {
+    "chapter": "control",
+    "correctIndex": 2,
+    "courseId": "MIAE215",
+    "difficulty": "Midterm Level",
+    "explanation": {
+      "answer": "int c = 0; for (int i = 1; i <= 50; i++) if (i % 7 == 0) c++;",
+      "commonTrap": "Testing i % 7 as a boolean (true for non-multiples) instead of comparing to 0.",
+      "coreConcept": "Count with a conditional increment: test each candidate, bump the counter only on a match.",
+      "reference": "control_statements1_part2.pdf · counting with conditions",
+      "stepByStep": [
+        "i runs 1..50.",
+        "i % 7 == 0 is true for 7, 14, 21, 28, 35, 42, 49 — seven values.",
+        "c ends at 7."
+      ],
+      "whyWrong": {
+        "0": "c++ runs unconditionally (and i is out of scope in the if) — counts 50.",
+        "1": "i % 7 is nonzero for NON-multiples — counts 43 instead of 7.",
+        "3": "i < 50 skips 50 itself (not a multiple of 7 anyway, but the range is wrong)."
+      }
+    },
+    "id": "Q_MIAE215_W13",
+    "kind": "write",
+    "options": [
+      "int c = 0; for (int i = 1; i <= 50; i++) c++; if (i % 7 == 0) {}",
+      "int c = 0; for (int i = 1; i <= 50; i++) if (i % 7) c++;",
+      "int c = 0; for (int i = 1; i <= 50; i++) if (i % 7 == 0) c++;",
+      "int c = 0; for (int i = 1; i < 50; i++) if (i % 7 == 0) c++;"
+    ],
+    "question": "Which code correctly counts how many integers from 1 to 50 are divisible by 7?",
+    "topic": "Conditional Counting"
+  },
+  {
+    "chapter": "expr",
+    "correctIndex": 2,
+    "courseId": "MIAE215",
+    "difficulty": "Midterm Level",
+    "explanation": {
+      "answer": "double c = (f - 32) * 5.0 / 9.0;",
+      "commonTrap": "Writing textbook fractions like 5/9 directly in C++ — int division silently zeroes them.",
+      "coreConcept": "In C++ the formula's 5/9 must be computed in floating point — int 5/9 is 0 and wipes out the whole result.",
+      "reference": "expressions.pdf · translating math formulas to C++",
+      "stepByStep": [
+        "(f - 32) * 5.0 / 9.0: the 5.0 forces double arithmetic left to right.",
+        "For f = 212: 180 * 5.0 / 9.0 = 100.0."
+      ],
+      "whyWrong": {
+        "0": "(f - 32) * 5 / 9: if f is int, 5/9 does int division → 0, so c = 0.",
+        "1": "5 / 9 is evaluated first as int division = 0, then multiplied — always 0.",
+        "3": "The math is right but int c truncates the decimal part."
+      }
+    },
+    "id": "Q_MIAE215_W14",
+    "kind": "write",
+    "options": [
+      "double c = (f - 32) * 5 / 9;",
+      "double c = 5 / 9 * (f - 32);",
+      "double c = (f - 32) * 5.0 / 9.0;",
+      "int c = (f - 32) * 5.0 / 9.0;"
+    ],
+    "question": "Which statement correctly converts Fahrenheit f to Celsius as a double (C = (F − 32) × 5/9)?",
+    "topic": "Formula Translation"
+  },
 ];
 
 export const PRACTICE_QUESTIONS: PracticeQuestion[] = [

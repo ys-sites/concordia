@@ -60,6 +60,10 @@ export interface PracticeQuestion {
   id: string;
   courseId: CourseId;
   chapter: string; // section id from QUIZ_PLANS (e.g. 'ch1', 'types'); 'mixed' = midterm-only
+  // Exam-format kind, where known: 'output' = trace given code to its result,
+  // 'write' = choose/produce the correct code, 'concept' = facts & definitions.
+  // Used to shape drill mixes to a teacher's stated format (e.g. MIAE 215: 40/60).
+  kind?: 'output' | 'write' | 'concept';
   source?: QuestionSource[];
   // Past-paper origin when the question is modelled on a previous year's quiz / midterm / final
   pastPaper?: string;
