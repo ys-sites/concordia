@@ -137,6 +137,7 @@ const RAW_FILTERED_RELATIVE_PATHS: string[] = [
   "Engr 213/_Source & Archive/temp_quiz1_prep.pdf",
   "Indu 211/00 - Textbook Chapters/Textbook Chapter 17 - Project Management.pdf",
   "Indu 211/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Part 9 - Chapter 17 - Project Management, CPM & PERT Master Guide.pdf",
+  "Indu 211/04 - Worked Problems & Quantitative Analysis/INDU 211 - Factorial Complexity, TSP Routing & Combinatorial Heuristics Master Guide.pdf",
   "Indu 211/04 - Worked Problems & Quantitative Analysis/INDU 211 - Final Exam Quantitative Problem Guide (LP Modeling, Queuing, SPC & PERT).pdf",
   "Indu 211/04 - Worked Problems & Quantitative Analysis/INDU 211 - Midterm Quantitative Problem Guide (Forecasting & Warehouse TSP Heuristics).pdf",
   "Indu 211/05 - Assignments & Solutions/Assignment 1/Assignment 1 - Solutions.pdf",
@@ -2052,6 +2053,19 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
       },
             {
+        id: "INDU211:filtered:91",
+        courseId: 'INDU211',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Assessment Vault',
+        title: "INDU 211 - Factorial Complexity, TSP Routing & Combinatorial Heuristics Master Guide",
+        filename: "INDU 211 - Factorial Complexity, TSP Routing & Combinatorial Heuristics Master Guide.pdf",
+        relativePath: "Indu 211/04 - Worked Problems & Quantitative Analysis/INDU 211 - Factorial Complexity, TSP Routing & Combinatorial Heuristics Master Guide.pdf",
+        fileSizeBytes: 479986,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Factorial Complexity", "TSP Routing", "Heuristics", "Midterm Prep"]
+      },
+      {
         id: "INDU211:filtered:4",
         courseId: 'INDU211',
         categoryId: 'Filtered-Vault',
@@ -2652,6 +2666,19 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         tags: ["Quizzes 1–4", "Test 1 V2", "Test 2", "14 Solved Questions", "Official Winter 2025"]
       },
             {
+        id: "INDU211:filtered:91",
+        courseId: 'INDU211',
+        categoryId: 'Filtered-Midterm-Prep',
+        categoryTitle: 'Midterm Preparation',
+        title: "INDU 211 - Factorial Complexity, TSP Routing & Combinatorial Heuristics Master Guide",
+        filename: "INDU 211 - Factorial Complexity, TSP Routing & Combinatorial Heuristics Master Guide.pdf",
+        relativePath: "Indu 211/04 - Worked Problems & Quantitative Analysis/INDU 211 - Factorial Complexity, TSP Routing & Combinatorial Heuristics Master Guide.pdf",
+        fileSizeBytes: 479986,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["Factorial Complexity", "TSP Routing", "Heuristics", "Midterm Prep"]
+      },
+      {
         id: "INDU211:filtered:4",
         courseId: 'INDU211',
         categoryId: 'Filtered-Midterm-Prep',

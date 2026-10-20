@@ -44,6 +44,7 @@ import {
 // Password-protected sections carry the large protected-document list: load them only when opened
 const FilteredDocumentSection = lazy(() => import('./FilteredDocumentSection').then((m) => ({ default: m.FilteredDocumentSection })));
 const TermPaperVaultSection = lazy(() => import('./TermPaperVaultSection').then((m) => ({ default: m.TermPaperVaultSection })));
+const TspFactorialSimulator = lazy(() => import('./TspFactorialSimulator').then((m) => ({ default: m.TspFactorialSimulator })));
 import { GateGlyph } from './vault/GateGlyph';
 import { hasGate, hasPaperDrill } from './vault/gateCourses';
 import { WeeklyPath, WEEKLY_FOLDER, hasWeeklyPath } from './WeeklyPath';
@@ -478,6 +479,23 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 <ChevronRight size={18} className="fx-folder-chevron" />
               </button>
             )}
+            {course.id === 'INDU211' && (
+              <button
+                key="tsp-simulator-lab"
+                className="fx-folder-tile"
+                onClick={() => openPath(['Factorial & TSP Routing Lab'])}
+              >
+                <span className="fx-folder-icon" style={{ color: '#d97706', backgroundColor: 'rgba(245, 158, 11, 0.12)' }}>
+                  <Compass size={22} />
+                </span>
+                <span className="fx-folder-text">
+                  <span className="fx-folder-index">06</span>
+                  <span className="fx-folder-name">Factorial & TSP Routing Lab</span>
+                  <span className="fx-folder-meta">Interactive Route Simulator & Exam Trainer</span>
+                </span>
+                <ChevronRight size={18} className="fx-folder-chevron" />
+              </button>
+            )}
             <button
               key="filtered-document"
               className="fx-folder-tile"
@@ -517,6 +535,10 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
         </Suspense>
       ) : activePath[0] === WEEKLY_FOLDER && hasWeeklyPath(course.id) ? (
         <WeeklyPath course={course} onViewPdf={onViewPdf} />
+      ) : activePath[0] === 'Factorial & TSP Routing Lab' ? (
+        <Suspense fallback={<p className="fx-empty">Opening Simulator…</p>}>
+          <TspFactorialSimulator onBack={() => openPath([])} />
+        </Suspense>
       ) : activePath[0] === 'Term Paper & Final Project' ? (
         <Suspense fallback={<p className="fx-empty">Opening…</p>}>
           <TermPaperVaultSection course={course} onViewPdf={onViewPdf} />
@@ -545,6 +567,53 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             </div>
             <span className="fx-panel-meta">{folderMeta(current)}</span>
           </header>
+
+          {course.id === 'INDU211' && /worked problems/i.test(current.name) && (
+            <div
+              style={{
+                margin: '12px 16px 8px',
+                padding: '14px 18px',
+                borderRadius: '8px',
+                background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.05))',
+                border: '1px solid rgba(245, 158, 11, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '12px'
+              }}
+            >
+              <div>
+                <div style={{ fontWeight: 700, color: '#b45309', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px' }}>
+                  <Compass size={18} />
+                  <span>Interactive Factorial Complexity & TSP Route Simulator</span>
+                </div>
+                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary, #4b5563)', marginTop: '3px' }}>
+                  Simulate Nearest Neighbor routing on the Fall 2025 and 2020 Midterms, test (n-1)! combinatorial explosion, and drill T/F/MTF exam traps.
+                </div>
+              </div>
+              <button
+                type="button"
+                className="fx-primary-btn"
+                style={{
+                  background: '#f59e0b',
+                  color: '#ffffff',
+                  border: 'none',
+                  padding: '7px 14px',
+                  borderRadius: '6px',
+                  fontWeight: 600,
+                  fontSize: '12.5px',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+                onClick={() => openPath(['Factorial & TSP Routing Lab'])}
+              >
+                Launch Simulator &rarr;
+              </button>
+            </div>
+          )}
 
           {/youtube|tutorial/i.test(current.name) && (
             <div

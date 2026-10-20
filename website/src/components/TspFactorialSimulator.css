@@ -1,0 +1,416 @@
+/* Factorial Complexity & TSP Route Simulator Stylesheet */
+.tsp-sim-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.tsp-sim-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tsp-sim-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tsp-sim-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.tsp-sim-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+}
+
+.tsp-sim-subtitle {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.tsp-nav-tabs {
+  display: flex;
+  gap: 8px;
+  background: var(--bg-subtle, #f3f4f6);
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.tsp-nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary, #4b5563);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tsp-nav-tab.active {
+  background: var(--bg-surface, #ffffff);
+  color: #d97706;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Preset Picker & Controls */
+.tsp-controls-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-subtle, #f9fafb);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.tsp-preset-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tsp-preset-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #d1d5db);
+  background: var(--bg-surface, #ffffff);
+  color: var(--text-primary, #374151);
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tsp-preset-btn.active {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #b45309;
+}
+
+.tsp-config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.tsp-input-field label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary, #4b5563);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tsp-select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #d1d5db);
+  background: var(--bg-surface, #ffffff);
+  color: var(--text-primary, #111827);
+  font-size: 0.875rem;
+}
+
+/* Matrix Table View */
+.tsp-matrix-box {
+  overflow-x: auto;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  background: var(--bg-surface, #ffffff);
+}
+
+.tsp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.tsp-table th,
+.tsp-table td {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.tsp-table th {
+  background: var(--bg-subtle, #f3f4f6);
+  font-weight: 700;
+  color: var(--text-primary, #374151);
+}
+
+.tsp-table th.origin-col {
+  background: #fffbeb;
+  color: #b45309;
+  font-weight: 700;
+}
+
+.tsp-table td.cell-active-row {
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.tsp-table td.cell-selected {
+  background: #f59e0b !important;
+  color: #ffffff !important;
+  font-weight: 800;
+  box-shadow: inset 0 0 0 2px #b45309;
+}
+
+.tsp-table td.cell-diagonal {
+  background: var(--bg-subtle, #f9fafb);
+  color: var(--text-muted, #9ca3af);
+}
+
+/* Tour Results Box */
+.tsp-results-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg-surface, #ffffff);
+  border: 2px solid #f59e0b;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.tsp-tour-path-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #b45309;
+  flex-wrap: wrap;
+}
+
+.tsp-node-pill {
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+
+.tsp-step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.tsp-step-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: var(--bg-subtle, #f9fafb);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--text-primary, #374151);
+}
+
+.tsp-step-item b {
+  color: #b45309;
+}
+
+.tsp-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.tsp-stat-chip {
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--bg-subtle, #f3f4f6);
+  border: 1px solid var(--border-color, #e5e7eb);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tsp-stat-chip.optimum {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.tsp-stat-chip.optimum .tsp-stat-val {
+  color: #059669;
+}
+
+.tsp-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #6b7280);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tsp-stat-val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary, #111827);
+}
+
+/* Factorial Lab Tab */
+.factorial-lab-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-subtle, #f9fafb);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.factorial-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.factorial-slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+}
+
+.factorial-slider {
+  width: 100%;
+  accent-color: #f59e0b;
+}
+
+.factorial-calc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.factorial-metric-card {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.factorial-metric-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary, #6b7280);
+  text-transform: uppercase;
+}
+
+.factorial-metric-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #d97706;
+  word-break: break-all;
+}
+
+.factorial-metric-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted, #9ca3af);
+}
+
+/* Quiz Tab */
+.tsp-quiz-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tsp-quiz-item {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tsp-quiz-q {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary, #111827);
+  line-height: 1.5;
+}
+
+.tsp-quiz-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tsp-quiz-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #d1d5db);
+  background: var(--bg-subtle, #f9fafb);
+  color: var(--text-primary, #374151);
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tsp-quiz-btn:hover {
+  background: #fef3c7;
+  border-color: #f59e0b;
+}
+
+.tsp-quiz-btn.selected-correct {
+  background: #ecfdf5;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+.tsp-quiz-btn.selected-wrong {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #991b1b;
+}
+
+.tsp-quiz-explanation {
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: #1e3a8a;
+  line-height: 1.5;
+}

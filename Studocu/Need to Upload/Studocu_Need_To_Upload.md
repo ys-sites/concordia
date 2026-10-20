@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 90
+### Currently Pending Uploads: 91
 
 ---
 
@@ -996,5 +996,15 @@
 * **Title**: INDU 211 - Assignment 2 Complete Step-by-Step Solutions Guide
 * **Academic year**: `2025/2026`
 * **Description**: Complete master solution manual and pedagogical guide for INDU 211 Assignment 2 (Facility Location, Transportation Problems & Routing Heuristics). Includes rigorous analysis of the 10-part Transportation Model conceptual true/false questions, lowest-cost-first balanced distribution allocation from wholesale centers to retail stores, linear programming formulation and transportation tableau solving for plant fork truck relocation, and formal TSP formulation with nearest-neighbor and next-nearest-neighbor heuristic routing for warehouse fork truck logistics with optimality proofs and combinatorial search space evaluations.
+
+---
+## 91. `INDU 211 - Factorial Complexity, TSP Routing & Combinatorial Heuristics Master Guide.pdf`
+
+* **University**: Concordia University
+* **Course**: `Introduction to Production and Manufacturing Systems (INDU 211)`
+* **Category**: `Practice materials`
+* **Title**: INDU 211 - Factorial Complexity, TSP Routing & Combinatorial Heuristics Master Guide
+* **Academic year**: `2025/2026`
+* **Description**: Comprehensive quantitative master guide for INDU 211 covering factorial complexity (n! and (n-1)!), the curse of dimensionality in combinatorial operations research, asymmetric distance matrix navigation rules, and heuristic tour construction. Integrates Chapter 5 teacher lecture notes (Slides 12–22), the Clark-Wright savings method, the Fall 2020 Midterm warehouse forklift problem (5! = 120 and 20! = 2.43e18 permutations), and the Fall 2025 Midterm Paper A AGV routing problem with full line-by-line mathematical proofs for T/F/MTF optimality diagnostics, multi-start nearest neighbor limits, and the global optimum verification.
 
 ---
