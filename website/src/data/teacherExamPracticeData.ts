@@ -283,9 +283,9 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         relativePath: 'Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Past Midterm Examinations Solved Master Guide (2011-2018).pdf',
         instructor: 'Dr. Paradis & BCEE Faculty',
         termYear: 'Midterms 2011–2018',
-        badge: 'Official Sample Midterm',
+        badge: 'Exam Bank',
         fileType: 'pdf',
-        description: 'Comprehensive line-by-line solutions to 15 official Concordia ENGR 213 midterm examination problems, covering Separable IVPs, Bernoulli ODEs, Exact equations, Wronskian independence, Resonant undetermined coefficients, and Cauchy-Euler.',
+        description: 'Comprehensive line-by-line solutions to 15 unofficial student-collected Concordia ENGR 213 midterm examination problems, covering Separable IVPs, Bernoulli ODEs, Exact equations, Wronskian independence, Resonant undetermined coefficients, and Cauchy-Euler.',
         keyTopics: ['Separable IVP', 'Bernoulli ODE', 'Exact Differential Equations', 'Resonance', 'Wronskian Test', 'Cauchy-Euler']
       },
       {
@@ -305,11 +305,11 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         title: 'Gradesaver Master Solving System & Exam Blueprint (Tutor Edition)',
         filename: 'ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf',
         relativePath: 'Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf',
-        instructor: 'ENGR 213 Exam Coordinator',
+        instructor: 'ENGR 213 Tutor Hub',
         termYear: 'Fall 2026 / Winter 2025',
-        badge: 'Official Sample Midterm',
+        badge: 'Review Pack',
         fileType: 'pdf',
-        description: 'The 5-phase universal solution protocol, 4-gate ODE diagnostic classifier, tutor heuristics, and solved exam exemplar questions.',
+        description: 'The 5-phase universal solution protocol, 4-gate ODE diagnostic classifier, tutor heuristics, and solved student exam exemplar questions.',
         keyTopics: ['5-Phase Protocol', '4-Gate Classifier', 'Equilibrium Singular Solutions', 'Integrating Factor Normalization']
       },
       {
