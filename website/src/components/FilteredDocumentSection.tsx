@@ -496,7 +496,7 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
           <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
               Comprehensive preparation compendium and official solved examination bank.
-              Covers <strong>Lectures 1–5</strong>, <strong>Tutorials 1 & 3</strong>, <strong>Homework Sets 1–3</strong>, and the complete <strong>Midterm 1 Examination Syllabus: Chapter 2 + CH 17.1 & CH 17.2</strong>.
+              Covers <strong>Lectures 1–6</strong>, <strong>Tutorials 1 & 3</strong>, <strong>Homework Sets 1–3</strong>, and the complete <strong>Midterm 1 Examination Syllabus: Chapter 2 + CH 17.1 & CH 17.2</strong>.
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>

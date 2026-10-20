@@ -372,11 +372,11 @@ const METHOD_ARCHETYPES: MethodArchetype[] = [
   },
   {
     id: 'second_order',
-    name: '8. 2nd-Order Homogeneous Linear (Constant Coeffs)',
+    name: '8. 2nd-Order Auxiliary Equations & Constant Coeffs (Sec 17.2)',
     standardForm: 'a y\'\' + b y\' + c y = 0',
     formulaDisplay: 'a r^2 + b r + c = 0 \\implies r = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
     difficulty: 'easy',
-    diffLabel: 'High Frequency (Midterm 2)',
+    diffLabel: 'High Frequency (Sec 17.2 Scope)',
     visualCue: 'Second derivative y\'\' with constant coefficients a, b, c and 0 on the right-hand side.',
     fastestMove: 'Write characteristic equation a r² + b r + c = 0. Solve for roots r. Check the discriminant Δ = b² - 4ac.',
     easiestVariant: 'Real distinct roots: r = 2, -3 ⟹ y = C₁ e^{2x} + C₂ e^{-3x}.',
@@ -410,8 +410,50 @@ const METHOD_ARCHETYPES: MethodArchetype[] = [
     },
     friendTip: 'If solving an IVP with y(0) and y\'(0), evaluate y(0) first to get C₁, then differentiate y(x) using product rule before plugging in y\'(0).',
     trapAlert: 'In complex roots α ± iβ, the exponential power is α, NOT β. The β goes inside cos(βx) and sin(βx).'
-  }
-];
+  },
+  {
+    id: 'complex_numbers',
+    name: '9. Complex Numbers, Polar Form & Euler’s Identity (Sec 17.1)',
+    standardForm: 'z = a + bi = r e^{i\\theta} = r(\\cos\\theta + i\\sin\\theta)',
+    formulaDisplay: 'r = |z| = \\sqrt{a^2 + b^2}, \\quad \\theta = \\text{Arg}(z) \\in (-\\pi, \\pi], \\quad e^{i\\theta} = \\cos\\theta + i\\sin\\theta, \\quad z^n = r^n e^{in\\theta}',
+    difficulty: 'easy',
+    diffLabel: 'Foundational (Sec 17.1 Scope)',
+    visualCue: 'Complex numbers in Cartesian rectangular a + bi or polar exponential r e^{iθ}, modulus |z|, principal argument Arg(z), powers zⁿ via De Moivre, or complex roots in auxiliary equations.',
+    fastestMove: 'Convert Cartesian (a, b) to polar radius r = √(a² + b²) and angle θ = atan2(b, a). When computing powers zⁿ, use De Moivre’s theorem (r e^{iθ})ⁿ = rⁿ e^{inθ}.',
+    easiestVariant: 'Modulus and argument of z = 1 + i: r = √2, θ = π/4 ⟹ z = √2 e^{iπ/4}.',
+    hardestTrapVariant: 'Failing to check the quadrant: if z = -1 + i√3 (Quadrant 2), writing arctan(√3 / -1) = -π/3 gives a Quadrant 4 angle (WRONG!). True principal argument is π - π/3 = 2π/3.',
+    recipeSteps: [
+      { title: 'Step 1: Calculate Modulus', desc: 'r = |z| = √(a² + b²). Modulus is always non-negative.' },
+      { title: 'Step 2: Determine Quadrant & Argument', desc: 'Compute reference angle θ₀ = arctan(|b/a|). Check signs: Q1 (θ = θ₀), Q2 (θ = π - θ₀), Q3 (θ = -π + θ₀), Q4 (θ = -θ₀).' },
+      { title: 'Step 3: Euler’s Exponential Form', desc: 'Express z = r e^{iθ} = r(cos θ + i sin θ).' },
+      { title: 'Step 4: De Moivre’s Theorem for Powers', desc: 'zⁿ = rⁿ e^{inθ} = rⁿ(cos(nθ) + i sin(nθ)). Reduce angle modulo 2π.' }
+    ],
+    workedExample: {
+      problem: 'Express $z = -2 + 2i\\sqrt{3}$ in polar exponential form $r e^{i\\theta}$, and evaluate $z^4$ in standard rectangular form $a + bi$.',
+      solution: [
+        'Calculate modulus: $r = \\sqrt{(-2)^2 + (2\\sqrt{3})^2} = \\sqrt{4 + 12} = \\sqrt{16} = 4$',
+        'Determine quadrant: $a = -2 < 0, b = 2\\sqrt{3} > 0 \\implies z$ lies in Quadrant 2',
+        'Reference angle: $\\theta_0 = \\arctan\\left(\\frac{2\\sqrt{3}}{2}\\right) = \\arctan(\\sqrt{3}) = \\frac{\\pi}{3} \\implies \\theta = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$',
+        'Polar exponential form: $z = 4 e^{i\\frac{2\\pi}{3}}$',
+        'Apply De Moivre: $z^4 = 4^4 e^{i 4(2\\pi/3)} = 256 e^{i\\frac{8\\pi}{3}} = 256 e^{i\\left(2\\pi + \\frac{2\\pi}{3}\\right)} = 256 e^{i\\frac{2\\pi}{3}}$',
+        'Convert to rectangular form: $256\\left(\\cos\\frac{2\\pi}{3} + i\\sin\\frac{2\\pi}{3}\\right) = 256\\left(-\\frac{1}{2} + i\\frac{\\sqrt{3}}{2}\\right) = -128 + 128i\\sqrt{3}$'
+      ]
+    },
+    videoReview: {
+      title: 'Complex Numbers - Polar Form, Modulus, Argument & Euler’s Identity',
+      channel: 'The Organic Chemistry Tutor',
+      duration: '12 mins',
+      youtubeId: 'bOC9w-aW2jQ',
+      url: 'https://www.youtube.com/watch?v=bOC9w-aW2jQ',
+      keyTakeaways: [
+        'Converting Cartesian a + bi to polar form r(cos θ + i sin θ) and exponential r e^{iθ}.',
+        'Determining the principal argument Arg(z) in (-π, π] with careful quadrant checks.',
+        'Applying De Moivre’s theorem to evaluate high powers and roots in seconds.'
+      ]
+    },
+    friendTip: 'Always sketch a quick 5-second Cartesian axis to place the point before writing down θ. Never trust raw arctan(b/a) on a calculator without checking your quadrant!',
+    trapAlert: 'In De Moivre’s theorem (r e^{iθ})ⁿ, students often forget to raise r to the power n! It is rⁿ e^{inθ}, NOT r e^{inθ}.'
+  }];
 
 // ----------------------------------------------------
 // 2. DATA: Calculus Survival Vault (Zero Formula Sheet)
@@ -464,7 +506,7 @@ const CALCULUS_VAULT: FormulaItem[] = [
     name: 'Secant Antiderivative',
     latex: '\\int \\sec(x)dx = \\ln|\\sec(x) + \\tan(x)| + C',
     difficulty: 'hard',
-    whyItMatters: 'Required for Variation of Parameters in y\'\' + y = sec(x). You cannot deduce this on the fly under exam pressure; memorize it!'
+    whyItMatters: 'Crucial for First-Order Linear integrating factors: y\' + sec(x)y = f(x) where μ(x) = exp(∫ sec x dx) = |sec x + tan x|. You cannot deduce this on the fly under exam pressure; memorize it!'
   },
   {
     id: 'f6',
@@ -488,7 +530,7 @@ const CALCULUS_VAULT: FormulaItem[] = [
     name: 'Tabular Integration by Parts (DI Method)',
     latex: '\\int u \\, v\' \\, dx = u v - \\int u\' v \\, dx',
     difficulty: 'med',
-    whyItMatters: 'Used in nonhomogeneous 2nd-order ODEs and integrating factors when Q(x) is x² e^{3x} or x sin(2x). Do not set up multiple lines of u and dv; use the 2-column D and I ladder!'
+    whyItMatters: 'Used in first-order integrating factors when evaluating ∫ μ(x) Q(x) dx with polynomial × exponential/trig functions (e.g. ∫ x² e^{3x} dx or ∫ x sin(2x) dx). Use the 2-column D and I ladder to integrate in 20 seconds!'
   },
   {
     id: 'f9',
@@ -497,6 +539,22 @@ const CALCULUS_VAULT: FormulaItem[] = [
     latex: '\\frac{P(x)}{(x - a)(x - b)} = \\frac{P(a)/(a-b)}{x - a} + \\frac{P(b)/(b-a)}{x - b}',
     difficulty: 'easy',
     whyItMatters: 'Solves coefficients A and B in 10 seconds flat by covering the pole with your thumb. Avoids solving 2x2 linear systems entirely.'
+  },
+  {
+    id: 'f_complex',
+    category: 'pillar',
+    name: 'Euler’s Formula & Complex Polar Form (Sec 17.1)',
+    latex: 'e^{i\\theta} = \\cos\\theta + i\\sin\\theta, \\quad z = r e^{i\\theta} = r(\\cos\\theta + i\\sin\\theta)',
+    difficulty: 'easy',
+    whyItMatters: 'Fundamental Section 17.1 identity. Converts Cartesian a + bi to polar exponential r e^{iθ}. Underpins complex roots in Section 17.2 auxiliary equations.'
+  },
+  {
+    id: 'f_aux',
+    category: 'pillar',
+    name: '2nd-Order Auxiliary Equations: 3 Root Cases (Sec 17.2)',
+    latex: 'a r^2 + b r + c = 0 \\implies r = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
+    difficulty: 'easy',
+    whyItMatters: 'Official Midterm 1 scope. Case 1 (Real distinct): y = C₁ e^{r₁ x} + C₂ e^{r₂ x}. Case 2 (Repeated root): y = (C₁ + C₂ x)e^{rx}. Case 3 (Complex conjugate α ± iβ): y = e^{α x}(C₁ cos βx + C₂ sin βx).'
   }
 ];
 
@@ -523,7 +581,7 @@ const AI_FORMULA_ADVICE: Record<string, AiFormulaAdvice> = {
     id: 'f5',
     name: '∫ sec(x) dx = ln|sec(x) + tan(x)|',
     mnemonic: 'Secant integrates into the log of its SUM with tangent: ln|sec + tan|.',
-    examUtility: 'Standard Concordia test question in Variation of Parameters: y\'\' + y = sec(x).',
+    examUtility: 'Standard Concordia test question in first-order linear integrating factors: y\' + sec(x)y = f(x) where μ(x) = |sec(x) + tan(x)|.',
     trapToAvoid: 'Trying to evaluate this via u-substitution during the exam. Memorize it like your phone number.',
     drillQuestionId: 'dq_formula_sec'
   },
@@ -542,6 +600,22 @@ const AI_FORMULA_ADVICE: Record<string, AiFormulaAdvice> = {
     examUtility: 'Turns a 4-minute linear algebra system into a 15-second inspection on separable and PFD problems.',
     trapToAvoid: 'Only valid for non-repeated linear factors (x - a). For repeated (x - a)², use standard matching.',
     drillQuestionId: 'dq_hack_heaviside'
+  },
+  f_complex: {
+    id: 'f_complex',
+    name: 'Euler’s Formula: e^{iθ} = cos(θ) + i sin(θ)',
+    mnemonic: 'Euler connects exponential magnitude to circular rotation: e^{iθ} = cos θ + i sin θ!',
+    examUtility: 'Instantly computes powers via De Moivre (r e^{iθ})ⁿ = rⁿ e^{inθ} and derives real trigonometric solutions from complex auxiliary roots.',
+    trapToAvoid: 'Forgetting the quadrant: if x < 0 and y > 0 (Quadrant 2), θ = π - arctan(|y/x|), not -arctan(|y/x|).',
+    drillQuestionId: 'dq_formula_euler'
+  },
+  f_aux: {
+    id: 'f_aux',
+    name: 'Auxiliary Equation 3 Root Cases',
+    mnemonic: 'Distinct = 2 pure exponentials; Repeated = second term gets an x multiplier; Complex α ± iβ = e^{αx} with cos(βx) and sin(βx).',
+    examUtility: 'Solves homogeneous 2nd-order constant-coefficient ODEs on Midterm 1 in 30 seconds flat.',
+    trapToAvoid: 'Linear dependence on repeated roots: forgetting the factor of x on the second term: y = (C₁ + C₂ x)e^{rx}.',
+    drillQuestionId: 'dq_formula_aux'
   }
 };
 
@@ -1003,20 +1077,6 @@ const UNOFFICIAL_MIDTERMS: UnofficialExamFile[] = [
     scope: 'Bernoulli Equations, Orthogonal Trajectories, Reduction to Separable, Wronskian Test'
   },
   {
-    title: 'Winter 2016 Midterm Examination - Ver A (Unofficial)',
-    year: 'Winter 2016',
-    filename: '2016 Winter Version A.pdf',
-    relativePath: 'Engr 213/Midterm/2016 Winter Version A.pdf',
-    scope: 'Trig Linear Independence, 4th-Order Linear ODE, Resonant Undetermined Coeffs, Cauchy-Euler'
-  },
-  {
-    title: 'Winter 2016 Midterm Examination - Ver B (Unofficial)',
-    year: 'Winter 2016',
-    filename: '2016 Winter Version B.pdf',
-    relativePath: 'Engr 213/Midterm/2016 Winter Version B.pdf',
-    scope: 'Polynomial Basis Independence, Inhomogeneous 2nd Order Exponential, Variation of Parameters'
-  },
-  {
     title: 'Sample Midterm Examination (Unofficial Practice)',
     year: 'Sample Midterm',
     filename: 'Sample Midterm.pdf',
@@ -1160,36 +1220,156 @@ const PAST_PROBLEMS: SolvedProblem[] = [
   },
   {
     id: 'p4',
-    exam: 'Winter 2016 Midterm (Unofficial) · Problem 3',
-    topic: 'Resonant 2nd-Order IVP (Undetermined Coeffs)',
-    problemStatement: 'Solve the initial value problem: $y\'\' + 4y = 3\\sin(2x), \\quad y(0) = 0, \\; y\'(0) = 0$',
+    exam: 'Winter 2013 Midterm (Unofficial) · Problem 4',
+    topic: '2nd-Order Auxiliary Equation with Complex Conjugate Roots (Sec 17.1 & 17.2)',
+    problemStatement: 'Solve the initial value problem: $y\'\' + 6y\' + 25y = 0, \\quad y(0) = 2, \\; y\'(0) = -2$',
     methodId: 'second_order',
-    timeTarget: '15 minutes',
-    difficulty: 'hard',
+    timeTarget: '10 minutes',
+    difficulty: 'med',
     steps: [
       {
-        title: 'Step 1: Homogeneous Solution y_h',
-        content: 'Characteristic equation $r^2 + 4 = 0 \\implies r = \\pm 2i$. Homogeneous solution: $$y_h(x) = C_1 \\cos(2x) + C_2 \\sin(2x)$$'
+        title: 'Step 1: Construct Auxiliary / Characteristic Equation',
+        content: 'Substitute trial solution $y = e^{rx}$ into the homogeneous ODE: $$r^2 + 6r + 25 = 0$$ Solve roots by completing the square or quadratic formula: $$(r + 3)^2 + 16 = 0 \\implies r = -3 \\pm 4i$$'
       },
       {
-        title: 'Step 2: Detect Resonance for Particular Solution y_p',
-        content: 'The forcing term $3\\sin(2x)$ is ALREADY in the homogeneous solution! Multiply trial form by $x$: $$y_p(x) = x(A\\cos 2x + B\\sin 2x)$$'
+        title: 'Step 2: Apply Euler’s Formula (Sec 17.1) for Real Basis',
+        content: 'The roots are complex conjugate $\\alpha \\pm i\\beta$ with real part $\\alpha = -3$ and imaginary frequency $\\beta = 4$. By Euler’s formula $e^{(-3 \\pm 4i)x} = e^{-3x}(\\cos 4x \\pm i\\sin 4x)$, the general real solution is: $$y(x) = e^{-3x}(C_1 \\cos 4x + C_2 \\sin 4x)$$'
       },
       {
-        title: 'Step 3: Compute Derivatives & Substitute',
-        content: 'Compute derivatives: $$y_p\' = (A\\cos 2x + B\\sin 2x) + x(-2A\\sin 2x + 2B\\cos 2x)$$ $$y_p\'\' = -4A\\sin 2x + 4B\\cos 2x - 4x(A\\cos 2x + B\\sin 2x)$$ Substituting into $y\'\' + 4y = 3\\sin 2x$: $$-4A\\sin 2x + 4B\\cos 2x = 3\\sin 2x \\implies A = -\\frac{3}{4}, \\; B = 0$$'
+        title: 'Step 3: Apply Initial Condition y(0) = 2',
+        content: 'Substitute $x = 0, y = 2$: $$2 = e^0 (C_1 \\cos 0 + C_2 \\sin 0) = C_1(1) + 0 \\implies C_1 = 2$$'
       },
       {
-        title: 'Step 4: General Solution & Apply Initial Conditions',
-        content: 'General solution: $$y(x) = C_1 \\cos 2x + C_2 \\sin 2x - \\frac{3}{4}x\\cos 2x$$ Initial condition $y(0) = 0 \\implies C_1 = 0$. Derivative: $y\'(0) = 2C_2 - \\frac{3}{4} = 0 \\implies C_2 = \\frac{3}{8}$.'
+        title: 'Step 4: Differentiate via Product Rule',
+        content: 'Differentiate $y(x) = e^{-3x}(2\\cos 4x + C_2 \\sin 4x)$ using product rule: $$y\'(x) = -3e^{-3x}(2\\cos 4x + C_2 \\sin 4x) + e^{-3x}(-8\\sin 4x + 4C_2 \\cos 4x)$$'
       },
       {
-        title: 'Step 5: Final Solution',
-        content: 'Final explicit solution: $$y(x) = \\frac{3}{8}\\sin(2x) - \\frac{3}{4}x\\cos(2x)$$'
+        title: 'Step 5: Apply y\'(0) = -2 and Finalize',
+        content: 'Substitute $x = 0, y\'(0) = -2$: $$-2 = -3(2) + 4C_2 = -6 + 4C_2 \\implies 4C_2 = 4 \\implies C_2 = 1$$ Final explicit solution: $$y(x) = e^{-3x}(2\\cos 4x + \\sin 4x)$$'
       }
     ],
-    friendIntuition: 'Whenever the frequency in the sine/cosine matches the root frequency (here 2 matches ±2i), that is pure RESONANCE. The amplitude grows linearly with x! Always multiply your guess by x.',
-    concordiaTrap: 'Forgetting the product rule when differentiating y_p = x(A cos 2x + B sin 2x). If you do not differentiate the x factor, your cancellation fails completely.'
+    friendIntuition: 'In complex roots α ± iβ, the real part α = -3 governs exponential decay e^{-3x}, while the imaginary part β = 4 sets the oscillatory frequency inside cos(4x) and sin(4x). Always differentiate using product rule carefully before setting x = 0!',
+    concordiaTrap: 'Writing cos(4ix) instead of cos(4x). The imaginary unit i has already been absorbed into Euler\'s formula! And never forget the product rule when differentiating e^{αx}(C₁ cos βx + C₂ sin βx).'
+  },
+  {
+    id: 'p5',
+    exam: 'Fall 2012 Midterm (Unofficial) · Problem 5',
+    topic: 'Mixing Tank Model with Time-Varying Volume (Chapter 2.7 / 2.8)',
+    problemStatement: 'A tank initially contains 100 L of pure water. Brine containing 2 kg/L of salt flows in at 3 L/min, and the well-stirred mixture drains at 4 L/min. Find the amount of salt $A(t)$ in the tank at any time $t$ until the tank empties.',
+    methodId: 'tank',
+    timeTarget: '12 minutes',
+    difficulty: 'med',
+    steps: [
+      {
+        title: 'Step 1: Formulate Time-Dependent Tank Volume V(t)',
+        content: 'Initial volume $V_0 = 100$ L, flow in $r_{\\text{in}} = 3$ L/min, flow out $r_{\\text{out}} = 4$ L/min. $$V(t) = V_0 + (r_{\\text{in}} - r_{\\text{out}})t = 100 + (3 - 4)t = 100 - t \\text{ liters}$$ The tank empties completely when $V(t) = 0 \\implies t = 100$ minutes.'
+      },
+      {
+        title: 'Step 2: Rate Equation Setup (dA/dt = Rin - Rout)',
+        content: 'Salt input rate: $R_{\\text{in}} = c_{\\text{in}} \\cdot r_{\\text{in}} = (2 \\text{ kg/L})(3 \\text{ L/min}) = 6 \\text{ kg/min}$. Salt output rate: $R_{\\text{out}} = \\frac{A(t)}{V(t)} \\cdot r_{\\text{out}} = \\frac{4A(t)}{100 - t}$. Rate balance: $$\frac{dA}{dt} = 6 - \\frac{4}{100 - t}A \\implies \\frac{dA}{dt} + \\frac{4}{100 - t}A = 6$$'
+      },
+      {
+        title: 'Step 3: Integrating Factor with Power Absorption',
+        content: 'Compute integrating factor: $$\mu(t) = \\exp\\left(\\int \\frac{4}{100 - t}dt\\right) = \\exp(-4\\ln|100 - t|) = (100 - t)^{-4}$$'
+      },
+      {
+        title: 'Step 4: Reverse Product Rule & Integration',
+        content: 'Multiply ODE by $\\mu(t)$: $$\frac{d}{dt}[(100 - t)^{-4}A] = 6(100 - t)^{-4}$$ Integrate both sides: $$(100 - t)^{-4}A = 6 \\int (100 - t)^{-4}dt = 6 \\frac{(100 - t)^{-3}}{(-3)(-1)} + C = 2(100 - t)^{-3} + C$$ Multiply by $(100 - t)^4$: $$A(t) = 2(100 - t) + C(100 - t)^4$$'
+      },
+      {
+        title: 'Step 5: Apply Initial Condition A(0) = 0 & Final Form',
+        content: 'Initially pure water: $A(0) = 0$: $$0 = 2(100) + C(100)^4 \\implies C = -\\frac{200}{100^4} = -2 \\times 10^{-6}$$ Final explicit formula: $$A(t) = 2(100 - t) - 2\\left(\\frac{100 - t}{100}\\right)^4 \\times 100 \\text{ kg} \\quad (0 \\le t < 100)$$'
+      }
+    ],
+    friendIntuition: 'When integrating 1/(100 - t), the derivative of denominator is -1. That creates a minus sign: -4 ln|100 - t|, which becomes the power (100 - t)^{-4}. Never forget that negative sign!',
+    concordiaTrap: 'Forgetting that volume changes with time: writing A/100 instead of A/(100 - t). If inflow ≠ outflow, volume is NEVER constant!'
+  },
+  {
+    id: 'p6',
+    exam: 'Winter 2013 Midterm (Unofficial) · Problem 3',
+    topic: 'Newton’s Law of Cooling (Chapter 2.7 Linear Models)',
+    problemStatement: 'A thermometer reading 70°F is placed in an oven preheated to 350°F. After 1 minute, the thermometer reads 110°F. How long will it take for the thermometer to reach 300°F?',
+    methodId: 'newton',
+    timeTarget: '10 minutes',
+    difficulty: 'easy',
+    steps: [
+      {
+        title: 'Step 1: Newton Cooling Differential Equation',
+        content: '$$\\frac{dT}{dt} = k(T - T_m), \\quad T_m = 350^\\circ\\text{F}, \\; T(0) = 70^\\circ\\text{F}$$ Standard solution form: $$T(t) = T_m + (T_0 - T_m)e^{kt} = 350 + (70 - 350)e^{kt} = 350 - 280 e^{kt}$$'
+      },
+      {
+        title: 'Step 2: Determine Decay Rate Constant k',
+        content: 'At $t = 1$, $T(1) = 110^\\circ\\text{F}$: $$110 = 350 - 280 e^{k(1)} \\implies 280 e^k = 240 \\implies e^k = \\frac{240}{280} = \\frac{6}{7} \\implies k = \\ln\\left(\\frac{6}{7}\\right) \\approx -0.15415$$'
+      },
+      {
+        title: 'Step 3: Solve for Target Time t when T = 300°F',
+        content: 'Set $T(t) = 300^\\circ\\text{F}$: $$300 = 350 - 280 e^{kt} \\implies 280 e^{kt} = 50 \\implies e^{kt} = \\frac{50}{280} = \\frac{5}{28}$$ Take natural logarithm: $$kt = \\ln\\left(\\frac{5}{28}\\right) \\implies t = \\frac{\\ln(5/28)}{\\ln(6/7)} = \\frac{-\\ln(28/5)}{-\\ln(7/6)} = \\frac{\\ln(5.6)}{\\ln(1.1667)} \\approx 11.2 \\text{ minutes}$$'
+      }
+    ],
+    friendIntuition: 'T(t) - T_m always decays exponentially: ΔT(t) = ΔT(0) · (6/7)^t. You can solve target time directly: (350 - 300)/(350 - 70) = 50/280 = 5/28 = (6/7)^t!',
+    concordiaTrap: 'Confusing T_m with T_0. T_m is the fixed surrounding medium (350°F), while T_0 is the initial body temperature (70°F).'
+  },
+  {
+    id: 'p7',
+    exam: 'Fall 2018 Midterm (Unofficial) · Problem 4',
+    topic: 'Homogeneous Differential Equation via Degree Matching (Chapter 2.5)',
+    problemStatement: 'Solve the homogeneous initial value problem: $(x^2 + y^2)dx - 2xy\\,dy = 0, \\quad y(1) = 2$',
+    methodId: 'homogeneous',
+    timeTarget: '12 minutes',
+    difficulty: 'med',
+    steps: [
+      {
+        title: 'Step 1: Verify Homogeneity of Degree 2',
+        content: '$M(x,y) = x^2 + y^2$ (degree 2) and $N(x,y) = -2xy$ (degree 2). Since all polynomial terms have total degree 2, the equation is homogeneous!'
+      },
+      {
+        title: 'Step 2: Substitute y = ux & Product Rule for dy',
+        content: 'Let $y = ux \\implies dy = u\\,dx + x\\,du$. Substitute into the ODE: $$(x^2 + u^2 x^2)dx - 2x(ux)(u\\,dx + x\\,du) = 0$$ Factor out $x^2$: $$(1 + u^2 - 2u^2)dx - 2ux\\,du = 0 \\implies (1 - u^2)dx = 2ux\\,du$$'
+      },
+      {
+        title: 'Step 3: Separate Variables u and x',
+        content: '$$\\frac{1}{x}dx = \\frac{2u}{1 - u^2}du$$'
+      },
+      {
+        title: 'Step 4: Integrate Both Sides via Logarithmic Shortcut',
+        content: 'Notice the derivative of denominator $(1 - u^2)\' = -2u$. $$\int \\frac{1}{x}dx = -\\int \\frac{-2u}{1 - u^2}du \\implies \\ln|x| = -\\ln|1 - u^2| + C_1$$ Exponentiate: $$|x| \\cdot |1 - u^2| = C \\implies x(1 - u^2) = C$$'
+      },
+      {
+        title: 'Step 5: Back-Substitute u = y/x & Apply y(1) = 2',
+        content: 'Back-substitute $u = y/x$: $$x\\left(1 - \\frac{y^2}{x^2}\\right) = C \\implies x - \\frac{y^2}{x} = C \\implies x^2 - y^2 = Cx$$ Apply $y(1) = 2$: $1^2 - 2^2 = C(1) \\implies C = -3$. Final solution: $x^2 - y^2 = -3x \\implies y^2 = x^2 + 3x \\implies y(x) = \\sqrt{x^2 + 3x}$ (positive root since $y(1) = 2 > 0$).'
+      }
+    ],
+    friendIntuition: `When you divide through by x², every term becomes a function of (y/x): (1 + (y/x)²) - 2(y/x) y' = 0. That confirms y = ux is the golden key.`,
+    concordiaTrap: 'Forgetting the product rule for dy: writing dy = u du instead of u dx + x du.'
+  },
+  {
+    id: 'p8',
+    exam: 'Section 17.1 Practice · Problem 1',
+    topic: 'Complex Numbers Polar Form, Modulus, Argument & De Moivre (Sec 17.1)',
+    problemStatement: 'Express $z = -2 + 2i\\sqrt{3}$ in polar exponential form $r e^{i\\theta}$, and determine $z^6$ in rectangular form $a + bi$.',
+    methodId: 'complex_numbers',
+    timeTarget: '8 minutes',
+    difficulty: 'easy',
+    steps: [
+      {
+        title: 'Step 1: Compute Modulus r = |z|',
+        content: '$$r = \\sqrt{(-2)^2 + (2\\sqrt{3})^2} = \\sqrt{4 + 12} = \\sqrt{16} = 4$$'
+      },
+      {
+        title: 'Step 2: Determine Quadrant & Principal Argument θ',
+        content: 'Since $x = -2 < 0$ and $y = 2\\sqrt{3} > 0$, $z$ is in Quadrant 2. Reference angle $\\theta_0 = \\arctan\\left(\\frac{2\\sqrt{3}}{2}\\right) = \\arctan(\\sqrt{3}) = \\frac{\\pi}{3}$. $$\theta = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$$ Polar exponential form: $$z = 4 e^{i\\frac{2\\pi}{3}}$$'
+      },
+      {
+        title: 'Step 3: Apply De Moivre’s Theorem for Power z⁶',
+        content: '$$z^6 = (4 e^{i\\frac{2\\pi}{3}})^6 = 4^6 e^{i 6\\left(\\frac{2\\pi}{3}\\right)} = 4096 e^{i 4\\pi}$$'
+      },
+      {
+        title: 'Step 4: Convert Back to Rectangular Form a + bi',
+        content: 'Since $e^{i 4\\pi} = \\cos(4\\pi) + i\\sin(4\\pi) = 1 + 0i = 1$: $$z^6 = 4096(1) = 4096 + 0i$$'
+      }
+    ],
+    friendIntuition: 'Angles that are multiples of 2π wrap all the way around back to the positive real axis! e^{i 4π} = 1, so the result is a purely real positive integer.',
+    concordiaTrap: 'Forgetting to raise 4 to the 6th power. Some students write 4 e^{i 4π} = 4. Remember: (re^{iθ})ⁿ = rⁿ e^{inθ}!'
   }
 ];
 
@@ -1582,10 +1762,46 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
     let pool: CompanionDrillQuestion[] = [];
     if (drillSubjectFilter === 'all') {
       pool = ALL_COMPANION_QUESTIONS;
+    } else if (drillSubjectFilter === 'newton') {
+      pool = (ENGR213_MIDTERM_DRILL_BANKS['applications'] || []).filter(
+        (q) => q.topic.toLowerCase().includes('newton') || q.question.toLowerCase().includes('cooling') || q.question.toLowerCase().includes('temperature')
+      );
+    } else if (drillSubjectFilter === 'tank') {
+      pool = (ENGR213_MIDTERM_DRILL_BANKS['applications'] || []).filter(
+        (q) => q.topic.toLowerCase().includes('tank') || q.question.toLowerCase().includes('tank') || q.question.toLowerCase().includes('brine') || q.question.toLowerCase().includes('salt')
+      );
+    } else if (drillSubjectFilter === 'complex_numbers') {
+      pool = (ENGR213_MIDTERM_DRILL_BANKS['second_order'] || []).filter(
+        (q) => q.topic.toLowerCase().includes('complex polar') || q.question.toLowerCase().includes('polar') || q.question.toLowerCase().includes('euler') || q.question.toLowerCase().includes('modulus') || q.question.toLowerCase().includes('argument')
+      );
+    } else if (drillSubjectFilter === 'second_order') {
+      pool = (ENGR213_MIDTERM_DRILL_BANKS['second_order'] || []).filter(
+        (q) => q.topic.toLowerCase().includes('auxiliary') || q.topic.toLowerCase().includes('repeated') || q.question.toLowerCase().includes('characteristic') || q.question.toLowerCase().includes('auxiliary')
+      );
+    } else if (drillSubjectFilter === 'tutor_hacks') {
+      pool = TUTOR_HACKS.flatMap((hack) =>
+        hack.variants.map((v, vIdx) => ({
+          id: `th_var_${hack.id}_${v.id}`,
+          courseId: 'ENGR213' as const,
+          chapter: 'midterm',
+          methodId: (hack.id === 'th1' || hack.id === 'th3' ? 'applications' : hack.id === 'th6' ? 'homogeneous' : 'linear_if') as any,
+          topic: `Tutor Hack: ${hack.title} · Variant ${String.fromCharCode(65 + vIdx)}`,
+          difficulty: 'Midterm Level',
+          question: v.problem,
+          options: v.options,
+          correctIndex: v.correctIndex,
+          explanation: {
+            coreConcept: hack.keyRule,
+            stepByStep: v.babySteps,
+            commonTrap: v.trapExplanation,
+            reference: hack.sourceRef
+          }
+        }))
+      );
     } else {
       pool = ENGR213_MIDTERM_DRILL_BANKS[drillSubjectFilter] || ALL_COMPANION_QUESTIONS.filter((q) => q.methodId === drillSubjectFilter);
     }
-    if (pool.length === 0) pool = ALL_COMPANION_QUESTIONS;
+    if (!pool || pool.length === 0) pool = ALL_COMPANION_QUESTIONS;
 
     if (drillMode === 'specific') {
       return [pool[0]];
@@ -1704,8 +1920,8 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                   <ArrowLeft size={14} /> Back
                 </button>
               )}
-              <span className="ec-badge-copilot">
-                <Sparkles size={14} /> Midterm Study Co-Pilot
+              <span className="ec-badge-copilot" style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', color: '#ffffff' }}>
+                <Sparkles size={14} /> 🎯 Confirmed Midterm 1 Scope (Lectures 1–6)
               </span>
               <span className="ec-badge-warning">
                 <AlertTriangle size={14} /> NO Formula Sheet on Exam
@@ -1713,7 +1929,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
             </div>
             <h1 className="ec-main-title">ENGR 213 Midterm Mastery Companion</h1>
             <p className="ec-subtitle">
-              Applied Ordinary Differential Equations · Concordia University · Fastest Solution Recipes, Method Diagnosis, Calculus Vault &amp; Unofficial Exam Walkthroughs
+              Applied Ordinary Differential Equations · Concordia University · Official Midterm 1 Syllabus: Chapter 2 (First-Order ODEs &amp; Applications) + Sections 17.1 &amp; 17.2 (Complex Numbers &amp; Auxiliary Equations) · Lectures 1–6
             </p>
           </div>
 
@@ -1773,7 +1989,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
         <div className="ec-friend-speech-bubble">
           <div className="ec-friend-avatar">AI</div>
           <div>
-            <strong>Hey there!</strong> In ENGR 213, there is <em>no formula sheet</em> on the midterm. The secret to scoring an A+ is <strong>recognizing the ODE archetype in under 10 seconds</strong> and executing the deterministic recipe without missing minus signs or constants. Let&apos;s master every method step-by-step!
+            <strong>Official Midterm 1 Scope Confirmed (Lectures 1–6):</strong> This drill covers strictly <strong>Chapter 2</strong> (Classification, Separable, Linear, Exact, Homogeneous, Bernoulli, Substitutions, Linear &amp; Nonlinear Models/Applications) and <strong>Sections 17.1 &amp; 17.2</strong> (Complex Numbers, Modulus, Argument, Polar Form, Euler&apos;s Formula &amp; 2nd-Order Auxiliary Equations). All Midterm 2 topics (Higher-Order Non-Homogeneous, Undetermined Coefficients, Variation of Parameters, Cauchy-Euler, Laplace Transforms) are strictly excluded.
           </div>
         </div>
       </div>
@@ -4021,36 +4237,36 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                 <div className="ec-cheat-card">
                   <div className="ec-cheat-card-title">
                     <Compass size={16} color="#4f46e5" />
-                    <span>The 4 First-Order Master Forms</span>
+                    <span>1. First-Order Core Forms (CH 2.2–2.5)</span>
                   </div>
-                  <div style={{ fontSize: '12.5px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <div>
-                      <MathText text="**1. Separable:** $\frac{dy}{dx} = g(x)h(y) \implies \int \frac{dy}{h(y)} = \int g(x)dx + C$" />
+                      <MathText text="**Separable:** $\\frac{dy}{dx} = g(x)h(y) \\implies \\int \\frac{dy}{h(y)} = \\int g(x)dx + C$" />
                     </div>
                     <div>
-                      <MathText text="**2. Linear:** $y' + P(x)y = Q(x) \implies \mu(x) = e^{\int P(x)dx}, \quad y = \frac{1}{\mu}[\int \mu Q dx + C]$" />
+                      <MathText text="**Linear:** $y' + P(x)y = Q(x) \\implies \\mu = e^{\\int P dx}, \\; y = \\frac{1}{\\mu}[\\int \\mu Q dx + C]$" />
                     </div>
                     <div>
-                      <MathText text="**3. Exact:** $M\,dx + N\,dy = 0 \iff M_y = N_x \implies \Psi(x,y) = C$" />
+                      <MathText text="**Exact:** $M\\,dx + N\\,dy = 0 \\iff M_y = N_x \\implies \\Psi(x,y) = C$" />
                     </div>
                     <div>
-                      <MathText text="**4. Bernoulli:** $y' + P(x)y = Q(x)y^n \implies u = y^{1-n}, \quad u' + (1-n)Pu = (1-n)Q$" />
+                      <MathText text="**Bernoulli:** $y' + P(x)y = Q(x)y^n \\implies u = y^{1-n}, \\; u' + (1-n)Pu = (1-n)Q$" />
                     </div>
                   </div>
                 </div>
 
-                {/* Card 2: Essential Antiderivatives */}
+                {/* Card 2: Must-Retain Antiderivatives */}
                 <div className="ec-cheat-card">
                   <div className="ec-cheat-card-title">
                     <Brain size={16} color="#059669" />
-                    <span>Must-Retain Antiderivatives</span>
+                    <span>2. Must-Retain Calculus Vault Integrals</span>
                   </div>
-                  <div style={{ fontSize: '12.5px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <div><MathText text="$\int \tan(x)\,dx = \ln|\sec(x)| = -\ln|\cos(x)| + C$" /></div>
-                    <div><MathText text="$\int \sec(x)\,dx = \ln|\sec(x) + \tan(x)| + C$" /></div>
-                    <div><MathText text="$\int \frac{1}{x^2 + a^2}\,dx = \frac{1}{a}\arctan\left(\frac{x}{a}\right) + C$" /></div>
-                    <div><MathText text="$\int \frac{1}{\sqrt{a^2 - x^2}}\,dx = \arcsin\left(\frac{x}{a}\right) + C$" /></div>
-                    <div><MathText text="$\int \frac{1}{a^2 - u^2}\,du = \frac{1}{2a}\ln\left|\frac{a+u}{a-u}\right| + C$" /></div>
+                  <div style={{ fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <div><MathText text="$\\int \\tan(x)\\,dx = \\ln|\\sec(x)| = -\\ln|\\cos(x)| + C$" /></div>
+                    <div><MathText text="$\\int \\sec(x)\\,dx = \\ln|\\sec(x) + \\tan(x)| + C$" /></div>
+                    <div><MathText text="$\\int \\frac{1}{x^2 + a^2}\\,dx = \\frac{1}{a}\\arctan\\left(\\frac{x}{a}\\right) + C$" /></div>
+                    <div><MathText text="$\\int \\frac{1}{\\sqrt{a^2 - x^2}}\\,dx = \\arcsin\\left(\\frac{x}{a}\\right) + C$" /></div>
+                    <div><MathText text="$\\int \\frac{1}{a^2 - u^2}\\,du = \\frac{1}{2a}\\ln\\left|\\frac{a+u}{a-u}\\right| + C = \\frac{1}{a}\\tanh^{-1}\\left(\\frac{u}{a}\\right) + C$" /></div>
                   </div>
                 </div>
 
@@ -4058,40 +4274,82 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                 <div className="ec-cheat-card">
                   <div className="ec-cheat-card-title">
                     <Zap size={16} color="#d97706" />
-                    <span>Non-Exact Integrating Factor Rules</span>
+                    <span>3. Non-Exact Special Integrating Factors</span>
                   </div>
-                  <div style={{ fontSize: '12.5px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <div>
-                      <MathText text="**Condition 1 ($x$ only):** If $\frac{M_y - N_x}{N} = f(x)$, then $\mu(x) = e^{\int f(x)dx}$" />
+                      <MathText text="**Condition 1 ($x$ only):** If $\\frac{M_y - N_x}{N} = f(x)$, then $\\mu(x) = e^{\\int f(x)dx}$" />
                     </div>
                     <div>
-                      <MathText text="**Condition 2 ($y$ only):** If $\frac{N_x - M_y}{M} = g(y)$, then $\mu(y) = e^{\int g(y)dy}$" />
+                      <MathText text="**Condition 2 ($y$ only):** If $\\frac{N_x - M_y}{M} = g(y)$, then $\\mu(y) = e^{\\int g(y)dy}$" />
                     </div>
-                    <div style={{ color: '#b45309', background: '#fef3c7', padding: '6px 8px', borderRadius: '6px', fontSize: '11.5px' }}>
-                      <MathText text="⚠️ **Mnemonic:** Subtract the partial of the *other* function, then divide by matching denominator: $M_y - N_x$ divides by $N$!" />
+                    <div style={{ color: '#b45309', background: '#fef3c7', padding: '6px 8px', borderRadius: '6px', fontSize: '11px' }}>
+                      <MathText text="⚠️ **Rule:** Subtract partial of *other* variable, divide by matching letter ($M_y - N_x$ divides by $N$)." />
                     </div>
                   </div>
                 </div>
 
-                {/* Card 4: 2nd Order Constant Coeffs Quick Roots */}
+                {/* Card 4: Chapter 2 Substitutions & Reductions */}
                 <div className="ec-cheat-card">
                   <div className="ec-cheat-card-title">
-                    <Layers size={16} color="#dc2626" />
-                    <MathText text="2nd Order: $a y'' + b y' + c y = 0$" />
+                    <Layers size={16} color="#0284c7" />
+                    <span>4. Chapter 2 Substitutions &amp; Reductions</span>
                   </div>
-                  <div style={{ fontSize: '12.5px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <div>
-                      <MathText text="**Real Distinct ($r_1 \ne r_2$):** $y_h = C_1 e^{r_1 x} + C_2 e^{r_2 x}$" />
+                      <MathText text="**Homogeneous:** $y = ux \\implies \\frac{dy}{dx} = u + x\\frac{du}{dx}$. Reduces equation to separable in $u$ and $x$." />
                     </div>
                     <div>
-                      <MathText text="**Repeated Root ($r_1 = r_2 = r$):** $y_h = C_1 e^{r x} + C_2 x e^{r x}$" />
+                      <MathText text="**Linear Argument:** $y' = f(Ax + By + C) \\implies u = Ax + By + C, \\; \\frac{du}{dx} = A + B f(u)$. Separates directly!" />
                     </div>
                     <div>
-                      <MathText text="**Complex Conjugate ($\alpha \pm i\beta$):** $y_h = e^{\alpha x}(C_1 \cos(\beta x) + C_2 \sin(\beta x))$" />
+                      <MathText text="**Equilibrium Solutions:** Set $dy/dx = 0$. Never divide by an expression before checking if roots are lost singular solutions!" />
                     </div>
                   </div>
                 </div>
-              </div>
+
+                {/* Card 5: Physical Modeling & Applications (CH 2.7 & 2.8) */}
+                <div className="ec-cheat-card">
+                  <div className="ec-cheat-card-title">
+                    <CheckCircle2 size={16} color="#8b5cf6" />
+                    <span>5. Linear &amp; Nonlinear Models (CH 2.7–2.8)</span>
+                  </div>
+                  <div style={{ fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <div>
+                      <MathText text="**Mixing Tanks:** $\\frac{dA}{dt} = R_{\\text{in}} - R_{\\text{out}} = c_{\\text{in}} r_{\\text{in}} - \\frac{A(t)}{V(t)} r_{\\text{out}}$, where $V(t) = V_0 + (r_{\\text{in}} - r_{\\text{out}})t$." />
+                    </div>
+                    <div>
+                      <MathText text="**Newton’s Cooling:** $\\frac{dT}{dt} = k(T - T_m) \\implies T(t) = T_m + (T_0 - T_m)e^{kt}$." />
+                    </div>
+                    <div>
+                      <MathText text="**Logistic Dynamics:** $\\frac{dP}{dt} = P(a - bP) = r P\\left(1 - \\frac{P}{K}\\right)$. Carrying capacity $K = a/b$, inflection at $P = K/2$." />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 6: Sections 17.1 & 17.2 Complex Numbers & Auxiliary Equations */}
+                <div className="ec-cheat-card">
+                  <div className="ec-cheat-card-title">
+                    <Sparkles size={16} color="#dc2626" />
+                    <span>6. Complex Numbers &amp; Auxiliary ODEs (Sec 17.1–17.2)</span>
+                  </div>
+                  <div style={{ fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <div>
+                      <MathText text="**Polar Form &amp; Euler:** $z = a + bi = r e^{i\\theta}$, $r = \\sqrt{a^2 + b^2}$, $\\theta = \\text{Arg}(z)$. $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$." />
+                    </div>
+                    <div>
+                      <MathText text="**De Moivre Powers:** $(r e^{i\\theta})^n = r^n e^{in\\theta} = r^n(\\cos(n\\theta) + i\\sin(n\\theta))$." />
+                    </div>
+                    <div>
+                      <MathText text="**Auxiliary Equation:** $a r^2 + b r + c = 0$:" />
+                    </div>
+                    <div style={{ paddingLeft: '8px' }}>
+                      <MathText text="• Real Distinct: $y = C_1 e^{r_1 x} + C_2 e^{r_2 x}$" />
+                      <MathText text="• Repeated: $y = (C_1 + C_2 x)e^{rx}$ (notice the $x$ factor!)" />
+                      <MathText text="• Complex $\\alpha \\pm i\\beta$: $y = e^{\\alpha x}(C_1 \\cos(\\beta x) + C_2 \\sin(\\beta x))$" />
+                    </div>
+                  </div>
+                </div>              </div>
             </div>
           </div>
         </div>
