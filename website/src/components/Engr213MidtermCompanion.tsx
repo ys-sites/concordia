@@ -29,17 +29,22 @@ import {
   ExternalLink,
   ListOrdered,
   Calculator,
-  Timer
+  Timer,
+  Clapperboard
 } from 'lucide-react';
 import { MathText } from '../utils/mathRenderer';
 import { audio } from '../utils/audio';
 import { CourseDocument, PracticeQuestion } from '../types';
 import { WorkedSolution } from './WorkedSolution';
+import { ENGR213_MIDTERM_DRILL_BANKS, CompanionDrillQuestion } from '../data/engr213_midterm_drill_banks';
+import { MotionLessonPlayer, formatLessonTime } from './MotionLessonPlayer';
+import { ENGR213_MOTION_LESSONS } from '../data/engr213Lessons';
 import './Engr213MidtermCompanion.css';
 
 interface Props {
   onViewPdf?: (doc: CourseDocument, page?: number) => void;
   onBack?: () => void;
+  initialTab?: 'classifier' | 'tutor_videos' | 'tutorials' | 'tutor_hacks' | 'vault' | 'past_exams' | 'trainer';
 }
 
 // ----------------------------------------------------
@@ -103,8 +108,8 @@ const METHOD_ARCHETYPES: MethodArchetype[] = [
       title: 'Separable First Order Differential Equations - Basic Introduction',
       channel: 'The Organic Chemistry Tutor',
       duration: '11 mins',
-      youtubeId: 'Xh0oK8n0vDE',
-      url: 'https://www.youtube.com/watch?v=Xh0oK8n0vDE',
+      youtubeId: 'C7nuJcJriWM',
+      url: 'https://www.youtube.com/watch?v=C7nuJcJriWM',
       keyTakeaways: [
         'How to algebraically isolate dy and dx on opposite sides using multiplication/division only.',
         'Handling natural logarithm integration: ∫ (1/y) dy = ln|y| and exponentiating correctly as |y| = e^C e^{G(x)} = K e^{G(x)}.',
@@ -145,8 +150,8 @@ const METHOD_ARCHETYPES: MethodArchetype[] = [
       title: 'First Order Linear Differential Equations',
       channel: 'The Organic Chemistry Tutor',
       duration: '10 mins',
-      youtubeId: 'Zs4p6fwTcao',
-      url: 'https://www.youtube.com/watch?v=Zs4p6fwTcao',
+      youtubeId: 'gd1FYn86P0c',
+      url: 'https://www.youtube.com/watch?v=gd1FYn86P0c',
       keyTakeaways: [
         'Writing in standard form y\' + P(x)y = Q(x) by dividing by any leading x-terms.',
         'Properly absorbing negative signs: e^{-2 ln x} = e^{ln(x⁻²)} = x⁻² = 1/x².',
@@ -313,8 +318,8 @@ const METHOD_ARCHETYPES: MethodArchetype[] = [
       title: 'Homogeneous Differential Equations',
       channel: 'The Organic Chemistry Tutor',
       duration: '13 mins',
-      youtubeId: 'uI2xt8nTOlQ',
-      url: 'https://www.youtube.com/watch?v=uI2xt8nTOlQ',
+      youtubeId: 'G7Y3KkEtwco',
+      url: 'https://www.youtube.com/watch?v=G7Y3KkEtwco',
       keyTakeaways: [
         'Recognizing identical total algebraic degrees in polynomials (e.g. x² + y² over xy).',
         'Applying the product rule correctly to y = ux: dy/dx = u + x(du/dx).',
@@ -351,11 +356,11 @@ const METHOD_ARCHETYPES: MethodArchetype[] = [
       ]
     },
     videoReview: {
-      title: 'Differential Equations by Linear Substitution',
-      channel: 'BlackPenRedPen',
-      duration: '6 mins',
-      youtubeId: 'k-a1o2K_gLw',
-      url: 'https://www.youtube.com/watch?v=k-a1o2K_gLw',
+      title: 'First-Order Differential Equations Ultimate Summary',
+      channel: 'bprp calculus basics',
+      duration: '8 mins',
+      youtubeId: 'AsVCAUq0lAc',
+      url: 'https://www.youtube.com/watch?v=AsVCAUq0lAc',
       keyTakeaways: [
         'Spotting packaged linear expressions Ax + By inside powers or trigonometric arguments.',
         'Substituting du/dx = A + B(dy/dx) to eliminate both x and y simultaneously.',
@@ -543,6 +548,16 @@ const AI_FORMULA_ADVICE: Record<string, AiFormulaAdvice> = {
 // ----------------------------------------------------
 // 3. DATA: Tutor's Secret Weapons & Speed-Hacks
 // ----------------------------------------------------
+export interface TutorHackVariant {
+  id: string;
+  name: string;
+  problem: string;
+  options: string[];
+  correctIndex: number;
+  babySteps: string[];
+  trapExplanation: string;
+}
+
 export interface TutorHack {
   id: string;
   badge: string;
@@ -550,6 +565,7 @@ export interface TutorHack {
   latex?: string;
   sourceRef: string;
   explanation: string;
+  mentalAnchor: string;
   exampleProblem: string;
   keyRule: string;
   standardMinutes: string;
@@ -558,6 +574,7 @@ export interface TutorHack {
   hackMethodText: string;
   proof: string;
   drillQuestionId: string;
+  variants: TutorHackVariant[];
 }
 
 const TUTOR_HACKS: TutorHack[] = [
@@ -568,6 +585,7 @@ const TUTOR_HACKS: TutorHack[] = [
     latex: '(T_3 - T_m)(T_1 - T_m) = (T_2 - T_m)^2',
     sourceRef: 'Tutor Notes Page 35',
     explanation: 'When 3 temperatures are recorded at equal time steps (e.g. t = 0, 0.5, 1.0 min with T = 70°, 110°, 145°), never solve for decay constant k. Equating ratios and cross-multiplying cancels Tm² on both sides, yielding a simple linear equation for ambient oven temperature Tm in 30 seconds!',
+    mentalAnchor: 'The Geometric Mean Balance: Remember that in exponential decay with equal time steps, (T₂ - Tm) is the exact geometric mean of (T₁ - Tm) and (T₃ - Tm). Just balance outer product = middle squared!',
     exampleProblem: '(145 - Tm)(70 - Tm) = (110 - Tm)² ⟹ 10150 - 215 Tm + Tm² = 12100 - 220 Tm + Tm² ⟹ 5 Tm = 1950 ⟹ Tm = 390°F.',
     keyRule: 'Strictly valid when time intervals are equal: Δt₁ = Δt₂. Cross-multiply and cancel the quadratic terms immediately.',
     standardMinutes: '12–15 Minutes',
@@ -575,31 +593,125 @@ const TUTOR_HACKS: TutorHack[] = [
     longMethodText: 'Solve T(t) = Tm + (T0 - Tm)e^{-kt}. Form two non-linear equations for k and Tm. Take natural logarithms, substitute ratios of exponentials, and solve algebraically through transcendental terms.',
     hackMethodText: 'Because Δt is identical, e^{-k(2Δt)} = (e^{-kΔt})². Therefore (T3 - Tm)/(T2 - Tm) = (T2 - Tm)/(T1 - Tm). Cross-multiply: the Tm² terms cancel instantly into a 1-variable linear equation!',
     proof: 'Let r = e^{-kΔt}. Then T₁ - Tm = C, T₂ - Tm = Cr, T₃ - Tm = C r². Notice (T₁ - Tm)(T₃ - Tm) = C · C r² = (Cr)² = (T₂ - Tm)². Q.E.D.',
-    drillQuestionId: 'dq_hack_newton'
+    drillQuestionId: 'dq_hack_newton',
+    variants: [
+      {
+        id: 'v1',
+        name: 'Variant A: Oven Thermometer Classic (Tutor Notes Ex 1)',
+        problem: 'An oven thermometer reads $70^\\circ\\\\text{F}$ at $t = 0$, $110^\\circ\\\\text{F}$ at $t = 0.5\\\\text{ min}$, and $145^\\circ\\\\text{F}$ at $t = 1.0\\\\text{ min}$. Using the 3-point shortcut $(T_3 - T_m)(T_1 - T_m) = (T_2 - T_m)^2$, what is the ambient oven temperature $T_m$?',
+        options: ['$390^\\circ\\\\text{F}$', '$360^\\circ\\\\text{F}$', '$420^\\circ\\\\text{F}$', '$340^\\circ\\\\text{F}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Notice the intervals are equal: $\\\\Delta t = 0.5\\\\text{ min}$ from $t=0$ to $0.5$, and $\\\\Delta t = 0.5\\\\text{ min}$ from $0.5$ to $1.0$.',
+          'Step 2: Set up the 3-point balance identity: $$(T_3 - T_m)(T_1 - T_m) = (T_2 - T_m)^2 \\\\implies (145 - T_m)(70 - T_m) = (110 - T_m)^2$$',
+          'Step 3: Expand the left-hand side: $$145 \\\\times 70 - 145 T_m - 70 T_m + T_m^2 = 10150 - 215 T_m + T_m^2$$',
+          'Step 4: Expand the right-hand side: $$110^2 - 2(110)T_m + T_m^2 = 12100 - 220 T_m + T_m^2$$',
+          'Step 5: Cancel the quadratic $T_m^2$ on both sides: $$10150 - 215 T_m = 12100 - 220 T_m$$',
+          'Step 6: Group $T_m$ terms on the left: $$220 T_m - 215 T_m = 12100 - 10150 \\\\implies 5 T_m = 1950 \\\\implies T_m = 390^\\circ\\\\text{F}$$'
+        ],
+        trapExplanation: 'Standard exam mistake: Trying to solve for decay constant k using natural logarithms first. That takes 12 minutes and produces decimal rounding errors!'
+      },
+      {
+        id: 'v2',
+        name: 'Variant B: Forensic Cooling (Crime Scene Thermometer)',
+        problem: 'A forensic investigator finds a cooling body. At $t = 0$, body temp is $85^\\circ\\\\text{F}$. At $t = 1\\\\text{ hr}$, it is $79^\\circ\\\\text{F}$. At $t = 2\\\\text{ hr}$, it is $74^\\circ\\\\text{F}$. Using the 3-point shortcut, what is the room ambient temperature $T_m$?',
+        options: ['$49^\\circ\\\\text{F}$', '$64^\\circ\\\\text{F}$', '$55^\\circ\\\\text{F}$', '$70^\\circ\\\\text{F}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Check time steps: $t=0, 1, 2\\\\text{ hr}$. Equal step $\\\\Delta t = 1\\\\text{ hr}$.',
+          'Step 2: Write formula: $$(74 - T_m)(85 - T_m) = (79 - T_m)^2$$',
+          'Step 3: Expand LHS: $$74 \\\\times 85 - (74+85)T_m + T_m^2 = 6290 - 159 T_m + T_m^2$$',
+          'Step 4: Expand RHS: $$79^2 - 2(79)T_m + T_m^2 = 6241 - 158 T_m + T_m^2$$',
+          'Step 5: Cancel $T_m^2$: $$6290 - 159 T_m = 6241 - 158 T_m$$',
+          'Step 6: Solve: $$6290 - 6241 = 159 T_m - 158 T_m \\\\implies T_m = 49^\\circ\\\\text{F}$$'
+        ],
+        trapExplanation: 'Watch for negative sign slips when isolating Tm: 159 - 158 = 1, giving Tm = 49°F directly.'
+      },
+      {
+        id: 'v3',
+        name: 'Variant C: Quenching Metal Ingot in Water Bath',
+        problem: 'A hot metal alloy cools in a circulating bath. Temperatures at $t = 0, 2, 4\\\\text{ min}$ are $300^\\circ\\\\text{C}, 180^\\circ\\\\text{C}, 120^\\circ\\\\text{C}$. What is the water bath temperature $T_m$?',
+        options: ['$60^\\circ\\\\text{C}$', '$50^\\circ\\\\text{C}$', '$75^\\circ\\\\text{C}$', '$40^\\circ\\\\text{C}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Equal intervals $\\\\Delta t = 2\\\\text{ min}$. Set up $$(T_3 - T_m)(T_1 - T_m) = (T_2 - T_m)^2 \\\\implies (120 - T_m)(300 - T_m) = (180 - T_m)^2$$',
+          'Step 2: Expand LHS: $$36000 - 420 T_m + T_m^2$$',
+          'Step 3: Expand RHS: $$32400 - 360 T_m + T_m^2$$',
+          'Step 4: Cancel $T_m^2$: $$36000 - 420 T_m = 32400 - 360 T_m$$',
+          'Step 5: Solve: $$36000 - 32400 = 420 T_m - 360 T_m \\\\implies 3600 = 60 T_m \\\\implies T_m = 60^\\circ\\\\text{C}$$'
+        ],
+        trapExplanation: 'Never square T1 or T3! The middle temperature T2 is the only term squared on the RHS.'
+      }
+    ]
   },
   {
     id: 'th2',
     badge: 'Linear Argument Shortcut',
     title: 'Hyperbolic Tangent Closed-Form Inversion',
-    latex: 'u(x) = 2\\frac{1 - e^{-4x}}{1 + e^{-4x}} = 2\\tanh(2x)',
+    latex: 'u(x) = 2\\\\frac{1 - e^{-4x}}{1 + e^{-4x}} = 2\\\\tanh(2x)',
     sourceRef: 'Tutor Notes Page 32',
-    explanation: 'In y\' - (4x - y + 1)² = 0, substituting u = 4x - y + 1 yields du/(u² - 4) = -dx. This separates into (u - 2)/(u + 2) = -e^{-4x}. Instead of doing messy fraction divisions, recognize the definition of tanh(w) = (1 - e^{-2w}) / (1 + e^{-2w}). It collapses directly into 2 tanh(2x), giving y(x) = 4x + 1 - 2 tanh(2x) with zero calculation errors.',
-    exampleProblem: 'y(x) = 4x + 1 - 2\\tanh(2x). Verified: at x = 0, y(0) = 4(0) + 1 - 2 tanh(0) = 1.',
+    explanation: "In y' - (4x - y + 1)² = 0, substituting u = 4x - y + 1 yields du/(u² - 4) = -dx. This separates into (u - 2)/(u + 2) = -e^{-4x}. Instead of doing messy fraction divisions, recognize the definition of tanh(w) = (1 - e^{-2w}) / (1 + e^{-2w}). It collapses directly into 2 tanh(2x), giving y(x) = 4x + 1 - 2 tanh(2x) with zero calculation errors.",
+    mentalAnchor: 'The Tanh Shortcut: Whenever you see (u - a)/(u + a) = -e^{-2ax}, don\'t do 10 steps of algebra. It is ALWAYS u(x) = a tanh(ax).',
+    exampleProblem: 'y(x) = 4x + 1 - 2\\\\tanh(2x). Verified: at x = 0, y(0) = 4(0) + 1 - 2 tanh(0) = 1.',
     keyRule: 'Whenever (u - a)/(u + a) = -e^{-2ax}, the solution is always u(x) = a tanh(ax).',
     standardMinutes: '10 Minutes',
     hackSeconds: '45 Seconds',
     longMethodText: 'Separate variables, compute partial fraction decomposition 1/(u-2)(u+2) = 1/4 [1/(u-2) - 1/(u+2)], integrate to logarithms, exponentiate, clear fractional denominators, and invert algebraically.',
     hackMethodText: 'Directly invoke the hyperbolic tangent identity tanh(z) = (e^z - e^{-z})/(e^z + e^{-z}) = (1 - e^{-2z})/(1 + e^{-2z}). Invert in one line.',
     proof: 'u - a = -e^{-2ax}(u + a) ⟹ u(1 + e^{-2ax}) = a(1 - e^{-2ax}) ⟹ u = a (1 - e^{-2ax})/(1 + e^{-2ax}) = a tanh(ax).',
-    drillQuestionId: 'dq_linear_arg_1'
+    drillQuestionId: 'dq_linear_arg_1',
+    variants: [
+      {
+        id: 'v1',
+        name: 'Variant A: Concordia Midterm Classic (a = 2)',
+        problem: 'After substituting $u = 4x - y + 1$ into $y\' - (4x - y + 1)^2 = 0$, you reach $\\\\frac{u - 2}{u + 2} = -e^{-4x}$. What is the closed-form expression for $u(x)$ using hyperbolic functions?',
+        options: ['$u(x) = 2\\\\tanh(2x)$', '$u(x) = 2\\\\coth(2x)$', '$u(x) = \\\\tanh(4x)$', '$u(x) = 4\\\\tanh(2x)$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Recognize the ratio form $\\\\frac{u - a}{u + a} = -e^{-2ax}$ where $a = 2$.',
+          'Step 2: Cross-multiply: $u - 2 = -e^{-4x}(u + 2) \\\\implies u(1 + e^{-4x}) = 2(1 - e^{-4x})$.',
+          'Step 3: Solve for $u$: $$u(x) = 2\\\\frac{1 - e^{-4x}}{1 + e^{-4x}}$$',
+          'Step 4: Recall the exponential definition of hyperbolic tangent: $$\\tanh(w) = \\\\frac{e^w - e^{-w}}{e^w + e^{-w}} = \\\\frac{1 - e^{-2w}}{1 + e^{-2w}}$$ with $w = 2x$.',
+          'Step 5: Conclude immediately: $u(x) = 2\\\\tanh(2x)$.'
+        ],
+        trapExplanation: 'Confusing 2tanh(2x) with tanh(4x). Notice the coefficient is 2 out front and 2 inside!'
+      },
+      {
+        id: 'v2',
+        name: 'Variant B: Terminal Velocity Riccati (a = 3)',
+        problem: 'In a terminal velocity problem, separation yields $\\\\frac{v - 3}{v + 3} = -e^{-6t}$. What is the explicit velocity $v(t)$?',
+        options: ['$v(t) = 3\\\\tanh(3t)$', '$v(t) = 3\\\\tanh(6t)$', '$v(t) = 6\\\\tanh(3t)$', '$v(t) = \\\\tanh(3t)$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Here $a = 3$, so the exponent is $-2at = -2(3)t = -6t$.',
+          'Step 2: By the Tanh Inversion Shortcut, $v(t) = a \\\\tanh(at) = 3\\\\tanh(3t)$.',
+          'Step 3: Verify at $t=0$: $v(0) = 3\\\\tanh(0) = 0$. Matching physical rest!'
+        ],
+        trapExplanation: 'Students often write tanh(6t) forgetting that the argument inside tanh is at, not 2at.'
+      },
+      {
+        id: 'v3',
+        name: 'Variant C: Full Inversion for y(x)',
+        problem: 'If $u(x) = 4x - y + 1$ and $u(x) = 2\\\\tanh(2x)$, what is the final explicit solution $y(x)$?',
+        options: ['$y(x) = 4x + 1 - 2\\\\tanh(2x)$', '$y(x) = 4x - 1 + 2\\\\tanh(2x)$', '$y(x) = 2\\\\tanh(2x) - 4x - 1$', '$y(x) = \\\\frac{4x + 1}{2\\\\tanh(2x)}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Start from the substitution definition: $u = 4x - y + 1$.',
+          'Step 2: Isolate $y$: $y = 4x + 1 - u$.',
+          'Step 3: Substitute $u = 2\\\\tanh(2x)$: $$y(x) = 4x + 1 - 2\\\\tanh(2x)$$ Done!'
+        ],
+        trapExplanation: 'Signs: students occasionally add 2tanh(2x) instead of subtracting it when moving y across.'
+      }
+    ]
   },
   {
     id: 'th3',
     badge: 'Mixing Tank Shortcut',
     title: 'Time-Varying Volume Integrating Factor Shortcut',
-    latex: 'V(t) = V_0 + (r_{\\text{in}} - r_{\\text{out}})t \\implies \\mu(t) = (V_0 + \\Delta r \\cdot t)^{-r_{\\text{out}}/\\Delta r}',
+    latex: 'V(t) = V_0 + (r_{\\\\text{in}} - r_{\\\\text{out}})t \\\\implies \\\\mu(t) = (V_0 + \\\\Delta r \\\\cdot t)^{-r_{\\\\text{out}}/\\\\Delta r}',
     sourceRef: 'Tutor Notes Page 39',
     explanation: 'When inflow rate rin ≠ outflow rate rout, volume is not constant: V(t) = 100 - t. The linear term P(t) = rout / (V_0 + Δr · t). Integrating P(t) produces a clean natural log: (rout / Δr) ln(V_0 + Δr · t). The integrating factor is a pure algebraic power without any exponentials remaining!',
+    mentalAnchor: 'The Power Ratio: μ(t) is always (V(t))^{exponent} where exponent = -rout / (rin - rout). It is NEVER an exponential function of e^t!',
     exampleProblem: 'V_0 = 100, rin = 4, rout = 5 ⟹ Δr = -1. P(t) = 5/(100-t) ⟹ μ(t) = (100 - t)⁻⁵.',
     keyRule: 'The tank empties when V(t) = 0. Never evaluate your solution beyond the emptying time!',
     standardMinutes: '8 Minutes',
@@ -607,15 +719,60 @@ const TUTOR_HACKS: TutorHack[] = [
     longMethodText: 'Derive volume function, set up differential equation dA/dt + (rout/V(t))A = rin cin, integrate P(t) by substitution u = 100 - t with du = -dt, simplify exp of ln.',
     hackMethodText: 'Direct power rule: μ(t) = (V₀ + Δr t)^{-rout / Δr}. For Δr = -1 and rout = 5, power is -5/(-1) = 5 with negative inner derivative, yielding μ(t) = (100 - t)⁻⁵.',
     proof: '∫ [rout / (V₀ + Δr t)] dt = (rout / Δr) ln(V₀ + Δr t). Then exp(ln(...)) = (V₀ + Δr t)^{rout / Δr}. With Δr < 0, absorbing sign yields (V₀ - |Δr|t)^{-rout/|Δr|}.',
-    drillQuestionId: 'dq_hack_tank'
+    drillQuestionId: 'dq_hack_tank',
+    variants: [
+      {
+        id: 'v1',
+        name: 'Variant A: Draining Tank ($V_0 = 100, r_{\\\\text{in}} = 4, r_{\\\\text{out}} = 5$)',
+        problem: 'A brine tank initially contains $100\\\\text{ L}$. Fresh brine enters at $4\\\\text{ L/min}$ and leaves at $5\\\\text{ L/min}$. What is the integrating factor $\\\\mu(t)$ for the amount of salt $A(t)$?',
+        options: ['$\\\\mu(t) = (100 - t)^{-5}$', '$\\\\mu(t) = (100 - t)^5$', '$\\\\mu(t) = e^{-5t}$', '$\\\\mu(t) = \\\\frac{1}{100 - t}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Compute volume change rate: $\\\\Delta r = r_{\\\\text{in}} - r_{\\\\text{out}} = 4 - 5 = -1\\\\text{ L/min}$.',
+          'Step 2: Volume at time $t$: $V(t) = V_0 + \\\\Delta r \\\\cdot t = 100 - t$.',
+          'Step 3: Linear ODE term: $P(t) = \\\\frac{r_{\\\\text{out}}}{V(t)} = \\\\frac{5}{100 - t}$.',
+          'Step 4: Integrate $P(t)$: $$\\int \\\\frac{5}{100 - t} dt = -5\\\\ln|100 - t| = \\\\ln((100 - t)^{-5})$$',
+          'Step 5: Exponentiate: $\\\\mu(t) = e^{\\\\ln((100 - t)^{-5})} = (100 - t)^{-5}$.'
+        ],
+        trapExplanation: 'Missing the negative sign from du = -dt when integrating 1/(100-t). That error turns -5 into +5.'
+      },
+      {
+        id: 'v2',
+        name: 'Variant B: Filling Tank ($V_0 = 50, r_{\\\\text{in}} = 6, r_{\\\\text{out}} = 2$)',
+        problem: 'A tank starts with $50\\\\text{ gal}$. Brine enters at $6\\\\text{ gal/min}$ and leaves at $2\\\\text{ gal/min}$. What is the integrating factor $\\\\mu(t)$?',
+        options: ['$\\\\mu(t) = (50 + 4t)^{1/2}$', '$\\\\mu(t) = (50 + 4t)^2$', '$\\\\mu(t) = e^{2t}$', '$\\\\mu(t) = (50 + 4t)^{-1/2}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: $\\\\Delta r = 6 - 2 = +4\\\\text{ gal/min}$. Volume: $V(t) = 50 + 4t$.',
+          'Step 2: Linear term: $P(t) = \\\\frac{r_{\\\\text{out}}}{V(t)} = \\\\frac{2}{50 + 4t}$.',
+          'Step 3: Integrate: $$\\int \\\\frac{2}{50 + 4t} dt = \\\\frac{2}{4}\\\\ln(50 + 4t) = \\\\frac{1}{2}\\\\ln(50 + 4t)$$',
+          'Step 4: Exponentiate: $\\\\mu(t) = (50 + 4t)^{1/2} = \\\\sqrt{50 + 4t}$.'
+        ],
+        trapExplanation: 'Forgetting to divide by the inner derivative 4 when evaluating the logarithm integral.'
+      },
+      {
+        id: 'v3',
+        name: 'Variant C: Tank Overflow / Emptying Boundary',
+        problem: 'For the draining tank with $V(t) = 100 - t$, what is the maximal interval of validity $I$ for the differential equation?',
+        options: ['$I = [0, 100)$', '$I = (0, \\\\infty)$', '$I = (-\\\\infty, 100)$', '$I = [0, 50)$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: The differential equation has a singularity where $V(t) = 0 \\\\implies 100 - t = 0 \\\\implies t = 100\\\\text{ min}$.',
+          'Step 2: The physical experiment starts at $t = 0$.',
+          'Step 3: Therefore, the model is strictly physically and mathematically valid on $[0, 100)$.'
+        ],
+        trapExplanation: 'Writing (0, ∞). Once the tank empties at t = 100 min, there is no more fluid!'
+      }
+    ]
   },
   {
     id: 'th4',
     badge: 'Logarithm Absorption',
     title: 'Negative Sign Absorption in Integrating Factors',
-    latex: 'P(x) = -\\frac{k}{x} \\implies \\int P dx = -k\\ln x = \\ln(x^{-k}) \\implies \\mu(x) = x^{-k} = \\frac{1}{x^k}',
+    latex: 'P(x) = -\\\\frac{k}{x} \\\\implies \\\\int P dx = -k\\\\ln x = \\\\ln(x^{-k}) \\\\implies \\\\mu(x) = x^{-k} = \\\\frac{1}{x^k}',
     sourceRef: 'Tutor Notes Page 7 & 11',
     explanation: 'Students lose 5 to 10 marks on midterms by writing e^{-3 ln x} = -x³ or e^{-3 ln x} = x³. The negative sign must be absorbed into the logarithm as a power first: e^{ln(x⁻³)} = x⁻³ = 1/x³.',
+    mentalAnchor: 'The Power Lift: The number multiplying ln x must ALWAYS jump inside the logarithm as the exponent of x before e and ln cancel! -3 ln x = ln(x⁻³) = 1/x³.',
     exampleProblem: 'y\' - (3/x)y = x² ⟹ μ(x) = 1/x³. Then (d/dx)[y / x³] = 1/x ⟹ y/x³ = ln|x| + C ⟹ y = x³(ln|x| + C).',
     keyRule: 'Always absorb leading numbers and negative signs into the log exponent before applying e^{ln(...)}.',
     standardMinutes: '5 Minutes',
@@ -623,15 +780,56 @@ const TUTOR_HACKS: TutorHack[] = [
     longMethodText: 'Writing intermediate exponent rules, splitting into e^{-1} · e^{3 ln x}, making algebraic errors.',
     hackMethodText: 'Immediate rule: -k ln(x) = ln(x^{-k}). The exp and ln cancel: μ(x) = 1 / x^k.',
     proof: 'exp(-k ln x) = exp(ln(x^{-k})) = x^{-k} = 1/x^k by inverse function identity exp(ln u) = u.',
-    drillQuestionId: 'dq_linear_1'
+    drillQuestionId: 'dq_linear_1',
+    variants: [
+      {
+        id: 'v1',
+        name: 'Variant A: Negative Coefficient k = 3',
+        problem: 'Simplify $e^{-3\\\\ln(x)}$ into its simplest algebraic form without logarithms or exponentials:',
+        options: ['$\\\\frac{1}{x^3}$', '$-x^3$', '$x^{-1/3}$', '$-3x$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Apply the logarithm power rule: $-3\\\\ln(x) = \\\\ln(x^{-3})$.',
+          'Step 2: Apply the inverse function identity: $e^{\\\\ln(u)} = u$.',
+          'Step 3: Evaluate: $e^{\\\\ln(x^{-3})} = x^{-3} = \\\\frac{1}{x^3}$.'
+        ],
+        trapExplanation: 'Never bring -3 out front as a coefficient! e^{-3 ln x} is NEVER -x³.'
+      },
+      {
+        id: 'v2',
+        name: 'Variant B: Negative Fraction k = 1/2',
+        problem: 'Simplify $\\\\mu(x) = e^{-\\\\frac{1}{2}\\\\ln(x)}$:',
+        options: ['$\\\\frac{1}{\\\\sqrt{x}}$', '$-\\\\sqrt{x}$', '$\\\\sqrt{x}$', '$\\\\frac{1}{2x}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Lift $-1/2$ into the exponent: $-\\\\frac{1}{2}\\\\ln(x) = \\\\ln(x^{-1/2})$.',
+          'Step 2: Cancel $e$ and $\\\\ln$: $x^{-1/2} = \\\\frac{1}{\\\\sqrt{x}}$.'
+        ],
+        trapExplanation: 'Common slip: forgetting that power -1/2 puts the square root into the denominator.'
+      },
+      {
+        id: 'v3',
+        name: 'Variant C: Full ODE Collapse with Negative Sign',
+        problem: 'For $y\' - \\\\frac{2}{x}y = 4$, after multiplying by $\\\\mu(x) = \\\\frac{1}{x^2}$, what does the LHS collapse to?',
+        options: ['$\\\\frac{d}{dx}\\\\left[\\\\frac{y}{x^2}\\\\right]$', '$\\\\frac{d}{dx}[x^2 y]$', '$\\\\frac{d}{dx}\\\\left[\\\\frac{-y}{x^2}\\\\right]$', '$\\\\frac{d}{dx}[y - 2x]$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Standard linear form: $y\' + P(x)y = Q(x)$ with $P(x) = -2/x$.',
+          'Step 2: Integrating factor: $\\\\mu(x) = e^{\\\\int -2/x dx} = x^{-2} = \\\\frac{1}{x^2}$.',
+          'Step 3: Reverse product rule identity: $\\\\mu y\' + \\mu\' y = \\\\frac{d}{dx}[\\\\mu y] = \\\\frac{d}{dx}\\\\left[\\\\frac{y}{x^2}\\\\right]$.'
+        ],
+        trapExplanation: 'Dropping the minus sign in P(x) = -2/x gives mu = x^2, which leads to total failure.'
+      }
+    ]
   },
   {
     id: 'th5',
     badge: 'Partial Fractions Hack',
     title: 'Heaviside Cover-Up Rule (15 Seconds)',
-    latex: '\\frac{P(x)}{(x - a)(x - b)} = \\frac{P(a)/(a-b)}{x - a} + \\frac{P(b)/(b-a)}{x - b}',
+    latex: '\\\\frac{P(x)}{(x - a)(x - b)} = \\\\frac{P(a)/(a-b)}{x - a} + \\\\frac{P(b)/(b-a)}{x - b}',
     sourceRef: 'Tutor Notes Page 9 & 19',
     explanation: 'To find the coefficient of 1/(x-a), cover up (x-a) with your thumb and evaluate the rest of the fraction at x = a. No common denominators, no system of equations, 100% foolproof.',
+    mentalAnchor: 'The Thumb Cover-Up: Cover the denominator factor that equals zero with your thumb, and plug that root into everything that\'s left visible!',
     exampleProblem: '1/[(u-2)(u+2)] = A/(u-2) + B/(u+2). Cover (u-2), set u=2: A = 1/(2+2) = 1/4. Cover (u+2), set u=-2: B = 1/(-2-2) = -1/4.',
     keyRule: 'Applies to any non-repeated linear factors in separable and partial fraction problems.',
     standardMinutes: '6 Minutes',
@@ -639,23 +837,107 @@ const TUTOR_HACKS: TutorHack[] = [
     longMethodText: 'Write A/(x-a) + B/(x-b), find common denominator, expand numerator A(x-b) + B(x-a), equate coefficients to constant and x, solve system of 2 equations.',
     hackMethodText: 'Multiply both sides by (x-a) and set x = a. The (x-b) term on RHS vanishes, directly isolating A = P(a)/(a-b).',
     proof: 'Multiply P(x)/[(x-a)Q(x)] by (x-a): P(x)/Q(x) = A + (x-a)[B/...]. Taking limit as x → a gives A = P(a)/Q(a).',
-    drillQuestionId: 'dq_hack_heaviside'
+    drillQuestionId: 'dq_hack_heaviside',
+    variants: [
+      {
+        id: 'v1',
+        name: 'Variant A: Difference of Squares Factorization',
+        problem: 'Decompose $\\\\frac{1}{(u - 3)(u + 3)}$ using the Heaviside Cover-Up rule. What are the coefficients $A$ and $B$?',
+        options: ['$A = \\\\frac{1}{6}, \\\\; B = -\\\\frac{1}{6}$', '$A = \\\\frac{1}{3}, \\\\; B = -\\\\frac{1}{3}$', '$A = 1, \\\\; B = -1$', '$A = \\\\frac{1}{6}, \\\\; B = \\\\frac{1}{6}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Write form: $\\\\frac{A}{u - 3} + \\\\frac{B}{u + 3}$.',
+          'Step 2: Cover $(u - 3)$ and evaluate at $u = 3$: $$A = \\\\left. \\\\frac{1}{u + 3} \\\\right|_{u=3} = \\\\frac{1}{3 + 3} = \\\\frac{1}{6}$$',
+          'Step 3: Cover $(u + 3)$ and evaluate at $u = -3$: $$B = \\\\left. \\\\frac{1}{u - 3} \\\\right|_{u=-3} = \\\\frac{1}{-3 - 3} = -\\\\frac{1}{6}$$',
+          'Step 4: Done in 10 seconds without any 2x2 matrix algebra!'
+        ],
+        trapExplanation: 'Watch the sign: when u = -3, denominator is -3 - 3 = -6, so B is negative -1/6.'
+      },
+      {
+        id: 'v2',
+        name: 'Variant B: Linear Numerator',
+        problem: 'Find the partial fraction decomposition of $\\\\frac{2x + 1}{(x - 1)(x + 2)}$:',
+        options: ['$\\\\frac{1}{x - 1} + \\\\frac{1}{x + 2}$', '$\\\\frac{2}{x - 1} - \\\\frac{1}{x + 2}$', '$\\\\frac{3}{x - 1} - \\\\frac{1}{x + 2}$', '$\\\\frac{1}{x - 1} + \\\\frac{2}{x + 2}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Cover $(x - 1)$ and evaluate at $x = 1$: $$A = \\\\frac{2(1) + 1}{1 + 2} = \\\\frac{3}{3} = 1$$',
+          'Step 2: Cover $(x + 2)$ and evaluate at $x = -2$: $$B = \\\\frac{2(-2) + 1}{-2 - 1} = \\\\frac{-3}{-3} = 1$$',
+          'Step 3: Result: $\\\\frac{1}{x - 1} + \\\\frac{1}{x + 2}$.'
+        ],
+        trapExplanation: 'Plugging x = -2 into the numerator: 2(-2) + 1 = -3, and denominator -2 - 1 = -3, yielding +1.'
+      },
+      {
+        id: 'v3',
+        name: 'Variant C: 3 Linear Factors Inspection',
+        problem: 'What is the coefficient of $\\\\frac{1}{x - 2}$ in $\\\\frac{x^2}{(x - 1)(x - 2)(x + 1)}$?',
+        options: ['$\\\\frac{4}{3}$', '$\\\\frac{2}{3}$', '$4$', '$\\\\frac{4}{5}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Target factor is $(x - 2)$. Its root is $x = 2$.',
+          'Step 2: Cover $(x - 2)$ with your thumb in $\\\\frac{x^2}{(x - 1)(x + 1)}$.',
+          'Step 3: Evaluate at $x = 2$: $$A_2 = \\\\frac{2^2}{(2 - 1)(2 + 1)} = \\\\frac{4}{(1)(3)} = \\\\frac{4}{3}$$'
+        ],
+        trapExplanation: 'For 3 linear factors, cover the single target factor and plug its root into the other two.'
+      }
+    ]
   },
   {
     id: 'th6',
     badge: 'Homogeneous Testing',
     title: 'Polynomial Degree Matching Test',
-    latex: 'M(tx, ty) = t^k M(x, y) \\quad \\text{and} \\quad N(tx, ty) = t^k N(x, y)',
+    latex: 'M(tx, ty) = t^k M(x, y) \\\\quad \\\\text{and} \\\\quad N(tx, ty) = t^k N(x, y)',
     sourceRef: 'Tutor Notes Page 23',
     explanation: 'In (x - y)dx + x dy = 0, both coefficients are homogeneous of degree 1. Substituting y = ux and dy = u dx + x du immediately reduces the equation to x dx + x² du = 0 ⟹ (1/x)dx + du = 0, solving in 3 lines: y(x) = x(C - ln|x|).',
-    exampleProblem: 'In (x³ + y³)dx + (3xy²)dy = 0, each monomial has degree 3. Dividing by x³ yields (1 + u³)dx + 3u²(u dx + x du) = 0.',
-    keyRule: 'Always divide through by x^k to verify that the equation is solely a function of u = y/x.',
+    mentalAnchor: 'The Monomial Degree Check: Sum the exponents in each monomial: x² is 2, xy is 1+1=2, y² is 2. If every monomial has the identical sum, it\'s homogeneous! Substitute y = ux immediately.',
+    exampleProblem: '(x² + y²)dx - 2xy dy = 0 ⟹ degrees are 2, 2, 2. Homogeneous of degree 2. Substitute y = ux ⟹ x² cancels.',
+    keyRule: 'Every single monomial term must have the exact same combined power. No constants (+1) allowed!',
     standardMinutes: '8 Minutes',
-    hackSeconds: '30 Seconds',
-    longMethodText: 'Testing dy/dx derivatives, attempting separation, checking exactness test My and Nx (which fails), testing integrating factor formulas.',
-    hackMethodText: 'Count exponents: if every term has sum of exponents equal to k (e.g. x², y², xy all equal 2), invoke y = ux immediately!',
-    proof: 'M(x, y)/N(x, y) = [x^k M(1, y/x)] / [x^k N(1, y/x)] = g(y/x). Thus dy/dx depends solely on ratio y/x.',
-    drillQuestionId: 'dq_homog_1'
+    hackSeconds: '20 Seconds',
+    longMethodText: 'Attempting separable methods, testing Clairaut mixed partial derivatives, calculating incorrect integrating factors.',
+    hackMethodText: 'Add exponents of x and y in each term. If all equal k, write y = ux, dy = u dx + x du. x^k factors out and vanishes completely.',
+    proof: 'M(tx, ty) = t^k M(x, y) ⟹ M(x, y) = x^k M(1, y/x) = x^k M(1, u). Both M and N have x^k, so dividing by x^k leaves an equation purely in u and x du/dx.',
+    drillQuestionId: 'dq_homo_1',
+    variants: [
+      {
+        id: 'v1',
+        name: 'Variant A: Monomial Degree Audit',
+        problem: 'Which of the following differential equations is NOT homogeneous?',
+        options: ['$(x^2 + y^2)dx + (xy - 1)dy = 0$', '$(x^2 + y^2)dx - 2xy dy = 0$', '$(x^3 + y^3)dx - x y^2 dy = 0$', '$(x - y)dx + (x + y)dy = 0$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: Check Option A: $x^2$ (degree 2), $y^2$ (degree 2), $xy$ (degree 2), but $-1$ has degree 0! The constant $-1$ breaks homogeneity.',
+          'Step 2: Check Option B: $x^2, y^2, 2xy$ are all degree 2. (Homogeneous)',
+          'Step 3: Check Option C: $x^3, y^3, xy^2$ are all degree 3. (Homogeneous)',
+          'Step 4: Check Option D: $x, y$ are all degree 1. (Homogeneous).'
+        ],
+        trapExplanation: 'Any isolated constant (+1, -5) immediately ruins homogeneity. Constants have degree 0!'
+      },
+      {
+        id: 'v2',
+        name: 'Variant B: The Substitution Product Rule',
+        problem: 'When applying $y = ux$ to a homogeneous equation, what is the exact differential substitution for $dy$?',
+        options: ['$dy = u\\\\,dx + x\\\\,du$', '$dy = u\\\\,du$', '$dy = x\\\\,du$', '$dy = u\\\\,dx$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: $y$ is the product of two functions: $u(x)$ and $x$.',
+          'Step 2: Apply the product rule: $d(ux) = (du)x + u(dx) = u\\\\,dx + x\\\\,du$.',
+          'Step 3: Never forget the $u\\\\,dx$ term!'
+        ],
+        trapExplanation: 'Number 1 student error: Writing dy = x du and omitting u dx. That ruins the entire calculation.'
+      },
+      {
+        id: 'v3',
+        name: 'Variant C: Final Explicit Inversion',
+        problem: 'If $u(x) = C - \\\\ln|x|$ after solving the reduced separable equation, what is $y(x)$?',
+        options: ['$y(x) = x(C - \\\\ln|x|)$', '$y(x) = \\\\frac{C - \\\\ln|x|}{x}$', '$y(x) = C x - \\\\ln|x|$', '$y(x) = e^{C - \\\\ln|x|}$'],
+        correctIndex: 0,
+        babySteps: [
+          'Step 1: The original substitution was $y = ux$.',
+          'Step 2: Multiply $u(x)$ by $x$: $$y(x) = u \\\\cdot x = x(C - \\\\ln|x|)$$'
+        ],
+        trapExplanation: 'Forgetting to back-substitute u = y/x into the final answer.'
+      }
+    ]
   }
 ];
 
@@ -671,6 +953,34 @@ interface UnofficialExamFile {
 }
 
 const UNOFFICIAL_MIDTERMS: UnofficialExamFile[] = [
+  {
+    title: 'Fall 2025 Midterm Test 1 (Dr. Alexey Kokotov)',
+    year: 'Fall 2025',
+    filename: '2025 Fall Midterm.pdf',
+    relativePath: 'Engr 213/Midterm/2025 Fall Midterm.pdf',
+    scope: 'Dr. Kokotov Exam: Separable IVP, Linear IF with Power Absorption, Exact Potential Function, Tank Mixture'
+  },
+  {
+    title: 'Winter 2026 Midterm Term Test 1 (Section JB)',
+    year: 'Winter 2026',
+    filename: '2026 Winter Midterm.pdf',
+    relativePath: 'Engr 213/Midterm/2026 Winter Midterm.pdf',
+    scope: 'Non-Exact Integrating Factor, Bernoulli Reduction, Complex Characteristic Roots (λ = α ± iβ)'
+  },
+  {
+    title: 'Fall 2024 Midterm II Examination (Section V)',
+    year: 'Fall 2024',
+    filename: '2024 Fall Midterm.pdf',
+    relativePath: 'Engr 213/Midterm/2024 Fall Midterm.pdf',
+    scope: 'Homogeneous Degree Matching (y = ux), Newton Cooling Temperature Kinetics, Steady-State Analysis'
+  },
+  {
+    title: 'Fall 2021 Midterm Examination Type A (Dr. Sam Eskandarian)',
+    year: 'Fall 2021',
+    filename: '2021 Fall Midterm.pdf',
+    relativePath: 'Engr 213/Midterm/2021 Fall Midterm.pdf',
+    scope: 'Dr. Eskandarian Exam: Normalization Leading-Term Traps, Existence & Uniqueness Theorems, Linear Systems'
+  },
   {
     title: 'Fall 2018 Midterm Examination (Unofficial)',
     year: 'Fall 2018',
@@ -737,489 +1047,8 @@ const UNOFFICIAL_MIDTERMS: UnofficialExamFile[] = [
 ];
 
 // ----------------------------------------------------
-// 5. DATA: Comprehensive Interactive Brain Drill Questions
+// 5. DATA: Comprehensive 500-Question Interactive Drill Banks (50 per subject)
 // ----------------------------------------------------
-export interface CompanionDrillQuestion extends PracticeQuestion {
-  methodId: 'separable' | 'linear_if' | 'exact' | 'non_exact' | 'bernoulli' | 'homogeneous' | 'linear_arg' | 'second_order' | 'tutor_hacks' | 'formulas';
-}
-
-const COMPANION_DRILL_QUESTIONS: CompanionDrillQuestion[] = [
-  {
-    id: 'dq_sep_1',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'separable',
-    topic: 'Separable IVP · Negative Root Selection',
-    difficulty: 'Midterm Level',
-    question: 'Solve the initial value problem: $\\frac{dy}{dx} = \\frac{2x}{y}, \\quad y(0) = -3$. What is the explicit solution $y(x)$?',
-    options: [
-      '$y(x) = -\\sqrt{2x^2 + 9}$',
-      '$y(x) = \\sqrt{2x^2 + 9}$',
-      '$y(x) = -\\sqrt{x^2 + 9}$',
-      '$y(x) = -2x - 3$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Cross-multiplying separates variables: $y\\,dy = 2x\\,dx$. Integrating yields $\\frac{1}{2}y^2 = x^2 + C$. The initial condition selects the negative branch.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Separate variables', math: 'y\\,dy = 2x\\,dx' },
-        { title: 'Step 2: Integrate both sides', math: '\\int y\\,dy = \\int 2x\\,dx \\implies \\frac{1}{2}y^2 = x^2 + C_1 \\implies y^2 = 2x^2 + C' },
-        { title: 'Step 3: Plug in initial condition $x = 0, y = -3$', math: '(-3)^2 = 2(0)^2 + C \\implies 9 = C' },
-        { title: 'Step 4: Branch selection from initial condition', note: '$y^2 = 2x^2 + 9 \\implies y(x) = \\pm\\sqrt{2x^2 + 9}$. Because $y(0) = -3 < 0$, we must pick the negative root $y(x) = -\\sqrt{2x^2 + 9}$.' }
-      ],
-      answer: 'y(x) = -\\sqrt{2x^2 + 9}',
-      whyWrong: {
-        '1': 'You selected the positive branch $\\sqrt{2x^2 + 9}$, but at $x = 0$ this gives $+3$, violating $y(0) = -3$.',
-        '2': 'You forgot to multiply $x^2$ by 2 when multiplying $\\frac{1}{2}y^2$ across.',
-        '3': 'You treated the derivative linearly instead of integrating $y\\,dy$.'
-      },
-      commonTrap: 'Forgetting that $y^2 = f(x)$ gives two branches $\\pm\\sqrt{f(x)}$. The initial condition always chooses the sign.',
-      reference: 'Lecture 3 · Separable Equations'
-    }
-  },
-  {
-    id: 'dq_sep_2',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'separable',
-    topic: 'Separable ODEs · Singular Lost Solutions',
-    difficulty: 'Midterm Level',
-    question: 'Solving $\\frac{dy}{dx} = y^2 - 4$ by separation gives the family $y = 2\\frac{1 + c e^{4x}}{1 - c e^{4x}}$. Which constant equilibrium solution is a singular (lost) solution?',
-    options: [
-      '$y = -2$ only',
-      '$y = 2$ only',
-      '$y = 0$',
-      'Both $y = 2$ and $y = -2$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Dividing by $h(y) = y^2 - 4$ assumes $y \\ne \\pm 2$. If no real constant $c$ can reproduce an equilibrium solution from the family, that solution is singular (lost).',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Equilibrium roots where $dy/dx = 0$', math: 'y^2 - 4 = 0 \\implies y = 2 \\quad \\text{or} \\quad y = -2' },
-        { title: 'Step 2: Test $y = 2$ in the family', note: 'Setting $c = 0$ gives $y = 2\\frac{1 + 0}{1 - 0} = 2$. So $y = 2$ is included in the family!' },
-        { title: 'Step 3: Test $y = -2$ in the family', math: '2\\frac{1 + c e^{4x}}{1 - c e^{4x}} = -2 \\implies 1 + c e^{4x} = -1 + c e^{4x} \\implies 1 = -1 \\; \\text{(Impossible!)}' },
-        { title: 'Step 4: Conclusion', note: 'No finite choice of $c$ can produce $y = -2$. Therefore, $y = -2$ is a singular (lost) solution.' }
-      ],
-      answer: 'y = -2',
-      whyWrong: {
-        '1': '$y = 2$ is obtained by setting $c = 0$, so it is not lost.',
-        '2': '$y = 0$ is not an equilibrium solution because $dy/dx = 0^2 - 4 = -4 \\ne 0$.',
-        '3': '$y = 2$ is part of the general family when $c = 0$. Only $y = -2$ is lost.'
-      },
-      commonTrap: 'Assuming both equilibrium solutions are lost. Always test $c = 0$ and $c \\to \\infty$ against the general solution family.',
-      reference: 'Lecture 3 · Page 6'
-    }
-  },
-  {
-    id: 'dq_linear_1',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'linear_if',
-    topic: '1st-Order Linear · Integrating Factor in x',
-    difficulty: 'Midterm Level',
-    question: 'Solve the linear initial value problem: $x\\frac{dy}{dx} + 3y = \\frac{\\sin x}{x^2}, \\quad y(\\pi) = 0$. What is $y(x)$?',
-    options: [
-      '$y(x) = \\frac{-\\cos x - 1}{x^3}$',
-      '$y(x) = \\frac{-\\cos x + 1}{x^3}$',
-      '$y(x) = \\frac{\\cos x}{x^3}$',
-      '$y(x) = -x^3 \\cos x$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Normalize by dividing by $x$ to achieve standard form $y\' + \\frac{3}{x}y = \\frac{\\sin x}{x^3}$. The integrating factor is $\\mu(x) = x^3$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Normalize with unit leading coefficient', math: '\\frac{dy}{dx} + \\frac{3}{x}y = \\frac{\\sin x}{x^3}' },
-        { title: 'Step 2: Find integrating factor $\\mu(x)$', math: '\\mu(x) = e^{\\int \\frac{3}{x}dx} = e^{3\\ln|x|} = x^3' },
-        { title: 'Step 3: Collapse by reverse product rule', math: '\\frac{d}{dx}[x^3 y] = x^3 \\left(\\frac{\\sin x}{x^3}\\right) = \\sin x' },
-        { title: 'Step 4: Integrate and divide by $\\mu(x)$', math: 'x^3 y = -\\cos x + C \\implies y(x) = \\frac{-\\cos x + C}{x^3}' },
-        { title: 'Step 5: Apply $y(\\pi) = 0$', math: '0 = \\frac{-\\cos(\\pi) + C}{\\pi^3} = \\frac{-(-1) + C}{\\pi^3} \\implies 1 + C = 0 \\implies C = -1' }
-      ],
-      answer: 'y(x) = \\frac{-\\cos x - 1}{x^3}',
-      whyWrong: {
-        '1': 'Sign slip with $\\cos(\\pi) = -1$. $-(-1) + C = 0 \\implies C = -1$, not $+1$.',
-        '2': 'Forgetting to include the integration constant $C$ before dividing by $x^3$.',
-        '3': 'Multiplying by $x^3$ instead of dividing by $\\mu(x)$.'
-      },
-      commonTrap: 'Forgetting to divide the constant $C$ by the integrating factor $\\mu(x) = x^3$.',
-      reference: 'Lecture 3 · Linear Equations'
-    }
-  },
-  {
-    id: 'dq_exact_1',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'exact',
-    topic: 'Exact Differential Equations · Potential Function',
-    difficulty: 'Midterm Level',
-    question: 'Solve $(2xy)\\,dx + (x^2 - 1)\\,dy = 0$. Which function represents the implicit level curves $\\Psi(x, y) = C$?',
-    options: [
-      '$x^2 y - y = C$',
-      '$x^2 y + y = C$',
-      '$2x^2 y - y = C$',
-      '$\\frac{x^2}{y} = C$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Test exactness: $M_y = 2x, N_x = 2x$. Integrate $M$ by $x$: $\\Psi = x^2 y + g(y)$. Differentiate by $y$: $x^2 + g\'(y) = x^2 - 1 \\implies g(y) = -y$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Clairaut exactness test', math: 'M_y = \\frac{\\partial}{\\partial y}(2xy) = 2x, \\quad N_x = \\frac{\\partial}{\\partial x}(x^2 - 1) = 2x \\implies M_y = N_x' },
-        { title: 'Step 2: Integrate $M$ with respect to $x$', math: '\\Psi(x,y) = \\int 2xy\\,dx = x^2 y + g(y)' },
-        { title: 'Step 3: Differentiate by $y$ and equate to $N$', math: '\\frac{\\partial \\Psi}{\\partial y} = x^2 + g\'(y) = x^2 - 1 \\implies g\'(y) = -1' },
-        { title: 'Step 4: Integrate $g\'(y)$ to find level curves', math: 'g(y) = -y \\implies \\Psi(x,y) = x^2 y - y = C' }
-      ],
-      answer: 'x^2 y - y = C',
-      whyWrong: {
-        '1': 'Sign slip on $N = x^2 - 1$. $g\'(y) = -1 \\implies g(y) = -y$, not $+y$.',
-        '2': 'Extra factor of 2: $\\int 2x dx = x^2$, not $2x^2$.',
-        '3': 'Incorrect quotient assumption instead of potential function.'
-      },
-      commonTrap: 'Forgetting to set $\\Psi(x, y) = C$. The general solution to an exact ODE is always a family of level curves equal to a constant.',
-      reference: 'Lecture 4 · Exact Equations'
-    }
-  },
-  {
-    id: 'dq_nonexact_1',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'non_exact',
-    topic: 'Non-Exact ODE · Special Integrating Factor in x',
-    difficulty: 'Exam Master',
-    question: 'For $(3xy + y^2)dx + (x^2 + xy)dy = 0$, what is the integrating factor $\\mu$ that transforms this equation into an exact ODE?',
-    options: [
-      '$\\mu(x) = x$',
-      '$\\mu(x) = \\frac{1}{x}$',
-      '$\\mu(y) = y$',
-      '$\\mu(x) = x^2$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Compute mixed partials: $M_y = 3x + 2y, N_x = 2x + y$. The difference $(M_y - N_x)/N = 1/x$ depends on $x$ only, yielding $\\mu(x) = e^{\\int (1/x)dx} = x$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Check exactness', math: 'M_y = 3x + 2y, \\quad N_x = 2x + y \\implies M_y - N_x = x + y \\ne 0' },
-        { title: 'Step 2: Divide by $N$', math: '\\frac{M_y - N_x}{N} = \\frac{x + y}{x(x + y)} = \\frac{1}{x} \\; (\\text{Pure function of } x)' },
-        { title: 'Step 3: Compute integrating factor $\\mu(x)$', math: '\\mu(x) = e^{\\int \\frac{1}{x}dx} = e^{\\ln|x|} = x' },
-        { title: 'Step 4: Verify new exactness', math: '(3x^2 y + xy^2)dx + (x^3 + x^2 y)dy = 0 \\implies M_y = 3x^2 + 2xy = N_x \\; \\checkmark' }
-      ],
-      answer: '\\mu(x) = x',
-      whyWrong: {
-        '1': 'Minus sign error in $(M_y - N_x)$. If you computed $(N_x - M_y)/N = -1/x$, you get $1/x$.',
-        '2': 'Divided by $M$ instead of $N$. $(M_y - N_x)/M$ contains both $x$ and $y$.',
-        '3': 'Forgot that $\\int (1/x)dx = \\ln x$, not $x^2/2$.'
-      },
-      commonTrap: 'Mixing up the numerator order: remember "My Next Neighbor" $M_y - N_x$ divides by $N$.',
-      reference: 'Lecture 4 · Integrating Factors'
-    }
-  },
-  {
-    id: 'dq_bernoulli_1',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'bernoulli',
-    topic: 'Bernoulli Equations · Linearizing Substitution',
-    difficulty: 'Midterm Level',
-    question: 'To solve the Bernoulli equation $x\\frac{dy}{dx} + y = x^2 y^2$, which substitution linearizes the differential equation?',
-    options: [
-      '$u = y^{-1}$',
-      '$u = y^2$',
-      '$u = y^{-2}$',
-      '$u = \\frac{y}{x}$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'A Bernoulli equation $y\' + P(x)y = Q(x)y^n$ has power $n = 2$. The standard linearizing substitution is $u = y^{1-n} = y^{1-2} = y^{-1}$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Identify Bernoulli power $n$', math: 'x y\' + y = x^2 y^2 \\implies y\' + \\frac{1}{x}y = x y^2 \\implies n = 2' },
-        { title: 'Step 2: Apply formula $u = y^{1-n}$', math: 'u = y^{1 - 2} = y^{-1} = \\frac{1}{y}' },
-        { title: 'Step 3: Differentiate $u$', math: '\\frac{du}{dx} = -y^{-2}\\frac{dy}{dx} \\implies y^{-2}\\frac{dy}{dx} = -\\frac{du}{dx}' },
-        { title: 'Step 4: Transformed linear ODE', math: '-\\frac{du}{dx} + \\frac{1}{x}u = x \\implies \\frac{du}{dx} - \\frac{1}{x}u = -x' }
-      ],
-      answer: 'u = y^{-1}',
-      whyWrong: {
-        '1': '$u = y^2$ is the nonlinear power on the right side, not $y^{1-n}$.',
-        '2': '$u = y^{-2}$ would be for $n = 3$. Here $n = 2$, so $1 - 2 = -1$.',
-        '3': '$u = y/x$ is for homogeneous equations, not Bernoulli equations.'
-      },
-      commonTrap: 'Using $u = y^n$ instead of $u = y^{1-n}$. Always subtract $n$ from 1.',
-      reference: 'Lecture 5 · Bernoulli Equations'
-    }
-  },
-  {
-    id: 'dq_homog_1',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'homogeneous',
-    topic: 'Homogeneous Equations · Degree 1 Substitution',
-    difficulty: 'Midterm Level',
-    question: 'Solve $(x - y)\\,dx + x\\,dy = 0$. Which function is the general solution?',
-    options: [
-      '$y(x) = x(C - \\ln|x|)$',
-      '$y(x) = x(C + \\ln|x|)$',
-      '$y(x) = C x - x^2$',
-      '$y(x) = C e^{-x}$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Both terms have degree 1. Substitute $y = ux \\implies dy = u\\,dx + x\\,du$. It collapses into $dx/x + du = 0 \\implies u = C - \\ln|x|$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Test degree', math: 'M(x,y) = x - y \\; (\\text{deg } 1), \\quad N(x,y) = x \\; (\\text{deg } 1)' },
-        { title: 'Step 2: Substitute $y = ux, \\; dy = u\\,dx + x\\,du$', math: '(x - ux)dx + x(u\\,dx + x\\,du) = 0' },
-        { title: 'Step 3: Divide by $x$', math: '(1 - u)dx + u\\,dx + x\\,du = 0 \\implies dx + x\\,du = 0' },
-        { title: 'Step 4: Separate and integrate', math: '\\frac{dx}{x} + du = 0 \\implies \\ln|x| + u = C \\implies u = C - \\ln|x|' },
-        { title: 'Step 5: Back-substitute $u = y/x$', math: '\\frac{y}{x} = C - \\ln|x| \\implies y(x) = x(C - \\ln|x|)' }
-      ],
-      answer: 'y(x) = x(C - \\ln|x|)',
-      whyWrong: {
-        '1': 'Sign error: $\\ln|x| + u = C \\implies u = C - \\ln|x|$, not $C + \\ln|x|$.',
-        '2': 'Attempted polynomial guess instead of homogeneous substitution.',
-        '3': 'Confused with standard linear equation.'
-      },
-      commonTrap: 'Forgetting to substitute $dy = u\\,dx + x\\,du$ (product rule). Writing $dy = u\\,dx$ is an instant zero.',
-      reference: 'Lecture 5 · Homogeneous Equations'
-    }
-  },
-  {
-    id: 'dq_linear_arg_1',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'linear_arg',
-    topic: 'Linear Argument u = Ax + By + C',
-    difficulty: 'Midterm Level',
-    question: 'Solve $\\frac{dy}{dx} = (x + y + 2)^2$. What is the explicit solution $y(x)$?',
-    options: [
-      '$y(x) = \\tan(x + C) - x - 2$',
-      '$y(x) = \\tan(x + C) + x + 2$',
-      '$y(x) = \\frac{1}{3}(x + y + 2)^3 + C$',
-      '$y(x) = \\arctan(x + C) - x - 2$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Linear bundle $u = x + y + 2 \\implies du/dx = 1 + dy/dx \\implies dy/dx = du/dx - 1$. Separates into $du/(u^2 + 1) = dx$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Set $u = x + y + 2$', math: '\\frac{du}{dx} = 1 + \\frac{dy}{dx} \\implies \\frac{dy}{dx} = \\frac{du}{dx} - 1' },
-        { title: 'Step 2: Substitute into ODE', math: '\\frac{du}{dx} - 1 = u^2 \\implies \\frac{du}{dx} = u^2 + 1' },
-        { title: 'Step 3: Separate variables', math: '\\frac{du}{u^2 + 1} = dx \\implies \\arctan(u) = x + C' },
-        { title: 'Step 4: Solve for $y(x)$', math: 'u = \\tan(x + C) \\implies x + y + 2 = \\tan(x + C) \\implies y(x) = \\tan(x + C) - x - 2' }
-      ],
-      answer: 'y(x) = \\tan(x + C) - x - 2',
-      whyWrong: {
-        '1': 'Sign error when subtracting $x$ and $2$ over to the right side.',
-        '2': 'Treated the derivative as an ordinary power rule integration $\\int u^2 du$, ignoring that $y$ depends on $x$.',
-        '3': 'Inverted $\\arctan(u) = x+C$ incorrectly: taking tangent gives $u = \\tan(x+C)$, not $\\arctan$.'
-      },
-      commonTrap: 'Trying to expand $(x + y + 2)^2$ into 6 terms. Always package the linear line as $u$.',
-      reference: 'Lecture 5 · Substitutions'
-    }
-  },
-  {
-    id: 'dq_second_order_1',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'second_order',
-    topic: '2nd-Order Linear · Repeated Root Basis',
-    difficulty: 'Midterm Level',
-    question: 'Solve $y\'\' - 4y\' + 4y = 0$ with initial conditions $y(0) = 1, y\'(0) = 4$. What is $y(x)$?',
-    options: [
-      '$y(x) = (1 + 2x)e^{2x}$',
-      '$y(x) = e^{2x} + 2e^{-2x}$',
-      '$y(x) = (1 + 4x)e^{2x}$',
-      '$y(x) = e^{2x} + e^{2x}$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Characteristic equation $r^2 - 4r + 4 = (r - 2)^2 = 0$ has a repeated root $r = 2$. The general solution is $y(x) = (C_1 + C_2 x)e^{2x}$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Auxiliary equation', math: 'r^2 - 4r + 4 = 0 \\implies (r - 2)^2 = 0 \\implies r_1 = r_2 = 2' },
-        { title: 'Step 2: Basis functions', note: 'Because the root is repeated, basis is $\\{e^{2x}, x e^{2x}\\}$. General solution: $y(x) = (C_1 + C_2 x)e^{2x}$.' },
-        { title: 'Step 3: Apply $y(0) = 1$', math: 'y(0) = (C_1 + 0)e^0 = C_1 \\implies C_1 = 1' },
-        { title: 'Step 4: Differentiate via product rule', math: 'y\'(x) = C_2 e^{2x} + 2(1 + C_2 x)e^{2x}' },
-        { title: 'Step 5: Apply $y\'(0) = 4$', math: '4 = C_2 (1) + 2(1 + 0)(1) = C_2 + 2 \\implies C_2 = 2 \\implies y(x) = (1 + 2x)e^{2x}' }
-      ],
-      answer: 'y(x) = (1 + 2x)e^{2x}',
-      whyWrong: {
-        '1': 'Assumed distinct roots $r = \\pm 2$. But $r^2 - 4r + 4 = 0$ has roots $+2, +2$.',
-        '2': 'Forgot the product rule when differentiating $(1 + C_2 x)e^{2x}$, obtaining $C_2 = 4$.',
-        '3': 'Repeated solution with no $x$ factor is linearly dependent.'
-      },
-      commonTrap: 'Forgetting the $x$ multiplier on the second root. $e^{2x}$ and $e^{2x}$ are linearly dependent and cannot span the solution space.',
-      reference: 'Lecture 7 · 2nd Order Equations'
-    }
-  },
-  {
-    id: 'dq_hack_newton',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'tutor_hacks',
-    topic: 'Tutor Hack · Newton 3-Point Temperature Cancel',
-    difficulty: 'Exam Master',
-    question: 'A cake is cooling in an oven. At equal 30-second intervals ($t = 0, 0.5, 1.0$ min), temperatures are recorded as $T_1 = 70^\\circ\\text{F}$, $T_2 = 110^\\circ\\text{F}$, and $T_3 = 145^\\circ\\text{F}$. Using the 3-point ratio shortcut, what is the ambient oven temperature $T_m$?',
-    options: [
-      '$T_m = 390^\\circ\\text{F}$',
-      '$T_m = 350^\\circ\\text{F}$',
-      '$T_m = 420^\\circ\\text{F}$',
-      '$T_m = 300^\\circ\\text{F}$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Equal time intervals mean ratio $e^{-k\\Delta t}$ is squared. The formula $(T_3 - T_m)(T_1 - T_m) = (T_2 - T_m)^2$ cancels $T_m^2$ completely, yielding a 1-line linear equation!',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Set up the 3-point cancellation formula', math: '(145 - T_m)(70 - T_m) = (110 - T_m)^2' },
-        { title: 'Step 2: Expand LHS and RHS', math: '10150 - 215 T_m + T_m^2 = 12100 - 220 T_m + T_m^2' },
-        { title: 'Step 3: Cancel $T_m^2$ on both sides', math: '10150 - 215 T_m = 12100 - 220 T_m' },
-        { title: 'Step 4: Solve the linear equation', math: '220 T_m - 215 T_m = 12100 - 10150 \\implies 5 T_m = 1950 \\implies T_m = 390^\\circ\\text{F}' }
-      ],
-      answer: 'T_m = 390^\\circ\\text{F}',
-      whyWrong: {
-        '1': 'Arithmetic slip: $12100 - 10150 = 1950$, not $1750$.',
-        '2': 'Mixed up the middle temperature $T_2 = 110$ with $T_3 = 145$.',
-        '3': 'Attempted linear interpolation which fails because Newton cooling is exponential.'
-      },
-      commonTrap: 'Solving for decay constant $k$ with natural logs on exam scrap paper. It takes 15 minutes and invites round-off errors. Cross-multiply and cancel $T_m^2$ instead!',
-      reference: 'Tutor Notes · Page 35'
-    }
-  },
-  {
-    id: 'dq_hack_heaviside',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'tutor_hacks',
-    topic: 'Tutor Hack · 15-Second Heaviside Cover-Up Rule',
-    difficulty: 'Midterm Level',
-    question: 'Decompose $\\frac{1}{(u - 2)(u + 2)}$ into partial fractions $\\frac{A}{u - 2} + \\frac{B}{u + 2}$. What are the coefficients $A$ and $B$?',
-    options: [
-      '$A = \\frac{1}{4}, \\; B = -\\frac{1}{4}$',
-      '$A = \\frac{1}{2}, \\; B = -\\frac{1}{2}$',
-      '$A = -\\frac{1}{4}, \\; B = \\frac{1}{4}$',
-      '$A = 1, \\; B = -1$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Heaviside Cover-Up: Cover $(u - 2)$ and evaluate at $u = 2$: $A = 1/(2 + 2) = 1/4$. Cover $(u + 2)$ and evaluate at $u = -2$: $B = 1/(-2 - 2) = -1/4$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Evaluate $A$ at root $u = 2$', math: 'A = \\left.\\frac{1}{u + 2}\\right|_{u = 2} = \\frac{1}{2 + 2} = \\frac{1}{4}' },
-        { title: 'Step 2: Evaluate $B$ at root $u = -2$', math: 'B = \\left.\\frac{1}{u - 2}\\right|_{u = -2} = \\frac{1}{-2 - 2} = -\\frac{1}{4}' },
-        { title: 'Step 3: Verification', math: '\\frac{1/4}{u - 2} - \\frac{1/4}{u + 2} = \\frac{1}{4}\\left(\\frac{(u+2) - (u-2)}{u^2 - 4}\\right) = \\frac{1}{4}\\left(\\frac{4}{u^2 - 4}\\right) = \\frac{1}{u^2 - 4} \\; \\checkmark' }
-      ],
-      answer: 'A = 1/4, \\; B = -1/4',
-      whyWrong: {
-        '1': 'Forgot to add the denominator terms $2 + 2 = 4$, writing $2$ instead.',
-        '2': 'Inverted the signs of $A$ and $B$.',
-        '3': 'Assumed unit numerator without dividing by the root gap.'
-      },
-      commonTrap: 'Setting up a 2x2 linear system on scrap paper. The cover-up rule takes 10 seconds and is completely foolproof.',
-      reference: 'Tutor Notes · Page 19'
-    }
-  },
-  {
-    id: 'dq_formula_tan',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'formulas',
-    topic: 'Formula Retention · Tangent Antiderivative',
-    difficulty: 'Foundation',
-    question: 'What is the correct antiderivative of $\\int \\tan(x)\\,dx$ needed for integrating factors?',
-    options: [
-      '$\\ln|\\sec(x)| + C = -\\ln|\\cos(x)| + C$',
-      '$\\sec^2(x) + C$',
-      '$\\ln|\\sin(x)| + C$',
-      '$\\frac{1}{2}\\tan^2(x) + C$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: '$\\tan(x) = \\frac{\\sin x}{\\cos x} = -\\frac{(\\cos x)\'}{\\cos x}$. Integrating yields $-\\ln|\\cos x| = \\ln|\\cos x|^{-1} = \\ln|\\sec x|$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Write in sine and cosine', math: '\\int \\tan(x)\\,dx = \\int \\frac{\\sin x}{\\cos x}\\,dx' },
-        { title: 'Step 2: Logarithmic quotient shortcut', math: '-\\int \\frac{-\\sin x}{\\cos x}\\,dx = -\\ln|\\cos x| + C = \\ln|\\cos(x)^{-1}| + C = \\ln|\\sec x| + C' }
-      ],
-      answer: '\\ln|\\sec(x)| + C',
-      whyWrong: {
-        '1': '$\\sec^2(x)$ is the derivative of $\\tan(x)$, not the antiderivative.',
-        '2': '$\\ln|\\sin(x)|$ is the antiderivative of $\\cot(x)$.',
-        '3': 'Power rule does not apply directly to $\\tan(x)$ without a $\\sec^2(x)$ factor.'
-      },
-      commonTrap: 'Mixing up derivative $\\frac{d}{dx}[\\tan x] = \\sec^2 x$ with the integral $\\int \\tan x dx = \\ln|\\sec x|$.',
-      reference: 'Calculus Survival Vault'
-    }
-  },
-  {
-    id: 'dq_formula_sec',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'formulas',
-    topic: 'Formula Retention · Secant Antiderivative',
-    difficulty: 'Midterm Level',
-    question: 'What is the exact antiderivative $\\int \\sec(x)\\,dx$ tested in Variation of Parameters?',
-    options: [
-      '$\\ln|\\sec(x) + \\tan(x)| + C$',
-      '$\\ln|\\sec(x) - \\tan(x)| + C$',
-      '$\\sec(x)\\tan(x) + C$',
-      '$\\frac{1}{2}\\sec^2(x) + C$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Multiplying numerator and denominator by $(\\sec x + \\tan x)$ yields $\\int \\frac{\\sec^2 x + \\sec x \\tan x}{\\sec x + \\tan x}dx = \\ln|\\sec x + \\tan x| + C$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Algebraic trick', math: '\\int \\sec(x)\\,dx = \\int \\frac{\\sec x(\\sec x + \\tan x)}{\\sec x + \\tan x}\\,dx' },
-        { title: 'Step 2: Recognize derivative in numerator', note: 'Notice $(d/dx)[\\sec x + \\tan x] = \\sec x \\tan x + \\sec^2 x$. The integral is of the form $\\int g\'/g dx = \\ln|g|$.' },
-        { title: 'Step 3: Result', math: '\\int \\sec(x)\\,dx = \\ln|\\sec(x) + \\tan(x)| + C' }
-      ],
-      answer: '\\ln|\\sec(x) + \\tan(x)| + C',
-      whyWrong: {
-        '1': 'Minus sign is incorrect: the sum $(\\sec x + \\tan x)$ appears in the logarithm.',
-        '2': '$\\sec(x)\\tan(x)$ is the derivative of $\\sec(x)$, not the integral.',
-        '3': 'Power rule error.'
-      },
-      commonTrap: 'Trying to derive this from scratch during a 60-minute midterm. Commit it to memory!',
-      reference: 'Calculus Survival Vault'
-    }
-  },
-  {
-    id: 'dq_formula_arctan',
-    courseId: 'ENGR213',
-    chapter: 'midterm',
-    methodId: 'formulas',
-    topic: 'Formula Retention · Standard Arctan Integral',
-    difficulty: 'Foundation',
-    question: 'Evaluate $\\int \\frac{1}{x^2 + 9}\\,dx$.',
-    options: [
-      '$\\frac{1}{3}\\arctan\\left(\\frac{x}{3}\\right) + C$',
-      '$\\arctan\\left(\\frac{x}{3}\\right) + C$',
-      '$\\frac{1}{9}\\arctan\\left(\\frac{x}{9}\\right) + C$',
-      '$\\ln|x^2 + 9| + C$'
-    ],
-    correctIndex: 0,
-    explanation: {
-      coreConcept: 'Standard formula $\\int \\frac{1}{x^2 + a^2}dx = \\frac{1}{a}\\arctan(x/a) + C$. Here $a^2 = 9 \\implies a = 3$.',
-      stepByStep: [],
-      steps: [
-        { title: 'Step 1: Identify constant $a$', math: 'a^2 = 9 \\implies a = 3' },
-        { title: 'Step 2: Apply formula with leading $1/a$', math: '\\int \\frac{1}{x^2 + 3^2}\\,dx = \\frac{1}{3}\\arctan\\left(\\frac{x}{3}\\right) + C' }
-      ],
-      answer: '\\frac{1}{3}\\arctan(x/3) + C',
-      whyWrong: {
-        '1': 'Forgot the leading factor $1/a = 1/3$.',
-        '2': 'Used $a^2 = 9$ as the divisor instead of $a = 3$.',
-        '3': '$\\ln|x^2 + 9|$ requires a $2x$ in the numerator, which is absent.'
-      },
-      commonTrap: 'Forgetting $1/a$ in front of arctangent. (Note: $\\arcsin(x/a)$ does NOT have $1/a$, but $\\arctan(x/a)$ DOES have $1/a$).',
-      reference: 'Calculus Survival Vault'
-    }
-  }
-];
-
-// Solved Past Midterm Problems
 export interface SolvedProblem {
   id: string;
   exam: string;
@@ -1364,12 +1193,288 @@ const PAST_PROBLEMS: SolvedProblem[] = [
   }
 ];
 
+
+
+
+// ----------------------------------------------------
+// 4B. METHOD DIAGNOSTICS & RECOVERED TUTORIAL DATA
+// ----------------------------------------------------
+export interface MethodDiagnostic {
+  correctChoice: string;
+  distractorChoice: string;
+  correctExplanation: string;
+  distractorExplanation: string;
+  implementationTips: string[];
+}
+
+export const METHOD_DIAGNOSTICS: Record<string, MethodDiagnostic> = {
+  separable: {
+    correctChoice: `Separable First-Order ODE: Separate into h(y) dy = g(x) dx and integrate both sides`,
+    distractorChoice: `First-Order Linear ODE: Divide by leading term and apply integrating factor μ(x) = exp(∫P dx)`,
+    correctExplanation: `🎯 Correct! This ODE can be factored cleanly so all y-terms multiply dy and all x-terms multiply dx. No integrating factor is required.`,
+    distractorExplanation: `⚠️ Not linear with integrating factor! Notice there is no isolated y' + P(x)y = Q(x) structure; the variables are directly multiplicatively separable.`,
+    implementationTips: [
+      `1. Move all y and dy to LHS, all x and dx to RHS via multiplication/division only.`,
+      `2. Integrate both sides: ∫ h(y) dy = ∫ g(x) dx + C.`,
+      `3. Crucial Exam Trap: If y(x₀) < 0, pick the negative square root branch: y(x) = -√(2g(x) + C).`
+    ]
+  },
+  linear_if: {
+    correctChoice: `First-Order Linear ODE: Normalize to y' + P(x)y = Q(x) and compute μ(x) = exp(∫P dx)`,
+    distractorChoice: `Separable First-Order ODE: Factor the right-hand side directly into g(x)h(y)`,
+    correctExplanation: `🎯 Correct! The dependent variable y and derivative y' appear to the first degree and are linked by addition, requiring an integrating factor.`,
+    distractorExplanation: `⚠️ Cannot be separated directly! The addition of P(x)y and Q(x) prevents factoring into pure separate single-variable products.`,
+    implementationTips: [
+      `1. Step 1 (Mandatory): Divide by the coefficient of y' so y' has unit coefficient 1.`,
+      `2. Step 2: Compute μ(x) = exp(∫ P(x) dx). Watch negative signs: exp(-k ln x) = x⁻ᵏ = 1/xᵏ.`,
+      `3. Step 3: Collapse LHS into d/dx [μ(x) y] = μ(x) Q(x) and integrate both sides.`,
+      `4. Crucial Exam Trap: The integration constant C MUST be divided by μ(x): y = [∫ μQ dx + C] / μ(x).`
+    ]
+  },
+  exact: {
+    correctChoice: `Exact Differential Equation: Verify ∂M/∂y = ∂N/∂x and reconstruct potential function Ψ(x,y) = C`,
+    distractorChoice: `Bernoulli ODE: Divide through by yⁿ and substitute u = y¹⁻ⁿ`,
+    correctExplanation: `🎯 Correct! This equation is given in differential form M(x,y)dx + N(x,y)dy = 0 satisfying the Clairaut exactness condition My = Nx.`,
+    distractorExplanation: `⚠️ Not a Bernoulli equation! Bernoulli ODEs are written in derivative form y' + P(x)y = Q(x)yⁿ, not in Pfaffian differential form M dx + N dy = 0.`,
+    implementationTips: [
+      `1. Compute partial derivatives My = ∂M/∂y and Nx = ∂N/∂x. Confirm My = Nx.`,
+      `2. Integrate M with respect to x (holding y constant): Ψ(x,y) = ∫ M dx + g(y).`,
+      `3. Differentiate Ψ by y and equate to N(x,y): ∂Ψ/∂y = N(x,y) to solve for g'(y).`,
+      `4. Crucial Exam Trap: Always finish by setting the level curve family equal to C: Ψ(x,y) = C.`
+    ]
+  },
+  non_exact: {
+    correctChoice: `Non-Exact Equation: Compute (My - Nx)/N = f(x) to find special integrating factor μ(x) = exp(∫f dx)`,
+    distractorChoice: `Homogeneous ODE: Check degree symmetry and substitute y = vx`,
+    correctExplanation: `🎯 Correct! Clairaut test fails (My ≠ Nx), but (My - Nx)/N simplifies to a pure function of x, enabling an integrating factor μ(x).`,
+    distractorExplanation: `⚠️ Homogeneous substitution is inefficient or invalid here! Checking (My - Nx)/N is the direct algorithmic path for non-exact differential forms.`,
+    implementationTips: [
+      `1. Test My and Nx. When My ≠ Nx, compute difference (My - Nx).`,
+      `2. Divide by N: if (My - Nx)/N = f(x) depends only on x, μ(x) = exp(∫ f(x) dx).`,
+      `3. Multiply original ODE by μ(x), then solve the resulting exact equation.`
+    ]
+  },
+  bernoulli: {
+    correctChoice: `Bernoulli Differential Equation: Divide by yⁿ and linearize via substitution u = y¹⁻ⁿ`,
+    distractorChoice: `Direct Separation of Variables: Divide by (Q(x)yⁿ - P(x)y) and integrate`,
+    correctExplanation: `🎯 Correct! It matches the classical nonlinear form y' + P(x)y = Q(x)yⁿ with n ≠ 0, 1.`,
+    distractorExplanation: `⚠️ Direct separation is impossible because P(x) and Q(x) depend on x. The standard Bernoulli substitution u = y¹⁻ⁿ is mandatory.`,
+    implementationTips: [
+      `1. Divide whole equation by yⁿ: y⁻ⁿ y' + P(x) y¹⁻ⁿ = Q(x).`,
+      `2. Let u = y¹⁻ⁿ, then du/dx = (1 - n) y⁻ⁿ (dy/dx).`,
+      `3. Substitute to get linear ODE: (1/(1-n)) u' + P(x) u = Q(x) ⟹ u' + (1-n)P u = (1-n)Q.`,
+      `4. Solve for u(x) using integrating factor, then back-substitute y = u^(1/(1-n)).`
+    ]
+  },
+  homogeneous: {
+    correctChoice: `Homogeneous First-Order ODE: Substitute y = vx (dy/dx = v + x dv/dx) to reduce to separable`,
+    distractorChoice: `First-Order Linear ODE: Identify P(x) and integrate to find μ(x)`,
+    correctExplanation: `🎯 Correct! Both coefficients M(x,y) and N(x,y) share the exact same algebraic degree k, meaning dy/dx = F(y/x).`,
+    distractorExplanation: `⚠️ Not linear in y! Powers of y appear with degree > 1 or in nonlinear combinations with x.`,
+    implementationTips: [
+      `1. Express as dy/dx = F(y/x).`,
+      `2. Substitute y = vx, which implies dy/dx = v + x (dv/dx).`,
+      `3. Equate: v + x (dv/dx) = F(v) ⟹ x (dv/dx) = F(v) - v.`,
+      `4. Separate variables: dv / (F(v) - v) = dx / x and integrate both sides.`
+    ]
+  },
+  linear_arg: {
+    correctChoice: `Linear Argument Substitution: Set u = Ax + By + C to transform y' = F(Ax + By + C) into separable`,
+    distractorChoice: `Exact Differential Equation: Check partial derivatives ∂M/∂y and ∂N/∂x`,
+    correctExplanation: `🎯 Correct! The ODE features a packaged linear combination (Ax + By + C) inside an outer function F.`,
+    distractorExplanation: `⚠️ Not an exact equation form! The equation is given as y' = F(Ax + By + C), requiring the internal linear substitution.`,
+    implementationTips: [
+      `1. Define u = Ax + By + C.`,
+      `2. Differentiate with respect to x: du/dx = A + B (dy/dx) ⟹ dy/dx = (1/B)(du/dx - A).`,
+      `3. Replace dy/dx: (1/B)(du/dx - A) = F(u) ⟹ du/dx = A + B F(u).`,
+      `4. Separate variables: du / (A + B F(u)) = dx, integrate, and replace u = Ax + By + C.`
+    ]
+  },
+  applications: {
+    correctChoice: `Physical Rate Balance / Mixing Model: Set up dA/dt = Rin - Rout = (Cin · Fin) - (A(t)/V(t) · Fout)`,
+    distractorChoice: `Second-Order Harmonic Oscillator: Set up m x'' + c x' + k x = 0`,
+    correctExplanation: `🎯 Correct! This is a first-order conservation rate balance model (mixing tank, cooling rate, or orthogonal trajectory).`,
+    distractorExplanation: `⚠️ Not a second-order mechanical system! Salt mixing and thermal exchange are first-order single-rate differential equations.`,
+    implementationTips: [
+      `1. Rate in = (fluid flow in) × (salt concentration in).`,
+      `2. Rate out = (fluid flow out) × (salt in tank A(t) / volume V(t)).`,
+      `3. If Fin = Fout, volume V is constant. Solve linear ODE dA/dt + (Fout/V) A = Rin.`,
+      `4. If Fin ≠ Fout, volume V(t) = V₀ + (Fin - Fout)t, leading to integrating factor with power of (V₀ + ΔF t).`
+    ]
+  },
+  second_order: {
+    correctChoice: `Constant Coefficient Auxiliary Equation: Solve characteristic polynomial a r² + b r + c = 0`,
+    distractorChoice: `First-Order Separable Equation: Separate variables into dy and dx`,
+    correctExplanation: `🎯 Correct! This is a second-order linear homogeneous ODE with constant coefficients (y'' + p y' + q y = 0).`,
+    distractorExplanation: `⚠️ Not first-order! It involves a second derivative y'', requiring the characteristic quadratic polynomial.`,
+    implementationTips: [
+      `1. Write auxiliary equation: a r² + b r + c = 0.`,
+      `2. Compute roots r₁, r₂ = (-b ± √(b² - 4ac)) / (2a).`,
+      `3. If roots are complex α ± iβ, general solution is y(x) = exp(αx) [C₁ cos(βx) + C₂ sin(βx)].`,
+      `4. If roots are distinct real, y = C₁ exp(r₁x) + C₂ exp(r₂x); if repeated, y = (C₁ + C₂ x) exp(rx).`
+    ]
+  },
+  formulas: {
+    correctChoice: `Standard Integration Identity / Calculus Standard Form: Match formula directly from calculus tables`,
+    distractorChoice: `Integration by Parts: Define u and dv and apply ∫ u dv = uv - ∫ v du`,
+    correctExplanation: `🎯 Correct! This expression matches a standard antiderivative (such as inverse tangent, logarithmic quotient, or exponential polar form).`,
+    distractorExplanation: `⚠️ Integration by parts is unnecessary and slow! Standard forms like ∫ du/(a² + u²) = (1/a) arctan(u/a) must be recognized immediately.`,
+    implementationTips: [
+      `1. Recognize standard inverse trig form: ∫ du/(a² + u²) = (1/a) arctan(u/a) + C.`,
+      `2. Recognize log quotient form: ∫ du/(a² - u²) = (1/2a) ln|(a+u)/(a-u)| + C.`,
+      `3. Watch pre-factors: students frequently forget the leading (1/a) multiplier.`
+    ]
+  }
+};
+
+export interface RecoveredTutorialProblem {
+  num: number;
+  title: string;
+  equationType: string;
+  question: string;
+  initialCondition?: string;
+  steps: string[];
+  finalAnswer: string;
+  trapAlert: string;
+  drillKey: string;
+}
+
+export const RECOVERED_TUTORIAL_PROBLEMS: RecoveredTutorialProblem[] = [
+  {
+    num: 1,
+    title: `1. Substitution (Recent Tutorial)`,
+    equationType: `Type-1 Linear Argument Substitution`,
+    question: `y' = (3x + y)^2 - 3, \quad \text{with } y(0) = 1`,
+    initialCondition: `y(0) = 1`,
+    steps: [
+      `Step 1: Notice the repeated packaged linear argument (3x + y). Let u = 3x + y.`,
+      `Step 2: Differentiate BOTH sides with respect to x using chain rule: u' = 3 + y'.`,
+      `Step 3: Replace y' using the given ODE: u' = 3 + [(3x + y)^2 - 3] = u^2.`,
+      `Step 4: Separate variables: du / u^2 = dx.`,
+      `Step 5: Integrate both sides: ∫ u^{-2} du = ∫ dx ⟹ -1/u = x + C.`,
+      `Step 6: Apply initial condition y(0) = 1. At x = 0, u = 3(0) + 1 = 1 ⟹ -1/1 = 0 + C ⟹ C = -1.`,
+      `Step 7: Solve for u: -1/u = x - 1 ⟹ u = 1 / (1 - x).`,
+      `Step 8: Replace u = 3x + y: 3x + y = 1 / (1 - x) ⟹ y(x) = 1 / (1 - x) - 3x.`
+    ],
+    finalAnswer: `y(x) = \frac{1}{1 - x} - 3x \quad \text{on } (-\infty, 1)`,
+    trapAlert: `Never forget to differentiate the substitution: u' = 3 + y'. Forgetting the 3 is the most common exam mistake in this problem.`,
+    drillKey: `linear_arg`
+  },
+  {
+    num: 2,
+    title: `2. Bernoulli Differential Equation (Recent Tutorial)`,
+    equationType: `Bernoulli Nonlinear Power Reduction`,
+    question: `y' - x^4 y = \frac{3}{5}x^4 y^{-4}`,
+    steps: [
+      `Step 1: Bernoulli standard form is y' + P(x)y = Q(x)y^n. Here n = -4, so 1 - n = 1 - (-4) = 5.`,
+      `Step 2: Set u = y^{1-n} = y^5. Differentiate via chain rule: u' = 5y^4 y'.`,
+      `Step 3: Multiply the ORIGINAL ODE by 5y^4: 5y^4 y' - 5x^4 y^5 = 3x^4.`,
+      `Step 4: Substitute u' and u: u' - 5x^4 u = 3x^4. The equation is now strictly LINEAR!`,
+      `Step 5: Find integrating factor with P(x) = -5x^4: μ(x) = exp(∫ -5x^4 dx) = exp(-x^5).`,
+      `Step 6: Collapse into product rule derivative: (u · exp(-x^5))' = 3x^4 exp(-x^5).`,
+      `Step 7: Integrate using substitution t = -x^5, dt = -5x^4 dx: u · exp(-x^5) = -(3/5)exp(-x^5) + C.`,
+      `Step 8: Multiply through by exp(x^5) and replace u = y^5: y^5 = C exp(x^5) - 3/5.`
+    ],
+    finalAnswer: `y(x) = \left[ C e^{x^5} - \frac{3}{5} \right]^{1/5} \quad \text{(Real 5th root)}`,
+    trapAlert: `Watch the sign of 1 - n! For y^{-4}, 1 - (-4) = +5, not -3. Check your exponent arithmetic.`,
+    drillKey: `bernoulli`
+  },
+  {
+    num: 3,
+    title: `3. Separable Equation with Exponential & Initial Condition`,
+    equationType: `Separable First-Order IVP`,
+    question: `y' = (x - 3)e^{-2y}, \quad \text{with } y(3) = \ln 3`,
+    initialCondition: `y(3) = ln 3`,
+    steps: [
+      `Step 1: Write y' = dy/dx and separate terms: e^{2y} dy = (x - 3) dx.`,
+      `Step 2: Integrate both sides: ∫ e^{2y} dy = ∫ (x - 3) dx ⟹ (1/2)e^{2y} = (1/2)(x - 3)^2 + C_1.`,
+      `Step 3: Multiply through by 2 and rename constant: e^{2y} = (x - 3)^2 + C.`,
+      `Step 4: Plug in x = 3, y = ln 3: e^{2 ln 3} = (e^{ln 3})^2 = 3^2 = 9. Since (3 - 3)^2 = 0, C = 9.`,
+      `Step 5: Solve for y: 2y = ln((x - 3)^2 + 9) ⟹ y(x) = (1/2) ln[(x - 3)^2 + 9].`
+    ],
+    finalAnswer: `y(x) = \frac{1}{2}\ln\left[(x - 3)^2 + 9\right]`,
+    trapAlert: `Simplifying e^{2 ln 3}: Remember e^{2 ln 3} = e^{ln(3^2)} = 9, not 6!`,
+    drillKey: `separable`
+  },
+  {
+    num: 4,
+    title: `4. Constant Equilibrium Solution (Initial Value Problem Trap)`,
+    equationType: `Equilibrium Singular / Constant Solution`,
+    question: `y' = y^2 - 4y + 3, \quad \text{with } y(0) = 3`,
+    initialCondition: `y(0) = 3`,
+    steps: [
+      `Step 1: Factor the right-hand side polynomial: y' = (y - 1)(y - 3).`,
+      `Step 2: Check equilibrium constant solutions where dy/dx = 0: y = 1 and y = 3.`,
+      `Step 3: Notice the initial condition is y(0) = 3! The constant function y(x) = 3 satisfies y'(x) = 0 and (3-1)(3-3) = 0 identically for all x, and matches y(0) = 3.`,
+      `Step 4: REMINDER: Do NOT divide by (y - 3) to separate variables! Dividing by (y - 3) assumes y ≠ 3 and throws away this exact valid constant solution!`
+    ],
+    finalAnswer: `y(x) \equiv 3 \quad \text{for all } x \in \mathbb{R}`,
+    trapAlert: `CRITICAL CONCORDIA EXAM TRAP: Students who perform partial fractions ∫ dy/((y-1)(y-3)) waste 10 minutes and end up dividing by zero. Always check if y(x₀) is an equilibrium root first!`,
+    drillKey: `separable`
+  },
+  {
+    num: 5,
+    title: `5. Linear ODE: Integrating Factor (from Tutor Notes)`,
+    equationType: `First-Order Linear Differential Equation`,
+    question: `y' + \frac{1}{x}y = x^2 - 1, \quad x > 0`,
+    steps: [
+      `Step 1: Identify standard form y' + P(x)y = Q(x) with P(x) = 1/x and Q(x) = x^2 - 1.`,
+      `Step 2: Compute integrating factor for x > 0: μ(x) = exp(∫ (1/x) dx) = exp(ln x) = x.`,
+      `Step 3: Multiply EVERY term by μ(x) = x: x y' + y = x^3 - x.`,
+      `Step 4: Collapse LHS via product rule: (x y)' = x^3 - x.`,
+      `Step 5: Integrate both sides: x y = x^4 / 4 - x^2 / 2 + C.`,
+      `Step 6: Divide every term by x: y(x) = x^3 / 4 - x / 2 + C / x.`
+    ],
+    finalAnswer: `y(x) = \frac{x^3}{4} - \frac{x}{2} + \frac{C}{x}, \quad x > 0`,
+    trapAlert: `Remember to divide C by x! Writing y = x^3/4 - x/2 + C loses full marks on the general solution.`,
+    drillKey: `linear_if`
+  },
+  {
+    num: 6,
+    title: `6. Homogeneous Substitution (from Tutor Notes)`,
+    equationType: `Homogeneous Degree 1 Differential Form`,
+    question: `(x - y)dx + x\,dy = 0, \quad x \neq 0`,
+    steps: [
+      `Step 1: Divide by dx to express in derivative form: (x - y) + x y' = 0 ⟹ y' = (y - x)/x = y/x - 1.`,
+      `Step 2: Since y' depends strictly on (y/x), substitute y = u x, which implies y' = u + x u'.`,
+      `Step 3: Substitute into the ODE: u + x u' = u - 1.`,
+      `Step 4: Cancel u on both sides: x u' = -1 ⟹ du = -(1/x) dx.`,
+      `Step 5: Integrate both sides: u = -ln|x| + C = C - ln|x|.`,
+      `Step 6: Back-substitute u = y/x: y/x = C - ln|x| ⟹ y(x) = x(C - ln|x|).`
+    ],
+    finalAnswer: `y(x) = x\left(C - \ln|x|\right)`,
+    trapAlert: `Do not forget the product rule when differentiating y = ux: dy/dx = u + x(du/dx).`,
+    drillKey: `homogeneous`
+  },
+  {
+    num: 7,
+    title: `7. Type-1 Substitution: y' = (x + y + 1)²`,
+    equationType: `Type-1 Linear Substitution`,
+    question: `y' = (x + y + 1)^2`,
+    steps: [
+      `Step 1: The linear package (x + y + 1) repeats. Let u = x + y + 1.`,
+      `Step 2: Differentiate with respect to x: u' = 1 + y'.`,
+      `Step 3: Replace y' using the ODE: u' = 1 + u^2.`,
+      `Step 4: Separate variables: du / (1 + u^2) = dx.`,
+      `Step 5: Integrate both sides: ∫ du / (1 + u^2) = ∫ dx ⟹ arctan(u) = x + C.`,
+      `Step 6: Apply tangent to both sides: u = tan(x + C).`,
+      `Step 7: Back-substitute u = x + y + 1: x + y + 1 = tan(x + C) ⟹ y(x) = tan(x + C) - x - 1.`
+    ],
+    finalAnswer: `y(x) = \tan(x + C) - x - 1 \quad \text{(where tangent is defined)}`,
+    trapAlert: `The integral ∫ du/(1+u²) is arctan(u), NOT ln|1+u²|! Standard inverse trig forms must be recognized instantly.`,
+    drillKey: `linear_arg`
+  }
+];
+
+const ALL_COMPANION_QUESTIONS: CompanionDrillQuestion[] = Object.values(ENGR213_MIDTERM_DRILL_BANKS).flat();
+
 // ----------------------------------------------------
 // MAIN COMPONENT
 // ----------------------------------------------------
-export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) => {
-  const [activeTab, setActiveTab] = useState<'classifier' | 'tutor_hacks' | 'vault' | 'past_exams' | 'trainer'>('classifier');
+export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, initialTab }) => {
+  const [activeTab, setActiveTab] = useState<'classifier' | 'tutor_videos' | 'tutorials' | 'tutor_hacks' | 'vault' | 'past_exams' | 'trainer'>(initialTab || 'classifier');
   const [selectedMethodId, setSelectedMethodId] = useState<string>('separable');
+  const [selectedVideoMethodId, setSelectedVideoMethodId] = useState<string>('separable');
   const [vaultFilter, setVaultFilter] = useState<'all' | 'deriv' | 'integral' | 'pillar'>('all');
   const [blurFormulas, setBlurFormulas] = useState<boolean>(false);
   const [unblurredIds, setUnblurredIds] = useState<Set<string>>(new Set());
@@ -1381,8 +1486,13 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
 
   // Interactive Brain Drill state
   const [drillSubjectFilter, setDrillSubjectFilter] = useState<string>('all');
+  const [drillMode, setDrillMode] = useState<'specific' | 'sprint20' | 'bank50'>('sprint20');
+  const [shuffleSeed, setShuffleSeed] = useState<number>(0);
+  const [showPastPapers, setShowPastPapers] = useState<boolean>(false);
   const [drillIdx, setDrillIdx] = useState<number>(0);
   const [drillAnswers, setDrillAnswers] = useState<Record<string, number>>({});
+  const [methodAnswers, setMethodAnswers] = useState<Record<string, 'correct' | 'distractor'>>({});
+  const [activeTutorialTab, setActiveTutorialTab] = useState<'recovered7' | 'officialSets'>('recovered7');
   const [drillScore, setDrillScore] = useState<{ correct: number; total: number }>({ correct: 0, total: 0 });
   const [drillStreak, setDrillStreak] = useState<number>(0);
   const [timerSeconds, setTimerSeconds] = useState<number>(0);
@@ -1391,8 +1501,23 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
   // Additional tools state
   const [vaultSearchQuery, setVaultSearchQuery] = useState<string>('');
   const [selectedYearFilter, setSelectedYearFilter] = useState<string>('all');
+  const [selectedMidtermSubjectFilter, setSelectedMidtermSubjectFilter] = useState<string>('all');
   const [showEmergencyCheatSheet, setShowEmergencyCheatSheet] = useState<boolean>(false);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(audio.enabled);
+
+  // Tutor Hack Variant State
+  const [activeHackVariantIdx, setActiveHackVariantIdx] = useState<number>(0);
+  const [hackVariantAnswers, setHackVariantAnswers] = useState<Record<string, number>>({});
+
+  // Vault Retention Sub-Sections & Repetition Counter
+  const [vaultActiveSection, setVaultActiveSection] = useState<'catalog' | 'repetition_drill' | 'ai_assistant'>('catalog');
+  const [vaultRepetitionCount, setVaultRepetitionCount] = useState<number>(() => {
+    try {
+      return parseInt(localStorage.getItem('engr213_vault_rep_count') || '0', 10);
+    } catch {
+      return 0;
+    }
+  });
 
   // 10-Second Method Diagnostic Assistant
   const [diagStep, setDiagStep] = useState<number>(0);
@@ -1438,16 +1563,40 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
     return list;
   }, [vaultFilter, vaultSearchQuery]);
 
+  function shuffleArray<T>(list: T[]): T[] {
+  const arr = [...list];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
   const filteredMidterms = useMemo(() => {
     if (selectedYearFilter === 'all') return UNOFFICIAL_MIDTERMS;
     return UNOFFICIAL_MIDTERMS.filter((m) => m.year.includes(selectedYearFilter));
   }, [selectedYearFilter]);
 
-  // Filtered drill questions based on chosen subject or bundle
+  // Filtered drill questions based on chosen subject, mode (specific / 20 / 50), and shuffle
   const activeDrillQuestions = useMemo(() => {
-    if (drillSubjectFilter === 'all') return COMPANION_DRILL_QUESTIONS;
-    return COMPANION_DRILL_QUESTIONS.filter((q) => q.methodId === drillSubjectFilter);
-  }, [drillSubjectFilter]);
+    let pool: CompanionDrillQuestion[] = [];
+    if (drillSubjectFilter === 'all') {
+      pool = ALL_COMPANION_QUESTIONS;
+    } else {
+      pool = ENGR213_MIDTERM_DRILL_BANKS[drillSubjectFilter] || ALL_COMPANION_QUESTIONS.filter((q) => q.methodId === drillSubjectFilter);
+    }
+    if (pool.length === 0) pool = ALL_COMPANION_QUESTIONS;
+
+    if (drillMode === 'specific') {
+      return [pool[0]];
+    }
+
+    const shuffled = shuffleArray(pool);
+    if (drillMode === 'sprint20') {
+      return shuffled.slice(0, Math.min(20, shuffled.length));
+    }
+    return shuffled.slice(0, Math.min(50, shuffled.length));
+  }, [drillSubjectFilter, drillMode, shuffleSeed]);
 
   const currentDrillQuestion = useMemo(() => {
     return activeDrillQuestions[drillIdx] || activeDrillQuestions[0];
@@ -1468,17 +1617,21 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
     });
   };
 
+  const handleShuffleDrill = () => {
+    audio.playClick();
+    setShuffleSeed((s) => s + 1);
+    setDrillIdx(0);
+    setDrillAnswers({});
+  };
+
   // Launch drill for a specific method from the top-right button
-  const handleDrillMethod = (methodId: string) => {
+  const handleDrillMethod = (methodId: string, initialMode: 'specific' | 'sprint20' | 'bank50' = 'sprint20') => {
     audio.playClick();
     setDrillSubjectFilter(methodId);
-    const matching = COMPANION_DRILL_QUESTIONS.filter((q) => q.methodId === methodId);
-    if (matching.length > 0) {
-      const randomIdx = Math.floor(Math.random() * matching.length);
-      setDrillIdx(randomIdx);
-    } else {
-      setDrillIdx(0);
-    }
+    setDrillMode(initialMode);
+    setShuffleSeed((s) => s + 1);
+    setDrillIdx(0);
+    setDrillAnswers({});
     setActiveTab('trainer');
     setTimeout(() => {
       const el = document.getElementById('ec-drill-section');
@@ -1636,6 +1789,26 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
         >
           <Compass size={17} />
           <span>10-Second Method Classifier</span>
+        </button>
+        <button
+          className={`ec-tab-btn ${activeTab === 'tutor_videos' ? 'active' : ''}`}
+          onClick={() => {
+            audio.playClick();
+            setActiveTab('tutor_videos');
+          }}
+        >
+          <Clapperboard size={17} />
+          <span>🎬 AI Tutor Videos (8 Archetypes)</span>
+        </button>
+        <button
+          className={`ec-tab-btn ${activeTab === 'tutorials' ? 'active' : ''}`}
+          onClick={() => {
+            audio.playClick();
+            setActiveTab('tutorials');
+          }}
+        >
+          <BookOpen size={17} />
+          <span>⭐ Tutorials &amp; Core Exercises</span>
         </button>
         <button
           className={`ec-tab-btn ${activeTab === 'tutor_hacks' ? 'active' : ''}`}
@@ -1804,6 +1977,11 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
                     </span>
                   </div>
                   <div className="ec-method-formula">{m.standardForm}</div>
+                  {ENGR213_MOTION_LESSONS[m.id] && (
+                    <div className="ec-method-lesson">
+                      <Play size={10} fill="currentColor" /> {formatLessonTime(ENGR213_MOTION_LESSONS[m.id].duration)} video lesson
+                    </div>
+                  )}
                 </button>
               ))}
             </div>
@@ -1830,6 +2008,10 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
                   </div>
                 </div>
               </div>
+
+              {ENGR213_MOTION_LESSONS[currentMethod.id] && (
+                <MotionLessonPlayer key={currentMethod.id} lesson={ENGR213_MOTION_LESSONS[currentMethod.id]} />
+              )}
 
               {/* 10-Second Diagnostic Cue */}
               <div className="ec-diagnostic-cue-box">
@@ -1986,6 +2168,139 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* --------------------------------------------- */}
+      {/* TAB: AI-Generated Motion Video Lessons        */}
+      {/* --------------------------------------------- */}
+      {activeTab === 'tutor_videos' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {/* Hero Banner with Mandatory AI Disclosure */}
+          <div style={{ background: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #581c87 100%)', borderRadius: '16px', padding: '24px 28px', color: '#ffffff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', boxShadow: '0 8px 24px rgba(49, 46, 129, 0.25)' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                <span className="ec-lesson-ai-badge" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.3)', padding: '4px 10px', fontSize: '11px' }}>
+                  <Sparkles size={12} /> 100% Programmatically AI-Generated from Code
+                </span>
+                <span style={{ color: '#c084fc', fontSize: '12px', fontWeight: 600 }}>
+                  8 Motion Lessons · Concordia Lecture Examples
+                </span>
+              </div>
+              <h2 style={{ fontSize: '22px', fontWeight: 900, margin: '0 0 6px', color: '#ffffff' }}>
+                ENGR 213 · AI-Generated Motion Video Lessons (8 ODE Archetypes)
+              </h2>
+              <p style={{ margin: 0, fontSize: '13.5px', color: '#e0e7ff', maxWidth: '820px', lineHeight: '1.5' }}>
+                These video lessons were <strong>programmatically generated by AI from code</strong> (using Remotion &amp; Python vector graphics), specifically designed to teach you how to spot each ODE archetype in under 10 seconds, master the algebraic recipe, and avoid Concordia zero-marks exam traps.
+              </p>
+            </div>
+
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                className="ec-drill-btn"
+                onClick={() => {
+                  audio.playClick();
+                  handleDrillMethod(selectedVideoMethodId);
+                }}
+                style={{ padding: '10px 18px', fontSize: '13.5px' }}
+              >
+                <Zap size={15} fill="currentColor" /> Drill Selected Archetype
+              </button>
+            </div>
+          </div>
+
+          {/* Video Selector Grid (8 Archetypes) */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '12px' }}>
+            {METHOD_ARCHETYPES.map((method) => {
+              const lesson = ENGR213_MOTION_LESSONS[method.id];
+              if (!lesson) return null;
+              const isSelected = selectedVideoMethodId === method.id;
+              return (
+                <button
+                  key={method.id}
+                  type="button"
+                  onClick={() => {
+                    audio.playClick();
+                    setSelectedVideoMethodId(method.id);
+                  }}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    textAlign: 'left',
+                    padding: '12px 14px',
+                    borderRadius: '12px',
+                    border: isSelected ? '2px solid #9333ea' : '1px solid #e2e8f0',
+                    background: isSelected ? 'linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%)' : '#ffffff',
+                    boxShadow: isSelected ? '0 4px 14px rgba(147, 51, 234, 0.18)' : '0 1px 3px rgba(0,0,0,0.04)',
+                    cursor: 'pointer',
+                    transition: 'all 0.18s ease'
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center', marginBottom: '6px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 800, color: isSelected ? '#7e22ce' : '#64748b' }}>
+                      Lesson #{lesson.num}
+                    </span>
+                    <span style={{ fontSize: '11px', fontWeight: 700, background: isSelected ? '#7e22ce' : '#f1f5f9', color: isSelected ? '#ffffff' : '#475569', padding: '2px 7px', borderRadius: '999px' }}>
+                      ⏱ {formatLessonTime(lesson.duration)}
+                    </span>
+                  </div>
+                  <strong style={{ fontSize: '13.5px', color: '#1e293b', marginBottom: '4px' }}>
+                    {lesson.title}
+                  </strong>
+                  <span style={{ fontSize: '11.5px', color: '#64748b', lineHeight: '1.4' }}>
+                    {lesson.source}
+                  </span>
+                  <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#9333ea', fontWeight: 700 }}>
+                    <Sparkles size={11} /> AI Video from Code
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Video Player Stage */}
+          {ENGR213_MOTION_LESSONS[selectedVideoMethodId] && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+                <div>
+                  <h3 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 4px', color: '#1e1b4b' }}>
+                    Lesson #{ENGR213_MOTION_LESSONS[selectedVideoMethodId].num}: {ENGR213_MOTION_LESSONS[selectedVideoMethodId].title}
+                  </h3>
+                  <span style={{ fontSize: '13px', color: '#64748b' }}>
+                    {ENGR213_MOTION_LESSONS[selectedVideoMethodId].source} · {formatLessonTime(ENGR213_MOTION_LESSONS[selectedVideoMethodId].duration)} duration
+                  </span>
+                </div>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <button
+                    type="button"
+                    className="ec-drill-btn"
+                    onClick={() => {
+                      setSelectedMethodId(selectedVideoMethodId);
+                      setActiveTab('classifier');
+                      audio.playClick();
+                    }}
+                    style={{ background: '#f8fafc', color: '#1e293b', border: '1px solid #cbd5e1' }}
+                  >
+                    <Compass size={14} /> Open Method Classifier
+                  </button>
+                  <button
+                    type="button"
+                    className="ec-drill-btn"
+                    onClick={() => handleDrillMethod(selectedVideoMethodId)}
+                  >
+                    <Zap size={14} fill="currentColor" /> Practice Drill
+                  </button>
+                </div>
+              </div>
+
+              <MotionLessonPlayer
+                key={selectedVideoMethodId}
+                lesson={ENGR213_MOTION_LESSONS[selectedVideoMethodId]}
+              />
+            </div>
+          )}
         </div>
       )}
 
@@ -2155,6 +2470,132 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
                       <MathText text={selectedHackForModal.exampleProblem} />
                     </div>
                   </div>
+
+                  {/* Mental Retention Anchor */}
+                  {selectedHackForModal.mentalAnchor && (
+                    <div style={{ background: '#fef3c7', border: '1px solid #fde68a', borderRadius: '8px', padding: '14px' }}>
+                      <strong style={{ fontSize: '13px', color: '#92400e', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <Brain size={16} /> 🧠 Mental Retention Anchor (How to Remember on Exam):
+                      </strong>
+                      <div style={{ fontSize: '13.5px', marginTop: '4px', color: '#78350f', lineHeight: '1.5' }}>
+                        {selectedHackForModal.mentalAnchor}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Interactive Multi-Variant Problem Trainer */}
+                  {selectedHackForModal.variants && selectedHackForModal.variants.length > 0 && (
+                    <div style={{ background: '#ffffff', border: '1.5px solid #6366f1', borderRadius: '12px', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                        <strong style={{ fontSize: '14px', color: '#4338ca', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <Target size={16} /> Interactive Multi-Variant Problem Drill:
+                        </strong>
+                        <span style={{ fontSize: '11.5px', color: '#64748b' }}>
+                          Practice 3 exam variations of this hack
+                        </span>
+                      </div>
+
+                      {/* Variant Tabs */}
+                      <div className="ec-variant-tabs-row">
+                        {selectedHackForModal.variants.map((v, vIdx) => (
+                          <button
+                            key={v.id}
+                            type="button"
+                            className={`ec-variant-pill-btn ${activeHackVariantIdx === vIdx ? 'active' : ''}`}
+                            onClick={() => {
+                              audio.playClick();
+                              setActiveHackVariantIdx(vIdx);
+                            }}
+                          >
+                            <span>{v.name.split(':')[0]}</span>
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Current Variant Card */}
+                      {(() => {
+                        const currentVariant = selectedHackForModal.variants[activeHackVariantIdx] || selectedHackForModal.variants[0];
+                        const userChoice = hackVariantAnswers[currentVariant.id];
+                        return (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                            <div style={{ fontSize: '14px', fontWeight: 600, color: '#0f172a', lineHeight: '1.5', background: '#f8fafc', padding: '12px 14px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                              <MathText text={currentVariant.problem} />
+                            </div>
+
+                            {/* Options */}
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '8px' }}>
+                              {currentVariant.options.map((opt, oIdx) => {
+                                const isSel = userChoice === oIdx;
+                                const isCor = oIdx === currentVariant.correctIndex;
+                                let optStyle: React.CSSProperties = {
+                                  padding: '10px 14px',
+                                  borderRadius: '8px',
+                                  border: '1.5px solid #cbd5e1',
+                                  background: '#ffffff',
+                                  color: '#1e293b',
+                                  fontSize: '13px',
+                                  cursor: userChoice !== undefined ? 'default' : 'pointer',
+                                  textAlign: 'left'
+                                };
+                                if (userChoice !== undefined) {
+                                  if (isSel && isCor) {
+                                    optStyle.borderColor = '#10b981';
+                                    optStyle.background = '#dcfce7';
+                                    optStyle.color = '#065f46';
+                                    optStyle.fontWeight = 700;
+                                  } else if (isSel && !isCor) {
+                                    optStyle.borderColor = '#ef4444';
+                                    optStyle.background = '#fee2e2';
+                                    optStyle.color = '#991b1b';
+                                  } else if (isCor) {
+                                    optStyle.borderColor = '#10b981';
+                                    optStyle.background = '#ecfdf5';
+                                    optStyle.color = '#065f46';
+                                  }
+                                }
+                                return (
+                                  <button
+                                    key={oIdx}
+                                    type="button"
+                                    style={optStyle}
+                                    onClick={() => {
+                                      if (userChoice !== undefined) return;
+                                      if (oIdx === currentVariant.correctIndex) audio.playCorrect();
+                                      else audio.playIncorrect();
+                                      setHackVariantAnswers((prev) => ({ ...prev, [currentVariant.id]: oIdx }));
+                                    }}
+                                  >
+                                    <strong>{['A', 'B', 'C', 'D'][oIdx]}. </strong>
+                                    <MathText text={opt} />
+                                  </button>
+                                );
+                              })}
+                            </div>
+
+                            {/* Baby Steps Breakdown on Answer */}
+                            {userChoice !== undefined && (
+                              <div className="ec-baby-step-box">
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 800, fontSize: '13px', color: userChoice === currentVariant.correctIndex ? '#059669' : '#dc2626' }}>
+                                  {userChoice === currentVariant.correctIndex ? <CheckCircle2 size={16} /> : <AlertTriangle size={16} />}
+                                  <span>{userChoice === currentVariant.correctIndex ? 'Correct! Baby-Step Execution Protocol:' : 'Baby-Step Solution & Mistake Recovery:'}</span>
+                                </div>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px', marginTop: '4px' }}>
+                                  {currentVariant.babySteps.map((step, sIdx) => (
+                                    <div key={sIdx} style={{ padding: '6px 10px', background: '#f8fafc', borderRadius: '6px', border: '1px solid #f1f5f9' }}>
+                                      <MathText text={step} />
+                                    </div>
+                                  ))}
+                                </div>
+                                <div style={{ fontSize: '12px', color: '#b45309', background: '#fef3c7', padding: '8px 10px', borderRadius: '6px', marginTop: '4px' }}>
+                                  <strong>⚠️ Exam Trap:</strong> {currentVariant.trapExplanation}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -2167,8 +2608,158 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
       {/* --------------------------------------------- */}
       {activeTab === 'vault' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {/* AI Formula Diagnostic Assistant at Top */}
-          <div className="ec-formula-ai-assistant">
+          {/* Vault Top Hero & Sub-Navigation */}
+          <div className="ec-retention-hero">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+              <div>
+                <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#38bdf8', fontWeight: 800 }}>
+                  Active Formula Memory &amp; Functionality Retention Center
+                </span>
+                <h3 style={{ margin: '4px 0 0', fontSize: '18px', fontWeight: 800 }}>
+                  Calculus Survival Vault (Zero Formula Sheet Permitted on Midterm)
+                </h3>
+              </div>
+              <div className="ec-repetition-counter-badge" style={{ background: 'rgba(251, 191, 36, 0.15)', borderColor: '#fbbf24', color: '#fef08a' }}>
+                <Brain size={14} /> Repetitions Completed: {vaultRepetitionCount}
+              </div>
+            </div>
+
+            {/* Sub-Tabs Bar */}
+            <div className="ec-retention-nav-tabs" style={{ borderBottomColor: 'rgba(255,255,255,0.15)', margin: '8px 0 0', paddingBottom: '0' }}>
+              <button
+                type="button"
+                className={`ec-retention-nav-btn ${vaultActiveSection === 'catalog' ? 'active' : ''}`}
+                style={{ color: vaultActiveSection === 'catalog' ? '#1e1b4b' : '#cbd5e1' }}
+                onClick={() => {
+                  audio.playClick();
+                  setVaultActiveSection('catalog');
+                }}
+              >
+                <BookOpen size={14} /> 1. Formula Directory &amp; Functionality
+              </button>
+              <button
+                type="button"
+                className={`ec-retention-nav-btn ${vaultActiveSection === 'repetition_drill' ? 'active' : ''}`}
+                style={{ color: vaultActiveSection === 'repetition_drill' ? '#1e1b4b' : '#cbd5e1' }}
+                onClick={() => {
+                  audio.playClick();
+                  setVaultActiveSection('repetition_drill');
+                  setVaultRepetitionCount((c) => {
+                    const next = c + 1;
+                    try { localStorage.setItem('engr213_vault_rep_count', next.toString()); } catch(e){}
+                    return next;
+                  });
+                }}
+              >
+                <Zap size={14} /> 2. Active Repetition Recall Drill
+              </button>
+              <button
+                type="button"
+                className={`ec-retention-nav-btn ${vaultActiveSection === 'ai_assistant' ? 'active' : ''}`}
+                style={{ color: vaultActiveSection === 'ai_assistant' ? '#1e1b4b' : '#cbd5e1' }}
+                onClick={() => {
+                  audio.playClick();
+                  setVaultActiveSection('ai_assistant');
+                }}
+              >
+                <Sparkles size={14} /> 3. AI Diagnostic &amp; Fix Assistant
+              </button>
+            </div>
+          </div>
+
+          {/* Sub-Section 2: Active Repetition Recall Drill */}
+          {vaultActiveSection === 'repetition_drill' && (
+            <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                <div>
+                  <span className="ec-card-tag" style={{ background: '#e0e7ff', color: '#4338ca' }}>
+                    Active Formula Recall Drill
+                  </span>
+                  <h4 style={{ margin: '6px 0 0', fontSize: '16px', fontWeight: 800, color: '#0f172a' }}>
+                    Rapid Repetition Trainer · Cement Every Midterm 1 Formula
+                  </h4>
+                </div>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <button
+                    type="button"
+                    className="ec-blur-toggle-btn"
+                    onClick={() => {
+                      audio.playClick();
+                      handleDrillMethod('formulas');
+                    }}
+                  >
+                    <Play size={13} fill="currentColor" /> Full Brain Drill Mode
+                  </button>
+                </div>
+              </div>
+
+              {/* Repetition Flashcard Quiz */}
+              <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '18px' }}>
+                <span style={{ fontSize: '12px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>
+                  Formula Functionality &amp; Recall Challenge:
+                </span>
+                <div style={{ fontSize: '15px', fontWeight: 700, color: '#1e293b', marginTop: '6px', lineHeight: '1.5' }}>
+                  <MathText text="In a non-exact equation $M(x,y)dx + N(x,y)dy = 0$, if $rac{M_y - N_x}{N} = f(x)$ is a function of $x$ alone, what is the exact integrating factor $\mu(x)$?" />
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '10px', marginTop: '14px' }}>
+                  {[
+                    '\mu(x) = e^{\int f(x)dx}',
+                    '\mu(x) = e^{-\int f(x)dx}',
+                    '\mu(x) = \int f(x)dx',
+                    '\mu(x) = \frac{1}{f(x)}'
+                  ].map((opt, oIdx) => (
+                    <button
+                      key={oIdx}
+                      type="button"
+                      style={{
+                        padding: '12px 14px',
+                        borderRadius: '8px',
+                        border: '1.5px solid #cbd5e1',
+                        background: '#ffffff',
+                        fontSize: '13.5px',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        textAlign: 'left'
+                      }}
+                      onClick={() => {
+                        if (oIdx === 0) {
+                          audio.playCorrect();
+                          setVaultRepetitionCount((c) => {
+                            const next = c + 1;
+                            try { localStorage.setItem('engr213_vault_rep_count', next.toString()); } catch(e){}
+                            return next;
+                          });
+                        } else {
+                          audio.playIncorrect();
+                        }
+                      }}
+                    >
+                      <strong>{['A', 'B', 'C', 'D'][oIdx]}. </strong>
+                      <MathText text={`$${opt}$`} />
+                    </button>
+                  ))}
+                </div>
+
+                {/* Baby Steps & Meaning */}
+                <div className="ec-baby-step-box" style={{ marginTop: '14px' }}>
+                  <strong style={{ fontSize: '13px', color: '#065f46' }}>
+                    💡 Functionality &amp; Meaning Breakdown:
+                  </strong>
+                  <div style={{ fontSize: '13px', color: '#334155', lineHeight: '1.5' }}>
+                    <MathText text="Multiplying the non-exact equation by $\\mu(x) = e^{\\int f(x)dx}$ forces the Clairaut condition $(\\mu M)_y = (\\mu N)_x$ to hold identically, turning the equation into a solvable exact differential equation!" />
+                  </div>
+                  <div style={{ fontSize: '12px', color: '#b45309', background: '#fef3c7', padding: '6px 10px', borderRadius: '6px' }}>
+                    <MathText text="⚠️ **Memory Trap:** Notice the order: $M_y - N_x$ divides by $N$. If you divide by $M$, you must reverse the numerator: $(N_x - M_y)/M = g(y) \\implies \\mu(y) = e^{\\int g(y)dy}$." />
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Sub-Section 3: AI Diagnostic Assistant */}
+          {vaultActiveSection === 'ai_assistant' && (
+            <div className="ec-formula-ai-assistant">
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Brain size={18} color="#fbbf24" />
               <strong>AI Formula Diagnostic Assistant: Which formula would you like to master?</strong>
@@ -2215,9 +2806,13 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
               </div>
             )}
           </div>
+          )}
 
-          {/* Controls Bar */}
-          <div className="ec-vault-controls">
+          {/* Sub-Section 1: Formula Catalog & Functionality */}
+          {vaultActiveSection === 'catalog' && (
+            <>
+              {/* Controls Bar */}
+              <div className="ec-vault-controls">
             <div className="ec-vault-filters">
               <button
                 className={`ec-vault-filter-btn ${vaultFilter === 'all' ? 'active' : ''}`}
@@ -2322,11 +2917,315 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
                 </div>
               );
             })}
-          </div>
+              </div>
+            </>
+          )}
         </div>
       )}
 
       {/* --------------------------------------------- */}
+            {/* TAB: Official Fall 2025 Tutorial Exercises & Worked Solutions */}
+      {activeTab === 'tutorials' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {/* Hero Banner */}
+          <div style={{ background: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%)', borderRadius: '16px', padding: '24px 28px', color: '#ffffff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', boxShadow: '0 8px 24px rgba(49, 46, 129, 0.25)' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                <span style={{ background: 'rgba(245, 158, 11, 0.25)', border: '1px solid #f59e0b', color: '#fef08a', fontSize: '11px', fontWeight: 800, padding: '3px 10px', borderRadius: '999px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  ⭐ Official Fall 2025 Curriculum
+                </span>
+                <span style={{ color: '#cbd5e1', fontSize: '12px' }}>
+                  23 Complete Pages · Chapters 1 &amp; 2 Midterm 1 Scope
+                </span>
+              </div>
+              <h2 style={{ fontSize: '22px', fontWeight: 900, margin: '0 0 6px', color: '#ffffff' }}>
+                ENGR 213 Official Tutorial Exercises &amp; Solutions
+              </h2>
+              <p style={{ margin: 0, fontSize: '13.5px', color: '#e0e7ff', maxWidth: '780px', lineHeight: '1.5' }}>
+                Extracted directly from the official Concordia Fall 2025 tutorial manual (<code>TutorialENGR 213.pdf</code>). Tutorial exercises represent the primary pool from which midterm exam problems are formulated.
+              </p>
+            </div>
+
+            {onViewPdf && (
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  className="ec-blur-toggle-btn"
+                  style={{ background: '#f59e0b', color: '#1e1b4b', border: 'none', fontWeight: 800, padding: '10px 16px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                  onClick={() => {
+                    audio.playClick();
+                    onViewPdf({
+                      id: '213-step-by-step-tutorial',
+                      courseId: 'ENGR213',
+                      categoryId: 'Tutorials',
+                      categoryTitle: 'Tutor Step-by-Step Practice',
+                      title: 'ENGR 213 - ODE Step-by-Step Tutorial Practice (Tutor Notes & Recent Exercises)',
+                      filename: 'ENGR 213 - ODE Step-by-Step Tutorial Practice (Tutor Notes & Recent Exercises).pdf',
+                      relativePath: 'Engr 213/04 - Tutorials/ENGR 213 - ODE Step-by-Step Tutorial Practice (Tutor Notes & Recent Exercises).pdf',
+                      tags: ['Tutor Notes', 'Step-by-Step', '7 Core Exercises'],
+                      summary: 'Recovered ODE tutorial exercises with micro-step derivations, equilibrium constant solution traps, and linear substitutions.'
+                    });
+                  }}
+                >
+                  <FileText size={16} />
+                  <span>Open Tutor Practice PDF (4 Pages)</span>
+                </button>
+                <button
+                  type="button"
+                  className="ec-blur-toggle-btn"
+                  style={{ background: 'rgba(255,255,255,0.15)', color: '#ffffff', border: '1px solid rgba(255,255,255,0.3)', fontWeight: 700, padding: '10px 16px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                  onClick={() => {
+                    audio.playClick();
+                    onViewPdf({
+                      id: 'ENGR213:official_tutorial_manual',
+                      courseId: 'ENGR213',
+                      categoryId: 'Tutorials',
+                      categoryTitle: 'Official Tutorial Manual',
+                      title: 'ENGR 213 - Official Tutorial Exercises & Solutions Manual',
+                      filename: 'ENGR 213 - Official Tutorial Exercises & Solutions Manual.pdf',
+                      relativePath: 'Engr 213/04 - Tutorials/ENGR 213 - Official Tutorial Exercises & Solutions Manual.pdf',
+                      tags: ['Official Tutorial', 'Fall 2025', 'Midterm Scope'],
+                      summary: 'Complete official Concordia ENGR 213 tutorial problem manual covering all Chapter 1 and Chapter 2 midterm exercise sets and full solutions.'
+                    });
+                  }}
+                >
+                  <ExternalLink size={15} />
+                  <span>Full Course Manual (23 Pages)</span>
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Sub-Navigation: 7 Core Tutor Exercises vs 8 Course Manual Sets */}
+          <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              className={`ec-variant-pill-btn ${activeTutorialTab === 'recovered7' ? 'active' : ''}`}
+              onClick={() => {
+                audio.playClick();
+                setActiveTutorialTab('recovered7');
+              }}
+              style={{ padding: '8px 16px', fontSize: '13.5px', fontWeight: 700 }}
+            >
+              ⭐ 7 Core Tutorial Exercises (Tutor Notes &amp; Recent Sessions)
+            </button>
+            <button
+              type="button"
+              className={`ec-variant-pill-btn ${activeTutorialTab === 'officialSets' ? 'active' : ''}`}
+              onClick={() => {
+                audio.playClick();
+                setActiveTutorialTab('officialSets');
+              }}
+              style={{ padding: '8px 16px', fontSize: '13.5px', fontWeight: 700 }}
+            >
+              📚 Official Course Manual Sets (Exercises 1.1 to 2.6)
+            </button>
+          </div>
+
+          {/* Part A: 7 Recovered Tutorial Problems with Step-by-Step Breakdown */}
+          {activeTutorialTab === 'recovered7' && (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '18px' }}>
+              {RECOVERED_TUTORIAL_PROBLEMS.map((tut) => (
+                <div
+                  key={tut.num}
+                  style={{
+                    background: '#ffffff',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: '14px',
+                    padding: '22px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    gap: '14px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+                  }}
+                >
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '11px', fontWeight: 800, color: '#4f46e5', textTransform: 'uppercase', background: '#eef2ff', padding: '3px 8px', borderRadius: '6px' }}>
+                        Exercise #{tut.num}
+                      </span>
+                      <span style={{ fontSize: '11.5px', color: '#64748b', fontWeight: 600 }}>
+                        {tut.equationType}
+                      </span>
+                    </div>
+
+                    <h4 style={{ fontSize: '16px', fontWeight: 800, margin: '0 0 10px', color: '#0f172a' }}>
+                      {tut.title}
+                    </h4>
+
+                    {/* Question Box */}
+                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '12px 14px', marginBottom: '12px' }}>
+                      <span style={{ fontSize: '11px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>
+                        Given Differential Equation:
+                      </span>
+                      <div style={{ fontSize: '14.5px', fontWeight: 700, color: '#1e293b' }}>
+                        <MathText text={tut.question} />
+                      </div>
+                    </div>
+
+                    {/* Step-by-Step Derivation */}
+                    <div style={{ background: '#faf5ff', border: '1px solid #e9d5ff', borderRadius: '8px', padding: '12px 14px', marginBottom: '12px' }}>
+                      <span style={{ fontSize: '11px', fontWeight: 800, color: '#7e22ce', textTransform: 'uppercase', display: 'block', marginBottom: '6px' }}>
+                        Step-by-Step Micro-Derivation:
+                      </span>
+                      <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '12.5px', color: '#3b0764', lineHeight: '1.6' }}>
+                        {tut.steps.map((step, sIdx) => (
+                          <li key={sIdx} style={{ marginBottom: '4px' }}>
+                            <MathText text={step} />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Final Answer */}
+                    <div style={{ background: '#ecfdf5', border: '1px solid #a7f3d0', borderRadius: '8px', padding: '10px 12px', marginBottom: '10px' }}>
+                      <span style={{ fontSize: '11px', fontWeight: 800, color: '#065f46', textTransform: 'uppercase', display: 'block', marginBottom: '2px' }}>
+                        Final Answer:
+                      </span>
+                      <div style={{ fontSize: '14px', fontWeight: 800, color: '#047857' }}>
+                        <MathText text={tut.finalAnswer} />
+                      </div>
+                    </div>
+
+                    {/* Exam Trap */}
+                    <div style={{ fontSize: '12px', color: '#b45309', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '6px', padding: '8px 10px', lineHeight: '1.4' }}>
+                      ⚠️ <strong>Crucial Exam Trap:</strong> {tut.trapAlert}
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="ec-drill-btn"
+                    style={{ width: '100%', justifyContent: 'center', marginTop: '6px' }}
+                    onClick={() => {
+                      audio.playClick();
+                      handleDrillMethod(tut.drillKey);
+                    }}
+                  >
+                    <span>🎯 Drill {tut.equationType} in Practice Trainer</span>
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Part B: Official 23-Page Course Manual Sets */}
+          {activeTutorialTab === 'officialSets' && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
+            {[
+              {
+                exerciseNum: 'Exercise 1.1',
+                chapter: 'Chapter 1: Introduction',
+                topic: 'Order, Linearity & Verifying Solutions',
+                problemStmt: 'Determine the order and linearity of (y\'\')³ + x y\' + y = \\sin x, and verify if y = c_1 e^{2x} + c_2 x e^{2x} satisfies y\'\' - 4y\' + 4y = 0.',
+                solutionKey: 'Order is 2 (highest derivative); nonlinear because (y\'\') is cubed. Differentiating y via product rule verifies y\'\' - 4y\' + 4y = 0 identically.',
+                examTip: 'Degree refers to the power of the highest derivative, whereas Order is the number of primes. Linearity requires degree 1 and no y-products!',
+                drillKey: 'separable'
+              },
+              {
+                exerciseNum: 'Exercise 1.2',
+                chapter: 'Chapter 1: Existence & Uniqueness',
+                topic: 'Picard Theorem for First-Order IVP',
+                problemStmt: 'Determine whether dy/dx = y^{1/3}, y(0) = 0 has a unique solution on an interval containing x = 0.',
+                solutionKey: 'f(x, y) = y^{1/3} is continuous everywhere, but ∂f/∂y = 1/(3 y^{2/3}) is discontinuous at y = 0. Uniqueness is NOT guaranteed! Indeed y = 0 and y = (2/3 x)^{3/2} are both solutions.',
+                examTip: 'Always check both continuity of f(x, y) AND continuity of ∂f/∂y in an open rectangle around (x₀, y₀).',
+                drillKey: 'separable'
+              },
+              {
+                exerciseNum: 'Exercise 2.1',
+                chapter: 'Chapter 2: Separable ODEs',
+                topic: 'Separable IVP with Negative Square Root Branch',
+                problemStmt: 'Solve the initial value problem: dy/dx = 2x/y with y(0) = -3.',
+                solutionKey: 'y dy = 2x dx ⟹ y²/2 = x² + C₁ ⟹ y² = 2x² + 9. Since y(0) = -3 < 0, select the negative root branch: y(x) = -√(2x² + 9).',
+                examTip: 'Missing the negative sign loses 2 marks. If y(x₀) is negative, the root branch MUST be negative.',
+                drillKey: 'separable'
+              },
+              {
+                exerciseNum: 'Exercise 2.2',
+                chapter: 'Chapter 2: Linear ODEs',
+                topic: 'Integrating Factor with Logarithmic Negative Power',
+                problemStmt: 'Solve x y\' - 3y = x⁴ with y(1) = 2 for x > 0.',
+                solutionKey: 'Normalize: y\' - (3/x)y = x³. P(x) = -3/x ⟹ μ(x) = exp(∫ -3/x dx) = x⁻³ = 1/x³. Then d/dx [y/x³] = 1 ⟹ y/x³ = x + C ⟹ y(x) = x⁴ + x³.',
+                examTip: 'Always lift the negative multiplier into the log exponent: exp(-3 ln x) = x⁻³ = 1/x³.',
+                drillKey: 'linear_if'
+              },
+              {
+                exerciseNum: 'Exercise 2.3',
+                chapter: 'Chapter 2: Exact Equations',
+                topic: 'Exact Differential Form & Potential Function',
+                problemStmt: 'Solve (2xy + 3)dx + (x² - 1)dy = 0 with y(0) = 1.',
+                solutionKey: 'My = 2x = Nx. Exact! Ψ(x, y) = ∫ (2xy + 3)dx = x²y + 3x + g(y). ∂Ψ/∂y = x² + g\'(y) = x² - 1 ⟹ g(y) = -y. Solution: x²y + 3x - y = -1.',
+                examTip: 'Equate ∂Ψ/∂y to N(x, y) to isolate g\'(y). All remaining terms in g\'(y) must depend purely on y.',
+                drillKey: 'exact'
+              },
+              {
+                exerciseNum: 'Exercise 2.4',
+                chapter: 'Chapter 2: Special Integrating Factors',
+                topic: 'Non-Exact ODE Linearized via μ(x)',
+                problemStmt: 'Solve (3xy + y²)dx + (x² + xy)dy = 0.',
+                solutionKey: 'My = 3x + 2y, Nx = 2x + y. (My - Nx)/N = (x + y)/(x(x + y)) = 1/x (purely in x!). μ(x) = exp(∫ 1/x dx) = x. Multiplying gives an exact equation.',
+                examTip: 'If (My - Nx)/N depends only on x, μ(x) = exp(∫ f(x)dx). If (Nx - My)/M depends only on y, μ(y) = exp(∫ g(y)dy).',
+                drillKey: 'non_exact'
+              },
+              {
+                exerciseNum: 'Exercise 2.5',
+                chapter: 'Chapter 2: Bernoulli ODE',
+                topic: 'Nonlinear Bernoulli Power Reduction (u = y¹⁻ⁿ)',
+                problemStmt: 'Solve y\' + (1/x)y = x y² for x > 0.',
+                solutionKey: 'n = 2 ⟹ u = y¹⁻² = y⁻¹. Divide: y⁻² y\' + (1/x)y⁻¹ = x. Substitute: -u\' + (1/x)u = x ⟹ u\' - (1/x)u = -x. Linear equation in u!',
+                examTip: 'Remember to multiply by (1 - n) = -1 when substituting u\' to avoid dropping minus signs on the RHS.',
+                drillKey: 'bernoulli'
+              },
+              {
+                exerciseNum: 'Exercise 2.6',
+                chapter: 'Chapter 2: Engineering Models',
+                topic: 'Salt Mixture Tank with Constant Volume',
+                problemStmt: 'A 200 L tank has 10 kg salt. Brine with 0.5 kg/L enters at 4 L/min; well-stirred mixture leaves at 4 L/min. Find salt amount A(t).',
+                solutionKey: 'dA/dt = Rin - Rout = (4)(0.5) - 4(A/200) = 2 - A/50. Linear ODE: dA/dt + A/50 = 2 ⟹ A(t) = 100 - 90 e^{-t/50}. As t → ∞, A → 100 kg.',
+                examTip: 'Rin = (flow in) × (conc in). Rout = (flow out) × (A(t) / V(t)). When flow in = flow out, V(t) remains constant.',
+                drillKey: 'applications'
+              }
+            ].map((tut, tIdx) => (
+              <div key={tIdx} style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '14px', padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 800, color: '#4f46e5', textTransform: 'uppercase', background: '#eef2ff', padding: '3px 8px', borderRadius: '6px' }}>
+                      {tut.exerciseNum}
+                    </span>
+                    <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 600 }}>
+                      {tut.chapter}
+                    </span>
+                  </div>
+                  <h4 style={{ fontSize: '15px', fontWeight: 800, margin: '0 0 8px', color: '#0f172a' }}>
+                    {tut.topic}
+                  </h4>
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '10px 12px', fontSize: '13px', color: '#334155', lineHeight: '1.5', marginBottom: '10px' }}>
+                    <strong>Problem:</strong> {tut.problemStmt}
+                  </div>
+                  <div style={{ fontSize: '12.5px', color: '#065f46', background: '#ecfdf5', border: '1px solid #a7f3d0', borderRadius: '8px', padding: '10px 12px', lineHeight: '1.5', marginBottom: '10px' }}>
+                    <strong>Official Solution Step:</strong> {tut.solutionKey}
+                  </div>
+                  <div style={{ fontSize: '12px', color: '#b45309' }}>
+                    ⚠️ <strong>Exam Trap:</strong> {tut.examTip}
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className="ec-drill-btn"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                  onClick={() => handleDrillMethod(tut.drillKey)}
+                >
+                  <Play size={12} fill="currentColor" /> Drill Related Problem Variants
+                </button>
+              </div>
+            ))}
+          </div>
+          )}
+        </div>
+      )}
+
       {/* TAB 4: Unofficial Past Midterm Solver Walkthroughs */}
       {/* --------------------------------------------- */}
       {activeTab === 'past_exams' && (
@@ -2364,78 +3263,148 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
             )}
           </div>
 
-          {/* Unofficial Extracted Past Papers Grid */}
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', margin: '14px 0 8px' }}>
-              <h4 style={{ fontSize: '14.5px', fontWeight: 800, margin: 0, color: '#1e293b' }}>
-                📁 Unofficial Past Midterm Exam Papers (Click to View in Portal):
+          {/* Unofficial Extracted Past Papers Grid (Collapsible / Hidden by default) */}
+          <div style={{ margin: '14px 0 8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+              <h4 style={{ fontSize: '14px', fontWeight: 800, margin: 0, color: '#1e293b', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span>📁 Unofficial Past Midterm Exam Papers ({filteredMidterms.length} Papers)</span>
               </h4>
-              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                {['all', '2018', '2017', '2016', '2013', '2012', '2011'].map((yr) => (
-                  <button
-                    key={yr}
-                    type="button"
-                    onClick={() => {
-                      audio.playClick();
-                      setSelectedYearFilter(yr);
-                    }}
-                    style={{
-                      padding: '4px 10px',
-                      borderRadius: '6px',
-                      fontSize: '11.5px',
-                      fontWeight: 600,
-                      border: '1px solid',
-                      borderColor: selectedYearFilter === yr ? '#4f46e5' : '#cbd5e1',
-                      background: selectedYearFilter === yr ? '#4f46e5' : '#ffffff',
-                      color: selectedYearFilter === yr ? '#ffffff' : '#475569',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    {yr === 'all' ? 'All Years' : yr}
-                  </button>
-                ))}
-              </div>
+              <button
+                type="button"
+                className="ec-blur-toggle-btn"
+                onClick={() => {
+                  audio.playClick();
+                  setShowPastPapers(!showPastPapers);
+                }}
+                style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px' }}
+              >
+                {showPastPapers ? <EyeOff size={14} /> : <Eye size={14} />}
+                <span>{showPastPapers ? 'Hide Past Exam Papers' : 'Show Unofficial Past Midterm Exam Papers (9)'}</span>
+              </button>
             </div>
 
-            <div className="ec-exam-papers-grid">
-              {filteredMidterms.map((paper) => (
+            {showPastPapers && (
+              <div style={{ marginTop: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '6px', flexWrap: 'wrap', marginBottom: '10px' }}>
+                  {['all', '2018', '2017', '2016', '2013', '2012', '2011'].map((yr) => (
+                    <button
+                      key={yr}
+                      type="button"
+                      onClick={() => {
+                        audio.playClick();
+                        setSelectedYearFilter(yr);
+                      }}
+                      style={{
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        fontSize: '11.5px',
+                        fontWeight: 600,
+                        border: '1px solid',
+                        borderColor: selectedYearFilter === yr ? '#4f46e5' : '#cbd5e1',
+                        background: selectedYearFilter === yr ? '#4f46e5' : '#ffffff',
+                        color: selectedYearFilter === yr ? '#ffffff' : '#475569',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {yr === 'all' ? 'All Years' : yr}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="ec-exam-papers-grid">
+                  {filteredMidterms.map((paper) => (
+                    <button
+                      key={paper.filename}
+                      type="button"
+                      className="ec-paper-tile"
+                      onClick={() => {
+                        audio.playClick();
+                        if (onViewPdf) {
+                          onViewPdf({
+                            id: `ENGR213:${paper.filename}`,
+                            courseId: 'ENGR213',
+                            categoryId: 'Midterm',
+                            categoryTitle: 'Midterm Papers',
+                            title: paper.title,
+                            filename: paper.filename,
+                            relativePath: paper.relativePath,
+                            tags: ['Unofficial Exam', paper.year],
+                            summary: paper.scope
+                          });
+                        }
+                      }}
+                    >
+                      <div className="ec-paper-info">
+                        <div className="ec-paper-icon">
+                          <FileText size={18} />
+                        </div>
+                        <div>
+                          <div className="ec-paper-title">{paper.title}</div>
+                          <div className="ec-paper-sub">{paper.scope}</div>
+                        </div>
+                      </div>
+                      <ArrowRight size={16} color="#94a3b8" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Subject Filter Bar Matching Midterm 1 Scope (Chapter 2 + Sec 17.1/17.2) */}
+          <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+              <div>
+                <strong style={{ fontSize: '13.5px', color: '#1e293b' }}>
+                  🎯 Filter Past Midterm Problems by Chapter 2 &amp; Sec 17.1–17.2 Subject:
+                </strong>
+                <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b' }}>
+                  Select an individual topic or view the complete midterm blueprint:
+                </p>
+              </div>
+              <button
+                type="button"
+                className="ec-drill-btn"
+                onClick={() => {
+                  audio.playClick();
+                  handleDrillMethod(selectedMidtermSubjectFilter === 'all' ? 'all' : selectedMidtermSubjectFilter);
+                }}
+              >
+                <Play size={12} fill="currentColor" /> Drill {selectedMidtermSubjectFilter === 'all' ? 'All Midterm 1 Scope' : selectedMidtermSubjectFilter} in Practice Trainer
+              </button>
+            </div>
+
+            <div className="ec-subject-filter-bar" style={{ margin: '6px 0 0' }}>
+              {[
+                { id: 'all', label: 'All Midterm 1 Scope' },
+                { id: 'separable', label: '1. Separable IVPs' },
+                { id: 'linear_if', label: '2. Linear (IF)' },
+                { id: 'exact', label: '3. Exact Potential' },
+                { id: 'non_exact', label: '4. Non-Exact IF' },
+                { id: 'bernoulli', label: '5. Bernoulli' },
+                { id: 'homogeneous', label: '6. Homogeneous' },
+                { id: 'linear_arg', label: '7. Substitutions' },
+                { id: 'newton', label: '8. Newton Cooling' },
+                { id: 'tank', label: '9. Mixing Tanks' },
+                { id: 'complex_numbers', label: '10. Sec 17.1 Complex' },
+                { id: 'second_order', label: '11. Sec 17.2 Auxiliary' }
+              ].map((s) => (
                 <button
-                  key={paper.filename}
+                  key={s.id}
                   type="button"
-                  className="ec-paper-tile"
+                  className={`ec-subject-filter-chip ${selectedMidtermSubjectFilter === s.id ? 'active' : ''}`}
                   onClick={() => {
                     audio.playClick();
-                    if (onViewPdf) {
-                      onViewPdf({
-                        id: `ENGR213:${paper.filename}`,
-                        courseId: 'ENGR213',
-                        categoryId: 'Midterm',
-                        categoryTitle: 'Midterm Papers',
-                        title: paper.title,
-                        filename: paper.filename,
-                        relativePath: paper.relativePath,
-                        tags: ['Unofficial Exam', paper.year],
-                        summary: paper.scope
-                      });
-                    }
+                    setSelectedMidtermSubjectFilter(s.id);
                   }}
                 >
-                  <div className="ec-paper-info">
-                    <div className="ec-paper-icon">
-                      <FileText size={18} />
-                    </div>
-                    <div>
-                      <div className="ec-paper-title">{paper.title}</div>
-                      <div className="ec-paper-sub">{paper.scope}</div>
-                    </div>
-                  </div>
-                  <ArrowRight size={16} color="#94a3b8" />
+                  {s.label}
                 </button>
               ))}
             </div>
           </div>
 
-          {PAST_PROBLEMS.map((prob) => (
+          {PAST_PROBLEMS.filter((prob) => selectedMidtermSubjectFilter === 'all' || prob.methodId === selectedMidtermSubjectFilter).map((prob) => (
             <div key={prob.id} className="ec-problem-card">
               <div className="ec-problem-top-bar">
                 <div className="ec-problem-meta-group">
@@ -2511,17 +3480,20 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
             </span>
             <div className="ec-subject-pills-bar" style={{ marginTop: '6px' }}>
               {[
-                { id: 'all', label: 'All Midterm Practice (Full Exam)' },
-                { id: 'separable', label: '1. Separable' },
-                { id: 'linear_if', label: '2. Linear IF' },
-                { id: 'exact', label: '3. Exact ODE' },
+                { id: 'all', label: 'All Midterm 1 Scope (Full Exam)' },
+                { id: 'separable', label: '1. Separable IVPs' },
+                { id: 'linear_if', label: '2. Linear (IF)' },
+                { id: 'exact', label: '3. Exact Potential' },
                 { id: 'non_exact', label: '4. Non-Exact IF' },
                 { id: 'bernoulli', label: '5. Bernoulli' },
                 { id: 'homogeneous', label: '6. Homogeneous' },
-                { id: 'linear_arg', label: '7. Linear Arg' },
-                { id: 'second_order', label: '8. 2nd-Order' },
-                { id: 'tutor_hacks', label: '⚡ Tutor Hacks' },
-                { id: 'formulas', label: '🧠 Formula Retention' }
+                { id: 'linear_arg', label: '7. Substitutions' },
+                { id: 'newton', label: '8. Newton Cooling' },
+                { id: 'tank', label: '9. Mixing Tanks' },
+                { id: 'complex_numbers', label: '10. Sec 17.1 Complex' },
+                { id: 'second_order', label: '11. Sec 17.2 Auxiliary' },
+                { id: 'tutor_hacks', label: '⚡ Tutor Hacks & Variants' },
+                { id: 'formulas', label: '🧠 Formula Retention Drill' }
               ].map((subj) => (
                 <button
                   key={subj.id}
@@ -2537,6 +3509,61 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* Drill Mode Selection Bar & Shuffle Action */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '10px 16px', marginBottom: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '11.5px', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Practice Mode:
+              </span>
+              <button
+                type="button"
+                className={`ec-variant-pill-btn ${drillMode === 'specific' ? 'active' : ''}`}
+                onClick={() => {
+                  audio.playClick();
+                  setDrillMode('specific');
+                  setDrillIdx(0);
+                  setDrillAnswers({});
+                }}
+              >
+                🎯 This Specific Problem (1)
+              </button>
+              <button
+                type="button"
+                className={`ec-variant-pill-btn ${drillMode === 'sprint20' ? 'active' : ''}`}
+                onClick={() => {
+                  audio.playClick();
+                  setDrillMode('sprint20');
+                  setDrillIdx(0);
+                  setDrillAnswers({});
+                }}
+              >
+                ⚡ 20 Variants &amp; Similar (Shuffled)
+              </button>
+              <button
+                type="button"
+                className={`ec-variant-pill-btn ${drillMode === 'bank50' ? 'active' : ''}`}
+                onClick={() => {
+                  audio.playClick();
+                  setDrillMode('bank50');
+                  setDrillIdx(0);
+                  setDrillAnswers({});
+                }}
+              >
+                📚 50 Deep Bank (Shuffled)
+              </button>
+            </div>
+
+            <button
+              type="button"
+              className="ec-blur-toggle-btn"
+              style={{ background: '#4f46e5', color: '#ffffff', border: 'none', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}
+              onClick={handleShuffleDrill}
+            >
+              <RotateCcw size={14} />
+              <span>🔀 Shuffle Questions</span>
+            </button>
           </div>
 
           {/* Drill Top Bar (Brain Drill Style as shown in Screenshot 3) */}
@@ -2635,6 +3662,182 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
             </div>
           </div>
 
+          {/* LAYER 1: Diagnostic Method Sub-Question (Midterm Recognition Layer) */}
+          {(() => {
+            const diag = METHOD_DIAGNOSTICS[currentDrillQuestion.methodId] || METHOD_DIAGNOSTICS.separable;
+            const currentChoice = methodAnswers[currentDrillQuestion.id];
+            // Deterministic flip based on question ID
+            const isFlipped = (currentDrillQuestion.id.charCodeAt(currentDrillQuestion.id.length - 1) % 2) === 1;
+            const choices = isFlipped
+              ? [
+                  { type: 'distractor' as const, label: diag.distractorChoice },
+                  { type: 'correct' as const, label: diag.correctChoice }
+                ]
+              : [
+                  { type: 'correct' as const, label: diag.correctChoice },
+                  { type: 'distractor' as const, label: diag.distractorChoice }
+                ];
+
+            return (
+              <div
+                style={{
+                  background: '#ffffff',
+                  border: '1.5px solid #e2e8f0',
+                  borderRadius: '12px',
+                  padding: '16px 20px',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span
+                      style={{
+                        background: '#e0e7ff',
+                        color: '#4338ca',
+                        fontSize: '11px',
+                        fontWeight: 800,
+                        padding: '3px 8px',
+                        borderRadius: '6px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.04em'
+                      }}
+                    >
+                      ⚡ Diagnostic Step 1 · Method Classifier
+                    </span>
+                    <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#1e293b' }}>
+                      Which method or system is required to solve this ODE?
+                    </span>
+                  </div>
+                  {currentChoice && (
+                    <span style={{ fontSize: '12px', fontWeight: 700, color: currentChoice === 'correct' ? '#059669' : '#dc2626' }}>
+                      {currentChoice === 'correct' ? '✓ Method Confirmed' : '⚠️ Misclassified — Check Strategy'}
+                    </span>
+                  )}
+                </div>
+
+                {/* 2 Choice Options */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '10px' }}>
+                  {choices.map((c, cIdx) => {
+                    const isSelected = currentChoice === c.type;
+                    let cBorder = '#cbd5e1';
+                    let cBg = '#f8fafc';
+                    let cColor = '#1e293b';
+
+                    if (isSelected) {
+                      if (c.type === 'correct') {
+                        cBorder = '#10b981';
+                        cBg = '#ecfdf5';
+                        cColor = '#065f46';
+                      } else {
+                        cBorder = '#ef4444';
+                        cBg = '#fef2f2';
+                        cColor = '#991b1b';
+                      }
+                    }
+
+                    return (
+                      <button
+                        key={cIdx}
+                        type="button"
+                        onClick={() => {
+                          audio.playClick();
+                          setMethodAnswers((prev) => ({ ...prev, [currentDrillQuestion.id]: c.type }));
+                        }}
+                        style={{
+                          padding: '12px 14px',
+                          borderRadius: '8px',
+                          border: `1.5px solid ${cBorder}`,
+                          background: cBg,
+                          color: cColor,
+                          textAlign: 'left',
+                          fontSize: '13px',
+                          fontWeight: isSelected ? 700 : 500,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '10px',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: '20px',
+                            height: '20px',
+                            borderRadius: '50%',
+                            background: isSelected ? (c.type === 'correct' ? '#10b981' : '#ef4444') : '#e2e8f0',
+                            color: isSelected ? '#ffffff' : '#64748b',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '11px',
+                            fontWeight: 800,
+                            flexShrink: 0
+                          }}
+                        >
+                          {isSelected ? (c.type === 'correct' ? '✓' : '✕') : cIdx + 1}
+                        </span>
+                        <span style={{ lineHeight: '1.4' }}>{c.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Instant Feedback & Strategy Tips */}
+                {currentChoice === 'correct' && (
+                  <div
+                    style={{
+                      background: '#f0fdf4',
+                      border: '1px solid #86efac',
+                      borderRadius: '8px',
+                      padding: '12px 14px',
+                      fontSize: '12.5px',
+                      color: '#166534',
+                      lineHeight: '1.5'
+                    }}
+                  >
+                    <div style={{ fontWeight: 800, marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <CheckCircle2 size={16} color="#16a34a" />
+                      <span>{diag.correctExplanation}</span>
+                    </div>
+                    <div style={{ marginTop: '6px' }}>
+                      <span style={{ fontWeight: 700 }}>Recommended Solving Strategy:</span>
+                      <ul style={{ margin: '4px 0 0 16px', padding: 0 }}>
+                        {diag.implementationTips.map((tip, tIdx) => (
+                          <li key={tIdx} style={{ margin: '2px 0' }}>{tip}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+
+                {currentChoice === 'distractor' && (
+                  <div
+                    style={{
+                      background: '#fff1f2',
+                      border: '1px solid #fecdd3',
+                      borderRadius: '8px',
+                      padding: '12px 14px',
+                      fontSize: '12.5px',
+                      color: '#9f1239',
+                      lineHeight: '1.5'
+                    }}
+                  >
+                    <div style={{ fontWeight: 800, marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <AlertTriangle size={16} color="#e11d48" />
+                      <span>{diag.distractorExplanation}</span>
+                    </div>
+                    <div style={{ marginTop: '4px', color: '#881337' }}>
+                      👉 <em>Exam Tip: Review the visual cues and click the other option to examine its step-by-step method!</em>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })()}
+
           {/* Options Grid (Letters A, B, C, D) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {currentDrillQuestion.options.map((opt, oIdx) => {
@@ -2726,7 +3929,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack }) 
                   </span>
                 </div>
                 <span style={{ fontSize: '12px', fontWeight: 600, opacity: 0.9 }}>
-                  {currentDrillQuestion.explanation?.reference || currentDrillQuestion.topic}
+                  {currentDrillQuestion.explanation?.reference || 'Concordia ENGR 213 Curriculum'}
                 </span>
               </div>
 

@@ -1,0 +1,287 @@
+1
+00:00:00,800 --> 00:00:05,429
+First-order linear equations are probably the most useful method in this chapter.
+
+2
+00:00:05,429 --> 00:00:10,584
+They show up everywhere: circuits, mixing tanks, cooling, growth and decay.
+
+3
+00:00:11,404 --> 00:00:15,729
+And the trick to solve them is one of the nicest ideas in the course.
+
+4
+00:00:15,729 --> 00:00:18,802
+We multiply by one special function, and the whole
+
+5
+00:00:18,802 --> 00:00:21,761
+left side collapses into a single derivative.
+
+6
+00:00:25,661 --> 00:00:28,141
+How do you spot a linear equation?
+
+7
+00:00:28,141 --> 00:00:31,287
+y and y prime appear only to the first power.
+
+8
+00:00:31,287 --> 00:00:36,550
+No y squared, no square root of y, no y times y prime, no sine of y.
+
+9
+00:00:36,970 --> 00:00:40,295
+Your lecture writes the general form as, a one of
+
+10
+00:00:40,295 --> 00:00:44,562
+x, dy/dx, plus a zero of x, y, equals g of x.
+
+11
+00:00:44,981 --> 00:00:49,478
+The coefficients can be any functions of x. That is completely fine.
+
+12
+00:00:49,478 --> 00:00:51,013
+Only y has to behave.
+
+13
+00:00:51,433 --> 00:00:57,533
+Then the first step, every single time: divide by a one of x, to get standard form.
+
+14
+00:00:57,533 --> 00:01:00,583
+dy/dx, plus P of x y, equals f of x.
+
+15
+00:01:04,484 --> 00:01:08,391
+So why does multiplying by something help? Remember the product rule.
+
+16
+00:01:08,811 --> 00:01:14,786
+The derivative of mu times y, is mu times y prime, plus mu prime times y.
+
+17
+00:01:15,206 --> 00:01:20,935
+Now look at our equation, multiplied by mu. mu y prime, plus mu P y.
+
+18
+00:01:21,355 --> 00:01:26,265
+These match the product rule perfectly, if mu prime equals mu times P.
+
+19
+00:01:26,685 --> 00:01:29,808
+And that little equation for mu is separable.
+
+20
+00:01:29,808 --> 00:01:33,652
+Its solution is, mu equals e to the integral of P dx.
+
+21
+00:01:33,652 --> 00:01:35,934
+That is the integrating factor.
+
+22
+00:01:36,354 --> 00:01:41,012
+So after multiplying, the whole left side becomes one derivative.
+
+23
+00:01:41,012 --> 00:01:43,893
+The derivative of mu y, equals mu f.
+
+24
+00:01:47,693 --> 00:01:51,097
+Here are the three steps, exactly as your lecture lists them.
+
+25
+00:01:51,517 --> 00:01:56,094
+Step one. Put the equation in standard form, and find P of x, and
+
+26
+00:01:56,094 --> 00:01:59,584
+the integrating factor, e to the integral of P dx.
+
+27
+00:02:00,005 --> 00:02:04,620
+Step two. Multiply the standard form by the integrating factor.
+
+28
+00:02:04,620 --> 00:02:09,235
+The left side is now the derivative of the integrating factor times y.
+
+29
+00:02:09,654 --> 00:02:12,904
+Step three. Integrate both sides, and solve for y.
+
+30
+00:02:13,324 --> 00:02:17,665
+Notice, you do not need a constant when you compute the integrating factor.
+
+31
+00:02:17,665 --> 00:02:20,037
+The one constant shows up in step three.
+
+32
+00:02:23,737 --> 00:02:26,452
+Let us do Example 4 from Lecture 3.
+
+33
+00:02:26,452 --> 00:02:29,554
+dy/dx, minus three y, equals six.
+
+34
+00:02:29,974 --> 00:02:35,160
+It is already in standard form, so P of x is negative three. Careful with that sign.
+
+35
+00:02:35,580 --> 00:02:38,187
+The integrating factor is e to the integral of
+
+36
+00:02:38,187 --> 00:02:41,700
+negative three, which is e to the negative three x.
+
+37
+00:02:42,119 --> 00:02:47,287
+Multiply through. e to the negative three x y prime, minus three e to the
+
+38
+00:02:47,287 --> 00:02:51,470
+negative three x y, equals six e to the negative three x.
+
+39
+00:02:51,890 --> 00:02:56,364
+The left side collapses. The derivative of e to the negative three x
+
+40
+00:02:56,364 --> 00:02:59,765
+times y, equals six e to the negative three x.
+
+41
+00:03:00,185 --> 00:03:01,831
+Integrate both sides.
+
+42
+00:03:01,831 --> 00:03:07,592
+e to the negative three x y, equals negative two e to the negative three x, plus c.
+
+43
+00:03:08,013 --> 00:03:10,636
+Divide by e to the negative three x.
+
+44
+00:03:10,636 --> 00:03:15,210
+y equals negative two, plus c e to the three x, for every x.
+
+45
+00:03:15,630 --> 00:03:20,300
+Notice the constant c got divided too, so it multiplies e to the three x.
+
+46
+00:03:20,300 --> 00:03:23,803
+Dropping that is the most common mistake on this method.
+
+47
+00:03:27,503 --> 00:03:30,316
+Now Example 5, which tests step one.
+
+48
+00:03:30,316 --> 00:03:34,984
+x squared minus nine, times y prime, plus x y, equals zero.
+
+49
+00:03:35,404 --> 00:03:40,689
+y prime is multiplied by x squared minus nine, so divide by it first.
+
+50
+00:03:40,689 --> 00:03:43,662
+P of x is x over x squared minus nine.
+
+51
+00:03:44,082 --> 00:03:49,397
+P is not defined at x equals three, or negative three. So we work on one interval.
+
+52
+00:03:49,397 --> 00:03:51,364
+Say, x greater than three.
+
+53
+00:03:51,784 --> 00:03:56,767
+The integrating factor is e to the integral of x over x squared minus nine.
+
+54
+00:03:56,767 --> 00:04:00,777
+That is e to the one half natural log of x squared minus nine,
+
+55
+00:04:00,777 --> 00:04:04,484
+which is just the square root of x squared minus nine.
+
+56
+00:04:04,904 --> 00:04:10,063
+Then the derivative of root x squared minus nine, times y, equals zero.
+
+57
+00:04:10,063 --> 00:04:13,243
+Integrate, and y equals c over the square root of
+
+58
+00:04:13,243 --> 00:04:16,482
+x squared minus nine, on three to infinity.
+
+59
+00:04:20,381 --> 00:04:22,299
+Three traps to watch for on the midterm.
+
+60
+00:04:22,719 --> 00:04:26,450
+One. Forgetting to divide by the coefficient of y prime.
+
+61
+00:04:26,450 --> 00:04:31,460
+If you build the integrating factor from the wrong P, everything after it is wrong.
+
+62
+00:04:31,880 --> 00:04:34,059
+Two. Dropping the minus sign.
+
+63
+00:04:34,059 --> 00:04:37,758
+For y prime minus three y, P is negative three, not three.
+
+64
+00:04:38,178 --> 00:04:41,326
+Three. Forgetting to divide the constant by mu.
+
+65
+00:04:41,326 --> 00:04:44,784
+The constant goes inside the bracket, before you divide.
+
+66
+00:04:48,684 --> 00:04:51,514
+So here is the recipe to take into the midterm.
+
+67
+00:04:51,934 --> 00:04:54,963
+One. Divide by a one of x, to get standard form.
+
+68
+00:04:55,384 --> 00:04:59,161
+Two. Build the integrating factor, e to the integral of P.
+
+69
+00:04:59,161 --> 00:05:01,298
+No constant, and watch the sign.
+
+70
+00:05:01,717 --> 00:05:06,208
+Three. Multiply through, so the left side is the derivative of mu y.
+
+71
+00:05:06,629 --> 00:05:11,255
+Four. Integrate, add C, divide everything by mu, and state the interval.
+
+72
+00:05:11,675 --> 00:05:16,527
+Next up, exact equations, where the answer is a level curve of a hidden function.

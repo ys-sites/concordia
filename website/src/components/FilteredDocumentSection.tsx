@@ -415,10 +415,10 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
           </div>
           <div>
             <h1 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
-              Filtered Document Gateway
+              {course.id === 'MIAE215' ? 'Document Cheatsheet & Assessment Gateway' : 'Document Cheatsheet & Filtered Gateway'}
             </h1>
             <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: '2px 0 0' }}>
-              Two Curated Sections: Course Assessment Vault & Midterm Preparation Hub
+              Official 1-Page Document Cheatsheets, Assessment Vault & Midterm Preparation Hub
             </p>
           </div>
         </div>

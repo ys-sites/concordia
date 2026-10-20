@@ -28,7 +28,8 @@ import {
   Lock,
   X,
   AlertTriangle,
-  Sparkles
+  Sparkles,
+  Clapperboard
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
@@ -57,6 +58,9 @@ const GATE_FOLDER = 'Midterm Gate';
 // Only MIAE 221 and MIAE 215 have teacher practice papers; the section (and its question data) loads on demand
 const TeacherMidtermPracticeSection = lazy(() =>
   import('./TeacherMidtermPracticeSection').then((m) => ({ default: m.TeacherMidtermPracticeSection }))
+);
+const Engr213MidtermCompanion = lazy(() =>
+  import('./Engr213MidtermCompanion').then((m) => ({ default: m.Engr213MidtermCompanion }))
 );
 import { TEACHER_PRACTICE_FOLDER, hasTeacherPractice } from '../data/teacherPracticeCourses';
 
@@ -519,6 +523,23 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 <ChevronRight size={18} className="fx-folder-chevron" />
               </button>
             )}
+            {course.id === 'ENGR213' && (
+              <button
+                key="engr213-tutor-videos"
+                className="fx-folder-tile"
+                onClick={() => openPath(['Tutor Videos'])}
+              >
+                <span className="fx-folder-icon" style={{ color: '#9333ea', backgroundColor: 'rgba(147, 51, 234, 0.12)' }}>
+                  <Clapperboard size={22} />
+                </span>
+                <span className="fx-folder-text">
+                  <span className="fx-folder-index">08</span>
+                  <span className="fx-folder-name">Tutor Videos (AI-Generated from Code)</span>
+                  <span className="fx-folder-meta">8 Motion-Graphics Lessons · Remotion &amp; Python Code</span>
+                </span>
+                <ChevronRight size={18} className="fx-folder-chevron" />
+              </button>
+            )}
             <button
               key="filtered-document"
               className="fx-folder-tile"
@@ -531,8 +552,10 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 <span className="fx-folder-index">
                   {tree.folders.length < 9 ? `0${tree.folders.length}` : tree.folders.length}
                 </span>
-                <span className="fx-folder-name">Filtered document</span>
-                <span className="fx-folder-meta">2 Sections · Assessment Vault</span>
+                <span className="fx-folder-name">
+                  {course.id === 'MIAE215' ? 'Document Cheatsheet & Vault' : 'Document Cheatsheet & Filtered Vault'}
+                </span>
+                <span className="fx-folder-meta">1-Page Cheatsheets · Assessment Vault</span>
               </span>
               <ChevronRight size={18} className="fx-folder-chevron" />
             </button>
@@ -546,6 +569,14 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             onViewPdf={onViewPdf}
             onLaunchDrill={(courseId, sectionId) => (onLaunchDrill ? onLaunchDrill(courseId, sectionId) : onStartQuiz(courseId))}
             onBack={() => openPath([])}
+          />
+        </Suspense>
+      ) : activePath[0] === 'Tutor Videos' ? (
+        <Suspense fallback={<p className="fx-empty">Opening Tutor Videos…</p>}>
+          <Engr213MidtermCompanion
+            onViewPdf={onViewPdf}
+            onBack={() => openPath([])}
+            initialTab="tutor_videos"
           />
         </Suspense>
       ) : activePath[0] === INDU_PREP_FOLDER && hasPaperDrill(course.id) ? (

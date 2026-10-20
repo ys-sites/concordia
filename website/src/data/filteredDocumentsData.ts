@@ -1718,6 +1718,19 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     ],
     midtermPrepDocs: [
       {
+        id: "MIAE215:filtered:document-cheatsheet",
+        courseId: 'MIAE215',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Document Cheatsheet',
+        title: "MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide",
+        filename: "MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf",
+        relativePath: "Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf",
+        fileSizeBytes: 309821,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["1-Page Cheatsheet", "Midterm Survival", "Memory Aide", "Zero Lost Marks"]
+      },
+      {
         id: "MIAE215:filtered:part5-guide",
         courseId: 'MIAE215',
         categoryId: 'Filtered-Vault',

@@ -8,7 +8,7 @@ export interface TeacherExamFile {
   relativePath: string;
   instructor: string;
   termYear: string;
-  badge: 'Official Sample Midterm' | 'Marking Key' | 'Memory Trace Code' | 'Quiz Collection' | 'Review Pack' | 'Exam Bank';
+  badge: 'Official Sample Midterm' | 'Marking Key' | 'Memory Trace Code' | 'Quiz Collection' | 'Review Pack' | 'Exam Bank' | '1-Page Memory Aide';
   fileType: 'pdf' | 'cpp' | 'doc';
   description: string;
   keyTopics: string[];
@@ -164,6 +164,30 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
       }
     ],
     practiceFiles: [
+      {
+        id: '215-document-cheatsheet',
+        title: 'MIAE 215 Midterm 1-Page Document Cheatsheet & Exam Survival Guide',
+        filename: 'MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
+        relativePath: 'Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
+        instructor: 'Concordia Department of MIAE',
+        termYear: 'Midterm 2026 Universal Cheatsheet',
+        badge: '1-Page Memory Aide',
+        fileType: 'pdf',
+        description: 'Complete 1-page document cheatsheet containing EVERYTHING required for the MIAE 215 Midterm: C++ data types, integer division traps, floating-point epsilon comparisons, full operator precedence hierarchy, Dr. Gordon\'s Table Tracing protocol with garbage detection, 2D matrix transpose/reversal, C-strings and space removal, file I/O recipes (ofstream/ifstream), pointers & dynamic array memory management, and Flowgorithm flowchart symbols.',
+        keyTopics: ['Data Types & Memory Bounds', 'Operator Precedence', 'Table Tracing & Garbage', 'Matrix Transpose & Arrays', 'File I/O (fstream)', 'Pointers & Dynamic Memory', 'Flowgorithm Symbols']
+      },
+      {
+        id: '215-memory-aide',
+        title: 'MIAE 215 Midterm 1-Page Memory Aide & Exam Survival Sheet',
+        filename: 'MIAE 215 - Midterm 1-Page Memory Aide & Exam Survival Sheet.pdf',
+        relativePath: 'Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Memory Aide & Exam Survival Sheet.pdf',
+        instructor: 'Dr. Brandon Gordon Scope',
+        termYear: 'Midterm 2026',
+        badge: '1-Page Memory Aide',
+        fileType: 'pdf',
+        description: 'Comprehensive high-yield 1-page condensed memory aide and rapid review sheet covering C++ data types, integer division traps, operator precedence, Dr. Gordon’s Table Tracing Protocol, array boundary garbage detection, pass-by-reference functions, and Flowgorithm symbols.',
+        keyTopics: ['Data Types & Precision', 'Operator Precedence', 'Table Tracing System', 'Array Bounds (Garbage)', 'Pass-by-Reference', 'Flowgorithm Symbols']
+      },
       {
         id: '215-q2-cpp',
         title: 'Dr. Gordon Fall 2023 Midterm Q2 Official Solution & Trace Manual',
@@ -323,6 +347,30 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         fileType: 'pdf',
         description: '14 multi-step problem expansions with explicit step breakdown, theory before algebra, and algorithmic patterns to remember.',
         keyTopics: ['Exact Potential Function', 'Non-Exact Integrating Factor', 'Picard Iterations', 'Autonomous Phase Line Stability']
+      },
+      {
+        id: '213-step-by-step-tutorial',
+        title: 'ENGR 213 - ODE Step-by-Step Tutorial Practice (Tutor Notes & Recent Exercises)',
+        filename: 'ENGR 213 - ODE Step-by-Step Tutorial Practice (Tutor Notes & Recent Exercises).pdf',
+        relativePath: 'Engr 213/04 - Tutorials/ENGR 213 - ODE Step-by-Step Tutorial Practice (Tutor Notes & Recent Exercises).pdf',
+        instructor: 'ENGR 213 Tutor Notes',
+        termYear: 'Fall 2025 Recent Tutorials',
+        badge: 'Quiz Collection',
+        fileType: 'pdf',
+        description: 'Micro-step tutorial solutions recovered from student tutorials: linear substitution, Bernoulli power reduction, separable IVPs, equilibrium constant solutions, integrating factors, and homogeneous ODEs with crucial exam trap warnings.',
+        keyTopics: ['Linear Substitution', 'Bernoulli Reduction', 'Separable IVP', 'Equilibrium Constant Solution', 'Homogeneous Substitution']
+      },
+      {
+        id: '213-official-tutorial-manual',
+        title: 'ENGR 213 - Official Tutorial Exercises & Solutions Manual',
+        filename: 'ENGR 213 - Official Tutorial Exercises & Solutions Manual.pdf',
+        relativePath: 'Engr 213/04 - Tutorials/ENGR 213 - Official Tutorial Exercises & Solutions Manual.pdf',
+        instructor: 'Concordia BCEE Department',
+        termYear: 'Fall 2025 Official Curriculum',
+        badge: 'Review Pack',
+        fileType: 'pdf',
+        description: 'Official 23-page Concordia tutorial manual covering all Chapter 1 and Chapter 2 midterm exercise sets and full step-by-step solutions.',
+        keyTopics: ['Picard Existence & Uniqueness', 'Exact & Non-Exact ODEs', 'Bernoulli Equations', 'Brine Tank Applications', 'Second-Order Auxiliary Roots']
       }
     ],
     featuredDrillSectionId: 'midterm'

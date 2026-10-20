@@ -21,6 +21,8 @@ website/node_modules/
 
 # Large Media & Archives (>100MB GitHub Hard Limit & >1GB Files)
 *.mp4
+# ENGR 213 motion lessons (~10-15 MB each) are published from this one folder
+!Engr 213/Tutor Videos/*.mp4
 *.mov
 *.avi
 *.mkv
@@ -37,6 +39,8 @@ website/node_modules/
 **/*Advanced Engineering Mathematics (Z-Library).pdf
 **/*Materials Science and Engineering An Introduction*.pdf
 **/*(z-lib.org).pdf
+# Raw uncompressed tutorial manual (>100MB GitHub limit; compressed 30MB version is in 04 - Tutorials)
+**/*TutorialENGR 213.pdf
 
 # CodeBlocks & MinGW Portable Compiler Suites (thousands of C++ toolchain files)
 **/CodeBlocks_17.12_portable/**

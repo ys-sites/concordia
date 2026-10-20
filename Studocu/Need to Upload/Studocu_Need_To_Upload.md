@@ -1008,3 +1008,37 @@
 * **Description**: Comprehensive quantitative master guide for INDU 211 covering factorial complexity (n! and (n-1)!), the curse of dimensionality in combinatorial operations research, asymmetric distance matrix navigation rules, and heuristic tour construction. Integrates Chapter 5 teacher lecture notes (Slides 12–22), the Clark-Wright savings method, the Fall 2020 Midterm warehouse forklift problem (5! = 120 and 20! = 2.43e18 permutations), and the Fall 2025 Midterm Paper A AGV routing problem with full line-by-line mathematical proofs for T/F/MTF optimality diagnostics, multi-start nearest neighbor limits, and the global optimum verification.
 
 ---
+
+### 📄 ENGR 213 - Official Tutorial Exercises & Solutions Manual.pdf
+- **Exact Filename**: `ENGR 213 - Official Tutorial Exercises & Solutions Manual.pdf`
+- **University**: `Concordia University`
+- **Course**: `Applied Ordinary Differential Equations (ENGR 213)`
+- **Category**: `Tutorial work`
+- **Title**: `ENGR 213 - Official Tutorial Exercises & Solutions Manual (Chapters 1 & 2 Midterm Scope)`
+- **Academic year**: `2025/2026`
+- **Description**: Official Concordia ENGR 213 tutorial problem sets and step-by-step solutions manual covering first-order ODEs, separable equations, integrating factors, exact equations, Bernoulli and homogeneous substitutions, and engineering modeling applications. Essential high-yield practice for Midterm 1.
+
+### 📄 MIAE 215 - Midterm 1-Page Memory Aide & Exam Survival Sheet.pdf
+- **Exact Filename**: `MIAE 215 - Midterm 1-Page Memory Aide & Exam Survival Sheet.pdf`
+- **University**: `Concordia University`
+- **Course**: `Mechanical, Industrial & Aerospace engineering (MIAE 215)`
+- **Category**: `Summaries`
+- **Title**: `MIAE 215 - Midterm 1-Page Memory Aide & Exam Survival Sheet (Dr. Gordon Scope)`
+- **Academic year**: `2025/2026`
+- **Description**: High-yield 1-page condensed memory aide and rapid review sheet for MIAE 215 Midterm covering C++ data types, integer division traps, operator precedence, Dr. Gordon's Table Tracing Protocol, array boundary garbage detection, pass-by-reference functions, and Flowgorithm symbols.
+
+### 23. ENGR 213 - ODE Step-by-Step Tutorial Practice (Tutor Notes & Recent Exercises).pdf
+- **University**: Concordia University
+- **Course**: Applied Ordinary Differential Equations (ENGR 213)
+- **Category**: Tutorial work
+- **Title**: ENGR 213 - ODE Step-by-Step Tutorial Practice (Tutor Notes & Recent Exercises)
+- **Academic year**: 2025/2026
+- **Description**: Step-by-step solved ODE tutorial exercise sheets recovered from ENGR 213 tutor notes and recent tutorial sessions. Features clear micro-steps for linear substitutions, Bernoulli equations, separable IVPs, equilibrium constant solutions, integrating factors, and homogeneous ODEs with crucial exam trap warnings.
+
+### 24. MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf
+- **University**: Concordia University
+- **Course**: Mechanical, Industrial & Aerospace engineering (MIAE 215)
+- **Category**: Summaries
+- **Title**: MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide
+- **Academic year**: 2025/2026
+- **Description**: Official 1-page condensed document cheatsheet and exam survival guide for the MIAE 215 Midterm. Covers C++ data types, integer division traps, floating-point epsilon comparison, operator precedence table, Dr. Gordon's Table Tracing protocol with garbage memory detection, 2D matrix transpose/reversal, C-strings and space-removal algorithm, file I/O 5-step recipes, pointers and dynamic array allocation with NULL checks, and Flowgorithm symbol definitions.

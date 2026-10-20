@@ -1,0 +1,245 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.468
+Sometimes you run the exactness test, and it fails.
+
+2
+00:00:04.468 --> 00:00:06.834
+M sub y and N sub x do not match.
+
+3
+00:00:07.553 --> 00:00:12.933
+But very often, the equation is just one multiplication away from being exact.
+
+4
+00:00:12.933 --> 00:00:16.379
+We multiply the whole thing by an integrating factor,
+
+5
+00:00:16.379 --> 00:00:19.825
+mu, and then it is an ordinary exact equation.
+
+6
+00:00:20.246 --> 00:00:22.760
+The whole question is: how do you find mu?
+
+7
+00:00:22.760 --> 00:00:24.752
+Your lecture gives two quick tests.
+
+8
+00:00:28.352 --> 00:00:30.774
+First, where do the tests come from?
+
+9
+00:00:30.774 --> 00:00:34.175
+We want mu M, and mu N, to pass the exactness test.
+
+10
+00:00:34.595 --> 00:00:37.072
+Suppose mu depends on x only.
+
+11
+00:00:37.072 --> 00:00:43.884
+Then the left side is mu M sub y, and the right side is mu prime N, plus mu N sub x.
+
+12
+00:00:44.304 --> 00:00:50.733
+Rearrange, and you get mu prime over mu, equals M sub y minus N sub x, over N.
+
+13
+00:00:51.152 --> 00:00:54.791
+That only makes sense if the right side depends on x alone.
+
+14
+00:00:54.791 --> 00:00:59.588
+If it does, integrate, and mu equals e to the integral of that quotient.
+
+15
+00:01:03.288 --> 00:01:07.843
+So here are the two tests, exactly as they appear on the Lecture 4 slide.
+
+16
+00:01:08.263 --> 00:01:12.556
+Test one. Compute M sub y minus N sub x, over N.
+
+17
+00:01:12.556 --> 00:01:18.866
+If that is a function of x alone, then mu of x equals e to the integral of it, dx.
+
+18
+00:01:19.286 --> 00:01:23.654
+Test two. Compute N sub x minus M sub y, over M.
+
+19
+00:01:23.654 --> 00:01:30.073
+If that is a function of y alone, then mu of y equals e to the integral of it, dy.
+
+20
+00:01:30.493 --> 00:01:34.376
+A way to remember it: divide by N, get a function of x.
+
+21
+00:01:34.376 --> 00:01:36.816
+Divide by M, get a function of y.
+
+22
+00:01:36.816 --> 00:01:41.032
+And the numerator always starts with the partial of the other letter.
+
+23
+00:01:44.731 --> 00:01:47.178
+Now Example 3 from Lecture 4.
+
+24
+00:01:47.178 --> 00:01:53.770
+x y dx, plus two x squared plus three y squared minus twenty, dy, equals zero.
+
+25
+00:01:54.190 --> 00:01:56.994
+M sub y is x. N sub x is four x.
+
+26
+00:01:56.994 --> 00:01:59.494
+Not equal, so it is not exact.
+
+27
+00:01:59.914 --> 00:02:05.513
+Try test one. M sub y minus N sub x, over N, is negative three x, over
+
+28
+00:02:05.513 --> 00:02:10.923
+two x squared plus three y squared minus twenty. That still has y in it.
+
+29
+00:02:10.923 --> 00:02:12.307
+Test one fails.
+
+30
+00:02:12.728 --> 00:02:18.259
+Try test two. N sub x minus M sub y, over M, is three x over x y.
+
+31
+00:02:18.259 --> 00:02:23.345
+The x cancels, and we get three over y. A function of y alone.
+
+32
+00:02:23.764 --> 00:02:27.085
+So mu of y is e to the integral of three over y,
+
+33
+00:02:27.085 --> 00:02:31.684
+which is e to the three natural log of y. That is y cubed.
+
+34
+00:02:35.584 --> 00:02:38.067
+Multiply every term by y cubed.
+
+35
+00:02:38.067 --> 00:02:42.640
+x y to the fourth dx, plus two x squared y cubed, plus three y
+
+36
+00:02:42.640 --> 00:02:47.278
+to the fifth, minus twenty y cubed, dy, equals zero.
+
+37
+00:02:47.699 --> 00:02:49.257
+Always re-check.
+
+38
+00:02:49.257 --> 00:02:55.898
+The new M sub y is four x y cubed, and the new N sub x is four x y cubed. Exact.
+
+39
+00:02:56.318 --> 00:03:02.045
+Integrate M in x. f equals one half x squared y to the fourth, plus g of y.
+
+40
+00:03:02.465 --> 00:03:05.737
+Differentiate in y, and set it equal to N.
+
+41
+00:03:05.737 --> 00:03:08.886
+Two x squared y cubed cancels on both sides.
+
+42
+00:03:09.306 --> 00:03:13.441
+So g prime is three y to the fifth minus twenty y cubed, and g
+
+43
+00:03:13.441 --> 00:03:17.576
+is one half y to the sixth, minus five y to the fourth.
+
+44
+00:03:17.996 --> 00:03:22.570
+The solution is the level curve: one half x squared y to the fourth, plus
+
+45
+00:03:22.570 --> 00:03:26.919
+one half y to the sixth, minus five y to the fourth, equals c.
+
+46
+00:03:31.019 --> 00:03:31.902
+Three traps.
+
+47
+00:03:32.322 --> 00:03:34.632
+One. Mixing up the quotients.
+
+48
+00:03:34.632 --> 00:03:39.038
+If you divide by N, you need a function of x, and you integrate dx.
+
+49
+00:03:39.038 --> 00:03:43.443
+If you divide by M, you need a function of y, and you integrate dy.
+
+50
+00:03:43.863 --> 00:03:47.303
+Two. Multiplying only part of the equation.
+
+51
+00:03:47.303 --> 00:03:50.442
+mu multiplies M and N, every single term.
+
+52
+00:03:50.862 --> 00:03:53.006
+Three. Skipping the re-check.
+
+53
+00:03:53.006 --> 00:03:57.295
+Ten seconds to confirm the new equation is exact, saves the whole question.
+
+54
+00:04:01.095 --> 00:04:02.359
+Here is the recipe.
+
+55
+00:04:02.779 --> 00:04:04.255
+One. Show the test fails.
+
+56
+00:04:04.675 --> 00:04:08.248
+Two. Try the quotient over N for a function of x.
+
+57
+00:04:08.248 --> 00:04:11.594
+If not, the quotient over M for a function of y.
+
+58
+00:04:12.014 --> 00:04:15.622
+Three. Build mu, multiply every term, and re-check.
+
+59
+00:04:16.042 --> 00:04:21.287
+Four. Solve it as an exact equation, and finish with f of x y, equals c.
+
+60
+00:04:21.707 --> 00:04:24.864
+Next up, Bernoulli equations, where one clever
+
+61
+00:04:24.864 --> 00:04:28.664
+substitution turns a nonlinear equation into a linear one.

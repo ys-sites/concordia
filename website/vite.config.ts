@@ -16,7 +16,9 @@ function streamFileWithRanges(filePath: string, req: any, res: any) {
     '.pdf': 'application/pdf',
     '.png': 'image/png',
     '.jpg': 'image/jpeg',
-    '.svg': 'image/svg+xml'
+    '.svg': 'image/svg+xml',
+    '.mp4': 'video/mp4',
+    '.vtt': 'text/vtt'
   };
 
   res.setHeader('Content-Type', types[ext] ?? 'application/octet-stream');

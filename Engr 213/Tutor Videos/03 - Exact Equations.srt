@@ -1,0 +1,227 @@
+1
+00:00:00,800 --> 00:00:04,173
+Exact equations come from a really elegant idea.
+
+2
+00:00:04,173 --> 00:00:06,687
+The answer is not a formula for y.
+
+3
+00:00:06,687 --> 00:00:10,795
+It is a level curve, of some hidden function of x and y.
+
+4
+00:00:11,515 --> 00:00:14,728
+Picture a function f of x and y as a landscape.
+
+5
+00:00:14,728 --> 00:00:20,023
+Every curve where f equals a constant, is like a contour line on a hiking map.
+
+6
+00:00:20,443 --> 00:00:24,669
+Walk along one contour line, and your height never changes.
+
+7
+00:00:24,669 --> 00:00:30,284
+That is exactly what the equation M dx, plus N dy, equals zero, is saying.
+
+8
+00:00:34,084 --> 00:00:35,724
+Here is the link.
+
+9
+00:00:35,724 --> 00:00:41,738
+Move a tiny bit in x and in y, and the change in f is the total differential.
+
+10
+00:00:41,738 --> 00:00:44,608
+d f equals f x dx, plus f y dy.
+
+11
+00:00:45,029 --> 00:00:48,935
+Now compare with M dx, plus N dy, equals zero.
+
+12
+00:00:48,935 --> 00:00:55,083
+If M is f x, and N is f y, then the equation is just saying, d f equals zero.
+
+13
+00:00:55,502 --> 00:00:58,815
+And d f equals zero means f never changes.
+
+14
+00:00:58,815 --> 00:01:02,127
+So the solution is f of x y, equals c.
+
+15
+00:01:02,547 --> 00:01:08,100
+But how do you know such an f even exists? Mixed partial derivatives.
+
+16
+00:01:08,100 --> 00:01:11,578
+If M is f x and N is f y, then M sub y and N sub
+
+17
+00:01:11,578 --> 00:01:14,990
+x are both f x y, so they must be equal.
+
+18
+00:01:15,411 --> 00:01:18,505
+That is your exactness test from Lecture 4.
+
+19
+00:01:18,505 --> 00:01:22,157
+Partial M partial y, equals partial N partial x.
+
+20
+00:01:26,056 --> 00:01:28,673
+Lecture 4 turns that into a short method.
+
+21
+00:01:29,093 --> 00:01:32,186
+One. Check that M sub y equals N sub x.
+
+22
+00:01:32,607 --> 00:01:37,056
+Two. Integrate M with respect to x, holding y constant.
+
+23
+00:01:37,056 --> 00:01:41,382
+Instead of plus C, add a function g of y, because anything that
+
+24
+00:01:41,382 --> 00:01:45,587
+depends only on y, disappears when you differentiate in x.
+
+25
+00:01:46,007 --> 00:01:50,585
+Three. Differentiate that result with respect to y, and set it equal to N.
+
+26
+00:01:51,005 --> 00:01:54,693
+Four. Solve for g prime of y. Every x has to cancel.
+
+27
+00:01:54,693 --> 00:01:57,624
+If an x survives, something went wrong earlier.
+
+28
+00:01:58,045 --> 00:02:03,404
+Five. Integrate to get g of y, and write the answer as f of x y, equals c.
+
+29
+00:02:07,103 --> 00:02:09,890
+Let us do Example 1 from Lecture 4.
+
+30
+00:02:09,890 --> 00:02:14,734
+Two x y dx, plus x squared minus one, dy, equals zero.
+
+31
+00:02:15,154 --> 00:02:18,326
+M is two x y. N is x squared minus one.
+
+32
+00:02:18,746 --> 00:02:24,927
+Test it. M sub y is two x. N sub x is also two x. They match, so it is exact.
+
+33
+00:02:25,347 --> 00:02:27,669
+Integrate M with respect to x.
+
+34
+00:02:27,669 --> 00:02:30,492
+f equals x squared y, plus g of y.
+
+35
+00:02:30,912 --> 00:02:35,848
+Differentiate in y. f sub y equals x squared plus g prime of y.
+
+36
+00:02:35,848 --> 00:02:39,182
+Set that equal to N, x squared minus one.
+
+37
+00:02:39,602 --> 00:02:46,011
+The x squared cancels. g prime of y equals negative one, so g of y is negative y.
+
+38
+00:02:46,431 --> 00:02:49,765
+So f is x squared y minus y, and the solution is
+
+39
+00:02:49,765 --> 00:02:53,741
+the level curve, x squared y minus y, equals c.
+
+40
+00:02:54,161 --> 00:02:56,145
+Here we can even solve for y.
+
+41
+00:02:56,145 --> 00:02:58,514
+y equals c over x squared minus one.
+
+42
+00:02:58,934 --> 00:03:02,497
+And those are the contour lines from the start of the video.
+
+43
+00:03:02,497 --> 00:03:05,102
+Every value of c gives one solution curve.
+
+44
+00:03:09,402 --> 00:03:10,729
+Three traps to avoid.
+
+45
+00:03:11,149 --> 00:03:16,036
+One. Writing plus C, instead of plus g of y, after you integrate M.
+
+46
+00:03:16,036 --> 00:03:19,275
+That throws away exactly the piece you need to find.
+
+47
+00:03:19,695 --> 00:03:22,355
+Two. An x left over in g prime of y.
+
+48
+00:03:22,355 --> 00:03:26,344
+If that happens, stop, and recheck your partial derivatives.
+
+49
+00:03:26,764 --> 00:03:29,203
+Three. Forgetting the equals c.
+
+50
+00:03:29,203 --> 00:03:34,027
+The answer is the level curve, f of x y equals c, not just the function f.
+
+51
+00:03:37,828 --> 00:03:40,658
+So here is the recipe to take into the midterm.
+
+52
+00:03:41,078 --> 00:03:45,708
+One. Test M sub y equals N sub x, and write that it is exact.
+
+53
+00:03:46,128 --> 00:03:48,807
+Two. Integrate M in x, plus g of y.
+
+54
+00:03:49,226 --> 00:03:54,402
+Three. Set f sub y equal to N, and solve for g prime. No x allowed.
+
+55
+00:03:54,822 --> 00:03:58,844
+Four. Integrate g prime, and write f of x y equals c.
+
+56
+00:03:59,264 --> 00:04:02,315
+Next up, what to do when the exactness test fails.
+
+57
+00:04:02,315 --> 00:04:04,215
+The special integrating factor.
