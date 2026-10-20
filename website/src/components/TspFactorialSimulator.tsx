@@ -160,19 +160,22 @@ export const TspFactorialSimulator: React.FC<{ onBack?: () => void }> = ({ onBac
   const computedTour = useMemo(() => {
     const { nodes, matrix } = currentPreset;
     const n = nodes.length;
-    const visited = new Set<number>([startNodeIdx]);
-    const route = [startNodeIdx];
+    const safeStartIdx = Math.max(0, Math.min(startNodeIdx, n - 1));
+    const visited = new Set<number>([safeStartIdx]);
+    const route = [safeStartIdx];
     const steps: { from: string; to: string; cost: number; fromIdx: number; toIdx: number }[] = [];
-    let cur = startNodeIdx;
+    let cur = safeStartIdx;
     let totalCost = 0;
 
     let isFirstStep = true;
     while (visited.size < n) {
       // Find unvisited candidates
       const candidates: { idx: number; cost: number }[] = [];
+      const row = matrix[cur] || [];
       for (let j = 0; j < n; j++) {
-        if (!visited.has(j) && matrix[cur][j] !== null) {
-          candidates.push({ idx: j, cost: matrix[cur][j]! });
+        const val = row[j];
+        if (!visited.has(j) && val !== null && val !== undefined) {
+          candidates.push({ idx: j, cost: val });
         }
       }
 
@@ -200,15 +203,16 @@ export const TspFactorialSimulator: React.FC<{ onBack?: () => void }> = ({ onBac
     }
 
     // Return to start
-    const returnCost = matrix[cur][startNodeIdx] ?? 0;
+    const lastRow = matrix[cur] || [];
+    const returnCost = lastRow[safeStartIdx] ?? 0;
     totalCost += returnCost;
-    route.push(startNodeIdx);
+    route.push(safeStartIdx);
     steps.push({
       from: nodes[cur],
-      to: nodes[startNodeIdx],
+      to: nodes[safeStartIdx],
       cost: returnCost,
       fromIdx: cur,
-      toIdx: startNodeIdx
+      toIdx: safeStartIdx
     });
 
     return {

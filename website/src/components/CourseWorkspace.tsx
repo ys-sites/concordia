@@ -44,7 +44,7 @@ import {
 // Password-protected sections carry the large protected-document list: load them only when opened
 const FilteredDocumentSection = lazy(() => import('./FilteredDocumentSection').then((m) => ({ default: m.FilteredDocumentSection })));
 const TermPaperVaultSection = lazy(() => import('./TermPaperVaultSection').then((m) => ({ default: m.TermPaperVaultSection })));
-const TspFactorialSimulator = lazy(() => import('./TspFactorialSimulator').then((m) => ({ default: m.TspFactorialSimulator })));
+import { TspFactorialSimulator } from './TspFactorialSimulator';
 import { GateGlyph } from './vault/GateGlyph';
 import { hasGate, hasPaperDrill } from './vault/gateCourses';
 import { WeeklyPath, WEEKLY_FOLDER, hasWeeklyPath } from './WeeklyPath';
@@ -121,7 +121,12 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
 
   // Keep internalPath synchronized with prop from navigationRouter
   useEffect(() => {
-    setInternalPath(folderPath);
+    setInternalPath((prev) => {
+      if (prev.length === folderPath.length && prev.every((p, i) => p === folderPath[i])) {
+        return prev;
+      }
+      return folderPath;
+    });
   }, [folderPath]);
 
   const tree = useMemo(() => {
@@ -536,9 +541,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
       ) : activePath[0] === WEEKLY_FOLDER && hasWeeklyPath(course.id) ? (
         <WeeklyPath course={course} onViewPdf={onViewPdf} />
       ) : activePath[0] === 'Factorial & TSP Routing Lab' ? (
-        <Suspense fallback={<p className="fx-empty">Opening Simulator…</p>}>
-          <TspFactorialSimulator onBack={() => openPath([])} />
-        </Suspense>
+        <TspFactorialSimulator onBack={() => openPath([])} />
       ) : activePath[0] === 'Term Paper & Final Project' ? (
         <Suspense fallback={<p className="fx-empty">Opening…</p>}>
           <TermPaperVaultSection course={course} onViewPdf={onViewPdf} />

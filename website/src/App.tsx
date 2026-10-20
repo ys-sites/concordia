@@ -21,7 +21,15 @@ const CourseWorkspace = lazy(() => loadWorkspace().then((m) => ({ default: m.Cou
 if (typeof window !== 'undefined') {
   // after the page has fully loaded, in idle time, so it never competes with the first render
   const idle = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => void }).requestIdleCallback;
-  const prefetch = () => (idle ? idle(() => void loadWorkspace(), { timeout: 4000 }) : setTimeout(() => void loadWorkspace(), 1500));
+  const prefetch = () => {
+    const run = () => {
+      loadWorkspace().catch(() => {
+        // Silently catch background prefetch failure to avoid triggering reload loops
+      });
+    };
+    if (idle) idle(run, { timeout: 4000 });
+    else setTimeout(run, 1500);
+  };
   if (document.readyState === 'complete') prefetch();
   else window.addEventListener('load', prefetch, { once: true });
 }
