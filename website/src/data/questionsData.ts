@@ -8002,7 +8002,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_MIAE215_037",
     "courseId": "MIAE215",
-    "chapter": "control",
+    "chapter": "flowcharts",
     "topic": "Flowgorithm Symbols",
     "difficulty": "Foundation",
     "question": "In Flowgorithm and standard flowcharting, which geometric shape represents a conditional decision branch (e.g. if (x > 0))?",
@@ -8126,7 +8126,7 @@ const BASE_QUESTIONS: PracticeQuestion[] = [
   {
     "id": "Q_MIAE215_041",
     "courseId": "MIAE215",
-    "chapter": "control",
+    "chapter": "arrays",
     "topic": "Nested Loops",
     "difficulty": "Exam Master",
     "question": "After executing the following nested loops, what is the value of A[2][1], and how many times did the inner loop body run?",

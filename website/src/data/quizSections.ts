@@ -203,20 +203,22 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
   },
   MIAE215: {
     midterm: {
-      label: 'Midterm Review — All Topics So Far',
-      detail: 'Mixed review from programming fundamentals, expressions, control flow, loops, and past papers',
+      label: 'Midterm Review — Thu Oct 22, Handwritten',
+      detail: 'Teacher format: 40% program-output tracing, 60% writing programs. Scope: everything through the latest lecture, incl. Assignment 3 + review questions. Excluded: 2D arrays, flowcharts, Arduino/lab. Allowed: one-sided formula sheet (text ≥10 pt), faculty-approved calculator.',
       sections: ['intro', 'types', 'expr', 'control', 'past']
     },
     final: {
       label: 'Final Exam Review — All C++ Topics',
       detail: 'Comprehensive curriculum review: computing basics, types, expressions, control flow, loops, and arrays',
-      sections: ['intro', 'types', 'expr', 'control', 'past']
+      sections: ['intro', 'types', 'expr', 'control', 'flowcharts', 'arrays', 'past']
     },
     sections: [
       { id: 'intro', label: '1 · Computing Basics & the Build Process', detail: 'Compiler vs interpreter, program phases, file types' },
       { id: 'types', label: '2 · Variable Types', detail: 'Variable types: ranges, overflow, round-off, casts, modifiers' },
       { id: 'expr', label: '3 · Expressions & Operators', detail: 'Assignment, arithmetic, %, ++/--, precedence, mixed types, math library' },
-      { id: 'control', label: '4 · Control Statements & Loops', detail: 'if / if-else / ladders, logical operators, flowcharts, for & nested loops' },
+      { id: 'control', label: '4 · Control Statements & Loops', detail: 'if / if-else / ladders, logical operators, for & nested loops' },
+      { id: 'flowcharts', label: 'Flowgorithm & Flowcharts', detail: 'Flowchart symbols — excluded from the midterm by the teacher (final review only)' },
+      { id: 'arrays', label: 'Arrays', detail: '2D arrays — excluded from the midterm by the teacher (final review only)' },
       { id: 'past', label: 'Past Papers', detail: 'Quiz drill from past papers' }
     ]
   },
