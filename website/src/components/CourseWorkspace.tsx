@@ -27,7 +27,8 @@ import {
   Video,
   Lock,
   X,
-  AlertTriangle
+  AlertTriangle,
+  Sparkles
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
@@ -497,6 +498,23 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                   <span className="fx-folder-index">06</span>
                   <span className="fx-folder-name">Factorial & TSP Routing Lab</span>
                   <span className="fx-folder-meta">Interactive Route Simulator & Exam Trainer</span>
+                </span>
+                <ChevronRight size={18} className="fx-folder-chevron" />
+              </button>
+            )}
+            {course.id === 'ENGR213' && (
+              <button
+                key="engr213-midterm-companion"
+                className="fx-folder-tile"
+                onClick={() => openPath([TEACHER_PRACTICE_FOLDER])}
+              >
+                <span className="fx-folder-icon" style={{ color: '#4f46e5', backgroundColor: 'rgba(79, 70, 229, 0.12)' }}>
+                  <Sparkles size={22} />
+                </span>
+                <span className="fx-folder-text">
+                  <span className="fx-folder-index">★</span>
+                  <span className="fx-folder-name">Midterm Mastery &amp; Interactive Study Co-Pilot</span>
+                  <span className="fx-folder-meta">10s Method Classifier · Zero-Formula Vault · Past Exams</span>
                 </span>
                 <ChevronRight size={18} className="fx-folder-chevron" />
               </button>

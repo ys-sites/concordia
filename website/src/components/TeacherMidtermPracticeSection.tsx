@@ -31,6 +31,7 @@ import { MathText } from '../utils/mathRenderer';
 import { TEACHER_EXAM_PRACTICE_DATA, TeacherExamFile } from '../data/teacherExamPracticeData';
 import { TEACHER_EXAM_SETS, teacherQuestionsFor, teacherDrillId } from '../data/teacherExamQuestions';
 import './TeacherMidtermPractice.css';
+import { Engr213MidtermCompanion } from './Engr213MidtermCompanion';
 
 interface TeacherMidtermPracticeSectionProps {
   course: CourseWithDocs;
@@ -49,6 +50,10 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
   onLaunchDrill,
   onBack
 }) => {
+  if (course.id === 'ENGR213') {
+    return <Engr213MidtermCompanion onViewPdf={onViewPdf} onBack={onBack} />;
+  }
+
   const blueprint = TEACHER_EXAM_PRACTICE_DATA[course.id];
   const examQuestionCount = useMemo(() => teacherQuestionsFor(course.id).length, [course.id]);
   const hasPapers = examQuestionCount > 0;

@@ -275,7 +275,56 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         commonTrap: 'Using $u = y^n$ or forgetting the factor $(1-n)$ in the derivative.'
       }
     ],
-    practiceFiles: [],
+    practiceFiles: [
+      {
+        id: '213-past-midterms',
+        title: 'Past Midterm Examinations Solved Master Guide (2011–2018)',
+        filename: 'ENGR 213 - Past Midterm Examinations Solved Master Guide (2011-2018).pdf',
+        relativePath: 'Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Past Midterm Examinations Solved Master Guide (2011-2018).pdf',
+        instructor: 'Dr. Paradis & BCEE Faculty',
+        termYear: 'Midterms 2011–2018',
+        badge: 'Official Sample Midterm',
+        fileType: 'pdf',
+        description: 'Comprehensive line-by-line solutions to 15 official Concordia ENGR 213 midterm examination problems, covering Separable IVPs, Bernoulli ODEs, Exact equations, Wronskian independence, Resonant undetermined coefficients, and Cauchy-Euler.',
+        keyTopics: ['Separable IVP', 'Bernoulli ODE', 'Exact Differential Equations', 'Resonance', 'Wronskian Test', 'Cauchy-Euler']
+      },
+      {
+        id: '213-calculus-sheet',
+        title: 'Calculus for Differential Equations - Master Sheet',
+        filename: 'Calculus for Differential Equations - Master Sheet.pdf',
+        relativePath: 'Engr 213/00 - Calculus Review for ODEs/Calculus for Differential Equations - Master Sheet.pdf',
+        instructor: 'ENGR 213 Course Hub',
+        termYear: 'Universal Reference',
+        badge: 'Review Pack',
+        fileType: 'pdf',
+        description: 'Complete zero-formula-sheet calculus companion covering logarithmic quotient shortcuts, inverse trig antiderivatives, Tabular (DI) integration by parts, Heaviside cover-up partial fractions, and completing the square.',
+        keyTopics: ['Logarithmic Antiderivatives', 'Tabular DI Method', 'Heaviside PFD', 'Inverse Trig Integrals']
+      },
+      {
+        id: '213-gradesaver-system',
+        title: 'Gradesaver Master Solving System & Exam Blueprint (Tutor Edition)',
+        filename: 'ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf',
+        relativePath: 'Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf',
+        instructor: 'ENGR 213 Exam Coordinator',
+        termYear: 'Fall 2026 / Winter 2025',
+        badge: 'Official Sample Midterm',
+        fileType: 'pdf',
+        description: 'The 5-phase universal solution protocol, 4-gate ODE diagnostic classifier, tutor heuristics, and solved exam exemplar questions.',
+        keyTopics: ['5-Phase Protocol', '4-Gate Classifier', 'Equilibrium Singular Solutions', 'Integrating Factor Normalization']
+      },
+      {
+        id: '213-master-step-by-step',
+        title: 'Master Step-by-Step Solutions & Method Expansions Manual',
+        filename: 'ENGR 213 - Master Step-by-Step Solutions & Method Expansions.pdf',
+        relativePath: 'Engr 213/06 - Quiz & Midterm Exam Prep/ENGR 213 - Master Step-by-Step Solutions & Method Expansions.pdf',
+        instructor: 'Department of BCEE',
+        termYear: 'Midterm 1 Preparation',
+        badge: 'Exam Bank',
+        fileType: 'pdf',
+        description: '14 multi-step problem expansions with explicit step breakdown, theory before algebra, and algorithmic patterns to remember.',
+        keyTopics: ['Exact Potential Function', 'Non-Exact Integrating Factor', 'Picard Iterations', 'Autonomous Phase Line Stability']
+      }
+    ],
     featuredDrillSectionId: 'midterm'
   },
   INDU211: {

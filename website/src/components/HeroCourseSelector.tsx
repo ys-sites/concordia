@@ -113,7 +113,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
             </div>
             <h2 className="htp-title">Teacher Exam &amp; Midterm Practice Hub</h2>
             <p className="htp-desc">
-              Drill every question from the practice exams the MIAE 221 and MIAE 215 instructors handed out, with the official marking keys, Dr. Gordon’s C++ trace lab, and exam traps.
+              Drill every question from official practice exams, step-by-step ODE method guides, and teacher exam traps for ENGR 213, MIAE 221, and MIAE 215.
             </p>
           </div>
         </div>
@@ -135,7 +135,7 @@ export const HeroCourseSelector: React.FC<HeroCourseSelectorProps> = ({
               <span className="htp-btn-dot" style={{ backgroundColor: c.accentHex }} />
               <span className="htp-btn-code">{c.code}</span>
               <span className="htp-btn-sub">
-                {c.id === 'MIAE221' ? 'Exam Oct 30' : 'Sample Exam'}
+                {c.id === 'MIAE221' ? 'Exam Oct 30' : c.id === 'ENGR213' ? 'Midterm Mastery' : 'Sample Exam'}
               </span>
             </button>
           ))}
