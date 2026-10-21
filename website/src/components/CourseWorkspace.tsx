@@ -479,143 +479,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
       ) : activePath.length === 0 ? (
         <section>
 
-          {course.id === 'MIAE221' && (
-            <div
-              style={{
-                marginBottom: '24px',
-                padding: '20px 24px',
-                borderRadius: '12px',
-                border: '1.5px solid rgba(225, 29, 72, 0.4)',
-                background: 'linear-gradient(135deg, rgba(225, 29, 72, 0.08) 0%, rgba(225, 29, 72, 0.02) 100%)',
-                boxShadow: '0 4px 16px -2px rgba(225, 29, 72, 0.1)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div
-                    style={{
-                      width: '42px',
-                      height: '42px',
-                      borderRadius: '10px',
-                      backgroundColor: 'rgba(225, 29, 72, 0.15)',
-                      color: '#be123c',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}
-                  >
-                    <Sparkles size={24} />
-                  </div>
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '3px' }}>
-                      <span
-                        style={{
-                          fontSize: '11px',
-                          fontWeight: 800,
-                          padding: '2px 8px',
-                          borderRadius: '6px',
-                          backgroundColor: 'rgba(225, 29, 72, 0.2)',
-                          color: '#9f1239',
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.04em'
-                        }}
-                      >
-                        Callister Modules 1–12 · Single-Sided Master Reference
-                      </span>
-                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#be123c' }}>
-                        Midterm: Friday, Oct 30 · Ch 1–7.4
-                      </span>
-                    </div>
-                    <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
-                      MIAE 221 Midterm Master Document Cheatsheet &amp; Exam Survival Guide
-                    </h2>
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                Comprehensive 1-page condensed master document cheatsheet and exam survival guide for the MIAE 221 Midterm. Covers bonding curves &amp; stiffness, FCC/BCC/HCP lattice geometry, Miller indices, linear/planar densities, Bragg’s law XRD peak rules, Hume-Rothery criteria, Schmid’s law slip, Fick’s diffusion laws, and stress-strain landmarks.
-              </div>
-
-              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
-                <a
-                  className="fx-btn"
-                  style={{
-                    background: '#be123c',
-                    color: '#ffffff',
-                    border: 'none',
-                    padding: '8px 16px',
-                    fontSize: '13.5px',
-                    fontWeight: 700,
-                    borderRadius: '6px',
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px'
-                  }}
-                  href={getPdfUrl('Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf')}
-                  download="MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf"
-                  title="Download the official 1-page PDF (Single-Sided)"
-                  onClick={() => audio.playClick()}
-                >
-                  <Download size={16} />
-                  <span>Download 1-Page PDF (Exam Ready)</span>
-                </a>
-
-                <button
-                  className="fx-btn fx-btn-primary"
-                  style={{ padding: '8px 16px', fontSize: '13.5px', fontWeight: 600 }}
-                  onClick={() => {
-                    audio.playClick();
-                    onViewPdf({
-                      id: 'MIAE221:cheatsheet-1page',
-                      courseId: 'MIAE221',
-                      categoryId: '03 - 1-Page Rapid Review Sheets',
-                      categoryTitle: 'Cheatsheet for the Exam',
-                      title: 'MIAE 221 — Official 1-Page Exam Cheatsheet (Single-Sided)',
-                      filename: 'MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
-                      relativePath: 'Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
-                      tags: ['MIAE 221', 'Midterm Cheatsheet', 'Materials Science', 'Callister'],
-                      summary: 'Strict single-sided 1-page master reference sheet for Callister Chapters 1–7.4 and Lectures 1–12.'
-                    });
-                  }}
-                  title="Open 1-page PDF in in-app modal viewer"
-                >
-                  <Eye size={16} />
-                  <span>Preview 1-Page (In-App)</span>
-                </button>
-
-                <a
-                  className="fx-btn fx-btn-tab"
-                  style={{ padding: '8px 14px', fontSize: '13px' }}
-                  href="/cheatsheets/miae221-midterm.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Open printable HTML version (10pt font, single-sided, print-ready)"
-                  onClick={() => audio.playClick()}
-                >
-                  <Printer size={15} />
-                  <span>Printable Web Version (10pt)</span>
-                </a>
-
-                <a
-                  className="fx-btn fx-btn-tab"
-                  style={{ padding: '8px 14px', fontSize: '13px' }}
-                  href={getPdfUrl('Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
-                  download="MIAE 221 - Midterm Master Guide.pdf"
-                  title="Download the full 6-page master study guide"
-                  onClick={() => audio.playClick()}
-                >
-                  <Download size={15} />
-                  <span>Download Master Guide (6-Page)</span>
-                </a>
-              </div>
-            </div>
-          )}
 
           <h2 className="fx-section-title">Course folders</h2>
           <div className="fx-folder-grid">
@@ -714,19 +577,18 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 <ChevronRight size={18} className="fx-folder-chevron" />
               </button>
             )}
-            {(course.id === 'MIAE215' || course.id === 'MIAE221') && (
+            {course.id === 'MIAE215' && (
               <button
                 key="cheatsheet-for-exam"
                 className="fx-folder-tile"
                 onClick={() => openPath(['Cheatsheet for the Exam'])}
               >
-                <span className="fx-folder-icon" style={{ color: course.id === 'MIAE215' ? '#059669' : '#be123c', backgroundColor: course.id === 'MIAE215' ? 'rgba(16, 185, 129, 0.12)' : 'rgba(225, 29, 72, 0.12)' }}>
+                <span className="fx-folder-icon" style={{ color: '#059669', backgroundColor: 'rgba(16, 185, 129, 0.12)' }}>
                   <Sparkles size={22} />
                 </span>
                 <span className="fx-folder-text">
                   <span className="fx-folder-index">
-                    {/* MIAE 221's topic-videos tile takes the next number first */}
-                    {String(tree.folders.length + (course.id === 'MIAE221' ? 1 : 0)).padStart(2, '0')}
+                    {String(tree.folders.length).padStart(2, '0')}
                   </span>
                   <span className="fx-folder-name">Cheatsheet for the exam</span>
                   <span className="fx-folder-meta">Official 1-Page Cheatsheet · Single-Sided · Easy Download</span>
@@ -744,8 +606,8 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
               </span>
               <span className="fx-folder-text">
                 <span className="fx-folder-index">
-                  {/* after the cheatsheet tile (MIAE 215/221) and the topic-videos tile (MIAE 221) */}
-                  {String(tree.folders.length + (course.id === 'MIAE215' ? 1 : course.id === 'MIAE221' ? 2 : 0)).padStart(2, '0')}
+                  {/* after the cheatsheet tile (MIAE 215) or topic-videos tile (MIAE 221) */}
+                  {String(tree.folders.length + (course.id === 'MIAE215' || course.id === 'MIAE221' ? 1 : 0)).padStart(2, '0')}
                 </span>
                 <span className="fx-folder-name">Filtered document</span>
                 <span className="fx-folder-meta">2 Sections · Assessment Vault</span>
@@ -764,7 +626,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             onBack={() => openPath([])}
           />
         </Suspense>
-      ) : activePath[0] === 'Cheatsheet for the Exam' ? (
+      ) : activePath[0] === 'Cheatsheet for the Exam' && course.id === 'MIAE215' ? (
         <Suspense fallback={<p className="fx-empty">Opening Cheatsheet…</p>}>
           <ExamCheatsheetSection
             course={course}

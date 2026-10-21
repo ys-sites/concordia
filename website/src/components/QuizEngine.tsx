@@ -26,10 +26,12 @@ import {
   X,
   Volume2,
   Bot,
-  Square
+  Square,
+  Code
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { QuestionFigure, optionLetter } from './QuestionFigure';
+import { CppCodeSimulator } from './CppCodeSimulator';
 
 interface QuizEngineProps {
   courseId: CourseId;
@@ -97,6 +99,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
   // Scroll target: top of the question card (so "Next" lands on the question, not the footer)
   const cardRef = useRef<HTMLDivElement>(null);
   const isFirstQuestionRender = useRef(true);
+  const [codeViewMode, setCodeViewMode] = useState<'simulator' | 'static'>('simulator');
 
   // Timer interval
   useEffect(() => {
@@ -513,9 +516,86 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
           </h2>
 
           {currentQ.codeSnippet && (
-            <pre className="code-snippet-box">
-              <code>{currentQ.codeSnippet}</code>
-            </pre>
+            <div className="quiz-code-area" style={{ margin: '14px 0' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginBottom: '8px',
+                  flexWrap: 'wrap',
+                  gap: '8px'
+                }}
+              >
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  <button
+                    type="button"
+                    className={`quiz-step-btn ${codeViewMode === 'simulator' ? 'is-active' : ''}`}
+                    onClick={() => {
+                      audio.playClick();
+                      setCodeViewMode('simulator');
+                    }}
+                    style={{
+                      background: codeViewMode === 'simulator' ? '#2563eb' : 'rgba(30, 41, 59, 0.8)',
+                      color: '#ffffff',
+                      border: codeViewMode === 'simulator' ? '1.5px solid #3b82f6' : '1px solid #475569',
+                      padding: '5px 12px',
+                      borderRadius: '8px',
+                      fontSize: '12px',
+                      fontWeight: 700,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <Sparkles size={13} />
+                    <span>🎮 Interactive Simulator (Step-by-Step)</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className={`quiz-step-btn ${codeViewMode === 'static' ? 'is-active' : ''}`}
+                    onClick={() => {
+                      audio.playClick();
+                      setCodeViewMode('static');
+                    }}
+                    style={{
+                      background: codeViewMode === 'static' ? '#334155' : 'rgba(30, 41, 59, 0.8)',
+                      color: codeViewMode === 'static' ? '#ffffff' : '#94a3b8',
+                      border: '1px solid #475569',
+                      padding: '5px 12px',
+                      borderRadius: '8px',
+                      fontSize: '12px',
+                      fontWeight: 600,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <Code size={13} />
+                    <span>📄 Static Code</span>
+                  </button>
+                </div>
+              </div>
+
+              {codeViewMode === 'simulator' ? (
+                <CppCodeSimulator
+                  key={currentQ.id}
+                  codeSnippet={currentQ.codeSnippet}
+                  questionTitle={currentQ.question}
+                  options={currentQ.options}
+                  correctOptionIndex={isAnswered ? currentQ.correctIndex : undefined}
+                  whyWrong={isAnswered ? currentQ.explanation?.whyWrong : undefined}
+                  isCompact={true}
+                />
+              ) : (
+                <pre className="code-snippet-box">
+                  <code>{currentQ.codeSnippet}</code>
+                </pre>
+              )}
+            </div>
           )}
 
           {currentQ.figure && <QuestionFigure figure={currentQ.figure} />}

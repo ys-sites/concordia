@@ -1,6 +1,7 @@
 import { PracticeQuestion, QuestionSource } from '../../types';
 import { t } from '../solutions/types';
 import { MIAE221_ENHANCEMENTS } from './miae221_enhancements';
+import { MIAE221_LECTURE11 } from './miae221_lecture11';
 
 // MIAE 221 — Lecture 6 (atomic densities, single vs polycrystals, X-ray diffraction, polymorphism),
 // Lecture 7 (point defects, solid solutions, composition, dislocations) and past-midterm practice
@@ -2781,5 +2782,6 @@ export const MIAE221_EXTRA: PracticeQuestion[] = [
     source: src('Final 2024', 'Corrosion & Cathodic Protection', 'Question 15')
   }),
 
-  ...MIAE221_ENHANCEMENTS
+  ...MIAE221_ENHANCEMENTS,
+  ...MIAE221_LECTURE11
 ];

@@ -34,6 +34,8 @@ import { TEACHER_EXAM_PRACTICE_DATA, TeacherExamFile } from '../data/teacherExam
 import { TEACHER_EXAM_SETS, teacherQuestionsFor, teacherDrillId } from '../data/teacherExamQuestions';
 import './TeacherMidtermPractice.css';
 import { Engr213MidtermCompanion } from './Engr213MidtermCompanion';
+import { CppCodeSimulator } from './CppCodeSimulator';
+import { F23_A_TRACE, F23_B_TRACE } from '../data/cppTraceData';
 
 interface TeacherMidtermPracticeSectionProps {
   course: CourseWithDocs;
@@ -60,6 +62,7 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
   const examQuestionCount = useMemo(() => teacherQuestionsFor(course.id).length, [course.id]);
   const hasPapers = examQuestionCount > 0;
   const [activeTab, setActiveTab] = useState<TabType>(hasPapers ? 'drill' : 'blueprint');
+  const [tracePart, setTracePart] = useState<'part_a' | 'part_b' | 'tables'>('part_a');
 
   // Calculate live countdown days
   const daysToGo = useMemo(() => {
@@ -489,15 +492,107 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
             <div className="tp-trace-intro">
               <Code size={20} style={{ color: '#10b981' }} />
               <div>
-                <h3>Dr. Brandon Gordon’s Official Midterm Q2 Solution & Memory Trace</h3>
+                <h3>Dr. Brandon Gordon’s Official Midterm Q2 Solution &amp; Interactive Simulator</h3>
                 <p>
-                  Extracted directly from Dr. Gordon's Fall 2023 Midterm Question 2 solution file. Review the exact code, line marks, and memory table below.
+                  Extracted directly from Dr. Gordon's Fall 2023 Midterm Question 2 solution file. Follow the execution line-by-line below with Back, Next and Restart!
                 </p>
               </div>
             </div>
 
+            {/* Sub-tab Switcher for Tracing Lab */}
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', margin: '1rem 0' }}>
+              <button
+                type="button"
+                className={`tp-tab-btn ${tracePart === 'part_a' ? 'active' : ''}`}
+                onClick={() => {
+                  audio.playClick();
+                  setTracePart('part_a');
+                }}
+                style={{
+                  padding: '7px 14px',
+                  borderRadius: '8px',
+                  fontWeight: 700,
+                  fontSize: '13px',
+                  border: tracePart === 'part_a' ? '1.5px solid #2563eb' : '1px solid #cbd5e1',
+                  background: tracePart === 'part_a' ? 'rgba(37, 99, 235, 0.1)' : 'var(--surface, #ffffff)',
+                  color: tracePart === 'part_a' ? '#1d4ed8' : 'var(--text-secondary, #475569)',
+                  cursor: 'pointer'
+                }}
+              >
+                🎮 Part (a) Simulator: While Loop &amp; Break [14 Marks]
+              </button>
+
+              <button
+                type="button"
+                className={`tp-tab-btn ${tracePart === 'part_b' ? 'active' : ''}`}
+                onClick={() => {
+                  audio.playClick();
+                  setTracePart('part_b');
+                }}
+                style={{
+                  padding: '7px 14px',
+                  borderRadius: '8px',
+                  fontWeight: 700,
+                  fontSize: '13px',
+                  border: tracePart === 'part_b' ? '1.5px solid #2563eb' : '1px solid #cbd5e1',
+                  background: tracePart === 'part_b' ? 'rgba(37, 99, 235, 0.1)' : 'var(--surface, #ffffff)',
+                  color: tracePart === 'part_b' ? '#1d4ed8' : 'var(--text-secondary, #475569)',
+                  cursor: 'pointer'
+                }}
+              >
+                🎮 Part (b) Simulator: For Loop &amp; Garbage Value [5 Marks]
+              </button>
+
+              <button
+                type="button"
+                className={`tp-tab-btn ${tracePart === 'tables' ? 'active' : ''}`}
+                onClick={() => {
+                  audio.playClick();
+                  setTracePart('tables');
+                }}
+                style={{
+                  padding: '7px 14px',
+                  borderRadius: '8px',
+                  fontWeight: 700,
+                  fontSize: '13px',
+                  border: tracePart === 'tables' ? '1.5px solid #10b981' : '1px solid #cbd5e1',
+                  background: tracePart === 'tables' ? 'rgba(16, 185, 129, 0.1)' : 'var(--surface, #ffffff)',
+                  color: tracePart === 'tables' ? '#047857' : 'var(--text-secondary, #475569)',
+                  cursor: 'pointer'
+                }}
+              >
+                📋 Static Trace Tables &amp; Mark Scheme
+              </button>
+            </div>
+
+            {tracePart === 'part_a' && (
+              <div style={{ marginBottom: '1.5rem' }}>
+                <CppCodeSimulator
+                  preloadedTrace={F23_A_TRACE}
+                  codeSnippet={F23_A_TRACE.code}
+                  options={F23_A_TRACE.options}
+                  correctOptionIndex={F23_A_TRACE.correctOptionIndex}
+                  whyWrong={F23_A_TRACE.whyWrong}
+                />
+              </div>
+            )}
+
+            {tracePart === 'part_b' && (
+              <div style={{ marginBottom: '1.5rem' }}>
+                <CppCodeSimulator
+                  preloadedTrace={F23_B_TRACE}
+                  codeSnippet={F23_B_TRACE.code}
+                  options={F23_B_TRACE.options}
+                  correctOptionIndex={F23_B_TRACE.correctOptionIndex}
+                  whyWrong={F23_B_TRACE.whyWrong}
+                />
+              </div>
+            )}
+
+            {tracePart === 'tables' && (
+              <>
             <div className="tp-trace-card">
-              <h4>Part (a) [14 Marks]: While Loop with Array Indexing & Conditional Break</h4>
+              <h4>Part (a) [14 Marks]: While Loop with Array Indexing &amp; Conditional Break</h4>
               <pre className="tp-code-block">
 {`int a=1, b=2, B[] = { 11, 7, 6, 5 }; 
 int i=0, sum = 0;
@@ -599,6 +694,8 @@ cout << "\\n" << A[i]; // i = 4 (out of bounds -> Garbage!)`}
                 </div>
               </div>
             </div>
+            </>
+            )}
           </div>
         </div>
       )}

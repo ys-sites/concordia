@@ -1,0 +1,538 @@
+/* CppCodeSimulator.css - Premium IDE & Interactive Simulator Styles */
+
+.cpp-sim-wrapper {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #e6edf3;
+  margin: 1.25rem 0;
+  transition: all 0.25s ease;
+}
+
+/* Top Sticky Control Bar */
+.cpp-sim-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.cpp-sim-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cpp-sim-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  background: #21262d;
+  color: #c9d1d9;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.cpp-sim-btn:hover:not(:disabled) {
+  background: #30363d;
+  color: #ffffff;
+  border-color: #8b949e;
+}
+
+.cpp-sim-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cpp-sim-btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35);
+}
+
+.cpp-sim-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  border-color: #60a5fa;
+  transform: translateY(-1px);
+}
+
+.cpp-sim-btn-auto {
+  background: #238636;
+  color: #ffffff;
+  border-color: #2ea043;
+}
+
+.cpp-sim-btn-auto.is-playing {
+  background: #da3633;
+  border-color: #f85149;
+}
+
+.cpp-sim-step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #8b949e;
+  background: #0d1117;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid #30363d;
+}
+
+.cpp-sim-step-badge strong {
+  color: #58a6ff;
+  font-weight: 700;
+}
+
+.cpp-sim-iter-pill {
+  font-size: 11px;
+  background: rgba(88, 166, 255, 0.15);
+  color: #79c0ff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  font-weight: 600;
+}
+
+/* Two-column layout */
+.cpp-sim-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 380px;
+}
+
+@media (max-width: 900px) {
+  .cpp-sim-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left Pane: Code Editor */
+.cpp-code-pane {
+  background: #0d1117;
+  border-right: 1px solid #30363d;
+  display: flex;
+  flex-direction: column;
+}
+
+.cpp-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: #161b22;
+  border-bottom: 1px solid #21262d;
+  font-size: 12px;
+  color: #8b949e;
+}
+
+.cpp-code-file-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-weight: 500;
+}
+
+.cpp-code-container {
+  padding: 12px 0;
+  overflow-y: auto;
+  max-height: 440px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.cpp-code-line {
+  display: flex;
+  align-items: flex-start;
+  padding: 2px 14px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  position: relative;
+  min-height: 24px;
+}
+
+.cpp-line-num {
+  width: 42px;
+  color: #484f58;
+  user-select: none;
+  text-align: right;
+  padding-right: 14px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.cpp-line-content {
+  color: #c9d1d9;
+  white-space: pre;
+  flex-grow: 1;
+}
+
+/* Active Highlight */
+.cpp-code-line.is-active {
+  background: rgba(56, 189, 248, 0.14);
+  border-left: 4px solid #38bdf8;
+}
+
+.cpp-code-line.is-active .cpp-line-num {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.cpp-code-line.is-active .cpp-line-content {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.cpp-active-arrow {
+  position: absolute;
+  left: 2px;
+  top: 4px;
+  color: #38bdf8;
+  font-size: 11px;
+  animation: pulseArrow 1s infinite alternate;
+}
+
+@keyframes pulseArrow {
+  0% { transform: translateX(0); opacity: 0.7; }
+  100% { transform: translateX(3px); opacity: 1; }
+}
+
+/* Right Pane: State & Tutor Inspector */
+.cpp-inspector-pane {
+  background: #111827;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  overflow-y: auto;
+  max-height: 480px;
+}
+
+/* Tutor Callout Card */
+.cpp-tutor-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cpp-tutor-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #38bdf8;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.cpp-tutor-text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+/* Trap alert inside tutor card */
+.cpp-trap-alert {
+  margin-top: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+/* Condition Evaluation Box */
+.cpp-cond-eval-box {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12.5px;
+}
+
+.cpp-cond-title {
+  color: #94a3b8;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.cpp-cond-formula {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cpp-cond-res-pill {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.cpp-cond-res-pill.is-true {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.cpp-cond-res-pill.is-false {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+/* Variable Watch Box */
+.cpp-vars-box {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.cpp-vars-header {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cpp-vars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 8px;
+}
+
+.cpp-var-cell {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 6px 8px;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.cpp-var-cell.is-changed {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+  transform: scale(1.04);
+}
+
+.cpp-var-name {
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  color: #94a3b8;
+}
+
+.cpp-var-val {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  color: #f8fafc;
+  margin-top: 2px;
+}
+
+/* Array Visualizer */
+.cpp-array-box {
+  margin-top: 10px;
+}
+
+.cpp-array-label {
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.cpp-array-cells {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.cpp-array-cell {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  padding: 4px 8px;
+  text-align: center;
+  min-width: 36px;
+  position: relative;
+}
+
+.cpp-array-cell.is-active-idx {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: #f59e0b;
+}
+
+.cpp-array-idx {
+  font-size: 9px;
+  color: #64748b;
+  display: block;
+}
+
+.cpp-array-val {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+/* Terminal Console Box */
+.cpp-terminal-box {
+  background: #090d16;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.cpp-terminal-header {
+  background: #111827;
+  padding: 6px 10px;
+  border-bottom: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cpp-terminal-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.cpp-dot-red { background: #ef4444; }
+.cpp-dot-yellow { background: #eab308; }
+.cpp-dot-green { background: #22c55e; }
+
+.cpp-terminal-title {
+  font-size: 11px;
+  color: #64748b;
+  margin-left: 6px;
+  font-weight: 600;
+}
+
+.cpp-terminal-body {
+  padding: 10px 12px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 13px;
+  color: #4ade80;
+  min-height: 60px;
+  max-height: 120px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+.cpp-terminal-line {
+  word-break: break-all;
+}
+
+.cpp-terminal-empty {
+  color: #475569;
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* Answer & Trap Reveal Section */
+.cpp-answer-reveal-box {
+  background: #161b22;
+  border-top: 1px solid #30363d;
+  padding: 14px 18px;
+}
+
+.cpp-answer-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #58a6ff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cpp-answer-toggle-btn:hover {
+  text-decoration: underline;
+}
+
+.cpp-answer-content {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #30363d;
+}
+
+.cpp-correct-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.cpp-why-wrong-list {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cpp-why-wrong-item {
+  font-size: 12.5px;
+  color: #cbd5e1;
+  background: #0d1117;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border-left: 3px solid #f87171;
+}
+
+.cpp-why-wrong-item strong {
+  color: #f87171;
+}

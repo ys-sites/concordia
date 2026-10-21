@@ -239,7 +239,7 @@ export const QUIZ_PLANS: Record<CourseId, CourseQuizPlan> = {
       { id: 'crystal', label: 'Ch. 3 · Crystal Structures', detail: 'Unit cells, APF, CN, stacking, density, Miller indices' },
       { id: 'densities', label: 'Ch. 3 · Atomic Densities & X-Ray Diffraction', detail: 'Linear & planar density, slip, single vs polycrystals, Bragg’s law, powder XRD' },
       { id: 'defects', label: 'Ch. 4 · Imperfections in Solids', detail: 'Vacancies & Arrhenius, impurities, solid solutions, Hume-Rothery, wt% ↔ at.%, dislocations' },
-      { id: 'mechanical', label: 'Ch. 6 · Mechanical Properties of Metals', detail: 'Tensile test, Hooke’s law, Poisson’s ratio, yield strength 0.002 offset, ductility, hardness' },
+      { id: 'mechanical', label: 'Ch. 6 · Mechanical Properties of Metals', detail: 'Tensile test, Hooke’s law, Poisson’s ratio, 0.002 offset yield, plastic deformation, true stress, strain hardening, safety factors, ductility, hardness' },
       { id: 'strengthening', label: 'Ch. 7 · Dislocations & Strengthening', detail: 'Slip systems, Schmid’s law, Hall-Petch, cold work & recovery-recrystallization' },
       { id: 'phase', label: 'Ch. 9 · Phase Diagrams & Iron-Carbon', detail: 'Lever rule, binary eutectic (Pb-Sn), Fe-Fe3C system, pearlite, hypoeutectoid steels' },
       { id: 'midterm-drill', label: 'Midterm Exam Drill (Winter 2026 / 2025)', detail: 'Authentic 40-question midterm exam drill with solutions & video mappings' },

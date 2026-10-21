@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 91
+### Currently Pending Uploads: 92
 
 ---
 
@@ -1069,4 +1069,13 @@
 - **Title**: `MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided Master Reference)`
 - **Academic year**: `2025/2026`
 - **Description**: Strict single-sided 1-page master reference sheet for the MIAE 221 Midterm covering Callister Chapters 1–7.4 and Lectures 1–12. Includes bonding potential wells, FCC/BCC/HCP lattice geometry table, Miller indices for directions and planes, Bragg's Law XRD selection rules, Hume-Rothery criteria, Schmid's Law slip, Fick's diffusion laws, and stress-strain curve landmarks.
+
+### 📄 Lecture 11 - Plastic Deformation, True Stress & Safety Factors (Expanded & Explained).pdf
+- **Exact Filename**: `Lecture 11 - Plastic Deformation, True Stress & Safety Factors (Expanded & Explained).pdf`
+- **University**: `Concordia University`
+- **Course**: `Materials Science (MIAE 221)`
+- **Category**: `Lecture notes`
+- **Title**: `MIAE 221 - Lecture 11 Plastic Deformation, True Stress & Safety Factors (Expanded & Explained)`
+- **Academic year**: `2025/2026`
+- **Description**: Expanded, slide-by-slide guide to Dr. Medraj's MIAE 221 Lecture 11 (Mechanical Properties II, Callister 6.6-6.7 and 6.12) with every fill-in blank answered: plastic deformation and elastic recovery, proportional limit vs 0.2% offset yield, upper and lower yield points, strain hardening, necking and fracture, engineering vs true stress, and the Hollomon law on log-log axes. Includes the fully solved brass tensile example, a 1045 steel safety-factor design (d = 6.7 cm), worked true-stress and strain-hardening problems, and an exam pitfall table.
 
