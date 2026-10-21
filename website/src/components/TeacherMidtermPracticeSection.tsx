@@ -36,6 +36,7 @@ import { TEACHER_EXAM_SETS, teacherQuestionsFor, teacherDrillId } from '../data/
 import './TeacherMidtermPractice.css';
 import { Engr213MidtermCompanion } from './Engr213MidtermCompanion';
 import { CppCodeSimulator } from './CppCodeSimulator';
+import { Miae215ExamPaper } from './Miae215ExamPaper';
 import { F23_A_TRACE, F23_B_TRACE } from '../data/cppTraceData';
 
 interface TeacherMidtermPracticeSectionProps {
@@ -45,7 +46,7 @@ interface TeacherMidtermPracticeSectionProps {
   onBack: () => void;
 }
 
-type TabType = 'drill' | 'blueprint' | 'files' | 'traps' | 'trace';
+type TabType = 'drill' | 'blueprint' | 'files' | 'traps' | 'trace' | 'exam_paper';
 
 const DAY_MS = 86400000;
 
@@ -311,16 +312,28 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
             <span>Teacher Traps & Tricks</span>
           </button>
           {course.id === 'MIAE215' && (
-            <button
-              className={`tp-tab-btn ${activeTab === 'trace' ? 'active' : ''}`}
-              onClick={() => {
-                audio.playClick();
-                setActiveTab('trace');
-              }}
-            >
-              <Code size={16} />
-              <span>Dr. Gordon Table Trace Lab</span>
-            </button>
+            <>
+              <button
+                className={`tp-tab-btn ${activeTab === 'exam_paper' ? 'active' : ''}`}
+                onClick={() => {
+                  audio.playClick();
+                  setActiveTab('exam_paper');
+                }}
+              >
+                <FileText size={16} />
+                <span>Official Exam Paper Replica (31 Qs)</span>
+              </button>
+              <button
+                className={`tp-tab-btn ${activeTab === 'trace' ? 'active' : ''}`}
+                onClick={() => {
+                  audio.playClick();
+                  setActiveTab('trace');
+                }}
+              >
+                <Code size={16} />
+                <span>Dr. Gordon Table Trace Lab</span>
+              </button>
+            </>
           )}
         </div>
       </div>
@@ -829,6 +842,17 @@ cout << "\\n" << A[i]; // i = 4 (out of bounds -> Garbage!)`}
             </>
             )}
           </div>
+        </div>
+      )}
+
+      {/* Tab 5: Official Dr. Gordon Exam Paper Replica (31 Questions) */}
+      {activeTab === 'exam_paper' && course.id === 'MIAE215' && (
+        <div className="tp-tab-content" style={{ padding: 0 }}>
+          <Miae215ExamPaper
+            onLaunchDrill={() =>
+              onLaunchDrill(course.id, teacherDrillId({ topic: 'all', count: 'all', ordered: true }))
+            }
+          />
         </div>
       )}
     </div>

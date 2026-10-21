@@ -17,10 +17,23 @@ b = sum - i;
 cout << "\\n" << sum << " " << a << " " << b;`,
   correctOptionIndex: 0,
   options: [
-    '1 8 / 2 14 / 3 19 / 29 19 26',
-    '1 8 / 2 14 / 3 19 / 24 19 21',
-    '1 8 / 2 14 / 3 19 / 4 24 / 29 24 25',
-    '0 1 / 1 8 / 2 14 / 29 19 26'
+    `1 8
+2 14
+3 19
+29 19 26`,
+    `1 8
+2 14
+3 19
+24 19 21`,
+    `1 8
+2 14
+3 19
+4 24
+29 24 25`,
+    `0 1
+1 8
+2 14
+29 19 26`
   ],
   whyWrong: {
     '1': 'On the 4th pass, sum += B[3] executes BEFORE the break condition is checked. So sum becomes 29, not 24.',

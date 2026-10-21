@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CourseId, CourseDocument, PracticeQuestion } from '../types';
 import { MathText } from '../utils/mathRenderer';
+import { OptionContent } from './OptionContent';
 import { QuestionFigure, optionLetter } from './QuestionFigure';
 import { WorkedSolution } from './WorkedSolution';
 import { SourceList } from './SourceList';
@@ -376,7 +377,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
                     <div key={oIdx} className={`option-btn ${optClass}`} style={{ cursor: 'default' }}>
                       <div className="option-letter">{letter}</div>
                       <div className="option-text">
-                        <MathText text={opt} />
+                        <OptionContent text={opt} />
                       </div>
                       <div className="option-feedback-icon">
                         {isCorrect && <CheckCircle2 size={20} className="text-emerald" />}

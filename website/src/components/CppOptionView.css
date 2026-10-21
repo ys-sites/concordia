@@ -1,0 +1,130 @@
+.cpp-opt-block {
+  width: 100%;
+  background: #f1f3f5;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 16px 14px 16px;
+  margin: 2px 0;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.correct-option .cpp-opt-block {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.incorrect-option .cpp-opt-block {
+  background: #fff1f2;
+  border-color: #fecdd3;
+}
+
+.cpp-opt-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cpp-opt-badge {
+  font-family: 'Outfit', -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #1e293b;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cpp-opt-code {
+  margin: 0;
+  padding: 0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  font-size: 13.5px;
+  line-height: 1.6;
+  white-space: pre;
+  overflow-x: auto;
+  color: #0f172a;
+}
+
+/* Syntax Token Colors matching C++ code styles */
+.cpp-tok-keyword {
+  color: #a855f7; /* magenta/purple like while, if, break, for */
+  font-weight: 600;
+}
+
+.cpp-tok-type {
+  color: #6366f1; /* indigo like int, double, float, bool */
+  font-weight: 600;
+}
+
+.cpp-tok-io {
+  color: #8b5cf6; /* violet like cin, cout */
+  font-weight: 600;
+}
+
+.cpp-tok-number {
+  color: #c2410c; /* coral/amber like 0, 1000, -1.0e6 */
+}
+
+.cpp-tok-string {
+  color: #16a34a; /* green for strings */
+}
+
+.cpp-tok-comment {
+  color: #64748b; /* slate gray for comments */
+  font-style: italic;
+}
+
+.cpp-tok-operator {
+  color: #1e293b; /* dark slate for operators =, <, >>, ;, {, } */
+}
+
+.cpp-tok-ident {
+  color: #4338ca; /* soft indigo/purple for variables n, A, B */
+}
+
+/* Output Box styling */
+.output-opt-block {
+  width: 100%;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 2px 0;
+  box-sizing: border-box;
+}
+
+.output-opt-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.output-opt-code {
+  margin: 0;
+  padding: 0;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #38bdf8;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Responsive adjustments for tablet & laptop */
+@media (min-width: 768px) {
+  .cpp-opt-block {
+    padding: 14px 20px 16px 20px;
+  }
+  .cpp-opt-code {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}

@@ -3,6 +3,7 @@ import { CourseId, CourseDocument, PracticeQuestion } from '../types';
 import { PRACTICE_QUESTIONS } from '../data/questionsData';
 import { COURSES_DATA } from '../data/coursesData';
 import { MathText } from '../utils/mathRenderer';
+import { OptionContent } from './OptionContent';
 import { shuffled, shuffleOptions } from '../utils/shuffle';
 import { WorkedSolution } from './WorkedSolution';
 import { SourceList } from './SourceList';
@@ -272,7 +273,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
                       return (
                         <div key={oIdx} className={`option-card-row ${isCorrect ? 'is-correct-row' : ''}`}>
                           <span className="opt-letter-tag">{['A', 'B', 'C', 'D'][oIdx]}</span>
-                          <span className="opt-math"><MathText text={opt} /></span>
+                          <span className="opt-math"><OptionContent text={opt} /></span>
                           {isCorrect && <span className="verified-badge">✓ Correct</span>}
                         </div>
                       );

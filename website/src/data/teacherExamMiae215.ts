@@ -76,7 +76,25 @@ export const MIAE215_TEACHER_EXAM: PracticeQuestion[] = [
     difficulty: 'Midterm Level',
     question: 'Trace the program with the table method. What ends up in the output box?',
     codeSnippet: F23_A,
-    options: ['1 8 / 2 14 / 3 19 / 29 19 26', '1 8 / 2 14 / 3 19 / 24 19 21', '1 8 / 2 14 / 3 19 / 4 24 / 29 24 25', '0 1 / 1 8 / 2 14 / 29 19 26'],
+    options: [
+      t`1 8
+2 14
+3 19
+29 19 26`,
+      t`1 8
+2 14
+3 19
+24 19 21`,
+      t`1 8
+2 14
+3 19
+4 24
+29 24 25`,
+      t`0 1
+1 8
+2 14
+29 19 26`
+    ],
     correctIndex: 0,
     explanation: {
       coreConcept: 'Table method: keep one column per variable, update only what changes on each line, and copy every cout into the output box as soon as it runs.',
@@ -141,7 +159,24 @@ export const MIAE215_TEACHER_EXAM: PracticeQuestion[] = [
     difficulty: 'Midterm Level',
     question: 'Which four values does the for loop print (one per line)?',
     codeSnippet: F23_B,
-    options: ['8, −2, 7, −3', '8, −2, 7.33333, −3', '2, −8, 7, −3', '8, −2, 8, −3'],
+    options: [
+      t`8
+−2
+7
+−3`,
+      t`8
+−2
+7.33333
+−3`,
+      t`2
+−8
+7
+−3`,
+      t`8
+−2
+8
+−3`
+    ],
     correctIndex: 0,
     explanation: {
       coreConcept: 'Check each condition with the exact numbers, and watch for integer division inside a double expression.',
@@ -204,7 +239,16 @@ export const MIAE215_TEACHER_EXAM: PracticeQuestion[] = [
     difficulty: 'Midterm Level',
     question: 'What two lines does the first pair of nested loops print?',
     codeSnippet: REV_2A,
-    options: ['−4 0 / −3 2', '−4 −3 / 0 2', '−4 −1 / −1 2', '−5 −2 / −5 −2'],
+    options: [
+      t`−4 0
+−3 2`,
+      t`−4 −3
+0 2`,
+      t`−4 −1
+−1 2`,
+      t`−5 −2
+−5 −2`
+    ],
     correctIndex: 0,
     explanation: {
       coreConcept: 'The outer loop picks the row i, the inner loop runs through the columns j, and endl closes each row.',
@@ -226,7 +270,24 @@ export const MIAE215_TEACHER_EXAM: PracticeQuestion[] = [
     difficulty: 'Midterm Level',
     question: 'What four values of x does the second pair of nested loops print?',
     codeSnippet: REV_2A,
-    options: ['−3, −103, −106, −116', '−3, −13, −16, −26', '5, −95, −92, −102', '−3, −103, −106, −104'],
+    options: [
+      t`−3
+−103
+−106
+−116`,
+      t`−3
+−13
+−16
+−26`,
+      t`5
+−95
+−92
+−102`,
+      t`−3
+−103
+−106
+−104`
+    ],
     correctIndex: 0,
     explanation: {
       coreConcept: 'Run each element through the if / else-if / else ladder in row order, carrying x forward.',
@@ -329,10 +390,32 @@ else cout << "A1 and A2 are not equal";`,
     difficulty: 'Midterm Level',
     question: 'Which code correctly decides whether all 5 elements of A1 and A2 are equal?',
     options: [
-      t`eq = true; for(i=0;i<5;i++) if(A1[i] != A2[i]) { eq = false; break; }`,
-      t`eq = false; for(i=0;i<5;i++) if(A1[i] == A2[i]) { eq = true; }`,
-      t`eq = true; for(i=0;i<5;i++) if(A1[i] == A2[i]) eq = true; else break;`,
-      t`eq = true; if(A1 == A2) eq = true; else eq = false; // whole arrays`
+      t`eq = true;
+for (i = 0; i < 5; i++) {
+    if (A1[i] != A2[i]) {
+        eq = false;
+        break;
+    }
+}`,
+      t`eq = false;
+for (i = 0; i < 5; i++) {
+    if (A1[i] == A2[i]) {
+        eq = true;
+    }
+}`,
+      t`eq = true;
+for (i = 0; i < 5; i++) {
+    if (A1[i] == A2[i])
+        eq = true;
+    else
+        break;
+}`,
+      t`eq = true;
+if (A1 == A2) { // compares pointer addresses
+    eq = true;
+} else {
+    eq = false;
+}`
     ],
     correctIndex: 0,
     explanation: {
@@ -353,10 +436,30 @@ else cout << "A1 and A2 are not equal";`,
     difficulty: 'Exam Master',
     question: 'Elements are input alternating A[0], B[0], A[1], B[1], … until a value below −1.0e6 is entered or n reaches 1000. Which loop does exactly that?',
     options: [
-      t`n=0; while(n<1000) { cin>>A[n]; if(A[n]<-1.0e6) break; cin>>B[n]; if(B[n]<-1.0e6) break; n++; }`,
-      t`for(n=0; n<=1000; n++) { cin>>A[n]>>B[n]; if(A[n]<-1.0e6 || B[n]<-1.0e6) break; }`,
-      t`n=0; while(A[n]>-1.0e6 && n<1000) { cin>>A[n]>>B[n]; n++; } // test first`,
-      t`n=0; do { cin>>A[n]>>B[n]; n++; } while(B[n]>-1.0e6 && n<1000); // test after`
+      t`n = 0;
+while (n < 1000) {
+    cin >> A[n];
+    if (A[n] < -1.0e6) break;
+
+    cin >> B[n];
+    if (B[n] < -1.0e6) break;
+
+    n++;
+}`,
+      t`for (n = 0; n <= 1000; n++) {
+    cin >> A[n] >> B[n];
+    if (A[n] < -1.0e6 || B[n] < -1.0e6) break;
+}`,
+      t`n = 0;
+while (A[n] > -1.0e6 && n < 1000) { // test before input
+    cin >> A[n] >> B[n];
+    n++;
+}`,
+      t`n = 0;
+do {
+    cin >> A[n] >> B[n];
+    n++;
+} while (B[n] > -1.0e6 && n < 1000); // test after increment`
     ],
     correctIndex: 0,
     explanation: {
@@ -473,10 +576,23 @@ cout << k;`,
     difficulty: 'Midterm Level',
     question: 'Part (a): input n where n ≤ 100; if it is out of range print an error and ask again, until a valid n is entered. Which loop does this?',
     options: [
-      t`do { cin >> n; if(n > 100) cout << "error\n"; } while(n > 100);`,
-      t`cin >> n; if(n > 100) { cout << "error\n"; cin >> n; }`,
-      t`while(n > 100) { cin >> n; cout << "error\n"; }`,
-      t`do { cin >> n; cout << "error\n"; } while(n <= 100);`
+      t`do {
+    cin >> n;
+    if (n > 100) cout << "error\n";
+} while (n > 100);`,
+      t`cin >> n;
+if (n > 100) {
+    cout << "error\n";
+    cin >> n;
+}`,
+      t`while (n > 100) {
+    cin >> n;
+    cout << "error\n";
+}`,
+      t`do {
+    cin >> n;
+    cout << "error\n";
+} while (n <= 100);`
     ],
     correctIndex: 0,
     explanation: {
@@ -544,10 +660,18 @@ do {
     difficulty: 'Foundation',
     question: 'Q1 inputs 3 real numbers and prints "input is greater than 7.5" for each input above 7.5. Which code does that?',
     options: [
-      t`if(a > 7.5) cout << msg; if(b > 7.5) cout << msg; if(c > 7.5) cout << msg;`,
-      t`if(a > 7.5) cout << msg; else if(b > 7.5) cout << msg; else if(c > 7.5) cout << msg;`,
-      t`if((a + b + c) / 3.0 > 7.5) cout << msg;  // compare the average once`,
-      t`if(a > 7.5 && b > 7.5 && c > 7.5) cout << msg;  // all three together`
+      t`if (a > 7.5) cout << msg;
+if (b > 7.5) cout << msg;
+if (c > 7.5) cout << msg;`,
+      t`if (a > 7.5) cout << msg;
+else if (b > 7.5) cout << msg;
+else if (c > 7.5) cout << msg;`,
+      t`if ((a + b + c) / 3.0 > 7.5) { // compare average once
+    cout << msg;
+}`,
+      t`if (a > 7.5 && b > 7.5 && c > 7.5) { // all three together
+    cout << msg;
+}`
     ],
     correctIndex: 0,
     explanation: {
@@ -701,10 +825,18 @@ do {
     difficulty: 'Midterm Level',
     question: 'Q2 evaluates y = cos(x) for x = 0.0, 1.0e−3, 2.0e−3, …, 1000 and counts how many times y > 0.9. Which loop header gives exactly the right x values?',
     options: [
-      t`for(int i = 0; i <= 1000000; i++) { x = i * 1.0e-3;`,
-      t`for(x = 0.0; x != 1000.0; x += 1.0e-3) {`,
-      t`for(int i = 0; i < 1000; i++) { x = i * 1.0e-3;`,
-      t`for(x = 0.0; x <= 1000.0; x++) {`
+      t`for (int i = 0; i <= 1000000; i++) {
+    x = i * 1.0e-3;
+}`,
+      t`for (x = 0.0; x != 1000.0; x += 1.0e-3) {
+    // floating-point drift
+}`,
+      t`for (int i = 0; i < 1000; i++) {
+    x = i * 1.0e-3;
+}`,
+      t`for (x = 0.0; x <= 1000.0; x++) {
+    // step by 1
+}`
     ],
     correctIndex: 0,
     explanation: {
@@ -759,7 +891,12 @@ do {
     topic: 'Variable Limits & Overflow',
     difficulty: 'Midterm Level',
     question: 'Part (ii) must use the fact that a double no longer changes when multiplied by 10 once it is too large. Which test prints "double out of range" at the right moment?',
-    options: ['if(x * 10 == x)', 'if(x * 10 < x)', 'if(x * 10 > x)', 'if(x == 0)'],
+    options: [
+      t`if (x * 10 == x)`,
+      t`if (x * 10 < x)`,
+      t`if (x * 10 > x)`,
+      t`if (x == 0)`
+    ],
     correctIndex: 0,
     explanation: {
       coreConcept: 'Once x has overflowed to inf, inf × 10 is still inf, so x * 10 == x becomes true. For every finite positive x, x * 10 > x.',

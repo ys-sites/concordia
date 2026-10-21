@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import { CourseId, CourseDocument, PracticeQuestion, QuizSessionState } from '../types';
 import { drillQuestions, sectionLabel } from '../data/quizSections';
 import { MathText } from '../utils/mathRenderer';
+import { OptionContent } from './OptionContent';
 import { shuffleOptions } from '../utils/shuffle';
 import { SourceList } from './SourceList';
 import { WorkedSolution } from './WorkedSolution';
@@ -626,8 +627,9 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
               >
                 <div className="option-letter">{letter}</div>
                 <div className="option-text">
-                  <MathText text={opt} />
+                  <OptionContent text={opt} />
                 </div>
+
 
                 <div className="option-feedback-icon">
                   {isAnswered && optIdx === currentQ.correctIndex && (

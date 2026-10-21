@@ -1651,7 +1651,7 @@ h1, h2, h3, h4, h5 {
 
 .option-btn {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   background: #f8fafc;
   border: 1.5px solid var(--border-subtle);
@@ -1662,6 +1662,7 @@ h1, h2, h3, h4, h5 {
   color: #0f172a;
   font-size: 15px;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
 }
 
 .option-btn:hover:not(:disabled) {
@@ -1673,6 +1674,7 @@ h1, h2, h3, h4, h5 {
 .option-letter {
   width: 32px;
   height: 32px;
+  flex-shrink: 0;
   border-radius: 8px;
   background: #e2e8f0;
   display: flex;
@@ -1682,11 +1684,15 @@ h1, h2, h3, h4, h5 {
   font-weight: 700;
   font-size: 14px;
   color: #334155;
+  margin-top: 2px;
 }
 
 .option-text {
   flex: 1;
+  min-width: 0;
+  word-break: break-word;
 }
+
 
 /* Option States */
 .correct-option {
@@ -1716,6 +1722,15 @@ h1, h2, h3, h4, h5 {
 .dimmed-option {
   opacity: 0.45;
 }
+
+.option-feedback-icon {
+  flex-shrink: 0;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 /* Animations */
 @keyframes pulseCorrect {

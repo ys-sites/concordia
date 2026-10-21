@@ -114,3 +114,12 @@ export const MathBlock: React.FC<{ tex: string; className?: string }> = ({ tex, 
   const html = useMemo(() => renderTex(tex, true), [tex]);
   return <div className={`math-block ${className}`} dangerouslySetInnerHTML={{ __html: html }} />;
 };
+
+// Detects whether an option is C++ code or multiline code/output so it can be typeset as monospace programming structure
+export const isCodeOption = (text: string | undefined): boolean => {
+  if (!text) return false;
+  if (text.includes('\n')) return true;
+  return /(^|\n)\s*(int |double |float |char |bool |while\s*\(|for\s*\(|if\s*\(|else|do\s*\{|cout\s*<<|cin\s*>>|return |break;|#include)/.test(text) ||
+    /[;{}].*[;{}]/.test(text);
+};
+

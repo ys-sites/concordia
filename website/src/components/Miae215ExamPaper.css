@@ -1,0 +1,512 @@
+/* Miae215ExamPaper.css - Authentic Academic Exam Paper Replica */
+
+.m215-xp-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  margin: 1rem 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Control Bar */
+.m215-xp-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  max-width: 900px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.m215-xp-bar-text {
+  font-size: 13.5px;
+  color: #475569;
+  line-height: 1.4;
+  max-width: 500px;
+}
+
+.m215-xp-bar-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.m215-xp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.m215-xp-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.m215-xp-btn-primary {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  border-color: #047857;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+}
+
+.m215-xp-btn-primary:hover {
+  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+  color: #ffffff;
+}
+
+/* Filter Pills Bar */
+.m215-xp-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 900px;
+}
+
+.m215-xp-pill {
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.m215-xp-pill:hover {
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.m215-xp-pill.active {
+  background: #059669;
+  color: #ffffff;
+  border-color: #047857;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+}
+
+/* Printable Exam Sheet */
+.m215-xp-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  padding: 50px 60px 70px;
+  background: #ffffff;
+  color: #111827;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04);
+  font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+
+/* Header Section */
+.m215-xp-header {
+  border-bottom: 2px solid #111827;
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.m215-xp-uni {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.m215-xp-dept {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.m215-xp-title {
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: underline;
+  margin: 8px 0;
+}
+
+.m215-xp-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 13.5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-align: left;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+
+.m215-xp-meta-item strong {
+  color: #0f172a;
+}
+
+/* Student Identification Box */
+.m215-xp-student-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  margin: 18px 0 24px;
+  padding: 14px 18px;
+  border: 1.5px solid #111827;
+  background: #fafafa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+}
+
+.m215-xp-student-field {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.m215-xp-student-line {
+  flex-grow: 1;
+  border-bottom: 1px dotted #111827;
+  height: 1.2em;
+}
+
+/* Instructions Box */
+.m215-xp-instructions {
+  background: #fffbeb;
+  border: 1.5px solid #fde68a;
+  border-radius: 6px;
+  padding: 12px 18px;
+  margin-bottom: 28px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: #92400e;
+  line-height: 1.5;
+}
+
+.m215-xp-instructions h4 {
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  color: #78350f;
+}
+
+.m215-xp-instructions ol {
+  margin-left: 20px;
+}
+
+.m215-xp-instructions li {
+  margin-bottom: 4px;
+}
+
+/* Problem Section Dividers */
+.m215-xp-section-header {
+  border-top: 2px solid #111827;
+  border-bottom: 1px solid #111827;
+  padding: 10px 0;
+  margin: 32px 0 20px;
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.m215-xp-section-marks {
+  font-size: 14px;
+  font-weight: 600;
+  background: #f1f5f9;
+  padding: 2px 10px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Question Block */
+.m215-xp-question {
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed #cbd5e1;
+}
+
+.m215-xp-q-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.m215-xp-q-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.m215-xp-q-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11.5px;
+}
+
+.m215-xp-q-paper-badge {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.m215-xp-q-marks {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.m215-xp-q-text {
+  font-size: 15.5px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* Code Snippet in Paper */
+.m215-xp-code-box {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 10px 0 16px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #0f172a;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* Options List in Paper */
+.m215-xp-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 14px 0 16px 20px;
+}
+
+.m215-xp-opt-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.m215-xp-opt-letter {
+  font-weight: 700;
+  min-width: 26px;
+  padding-top: 4px;
+}
+
+.m215-xp-opt-content {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+/* Working Space / Ruled Lines for Students */
+.m215-xp-work-box {
+  margin: 14px 0;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.m215-xp-work-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.m215-xp-work-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 6px 0;
+}
+
+.m215-xp-work-line {
+  border-bottom: 1px solid #e2e8f0;
+  height: 1px;
+}
+
+/* Solutions Toggle Accordion */
+.m215-xp-sol-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #059669;
+  background: none;
+  border: 1px solid #a7f3d0;
+  background: #ecfdf5;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-top: 6px;
+}
+
+.m215-xp-sol-toggle:hover {
+  background: #d1fae5;
+  border-color: #6ee7b7;
+}
+
+.m215-xp-sol-box {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #14532d;
+}
+
+.m215-xp-sol-correct {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.m215-xp-sol-concept {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.m215-xp-sol-steps {
+  margin: 8px 0 12px 18px;
+}
+
+.m215-xp-sol-steps li {
+  margin-bottom: 4px;
+}
+
+.m215-xp-sol-traps {
+  background: #ffffff;
+  border: 1px solid #fecdd3;
+  border-left: 4px solid #f43f5e;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: #881337;
+}
+
+/* Page Footer */
+.m215-xp-foot {
+  text-align: center;
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 30px;
+  padding-top: 14px;
+  border-top: 1px solid #cbd5e1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .m215-xp-sheet {
+    padding: 24px 18px 40px;
+    font-size: 14px;
+  }
+  .m215-xp-meta-grid {
+    grid-template-columns: 1fr;
+  }
+  .m215-xp-student-box {
+    grid-template-columns: 1fr;
+  }
+  .m215-xp-options-list {
+    margin-left: 4px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .m215-xp-root,
+  .m215-xp-root * {
+    visibility: visible;
+  }
+  .m215-xp-root {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    margin: 0;
+    gap: 0;
+  }
+  .m215-xp-bar,
+  .m215-xp-filter-bar,
+  .m215-xp-sol-toggle {
+    display: none !important;
+  }
+  .m215-xp-sheet {
+    max-width: none;
+    border: none;
+    box-shadow: none;
+    padding: 0 0 30px;
+    break-after: page;
+  }
+  .m215-xp-question {
+    break-inside: avoid;
+  }
+}
