@@ -220,7 +220,8 @@ const RAW_FILTERED_RELATIVE_PATHS: string[] = [
   "Miae 221/06 - Studocu - Midterms and Tests/MIAE221 Final Exam Review Problems and Solutions.pdf",
   "Miae 221/07 - Studocu - Finals and Reviews/124669862 - Final Exam Review for MIAE 221 - Key Concepts and Questions.pdf",
   "Miae 221/07 - Studocu - Finals and Reviews/83255324 - MIAE 221 Final Exam Solutions - 2017 Edition.pdf",
-  "Miae 221/07 - Studocu - Finals and Reviews/MIAE 221 Final Exam Guidelines and Important Equations.pdf"
+  "Miae 221/07 - Studocu - Finals and Reviews/MIAE 221 Final Exam Guidelines and Important Equations.pdf",
+  "Miae 221/04 - Practice Problems & Step-by-Step Solutions/MIAE 221 - Recent Post-2020 Midterm Exam Archive & Multi-Instructor Solutions Guide (2021-2026).pdf"
 ];
 
 export const ALL_FILTERED_RELATIVE_PATHS: string[] = RAW_FILTERED_RELATIVE_PATHS.filter((p) => !isSubmissionInstructionDoc(p));
@@ -234,6 +235,7 @@ export const isFilteredDocumentRelativePath = (relativePath: string): boolean =>
          /Paradis notes/i.test(normalized) ||
          /Quizzes & Term Tests/i.test(normalized) ||
          /Sample Midterm/i.test(normalized) ||
+         /Recent Post-2020 Midterm/i.test(normalized) ||
          /MIAE_215_midterm/i.test(normalized) ||
          /MIAE_215_quiz/i.test(normalized) ||
          /Past Midterm Examinations/i.test(normalized) ||

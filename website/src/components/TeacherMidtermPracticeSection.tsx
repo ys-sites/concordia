@@ -48,6 +48,65 @@ type TabType = 'drill' | 'blueprint' | 'files' | 'traps' | 'trace';
 
 const DAY_MS = 86400000;
 
+const MIAE221_VERIFIED_PAPERS = [
+  {
+    id: 'paper-1',
+    term: '2025 Midterm Version A',
+    prof: 'Department of MIAE Core',
+    docId: '124560047',
+    image: '/teacher-exams/miae221/image1.png',
+    title: 'MIAE 221 - Midterm A - 2025 Exam Solutions & Key Concepts'
+  },
+  {
+    id: 'paper-2',
+    term: 'Fall 2024 Section X-A',
+    prof: 'Dr. Martin Pugh',
+    docId: '112451179',
+    image: '/teacher-exams/miae221/image2.png',
+    title: 'Midterm Solutions for MIAE 221 - Fall 2024 Exam Review'
+  },
+  {
+    id: 'paper-3',
+    term: 'Fall 2024 Section X-A (Clean)',
+    prof: 'Dr. Martin Pugh',
+    docId: '110496507',
+    image: '/teacher-exams/miae221/image3.png',
+    title: 'Fall 2024 Midterm Exam Clean Problem Set & Diagrams'
+  },
+  {
+    id: 'paper-4',
+    term: 'Fall 2024 Sections T & Y',
+    prof: 'Drs. Martin Pugh & Navid Sharifi',
+    docId: '108649883',
+    image: '/teacher-exams/miae221/image4.png',
+    title: 'Combined Sections T & Y Midterm Examination'
+  },
+  {
+    id: 'paper-5',
+    term: 'Fall 2025 Section X',
+    prof: 'Dr. Sam Eskandarian',
+    docId: '144474318',
+    image: '/teacher-exams/miae221/image5.png',
+    title: 'Section X Midterm Test on Crystallography & Defect Theory'
+  },
+  {
+    id: 'paper-6',
+    term: 'Winter 2026',
+    prof: 'Drs. Mamadou Sy & Navid Sharifi',
+    docId: '159540505',
+    image: '/teacher-exams/miae221/image6.png',
+    title: 'Winter 2026 Midterm Examination & Slip Calculations'
+  },
+  {
+    id: 'paper-7',
+    term: '2025 Practice Set',
+    prof: 'Department of MIAE Multi-Section',
+    docId: '174494848',
+    image: '/teacher-exams/miae221/image7.png',
+    title: '2025 Midterm Exam Structured Review & Question Bank'
+  }
+];
+
 export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSectionProps> = ({
   course,
   onViewPdf,
@@ -362,6 +421,66 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
       {/* Tab 2: Official Practice Exams & Files */}
       {activeTab === 'files' && (
         <div className="tp-tab-content">
+          {course.id === 'MIAE221' && (
+            <div className="tp-archive-showcase">
+              <div className="tp-archive-header">
+                <div>
+                  <span className="tp-archive-badge">
+                    <Sparkles size={13} /> Multi-Instructor Post-2020 Exam Bank
+                  </span>
+                  <h3 className="tp-archive-title">Recent Post-2020 Midterm Exam Archive (2021–2026)</h3>
+                  <p className="tp-archive-subtitle">
+                    7 verified examination papers spanning Section X, Section X-A, Sections T &amp; Y, and multi-instructor classes taught by Drs. Mamoun Medraj, Martin Pugh, Navid Sharifi, Mamadou Sy, and Sam Eskandarian.
+                  </p>
+                </div>
+                <div className="tp-archive-header-actions">
+                  {blueprint.practiceFiles.find((f) => f.id === '221-recent-post2020-archive') && (
+                    <button
+                      className="tp-btn-primary"
+                      onClick={() => {
+                        const target = blueprint.practiceFiles.find((f) => f.id === '221-recent-post2020-archive');
+                        if (target) handleOpenPdf(target);
+                      }}
+                    >
+                      <Eye size={16} />
+                      <span>Preview Master Guide (PDF)</span>
+                    </button>
+                  )}
+                  {blueprint.practiceFiles.find((f) => f.id === '221-recent-post2020-archive') && (
+                    <a
+                      className="tp-btn-secondary"
+                      href={getPdfUrl(blueprint.practiceFiles.find((f) => f.id === '221-recent-post2020-archive')!.relativePath)}
+                      download="MIAE 221 - Recent Post-2020 Midterm Exam Archive & Multi-Instructor Solutions Guide (2021-2026).pdf"
+                      onClick={() => audio.playClick()}
+                    >
+                      <Download size={15} />
+                      <span>Download Archive</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              <div className="tp-archive-grid">
+                {MIAE221_VERIFIED_PAPERS.map((paper) => (
+                  <div key={paper.id} className="tp-archive-card">
+                    <div className="tp-archive-img-wrap">
+                      <img src={paper.image} alt={paper.title} className="tp-archive-img" loading="lazy" />
+                    </div>
+                    <div className="tp-archive-card-meta">
+                      <span className="tp-archive-term">{paper.term}</span>
+                      <span className="tp-archive-id">Studocu #{paper.docId}</span>
+                    </div>
+                    <h4 className="tp-archive-card-title">{paper.title}</h4>
+                    <p className="tp-archive-card-prof">
+                      <GraduationCap size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} />
+                      {paper.prof}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="tp-files-grid">
             {blueprint.practiceFiles.map((file) => {
               const url = getPdfUrl(file.relativePath);

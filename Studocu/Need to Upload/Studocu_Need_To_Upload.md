@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 92
+### Currently Pending Uploads: 93
 
 ---
 
@@ -1078,4 +1078,15 @@
 - **Title**: `MIAE 221 - Lecture 11 Plastic Deformation, True Stress & Safety Factors (Expanded & Explained)`
 - **Academic year**: `2025/2026`
 - **Description**: Expanded, slide-by-slide guide to Dr. Medraj's MIAE 221 Lecture 11 (Mechanical Properties II, Callister 6.6-6.7 and 6.12) with every fill-in blank answered: plastic deformation and elastic recovery, proportional limit vs 0.2% offset yield, upper and lower yield points, strain hardening, necking and fracture, engineering vs true stress, and the Hollomon law on log-log axes. Includes the fully solved brass tensile example, a 1045 steel safety-factor design (d = 6.7 cm), worked true-stress and strain-hardening problems, and an exam pitfall table.
+
+---
+
+### 📄 MIAE 221 - Recent Post-2020 Midterm Exam Archive & Multi-Instructor Solutions Guide (2021-2026).pdf
+- **Exact Filename**: `MIAE 221 - Recent Post-2020 Midterm Exam Archive & Multi-Instructor Solutions Guide (2021-2026).pdf`
+- **University**: `Concordia University`
+- **Course**: `Materials Science (MIAE 221)`
+- **Category**: `Practice materials`
+- **Title**: `MIAE 221 - Recent Post-2020 Midterm Exam Archive & Multi-Instructor Solutions Guide (2021-2026)`
+- **Academic year**: `2025/2026`
+- **Description**: Comprehensive structural exam archive and pedagogical solutions manual analyzing post-2020 MIAE 221 midterms across all active Concordia faculty sections (Drs. Mamoun Medraj, Martin Pugh, Navid Sharifi, Mamadou Sy, and Sam Eskandarian). Covers 7 verified recent midterm papers (including 2025 Version A, Fall 2025 Section X, Fall 2024 Sections T/Y and X-A, and Winter 2026) with detailed worked solutions for interatomic potential wells, BCC/FCC linear and planar densities, Bragg's Law XRD selection rules, Fick's non-steady diffusion, Schmid's Law resolved shear stress, and tensile stress-strain landmarks.
 

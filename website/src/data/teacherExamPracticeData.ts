@@ -107,6 +107,18 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         keyTopics: ['Bonding & Potential Wells', 'FCC/BCC/HCP Lattices', 'Miller Indices (Planes/Directions)', 'Bragg XRD Selection Rules', 'Hume-Rothery Rules', 'Schmid’s Law Slip', 'Fick’s Diffusion', 'Stress-Strain Landmarks']
       },
       {
+        id: '221-recent-post2020-archive',
+        title: 'MIAE 221 Recent Post-2020 Midterm Exam Archive & Multi-Instructor Solutions Guide (2021–2026)',
+        filename: 'MIAE 221 - Recent Post-2020 Midterm Exam Archive & Multi-Instructor Solutions Guide (2021-2026).pdf',
+        relativePath: 'Miae 221/04 - Practice Problems & Step-by-Step Solutions/MIAE 221 - Recent Post-2020 Midterm Exam Archive & Multi-Instructor Solutions Guide (2021-2026).pdf',
+        instructor: 'Drs. Mamoun Medraj, Martin Pugh, Navid Sharifi, Mamadou Sy, & Sam Eskandarian',
+        termYear: 'Recent Midterms (2021–2026)',
+        badge: 'Exam Bank',
+        fileType: 'pdf',
+        description: 'Comprehensive structural analysis and solved exam archive of 7 verified recent post-2020 midterms across all Concordia sections (including 2025 Version A, Fall 2025 Section X, Fall 2024 Sections T/Y & X-A, and Winter 2026). Features step-by-step solutions for potential curves, linear/planar densities, Bragg’s law XRD, non-steady diffusion scaling, Schmid’s law resolved shear stress, and stress-strain curve landmarks.',
+        keyTopics: ['Post-2020 Exams', '2025 Version A', 'Winter 2026 Sy/Sharifi', 'Fall 2025 Eskandarian', 'Fall 2024 Pugh/Sharifi', 'XRD Selection Rules', 'Schmid Factor', 'Diffusion Scaling']
+      },
+      {
         id: '221-sample-2017',
         title: 'Official MECH/MIAE 221 Sample Midterm Exam (2017)',
         filename: 'MIAE 221 - Sample Midterm Exam 2017 (Drs. Pugh & Medraj).pdf',
