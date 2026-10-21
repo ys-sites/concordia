@@ -219,6 +219,26 @@ export interface GateContent {
     docs: { title: string; path: string; size: number; tag: string; blurb: string }[];
     tabs: GradesaverTab[];
   };
+  gordonMatches?: GordonMatchesData;
+}
+
+export interface GordonMatchItem {
+  id: string;
+  title: string;
+  gordonSource: string;
+  matchType?: string;
+  relatedGordonQuestion?: string;
+  similarity?: string;
+  codeSnippet: string;
+  output: string;
+  explanation?: string;
+  studyNote?: string;
+}
+
+export interface GordonMatchesData {
+  summary: string;
+  identicalQuestions: GordonMatchItem[];
+  similarQuestionsToReview: GordonMatchItem[];
 }
 
 // Skill Quiz question types: repeated on past papers, similar, asked once, other possible questions

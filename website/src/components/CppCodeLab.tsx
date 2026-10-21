@@ -16,6 +16,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { audio } from '../utils/audio';
+import { CodeLabVideo } from './CodeLabVideo';
 import './CppCodeLab.css';
 
 interface CodingChallenge {
@@ -109,7 +110,7 @@ int main()
     sampleInput: `A = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
 B = { 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5 }
 k inputs = 4, 8, 12, -1`,
-    expectedOutput: `dot product of A and B = 385
+    expectedOutput: `dot product of A and B = 357.5
 number of elements of B between 0 and PI = 3
 C = 1 2 3 4 5 6 7 8 9 10 0.5 1.5 2.5 3.5 4.5 5.5 6.5 7.5 8.5 9.5
 number of positive integers entered = 3
@@ -790,6 +791,9 @@ export const CppCodeLab: React.FC = () => {
           );
         })}
       </div>
+
+      {/* Narrated walkthrough for the selected problem (renders nothing until its video exists) */}
+      <CodeLabVideo challengeId={activeChallenge.id} />
 
       {/* 3. Main Split View: Left Spec & Checklist, Right Editor & Console */}
       <div className="ccl-workspace">

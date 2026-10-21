@@ -485,3 +485,9 @@
   margin-bottom: 6px;
   text-transform: uppercase;
 }
+
+/* narrated walkthrough above the workspace: capped width so the editor stays close below it */
+.ccl-video-row {
+  max-width: 1000px;
+  margin: 0 auto 20px;
+}

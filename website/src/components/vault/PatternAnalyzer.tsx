@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AlertTriangle, ChevronDown, ChevronRight, FileText, Grid3x3, Layers, PlayCircle, Repeat, Shuffle, Sigma, Video, XCircle } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, ChevronDown, ChevronRight, Code, FileText, Grid3x3, Layers, PlayCircle, Repeat, Shuffle, Sigma, Sparkles, Terminal, Video, XCircle } from 'lucide-react';
 import { MathText } from '../../utils/mathRenderer';
 import type { Cluster, Expectation, GateContent, GateNav, MatchType, Subject } from './vaultTypes';
 import { GateIndex, MatchBadge, QuestionCard, RefsRow, repeatTypeOf } from './shared';
@@ -20,6 +20,7 @@ export const PatternAnalyzer: React.FC<Props> = ({ content, idx, nav, focusTopic
   const [stats, setStats] = useState<Stats>(() => loadStats(content.course));
   const [openSubjects, setOpenSubjects] = useState<Record<string, boolean>>({});
   const [selfTest, setSelfTest] = useState(false);
+  const [gordonTab, setGordonTab] = useState<'identical' | 'similar'>('identical');
   const topicRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [flash, setFlash] = useState<string | null>(null);
 
@@ -74,6 +75,91 @@ export const PatternAnalyzer: React.FC<Props> = ({ content, idx, nav, focusTopic
         </ul>
         <RepeatStatsBar stats={stats0} />
       </section>
+
+      {/* Dr. Gordon Midterm Practice Matches Section */}
+      {content.gordonMatches && (
+        <section className="mg-panel mg-panel-pad mg-gordon-panel">
+          <div className="mg-gordon-head">
+            <div className="mg-gordon-badge">
+              <Sparkles size={14} /> Dr. Gordon Official Practice Matches
+            </div>
+            <h3 className="mg-section-title" style={{ marginTop: 8, marginBottom: 4 }}>
+              Dr. Gordon Practice Matches: Literally Identical &amp; Similar Questions
+            </h3>
+            <p className="mg-section-sub">
+              {content.gordonMatches.summary}
+            </p>
+          </div>
+
+          <div className="mg-gordon-tab-bar">
+            <button
+              type="button"
+              className={`mg-gordon-tab ${gordonTab === 'identical' ? 'active' : ''}`}
+              onClick={() => setGordonTab('identical')}
+            >
+              <CheckCircle2 size={16} />
+              <span>Literally 100% Identical Questions ({content.gordonMatches.identicalQuestions.length})</span>
+            </button>
+            <button
+              type="button"
+              className={`mg-gordon-tab ${gordonTab === 'similar' ? 'active' : ''}`}
+              onClick={() => setGordonTab('similar')}
+            >
+              <Repeat size={16} />
+              <span>Similar Questions to Review From ({content.gordonMatches.similarQuestionsToReview.length})</span>
+            </button>
+          </div>
+
+          <div className="mg-gordon-list">
+            {(gordonTab === 'identical' ? content.gordonMatches.identicalQuestions : content.gordonMatches.similarQuestionsToReview).map((item) => (
+              <div key={item.id} className="mg-gordon-card">
+                <div className="mg-gordon-card-top">
+                  <div>
+                    <div className="mg-gordon-item-title">{item.title}</div>
+                    <div className="mg-gordon-source">
+                      <span className="mg-source-label">Source:</span> {item.gordonSource || item.relatedGordonQuestion}
+                    </div>
+                  </div>
+                  <div className="mg-gordon-card-actions">
+                    <span className={`mg-badge ${gordonTab === 'identical' ? 'exact' : 'template'}`}>
+                      {item.matchType || item.similarity || 'High-Yield Match'}
+                    </span>
+                    <button
+                      type="button"
+                      className="mg-btn small primary"
+                      onClick={() => nav.openQuestion(item.id)}
+                      title="Drill this exact question in the interactive question runner"
+                    >
+                      <PlayCircle size={13} /> Drill Question
+                    </button>
+                  </div>
+                </div>
+
+                <div className="mg-gordon-code-grid">
+                  <div className="mg-gordon-code-col">
+                    <div className="mg-gordon-col-label">
+                      <Code size={13} /> C++ Exam Code Snippet
+                    </div>
+                    <pre className="mg-code mg-gordon-code">{item.codeSnippet}</pre>
+                  </div>
+
+                  <div className="mg-gordon-out-col">
+                    <div className="mg-gordon-col-label">
+                      <Terminal size={13} /> Official Exam Answer Box
+                    </div>
+                    <pre className="mg-gordon-output-box">{item.output}</pre>
+                  </div>
+                </div>
+
+                <div className="mg-gordon-note">
+                  <strong>Exam Trap &amp; Pedagogical Strategy: </strong>
+                  {item.explanation || item.studyNote}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Quick drills */}
       <DrillModeCards
