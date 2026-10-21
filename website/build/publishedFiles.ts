@@ -15,11 +15,12 @@ export const COURSE_DIRS: Record<string, string> = {
 
 // Copied into dist/courses (PDFs are listed in the portal; the rest are assets PDFs/markdown may use)
 export const COPIED_EXTENSIONS = ['.pdf', '.png', '.jpg', '.svg'];
-// Motion-lesson videos and their captions are published only from "Tutor Videos" folders, so stray
-// recordings elsewhere in a course never end up in the deployment.
+// Motion-lesson videos and their captions are published only from the lesson-video folders ("Tutor Videos",
+// "... AI Videos"), so stray recordings elsewhere in a course never end up in the deployment.
 const TUTOR_VIDEO_EXTENSIONS = ['.mp4', '.vtt'];
+const VIDEO_FOLDER = /\/(Tutor Videos|[^/]*AI Videos)\//;
 const isCopied = (relativePath: string, ext: string) =>
-  COPIED_EXTENSIONS.includes(ext) || (TUTOR_VIDEO_EXTENSIONS.includes(ext) && relativePath.includes('/Tutor Videos/'));
+  COPIED_EXTENSIONS.includes(ext) || (TUTOR_VIDEO_EXTENSIONS.includes(ext) && VIDEO_FOLDER.test(relativePath));
 
 // Vercel's hard limit is 100MB per static file
 const MAX_FILE_BYTES = 90 * 1024 * 1024;

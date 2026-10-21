@@ -1,0 +1,387 @@
+1
+00:00:00,800 --> 00:00:05,474
+Most of a material's mechanical properties come from how its atoms are arranged.
+
+2
+00:00:05,474 --> 00:00:08,107
+That arrangement is the crystal structure.
+
+3
+00:00:08,827 --> 00:00:13,365
+Dense, regularly packed structures have lower energy than random ones.
+
+4
+00:00:13,365 --> 00:00:16,727
+In a crystalline material, atoms pack in a periodic,
+
+5
+00:00:16,727 --> 00:00:19,977
+three dimensional array, with long range order.
+
+6
+00:00:19,977 --> 00:00:23,731
+Metals, many ceramics and some polymers are crystalline.
+
+7
+00:00:24,151 --> 00:00:28,782
+A noncrystalline, or amorphous, material has no periodic packing.
+
+8
+00:00:28,782 --> 00:00:33,644
+That happens with complex structures and with rapid cooling, as in glass.
+
+9
+00:00:37,344 --> 00:00:40,777
+We describe crystals with the hard sphere model, where nearest
+
+10
+00:00:40,777 --> 00:00:44,731
+neighbors touch, and the unit cell: the smallest repeating unit that
+
+11
+00:00:44,731 --> 00:00:48,164
+still shows the crystal's chemical and physical properties.
+
+12
+00:00:48,584 --> 00:00:52,428
+Translate it in every direction and it builds the whole crystal.
+
+13
+00:00:52,428 --> 00:00:57,462
+Its edge length is the lattice parameter, a, just a few tenths of a nanometer.
+
+14
+00:00:57,882 --> 00:01:00,061
+Three numbers describe every cell.
+
+15
+00:01:00,061 --> 00:01:02,347
+N, the number of atoms per cell.
+
+16
+00:01:02,347 --> 00:01:05,961
+The coordination number, the number of nearest neighbors.
+
+17
+00:01:05,961 --> 00:01:10,373
+And the atomic packing factor, the fraction of the cell filled by atoms.
+
+18
+00:01:10,792 --> 00:01:14,255
+To count atoms, interior atoms count fully, face atoms
+
+19
+00:01:14,255 --> 00:01:17,718
+are shared by two cells, and corner atoms by eight.
+
+20
+00:01:21,418 --> 00:01:24,130
+Simple cubic. One atom at each corner.
+
+21
+00:01:24,130 --> 00:01:27,468
+Eight corners times one eighth, so one atom per cell.
+
+22
+00:01:27,888 --> 00:01:31,738
+The atoms touch along the cube edge, so a equals two R.
+
+23
+00:01:31,738 --> 00:01:37,047
+Each atom has six neighbors, and the packing factor is only zero point five two.
+
+24
+00:01:37,047 --> 00:01:39,497
+Polonium is about the only example.
+
+25
+00:01:39,917 --> 00:01:44,126
+Add one atom at the center of the cube, and you have body centered cubic.
+
+26
+00:01:44,126 --> 00:01:45,829
+That is two atoms per cell.
+
+27
+00:01:46,249 --> 00:01:49,244
+Now the atoms touch along the body diagonal.
+
+28
+00:01:49,244 --> 00:01:52,297
+That diagonal is a root three, and it holds four
+
+29
+00:01:52,297 --> 00:01:55,409
+radii, so a equals four R over root three.
+
+30
+00:01:55,829 --> 00:01:58,014
+Each atom has eight neighbors.
+
+31
+00:01:58,014 --> 00:02:01,499
+The packing factor is two times four thirds pi R cubed,
+
+32
+00:02:01,499 --> 00:02:05,339
+over a cubed, which works out to zero point six eight.
+
+33
+00:02:05,339 --> 00:02:11,009
+Chromium, tungsten, and iron below nine hundred twelve degrees Celsius are B C C.
+
+34
+00:02:11,429 --> 00:02:13,844
+Now put an atom at every corner and in the
+
+35
+00:02:13,844 --> 00:02:16,891
+center of every face: face centered cubic.
+
+36
+00:02:16,891 --> 00:02:21,951
+Six faces times one half, plus one from the corners: four atoms per cell.
+
+37
+00:02:22,372 --> 00:02:25,031
+The atoms touch along the face diagonal.
+
+38
+00:02:25,031 --> 00:02:28,652
+a root two equals four R, so a equals two R root two.
+
+39
+00:02:29,072 --> 00:02:33,105
+The coordination number is twelve, and the packing factor is zero
+
+40
+00:02:33,105 --> 00:02:37,079
+point seven four, the maximum possible for equal spheres.
+
+41
+00:02:37,079 --> 00:02:43,275
+Copper, nickel, gold, silver, and iron above nine hundred twelve degrees are F C C.
+
+42
+00:02:47,075 --> 00:02:50,801
+The other close packed structure is hexagonal close packed.
+
+43
+00:02:50,801 --> 00:02:53,849
+Twelve corner atoms count one sixth each, two face
+
+44
+00:02:53,849 --> 00:02:59,212
+atoms count one half, and three atoms sit inside. That is six atoms per cell.
+
+45
+00:02:59,632 --> 00:03:03,035
+Like F C C, it has a coordination number of twelve
+
+46
+00:03:03,035 --> 00:03:06,374
+and a packing factor of zero point seven four.
+
+47
+00:03:06,374 --> 00:03:10,281
+Magnesium, cobalt, titanium and zinc are H C P.
+
+48
+00:03:10,701 --> 00:03:13,481
+So what is the difference? The stacking sequence.
+
+49
+00:03:13,481 --> 00:03:15,510
+Start with a close packed layer, A.
+
+50
+00:03:15,510 --> 00:03:17,893
+The next layer, B, sits in the hollows.
+
+51
+00:03:18,313 --> 00:03:20,197
+The third layer decides.
+
+52
+00:03:20,197 --> 00:03:25,179
+If it sits directly above A, the pattern is A B A B: that is H C P.
+
+53
+00:03:25,179 --> 00:03:31,012
+If it shifts into the empty C hollows, the pattern is A B C A B C: that is F C C.
+
+54
+00:03:31,432 --> 00:03:33,780
+Same packing, different order.
+
+55
+00:03:33,780 --> 00:03:38,304
+And that difference is why F C C and H C P metals deform so differently.
+
+56
+00:03:42,104 --> 00:03:45,063
+If you know the crystal structure, the atomic radius and
+
+57
+00:03:45,063 --> 00:03:48,022
+the atomic weight, you can calculate the density.
+
+58
+00:03:48,442 --> 00:03:51,721
+n is the atoms per cell, A the atomic weight, V C
+
+59
+00:03:51,721 --> 00:03:54,999
+the cell volume, and N A is Avogadro's number.
+
+60
+00:03:55,420 --> 00:04:00,726
+Your lecture's example: copper, F C C, with a radius of zero point one two
+
+61
+00:04:00,726 --> 00:04:05,107
+eight nanometers and an atomic weight of sixty three point five.
+
+62
+00:04:05,107 --> 00:04:10,784
+a is two R root two, zero point three six two nanometers, so the cell volume is four
+
+63
+00:04:10,784 --> 00:04:15,905
+point seven four five times ten to the minus twenty three cubic centimeters.
+
+64
+00:04:16,325 --> 00:04:20,862
+So the density is four times sixty three point five, over four point seven
+
+65
+00:04:20,862 --> 00:04:25,633
+four five times ten to the minus twenty three, times Avogadro's number.
+
+66
+00:04:25,633 --> 00:04:28,308
+That is eight point eight nine grams per cubic
+
+67
+00:04:28,308 --> 00:04:32,206
+centimeter, close to the measured eight point nine four.
+
+68
+00:04:36,005 --> 00:04:39,971
+Cubic is only one of seven crystal systems, defined by the edge
+
+69
+00:04:39,971 --> 00:04:44,469
+lengths a, b and c, and the angles alpha, beta and gamma.
+
+70
+00:04:44,889 --> 00:04:48,087
+Together they give fourteen Bravais lattices.
+
+71
+00:04:48,087 --> 00:04:52,575
+The cubic system alone contains simple cubic, B C C and F C C.
+
+72
+00:04:52,575 --> 00:04:55,896
+In this course we focus on cubic and hexagonal.
+
+73
+00:04:59,596 --> 00:05:04,303
+Finally, how do we name directions and planes? With Miller indices.
+
+74
+00:05:04,303 --> 00:05:09,674
+Slip, the way metals deform, happens on specific planes along specific directions.
+
+75
+00:05:10,095 --> 00:05:13,824
+For a direction, draw the vector from the origin, read its
+
+76
+00:05:13,824 --> 00:05:17,665
+projections on x, y and z in units of the lattice parameter,
+
+77
+00:05:17,665 --> 00:05:21,846
+clear the fractions, and write the integers in square brackets.
+
+78
+00:05:21,846 --> 00:05:24,501
+No commas, and a bar over negatives.
+
+79
+00:05:24,920 --> 00:05:28,442
+So the cube edge is one zero zero, the face diagonal is
+
+80
+00:05:28,442 --> 00:05:32,144
+one one zero, and the body diagonal is one one one.
+
+81
+00:05:32,144 --> 00:05:37,995
+In a cubic crystal, equivalent directions form a family, written in angle brackets.
+
+82
+00:05:38,415 --> 00:05:43,214
+For a plane, find where it cuts the axes, take reciprocals, with one over
+
+83
+00:05:43,214 --> 00:05:47,674
+infinity equal to zero, clear fractions, and use round brackets.
+
+84
+00:05:47,674 --> 00:05:51,796
+If the plane passes through the origin, move the origin first.
+
+85
+00:05:52,216 --> 00:05:57,246
+A plane cutting x at one and parallel to y and z is the one zero zero.
+
+86
+00:05:57,246 --> 00:06:00,512
+Cutting x and y at one is the one one zero.
+
+87
+00:06:00,512 --> 00:06:03,844
+Cutting all three at one is the one one one.
+
+88
+00:06:04,264 --> 00:06:06,930
+Curly brackets denote a family of planes.
+
+89
+00:06:06,930 --> 00:06:11,429
+And when properties change with direction, the crystal is anisotropic.
+
+90
+00:06:11,429 --> 00:06:13,929
+When they do not, it is isotropic.
+
+91
+00:06:17,729 --> 00:06:19,640
+Here is the summary of topic three.
+
+92
+00:06:20,060 --> 00:06:26,523
+Simple cubic, B C C and F C C: one, two and four atoms, coordination six, eight and
+
+93
+00:06:26,523 --> 00:06:32,735
+twelve, packing zero point five two, zero point six eight and zero point seven four.
+
+94
+00:06:33,155 --> 00:06:39,005
+H C P matches F C C in packing, but stacks A B A B instead of A B C A B C.
+
+95
+00:06:39,425 --> 00:06:41,685
+Density is n A over V C N A.
+
+96
+00:06:42,105 --> 00:06:46,933
+And Miller indices name directions in square brackets and planes in round ones.
+
+97
+00:06:46,933 --> 00:06:51,985
+Next, we count atoms on those lines and planes, and use X rays to see them.

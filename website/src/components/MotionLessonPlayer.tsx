@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Clapperboard, Sparkles, Code2 } from 'lucide-react';
 import { getPdfUrl } from '../utils/pdfUrl';
 import type { MotionLesson } from '../data/engr213Lessons';
+import './MotionLessonPlayer.css';
 
 export const formatLessonTime = (t: number) => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
 

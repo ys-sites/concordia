@@ -64,6 +64,9 @@ const TeacherMidtermPracticeSection = lazy(() =>
 const Engr213MidtermCompanion = lazy(() =>
   import('./Engr213MidtermCompanion').then((m) => ({ default: m.Engr213MidtermCompanion }))
 );
+// MIAE 221 narrated topic videos (folder name matches Miae 221/08 - Teacher Topics Explained AI Videos)
+const Miae221TopicVideos = lazy(() => import('./Miae221TopicVideos'));
+const MIAE_VIDEO_FOLDER = '08 - Teacher Topics Explained AI Videos';
 const ExamCheatsheetSection = lazy(() =>
   import('./ExamCheatsheetSection').then((m) => ({ default: m.ExamCheatsheetSection }))
 );
@@ -693,7 +696,20 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 <span className="fx-folder-text">
                   <span className="fx-folder-index">08</span>
                   <span className="fx-folder-name">Tutor Videos (AI-Generated from Code)</span>
-                  <span className="fx-folder-meta">8 Motion-Graphics Lessons · Remotion &amp; Python Code</span>
+                  <span className="fx-folder-meta">8 narrated motion-graphics lessons · captions</span>
+                </span>
+                <ChevronRight size={18} className="fx-folder-chevron" />
+              </button>
+            )}
+            {course.id === 'MIAE221' && (
+              <button key="miae221-topic-videos" className="fx-folder-tile" onClick={() => openPath([MIAE_VIDEO_FOLDER])}>
+                <span className="fx-folder-icon" style={{ color: '#be185d', backgroundColor: 'rgba(190, 24, 93, 0.1)' }}>
+                  <Clapperboard size={22} />
+                </span>
+                <span className="fx-folder-text">
+                  <span className="fx-folder-index">{String(tree.folders.length).padStart(2, '0')}</span>
+                  <span className="fx-folder-name">Teacher Topics Explained AI Videos</span>
+                  <span className="fx-folder-meta">9 narrated topic videos · every subtopic · captions</span>
                 </span>
                 <ChevronRight size={18} className="fx-folder-chevron" />
               </button>
@@ -709,7 +725,8 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 </span>
                 <span className="fx-folder-text">
                   <span className="fx-folder-index">
-                    {tree.folders.length < 9 ? `0${tree.folders.length}` : tree.folders.length}
+                    {/* MIAE 221's topic-videos tile takes the next number first */}
+                    {String(tree.folders.length + (course.id === 'MIAE221' ? 1 : 0)).padStart(2, '0')}
                   </span>
                   <span className="fx-folder-name">Cheatsheet for the exam</span>
                   <span className="fx-folder-meta">Official 1-Page Cheatsheet · Single-Sided · Easy Download</span>
@@ -727,9 +744,8 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
               </span>
               <span className="fx-folder-text">
                 <span className="fx-folder-index">
-                  {(course.id === 'MIAE215' || course.id === 'MIAE221')
-                    ? (tree.folders.length + 1 < 9 ? `0${tree.folders.length + 1}` : tree.folders.length + 1)
-                    : (tree.folders.length < 9 ? `0${tree.folders.length}` : tree.folders.length)}
+                  {/* after the cheatsheet tile (MIAE 215/221) and the topic-videos tile (MIAE 221) */}
+                  {String(tree.folders.length + (course.id === 'MIAE215' ? 1 : course.id === 'MIAE221' ? 2 : 0)).padStart(2, '0')}
                 </span>
                 <span className="fx-folder-name">Filtered document</span>
                 <span className="fx-folder-meta">2 Sections · Assessment Vault</span>
@@ -753,6 +769,13 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           <ExamCheatsheetSection
             course={course}
             onViewPdf={onViewPdf}
+            onBack={() => openPath([])}
+          />
+        </Suspense>
+      ) : activePath[0] === MIAE_VIDEO_FOLDER && course.id === 'MIAE221' ? (
+        <Suspense fallback={<p className="fx-empty">Opening topic videos…</p>}>
+          <Miae221TopicVideos
+            onLaunchDrill={(sectionId) => (onLaunchDrill ? onLaunchDrill(course.id, sectionId) : onStartQuiz(course.id))}
             onBack={() => openPath([])}
           />
         </Suspense>

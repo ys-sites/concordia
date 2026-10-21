@@ -1,0 +1,311 @@
+1
+00:00:00,800 --> 00:00:02,720
+Welcome to Materials Science.
+
+2
+00:00:02,720 --> 00:00:05,653
+In this first topic we answer a simple question.
+
+3
+00:00:05,653 --> 00:00:09,493
+What actually is a material, and why should an engineer care?
+
+4
+00:00:10,313 --> 00:00:12,437
+Your lecture draws a clear line.
+
+5
+00:00:12,437 --> 00:00:16,466
+Oils, gases and pharmaceuticals are not materials in our sense.
+
+6
+00:00:16,466 --> 00:00:19,352
+Iron, copper, polymers and cement are.
+
+7
+00:00:19,773 --> 00:00:22,307
+The difference is that a material can be put into a
+
+8
+00:00:22,307 --> 00:00:25,488
+geometric shape, and the product then has a function.
+
+9
+00:00:25,908 --> 00:00:30,718
+And civilizations are named after their materials: the stone age, the bronze
+
+10
+00:00:30,718 --> 00:00:35,929
+age, the iron age, and now the information age, built on semiconductors.
+
+11
+00:00:39,629 --> 00:00:44,164
+Two terms to keep separate. Materials science studies the relationships between
+
+12
+00:00:44,164 --> 00:00:47,012
+the structure of a material and its properties.
+
+13
+00:00:47,432 --> 00:00:50,076
+Materials engineering goes the other way.
+
+14
+00:00:50,076 --> 00:00:55,089
+It designs the structure of a material to give it a predetermined set of properties.
+
+15
+00:00:55,508 --> 00:00:58,967
+So the scientist asks why a material behaves the way it does,
+
+16
+00:00:58,967 --> 00:01:02,160
+and the engineer asks how to make it do what we need.
+
+17
+00:01:05,860 --> 00:01:09,892
+A property is the response of a material to an external stimulus.
+
+18
+00:01:10,312 --> 00:01:15,543
+Pull on it, and the mechanical response is deformation. Heat it, and it expands.
+
+19
+00:01:15,543 --> 00:01:17,902
+Apply a voltage, and current flows.
+
+20
+00:01:18,321 --> 00:01:21,139
+Your lecture lists five families: mechanical,
+
+21
+00:01:21,139 --> 00:01:24,170
+thermal, electrical, magnetic and optical.
+
+22
+00:01:24,170 --> 00:01:28,265
+Callister adds a sixth, deteriorative, which covers corrosion.
+
+23
+00:01:28,686 --> 00:01:30,706
+One key point from the slide.
+
+24
+00:01:30,706 --> 00:01:34,522
+Properties are independent of the shape and size of the part.
+
+25
+00:01:34,522 --> 00:01:36,767
+Stiffness is a material property.
+
+26
+00:01:36,767 --> 00:01:39,348
+How far a particular beam bends is not.
+
+27
+00:01:43,047 --> 00:01:45,052
+The whole course follows one chain.
+
+28
+00:01:45,052 --> 00:01:48,156
+Processing, structure, properties and performance.
+
+29
+00:01:48,576 --> 00:01:50,501
+Processing sets the structure.
+
+30
+00:01:50,501 --> 00:01:52,790
+The structure decides the properties.
+
+31
+00:01:52,790 --> 00:01:56,223
+And the properties decide how the part performs in service.
+
+32
+00:01:56,643 --> 00:02:00,576
+Here is the example from your lecture: jet engine turbine blades.
+
+33
+00:02:00,576 --> 00:02:03,422
+At high temperature, grain boundaries creep.
+
+34
+00:02:03,842 --> 00:02:07,838
+Going from equiaxed grains, to columnar grains, to a single
+
+35
+00:02:07,838 --> 00:02:11,893
+crystal with no grain boundaries at all, let designers raise the
+
+36
+00:02:11,893 --> 00:02:15,829
+operating temperature by about two hundred degrees Celsius.
+
+37
+00:02:19,929 --> 00:02:23,726
+Now the classes. Solids are grouped into metals, ceramics and
+
+38
+00:02:23,726 --> 00:02:26,626
+polymers, plus composites that combine them.
+
+39
+00:02:27,046 --> 00:02:32,237
+Metals, like iron, copper and aluminum, have large numbers of free electrons.
+
+40
+00:02:32,237 --> 00:02:37,211
+That makes them good conductors of heat and electricity, strong, and ductile.
+
+41
+00:02:37,631 --> 00:02:42,849
+Ceramics are compounds of metals and nonmetals, like oxides, nitrides and carbides.
+
+42
+00:02:42,849 --> 00:02:47,534
+They are stiff, strong and very hard, but brittle, and they insulate.
+
+43
+00:02:47,954 --> 00:02:53,216
+Polymers, like polyethylene and nylon, are long chains of carbon and hydrogen.
+
+44
+00:02:53,216 --> 00:02:58,196
+They have low density, they flex, and they soften at modest temperatures.
+
+45
+00:02:58,616 --> 00:03:02,755
+Composites combine two or more materials to get the best of each.
+
+46
+00:03:02,755 --> 00:03:05,457
+Fiberglass is glass fibers in a polymer.
+
+47
+00:03:05,457 --> 00:03:09,079
+Carbon fiber composites are stiff, strong and light.
+
+48
+00:03:09,999 --> 00:03:12,732
+Your lecture compares them in one table.
+
+49
+00:03:12,732 --> 00:03:15,988
+Ductility is good in metals and poor in ceramics.
+
+50
+00:03:15,988 --> 00:03:19,883
+Electrical and thermal conductivity are high only in metals.
+
+51
+00:03:20,303 --> 00:03:23,375
+Ceramics win on hardness and stiffness, but have
+
+52
+00:03:23,375 --> 00:03:26,566
+low fracture toughness and are hard to machine.
+
+53
+00:03:26,566 --> 00:03:32,120
+Polymers are low in stiffness, but machine easily and resist corrosion fairly well.
+
+54
+00:03:36,020 --> 00:03:40,447
+Why study all this? Because getting the material wrong can be catastrophic.
+
+55
+00:03:40,447 --> 00:03:42,437
+Your lecture lists real failures.
+
+56
+00:03:42,857 --> 00:03:47,006
+Liberty ships in World War Two cracked in two in cold water.
+
+57
+00:03:47,006 --> 00:03:49,916
+The cause was the ductile to brittle transition
+
+58
+00:03:49,916 --> 00:03:53,136
+of B C C iron: cold steel became brittle.
+
+59
+00:03:53,556 --> 00:03:56,463
+The Challenger shuttle, in nineteen eighty six.
+
+60
+00:03:56,463 --> 00:03:58,267
+A polymer O-ring seal failed.
+
+61
+00:03:58,686 --> 00:04:01,865
+The Hyatt Regency walkway in nineteen eighty one.
+
+62
+00:04:01,865 --> 00:04:05,214
+Overstressed, under-designed steel support rods.
+
+63
+00:04:05,214 --> 00:04:07,711
+One hundred and fourteen people died.
+
+64
+00:04:08,131 --> 00:04:13,163
+The Alaska M D eighty crash, from excessive wear on a stabilizer jackscrew.
+
+65
+00:04:13,163 --> 00:04:16,792
+The de Havilland Comet, the first commercial jet, from
+
+66
+00:04:16,792 --> 00:04:19,893
+metal fatigue at rivet holes near the windows.
+
+67
+00:04:20,312 --> 00:04:25,277
+The United D C ten at Sioux City, from an inclusion and cracking in an engine.
+
+68
+00:04:25,277 --> 00:04:28,400
+And the Tacoma Narrows bridge, from poor design,
+
+69
+00:04:28,400 --> 00:04:31,022
+with too little stiffening against wind.
+
+70
+00:04:31,442 --> 00:04:33,880
+Every one of these comes back to something in this
+
+71
+00:04:33,880 --> 00:04:37,585
+course: toughness, fatigue, wear, defects and design.
+
+72
+00:04:41,485 --> 00:04:43,361
+Here is the summary of topic one.
+
+73
+00:04:43,782 --> 00:04:46,782
+A material can be shaped into a product that has a function.
+
+74
+00:04:47,201 --> 00:04:49,456
+Science links structure to properties.
+
+75
+00:04:49,456 --> 00:04:52,863
+Engineering designs the structure for the properties we need.
+
+76
+00:04:53,284 --> 00:04:58,179
+A property is the response to a stimulus, and it does not depend on shape or size.
+
+77
+00:04:58,599 --> 00:05:04,045
+And each class, metals, ceramics, polymers and composites, has its own trade-offs.
+
+78
+00:05:04,045 --> 00:05:08,610
+Next, we zoom in to the atom, and the bonds that hold materials together.

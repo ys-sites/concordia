@@ -1,0 +1,397 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.684
+There is no such thing as a perfect crystal.
+
+2
+00:00:03.684 --> 00:00:07.586
+Defects lower the energy of a crystal and make it more stable, so
+
+3
+00:00:07.586 --> 00:00:11.262
+every real crystal contains some vacancies and impurities.
+
+4
+00:00:11.982 --> 00:00:16.872
+And a defect is not necessarily a bad thing. Carbon in iron makes steel.
+
+5
+00:00:16.872 --> 00:00:19.601
+Copper in nickel makes thermocouple wire.
+
+6
+00:00:19.601 --> 00:00:21.989
+Chromium in iron resists corrosion.
+
+7
+00:00:21.989 --> 00:00:24.604
+And grain boundaries strengthen metals.
+
+8
+00:00:25.023 --> 00:00:27.074
+Defects come in three families.
+
+9
+00:00:27.074 --> 00:00:30.314
+Point defects, like vacancies and impurity atoms.
+
+10
+00:00:30.314 --> 00:00:32.905
+Line defects, which are dislocations.
+
+11
+00:00:32.905 --> 00:00:35.658
+And area defects, like grain boundaries.
+
+12
+00:00:39.358 --> 00:00:42.643
+A vacancy is a lattice site that is missing an atom.
+
+13
+00:00:42.643 --> 00:00:45.038
+All crystals contain some vacancies.
+
+14
+00:00:45.459 --> 00:00:50.907
+A self-interstitial is a host atom crowded into the small void between other atoms.
+
+15
+00:00:50.907 --> 00:00:53.086
+It distorts the lattice so much that
+
+16
+00:00:53.086 --> 00:00:56.778
+self-interstitials are far less common than vacancies.
+
+17
+00:01:00.478 --> 00:01:02.288
+How many vacancies are there?
+
+18
+00:01:02.288 --> 00:01:05.304
+The equilibrium number follows an Arrhenius equation.
+
+19
+00:01:05.725 --> 00:01:09.141
+N is the number of lattice sites, Q v the energy to
+
+20
+00:01:09.141 --> 00:01:12.743
+form a vacancy, and T the absolute temperature.
+
+21
+00:01:12.743 --> 00:01:16.469
+k is Boltzmann's constant: eight point six two times ten
+
+22
+00:01:16.469 --> 00:01:19.947
+to the minus five electron volts per atom kelvin.
+
+23
+00:01:20.366 --> 00:01:25.817
+Because it is exponential, the vacancy fraction rises steeply with temperature.
+
+24
+00:01:25.817 --> 00:01:29.451
+Take logs, and the natural log of N v over N against one
+
+25
+00:01:29.451 --> 00:01:35.447
+over T is a straight line, with slope minus Q v over k. That is how we measure Q.
+
+26
+00:01:35.867 --> 00:01:41.616
+Your lecture's example: the fraction of vacant sites in lead at its melting point, six
+
+27
+00:01:41.616 --> 00:01:47.121
+hundred kelvin, with Q v equal to zero point five five electron volts per atom.
+
+28
+00:01:47.541 --> 00:01:52.004
+k T is eight point six two times ten to the minus five, times six
+
+29
+00:01:52.004 --> 00:01:56.272
+hundred: zero point zero five one seven electron volts.
+
+30
+00:01:56.272 --> 00:02:02.158
+The exponent is minus zero point five five over that, minus ten point six three.
+
+31
+00:02:02.578 --> 00:02:07.826
+e to the minus ten point six three is two point four times ten to the minus five.
+
+32
+00:02:07.826 --> 00:02:10.868
+So even at the melting point, only about two or
+
+33
+00:02:10.868 --> 00:02:14.148
+three of every hundred thousand sites are empty.
+
+34
+00:02:17.948 --> 00:02:21.758
+An impurity is an atom of a different element added to the host.
+
+35
+00:02:21.758 --> 00:02:24.173
+In alloys, we add them on purpose.
+
+36
+00:02:24.593 --> 00:02:28.255
+Add one atom percent tin to lead, and you get a homogeneous
+
+37
+00:02:28.255 --> 00:02:31.859
+solid solution with the same crystal structure as lead.
+
+38
+00:02:31.859 --> 00:02:36.044
+Add twenty five atom percent, and the solubility is exceeded.
+
+39
+00:02:36.044 --> 00:02:39.067
+You get a two phase, heterogeneous alloy.
+
+40
+00:02:39.487 --> 00:02:43.311
+In a solid solution, the solvent is the host, present in the
+
+41
+00:02:43.311 --> 00:02:46.910
+greatest amount, and the solute is the minor element.
+
+42
+00:02:46.910 --> 00:02:50.847
+The crystal structure is unchanged, and no new phase forms.
+
+43
+00:02:51.267 --> 00:02:54.020
+Solute atoms sit in two kinds of places.
+
+44
+00:02:54.020 --> 00:02:58.589
+Substitutional: they replace host atoms, like copper in nickel.
+
+45
+00:02:58.589 --> 00:03:01.635
+Interstitial: small atoms squeeze into the voids
+
+46
+00:03:01.635 --> 00:03:04.622
+between host atoms, like carbon in iron.
+
+47
+00:03:08.422 --> 00:03:10.984
+When is substitutional solubility large?
+
+48
+00:03:10.984 --> 00:03:13.000
+Hume-Rothery gives four rules.
+
+49
+00:03:13.420 --> 00:03:18.530
+One, atomic size. The radii should differ by no more than about fifteen percent.
+
+50
+00:03:18.951 --> 00:03:22.703
+Two, electronegativity. The values must be close.
+
+51
+00:03:22.703 --> 00:03:27.071
+A large difference forms intermetallic compounds instead of a solution.
+
+52
+00:03:27.490 --> 00:03:31.244
+Three, crystal structure. Both elements should have the same structure.
+
+53
+00:03:31.664 --> 00:03:36.064
+Four, valence. All else being equal, a solute with a higher valence
+
+54
+00:03:36.064 --> 00:03:39.284
+dissolves more readily than one with a lower valence.
+
+55
+00:03:39.705 --> 00:03:42.220
+Copper and nickel pass all of them.
+
+56
+00:03:42.220 --> 00:03:46.711
+Both are F C C, their radii are zero point one two eight and zero point
+
+57
+00:03:46.711 --> 00:03:51.262
+one two five nanometers, and their electronegativities are close.
+
+58
+00:03:51.262 --> 00:03:54.017
+They dissolve in each other completely.
+
+59
+00:03:57.817 --> 00:04:00.093
+Composition is written two ways.
+
+60
+00:04:00.093 --> 00:04:04.062
+Weight percent is the mass of an element over the total mass.
+
+61
+00:04:04.062 --> 00:04:07.797
+Atom percent is its number of moles over the total moles.
+
+62
+00:04:08.217 --> 00:04:12.949
+Industry uses weight percent, because you weigh what you add to the melt.
+
+63
+00:04:12.949 --> 00:04:17.061
+To predict defects and properties, we often need atom percent.
+
+64
+00:04:17.061 --> 00:04:20.892
+The bridge is the atomic weight: moles equal mass over A.
+
+65
+00:04:21.312 --> 00:04:26.268
+Your lecture's example: zero point eight weight percent carbon steel.
+
+66
+00:04:26.268 --> 00:04:28.560
+Take a one hundred gram basis.
+
+67
+00:04:28.560 --> 00:04:31.781
+Carbon: zero point eight grams over twelve point
+
+68
+00:04:31.781 --> 00:04:35.064
+zero one is zero point zero six six six moles.
+
+69
+00:04:35.064 --> 00:04:38.719
+Iron: ninety nine point two grams over fifty five point
+
+70
+00:04:38.719 --> 00:04:42.002
+eight five is one point seven seven six moles.
+
+71
+00:04:42.421 --> 00:04:45.322
+Atom percent carbon is zero point zero six six six
+
+72
+00:04:45.322 --> 00:04:48.456
+over the total, one point eight four three.
+
+73
+00:04:48.456 --> 00:04:50.893
+About three point six atom percent.
+
+74
+00:04:50.893 --> 00:04:55.129
+So roughly three or four of every hundred atoms are carbon, mostly in
+
+75
+00:04:55.129 --> 00:05:00.062
+interstitial sites, where they distort the lattice and block dislocations.
+
+76
+00:05:03.863 --> 00:05:05.897
+Line defects are dislocations.
+
+77
+00:05:05.897 --> 00:05:09.194
+They come from solidification, from mechanical work like
+
+78
+00:05:09.194 --> 00:05:12.382
+rolling and drawing, and from thermal stresses.
+
+79
+00:05:12.382 --> 00:05:15.625
+It is very difficult to make a crystal without them.
+
+80
+00:05:16.045 --> 00:05:20.796
+An edge dislocation is an extra half plane of atoms inserted into the crystal.
+
+81
+00:05:20.796 --> 00:05:25.938
+The planes above it are squeezed together, and the planes below are pulled apart.
+
+82
+00:05:26.358 --> 00:05:31.749
+The Burgers vector, b, gives the size and direction of the lattice distortion.
+
+83
+00:05:31.749 --> 00:05:36.329
+For an edge dislocation, b is perpendicular to the dislocation line.
+
+84
+00:05:36.749 --> 00:05:40.130
+Dislocations make metals weaker than they should be, but
+
+85
+00:05:40.130 --> 00:05:43.342
+they are also what lets metals deform plastically.
+
+86
+00:05:43.342 --> 00:05:47.118
+Watch: under shear, the dislocation glides through, and
+
+87
+00:05:47.118 --> 00:05:50.443
+the top of the crystal shifts by one Burgers vector.
+
+88
+00:05:53.362 --> 00:05:58.269
+A screw dislocation is like cutting the crystal halfway and sliding one side.
+
+89
+00:05:58.269 --> 00:06:03.352
+The atomic planes follow a helical path, and here b is parallel to the line.
+
+90
+00:06:03.772 --> 00:06:06.581
+Most real dislocations are mixed: pure screw at one
+
+91
+00:06:06.581 --> 00:06:09.901
+end, pure edge at the other, and mixed in between.
+
+92
+00:06:13.801 --> 00:06:15.718
+Here is the summary of topic five.
+
+93
+00:06:16.138 --> 00:06:20.718
+Vacancies always exist, and their number follows the Arrhenius equation.
+
+94
+00:06:21.138 --> 00:06:23.634
+Solutes go in substitutional or interstitial
+
+95
+00:06:23.634 --> 00:06:26.528
+sites, until the solubility is exceeded.
+
+96
+00:06:26.948 --> 00:06:31.533
+Hume-Rothery: size, electronegativity, crystal structure and valence.
+
+97
+00:06:31.953 --> 00:06:35.484
+Convert weight to atom percent through the atomic weights.
+
+98
+00:06:35.484 --> 00:06:38.634
+And dislocations come in edge, screw and mixed.
+
+99
+00:06:38.634 --> 00:06:42.925
+Next, the defects that live between grains, and how we see them.

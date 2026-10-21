@@ -1,0 +1,269 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.562
+Topic five covered point and line defects.
+
+2
+00:00:03.562 --> 00:00:08.749
+Now the area and volume defects, and how we actually see them under a microscope.
+
+3
+00:00:11.869 --> 00:00:14.222
+Most materials are polycrystalline.
+
+4
+00:00:14.222 --> 00:00:17.416
+During solidification, small crystals nucleate in the
+
+5
+00:00:17.416 --> 00:00:20.666
+liquid with random orientations, and they grow.
+
+6
+00:00:21.086 --> 00:00:25.097
+When solidification is complete, the grains impinge on each other.
+
+7
+00:00:25.097 --> 00:00:28.326
+The junctions where they meet are the grain boundaries.
+
+8
+00:00:32.126 --> 00:00:37.419
+A grain boundary comes from the crystallographic mismatch where two grains meet.
+
+9
+00:00:37.419 --> 00:00:41.312
+A large misorientation gives a high angle grain boundary.
+
+10
+00:00:41.312 --> 00:00:44.111
+A small one gives a low angle boundary.
+
+11
+00:00:44.531 --> 00:00:48.967
+A low angle boundary can be described as an array of dislocations.
+
+12
+00:00:48.967 --> 00:00:51.824
+Edge dislocations make a tilt boundary, and
+
+13
+00:00:51.824 --> 00:00:54.741
+screw dislocations make a twist boundary.
+
+14
+00:00:55.161 --> 00:00:57.744
+Atoms at a boundary are less tightly bonded and
+
+15
+00:00:57.744 --> 00:01:00.931
+less densely packed, with a lower coordination.
+
+16
+00:01:00.931 --> 00:01:04.393
+That costs energy, called the grain boundary energy.
+
+17
+00:01:04.813 --> 00:01:07.768
+So grain boundaries are more chemically reactive,
+
+18
+00:01:07.768 --> 00:01:10.445
+and impurities tend to segregate to them.
+
+19
+00:01:10.445 --> 00:01:15.407
+And a fine grained material has much more boundary area than a coarse grained one.
+
+20
+00:01:19.207 --> 00:01:22.133
+Coarse grains can be seen with the naked eye.
+
+21
+00:01:22.133 --> 00:01:25.790
+That is macrostructure, like this high purity lead ingot,
+
+22
+00:01:25.790 --> 00:01:29.559
+aluminum street light posts, or galvanized garbage cans.
+
+23
+00:01:29.979 --> 00:01:33.040
+Usually, though, grains are microscopic.
+
+24
+00:01:33.040 --> 00:01:37.325
+The surface is ground and polished to a mirror finish, then etched with a
+
+25
+00:01:37.325 --> 00:01:41.387
+chemical reagent that attacks the grain boundaries preferentially.
+
+26
+00:01:41.807 --> 00:01:44.318
+The etched features scatter the incident light
+
+27
+00:01:44.318 --> 00:01:47.266
+differently, and that creates the contrast.
+
+28
+00:01:47.266 --> 00:01:51.633
+That answers the slide's question: etching does not magnify anything.
+
+29
+00:01:51.633 --> 00:01:53.816
+It makes the surface non-uniform.
+
+30
+00:01:57.616 --> 00:02:02.826
+A stacking fault is a planar defect: a mistake in the stacking sequence.
+
+31
+00:02:02.826 --> 00:02:07.472
+Recall that F C C stacks A B C A B C, and H C P stacks A B A B.
+
+32
+00:02:07.891 --> 00:02:13.036
+If one plane is missing, the sequence reads A B C A B, then A again.
+
+33
+00:02:13.036 --> 00:02:16.446
+The atoms are still on proper sites, but a thin H C
+
+34
+00:02:16.446 --> 00:02:19.731
+P like layer appears inside the F C C crystal.
+
+35
+00:02:20.152 --> 00:02:25.735
+Because the mistake is small, its energy is low, so stacking faults are common.
+
+36
+00:02:25.735 --> 00:02:28.288
+They form during solidification and plastic
+
+37
+00:02:28.288 --> 00:02:32.268
+deformation, and they affect how easily a metal deforms.
+
+38
+00:02:32.268 --> 00:02:37.494
+In high resolution T E M, the fault shows as a break in the regular stacking.
+
+39
+00:02:41.293 --> 00:02:44.536
+Three dimensional defects are called volume defects.
+
+40
+00:02:44.536 --> 00:02:49.044
+Inclusions, like these rutile needles in sapphire. Precipitates.
+
+41
+00:02:49.044 --> 00:02:53.551
+Porosity, or voids, like gas pores in a casting. And cracks.
+
+42
+00:02:57.451 --> 00:03:01.769
+Now the microscopes. An optical microscope uses light, and it is
+
+43
+00:03:01.769 --> 00:03:05.051
+limited to about two thousand times magnification.
+
+44
+00:03:05.472 --> 00:03:09.972
+Electron microscopes use electrons, with wavelengths around zero point
+
+45
+00:03:09.972 --> 00:03:14.471
+zero zero three nanometers instead of about five hundred for light.
+
+46
+00:03:14.471 --> 00:03:19.640
+So they resolve features down to the atomic scale, around a million times.
+
+47
+00:03:20.060 --> 00:03:23.747
+The scanning electron microscope studies surfaces directly.
+
+48
+00:03:23.747 --> 00:03:28.662
+It has a large depth of field, so much of a rough sample is in focus at once.
+
+49
+00:03:28.662 --> 00:03:31.567
+That makes it the tool for fracture surfaces.
+
+50
+00:03:31.987 --> 00:03:35.206
+The transmission electron microscope sends electrons
+
+51
+00:03:35.206 --> 00:03:38.858
+through very thin, electron transparent samples.
+
+52
+00:03:38.858 --> 00:03:43.314
+Contrast comes from diffraction, so grains in different orientations
+
+53
+00:03:43.314 --> 00:03:47.895
+look different, and high resolution T E M shows atomic columns.
+
+54
+00:03:48.315 --> 00:03:52.410
+The scanning probe microscope traces a tiny probe across the surface
+
+55
+00:03:52.410 --> 00:03:56.626
+to map its topography, from the atomic level up to microns.
+
+56
+00:03:57.046 --> 00:04:01.839
+And the slide's question: why did T E M and S E M appear in the nineteen
+
+57
+00:04:01.839 --> 00:04:06.442
+thirties and sixties, but S P M only in the nineteen eighties?
+
+58
+00:04:06.442 --> 00:04:10.983
+Because S P M needs computers to build its three dimensional images,
+
+59
+00:04:10.983 --> 00:04:15.271
+while electron microscopes could record on photographic film.
+
+60
+00:04:19.171 --> 00:04:21.117
+Here is the summary of topic six.
+
+61
+00:04:21.536 --> 00:04:24.583
+Grains nucleate, grow and meet at grain boundaries.
+
+62
+00:04:25.004 --> 00:04:29.513
+Boundaries carry extra energy, so they are reactive and collect impurities.
+
+63
+00:04:29.933 --> 00:04:33.187
+Stacking faults are a mistake in the stacking order, and
+
+64
+00:04:33.187 --> 00:04:36.603
+volume defects include inclusions, pores and cracks.
+
+65
+00:04:37.023 --> 00:04:40.959
+And each microscope has its job: optical, S E M for
+
+66
+00:04:40.959 --> 00:04:45.896
+surfaces, T E M for thin samples, and S P M for topography.
+
+67
+00:04:45.896 --> 00:04:50.033
+Next, how atoms move through solids: diffusion.
