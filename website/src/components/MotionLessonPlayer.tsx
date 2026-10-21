@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Clapperboard, Sparkles, Code2 } from 'lucide-react';
-import { getPdfUrl } from '../utils/pdfUrl';
+import { getVideoUrl } from '../utils/pdfUrl';
 import type { MotionLesson } from '../data/engr213Lessons';
 import './MotionLessonPlayer.css';
 
@@ -40,10 +40,10 @@ export const MotionLessonPlayer: React.FC<{ lesson: MotionLesson }> = ({ lesson 
         controls
         preload="none"
         playsInline
-        poster={getPdfUrl(lesson.poster)}
-        src={getPdfUrl(lesson.video)}
+        poster={getVideoUrl(lesson.poster)}
+        src={getVideoUrl(lesson.video)}
       >
-        <track kind="captions" src={getPdfUrl(lesson.captions)} srcLang="en" label="English" />
+        <track kind="captions" src={getVideoUrl(lesson.captions)} srcLang="en" label="English" />
       </video>
       <div className="ec-lesson-chapters">
         {lesson.chapters.map((c) => (

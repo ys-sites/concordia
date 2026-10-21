@@ -87,6 +87,8 @@ function coursePdfPlugin() {
       console.log(`[Vercel Build] Syncing ${files.length} course files into dist/courses...`);
       let copied = 0;
       for (const f of files) {
+        // Skip .mp4 video binaries: they are streamed from Cloudflare R2 to keep Vercel build bundle lean and fast
+        if (f.publishedPath.endsWith('.mp4')) continue;
         const dest = path.join(distCoursesDir, f.publishedPath);
         const needCopy = !fs.existsSync(dest) || fs.statSync(f.source).size !== fs.statSync(dest).size;
         if (needCopy) {
