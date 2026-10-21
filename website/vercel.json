@@ -15,7 +15,7 @@
       "destination": "/filtered.html"
     },
     {
-      "source": "/((?!api|courses|filtered|assets/).*)",
+      "source": "/((?!api|courses|cheatsheets|filtered|assets/).*)",
       "destination": "/index.html"
     }
   ],
@@ -40,6 +40,15 @@
     },
     {
       "source": "/courses/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/cheatsheets/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

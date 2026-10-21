@@ -29,9 +29,6 @@ export const isTermPaperDoc = (relativePath: string): boolean =>
   /Term Paper & Final Project/i.test(relativePath);
 
 const RAW_FILTERED_RELATIVE_PATHS: string[] = [
-  "Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf",
-  "Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf",
-  "Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Engr 213 Tutor.pdf",
   "Miae 215/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Part 5 - Program Architecture, Output Tracing & Algorithmic Patterns.pdf",

@@ -75,9 +75,17 @@ export const isFilteredDocumentPdf = (relativePath: string): boolean => {
   return isFilteredDocumentRelativePath(relativePath);
 };
 
+export const isCheatsheetOrReviewPdf = (relativePath: string): boolean => {
+  const p = relativePath.replace(/\\/g, '/');
+  return /03 - 1-Page Rapid Review Sheets\/.*(cheatsheet|memory|survival|review)/i.test(p);
+};
+
 // Everything that must not appear on (or be deployed with) the website
 export const isHiddenFromSite = (relativePath: string, isDirectory = false): boolean => {
   const p = relativePath.replace(/\\/g, '/');
+  if (isCheatsheetOrReviewPdf(p)) {
+    return false; // Always published and available in course folders
+  }
   if (isDirectory) {
     if (hasFilteredDocumentUnder(p)) {
       return false; // Whitelist directory traversal so protected vault PDFs are found

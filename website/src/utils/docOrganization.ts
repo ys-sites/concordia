@@ -45,6 +45,14 @@ export const displayTitle = (doc: CourseDocument): string => {
     return titleCase(words);
   }
 
+  if (/1-page exam cheatsheet/i.test(t)) {
+    return t.replace(/\.pdf$/i, '').replace(/ - /g, ' — ') + ' (10pt Font)';
+  }
+  if (/document cheatsheet.*survival guide/i.test(t)) {
+    const pages = /215/i.test(t) ? '5-Page' : '6-Page';
+    return t.replace(/\.pdf$/i, '').replace(/ - /g, ' — ') + ` (${pages})`;
+  }
+
   if (/^[a-z]/.test(t)) return titleCase(t);
   return t;
 };
@@ -94,6 +102,9 @@ const orderRank = (doc: CourseDocument): number => {
     const i = explicit.findIndex((prefix) => doc.title.startsWith(prefix));
     if (i !== -1) return i;
   }
+  // Cheatsheets in 03 - 1-Page Rapid Review Sheets go first:
+  if (/1-page.*exam cheatsheet/i.test(doc.title)) return -100;
+  if (/cheatsheet|survival guide/i.test(doc.title)) return -90;
   // Course outline / syllabus first, solution manuals last, everything else in between
   if (/outline|syllabus/i.test(doc.title)) return -1;
   if (/solutions?[ _]manual/i.test(doc.title)) return 2000;
@@ -227,6 +238,25 @@ export interface TutorialExamInfo {
 
 export const getTutorialExamInfo = (doc: CourseDocument): TutorialExamInfo | null => {
   const t = doc.title || doc.filename;
+  if (/1-page.*exam cheatsheet/i.test(t)) {
+    return {
+      scope: 'midterm',
+      chapter: 'Exam Ready',
+      badgeText: '⭐ Official 1-Page Cheatsheet (10pt)',
+      badgeColor: '#059669',
+      badgeBg: 'rgba(16, 185, 129, 0.14)'
+    };
+  }
+  if (/document cheatsheet|survival guide/i.test(t)) {
+    const is215 = /215/i.test(t) || doc.courseId === 'MIAE215';
+    return {
+      scope: 'midterm',
+      chapter: 'Master Guide',
+      badgeText: is215 ? '📘 Extended Master Guide (5-Page)' : '📘 Extended Master Guide (6-Page)',
+      badgeColor: '#0284c7',
+      badgeBg: 'rgba(2, 132, 199, 0.14)'
+    };
+  }
   if (/05 - Traveling Salesperson/i.test(t)) {
     return {
       scope: 'midterm',
