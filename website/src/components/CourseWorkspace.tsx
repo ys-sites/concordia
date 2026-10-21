@@ -46,28 +46,25 @@ import {
   getTutorialExamInfo
 } from '../utils/docOrganization';
 // Password-protected sections carry the large protected-document list: load them only when opened
-const FilteredDocumentSection = lazy(() => import('./FilteredDocumentSection').then((m) => ({ default: m.FilteredDocumentSection })));
-const TermPaperVaultSection = lazy(() => import('./TermPaperVaultSection').then((m) => ({ default: m.TermPaperVaultSection })));
+const FilteredDocumentSection = safeLazy(() => import('./FilteredDocumentSection').then((m) => ({ default: m.FilteredDocumentSection })));
+const TermPaperVaultSection = safeLazy(() => import('./TermPaperVaultSection').then((m) => ({ default: m.TermPaperVaultSection })));
 import { TspFactorialSimulator } from './TspFactorialSimulator';
 import { GateGlyph } from './vault/GateGlyph';
 import { hasGate, hasPaperDrill } from './vault/gateCourses';
 import { WeeklyPath, WEEKLY_FOLDER, hasWeeklyPath } from './WeeklyPath';
 
-// Hidden MIAE 221 folder, opened from the glyph after the course title. Loaded on demand.
-const MidtermGate = lazy(() => import('./vault/MidtermGate'));
+import { TeacherMidtermPracticeSection } from './TeacherMidtermPracticeSection';
+import { Engr213MidtermCompanion } from './Engr213MidtermCompanion';
+import { safeLazy } from '../utils/safeLazy';
+
+// Hidden MIAE 221 folder, opened from the glyph after the course title. Loaded on demand with safe reload.
+const MidtermGate = safeLazy(() => import('./vault/MidtermGate'));
 const GATE_FOLDER = 'Midterm Gate';
 
-// Only MIAE 221 and MIAE 215 have teacher practice papers; the section (and its question data) loads on demand
-const TeacherMidtermPracticeSection = lazy(() =>
-  import('./TeacherMidtermPracticeSection').then((m) => ({ default: m.TeacherMidtermPracticeSection }))
-);
-const Engr213MidtermCompanion = lazy(() =>
-  import('./Engr213MidtermCompanion').then((m) => ({ default: m.Engr213MidtermCompanion }))
-);
 // MIAE 221 narrated topic videos (folder name matches Miae 221/08 - Teacher Topics Explained AI Videos)
-const Miae221TopicVideos = lazy(() => import('./Miae221TopicVideos'));
+const Miae221TopicVideos = safeLazy(() => import('./Miae221TopicVideos'));
 const MIAE_VIDEO_FOLDER = '08 - Teacher Topics Explained AI Videos';
-const ExamCheatsheetSection = lazy(() =>
+const ExamCheatsheetSection = safeLazy(() =>
   import('./ExamCheatsheetSection').then((m) => ({ default: m.ExamCheatsheetSection }))
 );
 import { TEACHER_PRACTICE_FOLDER, hasTeacherPractice } from '../data/teacherPracticeCourses';
@@ -637,7 +634,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
       ) : activePath[0] === MIAE_VIDEO_FOLDER && course.id === 'MIAE221' ? (
         <Suspense fallback={<p className="fx-empty">Opening topic videos…</p>}>
           <Miae221TopicVideos
-            onLaunchDrill={(sectionId) => (onLaunchDrill ? onLaunchDrill(course.id, sectionId) : onStartQuiz(course.id))}
+            onLaunchDrill={(sectionId: string) => (onLaunchDrill ? onLaunchDrill(course.id, sectionId) : onStartQuiz(course.id))}
             onBack={() => openPath([])}
           />
         </Suspense>
@@ -670,7 +667,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
         <FilteredDocumentSection
           course={course}
           onViewPdf={onViewPdf}
-          onStartMidtermDrill={(sectionId) => {
+          onStartMidtermDrill={(sectionId?: string) => {
             if (onLaunchDrill) {
               onLaunchDrill(course.id, sectionId || 'midterm');
             } else {

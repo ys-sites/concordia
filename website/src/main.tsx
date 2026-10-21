@@ -5,22 +5,28 @@ import { AppErrorBoundary } from './components/AppErrorBoundary';
 import './index.css';
 
 // After a new deploy, an open tab may ask for code chunks that no longer exist.
-// Reload once with a 30-second cooldown to pick up the new build without looping or glitching.
+// Silently and instantly reload to pick up the new build without blocking user interaction.
 window.addEventListener('vite:preloadError', (event) => {
+  event.preventDefault();
   try {
-    const lastReload = Number(sessionStorage.getItem('chunk_reload_time') || '0');
-    const now = Date.now();
-    if (now - lastReload < 30000) {
-      console.warn('[Vite] Chunk preload error detected; reload suppressed to prevent infinite loop.');
+    const attempts = Number(sessionStorage.getItem('chunk_reload_attempts') || '0');
+    if (attempts < 3) {
+      sessionStorage.setItem('chunk_reload_attempts', String(attempts + 1));
+      window.location.reload();
       return;
     }
-    sessionStorage.setItem('chunk_reload_time', String(now));
   } catch {
-    // Storage blocked or private mode: proceed with single reload
+    window.location.reload();
   }
-  event.preventDefault();
-  window.location.reload();
 });
+
+// Clear reload attempts after page has loaded cleanly
+setTimeout(() => {
+  try {
+    sessionStorage.removeItem('chunk_reload_attempts');
+    sessionStorage.removeItem('chunk_reload_time');
+  } catch {}
+}, 3000);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

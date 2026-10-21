@@ -11,14 +11,16 @@ import { parseHash, formatHash, RouteState } from './utils/navigationRouter';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
+import { safeLazy } from './utils/safeLazy';
+
 // Screens that need the ~1 MB question bank load on demand, so the first page paints fast
-const QuizEngine = lazy(() => import('./components/QuizEngine').then((m) => ({ default: m.QuizEngine })));
-const QuizResults = lazy(() => import('./components/QuizResults').then((m) => ({ default: m.QuizResults })));
-const QuestionBankBrowser = lazy(() => import('./components/QuestionBankBrowser').then((m) => ({ default: m.QuestionBankBrowser })));
-const DrillPicker = lazy(() => import('./components/DrillPicker').then((m) => ({ default: m.DrillPicker })));
+const QuizEngine = safeLazy(() => import('./components/QuizEngine').then((m) => ({ default: m.QuizEngine })));
+const QuizResults = safeLazy(() => import('./components/QuizResults').then((m) => ({ default: m.QuizResults })));
+const QuestionBankBrowser = safeLazy(() => import('./components/QuestionBankBrowser').then((m) => ({ default: m.QuestionBankBrowser })));
+const DrillPicker = safeLazy(() => import('./components/DrillPicker').then((m) => ({ default: m.DrillPicker })));
 // The course page carries KaTeX and the document lists; it is prefetched while idle after the first paint
 const loadWorkspace = () => import('./components/CourseWorkspace');
-const CourseWorkspace = lazy(() => loadWorkspace().then((m) => ({ default: m.CourseWorkspace })));
+const CourseWorkspace = safeLazy(() => loadWorkspace().then((m) => ({ default: m.CourseWorkspace })));
 if (typeof window !== 'undefined') {
   // after the page has fully loaded, in idle time, so it never competes with the first render
   const idle = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => void }).requestIdleCallback;
@@ -35,9 +37,9 @@ if (typeof window !== 'undefined') {
   else window.addEventListener('load', prefetch, { once: true });
 }
 // Opened on demand, so neither ships in the first-load bundle
-const PdfViewerModal = lazy(() => import('./components/PdfViewerModal').then((m) => ({ default: m.PdfViewerModal })));
-const ContactModal = lazy(() => import('./components/ContactModal').then((m) => ({ default: m.ContactModal })));
-const FilteredSubSite = lazy(() => import('./components/FilteredSubSite').then((m) => ({ default: m.FilteredSubSite })));
+const PdfViewerModal = safeLazy(() => import('./components/PdfViewerModal').then((m) => ({ default: m.PdfViewerModal })));
+const ContactModal = safeLazy(() => import('./components/ContactModal').then((m) => ({ default: m.ContactModal })));
+const FilteredSubSite = safeLazy(() => import('./components/FilteredSubSite').then((m) => ({ default: m.FilteredSubSite })));
 
 type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK' | 'FILTERED_DOCUMENT';
 

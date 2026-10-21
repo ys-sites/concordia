@@ -298,6 +298,20 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
               <span>Exam Drill ({examQuestionCount})</span>
             </button>
           )}
+          {course.id === 'MIAE215' && (
+            <button
+              className={`tp-tab-btn ${activeTab === 'code_lab' ? 'active' : ''}`}
+              role="tab"
+              aria-selected={activeTab === 'code_lab'}
+              onClick={() => {
+                audio.playClick();
+                setActiveTab('code_lab');
+              }}
+            >
+              <Code2 size={16} />
+              <span>C++ Midterm Code Lab (60%)</span>
+            </button>
+          )}
           <button
             className={`tp-tab-btn ${activeTab === 'blueprint' ? 'active' : ''}`}
             onClick={() => {
@@ -332,16 +346,6 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
           </button>
           {course.id === 'MIAE215' && (
             <>
-              <button
-                className={`tp-tab-btn ${activeTab === 'code_lab' ? 'active' : ''}`}
-                onClick={() => {
-                  audio.playClick();
-                  setActiveTab('code_lab');
-                }}
-              >
-                <Code2 size={16} />
-                <span>C++ Midterm Code Lab (60%)</span>
-              </button>
               <button
                 className={`tp-tab-btn ${activeTab === 'exam_paper' ? 'active' : ''}`}
                 onClick={() => {
