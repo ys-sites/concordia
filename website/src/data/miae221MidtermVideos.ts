@@ -388,6 +388,30 @@ export const MIAE221_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
       }
     ]
   },
+  "TX_MIAE221_2017_Q17": {
+    "num": 17,
+    "title": "Q17 · Atomic Bonding",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q17 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q17 - Atomic Bonding.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q17 - Atomic Bonding.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/17.jpg",
+    "duration": 54,
+    "sizeMB": 3.1,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 8.2
+      },
+      {
+        "label": "Answer",
+        "start": 46.2
+      }
+    ]
+  },
   "TX_MIAE221_2017_Q18": {
     "num": 18,
     "title": "Q18 · Tensile Test Calculations",
@@ -457,6 +481,486 @@ export const MIAE221_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
       {
         "label": "Answer",
         "start": 31.5
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q21": {
+    "num": 21,
+    "title": "Q21 · Dislocations & Slip",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q21 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q21 - Dislocations & Slip.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q21 - Dislocations & Slip.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/21.jpg",
+    "duration": 37,
+    "sizeMB": 1.6,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 13.9
+      },
+      {
+        "label": "Answer",
+        "start": 27.4
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q22": {
+    "num": 22,
+    "title": "Q22 · Crystal Structures & Densities",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q22 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q22 - Crystal Structures & Densities.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q22 - Crystal Structures & Densities.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/22.jpg",
+    "duration": 36,
+    "sizeMB": 1.4,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 12.6
+      },
+      {
+        "label": "Answer",
+        "start": 25.5
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q23": {
+    "num": 23,
+    "title": "Q23 · Atomic Bonding",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q23 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q23 - Atomic Bonding.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q23 - Atomic Bonding.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/23.jpg",
+    "duration": 53,
+    "sizeMB": 2.1,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 15.5
+      },
+      {
+        "label": "Answer",
+        "start": 42
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q24": {
+    "num": 24,
+    "title": "Q24 · Diffusion",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q24 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q24 - Diffusion.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q24 - Diffusion.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/24.jpg",
+    "duration": 39,
+    "sizeMB": 1.7,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 15.7
+      },
+      {
+        "label": "Answer",
+        "start": 30.1
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q25": {
+    "num": 25,
+    "title": "Q25 · Crystal Structures & Densities",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q25 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q25 - Crystal Structures & Densities.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q25 - Crystal Structures & Densities.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/25.jpg",
+    "duration": 44,
+    "sizeMB": 1.7,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 14.9
+      },
+      {
+        "label": "Answer",
+        "start": 30.5
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q26": {
+    "num": 26,
+    "title": "Q26 · Diffusion",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q26 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q26 - Diffusion.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q26 - Diffusion.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/26.jpg",
+    "duration": 38,
+    "sizeMB": 1.6,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 13.9
+      },
+      {
+        "label": "Answer",
+        "start": 25
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q27": {
+    "num": 27,
+    "title": "Q27 · Dislocations & Slip",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q27 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q27 - Dislocations & Slip.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q27 - Dislocations & Slip.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/27.jpg",
+    "duration": 53,
+    "sizeMB": 2.5,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 19
+      },
+      {
+        "label": "Answer",
+        "start": 40.3
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q28": {
+    "num": 28,
+    "title": "Q28 · Crystal Structures & Densities",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q28 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q28 - Crystal Structures & Densities.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q28 - Crystal Structures & Densities.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/28.jpg",
+    "duration": 53,
+    "sizeMB": 2.4,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 16.3
+      },
+      {
+        "label": "Answer",
+        "start": 41.9
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q29": {
+    "num": 29,
+    "title": "Q29 · Diffusion",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q29 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q29 - Diffusion.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q29 - Diffusion.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/29.jpg",
+    "duration": 64,
+    "sizeMB": 2.6,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 23.8
+      },
+      {
+        "label": "Answer",
+        "start": 53.9
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q30": {
+    "num": 30,
+    "title": "Q30 · Crystal Structures & Densities",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q30 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q30 - Crystal Structures & Densities.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q30 - Crystal Structures & Densities.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/30.jpg",
+    "duration": 59,
+    "sizeMB": 2.4,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 21.7
+      },
+      {
+        "label": "Answer",
+        "start": 46.8
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q31": {
+    "num": 31,
+    "title": "Q31 · Dislocations & Slip",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q31 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q31 - Dislocations & Slip.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q31 - Dislocations & Slip.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/31.jpg",
+    "duration": 44,
+    "sizeMB": 2.1,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 18.5
+      },
+      {
+        "label": "Answer",
+        "start": 34.4
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q32": {
+    "num": 32,
+    "title": "Q32 · Microscopy",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q32 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q32 - Microscopy.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q32 - Microscopy.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/32.jpg",
+    "duration": 41,
+    "sizeMB": 1.8,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 14.2
+      },
+      {
+        "label": "Answer",
+        "start": 30.7
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q33": {
+    "num": 33,
+    "title": "Q33 · Microscopy",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q33 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q33 - Microscopy.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q33 - Microscopy.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/33.jpg",
+    "duration": 40,
+    "sizeMB": 1.6,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 11.9
+      },
+      {
+        "label": "Answer",
+        "start": 31.6
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q34": {
+    "num": 34,
+    "title": "Q34 · Tensile Test Calculations",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q34 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q34 - Tensile Test Calculations.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q34 - Tensile Test Calculations.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/34.jpg",
+    "duration": 40,
+    "sizeMB": 1.5,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 13.2
+      },
+      {
+        "label": "Answer",
+        "start": 27.5
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q35": {
+    "num": 35,
+    "title": "Q35 · Defects & Solid Solutions",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q35 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q35 - Defects & Solid Solutions.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q35 - Defects & Solid Solutions.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/35.jpg",
+    "duration": 37,
+    "sizeMB": 1.5,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 11.9
+      },
+      {
+        "label": "Answer",
+        "start": 25.5
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q36": {
+    "num": 36,
+    "title": "Q36 · Defects & Solid Solutions",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q36 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q36 - Defects & Solid Solutions.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q36 - Defects & Solid Solutions.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/36.jpg",
+    "duration": 44,
+    "sizeMB": 1.8,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 12.5
+      },
+      {
+        "label": "Answer",
+        "start": 35.9
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q37": {
+    "num": 37,
+    "title": "Q37 · Atomic Bonding",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q37 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q37 - Atomic Bonding.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q37 - Atomic Bonding.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/37.jpg",
+    "duration": 51,
+    "sizeMB": 1.9,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 15.3
+      },
+      {
+        "label": "Answer",
+        "start": 40.9
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q38": {
+    "num": 38,
+    "title": "Q38 · Defects & Solid Solutions",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q38 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q38 - Defects & Solid Solutions.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q38 - Defects & Solid Solutions.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/38.jpg",
+    "duration": 50,
+    "sizeMB": 2.2,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 17.4
+      },
+      {
+        "label": "Answer",
+        "start": 39.9
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q39": {
+    "num": 39,
+    "title": "Q39 · Diffusion",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q39 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q39 - Diffusion.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q39 - Diffusion.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/39.jpg",
+    "duration": 40,
+    "sizeMB": 1.6,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 13.6
+      },
+      {
+        "label": "Answer",
+        "start": 29.7
+      }
+    ]
+  },
+  "TX_MIAE221_2017_Q40": {
+    "num": 40,
+    "title": "Q40 · Crystal Structures & Densities",
+    "source": "MIAE 221 Sample Midterm 2017 (Version A) · Q40 · official marking key",
+    "video": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q40 - Crystal Structures & Densities.mp4",
+    "captions": "Miae 221/09 - Teacher Midterm Practice AI Videos/Q40 - Crystal Structures & Densities.vtt",
+    "poster": "Miae 221/09 - Teacher Midterm Practice AI Videos/posters/40.jpg",
+    "duration": 33,
+    "sizeMB": 1.3,
+    "chapters": [
+      {
+        "label": "The Question",
+        "start": 0
+      },
+      {
+        "label": "Solve It",
+        "start": 10.9
+      },
+      {
+        "label": "Answer",
+        "start": 20.1
       }
     ]
   }

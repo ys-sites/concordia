@@ -1,0 +1,27 @@
+1
+00:00:00,800 --> 00:00:03,237
+Teacher midterm practice, question 40.
+
+2
+00:00:03,857 --> 00:00:06,699
+True or false: the coordination number for the
+
+3
+00:00:06,699 --> 00:00:09,541
+hexagonal close packed structure is twelve.
+
+4
+00:00:11,241 --> 00:00:15,059
+Each atom in H C P touches six neighbors in its own basal plane,
+
+5
+00:00:15,059 --> 00:00:18,765
+three in the plane above, and three in the plane below.
+
+6
+00:00:20,364 --> 00:00:24,323
+That is twelve, the same as F C C. So the answer is A: true.
+
+7
+00:00:25,143 --> 00:00:29,600
+Do not confuse it with B C C, which has a coordination number of eight.

@@ -1,0 +1,39 @@
+1
+00:00:00,800 --> 00:00:03,476
+Teacher midterm practice, question 32.
+
+2
+00:00:04,096 --> 00:00:08,337
+True or false: electron microscopes probe microstructures with
+
+3
+00:00:08,337 --> 00:00:12,770
+greater resolution and magnification than optical microscopes.
+
+4
+00:00:14,470 --> 00:00:17,716
+Resolution is limited by wavelength, and electron beams
+
+5
+00:00:17,716 --> 00:00:20,741
+have far shorter wavelengths than visible light.
+
+6
+00:00:21,361 --> 00:00:25,101
+An optical microscope reaches about two thousand times.
+
+7
+00:00:25,101 --> 00:00:29,445
+A transmission electron microscope reaches about a million times.
+
+8
+00:00:31,045 --> 00:00:32,761
+So the answer is A: true.
+
+9
+00:00:33,581 --> 00:00:35,533
+Remember the reason: the shorter the
+
+10
+00:00:35,533 --> 00:00:38,461
+wavelength, the finer the detail you can resolve.

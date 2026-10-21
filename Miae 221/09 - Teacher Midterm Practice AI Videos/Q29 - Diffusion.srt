@@ -1,0 +1,59 @@
+1
+00:00:00,800 --> 00:00:03,553
+Teacher midterm practice, question 29.
+
+2
+00:00:04,173 --> 00:00:08,949
+True or false: with D zero equal to one point six times ten to the minus
+
+3
+00:00:08,949 --> 00:00:13,599
+four square meters per second, and Q d equal to one hundred eighty one
+
+4
+00:00:13,599 --> 00:00:18,374
+kilojoules per mole, the diffusion coefficient at twelve hundred degrees
+
+5
+00:00:18,374 --> 00:00:22,396
+Celsius is eight point four times ten to the minus seven.
+
+6
+00:00:24,095 --> 00:00:27,927
+Use the Arrhenius equation, with the temperature in kelvin.
+
+7
+00:00:27,927 --> 00:00:31,376
+Twelve hundred Celsius is fourteen seventy three kelvin.
+
+8
+00:00:31,996 --> 00:00:35,358
+The exponent is one hundred eighty one thousand, over eight
+
+9
+00:00:35,358 --> 00:00:38,399
+point three one four times fourteen seventy three.
+
+10
+00:00:38,399 --> 00:00:40,640
+That is fourteen point seven eight.
+
+11
+00:00:41,260 --> 00:00:46,650
+So D is about six point one times ten to the minus eleven square meters per second.
+
+12
+00:00:47,271 --> 00:00:49,817
+That is nowhere near eight point four times ten to
+
+13
+00:00:49,817 --> 00:00:52,566
+the minus seven, so the statement is false.
+
+14
+00:00:54,166 --> 00:00:56,062
+So the answer is B: false.
+
+15
+00:00:56,881 --> 00:01:01,198
+In the exponent, use kelvin, not Celsius, and joules, not kilojoules.

@@ -1,0 +1,39 @@
+1
+00:00:00,800 --> 00:00:03,542
+Teacher midterm practice, question 34.
+
+2
+00:00:04,162 --> 00:00:08,221
+True or false: during a tensile test, engineering stress will
+
+3
+00:00:08,221 --> 00:00:11,809
+always have an equal or higher value than true stress.
+
+4
+00:00:13,509 --> 00:00:17,001
+Engineering stress divides the force by the original area.
+
+5
+00:00:17,001 --> 00:00:19,687
+True stress divides it by the current area.
+
+6
+00:00:20,307 --> 00:00:23,269
+In tension the specimen gets thinner, so the current area
+
+7
+00:00:23,269 --> 00:00:26,231
+is smaller, and the true stress is the higher one.
+
+8
+00:00:27,831 --> 00:00:31,033
+The statement is backwards, so the answer is B: false.
+
+9
+00:00:31,853 --> 00:00:33,826
+Do not reverse the inequality.
+
+10
+00:00:33,826 --> 00:00:36,653
+In tension, true stress is the larger one.

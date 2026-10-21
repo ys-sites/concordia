@@ -1,0 +1,39 @@
+1
+00:00:00,800 --> 00:00:03,544
+Teacher midterm practice, question 31.
+
+2
+00:00:04,164 --> 00:00:08,639
+True or false: F C C and B C C metals are generally ductile because
+
+3
+00:00:08,639 --> 00:00:12,673
+they have enough good slip systems, whereas H C P metals are
+
+4
+00:00:12,673 --> 00:00:17,148
+generally more brittle, with fewer independent slip systems.
+
+5
+00:00:18,849 --> 00:00:23,211
+A metal needs enough independent slip systems to change its shape.
+
+6
+00:00:23,211 --> 00:00:26,438
+F C C has twelve, and B C C twelve or more.
+
+7
+00:00:27,058 --> 00:00:30,141
+H C P has only a few, on its basal plane, so at
+
+8
+00:00:30,141 --> 00:00:33,111
+room temperature it is generally less ductile.
+
+9
+00:00:34,711 --> 00:00:36,427
+So the answer is A: true.
+
+10
+00:00:37,247 --> 00:00:40,911
+Brittle here means comparatively less ductile, not glass brittle.

@@ -1,0 +1,47 @@
+1
+00:00:00,800 --> 00:00:03,589
+Teacher midterm practice, question 37.
+
+2
+00:00:04,209 --> 00:00:09,348
+True or false: generally, weakly bonded solids have a low melting point,
+
+3
+00:00:09,348 --> 00:00:13,936
+a low elastic modulus, and a high thermal expansion coefficient.
+
+4
+00:00:15,636 --> 00:00:17,670
+Use the bonding energy curve.
+
+5
+00:00:17,670 --> 00:00:20,551
+A weak bond is a shallow well, so little energy
+
+6
+00:00:20,551 --> 00:00:23,488
+separates the atoms: a low melting point.
+
+7
+00:00:24,108 --> 00:00:27,979
+The force curve is flatter at the equilibrium spacing, so the
+
+8
+00:00:27,979 --> 00:00:31,910
+force rises slowly with stretch: a low elastic modulus.
+
+9
+00:00:32,530 --> 00:00:35,941
+And a shallow well is more asymmetric, so the atoms move
+
+10
+00:00:35,941 --> 00:00:39,636
+further apart as they vibrate: high thermal expansion.
+
+11
+00:00:41,235 --> 00:00:44,039
+All three trends follow, so the answer is A: true.
+
+12
+00:00:44,859 --> 00:00:47,969
+A weak bond means high thermal expansion, not low.

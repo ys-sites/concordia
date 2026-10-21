@@ -1,0 +1,27 @@
+1
+00:00:00,800 --> 00:00:03,624
+Teacher midterm practice, question 26.
+
+2
+00:00:04,244 --> 00:00:08,019
+True or false: solid state diffusion of atoms requires an
+
+3
+00:00:08,019 --> 00:00:12,474
+adjacent vacant site, and sufficient energy to move the atom.
+
+4
+00:00:14,174 --> 00:00:19,133
+For an atom to jump, there must be an empty site next to it, and the atom must have
+
+5
+00:00:19,133 --> 00:00:23,657
+enough vibrational energy to break its bonds and squeeze past its neighbors.
+
+6
+00:00:25,257 --> 00:00:29,045
+These are exactly the two conditions, so the answer is A: true.
+
+7
+00:00:29,865 --> 00:00:35,120
+Even interstitial diffusion needs an empty site: an empty interstitial position.

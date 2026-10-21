@@ -1,0 +1,51 @@
+1
+00:00:00,800 --> 00:00:03,576
+Teacher midterm practice, question 17.
+
+2
+00:00:04,196 --> 00:00:06,814
+Which statement about atomic bonding is correct?
+
+3
+00:00:08,515 --> 00:00:13,715
+Go through them. A: the three primary bonds are ionic, covalent and metallic.
+
+4
+00:00:13,715 --> 00:00:16,866
+Van der Waals is a secondary bond, so A is wrong.
+
+5
+00:00:17,486 --> 00:00:22,331
+B is backwards: intermolecular bonds are much weaker than primary bonds.
+
+6
+00:00:22,331 --> 00:00:25,541
+And C describes ionic bonding, not metallic.
+
+7
+00:00:26,161 --> 00:00:30,242
+D is correct. The net force is attraction plus repulsion.
+
+8
+00:00:30,242 --> 00:00:34,150
+Where they cancel, at r zero, the potential energy is at its
+
+9
+00:00:34,150 --> 00:00:38,001
+minimum, because force is the slope of the energy curve.
+
+10
+00:00:38,621 --> 00:00:41,541
+And E is wrong: ionic solids have fairly high
+
+11
+00:00:41,541 --> 00:00:44,878
+coordination numbers, six in sodium chloride.
+
+12
+00:00:46,478 --> 00:00:47,559
+The answer is D.
+
+13
+00:00:48,379 --> 00:00:50,784
+Van der Waals is not a primary bond.

@@ -1,0 +1,33 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.563
+Teacher midterm practice, question 39.
+
+2
+00:00:04.183 --> 00:00:08.225
+True or false: as temperature decreases, the fraction of the
+
+3
+00:00:08.225 --> 00:00:12.208
+total number of atoms capable of diffusive motion decreases.
+
+4
+00:00:13.908 --> 00:00:18.362
+Both the fraction of atoms with enough energy to jump, and the number of
+
+5
+00:00:18.362 --> 00:00:22.992
+vacancies, follow a Boltzmann factor: e to the minus Q over k T.
+
+6
+00:00:23.611 --> 00:00:28.434
+Lower the temperature, and both drop exponentially, so fewer atoms can diffuse.
+
+7
+00:00:30.034 --> 00:00:31.750
+So the answer is A: true.
+
+8
+00:00:32.570 --> 00:00:36.605
+This is direct Arrhenius reasoning: cooler means slower diffusion.
