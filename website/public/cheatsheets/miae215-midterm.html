@@ -19,8 +19,8 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #0f172a;
     background-color: #ffffff;
-    line-height: 1.26;
-    font-size: 9.5px;
+    line-height: 1.20;
+    font-size: 11.2px;
     margin: 0;
     padding: 0;
     -webkit-print-color-adjust: exact;
@@ -31,7 +31,7 @@
     width: 8.5in;
     height: 11in;
     max-height: 11in;
-    padding: 0.15in 0.24in 0.13in 0.24in;
+    padding: 0.12in 0.20in 0.10in 0.20in;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -41,101 +41,49 @@
     justify-content: space-between;
   }
 
-  /* Compact Ultra-Sharp Header Bar */
-  .compact-header {
+  /* Ultra-compact top strip (Zero wasted vertical space) */
+  .top-strip {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #f8fafc;
-    border: 1px solid #cbd5e1;
-    border-left: 4.5px solid #0d9488;
-    border-radius: 4px;
-    padding: 4px 9px;
-    margin-bottom: 2.5px;
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .header-title {
-    font-size: 12.2px;
+    border-bottom: 2px solid #0d9488;
+    padding-bottom: 1.5px;
+    margin-bottom: 2px;
+    font-size: 11px;
     font-weight: 800;
-    color: #0f172a;
+  }
+  .top-strip .title {
+    color: #0f766e;
     letter-spacing: -0.01em;
   }
-
-  .header-pill {
-    font-size: 7.5px;
-    font-weight: 800;
-    background: #ccfbf1;
-    color: #0f766e;
-    padding: 1.5px 6px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    border: 1px solid #99f6e4;
-  }
-
-  .header-tags {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .meta-tag {
-    display: inline-flex;
-    align-items: center;
-    font-size: 7.5px;
+  .top-strip .meta {
+    font-size: 10px;
     font-weight: 700;
-    padding: 1.5px 6px;
-    border-radius: 9999px;
-  }
-
-  .meta-tag.primary { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
-  .meta-tag.danger { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
-  .meta-tag.accent { background: #f0fdfa; color: #0f766e; border: 1px solid #99f6e4; }
-  .meta-tag.warning { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
-
-  /* Running Bottom Footer */
-  .page-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 7.4px;
-    font-weight: 600;
     color: #64748b;
-    border-top: 1px solid #e2e8f0;
-    padding-top: 2px;
-    margin-top: 1.5px;
   }
 
   /* Section Title */
   .section-title {
-    font-size: 9.4px;
+    font-size: 11.8px;
     font-weight: 800;
     color: #0f172a;
     border-left: 3px solid #0d9488;
-    padding-left: 5px;
-    margin: 2px 0 2px 0;
+    padding-left: 4.5px;
+    margin: 2px 0 1.5px 0;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
   .section-title span.badge {
-    font-size: 7.2px;
+    font-size: 9.5px;
     font-weight: 700;
     background: #f1f5f9;
     color: #475569;
-    padding: 0.5px 5px;
+    padding: 0.5px 4.5px;
     border-radius: 3px;
     text-transform: none;
-    letter-spacing: normal;
   }
 
   /* Grids */
@@ -149,119 +97,95 @@
   .card {
     background: #ffffff;
     border: 1px solid #cbd5e1;
-    border-radius: 3.5px;
-    padding: 3.5px 5.5px;
+    border-radius: 3px;
+    padding: 3px 5px;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 1.5px;
   }
 
   .card-header {
-    font-size: 8.6px;
+    font-size: 11.2px;
     font-weight: 800;
     color: #1e293b;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
     border-bottom: 1px solid #f1f5f9;
-    padding-bottom: 1.5px;
+    padding-bottom: 1px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   .tag {
-    font-size: 7.0px;
+    font-size: 9px;
     font-weight: 800;
     padding: 0.5px 3.5px;
     border-radius: 2.5px;
   }
-
   .tag-teal { background: #ccfbf1; color: #0f766e; }
   .tag-blue { background: #e0e7ff; color: #3730a3; }
-  .tag-purple { background: #f3e8ff; color: #6b21a8; }
   .tag-amber { background: #fef3c7; color: #92400e; }
   .tag-crimson { background: #fee2e2; color: #991b1b; }
 
-  /* Math & Code Tables */
+  /* Tables */
   table.compact-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 8.6px;
+    font-size: 10.6px;
   }
-
   table.compact-table th {
     background: #f8fafc;
     color: #334155;
     font-weight: 700;
-    font-size: 7.8px;
+    font-size: 10px;
     text-align: left;
-    padding: 1.5px 3.5px;
+    padding: 1px 3px;
     border-bottom: 1px solid #cbd5e1;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
   }
-
   table.compact-table td {
-    padding: 1.2px 3.5px;
+    padding: 0.8px 3px;
     border-bottom: 1px solid #f1f5f9;
     vertical-align: middle;
-  }
-
-  table.compact-table tr:last-child td {
-    border-bottom: none;
   }
 
   /* Code elements */
   code, .mono {
     font-family: Consolas, "Courier New", monospace;
-    font-size: 8.8px;
+    font-size: 10.8px;
     font-weight: 600;
     color: #0f172a;
-  }
-
-  .code-inline {
-    background: #f1f5f9;
-    padding: 0.5px 2.5px;
-    border-radius: 2px;
-    color: #0f172a;
-    font-family: Consolas, monospace;
-    font-size: 8.4px;
-    border: 1px solid #e2e8f0;
   }
 
   .code-block {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 3px;
-    padding: 3px 5px;
+    padding: 2px 4px;
     font-family: Consolas, "Courier New", monospace;
-    font-size: 8.3px;
-    line-height: 1.24;
+    font-size: 10.2px;
+    line-height: 1.16;
     color: #0f172a;
     white-space: pre-wrap;
   }
-
   .code-kw { color: #0f766e; font-weight: 700; }
   .code-type { color: #2563eb; font-weight: 700; }
   .code-str { color: #059669; }
   .code-num { color: #d97706; }
   .code-cmt { color: #64748b; font-style: italic; }
 
-  /* Callout boxes */
+  /* Callouts */
   .callout {
     border-radius: 3px;
-    padding: 2.5px 5px;
-    font-size: 8.3px;
-    line-height: 1.22;
+    padding: 1.5px 3.5px;
+    font-size: 10.5px;
+    line-height: 1.15;
   }
-
   .callout-crimson {
     background: #fef2f2;
     border: 1px solid #fecaca;
     border-left: 2.5px solid #dc2626;
     color: #991b1b;
   }
-
   .callout-amber {
     background: #fffbeb;
     border: 1px solid #fde68a;
@@ -269,57 +193,45 @@
     color: #92400e;
   }
 
-  .callout-teal {
-    background: #f0fdfa;
-    border: 1px solid #99f6e4;
-    border-left: 2.5px solid #0d9488;
-    color: #115e59;
-  }
-
-  /* Master Algorithm Bridge Box */
+  /* Bridge Box */
   .bridge-container {
     background: #f8fafc;
     border: 1px solid #cbd5e1;
     border-left: 3.5px solid #2563eb;
-    border-radius: 4px;
-    padding: 3.5px 6px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .bridge-title {
-    font-size: 9.4px;
-    font-weight: 800;
-    color: #1e40af;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 1.5px;
-  }
-
-  .bridge-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 3.5px;
-  }
-
-  .bridge-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 3px;
-    padding: 3px 5px;
-    font-size: 8.1px;
+    border-radius: 3.5px;
+    padding: 2.5px 4.5px;
     display: flex;
     flex-direction: column;
     gap: 1.5px;
   }
-
+  .bridge-title {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #1e40af;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1px;
+  }
+  .bridge-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3px;
+  }
+  .bridge-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 3px;
+    padding: 2px 3.5px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
   .bridge-card-header {
-    font-size: 8.2px;
+    font-size: 10.4px;
     font-weight: 800;
     color: #0f172a;
     display: flex;
@@ -332,25 +244,21 @@
     width: 100%;
     border-collapse: collapse;
     font-family: Consolas, monospace;
-    font-size: 8.1px;
-    margin: 1px 0;
+    font-size: 10px;
   }
-
   table.trace-table th {
     background: #fee2e2;
     color: #991b1b;
     border: 1px solid #fca5a5;
-    padding: 1.2px 3px;
-    font-size: 7.5px;
+    padding: 0.8px 2px;
+    font-size: 9.5px;
     text-align: center;
   }
-
   table.trace-table td {
     border: 1px solid #e2e8f0;
-    padding: 1.2px 3px;
+    padding: 0.8px 2px;
     text-align: center;
   }
-
   .highlight-garbage {
     background: #fef2f2;
     color: #dc2626;
@@ -362,14 +270,13 @@
     padding: 0;
     margin: 0;
   }
-
   ul.clean-list li {
     position: relative;
     padding-left: 8px;
-    margin-bottom: 1.2px;
-    line-height: 1.24;
+    margin-bottom: 0.8px;
+    line-height: 1.18;
+    font-size: 10.8px;
   }
-
   ul.clean-list li:before {
     content: "•";
     position: absolute;
@@ -377,9 +284,19 @@
     color: #0d9488;
     font-weight: 800;
   }
-
   ul.clean-list li.warn:before {
     color: #dc2626;
+  }
+
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1px;
   }
 </style>
 </head>
@@ -387,267 +304,243 @@
 
 <div class="page">
 
-  <!-- ULTRA-COMPACT HEADER (ZERO WASTED VERTICAL SPACE) -->
-  <div class="compact-header">
-    <div class="header-left">
-      <span class="header-title">MIAE 215 — MIDTERM MASTER EXAM CHEATSHEET</span>
-      <span class="header-pill">1-PAGE · SINGLE-SIDED</span>
-    </div>
-    <div class="header-tags">
-      <span class="meta-tag primary">60% Written Code</span>
-      <span class="meta-tag danger">40% Table Tracing</span>
-      <span class="meta-tag accent">Chapters 1–7</span>
-      <span class="meta-tag warning">Fall 2026 · Concordia</span>
-    </div>
+  <!-- TOP STRIP (ZERO WASTED VERTICAL SPACE) -->
+  <div class="top-strip">
+    <span class="title">MIAE 215 MIDTERM MASTER CHEATSHEET · 1-PAGE EXAM AID</span>
+    <span class="meta">CONCORDIA · GINA CODY SCHOOL · FALL 2026</span>
   </div>
 
-  <!-- ROW 1: CORE SYNTAX, PRECEDENCE, CONTROL FLOW -->
+  <!-- SECTION 1 -->
   <div class="section-title">
-    <span>1. Core Language Architecture, Precedence &amp; Control Flow</span>
+    <span>1. Core Language Syntax, Precedence &amp; Control Flow</span>
     <span class="badge">Lectures 1–5 · Foundation Principles</span>
   </div>
 
   <div class="grid-3">
-    <!-- CARD 1: DATA TYPES & ARITHMETIC -->
+    <!-- DATA TYPES -->
     <div class="card">
       <div class="card-header">
-        <span>Data Types &amp; Numerical Traps</span>
-        <span class="tag tag-teal">Memory / Limits</span>
+        <span>Data Types &amp; Limits</span>
+        <span class="tag tag-teal">Memory</span>
       </div>
       <table class="compact-table">
-        <tr><th>Type</th><th>Bytes</th><th>Range &amp; Precise Behavior</th></tr>
-        <tr><td><code>bool</code></td><td>1</td><td><code>true</code>(1), <code>false</code>(0); any non-zero is true!</td></tr>
-        <tr><td><code>char</code></td><td>1</td><td><code>'0'</code>=48, <code>'A'</code>=65, <code>'a'</code>=97. Math: <code>'c'-'a'=2</code></td></tr>
-        <tr><td><code>int</code></td><td>4</td><td>-2.14B to +2.14B. <span style="color:#b91c1c; font-weight:700;">Integer division truncates!</span></td></tr>
-        <tr><td><code>unsigned</code></td><td>4</td><td>0 to 4.29B. Underflow: <code>0u - 1u == 4294967295</code></td></tr>
-        <tr><td><code>double</code></td><td>8</td><td>~15-16 dig. Compare: <code>fabs(a-b) &lt; 1e-7</code></td></tr>
+        <tr><th>Type</th><th>Bytes</th><th>Range &amp; Behavior</th></tr>
+        <tr><td><code>bool</code></td><td>1</td><td><code>true</code>(1), <code>false</code>(0); any non-zero=true</td></tr>
+        <tr><td><code>char</code></td><td>1</td><td><code>'0'</code>=48, <code>'A'</code>=65, <code>'a'</code>=97; <code>'c'-'a'=2</code></td></tr>
+        <tr><td><code>int</code></td><td>4</td><td>-2.14B to +2.14B. <b style="color:#b91c1c;">Div truncates!</b></td></tr>
+        <tr><td><code>unsigned</code></td><td>4</td><td>0 to 4.29B. Wrap: <code>0u-1u=4294967295</code></td></tr>
+        <tr><td><code>double</code></td><td>8</td><td>~15 dig. <code>fabs(a-b)&lt;1e-7</code></td></tr>
       </table>
       <div class="callout callout-crimson">
-        <strong>#1 Trap — Truncating Division:</strong> <code>7/2 = 3</code>, <code>1/2 = 0</code>, <code>1/(i+1) = 0</code> for <i>i</i> &ge; 1. Cast <em>before</em>: <code>(double)a / b = 3.5</code>. Note: <code>(double)(a / b) = 3.0</code> (too late!).
+        <strong>#1 Trap — Truncating Division:</strong> <code>7/2=3</code>, <code>1/2=0</code>, <code>1/(i+1)=0</code> for <i>i</i>&ge;1. Cast before: <code>(double)a/b=3.5</code>. Note: <code>(double)(a/b)=3.0</code> (too late!).
       </div>
       <div class="callout callout-amber">
-        <strong>Modulo <code>%</code> Rules:</strong> Integers only. Result sign strictly follows left operand: <code>-7 % 3 = -1</code>; <code>7 % -3 = 1</code>; <code>-7 % -3 = -1</code>.
+        <strong>Modulo <code>%</code> Rules:</strong> Integers only. Sign follows left: <code>-7 % 3 = -1</code>; <code>7 % -3 = 1</code>; <code>-7 % -3 = -1</code>.
       </div>
     </div>
 
-    <!-- CARD 2: OPERATORS & PRECEDENCE -->
+    <!-- PRECEDENCE -->
     <div class="card">
       <div class="card-header">
-        <span>Precedence &amp; Evaluation Order</span>
-        <span class="tag tag-amber">Logic / Short-Circuit</span>
+        <span>Precedence &amp; Traps</span>
+        <span class="tag tag-amber">Logic</span>
       </div>
       <ul class="clean-list">
-        <li><strong>Strict Precedence:</strong> <code>() [] x++ x--</code> &rarr; <code>++x --x ! (type) sizeof</code> (R-to-L) &rarr; <code>* / %</code> &rarr; <code>+ -</code> &rarr; <code>&lt;&lt; &gt;&gt;</code> &rarr; <code>&lt; &lt;= &gt; &gt;=</code> &rarr; <code>== !=</code> &rarr; <code>&amp;&amp;</code> &rarr; <code>||</code> &rarr; <code>?:</code> &rarr; <code>= += -= *=</code> (R-to-L).</li>
-        <li><strong>Prefix vs Postfix:</strong> <code>y = ++x;</code> (increments <i>x</i> first, assigns new <i>x</i>). <code>y = x++;</code> (assigns original <i>x</i>, then increments <i>x</i>).</li>
-        <li class="warn"><strong>Chained Relational Trap:</strong> <code>1 &lt; x &lt; 5</code> parses as <code>(1 &lt; x) &lt; 5</code>. Since <code>(0 or 1) &lt; 5</code> is always 1, it is <strong>ALWAYS TRUE</strong>! Must write: <code>(1 &lt; x &amp;&amp; x &lt; 5)</code>.</li>
-        <li class="warn"><strong>Assignment in <code>if</code>:</strong> <code>if(x = 5)</code> assigns 5 to <i>x</i> and evaluates true! Always use equality test: <code>if(x == 5)</code>.</li>
-        <li><strong>Short-Circuit Protection:</strong> In <code>A &amp;&amp; B</code>, if <i>A</i> is false, <i>B</i> is skipped. Safely protects array access: <code>if(i &lt; n &amp;&amp; A[i] &gt; 0)</code>!</li>
+        <li><b>Precedence:</b> <code>() [] x++ x--</code> &rarr; <code>++x --x ! (type) sizeof</code> (R-to-L) &rarr; <code>* / %</code> &rarr; <code>+ -</code> &rarr; <code>&lt;&lt; &gt;&gt;</code> &rarr; <code>&lt; &lt;= &gt; &gt;=</code> &rarr; <code>== !=</code> &rarr; <code>&amp;&amp;</code> &rarr; <code>||</code> &rarr; <code>?:</code> &rarr; <code>= += -= *=</code>.</li>
+        <li><b>Prefix vs Postfix:</b> <code>y=++x</code> (increments <i>x</i> first, assigns new <i>x</i>); <code>y=x++</code> (assigns original <i>x</i>, then increments).</li>
+        <li class="warn"><b>Chained Relational Trap:</b> <code>1 &lt; x &lt; 5</code> &rarr; <code>(1 &lt; x) &lt; 5</code> &rarr; <code>(0 or 1) &lt; 5</code> is <b>ALWAYS TRUE</b>! Must write: <code>(1 &lt; x &amp;&amp; x &lt; 5)</code>.</li>
+        <li class="warn"><b>Assignment in <code>if</code>:</b> <code>if(x = 5)</code> assigns 5 and is always true! Must write <code>if(x == 5)</code>.</li>
+        <li><b>Short-Circuit:</b> In <code>A &amp;&amp; B</code>, if <i>A</i> is false, <i>B</i> is skipped. Protects bounds: <code>if(i &lt; n &amp;&amp; A[i] &gt; 0)</code>!</li>
       </ul>
     </div>
 
-    <!-- CARD 3: CONTROL FLOW & BRANCHING -->
+    <!-- CONTROL FLOW -->
     <div class="card">
       <div class="card-header">
-        <span>Control Flow, Loops &amp; Semicolons</span>
-        <span class="tag tag-purple">Branches / Loop Trips</span>
+        <span>Loops &amp; Branching</span>
+        <span class="tag tag-teal">Flow</span>
       </div>
       <ul class="clean-list">
-        <li><strong>Dangling <code>else</code>:</strong> Binds to closest unmatched <code>if</code> regardless of indentation! Use explicit braces <code>{ }</code>.</li>
-        <li><strong>Switch Constraints:</strong> Expression <em>must</em> be integral (<code>int</code>, <code>char</code>, <code>bool</code>). Cannot switch on <code>double</code>/<code>float</code>! Each <code>case</code> requires <code>break;</code> or execution cascades through next cases!</li>
-        <li><strong>Loop Iteration Trips:</strong>
-          <br>• <code>for(i=0; i&lt;n; i++)</code> &rarr; runs exactly <i>n</i> times; final <i>i</i> = <i>n</i>.
-          <br>• <code>for(i=0; i&lt;=n; i++)</code> &rarr; runs <i>n</i> + 1 times; final <i>i</i> = <i>n</i> + 1.
-          <br>• <code>do { ... } while(cond);</code> &rarr; guaranteed &ge; 1 run! Semicolon mandatory!</li>
-        <li class="warn"><strong>Semicolon Trap:</strong> <code>for(i=0; i&lt;5; i++); { cout&lt;&lt;i; }</code> &rarr; empty body loops 5 times; then prints <code>5</code> once!</li>
-        <li><strong>Jump Keywords:</strong> <code>break</code> exits innermost loop/switch; <code>continue</code> skips rest of body to next update step.</li>
+        <li><b>Dangling <code>else</code>:</b> Binds to closest unmatched <code>if</code>! Always use explicit braces <code>{ }</code>.</li>
+        <li><b>Switch:</b> Must be integral (<code>int</code>/<code>char</code>/<code>bool</code>). No <code>double</code>! Each case requires <code>break;</code> or falls through.</li>
+        <li><b>Loop Trips:</b> <code>for(i=0;i&lt;n;i++)</code> (n trips, final i=n). <code>for(i=0;i&lt;=n;i++)</code> (n+1 trips, final i=n+1).</li>
+        <li class="warn"><b>Semicolon Trap:</b> <code>for(i=0;i&lt;5;i++); { cout&lt;&lt;i; }</code> loops empty 5 times, then prints <code>5</code> once!</li>
+        <li><b>Jump:</b> <code>break</code> exits innermost loop/switch; <code>continue</code> jumps to update step. <code>do{...}while(c);</code> runs &ge; 1 time!</li>
       </ul>
     </div>
   </div>
 
-  <!-- ROW 2: GORDON TRACING, ARRAYS & FUNCTIONS -->
+  <!-- SECTION 2 -->
   <div class="section-title">
     <span>2. Gordon Tracing Protocol (40%), Array Boundaries &amp; Functions</span>
-    <span class="badge">Exam Question 2 Signature · State Verification</span>
+    <span class="badge">Question 2 Signature</span>
   </div>
 
   <div class="grid-3">
-    <!-- CARD 4: DR. GORDON TABLE TRACING (40%) -->
+    <!-- TRACING -->
     <div class="card">
       <div class="card-header">
-        <span>Dr. Gordon Tracing Protocol (40%)</span>
-        <span class="tag tag-crimson">Question 2 Core</span>
+        <span>Tracing Protocol (40%)</span>
+        <span class="tag tag-crimson">Table</span>
       </div>
-      <div style="font-size:7.8px; line-height:1.15; color:#334155;">
-        <strong>Step-by-Step Rule:</strong> Draw column for each variable + <b>Output</b>. Only write when value <i>changes</i>. Print strictly when <code>cout</code> executes.
+      <div style="font-size:10px; line-height:1.15; color:#334155;">
+        <b>Rule:</b> Column per variable + <b>Output</b>. Only write when value changes. Print when <code>cout</code> executes.
       </div>
-      <!-- Example Trace Table -->
       <table class="trace-table">
-        <tr><th>Iteration</th><th><code>i</code></th><th><code>sum</code></th><th><code>a</code></th><th><code>B[i]</code></th><th>Output</th></tr>
+        <tr><th>Iter</th><th><code>i</code></th><th><code>sum</code></th><th><code>a</code></th><th><code>B[i]</code></th><th>Output</th></tr>
         <tr><td>init</td><td>0</td><td>0</td><td>1</td><td>11</td><td>—</td></tr>
         <tr><td>iter 1</td><td>1</td><td>11</td><td>8</td><td>7</td><td><code>1 8</code></td></tr>
         <tr><td>iter 2</td><td>2</td><td>18</td><td>14</td><td>6</td><td><code>2 14</code></td></tr>
         <tr><td>iter 3</td><td>3</td><td>24</td><td>19</td><td>5</td><td><code>3 19</code></td></tr>
-        <tr><td>after loop</td><td>3</td><td>29</td><td>19</td><td>—</td><td><code>29 19 26</code></td></tr>
-        <tr><td>final <code>A[i]</code></td><td>4</td><td>—</td><td>—</td><td><span class="highlight-garbage">G</span></td><td><span class="highlight-garbage">Garbage (G)</span></td></tr>
+        <tr><td>after</td><td>3</td><td>29</td><td>19</td><td>—</td><td><code>29 19 26</code></td></tr>
+        <tr><td><code>A[i]</code></td><td>4</td><td>—</td><td>—</td><td><span class="highlight-garbage">G</span></td><td><span class="highlight-garbage">Garbage (G)</span></td></tr>
       </table>
       <div class="callout callout-crimson">
-        <strong>The Signature Garbage (<code>G</code>) Rule:</strong> For array <code>A[4]</code>, valid indices are <code>0..3</code>. When <code>for(i=0; i&lt;4; i++)</code> terminates, <code>i == 4</code>! Printing <code>cout &lt;&lt; A[i];</code> accesses out-of-bounds memory &rarr; <strong>Write "Garbage" or "G"</strong> for full marks!
+        <b>Garbage (<code>G</code>) Rule:</b> Array <code>A[4]</code> has indices <code>0..3</code>. When <code>for(i=0;i&lt;4;i++)</code> ends, <code>i==4</code>. Printing <code>cout&lt;&lt;A[i];</code> is out-of-bounds &rarr; <b>Write "Garbage" or "G"</b>!
       </div>
     </div>
 
-    <!-- CARD 5: 1D/2D ARRAYS & C-STRINGS -->
+    <!-- ARRAYS -->
     <div class="card">
       <div class="card-header">
-        <span>Arrays (1D &amp; 2D) &amp; C-Strings</span>
-        <span class="tag tag-blue">Memory Layout</span>
+        <span>Arrays &amp; C-Strings</span>
+        <span class="tag tag-blue">Memory</span>
       </div>
       <ul class="clean-list">
-        <li><strong>Partial Initialization:</strong> <code>int A[5] = {10, 20};</code> &rarr; <code>A[0]=10, A[1]=20</code>, and <code>A[2]=A[3]=A[4]=0</code> (guaranteed zeroed, <em>never</em> garbage!).</li>
-        <li><strong>Total Element Count:</strong> <code>int n = sizeof(A) / sizeof(A[0]);</code></li>
-        <li><strong>2D Matrix Row-Major:</strong> <code>M[R][C]</code> has row <i>i</i> &in; [0, R-1] and col <i>j</i> &in; [0, C-1]. Cell address: <code>*(M[0] + i*C + j)</code>. When passing to functions, column size <strong>MUST</strong> be constant: <code>void f(double M[][4], int r)</code>.</li>
-        <li><strong>C-String Null Terminator:</strong> <code>char s[20];</code> <strong>MUST</strong> end with <code>'\0'</code> (ASCII 0). Size must be &ge; length + 1! <code>strlen(s)</code> counts chars excluding <code>'\0'</code>.</li>
-        <li><strong>Stream Reading:</strong> <code>cin &gt;&gt; s;</code> stops at whitespace. <code>cin.getline(s, 20);</code> reads entire line including spaces up to 19 characters.</li>
+        <li><b>Partial Init:</b> <code>int A[5]={10,20};</code> &rarr; A[0]=10, A[1]=20, A[2]=A[3]=A[4]=<b>0</b> (guaranteed zero, NOT garbage!).</li>
+        <li><b>Elements:</b> <code>int n = sizeof(A) / sizeof(A[0]);</code></li>
+        <li><b>2D Matrix M[R][C]:</b> Rows 0..R-1, cols 0..C-1. Passing to function requires col size: <code>void f(double M[][4], int r)</code>.</li>
+        <li><b>C-String:</b> <code>char s[20];</code> <b>MUST</b> end with <code>'&#92;0'</code>. <code>strlen(s)</code> excludes <code>'&#92;0'</code>. Array size &ge; len+1.</li>
+        <li><b>Input:</b> <code>cin &gt;&gt; s;</code> stops at space. <code>cin.getline(s, 20);</code> reads line including spaces.</li>
       </ul>
     </div>
 
-    <!-- CARD 6: FUNCTIONS & FILE I/O -->
+    <!-- FUNCTIONS -->
     <div class="card">
       <div class="card-header">
-        <span>Functions, References &amp; File I/O</span>
-        <span class="tag tag-teal">Modular Design</span>
+        <span>Functions &amp; File I/O</span>
+        <span class="tag tag-teal">Streams</span>
       </div>
       <ul class="clean-list">
-        <li><strong>Pass-by-Value:</strong> <code>void f(int x)</code> &rarr; makes local copy; changes inside do NOT modify the caller's variable.</li>
-        <li><strong>Pass-by-Reference:</strong> <code>void f(int &amp;x)</code> &rarr; receives memory alias; changes <strong>directly modify caller</strong>! Classic swap: <code>void swap(double &amp;a, double &amp;b){ double t=a; a=b; b=t; }</code></li>
-        <li><strong>Arrays to Functions:</strong> Always decay to pointers: <code>void f(double A[], int n)</code>. Modifies caller array directly! Array size cannot be known via <code>sizeof</code> inside function; always pass <i>n</i>.</li>
-        <li><strong>File Streams (<code>&lt;fstream&gt;</code>):</strong>
-          <br>• Reading: <code>ifstream fin("data.txt"); if(!fin) return 1;</code>
-          <br>• Reading loop: <code>while(fin &gt;&gt; val &amp;&amp; n &lt; MAX) A[n++] = val; fin.close();</code>
-          <br>• Writing: <code>ofstream fout("out.txt"); fout &lt;&lt; fixed &lt;&lt; setprecision(3) &lt;&lt; ans; fout.close();</code>
+        <li><b>Pass-by-Value:</b> <code>void f(int x)</code> makes local copy; caller unchanged.</li>
+        <li><b>Pass-by-Reference:</b> <code>void f(int &amp;x)</code> receives alias; <b>modifies caller</b>! Swap: <code>void swap(double &amp;a, double &amp;b){ double t=a; a=b; b=t; }</code></li>
+        <li><b>Arrays:</b> Decay to pointer: <code>void f(double A[], int n)</code>. Modifies caller array directly! Always pass <i>n</i>.</li>
+        <li><b>File Streams (<code>&lt;fstream&gt;</code>):</b>
+          <br>• In: <code>ifstream fin("in.txt"); if(!fin) return 1;</code>
+          <br>• Loop: <code>while(fin &gt;&gt; val &amp;&amp; n &lt; MAX) A[n++] = val; fin.close();</code>
+          <br>• Out: <code>ofstream fout("out.txt"); fout &lt;&lt; fixed &lt;&lt; setprecision(3) &lt;&lt; ans; fout.close();</code>
         </li>
       </ul>
     </div>
   </div>
 
-  <!-- ROW 3: THE 60% WRITE-A-PROGRAM MASTER ALGORITHM BRIDGE -->
+  <!-- SECTION 3: BRIDGE (60% CODE) -->
   <div class="bridge-container">
     <div class="bridge-title">
-      <span>3. The 60% Write-a-Program Master Algorithm Bridge (Exam Critical Situations)</span>
-      <span class="tag tag-blue">Dr. Gordon Handwritten Code Solutions · Tested Templates</span>
+      <span>3. The 60% Write-a-Program Master Algorithm Bridge</span>
+      <span class="tag tag-blue">Exam Code Templates &amp; Explanations</span>
     </div>
 
     <div class="bridge-grid">
-      <!-- RECIPE 1: DYNAMIC ARRAYS (1D & 2D) -->
+      <!-- RECIPE 1 -->
       <div class="bridge-card">
         <div class="bridge-card-header">
           <strong>1. Dynamic 1D &amp; 2D Array Zero-Leak</strong>
-          <span class="tag tag-teal"><code>new[]</code> / <code>delete[]</code></span>
+          <span class="tag tag-teal"><code>new[]</code>/<code>delete[]</code></span>
         </div>
-        <div class="code-block"><span class="code-cmt">// 1D Dynamic Array:</span>
-<span class="code-type">int</span> n; cin &gt;&gt; n;
+        <div class="code-block"><span class="code-cmt">// 1D Array: alloc, check null, free with delete[]:</span>
 <span class="code-type">double</span> *A = <span class="code-kw">new</span> <span class="code-type">double</span>[n];
 <span class="code-kw">if</span> (!A) { cout &lt;&lt; <span class="code-str">"Error"</span>; <span class="code-kw">return</span> <span class="code-num">1</span>; }
 <span class="code-kw">delete</span>[] A; A = <span class="code-type">nullptr</span>;
-
-<span class="code-cmt">// 2D Dynamic Array (R x C):</span>
+<span class="code-cmt">// 2D Array (R x C): alloc rows, then dealloc rows:</span>
 <span class="code-type">double</span> **M = <span class="code-kw">new</span> <span class="code-type">double</span>*[R];
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; R; i++) M[i] = <span class="code-kw">new</span> <span class="code-type">double</span>[C];
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; R; i++) <span class="code-kw">delete</span>[] M[i];
 <span class="code-kw">delete</span>[] M; M = <span class="code-type">nullptr</span>;</div>
       </div>
 
-      <!-- RECIPE 2: ARRAY EQUALITY -->
+      <!-- RECIPE 2 -->
       <div class="bridge-card">
         <div class="bridge-card-header">
           <strong>2. Array Equality &amp; Comparison</strong>
           <span class="tag tag-amber">Tolerance &amp; Break</span>
         </div>
-        <div class="code-block"><span class="code-type">bool</span> match = <span class="code-kw">true</span>;
+        <div class="code-block"><span class="code-cmt">// Compare element-by-element; break on mismatch:</span>
+<span class="code-type">bool</span> match = <span class="code-kw">true</span>;
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) {
   <span class="code-cmt">// Doubles tolerance: fabs(A[i]-B[i]) &gt; 1e-7</span>
-  <span class="code-kw">if</span> (A[i] != B[i]) { 
-    match = <span class="code-kw">false</span>; <span class="code-kw">break</span>; 
-  }
+  <span class="code-kw">if</span> (A[i] != B[i]) { match = <span class="code-kw">false</span>; <span class="code-kw">break</span>; }
 }
-<span class="code-kw">if</span> (match) cout &lt;&lt; <span class="code-str">"Arrays equal"</span>;
-<span class="code-kw">else</span> cout &lt;&lt; <span class="code-str">"Arrays not equal"</span>;</div>
+<span class="code-kw">if</span> (match) cout &lt;&lt; <span class="code-str">"Equal"</span>; <span class="code-kw">else</span> cout &lt;&lt; <span class="code-str">"Not equal"</span>;</div>
       </div>
 
-      <!-- RECIPE 3: IN-PLACE REVERSAL & MERGE -->
+      <!-- RECIPE 3 -->
       <div class="bridge-card">
         <div class="bridge-card-header">
           <strong>3. In-Place Reversal &amp; Merge</strong>
-          <span class="tag tag-purple">No Extra Array</span>
+          <span class="tag tag-teal">No Extra Mem</span>
         </div>
-        <div class="code-block"><span class="code-cmt">// Reverse array A of size n in-place</span>
+        <div class="code-block"><span class="code-cmt">// In-place reverse: swap i with n-1-i up to n/2:</span>
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n / <span class="code-num">2</span>; i++) {
-  <span class="code-type">double</span> temp = A[i];
-  A[i] = A[n - <span class="code-num">1</span> - i];
-  A[n - <span class="code-num">1</span> - i] = temp;
+  <span class="code-type">double</span> t = A[i];
+  A[i] = A[n - <span class="code-num">1</span> - i]; A[n - <span class="code-num">1</span> - i] = t;
 }
-<span class="code-cmt">// Concatenate A and B (size n) into C (2n):</span>
-<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) {
-  C[i] = A[i]; C[i + n] = B[i];
-}</div>
+<span class="code-cmt">// Concatenate A and B (size n) into C (size 2n):</span>
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) { C[i] = A[i]; C[i+n] = B[i]; }</div>
       </div>
 
-      <!-- RECIPE 4: MIN/MAX WITH INDEX & DOT PRODUCT -->
+      <!-- RECIPE 4 -->
       <div class="bridge-card">
         <div class="bridge-card-header">
           <strong>4. Min/Max &amp; Safe Init</strong>
-          <span class="tag tag-crimson">Never Init to 0!</span>
+          <span class="tag tag-crimson">Never Init 0</span>
         </div>
-        <div class="code-block"><span class="code-cmt">// NEVER init max/min to 0 (fails if all &lt; 0!)</span>
+        <div class="code-block"><span class="code-cmt">// Init max with A[0] (fails if all negative!):</span>
 <span class="code-type">double</span> maxV = A[<span class="code-num">0</span>]; <span class="code-type">int</span> maxIdx = <span class="code-num">0</span>;
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">1</span>; i &lt; n; i++) {
   <span class="code-kw">if</span> (A[i] &gt; maxV) { maxV = A[i]; maxIdx = i; }
 }
-<span class="code-cmt">// Dot product &amp; Average:</span>
-<span class="code-type">double</span> dot = <span class="code-num">0.0</span>;
-<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) dot += A[i] * B[i];
-<span class="code-type">double</span> avg = (n &gt; <span class="code-num">0</span>) ? (<span class="code-type">double</span>)dot / n : <span class="code-num">0.0</span>;</div>
+<span class="code-cmt">// Dot product &amp; average: sum += A[i]*B[i]; avg=sum/n;</span></div>
       </div>
 
-      <!-- RECIPE 5: C-STRING NO-SPACE & COPY -->
+      <!-- RECIPE 5 -->
       <div class="bridge-card">
         <div class="bridge-card-header">
           <strong>5. C-String Space Stripper</strong>
-          <span class="tag tag-teal"><code>'\0'</code> Re-seal Trap</span>
+          <span class="tag tag-teal"><code>'&#92;0'</code> Re-seal</span>
         </div>
-        <div class="code-block"><span class="code-type">void</span> remove_spaces(<span class="code-type">char</span> s[]) {
-  <span class="code-type">int</span> j = <span class="code-num">0</span>;
-  <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; s[i] != <span class="code-str">'\0'</span>; i++) {
+        <div class="code-block"><span class="code-cmt">// In-place space removal (Gordon staple):</span>
+<span class="code-type">void</span> remove_spaces(<span class="code-type">char</span> s[]) {
+  <span class="code-type">int</span> j = <span class="code-num">0</span>; <span class="code-cmt">// write pointer</span>
+  <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; s[i] != <span class="code-str">'&#92;0'</span>; i++) {
     <span class="code-kw">if</span> (s[i] != <span class="code-str">' '</span>) s[j++] = s[i];
   }
-  s[j] = <span class="code-str">'\0'</span>; <span class="code-cmt">// CRUCIAL: Re-terminate null!</span>
-}
-<span class="code-cmt">// String copy without &lt;cstring&gt;:</span>
-<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; (dest[i] = src[i]) != <span class="code-str">'\0'</span>; i++);</div>
+  s[j] = <span class="code-str">'&#92;0'</span>; <span class="code-cmt">// CRUCIAL: Must re-seal with null!</span>
+}</div>
       </div>
 
-      <!-- RECIPE 6: MATRIX ROW/COL PROCESSING -->
+      <!-- RECIPE 6 -->
       <div class="bridge-card">
         <div class="bridge-card-header">
-          <strong>6. 2D Matrix Sum &amp; Transpose</strong>
+          <strong>6. 2D Matrix Transpose &amp; Sum</strong>
           <span class="tag tag-blue">Nested Loops</span>
         </div>
         <div class="code-block"><span class="code-cmt">// Transpose square matrix M[N][N]:</span>
+<span class="code-cmt">// j starts at i+1 to avoid re-swapping:</span>
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; N; i++) {
   <span class="code-kw">for</span> (<span class="code-type">int</span> j = i + <span class="code-num">1</span>; j &lt; N; j++) {
-    <span class="code-type">double</span> t = M[i][j];
-    M[i][j] = M[j][i]; M[j][i] = t;
+    <span class="code-type">double</span> t = M[i][j]; M[i][j] = M[j][i]; M[j][i] = t;
   }
-}
-<span class="code-cmt">// Row sum: for(j=0;j&lt;C;j++) rsum += M[i][j];</span></div>
+}</div>
       </div>
     </div>
   </div>
 
-  <!-- RUNNING BOTTOM FOOTER -->
+  <!-- FOOTER -->
   <div class="page-footer">
-    <span>CONCORDIA UNIVERSITY · GINA CODY SCHOOL OF ENGINEERING · MIAE 215</span>
-    <span>EXAM SURVIVAL GUIDE · 1-PAGE CONDENSED MASTER AID (1-SIDED)</span>
-    <span>DR. GORDON MOODLE COMPLIANT · PAGE 1 OF 1</span>
+    <span>CONCORDIA UNIVERSITY · GINA CODY SCHOOL · MIAE 215</span>
+    <span>MIDTERM EXAM AID · STRICT 1-PAGE SINGLE-SIDED · 12PX FONT SCALE</span>
+    <span>DR. GORDON EXAM READY · PAGE 1 OF 1</span>
   </div>
 
 </div>
