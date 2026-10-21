@@ -18,6 +18,7 @@ import { PaperGuide } from './PaperGuide';
 import { ExamPaper } from './ExamPaper';
 import { VaultLessonSubPage } from './VaultLessonSubPage';
 import { VaultQuizSubPage } from './VaultQuizSubPage';
+import { GordonMidtermsDoc } from './GordonMidtermsDoc';
 import './midtermGate.css';
 import './gateExtras.css';
 import './guided.css';
@@ -39,6 +40,7 @@ const docList = (course: GateCourse): DocDef[] => {
     { id: 'quiz', title: 'Skill Quiz', short: 'Skill Quiz', sub: 'Build your own quiz: choose the chapter or subtopics and the kind of questions; get the source and a video after every answer.', icon: <Target size={20} /> }
   ];
   if (course === 'ENGR213') docs.push({ id: 'gradesaver', title: 'Tutor notes (Gradesaver)', short: 'Tutor notes', sub: 'The handwritten tutor notes, the typeset blueprint, and the 5-phase solving system.', icon: <Sparkles size={20} /> });
+  if (course === 'MIAE215') docs.push({ id: 'gordon', title: 'Dr. Gordon Midterms & Exam Analytics', short: 'Gordon Midterms', sub: 'All past midterms from Dr. Gordon (Fall 2023, Fall 2022, Midterm Reviews & Quizzes), full exam questions, official solutions, code sandboxes, and deep exam analytics.', icon: <Sparkles size={20} /> });
   return docs;
 };
 
@@ -213,6 +215,12 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
         setDrawerQ(null);
         setSubView(null);
         setDoc('analyzer');
+        scrollTop();
+      },
+      openGordon: () => {
+        setDrawerQ(null);
+        setSubView(null);
+        setDoc('gordon');
         scrollTop();
       },
       openQuiz: (preset?: QuizPreset) => {
@@ -420,6 +428,7 @@ export const MidtermGate: React.FC<Props> = ({ course, onViewPdf, paper = false 
               {view === 'solved' && content.paperDoc && <PaperGuide content={content} idx={idx} nav={nav} onDrill={() => openDoc('quiz')} />}
               {view === 'quiz' && <SkillQuiz content={content} idx={idx} nav={nav} preset={quizPreset} paper={paper ? paperExam?.label ?? 'Last year’s paper' : undefined} />}
               {view === 'gradesaver' && content.gradesaver && <GradesaverDoc content={content} onViewPdf={onViewPdf} />}
+              {view === 'gordon' && <GordonMidtermsDoc content={content} nav={nav} />}
             </>
           )}
         </>

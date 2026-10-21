@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 94
+### Currently Pending Uploads: 95
 
 ---
 
@@ -1100,4 +1100,16 @@
 - **Title**: `MIAE 221 - In-Class Lecture Notes Master Compendium (Lectures 1-11 Annotated)`
 - **Academic year**: `2025/2026`
 - **Description**: Complete 168-page master compendium of student in-class handwritten lecture notes and annotated lecture slide decks covering Dr. Medraj's Fall 2026 Lectures 1 through 11. Includes complete in-class chalkboard derivations, crystal structure unit cells (FCC, BCC, HCP), Miller indices, linear & planar densities, Bragg's Law XRD calculations, point defects and Hume-Rothery criteria, grain boundary microscopy, non-steady-state Fick's diffusion examples, and full mechanical properties & tensile stress-strain curves.
+
+---
+
+### 📄 MIAE 215 - Dr Gordon Past Midterms and Comprehensive Exam Analytics Master Guide.md
+- **Exact Filename**: `MIAE 215 - Dr Gordon Past Midterms and Comprehensive Exam Analytics Master Guide.md`
+- **University**: `Concordia University`
+- **Course**: `Mechanical, Industrial & Aerospace engineering (MIAE 215)`
+- **Category**: `Practice materials`
+- **Title**: `MIAE 215 - Dr Gordon Past Midterms & Comprehensive Exam Analytics Master Guide`
+- **Academic year**: `2025/2026`
+- **Description**: Exhaustive exam intelligence guide and pedagogical solutions manual for Dr. Brandon Gordon's MIAE 215 midterms at Concordia University. Covers Fall 2023 Midterm Q2 (40% weight) with full column-by-column trace tables, Fall 2022 Midterm Q1 (50% weight) 5-part array dot-product and sentinel loop code, Midterm Reviews 1 & 4, precursor quizzes, 0% 2D array exam rule, and top 5 traps with verified C++ solutions.
+
 

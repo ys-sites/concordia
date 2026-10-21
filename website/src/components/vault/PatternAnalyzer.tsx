@@ -89,6 +89,18 @@ export const PatternAnalyzer: React.FC<Props> = ({ content, idx, nav, focusTopic
             <p className="mg-section-sub">
               {content.gordonMatches.summary}
             </p>
+            {nav.openGordon && (
+              <div style={{ marginTop: 10 }}>
+                <button
+                  type="button"
+                  className="mg-btn small primary"
+                  onClick={() => nav.openGordon?.()}
+                  title="Open all Gordon past midterms and exam analytics"
+                >
+                  <Sparkles size={13} /> Open Gordon Midterms &amp; Exam Analytics Hub
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="mg-gordon-tab-bar">

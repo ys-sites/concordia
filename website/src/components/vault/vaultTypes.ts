@@ -220,6 +220,75 @@ export interface GateContent {
     tabs: GradesaverTab[];
   };
   gordonMatches?: GordonMatchesData;
+  gordonExamsData?: GordonExamsData;
+}
+
+export interface GordonTraceTable {
+  headers: string[];
+  rows: (string | number)[][];
+  caption?: string;
+}
+
+export interface GordonExamQuestion {
+  id: string;
+  part: string;
+  title: string;
+  points?: string;
+  weight?: string;
+  description: string;
+  codeSnippet: string;
+  expectedOutput?: string;
+  traceTable?: GordonTraceTable;
+  conceptsTested: string[];
+  trapAlert?: string;
+  solutionNotes?: string;
+}
+
+export interface GordonExamPaper {
+  id: string;
+  term: string;
+  title: string;
+  officialWeight: string;
+  format: string;
+  overview: string;
+  officialNotes?: string[];
+  questions: GordonExamQuestion[];
+  fullProgramCode?: string;
+}
+
+export interface GordonTopicFrequency {
+  topic: string;
+  frequency: number;
+  frequencyLabel: string;
+  category: string;
+  examOccurrences: string[];
+  description: string;
+  trapWarning: string;
+}
+
+export interface GordonTrapAnalysis {
+  trapName: string;
+  severity: 'CRITICAL' | 'HIGH' | 'MEDIUM';
+  exampleSnippet: string;
+  whatStudentsDoWrong: string;
+  correctBehavior: string;
+  gordonQuote?: string;
+}
+
+export interface GordonExamsData {
+  summary: string;
+  analytics: {
+    weightDistribution: {
+      tracingPercentage: number;
+      codingPercentage: number;
+      excludedPercentage: number;
+      rulesSummary: string[];
+    };
+    topicFrequencies: GordonTopicFrequency[];
+    topTraps: GordonTrapAnalysis[];
+    strategyTips: string[];
+  };
+  papers: GordonExamPaper[];
 }
 
 export interface GordonMatchItem {
@@ -249,7 +318,7 @@ export interface QuizPreset {
   cats?: QuizCat[];
 }
 
-export type GateDoc = 'plan' | 'topics' | 'analyzer' | 'quiz' | 'gradesaver' | 'solved' | 'exam';
+export type GateDoc = 'plan' | 'topics' | 'analyzer' | 'quiz' | 'gradesaver' | 'solved' | 'exam' | 'gordon';
 
 // ── solved-paper page (course badge only; see paper-a.mjs in the INDU 211 gate source) ──
 export type DocCell = string | { v: string; c?: number; hl?: boolean };
@@ -340,4 +409,5 @@ export interface GateNav {
   showTopic: (topic: string) => void;
   openQuiz: (preset?: QuizPreset) => void;
   openAnalytics: () => void;
+  openGordon?: () => void;
 }
