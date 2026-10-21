@@ -600,8 +600,22 @@ int main()
   }
 ];
 
+const BLANK_CANVAS_CODE = `#include <iostream>
+#include <cmath>
+#include <cstdio>
+
+using namespace std;
+
+int main()
+{
+    // Write your complete C++ solution from scratch here:
+
+    return 0;
+}`;
+
 export const CppCodeLab: React.FC = () => {
   const [selectedChallengeId, setSelectedChallengeId] = useState<string>('c1_midterm2022');
+  const [editorMode, setEditorMode] = useState<'guided' | 'blank'>('guided');
   const [userCodeMap, setUserCodeMap] = useState<Record<string, string>>(() => {
     const init: Record<string, string> = {};
     CHALLENGES.forEach((c) => {
@@ -619,6 +633,22 @@ export const CppCodeLab: React.FC = () => {
   const currentCode = userCodeMap[activeChallenge.id] || activeChallenge.starterCode;
   const currentOutput = terminalOutputMap[activeChallenge.id] || '';
   const isSolutionVisible = !!showSolutionMap[activeChallenge.id];
+
+  const handleModeChange = (mode: 'guided' | 'blank') => {
+    audio.playClick();
+    setEditorMode(mode);
+    if (mode === 'blank') {
+      setUserCodeMap((prev) => ({
+        ...prev,
+        [activeChallenge.id]: BLANK_CANVAS_CODE
+      }));
+    } else {
+      setUserCodeMap((prev) => ({
+        ...prev,
+        [activeChallenge.id]: activeChallenge.starterCode
+      }));
+    }
+  };
 
   // Handle Code Change
   const handleCodeChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -821,9 +851,29 @@ export const CppCodeLab: React.FC = () => {
           <div className="ccl-editor-wrapper">
             {/* Editor Top Bar */}
             <div className="ccl-editor-topbar">
-              <div className="ccl-file-name">
-                <FileCode size={16} />
-                <span>program.cpp</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div className="ccl-file-name">
+                  <FileCode size={16} />
+                  <span>program.cpp</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '3px', background: '#0b1120', padding: '2px 4px', borderRadius: '6px', border: '1px solid #334155' }}>
+                  <button
+                    type="button"
+                    className={`ccl-mode-btn ${editorMode === 'guided' ? 'active' : ''}`}
+                    onClick={() => handleModeChange('guided')}
+                    title="Load starter template with TODO comments"
+                  >
+                    Template
+                  </button>
+                  <button
+                    type="button"
+                    className={`ccl-mode-btn ${editorMode === 'blank' ? 'active' : ''}`}
+                    onClick={() => handleModeChange('blank')}
+                    title="Write from scratch like on the real exam"
+                  >
+                    Blank Canvas (Exam Mode)
+                  </button>
+                </div>
               </div>
               <div className="ccl-editor-actions">
                 <button

@@ -262,6 +262,23 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
                 <span>Start Midterm Review Drill</span>
               </button>
             )}
+            {course.id === 'MIAE215' && (
+              <button
+                className="tp-start-drill-btn"
+                style={{
+                  background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
+                  borderColor: '#047857',
+                  boxShadow: '0 4px 14px rgba(5, 150, 105, 0.3)'
+                }}
+                onClick={() => {
+                  audio.playClick();
+                  setActiveTab('code_lab');
+                }}
+              >
+                <Code2 size={18} />
+                <span>C++ Code Lab (60% Weight)</span>
+              </button>
+            )}
           </div>
         </div>
 

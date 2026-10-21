@@ -155,41 +155,64 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   // Track native fullscreen change
   useEffect(() => {
     const handleFullscreenChange = () => {
-      const isFs = !!document.fullscreenElement;
+      const isFs = !!(
+        document.fullscreenElement ||
+        (document as any).webkitFullscreenElement ||
+        (document as any).mozFullScreenElement ||
+        (document as any).msFullscreenElement
+      );
       setIsFullscreen(isFs);
-      // When entering fullscreen, show controls briefly then autohide
-      setShowControls(true);
-      if (isFs && isPlaying) {
-        if (hideControlsTimerRef.current) clearTimeout(hideControlsTimerRef.current);
+
+      if (hideControlsTimerRef.current) {
+        clearTimeout(hideControlsTimerRef.current);
+      }
+
+      if (isFs) {
+        // In fullscreen: show controls momentarily for 1.5s, then automatically hide
+        setShowControls(true);
         hideControlsTimerRef.current = window.setTimeout(() => {
           setShowControls(false);
-        }, 2500);
+          setShowSpeedMenu(false);
+        }, 1500);
+      } else {
+        setShowControls(true);
       }
     };
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
       document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
     };
-  }, [isPlaying]);
+  }, []);
 
-  // Mouse activity timer for hiding controls on idle
+  // Mouse activity timer: in fullscreen or during playback, autohide controls when idle
   const handleUserActivity = useCallback(() => {
     setShowControls(true);
     if (hideControlsTimerRef.current) {
       clearTimeout(hideControlsTimerRef.current);
     }
 
-    // Only auto-hide when video is playing
-    if (isPlaying) {
-      hideControlsTimerRef.current = window.setTimeout(() => {
-        setShowControls(false);
-        setShowSpeedMenu(false);
-      }, 2500);
+    // Always hide controls after 1.8s of no mouse movement
+    hideControlsTimerRef.current = window.setTimeout(() => {
+      setShowControls(false);
+      setShowSpeedMenu(false);
+    }, 1800);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (hideControlsTimerRef.current) {
+      clearTimeout(hideControlsTimerRef.current);
     }
-  }, [isPlaying]);
+    // Instantly hide when mouse leaves player container
+    setShowControls(false);
+    setShowSpeedMenu(false);
+  }, []);
 
   // Clean up timer on unmount
   useEffect(() => {
@@ -300,6 +323,7 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
         }`}
         onMouseMove={handleUserActivity}
         onMouseEnter={handleUserActivity}
+        onMouseLeave={handleMouseLeave}
         onClick={handleUserActivity}
       >
         <video
@@ -310,6 +334,8 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
           crossOrigin="anonymous"
           poster={getVideoUrl(lesson.poster)}
           src={getVideoUrl(lesson.video)}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={handleEnded}
