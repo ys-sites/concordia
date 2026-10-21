@@ -2,236 +2,253 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIAE 221 — Materials Science Midterm Master Cheat Sheet</title>
+<title>MIAE 221 — Official 1-Page Midterm Master Cheat Sheet</title>
 <style>
+  @page {
+    size: letter portrait;
+    margin: 0.18in 0.22in 0.15in 0.22in;
+  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { font-size: 9.8pt; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    color: #111827;
-    line-height: 1.3;
-    padding: 0.3in 0.35in;
-    background: #fff;
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.15;
+    color: #000000;
+    background: #ffffff;
   }
   .no-print {
-    background: #f3f4f6;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    padding: 8px 14px;
-    margin-bottom: 12px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 6px 12px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 11pt;
   }
   .btn {
-    background: #0f766e;
+    background: #9f1239;
     color: white;
-    padding: 5px 12px;
+    padding: 4px 10px;
     border-radius: 4px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 10pt;
     border: none;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
   }
   .btn-outline {
-    background: transparent;
-    color: #0f766e;
-    border: 1px solid #0f766e;
-  }
-  h1 {
-    font-size: 13.5pt;
-    text-align: center;
-    letter-spacing: -0.2px;
+    background: white;
     color: #9f1239;
-    border-bottom: 2px solid #be123c;
-    padding-bottom: 2px;
-    margin-bottom: 2px;
+    border: 1px solid #9f1239;
   }
-  .sub {
+  @media print {
+    .no-print { display: none !important; }
+  }
+  .header {
     text-align: center;
-    font-size: 8.5pt;
-    color: #4b5563;
-    margin-bottom: 6px;
+    border-bottom: 2px solid #9f1239;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+  }
+  .header h1 {
+    font-size: 13pt;
+    font-weight: 800;
+    color: #9f1239;
+    letter-spacing: -0.2px;
+  }
+  .header .sub {
+    font-size: 9.5pt;
+    color: #333333;
+    font-weight: 600;
   }
   .cols {
-    columns: 2;
-    column-gap: 14px;
-    column-rule: 1px solid #e5e7eb;
+    display: flex;
+    gap: 12px;
   }
-  section {
-    break-inside: avoid;
-    margin-bottom: 6px;
+  .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
-  h2 {
-    font-size: 9.5pt;
-    color: #fff;
-    background: #9f1239;
-    padding: 1.5px 5px;
+  .box {
+    border: 1px solid #94a3b8;
     border-radius: 3px;
-    margin-bottom: 2px;
+    padding: 3px 5px;
+    background: #ffffff;
+  }
+  .box-title {
+    font-size: 10pt;
+    font-weight: 800;
+    color: #ffffff;
+    background: #9f1239;
+    padding: 1px 4px;
+    margin: -3px -5px 3px -5px;
+    border-radius: 2px 2px 0 0;
+  }
+  .box-title.dark { background: #1e293b; }
+  .box-title.teal { background: #0f766e; }
+  code, .mono {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9.5pt;
     font-weight: 700;
   }
-  h2.teal { background: #0f766e; }
-  h2.indigo { background: #4338ca; }
-  code, .mono {
-    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-    font-size: 9pt;
-    color: #9f1239;
-    background: #fdf2f8;
-    padding: 1px 3px;
-    border-radius: 2px;
-  }
-  ul { padding-left: 13px; }
-  li { margin-bottom: 1.5px; }
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 8.5pt;
-    margin: 2px 0;
+    font-size: 9.5pt;
+    margin: 1px 0;
   }
-  td, th {
-    border: 1px solid #d1d5db;
-    padding: 1.5px 4px;
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 1px 3px;
     text-align: left;
   }
-  th {
-    background: #f9fafb;
+  th { background: #f1f5f9; font-weight: 700; }
+  ul { padding-left: 12px; margin: 0; }
+  li { margin-bottom: 1px; }
+  .trap { color: #b91c1c; font-weight: 800; }
+  .hl { color: #9f1239; font-weight: 700; }
+  .formula {
+    background: #fdf2f8;
+    border-left: 2.5px solid #9f1239;
+    padding: 1px 4px;
+    margin: 1px 0;
     font-weight: 700;
   }
-  .formula {
-    background: #f9fafb;
-    border-left: 2.5px solid #be123c;
-    padding: 2px 6px;
-    margin: 2px 0;
-    font-weight: 600;
-  }
-  .key { color: #9f1239; font-weight: 700; }
-  .trap { color: #b91c1c; font-weight: 700; }
-  @page { size: letter; margin: 0.25in 0.3in; }
-  @media print {
-    body { padding: 0; }
-    .no-print { display: none !important; }
-    .cols { columns: 2; }
-  }
+  .row-flex { display: flex; justify-content: space-between; }
 </style>
 </head>
 <body>
 
 <div class="no-print">
   <div>
-    <strong>MIAE 221 Midterm Master Cheat Sheet</strong> — Callister Ch 1–7.4 · Single-Sided Letter Format
+    <strong>MIAE 221 1-Page Midterm Cheat Sheet</strong> — Callister Modules 1–12 · 10pt Font · Single-Sided
   </div>
   <div style="display: flex; gap: 8px;">
-    <button class="btn" onclick="window.print()">🖨️ Print (1 Page)</button>
+    <button class="btn" onclick="window.print()">🖨️ Print 1-Page</button>
     <a class="btn btn-outline" href="/cheatsheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" download="MIAE 221 Midterm Cheatsheet.pdf">📥 Download PDF</a>
   </div>
 </div>
 
-<h1>MIAE 221 — Materials Science Midterm Master Cheat Sheet</h1>
-<div class="sub">Concordia University · Callister Ch 1–7.4 · Modules 1–12 · Midterm: Oct 30 · Master Formula &amp; Concept Sheet</div>
+<div class="header">
+  <div class="row-flex">
+    <span><b>MIAE 221 — Materials Science 1-Page Master Cheat Sheet</b></span>
+    <span><b>Concordia · Gina Cody School</b></span>
+    <span><b>Callister Ch 1–7.4</b></span>
+  </div>
+  <div class="sub">1 Side Only · 10pt Font · Modules 1–12 Formulas &amp; Essential Concepts</div>
+</div>
 
 <div class="cols">
+  <!-- COLUMN 1 -->
+  <div class="col">
+    <!-- 1. BONDING & WELLS -->
+    <div class="box">
+      <div class="box-title">1. Bonding, Potential Wells & Properties</div>
+      <div class="formula">Equilibrium r₀: F_N = F_A + F_R = 0; E_N minimum (-E₀)</div>
+      <ul>
+        <li><b>Melting T_m:</b> Deeper trough E₀ &rarr; higher bond energy &rarr; higher T_m.</li>
+        <li><b>Modulus E:</b> Curvature at trough: E &prop; (d²E_N/dr²) at r₀. Steeper = stiffer.</li>
+        <li><b>Expansion &alpha;_L:</b> Governed by well <b>asymmetry</b>. Symmetric well (deep) = low &alpha;_L (ceramics). Asymmetric = high &alpha;_L (polymers).</li>
+        <li><b>Bonds:</b> Ionic (electron transfer, nondirectional); Covalent (electron sharing, <b>directional</b>); Metallic (delocalized sea of e⁻, ductile slip); Hydrogen (strongest secondary, ~50 kJ/mol).</li>
+      </ul>
+    </div>
 
-<section>
-  <h2>1. Bonding, Potential Energy Wells &amp; Properties</h2>
-  <div class="formula">At equilibrium r₀: F_N = F_A + F_R = 0, E_N reaches minimum (-E₀)</div>
-  <ul>
-    <li><span class="key">Melting Temp (T_m):</span> Proportional to well depth E₀ (deeper well → higher T_m).</li>
-    <li><span class="key">Modulus of Elasticity (E):</span> Proportional to curvature at trough: E ∝ (d²E_N/dr²) at r₀. Steeper slope = stiffer material.</li>
-    <li><span class="key">Thermal Expansion (α_L):</span> Governed by well <b>asymmetry</b>. Symmetric well (deep) = low α_L (ceramics). Asymmetric = high α_L (polymers).</li>
-    <li><span class="key">Bond Types:</span> Ionic (nondirectional, electron transfer); Covalent (<b>directional</b>, sharing); Metallic (delocalized sea of e⁻, ductile slip); Hydrogen (strongest secondary, ~50 kJ/mol, polymers).</li>
-  </ul>
-</section>
+    <!-- 2. CRYSTAL LATTICES -->
+    <div class="box">
+      <div class="box-title">2. Crystal Geometry & Theoretical Density</div>
+      <table>
+        <tr><th>Cell</th><th>CN</th><th>n</th><th>a vs R</th><th>APF</th><th>Close Dir</th><th>Close Plane</th></tr>
+        <tr><td><b>FCC</b></td><td>12</td><td>4</td><td>a = 2R&radic;2</td><td>0.74</td><td>&lang;110&rang;</td><td>{111}</td></tr>
+        <tr><td><b>BCC</b></td><td>8</td><td>2</td><td>a = 4R/&radic;3</td><td>0.68</td><td>&lang;111&rang;</td><td>{110}</td></tr>
+        <tr><td><b>HCP</b></td><td>12</td><td>6</td><td>a=2R, c/a=1.633</td><td>0.74</td><td>&lang;11-20&rang;</td><td>(0001)</td></tr>
+      </table>
+      <div class="formula">&rho; = (n &middot; A) / (V_c &middot; N_A) &nbsp; [V_c = a³, N_A = 6.022&times;10²³]</div>
+      <ul>
+        <li>Stacking: FCC = <i>ABCABC...</i> along [111]; HCP = <i>ABABAB...</i> along [0001].</li>
+      </ul>
+    </div>
 
-<section>
-  <h2>2. Crystal Lattices &amp; Density Geometry</h2>
-  <table>
-    <tr><th>Structure</th><th>CN</th><th>n</th><th>a vs R</th><th>APF</th><th>Close Direction</th><th>Close Plane</th></tr>
-    <tr><td><b>FCC</b></td><td>12</td><td>4</td><td>a = 2R√2</td><td>0.74</td><td>&lang;110&rang;</td><td>{111}</td></tr>
-    <tr><td><b>BCC</b></td><td>8</td><td>2</td><td>a = 4R/√3</td><td>0.68</td><td>&lang;111&rang;</td><td>{110}</td></tr>
-    <tr><td><b>HCP</b></td><td>12</td><td>6</td><td>a = 2R, c/a=1.633</td><td>0.74</td><td>&lang;11-20&rang;</td><td>(0001)</td></tr>
-  </table>
-  <div class="formula">ρ = (n · A) / (V_c · N_A) &nbsp; [V_c = a³, N_A = 6.022 × 10²³]</div>
-  <ul>
-    <li>Stacking: FCC = <i>ABCABC...</i> along [111]; HCP = <i>ABABAB...</i> along [0001].</li>
-  </ul>
-</section>
+    <!-- 3. MILLER INDICES -->
+    <div class="box">
+      <div class="box-title">3. Miller Indices, Directions & Planes</div>
+      <ul>
+        <li><b>Directions [uvw]:</b> Tail at origin; head in a,b,c; clear fractions; overbar for negative. Family: &lang;uvw&rang;.</li>
+        <li><b>Planes (hkl):</b> <span class="trap">NEVER pass through origin!</span> (Shift origin if needed). Read intercepts A,B,C; take reciprocals (1/A, 1/B, 1/C; 1/&infin;=0); clear fractions. Family: {hkl}.</li>
+        <li><b>Hexagonal (hkil):</b> 4 axes (a1, a2, a3 at 120&deg;, z). Always: <b>i = -(h + k)</b>.</li>
+        <li><b>Densities:</b> LD = atoms on line / length L; PD = 2D atoms in plane / area A.</li>
+      </ul>
+    </div>
 
-<section>
-  <h2>3. Crystallographic Directions &amp; Planes</h2>
-  <ul>
-    <li><b>Directions [uvw]:</b> Vector tail at origin (translate if negative). Head coordinates in a,b,c. Clear fractions to integers. Family: &lang;uvw&rang;.</li>
-    <li><b>Planes (hkl):</b> <span class="trap">MUST NOT pass through origin!</span> (Shift origin if needed). Read intercepts A,B,C. Take reciprocals (1/A, 1/B, 1/C; 1/∞=0). Clear fractions. Family: {hkl}.</li>
-    <li><b>Hexagonal (hkil):</b> 4-axis Miller-Bravais. Always satisfies <b>i = -(h + k)</b>.</li>
-    <li><b>Linear Density:</b> LD = (atoms centered on line) / (length L).</li>
-    <li><b>Planar Density:</b> PD = (2D atom circles in plane) / (area A).</li>
-  </ul>
-</section>
+    <!-- 4. XRD & BRAGG -->
+    <div class="box">
+      <div class="box-title dark">4. XRD & Bragg's Law Selection Rules</div>
+      <div class="formula">Bragg's Law: n&lambda; = 2 d_hkl sin&theta; &nbsp;|&nbsp; Cubic: d_hkl = a / &radic;(h² + k² + l²)</div>
+      <ul>
+        <li><span class="hl">BCC Peak Rule:</span> h + k + l must be <b>EVEN</b>: (110), (200), (211), (220). (100) and (111) are forbidden!</li>
+        <li><span class="hl">FCC Peak Rule:</span> h, k, l must be <b>ALL ODD or ALL EVEN</b>: (111), (200), (220), (311). (110) and (211) are forbidden!</li>
+      </ul>
+    </div>
+  </div>
 
-<section>
-  <h2>4. XRD &amp; Bragg's Law Selection Rules</h2>
-  <div class="formula">Bragg's Law: nλ = 2 d_hkl sinθ &nbsp; | &nbsp; Cubic: d_hkl = a / √(h² + k² + l²)</div>
-  <ul>
-    <li><span class="key">BCC Rule:</span> Peaks occur <b>ONLY</b> when h+k+l is <b>EVEN</b>: (110), (200), (211), (220). (100) and (111) are forbidden!</li>
-    <li><span class="key">FCC Rule:</span> Peaks occur <b>ONLY</b> when h,k,l are <b>ALL ODD</b> or <b>ALL EVEN</b>: (111), (200), (220), (311). (110) is forbidden!</li>
-  </ul>
-</section>
+  <!-- COLUMN 2 -->
+  <div class="col">
+    <!-- 5. DEFECTS & HUME-ROTHERY -->
+    <div class="box">
+      <div class="box-title teal">5. Defects & Hume-Rothery Rules</div>
+      <div class="formula">Vacancies: N_v = N exp(-Q_v / kT) &nbsp; [k = 8.62&times;10⁻⁵ eV/K]</div>
+      <ul>
+        <li><b>Hume-Rothery (Complete Solid Solubility, Cu-Ni):</b><br>
+          1. Size: |&Delta;r|/r_solvent &lt; 15% · 2. Crystal: identical (both FCC)<br>
+          3. Electronegativity: comparable · 4. Valency: higher dissolves more.
+        </li>
+      </ul>
+    </div>
 
-<section>
-  <h2>5. Imperfections &amp; Hume-Rothery Rules</h2>
-  <div class="formula">Vacancy Equilibrium: N_v = N exp(-Q_v / kT) &nbsp; [k = 8.62×10⁻⁵ eV/K]</div>
-  <ul>
-    <li><b>Hume-Rothery (Complete Solid Solubility, e.g. Cu-Ni):</b><br>
-      1. Size: |Δr| / r_solvent &lt; 15% · 2. Crystal structure: identical (both FCC)<br>
-      3. Electronegativity: comparable · 4. Valency: higher valency preferred.
-    </li>
-  </ul>
-</section>
+    <!-- 6. DISLOCATIONS & SCHMID -->
+    <div class="box">
+      <div class="box-title">6. Slip Systems & Schmid's Law</div>
+      <ul>
+        <li><b>Edge:</b> Extra half-plane; Burgers b <b>&perp;</b> line. <b>Screw:</b> Spiral ramp; b <b>&parallel;</b> line.</li>
+        <li><b>FCC Slip:</b> {111}&lang;110&rang; &rarr; 4&times;3 = <b>12 systems</b> (high ductility).</li>
+        <li><b>BCC Slip:</b> {110}&lang;111&rang; &rarr; 6&times;2 = 12 systems (total 48; high strength).</li>
+      </ul>
+      <div class="formula">Schmid: &tau;_R = &sigma; cos&phi; cos&lambda; &nbsp;|&nbsp; Max slip at &phi;=&lambda;=45&deg;: &sigma;_y = 2 &tau;_CRSS</div>
+      <ul>
+        <li><b>Strengthening:</b> 1. Hall-Petch: &sigma;_y = &sigma;₀ + k_y d⁻¹/² (finer grains = stronger) · 2. Solid solution pinning · 3. Cold work: %CW = (A₀ - A_d)/A₀ &times; 100% (increases &sigma;_y and UTS, reduces %EL).</li>
+      </ul>
+    </div>
 
-<section>
-  <h2>6. Dislocations, Slip &amp; Schmid's Law</h2>
-  <ul>
-    <li><b>Edge:</b> Extra half-plane; Burgers vector b <b>⊥</b> dislocation line.</li>
-    <li><b>Screw:</b> Spiral ramp; Burgers vector b <b>∥</b> dislocation line.</li>
-    <li><b>FCC Slip:</b> {111}&lang;110&rang; → 4 × 3 = <b>12 systems</b> (high ductility).</li>
-    <li><b>BCC Slip:</b> {110}&lang;111&rang; → 6 × 2 = 12 systems (total 48; high strength).</li>
-  </ul>
-  <div class="formula">Schmid's Law: τ_R = σ cosφ cosλ &nbsp; | &nbsp; Max slip at φ = λ = 45°: σ_y = 2 τ_CRSS</div>
-  <ul>
-    <li><b>Strengthening:</b> 1. Hall-Petch: σ_y = σ₀ + k_y d⁻¹/² (finer grains = stronger) · 2. Solid solution pinning · 3. Cold work (%CW = (A₀ - A_d)/A₀ × 100%; increases σ_y and UTS, lowers %EL).</li>
-  </ul>
-</section>
+    <!-- 7. DIFFUSION -->
+    <div class="box">
+      <div class="box-title">7. Diffusion (Fick's Laws)</div>
+      <ul>
+        <li><b>Mechanisms:</b> Interstitial (C in Fe) is <i>much faster</i> than Vacancy. Cu-Ni couple undergoes <b>interdiffusion</b> (both diffuse simultaneously).</li>
+        <li><b>Fick 1st (Steady):</b> J = -D (dC/dx) = -D (C_A - C_B)/(x_A - x_B).</li>
+        <li><b>Arrhenius:</b> D = D₀ exp(-Q_d / RT) &rarr; ln D vs 1/T slope = -Q_d/R.</li>
+        <li><b>Fick 2nd (Semi-Infinite):</b> (C(x,t) - C₀)/(C_s - C₀) = 1 - erf(x / 2&radic;(Dt)).</li>
+        <li><b>Scaling:</b> Constant composition &rarr; x² / (D &middot; t) = constant.</li>
+      </ul>
+    </div>
 
-<section>
-  <h2>7. Diffusion in Solids (Fick's Laws)</h2>
-  <ul>
-    <li><b>Mechanisms:</b> Interstitial (C in Fe) is <i>much faster</i> than Vacancy. Cu-Ni couple undergoes <b>interdiffusion</b> (both diffuse simultaneously).</li>
-    <li><b>Fick's 1st (Steady-State):</b> J = -D (dC/dx) = -D (C_A - C_B)/(x_A - x_B).</li>
-    <li><b>Arrhenius:</b> D = D₀ exp(-Q_d / RT) → ln D vs 1/T slope = -Q_d/R.</li>
-    <li><b>Fick's 2nd (Non-Steady):</b> (C(x,t) - C₀)/(C_s - C₀) = 1 - erf(x / 2√(Dt)).</li>
-    <li><b>Scaling:</b> Constant composition → x² / (D · t) = const.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>8. Mechanical Properties &amp; Stress-Strain</h2>
-  <div class="formula">σ = F/A₀ [MPa] &nbsp;|&nbsp; ε = Δl/l₀ &nbsp;|&nbsp; σ = Eε (Hooke) &nbsp;|&nbsp; ν = -ε_x/ε_z ≈ 0.33</div>
-  <ul>
-    <li><span class="trap">Elastic Modulus E:</span> Dictated by bond stiffness ONLY. Cold work, grain size, and alloying do NOT change E! (All steels E ≈ 207 GPa).</li>
-    <li><b>Point B:</b> Proportional limit. <b>Point C:</b> 0.2% offset yield (σ_y).</li>
-    <li><b>Point E (UTS):</b> Maximum engineering stress. <span class="trap">Necking begins strictly AFTER Point E!</span></li>
-    <li><b>Uniform plastic:</b> Point C to E. <b>Non-uniform (necking):</b> Point E to fracture.</li>
-    <li><b>True Stress/Strain (up to necking):</b> σ_T = σ(1 + ε), ε_T = ln(1 + ε).</li>
-    <li><b>Resilience:</b> U_r ≈ σ_y² / (2E). <b>Toughness:</b> Total area under σ-ε curve.</li>
-  </ul>
-</section>
-
+    <!-- 8. MECHANICAL PROPERTIES -->
+    <div class="box">
+      <div class="box-title dark">8. Mechanical Properties & Stress-Strain</div>
+      <div class="formula">&sigma; = F/A₀ [MPa] &nbsp;|&nbsp; &epsilon; = &Delta;l/l₀ &nbsp;|&nbsp; &sigma; = E&epsilon; (Hooke) &nbsp;|&nbsp; &nu; = -&epsilon;_x/&epsilon;_z &approx; 0.33</div>
+      <ul>
+        <li><span class="trap">Elastic Modulus E:</span> Depends on bond stiffness ONLY. Cold work, grain size, and alloying do NOT change E! (Steels E &approx; 207 GPa).</li>
+        <li><b>Point B:</b> Proportional limit. <b>Point C:</b> 0.2% offset yield (&sigma;_y).</li>
+        <li><b>Point E (UTS):</b> Max stress. <span class="trap">Necking begins strictly AFTER Point E!</span></li>
+        <li><b>Uniform plastic:</b> Point C to E. <b>Non-uniform (necking):</b> Point E to fracture.</li>
+        <li><b>True Stress/Strain (up to necking):</b> &sigma;_T = &sigma;(1 + &epsilon;), &epsilon;_T = ln(1 + &epsilon;).</li>
+        <li><b>Resilience:</b> U_r &approx; &sigma;_y² / (2E). <b>Toughness:</b> Total area under &sigma;-&epsilon; curve.</li>
+      </ul>
+    </div>
+  </div>
 </div>
+
 </body>
 </html>

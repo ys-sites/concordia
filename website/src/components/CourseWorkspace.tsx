@@ -64,6 +64,9 @@ const TeacherMidtermPracticeSection = lazy(() =>
 const Engr213MidtermCompanion = lazy(() =>
   import('./Engr213MidtermCompanion').then((m) => ({ default: m.Engr213MidtermCompanion }))
 );
+const ExamCheatsheetSection = lazy(() =>
+  import('./ExamCheatsheetSection').then((m) => ({ default: m.ExamCheatsheetSection }))
+);
 import { TEACHER_PRACTICE_FOLDER, hasTeacherPractice } from '../data/teacherPracticeCourses';
 
 // The course badge opens a Skill Drill on last year's midterm paper (kept out of the hidden folder)
@@ -545,29 +548,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
               </div>
 
               <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
-                <button
-                  className="fx-btn fx-btn-primary"
-                  style={{ padding: '8px 16px', fontSize: '13.5px', fontWeight: 600 }}
-                  onClick={() => {
-                    audio.playClick();
-                    onViewPdf({
-                      id: 'MIAE215:cheatsheet-midterm',
-                      courseId: 'MIAE215',
-                      categoryId: '03 - 1-Page Rapid Review Sheets',
-                      categoryTitle: '1-Page Rapid Review Sheets',
-                      title: 'MIAE 215 — Midterm 1-Page Document Cheatsheet & Exam Survival Guide',
-                      filename: 'MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
-                      relativePath: 'Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
-                      tags: ['MIAE 215', 'Midterm Cheatsheet', 'C++', 'Tracing', 'Dr. Gordon'],
-                      summary: 'Official 1-page document cheatsheet compliant with Dr. Gordon Moodle rules: 10 pt font, single-sided, Letter format.'
-                    });
-                  }}
-                  title="Open in in-app modal PDF viewer"
-                >
-                  <Eye size={16} />
-                  <span>Preview Cheatsheet (In-App)</span>
-                </button>
-
                 <a
                   className="fx-btn"
                   style={{
@@ -576,21 +556,44 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                     border: 'none',
                     padding: '8px 16px',
                     fontSize: '13.5px',
-                    fontWeight: 600,
+                    fontWeight: 700,
                     borderRadius: '6px',
                     textDecoration: 'none',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '6px'
                   }}
-                  href={getPdfUrl('Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
-                  download="MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf"
-                  title="Download the official 1-page PDF"
+                  href={getPdfUrl('Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf')}
+                  download="MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf"
+                  title="Download the official 1-page PDF (Single-Sided, 10pt Font)"
                   onClick={() => audio.playClick()}
                 >
                   <Download size={16} />
-                  <span>Download PDF (Master Copy)</span>
+                  <span>Download 1-Page PDF (Exam Ready)</span>
                 </a>
+
+                <button
+                  className="fx-btn fx-btn-primary"
+                  style={{ padding: '8px 16px', fontSize: '13.5px', fontWeight: 600 }}
+                  onClick={() => {
+                    audio.playClick();
+                    onViewPdf({
+                      id: 'MIAE215:cheatsheet-1page',
+                      courseId: 'MIAE215',
+                      categoryId: '03 - 1-Page Rapid Review Sheets',
+                      categoryTitle: 'Cheatsheet for the Exam',
+                      title: 'MIAE 215 — Official 1-Page Exam Cheatsheet (Single-Sided)',
+                      filename: 'MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
+                      relativePath: 'Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
+                      tags: ['MIAE 215', 'Midterm Cheatsheet', '1-Page', 'Dr. Gordon'],
+                      summary: 'Strict single-sided 1-page exam cheatsheet compliant with Dr. Gordon Moodle rules: 10 pt font, single-sided, Letter format.'
+                    });
+                  }}
+                  title="Open 1-page PDF in in-app modal viewer"
+                >
+                  <Eye size={16} />
+                  <span>Preview 1-Page (In-App)</span>
+                </button>
 
                 <a
                   className="fx-btn fx-btn-tab"
@@ -608,14 +611,13 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 <a
                   className="fx-btn fx-btn-tab"
                   style={{ padding: '8px 14px', fontSize: '13px' }}
-                  href="/cheatsheets/miae215-cheatsheet.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Open public PDF direct URL in new window"
+                  href={getPdfUrl('Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
+                  download="MIAE 215 - Midterm Master Guide.pdf"
+                  title="Download the full 5-page master study guide"
                   onClick={() => audio.playClick()}
                 >
-                  <ExternalLink size={15} />
-                  <span>Public File (PDF)</span>
+                  <Download size={15} />
+                  <span>Download Master Guide (5-Page)</span>
                 </a>
               </div>
             </div>
@@ -684,29 +686,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
               </div>
 
               <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
-                <button
-                  className="fx-btn fx-btn-primary"
-                  style={{ padding: '8px 16px', fontSize: '13.5px', fontWeight: 600 }}
-                  onClick={() => {
-                    audio.playClick();
-                    onViewPdf({
-                      id: 'MIAE221:cheatsheet-midterm',
-                      courseId: 'MIAE221',
-                      categoryId: '03 - 1-Page Rapid Review Sheets',
-                      categoryTitle: '1-Page Rapid Review Sheets',
-                      title: 'MIAE 221 — Midterm 1-Page Document Cheatsheet & Exam Survival Guide',
-                      filename: 'MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
-                      relativePath: 'Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
-                      tags: ['MIAE 221', 'Midterm Cheatsheet', 'Materials Science', 'Callister'],
-                      summary: 'Comprehensive 1-page condensed master document cheatsheet for Callister Chapters 1–7.4 and Lectures 1–12.'
-                    });
-                  }}
-                  title="Open in in-app modal PDF viewer"
-                >
-                  <Eye size={16} />
-                  <span>Preview Cheatsheet (In-App)</span>
-                </button>
-
                 <a
                   className="fx-btn"
                   style={{
@@ -715,21 +694,44 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                     border: 'none',
                     padding: '8px 16px',
                     fontSize: '13.5px',
-                    fontWeight: 600,
+                    fontWeight: 700,
                     borderRadius: '6px',
                     textDecoration: 'none',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '6px'
                   }}
-                  href={getPdfUrl('Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
-                  download="MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf"
-                  title="Download the official 1-page PDF"
+                  href={getPdfUrl('Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf')}
+                  download="MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf"
+                  title="Download the official 1-page PDF (Single-Sided)"
                   onClick={() => audio.playClick()}
                 >
                   <Download size={16} />
-                  <span>Download PDF (Master Copy)</span>
+                  <span>Download 1-Page PDF (Exam Ready)</span>
                 </a>
+
+                <button
+                  className="fx-btn fx-btn-primary"
+                  style={{ padding: '8px 16px', fontSize: '13.5px', fontWeight: 600 }}
+                  onClick={() => {
+                    audio.playClick();
+                    onViewPdf({
+                      id: 'MIAE221:cheatsheet-1page',
+                      courseId: 'MIAE221',
+                      categoryId: '03 - 1-Page Rapid Review Sheets',
+                      categoryTitle: 'Cheatsheet for the Exam',
+                      title: 'MIAE 221 — Official 1-Page Exam Cheatsheet (Single-Sided)',
+                      filename: 'MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
+                      relativePath: 'Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
+                      tags: ['MIAE 221', 'Midterm Cheatsheet', 'Materials Science', 'Callister'],
+                      summary: 'Strict single-sided 1-page master reference sheet for Callister Chapters 1–7.4 and Lectures 1–12.'
+                    });
+                  }}
+                  title="Open 1-page PDF in in-app modal viewer"
+                >
+                  <Eye size={16} />
+                  <span>Preview 1-Page (In-App)</span>
+                </button>
 
                 <a
                   className="fx-btn fx-btn-tab"
@@ -747,14 +749,13 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 <a
                   className="fx-btn fx-btn-tab"
                   style={{ padding: '8px 14px', fontSize: '13px' }}
-                  href="/cheatsheets/miae221-cheatsheet.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Open public PDF direct URL in new window"
+                  href={getPdfUrl('Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
+                  download="MIAE 221 - Midterm Master Guide.pdf"
+                  title="Download the full 6-page master study guide"
                   onClick={() => audio.playClick()}
                 >
-                  <ExternalLink size={15} />
-                  <span>Public File (PDF)</span>
+                  <Download size={15} />
+                  <span>Download Master Guide (6-Page)</span>
                 </a>
               </div>
             </div>
@@ -844,6 +845,25 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 <ChevronRight size={18} className="fx-folder-chevron" />
               </button>
             )}
+            {(course.id === 'MIAE215' || course.id === 'MIAE221') && (
+              <button
+                key="cheatsheet-for-exam"
+                className="fx-folder-tile"
+                onClick={() => openPath(['Cheatsheet for the Exam'])}
+              >
+                <span className="fx-folder-icon" style={{ color: course.id === 'MIAE215' ? '#059669' : '#be123c', backgroundColor: course.id === 'MIAE215' ? 'rgba(16, 185, 129, 0.12)' : 'rgba(225, 29, 72, 0.12)' }}>
+                  <Sparkles size={22} />
+                </span>
+                <span className="fx-folder-text">
+                  <span className="fx-folder-index">
+                    {tree.folders.length < 9 ? `0${tree.folders.length}` : tree.folders.length}
+                  </span>
+                  <span className="fx-folder-name">Cheatsheet for the exam</span>
+                  <span className="fx-folder-meta">Official 1-Page Cheatsheet · Single-Sided · Easy Download</span>
+                </span>
+                <ChevronRight size={18} className="fx-folder-chevron" />
+              </button>
+            )}
             <button
               key="filtered-document"
               className="fx-folder-tile"
@@ -854,7 +874,9 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
               </span>
               <span className="fx-folder-text">
                 <span className="fx-folder-index">
-                  {tree.folders.length < 9 ? `0${tree.folders.length}` : tree.folders.length}
+                  {(course.id === 'MIAE215' || course.id === 'MIAE221')
+                    ? (tree.folders.length + 1 < 9 ? `0${tree.folders.length + 1}` : tree.folders.length + 1)
+                    : (tree.folders.length < 9 ? `0${tree.folders.length}` : tree.folders.length)}
                 </span>
                 <span className="fx-folder-name">Filtered document</span>
                 <span className="fx-folder-meta">2 Sections · Assessment Vault</span>
@@ -870,6 +892,14 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             course={course}
             onViewPdf={onViewPdf}
             onLaunchDrill={(courseId, sectionId) => (onLaunchDrill ? onLaunchDrill(courseId, sectionId) : onStartQuiz(courseId))}
+            onBack={() => openPath([])}
+          />
+        </Suspense>
+      ) : activePath[0] === 'Cheatsheet for the Exam' ? (
+        <Suspense fallback={<p className="fx-empty">Opening Cheatsheet…</p>}>
+          <ExamCheatsheetSection
+            course={course}
+            onViewPdf={onViewPdf}
             onBack={() => openPath([])}
           />
         </Suspense>

@@ -1051,3 +1051,22 @@
 - **Title**: `MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide (Callister Ch 1-7)`
 - **Academic year**: `2025/2026`
 - **Description**: Comprehensive 1-page condensed document cheatsheet and exam survival guide for MIAE 221 Midterm covering interatomic bonding potential energy curves, FCC/BCC/HCP crystal geometry, Miller indices for planes and directions, linear and planar densities, Bragg's Law XRD peak selection rules, Hume-Rothery solid solution criteria, Schmid's Law resolved shear stress, Fick's 1st and 2nd diffusion laws, and tensile stress-strain deformation landmarks.
+
+### 📄 MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf
+- **Exact Filename**: `MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf`
+- **University**: `Concordia University`
+- **Course**: `Mechanical, Industrial & Aerospace engineering (MIAE 215)`
+- **Category**: `Summaries`
+- **Title**: `MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided, 10pt Font)`
+- **Academic year**: `2025/2026`
+- **Description**: Strict single-sided 1-page exam cheatsheet compliant with Dr. Gordon's Moodle exam policy: printed at 10pt font on a single sheet of paper with blank back. Features C++ data types, integer division truncation, operator precedence hierarchy, Dr. Gordon table tracing protocol with garbage detection, 1D/2D arrays, loops/control flow, write-a-program accumulators, functions, and file I/O.
+
+### 📄 MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf
+- **Exact Filename**: `MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf`
+- **University**: `Concordia University`
+- **Course**: `Materials Science (MIAE 221)`
+- **Category**: `Summaries`
+- **Title**: `MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided Master Reference)`
+- **Academic year**: `2025/2026`
+- **Description**: Strict single-sided 1-page master reference sheet for the MIAE 221 Midterm covering Callister Chapters 1–7.4 and Lectures 1–12. Includes bonding potential wells, FCC/BCC/HCP lattice geometry table, Miller indices for directions and planes, Bragg's Law XRD selection rules, Hume-Rothery criteria, Schmid's Law slip, Fick's diffusion laws, and stress-strain curve landmarks.
+

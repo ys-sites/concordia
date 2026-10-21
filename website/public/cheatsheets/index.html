@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Official Course Exam Cheat Sheets & Memory Aides</title>
+<title>Official Exam Cheat Sheets & 1-Page Memory Aides</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -14,7 +14,7 @@
     line-height: 1.5;
   }
   .container {
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
   }
   header {
@@ -34,28 +34,42 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
     gap: 20px;
   }
   .card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    padding: 24px;
+    padding: 22px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
+    gap: 12px;
+  }
+  .card.featured {
+    border: 1.5px solid #10b981;
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.03) 0%, #ffffff 100%);
+  }
+  .card.featured-rose {
+    border: 1.5px solid #f43f5e;
+    background: linear-gradient(180deg, rgba(244, 63, 94, 0.03) 0%, #ffffff 100%);
+  }
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
   }
   .card-badge {
     display: inline-block;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 11px;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 12px;
-    width: fit-content;
   }
   .badge-emerald {
     background: #ecfdf5;
@@ -67,40 +81,46 @@
     color: #be123c;
     border: 1px solid #fecdd3;
   }
+  .badge-slate {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+  }
   .card h2 {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 750;
     color: #0f172a;
-    margin-bottom: 8px;
+    line-height: 1.35;
   }
   .card p {
-    font-size: 13.5px;
+    font-size: 13px;
     color: #475569;
-    margin-bottom: 16px;
-    flex-grow: 1;
+    line-height: 1.5;
   }
   .rules-box {
     background: #fffbeb;
     border: 1px solid #fde68a;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 12.5px;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
     color: #92400e;
-    margin-bottom: 18px;
+    line-height: 1.45;
   }
   .actions {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 6px;
   }
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 8px 14px;
+    gap: 5px;
+    padding: 7px 12px;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
@@ -113,12 +133,19 @@
   .btn-primary:hover {
     background: #0369a1;
   }
-  .btn-download {
-    background: #0f766e;
+  .btn-emerald {
+    background: #059669;
     color: #ffffff;
   }
-  .btn-download:hover {
-    background: #0d5d56;
+  .btn-emerald:hover {
+    background: #047857;
+  }
+  .btn-rose {
+    background: #be123c;
+    color: #ffffff;
+  }
+  .btn-rose:hover {
+    background: #9f1239;
   }
   .btn-outline {
     background: #ffffff;
@@ -139,22 +166,26 @@
   </header>
 
   <div class="grid">
-    <!-- MIAE 215 -->
-    <div class="card">
-      <span class="card-badge badge-emerald">MIAE 215 · Midterm: Oct 22</span>
-      <h2>MIAE 215 Midterm Master Document Cheatsheet</h2>
+    <!-- MIAE 215 STRICT 1-PAGE -->
+    <div class="card featured">
+      <div class="card-top">
+        <span class="card-badge badge-emerald">MIAE 215 · EXACTLY 1 PAGE · SINGLE-SIDED</span>
+        <span style="font-size: 11.5px; font-weight: 700; color: #047857;">Exam: Thu Oct 22 · 8:45–10:00 AM</span>
+      </div>
+      <h2>MIAE 215 — Official 1-Page Exam Cheatsheet</h2>
       <p>
-        C++ data types, integer division traps, operator precedence hierarchy, Dr. Gordon’s Table Tracing protocol (40% of exam),
-        1D/2D array bounds, functions &amp; references, file I/O, dynamic memory pointers, and Flowgorithm flowchart symbols.
+        Strictly compiled to <strong>exactly 1 single page</strong> at 10pt font. Contains all required foundations:
+        C++ data types, integer division truncation, operator precedence hierarchy, Dr. Gordon’s Table Tracing protocol (40%),
+        1D/2D array bounds, loops, functions by reference, and file I/O.
       </p>
       <div class="rules-box">
-        <strong>Moodle Exam Rules:</strong> 1 side only of 1 sheet (front only, back blank) · Printed or hand-written · Text no smaller than 10 pt · Only aid besides faculty calculator.
+        <strong>Moodle Compliance:</strong> Front side only of 1 sheet (back completely blank) · Text &ge; 10 pt · Only authorized aid besides faculty calculator.
       </div>
       <div class="actions">
-        <a class="btn btn-download" href="/cheatsheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" download="MIAE 215 Midterm Cheatsheet.pdf">
-          📥 Download PDF
+        <a class="btn btn-emerald" href="/cheatsheets/MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf" download="MIAE 215 Official 1-Page Exam Cheatsheet.pdf">
+          📥 Download 1-Page PDF
         </a>
-        <a class="btn btn-primary" href="/cheatsheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" target="_blank">
+        <a class="btn btn-primary" href="/cheatsheets/MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf" target="_blank">
           👁️ Preview PDF
         </a>
         <a class="btn btn-outline" href="/cheatsheets/miae215-midterm.html" target="_blank">
@@ -163,26 +194,70 @@
       </div>
     </div>
 
-    <!-- MIAE 221 -->
-    <div class="card">
-      <span class="card-badge badge-rose">MIAE 221 · Midterm: Oct 30</span>
-      <h2>MIAE 221 Materials Science Master Cheatsheet</h2>
+    <!-- MIAE 221 STRICT 1-PAGE -->
+    <div class="card featured-rose">
+      <div class="card-top">
+        <span class="card-badge badge-rose">MIAE 221 · EXACTLY 1 PAGE · SINGLE-SIDED</span>
+        <span style="font-size: 11.5px; font-weight: 700; color: #be123c;">Midterm: Fri Oct 30</span>
+      </div>
+      <h2>MIAE 221 — Official 1-Page Master Cheatsheet</h2>
       <p>
-        Callister Ch 1–7.4 condensed master guide: bonding potential wells, FCC/BCC/HCP lattice geometry, Miller indices,
-        planar/linear densities, Bragg’s law XRD peak rules, Hume-Rothery criteria, Schmid’s law slip, Fick’s diffusion laws, and stress-strain curve landmarks.
+        Strictly compiled to <strong>exactly 1 single page</strong> at 10pt font. Callister Ch 1–7.4 condensed master guide:
+        bonding potential wells, FCC/BCC/HCP lattice geometry table, Miller indices, Bragg’s law XRD peak rules,
+        Hume-Rothery criteria, Schmid’s law slip, Fick’s diffusion laws, and stress-strain landmarks.
       </p>
       <div class="rules-box">
-        <strong>Exam Policy:</strong> Single-sided master reference sheet · Callister Modules 1–12 · Verified against official past midterms.
+        <strong>Master Reference:</strong> Complete formula &amp; concept reference covering Modules 1–12 for Callister Chapters 1–7.4.
       </div>
       <div class="actions">
-        <a class="btn btn-download" href="/cheatsheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" download="MIAE 221 Midterm Cheatsheet.pdf">
-          📥 Download PDF
+        <a class="btn btn-rose" href="/cheatsheets/MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf" download="MIAE 221 Official 1-Page Exam Cheatsheet.pdf">
+          📥 Download 1-Page PDF
         </a>
-        <a class="btn btn-primary" href="/cheatsheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" target="_blank">
+        <a class="btn btn-primary" href="/cheatsheets/MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf" target="_blank">
           👁️ Preview PDF
         </a>
         <a class="btn btn-outline" href="/cheatsheets/miae221-midterm.html" target="_blank">
           🖨️ Printable HTML (10pt)
+        </a>
+      </div>
+    </div>
+
+    <!-- MIAE 215 COMPREHENSIVE STUDY GUIDE -->
+    <div class="card">
+      <div class="card-top">
+        <span class="card-badge badge-slate">MIAE 215 · COMPREHENSIVE STUDY GUIDE</span>
+        <span style="font-size: 11.5px; color: #64748b;">5-Page Deep Dive Guide</span>
+      </div>
+      <h2>MIAE 215 — Comprehensive Master Document Cheatsheet &amp; Exam Survival Guide</h2>
+      <p>
+        Full extended study companion covering code skeletons, step-by-step table tracing protocol with uninitialized memory traps, 2D matrix algorithms, C-string manipulation, dynamic memory allocation with null checks, and Flowgorithm flowchart symbol reference.
+      </p>
+      <div class="actions">
+        <a class="btn btn-outline" href="/cheatsheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" download="MIAE 215 Midterm Master Survival Guide.pdf">
+          📥 Download Master Guide PDF
+        </a>
+        <a class="btn btn-primary" href="/cheatsheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" target="_blank">
+          👁️ Preview PDF
+        </a>
+      </div>
+    </div>
+
+    <!-- MIAE 221 COMPREHENSIVE STUDY GUIDE -->
+    <div class="card">
+      <div class="card-top">
+        <span class="card-badge badge-slate">MIAE 221 · COMPREHENSIVE STUDY GUIDE</span>
+        <span style="font-size: 11.5px; color: #64748b;">6-Page Deep Dive Guide</span>
+      </div>
+      <h2>MIAE 221 — Comprehensive Master Document Cheatsheet &amp; Exam Survival Guide</h2>
+      <p>
+        In-depth 6-page comprehensive reference covering detailed bonding curve derivations, close-packed planar &amp; linear density proofs, FCC/BCC XRD peak systematically absent reflections, Hall-Petch grain strengthening, cold working equations, and engineering stress-strain curve landmarks.
+      </p>
+      <div class="actions">
+        <a class="btn btn-outline" href="/cheatsheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" download="MIAE 221 Midterm Master Survival Guide.pdf">
+          📥 Download Master Guide PDF
+        </a>
+        <a class="btn btn-primary" href="/cheatsheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" target="_blank">
+          👁️ Preview PDF
         </a>
       </div>
     </div>

@@ -2,49 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MIAE 215 — Midterm Cheat Sheet (One Page)</title>
+<title>MIAE 215 — Official 1-Page Midterm Cheat Sheet</title>
 <style>
+  @page {
+    size: letter portrait;
+    margin: 0.18in 0.22in 0.15in 0.22in;
+  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { font-size: 10pt; }
-  body {
-    font-family: -apple-system, "Segoe UI", Arial, sans-serif;
-    color: #111;
-    line-height: 1.32;
-    padding: 0.35in 0.4in;
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.16;
+    color: #000000;
+    background: #ffffff;
   }
-  h1 {
-    font-size: 15pt; text-align: center; letter-spacing: -0.3px;
-    border-bottom: 2.5px solid #0f766e; padding-bottom: 3px; margin-bottom: 2px;
-  }
-  .sub { text-align: center; font-size: 9.5pt; color: #444; margin-bottom: 8px; }
-  .cols { columns: 2; column-gap: 18px; column-rule: 1px solid #ddd; }
-  section { break-inside: avoid; margin-bottom: 8px; }
-  h2 {
-    font-size: 10.5pt; color: #fff; background: #0f766e;
-    padding: 1.5px 6px; border-radius: 3px; margin-bottom: 3px;
-  }
-  h2.red { background: #b91c1c; }
-  code, .mono { font-family: "SF Mono", Consolas, "Courier New", monospace; font-size: 9.5pt; }
-  pre {
-    font-family: Consolas, "Courier New", monospace; font-size: 9.5pt;
-    background: #f4f4f5; border: 1px solid #e4e4e7; border-radius: 3px;
-    padding: 3px 6px; margin: 2px 0 3px; white-space: pre-wrap;
-  }
-  ul { padding-left: 13px; }
-  li { margin-bottom: 1.5px; }
-  table { width: 100%; border-collapse: collapse; font-size: 10pt; }
-  td, th { border: 1px solid #ccc; padding: 1px 5px; text-align: left; }
-  th { background: #f4f4f5; }
-  .trap { color: #b91c1c; font-weight: 700; }
-  .ok { color: #0f766e; font-weight: 700; }
-  b.t { color: #0f766e; }
-  @page { size: letter; margin: 0.3in 0.35in; }
   .no-print {
-    background: #f3f4f6;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    padding: 8px 14px;
-    margin-bottom: 12px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 6px 12px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -53,149 +30,222 @@
   .btn {
     background: #0f766e;
     color: white;
-    padding: 5px 12px;
+    padding: 4px 10px;
     border-radius: 4px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 10pt;
     border: none;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
   }
   .btn-outline {
-    background: transparent;
+    background: white;
     color: #0f766e;
     border: 1px solid #0f766e;
   }
   @media print {
-    body { padding: 0; }
     .no-print { display: none !important; }
-    .cols { columns: 2; }
   }
+  .header {
+    text-align: center;
+    border-bottom: 2px solid #0f766e;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+  }
+  .header h1 {
+    font-size: 13pt;
+    font-weight: 800;
+    color: #0f766e;
+    letter-spacing: -0.2px;
+  }
+  .header .sub {
+    font-size: 9.5pt;
+    color: #333333;
+    font-weight: 600;
+  }
+  .cols {
+    display: flex;
+    gap: 12px;
+  }
+  .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .box {
+    border: 1px solid #94a3b8;
+    border-radius: 3px;
+    padding: 3px 5px;
+    background: #ffffff;
+  }
+  .box-title {
+    font-size: 10pt;
+    font-weight: 800;
+    color: #ffffff;
+    background: #0f766e;
+    padding: 1px 4px;
+    margin: -3px -5px 3px -5px;
+    border-radius: 2px 2px 0 0;
+  }
+  .box-title.red { background: #b91c1c; }
+  .box-title.dark { background: #1e293b; }
+  code, .mono {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9.6pt;
+    font-weight: 700;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.6pt;
+    margin: 1px 0;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 1px 3px;
+    text-align: left;
+  }
+  th { background: #f1f5f9; font-weight: 700; }
+  ul { padding-left: 12px; margin: 0; }
+  li { margin-bottom: 1px; }
+  .trap { color: #b91c1c; font-weight: 800; }
+  .hl { color: #0f766e; font-weight: 700; }
+  .row-flex { display: flex; justify-content: space-between; }
 </style>
 </head>
 <body>
 
 <div class="no-print">
   <div>
-    <strong>MIAE 215 Midterm Master Cheat Sheet</strong> — Dr. Gordon Moodle Compliant · 10pt Font · Single-Sided
+    <strong>MIAE 215 1-Page Midterm Cheat Sheet</strong> — Dr. Gordon Moodle Compliant · 10pt Font · Single-Sided
   </div>
   <div style="display: flex; gap: 8px;">
-    <button class="btn" onclick="window.print()">🖨️ Print (1 Page)</button>
+    <button class="btn" onclick="window.print()">🖨️ Print 1-Page</button>
     <a class="btn btn-outline" href="/cheatsheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" download="MIAE 215 Midterm Cheatsheet.pdf">📥 Download PDF</a>
   </div>
 </div>
 
-<h1>MIAE 215 — Midterm Cheat Sheet</h1>
-<div class="sub">Thu Oct 22 · Handwritten · 40% program-output tracing / 60% write-a-program · Moodle-Compliant 10pt Font</div>
-<div class="cols">
-
-<section>
-  <h2>Data Types &amp; Ranges</h2>
-  <table>
-    <tr><th>Type</th><th>Size</th><th>Range / notes</th></tr>
-    <tr><td><code>int</code></td><td>4 B</td><td>−2,147,483,648 … 2,147,483,647</td></tr>
-    <tr><td><code>unsigned int</code></td><td>4 B</td><td>0 … 4,294,967,295</td></tr>
-    <tr><td><code>long long</code></td><td>8 B</td><td>use for big products (e.g. 100000²)</td></tr>
-    <tr><td><code>double</code></td><td>8 B</td><td>~15 significant digits</td></tr>
-    <tr><td><code>char</code></td><td>1 B</td><td><code>'A'</code> = 65, <code>'a'</code> = 97, <code>'0'</code> = 48</td></tr>
-    <tr><td><code>bool</code></td><td>1 B</td><td><code>true</code> = 1, <code>false</code> = 0</td></tr>
-  </table>
-  <ul>
-    <li><span class="trap">Overflow:</span> int past its max wraps (undefined behavior). 100000 × 100000 needs <code>100000LL * 100000</code> — the product is computed in int <i>before</i> any assignment.</li>
-    <li><code>sizeof(double)</code> = 8, <code>sizeof(int)</code> = 4.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Integer Division — the #1 Trap</h2>
-  <ul>
-    <li><code>7 / 2 = 3</code> (int ÷ int truncates toward zero); <code>-7 / 2 = -3</code></li>
-    <li>To get 3.5: cast <b>before</b> dividing — <code>(double)a / b</code>, <code>a / 2.0</code>, <code>static_cast&lt;double&gt;(a) / b</code></li>
-    <li><span class="trap">(double)(a / b) = 3.0</span> — the cast comes too late, division already truncated.</li>
-    <li><code>%</code> = remainder; sign follows the <b>left</b> operand: <code>-7 % 2 = -1</code>, <code>7 % -2 = 1</code></li>
-    <li><code>n % 10</code> = last digit · <code>n % 2 == 0</code> = even test · <code>a % b</code> needs ints only</li>
-    <li>Formulas: write <code>5.0 / 9.0</code>, never <code>5 / 9</code> (= 0!).</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Operator Precedence (high → low)</h2>
-  <ul>
-    <li><code>( )</code> → unary <code>! - ++ --</code> → <code>* / %</code> → <code>+ -</code> → <code>&lt; &lt;= &gt; &gt;=</code> → <code>== !=</code> → <code>&amp;&amp;</code> → <code>||</code> → <code>=</code></li>
-    <li><code>a++</code> uses THEN increments; <code>++a</code> increments first. <code>int b = a++;</code> → b gets old a.</li>
-    <li><code>&amp;&amp;</code> and <code>||</code> short-circuit: right side skipped if the answer is already decided.</li>
-    <li><span class="trap"><code>=</code> assigns, <code>==</code> compares.</span> <code>if (x = 5)</code> compiles and is always true!</li>
-  </ul>
-</section>
-
-<section>
-  <h2>if / if-else Ladders</h2>
-<pre>if      (score &gt;= 90) grade = 'A';
-else if (score &gt;= 80) grade = 'B';
-else if (score &gt;= 70) grade = 'C';
-else                   grade = 'F';</pre>
-  <ul>
-    <li>Test boundaries <b class="t">high → low</b>; the first true branch wins, the rest are skipped.</li>
-    <li>Plain <code>if</code>s are NOT exclusive — several can all run.</li>
-    <li><code>else</code> binds to the <b>nearest</b> <code>if</code>.</li>
-    <li><span class="trap">Never</span> compare doubles with <code>==</code> (round-off!): use <code>fabs(a - b) &lt; 1e-9</code>.</li>
-    <li><span class="trap">;</span> after <code>if (...)</code> = empty body — the next line always runs.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Loops</h2>
-<pre>for (init; cond; update) { ... }
-while (cond) { ... update! ... }
-do { ... } while (cond);   // runs ≥ 1 time</pre>
-  <ul>
-    <li>Trip counts: <code>i=0; i&lt;10; i++</code> = <b>10</b> · <code>i&lt;=10</code> = 11 · <code>i=1; i&lt;10</code> = 9 · step 2 halves it.</li>
-    <li><code>break</code> exits the loop; <code>continue</code> jumps to the next iteration.</li>
-    <li>Nested loops: outer = rows, inner = columns; put <code>"\n"</code> <b>after</b> the inner loop.</li>
-    <li><span class="trap">Infinite loop:</span> while-loop with no update, or a condition that never turns false.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Accumulator Patterns (write-a-program gold)</h2>
-<pre>Sum:      int s = 0;  s += x;
-Product:  int f = 1;  f *= i;        // factorial: init 1!
-Count:    int c = 0;  if (ok) c++;
-Max:      int m = first; if (x &gt; m) m = x;
-Average:  (double)s / n;             // cast!</pre>
-  <ul>
-    <li>Sum starts at <b>0</b>, product starts at <b>1</b> — wrong seed = wrong answer.</li>
-    <li>Uninitialized accumulator = garbage. Always initialize.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>cmath &amp; I/O</h2>
-  <ul>
-    <li><code>#include &lt;cmath&gt;</code>: <code>sqrt(x)</code>, <code>pow(x, y)</code>, <code>fabs(x)</code>, <code>sin/cos/tan</code> (radians!).</li>
-    <li><code>abs(int)</code> is in <code>&lt;cstdlib&gt;</code>; use <code>fabs</code> for doubles.</li>
-    <li><code>cout &lt;&lt; x &lt;&lt; "\n";</code> · read with <code>cin &gt;&gt; x;</code> · chain: <code>cin &gt;&gt; a &gt;&gt; b;</code></li>
-    <li>Program skeleton: <code>#include &lt;iostream&gt;</code> + <code>using namespace std;</code> + <code>int main() { ... return 0; }</code></li>
-  </ul>
-</section>
-
-<section>
-  <h2 class="red">Last-Minute Trap Checklist</h2>
-  <ul>
-    <li>☐ Integer division — cast <i>before</i> dividing, and before averaging.</li>
-    <li>☐ <code>=</code> vs <code>==</code> in every condition.</li>
-    <li>☐ Stray <code>;</code> after <code>if</code> / <code>for</code> headers.</li>
-    <li>☐ Off-by-one: <code>&lt;</code> vs <code>&lt;=</code> on loop bounds; count the trips.</li>
-    <li>☐ Accumulators initialized (0 for sum, 1 for product).</li>
-    <li>☐ Ladder order high → low; boundary values use <code>&gt;=</code>.</li>
-    <li>☐ Tracing: write each variable's value per line — never trace in your head.</li>
-    <li>☐ NOT on the exam: 2D arrays, flowcharts, Arduino/lab.</li>
-  </ul>
-</section>
-
+<div class="header">
+  <div class="row-flex">
+    <span><b>MIAE 215 — Official 1-Page Master Cheat Sheet</b></span>
+    <span><b>Concordia · Gina Cody School</b></span>
+    <span><b>Thu Oct 22 · 8:45–10 AM</b></span>
+  </div>
+  <div class="sub">1 Side Only · 10pt Font · Only Aid Allowed · 40% Output Tracing / 60% Code</div>
 </div>
+
+<div class="cols">
+  <!-- COLUMN 1 -->
+  <div class="col">
+    <!-- 1. DATA TYPES & TRAPS -->
+    <div class="box">
+      <div class="box-title">1. Data Types, Limits & #1 Division Trap</div>
+      <table>
+        <tr><th>Type</th><th>Bytes</th><th>Range / Behavior</th></tr>
+        <tr><td><code>int</code></td><td>4</td><td>-2,147,483,648 to 2,147,483,647</td></tr>
+        <tr><td><code>unsigned</code></td><td>4</td><td>0 to 4,294,967,295 (wraps at 0)</td></tr>
+        <tr><td><code>char</code></td><td>1</td><td><code>'0'</code>=48, <code>'A'</code>=65, <code>'a'</code>=97 (single quotes)</td></tr>
+        <tr><td><code>bool</code></td><td>1</td><td><code>true</code>(1), <code>false</code>(0); non-zero is true</td></tr>
+        <tr><td><code>double</code></td><td>8</td><td>~15 digits; compare: <code>fabs(a-b)&lt;1e-7</code></td></tr>
+      </table>
+      <ul>
+        <li><span class="trap">Integer Division Truncates:</span> <code>7/2 = 3</code>, <code>1/2 = 0</code>, <code>-7/2 = -3</code>.</li>
+        <li><b>Fix:</b> Cast <i>before</i>: <code>(double)a/b</code>. <span class="trap">(double)(a/b)=3.0</span> (too late!).</li>
+        <li><b>Modulo <code>%</code>:</b> Ints only. Sign follows left: <code>-7%2 = -1</code>, <code>7%-2 = 1</code>.</li>
+        <li><b>Overflow:</b> <code>100000 * 100000</code> overflows! Use <code>100000LL * 100000</code>.</li>
+      </ul>
+    </div>
+
+    <!-- 2. PRECEDENCE -->
+    <div class="box">
+      <div class="box-title">2. Operator Precedence & Short-Circuit</div>
+      <ul>
+        <li><b>Order:</b> <code>()</code> &rarr; <code>! ++ -- (type)</code> &rarr; <code>* / %</code> &rarr; <code>+ -</code> &rarr; <code>&lt; &lt;= &gt; &gt;=</code> &rarr; <code>== !=</code> &rarr; <code>&amp;&amp;</code> &rarr; <code>||</code> &rarr; <code>= += -= *= /=</code></li>
+        <li><code>a++</code> uses then increments; <code>++a</code> increments first.</li>
+        <li><span class="trap">Assignment in if:</span> <code>if(x = 5)</code> sets x=5, always true! Write <code>x == 5</code>.</li>
+        <li><span class="trap">Chained relational:</span> <code>1 &lt; x &lt; 5</code> &rarr; <code>(1&lt;x) &lt; 5</code> is always true! Must write <code>(1 &lt; x) &amp;&amp; (x &lt; 5)</code>.</li>
+        <li><b>Short-circuit:</b> <code>A &amp;&amp; B</code> skips B if A is false; <code>A || B</code> skips B if A is true.</li>
+      </ul>
+    </div>
+
+    <!-- 3. CONTROL FLOW -->
+    <div class="box">
+      <div class="box-title">3. Control Flow & Loops</div>
+      <ul>
+        <li><b>if-else:</b> <code>else</code> binds to closest unmatched <code>if</code>.</li>
+        <li><span class="trap">Semicolon trap:</span> <code>for(i=0; i&lt;5; i++);</code> &rarr; empty body runs 5 times!</li>
+        <li><b>Loops:</b> <code>for(init; cond; step)</code> (0+); <code>while(cond)</code> (0+); <code>do{...}while(cond);</code> (runs &ge; 1 time!).</li>
+        <li><b>Trips:</b> <code>i=0; i&lt;10; i++</code> (10); <code>i=0; i&lt;=10; i++</code> (11); <code>i=1; i&lt;10; i++</code> (9).</li>
+        <li><code>break</code> exits loop/switch; <code>continue</code> jumps to update/next trip.</li>
+        <li><b>switch(x):</b> x must be integral (int/char/bool); each case needs <code>break;</code>!</li>
+      </ul>
+    </div>
+
+    <!-- 4. ACCUMULATOR PATTERNS -->
+    <div class="box">
+      <div class="box-title">4. Write-a-Program Accumulator Recipes (60%)</div>
+      <ul>
+        <li><b>Sum:</b> <code>int s = 0; s += val;</code> (init with 0)</li>
+        <li><b>Product/Factorial:</b> <code>long long p = 1; p *= i;</code> (init with 1!)</li>
+        <li><b>Count / Filter:</b> <code>int c = 0; if (val &gt; 0) c++;</code></li>
+        <li><b>Average:</b> <code>double avg = (count &gt; 0) ? (double)sum/count : 0.0;</code></li>
+        <li><b>Min/Max:</b> <code>int m = A[0]; for(i=1;i&lt;n;i++) if(A[i]&gt;m) m = A[i];</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- COLUMN 2 -->
+  <div class="col">
+    <!-- 5. DR. GORDON TABLE TRACE -->
+    <div class="box">
+      <div class="box-title red">5. Dr. Gordon Table Tracing (40% of Exam!)</div>
+      <ul>
+        <li><b>Columns:</b> Iteration, each variable (<code>i</code>, <code>x</code>, <code>sum</code>, array cells), and <b>Output</b>.</li>
+        <li><b>Rule:</b> Only write into a cell when its value <b>changes</b>.</li>
+        <li><span class="trap">Garbage Value (G / ?):</span> Uninitialized variables or array access out of bounds (e.g., <code>A[4]</code> for size 4) prints <b>Garbage (G)</b>!</li>
+        <li><span class="hl">Example Gordon Trace:</span>
+          <code>int i, A[3]={1,2,3}; for(i=0;i&lt;3;i++) cout&lt;&lt;A[i]; cout&lt;&lt;A[i];</code>
+          <br>&rarr; Loops print <code>1 2 3</code>, final <code>A[3]</code> is out-of-bounds &rarr; prints <b>Garbage</b>!
+        </li>
+      </ul>
+    </div>
+
+    <!-- 6. ARRAYS & MATRICES -->
+    <div class="box">
+      <div class="box-title">6. 1D & 2D Arrays & C-Strings</div>
+      <ul>
+        <li><code>int A[5] = {10, 20};</code> &rarr; A[0]=10, A[1]=20, A[2]=A[3]=A[4]=<b>0</b>!</li>
+        <li><b>Indices:</b> 0 to n-1. <code>A[n]</code> is out-of-bounds error!</li>
+        <li><b>2D Matrix M[R][C]:</b> Rows <code>i</code> (0..R-1), Cols <code>j</code> (0..C-1).</li>
+        <li><b>Transpose:</b> Swap <code>M[i][j]</code> and <code>M[j][i]</code> for <code>j &gt; i</code>.</li>
+        <li><b>C-Strings:</b> Null-terminated <code>char s[20];</code> &rarr; ends with <code>'\0'</code>. <code>strlen()</code> ignores null. <code>cin &gt;&gt; s;</code> stops at space; <code>cin.getline(s, 20);</code> reads full line.</li>
+      </ul>
+    </div>
+
+    <!-- 7. FUNCTIONS -->
+    <div class="box">
+      <div class="box-title">7. Functions & Parameter Passing</div>
+      <ul>
+        <li><b>Pass by Value:</b> <code>void f(int x)</code> &rarr; copy created, caller unchanged.</li>
+        <li><b>Pass by Reference:</b> <code>void f(int &amp;x)</code> &rarr; alias, <b>modifies caller</b>!</li>
+        <li><b>Arrays to Functions:</b> <code>void f(int A[], int n)</code> always passes by reference (pointer); modifications inside change caller array!</li>
+        <li><b>Swap:</b> <code>void swap(int &amp;a, int &amp;b){ int t=a; a=b; b=t; }</code></li>
+      </ul>
+    </div>
+
+    <!-- 8. FILE I/O & MEMORY -->
+    <div class="box">
+      <div class="box-title dark">8. File I/O, Pointers &amp; Checklist</div>
+      <ul>
+        <li><b>Files:</b> <code>#include &lt;fstream&gt;</code> &rarr; <code>ifstream fin("in.txt");</code> <code>if(!fin){ cout&lt;&lt;"error"; return 1; }</code> while(fin &gt;&gt; x){ ... } <code>ofstream fout("out.txt"); fout &lt;&lt; ans; fout.close();</code></li>
+        <li><b>Pointers &amp; Dynamic:</b> <code>int *p = new int[n];</code> ... <code>delete[] p; p = nullptr;</code></li>
+        <li><b>Math:</b> <code>#include &lt;cmath&gt;</code> &rarr; <code>sqrt(x)</code>, <code>pow(b,e)</code>, <code>fabs(d)</code>, <code>sin(rad)</code></li>
+        <li><span class="trap">Exam Traps:</span> 1. Cast before divide · 2. <code>==</code> not <code>=</code> · 3. Loop trips count · 4. Check array bounds · 5. Tracing: write changes only!</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

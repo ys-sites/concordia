@@ -83,6 +83,18 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
     ],
     practiceFiles: [
       {
+        id: '221-1page-exam-cheatsheet',
+        title: 'MIAE 221 Official 1-Page Exam Cheatsheet (Single-Sided Master Reference)',
+        filename: 'MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
+        relativePath: 'Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
+        instructor: 'Drs. Martin Pugh & Mamoun Medraj',
+        termYear: 'Midterm 2026 (Callister Ch 1–7.4)',
+        badge: '1-Page Memory Aide',
+        fileType: 'pdf',
+        description: 'Strict single-sided 1-page master reference sheet (page count: 1) formatted at 10pt font on Letter paper covering Callister Chapters 1–7.4 and Lectures 1–12. Includes bonding potential wells, FCC/BCC/HCP lattice geometry table, Miller indices, Bragg’s law XRD peak rules, Hume-Rothery criteria, Schmid’s law slip, Fick’s diffusion laws, and stress-strain landmarks.',
+        keyTopics: ['1-Page Only (Verified)', '10pt Font', 'Callister Modules 1–12', 'Crystal Geometry', 'Bragg XRD', 'Diffusion', 'Stress-Strain']
+      },
+      {
         id: '221-midterm-cheatsheet',
         title: 'MIAE 221 Midterm 1-Page Document Cheatsheet & Exam Survival Guide',
         filename: 'MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
@@ -181,6 +193,18 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
       }
     ],
     practiceFiles: [
+      {
+        id: '215-1page-exam-cheatsheet',
+        title: 'MIAE 215 Official 1-Page Exam Cheatsheet (Single-Sided, 10pt Font)',
+        filename: 'MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
+        relativePath: 'Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
+        instructor: 'Dr. Brandon Gordon Scope',
+        termYear: 'Midterm 2026 (Moodle Rule Compliant)',
+        badge: '1-Page Memory Aide',
+        fileType: 'pdf',
+        description: 'Strict single-sided 1-page exam cheatsheet (page count: 1) formatted at 10pt font on Letter paper, compliant with Dr. Gordon\'s Moodle exam policy. Covers C++ data types, integer division truncation, operator precedence hierarchy, Dr. Gordon table tracing protocol with garbage detection, 1D/2D arrays, loops, functions, and file I/O.',
+        keyTopics: ['1-Page Only (Verified)', '10pt Font', 'Moodle Compliant', 'Table Tracing', 'Integer Division', 'Precedence', 'Arrays & Loops']
+      },
       {
         id: '215-document-cheatsheet',
         title: 'MIAE 215 Midterm 1-Page Document Cheatsheet & Exam Survival Guide',
