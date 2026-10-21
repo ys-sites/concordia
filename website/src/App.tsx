@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import { CourseId, CourseDocument } from './types';
 import { COURSES_DATA, documentFromPath } from './data/coursesData';
 import { Navbar } from './components/Navbar';
+import { AppErrorBoundary } from './components/AppErrorBoundary';
 import { HeroCourseSelector } from './components/HeroCourseSelector';
 import { Footer } from './components/Footer';
 import { TEACHER_PRACTICE_FOLDER } from './data/teacherPracticeCourses';
@@ -256,6 +257,8 @@ export function App() {
 
       {/* Main Dynamic Viewport */}
       <main className="main-content-layout">
+        {/* a failed page shows a recovery card under the navbar instead of blanking the site; cleared on navigation */}
+        <AppErrorBoundary resetKey={`${viewMode}|${selectedCourseId ?? ''}|${window.location.hash}`}>
         <Suspense fallback={<div className="route-loading" aria-busy="true" />}>
         {viewMode === 'HERO' && (
           <HeroCourseSelector 
@@ -342,6 +345,7 @@ export function App() {
           />
         )}
         </Suspense>
+        </AppErrorBoundary>
       </main>
 
       {pickerOpen && (
