@@ -10,8 +10,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Fall 2023, Q2(a) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q01 - Output Tracing.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/01.jpg",
-    "duration": 112,
-    "sizeMB": 6,
+    "duration": 186,
+    "sizeMB": 9.4,
     "chapters": [
       {
         "label": "The Question",
@@ -19,15 +19,15 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
       },
       {
         "label": "Solve It",
-        "start": 10.6
+        "start": 12.1
       },
       {
         "label": "The Theory",
-        "start": 64.5
+        "start": 133.8
       },
       {
         "label": "Answer & Tips",
-        "start": 79.6
+        "start": 150.5
       }
     ]
   },

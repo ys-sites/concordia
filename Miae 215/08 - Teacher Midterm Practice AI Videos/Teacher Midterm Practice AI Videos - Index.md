@@ -2,7 +2,7 @@
 
 One short narrated solution per question of the teacher's C++ practice papers (Fall 2023 Midterm Q2, Midterm Review #1, Quiz #1 and Quiz #2) that the instructors handed out: the question, how to solve it step by step, the theory behind it, the answer, and the trap to avoid. On the website each video appears in the step-by-step explanation after you answer the question in the Teacher Midterm Practice drill.
 
-- [Q01 - Output Tracing.mp4](./Q01%20-%20Output%20Tracing.mp4) (1:52)
+- [Q01 - Output Tracing.mp4](./Q01%20-%20Output%20Tracing.mp4) (3:06)
 - [Q02 - Output Tracing.mp4](./Q02%20-%20Output%20Tracing.mp4) (1:08)
 - [Q03 - Output Tracing.mp4](./Q03%20-%20Output%20Tracing.mp4) (0:55)
 - [Q04 - Output Tracing.mp4](./Q04%20-%20Output%20Tracing.mp4) (1:40)
