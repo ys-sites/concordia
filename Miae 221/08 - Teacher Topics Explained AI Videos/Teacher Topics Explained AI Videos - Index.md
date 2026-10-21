@@ -1,6 +1,6 @@
 # MIAE 221 · Teacher Topics Explained AI Videos
 
-AI-generated motion-graphics lessons, one per teacher topic (Chapters 1–7). Each video follows the professor's lecture slides and worked examples, and every subtopic is a chapter you can jump to. Captions: the `.srt` file next to each video loads automatically in VLC and most players.
+AI-generated motion-graphics lessons, one per teacher topic (Chapters 1–7). Each video follows the professor's lecture slides and worked examples, and every subtopic is a chapter you can jump to.
 
 ## 01 · Introduction & Classes of Materials (5:12)
 

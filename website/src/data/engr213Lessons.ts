@@ -6,7 +6,7 @@ export interface MotionLesson {
   title: string;
   source: string;
   video: string;
-  captions: string;
+  captions?: string; // caption tracks removed 2026-10-21; optional for older readers
   poster: string;
   duration: number;
   sizeMB: number;
@@ -19,7 +19,6 @@ export const ENGR213_MOTION_LESSONS: Record<string, MotionLesson> = {
     "title": "Separable Equations",
     "source": "Lecture 3 · Separable Equations (Zill §2.2)",
     "video": "Engr 213/Tutor Videos/01 - Separable Equations.mp4",
-    "captions": "Engr 213/Tutor Videos/01 - Separable Equations.vtt",
     "poster": "Engr 213/Tutor Videos/posters/01.jpg",
     "duration": 309,
     "sizeMB": 12.2,
@@ -55,7 +54,6 @@ export const ENGR213_MOTION_LESSONS: Record<string, MotionLesson> = {
     "title": "First-Order Linear Equations",
     "source": "Lecture 3 · Linear Equations, Steps I–III (Zill §2.3)",
     "video": "Engr 213/Tutor Videos/02 - First-Order Linear Equations.mp4",
-    "captions": "Engr 213/Tutor Videos/02 - First-Order Linear Equations.vtt",
     "poster": "Engr 213/Tutor Videos/posters/02.jpg",
     "duration": 320,
     "sizeMB": 11.7,
@@ -99,7 +97,6 @@ export const ENGR213_MOTION_LESSONS: Record<string, MotionLesson> = {
     "title": "Exact Equations",
     "source": "Lecture 4 · Exact Equations, Example 1 (Zill §2.4)",
     "video": "Engr 213/Tutor Videos/03 - Exact Equations.mp4",
-    "captions": "Engr 213/Tutor Videos/03 - Exact Equations.vtt",
     "poster": "Engr 213/Tutor Videos/posters/03.jpg",
     "duration": 247,
     "sizeMB": 9.2,
@@ -135,7 +132,6 @@ export const ENGR213_MOTION_LESSONS: Record<string, MotionLesson> = {
     "title": "Non-Exact Equations",
     "source": "Lecture 4 · Integrating Factors, Example 3 (Zill §2.4)",
     "video": "Engr 213/Tutor Videos/04 - Non-Exact Equations.mp4",
-    "captions": "Engr 213/Tutor Videos/04 - Non-Exact Equations.vtt",
     "poster": "Engr 213/Tutor Videos/posters/04.jpg",
     "duration": 272,
     "sizeMB": 10.1,
@@ -175,7 +171,6 @@ export const ENGR213_MOTION_LESSONS: Record<string, MotionLesson> = {
     "title": "Bernoulli Equations",
     "source": "Lecture 5 · Solutions by Substitution, Example 3 (Zill §2.5)",
     "video": "Engr 213/Tutor Videos/05 - Bernoulli Equations.mp4",
-    "captions": "Engr 213/Tutor Videos/05 - Bernoulli Equations.vtt",
     "poster": "Engr 213/Tutor Videos/posters/05.jpg",
     "duration": 216,
     "sizeMB": 7.9,
@@ -211,7 +206,6 @@ export const ENGR213_MOTION_LESSONS: Record<string, MotionLesson> = {
     "title": "Homogeneous Equations",
     "source": "Lecture 5 · Homogeneous Equations, slide 4 & Example 2 (Zill §2.5)",
     "video": "Engr 213/Tutor Videos/06 - Homogeneous Equations.mp4",
-    "captions": "Engr 213/Tutor Videos/06 - Homogeneous Equations.vtt",
     "poster": "Engr 213/Tutor Videos/posters/06.jpg",
     "duration": 253,
     "sizeMB": 10.1,
@@ -247,7 +241,6 @@ export const ENGR213_MOTION_LESSONS: Record<string, MotionLesson> = {
     "title": "Reduction to Separable",
     "source": "Lecture 5 · Reduction to Separation of Variables, Example 4 (Zill §2.5)",
     "video": "Engr 213/Tutor Videos/07 - Reduction to Separable.mp4",
-    "captions": "Engr 213/Tutor Videos/07 - Reduction to Separable.vtt",
     "poster": "Engr 213/Tutor Videos/posters/07.jpg",
     "duration": 232,
     "sizeMB": 9.1,
@@ -283,7 +276,6 @@ export const ENGR213_MOTION_LESSONS: Record<string, MotionLesson> = {
     "title": "2nd-Order Constant Coefficients",
     "source": "Builds on Lecture 9 (fundamental sets) & Lecture 8 (Euler’s formula) · Zill §4.3",
     "video": "Engr 213/Tutor Videos/08 - 2nd-Order Constant Coefficients.mp4",
-    "captions": "Engr 213/Tutor Videos/08 - 2nd-Order Constant Coefficients.vtt",
     "poster": "Engr 213/Tutor Videos/posters/08.jpg",
     "duration": 297,
     "sizeMB": 11.3,

@@ -1,6 +1,6 @@
 # ENGR 213 · Tutor Videos (ODE Archetypes)
 
-Motion-graphics lessons for the eight ODE archetypes on the Midterm Mastery page. Each video teaches the method with the professor's own lecture examples: spot it, why it works, the method, a worked example, the exam traps and a recap. Captions: the `.srt` file next to each video loads automatically in VLC and most players.
+Motion-graphics lessons for the eight ODE archetypes on the Midterm Mastery page. Each video teaches the method with the professor's own lecture examples: spot it, why it works, the method, a worked example, the exam traps and a recap.
 
 ## 01 · Separable Equations (5:09)
 

@@ -46,7 +46,7 @@ export const MotionLessonPlayer: React.FC<{ lesson: MotionLesson; badge?: string
           </span>
         </div>
         <span className="ec-lesson-meta">
-          {formatLessonTime(lesson.duration)} · captions · {lesson.source}
+          {formatLessonTime(lesson.duration)} · {lesson.source}
         </span>
       </div>
       <video
@@ -60,7 +60,6 @@ export const MotionLessonPlayer: React.FC<{ lesson: MotionLesson; badge?: string
         src={getVideoUrl(lesson.video)}
         onError={handleVideoError}
       >
-        <track kind="captions" src={getVideoUrl(lesson.captions)} srcLang="en" label="English" default />
       </video>
       <div className="ec-lesson-chapters">
         {lesson.chapters.map((c) => (

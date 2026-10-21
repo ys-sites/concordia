@@ -54,7 +54,7 @@ export const TopicVideosHub: React.FC<Props> = ({ courseCode, title, intro, less
             <Sparkles size={12} /> AI-generated from code
           </span>
           <span className="tvh-count">
-            {lessons.length} videos · {totalMinutes} min · captions
+            {lessons.length} videos · {totalMinutes} min
           </span>
         </div>
         <h2>

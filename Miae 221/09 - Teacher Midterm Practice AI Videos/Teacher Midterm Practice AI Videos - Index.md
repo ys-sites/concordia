@@ -1,6 +1,6 @@
 # MIAE 221 · Teacher Midterm Practice (AI Videos)
 
-One short narrated solution per question of the 2017 sample midterm (Version A) that the instructors handed out, following the official marking key: the question, how to solve it step by step, the answer, and the trap to avoid. On the website each video appears in the step-by-step explanation after you answer the question in the Teacher Midterm Practice drill. Captions: the `.srt` file next to each video loads automatically in VLC and most players.
+One short narrated solution per question of the 2017 sample midterm (Version A) that the instructors handed out: the question, how to solve it step by step, the theory behind it, the answer, and the trap to avoid. On the website each video appears in the step-by-step explanation after you answer the question in the Teacher Midterm Practice drill.
 
 - [Q01 - Miller Indices — Planes.mp4](./Q01%20-%20Miller%20Indices%20%E2%80%94%20Planes.mp4) (0:59)
 - [Q02 - Miller Indices — Planes.mp4](./Q02%20-%20Miller%20Indices%20%E2%80%94%20Planes.mp4) (1:00)
