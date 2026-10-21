@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>MIAE 215 · Midterm Master Reference Cheatsheet & Exam Survival Guide</title>
+<title>MIAE 215 · Midterm Master Cheatsheet & Exam Survival Guide</title>
 <style>
   @page {
     size: letter portrait;
@@ -19,8 +19,8 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #0f172a;
     background-color: #ffffff;
-    line-height: 1.24;
-    font-size: 8.5px;
+    line-height: 1.26;
+    font-size: 9.5px;
     margin: 0;
     padding: 0;
     -webkit-print-color-adjust: exact;
@@ -31,7 +31,7 @@
     width: 8.5in;
     height: 11in;
     max-height: 11in;
-    padding: 0.18in 0.28in 0.15in 0.28in;
+    padding: 0.15in 0.24in 0.13in 0.24in;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -41,117 +41,98 @@
     justify-content: space-between;
   }
 
-  /* Running Top Header */
-  .page-header {
+  /* Compact Ultra-Sharp Header Bar */
+  .compact-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 7.2px;
-    font-weight: 700;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 1.5px;
-    margin-bottom: 3.5px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-left: 4.5px solid #0d9488;
+    border-radius: 4px;
+    padding: 4px 9px;
+    margin-bottom: 2.5px;
   }
 
-  .page-header span.highlight {
-    color: #0d9488;
-    font-weight: 800;
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
+
+  .header-title {
+    font-size: 12.2px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+  }
+
+  .header-pill {
+    font-size: 7.5px;
+    font-weight: 800;
+    background: #ccfbf1;
+    color: #0f766e;
+    padding: 1.5px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: 1px solid #99f6e4;
+  }
+
+  .header-tags {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .meta-tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 7.5px;
+    font-weight: 700;
+    padding: 1.5px 6px;
+    border-radius: 9999px;
+  }
+
+  .meta-tag.primary { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+  .meta-tag.danger { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+  .meta-tag.accent { background: #f0fdfa; color: #0f766e; border: 1px solid #99f6e4; }
+  .meta-tag.warning { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
 
   /* Running Bottom Footer */
   .page-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 7.0px;
+    font-size: 7.4px;
     font-weight: 600;
     color: #64748b;
     border-top: 1px solid #e2e8f0;
     padding-top: 2px;
-    margin-top: 2px;
+    margin-top: 1.5px;
   }
-
-  /* Hero Header */
-  .hero-header {
-    background: #f8fafc;
-    border: 1px solid #cbd5e1;
-    border-left: 3.5px solid #0d9488;
-    border-radius: 4px;
-    padding: 4px 8px;
-    margin-bottom: 3.5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .eyebrow {
-    font-size: 6.8px;
-    font-weight: 800;
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-    color: #0d9488;
-    margin-bottom: 0.5px;
-  }
-
-  .hero-title {
-    font-size: 13.0px;
-    font-weight: 800;
-    line-height: 1.1;
-    color: #0f172a;
-    letter-spacing: -0.02em;
-  }
-
-  .hero-subtitle {
-    font-size: 7.8px;
-    color: #475569;
-    margin-top: 0.5px;
-  }
-
-  .meta-tag-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3px;
-    align-items: center;
-  }
-
-  .meta-tag {
-    display: inline-flex;
-    align-items: center;
-    font-size: 6.8px;
-    font-weight: 700;
-    padding: 1.5px 5px;
-    border-radius: 9999px;
-  }
-
-  .meta-tag.primary { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
-  .meta-tag.accent { background: #f0fdfa; color: #0f766e; border: 1px solid #99f6e4; }
-  .meta-tag.warning { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
-  .meta-tag.danger { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
 
   /* Section Title */
   .section-title {
-    font-size: 8.6px;
+    font-size: 9.4px;
     font-weight: 800;
     color: #0f172a;
     border-left: 3px solid #0d9488;
-    padding-left: 4.5px;
-    margin: 3.5px 0 2.5px 0;
+    padding-left: 5px;
+    margin: 2px 0 2px 0;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   .section-title span.badge {
-    font-size: 6.6px;
+    font-size: 7.2px;
     font-weight: 700;
     background: #f1f5f9;
     color: #475569;
-    padding: 0.5px 4px;
+    padding: 0.5px 5px;
     border-radius: 3px;
     text-transform: none;
     letter-spacing: normal;
@@ -164,29 +145,23 @@
     gap: 3.5px;
   }
 
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3.5px;
-  }
-
   /* Cards */
   .card {
     background: #ffffff;
     border: 1px solid #cbd5e1;
     border-radius: 3.5px;
-    padding: 3.5px 5px;
+    padding: 3.5px 5.5px;
     display: flex;
     flex-direction: column;
-    gap: 2.5px;
+    gap: 2px;
   }
 
   .card-header {
-    font-size: 7.8px;
+    font-size: 8.6px;
     font-weight: 800;
     color: #1e293b;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     border-bottom: 1px solid #f1f5f9;
     padding-bottom: 1.5px;
     display: flex;
@@ -195,7 +170,7 @@
   }
 
   .tag {
-    font-size: 6.5px;
+    font-size: 7.0px;
     font-weight: 800;
     padding: 0.5px 3.5px;
     border-radius: 2.5px;
@@ -211,23 +186,23 @@
   table.compact-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 7.6px;
+    font-size: 8.6px;
   }
 
   table.compact-table th {
     background: #f8fafc;
     color: #334155;
     font-weight: 700;
-    font-size: 7.0px;
+    font-size: 7.8px;
     text-align: left;
-    padding: 1.5px 3px;
+    padding: 1.5px 3.5px;
     border-bottom: 1px solid #cbd5e1;
     text-transform: uppercase;
     letter-spacing: 0.02em;
   }
 
   table.compact-table td {
-    padding: 1px 3px;
+    padding: 1.2px 3.5px;
     border-bottom: 1px solid #f1f5f9;
     vertical-align: middle;
   }
@@ -239,7 +214,7 @@
   /* Code elements */
   code, .mono {
     font-family: Consolas, "Courier New", monospace;
-    font-size: 7.8px;
+    font-size: 8.8px;
     font-weight: 600;
     color: #0f172a;
   }
@@ -250,7 +225,7 @@
     border-radius: 2px;
     color: #0f172a;
     font-family: Consolas, monospace;
-    font-size: 7.6px;
+    font-size: 8.4px;
     border: 1px solid #e2e8f0;
   }
 
@@ -258,10 +233,10 @@
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 3px;
-    padding: 3px 4.5px;
+    padding: 3px 5px;
     font-family: Consolas, "Courier New", monospace;
-    font-size: 7.5px;
-    line-height: 1.20;
+    font-size: 8.3px;
+    line-height: 1.24;
     color: #0f172a;
     white-space: pre-wrap;
   }
@@ -275,9 +250,9 @@
   /* Callout boxes */
   .callout {
     border-radius: 3px;
-    padding: 2.5px 4.5px;
-    font-size: 7.5px;
-    line-height: 1.18;
+    padding: 2.5px 5px;
+    font-size: 8.3px;
+    line-height: 1.22;
   }
 
   .callout-crimson {
@@ -301,13 +276,6 @@
     color: #115e59;
   }
 
-  .callout-blue {
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    border-left: 2.5px solid #2563eb;
-    color: #1e40af;
-  }
-
   /* Master Algorithm Bridge Box */
   .bridge-container {
     background: #f8fafc;
@@ -317,15 +285,15 @@
     padding: 3.5px 6px;
     display: flex;
     flex-direction: column;
-    gap: 2.5px;
+    gap: 2px;
   }
 
   .bridge-title {
-    font-size: 8.6px;
+    font-size: 9.4px;
     font-weight: 800;
     color: #1e40af;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -343,15 +311,15 @@
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 3px;
-    padding: 3px 4.5px;
-    font-size: 7.4px;
+    padding: 3px 5px;
+    font-size: 8.1px;
     display: flex;
     flex-direction: column;
     gap: 1.5px;
   }
 
   .bridge-card-header {
-    font-size: 7.4px;
+    font-size: 8.2px;
     font-weight: 800;
     color: #0f172a;
     display: flex;
@@ -364,7 +332,7 @@
     width: 100%;
     border-collapse: collapse;
     font-family: Consolas, monospace;
-    font-size: 7.3px;
+    font-size: 8.1px;
     margin: 1px 0;
   }
 
@@ -372,14 +340,14 @@
     background: #fee2e2;
     color: #991b1b;
     border: 1px solid #fca5a5;
-    padding: 1px 2.5px;
-    font-size: 6.8px;
+    padding: 1.2px 3px;
+    font-size: 7.5px;
     text-align: center;
   }
 
   table.trace-table td {
     border: 1px solid #e2e8f0;
-    padding: 1px 2.5px;
+    padding: 1.2px 3px;
     text-align: center;
   }
 
@@ -399,7 +367,7 @@
     position: relative;
     padding-left: 8px;
     margin-bottom: 1.2px;
-    line-height: 1.20;
+    line-height: 1.24;
   }
 
   ul.clean-list li:before {
@@ -419,25 +387,17 @@
 
 <div class="page">
 
-  <!-- TOP HEADER -->
-  <div class="page-header">
-    <span>CONCORDIA UNIVERSITY · GINA CODY SCHOOL · DEPT OF MIAE</span>
-    <span class="highlight">MIAE 215 MIDTERM MASTER REFERENCE · STRICT 1-PAGE EXAM AID</span>
-    <span>FALL 2026 · DR. GORDON EXAM COMPLIANT</span>
-  </div>
-
-  <!-- HERO HEADER -->
-  <div class="hero-header">
-    <div>
-      <div class="eyebrow">Comprehensive C++ Programming Blueprint · Midterm Exam Companion</div>
-      <div class="hero-title">MIAE 215 Midterm Master Document Cheatsheet</div>
-      <div class="hero-subtitle">Exact syntax, memory bounds, operator precedence, Gordon table-tracing mechanics &amp; 60% write-a-program recipes.</div>
+  <!-- ULTRA-COMPACT HEADER (ZERO WASTED VERTICAL SPACE) -->
+  <div class="compact-header">
+    <div class="header-left">
+      <span class="header-title">MIAE 215 — MIDTERM MASTER EXAM CHEATSHEET</span>
+      <span class="header-pill">1-PAGE · SINGLE-SIDED</span>
     </div>
-    <div class="meta-tag-bar">
+    <div class="header-tags">
       <span class="meta-tag primary">60% Written Code</span>
       <span class="meta-tag danger">40% Table Tracing</span>
       <span class="meta-tag accent">Chapters 1–7</span>
-      <span class="meta-tag warning">Zero Garbage Leaks</span>
+      <span class="meta-tag warning">Fall 2026 · Concordia</span>
     </div>
   </div>
 
@@ -517,7 +477,7 @@
         <span>Dr. Gordon Tracing Protocol (40%)</span>
         <span class="tag tag-crimson">Question 2 Core</span>
       </div>
-      <div style="font-size:7.2px; line-height:1.15; color:#334155;">
+      <div style="font-size:7.8px; line-height:1.15; color:#334155;">
         <strong>Step-by-Step Rule:</strong> Draw column for each variable + <b>Output</b>. Only write when value <i>changes</i>. Print strictly when <code>cout</code> executes.
       </div>
       <!-- Example Trace Table -->
