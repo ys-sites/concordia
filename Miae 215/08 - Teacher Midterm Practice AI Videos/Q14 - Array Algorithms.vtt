@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.503
+Teacher midterm practice for C plus plus, question 14.
+
+2
+00:00:05.123 --> 00:00:08.103
+This code is meant to print the minimum of A equals three
+
+3
+00:00:08.103 --> 00:00:11.710
+point five, two, eight point one, four point four.
+
+4
+00:00:11.710 --> 00:00:13.540
+What does it actually print?
+
+5
+00:00:15.240 --> 00:00:18.764
+m starts at zero. Then each element is compared with m.
+
+6
+00:00:19.385 --> 00:00:24.883
+Three point five less than zero? No. Two? No. Eight point one? No. Four point four?
+
+7
+00:00:24.883 --> 00:00:25.299
+No.
+
+8
+00:00:25.919 --> 00:00:30.621
+m never changes, so it prints zero: a value that is not even in the array.
+
+9
+00:00:32.220 --> 00:00:35.517
+A running minimum must start from a real element.
+
+10
+00:00:35.517 --> 00:00:39.756
+Start with m equal to A of zero, then loop from i equals one.
+
+11
+00:00:39.756 --> 00:00:42.700
+The same rule applies to a running maximum.
+
+12
+00:00:44.301 --> 00:00:45.408
+So it prints zero.
+
+13
+00:00:46.228 --> 00:00:49.203
+Initialising a minimum or maximum to zero.
+
+14
+00:00:49.203 --> 00:00:53.089
+It fails whenever all the values are on one side of zero.
+
+15
+00:00:53.809 --> 00:00:57.698
+Exam tip: when a min or max question gives all positive, or
+
+16
+00:00:57.698 --> 00:01:03.328
+all negative values, check the starting value first. That is usually the trick.

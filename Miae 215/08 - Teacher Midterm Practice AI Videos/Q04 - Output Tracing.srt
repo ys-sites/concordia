@@ -1,0 +1,99 @@
+1
+00:00:00,800 --> 00:00:04,291
+Teacher midterm practice for C plus plus, question 4.
+
+2
+00:00:04,911 --> 00:00:08,010
+Which four values does this for loop print, one per line?
+
+3
+00:00:09,710 --> 00:00:14,696
+x starts at one. i equals zero: A of zero is minus zero point one.
+
+4
+00:00:14,696 --> 00:00:17,663
+Is that less than minus zero point one one?
+
+5
+00:00:17,663 --> 00:00:21,047
+No: minus zero point one is the bigger number.
+
+6
+00:00:21,047 --> 00:00:24,133
+Is it greater than zero point one? No.
+
+7
+00:00:24,133 --> 00:00:29,000
+So the else runs: x equals seven plus one over one, which is eight.
+
+8
+00:00:29,620 --> 00:00:32,887
+i equals one: zero point one one is greater than
+
+9
+00:00:32,887 --> 00:00:36,909
+zero point one, so x minus equals ten: minus two.
+
+10
+00:00:37,528 --> 00:00:41,892
+i equals two: zero matches neither test, so the else runs again.
+
+11
+00:00:41,892 --> 00:00:47,139
+But one over three is integer division, which gives zero. So x is just seven.
+
+12
+00:00:47,760 --> 00:00:51,059
+i equals three: zero point two is greater than zero
+
+13
+00:00:51,059 --> 00:00:54,838
+point one, so x is seven minus ten, minus three.
+
+14
+00:00:56,438 --> 00:00:58,304
+Two rules decide this one.
+
+15
+00:00:58,304 --> 00:01:02,771
+First, with negatives, the number closer to zero is the larger one:
+
+16
+00:01:02,771 --> 00:01:06,672
+minus zero point one is greater than minus zero point one one.
+
+17
+00:01:06,672 --> 00:01:11,308
+Second, when both operands are int, the slash is integer division, and
+
+18
+00:01:11,308 --> 00:01:15,379
+the fraction is thrown away, even inside a double expression.
+
+19
+00:01:16,979 --> 00:01:20,244
+So the loop prints eight, minus two, seven, and minus three.
+
+20
+00:01:21,063 --> 00:01:23,588
+Comparing negatives backwards, or writing
+
+21
+00:01:23,588 --> 00:01:26,449
+seven point three three for the third value.
+
+22
+00:01:26,449 --> 00:01:28,806
+One over three in integers is zero.
+
+23
+00:01:29,526 --> 00:01:32,727
+Exam tip: before tracing, circle every division in
+
+24
+00:01:32,727 --> 00:01:35,486
+the code and check the types on both sides.
+
+25
+00:01:35,486 --> 00:01:37,417
+int over int means truncate.

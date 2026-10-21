@@ -1,0 +1,59 @@
+1
+00:00:00,800 --> 00:00:04,728
+Teacher midterm practice for C plus plus, question 29.
+
+2
+00:00:05,348 --> 00:00:09,486
+For x from zero to one thousand inclusive, in steps of one times ten
+
+3
+00:00:09,486 --> 00:00:13,451
+to the minus three, how many times does the loop body run?
+
+4
+00:00:15,151 --> 00:00:18,587
+Count the intervals first: one thousand divided by
+
+5
+00:00:18,587 --> 00:00:21,959
+zero point zero zero one is one million steps.
+
+6
+00:00:22,579 --> 00:00:25,756
+But the values are the fence posts, not the gaps.
+
+7
+00:00:25,756 --> 00:00:28,827
+One million steps have one million and one end points,
+
+8
+00:00:28,827 --> 00:00:32,480
+because the starting value, x equals zero, counts too.
+
+9
+00:00:34,080 --> 00:00:37,372
+Think of a fence: four sections need five posts.
+
+10
+00:00:37,372 --> 00:00:43,230
+A loop from a to b inclusive, with step h, runs b minus a over h, plus one, times.
+
+11
+00:00:44,830 --> 00:00:47,557
+So the loop body runs one million and one times.
+
+12
+00:00:48,377 --> 00:00:52,743
+The fence post error: forgetting the starting value, and answering one million.
+
+13
+00:00:53,463 --> 00:00:56,287
+Exam tip: sanity check with a tiny case.
+
+14
+00:00:56,287 --> 00:00:59,498
+Zero to two in steps of one is zero, one, two:
+
+15
+00:00:59,498 --> 00:01:02,876
+three values, which is two over one, plus one.

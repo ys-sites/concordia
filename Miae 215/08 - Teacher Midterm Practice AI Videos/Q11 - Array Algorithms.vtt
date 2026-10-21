@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.419
+Teacher midterm practice for C plus plus, question 11.
+
+2
+00:00:05.039 --> 00:00:08.223
+A student checks whether two five element arrays are equal.
+
+3
+00:00:08.223 --> 00:00:11.842
+For A one equals one, two, three, four, five, and A two
+
+4
+00:00:11.842 --> 00:00:15.702
+equals one, nine, three, four, five, what is printed?
+
+5
+00:00:17.402 --> 00:00:22.457
+eq starts true. i equals zero: one equals one, so the else sets eq to true.
+
+6
+00:00:23.078 --> 00:00:27.539
+i equals one: two is not nine, so eq becomes false. Good so far.
+
+7
+00:00:28.158 --> 00:00:33.024
+But at i equals two, three equals three, and the else sets eq back to true!
+
+8
+00:00:33.024 --> 00:00:35.836
+The same happens for i equals three and four.
+
+9
+00:00:36.457 --> 00:00:41.184
+After the loop eq is true, so it prints A one and A two are equal. That is wrong.
+
+10
+00:00:42.784 --> 00:00:45.358
+A flag search must only move one way.
+
+11
+00:00:45.358 --> 00:00:48.342
+Start by assuming equal, and the only thing the
+
+12
+00:00:48.342 --> 00:00:51.092
+loop may do is switch the flag to false.
+
+13
+00:00:51.092 --> 00:00:55.480
+The else that resets it means only the last pair decides the result.
+
+14
+00:00:57.080 --> 00:01:01.542
+So the program prints A one and A two are equal, because the flag gets reset.
+
+15
+00:01:02.362 --> 00:01:04.570
+Adding an else that resets the flag.
+
+16
+00:01:04.570 --> 00:01:07.599
+That is exactly the bug the teacher's hint is about.
+
+17
+00:01:08.318 --> 00:01:13.495
+Exam tip: in flag loops, ask whether a later pass can undo an earlier result.
+
+18
+00:01:13.495 --> 00:01:16.083
+If it can, the flag logic is wrong.

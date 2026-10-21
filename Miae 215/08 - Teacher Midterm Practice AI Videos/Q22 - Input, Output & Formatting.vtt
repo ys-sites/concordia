@@ -1,0 +1,65 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.574
+Teacher midterm practice for C plus plus, question 22.
+
+2
+00:00:05.194 --> 00:00:07.695
+A student declares int a, b and c instead of
+
+3
+00:00:07.695 --> 00:00:10.718
+double, then enters seven, eight and eight.
+
+4
+00:00:10.718 --> 00:00:14.261
+What does cout of a plus b plus c, over three, print?
+
+5
+00:00:15.961 --> 00:00:20.154
+All the variables are int, so a plus b plus c is twenty three, an int.
+
+6
+00:00:20.774 --> 00:00:24.667
+Twenty three over three is int over int: integer division.
+
+7
+00:00:24.667 --> 00:00:27.206
+Three goes into twenty three seven times,
+
+8
+00:00:27.206 --> 00:00:30.535
+remainder two, and the remainder is thrown away.
+
+9
+00:00:31.155 --> 00:00:34.506
+With double variables, or dividing by three point zero,
+
+10
+00:00:34.506 --> 00:00:37.432
+you would get seven point six six six six seven.
+
+11
+00:00:39.032 --> 00:00:43.056
+The theory: the question says real numbers, which means double.
+
+12
+00:00:43.056 --> 00:00:46.874
+And integer division truncates toward zero. It never rounds.
+
+13
+00:00:48.474 --> 00:00:49.572
+So it prints seven.
+
+14
+00:00:50.392 --> 00:00:54.016
+Declaring int for values the question calls real numbers.
+
+15
+00:00:54.736 --> 00:00:59.437
+Exam tip: underline words like real, decimal or average in a question.
+
+16
+00:00:59.437 --> 00:01:00.985
+They all mean double.

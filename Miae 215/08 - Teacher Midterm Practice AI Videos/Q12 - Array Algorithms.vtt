@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.349
+Teacher midterm practice for C plus plus, question 12.
+
+2
+00:00:04.969 --> 00:00:10.106
+Which code correctly decides whether all five elements of A one and A two are equal?
+
+3
+00:00:11.806 --> 00:00:16.200
+The correct pattern: assume equal, then look for one counter example.
+
+4
+00:00:16.200 --> 00:00:18.188
+One mismatch is enough to stop.
+
+5
+00:00:18.807 --> 00:00:22.521
+Now check the others. Starting at false, and setting true on any
+
+6
+00:00:22.521 --> 00:00:25.244
+match, only proves that one element matches.
+
+7
+00:00:25.864 --> 00:00:29.938
+Breaking on the first mismatch without setting false leaves eq true.
+
+8
+00:00:29.938 --> 00:00:34.936
+And A one equals equals A two compares the arrays' addresses, not their contents.
+
+9
+00:00:36.536 --> 00:00:42.121
+The theory: in C plus plus, an array name decays to a pointer to its first element.
+
+10
+00:00:42.121 --> 00:00:45.483
+So A one equals equals A two asks whether they are the same
+
+11
+00:00:45.483 --> 00:00:49.358
+array in memory, which is false for two different arrays.
+
+12
+00:00:49.358 --> 00:00:51.808
+You must compare element by element.
+
+13
+00:00:53.408 --> 00:00:56.018
+The correct code sets eq to true, then sets it
+
+14
+00:00:56.018 --> 00:00:58.420
+false and breaks on the first mismatch.
+
+15
+00:00:59.240 --> 00:01:02.107
+Writing A one equals equals A two for arrays.
+
+16
+00:01:02.107 --> 00:01:05.360
+It compiles, but it never compares the elements.
+
+17
+00:01:06.080 --> 00:01:08.973
+Exam tip: for all elements questions, start
+
+18
+00:01:08.973 --> 00:01:11.696
+the flag true and only ever set it false.
+
+19
+00:01:11.696 --> 00:01:15.724
+For any element questions, start false and only set it true.

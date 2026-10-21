@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.724
+Teacher midterm practice for C plus plus, question 17.
+
+2
+00:00:05.344 --> 00:00:09.614
+Why update the term with term times equals x over k, instead of
+
+3
+00:00:09.614 --> 00:00:13.947
+computing pow of x and k over an int factorial on every pass?
+
+4
+00:00:15.647 --> 00:00:17.759
+Look at how fast factorials grow.
+
+5
+00:00:17.759 --> 00:00:22.671
+Twelve factorial is four hundred seventy nine million, which still fits in an int.
+
+6
+00:00:23.291 --> 00:00:26.476
+But thirteen factorial is over six billion, bigger
+
+7
+00:00:26.476 --> 00:00:30.073
+than the largest int, about two point one billion.
+
+8
+00:00:30.073 --> 00:00:32.609
+So an int factorial overflows from k equals
+
+9
+00:00:32.609 --> 00:00:36.266
+thirteen, and this problem needs k up to seventeen.
+
+10
+00:00:36.886 --> 00:00:40.556
+The incremental update never builds those huge numbers.
+
+11
+00:00:40.556 --> 00:00:43.812
+Each pass is one multiplication of small values.
+
+12
+00:00:45.413 --> 00:00:48.497
+The theory: an int is four bytes, so its largest
+
+13
+00:00:48.497 --> 00:00:51.415
+value is two to the thirty one, minus one.
+
+14
+00:00:51.415 --> 00:00:55.875
+Overflow does not raise an error: the value silently wraps to garbage.
+
+15
+00:00:57.475 --> 00:01:02.142
+So the reason is that an int factorial overflows once k reaches thirteen.
+
+16
+00:01:02.962 --> 00:01:07.810
+And watch the absolute value in the test: for doubles, use fabs, not abs.
+
+17
+00:01:08.530 --> 00:01:12.980
+Exam tip: remember that the int limit is about two point one billion,
+
+18
+00:01:12.980 --> 00:01:16.795
+and that thirteen factorial is the first factorial past it.

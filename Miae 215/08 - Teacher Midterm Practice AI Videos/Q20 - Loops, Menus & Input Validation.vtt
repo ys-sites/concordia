@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.408
+Teacher midterm practice for C plus plus, question 20.
+
+2
+00:00:05.028 --> 00:00:09.266
+The menu repeats until every valid item has been chosen at least once.
+
+3
+00:00:09.266 --> 00:00:13.064
+Each choice sets done one, done two or done three to true.
+
+4
+00:00:13.064 --> 00:00:16.586
+Which do while condition ends the loop at the right time?
+
+5
+00:00:18.287 --> 00:00:21.236
+Try a run. Enter two: done two becomes true.
+
+6
+00:00:21.236 --> 00:00:23.376
+Not everything is done, so repeat.
+
+7
+00:00:23.996 --> 00:00:28.137
+Enter one, then two again: done one is true, and done two stays true.
+
+8
+00:00:28.137 --> 00:00:30.396
+done three is still false, so repeat.
+
+9
+00:00:31.016 --> 00:00:34.285
+Enter three: now all three are true, so the loop must stop.
+
+10
+00:00:35.885 --> 00:00:38.894
+So the loop continues while not everything is done.
+
+11
+00:00:38.894 --> 00:00:41.799
+All done is done one and done two and done three.
+
+12
+00:00:41.799 --> 00:00:44.341
+Negate it: not, of that whole and.
+
+13
+00:00:44.341 --> 00:00:47.039
+By De Morgan's law, that is the same as not done
+
+14
+00:00:47.039 --> 00:00:49.892
+one, or not done two, or not done three.
+
+15
+00:00:51.492 --> 00:00:55.079
+So the condition is not, of done one and done two and done three.
+
+16
+00:00:55.899 --> 00:00:59.899
+Confusing all done, with and, with any done, with or, when you negate.
+
+17
+00:01:00.619 --> 00:01:03.552
+Exam tip: write the stopping condition first, in
+
+18
+00:01:03.552 --> 00:01:06.694
+words, then put a not around it for the do while.
+
+19
+00:01:06.694 --> 00:01:08.736
+Check the result with De Morgan.

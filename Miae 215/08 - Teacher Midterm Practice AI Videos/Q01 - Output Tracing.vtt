@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.247
+Teacher midterm practice for C plus plus, question 1.
+
+2
+00:00:04.867 --> 00:00:07.284
+Trace this program with the table method.
+
+3
+00:00:07.284 --> 00:00:09.197
+What ends up in the output box?
+
+4
+00:00:10.897 --> 00:00:13.690
+Set up the table: one column per variable.
+
+5
+00:00:13.690 --> 00:00:17.062
+a starts at one, b at two, and i and sum at zero.
+
+6
+00:00:17.682 --> 00:00:23.027
+Pass one. sum plus equals B of zero: eleven. Is i greater than two? No.
+
+7
+00:00:23.027 --> 00:00:26.607
+a plus equals B of one, which is seven, so a is eight.
+
+8
+00:00:26.607 --> 00:00:29.772
+i becomes one, and the cout prints one, eight.
+
+9
+00:00:30.391 --> 00:00:34.843
+Pass two: sum is eighteen, a is fourteen, i is two. Print two, fourteen.
+
+10
+00:00:35.464 --> 00:00:40.266
+Pass three: sum is twenty four, a is nineteen, i is three. Print three, nineteen.
+
+11
+00:00:40.885 --> 00:00:42.613
+Pass four is the trap.
+
+12
+00:00:42.613 --> 00:00:47.200
+sum plus equals B of three runs first, so sum becomes twenty nine.
+
+13
+00:00:47.200 --> 00:00:49.941
+Only then is i greater than two, and break
+
+14
+00:00:49.941 --> 00:00:53.337
+exits, before a, i or the cout can change.
+
+15
+00:00:53.957 --> 00:00:59.462
+After the loop, b equals sum minus i: twenty nine minus three, which is twenty six.
+
+16
+00:00:59.462 --> 00:01:03.240
+The last line prints twenty nine, nineteen, twenty six.
+
+17
+00:01:04.840 --> 00:01:08.497
+The theory. while of one is an infinite loop: the condition
+
+18
+00:01:08.497 --> 00:01:12.676
+is always true, so only a break can end it. And order matters.
+
+19
+00:01:12.676 --> 00:01:15.236
+On the final pass, every line above the break
+
+20
+00:01:15.236 --> 00:01:18.266
+still runs, and every line below it is skipped.
+
+21
+00:01:19.866 --> 00:01:24.409
+So the output box shows one, eight. Two, fourteen. Three, nineteen.
+
+22
+00:01:24.409 --> 00:01:27.044
+And then twenty nine, nineteen, twenty six.
+
+23
+00:01:27.863 --> 00:01:31.547
+The classic mistake is stopping the trace at the break test, and
+
+24
+00:01:31.547 --> 00:01:35.069
+forgetting that sum was already updated on that last pass.
+
+25
+00:01:35.790 --> 00:01:39.907
+Exam tip: add a new table row whenever a variable changes, and
+
+26
+00:01:39.907 --> 00:01:43.495
+copy each cout into the output box the moment it runs.
+
+27
+00:01:43.495 --> 00:01:48.494
+Each print here starts with a newline, so every pair goes on its own line.

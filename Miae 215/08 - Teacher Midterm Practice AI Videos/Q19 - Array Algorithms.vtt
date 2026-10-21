@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.474
+Teacher midterm practice for C plus plus, question 19.
+
+2
+00:00:05.094 --> 00:00:07.518
+Part f prints the dot product of A and B.
+
+3
+00:00:07.518 --> 00:00:13.223
+For A equals one, two, three, and B equals four, minus five, six, what is printed?
+
+4
+00:00:14.923 --> 00:00:17.867
+dot starts at zero, the identity for addition.
+
+5
+00:00:18.487 --> 00:00:22.249
+i equals zero: one times four is four, so dot is four.
+
+6
+00:00:22.870 --> 00:00:28.085
+i equals one: two times minus five is minus ten, so dot is minus six.
+
+7
+00:00:28.705 --> 00:00:33.738
+i equals two: three times six is eighteen, so dot is twelve, and that is printed.
+
+8
+00:00:35.337 --> 00:00:39.819
+The dot product multiplies matching elements and adds the products.
+
+9
+00:00:39.819 --> 00:00:43.453
+The single loop uses the same index i on both arrays.
+
+10
+00:00:45.054 --> 00:00:46.650
+So the program prints twelve.
+
+11
+00:00:47.470 --> 00:00:51.076
+Losing the minus sign on minus five, which gives thirty two.
+
+12
+00:00:51.796 --> 00:00:56.235
+Exam tip: write each product in the table with its sign before adding.
+
+13
+00:00:56.235 --> 00:00:59.633
+Most wrong answers here come from a dropped minus sign.

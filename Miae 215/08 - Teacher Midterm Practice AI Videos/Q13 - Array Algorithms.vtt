@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.500
+Teacher midterm practice for C plus plus, question 13.
+
+2
+00:00:05.120 --> 00:00:11.647
+Elements are input alternating A zero, B zero, A one, B one, and so on, until a value
+
+3
+00:00:11.647 --> 00:00:16.993
+below minus one times ten to the six is entered, or n reaches one thousand.
+
+4
+00:00:16.993 --> 00:00:19.231
+Which loop does exactly that?
+
+5
+00:00:20.931 --> 00:00:24.971
+Two rules. Keep the index inside the array: n less than one
+
+6
+00:00:24.971 --> 00:00:28.722
+thousand, so indices zero to nine hundred ninety nine.
+
+7
+00:00:28.722 --> 00:00:32.185
+And test the sentinel right after each value is read.
+
+8
+00:00:32.805 --> 00:00:35.812
+The correct loop reads A of n, checks it, reads B of
+
+9
+00:00:35.812 --> 00:00:38.768
+n, checks it, and only then moves n forward.
+
+10
+00:00:39.388 --> 00:00:41.769
+The other loops each break a rule.
+
+11
+00:00:41.769 --> 00:00:46.822
+n less than or equal to one thousand allows A of one thousand, past the end.
+
+12
+00:00:46.822 --> 00:00:50.713
+Testing A of n before reading it tests uninitialised memory.
+
+13
+00:00:50.713 --> 00:00:53.153
+And testing after n plus plus looks at the
+
+14
+00:00:53.153 --> 00:00:56.231
+next element, which has not been read yet.
+
+15
+00:00:57.831 --> 00:01:02.051
+The theory: a sentinel is a special input value that means stop.
+
+16
+00:01:02.051 --> 00:01:05.821
+The check has to sit between reading the value and using it.
+
+17
+00:01:05.821 --> 00:01:09.816
+And the counter n ends up equal to the number of complete pairs.
+
+18
+00:01:11.416 --> 00:01:14.611
+So the correct loop is the while loop with n less than one
+
+19
+00:01:14.611 --> 00:01:18.027
+thousand that checks each value right after it is read.
+
+20
+00:01:18.848 --> 00:01:23.306
+Testing an element before reading it, or after the index has already moved on.
+
+21
+00:01:24.026 --> 00:01:27.604
+Exam tip: for input loops, trace a short run with the sentinel
+
+22
+00:01:27.604 --> 00:01:30.875
+in the middle, and check which index each test reads.

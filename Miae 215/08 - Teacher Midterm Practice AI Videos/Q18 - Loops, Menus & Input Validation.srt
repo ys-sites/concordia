@@ -1,0 +1,75 @@
+1
+00:00:00,800 --> 00:00:04,396
+Teacher midterm practice for C plus plus, question 18.
+
+2
+00:00:05,016 --> 00:00:08,275
+Part a: input n, where n is at most one hundred.
+
+3
+00:00:08,275 --> 00:00:13,189
+If it is out of range, print an error and ask again, until a valid n is entered.
+
+4
+00:00:13,189 --> 00:00:14,637
+Which loop does this?
+
+5
+00:00:16,337 --> 00:00:19,207
+Validation needs a loop that runs at least once,
+
+6
+00:00:19,207 --> 00:00:24,008
+and repeats while the input is still invalid. That is exactly a do while.
+
+7
+00:00:24,629 --> 00:00:28,923
+Check it: the body always reads n first, the error prints only for bad
+
+8
+00:00:28,923 --> 00:00:32,996
+input, and the condition repeats only while n is still too big.
+
+9
+00:00:33,616 --> 00:00:37,996
+An if gives only one retry, so a second bad value slips through.
+
+10
+00:00:37,996 --> 00:00:41,091
+A plain while tests n before it was ever read.
+
+11
+00:00:41,091 --> 00:00:44,478
+And the last option repeats on valid input instead.
+
+12
+00:00:46,078 --> 00:00:51,020
+The theory: a while loop tests first, so its body may run zero times.
+
+13
+00:00:51,020 --> 00:00:55,610
+A do while tests at the end, so its body always runs at least once.
+
+14
+00:00:55,610 --> 00:01:00,140
+Input validation always needs at least one read, so do while fits.
+
+15
+00:01:01,739 --> 00:01:05,886
+So the answer is the do while loop that reads n, prints the error when n
+
+16
+00:01:05,886 --> 00:01:09,815
+is over one hundred, and repeats while n is over one hundred.
+
+17
+00:01:10,635 --> 00:01:16,064
+Using an if, which allows one retry, where a loop with unlimited retries is needed.
+
+18
+00:01:16,784 --> 00:01:21,317
+Exam tip: the condition of a validation loop describes the bad input.
+
+19
+00:01:21,317 --> 00:01:24,603
+Read it as: keep asking while the input is bad.

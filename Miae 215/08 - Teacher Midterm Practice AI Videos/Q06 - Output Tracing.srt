@@ -1,0 +1,59 @@
+1
+00:00:00,800 --> 00:00:04,343
+Teacher midterm practice for C plus plus, question 6.
+
+2
+00:00:04,963 --> 00:00:07,702
+What does the last statement, cout A of i, print?
+
+3
+00:00:09,402 --> 00:00:14,941
+Follow the loop to its end. After i equals three, i plus plus makes i four.
+
+4
+00:00:14,941 --> 00:00:19,884
+The test i less than four fails, so the loop exits with i equal to four.
+
+5
+00:00:20,504 --> 00:00:22,786
+Now line thirteen prints A of four.
+
+6
+00:00:22,786 --> 00:00:27,785
+But A has four elements, indices zero to three. A of four is past the end.
+
+7
+00:00:29,385 --> 00:00:32,054
+C plus plus does not check array bounds.
+
+8
+00:00:32,054 --> 00:00:35,744
+Reading past the end compiles fine, and at run time it prints
+
+9
+00:00:35,744 --> 00:00:39,492
+whatever happens to be in that memory: a garbage value.
+
+10
+00:00:39,492 --> 00:00:43,012
+On the exam, the teacher writes G, for garbage.
+
+11
+00:00:44,613 --> 00:00:48,912
+So it prints a garbage value, because i is four, past the end of the array.
+
+12
+00:00:49,732 --> 00:00:52,471
+Forgetting that the loop variable keeps its final value
+
+13
+00:00:52,471 --> 00:00:55,360
+after the loop: the value that failed the test.
+
+14
+00:00:56,080 --> 00:01:00,953
+Exam tip: when a print uses the loop variable after the loop, first write down the
+
+15
+00:01:00,953 --> 00:01:05,556
+value that made the condition false, then check it against the array size.

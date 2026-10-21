@@ -1,0 +1,71 @@
+1
+00:00:00,800 --> 00:00:04,395
+Teacher midterm practice for C plus plus, question 7.
+
+2
+00:00:05,015 --> 00:00:07,977
+What two lines does the first pair of nested loops print?
+
+3
+00:00:09,677 --> 00:00:12,136
+The outer loop picks the row, i.
+
+4
+00:00:12,136 --> 00:00:15,223
+The inner loop runs through the columns, j.
+
+5
+00:00:15,223 --> 00:00:20,827
+Row one: j equals one gives one times one, plus one, minus six: minus four.
+
+6
+00:00:20,827 --> 00:00:24,258
+j equals two gives two plus four minus six: zero.
+
+7
+00:00:24,878 --> 00:00:27,892
+Then endl closes the row: minus four, zero.
+
+8
+00:00:28,512 --> 00:00:33,149
+Row two: j equals one gives two plus one minus six: minus three.
+
+9
+00:00:33,149 --> 00:00:39,194
+j equals two gives four plus four minus six: two. And endl: minus three, two.
+
+10
+00:00:40,794 --> 00:00:44,092
+In nested loops, the outer loop variable stays fixed
+
+11
+00:00:44,092 --> 00:00:47,390
+while the inner loop runs through all its values.
+
+12
+00:00:47,390 --> 00:00:49,922
+So each printed row has one fixed i.
+
+13
+00:00:49,922 --> 00:00:54,162
+Here the formula is j times i, plus j squared, minus six.
+
+14
+00:00:55,762 --> 00:00:58,392
+So the output is minus four, zero on the first
+
+15
+00:00:58,392 --> 00:01:01,337
+line, and minus three, two on the second.
+
+16
+00:01:02,157 --> 00:01:07,429
+Swapping rows and columns. Each printed line has a fixed i, not a fixed j.
+
+17
+00:01:08,149 --> 00:01:12,640
+Exam tip: draw a small grid with i down the side and j across the top,
+
+18
+00:01:12,640 --> 00:01:16,785
+fill each cell from the formula, then read it off row by row.

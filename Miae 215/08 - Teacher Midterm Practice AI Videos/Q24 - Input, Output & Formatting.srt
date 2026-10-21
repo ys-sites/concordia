@@ -1,0 +1,71 @@
+1
+00:00:00,800 --> 00:00:04,716
+Teacher midterm practice for C plus plus, question 24.
+
+2
+00:00:05,336 --> 00:00:08,418
+The table needs exactly eleven rows, for x
+
+3
+00:00:08,418 --> 00:00:11,835
+from zero to one in steps of zero point one.
+
+4
+00:00:11,835 --> 00:00:16,726
+Why is a loop over int i from zero to ten, with x equal to zero point
+
+5
+00:00:16,726 --> 00:00:21,550
+one times i, safer than adding zero point one to x each time?
+
+6
+00:00:23,251 --> 00:00:25,452
+Zero point one has no exact binary
+
+7
+00:00:25,452 --> 00:00:29,853
+representation, just like one third has no exact decimal.
+
+8
+00:00:29,853 --> 00:00:32,830
+So every addition carries a tiny error.
+
+9
+00:00:33,449 --> 00:00:36,413
+After ten additions, x is zero point nine nine
+
+10
+00:00:36,413 --> 00:00:41,096
+nine, nine nine nine, and so on, eight nine. Not one.
+
+11
+00:00:41,096 --> 00:00:46,549
+So a test like x less than or equal to one can give one row too many, or too few.
+
+12
+00:00:47,170 --> 00:00:51,065
+With an int counter, the row count is exact, and x equals
+
+13
+00:00:51,065 --> 00:00:54,361
+zero point one times i has no accumulated error.
+
+14
+00:00:55,961 --> 00:00:58,930
+So the int counter is safer because zero point one
+
+15
+00:00:58,930 --> 00:01:02,136
+is not exact in binary, and the sum drifts.
+
+16
+00:01:02,956 --> 00:01:05,752
+Using equals equals, or not equals, with an
+
+17
+00:01:05,752 --> 00:01:08,494
+accumulated double as a loop end condition.
+
+18
+00:01:09,215 --> 00:01:12,597
+Exam tip: count with integers, and compute with doubles.

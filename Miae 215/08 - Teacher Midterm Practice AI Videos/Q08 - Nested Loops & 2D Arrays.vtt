@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:04.225
+Teacher midterm practice for C plus plus, question 8.
+
+2
+00:00:04.845 --> 00:00:08.465
+What four values of x does the second pair of nested loops print?
+
+3
+00:00:10.165 --> 00:00:12.842
+x starts at one, and the elements are read in row
+
+4
+00:00:12.842 --> 00:00:16.124
+order: minus four, zero, minus three, two.
+
+5
+00:00:16.745 --> 00:00:19.865
+Minus four is below minus one times ten to the minus
+
+6
+00:00:19.865 --> 00:00:23.646
+seven, so x plus equals minus four: minus three.
+
+7
+00:00:24.265 --> 00:00:26.862
+Zero is neither below minus ten to the minus
+
+8
+00:00:26.862 --> 00:00:30.167
+seven, nor above plus ten to the minus seven.
+
+9
+00:00:30.167 --> 00:00:35.891
+So the else runs: x minus equals one hundred, which gives minus one hundred three.
+
+10
+00:00:36.511 --> 00:00:41.498
+Minus three: x plus equals minus three, giving minus one hundred six.
+
+11
+00:00:41.498 --> 00:00:46.841
+Then two is positive: x minus equals ten, giving minus one hundred sixteen.
+
+12
+00:00:48.441 --> 00:00:53.899
+This is an if, else if, else ladder: exactly one branch runs for each element.
+
+13
+00:00:53.899 --> 00:00:57.332
+The tolerances, plus or minus ten to the minus seven,
+
+14
+00:00:57.332 --> 00:01:00.539
+are a safe way to decide whether a double is zero.
+
+15
+00:01:02.139 --> 00:01:05.678
+So x is printed as minus three, minus one hundred three,
+
+16
+00:01:05.678 --> 00:01:09.216
+minus one hundred six, and minus one hundred sixteen.
+
+17
+00:01:10.037 --> 00:01:12.546
+Sending zero into the positive branch.
+
+18
+00:01:12.546 --> 00:01:17.173
+Zero is not greater than ten to the minus seven, so it goes to the else.
+
+19
+00:01:17.893 --> 00:01:20.743
+Exam tip: for each element, test the conditions
+
+20
+00:01:20.743 --> 00:01:23.437
+top to bottom and stop at the first true one.
+
+21
+00:01:23.437 --> 00:01:25.820
+Write the branch you took in the table.
