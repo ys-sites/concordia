@@ -1,0 +1,465 @@
+/* CppCodeLab.css - C++ Interactive Midterm Coding Lab */
+
+.ccl-root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin: 1.25rem 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #0f172a;
+}
+
+/* Header & Banner */
+.ccl-banner {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid #334155;
+  border-radius: 14px;
+  padding: 20px 24px;
+  color: #ffffff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+}
+
+.ccl-banner-info h2 {
+  font-size: 20px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  color: #f8fafc;
+}
+
+.ccl-banner-badge {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #059669;
+  color: #ffffff;
+}
+
+.ccl-banner-desc {
+  font-size: 13.5px;
+  color: #94a3b8;
+  max-width: 650px;
+  line-height: 1.5;
+}
+
+/* Challenge Navigation Tabs */
+.ccl-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.ccl-nav-card {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.ccl-nav-card:hover {
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.ccl-nav-card.active {
+  background: #f0fdf4;
+  border-color: #059669;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.15);
+}
+
+.ccl-nav-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.ccl-nav-card.active .ccl-nav-card-head {
+  color: #059669;
+}
+
+.ccl-nav-card-marks {
+  background: #f1f5f9;
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #334155;
+  font-size: 10.5px;
+}
+
+.ccl-nav-card.active .ccl-nav-card-marks {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.ccl-nav-card-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+/* Main Split View: Left Specs & Checklist, Right Editor & Console */
+.ccl-workspace {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 1080px) {
+  .ccl-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left Panel: Problem Specs & Requirements */
+.ccl-spec-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ccl-card {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.ccl-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.ccl-prob-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.ccl-prob-source {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.ccl-prob-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #334155;
+  margin-bottom: 14px;
+}
+
+.ccl-parts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.ccl-part-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3.5px solid #2563eb;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1e293b;
+}
+
+.ccl-part-item strong {
+  color: #1d4ed8;
+}
+
+/* Requirements Checklist */
+.ccl-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.ccl-check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #334155;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.ccl-check-row.passed {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+  font-weight: 600;
+}
+
+/* Right Panel: Code Editor & Runner */
+.ccl-editor-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ccl-editor-wrapper {
+  background: #1e293b;
+  border: 1.5px solid #334155;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+.ccl-editor-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #0f172a;
+  border-bottom: 1px solid #334155;
+  color: #94a3b8;
+  font-size: 12.5px;
+}
+
+.ccl-file-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-weight: 600;
+  color: #38bdf8;
+}
+
+.ccl-editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ccl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.ccl-btn-secondary {
+  background: #334155;
+  border: 1px solid #475569;
+  color: #e2e8f0;
+}
+
+.ccl-btn-secondary:hover {
+  background: #475569;
+  color: #ffffff;
+}
+
+.ccl-btn-run {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  border: 1px solid #047857;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
+}
+
+.ccl-btn-run:hover {
+  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+  transform: translateY(-1px);
+}
+
+/* Code Textarea Area with Gutter */
+.ccl-editor-body {
+  position: relative;
+  display: flex;
+  min-height: 420px;
+  background: #0f172a;
+}
+
+.ccl-editor-gutter {
+  width: 48px;
+  padding: 14px 10px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #475569;
+  text-align: right;
+  user-select: none;
+  background: #0b1120;
+  border-right: 1px solid #1e293b;
+}
+
+.ccl-editor-textarea {
+  flex-grow: 1;
+  padding: 14px 16px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 13.5px;
+  line-height: 1.6;
+  background: transparent;
+  color: #f8fafc;
+  border: none;
+  outline: none;
+  resize: vertical;
+  min-height: 420px;
+  white-space: pre;
+  tab-size: 4;
+}
+
+/* Simulated Terminal Output */
+.ccl-terminal {
+  background: #0b1120;
+  border: 1.5px solid #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.ccl-term-header {
+  background: #1e293b;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #334155;
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.ccl-term-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ccl-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.ccl-dot.red { background: #ef4444; }
+.ccl-dot.yellow { background: #eab308; }
+.ccl-dot.green { background: #22c55e; }
+
+.ccl-term-body {
+  padding: 12px 16px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #38bdf8;
+  min-height: 90px;
+  max-height: 220px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+.ccl-term-empty {
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Official Solution Accordion */
+.ccl-solution-box {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.ccl-sol-toggle-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #f8fafc;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  color: #059669;
+  transition: background 0.15s ease;
+}
+
+.ccl-sol-toggle-btn:hover {
+  background: #f1f5f9;
+}
+
+.ccl-sol-content {
+  padding: 16px 18px;
+  border-top: 1px solid #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ccl-sol-code-block {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.ccl-sol-rubric {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 12.5px;
+  color: #92400e;
+  line-height: 1.5;
+}
+
+.ccl-sol-rubric h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #78350f;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}

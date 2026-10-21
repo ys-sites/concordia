@@ -11,6 +11,7 @@ import {
   AlertTriangle,
   CheckCircle2,
   Code,
+  Code2,
   Layers,
   ArrowLeft,
   ChevronRight,
@@ -37,6 +38,7 @@ import './TeacherMidtermPractice.css';
 import { Engr213MidtermCompanion } from './Engr213MidtermCompanion';
 import { CppCodeSimulator } from './CppCodeSimulator';
 import { Miae215ExamPaper } from './Miae215ExamPaper';
+import { CppCodeLab } from './CppCodeLab';
 import { F23_A_TRACE, F23_B_TRACE } from '../data/cppTraceData';
 
 interface TeacherMidtermPracticeSectionProps {
@@ -46,7 +48,7 @@ interface TeacherMidtermPracticeSectionProps {
   onBack: () => void;
 }
 
-type TabType = 'drill' | 'blueprint' | 'files' | 'traps' | 'trace' | 'exam_paper';
+type TabType = 'drill' | 'blueprint' | 'files' | 'traps' | 'trace' | 'exam_paper' | 'code_lab';
 
 const DAY_MS = 86400000;
 
@@ -313,6 +315,16 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
           </button>
           {course.id === 'MIAE215' && (
             <>
+              <button
+                className={`tp-tab-btn ${activeTab === 'code_lab' ? 'active' : ''}`}
+                onClick={() => {
+                  audio.playClick();
+                  setActiveTab('code_lab');
+                }}
+              >
+                <Code2 size={16} />
+                <span>C++ Midterm Code Lab (60%)</span>
+              </button>
               <button
                 className={`tp-tab-btn ${activeTab === 'exam_paper' ? 'active' : ''}`}
                 onClick={() => {
@@ -853,6 +865,13 @@ cout << "\\n" << A[i]; // i = 4 (out of bounds -> Garbage!)`}
               onLaunchDrill(course.id, teacherDrillId({ topic: 'all', count: 'all', ordered: true }))
             }
           />
+        </div>
+      )}
+
+      {/* Tab 6: Interactive C++ Midterm Code Lab (55-60% Weight) */}
+      {activeTab === 'code_lab' && course.id === 'MIAE215' && (
+        <div className="tp-tab-content" style={{ padding: 0 }}>
+          <CppCodeLab />
         </div>
       )}
     </div>
