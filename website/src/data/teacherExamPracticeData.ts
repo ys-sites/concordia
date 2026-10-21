@@ -335,14 +335,15 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
     confirmedDate: null,
     dateLabel: 'Fall 2026 Midterm 1',
     timeAndLocation: 'In-person evening examination period',
-    confirmedScope: 'Chapters 1 & 2 (Lectures 1–6): Differential equation classifications (order, linearity), Initial Value Problems, Direction Fields, Separable First-Order ODEs, Linear First-Order Equations (Integrating Factor Method), Exact Differential Equations & Test for Exactness, Substitutions (Bernoulli ODEs, Homogeneous Equations, Linear Coefficients), and Linear Mathematical Models (Tank Mixing, Heating/Cooling, Orthogonal Trajectories).',
+    confirmedScope: 'Chapters 1 & 2 (Sections 1.1–1.3, 2.1–2.8) + Chapter 17 (Sections 17.1 & 17.2): Differential equation classifications (order, linearity), Initial Value Problems & Existence/Uniqueness, Direction Fields & Autonomous ODEs, Separable First-Order ODEs, Linear First-Order Equations (Integrating Factor Method), Exact Differential Equations & Integrating Factors, Substitutions (Bernoulli ODEs, Homogeneous Equations, Linear Arguments), Mathematical Models (Tank Mixing, Heating/Cooling, Orthogonal Trajectories, Logistic Population Dynamics), and Complex Numbers & Analysis (Cartesian Arithmetic, Complex Conjugates, Modulus & Triangle Inequality, Polar/Exponential Form, Principal Argument, De Moivre\'s Theorem for Powers, and Finding All n-th Roots).',
     formatOverview: 'Written multi-part problem solving exam. Full marks require complete calculus derivations, stating integrating factor formulas, checking exactness conditions, and displaying boxed general & particular solutions with explicit intervals of definition.',
     calculatorPolicy: 'Standard ENCS-approved calculator with sticker. No formula sheet permitted.',
     instructorNotes: [
       'Course Coordinator: Dr. Paradis.',
       'Always verify exactness: check $\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}$ before integrating.',
       'In linear equations, ALWAYS convert to standard form $\\frac{dy}{dx} + P(x)y = f(x)$ before finding $\\mu(x) = e^{\\int P(x)dx}$.',
-      'For mixture problems, check if flow rates are equal. If $r_{in} \\neq r_{out}$, the volume is a function of time: $V(t) = V_0 + (r_{in}-r_{out})t$.'
+      'For mixture problems, check if flow rates are equal. If $r_{in} \\neq r_{out}$, the volume is a function of time: $V(t) = V_0 + (r_{in}-r_{out})t$.',
+      'All complex arguments in Section 17.2 must strictly be computed in radians, never degrees (e.g. 2π/3, not 120°).'
     ],
     trapsAndTricks: [
       {
@@ -362,6 +363,18 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         description: 'Transforming Bernoulli ODE: $\\frac{dy}{dx} + P(x)y = Q(x)y^n$.',
         correctMethod: 'Divide by $y^n$ to get $y^{-n}\\frac{dy}{dx} + P(x)y^{1-n} = Q(x)$. Substitute $u = y^{1-n}$, $\\frac{du}{dx} = (1-n)y^{-n}\\frac{dy}{dx}$ to produce a linear ODE in $u$.',
         commonTrap: 'Using $u = y^n$ or forgetting the factor $(1-n)$ in the derivative.'
+      },
+      {
+        title: 'Complex Argument Quadrant Mistake (Sec 17.2)',
+        description: 'Calculating the principal argument of $z = x + iy$ using raw calculator $\\arctan(y/x)$ without checking the quadrant.',
+        correctMethod: 'Sketch the point in the complex plane first. If in Quadrant II ($x < 0, y > 0$), $\\operatorname{Arg}(z) = \\pi - \\arctan(|y/x|)$. If in Quadrant III ($x < 0, y < 0$), $\\operatorname{Arg}(z) = -\\pi + \\arctan(|y/x|)$. Always express angles in radians in $(-\\pi, \\pi]$.',
+        commonTrap: 'For $z = -1 + i\\sqrt{3}$, writing $\\arctan(\\sqrt{3}/-1) = -\\pi/3$, which gives a Quadrant IV angle (error of $\\pi$). The correct angle is $2\\pi/3$.'
+      },
+      {
+        title: 'De Moivre Modulus Power & Root Trap (Sec 17.2)',
+        description: 'Forgetting to raise or root the modulus $r$ when applying De Moivre’s theorem.',
+        correctMethod: 'For powers, $(r e^{i\\theta})^n = r^n e^{in\\theta}$. For $n$-th roots, $w_k = r^{1/n} e^{i\\frac{\\theta + 2k\\pi}{n}}$. The modulus must ALWAYS be raised to the power: $r^n$ or $r^{1/n}$.',
+        commonTrap: 'Writing $(2 e^{i\\pi/3})^4 = 2 e^{i 4\\pi/3}$ without raising 2 to the 4th power (16).'
       }
     ],
     practiceFiles: [
@@ -374,8 +387,8 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         termYear: 'Midterms 2011–2018',
         badge: 'Exam Bank',
         fileType: 'pdf',
-        description: 'Comprehensive line-by-line solutions to 15 unofficial student-collected Concordia ENGR 213 midterm examination problems, covering Separable IVPs, Bernoulli ODEs, Exact equations, Wronskian independence, Resonant undetermined coefficients, and Cauchy-Euler.',
-        keyTopics: ['Separable IVP', 'Bernoulli ODE', 'Exact Differential Equations', 'Resonance', 'Wronskian Test', 'Cauchy-Euler']
+        description: 'Comprehensive line-by-line solutions to unofficial student-collected Concordia ENGR 213 midterm examination problems, covering Separable IVPs, Linear Integrating Factors, Bernoulli ODEs, Exact equations, Tank Mixing Models, Newton Cooling, and Complex Numbers (Polar Forms & De Moivre Powers).',
+        keyTopics: ['Separable IVP', 'Linear Integrating Factor', 'Exact Equations', 'Bernoulli ODE', 'Tank Mixing', 'Complex Numbers (Sec 17.1 & 17.2)']
       },
       {
         id: '213-calculus-sheet',

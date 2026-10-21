@@ -371,49 +371,50 @@ const METHOD_ARCHETYPES: MethodArchetype[] = [
     trapAlert: 'Trying to expand (Ax+By+C)³ into a giant polynomial. Don\'t do it! Keep it packaged as u.'
   },
   {
-    id: 'second_order',
-    name: '8. 2nd-Order Auxiliary Equations & Constant Coeffs (Sec 17.2)',
-    standardForm: 'a y\'\' + b y\' + c y = 0',
-    formulaDisplay: 'a r^2 + b r + c = 0 \\implies r = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
+    id: 'complex_numbers',
+    name: '8. Complex Numbers: Arithmetic, Conjugates & Division (Sec 17.1)',
+    standardForm: 'z = x + iy, \\quad \\bar{z} = x - iy, \\quad \\frac{z_1}{z_2} = \\frac{z_1 \\bar{z}_2}{|z_2|^2}',
+    formulaDisplay: 'z_1 z_2 = (x_1 x_2 - y_1 y_2) + i(x_1 y_2 + y_1 x_2), \\quad \\frac{z_1}{z_2} = \\frac{(x_1 + iy_1)(x_2 - iy_2)}{x_2^2 + y_2^2}, \\quad |z| = \\sqrt{x^2 + y^2}',
     difficulty: 'easy',
-    diffLabel: 'High Frequency (Sec 17.2 Scope)',
-    visualCue: 'Second derivative y\'\' with constant coefficients a, b, c and 0 on the right-hand side.',
-    fastestMove: 'Write characteristic equation a r² + b r + c = 0. Solve for roots r. Check the discriminant Δ = b² - 4ac.',
-    easiestVariant: 'Real distinct roots: r = 2, -3 ⟹ y = C₁ e^{2x} + C₂ e^{-3x}.',
-    hardestTrapVariant: 'Repeated roots: students write y = C₁ e^{rx} + C₂ e^{rx} (WRONG: linearly dependent!). You MUST multiply the second solution by x: y = C₁ e^{rx} + C₂ x e^{rx}. Complex roots: α ± iβ ⟹ e^{α x}[C₁ cos(βx) + C₂ sin(βx)].',
+    diffLabel: 'High Frequency (Sec 17.1 Scope)',
+    visualCue: 'Complex arithmetic operations, FOIL with i² = -1, complex conjugates z̄, algebraic division requiring real denominator, modulus |z|, or triangle inequality.',
+    fastestMove: 'To divide, multiply top and bottom by the denominator’s conjugate z̄₂ so the denominator becomes the real number |z₂|² = x₂² + y₂². For i^n, divide n by 4 and evaluate i^r.',
+    easiestVariant: 'Conjugate multiplication: (3 - 2i)(3 + 2i) = 3² + 2² = 13.',
+    hardestTrapVariant: 'Division denominator slip: computing (3 - 4i)(3 + 4i) as 9 - 16 = -7 instead of 9 - (-16) = 25. And confusing imaginary part Im(z): Im(3 - 4i) is -4, NOT -4i.',
     recipeSteps: [
-      { title: 'Step 1: Characteristic Equation', desc: 'Substitute y = e^{rx} to get a r² + b r + c = 0.' },
-      { title: 'Step 2: Solve Roots', desc: 'Use factoring or quadratic formula to find r₁, r₂.' },
-      { title: 'Step 3: Build General Solution', desc: 'Case 1 (Real distinct): y = C₁ e^{r₁ x} + C₂ e^{r₂ x}. Case 2 (Repeated): y = (C₁ + C₂ x)e^{rx}. Case 3 (Complex α±iβ): y = e^{α x}(C₁ cos βx + C₂ sin βx).' }
+      { title: 'Step 1: Simplify Powers of i', desc: 'Use i¹ = i, i² = -1, i³ = -i, i⁴ = 1. For large power i^n, evaluate remainder n mod 4.' },
+      { title: 'Step 2: Division via Conjugate', desc: 'Multiply numerator and denominator by denominator conjugate z̄ = x - iy.' },
+      { title: 'Step 3: Expand Numerator & Real Denominator', desc: 'Expand numerator using i² = -1. Denominator is strictly the real positive number x² + y².' },
+      { title: 'Step 4: Separate into Standard Form', desc: 'Split into real part Re(z) and imaginary part Im(z): a + bi.' }
     ],
     workedExample: {
-      problem: 'Solve the initial value problem: $y\'\' - 4y\' + 13y = 0, \\quad y(0) = 2, \\; y\'(0) = 1$',
+      problem: 'Simplify the quotient $\\frac{4 + 2i}{1 - i}$ into standard rectangular form $a + bi$, and state its modulus $|z|$.',
       solution: [
-        'Characteristic equation: $r^2 - 4r + 13 = 0 \\implies r = \\frac{4 \\pm \\sqrt{16 - 52}}{2} = 2 \\pm 3i$',
-        'Complex roots $\\alpha = 2, \\beta = 3$: $y(x) = e^{2x}(C_1 \\cos 3x + C_2 \\sin 3x)$',
-        'Apply $y(0) = 2$: $2 = e^0 (C_1 (1) + 0) \\implies C_1 = 2$',
-        'Differentiate via product rule: $y\'(x) = 2e^{2x}(2\\cos 3x + C_2 \\sin 3x) + e^{2x}(-6\\sin 3x + 3C_2 \\cos 3x)$',
-        'Apply $y\'(0) = 1$: $1 = 2(2) + 3C_2 = 4 + 3C_2 \\implies C_2 = -1$. Final: $y(x) = e^{2x}(2\\cos 3x - \\sin 3x)$'
+        'Multiply numerator and denominator by conjugate of denominator $\\bar{z} = 1 + i$: $\\frac{(4 + 2i)(1 + i)}{(1 - i)(1 + i)}$',
+        'Evaluate real denominator: $(1 - i)(1 + i) = 1^2 - i^2 = 1 - (-1) = 2$',
+        'Expand numerator: $(4)(1) + 4(i) + 2i(1) + 2i^2 = 4 + 6i + 2(-1) = 2 + 6i$',
+        'Divide each term by 2: $\\frac{2 + 6i}{2} = 1 + 3i$',
+        'Compute modulus: $|z| = \\sqrt{1^2 + 3^2} = \\sqrt{10}$'
       ]
     },
     videoReview: {
-      title: 'Second Order Linear Homogeneous Differential Equations',
+      title: 'Complex Numbers - Operations, Conjugates & Modulus',
       channel: 'The Organic Chemistry Tutor',
-      duration: '14 mins',
-      youtubeId: 'uI2xt8nTOlQ',
-      url: 'https://www.youtube.com/watch?v=uI2xt8nTOlQ',
+      duration: '11 mins',
+      youtubeId: 'bOC9w-aW2jQ',
+      url: 'https://www.youtube.com/watch?v=bOC9w-aW2jQ',
       keyTakeaways: [
-        'Constructing the auxiliary/characteristic equation ar² + br + c = 0.',
-        'Case 1: distinct real roots vs. Case 2: repeated roots requiring the x e^{rx} multiplier.',
-        'Case 3: complex roots α ± iβ yielding exponential decay/growth modulated by sine and cosine.'
+        'FOIL complex numbers and always replace i² with -1.',
+        'Multiply by conjugate to turn the denominator into a real number x² + y².',
+        'Extract real Re(z) and imaginary Im(z) parts cleanly without attaching i to Im(z).'
       ]
     },
-    friendTip: 'If solving an IVP with y(0) and y\'(0), evaluate y(0) first to get C₁, then differentiate y(x) using product rule before plugging in y\'(0).',
-    trapAlert: 'In complex roots α ± iβ, the exponential power is α, NOT β. The β goes inside cos(βx) and sin(βx).'
+    friendTip: 'Whenever you see a complex fraction on Midterm 1, never try to guess the answer. Write out (x₁ + iy₁)(x₂ - iy₂) / (x₂² + y₂²) immediately — it takes 30 seconds and guarantees 100% of the marks!',
+    trapAlert: 'Never include "i" when stating the imaginary part! If z = 5 - 3i, Re(z) = 5 and Im(z) = -3 (NOT -3i). Writing -3i loses marks.'
   },
   {
     id: 'complex_numbers',
-    name: '9. Complex Numbers, Polar Form & Euler’s Identity (Sec 17.1)',
+    name: '9. Polar Forms, De Moivre’s Powers & n-th Roots (Sec 17.2)',
     standardForm: 'z = a + bi = r e^{i\\theta} = r(\\cos\\theta + i\\sin\\theta)',
     formulaDisplay: 'r = |z| = \\sqrt{a^2 + b^2}, \\quad \\theta = \\text{Arg}(z) \\in (-\\pi, \\pi], \\quad e^{i\\theta} = \\cos\\theta + i\\sin\\theta, \\quad z^n = r^n e^{in\\theta}',
     difficulty: 'easy',
@@ -549,12 +550,12 @@ const CALCULUS_VAULT: FormulaItem[] = [
     whyItMatters: 'Fundamental Section 17.1 identity. Converts Cartesian a + bi to polar exponential r e^{iθ}. Underpins complex roots in Section 17.2 auxiliary equations.'
   },
   {
-    id: 'f_aux',
+    id: 'f_roots',
     category: 'pillar',
-    name: '2nd-Order Auxiliary Equations: 3 Root Cases (Sec 17.2)',
-    latex: 'a r^2 + b r + c = 0 \\implies r = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}',
-    difficulty: 'easy',
-    whyItMatters: 'Official Midterm 1 scope. Case 1 (Real distinct): y = C₁ e^{r₁ x} + C₂ e^{r₂ x}. Case 2 (Repeated root): y = (C₁ + C₂ x)e^{rx}. Case 3 (Complex conjugate α ± iβ): y = e^{α x}(C₁ cos βx + C₂ sin βx).'
+    name: 'The n-th Roots of Complex Numbers (Sec 17.2)',
+    latex: 'w_k = r^{1/n}\\left[\\cos\\left(\\frac{\\theta + 2k\\pi}{n}\\right) + i\\sin\\left(\\frac{\\theta + 2k\\pi}{n}\\right)\\right] = r^{1/n} e^{i\\frac{\\theta + 2k\\pi}{n}}, \\quad k = 0, 1, \\dots, n-1',
+    difficulty: 'med',
+    whyItMatters: 'Official Midterm 1 Section 17.2 scope. Finds all n distinct complex roots of w^n = z. All roots lie on a circle of radius r^{1/n} separated by 2π/n radians.'
   }
 ];
 
@@ -609,13 +610,13 @@ const AI_FORMULA_ADVICE: Record<string, AiFormulaAdvice> = {
     trapToAvoid: 'Forgetting the quadrant: if x < 0 and y > 0 (Quadrant 2), θ = π - arctan(|y/x|), not -arctan(|y/x|).',
     drillQuestionId: 'dq_formula_euler'
   },
-  f_aux: {
-    id: 'f_aux',
-    name: 'Auxiliary Equation 3 Root Cases',
-    mnemonic: 'Distinct = 2 pure exponentials; Repeated = second term gets an x multiplier; Complex α ± iβ = e^{αx} with cos(βx) and sin(βx).',
-    examUtility: 'Solves homogeneous 2nd-order constant-coefficient ODEs on Midterm 1 in 30 seconds flat.',
-    trapToAvoid: 'Linear dependence on repeated roots: forgetting the factor of x on the second term: y = (C₁ + C₂ x)e^{rx}.',
-    drillQuestionId: 'dq_formula_aux'
+  f_roots: {
+    id: 'f_roots',
+    name: 'All n-th Roots of Complex Numbers (Sec 17.2)',
+    mnemonic: 'Radius is r^{1/n}, initial angle is θ/n, then advance by 2π/n radians to circle around n times!',
+    examUtility: 'Guaranteed question on Midterm 1: finds all n roots of w^n = z without missing any roots.',
+    trapToAvoid: 'Forgetting to divide the base argument θ by n, or calculating in degrees instead of radians.',
+    drillQuestionId: 'cpx_41'
   }
 };
 
@@ -1074,7 +1075,7 @@ const UNOFFICIAL_MIDTERMS: UnofficialExamFile[] = [
     year: 'Winter 2017',
     filename: '2017 Winter 2.pdf',
     relativePath: 'Engr 213/Midterm/2017 Winter 2.pdf',
-    scope: 'Bernoulli Equations, Orthogonal Trajectories, Reduction to Separable, Wronskian Test'
+    scope: 'Bernoulli Equations, Orthogonal Trajectories, Reduction to Separable, Complex Roots & Polar Forms'
   },
   {
     title: 'Sample Midterm Examination (Unofficial Practice)',
@@ -1220,36 +1221,36 @@ const PAST_PROBLEMS: SolvedProblem[] = [
   },
   {
     id: 'p4',
-    exam: 'Winter 2013 Midterm (Unofficial) · Problem 4',
-    topic: '2nd-Order Auxiliary Equation with Complex Conjugate Roots (Sec 17.1 & 17.2)',
-    problemStatement: 'Solve the initial value problem: $y\'\' + 6y\' + 25y = 0, \\quad y(0) = 2, \\; y\'(0) = -2$',
-    methodId: 'second_order',
+    exam: 'Fall 2025 Midterm Test 1 (Dr. Kokotov) · Problem 4',
+    topic: 'Complex Numbers: Polar Form, De Moivre Power & Cube Roots (Sec 17.1 & 17.2)',
+    problemStatement: 'Given the complex number $z = -2 + 2i\\sqrt{3}$:\n(a) Determine its modulus $|z|$ and principal argument $\\operatorname{Arg}(z)$ in radians, and express $z$ in polar exponential form $r e^{i\\theta}$.\n(b) Using De Moivre’s theorem, compute $z^4$ and express the result in standard rectangular form $a + bi$.\n(c) Find all three distinct cube roots of $z$ and sketch their locations on the complex plane.',
+    methodId: 'complex_numbers',
     timeTarget: '10 minutes',
     difficulty: 'med',
     steps: [
       {
-        title: 'Step 1: Construct Auxiliary / Characteristic Equation',
-        content: 'Substitute trial solution $y = e^{rx}$ into the homogeneous ODE: $$r^2 + 6r + 25 = 0$$ Solve roots by completing the square or quadratic formula: $$(r + 3)^2 + 16 = 0 \\implies r = -3 \\pm 4i$$'
+        title: 'Step 1: Compute Modulus |z|',
+        content: 'Identify real part $x = -2$ and imaginary part $y = 2\\sqrt{3}$. $$r = |z| = \\sqrt{(-2)^2 + (2\\sqrt{3})^2} = \\sqrt{4 + 12} = \\sqrt{16} = 4$$'
       },
       {
-        title: 'Step 2: Apply Euler’s Formula (Sec 17.1) for Real Basis',
-        content: 'The roots are complex conjugate $\\alpha \\pm i\\beta$ with real part $\\alpha = -3$ and imaginary frequency $\\beta = 4$. By Euler’s formula $e^{(-3 \\pm 4i)x} = e^{-3x}(\\cos 4x \\pm i\\sin 4x)$, the general real solution is: $$y(x) = e^{-3x}(C_1 \\cos 4x + C_2 \\sin 4x)$$'
+        title: 'Step 2: Determine Quadrant & Principal Argument Arg(z)',
+        content: 'Since $x = -2 < 0$ and $y = 2\\sqrt{3} > 0$, the point lies in Quadrant II. Reference angle: $$\theta_0 = \\arctan\\left(\\frac{2\\sqrt{3}}{2}\\right) = \\arctan(\\sqrt{3}) = \\frac{\\pi}{3}$$ Principal argument: $$\theta = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3} \\text{ rad}$$ Polar exponential form: $$z = 4 e^{i\\frac{2\\pi}{3}}$$'
       },
       {
-        title: 'Step 3: Apply Initial Condition y(0) = 2',
-        content: 'Substitute $x = 0, y = 2$: $$2 = e^0 (C_1 \\cos 0 + C_2 \\sin 0) = C_1(1) + 0 \\implies C_1 = 2$$'
+        title: 'Step 3: De Moivre’s Theorem for z⁴',
+        content: 'Apply power $n = 4$: $$z^4 = 4^4 e^{i 4\\left(\\frac{2\\pi}{3}\\right)} = 256 e^{i\\frac{8\\pi}{3}}$$ Reduce angle modulo $2\\pi$: $\\frac{8\\pi}{3} - 2\\pi = \\frac{2\\pi}{3}$. Convert to rectangular form: $$z^4 = 256\\left(\\cos\\frac{2\\pi}{3} + i\\sin\\frac{2\\pi}{3}\\right) = 256\\left(-\\frac{1}{2} + i\\frac{\\sqrt{3}}{2}\\right) = -128 + 128i\\sqrt{3}$$'
       },
       {
-        title: 'Step 4: Differentiate via Product Rule',
-        content: 'Differentiate $y(x) = e^{-3x}(2\\cos 4x + C_2 \\sin 4x)$ using product rule: $$y\'(x) = -3e^{-3x}(2\\cos 4x + C_2 \\sin 4x) + e^{-3x}(-8\\sin 4x + 4C_2 \\cos 4x)$$'
+        title: 'Step 4: All Three Distinct Cube Roots (w³ = z)',
+        content: 'By the $n$-th root formula with $n = 3, r = 4, \\theta = \\frac{2\\pi}{3}$: $$w_k = 4^{1/3} e^{i\\frac{2\\pi/3 + 2k\\pi}{3}} = \\sqrt[3]{4} e^{i\\frac{2\\pi + 6k\\pi}{9}}, \\quad k = 0, 1, 2$$ Explicit roots: $$w_0 = \\sqrt[3]{4} e^{i\\frac{2\\pi}{9}}, \\quad w_1 = \\sqrt[3]{4} e^{i\\frac{8\\pi}{9}}, \\quad w_2 = \\sqrt[3]{4} e^{i\\frac{14\\pi}{9}} = \\sqrt[3]{4} e^{-i\\frac{4\\pi}{9}}$$'
       },
       {
-        title: 'Step 5: Apply y\'(0) = -2 and Finalize',
-        content: 'Substitute $x = 0, y\'(0) = -2$: $$-2 = -3(2) + 4C_2 = -6 + 4C_2 \\implies 4C_2 = 4 \\implies C_2 = 1$$ Final explicit solution: $$y(x) = e^{-3x}(2\\cos 4x + \\sin 4x)$$'
+        title: 'Step 5: Geometric Interpretation',
+        content: 'All three roots lie on a circle of radius $R = \\sqrt[3]{4} \\approx 1.587$ centered at the origin, forming an equilateral triangle with equal angular separation $\\Delta\\theta = \\frac{2\\pi}{3} = 120^\\circ$.'
       }
     ],
-    friendIntuition: 'In complex roots α ± iβ, the real part α = -3 governs exponential decay e^{-3x}, while the imaginary part β = 4 sets the oscillatory frequency inside cos(4x) and sin(4x). Always differentiate using product rule carefully before setting x = 0!',
-    concordiaTrap: 'Writing cos(4ix) instead of cos(4x). The imaginary unit i has already been absorbed into Euler\'s formula! And never forget the product rule when differentiating e^{αx}(C₁ cos βx + C₂ sin βx).'
+    friendIntuition: 'Always sketch the point on axes first to avoid quadrant traps! In Quadrant II, Arg(z) is π - θ₀. In De Moivre\'s theorem, always raise the modulus: 4⁴ = 256, and 4^{1/3} = ∛4. Never forget that angles must strictly be in radians!',
+    concordiaTrap: 'Writing θ = -π/3 from a raw calculator arctan. Calculator arctan(y/x) cannot distinguish Quadrant II from Quadrant IV. Always check signs: x < 0, y > 0 is Quadrant II, so θ = 2π/3!'
   },
   {
     id: 'p5',
@@ -1482,16 +1483,28 @@ export const METHOD_DIAGNOSTICS: Record<string, MethodDiagnostic> = {
       `4. If Fin ≠ Fout, volume V(t) = V₀ + (Fin - Fout)t, leading to integrating factor with power of (V₀ + ΔF t).`
     ]
   },
-  second_order: {
-    correctChoice: `Constant Coefficient Auxiliary Equation: Solve characteristic polynomial a r² + b r + c = 0`,
-    distractorChoice: `First-Order Separable Equation: Separate variables into dy and dx`,
-    correctExplanation: `🎯 Correct! This is a second-order linear homogeneous ODE with constant coefficients (y'' + p y' + q y = 0).`,
-    distractorExplanation: `⚠️ Not first-order! It involves a second derivative y'', requiring the characteristic quadratic polynomial.`,
+  complex_numbers: {
+    correctChoice: `Complex Analysis (Sec 17.1 & 17.2): Cartesian arithmetic, polar form r e^{iθ}, De Moivre powers, or n-th roots`,
+    distractorChoice: `First-Order Linear ODE: Identify P(x) and integrate to find μ(x)`,
+    correctExplanation: `🎯 Correct! This problem tests complex number algebra, polar representations, De Moivre's theorem, or n-th roots.`,
+    distractorExplanation: `⚠️ Not a differential equation! This is a complex variables evaluation from Chapter 17.`,
     implementationTips: [
-      `1. Write auxiliary equation: a r² + b r + c = 0.`,
-      `2. Compute roots r₁, r₂ = (-b ± √(b² - 4ac)) / (2a).`,
-      `3. If roots are complex α ± iβ, general solution is y(x) = exp(αx) [C₁ cos(βx) + C₂ sin(βx)].`,
-      `4. If roots are distinct real, y = C₁ exp(r₁x) + C₂ exp(r₂x); if repeated, y = (C₁ + C₂ x) exp(rx).`
+      `1. For division, multiply numerator and denominator by conjugate z̄.`,
+      `2. For polar form, compute r = √(a² + b²) and check quadrant before finding θ in radians.`,
+      `3. For powers zⁿ, use De Moivre: (r e^{iθ})ⁿ = rⁿ e^{inθ}.`,
+      `4. For n-th roots, w_k = r^{1/n} exp(i(θ + 2kπ)/n) for k = 0, 1, ..., n-1.`
+    ]
+  },
+  second_order: {
+    correctChoice: `Complex Analysis (Sec 17.1 & 17.2): Cartesian arithmetic, polar form r e^{iθ}, De Moivre powers, or n-th roots`,
+    distractorChoice: `First-Order Linear ODE: Identify P(x) and integrate to find μ(x)`,
+    correctExplanation: `🎯 Correct! This problem tests complex number algebra, polar representations, De Moivre's theorem, or n-th roots.`,
+    distractorExplanation: `⚠️ Not a differential equation! This is a complex variables evaluation from Chapter 17.`,
+    implementationTips: [
+      `1. For division, multiply numerator and denominator by conjugate z̄.`,
+      `2. For polar form, compute r = √(a² + b²) and check quadrant before finding θ in radians.`,
+      `3. For powers zⁿ, use De Moivre: (r e^{iθ})ⁿ = rⁿ e^{inθ}.`,
+      `4. For n-th roots, w_k = r^{1/n} exp(i(θ + 2kπ)/n) for k = 0, 1, ..., n-1.`
     ]
   },
   formulas: {
@@ -1771,12 +1784,12 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
         (q) => q.topic.toLowerCase().includes('tank') || q.question.toLowerCase().includes('tank') || q.question.toLowerCase().includes('brine') || q.question.toLowerCase().includes('salt')
       );
     } else if (drillSubjectFilter === 'complex_numbers') {
-      pool = (ENGR213_MIDTERM_DRILL_BANKS['second_order'] || []).filter(
-        (q) => q.topic.toLowerCase().includes('complex polar') || q.question.toLowerCase().includes('polar') || q.question.toLowerCase().includes('euler') || q.question.toLowerCase().includes('modulus') || q.question.toLowerCase().includes('argument')
+      pool = (ENGR213_MIDTERM_DRILL_BANKS['complex_numbers'] || []).filter(
+        (q) => q.topic.includes('17.1') || q.topic.toLowerCase().includes('conjugate') || q.topic.toLowerCase().includes('multiplication') || q.topic.toLowerCase().includes('division') || q.topic.toLowerCase().includes('modulus') || q.topic.toLowerCase().includes('unit') || q.topic.toLowerCase().includes('inequality')
       );
-    } else if (drillSubjectFilter === 'second_order') {
-      pool = (ENGR213_MIDTERM_DRILL_BANKS['second_order'] || []).filter(
-        (q) => q.topic.toLowerCase().includes('auxiliary') || q.topic.toLowerCase().includes('repeated') || q.question.toLowerCase().includes('characteristic') || q.question.toLowerCase().includes('auxiliary')
+    } else if (drillSubjectFilter === 'complex_roots') {
+      pool = (ENGR213_MIDTERM_DRILL_BANKS['complex_numbers'] || []).filter(
+        (q) => q.topic.includes('17.2') || q.topic.toLowerCase().includes('root') || q.topic.toLowerCase().includes('moivre') || q.topic.toLowerCase().includes('polar')
       );
     } else if (drillSubjectFilter === 'tutor_hacks') {
       pool = TUTOR_HACKS.flatMap((hack) =>
@@ -3602,8 +3615,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                 { id: 'linear_arg', label: '7. Substitutions' },
                 { id: 'newton', label: '8. Newton Cooling' },
                 { id: 'tank', label: '9. Mixing Tanks' },
-                { id: 'complex_numbers', label: '10. Sec 17.1 Complex' },
-                { id: 'second_order', label: '11. Sec 17.2 Auxiliary' }
+                { id: 'complex_numbers', label: '10. Sec 17.1 & 17.2 Complex Numbers & Roots' }
               ].map((s) => (
                 <button
                   key={s.id}
@@ -3706,8 +3718,8 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                 { id: 'linear_arg', label: '7. Substitutions' },
                 { id: 'newton', label: '8. Newton Cooling' },
                 { id: 'tank', label: '9. Mixing Tanks' },
-                { id: 'complex_numbers', label: '10. Sec 17.1 Complex' },
-                { id: 'second_order', label: '11. Sec 17.2 Auxiliary' },
+                { id: 'complex_numbers', label: '10. Sec 17.1 Complex Arithmetic' },
+                { id: 'complex_roots', label: '11. Sec 17.2 Powers & Roots' },
                 { id: 'tutor_hacks', label: '⚡ Tutor Hacks & Variants' },
                 { id: 'formulas', label: '🧠 Formula Retention Drill' }
               ].map((subj) => (

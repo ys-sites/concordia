@@ -1,7 +1,7 @@
 import { PracticeQuestion } from '../types';
 
 export interface CompanionDrillQuestion extends PracticeQuestion {
-  methodId: 'separable' | 'linear_if' | 'exact' | 'non_exact' | 'bernoulli' | 'homogeneous' | 'linear_arg' | 'applications' | 'second_order' | 'formulas';
+  methodId: 'separable' | 'linear_if' | 'exact' | 'non_exact' | 'bernoulli' | 'homogeneous' | 'linear_arg' | 'applications' | 'complex_numbers' | 'second_order' | 'formulas';
 }
 
 export const ENGR213_MIDTERM_DRILL_BANKS: Record<string, CompanionDrillQuestion[]> = {
@@ -10771,1307 +10771,2575 @@ export const ENGR213_MIDTERM_DRILL_BANKS: Record<string, CompanionDrillQuestion[
       }
     }
   ],
+  "complex_numbers": [
+      {
+          "id": "cpx_01",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Complex Multiplication (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate the product $z = (3 - 2i)(4 + 5i)$ in standard rectangular form $a + bi$.",
+          "options": [
+              "$22 + 7i$",
+              "$2 + 7i$",
+              "$22 - 7i$",
+              "$12 - 10i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Use FOIL and substitute $i^2 = -1$: $(a + bi)(c + di) = (ac - bd) + i(ad + bc)$.",
+              "stepByStep": [
+                  "Step 1: Expand product: $(3)(4) + 3(5i) - 2i(4) - 2i(5i) = 12 + 15i - 8i - 10i^2$.",
+                  "Step 2: Replace $i^2 = -1$: $12 + 7i - 10(-1) = 12 + 7i + 10 = 22 + 7i$."
+              ],
+              "commonTrap": "Writing -10 instead of +10 when simplifying -10i^2.",
+              "reference": "Zill \u00a717.1 \u2014 Complex Numbers \u00b7 Arithmetic Operations"
+          }
+      },
+      {
+          "id": "cpx_02",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Complex Division via Conjugate (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Simplify the quotient $\\frac{4 + 2i}{1 - i}$ into standard rectangular form $a + bi$.",
+          "options": [
+              "$1 + 3i$",
+              "$3 + 3i$",
+              "$-1 + 3i$",
+              "$1 - 3i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Multiply numerator and denominator by the complex conjugate of the denominator: $\\bar{z}_2 = 1 + i$.",
+              "stepByStep": [
+                  "Step 1: Multiply numerator and denominator by $\\bar{z} = 1 + i$: $\\frac{(4 + 2i)(1 + i)}{(1 - i)(1 + i)}$.",
+                  "Step 2: Denominator: $(1 - i)(1 + i) = 1^2 - i^2 = 1 - (-1) = 2$.",
+                  "Step 3: Numerator: $4(1) + 4(i) + 2i(1) + 2i^2 = 4 + 6i - 2 = 2 + 6i$.",
+                  "Step 4: Divide each term: $\\frac{2 + 6i}{2} = 1 + 3i$."
+              ],
+              "commonTrap": "Dividing only the real part by 2 and forgetting to divide the imaginary part.",
+              "reference": "Zill \u00a717.1 \u2014 Complex Numbers \u00b7 Division by Complex Conjugate"
+          }
+      },
+      {
+          "id": "cpx_03",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Complex Division (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Express $\\frac{2 + 3i}{3 - 4i}$ in the form $a + bi$.",
+          "options": [
+              "$-\\frac{6}{25} + \\frac{17}{25}i$",
+              "$\\frac{6}{25} + \\frac{17}{25}i$",
+              "$-\\frac{6}{7} + \\frac{17}{7}i$",
+              "$\\frac{18}{25} + \\frac{1}{25}i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Conjugate multiplication: $\\frac{z_1}{z_2} = \\frac{z_1 \\bar{z}_2}{|z_2|^2}$.",
+              "stepByStep": [
+                  "Step 1: Denominator conjugate: $3 + 4i$. Denominator is $3^2 + (-4)^2 = 9 + 16 = 25$.",
+                  "Step 2: Numerator: $(2 + 3i)(3 + 4i) = 6 + 8i + 9i + 12i^2 = 6 + 17i - 12 = -6 + 17i$.",
+                  "Step 3: Quotient: $-\\frac{6}{25} + \\frac{17}{25}i$."
+              ],
+              "commonTrap": "Computing denominator as 3^2 - 4^2 = -7 instead of 3^2 + 4^2 = 25.",
+              "reference": "Zill \u00a717.1 \u2014 Complex Numbers \u00b7 Division"
+          }
+      },
+      {
+          "id": "cpx_04",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Modulus Calculation (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "What is the modulus $|z|$ of $z = -5 + 12i$?",
+          "options": [
+              "$13$",
+              "$\\sqrt{119}$",
+              "$17$",
+              "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Modulus is the Euclidean distance from origin: $|z| = \\sqrt{x^2 + y^2}$.",
+              "stepByStep": [
+                  "Step 1: Identify real part $x = -5$ and imaginary part $y = 12$.",
+                  "Step 2: $|z| = \\sqrt{(-5)^2 + (12)^2} = \\sqrt{25 + 144} = \\sqrt{169} = 13$."
+              ],
+              "commonTrap": "Squaring 12i into -144 and getting sqrt(25 - 144) = sqrt(-119). Modulus is based on real components y=12!",
+              "reference": "Zill \u00a717.1 \u2014 Modulus and Complex Absolute Value"
+          }
+      },
+      {
+          "id": "cpx_05",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Powers of the Imaginary Unit (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate $i^{2027}$.",
+          "options": [
+              "$-i$",
+              "$i$",
+              "$-1$",
+              "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Powers of $i$ cycle modulo 4: $i^1 = i, i^2 = -1, i^3 = -i, i^4 = 1$.",
+              "stepByStep": [
+                  "Step 1: Divide exponent 2027 by 4: $2027 = 4 \\times 506 + 3$. Remainder is 3.",
+                  "Step 2: Therefore $i^{2027} = (i^4)^{506} \\cdot i^3 = 1^{506} \\cdot (-i) = -i$."
+              ],
+              "commonTrap": "Confusing remainder 3 with remainder 1, yielding +i.",
+              "reference": "Zill \u00a717.1 \u2014 Powers of i"
+          }
+      },
+      {
+          "id": "cpx_06",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Conjugate Identity (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "If $z = 3 - 4i$, what is the exact numerical value of $z \\bar{z}$?",
+          "options": [
+              "$25$",
+              "$-7$",
+              "$25 - 24i$",
+              "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The product of any complex number with its conjugate is the square of its modulus: $z \\bar{z} = |z|^2 = x^2 + y^2$.",
+              "stepByStep": [
+                  "Step 1: Conjugate $\\bar{z} = 3 + 4i$.",
+                  "Step 2: $z \\bar{z} = (3 - 4i)(3 + 4i) = 3^2 - (4i)^2 = 9 - (-16) = 25$."
+              ],
+              "commonTrap": "Writing 9 - 16 = -7 by missing the i^2 = -1 sign flip.",
+              "reference": "Zill \u00a717.1 \u2014 Conjugate Properties"
+          }
+      },
+      {
+          "id": "cpx_07",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Imaginary Part Definition (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "What is the imaginary part $\\operatorname{Im}(z)$ of $z = \\frac{1}{2 + 3i}$?",
+          "options": [
+              "$-\\frac{3}{13}$",
+              "$\\frac{3}{13}$",
+              "$-\\frac{3}{13}i$",
+              "$\\frac{2}{13}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The imaginary part of $z = x + iy$ is the real number $y$, NEVER containing the unit $i$.",
+              "stepByStep": [
+                  "Step 1: Multiply by conjugate: $\\frac{1(2 - 3i)}{(2 + 3i)(2 - 3i)} = \\frac{2 - 3i}{4 + 9} = \\frac{2 - 3i}{13}$.",
+                  "Step 2: Real part $\\operatorname{Re}(z) = \\frac{2}{13}$, imaginary part $\\operatorname{Im}(z) = -\\frac{3}{13}$."
+              ],
+              "commonTrap": "Including the symbol 'i' in the imaginary part: Im(z) is -3/13, NOT -3/13 i.",
+              "reference": "Zill \u00a717.1 \u2014 Real and Imaginary Parts"
+          }
+      },
+      {
+          "id": "cpx_08",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Complex Equality Matching (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Find the real values of $x$ and $y$ that satisfy $(2x - y) + i(x + 3y) = 5 + 6i$.",
+          "options": [
+              "$x = 3, \\; y = 1$",
+              "$x = 2, \\; y = -1$",
+              "$x = 1, \\; y = 3$",
+              "$x = 4, \\; y = 3$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Two complex numbers are equal if and only if both real and imaginary parts match independently.",
+              "stepByStep": [
+                  "Step 1: Real parts: $2x - y = 5 \\implies y = 2x - 5$.",
+                  "Step 2: Imaginary parts: $x + 3y = 6$.",
+                  "Step 3: Substitute $y$: $x + 3(2x - 5) = 6 \\implies x + 6x - 15 = 6 \\implies 7x = 21 \\implies x = 3$.",
+                  "Step 4: Solve $y$: $y = 2(3) - 5 = 1$."
+              ],
+              "commonTrap": "Equating the sum (2x-y) + (x+3y) = 11 instead of separating real and imaginary systems.",
+              "reference": "Zill \u00a717.1 \u2014 Equality of Complex Numbers"
+          }
+      },
+      {
+          "id": "cpx_09",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Triangle Inequality Bound (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "If $|z| = 4$, what is the maximum possible value of $|z - 3 + 4i|$ according to the Triangle Inequality?",
+          "options": [
+              "$9$",
+              "$1$",
+              "$5$",
+              "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "By the Triangle Inequality, $|z_1 + z_2| \\le |z_1| + |z_2|$.",
+              "stepByStep": [
+                  "Step 1: Rewrite $|z - (3 - 4i)| \\le |z| + |-3 + 4i|$.",
+                  "Step 2: Compute $|-3 + 4i| = \\sqrt{(-3)^2 + 4^2} = \\sqrt{9 + 16} = 5$.",
+                  "Step 3: Maximum value is $|z| + 5 = 4 + 5 = 9$."
+              ],
+              "commonTrap": "Subtracting 5 from 4 to get -1, or confusing maximum with minimum bound (|4 - 5| = 1).",
+              "reference": "Zill \u00a717.1 \u2014 Triangle Inequality (Theorem 17.1.1)"
+          }
+      },
+      {
+          "id": "cpx_10",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Modulus of Product (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Without expanding, what is the exact modulus of $z = (1 + 2i)(3 - 4i)$?",
+          "options": [
+              "$5\\sqrt{5}$",
+              "$25$",
+              "$\\sqrt{65}$",
+              "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The modulus of a product is the product of the moduli: $|z_1 z_2| = |z_1| \\cdot |z_2|$.",
+              "stepByStep": [
+                  "Step 1: Compute $|1 + 2i| = \\sqrt{1^2 + 2^2} = \\sqrt{5}$.",
+                  "Step 2: Compute $|3 - 4i| = \\sqrt{3^2 + (-4)^2} = \\sqrt{25} = 5$.",
+                  "Step 3: Multiply: $|z| = 5\\sqrt{5}$."
+              ],
+              "commonTrap": "Wasting 3 minutes expanding the product before taking the modulus.",
+              "reference": "Zill \u00a717.1 \u2014 Modulus Properties"
+          }
+      },
+      {
+          "id": "cpx_11",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Modulus of Quotient (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "What is the modulus of $w = \\frac{2 - i}{1 + 2i}$?",
+          "options": [
+              "$1$",
+              "$\\sqrt{5}$",
+              "$\\frac{5}{3}$",
+              "$\\frac{1}{\\sqrt{5}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The modulus of a quotient is the quotient of moduli: $|z_1/z_2| = |z_1|/|z_2|$.",
+              "stepByStep": [
+                  "Step 1: $|2 - i| = \\sqrt{2^2 + (-1)^2} = \\sqrt{5}$.",
+                  "Step 2: $|1 + 2i| = \\sqrt{1^2 + 2^2} = \\sqrt{5}$.",
+                  "Step 3: $|w| = \\frac{\\sqrt{5}}{\\sqrt{5}} = 1$."
+              ],
+              "commonTrap": "Doing long conjugate division when only the modulus magnitude was requested.",
+              "reference": "Zill \u00a717.1 \u2014 Modulus of Quotients"
+          }
+      },
+      {
+          "id": "cpx_12",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Conjugate of Quotient (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Which identity correctly represents the conjugate of a quotient $\\overline{\\left(\\frac{z_1}{z_2}\\right)}$?",
+          "options": [
+              "$\\frac{\\bar{z}_1}{\\bar{z}_2}$",
+              "$\\frac{z_1}{\\bar{z}_2}$",
+              "$-\\frac{\\bar{z}_1}{\\bar{z}_2}$",
+              "$\\frac{\\bar{z}_1}{z_2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Conjugation distributes over division: $\\overline{z_1 / z_2} = \\bar{z}_1 / \\bar{z}_2$.",
+              "stepByStep": [
+                  "Step 1: The conjugate of a ratio is the ratio of individual conjugates."
+              ],
+              "commonTrap": "Applying a negative sign to the entire fraction.",
+              "reference": "Zill \u00a717.1 \u2014 Conjugate Algebraic Rules"
+          }
+      },
+      {
+          "id": "cpx_13",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Pure Imaginary Numbers (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "For what real value of $k$ is $z = (k + 2i)(1 - i)$ a pure imaginary number?",
+          "options": [
+              "$k = -2$",
+              "$k = 2$",
+              "$k = 0$",
+              "$k = 1$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "A complex number $z = x + iy$ is pure imaginary if its real part $\\operatorname{Re}(z) = 0$.",
+              "stepByStep": [
+                  "Step 1: Expand $(k + 2i)(1 - i) = k - ki + 2i - 2i^2 = (k + 2) + i(2 - k)$.",
+                  "Step 2: Set real part to zero: $k + 2 = 0 \\implies k = -2$."
+              ],
+              "commonTrap": "Setting the imaginary part 2 - k = 0, which makes it purely REAL instead of pure imaginary.",
+              "reference": "Zill \u00a717.1 \u2014 Pure Imaginary Definition"
+          }
+      },
+      {
+          "id": "cpx_14",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Pure Real Condition (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "A complex number $z$ satisfies $z = \\bar{z}$ if and only if:",
+          "options": [
+              "$z$ is purely real",
+              "$z$ is purely imaginary",
+              "$|z| = 1$",
+              "$z = 0$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$x + iy = x - iy \\implies 2iy = 0 \\implies y = 0$. Hence $z = x$ is real.",
+              "stepByStep": [
+                  "Step 1: Write $z = x + iy$. Then $\\bar{z} = x - iy$.",
+                  "Step 2: $x + iy = x - iy \\implies iy = -iy \\implies 2iy = 0 \\implies y = 0$."
+              ],
+              "commonTrap": "Thinking z must be 0: any real number like 5 satisfies 5 = conjugate(5).",
+              "reference": "Zill \u00a717.1 \u2014 Characterization of Real Numbers"
+          }
+      },
+      {
+          "id": "cpx_15",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Conjugate Root Theorem (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "If $z_1 = 2 - 3i$ is a root of the real polynomial $P(z) = z^2 - 4z + 13 = 0$, what is the second root $z_2$?",
+          "options": [
+              "$2 + 3i$",
+              "$-2 + 3i$",
+              "$-2 - 3i$",
+              "$3 - 2i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Polynomials with real coefficients have complex roots that occur in conjugate pairs: $z_2 = \\bar{z}_1$.",
+              "stepByStep": [
+                  "Step 1: By the Conjugate Root Theorem, if $P(z) = 0$ with real coefficients, $P(\\bar{z}) = 0$.",
+                  "Step 2: $\\bar{z}_1 = \\overline{2 - 3i} = 2 + 3i$."
+              ],
+              "commonTrap": "Negating the real part instead of the imaginary part.",
+              "reference": "Zill \u00a717.1 \u2014 Conjugate Roots of Real Polynomials"
+          }
+      },
+      {
+          "id": "cpx_16",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Polar Form in Quadrant II (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Express $z = -1 + i\\sqrt{3}$ in polar exponential form $r e^{i\\theta}$ with principal argument $\\theta \\in (-\\pi, \\pi]$.",
+          "options": [
+              "$z = 2 e^{i\\frac{2\\pi}{3}}$",
+              "$z = 2 e^{-i\\frac{\\pi}{3}}$",
+              "$z = 4 e^{i\\frac{2\\pi}{3}}$",
+              "$z = 2 e^{i\\frac{5\\pi}{6}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$r = \\sqrt{x^2 + y^2}$. In Quadrant II ($x < 0, y > 0$), $\\operatorname{Arg}(z) = \\pi - \\arctan(|y/x|)$.",
+              "stepByStep": [
+                  "Step 1: Compute modulus: $r = \\sqrt{(-1)^2 + (\\sqrt{3})^2} = \\sqrt{1 + 3} = 2$.",
+                  "Step 2: Reference angle $\\theta_0 = \\arctan(\\sqrt{3}/1) = \\frac{\\pi}{3}$.",
+                  "Step 3: Since $x = -1 < 0$ and $y = \\sqrt{3} > 0$, $z$ is in Quadrant II: $\\theta = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$.",
+                  "Step 4: Polar form: $z = 2 e^{i\\frac{2\\pi}{3}}$."
+              ],
+              "commonTrap": "Taking raw arctan(sqrt(3)/-1) = -pi/3 from a calculator, which gives a Quadrant IV angle (error of pi!).",
+              "reference": "Zill \u00a717.2 \u2014 Polar Form of Complex Numbers"
+          }
+      },
+      {
+          "id": "cpx_17",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Polar Form in Quadrant III (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the polar exponential form $r e^{i\\theta}$ of $z = -2 - 2i$?",
+          "options": [
+              "$z = 2\\sqrt{2} e^{-i\\frac{3\\pi}{4}}$",
+              "$z = 2\\sqrt{2} e^{i\\frac{5\\pi}{4}}$",
+              "$z = 4 e^{-i\\frac{3\\pi}{4}}$",
+              "$z = 2\\sqrt{2} e^{i\\frac{3\\pi}{4}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Principal argument $\\operatorname{Arg}(z)$ must lie strictly in $(-\\pi, \\pi]$. In Quadrant III, $\\theta = -\\pi + \\arctan(|y/x|)$.",
+              "stepByStep": [
+                  "Step 1: Modulus: $r = \\sqrt{(-2)^2 + (-2)^2} = \\sqrt{8} = 2\\sqrt{2}$.",
+                  "Step 2: Reference angle: $\\theta_0 = \\arctan(2/2) = \\frac{\\pi}{4}$.",
+                  "Step 3: In Quadrant III ($x < 0, y < 0$), principal argument is $\\theta = -\\pi + \\frac{\\pi}{4} = -\\frac{3\\pi}{4}$.",
+                  "Step 4: Polar form: $z = 2\\sqrt{2} e^{-i\\frac{3\\pi}{4}}$."
+              ],
+              "commonTrap": "Using 5pi/4. Although 5pi/4 is coterminal, Concordia professors strictly penalize angles outside (-pi, pi] for principal argument!",
+              "reference": "Zill \u00a717.2 \u2014 Principal Argument and Quadrants"
+          }
+      },
+      {
+          "id": "cpx_18",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Polar Form in Quadrant IV (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Convert $z = \\sqrt{3} - i$ into polar form $r e^{i\\theta}$.",
+          "options": [
+              "$z = 2 e^{-i\\frac{\\pi}{6}}$",
+              "$z = 2 e^{i\\frac{11\\pi}{6}}$",
+              "$z = 2 e^{-i\\frac{\\pi}{3}}$",
+              "$z = 4 e^{-i\\frac{\\pi}{6}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "In Quadrant IV ($x > 0, y < 0$), $\\operatorname{Arg}(z) = -\\arctan(|y/x|)$.",
+              "stepByStep": [
+                  "Step 1: Modulus: $r = \\sqrt{(\\sqrt{3})^2 + (-1)^2} = \\sqrt{3 + 1} = 2$.",
+                  "Step 2: Reference angle: $\\theta_0 = \\arctan(1/\\sqrt{3}) = \\frac{\\pi}{6}$.",
+                  "Step 3: Quadrant IV angle: $\\theta = -\\frac{\\pi}{6}$.",
+                  "Step 4: Polar form: $z = 2 e^{-i\\frac{\\pi}{6}}$."
+              ],
+              "commonTrap": "Using 11pi/6 instead of the principal argument -pi/6.",
+              "reference": "Zill \u00a717.2 \u2014 Quadrant IV Polar Conversions"
+          }
+      },
+      {
+          "id": "cpx_19",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Pure Imaginary Polar Form (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the exact polar exponential form of $z = -7i$?",
+          "options": [
+              "$7 e^{-i\\frac{\\pi}{2}}$",
+              "$-7 e^{i\\frac{\\pi}{2}}$",
+              "$7 e^{i\\frac{3\\pi}{2}}$",
+              "$7 e^{i\\pi}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "A negative imaginary number lies on the negative imaginary axis at angle $-\\pi/2$. Modulus is strictly positive ($r = 7$).",
+              "stepByStep": [
+                  "Step 1: $|-7i| = 7$ (modulus is always non-negative).",
+                  "Step 2: The point $(0, -7)$ lies on the negative y-axis: $\\theta = -\\frac{\\pi}{2}$.",
+                  "Step 3: $z = 7 e^{-i\\frac{\\pi}{2}}$."
+              ],
+              "commonTrap": "Writing r = -7: modulus r can NEVER be negative!",
+              "reference": "Zill \u00a717.2 \u2014 Axis Values in Polar Form"
+          }
+      },
+      {
+          "id": "cpx_20",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Negative Real Number Polar Form (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Express the negative real number $z = -5$ in polar exponential form $r e^{i\\theta}$.",
+          "options": [
+              "$5 e^{i\\pi}$",
+              "$-5 e^{i 0}$",
+              "$5 e^{-i\\pi}$",
+              "$5 e^{i 2\\pi}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Negative real numbers lie along the negative real axis at angle $\\pi$. Principal argument convention specifies $\\operatorname{Arg}(-a) = \\pi$ (open at $-\\pi$).",
+              "stepByStep": [
+                  "Step 1: Modulus: $r = |-5| = 5$.",
+                  "Step 2: Argument: On the negative real axis, the angle from positive x-axis is $\\pi$ radians.",
+                  "Step 3: Polar form: $z = 5 e^{i\\pi}$."
+              ],
+              "commonTrap": "Using -pi instead of pi (principal argument interval is (-pi, pi], which includes pi but excludes -pi).",
+              "reference": "Zill \u00a717.2 \u2014 Negative Real Polar Representation"
+          }
+      },
+      {
+          "id": "cpx_21",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Polar Product Multiplication (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "If $z_1 = 3 e^{i\\frac{\\pi}{4}}$ and $z_2 = 2 e^{i\\frac{\\pi}{3}}$, what is $z_1 z_2$ in polar form?",
+          "options": [
+              "$6 e^{i\\frac{7\\pi}{12}}$",
+              "$5 e^{i\\frac{7\\pi}{12}}$",
+              "$6 e^{i\\frac{\\pi^2}{12}}$",
+              "$6 e^{-i\\frac{\\pi}{12}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "When multiplying in polar form: multiply the moduli and add the arguments ($r_1 r_2 e^{i(\\theta_1 + \\theta_2)}$).",
+              "stepByStep": [
+                  "Step 1: Modulus: $r = 3 \\times 2 = 6$.",
+                  "Step 2: Argument: $\\theta = \\frac{\\pi}{4} + \\frac{\\pi}{3} = \\frac{3\\pi + 4\\pi}{12} = \\frac{7\\pi}{12}$.",
+                  "Step 3: Product: $6 e^{i\\frac{7\\pi}{12}}$."
+              ],
+              "commonTrap": "Multiplying the angles (pi/4 * pi/3) instead of adding them.",
+              "reference": "Zill \u00a717.2 \u2014 Polar Multiplication Theorem"
+          }
+      },
+      {
+          "id": "cpx_22",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Polar Quotient Division (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "If $z_1 = 8 e^{i\\frac{\\pi}{2}}$ and $z_2 = 2 e^{i\\frac{5\\pi}{6}}$, what is $\\frac{z_1}{z_2}$ with principal argument?",
+          "options": [
+              "$4 e^{-i\\frac{\\pi}{3}}$",
+              "$4 e^{i\\frac{4\\pi}{3}}$",
+              "$6 e^{-i\\frac{\\pi}{3}}$",
+              "$4 e^{i\\frac{\\pi}{3}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "When dividing in polar form: divide the moduli and subtract the arguments ($z_1/z_2 = (r_1/r_2) e^{i(\\theta_1 - \\theta_2)}$).",
+              "stepByStep": [
+                  "Step 1: Modulus: $8 / 2 = 4$.",
+                  "Step 2: Argument: $\\frac{\\pi}{2} - \\frac{5\\pi}{6} = \\frac{3\\pi - 5\\pi}{6} = -\\frac{2\\pi}{6} = -\\frac{\\pi}{3}$.",
+                  "Step 3: Result: $4 e^{-i\\frac{\\pi}{3}}$."
+              ],
+              "commonTrap": "Subtracting angles in reverse order (5pi/6 - pi/2 = +pi/3).",
+              "reference": "Zill \u00a717.2 \u2014 Polar Division Theorem"
+          }
+      },
+      {
+          "id": "cpx_23",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Conjugate in Polar Form (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "If $z = r e^{i\\theta}$, what is the complex conjugate $\\bar{z}$ in polar form?",
+          "options": [
+              "$r e^{-i\\theta}$",
+              "$-r e^{i\\theta}$",
+              "$r e^{i(\\theta + \\pi)}$",
+              "$-r e^{-i\\theta}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Conjugating a complex number negates its imaginary part, which corresponds to reflecting across the real axis (negating the angle $\\theta$).",
+              "stepByStep": [
+                  "Step 1: $z = r(\\cos\\theta + i\\sin\\theta)$.",
+                  "Step 2: $\\bar{z} = r(\\cos\\theta - i\\sin\\theta) = r(\\cos(-\\theta) + i\\sin(-\\theta)) = r e^{-i\\theta}$."
+              ],
+              "commonTrap": "Placing a minus sign on the radius r.",
+              "reference": "Zill \u00a717.2 \u2014 Complex Conjugate in Polar Form"
+          }
+      },
+      {
+          "id": "cpx_24",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Euler Identity Trig Evaluation (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Convert $z = 4 e^{i\\frac{5\\pi}{6}}$ to rectangular Cartesian form $a + bi$.",
+          "options": [
+              "$-2\\sqrt{3} + 2i$",
+              "$2\\sqrt{3} - 2i$",
+              "$-2 + 2i\\sqrt{3}$",
+              "$-2\\sqrt{3} - 2i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$r e^{i\\theta} = r(\\cos\\theta + i\\sin\\theta)$.",
+              "stepByStep": [
+                  "Step 1: $\\cos(5\\pi/6) = -\\frac{\\sqrt{3}}{2}$ and $\\sin(5\\pi/6) = \\frac{1}{2}$.",
+                  "Step 2: Multiply by $r = 4$: $4\\left(-\\frac{\\sqrt{3}}{2} + i\\frac{1}{2}\\right) = -2\\sqrt{3} + 2i$."
+              ],
+              "commonTrap": "Mixing up cos(5pi/6) and sin(5pi/6) values.",
+              "reference": "Zill \u00a717.2 \u2014 Conversion from Polar to Rectangular"
+          }
+      },
+      {
+          "id": "cpx_25",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Argand Plane Rotation (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Multiplying any non-zero complex number $z$ by the imaginary unit $i$ corresponds geometrically to:",
+          "options": [
+              "A counter-clockwise rotation by $90^\\circ$ ($\\pi/2$ rad)",
+              "A clockwise rotation by $90^\\circ$",
+              "A reflection across the y-axis",
+              "A scaling by factor 2"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$i = 1 e^{i\\pi/2}$. Multiplying by $i$ adds $\\pi/2$ to the argument, rotating the vector $90^\\circ$ counter-clockwise.",
+              "stepByStep": [
+                  "Step 1: $i z = (1 e^{i\\pi/2})(r e^{i\\theta}) = r e^{i(\\theta + \\pi/2)}$.",
+                  "Step 2: The radius remains $r$, while the angle advances by $+90^\\circ$ (counter-clockwise)."
+              ],
+              "commonTrap": "Thinking multiplication by i flips the sign to clockwise.",
+              "reference": "Zill \u00a717.2 \u2014 Geometric Interpretation of Complex Multiplication"
+          }
+      },
+      {
+          "id": "cpx_26",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Reciprocal in Polar Form (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the reciprocal $\\frac{1}{z}$ of $z = r e^{i\\theta}$?",
+          "options": [
+              "$\\frac{1}{r} e^{-i\\theta}$",
+              "$\\frac{1}{r} e^{i\\theta}$",
+              "$-r e^{-i\\theta}$",
+              "$\\frac{1}{r^2} e^{i\\theta}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$\\frac{1}{z} = \\frac{1 e^{i0}}{r e^{i\\theta}} = \\frac{1}{r} e^{i(0 - \\theta)} = \\frac{1}{r} e^{-i\\theta}$.",
+              "stepByStep": [
+                  "Step 1: Divide magnitude: $1/r$.",
+                  "Step 2: Subtract angle: $0 - \\theta = -\\theta$."
+              ],
+              "commonTrap": "Leaving the angle as +theta.",
+              "reference": "Zill \u00a717.2 \u2014 Polar Reciprocal Formula"
+          }
+      },
+      {
+          "id": "cpx_27",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Principal Argument of Negative Product (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the principal argument $\\operatorname{Arg}(-z)$ if $\\operatorname{Arg}(z) = \\frac{\\pi}{4}$?",
+          "options": [
+              "$-\\frac{3\\pi}{4}$",
+              "$\\frac{5\\pi}{4}$",
+              "$-\\frac{\\pi}{4}$",
+              "$\\frac{3\\pi}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$-z = (e^{i\\pi})z$. Adding $\\pi$ to $\\pi/4$ gives $5\\pi/4$, which must be reduced to $(-\\pi, \\pi]$ by subtracting $2\\pi$: $5\\pi/4 - 2\\pi = -3\\pi/4$.",
+              "stepByStep": [
+                  "Step 1: $-z$ is opposite in direction to $z$ (reflected through the origin).",
+                  "Step 2: Angle is $\\frac{\\pi}{4} - \\pi = -\\frac{3\\pi}{4}$."
+              ],
+              "commonTrap": "Answering 5pi/4 without reducing to the principal interval (-pi, pi].",
+              "reference": "Zill \u00a717.2 \u2014 Principal Argument Reductions"
+          }
+      },
+      {
+          "id": "cpx_28",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Degrees to Radians Law (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "In Concordia ENGR 213 examinations, what unit MUST all complex arguments $\\theta$ be expressed in?",
+          "options": [
+              "Radians strictly",
+              "Degrees or radians interchangeably",
+              "Gradians",
+              "Degrees only"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Dr. Paradis and Dr. Haghighat explicitly state that all angles in complex exponential form $e^{i\\theta}$ and marking keys must strictly be in radians.",
+              "stepByStep": [
+                  "Step 1: The exponential function $e^{i\\theta}$ is defined via Taylor series where $\\theta$ is dimensionless (radians). Degrees invalidate the calculus!"
+              ],
+              "commonTrap": "Leaving answers as e^{i 45^\\circ}. Full marks are deducted if not converted to e^{i\\pi/4}.",
+              "reference": "Paradis Notes Module 7 \u2014 Golden Rule on Radians"
+          }
+      },
+      {
+          "id": "cpx_29",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Modulus of Exponential (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the modulus of the complex exponential $w = e^{3 + 4i}$?",
+          "options": [
+              "$e^3$",
+              "$5$",
+              "$e^5$",
+              "$e^4$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$e^{x + iy} = e^x e^{iy}$. Since $|e^{iy}| = |\\cos y + i\\sin y| = 1$, the modulus is $|e^{x + iy}| = e^x$.",
+              "stepByStep": [
+                  "Step 1: Split exponential: $e^{3 + 4i} = e^3 \\cdot e^{4i}$.",
+                  "Step 2: $|e^{4i}| = 1$ because $\\cos^2(4) + \\sin^2(4) = 1$.",
+                  "Step 3: Modulus is $e^3$."
+              ],
+              "commonTrap": "Computing sqrt(3^2 + 4^2) = 5 or e^5. The imaginary part 4 is purely an angle!",
+              "reference": "Zill \u00a717.2 \u2014 Modulus of Complex Exponential Function"
+          }
+      },
+      {
+          "id": "cpx_30",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Complex Modulus Identity (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the modulus of $e^{i\\theta}$ for any real angle $\\theta$?",
+          "options": [
+              "$1$",
+              "$\\theta$",
+              "$\\sqrt{\\theta}$",
+              "$e$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$|e^{i\\theta}| = |\\cos\\theta + i\\sin\\theta| = \\sqrt{\\cos^2\\theta + \\sin^2\\theta} = 1$. All points $e^{i\\theta}$ lie on the unit circle.",
+              "stepByStep": [
+                  "Step 1: By Euler's formula, $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$.",
+                  "Step 2: Modulus is $\\sqrt{\\cos^2\\theta + \\sin^2\\theta} = 1$."
+              ],
+              "commonTrap": "Thinking the modulus grows with theta.",
+              "reference": "Zill \u00a717.2 \u2014 The Complex Unit Circle"
+          }
+      },
+      {
+          "id": "cpx_31",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre High Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Use De Moivre's theorem to compute $(1 + i)^8$.",
+          "options": [
+              "$16$",
+              "$16i$",
+              "$-16$",
+              "$8 + 8i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Convert to polar form: $1 + i = \\sqrt{2} e^{i\\pi/4}$. Then $(r e^{i\\theta})^n = r^n e^{in\\theta}$.",
+              "stepByStep": [
+                  "Step 1: Polar form: $r = \\sqrt{1^2 + 1^2} = \\sqrt{2}$, $\\theta = \\pi/4$.",
+                  "Step 2: Apply power 8: $(\\sqrt{2} e^{i\\pi/4})^8 = (\\sqrt{2})^8 e^{i 8(\\pi/4)}$.",
+                  "Step 3: $(\\sqrt{2})^8 = 2^4 = 16$.",
+                  "Step 4: Angle is $8(\\pi/4) = 2\\pi$. Since $e^{i 2\\pi} = 1$, the result is $16 \\times 1 = 16$."
+              ],
+              "commonTrap": "Forgetting to raise sqrt(2) to the 8th power.",
+              "reference": "Zill \u00a717.2 \u2014 De Moivre's Theorem for Integer Powers"
+          }
+      },
+      {
+          "id": "cpx_32",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre Power with Quadrant II (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Compute $(-\\sqrt{3} + i)^6$ in rectangular form $a + bi$.",
+          "options": [
+              "$-64$",
+              "$64$",
+              "$-64i$",
+              "$64i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$-\\sqrt{3} + i$ has modulus $2$ and argument $\\frac{5\\pi}{6}$.",
+              "stepByStep": [
+                  "Step 1: $r = \\sqrt{(-\\sqrt{3})^2 + 1^2} = \\sqrt{4} = 2$.",
+                  "Step 2: In Quadrant II, $\\theta = \\pi - \\pi/6 = \\frac{5\\pi}{6}$.",
+                  "Step 3: $(2 e^{i 5\\pi/6})^6 = 2^6 e^{i 6(5\\pi/6)} = 64 e^{i 5\\pi}$.",
+                  "Step 4: $e^{i 5\\pi} = e^{i\\pi} = -1$. Hence $64(-1) = -64$."
+              ],
+              "commonTrap": "Using theta = -pi/6 (Quadrant IV angle), which gives 64 e^{-i pi} = -64 by luck but loses marks on steps.",
+              "reference": "Zill \u00a717.2 \u2014 Powers via Polar Coordinates"
+          }
+      },
+      {
+          "id": "cpx_33",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre Fractional Quotient Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate $\\left(\\frac{1 + i}{1 - i}\\right)^{10}$.",
+          "options": [
+              "$-1$",
+              "$1$",
+              "$i$",
+              "$-i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Simplify the interior fraction first: $\\frac{1+i}{1-i} = \\frac{(1+i)^2}{2} = \\frac{2i}{2} = i$.",
+              "stepByStep": [
+                  "Step 1: Interior simplifies: $\\frac{1 + i}{1 - i} = i$.",
+                  "Step 2: $(i)^{10} = (i^4)^2 \\cdot i^2 = 1^2 \\cdot (-1) = -1$."
+              ],
+              "commonTrap": "Raising numerator and denominator separately to 10th powers without simplifying first.",
+              "reference": "Zill \u00a717.2 \u2014 Powers of Complex Fractions"
+          }
+      },
+      {
+          "id": "cpx_34",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre 4th Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate $(-1 + i\\sqrt{3})^4$ in rectangular form $a + bi$.",
+          "options": [
+              "$-8 + 8i\\sqrt{3}$",
+              "$-8 - 8i\\sqrt{3}$",
+              "$16 + 16i\\sqrt{3}$",
+              "$-16 + 16i\\sqrt{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Polar form: $r = 2, \\theta = 2\\pi/3$. By De Moivre, $(2 e^{i 2\\pi/3})^4 = 16 e^{i 8\\pi/3}$.",
+              "stepByStep": [
+                  "Step 1: Angle $8\\pi/3 = 2\\pi + 2\\pi/3 \\equiv 2\\pi/3$.",
+                  "Step 2: $16 e^{i 2\\pi/3} = 16\\left(\\cos\\frac{2\\pi}{3} + i\\sin\\frac{2\\pi}{3}\\right) = 16\\left(-\\frac{1}{2} + i\\frac{\\sqrt{3}}{2}\\right) = -8 + 8i\\sqrt{3}$. Wait: let us re-verify options: option 1 has + or -.",
+                  "Step 3: Correct value is $-8 + 8i\\sqrt{3}$."
+              ],
+              "commonTrap": "Angle reduction error: 8pi/3 - 2pi = 2pi/3.",
+              "reference": "Zill \u00a717.2 \u2014 De Moivre Calculations"
+          }
+      },
+      {
+          "id": "cpx_35",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Negative Exponent via De Moivre (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate $(1 - i)^{-4}$.",
+          "options": [
+              "$-\\frac{1}{4}$",
+              "$\\frac{1}{4}$",
+              "$-\\frac{1}{4}i$",
+              "$\\frac{1}{4}i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$(r e^{i\\theta})^{-n} = r^{-n} e^{-in\\theta}$.",
+              "stepByStep": [
+                  "Step 1: $1 - i = \\sqrt{2} e^{-i\\pi/4}$.",
+                  "Step 2: $(1 - i)^{-4} = (\\sqrt{2})^{-4} e^{-i(-4)(\\pi/4)} = \\frac{1}{4} e^{i\\pi}$.",
+                  "Step 3: Since $e^{i\\pi} = -1$, the result is $\\frac{1}{4}(-1) = -\\frac{1}{4}$."
+              ],
+              "commonTrap": "Forgetting that the negative power flips the angle sign: -(-4)(pi/4) = +pi.",
+              "reference": "Zill \u00a717.2 \u2014 Negative Integer Powers"
+          }
+      },
+      {
+          "id": "cpx_36",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre Trigonometric Identity (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Using De Moivre's formula $(\\cos\\theta + i\\sin\\theta)^2 = \\cos(2\\theta) + i\\sin(2\\theta)$, what is $\\cos(2\\theta)$ in terms of $\\cos\\theta$ and $\\sin\\theta$?",
+          "options": [
+              "$\\cos^2\\theta - \\sin^2\\theta$",
+              "$\\cos^2\\theta + \\sin^2\\theta$",
+              "$2\\cos\\theta\\sin\\theta$",
+              "$1 - \\sin\\theta$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Expand $(\\cos\\theta + i\\sin\\theta)^2 = (\\cos^2\\theta - \\sin^2\\theta) + i(2\\cos\\theta\\sin\\theta)$. Equate real parts.",
+              "stepByStep": [
+                  "Step 1: Real part is $\\cos(2\\theta) = \\cos^2\\theta - \\sin^2\\theta$.",
+                  "Step 2: Imaginary part is $\\sin(2\\theta) = 2\\cos\\theta\\sin\\theta$."
+              ],
+              "commonTrap": "Confusing real and imaginary parts.",
+              "reference": "Zill \u00a717.2 \u2014 Derivation of Trig Identities via De Moivre"
+          }
+      },
+      {
+          "id": "cpx_37",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre High Power of i (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is $(1 - i\\sqrt{3})^6$ in exact Cartesian form?",
+          "options": [
+              "$64$",
+              "$-64$",
+              "$64i$",
+              "$-64i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$1 - i\\sqrt{3} = 2 e^{-i\\pi/3}$. By De Moivre, $(2 e^{-i\\pi/3})^6 = 2^6 e^{-i 2\\pi} = 64(1) = 64$.",
+              "stepByStep": [
+                  "Step 1: $r = \\sqrt{1 + 3} = 2$. Angle in Quadrant IV is $-\\pi/3$.",
+                  "Step 2: Power 6: $2^6 e^{-i 6(\\pi/3)} = 64 e^{-i 2\\pi} = 64(1) = 64$."
+              ],
+              "commonTrap": "Answering -64 due to sign confusion on 2pi.",
+              "reference": "Zill \u00a717.2 \u2014 De Moivre's Powers"
+          }
+      },
+      {
+          "id": "cpx_38",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Pure Imaginary Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Compute $(-2i)^5$.",
+          "options": [
+              "$-32i$",
+              "$32i$",
+              "$-32$",
+              "$32$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$(-2i)^5 = (-2)^5 \\cdot i^5 = -32 \\cdot i = -32i$.",
+              "stepByStep": [
+                  "Step 1: Factor: $(-2)^5 = -32$.",
+                  "Step 2: Power of $i$: $i^5 = i^4 \\cdot i = i$.",
+                  "Step 3: Combine: $-32i$."
+              ],
+              "commonTrap": "Losing the negative sign on (-2)^5.",
+              "reference": "Zill \u00a717.2 \u2014 Powers of Imaginary Numbers"
+          }
+      },
+      {
+          "id": "cpx_39",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre 12th Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate $(1 - i)^{12}$.",
+          "options": [
+              "$-64$",
+              "$64$",
+              "$-64i$",
+              "$64i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$(1 - i) = \\sqrt{2} e^{-i\\pi/4}$.",
+              "stepByStep": [
+                  "Step 1: Modulus: $(\\sqrt{2})^{12} = 2^6 = 64$.",
+                  "Step 2: Argument: $12 \\times (-\\pi/4) = -3\\pi$.",
+                  "Step 3: $e^{-i 3\\pi} = \\cos(-3\\pi) + i\\sin(-3\\pi) = -1 + 0 = -1$.",
+                  "Step 4: Result: $64(-1) = -64$."
+              ],
+              "commonTrap": "Thinking e^{-3i pi} is +1 instead of -1.",
+              "reference": "Zill \u00a717.2 \u2014 De Moivre Powers"
+          }
+      },
+      {
+          "id": "cpx_40",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Modulus of High Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the modulus of $z = (3 - 4i)^7$?",
+          "options": [
+              "$5^7$",
+              "$25^7$",
+              "$7 \\times 5$",
+              "$\\sqrt{5^7}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "By De Moivre, $|z^n| = |z|^n$.",
+              "stepByStep": [
+                  "Step 1: Compute base modulus: $|3 - 4i| = \\sqrt{3^2 + (-4)^2} = 5$.",
+                  "Step 2: Raise to power 7: $|z| = 5^7$."
+              ],
+              "commonTrap": "Multiplying 5 by 7 instead of exponentiating.",
+              "reference": "Zill \u00a717.2 \u2014 Modulus of Powers"
+          }
+      },
+      {
+          "id": "cpx_41",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Formula for All n-th Roots (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the general formula for all $n$ distinct roots $w_k$ of $z = r e^{i\\theta}$?",
+          "options": [
+              "$w_k = r^{1/n} e^{i\\frac{\\theta + 2k\\pi}{n}}, \\quad k = 0, 1, \\dots, n-1$",
+              "$w_k = r^n e^{i\\frac{\\theta + k\\pi}{n}}, \\quad k = 0, 1, \\dots, n-1$",
+              "$w_k = r^{1/n} e^{i\\frac{\\theta + k\\pi}{n}}, \\quad k = 0, 1, \\dots, n$",
+              "$w_k = \\frac{r}{n} e^{i(\\theta + 2k\\pi)}, \\quad k = 0, 1, \\dots, n-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The $n$ distinct roots of $z = r e^{i\\theta}$ are given by $w_k = r^{1/n}\\left[\\cos\\left(\\frac{\\theta + 2k\\pi}{n}\\right) + i\\sin\\left(\\frac{\\theta + 2k\\pi}{n}\\right)\\right]$ for $k = 0, 1, \\dots, n-1$.",
+              "stepByStep": [
+                  "Step 1: The radius of each root is $r^{1/n}$.",
+                  "Step 2: The angles are spaced by $\\frac{2\\pi}{n}$ radians, running from $k = 0$ to $k = n-1$."
+              ],
+              "commonTrap": "Using k pi instead of 2k pi in the angular shift.",
+              "reference": "Zill \u00a717.2 \u2014 Theorem 17.2.1 (Roots of Complex Numbers)"
+          }
+      },
+      {
+          "id": "cpx_42",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Geometric Distribution of Roots (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Geometrically, the $n$ roots of a complex number $z = r e^{i\\theta}$:",
+          "options": [
+              "Lie on a circle of radius $r^{1/n}$ centered at origin, equally spaced by $\\frac{2\\pi}{n}$ radians",
+              "Lie on a straight line passing through the origin",
+              "Lie on an ellipse with foci at $\\pm r$",
+              "Lie on a circle of radius $r$ centered at origin"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "All $n$ roots share identical modulus $r^{1/n}$ and form vertices of a regular $n$-gon inscribed in a circle of radius $r^{1/n}$.",
+              "stepByStep": [
+                  "Step 1: $|w_k| = r^{1/n}$ for all $k$, so they lie on a circle centered at origin.",
+                  "Step 2: The angular difference between consecutive roots is $\\frac{\\theta + 2(k+1)\\pi}{n} - \\frac{\\theta + 2k\\pi}{n} = \\frac{2\\pi}{n}$."
+              ],
+              "commonTrap": "Thinking the circle has radius r instead of r^{1/n}.",
+              "reference": "Zill \u00a717.2 \u2014 Geometry of Complex Roots"
+          }
+      },
+      {
+          "id": "cpx_43",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Cube Roots of Pure Imaginary (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the principal cube root ($k = 0$) of $z = -8i$?",
+          "options": [
+              "$\\sqrt{3} - i$",
+              "$-\\sqrt{3} - i$",
+              "$2i$",
+              "$\\sqrt{3} + i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Write $-8i = 8 e^{-i\\pi/2}$. The principal cube root ($k=0$) is $8^{1/3} e^{i(-\\pi/2)/3} = 2 e^{-i\\pi/6}$.",
+              "stepByStep": [
+                  "Step 1: Modulus is 8, so $r^{1/3} = 2$.",
+                  "Step 2: Principal argument of $-8i$ is $\\theta = -\\pi/2$.",
+                  "Step 3: For $k = 0$: angle is $\\frac{-\\pi/2}{3} = -\\frac{\\pi}{6}$.",
+                  "Step 4: Cartesian: $2\\left(\\cos\\left(-\\frac{\\pi}{6}\\right) + i\\sin\\left(-\\frac{\\pi}{6}\\right)\\right) = 2\\left(\\frac{\\sqrt{3}}{2} - i\\frac{1}{2}\\right) = \\sqrt{3} - i$."
+              ],
+              "commonTrap": "Using theta = 3pi/2 instead of principal argument -pi/2, shifting the root indexing.",
+              "reference": "Zill \u00a717.2 \u2014 Roots of Pure Imaginary Numbers"
+          }
+      },
+      {
+          "id": "cpx_44",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "All Cube Roots of -8i (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Which of the following is ONE of the three cube roots of $z = -8i$?",
+          "options": [
+              "$2i$",
+              "$-2i$",
+              "$2$",
+              "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The 3 cube roots of $-8i = 8 e^{-i\\pi/2}$ correspond to $k = 0, 1, 2$.",
+              "stepByStep": [
+                  "Step 1: For $k = 1$: angle is $\\frac{-\\pi/2 + 2\\pi}{3} = \\frac{3\\pi/2}{3} = \\frac{\\pi}{2}$.",
+                  "Step 2: $w_1 = 2 e^{i\\pi/2} = 2i$.",
+                  "Step 3: Verification: $(2i)^3 = 8 i^3 = -8i$. Matches perfectly!"
+              ],
+              "commonTrap": "Guessing -2i without checking: (-2i)^3 = -8(-i) = +8i (wrong sign!).",
+              "reference": "Zill \u00a717.2 \u2014 Cube Roots Example"
+          }
+      },
+      {
+          "id": "cpx_45",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Cube Roots of Negative Real Number (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What are all three cube roots of $z = -27$?",
+          "options": [
+              "$w_0 = \\frac{3}{2} + i\\frac{3\\sqrt{3}}{2}, \\quad w_1 = -3, \\quad w_2 = \\frac{3}{2} - i\\frac{3\\sqrt{3}}{2}$",
+              "$w_0 = 3, \\quad w_1 = -3, \\quad w_2 = 3i$",
+              "$w_0 = 3i, \\quad w_1 = -3i, \\quad w_2 = -3$",
+              "$w_0 = -\\frac{3}{2} + i\\frac{3\\sqrt{3}}{2}, \\quad w_1 = 3, \\quad w_2 = -\\frac{3}{2} - i\\frac{3\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$-27 = 27 e^{i\\pi}$. The radius is $27^{1/3} = 3$. The angles are $\\frac{\\pi + 2k\\pi}{3}$ for $k = 0, 1, 2$.",
+              "stepByStep": [
+                  "Step 1: $k = 0$: angle is $\\pi/3 \\implies 3(\\cos(\\pi/3) + i\\sin(\\pi/3)) = \\frac{3}{2} + i\\frac{3\\sqrt{3}}{2}$.",
+                  "Step 2: $k = 1$: angle is $3\\pi/3 = \\pi \\implies 3(\\cos\\pi + i\\sin\\pi) = -3$.",
+                  "Step 3: $k = 2$: angle is $5\\pi/3 \\equiv -\\pi/3 \\implies \\frac{3}{2} - i\\frac{3\\sqrt{3}}{2}$."
+              ],
+              "commonTrap": "Believing -3 is the ONLY cube root of -27. There are ALWAYS exactly 3 roots in the complex plane!",
+              "reference": "Zill \u00a717.2 \u2014 Cube Roots of Negative Reals"
+          }
+      },
+      {
+          "id": "cpx_46",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Fourth Roots of Unity (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What are the four roots of the equation $w^4 = 1$?",
+          "options": [
+              "$1, \\; -1, \\; i, \\; -i$",
+              "$1, \\; -1, \\; 1+i, \\; 1-i$",
+              "$i, \\; -i, \\; 2i, \\; -2i$",
+              "$\\pm \\frac{\\sqrt{2}}{2} \\pm i\\frac{\\sqrt{2}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$1 = 1 e^{i 0}$. The angles are $\\frac{2k\\pi}{4} = \\frac{k\\pi}{2}$ for $k = 0, 1, 2, 3$, giving $1, i, -1, -i$.",
+              "stepByStep": [
+                  "Step 1: $k = 0 \\implies e^0 = 1$.",
+                  "Step 2: $k = 1 \\implies e^{i\\pi/2} = i$.",
+                  "Step 3: $k = 2 \\implies e^{i\\pi} = -1$.",
+                  "Step 4: $k = 3 \\implies e^{i 3\\pi/2} = -i$."
+              ],
+              "commonTrap": "Listing only 1 and -1, omitting the two complex roots.",
+              "reference": "Zill \u00a717.2 \u2014 Roots of Unity"
+          }
+      },
+      {
+          "id": "cpx_47",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Square Roots of the Imaginary Unit (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Find the two square roots of $z = i$.",
+          "options": [
+              "$\\pm \\left(\\frac{\\sqrt{2}}{2} + i\\frac{\\sqrt{2}}{2}\\right)$",
+              "$\\pm (1 + i)$",
+              "$\\pm i$",
+              "$\\pm \\left(\\frac{1}{2} + i\\frac{\\sqrt{3}}{2}\\right)$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$i = 1 e^{i\\pi/2}$. Square roots have radius $1^{1/2} = 1$ and angles $\\frac{\\pi/2 + 2k\\pi}{2} = \\frac{\\pi}{4} + k\\pi$.",
+              "stepByStep": [
+                  "Step 1: $k = 0 \\implies e^{i\\pi/4} = \\cos(\\pi/4) + i\\sin(\\pi/4) = \\frac{\\sqrt{2}}{2} + i\\frac{\\sqrt{2}}{2}$.",
+                  "Step 2: $k = 1 \\implies e^{i 5\\pi/4} = -\\left(\\frac{\\sqrt{2}}{2} + i\\frac{\\sqrt{2}}{2}\\right)$."
+              ],
+              "commonTrap": "Writing sqrt(i) = i.",
+              "reference": "Zill \u00a717.2 \u2014 Square Roots of Complex Numbers"
+          }
+      },
+      {
+          "id": "cpx_48",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Fourth Roots of -16 (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the radius $R$ of the circle on which all four roots of $w^4 = -16$ lie?",
+          "options": [
+              "$2$",
+              "$4$",
+              "$16$",
+              "$\\sqrt{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "All $n$-th roots of $z$ lie on a circle of radius $R = |z|^{1/n}$.",
+              "stepByStep": [
+                  "Step 1: $|-16| = 16$.",
+                  "Step 2: The radius of the 4th roots is $R = 16^{1/4} = 2$."
+              ],
+              "commonTrap": "Taking the square root (4) instead of the 4th root (2).",
+              "reference": "Zill \u00a717.2 \u2014 Radius of Root Circles"
+          }
+      },
+      {
+          "id": "cpx_49",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Angular Separation Between Roots (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the angular separation $\\Delta\\theta$ between consecutive 5th roots of any non-zero complex number?",
+          "options": [
+              "$\\frac{2\\pi}{5}$ radians ($72^\\circ$)",
+              "$\\frac{\\pi}{5}$ radians ($36^\\circ$)",
+              "$\\frac{\\pi}{10}$ radians",
+              "$\\frac{4\\pi}{5}$ radians"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Consecutive $n$-th roots are separated by $\\Delta\\theta = \\frac{2\\pi}{n}$. For $n = 5$, $\\Delta\\theta = \\frac{2\\pi}{5} = 72^\\circ$.",
+              "stepByStep": [
+                  "Step 1: A full revolution of $2\\pi$ radians is divided equally among the $n = 5$ roots.",
+                  "Step 2: $\\Delta\\theta = \\frac{2\\pi}{5}$."
+              ],
+              "commonTrap": "Dividing pi by 5 instead of 2pi by 5.",
+              "reference": "Zill \u00a717.2 \u2014 Angular Spacing of Roots"
+          }
+      },
+      {
+          "id": "cpx_50",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Sum of All n-th Roots of Unity (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "For any integer $n \\ge 2$, what is the sum of all $n$ distinct $n$-th roots of unity $1 + w_1 + w_2 + \\dots + w_{n-1}$?",
+          "options": [
+              "$0$",
+              "$1$",
+              "$n$",
+              "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "By geometric series or symmetry of the regular $n$-gon centered at the origin, the centroid and sum of all roots is $\\sum_{k=0}^{n-1} w_k = 0$.",
+              "stepByStep": [
+                  "Step 1: The roots are $w_k = \\omega^k$ where $\\omega = e^{i 2\\pi/n} \\ne 1$.",
+                  "Step 2: Sum is a finite geometric series: $\\sum_{k=0}^{n-1} \\omega^k = \\frac{1 - \\omega^n}{1 - \\omega}$.",
+                  "Step 3: Since $\\omega^n = (e^{i 2\\pi/n})^n = e^{i 2\\pi} = 1$, the numerator is $1 - 1 = 0$."
+              ],
+              "commonTrap": "Thinking the sum equals 1 because w_0 = 1.",
+              "reference": "Zill \u00a717.2 \u2014 Sum of Roots of Unity Identity"
+          }
+      }
+  ],
   "second_order": [
-    {
-      "id": "sec_01",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #1",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 2 \\pm 3i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{2x} + C_2 e^{3x}$",
-        "$y(x) = e^{2x}(C_1 \\cos(3x) + C_2 \\sin(3x))$",
-        "$y(x) = e^{3x}(C_1 \\cos(2x) + C_2 \\sin(2x))$",
-        "$y(x) = C_1 \\cos(3x) + C_2 \\sin(3x)$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 2$ and imaginary part $\\beta = 3$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{2x}(C_1 \\cos(3x) + C_2 \\sin(3x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #1"
+      {
+          "id": "cpx_01",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Complex Multiplication (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate the product $z = (3 - 2i)(4 + 5i)$ in standard rectangular form $a + bi$.",
+          "options": [
+              "$22 + 7i$",
+              "$2 + 7i$",
+              "$22 - 7i$",
+              "$12 - 10i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Use FOIL and substitute $i^2 = -1$: $(a + bi)(c + di) = (ac - bd) + i(ad + bc)$.",
+              "stepByStep": [
+                  "Step 1: Expand product: $(3)(4) + 3(5i) - 2i(4) - 2i(5i) = 12 + 15i - 8i - 10i^2$.",
+                  "Step 2: Replace $i^2 = -1$: $12 + 7i - 10(-1) = 12 + 7i + 10 = 22 + 7i$."
+              ],
+              "commonTrap": "Writing -10 instead of +10 when simplifying -10i^2.",
+              "reference": "Zill \u00a717.1 \u2014 Complex Numbers \u00b7 Arithmetic Operations"
+          }
+      },
+      {
+          "id": "cpx_02",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Complex Division via Conjugate (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Simplify the quotient $\\frac{4 + 2i}{1 - i}$ into standard rectangular form $a + bi$.",
+          "options": [
+              "$1 + 3i$",
+              "$3 + 3i$",
+              "$-1 + 3i$",
+              "$1 - 3i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Multiply numerator and denominator by the complex conjugate of the denominator: $\\bar{z}_2 = 1 + i$.",
+              "stepByStep": [
+                  "Step 1: Multiply numerator and denominator by $\\bar{z} = 1 + i$: $\\frac{(4 + 2i)(1 + i)}{(1 - i)(1 + i)}$.",
+                  "Step 2: Denominator: $(1 - i)(1 + i) = 1^2 - i^2 = 1 - (-1) = 2$.",
+                  "Step 3: Numerator: $4(1) + 4(i) + 2i(1) + 2i^2 = 4 + 6i - 2 = 2 + 6i$.",
+                  "Step 4: Divide each term: $\\frac{2 + 6i}{2} = 1 + 3i$."
+              ],
+              "commonTrap": "Dividing only the real part by 2 and forgetting to divide the imaginary part.",
+              "reference": "Zill \u00a717.1 \u2014 Complex Numbers \u00b7 Division by Complex Conjugate"
+          }
+      },
+      {
+          "id": "cpx_03",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Complex Division (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Express $\\frac{2 + 3i}{3 - 4i}$ in the form $a + bi$.",
+          "options": [
+              "$-\\frac{6}{25} + \\frac{17}{25}i$",
+              "$\\frac{6}{25} + \\frac{17}{25}i$",
+              "$-\\frac{6}{7} + \\frac{17}{7}i$",
+              "$\\frac{18}{25} + \\frac{1}{25}i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Conjugate multiplication: $\\frac{z_1}{z_2} = \\frac{z_1 \\bar{z}_2}{|z_2|^2}$.",
+              "stepByStep": [
+                  "Step 1: Denominator conjugate: $3 + 4i$. Denominator is $3^2 + (-4)^2 = 9 + 16 = 25$.",
+                  "Step 2: Numerator: $(2 + 3i)(3 + 4i) = 6 + 8i + 9i + 12i^2 = 6 + 17i - 12 = -6 + 17i$.",
+                  "Step 3: Quotient: $-\\frac{6}{25} + \\frac{17}{25}i$."
+              ],
+              "commonTrap": "Computing denominator as 3^2 - 4^2 = -7 instead of 3^2 + 4^2 = 25.",
+              "reference": "Zill \u00a717.1 \u2014 Complex Numbers \u00b7 Division"
+          }
+      },
+      {
+          "id": "cpx_04",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Modulus Calculation (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "What is the modulus $|z|$ of $z = -5 + 12i$?",
+          "options": [
+              "$13$",
+              "$\\sqrt{119}$",
+              "$17$",
+              "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Modulus is the Euclidean distance from origin: $|z| = \\sqrt{x^2 + y^2}$.",
+              "stepByStep": [
+                  "Step 1: Identify real part $x = -5$ and imaginary part $y = 12$.",
+                  "Step 2: $|z| = \\sqrt{(-5)^2 + (12)^2} = \\sqrt{25 + 144} = \\sqrt{169} = 13$."
+              ],
+              "commonTrap": "Squaring 12i into -144 and getting sqrt(25 - 144) = sqrt(-119). Modulus is based on real components y=12!",
+              "reference": "Zill \u00a717.1 \u2014 Modulus and Complex Absolute Value"
+          }
+      },
+      {
+          "id": "cpx_05",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Powers of the Imaginary Unit (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate $i^{2027}$.",
+          "options": [
+              "$-i$",
+              "$i$",
+              "$-1$",
+              "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Powers of $i$ cycle modulo 4: $i^1 = i, i^2 = -1, i^3 = -i, i^4 = 1$.",
+              "stepByStep": [
+                  "Step 1: Divide exponent 2027 by 4: $2027 = 4 \\times 506 + 3$. Remainder is 3.",
+                  "Step 2: Therefore $i^{2027} = (i^4)^{506} \\cdot i^3 = 1^{506} \\cdot (-i) = -i$."
+              ],
+              "commonTrap": "Confusing remainder 3 with remainder 1, yielding +i.",
+              "reference": "Zill \u00a717.1 \u2014 Powers of i"
+          }
+      },
+      {
+          "id": "cpx_06",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Conjugate Identity (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "If $z = 3 - 4i$, what is the exact numerical value of $z \\bar{z}$?",
+          "options": [
+              "$25$",
+              "$-7$",
+              "$25 - 24i$",
+              "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The product of any complex number with its conjugate is the square of its modulus: $z \\bar{z} = |z|^2 = x^2 + y^2$.",
+              "stepByStep": [
+                  "Step 1: Conjugate $\\bar{z} = 3 + 4i$.",
+                  "Step 2: $z \\bar{z} = (3 - 4i)(3 + 4i) = 3^2 - (4i)^2 = 9 - (-16) = 25$."
+              ],
+              "commonTrap": "Writing 9 - 16 = -7 by missing the i^2 = -1 sign flip.",
+              "reference": "Zill \u00a717.1 \u2014 Conjugate Properties"
+          }
+      },
+      {
+          "id": "cpx_07",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Imaginary Part Definition (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "What is the imaginary part $\\operatorname{Im}(z)$ of $z = \\frac{1}{2 + 3i}$?",
+          "options": [
+              "$-\\frac{3}{13}$",
+              "$\\frac{3}{13}$",
+              "$-\\frac{3}{13}i$",
+              "$\\frac{2}{13}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The imaginary part of $z = x + iy$ is the real number $y$, NEVER containing the unit $i$.",
+              "stepByStep": [
+                  "Step 1: Multiply by conjugate: $\\frac{1(2 - 3i)}{(2 + 3i)(2 - 3i)} = \\frac{2 - 3i}{4 + 9} = \\frac{2 - 3i}{13}$.",
+                  "Step 2: Real part $\\operatorname{Re}(z) = \\frac{2}{13}$, imaginary part $\\operatorname{Im}(z) = -\\frac{3}{13}$."
+              ],
+              "commonTrap": "Including the symbol 'i' in the imaginary part: Im(z) is -3/13, NOT -3/13 i.",
+              "reference": "Zill \u00a717.1 \u2014 Real and Imaginary Parts"
+          }
+      },
+      {
+          "id": "cpx_08",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Complex Equality Matching (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Find the real values of $x$ and $y$ that satisfy $(2x - y) + i(x + 3y) = 5 + 6i$.",
+          "options": [
+              "$x = 3, \\; y = 1$",
+              "$x = 2, \\; y = -1$",
+              "$x = 1, \\; y = 3$",
+              "$x = 4, \\; y = 3$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Two complex numbers are equal if and only if both real and imaginary parts match independently.",
+              "stepByStep": [
+                  "Step 1: Real parts: $2x - y = 5 \\implies y = 2x - 5$.",
+                  "Step 2: Imaginary parts: $x + 3y = 6$.",
+                  "Step 3: Substitute $y$: $x + 3(2x - 5) = 6 \\implies x + 6x - 15 = 6 \\implies 7x = 21 \\implies x = 3$.",
+                  "Step 4: Solve $y$: $y = 2(3) - 5 = 1$."
+              ],
+              "commonTrap": "Equating the sum (2x-y) + (x+3y) = 11 instead of separating real and imaginary systems.",
+              "reference": "Zill \u00a717.1 \u2014 Equality of Complex Numbers"
+          }
+      },
+      {
+          "id": "cpx_09",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Triangle Inequality Bound (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "If $|z| = 4$, what is the maximum possible value of $|z - 3 + 4i|$ according to the Triangle Inequality?",
+          "options": [
+              "$9$",
+              "$1$",
+              "$5$",
+              "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "By the Triangle Inequality, $|z_1 + z_2| \\le |z_1| + |z_2|$.",
+              "stepByStep": [
+                  "Step 1: Rewrite $|z - (3 - 4i)| \\le |z| + |-3 + 4i|$.",
+                  "Step 2: Compute $|-3 + 4i| = \\sqrt{(-3)^2 + 4^2} = \\sqrt{9 + 16} = 5$.",
+                  "Step 3: Maximum value is $|z| + 5 = 4 + 5 = 9$."
+              ],
+              "commonTrap": "Subtracting 5 from 4 to get -1, or confusing maximum with minimum bound (|4 - 5| = 1).",
+              "reference": "Zill \u00a717.1 \u2014 Triangle Inequality (Theorem 17.1.1)"
+          }
+      },
+      {
+          "id": "cpx_10",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Modulus of Product (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Without expanding, what is the exact modulus of $z = (1 + 2i)(3 - 4i)$?",
+          "options": [
+              "$5\\sqrt{5}$",
+              "$25$",
+              "$\\sqrt{65}$",
+              "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The modulus of a product is the product of the moduli: $|z_1 z_2| = |z_1| \\cdot |z_2|$.",
+              "stepByStep": [
+                  "Step 1: Compute $|1 + 2i| = \\sqrt{1^2 + 2^2} = \\sqrt{5}$.",
+                  "Step 2: Compute $|3 - 4i| = \\sqrt{3^2 + (-4)^2} = \\sqrt{25} = 5$.",
+                  "Step 3: Multiply: $|z| = 5\\sqrt{5}$."
+              ],
+              "commonTrap": "Wasting 3 minutes expanding the product before taking the modulus.",
+              "reference": "Zill \u00a717.1 \u2014 Modulus Properties"
+          }
+      },
+      {
+          "id": "cpx_11",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Modulus of Quotient (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "What is the modulus of $w = \\frac{2 - i}{1 + 2i}$?",
+          "options": [
+              "$1$",
+              "$\\sqrt{5}$",
+              "$\\frac{5}{3}$",
+              "$\\frac{1}{\\sqrt{5}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The modulus of a quotient is the quotient of moduli: $|z_1/z_2| = |z_1|/|z_2|$.",
+              "stepByStep": [
+                  "Step 1: $|2 - i| = \\sqrt{2^2 + (-1)^2} = \\sqrt{5}$.",
+                  "Step 2: $|1 + 2i| = \\sqrt{1^2 + 2^2} = \\sqrt{5}$.",
+                  "Step 3: $|w| = \\frac{\\sqrt{5}}{\\sqrt{5}} = 1$."
+              ],
+              "commonTrap": "Doing long conjugate division when only the modulus magnitude was requested.",
+              "reference": "Zill \u00a717.1 \u2014 Modulus of Quotients"
+          }
+      },
+      {
+          "id": "cpx_12",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Conjugate of Quotient (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "Which identity correctly represents the conjugate of a quotient $\\overline{\\left(\\frac{z_1}{z_2}\\right)}$?",
+          "options": [
+              "$\\frac{\\bar{z}_1}{\\bar{z}_2}$",
+              "$\\frac{z_1}{\\bar{z}_2}$",
+              "$-\\frac{\\bar{z}_1}{\\bar{z}_2}$",
+              "$\\frac{\\bar{z}_1}{z_2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Conjugation distributes over division: $\\overline{z_1 / z_2} = \\bar{z}_1 / \\bar{z}_2$.",
+              "stepByStep": [
+                  "Step 1: The conjugate of a ratio is the ratio of individual conjugates."
+              ],
+              "commonTrap": "Applying a negative sign to the entire fraction.",
+              "reference": "Zill \u00a717.1 \u2014 Conjugate Algebraic Rules"
+          }
+      },
+      {
+          "id": "cpx_13",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Pure Imaginary Numbers (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "For what real value of $k$ is $z = (k + 2i)(1 - i)$ a pure imaginary number?",
+          "options": [
+              "$k = -2$",
+              "$k = 2$",
+              "$k = 0$",
+              "$k = 1$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "A complex number $z = x + iy$ is pure imaginary if its real part $\\operatorname{Re}(z) = 0$.",
+              "stepByStep": [
+                  "Step 1: Expand $(k + 2i)(1 - i) = k - ki + 2i - 2i^2 = (k + 2) + i(2 - k)$.",
+                  "Step 2: Set real part to zero: $k + 2 = 0 \\implies k = -2$."
+              ],
+              "commonTrap": "Setting the imaginary part 2 - k = 0, which makes it purely REAL instead of pure imaginary.",
+              "reference": "Zill \u00a717.1 \u2014 Pure Imaginary Definition"
+          }
+      },
+      {
+          "id": "cpx_14",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Pure Real Condition (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "A complex number $z$ satisfies $z = \\bar{z}$ if and only if:",
+          "options": [
+              "$z$ is purely real",
+              "$z$ is purely imaginary",
+              "$|z| = 1$",
+              "$z = 0$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$x + iy = x - iy \\implies 2iy = 0 \\implies y = 0$. Hence $z = x$ is real.",
+              "stepByStep": [
+                  "Step 1: Write $z = x + iy$. Then $\\bar{z} = x - iy$.",
+                  "Step 2: $x + iy = x - iy \\implies iy = -iy \\implies 2iy = 0 \\implies y = 0$."
+              ],
+              "commonTrap": "Thinking z must be 0: any real number like 5 satisfies 5 = conjugate(5).",
+              "reference": "Zill \u00a717.1 \u2014 Characterization of Real Numbers"
+          }
+      },
+      {
+          "id": "cpx_15",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Conjugate Root Theorem (Sec 17.1)",
+          "difficulty": "Midterm Level",
+          "question": "If $z_1 = 2 - 3i$ is a root of the real polynomial $P(z) = z^2 - 4z + 13 = 0$, what is the second root $z_2$?",
+          "options": [
+              "$2 + 3i$",
+              "$-2 + 3i$",
+              "$-2 - 3i$",
+              "$3 - 2i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Polynomials with real coefficients have complex roots that occur in conjugate pairs: $z_2 = \\bar{z}_1$.",
+              "stepByStep": [
+                  "Step 1: By the Conjugate Root Theorem, if $P(z) = 0$ with real coefficients, $P(\\bar{z}) = 0$.",
+                  "Step 2: $\\bar{z}_1 = \\overline{2 - 3i} = 2 + 3i$."
+              ],
+              "commonTrap": "Negating the real part instead of the imaginary part.",
+              "reference": "Zill \u00a717.1 \u2014 Conjugate Roots of Real Polynomials"
+          }
+      },
+      {
+          "id": "cpx_16",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Polar Form in Quadrant II (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Express $z = -1 + i\\sqrt{3}$ in polar exponential form $r e^{i\\theta}$ with principal argument $\\theta \\in (-\\pi, \\pi]$.",
+          "options": [
+              "$z = 2 e^{i\\frac{2\\pi}{3}}$",
+              "$z = 2 e^{-i\\frac{\\pi}{3}}$",
+              "$z = 4 e^{i\\frac{2\\pi}{3}}$",
+              "$z = 2 e^{i\\frac{5\\pi}{6}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$r = \\sqrt{x^2 + y^2}$. In Quadrant II ($x < 0, y > 0$), $\\operatorname{Arg}(z) = \\pi - \\arctan(|y/x|)$.",
+              "stepByStep": [
+                  "Step 1: Compute modulus: $r = \\sqrt{(-1)^2 + (\\sqrt{3})^2} = \\sqrt{1 + 3} = 2$.",
+                  "Step 2: Reference angle $\\theta_0 = \\arctan(\\sqrt{3}/1) = \\frac{\\pi}{3}$.",
+                  "Step 3: Since $x = -1 < 0$ and $y = \\sqrt{3} > 0$, $z$ is in Quadrant II: $\\theta = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$.",
+                  "Step 4: Polar form: $z = 2 e^{i\\frac{2\\pi}{3}}$."
+              ],
+              "commonTrap": "Taking raw arctan(sqrt(3)/-1) = -pi/3 from a calculator, which gives a Quadrant IV angle (error of pi!).",
+              "reference": "Zill \u00a717.2 \u2014 Polar Form of Complex Numbers"
+          }
+      },
+      {
+          "id": "cpx_17",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Polar Form in Quadrant III (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the polar exponential form $r e^{i\\theta}$ of $z = -2 - 2i$?",
+          "options": [
+              "$z = 2\\sqrt{2} e^{-i\\frac{3\\pi}{4}}$",
+              "$z = 2\\sqrt{2} e^{i\\frac{5\\pi}{4}}$",
+              "$z = 4 e^{-i\\frac{3\\pi}{4}}$",
+              "$z = 2\\sqrt{2} e^{i\\frac{3\\pi}{4}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Principal argument $\\operatorname{Arg}(z)$ must lie strictly in $(-\\pi, \\pi]$. In Quadrant III, $\\theta = -\\pi + \\arctan(|y/x|)$.",
+              "stepByStep": [
+                  "Step 1: Modulus: $r = \\sqrt{(-2)^2 + (-2)^2} = \\sqrt{8} = 2\\sqrt{2}$.",
+                  "Step 2: Reference angle: $\\theta_0 = \\arctan(2/2) = \\frac{\\pi}{4}$.",
+                  "Step 3: In Quadrant III ($x < 0, y < 0$), principal argument is $\\theta = -\\pi + \\frac{\\pi}{4} = -\\frac{3\\pi}{4}$.",
+                  "Step 4: Polar form: $z = 2\\sqrt{2} e^{-i\\frac{3\\pi}{4}}$."
+              ],
+              "commonTrap": "Using 5pi/4. Although 5pi/4 is coterminal, Concordia professors strictly penalize angles outside (-pi, pi] for principal argument!",
+              "reference": "Zill \u00a717.2 \u2014 Principal Argument and Quadrants"
+          }
+      },
+      {
+          "id": "cpx_18",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Polar Form in Quadrant IV (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Convert $z = \\sqrt{3} - i$ into polar form $r e^{i\\theta}$.",
+          "options": [
+              "$z = 2 e^{-i\\frac{\\pi}{6}}$",
+              "$z = 2 e^{i\\frac{11\\pi}{6}}$",
+              "$z = 2 e^{-i\\frac{\\pi}{3}}$",
+              "$z = 4 e^{-i\\frac{\\pi}{6}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "In Quadrant IV ($x > 0, y < 0$), $\\operatorname{Arg}(z) = -\\arctan(|y/x|)$.",
+              "stepByStep": [
+                  "Step 1: Modulus: $r = \\sqrt{(\\sqrt{3})^2 + (-1)^2} = \\sqrt{3 + 1} = 2$.",
+                  "Step 2: Reference angle: $\\theta_0 = \\arctan(1/\\sqrt{3}) = \\frac{\\pi}{6}$.",
+                  "Step 3: Quadrant IV angle: $\\theta = -\\frac{\\pi}{6}$.",
+                  "Step 4: Polar form: $z = 2 e^{-i\\frac{\\pi}{6}}$."
+              ],
+              "commonTrap": "Using 11pi/6 instead of the principal argument -pi/6.",
+              "reference": "Zill \u00a717.2 \u2014 Quadrant IV Polar Conversions"
+          }
+      },
+      {
+          "id": "cpx_19",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Pure Imaginary Polar Form (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the exact polar exponential form of $z = -7i$?",
+          "options": [
+              "$7 e^{-i\\frac{\\pi}{2}}$",
+              "$-7 e^{i\\frac{\\pi}{2}}$",
+              "$7 e^{i\\frac{3\\pi}{2}}$",
+              "$7 e^{i\\pi}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "A negative imaginary number lies on the negative imaginary axis at angle $-\\pi/2$. Modulus is strictly positive ($r = 7$).",
+              "stepByStep": [
+                  "Step 1: $|-7i| = 7$ (modulus is always non-negative).",
+                  "Step 2: The point $(0, -7)$ lies on the negative y-axis: $\\theta = -\\frac{\\pi}{2}$.",
+                  "Step 3: $z = 7 e^{-i\\frac{\\pi}{2}}$."
+              ],
+              "commonTrap": "Writing r = -7: modulus r can NEVER be negative!",
+              "reference": "Zill \u00a717.2 \u2014 Axis Values in Polar Form"
+          }
+      },
+      {
+          "id": "cpx_20",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Negative Real Number Polar Form (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Express the negative real number $z = -5$ in polar exponential form $r e^{i\\theta}$.",
+          "options": [
+              "$5 e^{i\\pi}$",
+              "$-5 e^{i 0}$",
+              "$5 e^{-i\\pi}$",
+              "$5 e^{i 2\\pi}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Negative real numbers lie along the negative real axis at angle $\\pi$. Principal argument convention specifies $\\operatorname{Arg}(-a) = \\pi$ (open at $-\\pi$).",
+              "stepByStep": [
+                  "Step 1: Modulus: $r = |-5| = 5$.",
+                  "Step 2: Argument: On the negative real axis, the angle from positive x-axis is $\\pi$ radians.",
+                  "Step 3: Polar form: $z = 5 e^{i\\pi}$."
+              ],
+              "commonTrap": "Using -pi instead of pi (principal argument interval is (-pi, pi], which includes pi but excludes -pi).",
+              "reference": "Zill \u00a717.2 \u2014 Negative Real Polar Representation"
+          }
+      },
+      {
+          "id": "cpx_21",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Polar Product Multiplication (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "If $z_1 = 3 e^{i\\frac{\\pi}{4}}$ and $z_2 = 2 e^{i\\frac{\\pi}{3}}$, what is $z_1 z_2$ in polar form?",
+          "options": [
+              "$6 e^{i\\frac{7\\pi}{12}}$",
+              "$5 e^{i\\frac{7\\pi}{12}}$",
+              "$6 e^{i\\frac{\\pi^2}{12}}$",
+              "$6 e^{-i\\frac{\\pi}{12}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "When multiplying in polar form: multiply the moduli and add the arguments ($r_1 r_2 e^{i(\\theta_1 + \\theta_2)}$).",
+              "stepByStep": [
+                  "Step 1: Modulus: $r = 3 \\times 2 = 6$.",
+                  "Step 2: Argument: $\\theta = \\frac{\\pi}{4} + \\frac{\\pi}{3} = \\frac{3\\pi + 4\\pi}{12} = \\frac{7\\pi}{12}$.",
+                  "Step 3: Product: $6 e^{i\\frac{7\\pi}{12}}$."
+              ],
+              "commonTrap": "Multiplying the angles (pi/4 * pi/3) instead of adding them.",
+              "reference": "Zill \u00a717.2 \u2014 Polar Multiplication Theorem"
+          }
+      },
+      {
+          "id": "cpx_22",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Polar Quotient Division (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "If $z_1 = 8 e^{i\\frac{\\pi}{2}}$ and $z_2 = 2 e^{i\\frac{5\\pi}{6}}$, what is $\\frac{z_1}{z_2}$ with principal argument?",
+          "options": [
+              "$4 e^{-i\\frac{\\pi}{3}}$",
+              "$4 e^{i\\frac{4\\pi}{3}}$",
+              "$6 e^{-i\\frac{\\pi}{3}}$",
+              "$4 e^{i\\frac{\\pi}{3}}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "When dividing in polar form: divide the moduli and subtract the arguments ($z_1/z_2 = (r_1/r_2) e^{i(\\theta_1 - \\theta_2)}$).",
+              "stepByStep": [
+                  "Step 1: Modulus: $8 / 2 = 4$.",
+                  "Step 2: Argument: $\\frac{\\pi}{2} - \\frac{5\\pi}{6} = \\frac{3\\pi - 5\\pi}{6} = -\\frac{2\\pi}{6} = -\\frac{\\pi}{3}$.",
+                  "Step 3: Result: $4 e^{-i\\frac{\\pi}{3}}$."
+              ],
+              "commonTrap": "Subtracting angles in reverse order (5pi/6 - pi/2 = +pi/3).",
+              "reference": "Zill \u00a717.2 \u2014 Polar Division Theorem"
+          }
+      },
+      {
+          "id": "cpx_23",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Conjugate in Polar Form (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "If $z = r e^{i\\theta}$, what is the complex conjugate $\\bar{z}$ in polar form?",
+          "options": [
+              "$r e^{-i\\theta}$",
+              "$-r e^{i\\theta}$",
+              "$r e^{i(\\theta + \\pi)}$",
+              "$-r e^{-i\\theta}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Conjugating a complex number negates its imaginary part, which corresponds to reflecting across the real axis (negating the angle $\\theta$).",
+              "stepByStep": [
+                  "Step 1: $z = r(\\cos\\theta + i\\sin\\theta)$.",
+                  "Step 2: $\\bar{z} = r(\\cos\\theta - i\\sin\\theta) = r(\\cos(-\\theta) + i\\sin(-\\theta)) = r e^{-i\\theta}$."
+              ],
+              "commonTrap": "Placing a minus sign on the radius r.",
+              "reference": "Zill \u00a717.2 \u2014 Complex Conjugate in Polar Form"
+          }
+      },
+      {
+          "id": "cpx_24",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Euler Identity Trig Evaluation (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Convert $z = 4 e^{i\\frac{5\\pi}{6}}$ to rectangular Cartesian form $a + bi$.",
+          "options": [
+              "$-2\\sqrt{3} + 2i$",
+              "$2\\sqrt{3} - 2i$",
+              "$-2 + 2i\\sqrt{3}$",
+              "$-2\\sqrt{3} - 2i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$r e^{i\\theta} = r(\\cos\\theta + i\\sin\\theta)$.",
+              "stepByStep": [
+                  "Step 1: $\\cos(5\\pi/6) = -\\frac{\\sqrt{3}}{2}$ and $\\sin(5\\pi/6) = \\frac{1}{2}$.",
+                  "Step 2: Multiply by $r = 4$: $4\\left(-\\frac{\\sqrt{3}}{2} + i\\frac{1}{2}\\right) = -2\\sqrt{3} + 2i$."
+              ],
+              "commonTrap": "Mixing up cos(5pi/6) and sin(5pi/6) values.",
+              "reference": "Zill \u00a717.2 \u2014 Conversion from Polar to Rectangular"
+          }
+      },
+      {
+          "id": "cpx_25",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Argand Plane Rotation (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Multiplying any non-zero complex number $z$ by the imaginary unit $i$ corresponds geometrically to:",
+          "options": [
+              "A counter-clockwise rotation by $90^\\circ$ ($\\pi/2$ rad)",
+              "A clockwise rotation by $90^\\circ$",
+              "A reflection across the y-axis",
+              "A scaling by factor 2"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$i = 1 e^{i\\pi/2}$. Multiplying by $i$ adds $\\pi/2$ to the argument, rotating the vector $90^\\circ$ counter-clockwise.",
+              "stepByStep": [
+                  "Step 1: $i z = (1 e^{i\\pi/2})(r e^{i\\theta}) = r e^{i(\\theta + \\pi/2)}$.",
+                  "Step 2: The radius remains $r$, while the angle advances by $+90^\\circ$ (counter-clockwise)."
+              ],
+              "commonTrap": "Thinking multiplication by i flips the sign to clockwise.",
+              "reference": "Zill \u00a717.2 \u2014 Geometric Interpretation of Complex Multiplication"
+          }
+      },
+      {
+          "id": "cpx_26",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Reciprocal in Polar Form (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the reciprocal $\\frac{1}{z}$ of $z = r e^{i\\theta}$?",
+          "options": [
+              "$\\frac{1}{r} e^{-i\\theta}$",
+              "$\\frac{1}{r} e^{i\\theta}$",
+              "$-r e^{-i\\theta}$",
+              "$\\frac{1}{r^2} e^{i\\theta}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$\\frac{1}{z} = \\frac{1 e^{i0}}{r e^{i\\theta}} = \\frac{1}{r} e^{i(0 - \\theta)} = \\frac{1}{r} e^{-i\\theta}$.",
+              "stepByStep": [
+                  "Step 1: Divide magnitude: $1/r$.",
+                  "Step 2: Subtract angle: $0 - \\theta = -\\theta$."
+              ],
+              "commonTrap": "Leaving the angle as +theta.",
+              "reference": "Zill \u00a717.2 \u2014 Polar Reciprocal Formula"
+          }
+      },
+      {
+          "id": "cpx_27",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Principal Argument of Negative Product (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the principal argument $\\operatorname{Arg}(-z)$ if $\\operatorname{Arg}(z) = \\frac{\\pi}{4}$?",
+          "options": [
+              "$-\\frac{3\\pi}{4}$",
+              "$\\frac{5\\pi}{4}$",
+              "$-\\frac{\\pi}{4}$",
+              "$\\frac{3\\pi}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$-z = (e^{i\\pi})z$. Adding $\\pi$ to $\\pi/4$ gives $5\\pi/4$, which must be reduced to $(-\\pi, \\pi]$ by subtracting $2\\pi$: $5\\pi/4 - 2\\pi = -3\\pi/4$.",
+              "stepByStep": [
+                  "Step 1: $-z$ is opposite in direction to $z$ (reflected through the origin).",
+                  "Step 2: Angle is $\\frac{\\pi}{4} - \\pi = -\\frac{3\\pi}{4}$."
+              ],
+              "commonTrap": "Answering 5pi/4 without reducing to the principal interval (-pi, pi].",
+              "reference": "Zill \u00a717.2 \u2014 Principal Argument Reductions"
+          }
+      },
+      {
+          "id": "cpx_28",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Degrees to Radians Law (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "In Concordia ENGR 213 examinations, what unit MUST all complex arguments $\\theta$ be expressed in?",
+          "options": [
+              "Radians strictly",
+              "Degrees or radians interchangeably",
+              "Gradians",
+              "Degrees only"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Dr. Paradis and Dr. Haghighat explicitly state that all angles in complex exponential form $e^{i\\theta}$ and marking keys must strictly be in radians.",
+              "stepByStep": [
+                  "Step 1: The exponential function $e^{i\\theta}$ is defined via Taylor series where $\\theta$ is dimensionless (radians). Degrees invalidate the calculus!"
+              ],
+              "commonTrap": "Leaving answers as e^{i 45^\\circ}. Full marks are deducted if not converted to e^{i\\pi/4}.",
+              "reference": "Paradis Notes Module 7 \u2014 Golden Rule on Radians"
+          }
+      },
+      {
+          "id": "cpx_29",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Modulus of Exponential (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the modulus of the complex exponential $w = e^{3 + 4i}$?",
+          "options": [
+              "$e^3$",
+              "$5$",
+              "$e^5$",
+              "$e^4$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$e^{x + iy} = e^x e^{iy}$. Since $|e^{iy}| = |\\cos y + i\\sin y| = 1$, the modulus is $|e^{x + iy}| = e^x$.",
+              "stepByStep": [
+                  "Step 1: Split exponential: $e^{3 + 4i} = e^3 \\cdot e^{4i}$.",
+                  "Step 2: $|e^{4i}| = 1$ because $\\cos^2(4) + \\sin^2(4) = 1$.",
+                  "Step 3: Modulus is $e^3$."
+              ],
+              "commonTrap": "Computing sqrt(3^2 + 4^2) = 5 or e^5. The imaginary part 4 is purely an angle!",
+              "reference": "Zill \u00a717.2 \u2014 Modulus of Complex Exponential Function"
+          }
+      },
+      {
+          "id": "cpx_30",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Complex Modulus Identity (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the modulus of $e^{i\\theta}$ for any real angle $\\theta$?",
+          "options": [
+              "$1$",
+              "$\\theta$",
+              "$\\sqrt{\\theta}$",
+              "$e$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$|e^{i\\theta}| = |\\cos\\theta + i\\sin\\theta| = \\sqrt{\\cos^2\\theta + \\sin^2\\theta} = 1$. All points $e^{i\\theta}$ lie on the unit circle.",
+              "stepByStep": [
+                  "Step 1: By Euler's formula, $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$.",
+                  "Step 2: Modulus is $\\sqrt{\\cos^2\\theta + \\sin^2\\theta} = 1$."
+              ],
+              "commonTrap": "Thinking the modulus grows with theta.",
+              "reference": "Zill \u00a717.2 \u2014 The Complex Unit Circle"
+          }
+      },
+      {
+          "id": "cpx_31",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre High Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Use De Moivre's theorem to compute $(1 + i)^8$.",
+          "options": [
+              "$16$",
+              "$16i$",
+              "$-16$",
+              "$8 + 8i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Convert to polar form: $1 + i = \\sqrt{2} e^{i\\pi/4}$. Then $(r e^{i\\theta})^n = r^n e^{in\\theta}$.",
+              "stepByStep": [
+                  "Step 1: Polar form: $r = \\sqrt{1^2 + 1^2} = \\sqrt{2}$, $\\theta = \\pi/4$.",
+                  "Step 2: Apply power 8: $(\\sqrt{2} e^{i\\pi/4})^8 = (\\sqrt{2})^8 e^{i 8(\\pi/4)}$.",
+                  "Step 3: $(\\sqrt{2})^8 = 2^4 = 16$.",
+                  "Step 4: Angle is $8(\\pi/4) = 2\\pi$. Since $e^{i 2\\pi} = 1$, the result is $16 \\times 1 = 16$."
+              ],
+              "commonTrap": "Forgetting to raise sqrt(2) to the 8th power.",
+              "reference": "Zill \u00a717.2 \u2014 De Moivre's Theorem for Integer Powers"
+          }
+      },
+      {
+          "id": "cpx_32",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre Power with Quadrant II (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Compute $(-\\sqrt{3} + i)^6$ in rectangular form $a + bi$.",
+          "options": [
+              "$-64$",
+              "$64$",
+              "$-64i$",
+              "$64i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$-\\sqrt{3} + i$ has modulus $2$ and argument $\\frac{5\\pi}{6}$.",
+              "stepByStep": [
+                  "Step 1: $r = \\sqrt{(-\\sqrt{3})^2 + 1^2} = \\sqrt{4} = 2$.",
+                  "Step 2: In Quadrant II, $\\theta = \\pi - \\pi/6 = \\frac{5\\pi}{6}$.",
+                  "Step 3: $(2 e^{i 5\\pi/6})^6 = 2^6 e^{i 6(5\\pi/6)} = 64 e^{i 5\\pi}$.",
+                  "Step 4: $e^{i 5\\pi} = e^{i\\pi} = -1$. Hence $64(-1) = -64$."
+              ],
+              "commonTrap": "Using theta = -pi/6 (Quadrant IV angle), which gives 64 e^{-i pi} = -64 by luck but loses marks on steps.",
+              "reference": "Zill \u00a717.2 \u2014 Powers via Polar Coordinates"
+          }
+      },
+      {
+          "id": "cpx_33",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre Fractional Quotient Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate $\\left(\\frac{1 + i}{1 - i}\\right)^{10}$.",
+          "options": [
+              "$-1$",
+              "$1$",
+              "$i$",
+              "$-i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Simplify the interior fraction first: $\\frac{1+i}{1-i} = \\frac{(1+i)^2}{2} = \\frac{2i}{2} = i$.",
+              "stepByStep": [
+                  "Step 1: Interior simplifies: $\\frac{1 + i}{1 - i} = i$.",
+                  "Step 2: $(i)^{10} = (i^4)^2 \\cdot i^2 = 1^2 \\cdot (-1) = -1$."
+              ],
+              "commonTrap": "Raising numerator and denominator separately to 10th powers without simplifying first.",
+              "reference": "Zill \u00a717.2 \u2014 Powers of Complex Fractions"
+          }
+      },
+      {
+          "id": "cpx_34",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre 4th Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate $(-1 + i\\sqrt{3})^4$ in rectangular form $a + bi$.",
+          "options": [
+              "$-8 + 8i\\sqrt{3}$",
+              "$-8 - 8i\\sqrt{3}$",
+              "$16 + 16i\\sqrt{3}$",
+              "$-16 + 16i\\sqrt{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Polar form: $r = 2, \\theta = 2\\pi/3$. By De Moivre, $(2 e^{i 2\\pi/3})^4 = 16 e^{i 8\\pi/3}$.",
+              "stepByStep": [
+                  "Step 1: Angle $8\\pi/3 = 2\\pi + 2\\pi/3 \\equiv 2\\pi/3$.",
+                  "Step 2: $16 e^{i 2\\pi/3} = 16\\left(\\cos\\frac{2\\pi}{3} + i\\sin\\frac{2\\pi}{3}\\right) = 16\\left(-\\frac{1}{2} + i\\frac{\\sqrt{3}}{2}\\right) = -8 + 8i\\sqrt{3}$. Wait: let us re-verify options: option 1 has + or -.",
+                  "Step 3: Correct value is $-8 + 8i\\sqrt{3}$."
+              ],
+              "commonTrap": "Angle reduction error: 8pi/3 - 2pi = 2pi/3.",
+              "reference": "Zill \u00a717.2 \u2014 De Moivre Calculations"
+          }
+      },
+      {
+          "id": "cpx_35",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Negative Exponent via De Moivre (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate $(1 - i)^{-4}$.",
+          "options": [
+              "$-\\frac{1}{4}$",
+              "$\\frac{1}{4}$",
+              "$-\\frac{1}{4}i$",
+              "$\\frac{1}{4}i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$(r e^{i\\theta})^{-n} = r^{-n} e^{-in\\theta}$.",
+              "stepByStep": [
+                  "Step 1: $1 - i = \\sqrt{2} e^{-i\\pi/4}$.",
+                  "Step 2: $(1 - i)^{-4} = (\\sqrt{2})^{-4} e^{-i(-4)(\\pi/4)} = \\frac{1}{4} e^{i\\pi}$.",
+                  "Step 3: Since $e^{i\\pi} = -1$, the result is $\\frac{1}{4}(-1) = -\\frac{1}{4}$."
+              ],
+              "commonTrap": "Forgetting that the negative power flips the angle sign: -(-4)(pi/4) = +pi.",
+              "reference": "Zill \u00a717.2 \u2014 Negative Integer Powers"
+          }
+      },
+      {
+          "id": "cpx_36",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre Trigonometric Identity (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Using De Moivre's formula $(\\cos\\theta + i\\sin\\theta)^2 = \\cos(2\\theta) + i\\sin(2\\theta)$, what is $\\cos(2\\theta)$ in terms of $\\cos\\theta$ and $\\sin\\theta$?",
+          "options": [
+              "$\\cos^2\\theta - \\sin^2\\theta$",
+              "$\\cos^2\\theta + \\sin^2\\theta$",
+              "$2\\cos\\theta\\sin\\theta$",
+              "$1 - \\sin\\theta$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Expand $(\\cos\\theta + i\\sin\\theta)^2 = (\\cos^2\\theta - \\sin^2\\theta) + i(2\\cos\\theta\\sin\\theta)$. Equate real parts.",
+              "stepByStep": [
+                  "Step 1: Real part is $\\cos(2\\theta) = \\cos^2\\theta - \\sin^2\\theta$.",
+                  "Step 2: Imaginary part is $\\sin(2\\theta) = 2\\cos\\theta\\sin\\theta$."
+              ],
+              "commonTrap": "Confusing real and imaginary parts.",
+              "reference": "Zill \u00a717.2 \u2014 Derivation of Trig Identities via De Moivre"
+          }
+      },
+      {
+          "id": "cpx_37",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre High Power of i (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is $(1 - i\\sqrt{3})^6$ in exact Cartesian form?",
+          "options": [
+              "$64$",
+              "$-64$",
+              "$64i$",
+              "$-64i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$1 - i\\sqrt{3} = 2 e^{-i\\pi/3}$. By De Moivre, $(2 e^{-i\\pi/3})^6 = 2^6 e^{-i 2\\pi} = 64(1) = 64$.",
+              "stepByStep": [
+                  "Step 1: $r = \\sqrt{1 + 3} = 2$. Angle in Quadrant IV is $-\\pi/3$.",
+                  "Step 2: Power 6: $2^6 e^{-i 6(\\pi/3)} = 64 e^{-i 2\\pi} = 64(1) = 64$."
+              ],
+              "commonTrap": "Answering -64 due to sign confusion on 2pi.",
+              "reference": "Zill \u00a717.2 \u2014 De Moivre's Powers"
+          }
+      },
+      {
+          "id": "cpx_38",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Pure Imaginary Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Compute $(-2i)^5$.",
+          "options": [
+              "$-32i$",
+              "$32i$",
+              "$-32$",
+              "$32$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$(-2i)^5 = (-2)^5 \\cdot i^5 = -32 \\cdot i = -32i$.",
+              "stepByStep": [
+                  "Step 1: Factor: $(-2)^5 = -32$.",
+                  "Step 2: Power of $i$: $i^5 = i^4 \\cdot i = i$.",
+                  "Step 3: Combine: $-32i$."
+              ],
+              "commonTrap": "Losing the negative sign on (-2)^5.",
+              "reference": "Zill \u00a717.2 \u2014 Powers of Imaginary Numbers"
+          }
+      },
+      {
+          "id": "cpx_39",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "De Moivre 12th Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Evaluate $(1 - i)^{12}$.",
+          "options": [
+              "$-64$",
+              "$64$",
+              "$-64i$",
+              "$64i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$(1 - i) = \\sqrt{2} e^{-i\\pi/4}$.",
+              "stepByStep": [
+                  "Step 1: Modulus: $(\\sqrt{2})^{12} = 2^6 = 64$.",
+                  "Step 2: Argument: $12 \\times (-\\pi/4) = -3\\pi$.",
+                  "Step 3: $e^{-i 3\\pi} = \\cos(-3\\pi) + i\\sin(-3\\pi) = -1 + 0 = -1$.",
+                  "Step 4: Result: $64(-1) = -64$."
+              ],
+              "commonTrap": "Thinking e^{-3i pi} is +1 instead of -1.",
+              "reference": "Zill \u00a717.2 \u2014 De Moivre Powers"
+          }
+      },
+      {
+          "id": "cpx_40",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Modulus of High Power (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the modulus of $z = (3 - 4i)^7$?",
+          "options": [
+              "$5^7$",
+              "$25^7$",
+              "$7 \\times 5$",
+              "$\\sqrt{5^7}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "By De Moivre, $|z^n| = |z|^n$.",
+              "stepByStep": [
+                  "Step 1: Compute base modulus: $|3 - 4i| = \\sqrt{3^2 + (-4)^2} = 5$.",
+                  "Step 2: Raise to power 7: $|z| = 5^7$."
+              ],
+              "commonTrap": "Multiplying 5 by 7 instead of exponentiating.",
+              "reference": "Zill \u00a717.2 \u2014 Modulus of Powers"
+          }
+      },
+      {
+          "id": "cpx_41",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Formula for All n-th Roots (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the general formula for all $n$ distinct roots $w_k$ of $z = r e^{i\\theta}$?",
+          "options": [
+              "$w_k = r^{1/n} e^{i\\frac{\\theta + 2k\\pi}{n}}, \\quad k = 0, 1, \\dots, n-1$",
+              "$w_k = r^n e^{i\\frac{\\theta + k\\pi}{n}}, \\quad k = 0, 1, \\dots, n-1$",
+              "$w_k = r^{1/n} e^{i\\frac{\\theta + k\\pi}{n}}, \\quad k = 0, 1, \\dots, n$",
+              "$w_k = \\frac{r}{n} e^{i(\\theta + 2k\\pi)}, \\quad k = 0, 1, \\dots, n-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The $n$ distinct roots of $z = r e^{i\\theta}$ are given by $w_k = r^{1/n}\\left[\\cos\\left(\\frac{\\theta + 2k\\pi}{n}\\right) + i\\sin\\left(\\frac{\\theta + 2k\\pi}{n}\\right)\\right]$ for $k = 0, 1, \\dots, n-1$.",
+              "stepByStep": [
+                  "Step 1: The radius of each root is $r^{1/n}$.",
+                  "Step 2: The angles are spaced by $\\frac{2\\pi}{n}$ radians, running from $k = 0$ to $k = n-1$."
+              ],
+              "commonTrap": "Using k pi instead of 2k pi in the angular shift.",
+              "reference": "Zill \u00a717.2 \u2014 Theorem 17.2.1 (Roots of Complex Numbers)"
+          }
+      },
+      {
+          "id": "cpx_42",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Geometric Distribution of Roots (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Geometrically, the $n$ roots of a complex number $z = r e^{i\\theta}$:",
+          "options": [
+              "Lie on a circle of radius $r^{1/n}$ centered at origin, equally spaced by $\\frac{2\\pi}{n}$ radians",
+              "Lie on a straight line passing through the origin",
+              "Lie on an ellipse with foci at $\\pm r$",
+              "Lie on a circle of radius $r$ centered at origin"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "All $n$ roots share identical modulus $r^{1/n}$ and form vertices of a regular $n$-gon inscribed in a circle of radius $r^{1/n}$.",
+              "stepByStep": [
+                  "Step 1: $|w_k| = r^{1/n}$ for all $k$, so they lie on a circle centered at origin.",
+                  "Step 2: The angular difference between consecutive roots is $\\frac{\\theta + 2(k+1)\\pi}{n} - \\frac{\\theta + 2k\\pi}{n} = \\frac{2\\pi}{n}$."
+              ],
+              "commonTrap": "Thinking the circle has radius r instead of r^{1/n}.",
+              "reference": "Zill \u00a717.2 \u2014 Geometry of Complex Roots"
+          }
+      },
+      {
+          "id": "cpx_43",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Cube Roots of Pure Imaginary (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the principal cube root ($k = 0$) of $z = -8i$?",
+          "options": [
+              "$\\sqrt{3} - i$",
+              "$-\\sqrt{3} - i$",
+              "$2i$",
+              "$\\sqrt{3} + i$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Write $-8i = 8 e^{-i\\pi/2}$. The principal cube root ($k=0$) is $8^{1/3} e^{i(-\\pi/2)/3} = 2 e^{-i\\pi/6}$.",
+              "stepByStep": [
+                  "Step 1: Modulus is 8, so $r^{1/3} = 2$.",
+                  "Step 2: Principal argument of $-8i$ is $\\theta = -\\pi/2$.",
+                  "Step 3: For $k = 0$: angle is $\\frac{-\\pi/2}{3} = -\\frac{\\pi}{6}$.",
+                  "Step 4: Cartesian: $2\\left(\\cos\\left(-\\frac{\\pi}{6}\\right) + i\\sin\\left(-\\frac{\\pi}{6}\\right)\\right) = 2\\left(\\frac{\\sqrt{3}}{2} - i\\frac{1}{2}\\right) = \\sqrt{3} - i$."
+              ],
+              "commonTrap": "Using theta = 3pi/2 instead of principal argument -pi/2, shifting the root indexing.",
+              "reference": "Zill \u00a717.2 \u2014 Roots of Pure Imaginary Numbers"
+          }
+      },
+      {
+          "id": "cpx_44",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "All Cube Roots of -8i (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Which of the following is ONE of the three cube roots of $z = -8i$?",
+          "options": [
+              "$2i$",
+              "$-2i$",
+              "$2$",
+              "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "The 3 cube roots of $-8i = 8 e^{-i\\pi/2}$ correspond to $k = 0, 1, 2$.",
+              "stepByStep": [
+                  "Step 1: For $k = 1$: angle is $\\frac{-\\pi/2 + 2\\pi}{3} = \\frac{3\\pi/2}{3} = \\frac{\\pi}{2}$.",
+                  "Step 2: $w_1 = 2 e^{i\\pi/2} = 2i$.",
+                  "Step 3: Verification: $(2i)^3 = 8 i^3 = -8i$. Matches perfectly!"
+              ],
+              "commonTrap": "Guessing -2i without checking: (-2i)^3 = -8(-i) = +8i (wrong sign!).",
+              "reference": "Zill \u00a717.2 \u2014 Cube Roots Example"
+          }
+      },
+      {
+          "id": "cpx_45",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Cube Roots of Negative Real Number (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What are all three cube roots of $z = -27$?",
+          "options": [
+              "$w_0 = \\frac{3}{2} + i\\frac{3\\sqrt{3}}{2}, \\quad w_1 = -3, \\quad w_2 = \\frac{3}{2} - i\\frac{3\\sqrt{3}}{2}$",
+              "$w_0 = 3, \\quad w_1 = -3, \\quad w_2 = 3i$",
+              "$w_0 = 3i, \\quad w_1 = -3i, \\quad w_2 = -3$",
+              "$w_0 = -\\frac{3}{2} + i\\frac{3\\sqrt{3}}{2}, \\quad w_1 = 3, \\quad w_2 = -\\frac{3}{2} - i\\frac{3\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$-27 = 27 e^{i\\pi}$. The radius is $27^{1/3} = 3$. The angles are $\\frac{\\pi + 2k\\pi}{3}$ for $k = 0, 1, 2$.",
+              "stepByStep": [
+                  "Step 1: $k = 0$: angle is $\\pi/3 \\implies 3(\\cos(\\pi/3) + i\\sin(\\pi/3)) = \\frac{3}{2} + i\\frac{3\\sqrt{3}}{2}$.",
+                  "Step 2: $k = 1$: angle is $3\\pi/3 = \\pi \\implies 3(\\cos\\pi + i\\sin\\pi) = -3$.",
+                  "Step 3: $k = 2$: angle is $5\\pi/3 \\equiv -\\pi/3 \\implies \\frac{3}{2} - i\\frac{3\\sqrt{3}}{2}$."
+              ],
+              "commonTrap": "Believing -3 is the ONLY cube root of -27. There are ALWAYS exactly 3 roots in the complex plane!",
+              "reference": "Zill \u00a717.2 \u2014 Cube Roots of Negative Reals"
+          }
+      },
+      {
+          "id": "cpx_46",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Fourth Roots of Unity (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What are the four roots of the equation $w^4 = 1$?",
+          "options": [
+              "$1, \\; -1, \\; i, \\; -i$",
+              "$1, \\; -1, \\; 1+i, \\; 1-i$",
+              "$i, \\; -i, \\; 2i, \\; -2i$",
+              "$\\pm \\frac{\\sqrt{2}}{2} \\pm i\\frac{\\sqrt{2}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$1 = 1 e^{i 0}$. The angles are $\\frac{2k\\pi}{4} = \\frac{k\\pi}{2}$ for $k = 0, 1, 2, 3$, giving $1, i, -1, -i$.",
+              "stepByStep": [
+                  "Step 1: $k = 0 \\implies e^0 = 1$.",
+                  "Step 2: $k = 1 \\implies e^{i\\pi/2} = i$.",
+                  "Step 3: $k = 2 \\implies e^{i\\pi} = -1$.",
+                  "Step 4: $k = 3 \\implies e^{i 3\\pi/2} = -i$."
+              ],
+              "commonTrap": "Listing only 1 and -1, omitting the two complex roots.",
+              "reference": "Zill \u00a717.2 \u2014 Roots of Unity"
+          }
+      },
+      {
+          "id": "cpx_47",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Square Roots of the Imaginary Unit (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "Find the two square roots of $z = i$.",
+          "options": [
+              "$\\pm \\left(\\frac{\\sqrt{2}}{2} + i\\frac{\\sqrt{2}}{2}\\right)$",
+              "$\\pm (1 + i)$",
+              "$\\pm i$",
+              "$\\pm \\left(\\frac{1}{2} + i\\frac{\\sqrt{3}}{2}\\right)$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "$i = 1 e^{i\\pi/2}$. Square roots have radius $1^{1/2} = 1$ and angles $\\frac{\\pi/2 + 2k\\pi}{2} = \\frac{\\pi}{4} + k\\pi$.",
+              "stepByStep": [
+                  "Step 1: $k = 0 \\implies e^{i\\pi/4} = \\cos(\\pi/4) + i\\sin(\\pi/4) = \\frac{\\sqrt{2}}{2} + i\\frac{\\sqrt{2}}{2}$.",
+                  "Step 2: $k = 1 \\implies e^{i 5\\pi/4} = -\\left(\\frac{\\sqrt{2}}{2} + i\\frac{\\sqrt{2}}{2}\\right)$."
+              ],
+              "commonTrap": "Writing sqrt(i) = i.",
+              "reference": "Zill \u00a717.2 \u2014 Square Roots of Complex Numbers"
+          }
+      },
+      {
+          "id": "cpx_48",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Fourth Roots of -16 (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the radius $R$ of the circle on which all four roots of $w^4 = -16$ lie?",
+          "options": [
+              "$2$",
+              "$4$",
+              "$16$",
+              "$\\sqrt{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "All $n$-th roots of $z$ lie on a circle of radius $R = |z|^{1/n}$.",
+              "stepByStep": [
+                  "Step 1: $|-16| = 16$.",
+                  "Step 2: The radius of the 4th roots is $R = 16^{1/4} = 2$."
+              ],
+              "commonTrap": "Taking the square root (4) instead of the 4th root (2).",
+              "reference": "Zill \u00a717.2 \u2014 Radius of Root Circles"
+          }
+      },
+      {
+          "id": "cpx_49",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Angular Separation Between Roots (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "What is the angular separation $\\Delta\\theta$ between consecutive 5th roots of any non-zero complex number?",
+          "options": [
+              "$\\frac{2\\pi}{5}$ radians ($72^\\circ$)",
+              "$\\frac{\\pi}{5}$ radians ($36^\\circ$)",
+              "$\\frac{\\pi}{10}$ radians",
+              "$\\frac{4\\pi}{5}$ radians"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "Consecutive $n$-th roots are separated by $\\Delta\\theta = \\frac{2\\pi}{n}$. For $n = 5$, $\\Delta\\theta = \\frac{2\\pi}{5} = 72^\\circ$.",
+              "stepByStep": [
+                  "Step 1: A full revolution of $2\\pi$ radians is divided equally among the $n = 5$ roots.",
+                  "Step 2: $\\Delta\\theta = \\frac{2\\pi}{5}$."
+              ],
+              "commonTrap": "Dividing pi by 5 instead of 2pi by 5.",
+              "reference": "Zill \u00a717.2 \u2014 Angular Spacing of Roots"
+          }
+      },
+      {
+          "id": "cpx_50",
+          "courseId": "ENGR213",
+          "chapter": "midterm",
+          "methodId": "complex_numbers",
+          "topic": "Sum of All n-th Roots of Unity (Sec 17.2)",
+          "difficulty": "Midterm Level",
+          "question": "For any integer $n \\ge 2$, what is the sum of all $n$ distinct $n$-th roots of unity $1 + w_1 + w_2 + \\dots + w_{n-1}$?",
+          "options": [
+              "$0$",
+              "$1$",
+              "$n$",
+              "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+              "coreConcept": "By geometric series or symmetry of the regular $n$-gon centered at the origin, the centroid and sum of all roots is $\\sum_{k=0}^{n-1} w_k = 0$.",
+              "stepByStep": [
+                  "Step 1: The roots are $w_k = \\omega^k$ where $\\omega = e^{i 2\\pi/n} \\ne 1$.",
+                  "Step 2: Sum is a finite geometric series: $\\sum_{k=0}^{n-1} \\omega^k = \\frac{1 - \\omega^n}{1 - \\omega}$.",
+                  "Step 3: Since $\\omega^n = (e^{i 2\\pi/n})^n = e^{i 2\\pi} = 1$, the numerator is $1 - 1 = 0$."
+              ],
+              "commonTrap": "Thinking the sum equals 1 because w_0 = 1.",
+              "reference": "Zill \u00a717.2 \u2014 Sum of Roots of Unity Identity"
+          }
       }
-    },
-    {
-      "id": "sec_02",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #2",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 3 \\pm 4i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 \\cos(4x) + C_2 \\sin(4x)$",
-        "$y(x) = C_1 e^{3x} + C_2 e^{4x}$",
-        "$y(x) = e^{4x}(C_1 \\cos(3x) + C_2 \\sin(3x))$",
-        "$y(x) = e^{3x}(C_1 \\cos(4x) + C_2 \\sin(4x))$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 3$ and imaginary part $\\beta = 4$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{3x}(C_1 \\cos(4x) + C_2 \\sin(4x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #2"
-      }
-    },
-    {
-      "id": "sec_03",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #3",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 4 \\pm 5i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 \\cos(5x) + C_2 \\sin(5x)$",
-        "$y(x) = C_1 e^{4x} + C_2 e^{5x}$",
-        "$y(x) = e^{5x}(C_1 \\cos(4x) + C_2 \\sin(4x))$",
-        "$y(x) = e^{4x}(C_1 \\cos(5x) + C_2 \\sin(5x))$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 4$ and imaginary part $\\beta = 5$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{4x}(C_1 \\cos(5x) + C_2 \\sin(5x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #3"
-      }
-    },
-    {
-      "id": "sec_04",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #4",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 1 \\pm 6i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{1x} + C_2 e^{6x}$",
-        "$y(x) = e^{1x}(C_1 \\cos(6x) + C_2 \\sin(6x))$",
-        "$y(x) = e^{6x}(C_1 \\cos(1x) + C_2 \\sin(1x))$",
-        "$y(x) = C_1 \\cos(6x) + C_2 \\sin(6x)$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 1$ and imaginary part $\\beta = 6$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{1x}(C_1 \\cos(6x) + C_2 \\sin(6x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #4"
-      }
-    },
-    {
-      "id": "sec_05",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #5",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 2 \\pm 2i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = e^{2x}(C_1 \\cos(2x) + C_2 \\sin(2x))$",
-        "$y(x) = C_1 e^{2x} + C_2 e^{2x}$",
-        "$y(x) = e^{2x}(C_1 \\cos(2x) + C_2 \\sin(2x))$",
-        "$y(x) = C_1 \\cos(2x) + C_2 \\sin(2x)$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 2$ and imaginary part $\\beta = 2$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{2x}(C_1 \\cos(2x) + C_2 \\sin(2x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #5"
-      }
-    },
-    {
-      "id": "sec_06",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #6",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 3 \\pm 3i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 \\cos(3x) + C_2 \\sin(3x)$",
-        "$y(x) = C_1 e^{3x} + C_2 e^{3x}$",
-        "$y(x) = e^{3x}(C_1 \\cos(3x) + C_2 \\sin(3x))$",
-        "$y(x) = e^{3x}(C_1 \\cos(3x) + C_2 \\sin(3x))$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 3$ and imaginary part $\\beta = 3$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{3x}(C_1 \\cos(3x) + C_2 \\sin(3x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #6"
-      }
-    },
-    {
-      "id": "sec_07",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #7",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 4 \\pm 4i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = e^{4x}(C_1 \\cos(4x) + C_2 \\sin(4x))$",
-        "$y(x) = C_1 e^{4x} + C_2 e^{4x}$",
-        "$y(x) = e^{4x}(C_1 \\cos(4x) + C_2 \\sin(4x))$",
-        "$y(x) = C_1 \\cos(4x) + C_2 \\sin(4x)$"
-      ],
-      "correctIndex": 2,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 4$ and imaginary part $\\beta = 4$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{4x}(C_1 \\cos(4x) + C_2 \\sin(4x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #7"
-      }
-    },
-    {
-      "id": "sec_08",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #8",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 1 \\pm 5i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 \\cos(5x) + C_2 \\sin(5x)$",
-        "$y(x) = C_1 e^{1x} + C_2 e^{5x}$",
-        "$y(x) = e^{5x}(C_1 \\cos(1x) + C_2 \\sin(1x))$",
-        "$y(x) = e^{1x}(C_1 \\cos(5x) + C_2 \\sin(5x))$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 1$ and imaginary part $\\beta = 5$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{1x}(C_1 \\cos(5x) + C_2 \\sin(5x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #8"
-      }
-    },
-    {
-      "id": "sec_09",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #9",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 2 \\pm 6i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 \\cos(6x) + C_2 \\sin(6x)$",
-        "$y(x) = C_1 e^{2x} + C_2 e^{6x}$",
-        "$y(x) = e^{6x}(C_1 \\cos(2x) + C_2 \\sin(2x))$",
-        "$y(x) = e^{2x}(C_1 \\cos(6x) + C_2 \\sin(6x))$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 2$ and imaginary part $\\beta = 6$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{2x}(C_1 \\cos(6x) + C_2 \\sin(6x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #9"
-      }
-    },
-    {
-      "id": "sec_10",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #10",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 3 \\pm 2i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = e^{3x}(C_1 \\cos(2x) + C_2 \\sin(2x))$",
-        "$y(x) = C_1 e^{3x} + C_2 e^{2x}$",
-        "$y(x) = e^{2x}(C_1 \\cos(3x) + C_2 \\sin(3x))$",
-        "$y(x) = C_1 \\cos(2x) + C_2 \\sin(2x)$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 3$ and imaginary part $\\beta = 2$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{3x}(C_1 \\cos(2x) + C_2 \\sin(2x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #10"
-      }
-    },
-    {
-      "id": "sec_11",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #11",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 4 \\pm 3i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 \\cos(3x) + C_2 \\sin(3x)$",
-        "$y(x) = C_1 e^{4x} + C_2 e^{3x}$",
-        "$y(x) = e^{3x}(C_1 \\cos(4x) + C_2 \\sin(4x))$",
-        "$y(x) = e^{4x}(C_1 \\cos(3x) + C_2 \\sin(3x))$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 4$ and imaginary part $\\beta = 3$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{4x}(C_1 \\cos(3x) + C_2 \\sin(3x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #11"
-      }
-    },
-    {
-      "id": "sec_12",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #12",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 1 \\pm 4i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 \\cos(4x) + C_2 \\sin(4x)$",
-        "$y(x) = C_1 e^{1x} + C_2 e^{4x}$",
-        "$y(x) = e^{4x}(C_1 \\cos(1x) + C_2 \\sin(1x))$",
-        "$y(x) = e^{1x}(C_1 \\cos(4x) + C_2 \\sin(4x))$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 1$ and imaginary part $\\beta = 4$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{1x}(C_1 \\cos(4x) + C_2 \\sin(4x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #12"
-      }
-    },
-    {
-      "id": "sec_13",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #13",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 2 \\pm 5i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{2x} + C_2 e^{5x}$",
-        "$y(x) = e^{2x}(C_1 \\cos(5x) + C_2 \\sin(5x))$",
-        "$y(x) = e^{5x}(C_1 \\cos(2x) + C_2 \\sin(2x))$",
-        "$y(x) = C_1 \\cos(5x) + C_2 \\sin(5x)$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 2$ and imaginary part $\\beta = 5$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{2x}(C_1 \\cos(5x) + C_2 \\sin(5x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #13"
-      }
-    },
-    {
-      "id": "sec_14",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #14",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 3 \\pm 6i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 \\cos(6x) + C_2 \\sin(6x)$",
-        "$y(x) = C_1 e^{3x} + C_2 e^{6x}$",
-        "$y(x) = e^{6x}(C_1 \\cos(3x) + C_2 \\sin(3x))$",
-        "$y(x) = e^{3x}(C_1 \\cos(6x) + C_2 \\sin(6x))$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 3$ and imaginary part $\\beta = 6$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{3x}(C_1 \\cos(6x) + C_2 \\sin(6x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #14"
-      }
-    },
-    {
-      "id": "sec_15",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #15",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 4 \\pm 2i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 \\cos(2x) + C_2 \\sin(2x)$",
-        "$y(x) = C_1 e^{4x} + C_2 e^{2x}$",
-        "$y(x) = e^{2x}(C_1 \\cos(4x) + C_2 \\sin(4x))$",
-        "$y(x) = e^{4x}(C_1 \\cos(2x) + C_2 \\sin(2x))$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 4$ and imaginary part $\\beta = 2$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{4x}(C_1 \\cos(2x) + C_2 \\sin(2x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #15"
-      }
-    },
-    {
-      "id": "sec_16",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #16",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 1 \\pm 3i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = e^{1x}(C_1 \\cos(3x) + C_2 \\sin(3x))$",
-        "$y(x) = C_1 e^{1x} + C_2 e^{3x}$",
-        "$y(x) = e^{3x}(C_1 \\cos(1x) + C_2 \\sin(1x))$",
-        "$y(x) = C_1 \\cos(3x) + C_2 \\sin(3x)$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 1$ and imaginary part $\\beta = 3$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{1x}(C_1 \\cos(3x) + C_2 \\sin(3x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #16"
-      }
-    },
-    {
-      "id": "sec_17",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #17",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 2 \\pm 4i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 \\cos(4x) + C_2 \\sin(4x)$",
-        "$y(x) = C_1 e^{2x} + C_2 e^{4x}$",
-        "$y(x) = e^{4x}(C_1 \\cos(2x) + C_2 \\sin(2x))$",
-        "$y(x) = e^{2x}(C_1 \\cos(4x) + C_2 \\sin(4x))$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 2$ and imaginary part $\\beta = 4$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{2x}(C_1 \\cos(4x) + C_2 \\sin(4x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #17"
-      }
-    },
-    {
-      "id": "sec_18",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #18",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 3 \\pm 5i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{3x} + C_2 e^{5x}$",
-        "$y(x) = e^{3x}(C_1 \\cos(5x) + C_2 \\sin(5x))$",
-        "$y(x) = e^{5x}(C_1 \\cos(3x) + C_2 \\sin(3x))$",
-        "$y(x) = C_1 \\cos(5x) + C_2 \\sin(5x)$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 3$ and imaginary part $\\beta = 5$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{3x}(C_1 \\cos(5x) + C_2 \\sin(5x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #18"
-      }
-    },
-    {
-      "id": "sec_19",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #19",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 4 \\pm 6i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = e^{4x}(C_1 \\cos(6x) + C_2 \\sin(6x))$",
-        "$y(x) = C_1 e^{4x} + C_2 e^{6x}$",
-        "$y(x) = e^{6x}(C_1 \\cos(4x) + C_2 \\sin(4x))$",
-        "$y(x) = C_1 \\cos(6x) + C_2 \\sin(6x)$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 4$ and imaginary part $\\beta = 6$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{4x}(C_1 \\cos(6x) + C_2 \\sin(6x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #19"
-      }
-    },
-    {
-      "id": "sec_20",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Auxiliary Roots #20",
-      "difficulty": "Midterm Level",
-      "question": "If the characteristic auxiliary equation of a 2nd-order linear ODE has roots $\\lambda = 1 \\pm 2i$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = e^{2x}(C_1 \\cos(1x) + C_2 \\sin(1x))$",
-        "$y(x) = C_1 e^{1x} + C_2 e^{2x}$",
-        "$y(x) = e^{1x}(C_1 \\cos(2x) + C_2 \\sin(2x))$",
-        "$y(x) = C_1 \\cos(2x) + C_2 \\sin(2x)$"
-      ],
-      "correctIndex": 2,
-      "explanation": {
-        "coreConcept": "Complex roots $\\lambda = \\alpha \\pm i\\beta \\implies y(x) = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$.",
-        "stepByStep": [
-          "Step 1: Identify real part $\\alpha = 1$ and imaginary part $\\beta = 2$.",
-          "Step 2: By Euler's identity, $e^{(\\alpha \\pm i\\beta)x} = e^{\\alpha x}(\\cos\\beta x \\pm i\\sin\\beta x)$.",
-          "Step 3: Taking linear combinations of the real and imaginary parts yields: $y(x) = e^{1x}(C_1 \\cos(2x) + C_2 \\sin(2x))$."
-        ],
-        "commonTrap": "Putting the imaginary part into the exponential instead of the trig functions.",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Complex Roots #20"
-      }
-    },
-    {
-      "id": "sec_21",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #21",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -2$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = (C_1 + C_2 x)e^{-2x}$",
-        "$y(x) = C_1 e^{-2x} + C_2 e^{-2x}$",
-        "$y(x) = C_1 e^{-2x} + C_2 e^{2x}$",
-        "$y(x) = C_1 x e^{-2x}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-2x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-2x} + C_2 x e^{-2x} = (C_1 + C_2 x)e^{-2x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #1"
-      }
-    },
-    {
-      "id": "sec_22",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #22",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -3$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 x e^{-3x}$",
-        "$y(x) = C_1 e^{-3x} + C_2 e^{-3x}$",
-        "$y(x) = C_1 e^{-3x} + C_2 e^{3x}$",
-        "$y(x) = (C_1 + C_2 x)e^{-3x}$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-3x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-3x} + C_2 x e^{-3x} = (C_1 + C_2 x)e^{-3x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #2"
-      }
-    },
-    {
-      "id": "sec_23",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #23",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -4$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{-4x} + C_2 e^{-4x}$",
-        "$y(x) = (C_1 + C_2 x)e^{-4x}$",
-        "$y(x) = C_1 e^{-4x} + C_2 e^{4x}$",
-        "$y(x) = C_1 x e^{-4x}$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-4x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-4x} + C_2 x e^{-4x} = (C_1 + C_2 x)e^{-4x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #3"
-      }
-    },
-    {
-      "id": "sec_24",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #24",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -1$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = (C_1 + C_2 x)e^{-1x}$",
-        "$y(x) = C_1 e^{-1x} + C_2 e^{-1x}$",
-        "$y(x) = C_1 e^{-1x} + C_2 e^{1x}$",
-        "$y(x) = C_1 x e^{-1x}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-1x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-1x} + C_2 x e^{-1x} = (C_1 + C_2 x)e^{-1x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #4"
-      }
-    },
-    {
-      "id": "sec_25",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #25",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -2$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{-2x} + C_2 e^{-2x}$",
-        "$y(x) = (C_1 + C_2 x)e^{-2x}$",
-        "$y(x) = C_1 e^{-2x} + C_2 e^{2x}$",
-        "$y(x) = C_1 x e^{-2x}$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-2x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-2x} + C_2 x e^{-2x} = (C_1 + C_2 x)e^{-2x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #5"
-      }
-    },
-    {
-      "id": "sec_26",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #26",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -3$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = (C_1 + C_2 x)e^{-3x}$",
-        "$y(x) = C_1 e^{-3x} + C_2 e^{-3x}$",
-        "$y(x) = C_1 e^{-3x} + C_2 e^{3x}$",
-        "$y(x) = C_1 x e^{-3x}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-3x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-3x} + C_2 x e^{-3x} = (C_1 + C_2 x)e^{-3x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #6"
-      }
-    },
-    {
-      "id": "sec_27",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #27",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -4$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{-4x} + C_2 e^{-4x}$",
-        "$y(x) = (C_1 + C_2 x)e^{-4x}$",
-        "$y(x) = C_1 e^{-4x} + C_2 e^{4x}$",
-        "$y(x) = C_1 x e^{-4x}$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-4x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-4x} + C_2 x e^{-4x} = (C_1 + C_2 x)e^{-4x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #7"
-      }
-    },
-    {
-      "id": "sec_28",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #28",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -1$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{-1x} + C_2 e^{1x}$",
-        "$y(x) = C_1 e^{-1x} + C_2 e^{-1x}$",
-        "$y(x) = (C_1 + C_2 x)e^{-1x}$",
-        "$y(x) = C_1 x e^{-1x}$"
-      ],
-      "correctIndex": 2,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-1x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-1x} + C_2 x e^{-1x} = (C_1 + C_2 x)e^{-1x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #8"
-      }
-    },
-    {
-      "id": "sec_29",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #29",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -2$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{-2x} + C_2 e^{-2x}$",
-        "$y(x) = (C_1 + C_2 x)e^{-2x}$",
-        "$y(x) = C_1 e^{-2x} + C_2 e^{2x}$",
-        "$y(x) = C_1 x e^{-2x}$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-2x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-2x} + C_2 x e^{-2x} = (C_1 + C_2 x)e^{-2x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #9"
-      }
-    },
-    {
-      "id": "sec_30",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #30",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -3$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{-3x} + C_2 e^{-3x}$",
-        "$y(x) = (C_1 + C_2 x)e^{-3x}$",
-        "$y(x) = C_1 e^{-3x} + C_2 e^{3x}$",
-        "$y(x) = C_1 x e^{-3x}$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-3x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-3x} + C_2 x e^{-3x} = (C_1 + C_2 x)e^{-3x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #10"
-      }
-    },
-    {
-      "id": "sec_31",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #31",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -4$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = (C_1 + C_2 x)e^{-4x}$",
-        "$y(x) = C_1 e^{-4x} + C_2 e^{-4x}$",
-        "$y(x) = C_1 e^{-4x} + C_2 e^{4x}$",
-        "$y(x) = C_1 x e^{-4x}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-4x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-4x} + C_2 x e^{-4x} = (C_1 + C_2 x)e^{-4x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #11"
-      }
-    },
-    {
-      "id": "sec_32",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #32",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -1$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = (C_1 + C_2 x)e^{-1x}$",
-        "$y(x) = C_1 e^{-1x} + C_2 e^{-1x}$",
-        "$y(x) = C_1 e^{-1x} + C_2 e^{1x}$",
-        "$y(x) = C_1 x e^{-1x}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-1x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-1x} + C_2 x e^{-1x} = (C_1 + C_2 x)e^{-1x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #12"
-      }
-    },
-    {
-      "id": "sec_33",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #33",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -2$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{-2x} + C_2 e^{-2x}$",
-        "$y(x) = (C_1 + C_2 x)e^{-2x}$",
-        "$y(x) = C_1 e^{-2x} + C_2 e^{2x}$",
-        "$y(x) = C_1 x e^{-2x}$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-2x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-2x} + C_2 x e^{-2x} = (C_1 + C_2 x)e^{-2x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #13"
-      }
-    },
-    {
-      "id": "sec_34",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #34",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -3$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = (C_1 + C_2 x)e^{-3x}$",
-        "$y(x) = C_1 e^{-3x} + C_2 e^{-3x}$",
-        "$y(x) = C_1 e^{-3x} + C_2 e^{3x}$",
-        "$y(x) = C_1 x e^{-3x}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-3x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-3x} + C_2 x e^{-3x} = (C_1 + C_2 x)e^{-3x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #14"
-      }
-    },
-    {
-      "id": "sec_35",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Repeated Real Roots #35",
-      "difficulty": "Midterm Level",
-      "question": "If the auxiliary equation has a repeated real root $\\lambda_1 = \\lambda_2 = -4$, what is the general solution $y(x)$?",
-      "options": [
-        "$y(x) = C_1 e^{-4x} + C_2 e^{4x}$",
-        "$y(x) = C_1 e^{-4x} + C_2 e^{-4x}$",
-        "$y(x) = (C_1 + C_2 x)e^{-4x}$",
-        "$y(x) = C_1 x e^{-4x}$"
-      ],
-      "correctIndex": 2,
-      "explanation": {
-        "coreConcept": "Repeated root $\\lambda \\implies y = (C_1 + C_2 x)e^{\\lambda x}$.",
-        "stepByStep": [
-          "Step 1: First solution is $y_1 = e^{-4x}$.",
-          "Step 2: For repeated roots, the second linearly independent solution requires multiplying by $x$: $y_2 = x e^{-ax}$.",
-          "Step 3: Combine by superposition: $y(x) = C_1 e^{-4x} + C_2 x e^{-4x} = (C_1 + C_2 x)e^{-4x}$."
-        ],
-        "commonTrap": "Writing C1 e^{-ax} + C2 e^{-ax} = (C1 + C2)e^{-ax} = C e^{-ax}, which collapses into only 1 independent solution!",
-        "reference": "Section 17.2 \u2014 Auxiliary Equations \u00b7 Repeated Roots #15"
-      }
-    },
-    {
-      "id": "sec_36",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #36",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 2,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #1"
-      }
-    },
-    {
-      "id": "sec_37",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #37",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = e^{i \\pi / 4}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = \\sqrt2 e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #2"
-      }
-    },
-    {
-      "id": "sec_38",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #38",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 2,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #3"
-      }
-    },
-    {
-      "id": "sec_39",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #39",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #4"
-      }
-    },
-    {
-      "id": "sec_40",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #40",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #5"
-      }
-    },
-    {
-      "id": "sec_41",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #41",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #6"
-      }
-    },
-    {
-      "id": "sec_42",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #42",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #7"
-      }
-    },
-    {
-      "id": "sec_43",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #43",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #8"
-      }
-    },
-    {
-      "id": "sec_44",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #44",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = e^{i \\pi / 4}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = \\sqrt2 e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #9"
-      }
-    },
-    {
-      "id": "sec_45",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #45",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #10"
-      }
-    },
-    {
-      "id": "sec_46",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #46",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 2,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #11"
-      }
-    },
-    {
-      "id": "sec_47",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #47",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 0,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #12"
-      }
-    },
-    {
-      "id": "sec_48",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #48",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = e^{i \\pi / 4}$",
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = \\sqrt2 e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 3,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #13"
-      }
-    },
-    {
-      "id": "sec_49",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #49",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #14"
-      }
-    },
-    {
-      "id": "sec_50",
-      "courseId": "ENGR213",
-      "chapter": "midterm",
-      "methodId": "second_order",
-      "topic": "Complex Polar Form #50",
-      "difficulty": "Midterm Level",
-      "question": "What is the polar exponential form $r e^{i\\theta}$ of the complex number $z = 1 + i$?",
-      "options": [
-        "$z = 2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 4}$",
-        "$z = \\sqrt2 e^{i \\pi / 2}$",
-        "$z = e^{i \\pi / 4}$"
-      ],
-      "correctIndex": 1,
-      "explanation": {
-        "coreConcept": "$z = x + iy = r e^{i\\theta}$ where $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\operatorname{Arg}(z)$.",
-        "stepByStep": [
-          "Step 1: Compute modulus $r = \\sqrt{x^2 + y^2} = \\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
-          "Step 2: Compute argument $\\theta = \\arctan(y/x) = \\arctan(1/1) = \\pi/4$ (Quadrant I).",
-          "Step 3: Express in Euler polar form: $z = r e^{i\\theta} = \\sqrt{2} e^{i \\pi / 4}$."
-        ],
-        "commonTrap": "Writing r = 2 instead of sqrt(2), or getting the angle in degrees without converting to radians.",
-        "reference": "Section 17.1 \u2014 Complex Numbers \u00b7 Polar Representation #15"
-      }
-    }
   ],
   "formulas": [
     {
