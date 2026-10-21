@@ -1,0 +1,47 @@
+1
+00:00:00,800 --> 00:00:03,150
+Teacher midterm practice, question 10.
+
+2
+00:00:03,770 --> 00:00:06,268
+In Figure 1, what does point L indicate?
+
+3
+00:00:07,967 --> 00:00:10,776
+F is fracture. Two lines drop from F.
+
+4
+00:00:10,776 --> 00:00:12,704
+One goes straight down to M.
+
+5
+00:00:12,704 --> 00:00:16,505
+The other is parallel to the elastic line, and lands at L.
+
+6
+00:00:17,126 --> 00:00:21,361
+The parallel line is the elastic spring back when the specimen breaks.
+
+7
+00:00:21,361 --> 00:00:25,486
+So L is the strain that remains: the plastic strain at fracture.
+
+8
+00:00:26,105 --> 00:00:29,349
+M is the total strain at fracture, and the gap from
+
+9
+00:00:29,349 --> 00:00:32,475
+L to M is the elastic part that was recovered.
+
+10
+00:00:34,075 --> 00:00:36,936
+The answer is D: the plastic strain at fracture.
+
+11
+00:00:37,756 --> 00:00:40,319
+The vertical drop gives the total strain.
+
+12
+00:00:40,319 --> 00:00:44,111
+The line parallel to the elastic slope gives the plastic strain.

@@ -1,0 +1,35 @@
+1
+00:00:00,800 --> 00:00:03,402
+Teacher midterm practice, question 13.
+
+2
+00:00:04,022 --> 00:00:08,930
+In Figure 1, at which point or points is there uniform plastic deformation?
+
+3
+00:00:10,629 --> 00:00:15,681
+Plastic deformation starts at B, the yield point, which is only the boundary.
+
+4
+00:00:15,681 --> 00:00:18,756
+It stays uniform until the tensile strength at D.
+
+5
+00:00:19,377 --> 00:00:24,183
+Point C lies between them: plastic, and still uniform along the gauge length.
+
+6
+00:00:24,803 --> 00:00:30,027
+From D onward the deformation localizes in the neck, so it is no longer uniform.
+
+7
+00:00:31,627 --> 00:00:33,453
+The answer is B: point C.
+
+8
+00:00:34,273 --> 00:00:37,048
+Uniform means before the tensile strength.
+
+9
+00:00:37,048 --> 00:00:40,899
+Once necking starts at D, the deformation is non uniform.

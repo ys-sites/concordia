@@ -1,0 +1,37 @@
+WEBVTT
+
+1
+00:00:00.800 --> 00:00:03.442
+Teacher midterm practice, question 16.
+
+2
+00:00:04.062 --> 00:00:08.971
+In Figure 1, the toughness can be approximated by the area bounded by which points?
+
+3
+00:00:10.670 --> 00:00:13.411
+Toughness is the energy absorbed up to fracture:
+
+4
+00:00:13.411 --> 00:00:16.205
+the area under the entire stress strain curve.
+
+5
+00:00:16.826 --> 00:00:19.130
+The curve runs from O through B and D to
+
+6
+00:00:19.130 --> 00:00:25.119
+fracture at F, and M is the strain at fracture. So the area is O, B, F, M.
+
+7
+00:00:26.719 --> 00:00:29.003
+The answer is E: O, B, F, M.
+
+8
+00:00:29.822 --> 00:00:32.375
+Do not stop the area at the tensile strength.
+
+9
+00:00:32.375 --> 00:00:35.026
+Toughness counts all the energy up to fracture.

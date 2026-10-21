@@ -1,0 +1,31 @@
+1
+00:00:00,800 --> 00:00:03,153
+Teacher midterm practice, question 8.
+
+2
+00:00:03,773 --> 00:00:06,329
+In Figure 1, what does point D indicate?
+
+3
+00:00:08,030 --> 00:00:11,531
+D is the highest point on the engineering stress strain curve.
+
+4
+00:00:12,151 --> 00:00:14,479
+The maximum engineering stress is the ultimate
+
+5
+00:00:14,479 --> 00:00:17,211
+tensile strength, and necking begins there.
+
+6
+00:00:18,810 --> 00:00:20,929
+The answer is B: tensile strength.
+
+7
+00:00:21,749 --> 00:00:24,685
+Fracture, at F, is not the strongest point.
+
+8
+00:00:24,685 --> 00:00:28,431
+After D the engineering stress falls, because the neck shrinks.

@@ -1,0 +1,55 @@
+1
+00:00:00,800 --> 00:00:03,074
+Teacher midterm practice, question 2.
+
+2
+00:00:03,694 --> 00:00:06,754
+In Figure X, what are the Miller indices of plane B?
+
+3
+00:00:08,454 --> 00:00:11,563
+Plane B is vertical, so it runs parallel to z and
+
+4
+00:00:11,563 --> 00:00:14,731
+never meets it: that intercept is infinity.
+
+5
+00:00:14,731 --> 00:00:19,072
+The marking key measures the plane from the corner at y equals one.
+
+6
+00:00:19,692 --> 00:00:24,554
+From there, plane B reaches the front edge at x equals one, and the quarter mark on
+
+7
+00:00:24,554 --> 00:00:29,309
+the back edge, which is three quarters back along y: minus three quarters.
+
+8
+00:00:29,928 --> 00:00:34,692
+Reciprocals: one, minus four thirds, and one over infinity, which is zero.
+
+9
+00:00:35,312 --> 00:00:38,201
+Multiply by three: three, minus four, zero.
+
+10
+00:00:38,821 --> 00:00:41,189
+So plane B is three, bar four, zero.
+
+11
+00:00:42,789 --> 00:00:45,420
+The answer is B: three, bar four, zero.
+
+12
+00:00:46,240 --> 00:00:49,439
+Never write infinity inside Miller indices.
+
+13
+00:00:49,439 --> 00:00:53,342
+A plane parallel to an axis gets a zero for that axis.
+
+14
+00:00:53,342 --> 00:00:56,861
+And keep the minus sign after moving the origin.

@@ -1,0 +1,23 @@
+# MIAE 221 · Teacher Midterm Practice (AI Videos)
+
+One short narrated solution per question of the 2017 sample midterm (Version A) that the instructors handed out, following the official marking key: the question, how to solve it step by step, the answer, and the trap to avoid. On the website each video appears in the step-by-step explanation after you answer the question in the Teacher Midterm Practice drill. Captions: the `.srt` file next to each video loads automatically in VLC and most players.
+
+- [Q01 - Miller Indices — Planes.mp4](./Q01%20-%20Miller%20Indices%20%E2%80%94%20Planes.mp4) (0:59)
+- [Q02 - Miller Indices — Planes.mp4](./Q02%20-%20Miller%20Indices%20%E2%80%94%20Planes.mp4) (1:00)
+- [Q03 - Miller Indices — Planes.mp4](./Q03%20-%20Miller%20Indices%20%E2%80%94%20Planes.mp4) (0:52)
+- [Q04 - Crystal Structures & Densities.mp4](./Q04%20-%20Crystal%20Structures%20&%20Densities.mp4) (1:08)
+- [Q05 - Diffusion.mp4](./Q05%20-%20Diffusion.mp4) (1:02)
+- [Q06 - Diffusion.mp4](./Q06%20-%20Diffusion.mp4) (0:57)
+- [Q07 - Stress-Strain Curve (Figure 1).mp4](./Q07%20-%20Stress-Strain%20Curve%20(Figure%201).mp4) (0:54)
+- [Q08 - Stress-Strain Curve (Figure 1).mp4](./Q08%20-%20Stress-Strain%20Curve%20(Figure%201).mp4) (0:31)
+- [Q09 - Stress-Strain Curve (Figure 1).mp4](./Q09%20-%20Stress-Strain%20Curve%20(Figure%201).mp4) (0:33)
+- [Q10 - Stress-Strain Curve (Figure 1).mp4](./Q10%20-%20Stress-Strain%20Curve%20(Figure%201).mp4) (0:47)
+- [Q11 - Stress-Strain Curve (Figure 1).mp4](./Q11%20-%20Stress-Strain%20Curve%20(Figure%201).mp4) (0:47)
+- [Q12 - Stress-Strain Curve (Figure 1).mp4](./Q12%20-%20Stress-Strain%20Curve%20(Figure%201).mp4) (0:37)
+- [Q13 - Stress-Strain Curve (Figure 1).mp4](./Q13%20-%20Stress-Strain%20Curve%20(Figure%201).mp4) (0:44)
+- [Q14 - Stress-Strain Curve (Figure 1).mp4](./Q14%20-%20Stress-Strain%20Curve%20(Figure%201).mp4) (0:35)
+- [Q15 - Stress-Strain Curve (Figure 1).mp4](./Q15%20-%20Stress-Strain%20Curve%20(Figure%201).mp4) (0:45)
+- [Q16 - Stress-Strain Curve (Figure 1).mp4](./Q16%20-%20Stress-Strain%20Curve%20(Figure%201).mp4) (0:38)
+- [Q18 - Tensile Test Calculations.mp4](./Q18%20-%20Tensile%20Test%20Calculations.mp4) (1:01)
+- [Q19 - Tensile Test Calculations.mp4](./Q19%20-%20Tensile%20Test%20Calculations.mp4) (1:21)
+- [Q20 - Defects & Solid Solutions.mp4](./Q20%20-%20Defects%20&%20Solid%20Solutions.mp4) (0:46)

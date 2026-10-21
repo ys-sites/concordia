@@ -35,7 +35,8 @@ const MIME_TYPES = {
 function getFiles() {
   const targets = [
     { courseDir: 'Engr 213', subDir: 'Tutor Videos' },
-    { courseDir: 'Miae 221', subDir: '08 - Teacher Topics Explained AI Videos' }
+    { courseDir: 'Miae 221', subDir: '08 - Teacher Topics Explained AI Videos' },
+    { courseDir: 'Miae 221', subDir: '09 - Teacher Midterm Practice AI Videos' }
   ];
 
   const files = [];

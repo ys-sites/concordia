@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { TopicVideosHub } from './TopicVideosHub';
 import { Miae221YouTubeSection } from './Miae221YouTubeSection';
-import { MIAE221_MOTION_LESSONS } from '../data/miae221Lessons';
+import { MIAE221_MOTION_LESSONS, TopicLesson } from '../data/miae221Lessons';
+import { MIAE221_MIDTERM_VIDEOS } from '../data/miae221MidtermVideos';
 import { Youtube, Sparkles, Clapperboard, ArrowLeft } from 'lucide-react';
 import { audio } from '../utils/audio';
 
@@ -10,11 +11,28 @@ export const Miae221TopicVideos: React.FC<{ onLaunchDrill?: (sectionId: string) 
   onLaunchDrill,
   onBack
 }) => {
-  const [activeTab, setActiveTab] = useState<'youtube' | 'motion'>('youtube');
+  const [activeTab, setActiveTab] = useState<'youtube' | 'motion' | 'midterm'>('youtube');
+
+  const midtermLessons: TopicLesson[] = useMemo(() => {
+    return Object.entries(MIAE221_MIDTERM_VIDEOS).map(([qid, v]) => ({
+      id: qid,
+      num: v.num,
+      title: v.title,
+      source: v.source,
+      section: null,
+      lectures: `2017 Sample Exam · Q${v.num}`,
+      video: v.video,
+      captions: v.captions,
+      poster: v.poster,
+      duration: v.duration,
+      sizeMB: v.sizeMB,
+      chapters: v.chapters
+    }));
+  }, []);
 
   return (
     <div className="miae221-videos-container">
-      {/* Top Switcher Tabs: Curated <10 min YouTube Videos vs AI Motion Lessons */}
+      {/* Top Switcher Tabs: Curated <10 min YouTube Videos vs AI Motion Lessons vs Midterm Solves */}
       <div
         style={{
           display: 'flex',
@@ -50,7 +68,7 @@ export const Miae221TopicVideos: React.FC<{ onLaunchDrill?: (sectionId: string) 
             </button>
           )}
 
-          <div style={{ display: 'flex', gap: '6px' }}>
+          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
             <button
               type="button"
               className={`aspect-tab-btn ${activeTab === 'youtube' ? 'active' : ''}`}
@@ -98,20 +116,58 @@ export const Miae221TopicVideos: React.FC<{ onLaunchDrill?: (sectionId: string) 
               }}
             >
               <Sparkles size={15} />
-              <span>🤖 AI Motion-Graphics Lessons</span>
+              <span>🤖 AI Topic Lessons (Ch. 1–7)</span>
             </button>
+
+            {midtermLessons.length > 0 && (
+              <button
+                type="button"
+                className={`aspect-tab-btn ${activeTab === 'midterm' ? 'active' : ''}`}
+                onClick={() => {
+                  audio.playClick();
+                  setActiveTab('midterm');
+                }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '7px 14px',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  borderRadius: '8px',
+                  border: activeTab === 'midterm' ? '1.5px solid #10b981' : '1px solid var(--border-subtle, #cbd5e1)',
+                  background: activeTab === 'midterm' ? 'rgba(16, 185, 129, 0.08)' : 'var(--surface, #ffffff)',
+                  color: activeTab === 'midterm' ? '#059669' : 'var(--text-secondary, #475569)',
+                  cursor: 'pointer'
+                }}
+              >
+                <Clapperboard size={15} />
+                <span>🎯 Midterm Exam Solves ({midtermLessons.length} Videos)</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
 
-      {activeTab === 'youtube' ? (
-        <Miae221YouTubeSection onBack={onBack} />
-      ) : (
+      {activeTab === 'youtube' && <Miae221YouTubeSection onBack={onBack} />}
+
+      {activeTab === 'motion' && (
         <TopicVideosHub
           courseCode="MIAE221"
           title="MIAE 221 · Teacher Topics Explained (AI Videos)"
           intro="One narrated motion-graphics lesson per teacher topic, Chapters 1–7. Each video follows the professor's lecture slides and worked examples; every subtopic is a chapter you can jump to, and each topic links to its practice drill."
           lessons={MIAE221_MOTION_LESSONS}
+          onLaunchDrill={onLaunchDrill}
+          onBack={onBack}
+        />
+      )}
+
+      {activeTab === 'midterm' && (
+        <TopicVideosHub
+          courseCode="MIAE221-MT"
+          title="MIAE 221 · 2017 Sample Midterm Narrated Video Solves"
+          intro="19 step-by-step animated walkthroughs of the 2017 sample midterm examination questions (Q01–Q16, Q18–Q20) following the official department marking key. Learn the question diagnosis, step-by-step derivation, correct option, and common student trap for each problem."
+          lessons={midtermLessons}
           onLaunchDrill={onLaunchDrill}
           onBack={onBack}
         />

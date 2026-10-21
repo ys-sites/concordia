@@ -23,7 +23,8 @@ import {
   Shuffle,
   Zap,
   Download,
-  Printer
+  Printer,
+  Clapperboard
 } from 'lucide-react';
 import { CourseWithDocs } from '../data/coursesData';
 import { CourseDocument, CourseId } from '../types';
@@ -204,6 +205,18 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
           <span className="tp-verified-badge">
             <Sparkles size={14} /> {hasPapers ? 'Official Teacher Exam Materials' : 'Midterm Blueprint'}
           </span>
+          {course.id === 'MIAE221' && (
+            <span
+              className="tp-verified-badge"
+              style={{
+                color: '#059669',
+                background: 'rgba(16, 185, 129, 0.08)',
+                border: '1px solid rgba(16, 185, 129, 0.25)'
+              }}
+            >
+              <Clapperboard size={14} /> 19 Step-by-Step Video Solves
+            </span>
+          )}
         </div>
 
         <h1 className="tp-main-title">{hasPapers ? 'Teacher Midterm Practice & Blueprint' : 'Midterm Blueprint & Scope'}</h1>
