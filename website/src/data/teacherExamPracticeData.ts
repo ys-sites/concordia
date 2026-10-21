@@ -83,6 +83,18 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
     ],
     practiceFiles: [
       {
+        id: '221-midterm-cheatsheet',
+        title: 'MIAE 221 Midterm 1-Page Document Cheatsheet & Exam Survival Guide',
+        filename: 'MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
+        relativePath: 'Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
+        instructor: 'Drs. Martin Pugh & Mamoun Medraj',
+        termYear: 'Midterm Survival Pack',
+        badge: '1-Page Memory Aide',
+        fileType: 'pdf',
+        description: 'Comprehensive 1-page condensed document cheatsheet and exam survival guide for the MIAE 221 Midterm. Covers bonding curves & stiffness, FCC/BCC/HCP lattice geometry, Miller indices, linear/planar densities, Bragg’s law XRD peak rules, Hume-Rothery solubility criteria, Schmid’s law slip systems, Fick’s diffusion laws, and stress-strain curve landmarks.',
+        keyTopics: ['Bonding & Potential Wells', 'FCC/BCC/HCP Lattices', 'Miller Indices (Planes/Directions)', 'Bragg XRD Selection Rules', 'Hume-Rothery Rules', 'Schmid’s Law Slip', 'Fick’s Diffusion', 'Stress-Strain Landmarks']
+      },
+      {
         id: '221-sample-2017',
         title: 'Official MECH/MIAE 221 Sample Midterm Exam (2017)',
         filename: 'MIAE 221 - Sample Midterm Exam 2017 (Drs. Pugh & Medraj).pdf',
@@ -125,14 +137,19 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
     courseId: 'MIAE215',
     courseCode: 'MIAE 215',
     courseName: 'Programming for Mechanical & Industrial Engineers',
-    confirmedDate: null,
-    dateLabel: 'Fall 2026 Midterm Examination',
-    timeAndLocation: 'In-person lab / lecture session',
+    confirmedDate: '2026-10-22',
+    dateLabel: 'Thursday, October 22, 2026',
+    timeAndLocation: '8:45 – 10:00 AM (In-person, handwritten examination)',
     confirmedScope: 'C++ Fundamental Types, Operator Precedence, Control Flow (if/else, switch, while, for loops), Memory Tracing, 1D/2D Array Indexing & Bounds Checking, Variable Scoping, and Console I/O.',
-    formatOverview: 'Two-part exam: Part 1 Hand-written code composition & logic formulation; Part 2 High-yield program output prediction and memory variable trace table (Question 2 signature problem).',
-    calculatorPolicy: 'No calculators or electronic devices permitted. Pen, pencil, and ruler recommended for table tracing.',
+    formatOverview: 'Handwritten examination: 40% program-output prediction & variable trace table; 60% write-a-program code composition.',
+    calculatorPolicy: 'Faculty-approved calculator (with sticker) + One sheet of memory aide (cheat sheet).',
     instructorNotes: [
       'Instructor: Dr. Brandon Gordon.',
+      'Official Moodle Cheat Sheet Rule: One side only of one sheet — front side only, back must be blank.',
+      'Can be printed or hand-written. If printed, text must be no smaller than 10 pt — nothing tiny.',
+      'That\'s the ONLY authorized aid besides a faculty-approved calculator.',
+      'Exam reminder: Thursday Oct 22, 8:45–10:00 AM, handwritten — 40% program-output questions, 60% write-a-program.',
+      'Compliance: The portal 1-Page Document Cheatsheet follows these rules strictly (one-sided, 10 pt font, Letter size).',
       'Dr. Gordon emphasizes the "Simplified Table Approach" to trace multi-variable loop iterations.',
       'Stop at every single `cout` statement and write down the output immediately in the answer box.',
       'Out-of-bounds indexing (e.g. `double A[4]; cout << A[i]` when `i == 4`) results in undefined memory / Garbage value (`G`).'

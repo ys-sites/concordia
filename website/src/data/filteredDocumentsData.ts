@@ -29,6 +29,7 @@ export const isTermPaperDoc = (relativePath: string): boolean =>
   /Term Paper & Final Project/i.test(relativePath);
 
 const RAW_FILTERED_RELATIVE_PATHS: string[] = [
+  "Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Engr 213 Tutor.pdf",
   "Miae 215/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Part 5 - Program Architecture, Output Tracing & Algorithmic Patterns.pdf",
@@ -3466,6 +3467,19 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     midtermDrillSectionId: 'midterm-drill',
     assessmentDocs: [
       {
+        id: "MIAE221:filtered:midterm-cheatsheet",
+        courseId: 'MIAE221',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Document Cheatsheet',
+        title: "MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide",
+        filename: "MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf",
+        relativePath: "Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf",
+        fileSizeBytes: 233660,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["1-Page Cheatsheet", "Midterm Survival", "Callister Ch 1-7", "Zero Lost Marks"]
+      },
+      {
         id: "ENGR213:filtered:paradis-master-guide",
         courseId: 'ENGR213',
         categoryId: 'Filtered-Vault',
@@ -3610,6 +3624,19 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
       },
     ],
     midtermPrepDocs: [
+      {
+        id: "MIAE221:filtered:midterm-cheatsheet",
+        courseId: 'MIAE221',
+        categoryId: 'Filtered-Vault',
+        categoryTitle: 'Document Cheatsheet',
+        title: "MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide",
+        filename: "MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf",
+        relativePath: "Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf",
+        fileSizeBytes: 233660,
+        categoryType: 'Midterm Exam',
+        isMidtermPrep: true,
+        tags: ["1-Page Cheatsheet", "Midterm Survival", "Callister Ch 1-7", "Zero Lost Marks"]
+      },
       {
         id: "ENGR213:filtered:paradis-master-guide",
         courseId: 'ENGR213',

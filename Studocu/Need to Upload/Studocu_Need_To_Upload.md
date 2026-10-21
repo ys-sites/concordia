@@ -1042,3 +1042,12 @@
 - **Title**: MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide
 - **Academic year**: 2025/2026
 - **Description**: Official 1-page condensed document cheatsheet and exam survival guide for the MIAE 215 Midterm. Covers C++ data types, integer division traps, floating-point epsilon comparison, operator precedence table, Dr. Gordon's Table Tracing protocol with garbage memory detection, 2D matrix transpose/reversal, C-strings and space-removal algorithm, file I/O 5-step recipes, pointers and dynamic array allocation with NULL checks, and Flowgorithm symbol definitions.
+
+### 📄 MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf
+- **Exact Filename**: `MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf`
+- **University**: `Concordia University`
+- **Course**: `Materials Science (MIAE 221)`
+- **Category**: `Summaries`
+- **Title**: `MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide (Callister Ch 1-7)`
+- **Academic year**: `2025/2026`
+- **Description**: Comprehensive 1-page condensed document cheatsheet and exam survival guide for MIAE 221 Midterm covering interatomic bonding potential energy curves, FCC/BCC/HCP crystal geometry, Miller indices for planes and directions, linear and planar densities, Bragg's Law XRD peak selection rules, Hume-Rothery solid solution criteria, Schmid's Law resolved shear stress, Fick's 1st and 2nd diffusion laws, and tensile stress-strain deformation landmarks.
