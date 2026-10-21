@@ -584,6 +584,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
               {codeViewMode === 'simulator' ? (
                 <CppCodeSimulator
                   key={currentQ.id}
+                  questionId={currentQ.id}
                   codeSnippet={currentQ.codeSnippet}
                   questionTitle={currentQ.question}
                   options={currentQ.options}

@@ -21,6 +21,7 @@ import './CppCodeSimulator.css';
 
 interface CppCodeSimulatorProps {
   codeSnippet: string;
+  questionId?: string;
   questionTitle?: string;
   options?: string[];
   correctOptionIndex?: number;
@@ -33,6 +34,7 @@ interface CppCodeSimulatorProps {
 
 export const CppCodeSimulator: React.FC<CppCodeSimulatorProps> = ({
   codeSnippet,
+  questionId,
   questionTitle,
   options,
   correctOptionIndex,
@@ -45,8 +47,8 @@ export const CppCodeSimulator: React.FC<CppCodeSimulatorProps> = ({
   // Resolve trace from preloaded trace or synthesize from code snippet
   const trace: SimulatorTrace = useMemo(() => {
     if (preloadedTrace) return preloadedTrace;
-    return getTraceForQuestion(codeSnippet, undefined, questionTitle);
-  }, [preloadedTrace, codeSnippet, questionTitle]);
+    return getTraceForQuestion(codeSnippet, questionId, questionTitle);
+  }, [preloadedTrace, codeSnippet, questionId, questionTitle]);
 
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);

@@ -359,7 +359,9 @@ export const MIAE215_TEACHER_EXAM: PracticeQuestion[] = [
     topic: 'Array Algorithms',
     difficulty: 'Midterm Level',
     question: 'A student checks whether two 5-element arrays are equal with this loop. For A1 = {1, 2, 3, 4, 5} and A2 = {1, 9, 3, 4, 5}, what is printed?',
-    codeSnippet: t`bool eq = true;
+    codeSnippet: t`int A1[5] = {1, 2, 3, 4, 5};
+int A2[5] = {1, 9, 3, 4, 5};
+bool eq = true;
 for(int i=0; i<5; i++) {
     if(A1[i] != A2[i]) eq = false;
     else eq = true;
@@ -478,7 +480,8 @@ do {
     topic: 'Array Algorithms',
     difficulty: 'Midterm Level',
     question: 'This code is meant to print the minimum of A = {3.5, 2.0, 8.1, 4.4}. What does it actually print?',
-    codeSnippet: t`double m = 0;
+    codeSnippet: t`double A[4] = {3.5, 2.0, 8.1, 4.4};
+double m = 0;
 for(int i=0; i<4; i++) {
     if(A[i] < m) m = A[i];
 }
@@ -611,8 +614,12 @@ if (n > 100) {
     topic: 'Array Algorithms',
     difficulty: 'Foundation',
     question: 'Part (f) prints the dot product of A and B. For A = {1, 2, 3} and B = {4, −5, 6}, what is printed?',
-    codeSnippet: t`double dot = 0;
-for(int i=0; i<n; i++) dot += A[i] * B[i];
+    codeSnippet: t`double A[] = {1, 2, 3}, B[] = {4, -5, 6};
+int n = 3;
+double dot = 0;
+for(int i=0; i<n; i++) {
+    dot += A[i] * B[i];
+}
 cout << dot;`,
     options: ['12', '32', '30', '11'],
     correctIndex: 0,
@@ -633,13 +640,13 @@ cout << dot;`,
     difficulty: 'Exam Master',
     question: 'Part (h): the menu (k = 1, 2, 3) repeats until every valid item has been chosen at least once. Each choice sets done1, done2 or done3 to true. Which do-while condition ends the loop at the right time?',
     codeSnippet: t`bool done1=false, done2=false, done3=false;
+int k;
 do {
-    cin >> k;
-    if(k == 1) { /* average of A */ done1 = true; }
-    else if(k == 2) { /* min of B */ done2 = true; }
-    else if(k == 3) { /* dot product */ done3 = true; }
-    else { cout << "error"; return 0; }
-} while( ???? );`,
+    // Menu executes: user inputs k
+    if(k == 1) { done1 = true; }
+    else if(k == 2) { done2 = true; }
+    else if(k == 3) { done3 = true; }
+} while( !(done1 && done2 && done3) );`,
     options: ['!(done1 && done2 && done3)', '!(done1 || done2 || done3)', 'done1 && done2 && done3', 'k != 1 && k != 2 && k != 3'],
     correctIndex: 0,
     explanation: {
