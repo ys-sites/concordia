@@ -119,6 +119,18 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         keyTopics: ['Post-2020 Exams', '2025 Version A', 'Winter 2026 Sy/Sharifi', 'Fall 2025 Eskandarian', 'Fall 2024 Pugh/Sharifi', 'XRD Selection Rules', 'Schmid Factor', 'Diffusion Scaling']
       },
       {
+        id: '221-in-class-annotated-master',
+        title: 'MIAE 221 In-Class Student Lecture Notes Master Compendium (Lectures 1–11 Annotated)',
+        filename: 'MIAE 221 - In-Class Lecture Notes Master Compendium (Lectures 1-11 Annotated).pdf',
+        relativePath: 'Miae 221/01 - In-Class Lecture Notes (Student Annotated)/MIAE 221 - In-Class Lecture Notes Master Compendium (Lectures 1-11 Annotated).pdf',
+        instructor: 'Dr. Mamoun Medraj',
+        termYear: 'Fall 2026 In-Class Notes',
+        badge: 'Review Pack',
+        fileType: 'pdf',
+        description: 'Complete 168-page master compendium of handwritten in-class lecture notes and annotated slide decks from Dr. Medraj’s Lectures 1 through 11. Covers every chalkboard derivation, crystal structure sketch, planar/linear density formula, vacancy calculation, diffusion example, and stress-strain analysis.',
+        keyTopics: ['In-Class Chalkboard Notes', 'Lectures 1–11', 'Derivations & Examples', 'BCC/FCC/HCP Lattices', 'Diffusion', 'Tensile Properties']
+      },
+      {
         id: '221-sample-2017',
         title: 'Official MECH/MIAE 221 Sample Midterm Exam (2017)',
         filename: 'MIAE 221 - Sample Midterm Exam 2017 (Drs. Pugh & Medraj).pdf',

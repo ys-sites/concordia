@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 93
+### Currently Pending Uploads: 94
 
 ---
 
@@ -1089,4 +1089,15 @@
 - **Title**: `MIAE 221 - Recent Post-2020 Midterm Exam Archive & Multi-Instructor Solutions Guide (2021-2026)`
 - **Academic year**: `2025/2026`
 - **Description**: Comprehensive structural exam archive and pedagogical solutions manual analyzing post-2020 MIAE 221 midterms across all active Concordia faculty sections (Drs. Mamoun Medraj, Martin Pugh, Navid Sharifi, Mamadou Sy, and Sam Eskandarian). Covers 7 verified recent midterm papers (including 2025 Version A, Fall 2025 Section X, Fall 2024 Sections T/Y and X-A, and Winter 2026) with detailed worked solutions for interatomic potential wells, BCC/FCC linear and planar densities, Bragg's Law XRD selection rules, Fick's non-steady diffusion, Schmid's Law resolved shear stress, and tensile stress-strain landmarks.
+
+---
+
+### 📄 MIAE 221 - In-Class Lecture Notes Master Compendium (Lectures 1-11 Annotated).pdf
+- **Exact Filename**: `MIAE 221 - In-Class Lecture Notes Master Compendium (Lectures 1-11 Annotated).pdf`
+- **University**: `Concordia University`
+- **Course**: `Materials Science (MIAE 221)`
+- **Category**: `Lecture notes`
+- **Title**: `MIAE 221 - In-Class Lecture Notes Master Compendium (Lectures 1-11 Annotated)`
+- **Academic year**: `2025/2026`
+- **Description**: Complete 168-page master compendium of student in-class handwritten lecture notes and annotated lecture slide decks covering Dr. Medraj's Fall 2026 Lectures 1 through 11. Includes complete in-class chalkboard derivations, crystal structure unit cells (FCC, BCC, HCP), Miller indices, linear & planar densities, Bragg's Law XRD calculations, point defects and Hume-Rothery criteria, grain boundary microscopy, non-steady-state Fick's diffusion examples, and full mechanical properties & tensile stress-strain curves.
 
