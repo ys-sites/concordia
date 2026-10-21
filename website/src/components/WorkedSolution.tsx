@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PracticeQuestion, SolutionStep } from '../types';
 import { MathBlock, MathText, hasInlineMath } from '../utils/mathRenderer';
 import { ReadAloudButton } from './ReadAloudButton';
+import { QuestionVideo } from './QuestionVideo';
 import {
   Lightbulb,
   Search,
@@ -167,6 +168,9 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
           </div>
         </div>
       )}
+
+      {/* Narrated solve video (teacher midterm questions that have one) */}
+      <QuestionVideo questionId={question.id} />
 
       {/* Key Idea / Core Concept */}
       <div className="ws-card ws-concept">

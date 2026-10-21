@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { Clapperboard, Sparkles, Code2 } from 'lucide-react';
-import { getVideoUrl } from '../utils/pdfUrl';
+import { Clapperboard, Sparkles } from 'lucide-react';
+import { getVideoUrl, publicCoursePath } from '../utils/pdfUrl';
 import type { MotionLesson } from '../data/engr213Lessons';
 import './MotionLessonPlayer.css';
 
@@ -9,7 +9,11 @@ export const formatLessonTime = (t: number) => `${Math.floor(t / 60)}:${String(M
 // Narrated motion-graphics lesson for one ODE archetype. preload="none" keeps the page free of video
 // traffic until the student presses play; chapter chips seek straight to each part of the lesson.
 // Note: These videos were programmatically AI-generated from code using mathematical animations.
-export const MotionLessonPlayer: React.FC<{ lesson: MotionLesson }> = ({ lesson }) => {
+export const MotionLessonPlayer: React.FC<{ lesson: MotionLesson; badge?: string; disclosure?: string }> = ({
+  lesson,
+  badge = 'Motion Lesson · Watch First',
+  disclosure = 'based directly on Concordia teacher lecture notes'
+}) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const seek = (t: number) => {
@@ -19,12 +23,23 @@ export const MotionLessonPlayer: React.FC<{ lesson: MotionLesson }> = ({ lesson 
     v.play().catch(() => {});
   };
 
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    const v = e.currentTarget;
+    const currentSrc = v.currentSrc || v.src;
+    const localFallback = `/courses/${publicCoursePath(lesson.video)}`;
+    if (currentSrc && !currentSrc.endsWith(localFallback)) {
+      console.warn(`[Video Player] Primary CDN stream failed. Retrying with local course endpoint: ${localFallback}`);
+      v.src = localFallback;
+      v.load();
+    }
+  };
+
   return (
     <div className="ec-lesson-card">
       <div className="ec-lesson-head">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <span className="ec-lesson-badge">
-            <Clapperboard size={14} /> Motion Lesson · Watch First
+            <Clapperboard size={14} /> {badge}
           </span>
           <span className="ec-lesson-ai-badge">
             <Sparkles size={12} /> AI-Generated from Code
@@ -38,12 +53,14 @@ export const MotionLessonPlayer: React.FC<{ lesson: MotionLesson }> = ({ lesson 
         ref={videoRef}
         className="ec-lesson-video"
         controls
-        preload="none"
+        preload="metadata"
         playsInline
+        crossOrigin="anonymous"
         poster={getVideoUrl(lesson.poster)}
         src={getVideoUrl(lesson.video)}
+        onError={handleVideoError}
       >
-        <track kind="captions" src={getVideoUrl(lesson.captions)} srcLang="en" label="English" />
+        <track kind="captions" src={getVideoUrl(lesson.captions)} srcLang="en" label="English" default />
       </video>
       <div className="ec-lesson-chapters">
         {lesson.chapters.map((c) => (
@@ -56,7 +73,7 @@ export const MotionLessonPlayer: React.FC<{ lesson: MotionLesson }> = ({ lesson 
       <div className="ec-lesson-ai-disclosure">
         <Sparkles size={14} className="ec-ai-sparkle-icon" />
         <div>
-          <strong>AI-Generated from Code:</strong> This motion-graphics video was programmatically synthesized from algorithmic code (vector graphics &amp; parametric mathematical animations) based directly on Concordia teacher lecture notes.
+          <strong>AI-Generated from Code:</strong> This motion-graphics video was programmatically synthesized from algorithmic code (vector graphics &amp; parametric mathematical animations) {disclosure}.
         </div>
       </div>
     </div>

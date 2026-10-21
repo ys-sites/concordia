@@ -24,6 +24,7 @@ website/node_modules/
 # ENGR 213 motion lessons (~10-15 MB each) are published from this one folder
 !Engr 213/Tutor Videos/*.mp4
 !Miae 221/08 - Teacher Topics Explained AI Videos/*.mp4
+!Miae 221/09 - Teacher Midterm Practice AI Videos/*.mp4
 *.mov
 *.avi
 *.mkv
