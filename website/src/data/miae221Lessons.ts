@@ -436,5 +436,56 @@ export const MIAE221_MOTION_LESSONS: TopicLesson[] = [
         "start": 345
       }
     ]
+  },
+  {
+    "id": "m221-10-plastic",
+    "num": 10,
+    "title": "Plastic Deformation, True Stress & Design",
+    "source": "Lecture 11 · Mechanical Properties 2 (Callister 6.6–6.7, 6.12)",
+    "section": "mechanical",
+    "lectures": "Lecture 11",
+    "video": "Miae 221/08 - Teacher Topics Explained AI Videos/10 - Plastic Deformation, True Stress & Design.mp4",
+    "captions": "Miae 221/08 - Teacher Topics Explained AI Videos/10 - Plastic Deformation, True Stress & Design.vtt",
+    "poster": "Miae 221/08 - Teacher Topics Explained AI Videos/posters/10.jpg",
+    "duration": 395,
+    "sizeMB": 16.5,
+    "chapters": [
+      {
+        "label": "Plastic Deformation",
+        "start": 0
+      },
+      {
+        "label": "Proportional Limit & Yield",
+        "start": 39.6
+      },
+      {
+        "label": "Recovery & Strain Hardening",
+        "start": 85.2
+      },
+      {
+        "label": "Necking to Fracture",
+        "start": 118.4
+      },
+      {
+        "label": "Engineering vs True Stress",
+        "start": 150.8
+      },
+      {
+        "label": "Lecture Example: Brass",
+        "start": 199.5
+      },
+      {
+        "label": "Strain-Hardening Law",
+        "start": 253.5
+      },
+      {
+        "label": "Safety Factors",
+        "start": 310.4
+      },
+      {
+        "label": "Recap",
+        "start": 362.6
+      }
+    ]
   }
 ];

@@ -572,7 +572,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 <span className="fx-folder-text">
                   <span className="fx-folder-index">{String(tree.folders.length).padStart(2, '0')}</span>
                   <span className="fx-folder-name">Teacher Topics Explained AI Videos</span>
-                  <span className="fx-folder-meta">9 narrated topic videos · every subtopic · captions</span>
+                  <span className="fx-folder-meta">10 narrated topic videos · every subtopic · captions</span>
                 </span>
                 <ChevronRight size={18} className="fx-folder-chevron" />
               </button>

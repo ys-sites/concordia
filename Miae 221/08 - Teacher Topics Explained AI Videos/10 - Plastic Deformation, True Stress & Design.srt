@@ -1,0 +1,387 @@
+1
+00:00:00,800 --> 00:00:05,470
+Last lecture we stayed in the elastic region, where the specimen springs back.
+
+2
+00:00:05,470 --> 00:00:09,195
+Now we keep pulling. What happens past the elastic limit?
+
+3
+00:00:12,315 --> 00:00:15,838
+Past the yield point, deformation becomes plastic.
+
+4
+00:00:15,838 --> 00:00:21,324
+Stress and strain are no longer proportional, and the deformation is not reversible.
+
+5
+00:00:21,744 --> 00:00:25,731
+Here is why. Under load, the bonds first stretch, and then
+
+6
+00:00:25,731 --> 00:00:28,516
+whole planes of atoms slide over each other.
+
+7
+00:00:28,516 --> 00:00:32,011
+In crystals, that sliding is carried by dislocations.
+
+8
+00:00:32,430 --> 00:00:36,691
+Now unload. The stretched bonds relax, but the planes stay sheared.
+
+9
+00:00:36,691 --> 00:00:38,245
+Plastic means permanent.
+
+10
+00:00:42,345 --> 00:00:46,499
+The straight part of the curve ends at the proportional limit, P.
+
+11
+00:00:46,499 --> 00:00:49,177
+Beyond P, strain is no longer proportional to
+
+12
+00:00:49,177 --> 00:00:52,293
+stress, and Hooke's law can no longer be used.
+
+13
+00:00:52,713 --> 00:00:57,523
+P is hard to pin down, so the yield strength is defined with an offset.
+
+14
+00:00:57,523 --> 00:01:00,222
+Draw a line parallel to the elastic slope,
+
+15
+00:01:00,222 --> 00:01:03,507
+starting at a strain of zero point zero zero two.
+
+16
+00:01:03,507 --> 00:01:06,029
+Where it meets the curve is sigma y.
+
+17
+00:01:06,449 --> 00:01:08,589
+The two points are close to each other, but
+
+18
+00:01:08,589 --> 00:01:10,774
+they are not the same point on the curve.
+
+19
+00:01:11,594 --> 00:01:13,672
+Low carbon steel is different.
+
+20
+00:01:13,672 --> 00:01:16,872
+It rises to an upper yield point, drops suddenly,
+
+21
+00:01:16,872 --> 00:01:19,905
+and then runs along a jagged lower yield point.
+
+22
+00:01:19,905 --> 00:01:24,004
+Its yield strength is the average stress at the lower yield point.
+
+23
+00:01:27,904 --> 00:01:30,895
+Load a specimen past yield, then release it.
+
+24
+00:01:30,895 --> 00:01:35,844
+It comes back down along a straight line, parallel to the original elastic line.
+
+25
+00:01:36,264 --> 00:01:39,733
+It gives back only the elastic strain, sigma over E.
+
+26
+00:01:39,733 --> 00:01:41,716
+That is the elastic recovery.
+
+27
+00:01:41,716 --> 00:01:43,698
+Everything else is permanent.
+
+28
+00:01:44,117 --> 00:01:47,739
+Now reload. The specimen stays elastic all the way up to
+
+29
+00:01:47,739 --> 00:01:50,959
+where we stopped, and only then yields again.
+
+30
+00:01:50,959 --> 00:01:55,328
+Its yield strength has gone up, from sigma y zero to sigma y one.
+
+31
+00:01:55,328 --> 00:01:57,168
+That is strain hardening.
+
+32
+00:02:01,069 --> 00:02:03,528
+Let us follow a full test to the end.
+
+33
+00:02:03,528 --> 00:02:06,491
+As plastic deformation continues, the force keeps
+
+34
+00:02:06,491 --> 00:02:09,397
+rising, because the metal strain hardens.
+
+35
+00:02:09,817 --> 00:02:13,673
+At the top of the curve, the tensile strength, a neck forms.
+
+36
+00:02:13,673 --> 00:02:16,346
+Stress concentrates in the neck, voids form,
+
+37
+00:02:16,346 --> 00:02:18,916
+and they grow until the specimen fractures.
+
+38
+00:02:19,936 --> 00:02:22,225
+For structural design, the yield stress
+
+39
+00:02:22,225 --> 00:02:25,100
+usually matters more than the tensile strength.
+
+40
+00:02:25,100 --> 00:02:29,571
+Once you pass it, the part has already deformed beyond acceptable limits.
+
+41
+00:02:33,471 --> 00:02:36,989
+After the tensile strength, the engineering curve turns down.
+
+42
+00:02:36,989 --> 00:02:39,578
+Does that mean the specimen is getting weaker?
+
+43
+00:02:39,997 --> 00:02:44,857
+No. Engineering stress divides the force by the original area, A zero.
+
+44
+00:02:44,857 --> 00:02:48,170
+But in the neck, the real area is shrinking fast.
+
+45
+00:02:48,590 --> 00:02:52,460
+Divide by the actual area instead, and you get the true stress.
+
+46
+00:02:52,460 --> 00:02:54,918
+It keeps rising all the way to fracture.
+
+47
+00:02:54,918 --> 00:02:58,735
+So the true fracture strength is higher than the tensile strength.
+
+48
+00:02:59,156 --> 00:03:04,709
+Before necking, the volume stays constant, so sigma T equals sigma times one
+
+49
+00:03:04,709 --> 00:03:09,866
+plus epsilon, and epsilon T is the natural log of one plus epsilon.
+
+50
+00:03:10,285 --> 00:03:15,258
+True values are more accurate, but the area is hard to measure during a test.
+
+51
+00:03:15,258 --> 00:03:18,422
+So engineering values are what we usually report.
+
+52
+00:03:22,222 --> 00:03:25,467
+Your lecture's example: a brass specimen.
+
+53
+00:03:25,467 --> 00:03:29,211
+In the inset, the elastic line reaches one hundred fifty
+
+54
+00:03:29,211 --> 00:03:33,142
+megapascals at a strain of zero point zero zero one six.
+
+55
+00:03:33,142 --> 00:03:36,761
+So E is about ninety three point eight gigapascals.
+
+56
+00:03:37,181 --> 00:03:40,163
+The zero point zero zero two offset line meets the
+
+57
+00:03:40,163 --> 00:03:45,352
+curve at about two hundred fifty megapascals. That is the yield strength.
+
+58
+00:03:45,772 --> 00:03:49,635
+The maximum load uses the tensile strength, four hundred fifty
+
+59
+00:03:49,635 --> 00:03:54,552
+megapascals, on the original area of a twelve point eight millimeter rod.
+
+60
+00:03:54,552 --> 00:03:58,239
+That is about fifty seven thousand nine hundred newtons.
+
+61
+00:03:58,659 --> 00:04:01,261
+At three hundred forty five megapascals we are
+
+62
+00:04:01,261 --> 00:04:04,259
+far past yield, so do not use Hooke's law.
+
+63
+00:04:04,259 --> 00:04:08,161
+Read the strain from the curve, about zero point zero six.
+
+64
+00:04:08,161 --> 00:04:12,347
+The two hundred fifty millimeter bar stretches fifteen millimeters.
+
+65
+00:04:16,247 --> 00:04:21,264
+In the plastic region, the true stress strain curve follows a power law.
+
+66
+00:04:21,264 --> 00:04:24,226
+Sigma T equals K times epsilon T to the n.
+
+67
+00:04:24,646 --> 00:04:29,055
+n is the strain hardening exponent, from about zero point one five
+
+68
+00:04:29,055 --> 00:04:33,149
+for some steels to zero point five for some copper alloys.
+
+69
+00:04:33,149 --> 00:04:35,479
+K is the strength coefficient.
+
+70
+00:04:36,299 --> 00:04:38,501
+Take logs, and the power law becomes a
+
+71
+00:04:38,501 --> 00:04:41,490
+straight line on a log log plot, with slope n.
+
+72
+00:04:41,490 --> 00:04:45,789
+The higher the slope, the stronger the material gets as it is strained.
+
+73
+00:04:46,209 --> 00:04:51,331
+Annealed copper has n equal to zero point five four, and hardens the most.
+
+74
+00:04:51,331 --> 00:04:55,308
+Alloy steel forty three forty has only zero point one five.
+
+75
+00:04:55,729 --> 00:04:59,991
+For example, low carbon steel, with K of five hundred thirty
+
+76
+00:04:59,991 --> 00:05:04,692
+megapascals and n of zero point two six, needs about two hundred ninety
+
+77
+00:05:04,692 --> 00:05:09,268
+one megapascals of true stress at a true strain of zero point one.
+
+78
+00:05:13,068 --> 00:05:18,899
+Finally, design. Loads and properties are uncertain, so we never push the limit.
+
+79
+00:05:18,899 --> 00:05:22,329
+The working stress is the yield strength divided by a factor
+
+80
+00:05:22,329 --> 00:05:26,216
+of safety, N, usually between one point two and four.
+
+81
+00:05:26,635 --> 00:05:30,273
+Your lecture's example: a ten forty five steel rod with a
+
+82
+00:05:30,273 --> 00:05:33,791
+yield strength of three hundred ten megapascals carries two
+
+83
+00:05:33,791 --> 00:05:37,667
+hundred twenty thousand newtons, with N equal to five.
+
+84
+00:05:37,667 --> 00:05:40,708
+The working stress is sixty two megapascals.
+
+85
+00:05:41,128 --> 00:05:45,237
+The area must be two hundred twenty thousand newtons over sixty two
+
+86
+00:05:45,237 --> 00:05:50,695
+megapascals: three point five five times ten to the minus three square meters.
+
+87
+00:05:50,695 --> 00:05:54,375
+So the diameter is about six point seven centimeters.
+
+88
+00:05:54,795 --> 00:05:58,086
+Design with the tensile strength instead, and you would get
+
+89
+00:05:58,086 --> 00:06:01,430
+about five centimeters: a rod that yields in service.
+
+90
+00:06:05,330 --> 00:06:07,195
+Here is the summary of topic ten.
+
+91
+00:06:07,615 --> 00:06:12,730
+Plastic deformation is permanent, and unloading gives back only the elastic strain.
+
+92
+00:06:13,150 --> 00:06:15,664
+Yield comes from the zero point zero zero two
+
+93
+00:06:15,664 --> 00:06:18,458
+offset, and strain hardening raises it.
+
+94
+00:06:18,878 --> 00:06:21,637
+Necking, voids and fracture follow the tensile
+
+95
+00:06:21,637 --> 00:06:24,838
+strength, and true stress uses the actual area.
+
+96
+00:06:25,258 --> 00:06:29,892
+And the power law, the brass example, and the safety factor tie it together.
+
+97
+00:06:29,892 --> 00:06:32,337
+Next lecture: toughness and hardness.

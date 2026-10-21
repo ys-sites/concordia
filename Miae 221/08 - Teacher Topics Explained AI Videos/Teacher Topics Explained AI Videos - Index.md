@@ -119,3 +119,17 @@ AI-generated motion-graphics lessons, one per teacher topic (Chapters 1–7). Ea
 - 4:18 Cold Work
 - 4:55 Recovery & Recrystallization
 - 5:45 Recap
+
+## 10 · Plastic Deformation, True Stress & Design (6:35)
+
+[10 - Plastic Deformation, True Stress & Design.mp4](./10%20-%20Plastic%20Deformation,%20True%20Stress%20&%20Design.mp4) · Lecture 11 · Mechanical Properties 2 (Callister 6.6–6.7, 6.12)
+
+- 0:00 Plastic Deformation
+- 0:39 Proportional Limit & Yield
+- 1:25 Recovery & Strain Hardening
+- 1:58 Necking to Fracture
+- 2:30 Engineering vs True Stress
+- 3:19 Lecture Example: Brass
+- 4:13 Strain-Hardening Law
+- 5:10 Safety Factors
+- 6:02 Recap
