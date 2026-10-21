@@ -21,7 +21,9 @@ import {
   GraduationCap,
   ListChecks,
   Shuffle,
-  Zap
+  Zap,
+  Download,
+  Printer
 } from 'lucide-react';
 import { CourseWithDocs } from '../data/coursesData';
 import { CourseDocument, CourseId } from '../types';
@@ -303,6 +305,54 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
               ))}
             </ul>
           </div>
+
+          {(course.id === 'MIAE215' || course.id === 'MIAE221') && (
+            <div className="tp-info-card" style={{ marginTop: '1.25rem', border: '1.5px solid var(--accent)' }}>
+              <div className="tp-card-header">
+                <Sparkles size={18} style={{ color: course.accentHex }} />
+                <h3>Official 1-Page Exam Cheatsheet &amp; Memory Aide (Visible &amp; Downloadable)</h3>
+              </div>
+              <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: '4px 0 12px' }}>
+                {course.id === 'MIAE215'
+                  ? 'Follows Dr. Gordon’s Moodle policy strictly: front-side only of 1 sheet, back completely blank, >= 10 pt font, Letter size. Print single-sided and you are 100% compliant.'
+                  : 'Callister Chapters 1–7.4 condensed master formula and concept reference sheet. Formatted single-sided on Letter size.'}
+              </p>
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                <a
+                  className="tp-btn-primary"
+                  style={{ textDecoration: 'none' }}
+                  href={getPdfUrl(course.id === 'MIAE215'
+                    ? 'Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf'
+                    : 'Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
+                  download={course.id === 'MIAE215' ? 'MIAE 215 Midterm Cheatsheet.pdf' : 'MIAE 221 Midterm Cheatsheet.pdf'}
+                  onClick={() => audio.playClick()}
+                >
+                  <Download size={16} />
+                  <span>Download PDF Cheatsheet</span>
+                </a>
+                <a
+                  className="tp-btn-secondary"
+                  href={course.id === 'MIAE215' ? '/cheatsheets/miae215-midterm.html' : '/cheatsheets/miae221-midterm.html'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => audio.playClick()}
+                >
+                  <Printer size={15} />
+                  <span>Printable Web Version (10pt)</span>
+                </a>
+                <a
+                  className="tp-btn-secondary"
+                  href={course.id === 'MIAE215' ? '/cheatsheets/miae215-cheatsheet.pdf' : '/cheatsheets/miae221-cheatsheet.pdf'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => audio.playClick()}
+                >
+                  <ExternalLink size={15} />
+                  <span>Public File (PDF)</span>
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -340,6 +390,29 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
                           <Eye size={16} />
                           <span>Preview PDF</span>
                         </button>
+                        <a
+                          className="tp-btn-secondary"
+                          href={url}
+                          download={file.filename}
+                          title={`Download ${file.filename}`}
+                          onClick={() => audio.playClick()}
+                        >
+                          <Download size={14} />
+                          <span>Download</span>
+                        </a>
+                        {file.badge === '1-Page Memory Aide' && (
+                          <a
+                            className="tp-btn-secondary"
+                            href={course.id === 'MIAE215' ? '/cheatsheets/miae215-midterm.html' : '/cheatsheets/miae221-midterm.html'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Open printable 10pt single-sided HTML version"
+                            onClick={() => audio.playClick()}
+                          >
+                            <Printer size={14} />
+                            <span>Print (10pt)</span>
+                          </a>
+                        )}
                         <a
                           className="tp-btn-secondary"
                           href={url}

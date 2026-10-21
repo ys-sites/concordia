@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIAE 221 — Materials Science Midterm Master Cheat Sheet</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 9.8pt; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    color: #111827;
+    line-height: 1.3;
+    padding: 0.3in 0.35in;
+    background: #fff;
+  }
+  .no-print {
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11pt;
+  }
+  .btn {
+    background: #0f766e;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 10pt;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-outline {
+    background: transparent;
+    color: #0f766e;
+    border: 1px solid #0f766e;
+  }
+  h1 {
+    font-size: 13.5pt;
+    text-align: center;
+    letter-spacing: -0.2px;
+    color: #9f1239;
+    border-bottom: 2px solid #be123c;
+    padding-bottom: 2px;
+    margin-bottom: 2px;
+  }
+  .sub {
+    text-align: center;
+    font-size: 8.5pt;
+    color: #4b5563;
+    margin-bottom: 6px;
+  }
+  .cols {
+    columns: 2;
+    column-gap: 14px;
+    column-rule: 1px solid #e5e7eb;
+  }
+  section {
+    break-inside: avoid;
+    margin-bottom: 6px;
+  }
+  h2 {
+    font-size: 9.5pt;
+    color: #fff;
+    background: #9f1239;
+    padding: 1.5px 5px;
+    border-radius: 3px;
+    margin-bottom: 2px;
+    font-weight: 700;
+  }
+  h2.teal { background: #0f766e; }
+  h2.indigo { background: #4338ca; }
+  code, .mono {
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 9pt;
+    color: #9f1239;
+    background: #fdf2f8;
+    padding: 1px 3px;
+    border-radius: 2px;
+  }
+  ul { padding-left: 13px; }
+  li { margin-bottom: 1.5px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin: 2px 0;
+  }
+  td, th {
+    border: 1px solid #d1d5db;
+    padding: 1.5px 4px;
+    text-align: left;
+  }
+  th {
+    background: #f9fafb;
+    font-weight: 700;
+  }
+  .formula {
+    background: #f9fafb;
+    border-left: 2.5px solid #be123c;
+    padding: 2px 6px;
+    margin: 2px 0;
+    font-weight: 600;
+  }
+  .key { color: #9f1239; font-weight: 700; }
+  .trap { color: #b91c1c; font-weight: 700; }
+  @page { size: letter; margin: 0.25in 0.3in; }
+  @media print {
+    body { padding: 0; }
+    .no-print { display: none !important; }
+    .cols { columns: 2; }
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  <div>
+    <strong>MIAE 221 Midterm Master Cheat Sheet</strong> — Callister Ch 1–7.4 · Single-Sided Letter Format
+  </div>
+  <div style="display: flex; gap: 8px;">
+    <button class="btn" onclick="window.print()">🖨️ Print (1 Page)</button>
+    <a class="btn btn-outline" href="/cheatsheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" download="MIAE 221 Midterm Cheatsheet.pdf">📥 Download PDF</a>
+  </div>
+</div>
+
+<h1>MIAE 221 — Materials Science Midterm Master Cheat Sheet</h1>
+<div class="sub">Concordia University · Callister Ch 1–7.4 · Modules 1–12 · Midterm: Oct 30 · Master Formula &amp; Concept Sheet</div>
+
+<div class="cols">
+
+<section>
+  <h2>1. Bonding, Potential Energy Wells &amp; Properties</h2>
+  <div class="formula">At equilibrium r₀: F_N = F_A + F_R = 0, E_N reaches minimum (-E₀)</div>
+  <ul>
+    <li><span class="key">Melting Temp (T_m):</span> Proportional to well depth E₀ (deeper well → higher T_m).</li>
+    <li><span class="key">Modulus of Elasticity (E):</span> Proportional to curvature at trough: E ∝ (d²E_N/dr²) at r₀. Steeper slope = stiffer material.</li>
+    <li><span class="key">Thermal Expansion (α_L):</span> Governed by well <b>asymmetry</b>. Symmetric well (deep) = low α_L (ceramics). Asymmetric = high α_L (polymers).</li>
+    <li><span class="key">Bond Types:</span> Ionic (nondirectional, electron transfer); Covalent (<b>directional</b>, sharing); Metallic (delocalized sea of e⁻, ductile slip); Hydrogen (strongest secondary, ~50 kJ/mol, polymers).</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. Crystal Lattices &amp; Density Geometry</h2>
+  <table>
+    <tr><th>Structure</th><th>CN</th><th>n</th><th>a vs R</th><th>APF</th><th>Close Direction</th><th>Close Plane</th></tr>
+    <tr><td><b>FCC</b></td><td>12</td><td>4</td><td>a = 2R√2</td><td>0.74</td><td>&lang;110&rang;</td><td>{111}</td></tr>
+    <tr><td><b>BCC</b></td><td>8</td><td>2</td><td>a = 4R/√3</td><td>0.68</td><td>&lang;111&rang;</td><td>{110}</td></tr>
+    <tr><td><b>HCP</b></td><td>12</td><td>6</td><td>a = 2R, c/a=1.633</td><td>0.74</td><td>&lang;11-20&rang;</td><td>(0001)</td></tr>
+  </table>
+  <div class="formula">ρ = (n · A) / (V_c · N_A) &nbsp; [V_c = a³, N_A = 6.022 × 10²³]</div>
+  <ul>
+    <li>Stacking: FCC = <i>ABCABC...</i> along [111]; HCP = <i>ABABAB...</i> along [0001].</li>
+  </ul>
+</section>
+
+<section>
+  <h2>3. Crystallographic Directions &amp; Planes</h2>
+  <ul>
+    <li><b>Directions [uvw]:</b> Vector tail at origin (translate if negative). Head coordinates in a,b,c. Clear fractions to integers. Family: &lang;uvw&rang;.</li>
+    <li><b>Planes (hkl):</b> <span class="trap">MUST NOT pass through origin!</span> (Shift origin if needed). Read intercepts A,B,C. Take reciprocals (1/A, 1/B, 1/C; 1/∞=0). Clear fractions. Family: {hkl}.</li>
+    <li><b>Hexagonal (hkil):</b> 4-axis Miller-Bravais. Always satisfies <b>i = -(h + k)</b>.</li>
+    <li><b>Linear Density:</b> LD = (atoms centered on line) / (length L).</li>
+    <li><b>Planar Density:</b> PD = (2D atom circles in plane) / (area A).</li>
+  </ul>
+</section>
+
+<section>
+  <h2>4. XRD &amp; Bragg's Law Selection Rules</h2>
+  <div class="formula">Bragg's Law: nλ = 2 d_hkl sinθ &nbsp; | &nbsp; Cubic: d_hkl = a / √(h² + k² + l²)</div>
+  <ul>
+    <li><span class="key">BCC Rule:</span> Peaks occur <b>ONLY</b> when h+k+l is <b>EVEN</b>: (110), (200), (211), (220). (100) and (111) are forbidden!</li>
+    <li><span class="key">FCC Rule:</span> Peaks occur <b>ONLY</b> when h,k,l are <b>ALL ODD</b> or <b>ALL EVEN</b>: (111), (200), (220), (311). (110) is forbidden!</li>
+  </ul>
+</section>
+
+<section>
+  <h2>5. Imperfections &amp; Hume-Rothery Rules</h2>
+  <div class="formula">Vacancy Equilibrium: N_v = N exp(-Q_v / kT) &nbsp; [k = 8.62×10⁻⁵ eV/K]</div>
+  <ul>
+    <li><b>Hume-Rothery (Complete Solid Solubility, e.g. Cu-Ni):</b><br>
+      1. Size: |Δr| / r_solvent &lt; 15% · 2. Crystal structure: identical (both FCC)<br>
+      3. Electronegativity: comparable · 4. Valency: higher valency preferred.
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>6. Dislocations, Slip &amp; Schmid's Law</h2>
+  <ul>
+    <li><b>Edge:</b> Extra half-plane; Burgers vector b <b>⊥</b> dislocation line.</li>
+    <li><b>Screw:</b> Spiral ramp; Burgers vector b <b>∥</b> dislocation line.</li>
+    <li><b>FCC Slip:</b> {111}&lang;110&rang; → 4 × 3 = <b>12 systems</b> (high ductility).</li>
+    <li><b>BCC Slip:</b> {110}&lang;111&rang; → 6 × 2 = 12 systems (total 48; high strength).</li>
+  </ul>
+  <div class="formula">Schmid's Law: τ_R = σ cosφ cosλ &nbsp; | &nbsp; Max slip at φ = λ = 45°: σ_y = 2 τ_CRSS</div>
+  <ul>
+    <li><b>Strengthening:</b> 1. Hall-Petch: σ_y = σ₀ + k_y d⁻¹/² (finer grains = stronger) · 2. Solid solution pinning · 3. Cold work (%CW = (A₀ - A_d)/A₀ × 100%; increases σ_y and UTS, lowers %EL).</li>
+  </ul>
+</section>
+
+<section>
+  <h2>7. Diffusion in Solids (Fick's Laws)</h2>
+  <ul>
+    <li><b>Mechanisms:</b> Interstitial (C in Fe) is <i>much faster</i> than Vacancy. Cu-Ni couple undergoes <b>interdiffusion</b> (both diffuse simultaneously).</li>
+    <li><b>Fick's 1st (Steady-State):</b> J = -D (dC/dx) = -D (C_A - C_B)/(x_A - x_B).</li>
+    <li><b>Arrhenius:</b> D = D₀ exp(-Q_d / RT) → ln D vs 1/T slope = -Q_d/R.</li>
+    <li><b>Fick's 2nd (Non-Steady):</b> (C(x,t) - C₀)/(C_s - C₀) = 1 - erf(x / 2√(Dt)).</li>
+    <li><b>Scaling:</b> Constant composition → x² / (D · t) = const.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>8. Mechanical Properties &amp; Stress-Strain</h2>
+  <div class="formula">σ = F/A₀ [MPa] &nbsp;|&nbsp; ε = Δl/l₀ &nbsp;|&nbsp; σ = Eε (Hooke) &nbsp;|&nbsp; ν = -ε_x/ε_z ≈ 0.33</div>
+  <ul>
+    <li><span class="trap">Elastic Modulus E:</span> Dictated by bond stiffness ONLY. Cold work, grain size, and alloying do NOT change E! (All steels E ≈ 207 GPa).</li>
+    <li><b>Point B:</b> Proportional limit. <b>Point C:</b> 0.2% offset yield (σ_y).</li>
+    <li><b>Point E (UTS):</b> Maximum engineering stress. <span class="trap">Necking begins strictly AFTER Point E!</span></li>
+    <li><b>Uniform plastic:</b> Point C to E. <b>Non-uniform (necking):</b> Point E to fracture.</li>
+    <li><b>True Stress/Strain (up to necking):</b> σ_T = σ(1 + ε), ε_T = ln(1 + ε).</li>
+    <li><b>Resilience:</b> U_r ≈ σ_y² / (2E). <b>Toughness:</b> Total area under σ-ε curve.</li>
+  </ul>
+</section>
+
+</div>
+</body>
+</html>

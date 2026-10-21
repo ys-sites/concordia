@@ -29,7 +29,9 @@ import {
   X,
   AlertTriangle,
   Sparkles,
-  Clapperboard
+  Clapperboard,
+  Download,
+  Printer
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
@@ -268,6 +270,20 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             <Eye size={14} />
             <span>View</span>
           </button>
+          <a
+            className="fx-btn fx-btn-tab"
+            href={url}
+            download={doc.filename}
+            title={`Download ${doc.filename}`}
+            aria-label="Download file"
+            onClick={(e) => {
+              e.stopPropagation();
+              audio.playClick();
+            }}
+          >
+            <Download size={14} />
+            <span className="fx-btn-tab-text">Download</span>
+          </a>
           <a 
             className="fx-btn fx-btn-tab" 
             href={url} 
@@ -456,6 +472,294 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
         </section>
       ) : activePath.length === 0 ? (
         <section>
+          {course.id === 'MIAE215' && (
+            <div
+              style={{
+                marginBottom: '24px',
+                padding: '20px 24px',
+                borderRadius: '12px',
+                border: '1.5px solid rgba(16, 185, 129, 0.4)',
+                background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.02) 100%)',
+                boxShadow: '0 4px 16px -2px rgba(16, 185, 129, 0.1)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div
+                    style={{
+                      width: '42px',
+                      height: '42px',
+                      borderRadius: '10px',
+                      backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                      color: '#059669',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Sparkles size={24} />
+                  </div>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '3px' }}>
+                      <span
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 800,
+                          padding: '2px 8px',
+                          borderRadius: '6px',
+                          backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                          color: '#047857',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.04em'
+                        }}
+                      >
+                        Official Moodle-Approved Cheatsheet · 10pt Font · 1-Sided
+                      </span>
+                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#059669' }}>
+                        Exam: Thursday, Oct 22 · 8:45–10:00 AM
+                      </span>
+                    </div>
+                    <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                      MIAE 215 Midterm Master Document Cheatsheet &amp; Exam Survival Guide
+                    </h2>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  padding: '12px 16px',
+                  borderRadius: '8px',
+                  background: 'rgba(245, 158, 11, 0.08)',
+                  border: '1px solid rgba(245, 158, 11, 0.25)',
+                  fontSize: '13px',
+                  color: 'var(--text-secondary)',
+                  lineHeight: 1.5
+                }}
+              >
+                <strong style={{ color: '#b45309' }}>Dr. Gordon’s Moodle Exam Rules:</strong> One side only of one sheet — front side only, back must be blank. Can be printed or hand-written. If printed: text no smaller than 10 pt (nothing tiny). That’s the only aid besides a faculty-approved calculator. <em>Exam format: 40% program-output table tracing / 60% write-a-program.</em>
+              </div>
+
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
+                <button
+                  className="fx-btn fx-btn-primary"
+                  style={{ padding: '8px 16px', fontSize: '13.5px', fontWeight: 600 }}
+                  onClick={() => {
+                    audio.playClick();
+                    onViewPdf({
+                      id: 'MIAE215:cheatsheet-midterm',
+                      courseId: 'MIAE215',
+                      categoryId: '03 - 1-Page Rapid Review Sheets',
+                      categoryTitle: '1-Page Rapid Review Sheets',
+                      title: 'MIAE 215 — Midterm 1-Page Document Cheatsheet & Exam Survival Guide',
+                      filename: 'MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
+                      relativePath: 'Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
+                      tags: ['MIAE 215', 'Midterm Cheatsheet', 'C++', 'Tracing', 'Dr. Gordon'],
+                      summary: 'Official 1-page document cheatsheet compliant with Dr. Gordon Moodle rules: 10 pt font, single-sided, Letter format.'
+                    });
+                  }}
+                  title="Open in in-app modal PDF viewer"
+                >
+                  <Eye size={16} />
+                  <span>Preview Cheatsheet (In-App)</span>
+                </button>
+
+                <a
+                  className="fx-btn"
+                  style={{
+                    background: '#059669',
+                    color: '#ffffff',
+                    border: 'none',
+                    padding: '8px 16px',
+                    fontSize: '13.5px',
+                    fontWeight: 600,
+                    borderRadius: '6px',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                  href={getPdfUrl('Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
+                  download="MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf"
+                  title="Download the official 1-page PDF"
+                  onClick={() => audio.playClick()}
+                >
+                  <Download size={16} />
+                  <span>Download PDF (Master Copy)</span>
+                </a>
+
+                <a
+                  className="fx-btn fx-btn-tab"
+                  style={{ padding: '8px 14px', fontSize: '13px' }}
+                  href="/cheatsheets/miae215-midterm.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open printable HTML version (10pt font, single-sided, print-ready)"
+                  onClick={() => audio.playClick()}
+                >
+                  <Printer size={15} />
+                  <span>Printable Web Version (10pt)</span>
+                </a>
+
+                <a
+                  className="fx-btn fx-btn-tab"
+                  style={{ padding: '8px 14px', fontSize: '13px' }}
+                  href="/cheatsheets/miae215-cheatsheet.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open public PDF direct URL in new window"
+                  onClick={() => audio.playClick()}
+                >
+                  <ExternalLink size={15} />
+                  <span>Public File (PDF)</span>
+                </a>
+              </div>
+            </div>
+          )}
+
+          {course.id === 'MIAE221' && (
+            <div
+              style={{
+                marginBottom: '24px',
+                padding: '20px 24px',
+                borderRadius: '12px',
+                border: '1.5px solid rgba(225, 29, 72, 0.4)',
+                background: 'linear-gradient(135deg, rgba(225, 29, 72, 0.08) 0%, rgba(225, 29, 72, 0.02) 100%)',
+                boxShadow: '0 4px 16px -2px rgba(225, 29, 72, 0.1)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div
+                    style={{
+                      width: '42px',
+                      height: '42px',
+                      borderRadius: '10px',
+                      backgroundColor: 'rgba(225, 29, 72, 0.15)',
+                      color: '#be123c',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Sparkles size={24} />
+                  </div>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '3px' }}>
+                      <span
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 800,
+                          padding: '2px 8px',
+                          borderRadius: '6px',
+                          backgroundColor: 'rgba(225, 29, 72, 0.2)',
+                          color: '#9f1239',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.04em'
+                        }}
+                      >
+                        Callister Modules 1–12 · Single-Sided Master Reference
+                      </span>
+                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#be123c' }}>
+                        Midterm: Friday, Oct 30 · Ch 1–7.4
+                      </span>
+                    </div>
+                    <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                      MIAE 221 Midterm Master Document Cheatsheet &amp; Exam Survival Guide
+                    </h2>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                Comprehensive 1-page condensed master document cheatsheet and exam survival guide for the MIAE 221 Midterm. Covers bonding curves &amp; stiffness, FCC/BCC/HCP lattice geometry, Miller indices, linear/planar densities, Bragg’s law XRD peak rules, Hume-Rothery criteria, Schmid’s law slip, Fick’s diffusion laws, and stress-strain landmarks.
+              </div>
+
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
+                <button
+                  className="fx-btn fx-btn-primary"
+                  style={{ padding: '8px 16px', fontSize: '13.5px', fontWeight: 600 }}
+                  onClick={() => {
+                    audio.playClick();
+                    onViewPdf({
+                      id: 'MIAE221:cheatsheet-midterm',
+                      courseId: 'MIAE221',
+                      categoryId: '03 - 1-Page Rapid Review Sheets',
+                      categoryTitle: '1-Page Rapid Review Sheets',
+                      title: 'MIAE 221 — Midterm 1-Page Document Cheatsheet & Exam Survival Guide',
+                      filename: 'MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
+                      relativePath: 'Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
+                      tags: ['MIAE 221', 'Midterm Cheatsheet', 'Materials Science', 'Callister'],
+                      summary: 'Comprehensive 1-page condensed master document cheatsheet for Callister Chapters 1–7.4 and Lectures 1–12.'
+                    });
+                  }}
+                  title="Open in in-app modal PDF viewer"
+                >
+                  <Eye size={16} />
+                  <span>Preview Cheatsheet (In-App)</span>
+                </button>
+
+                <a
+                  className="fx-btn"
+                  style={{
+                    background: '#be123c',
+                    color: '#ffffff',
+                    border: 'none',
+                    padding: '8px 16px',
+                    fontSize: '13.5px',
+                    fontWeight: 600,
+                    borderRadius: '6px',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                  href={getPdfUrl('Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
+                  download="MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf"
+                  title="Download the official 1-page PDF"
+                  onClick={() => audio.playClick()}
+                >
+                  <Download size={16} />
+                  <span>Download PDF (Master Copy)</span>
+                </a>
+
+                <a
+                  className="fx-btn fx-btn-tab"
+                  style={{ padding: '8px 14px', fontSize: '13px' }}
+                  href="/cheatsheets/miae221-midterm.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open printable HTML version (10pt font, single-sided, print-ready)"
+                  onClick={() => audio.playClick()}
+                >
+                  <Printer size={15} />
+                  <span>Printable Web Version (10pt)</span>
+                </a>
+
+                <a
+                  className="fx-btn fx-btn-tab"
+                  style={{ padding: '8px 14px', fontSize: '13px' }}
+                  href="/cheatsheets/miae221-cheatsheet.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open public PDF direct URL in new window"
+                  onClick={() => audio.playClick()}
+                >
+                  <ExternalLink size={15} />
+                  <span>Public File (PDF)</span>
+                </a>
+              </div>
+            </div>
+          )}
+
           <h2 className="fx-section-title">Course folders</h2>
           <div className="fx-folder-grid">
             {tree.folders.map(renderFolderTile)}
@@ -552,10 +856,8 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                 <span className="fx-folder-index">
                   {tree.folders.length < 9 ? `0${tree.folders.length}` : tree.folders.length}
                 </span>
-                <span className="fx-folder-name">
-                  {course.id === 'MIAE215' ? 'Document Cheatsheet & Vault' : 'Document Cheatsheet & Filtered Vault'}
-                </span>
-                <span className="fx-folder-meta">1-Page Cheatsheets · Assessment Vault</span>
+                <span className="fx-folder-name">Filtered document</span>
+                <span className="fx-folder-meta">2 Sections · Assessment Vault</span>
               </span>
               <ChevronRight size={18} className="fx-folder-chevron" />
             </button>

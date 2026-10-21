@@ -25,7 +25,8 @@ import {
   Sparkles,
   Calendar,
   Award,
-  Clock
+  Clock,
+  Download
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
@@ -415,10 +416,10 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
           </div>
           <div>
             <h1 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
-              {course.id === 'MIAE215' ? 'Document Cheatsheet & Assessment Gateway' : 'Document Cheatsheet & Filtered Gateway'}
+              Filtered Document Gateway
             </h1>
             <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: '2px 0 0' }}>
-              Official 1-Page Document Cheatsheets, Assessment Vault & Midterm Preparation Hub
+              Two Curated Sections: Course Assessment Vault &amp; Midterm Preparation Hub
             </p>
           </div>
         </div>
@@ -629,368 +630,6 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
 
 
       {/* ========================================================================= */}
-      {/* FEATURED SHOWCASE: MIAE 215 OFFICIAL MOODLE CHEATSHEET & MEMORY AIDE      */}
-      {/* ========================================================================= */}
-      {course.id === 'MIAE215' && (
-        <section
-          className="fx-panel"
-          style={{
-            border: '1.5px solid rgba(16, 185, 129, 0.35)',
-            background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.01) 100%)',
-            boxShadow: '0 4px 20px -4px rgba(16, 185, 129, 0.1)',
-            marginBottom: '20px'
-          }}
-        >
-          <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
-              <span className="fx-panel-icon" style={{ color: '#059669' }}><Sparkles size={20} /></span>
-              <div className="fx-panel-heading">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                  <h2 style={{ color: '#047857' }}>Featured: MIAE 215 Midterm 1-Page Document Cheatsheet &amp; Exam Survival Guide</h2>
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      fontWeight: 800,
-                      padding: '2px 8px',
-                      borderRadius: '6px',
-                      backgroundColor: 'rgba(16, 185, 129, 0.15)',
-                      color: '#059669',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    Exam: Thursday, Oct 22 · 8:45–10:00 AM
-                  </span>
-                </div>
-              </div>
-            </div>
-          </header>
-
-          <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            {/* Official Moodle Policy Box */}
-            <div
-              style={{
-                padding: '14px 18px',
-                borderRadius: '8px',
-                background: 'rgba(245, 158, 11, 0.08)',
-                border: '1px solid rgba(245, 158, 11, 0.28)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px',
-                fontSize: '13px',
-                lineHeight: 1.5
-              }}
-            >
-              <div style={{ fontWeight: 800, color: '#b45309', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CheckCircle2 size={16} />
-                <span>Instructor Moodle Cheatsheet Rules &amp; Exam Policy:</span>
-              </div>
-              <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <li><strong>One side only of one sheet</strong> — front side only, back must remain completely blank.</li>
-                <li><strong>Printed or handwritten</strong>: If printed, text must be <strong>no smaller than 10 pt</strong> (nothing tiny).</li>
-                <li>That&apos;s the <strong>only authorized aid</strong> permitted on the desk besides a faculty-approved calculator.</li>
-                <li><strong>Exam structure</strong>: Thursday Oct 22, 8:45–10:00 AM, in-person handwritten — <strong>40% program-output prediction</strong> &amp; <strong>60% write-a-program</strong>.</li>
-                <li style={{ color: '#047857', fontWeight: 600 }}>✅ <strong>100% Moodle Compliant</strong>: Both guides below are formatted strictly single-sided on Letter paper at $\ge 10$ pt font. Print single-sided and you are fully compliant!</li>
-              </ul>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
-              {/* Card 1: Master Cheatsheet */}
-              <div
-                style={{
-                  padding: '14px 16px',
-                  borderRadius: '10px',
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1.5px solid rgba(16, 185, 129, 0.3)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '11px', fontWeight: 800, color: '#059669', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                    🌟 1-Page Master Cheatsheet
-                  </span>
-                  <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>309 KB · 1-Page Letter (10 pt)</span>
-                </div>
-                <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
-                  MIAE 215 — Midterm 1-Page Document Cheatsheet &amp; Exam Survival Guide
-                </div>
-                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                  Comprehensive single-sided memory aide featuring Dr. Gordon&apos;s Table Tracing Protocol, array boundary garbage values (`G`), integer division truncation traps, operator precedence ladder, pass-by-reference functions, and complete C++ syntax rules.
-                </div>
-                <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
-                  <button
-                    className="fx-btn fx-btn-primary"
-                    style={{ flex: 1, justifyContent: 'center' }}
-                    onClick={() => {
-                      audio.playClick();
-                      onViewPdf({
-                        id: 'MIAE215:filtered:midterm-cheatsheet',
-                        courseId: 'MIAE215',
-                        categoryId: 'Filtered-Vault',
-                        categoryTitle: 'Document Cheatsheet',
-                        title: 'MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide',
-                        filename: 'MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
-                        relativePath: 'Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
-                        fileSizeBytes: 309821,
-                        tags: ['1-Page Cheatsheet', 'Midterm Survival', 'Moodle Compliant', 'Single-Sided'],
-                        summary: 'MIAE 215 1-Page Cheatsheet (Moodle Compliant)'
-                      });
-                    }}
-                  >
-                    <Eye size={14} />
-                    <span>View Cheatsheet</span>
-                  </button>
-                  <a
-                    className="fx-btn fx-btn-tab"
-                    href={getPdfUrl('Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Open in a new tab"
-                    onClick={() => audio.playClick()}
-                  >
-                    <ExternalLink size={14} />
-                    <span>New Tab</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Card 2: Memory Aide & Exam Survival Sheet */}
-              <div
-                style={{
-                  padding: '14px 16px',
-                  borderRadius: '10px',
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1.5px solid rgba(16, 185, 129, 0.3)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '11px', fontWeight: 800, color: '#059669', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                    ⚡ Memory Aide Companion
-                  </span>
-                  <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>325 KB · High-Yield Sheet</span>
-                </div>
-                <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
-                  MIAE 215 — Midterm 1-Page Memory Aide &amp; Exam Survival Sheet
-                </div>
-                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                  Fast visual quick-reference sheet highlighting 7 core algorithmic patterns, Flowgorithm symbols, dual-condition array traversal, and 0-index off-by-one prevention.
-                </div>
-                <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
-                  <button
-                    className="fx-btn fx-btn-primary"
-                    style={{ flex: 1, justifyContent: 'center' }}
-                    onClick={() => {
-                      audio.playClick();
-                      onViewPdf({
-                        id: 'MIAE215:filtered:memory-aide',
-                        courseId: 'MIAE215',
-                        categoryId: 'Filtered-Vault',
-                        categoryTitle: 'Document Cheatsheet',
-                        title: 'MIAE 215 - Midterm 1-Page Memory Aide & Exam Survival Sheet',
-                        filename: 'MIAE 215 - Midterm 1-Page Memory Aide & Exam Survival Sheet.pdf',
-                        relativePath: 'Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Memory Aide & Exam Survival Sheet.pdf',
-                        fileSizeBytes: 325620,
-                        tags: ['Memory Aide', 'Algorithm Patterns', 'Flowgorithm', '1-Page'],
-                        summary: 'MIAE 215 Memory Aide & Exam Survival Sheet'
-                      });
-                    }}
-                  >
-                    <Eye size={14} />
-                    <span>View Sheet</span>
-                  </button>
-                  <a
-                    className="fx-btn fx-btn-tab"
-                    href={getPdfUrl('Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Memory Aide & Exam Survival Sheet.pdf')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Open in a new tab"
-                    onClick={() => audio.playClick()}
-                  >
-                    <ExternalLink size={14} />
-                    <span>New Tab</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ========================================================================= */}
-      {/* FEATURED SHOWCASE: MIAE 221 1-PAGE DOCUMENT CHEATSHEET & EXAM SURVIVAL   */}
-      {/* ========================================================================= */}
-      {course.id === 'MIAE221' && (
-        <section
-          className="fx-panel"
-          style={{
-            border: '1.5px solid rgba(225, 29, 72, 0.35)',
-            background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.05) 0%, rgba(225, 29, 72, 0.01) 100%)',
-            boxShadow: '0 4px 20px -4px rgba(225, 29, 72, 0.1)',
-            marginBottom: '20px'
-          }}
-        >
-          <header className="fx-panel-header" style={{ flexWrap: 'wrap', gap: '12px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
-              <span className="fx-panel-icon" style={{ color: '#e11d48' }}><Sparkles size={20} /></span>
-              <div className="fx-panel-heading">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                  <h2 style={{ color: '#be123c' }}>Featured: MIAE 221 Midterm 1-Page Document Cheatsheet &amp; Exam Survival Guide</h2>
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      fontWeight: 800,
-                      padding: '2px 8px',
-                      borderRadius: '6px',
-                      backgroundColor: 'rgba(225, 29, 72, 0.15)',
-                      color: '#e11d48',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    Exam: Friday, Oct 30 · Callister Chapters 1–7.4
-                  </span>
-                </div>
-              </div>
-            </div>
-          </header>
-
-          <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
-              Comprehensive 1-page condensed document cheatsheet and exam survival guide for the MIAE 221 Midterm.
-              Covers <strong>Lectures 1–12 (Callister Chapters 1–7.4)</strong>: Potential energy wells, FCC/BCC/HCP crystal geometry, Miller indices for planes &amp; directions, linear &amp; planar densities, Bragg’s law XRD peak rules, Hume-Rothery solubility criteria, Schmid’s law slip systems, Fick’s 1st and 2nd diffusion laws, and tensile stress-strain deformation landmarks.
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
-              {/* Card 1: 1-Page Master Cheatsheet */}
-              <div
-                style={{
-                  padding: '14px 16px',
-                  borderRadius: '10px',
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1.5px solid rgba(225, 29, 72, 0.3)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '11px', fontWeight: 800, color: '#e11d48', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                    🌟 1-Page Master Cheatsheet
-                  </span>
-                  <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>233 KB · 1-Page Condensed Guide</span>
-                </div>
-                <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
-                  MIAE 221 — Midterm 1-Page Document Cheatsheet &amp; Exam Survival Guide
-                </div>
-                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                  High-yield formula summary, unit cell geometric constants, Miller-Bravais hexagonal conversion rules, selection rules for allowed XRD reflections, Arrhenius parameters, and top 8 exam trap solutions.
-                </div>
-                <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
-                  <button
-                    className="fx-btn fx-btn-primary"
-                    style={{ flex: 1, justifyContent: 'center' }}
-                    onClick={() => {
-                      audio.playClick();
-                      onViewPdf({
-                        id: 'MIAE221:filtered:midterm-cheatsheet',
-                        courseId: 'MIAE221',
-                        categoryId: 'Filtered-Vault',
-                        categoryTitle: 'Document Cheatsheet',
-                        title: 'MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide',
-                        filename: 'MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
-                        relativePath: 'Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf',
-                        fileSizeBytes: 233660,
-                        tags: ['1-Page Cheatsheet', 'Midterm Survival', 'Callister Ch 1-7', 'Zero Lost Marks'],
-                        summary: 'MIAE 221 1-Page Cheatsheet & Survival Guide'
-                      });
-                    }}
-                  >
-                    <Eye size={14} />
-                    <span>View Cheatsheet</span>
-                  </button>
-                  <a
-                    className="fx-btn fx-btn-tab"
-                    href={getPdfUrl('Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Open in a new tab"
-                    onClick={() => audio.playClick()}
-                  >
-                    <ExternalLink size={14} />
-                    <span>New Tab</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Card 2: 2017 Sample Midterm & Marking Key */}
-              <div
-                style={{
-                  padding: '14px 16px',
-                  borderRadius: '10px',
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1.5px solid rgba(225, 29, 72, 0.3)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '11px', fontWeight: 800, color: '#e11d48', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                    📝 Official Sample Exam
-                  </span>
-                  <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>6 Pages · Drs. Pugh &amp; Medraj</span>
-                </div>
-                <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
-                  Official MECH/MIAE 221 Sample Midterm Exam 2017 &amp; Solutions
-                </div>
-                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                  Authentic 20-question multiple choice teacher exam featuring Figure X Miller indices, Cu-Ni diffusion couple, Figure 1 stress-strain curve points, and full marking key.
-                </div>
-                <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
-                  <button
-                    className="fx-btn fx-btn-primary"
-                    style={{ flex: 1, justifyContent: 'center' }}
-                    onClick={() => {
-                      audio.playClick();
-                      onViewPdf({
-                        id: 'MIAE221:filtered:sample-2017',
-                        courseId: 'MIAE221',
-                        categoryId: 'Filtered-Vault',
-                        categoryTitle: 'Official Sample Midterm',
-                        title: 'MIAE 221 - Sample Midterm Exam 2017 (Drs. Pugh & Medraj)',
-                        filename: 'MIAE 221 - Sample Midterm Exam 2017 (Drs. Pugh & Medraj).pdf',
-                        relativePath: 'Miae 221/04 - Practice Problems & Step-by-Step Solutions/MIAE 221 - Sample Midterm Exam 2017 (Drs. Pugh & Medraj).pdf',
-                        fileSizeBytes: 541092,
-                        tags: ['Official Sample Midterm', '20 Questions', 'Pugh & Medraj', '2017'],
-                        summary: 'Official Sample Midterm 2017'
-                      });
-                    }}
-                  >
-                    <Eye size={14} />
-                    <span>View Exam</span>
-                  </button>
-                  <a
-                    className="fx-btn fx-btn-tab"
-                    href={getPdfUrl('Miae 221/04 - Practice Problems & Step-by-Step Solutions/MIAE 221 - Sample Midterm Exam 2017 (Drs. Pugh & Medraj).pdf')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Open in a new tab"
-                    onClick={() => audio.playClick()}
-                  >
-                    <ExternalLink size={14} />
-                    <span>New Tab</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ========================================================================= */}
       {/* SECTION 1: ALL ASSIGNMENTS, QUIZZES, EXAMS, LABS & PROJECTS               */}
       {/* ========================================================================= */}
       <section className="fx-panel">
@@ -1118,6 +757,20 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                     <a
                       className="fx-btn fx-btn-tab"
                       href={url}
+                      download={doc.filename}
+                      title={`Download ${doc.filename}`}
+                      aria-label="Download file"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        audio.playClick();
+                      }}
+                    >
+                      <Download size={14} />
+                      <span className="fx-btn-tab-text">Download</span>
+                    </a>
+                    <a
+                      className="fx-btn fx-btn-tab"
+                      href={url}
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Open PDF directly in a new window / tab"
@@ -1229,6 +882,20 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                     <Eye size={14} />
                     <span>View</span>
                   </button>
+                  <a
+                    className="fx-btn fx-btn-tab"
+                    href={url}
+                    download={doc.filename}
+                    title={`Download ${doc.filename}`}
+                    aria-label="Download file"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      audio.playClick();
+                    }}
+                  >
+                    <Download size={14} />
+                    <span className="fx-btn-tab-text">Download</span>
+                  </a>
                   <a
                     className="fx-btn fx-btn-tab"
                     href={url}

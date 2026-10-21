@@ -39,15 +39,57 @@
   .ok { color: #0f766e; font-weight: 700; }
   b.t { color: #0f766e; }
   @page { size: letter; margin: 0.3in 0.35in; }
+  .no-print {
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11pt;
+  }
+  .btn {
+    background: #0f766e;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 10pt;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-outline {
+    background: transparent;
+    color: #0f766e;
+    border: 1px solid #0f766e;
+  }
   @media print {
     body { padding: 0; }
+    .no-print { display: none !important; }
     .cols { columns: 2; }
   }
 </style>
 </head>
 <body>
+
+<div class="no-print">
+  <div>
+    <strong>MIAE 215 Midterm Master Cheat Sheet</strong> — Dr. Gordon Moodle Compliant · 10pt Font · Single-Sided
+  </div>
+  <div style="display: flex; gap: 8px;">
+    <button class="btn" onclick="window.print()">🖨️ Print (1 Page)</button>
+    <a class="btn btn-outline" href="/cheatsheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf" download="MIAE 215 Midterm Cheatsheet.pdf">📥 Download PDF</a>
+  </div>
+</div>
+
 <h1>MIAE 215 — Midterm Cheat Sheet</h1>
-<div class="sub">Thu Oct 22 · Handwritten · 40% program-output tracing / 60% write-a-program · everything through the latest lecture</div>
+<div class="sub">Thu Oct 22 · Handwritten · 40% program-output tracing / 60% write-a-program · Moodle-Compliant 10pt Font</div>
 <div class="cols">
 
 <section>
