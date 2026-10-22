@@ -31,7 +31,7 @@ interface PresetData {
 const PRESETS: PresetData[] = [
   {
     id: 'm25',
-    name: 'Fall 2025 Midterm Paper A (AGV Routing)',
+    name: 'AGV Routing Practice (Asymmetric 6-Station)',
     context: 'Automated Guided Vehicle delivering to 5 machines from Storage S (6x6 Asymmetric)',
     nodes: ['S', 'M1', 'M2', 'M3', 'M4', 'M5'],
     unit: 'minutes',
@@ -95,7 +95,7 @@ interface QuizItem {
 const QUIZ_ITEMS: QuizItem[] = [
   {
     id: 'q1',
-    exam: 'Fall 2025 Midterm · Problem 4.3 (a)',
+    exam: 'AGV Routing Practice · Problem 4.3 (a)',
     question: 'Sequence S1 starting from S gives total travel time T1 = 9.0 min. Sequence S2 starting from M1 gives T2 = 7.9 min. Is Statement "S1 is optimal" True, False, or MTF?',
     options: ['T', 'F', 'MTF'],
     correct: 'F',
@@ -103,7 +103,7 @@ const QUIZ_ITEMS: QuizItem[] = [
   },
   {
     id: 'q2',
-    exam: 'Fall 2025 Midterm · Problem 4.3 (b)',
+    exam: 'AGV Routing Practice · Problem 4.3 (b)',
     question: 'Is Statement "S2 is optimal" True, False, or MTF?',
     options: ['T', 'F', 'MTF'],
     correct: 'MTF',
@@ -111,7 +111,7 @@ const QUIZ_ITEMS: QuizItem[] = [
   },
   {
     id: 'q3',
-    exam: 'Fall 2025 Midterm · Problem 4.3 (c)',
+    exam: 'AGV Routing Practice · Problem 4.3 (c)',
     question: 'Is Statement "S1 is NOT optimal" True, False, or MTF?',
     options: ['T', 'F', 'MTF'],
     correct: 'T',
@@ -119,7 +119,7 @@ const QUIZ_ITEMS: QuizItem[] = [
   },
   {
     id: 'q4',
-    exam: 'Fall 2025 Midterm · Problem 4.3 (d)',
+    exam: 'AGV Routing Practice · Problem 4.3 (d)',
     question: 'Is Statement "S2 is NOT optimal" True, False, or MTF?',
     options: ['T', 'F', 'MTF'],
     correct: 'MTF',
@@ -127,7 +127,7 @@ const QUIZ_ITEMS: QuizItem[] = [
   },
   {
     id: 'q5',
-    exam: 'Fall 2025 Midterm · Problem 4.4',
+    exam: 'AGV Routing Practice · Problem 4.4',
     question: 'Consider the statement: "If we follow nearest neighbor to generate 6 sequences starting from S, M1, M2, M3, M4, M5, then the smallest total travel time will be the optimal sequence of ALL possible sequences." (Teacher exam grading vs OR theory)',
     options: ['T', 'F', 'MTF'],
     correct: 'T',
@@ -548,7 +548,7 @@ export const TspFactorialSimulator: React.FC<{ onBack?: () => void }> = ({ onBac
             />
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-muted, #9ca3af)' }}>
               <span>3 Stations (Trivial)</span>
-              <span>6 Stations (Fall 2025 Midterm)</span>
+              <span>6 Stations (AGV Routing)</span>
               <span>7 Stations (Lecture Ex 1)</span>
               <span>21 Stations (Fall 2020 Q2.4)</span>
             </div>

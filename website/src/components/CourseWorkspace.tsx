@@ -50,7 +50,7 @@ const FilteredDocumentSection = safeLazy(() => import('./FilteredDocumentSection
 const TermPaperVaultSection = safeLazy(() => import('./TermPaperVaultSection').then((m) => ({ default: m.TermPaperVaultSection })));
 import { TspFactorialSimulator } from './TspFactorialSimulator';
 import { GateGlyph } from './vault/GateGlyph';
-import { hasGate, hasPaperDrill } from './vault/gateCourses';
+import { hasGate } from './vault/gateCourses';
 import { WeeklyPath, WEEKLY_FOLDER, hasWeeklyPath } from './WeeklyPath';
 
 import { TeacherMidtermPracticeSection } from './TeacherMidtermPracticeSection';
@@ -69,8 +69,7 @@ const ExamCheatsheetSection = safeLazy(() =>
 );
 import { TEACHER_PRACTICE_FOLDER, hasTeacherPractice } from '../data/teacherPracticeCourses';
 
-// The course badge opens a Skill Drill on last year's midterm paper (kept out of the hidden folder)
-export const INDU_PREP_FOLDER = 'Industrial Engineering Midterm Preparation';
+
 
 interface CourseWorkspaceProps {
   course: CourseWithDocs;
@@ -330,26 +329,9 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
 
         <div className="workspace-title-row">
           <div>
-            {hasPaperDrill(course.id) ? (
-              <button
-                type="button"
-                className="course-badge"
-                onClick={() => openPath([INDU_PREP_FOLDER])}
-                title="Skill Drill: last year’s midterm paper"
-                style={{
-                  backgroundColor: course.accentHex,
-                  cursor: 'pointer',
-                  border: 'none',
-                  display: 'inline-block'
-                }}
-              >
-                {course.code}
-              </button>
-            ) : (
-              <div className="course-badge" style={{ backgroundColor: course.accentHex }}>
-                {course.code}
-              </div>
-            )}
+            <div className="course-badge" style={{ backgroundColor: course.accentHex }}>
+              {course.code}
+            </div>
             <h1 className="course-main-title">
               {hasGate(course.id) ? (
                 <>
@@ -646,10 +628,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             initialTab="tutor_videos"
           />
         </Suspense>
-      ) : activePath[0] === INDU_PREP_FOLDER && hasPaperDrill(course.id) ? (
-        <Suspense fallback={<p className="fx-empty">Opening…</p>}>
-          <MidtermGate key="paper" course={course} onViewPdf={onViewPdf} paper />
-        </Suspense>
+
       ) : activePath[0] === GATE_FOLDER && hasGate(course.id) ? (
         <Suspense fallback={<p className="fx-empty">Opening…</p>}>
           <MidtermGate key="gate" course={course} onViewPdf={onViewPdf} />

@@ -94,9 +94,7 @@ const tryUnlock = async (course: GateCourse, password: string) => unlockBlob(awa
 
 // Last year's paper (the course badge's Skill Drill): its own blob and its own password, never unlocked
 // together with the hidden folders.
-const PAPER_LOADERS: Partial<Record<GateCourse, () => Promise<{ default: unknown }>>> = {
-  INDU211: () => import('../../data/vault/indu211-paper-drill.enc.json')
-};
+const PAPER_LOADERS: Partial<Record<GateCourse, () => Promise<{ default: unknown }>>> = {};
 const paperKey = (course: GateCourse) => `paper_key_${course}`;
 const loadPaper = async (course: GateCourse): Promise<Blob> => (await PAPER_LOADERS[course]!()).default as Blob;
 

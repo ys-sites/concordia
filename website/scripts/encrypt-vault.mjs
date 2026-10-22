@@ -30,8 +30,8 @@ const KNOWN_CALCS = new Set([
   'growth', 'cooling', 'logistic', 'complex', 'breakeven', 'transport', 'cog', 'tsp', 'savings', 'eoq', 'forecast'
 ]);
 
-// course → exam id of last year's paper, kept out of the hidden folder
-const PAPER_DRILL = { INDU211: 'M25' };
+// Exams explicitly stripped and excluded from all public vaults
+const EXCLUDED_EXAMS = { INDU211: 'M25' };
 
 const password = process.env.MIDTERM_GATE_KEY;
 const paperPassword = process.env.PAPER_DRILL_KEY;
@@ -175,23 +175,15 @@ for (const [course, rel] of Object.entries(SOURCES)) {
   const problems = validate(content, course);
   const fixed = deepFix(content);
   if (JSON.stringify(fixed).includes(BAR)) problems.push(`${course}: a combining overbar is outside [ ] or ( ); write it as $\\bar{n}$`);
-  const paperExam = PAPER_DRILL[course];
-  if (paperExam && !paperPassword) problems.push(`${course}: set PAPER_DRILL_KEY (the badge drill password) to split out ${paperExam}`);
-  if (paperExam && !content.exams.some((e) => e.id === paperExam)) problems.push(`${course}: paper drill exam ${paperExam} not found`);
+  const excludedExam = EXCLUDED_EXAMS[course];
   if (problems.length) {
     console.error(problems.join('\n'));
     failed = true;
     continue;
   }
   const out = path.join(here, `../src/data/vault/${course.toLowerCase()}-midterm-gate.enc.json`);
-  // the hidden folder never carries the paper or its solved page
-  await encryptTo(out, paperExam ? { ...keepExams(fixed, (e) => e !== paperExam), paperDoc: undefined } : fixed, password);
-  if (paperExam) {
-    const paper = onlyPaper(fixed, paperExam);
-    const paperOut = path.join(here, `../src/data/vault/${course.toLowerCase()}-paper-drill.enc.json`);
-    await encryptTo(paperOut, paper, paperPassword);
-    console.log(`${course}: paper drill ${paperExam}: ${paper.questions.length} questions → ${Math.round(fs.statSync(paperOut).size / 1024)} KB (kept out of the hidden folder)`);
-  }
+  // the hidden folder never carries excluded papers
+  await encryptTo(out, excludedExam ? { ...keepExams(fixed, (e) => e !== excludedExam), paperDoc: undefined } : fixed, password);
   const quizItems = content.formulas.reduce((n, f) => n + (f.learn?.quiz.length ?? 0), 0);
   console.log(
     `${course}: ${content.questions.length} questions, ${content.clusters.length} clusters, ${content.formulas.length} lessons (${quizItems} practice items), ` +
