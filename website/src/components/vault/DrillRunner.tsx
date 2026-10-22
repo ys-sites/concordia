@@ -7,6 +7,7 @@ import { DrillItem, grade, letter, recordResult } from './drill';
 import { CodeBlock, LectureButton } from './shared';
 import type { GateIndex } from './shared';
 import { GateSolveVideo } from './GateSolveVideo';
+import { AskAiButton } from './AskAiModal';
 import type { GateContent, GateNav } from './vaultTypes';
 
 const BADGE: Record<string, { text: string; cls: string }> = {
@@ -316,7 +317,22 @@ export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, em
                 {item.kind === 'output' ? <CodeBlock code={item.answerText} /> : <MathText text={item.answerText} />}
                 {item.kind === 'num' && item.unit ? ` ${item.unit}` : ''}
               </div>
-              <GateSolveVideo videos={idx?.solveVideos} itemKey={item.key} />
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '6px', flexWrap: 'wrap' }}>
+                <GateSolveVideo videos={idx?.solveVideos} itemKey={item.key} />
+                <AskAiButton
+                  problem={{
+                    id: item.key,
+                    courseTitle: course,
+                    topic: item.topic ? idx?.topic.get(item.topic)?.name : undefined,
+                    questionText: item.prompt,
+                    options: item.opts?.map((o, optIdx) => ({ key: String.fromCharCode(65 + optIdx), text: o })),
+                    answerText: item.answerText,
+                    solution: item.solution,
+                    steps: item.steps,
+                    note: item.note
+                  }}
+                />
+              </div>
               {item.solution && <CodeBlock code={item.solution} />}
               {item.steps && item.steps.length > 0 ? (
                 <StepsList steps={item.steps} open={stepsOpen} onToggle={() => setStepsOpen((v) => !v)} />

@@ -8,6 +8,7 @@ import type { GateIndex } from './shared';
 import { ExamTag, LectureButton, MatchBadge, StatusBadge } from './shared';
 import type { DrillItem } from './drill';
 import { GateSolveVideo } from './GateSolveVideo';
+import { AskAiButton } from './AskAiModal';
 
 export type VideoDepth = 'quick' | 'deep';
 
@@ -184,7 +185,22 @@ export const SourcePanel: React.FC<PanelProps> = ({ item, idx, content, nav, dep
 
   return (
     <div className="sq-explain">
-      <GateSolveVideo videos={idx.solveVideos} itemKey={item.key} />
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap' }}>
+        <GateSolveVideo videos={idx.solveVideos} itemKey={item.key} />
+        <AskAiButton
+          problem={{
+            id: item.key,
+            courseTitle: exam?.label,
+            topic: topic?.name,
+            questionText: item.prompt,
+            options: item.opts?.map((o, optIdx) => ({ key: String.fromCharCode(65 + optIdx), text: o })),
+            answerText: item.answerText,
+            solution: item.solution,
+            steps: item.steps,
+            note: item.note
+          }}
+        />
+      </div>
       <div className="sq-ex-block">
         <div className="sq-ex-head">
           <MapPin size={14} /> Where this question comes from

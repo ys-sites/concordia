@@ -3,6 +3,7 @@ import { BookOpen, Eye, EyeOff, Presentation, Sigma, Video } from 'lucide-react'
 import { MathText } from '../../utils/mathRenderer';
 import type { Cluster, Exam, Formula, GateContent, GateNav, LectureRef, MatchType, Question, Subject, Topic } from './vaultTypes';
 import { GateSolveVideo } from './GateSolveVideo';
+import { AskAiButton } from './AskAiModal';
 
 export interface GateIndex {
   q: Map<string, Question>;
@@ -211,7 +212,21 @@ export const QuestionCard: React.FC<{
               <b>Answer:</b> {q.kind === 'output' ? <CodeBlock code={q.ans} /> : <MathText text={q.ans} />}
             </div>
           )}
-          <GateSolveVideo videos={idx.solveVideos} itemKey={q.id} />
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '6px', flexWrap: 'wrap' }}>
+            <GateSolveVideo videos={idx.solveVideos} itemKey={q.id} />
+            <AskAiButton
+              problem={{
+                id: q.id,
+                topic: q.topic ? idx.topic.get(q.topic)?.name : undefined,
+                questionText: q.q,
+                options: q.opts?.map((o, optIdx) => ({ key: String.fromCharCode(65 + optIdx), text: o })),
+                answerText: q.ans,
+                solution: q.solution,
+                steps: q.steps,
+                note: q.note
+              }}
+            />
+          </div>
           {q.solution && <CodeBlock code={q.solution} />}
           {q.keyAns && <div className="mg-answer mg-small" style={{ color: 'var(--status-warning)' }}>The posted key says {q.opts ? `(${q.keyAns})` : q.keyAns}, which is wrong. See the note.</div>}
           {q.steps && q.steps.length > 0 && (
