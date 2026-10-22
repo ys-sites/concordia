@@ -342,3 +342,9 @@
     height: 44px;
   }
 }
+
+.lx-rem-check {
+  width: 28px;
+  height: 28px;
+  margin-top: -2px;
+}

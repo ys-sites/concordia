@@ -114,7 +114,7 @@
 }
 .lx-lvl-chip {
   background: var(--lvl-bg);
-  color: var(--lvl);
+  color: var(--lvl-ink);
 }
 @media (max-width: 900px) {
   .lx-bank-filters {

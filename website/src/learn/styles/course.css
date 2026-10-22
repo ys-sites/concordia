@@ -149,7 +149,6 @@
   margin: 22px 0 16px;
   padding: 16px 18px;
   border: 1px solid var(--lx-tint-2);
-  border-left: 4px solid var(--lx-accent);
   border-radius: var(--lx-r-lg);
   background: linear-gradient(135deg, var(--lx-tint), var(--lx-surface));
 }
@@ -477,4 +476,8 @@
   .lx-res {
     grid-template-columns: 1fr;
   }
+}
+.lx-crumbs a {
+  display: inline-block;
+  padding-block: 4px;
 }

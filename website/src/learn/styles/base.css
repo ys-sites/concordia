@@ -552,3 +552,15 @@ body::before {
     bottom: 84px;
   }
 }
+
+/* headings break into even lines; paragraphs avoid a lone last word */
+.lx-app :is(h1, h2, h3, h4) {
+  text-wrap: balance;
+}
+.lx-app :is(p, li, .lx-meta) {
+  text-wrap: pretty;
+}
+
+.lx-lib-search input {
+  min-height: 40px;
+}

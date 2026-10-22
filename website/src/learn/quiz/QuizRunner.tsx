@@ -298,10 +298,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
     const isExam = step.kind === 'exam';
     return (
       <div className="lx-quiz lx-quiz-intro">
-        <span className="lx-quiz-icon" aria-hidden>
-          {isExam ? <GraduationCap size={26} /> : <ListChecks size={26} />}
-        </span>
-        <h2 className="lx-h2">{step.title}</h2>
+        <h2 className="lx-h2 lx-quiz-title">
+          {isExam ? <GraduationCap size={24} aria-hidden /> : <ListChecks size={24} aria-hidden />} {step.title}
+        </h2>
         <p className="lx-lead">
           {step.kind === 'check'
             ? `${available.length} quick questions on what you just learned. You see right away if you are right, with the worked solution.`
@@ -389,10 +388,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   if (!session.finished && started && !resumeAsked) {
     return (
       <div className="lx-quiz lx-quiz-intro">
-        <span className="lx-quiz-icon" aria-hidden>
-          <RotateCcw size={26} />
-        </span>
-        <h2 className="lx-h2">Pick up where you left off?</h2>
+        <h2 className="lx-h2 lx-quiz-title">
+          <RotateCcw size={24} aria-hidden /> Pick up where you left off?
+        </h2>
         <p className="lx-lead lx-num">
           You were on question {session.i + 1} of {session.order.length}, with {Object.keys(session.answers).length} answered
           {session.timeLimit ? ` and ${fmt(session.timeLimit - session.elapsed)} left on the clock` : ''}.

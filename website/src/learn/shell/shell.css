@@ -268,3 +268,23 @@
     gap: 24px;
   }
 }
+
+/* placeholder at AA contrast on the off-white field */
+.lx-search input::placeholder {
+  color: var(--lx-muted);
+  opacity: 1;
+}
+
+/* touch targets: at least 32 px everywhere, 44 px on phones */
+.lx-footer-links a,
+.lx-linklike {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+}
+@media (max-width: 720px) {
+  .lx-footer-links a,
+  .lx-linklike {
+    min-height: 44px;
+  }
+}

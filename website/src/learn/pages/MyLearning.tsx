@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { AlertTriangle, CalendarDays, CheckCircle2, Clock3, Flame, ListChecks, PlayCircle, RotateCcw, Target, Trophy, X } from 'lucide-react';
+import { AlertTriangle, CalendarDays, CheckCircle2, Clock3, Flame, ListChecks, Pencil, PlayCircle, RotateCcw, Target, Trophy, X } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { Curriculum, Lesson, Step } from '../model';
 import { COURSES, COURSE_BY_ID, courseClass } from '../courses';
@@ -114,7 +114,6 @@ const StudyPlanSimulator: React.FC<{
     <section className={`lx-study-plan ${courseClass(row.id)}`} aria-labelledby="study-plan-title">
       <div className="lx-study-plan-head">
         <div>
-          <span className="lx-eyebrow">Study plan simulator</span>
           <h2 id="study-plan-title" className="lx-h2">Can I finish before the exam?</h2>
           <p className="lx-meta">Adjust the date or daily time. Your plan updates instantly and stays on this device.</p>
         </div>
@@ -493,10 +492,17 @@ export const MyLearning: React.FC = () => {
                   ) : (
                     <span className="lx-meta">No exam date yet</span>
                   )}
-                  <button type="button" className="lx-linkbtn lx-ready-date" onClick={() => setExamEdit({ item: d.exam, course: d.c.id })}>
-                    <CalendarDays size={13} aria-hidden /> {d.exam ? 'Change the date or details' : 'Add the exam date'}
-                  </button>
+                  {!d.exam && (
+                    <button type="button" className="lx-linkbtn lx-ready-date" onClick={() => setExamEdit({ course: d.c.id })}>
+                      <CalendarDays size={13} aria-hidden /> Add the exam date
+                    </button>
+                  )}
                 </span>
+                {d.exam && (
+                  <button type="button" className="lx-icon-btn lx-ready-edit" onClick={() => setExamEdit({ item: d.exam, course: d.c.id })} aria-label={`Change the ${d.c.code} ${d.exam.title.toLowerCase()} date or details`} title="Change the date or details">
+                    <Pencil size={15} />
+                  </button>
+                )}
               </div>
             ))}
           </div>

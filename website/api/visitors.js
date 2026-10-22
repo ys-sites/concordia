@@ -24,6 +24,23 @@ const LIVE_WINDOW_MS = 90000;
 const UPSTREAM_TIMEOUT_MS = 2500;
 const TOTALS_TTL_MS = 60000;
 
+// Abuse guard (per warm instance): at most RATE_MAX counted visits a minute from one network address. Past it
+// the request is still answered, just not counted, so real students on a shared campus network (far below
+// the limit) are never affected and the totals never go down.
+const RATE_WINDOW_MS = 60000;
+const RATE_MAX = 120;
+const visitsByAddress = new Map();
+function countable(address, now) {
+  const r = visitsByAddress.get(address);
+  if (!r || now - r.start > RATE_WINDOW_MS) {
+    visitsByAddress.set(address, { start: now, n: 1 });
+    if (visitsByAddress.size > 5000) for (const [k, v] of visitsByAddress) if (now - v.start > RATE_WINDOW_MS) visitsByAddress.delete(k);
+    return true;
+  }
+  r.n++;
+  return r.n <= RATE_MAX;
+}
+
 // In-memory sliding session tracker for Live Active Visitors (per warm instance)
 const activeSessions = new Map();
 let lastPrune = 0;
@@ -70,6 +87,10 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
+  if (req.method !== 'GET' && req.method !== 'POST') {
+    res.setHeader('Allow', 'GET, POST, OPTIONS');
+    return res.status(405).end();
+  }
 
   const todayStr = montrealDate();
   const now = Date.now();
@@ -80,8 +101,11 @@ export default async function handler(req, res) {
   } catch {
     body = {};
   }
-  const sessionId = String(body.sessionId || req.query.sessionId || 'anon_' + Math.random().toString(36).slice(2, 9)).slice(0, 64);
-  const isHeartbeat = Boolean(body.isHeartbeat || req.query.heartbeat);
+  // session ids are only ever our own short random tokens: anything else is replaced, never stored as sent
+  const rawSession = String(body.sessionId || req.query.sessionId || '');
+  const sessionId = /^[A-Za-z0-9_-]{1,64}$/.test(rawSession) ? rawSession : 'anon_' + Math.random().toString(36).slice(2, 9);
+  const address = String(req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || req.socket?.remoteAddress || 'unknown').split(',')[0].trim();
+  const isHeartbeat = Boolean(body.isHeartbeat || req.query.heartbeat) || (req.method === 'POST' && !countable(address, now));
 
   // 1. Maintain active live sessions (pruned at most every 15 s)
   activeSessions.set(sessionId, now);

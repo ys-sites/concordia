@@ -65,7 +65,8 @@
 .lx-ptop-prog .lx-ring > span {
   background: var(--lx-dark);
   color: #fff;
-  font-size: 9.5px;
+  font-size: 11px;
+  letter-spacing: -0.02em;
 }
 .lx-ptop .lx-ring {
   background: conic-gradient(var(--lx-tint-2) calc(var(--p) * 1%), #334155 0);
@@ -955,4 +956,9 @@
   .lx-refs {
     padding: 16px 16px 4px;
   }
+}
+
+.lx-ptop-title a {
+  display: inline-block;
+  padding-block: 4px;
 }
