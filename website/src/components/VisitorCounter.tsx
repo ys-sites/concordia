@@ -55,11 +55,11 @@ export const VisitorCounter: React.FC = () => {
   return (
     <div 
       className="visitor-counter-container" 
-      title="Visits counted across every device since the site launched"
+      title="People counted by device: refreshing never adds a visit"
     >
       <div className="visitor-stats-badge">
         {/* Live Active Now */}
-        <div className="visitor-stat-item" title="Active users currently on the site">
+        <div className="visitor-stat-item" title="People with the site open right now">
           <span className="pulse-dot-green" />
           <strong className="visitor-number">
             <CountUp to={stats.live} duration={0.8} />
@@ -70,7 +70,7 @@ export const VisitorCounter: React.FC = () => {
         <span className="visitor-stat-divider">·</span>
 
         {/* Today's Visits */}
-        <div className="visitor-stat-item" title="Visits today (starts over at midnight, Montreal time)">
+        <div className="visitor-stat-item" title="People who opened the site today (starts over at midnight, Montreal time)">
           <span className="visitor-label">Today:</span>
           <strong className="visitor-number">
             <CountUp to={stats.today} duration={1.2} />
@@ -80,7 +80,7 @@ export const VisitorCounter: React.FC = () => {
         <span className="visitor-stat-divider">·</span>
 
         {/* Total Visits */}
-        <div className="visitor-stat-item" title="Cumulative visits all-time">
+        <div className="visitor-stat-item" title="Visits: one per person per day">
           <Users size={12} className="visitor-icon text-indigo" />
           <span className="visitor-label">Total:</span>
           <strong className="visitor-number">
