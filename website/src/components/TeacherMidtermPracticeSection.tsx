@@ -39,6 +39,7 @@ import { Engr213MidtermCompanion } from './Engr213MidtermCompanion';
 import { CppCodeSimulator } from './CppCodeSimulator';
 import { Miae215ExamPaper } from './Miae215ExamPaper';
 import { CppCodeLab } from './CppCodeLab';
+import { PracticeMidterm2026 } from './PracticeMidterm2026';
 import { F23_A_TRACE, F23_B_TRACE } from '../data/cppTraceData';
 
 interface TeacherMidtermPracticeSectionProps {
@@ -48,7 +49,7 @@ interface TeacherMidtermPracticeSectionProps {
   onBack: () => void;
 }
 
-type TabType = 'drill' | 'blueprint' | 'files' | 'traps' | 'trace' | 'exam_paper' | 'code_lab';
+type TabType = 'drill' | 'blueprint' | 'files' | 'traps' | 'trace' | 'exam_paper' | 'code_lab' | 'practice_2026';
 
 const DAY_MS = 86400000;
 
@@ -310,6 +311,20 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
             >
               <Code2 size={16} />
               <span>C++ Midterm Code Lab (60%)</span>
+            </button>
+          )}
+          {course.id === 'MIAE215' && (
+            <button
+              className={`tp-tab-btn ${activeTab === 'practice_2026' ? 'active' : ''}`}
+              role="tab"
+              aria-selected={activeTab === 'practice_2026'}
+              onClick={() => {
+                audio.playClick();
+                setActiveTab('practice_2026');
+              }}
+            >
+              <Clapperboard size={16} />
+              <span>Practice Midterm 2026 · Video Solutions</span>
             </button>
           )}
           <button
@@ -886,6 +901,13 @@ cout << "\\n" << A[i]; // i = 4 (out of bounds -> Garbage!)`}
               onLaunchDrill(course.id, teacherDrillId({ topic: 'all', count: 'all', ordered: true }))
             }
           />
+        </div>
+      )}
+
+      {/* Teacher's practice midterm (Fall 2026) with a video solution per question */}
+      {activeTab === 'practice_2026' && course.id === 'MIAE215' && (
+        <div className="tp-tab-content">
+          <PracticeMidterm2026 />
         </div>
       )}
 

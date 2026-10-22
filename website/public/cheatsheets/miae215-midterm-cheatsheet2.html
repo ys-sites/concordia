@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MIAE 215 · Midterm Cheatsheet 2.0 — Dr. Gordon Official Exam Blueprint &amp; System</title>
+<style>
+  @page {
+    size: letter portrait;
+    margin: 0;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #0f172a;
+    background-color: #ffffff;
+    line-height: 1.16;
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    max-height: 11in;
+    padding: 0.07in 0.16in 0.05in 0.16in;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Top strip */
+  .top-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #b91c1c;
+    padding-bottom: 1.5px;
+    margin-bottom: 1.5px;
+    font-size: 10.5px;
+    font-weight: 800;
+  }
+  .top-strip .title {
+    color: #991b1b;
+    letter-spacing: -0.01em;
+  }
+  .top-strip .meta {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #475569;
+  }
+
+  /* Section Title */
+  .section-title {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #0f172a;
+    border-left: 3px solid #b91c1c;
+    padding-left: 4px;
+    margin: 1px 0 0.8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .section-title.teal {
+    border-left-color: #0d9488;
+  }
+  .section-title.blue {
+    border-left-color: #2563eb;
+  }
+  .section-title span.badge {
+    font-size: 9px;
+    font-weight: 700;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 0.5px 4px;
+    border-radius: 2px;
+    text-transform: none;
+  }
+
+  /* Grid layouts */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 3px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3px;
+  }
+  .grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2.5px;
+  }
+
+  /* Cards */
+  .card {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 2.5px;
+    padding: 2.5px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5px;
+  }
+
+  .card-header {
+    font-size: 10px;
+    font-weight: 800;
+    color: #1e293b;
+    text-transform: uppercase;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tag {
+    font-size: 8.5px;
+    font-weight: 800;
+    padding: 0.5px 3px;
+    border-radius: 2px;
+  }
+  .tag-red { background: #fee2e2; color: #991b1b; }
+  .tag-teal { background: #ccfbf1; color: #0f766e; }
+  .tag-blue { background: #e0e7ff; color: #3730a3; }
+  .tag-amber { background: #fef3c7; color: #92400e; }
+  .tag-dark { background: #1e293b; color: #f8fafc; }
+
+  /* Compact Tables */
+  table.compact-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.6px;
+  }
+  table.compact-table th {
+    background: #f8fafc;
+    color: #334155;
+    font-weight: 700;
+    font-size: 9px;
+    text-align: left;
+    padding: 0.8px 2.5px;
+    border-bottom: 1px solid #cbd5e1;
+  }
+  table.compact-table td {
+    padding: 0.6px 2.5px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+  }
+
+  /* Code elements */
+  code, .mono {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9.6px;
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  .code-block {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 2.5px;
+    padding: 1.5px 3.5px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9.3px;
+    line-height: 1.15;
+    color: #0f172a;
+    white-space: pre-wrap;
+  }
+  .code-kw { color: #0f766e; font-weight: 700; }
+  .code-type { color: #2563eb; font-weight: 700; }
+  .code-str { color: #059669; }
+  .code-num { color: #d97706; }
+  .code-cmt { color: #64748b; font-style: italic; }
+
+  /* Callouts */
+  .callout {
+    border-radius: 2.5px;
+    padding: 1.2px 3px;
+    font-size: 9.4px;
+    line-height: 1.14;
+  }
+  .callout-crimson {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 2.5px solid #dc2626;
+    color: #991b1b;
+  }
+  .callout-amber {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 2.5px solid #d97706;
+    color: #92400e;
+  }
+  .callout-teal {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-left: 2.5px solid #16a34a;
+    color: #166534;
+  }
+
+  /* Tracing table */
+  table.trace-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Consolas, monospace;
+    font-size: 9.2px;
+  }
+  table.trace-table th {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+    padding: 0.6px 2px;
+    font-size: 8.8px;
+    text-align: center;
+  }
+  table.trace-table td {
+    border: 1px solid #e2e8f0;
+    padding: 0.5px 2px;
+    text-align: center;
+  }
+  .highlight-garbage {
+    background: #fef2f2;
+    color: #dc2626;
+    font-weight: 800;
+  }
+
+  ul.clean-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.clean-list li {
+    position: relative;
+    padding-left: 7px;
+    margin-bottom: 0.5px;
+    line-height: 1.15;
+    font-size: 9.4px;
+  }
+  ul.clean-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #b91c1c;
+    font-weight: 800;
+  }
+  ul.clean-list li.teal:before { color: #0d9488; }
+  ul.clean-list li.warn:before { color: #dc2626; }
+
+  /* Footer */
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8.5px;
+    font-weight: 700;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1px;
+    margin-top: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- TOP STRIP -->
+  <div class="top-strip">
+    <span class="title">MIAE 215 MIDTERM CHEATSHEET 2.0 · DR. GORDON OFFICIAL EXAM BLUEPRINT &amp; SYSTEM</span>
+    <span class="meta">CONCORDIA · GINA CODY SCHOOL · 1-SIDED FORMULA SHEET AID · 75 MIN LIMIT</span>
+  </div>
+
+  <!-- SECTION 1: LIVE EXAM SYSTEM & CORE ENGINE (FALL 2026 LIVE PAPER) -->
+  <div class="section-title">
+    <span>1. Live Exam Foundation (Fall 2026 Live Paper) &amp; Output Tracing Engine (Q2 — 40-50%)</span>
+    <span class="badge">Official Paper Breakdown · Q1 (50%) + Q2 (50%)</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- Q1 MASTER SOLUTION (LIVE EXAM) -->
+    <div class="card" style="border-left: 2.5px solid #dc2626;">
+      <div class="card-header">
+        <span>Q1: Unified 6-Part 1D Array C++ Program (Live Exam Blueprint)</span>
+        <span class="tag tag-red">50% Weight</span>
+      </div>
+      <div class="code-block"><span class="code-cmt">#include &lt;iostream&gt;</span>
+<span class="code-cmt">#include &lt;fstream&gt;</span>
+<span class="code-kw">using namespace</span> std;
+<span class="code-type">int</span> main() {
+  <span class="code-cmt">// a) Input 10 doubles from keyboard:</span>
+  <span class="code-type">double</span> A[<span class="code-num">10</span>];
+  <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; <span class="code-num">10</span>; i++) cin &gt;&gt; A[i];
+
+  <span class="code-cmt">// b) Minimum element &amp; print: (CRITICAL: Init min=A[0], NEVER 0!)</span>
+  <span class="code-type">double</span> minVal = A[<span class="code-num">0</span>]; <span class="code-type">int</span> minIdx = <span class="code-num">0</span>;
+  <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">1</span>; i &lt; <span class="code-num">10</span>; i++) {
+    <span class="code-kw">if</span> (A[i] &lt; minVal) { minVal = A[i]; minIdx = i; }
+  }
+  cout &lt;&lt; <span class="code-str">"Min: "</span> &lt;&lt; minVal &lt;&lt; <span class="code-str">"\n"</span>;
+
+  <span class="code-cmt">// c) Range check [-7, 7]; else terminate immediately:</span>
+  <span class="code-type">bool</span> inRange = <span class="code-kw">true</span>;
+  <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; <span class="code-num">10</span>; i++) {
+    <span class="code-kw">if</span> (A[i] &lt; <span class="code-num">-7.0</span> || A[i] &gt; <span class="code-num">7.0</span>) { inRange = <span class="code-kw">false</span>; <span class="code-kw">break</span>; }
+  }
+  <span class="code-kw">if</span> (inRange) cout &lt;&lt; <span class="code-str">"elements of A are in range\n"</span>;
+  <span class="code-kw">else return</span> <span class="code-num">0</span>; <span class="code-cmt">// Immediate exit</span>
+
+  <span class="code-cmt">// d) Repeatedly input i1, i2 until valid (0..9 and i1 != i2) [De Morgan]:</span>
+  <span class="code-type">int</span> i1, i2;
+  <span class="code-kw">do</span> {
+    cin &gt;&gt; i1 &gt;&gt; i2;
+  } <span class="code-kw">while</span> (i1 &lt; <span class="code-num">0</span> || i1 &gt; <span class="code-num">9</span> || i2 &lt; <span class="code-num">0</span> || i2 &gt; <span class="code-num">9</span> || i1 == i2);
+
+  <span class="code-cmt">// e) Swap elements i1 and i2 of A using temp variable:</span>
+  <span class="code-type">double</span> temp = A[i1]; A[i1] = A[i2]; A[i2] = temp;
+
+  <span class="code-cmt">// f) Save elements to "A.txt":</span>
+  ofstream fout(<span class="code-str">"A.txt"</span>);
+  <span class="code-kw">if</span> (!fout) <span class="code-kw">return</span> <span class="code-num">1</span>;
+  <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; <span class="code-num">10</span>; i++) fout &lt;&lt; A[i] &lt;&lt; <span class="code-str">"\n"</span>;
+  fout.close();
+  <span class="code-kw">return</span> <span class="code-num">0</span>;
+}</div>
+    </div>
+
+    <!-- Q2 TRACING & RULES (LIVE EXAM + PAST PAPERS) -->
+    <div class="card" style="border-left: 2.5px solid #2563eb;">
+      <div class="card-header">
+        <span>Q2: Signature Output Tracing Engine &amp; The 8 Golden Traps</span>
+        <span class="tag tag-blue">Dr. Gordon Traps</span>
+      </div>
+      <ul class="clean-list">
+        <li><b>1. Truncating Integer Div:</b> <code>1/(0+3) = 1/3 = 0</code> (NOT 0.33!). <code>7/2 = 3</code>. Float div: <code>7.0/2 = 3.5</code>.</li>
+        <li><b>2. IEEE-754 Div by Zero:</b> <code>7.0/(1-1) = 7.0/0.0 = inf</code> &rarr; <b>Does NOT crash!</b> Float div by zero yields <code>inf</code>.</li>
+        <li><b>3. Logical NOT <code>!i</code>:</b> <code>!0 = true (1)</code>; all non-zero numbers are true, so <code>!1 = !2 = false (0)</code>. <code>else if (!i)</code> executes ONLY at iteration <i>i=0</i>!</li>
+        <li><b>4. Array Left-Shift:</b> <code>B[i]=B[i+1]; i++;</code> sequentially propagates neighbor into current slot.</li>
+        <li class="warn"><b>5. Uninitialized Garbage (<code>G</code>):</b> <code>int x;</code> holds undefined RAM garbage. <code>x += B[i];</code> stays Garbage! Write <b>"Garbage"</b> or <b>"G"</b> in booklet!</li>
+        <li class="warn"><b>6. Loop Counter Retention &amp; Bounds:</b> After <code>for(i=0;i&lt;5;i++)</code>, <i>i</i> is <b>5</b>! <code>cout&lt;&lt;i</code> prints <code>5</code>. In size-4 array, <code>A[4]</code> is out-of-bounds &rarr; <b>Garbage (G)</b>!</li>
+        <li><b>7. Pre-Break Trap:</b> Statements before <code>if(cond) break;</code> execute even on the terminating pass!</li>
+        <li><b>8. Modulo <code>%</code> Rules:</b> <code>20 % 7 = 6</code>. Sign follows LHS: <code>-20 % 7 = -6</code>; <code>20 % -7 = +6</code>.</li>
+      </ul>
+      <div style="display:flex; gap:3px; margin-top:1px;">
+        <div style="flex:1; background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px; padding:1.5px 3px;">
+          <b style="color:#991b1b; font-size:8.8px;">F26 Q2(a) Trace Box:</b>
+          <div style="font-family:Consolas, monospace; font-size:8.6px; line-height:1.12; color:#0f172a;">
+            i=0: 1/3 = <b>0</b><br>
+            i=1: 7.0/0.0 = <b>inf</b><br>
+            i=2: 7.0/1.0 = <b>7</b><br>
+            i=3: 7.0/2.0 = <b>3.5</b><br>
+            i=4: x++ = <b>4.5</b><br>
+            post: i = <b>5</b>
+          </div>
+        </div>
+        <div style="flex:1; background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px; padding:1.5px 3px;">
+          <b style="color:#991b1b; font-size:8.8px;">F26 Q2(b) Trace Box:</b>
+          <div style="font-family:Consolas, monospace; font-size:8.6px; line-height:1.12; color:#0f172a;">
+            B={7,5,3,2,1,1}<br>
+            i exits at <b>5</b><br>
+            a = 20 % 7 = <b>6</b><br>
+            x is uninit = <b>G</b><br>
+            <b>3 2 5 6 G</b><br>
+            (or 3 2 5 6 18)
+          </div>
+        </div>
+        <div style="flex:1; background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px; padding:1.5px 3px;">
+          <b style="color:#1e40af; font-size:8.8px;">F23 Midterm Keys:</b>
+          <div style="font-family:Consolas, monospace; font-size:8.6px; line-height:1.12; color:#0f172a;">
+            Q2a: <b>1 8</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>2 14</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>3 19</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>29 19 26</b><br>
+            Q2b: <b>-9 / -9 / 7 / 7 / G</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: ALL SIMILAR EXAM BLUEPRINTS & ARCHETYPES (10 MASTER PROBLEMS) -->
+  <div class="section-title teal" style="margin-top:2px;">
+    <span>2. All Similar Exam Problems &amp; Algorithms across Past Gordon Midterms &amp; Quizzes</span>
+    <span class="badge">Fall 2023 · Fall 2022 · Quiz 1 &amp; 2 · Reviews 1 &amp; 4</span>
+  </div>
+
+  <div class="grid-3">
+    <!-- BLUEPRINT 1: DYNAMIC SIZE & 2 ARRAYS -->
+    <div class="card">
+      <div class="card-header">
+        <span>1. Validated Size n &amp; 2 Arrays</span>
+        <span class="tag tag-teal">F22 Q1a / Rev 4</span>
+      </div>
+      <div class="code-block"><span class="code-type">int</span> n; cin &gt;&gt; n;
+<span class="code-kw">while</span> (n &lt; <span class="code-num">1</span> || n &gt; <span class="code-num">100</span>) {
+  cout &lt;&lt; <span class="code-str">"Re-enter n (1-100): "</span>; cin &gt;&gt; n;
+}
+<span class="code-type">double</span> A[<span class="code-num">100</span>], B[<span class="code-num">100</span>];
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) cin &gt;&gt; A[i];
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) cin &gt;&gt; B[i];</div>
+    </div>
+
+    <!-- BLUEPRINT 2: CYCLIC FORWARD SHIFT -->
+    <div class="card">
+      <div class="card-header">
+        <span>2. Cyclic Forward Shift</span>
+        <span class="tag tag-amber">F22 Q1d / Rev 4</span>
+      </div>
+      <div class="code-block"><span class="code-cmt">// Shift forward: A[n-1] to 0, A[i] to i+1</span>
+<span class="code-type">double</span> A_sh[<span class="code-num">100</span>];
+A_sh[<span class="code-num">0</span>] = A[n - <span class="code-num">1</span>]; <span class="code-cmt">// Wrap last element</span>
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n - <span class="code-num">1</span>; i++) A_sh[i + <span class="code-num">1</span>] = A[i];
+<span class="code-cmt">// In-place alternative (backward loop):</span>
+<span class="code-type">double</span> last = A[n - <span class="code-num">1</span>];
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = n - <span class="code-num">1</span>; i &gt; <span class="code-num">0</span>; i--) A[i] = A[i - <span class="code-num">1</span>];
+A[<span class="code-num">0</span>] = last;</div>
+    </div>
+
+    <!-- BLUEPRINT 3: ARRAY CONCATENATION -->
+    <div class="card">
+      <div class="card-header">
+        <span>3. Array Merge / Concatenate</span>
+        <span class="tag tag-blue">F22 Q1d</span>
+      </div>
+      <div class="code-block"><span class="code-cmt">// Merge A and B (size n) into C (size 2n):</span>
+<span class="code-type">double</span> C[<span class="code-num">200</span>];
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) {
+  C[i]     = A[i]; <span class="code-cmt">// 1st half: 0..n-1</span>
+  C[i + n] = B[i]; <span class="code-cmt">// 2nd half: n..2n-1</span>
+}</div>
+    </div>
+
+    <!-- BLUEPRINT 4: DOT PRODUCT & FILTERING -->
+    <div class="card">
+      <div class="card-header">
+        <span>4. Dot Product &amp; Range Count</span>
+        <span class="tag tag-teal">F22 Q1b,c / Q2</span>
+      </div>
+      <div class="code-block"><span class="code-cmt">// Vector dot product: sum(A[i]*B[i]):</span>
+<span class="code-type">double</span> dot = <span class="code-num">0.0</span>;
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) dot += A[i] * B[i];
+
+<span class="code-cmt">// Count elements strictly in (0, PI):</span>
+<span class="code-type">const double</span> PI = <span class="code-num">4.0</span> * atan(<span class="code-num">1.0</span>);
+<span class="code-type">int</span> count = <span class="code-num">0</span>;
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) {
+  <span class="code-kw">if</span> (B[i] &gt; <span class="code-num">0.0</span> &amp;&amp; B[i] &lt; PI) count++;
+}</div>
+    </div>
+
+    <!-- BLUEPRINT 5: IN-PLACE REVERSAL -->
+    <div class="card">
+      <div class="card-header">
+        <span>5. In-Place Array Reversal</span>
+        <span class="tag tag-red">F23 Q1c</span>
+      </div>
+      <div class="code-block"><span class="code-cmt">// Swap i with n-1-i up to n/2 (Zero extra RAM):</span>
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n / <span class="code-num">2</span>; i++) {
+  <span class="code-type">double</span> temp = A[i];
+  A[i] = A[n - <span class="code-num">1</span> - i];
+  A[n - <span class="code-num">1</span> - i] = temp;
+}</div>
+    </div>
+
+    <!-- BLUEPRINT 6: ARRAY EQUALITY TEST -->
+    <div class="card">
+      <div class="card-header">
+        <span>6. Array Equality Test</span>
+        <span class="tag tag-amber">Midterm Rev 1</span>
+      </div>
+      <div class="code-block"><span class="code-type">bool</span> equal = <span class="code-kw">true</span>;
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) {
+  <span class="code-cmt">// Doubles: if (fabs(A[i]-B[i]) &gt; 1e-7)</span>
+  <span class="code-kw">if</span> (A[i] != B[i]) { equal = <span class="code-kw">false</span>; <span class="code-kw">break</span>; }
+  <span class="code-cmt">// TRAP: NEVER add 'else equal=true;'!</span>
+}
+<span class="code-kw">if</span> (equal) cout &lt;&lt; <span class="code-str">"Equal"</span>; <span class="code-kw">else</span> cout &lt;&lt; <span class="code-str">"Not equal"</span>;</div>
+    </div>
+
+    <!-- BLUEPRINT 7: MENU LOOP (DE MORGAN) -->
+    <div class="card">
+      <div class="card-header">
+        <span>7. Menu Loop All-Option Flag</span>
+        <span class="tag tag-teal">Quiz 2 / Rev 1</span>
+      </div>
+      <div class="code-block"><span class="code-type">bool</span> used[<span class="code-num">4</span>] = { <span class="code-kw">false</span> }; <span class="code-type">int</span> ch;
+<span class="code-kw">do</span> {
+  cout &lt;&lt; <span class="code-str">"1=Avg, 2=Min, 3=Dot: "</span>; cin &gt;&gt; ch;
+  <span class="code-kw">if</span> (ch == <span class="code-num">1</span>) { <span class="code-cmt">/* avg */</span> used[<span class="code-num">1</span>] = <span class="code-kw">true</span>; }
+  <span class="code-kw">else if</span> (ch == <span class="code-num">2</span>) { <span class="code-cmt">/* min */</span> used[<span class="code-num">2</span>] = <span class="code-kw">true</span>; }
+  <span class="code-kw">else if</span> (ch == <span class="code-num">3</span>) { <span class="code-cmt">/* dot */</span> used[<span class="code-num">3</span>] = <span class="code-kw">true</span>; }
+} <span class="code-kw">while</span> (!(used[<span class="code-num">1</span>] &amp;&amp; used[<span class="code-num">2</span>] &amp;&amp; used[<span class="code-num">3</span>]));</div>
+    </div>
+
+    <!-- BLUEPRINT 8: MEAN, VARIANCE & STDDEV -->
+    <div class="card">
+      <div class="card-header">
+        <span>8. Mean, Variance &amp; StdDev</span>
+        <span class="tag tag-blue">Rev 4 Q1</span>
+      </div>
+      <div class="code-block"><span class="code-type">double</span> sum = <span class="code-num">0</span>;
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; N; i++) sum += X[i];
+<span class="code-type">double</span> mean = sum / N, varSum = <span class="code-num">0</span>;
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; N; i++) varSum += pow(X[i] - mean, <span class="code-num">2</span>);
+<span class="code-type">double</span> variance = varSum / (N - <span class="code-num">1</span>);
+<span class="code-type">double</span> stdDev = sqrt(variance);</div>
+    </div>
+
+    <!-- BLUEPRINT 9: FREQUENCY & SERIES & MEMORY -->
+    <div class="card">
+      <div class="card-header">
+        <span>9. Frequency &amp; Series &amp; new[]</span>
+        <span class="tag tag-dark">Q2 / Rev 4</span>
+      </div>
+      <div class="code-block"><span class="code-cmt">// Frequency count (val 1..7):</span>
+<span class="code-type">int</span> freq[<span class="code-num">8</span>] = { <span class="code-num">0</span> }, v;
+<span class="code-kw">while</span> (cin &gt;&gt; v &amp;&amp; v &gt;= <span class="code-num">1</span> &amp;&amp; v &lt;= <span class="code-num">7</span>) freq[v]++;
+
+<span class="code-cmt">// Series loop with tolerance eps=1e-9:</span>
+<span class="code-type">double</span> term = <span class="code-num">1.0</span>; <span class="code-type">int</span> k = <span class="code-num">1</span>;
+<span class="code-kw">while</span> (<span class="code-num">1</span>) {
+  term *= x / k;
+  <span class="code-kw">if</span> (fabs(term) &lt; <span class="code-num">1.0e-9</span>) <span class="code-kw">break</span>;
+  k++;
+}
+
+<span class="code-cmt">// Dynamic array: delete[] prevents leak:</span>
+<span class="code-type">double</span> *p = <span class="code-kw">new double</span>[n]; <span class="code-kw">delete</span>[] p; p = <span class="code-type">nullptr</span>;</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: ESSENTIAL C++ DIRECTIVES, LIBRARIES & EXAM PROTOCOL -->
+  <div class="section-title blue" style="margin-top:2px;">
+    <span>3. Essential Libraries, Numerical Constants &amp; Exam Room Survival Protocol</span>
+    <span class="badge">Cheat Codes &amp; Quick References</span>
+  </div>
+
+  <div class="grid-4">
+    <!-- LIBS -->
+    <div class="card">
+      <div class="card-header">
+        <span>Directives &amp; Headers</span>
+        <span class="tag tag-teal">Boilerplate</span>
+      </div>
+      <div style="font-size:9.1px; line-height:1.15;">
+        <code>#include &lt;iostream&gt;</code> (cin, cout)<br>
+        <code>#include &lt;cmath&gt;</code> (sqrt, pow, fabs, sin)<br>
+        <code>#include &lt;fstream&gt;</code> (ifstream, ofstream)<br>
+        <code>#include &lt;iomanip&gt;</code> (fixed, setprecision)<br>
+        <code>#include &lt;cstdlib&gt;</code> (exit(0), abs)<br>
+        <code>using namespace std;</code>
+      </div>
+    </div>
+
+    <!-- CONSTANTS & FORMATTING -->
+    <div class="card">
+      <div class="card-header">
+        <span>Math &amp; Formatting</span>
+        <span class="tag tag-amber">Formulas</span>
+      </div>
+      <div style="font-size:9.1px; line-height:1.15;">
+        <b>Concordia PI Constant:</b><br>
+        <code>const double PI = 4.0 * atan(1.0);</code><br>
+        <b>Float Equality (NEVER ==):</b><br>
+        <code>if (fabs(a - b) &lt; 1.0e-7) { ... }</code><br>
+        <b>Decimal Output (2 places):</b><br>
+        <code>cout &lt;&lt; fixed &lt;&lt; setprecision(2);</code>
+      </div>
+    </div>
+
+    <!-- PRECEDENCE -->
+    <div class="card">
+      <div class="card-header">
+        <span>Operator Precedence</span>
+        <span class="tag tag-blue">Order</span>
+      </div>
+      <div style="font-size:8.9px; line-height:1.14;">
+        1. <code>() [] x++ x--</code><br>
+        2. <code>++x --x ! (type) sizeof</code> (R-to-L)<br>
+        3. <code>* / %</code> &nbsp;&nbsp; 4. <code>+ -</code><br>
+        5. <code>&lt;&lt; &gt;&gt;</code> &nbsp;&nbsp; 6. <code>&lt; &lt;= &gt; &gt;=</code><br>
+        7. <code>== !=</code> &nbsp; 8. <code>&amp;&amp;</code> &nbsp; 9. <code>||</code><br>
+        10. <code>= += -= *= /= %=</code> (R-to-L)
+      </div>
+    </div>
+
+    <!-- EXAM TIME PROTOCOL -->
+    <div class="card">
+      <div class="card-header">
+        <span>75-Min Time Protocol</span>
+        <span class="tag tag-red">Strategy</span>
+      </div>
+      <div style="font-size:8.9px; line-height:1.14;">
+        <b>00-05m:</b> Scan weights &amp; uninit vars.<br>
+        <b>05-35m:</b> Solve Q2 tracing tables first! Draw columns, <b>put boxes around answers</b>.<br>
+        <b>35-70m:</b> Write Q1 C++ program cleanly. Init min=A[0], use temp for swap, close files.<br>
+        <b>70-75m:</b> Check semicolons &amp; bounds.
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <span>CONCORDIA UNIVERSITY · GINA CODY SCHOOL · MIAE 215</span>
+    <span>MIDTERM CHEATSHEET 2.0 · STRICT 1-PAGE SINGLE-SIDED FORMULA SHEET · ALL SIMILAR EXAM SYSTEMS</span>
+    <span>DR. BRANDON GORDON MIDTERM READY · PAGE 1 OF 1</span>
+  </div>
+
+</div>
+
+</body>
+</html>

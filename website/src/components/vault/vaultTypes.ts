@@ -254,6 +254,17 @@ export interface GordonExamPaper {
   officialNotes?: string[];
   questions: GordonExamQuestion[];
   fullProgramCode?: string;
+  videoPlaceholder?: {
+    title: string;
+    description: string;
+    duration: string;
+  };
+  similarQuestionsAnalysis?: {
+    currentQuestionPart: string;
+    similarGordonExam: string;
+    whyItMatches: string;
+    coreLesson: string;
+  }[];
 }
 
 export interface GordonTopicFrequency {

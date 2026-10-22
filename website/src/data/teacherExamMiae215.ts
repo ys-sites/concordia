@@ -11,6 +11,7 @@ const Q1T = 'MIAE 215 Quiz #1 (Tuesday section)';
 const Q1W = 'MIAE 215 Quiz #1 (Wednesday section)';
 const Q2T = 'MIAE 215 Quiz #2 (Thursday section)';
 const Q2W = 'MIAE 215 Quiz #2 (Wednesday section)';
+const F26 = 'MIAE 215 Midterm Fall 2026';
 
 let n = 0;
 const m215 = (pastPaper: string, p: Omit<PracticeQuestion, 'courseId' | 'chapter' | 'pastPaper' | 'id'>): PracticeQuestion => ({
@@ -915,6 +916,117 @@ else if (c > 7.5) cout << msg;`,
       },
       commonTrap: 'Thinking overflow wraps around like integers. Floating point saturates at inf.',
       reference: 'Quiz #1 (Wednesday), Question 3(ii)'
+    }
+  }),
+  m215(`${F26}, Q1`, {
+    topic: '1D Arrays & Search Algorithms',
+    difficulty: 'Midterm Level',
+    question: 'In Question 1(b), a program must find the minimum element of a 10-element array of doubles. Which initialization is mathematically guaranteed to work?',
+    options: [
+      t`double minVal = A[0];`,
+      t`double minVal = 0.0;`,
+      t`double minVal = 1000.0;`,
+      t`double minVal = A[10];`
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: 'Initializing to A[0] guarantees the initial candidate is an actual element of the array. Initializing minVal = 0.0 causes all positive arrays (e.g. {2, 5, 8}) to fail A[i] < minVal, leaving minVal erroneously at 0.',
+      stepByStep: [
+        'Set minVal = A[0] (first element).',
+        'Loop from index 1 to 9: if (A[i] < minVal) minVal = A[i];',
+        'Guaranteed correct regardless of whether elements are positive, negative, or zero.'
+      ],
+      whyWrong: {
+        '1': 'If all elements are positive (e.g. 2, 5, 8), A[i] < 0 is never true, outputting 0 (classic Dr. Gordon trap from Quiz 2 Thursday!).',
+        '2': 'Arbitrary hardcoded numbers fail if all array values exceed 1000.',
+        '3': 'Index 10 is out of bounds for an array of size 10 (valid indices are 0 to 9).'
+      },
+      commonTrap: 'Initializing min to 0.0 because it "feels clean", breaking for strictly positive arrays.',
+      reference: 'MIAE 215 Fall 2026 Midterm, Question 1(b) · Echoes Quiz 2 (Thursday) Part (c)'
+    }
+  }),
+  m215(`${F26}, Q2(a)`, {
+    topic: 'If-Else Ladders & Integer Truncation',
+    difficulty: 'Exam Master',
+    question: 'What is printed to stdout by Question 2(a)?',
+    codeSnippet: t`int i;
+double A[5] = {2,3,5,7,11} , x = 0.0;
+for(i=0;i<5;i++) {
+    if(A[i] > 7) {
+        x++;
+    } else if ( !i ) {
+        x = 1/(i+3);
+    } else {
+        x = 7.0/(i-1);
+    }
+    cout << "\\n" << x;
+}
+cout << "\\n" << i;`,
+    options: [
+      '0\ninf\n7\n3.5\n4.5\n5',
+      '0.333\n0\n7\n3.5\n4.5\n5',
+      '0\ninf\n7\n3.5\n4.5\n4',
+      '0\n7\n7\n3.5\n4.5\n5'
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: 'Tests integer division 1/(0+3) = 0, logical NOT (!0 = true, !1 = false), floating-point division by zero (7.0/0.0 = inf in IEEE-754 without crash), strict inequality (7 > 7 is false), and loop iterator persistence (i = 5).',
+      stepByStep: [
+        'i=0: A[0]=2 > 7 false; !0 is true -> x = 1/3 = 0 (integer division). Prints 0.',
+        'i=1: A[1]=3 > 7 false; !1 is false -> x = 7.0/(1-1) = 7.0/0.0 = inf (double div by zero). Prints inf.',
+        'i=2: A[2]=5 > 7 false; !2 false -> x = 7.0/(2-1) = 7.0/1 = 7. Prints 7.',
+        'i=3: A[3]=7 > 7 is FALSE; !3 false -> x = 7.0/(3-1) = 7.0/2 = 3.5. Prints 3.5.',
+        'i=4: A[4]=11 > 7 is TRUE -> x++ = 3.5 + 1.0 = 4.5. Prints 4.5.',
+        'Loop exits at i=5: cout << "\\n" << i prints 5.'
+      ],
+      whyWrong: {
+        '1': 'Integer division 1/3 truncates to 0, not 0.333.',
+        '2': 'The loop counter i increments to 5 before the condition 5 < 5 fails, so post-loop prints 5, not 4.',
+        '3': 'When i=1, !i is false, so it enters the else branch computing 7.0/0.0 = inf, not 7.'
+      },
+      commonTrap: 'Expecting integer division to yield a fraction (0.333) or expecting double division by zero to crash.',
+      reference: 'MIAE 215 Fall 2026 Midterm, Question 2(a)'
+    }
+  }),
+  m215(`${F26}, Q2(b)`, {
+    topic: 'While Loops & Array Index Traversal',
+    difficulty: 'Exam Master',
+    question: 'What is printed to stdout by Question 2(b)?',
+    codeSnippet: t`int B[] = {11,7,5,3,2,1}, i = 0, x, a = 20 % 7;
+
+while( B[i] >= 2 ) {
+    B[i] = B[i+1];
+    i++;
+    x += B[i];
+}
+
+cout << "\\n" << B[2] << " " << B[3] << " " << i << " " << a << " " << x;`,
+    options: [
+      '3 2 5 6 G (or 3 2 5 6 18)',
+      '5 3 5 6 18',
+      '3 2 4 6 17',
+      '3 2 5 2 18'
+    ],
+    correctIndex: 0,
+    explanation: {
+      coreConcept: 'B[i] = B[i+1] shifts elements leftward; while loop terminates when B[5]=1 < 2; int x is uninitialized and holds garbage memory (G); 20 % 7 = 6.',
+      stepByStep: [
+        'Init: B={11,7,5,3,2,1}, i=0, a=20%7=6, x=Garbage (uninitialized).',
+        'Pass 1: B[0]=11>=2 (T) -> B[0]=B[1]=7; i=1; x += B[1] (7). Array: {7,7,5,3,2,1}.',
+        'Pass 2: B[1]=7>=2 (T) -> B[1]=B[2]=5; i=2; x += B[2] (5). Array: {7,5,5,3,2,1}.',
+        'Pass 3: B[2]=5>=2 (T) -> B[2]=B[3]=3; i=3; x += B[3] (3). Array: {7,5,3,3,2,1}.',
+        'Pass 4: B[3]=3>=2 (T) -> B[3]=B[4]=2; i=4; x += B[4] (2). Array: {7,5,3,2,2,1}.',
+        'Pass 5: B[4]=2>=2 (T) -> B[4]=B[5]=1; i=5; x += B[5] (1). Array: {7,5,3,2,1,1}.',
+        'Pass 6: B[5]=1>=2 (FALSE) -> Loop terminates.',
+        'Output: B[2]=3, B[3]=2, i=5, a=6, x=Garbage G (or 18 if 0-initialized). Prints "3 2 5 6 G".'
+      ],
+      whyWrong: {
+        '1': 'Array elements shifted leftward: B[2] became 3 (from B[3]), not 5.',
+        '2': 'The loop runs for 5 passes until i=5, not 4 passes.',
+        '3': '20 % 7 evaluates to remainder 6 (20 = 2*7 + 6), not 2.'
+      },
+      commonTrap: 'Forgetting that int x was declared without = 0, meaning it holds garbage memory (Dr. Gordon expects "Garbage" or "G" in the answer box).',
+      reference: 'MIAE 215 Fall 2026 Midterm, Question 2(b)'
     }
   })
 ];

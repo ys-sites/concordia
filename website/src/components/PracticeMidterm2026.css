@@ -1,0 +1,149 @@
+/* Teacher practice midterm (Fall 2026): questions with their video solutions */
+.pm26-root {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 8px 0 24px;
+}
+
+.pm26-head h3 {
+  margin: 6px 0 6px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.pm26-head p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #475569;
+}
+
+.pm26-head p.pm26-paper {
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  border-left: 3px solid #a5b4fc;
+  background: #f8fafc;
+  border-radius: 8px;
+  color: #334155;
+}
+
+.pm26-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4f46e5;
+}
+
+.pm26-q {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.pm26-q-label {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0f766e;
+  margin-bottom: 8px;
+}
+
+.pm26-prompt {
+  margin: 0 0 10px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #1e293b;
+}
+
+.pm26-parts {
+  margin: 0 0 14px;
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #334155;
+}
+
+.pm26-code,
+.pm26-answer-box {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #0b1222;
+  color: #e2e8f0;
+  font: 500 13.5px/1.55 'JetBrains Mono', ui-monospace, monospace;
+  font-variant-ligatures: none;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.pm26-answer-box {
+  display: inline-block;
+  min-width: 160px;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 2.5px solid #10b981;
+  font-size: 15px;
+}
+
+.pm26-video-wait {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.pm26-answer-btn {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.pm26-answer-btn:hover {
+  background: #eef2ff;
+  border-color: #a5b4fc;
+}
+
+.pm26-answer {
+  margin-top: 12px;
+}
+
+.pm26-answer p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #475569;
+}
+
+@media (max-width: 640px) {
+  .pm26-q {
+    padding: 16px 14px;
+  }
+}

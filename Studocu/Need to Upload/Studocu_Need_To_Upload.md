@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 95
+### Currently Pending Uploads: 100
 
 ---
 
@@ -1111,5 +1111,28 @@
 - **Title**: `MIAE 215 - Dr Gordon Past Midterms & Comprehensive Exam Analytics Master Guide`
 - **Academic year**: `2025/2026`
 - **Description**: Exhaustive exam intelligence guide and pedagogical solutions manual for Dr. Brandon Gordon's MIAE 215 midterms at Concordia University. Covers Fall 2023 Midterm Q2 (40% weight) with full column-by-column trace tables, Fall 2022 Midterm Q1 (50% weight) 5-part array dot-product and sentinel loop code, Midterm Reviews 1 & 4, precursor quizzes, 0% 2D array exam rule, and top 5 traps with verified C++ solutions.
+
+---
+
+### 📄 MIAE 215 - Midterm Cheatsheet 2.0 (Single-Sided).pdf
+- **Exact Filename**: `MIAE 215 - Midterm Cheatsheet 2.0 (Single-Sided).pdf`
+- **University**: `Concordia University`
+- **Course**: `Mechanical, Industrial & Aerospace engineering (MIAE 215)`
+- **Category**: `Summaries`
+- **Title**: `MIAE 215 - Midterm Cheatsheet 2.0 Dr Gordon Official Exam Blueprint (Single-Sided)`
+- **Academic year**: `2025/2026`
+- **Description**: Official single-sided 1-page formula sheet and exam blueprint tailored specifically to Dr. Brandon Gordon's MIAE 215 midterm format at Concordia University. Features the complete Fall 2026 live midterm 6-part array unified C++ program (input, min search, range filtering, De Morgan validation loop, swap, and file I/O), the Question 2 output tracing engine with all 8 golden traps (truncating integer division, IEEE-754 float div by zero `inf`, `!i` logic, uninitialized memory garbage `G`, post-loop counter retention `i=5`), verified boxed outputs for all past papers (Fall 2026, Fall 2023, Fall 2022), and 9 core programming blueprints (cyclic shift, concatenation, dot product, array reversal, array equality, menu loops, and statistics).
+
+---
+
+### 📄 MIAE 215 - Midterm Cheatsheet 2.0 Dr Gordon Official Exam Blueprint & Problem Guide.md
+- **Exact Filename**: `MIAE 215 - Midterm Cheatsheet 2.0 Dr Gordon Official Exam Blueprint & Problem Guide.md`
+- **University**: `Concordia University`
+- **Course**: `Mechanical, Industrial & Aerospace engineering (MIAE 215)`
+- **Category**: `Practice materials`
+- **Title**: `MIAE 215 - Midterm Cheatsheet 2.0 Dr Gordon Official Exam Blueprint & Problem Guide`
+- **Academic year**: `2025/2026`
+- **Description**: Comprehensive markdown study manual and exam blueprint for Dr. Brandon Gordon's MIAE 215 midterm at Concordia University. Contains in-depth step-by-step breakdowns of all 13 master problem blueprints across Fall 2026 Live Revision, Fall 2023, Fall 2022, Quizzes 1 & 2, and Reviews 1 & 4. Includes complete tracing tables with column-by-column execution states, official boxed exam booklet keys, standard C++ libraries (`<iostream>`, `<cmath>`, `<fstream>`, `<iomanip>`), and high-yield time management protocols.
+
 
 

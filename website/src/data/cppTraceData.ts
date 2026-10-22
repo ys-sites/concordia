@@ -2041,6 +2041,418 @@ cout << x << " " << y << " " << z << " " << q;`,
 };
 
 // -------------------------------------------------------------------------------------------------
+// Fall 2026 Midterm Traces (Live Exam Revision Paper)
+// -------------------------------------------------------------------------------------------------
+
+export const FALL2026_Q2A_TRACE: SimulatorTrace = {
+  id: 'F26_Q2A',
+  title: 'Fall 2026 Midterm Q2(a) — Integer Division, !i Logic & Division by Zero (inf)',
+  code: `int i;
+double A[5] = {2,3,5,7,11} , x = 0.0;
+for(i=0;i<5;i++) {
+    if(A[i] > 7) {
+        x++;
+    } else if ( !i ) {
+        x = 1/(i+3);
+    } else {
+        x = 7.0/(i-1);
+    }
+    cout << "\\n" << x;
+}
+cout << "\\n" << i;`,
+  correctOptionIndex: 0,
+  options: [
+    '0\ninf\n7\n3.5\n4.5\n5',
+    '0.333\n0\n7\n3.5\n4.5\n5',
+    '0\ninf\n7\n3.5\n4.5\n4',
+    '0\n7\n7\n3.5\n4.5\n5'
+  ],
+  whyWrong: {
+    '1': 'Integer division 1/(0+3) truncates to 0, NOT 0.333. And 7.0/(1-1) = 7.0/0.0 yields inf, not 0.',
+    '2': 'The loop terminates when i reaches 5, so the post-loop print cout << i outputs 5, not 4.',
+    '3': 'When i=1, !i is false, so it enters the else branch and computes 7.0/0.0 = inf, not 7.'
+  },
+  coreConcept: 'Key C++ Rules Tested: (1) Integer division 1/(0+3) evaluates to 0 because both operands are ints. (2) In C++, 0 is false, so !0 is true (branch taken for i=0). (3) Floating-point division by 0.0 (7.0/0.0) yields positive infinity (inf in IEEE-754) without crashing. (4) Strict inequality: when i=3, A[3] is 7, and 7 > 7 is false, directing execution to the else branch (7.0/2 = 3.5). (5) Loop counter i persists after the loop with value 5.',
+  commonTrap: 'Assuming 1/3 gives 0.333, assuming 7.0/0.0 crashes the program, or forgetting that 7 > 7 is false.',
+  steps: [
+    {
+      stepIndex: 0,
+      lineNumber: 1,
+      lineContent: 'int i;\ndouble A[5] = {2,3,5,7,11} , x = 0.0;',
+      iterationLabel: 'Initialization',
+      variables: { x: 0.0 },
+      arrays: { A: [2, 3, 5, 7, 11] },
+      changedVars: ['x', 'A'],
+      consoleOutput: [],
+      explanation: 'Declare i. Initialize array A = {2, 3, 5, 7, 11} and double x = 0.0.'
+    },
+    // Pass 1: i = 0
+    {
+      stepIndex: 1,
+      lineNumber: 3,
+      lineContent: 'for(i=0;i<5;i++) {',
+      iterationLabel: 'Pass 1 (i = 0)',
+      variables: { i: 0, x: 0.0 },
+      changedVars: ['i'],
+      conditionEval: { expression: 'i < 5', evaluatedTo: '0 < 5', result: true },
+      consoleOutput: [],
+      explanation: 'Initialize loop counter i = 0. Condition 0 < 5 is true: enter loop body.'
+    },
+    {
+      stepIndex: 2,
+      lineNumber: 4,
+      lineContent: '    if(A[i] > 7) { ... } else if ( !i ) { x = 1/(i+3); }',
+      iterationLabel: 'Pass 1 (i = 0)',
+      variables: { i: 0, x: 0.0 },
+      changedVars: ['x'],
+      conditionEval: { expression: '!i', evaluatedTo: '!0 -> true', result: true },
+      trapWarning: '⚠️ Integer Division Trap: 1/(0+3) is 1/3 between integers, which truncates to 0 (NOT 0.333)!',
+      consoleOutput: [],
+      explanation: 'A[0] is 2: 2 > 7 is false. Check else-if: !0 is true! Compute x = 1/(0+3) = 1/3. In C++, integer division truncates to 0. Thus x = 0.0.'
+    },
+    {
+      stepIndex: 3,
+      lineNumber: 11,
+      lineContent: '    cout << "\\n" << x;',
+      iterationLabel: 'Pass 1 (i = 0)',
+      variables: { i: 0, x: 0.0 },
+      consoleOutput: ['0'],
+      newOutput: '0',
+      explanation: 'Prints x (0) on a new line.'
+    },
+    // Pass 2: i = 1
+    {
+      stepIndex: 4,
+      lineNumber: 3,
+      lineContent: 'for(i=0;i<5;i++) { // i becomes 1',
+      iterationLabel: 'Pass 2 (i = 1)',
+      variables: { i: 1, x: 0.0 },
+      changedVars: ['i'],
+      conditionEval: { expression: 'i < 5', evaluatedTo: '1 < 5', result: true },
+      consoleOutput: ['0'],
+      explanation: 'Increment i to 1. Condition 1 < 5 is true: enter loop body.'
+    },
+    {
+      stepIndex: 5,
+      lineNumber: 8,
+      lineContent: '    } else { x = 7.0/(i-1); }',
+      iterationLabel: 'Pass 2 (i = 1)',
+      variables: { i: 1, x: 'inf' },
+      changedVars: ['x'],
+      conditionEval: { expression: '7.0 / (1 - 1)', evaluatedTo: '7.0 / 0.0 -> inf', result: true },
+      trapWarning: '⚠️ IEEE-754 Floating-Point Division by Zero: 7.0 / 0.0 evaluates to positive infinity (inf) without runtime error!',
+      consoleOutput: ['0'],
+      explanation: 'A[1] is 3: 3 > 7 is false. !1 is false. Enter else branch: compute x = 7.0 / (1 - 1) = 7.0 / 0.0. In IEEE-754 floating-point, positive double / 0.0 yields inf.'
+    },
+    {
+      stepIndex: 6,
+      lineNumber: 11,
+      lineContent: '    cout << "\\n" << x;',
+      iterationLabel: 'Pass 2 (i = 1)',
+      variables: { i: 1, x: 'inf' },
+      consoleOutput: ['0', 'inf'],
+      newOutput: 'inf',
+      explanation: 'Prints x ("inf") on a new line.'
+    },
+    // Pass 3: i = 2
+    {
+      stepIndex: 7,
+      lineNumber: 3,
+      lineContent: 'for(i=0;i<5;i++) { // i becomes 2',
+      iterationLabel: 'Pass 3 (i = 2)',
+      variables: { i: 2, x: 'inf' },
+      changedVars: ['i'],
+      conditionEval: { expression: 'i < 5', evaluatedTo: '2 < 5', result: true },
+      consoleOutput: ['0', 'inf'],
+      explanation: 'Increment i to 2. Condition 2 < 5 is true: enter loop body.'
+    },
+    {
+      stepIndex: 8,
+      lineNumber: 8,
+      lineContent: '    } else { x = 7.0/(i-1); }',
+      iterationLabel: 'Pass 3 (i = 2)',
+      variables: { i: 2, x: 7.0 },
+      changedVars: ['x'],
+      consoleOutput: ['0', 'inf'],
+      explanation: 'A[2] is 5: 5 > 7 false. !2 is false. Enter else: x = 7.0 / (2 - 1) = 7.0 / 1.0 = 7.0.'
+    },
+    {
+      stepIndex: 9,
+      lineNumber: 11,
+      lineContent: '    cout << "\\n" << x;',
+      iterationLabel: 'Pass 3 (i = 2)',
+      variables: { i: 2, x: 7.0 },
+      consoleOutput: ['0', 'inf', '7'],
+      newOutput: '7',
+      explanation: 'Prints x (7) on a new line.'
+    },
+    // Pass 4: i = 3
+    {
+      stepIndex: 10,
+      lineNumber: 3,
+      lineContent: 'for(i=0;i<5;i++) { // i becomes 3',
+      iterationLabel: 'Pass 4 (i = 3)',
+      variables: { i: 3, x: 7.0 },
+      changedVars: ['i'],
+      conditionEval: { expression: 'i < 5', evaluatedTo: '3 < 5', result: true },
+      consoleOutput: ['0', 'inf', '7'],
+      explanation: 'Increment i to 3. Condition 3 < 5 is true: enter loop body.'
+    },
+    {
+      stepIndex: 11,
+      lineNumber: 8,
+      lineContent: '    } else { x = 7.0/(i-1); }',
+      iterationLabel: 'Pass 4 (i = 3)',
+      variables: { i: 3, x: 3.5 },
+      changedVars: ['x'],
+      conditionEval: { expression: 'A[3] > 7', evaluatedTo: '7 > 7 is FALSE', result: false },
+      trapWarning: '⚠️ Strict Inequality Trap: A[3] is 7, and 7 > 7 is strictly FALSE! Execution falls to else.',
+      consoleOutput: ['0', 'inf', '7'],
+      explanation: 'A[3] is 7: 7 > 7 is false! !3 is false. Enter else: x = 7.0 / (3 - 1) = 7.0 / 2.0 = 3.5.'
+    },
+    {
+      stepIndex: 12,
+      lineNumber: 11,
+      lineContent: '    cout << "\\n" << x;',
+      iterationLabel: 'Pass 4 (i = 3)',
+      variables: { i: 3, x: 3.5 },
+      consoleOutput: ['0', 'inf', '7', '3.5'],
+      newOutput: '3.5',
+      explanation: 'Prints x (3.5) on a new line.'
+    },
+    // Pass 5: i = 4
+    {
+      stepIndex: 13,
+      lineNumber: 3,
+      lineContent: 'for(i=0;i<5;i++) { // i becomes 4',
+      iterationLabel: 'Pass 5 (i = 4)',
+      variables: { i: 4, x: 3.5 },
+      changedVars: ['i'],
+      conditionEval: { expression: 'i < 5', evaluatedTo: '4 < 5', result: true },
+      consoleOutput: ['0', 'inf', '7', '3.5'],
+      explanation: 'Increment i to 4. Condition 4 < 5 is true: enter loop body.'
+    },
+    {
+      stepIndex: 14,
+      lineNumber: 5,
+      lineContent: '    if(A[i] > 7) { x++; }',
+      iterationLabel: 'Pass 5 (i = 4)',
+      variables: { i: 4, x: 4.5 },
+      changedVars: ['x'],
+      conditionEval: { expression: 'A[4] > 7', evaluatedTo: '11 > 7 -> TRUE', result: true },
+      consoleOutput: ['0', 'inf', '7', '3.5'],
+      explanation: 'A[4] is 11: 11 > 7 is true! Execute x++: x becomes 3.5 + 1.0 = 4.5.'
+    },
+    {
+      stepIndex: 15,
+      lineNumber: 11,
+      lineContent: '    cout << "\\n" << x;',
+      iterationLabel: 'Pass 5 (i = 4)',
+      variables: { i: 4, x: 4.5 },
+      consoleOutput: ['0', 'inf', '7', '3.5', '4.5'],
+      newOutput: '4.5',
+      explanation: 'Prints x (4.5) on a new line.'
+    },
+    // Loop Exit & Final Print
+    {
+      stepIndex: 16,
+      lineNumber: 3,
+      lineContent: 'for(i=0;i<5;i++) { // i becomes 5 -> exits',
+      iterationLabel: 'Loop Termination',
+      variables: { i: 5, x: 4.5 },
+      changedVars: ['i'],
+      conditionEval: { expression: 'i < 5', evaluatedTo: '5 < 5 -> FALSE', result: false },
+      consoleOutput: ['0', 'inf', '7', '3.5', '4.5'],
+      explanation: 'Increment i to 5. Condition 5 < 5 is false: loop exits. i retains value 5.'
+    },
+    {
+      stepIndex: 17,
+      lineNumber: 13,
+      lineContent: 'cout << "\\n" << i;',
+      iterationLabel: 'Post-Loop Output',
+      variables: { i: 5, x: 4.5 },
+      consoleOutput: ['0', 'inf', '7', '3.5', '4.5', '5'],
+      newOutput: '5',
+      explanation: 'Prints post-loop value of i (5) on a new line.'
+    }
+  ]
+};
+
+export const FALL2026_Q2B_TRACE: SimulatorTrace = {
+  id: 'F26_Q2B',
+  title: 'Fall 2026 Midterm Q2(b) — Array Left-Shift, Modulo & Uninitialized Variable Trap',
+  code: `int B[] = {11,7,5,3,2,1}, i = 0, x, a = 20 % 7;
+
+while( B[i] >= 2 ) {
+    B[i] = B[i+1];
+    i++;
+    x += B[i];
+}
+
+cout << "\\n" << B[2] << " " << B[3] << " " << i << " " << a << " " << x;`,
+  correctOptionIndex: 0,
+  options: [
+    '3 2 5 6 G (or 3 2 5 6 18)',
+    '5 3 5 6 18',
+    '3 2 4 6 17',
+    '3 2 5 2 18'
+  ],
+  whyWrong: {
+    '1': 'Array elements shift leftward: B[2] becomes 3 (copied from B[3]), not 5.',
+    '2': 'The loop runs for 5 passes (i reaches 5), terminating when B[5]=1 < 2.',
+    '3': '20 % 7 equals 6 (20 / 7 = 2 remainder 6), not 2.'
+  },
+  coreConcept: 'Key C++ Rules Tested: (1) Array left-shift: B[i] = B[i+1] copies each element into the predecessor index. (2) Loop continuation condition: B[i] >= 2 checks the updated element at the current index. (3) Uninitialized variable trap: int x is declared without = 0, so it starts with indeterminate Garbage memory (G); adding to x keeps it Garbage! (4) Modulo operator: 20 % 7 computes the integer remainder, which is 6.',
+  commonTrap: 'Forgetting that x was never initialized to 0 (Dr. Gordon expects "Garbage" or "G" in the answer box), or computing 20 % 7 incorrectly.',
+  steps: [
+    {
+      stepIndex: 0,
+      lineNumber: 1,
+      lineContent: 'int B[] = {11,7,5,3,2,1}, i = 0, x, a = 20 % 7;',
+      iterationLabel: 'Initialization',
+      variables: { i: 0, x: 'Garbage (uninitialized)', a: 6 },
+      arrays: { B: [11, 7, 5, 3, 2, 1] },
+      changedVars: ['B', 'i', 'x', 'a'],
+      trapWarning: '⚠️ Uninitialized Variable Alert: int x has NO initial value! In C++, local automatic variables contain garbage memory.',
+      consoleOutput: [],
+      explanation: 'Initialize B = {11, 7, 5, 3, 2, 1}, i = 0, a = 20 % 7 = 6. Note: x is UNINITIALIZED (contains garbage memory).'
+    },
+    // Pass 1: i = 0
+    {
+      stepIndex: 1,
+      lineNumber: 3,
+      lineContent: 'while( B[i] >= 2 ) {',
+      iterationLabel: 'Pass 1 (i = 0)',
+      variables: { i: 0, x: 'Garbage', a: 6 },
+      conditionEval: { expression: 'B[0] >= 2', evaluatedTo: '11 >= 2 -> TRUE', result: true },
+      consoleOutput: [],
+      explanation: 'Check loop condition: B[0] is 11 >= 2 is true. Enter loop body.'
+    },
+    {
+      stepIndex: 2,
+      lineNumber: 4,
+      lineContent: '    B[i] = B[i+1];\n    i++;\n    x += B[i];',
+      iterationLabel: 'Pass 1 (i = 0 -> 1)',
+      variables: { i: 1, x: 'Garbage (G + 7)', a: 6 },
+      arrays: { B: [7, 7, 5, 3, 2, 1] },
+      changedVars: ['B', 'i', 'x'],
+      consoleOutput: [],
+      explanation: 'B[0] = B[1] = 7. Increment i to 1. Accumulate x += B[1] (7): x remains Garbage (or 7 if x was 0). Array is now {7, 7, 5, 3, 2, 1}.'
+    },
+    // Pass 2: i = 1
+    {
+      stepIndex: 3,
+      lineNumber: 3,
+      lineContent: 'while( B[i] >= 2 ) {',
+      iterationLabel: 'Pass 2 (i = 1)',
+      variables: { i: 1, x: 'Garbage (G + 7)', a: 6 },
+      conditionEval: { expression: 'B[1] >= 2', evaluatedTo: '7 >= 2 -> TRUE', result: true },
+      consoleOutput: [],
+      explanation: 'Check condition: B[1] is 7 >= 2 is true. Enter loop body.'
+    },
+    {
+      stepIndex: 4,
+      lineNumber: 4,
+      lineContent: '    B[i] = B[i+1];\n    i++;\n    x += B[i];',
+      iterationLabel: 'Pass 2 (i = 1 -> 2)',
+      variables: { i: 2, x: 'Garbage (G + 12)', a: 6 },
+      arrays: { B: [7, 5, 5, 3, 2, 1] },
+      changedVars: ['B', 'i', 'x'],
+      consoleOutput: [],
+      explanation: 'B[1] = B[2] = 5. Increment i to 2. x += B[2] (5): x is G + 12 (or 12). Array is {7, 5, 5, 3, 2, 1}.'
+    },
+    // Pass 3: i = 2
+    {
+      stepIndex: 5,
+      lineNumber: 3,
+      lineContent: 'while( B[i] >= 2 ) {',
+      iterationLabel: 'Pass 3 (i = 2)',
+      variables: { i: 2, x: 'Garbage (G + 12)', a: 6 },
+      conditionEval: { expression: 'B[2] >= 2', evaluatedTo: '5 >= 2 -> TRUE', result: true },
+      consoleOutput: [],
+      explanation: 'Check condition: B[2] is 5 >= 2 is true. Enter loop body.'
+    },
+    {
+      stepIndex: 6,
+      lineNumber: 4,
+      lineContent: '    B[i] = B[i+1];\n    i++;\n    x += B[i];',
+      iterationLabel: 'Pass 3 (i = 2 -> 3)',
+      variables: { i: 3, x: 'Garbage (G + 15)', a: 6 },
+      arrays: { B: [7, 5, 3, 3, 2, 1] },
+      changedVars: ['B', 'i', 'x'],
+      consoleOutput: [],
+      explanation: 'B[2] = B[3] = 3. Increment i to 3. x += B[3] (3): x is G + 15 (or 15). Array is {7, 5, 3, 3, 2, 1}.'
+    },
+    // Pass 4: i = 3
+    {
+      stepIndex: 7,
+      lineNumber: 3,
+      lineContent: 'while( B[i] >= 2 ) {',
+      iterationLabel: 'Pass 4 (i = 3)',
+      variables: { i: 3, x: 'Garbage (G + 15)', a: 6 },
+      conditionEval: { expression: 'B[3] >= 2', evaluatedTo: '3 >= 2 -> TRUE', result: true },
+      consoleOutput: [],
+      explanation: 'Check condition: B[3] is 3 >= 2 is true. Enter loop body.'
+    },
+    {
+      stepIndex: 8,
+      lineNumber: 4,
+      lineContent: '    B[i] = B[i+1];\n    i++;\n    x += B[i];',
+      iterationLabel: 'Pass 4 (i = 3 -> 4)',
+      variables: { i: 4, x: 'Garbage (G + 17)', a: 6 },
+      arrays: { B: [7, 5, 3, 2, 2, 1] },
+      changedVars: ['B', 'i', 'x'],
+      consoleOutput: [],
+      explanation: 'B[3] = B[4] = 2. Increment i to 4. x += B[4] (2): x is G + 17 (or 17). Array is {7, 5, 3, 2, 2, 1}.'
+    },
+    // Pass 5: i = 4
+    {
+      stepIndex: 9,
+      lineNumber: 3,
+      lineContent: 'while( B[i] >= 2 ) {',
+      iterationLabel: 'Pass 5 (i = 4)',
+      variables: { i: 4, x: 'Garbage (G + 17)', a: 6 },
+      conditionEval: { expression: 'B[4] >= 2', evaluatedTo: '2 >= 2 -> TRUE', result: true },
+      consoleOutput: [],
+      explanation: 'Check condition: B[4] is 2 >= 2 is TRUE! Enter loop body.'
+    },
+    {
+      stepIndex: 10,
+      lineNumber: 4,
+      lineContent: '    B[i] = B[i+1];\n    i++;\n    x += B[i];',
+      iterationLabel: 'Pass 5 (i = 4 -> 5)',
+      variables: { i: 5, x: 'Garbage (G + 18)', a: 6 },
+      arrays: { B: [7, 5, 3, 2, 1, 1] },
+      changedVars: ['B', 'i', 'x'],
+      consoleOutput: [],
+      explanation: 'B[4] = B[5] = 1. Increment i to 5. x += B[5] (1): x is G + 18 (or 18). Array is {7, 5, 3, 2, 1, 1}.'
+    },
+    // Termination: i = 5
+    {
+      stepIndex: 11,
+      lineNumber: 3,
+      lineContent: 'while( B[i] >= 2 ) {',
+      iterationLabel: 'Loop Termination',
+      variables: { i: 5, x: 'Garbage (G + 18)', a: 6 },
+      conditionEval: { expression: 'B[5] >= 2', evaluatedTo: '1 >= 2 -> FALSE', result: false },
+      consoleOutput: [],
+      explanation: 'Check condition: B[5] is 1 >= 2 is FALSE! The while loop terminates.'
+    },
+    // Console Print
+    {
+      stepIndex: 12,
+      lineNumber: 9,
+      lineContent: 'cout << "\\n" << B[2] << " " << B[3] << " " << i << " " << a << " " << x;',
+      iterationLabel: 'Console Output',
+      variables: { i: 5, x: 'Garbage (or 18)', a: 6 },
+      consoleOutput: ['3 2 5 6 G'],
+      newOutput: '3 2 5 6 G',
+      explanation: 'Prints: B[2]=3, B[3]=2, i=5, a=6, x=Garbage (G). Boxed answer in booklet: "3 2 5 6 G" (or "3 2 5 6 18").'
+    }
+  ]
+};
+
+// -------------------------------------------------------------------------------------------------
 // Generic Trace Generator: Advanced C++ Simulation Engine
 // -------------------------------------------------------------------------------------------------
 
@@ -2502,6 +2914,26 @@ export function getTraceForQuestion(
     (normalized.includes('x = x * 1.5') && normalized.includes('y *= 2') && normalized.includes('z /= 2'))
   ) {
     return M24_MULTI_VAR_ACCUMULATOR_TRACE;
+  }
+
+  // 13. Fall 2026 Midterm Q2(a) — Integer Division, !i Logic & Division by Zero (inf)
+  if (
+    qid === 'F26-Q2a' ||
+    qid === 'TX_MIAE215_28' ||
+    (normalized.includes('double A[5] = {2,3,5,7,11}') && normalized.includes('7.0/(i-1)')) ||
+    (normalized.includes('1/(i+3)') && normalized.includes('7.0/(i-1)'))
+  ) {
+    return FALL2026_Q2A_TRACE;
+  }
+
+  // 14. Fall 2026 Midterm Q2(b) — Array Left-Shift, Modulo & Uninitialized Accumulator Trap
+  if (
+    qid === 'F26-Q2b' ||
+    qid === 'TX_MIAE215_29' ||
+    (normalized.includes('B[] = {11,7,5,3,2,1}') && normalized.includes('20 % 7')) ||
+    (normalized.includes('B[i] = B[i+1]') && normalized.includes('20 % 7'))
+  ) {
+    return FALL2026_Q2B_TRACE;
   }
 
   // Default to dynamic trace generator

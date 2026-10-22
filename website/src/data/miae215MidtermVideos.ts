@@ -952,5 +952,54 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 67.7
       }
     ]
+  },
+  "TX_MIAE215_32": {
+    "num": 32,
+    "title": "Fall 2026 Q1 · 1D Array Programming & Validation",
+    "source": "MIAE 215 Midterm Fall 2026, Q1 · Live Revision Paper",
+    "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Fall 2026 Q1 - Array Programming.mp4",
+    "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/32.jpg",
+    "duration": 240,
+    "sizeMB": 12.0,
+    "chapters": [
+      { "label": "The Problem", "start": 0 },
+      { "label": "Array Input & Min Search", "start": 15 },
+      { "label": "Range Check & Immediate Exit", "start": 60 },
+      { "label": "Validation Loop & De Morgan", "start": 110 },
+      { "label": "In-Place Swap & File I/O", "start": 160 },
+      { "label": "Summary & Traps", "start": 210 }
+    ]
+  },
+  "TX_MIAE215_33": {
+    "num": 33,
+    "title": "Fall 2026 Q2(a) · Integer Division, !i & Division by Zero",
+    "source": "MIAE 215 Midterm Fall 2026, Q2(a) · Live Revision Paper",
+    "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Fall 2026 Q2a - Output Tracing.mp4",
+    "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/33.jpg",
+    "duration": 180,
+    "sizeMB": 9.5,
+    "chapters": [
+      { "label": "The Snippet", "start": 0 },
+      { "label": "Pass 1: Integer Division 1/3", "start": 12 },
+      { "label": "Pass 2: 7.0 / 0.0 = inf", "start": 45 },
+      { "label": "Passes 3 & 4: Strict Inequality", "start": 90 },
+      { "label": "Pass 5 & Final Output", "start": 135 }
+    ]
+  },
+  "TX_MIAE215_34": {
+    "num": 34,
+    "title": "Fall 2026 Q2(b) · Left-Shift & Uninitialized Memory Trap",
+    "source": "MIAE 215 Midterm Fall 2026, Q2(b) · Live Revision Paper",
+    "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Fall 2026 Q2b - Left Shift Tracing.mp4",
+    "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/34.jpg",
+    "duration": 165,
+    "sizeMB": 8.8,
+    "chapters": [
+      { "label": "The Snippet", "start": 0 },
+      { "label": "Array Left Shifting Passes 1-5", "start": 15 },
+      { "label": "Termination Condition B[5] >= 2", "start": 75 },
+      { "label": "Uninitialized Accumulator x (Garbage)", "start": 110 },
+      { "label": "Final Booklet Output: 3 2 5 6 G", "start": 140 }
+    ]
   }
 };

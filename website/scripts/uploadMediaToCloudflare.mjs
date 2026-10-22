@@ -38,7 +38,8 @@ function getFiles() {
     { courseDir: 'Miae 221', subDir: '08 - Teacher Topics Explained AI Videos' },
     { courseDir: 'Miae 221', subDir: '09 - Teacher Midterm Practice AI Videos' },
     { courseDir: 'Miae 215', subDir: '08 - Teacher Midterm Practice AI Videos' },
-    { courseDir: 'Miae 215', subDir: '09 - Code Lab Walkthrough AI Videos' }
+    { courseDir: 'Miae 215', subDir: '09 - Code Lab Walkthrough AI Videos' },
+    { courseDir: 'Miae 215', subDir: '10 - Practice Midterm 2026 AI Videos' }
   ];
 
   const files = [];
