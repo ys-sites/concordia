@@ -734,7 +734,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             </div>
           )}
 
-          {/youtube|tutorial/i.test(current.name) && (
+          {course.id === 'INDU211' && /youtube|tutorial/i.test(current.name) && (
             <div
               style={{
                 margin: '12px 16px 4px',

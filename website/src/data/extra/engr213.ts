@@ -2,7 +2,7 @@ import { PracticeQuestion } from '../../types';
 import { t } from '../solutions/types';
 
 // ENGR 213 — questions modelled on previous years' quizzes and tests (Winter 2025 Quiz 1-G,
-// Quiz 2-G and Test 1 V2), restricted to what the teacher's Lectures 1–6 cover.
+// Quiz 2-G and Test 1 V2), restricted to what the teacher's Lectures 1–8 cover.
 const L3 = 'Lecture 3 - Separable and Linear Equations.pdf';
 const L4 = 'Lecture 4 - Exact Equations.pdf';
 const L6 = 'Lecture 6 - Linear Models, September 25 2026.pdf';

@@ -1934,7 +1934,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                 </button>
               )}
               <span className="ec-badge-copilot" style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', color: '#ffffff' }}>
-                <Sparkles size={14} /> 🎯 Confirmed Midterm 1 Scope (Lectures 1–6)
+                <Sparkles size={14} /> 🎯 Confirmed Midterm 1 Scope (Lectures 1–8 · Weeks 1–4)
               </span>
               <span className="ec-badge-warning">
                 <AlertTriangle size={14} /> NO Formula Sheet on Exam
@@ -1942,7 +1942,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
             </div>
             <h1 className="ec-main-title">ENGR 213 Midterm Mastery Companion</h1>
             <p className="ec-subtitle">
-              Applied Ordinary Differential Equations · Concordia University · Official Midterm 1 Syllabus: Chapter 2 (First-Order ODEs &amp; Applications) + Sections 17.1 &amp; 17.2 (Complex Numbers &amp; Auxiliary Equations) · Lectures 1–6
+              Applied Ordinary Differential Equations · Concordia University · Official Midterm 1 Syllabus: Chapter 2 (First-Order ODEs &amp; Applications) + Sections 17.1 &amp; 17.2 (Complex Numbers &amp; Auxiliary Equations) · Lectures 1–8
             </p>
           </div>
 
@@ -2002,7 +2002,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
         <div className="ec-friend-speech-bubble">
           <div className="ec-friend-avatar">AI</div>
           <div>
-            <strong>Official Midterm 1 Scope Confirmed (Lectures 1–6):</strong> This drill covers strictly <strong>Chapter 2</strong> (Classification, Separable, Linear, Exact, Homogeneous, Bernoulli, Substitutions, Linear &amp; Nonlinear Models/Applications) and <strong>Sections 17.1 &amp; 17.2</strong> (Complex Numbers, Modulus, Argument, Polar Form, Euler&apos;s Formula &amp; 2nd-Order Auxiliary Equations). All Midterm 2 topics (Higher-Order Non-Homogeneous, Undetermined Coefficients, Variation of Parameters, Cauchy-Euler, Laplace Transforms) are strictly excluded.
+            <strong>Official Midterm 1 Scope Confirmed (Lectures 1–8):</strong> This drill covers strictly <strong>Chapter 2</strong> (Classification, Separable, Linear, Exact, Homogeneous, Bernoulli, Substitutions, Linear &amp; Nonlinear Models/Applications) and <strong>Sections 17.1 &amp; 17.2</strong> (Complex Numbers, Modulus, Argument, Polar Form, Euler&apos;s Formula &amp; 2nd-Order Auxiliary Equations). All Midterm 2 topics (Higher-Order Non-Homogeneous, Undetermined Coefficients, Variation of Parameters, Cauchy-Euler, Laplace Transforms) are strictly excluded.
           </div>
         </div>
       </div>

@@ -362,7 +362,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
     courseId: 'ENGR213',
     code: "ENGR 213",
     name: "Applied Ordinary Differential Equations",
-    midtermScope: "Official Midterm 1 Scope: Chapter 2 (Separable ODEs CH 2.2, Linear ODEs & Integrating Factors CH 2.3, Exact Equations & Integrating Factors CH 2.4, Solutions by Substitution: Homogeneous & Bernoulli CH 2.5, Linear Models & Applications CH 2.7–2.8) and Sections 17.1 & 17.2 (Complex Numbers, Polar/Cartesian Forms, Euler's Formula, Roots & Second-Order Initial Value Problems). Covers Lectures 1–5, Tutorials 1 & 3, and Homework Sets 1–3.",
+    midtermScope: "Official Midterm 1 Scope: Chapter 2 (Separable ODEs CH 2.2, Linear ODEs & Integrating Factors CH 2.3, Exact Equations & Integrating Factors CH 2.4, Solutions by Substitution: Homogeneous & Bernoulli CH 2.5, Linear Models & Applications CH 2.7–2.8) and Sections 17.1 & 17.2 (Complex Numbers, Polar/Cartesian Forms, Euler's Formula, Roots & Second-Order Initial Value Problems). Covers Lectures 1–8 (Weeks 1–4), Tutorials 1 & 3, and Homework Sets 1–3.",
     midtermDrillSectionId: 'midterm',
     assessmentDocs: [
       {
@@ -376,7 +376,7 @@ const RAW_FILTERED_COURSES_DATA: Record<CourseId, FilteredCourseConfig> = {
         fileSizeBytes: 537853,
         categoryType: 'Midterm Exam',
         isMidtermPrep: true,
-        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–5", "Tutorials 1 & 3", "Midterm 1 Scope"]
+        tags: ["Paradis notes", "Regenerated Master Guide", "Lectures 1–8", "Tutorials 1 & 3", "Midterm 1 Scope"]
       },
       {
         id: "ENGR213:filtered:gradesaver-master-guide",
