@@ -1,7 +1,4 @@
 /* Course landing page */
-.lx-route-loading {
-  min-height: 50vh;
-}
 
 .lx-course {
   overflow-x: clip;
@@ -208,13 +205,6 @@
 .lx-acc-head:hover {
   background: var(--lx-surface-3);
 }
-.lx-acc-chev {
-  flex: none;
-  transition: transform 0.2s var(--lx-ease);
-}
-.lx-acc.is-open .lx-acc-chev {
-  transform: rotate(180deg);
-}
 .lx-acc-title {
   flex: 1;
   display: flex;
@@ -246,25 +236,6 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.lx-lesson-state {
-  flex: none;
-  width: 20px;
-  height: 20px;
-  margin-top: 1px;
-  border-radius: 50%;
-  border: 2px solid var(--lx-line-strong);
-  display: grid;
-  place-items: center;
-  color: #fff;
-}
-.lx-lesson-state.is-started {
-  border-color: var(--lx-accent);
-  background: conic-gradient(var(--lx-accent) 0 50%, transparent 0);
-}
-.lx-lesson-state.is-done {
-  border-color: var(--lx-good);
-  background: var(--lx-good);
-}
 .lx-lesson-main {
   flex: 1;
   min-width: 0;
@@ -292,24 +263,6 @@
 }
 
 /* videos tab */
-.lx-filter-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-.lx-chip-btn {
-  border: 1px solid var(--lx-line-strong);
-  background: var(--lx-surface);
-  cursor: pointer;
-  height: 32px;
-  padding: 0 12px;
-}
-.lx-chip-btn.is-on {
-  background: var(--lx-ink);
-  border-color: var(--lx-ink);
-  color: #fff;
-}
 .lx-vid-section {
   margin-top: 28px;
 }
@@ -351,24 +304,6 @@
   color: #fff;
   font-weight: 800;
   background: var(--lx-accent-deep);
-}
-.lx-vid-dur {
-  position: absolute;
-  right: 6px;
-  bottom: 8px;
-  padding: 1px 6px;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.78);
-  color: #fff;
-  font-size: 11.5px;
-  font-weight: 700;
-}
-.lx-vid-watched {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 4px;
-  background: var(--lx-accent);
 }
 .lx-vid-title {
   font-weight: 700;
@@ -414,10 +349,6 @@
 }
 .lx-res-item span {
   flex: 1;
-}
-.lx-res-go {
-  color: var(--lx-muted);
-  flex: none;
 }
 
 /* exam prep tab */

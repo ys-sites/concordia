@@ -105,7 +105,7 @@ export function suggestions(cur: Curriculum, p: ProgressState, examDate: string 
     const practice = firstOf(m.lesson, ['practice', 'check']);
     out.push({
       kind: 'weak',
-      title: video ? `Rewatch “${video.title}”, then practise ${m.lesson.title.toLowerCase()}` : `Practise ${m.lesson.title.toLowerCase()} again`,
+      title: video ? `${video.kind === 'video' ? 'Rewatch' : 'Reread'} “${video.title === 'Key notes' ? `the key notes of ${m.lesson.title}` : video.title}”, then practise again` : `Practise ${m.lesson.title} again`,
       why: `You got ${m.right} of ${m.answered} right (${Math.round((m.accuracy ?? 0) * 100)}%) on ${m.lesson.title}.`,
       course: cur.id,
       lessonId: m.lesson.id,
@@ -118,7 +118,7 @@ export function suggestions(cur: Curriculum, p: ProgressState, examDate: string 
     const check = firstOf(m.lesson, ['check', 'practice']);
     out.push({
       kind: 'stale',
-      title: `Refresh ${m.lesson.title.toLowerCase()}`,
+      title: `Refresh: ${m.lesson.title}`,
       why: `You last practised it ${Math.round((now - m.lastAt) / DAY)} days ago; a short check keeps it fresh.`,
       course: cur.id,
       lessonId: m.lesson.id,

@@ -8,7 +8,8 @@ import { SUMMARY, courseProgress, fmtHours, nextStep, useCurricula } from '../da
 import { href } from '../router';
 import { streak, useProgress } from '../progress/store';
 import { CourseCover } from '../components/CourseCover';
-import { daysUntil, dueForReview } from '../progress/insights';
+import { daysUntil, dueForReview, suggestions } from '../progress/insights';
+import { ContinueCard, RecoCard } from '../components/LearningCards';
 import '../styles/home.css';
 import '../styles/hero.css';
 
@@ -60,12 +61,16 @@ export const Home: React.FC = () => {
     return Object.fromEntries(COURSES.map((c) => [c.id, courseProgress(curricula[c.id], done)])) as Record<CourseId, ReturnType<typeof courseProgress>>;
   }, [curricula, done]);
 
-  const upNext = useMemo(() => {
+  const progressState = useProgress((s) => s);
+  const startedCourses = COURSES.filter((c) => lastByCourse[c.id] || Object.keys(done).some((k) => k.startsWith(c.id + '/')));
+  // two per started course (or the first lesson of each course for a new visitor), at most four
+  const recommended = useMemo(() => {
     if (!curricula) return [];
-    return COURSES.filter((c) => lastByCourse[c.id])
-      .map((c) => ({ c, n: nextStep(curricula[c.id], done, lastByCourse[c.id]!.stepId) }))
-      .filter((x) => x.n);
-  }, [curricula, done, lastByCourse]);
+    const pool = startedCourses.length ? startedCourses : COURSES;
+    return pool
+      .flatMap((c) => suggestions(curricula[c.id], progressState, progressState.examDates[c.id] ?? curricula[c.id].midterm.date).slice(0, startedCourses.length ? 2 : 1).map((s) => ({ s, cur: curricula[c.id] })))
+      .slice(0, 4);
+  }, [curricula, progressState]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const due = useMemo(() => dueForReview(questions), [questions]);
   const run = streak(days);
@@ -150,27 +155,6 @@ export const Home: React.FC = () => {
               </div>
             </div>
           </div>
-          {last && resume && (
-            <div className={`lx-continue ${courseClass(last.course)}`}>
-              <CourseCover course={last.course} className="lx-continue-cover" label={false} />
-              <div className="lx-continue-body">
-                <p className="lx-meta">Continue where you left off · {COURSE_BY_ID[last.course].code}</p>
-                <h2 className="lx-h1">{last.lessonTitle}</h2>
-                <p className="lx-lead">{last.title}</p>
-                {progress && (
-                  <div className="lx-continue-progress">
-                    <div className="lx-bar">
-                      <span style={{ width: `${progress[last.course].pct}%` }} />
-                    </div>
-                    <span className="lx-meta lx-num">{progress[last.course].pct}% of the course</span>
-                  </div>
-                )}
-                <a className="lx-btn lx-btn--primary lx-btn--lg" href={href({ name: 'learn', course: last.course, lesson: last.lessonId, step: last.stepId })}>
-                  <PlayCircle size={18} /> Resume
-                </a>
-              </div>
-            </div>
-          )}
           {(run > 0 || minutesThisWeek > 0 || due.length > 0) && (
             <ul className="lx-home-stats" aria-label="Your week">
               <li>
@@ -217,30 +201,28 @@ export const Home: React.FC = () => {
           </section>
         )}
 
-        {upNext.length > 0 && (
-          <section className="lx-home-section" aria-labelledby="lx-next">
-            <h2 id="lx-next" className="lx-h2">
-              Up next
+        {curricula && startedCourses.length > 0 && (
+          <section className="lx-home-section" aria-labelledby="lx-continue">
+            <h2 id="lx-continue" className="lx-h2">
+              Continue learning
             </h2>
-            <div className="lx-next-row">
-              {upNext.map(({ c, n }) => (
-                <a key={c.id} className={`lx-next-card ${courseClass(c.id)}`} href={href({ name: 'learn', course: c.id, lesson: n!.lesson.id, step: n!.step.id })}>
-                  <span className="lx-code-tag">{c.code}</span>
-                  <strong>{n!.step.title}</strong>
-                  <span className="lx-meta">
-                    {n!.lesson.title} · {n!.step.minutes} min
-                  </span>
-                </a>
+            <div className="lx-cont-grid">
+              {startedCourses.map((c) => (
+                <ContinueCard key={c.id} cur={curricula[c.id]} p={progressState} />
               ))}
-              {due.length > 0 && (
-                <a className="lx-next-card" href="#/my-learning">
-                  <span className="lx-chip lx-chip--warn">
-                    <ListChecks size={14} /> Review
-                  </span>
-                  <strong>{due.length} questions are due for review</strong>
-                  <span className="lx-meta">Spaced review brings back what you missed</span>
-                </a>
-              )}
+            </div>
+          </section>
+        )}
+
+        {recommended.length > 0 && (
+          <section className="lx-home-section" aria-labelledby="lx-reco">
+            <h2 id="lx-reco" className="lx-h2">
+              Recommended for you
+            </h2>
+            <div className="lx-reco-grid">
+              {recommended.map(({ s, cur }, i) => (
+                <RecoCard key={i} cur={cur} s={s} />
+              ))}
             </div>
           </section>
         )}
