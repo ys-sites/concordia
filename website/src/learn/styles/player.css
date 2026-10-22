@@ -646,13 +646,6 @@
   flex-direction: column;
   gap: 12px;
 }
-.lx-field {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 13.5px;
-  font-weight: 600;
-}
 .lx-tool-out {
   display: flex;
   flex-direction: column;

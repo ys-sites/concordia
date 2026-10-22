@@ -1,0 +1,123 @@
+@import './dashboard.css';
+@import '../components/resourceLibrary.css';
+
+.lx-bank {
+  padding-top: 32px;
+}
+.lx-bank-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.lx-bank-head .lx-h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lx-bank-head .lx-h1 svg {
+  color: var(--lx-accent);
+}
+.lx-bank-head .lx-lead {
+  margin-top: 6px;
+}
+.lx-bank-filters {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 14px 20px;
+  align-items: end;
+}
+.lx-bank-filters .lx-lib-search {
+  flex: none;
+  height: 46px;
+}
+.lx-seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--lx-line-strong);
+  border-radius: var(--lx-r);
+  overflow: hidden;
+  background: var(--lx-surface);
+}
+.lx-seg button {
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.lx-seg button + button {
+  border-left: 1px solid var(--lx-line);
+}
+.lx-seg button.is-on {
+  background: var(--lx-ink);
+  color: #fff;
+}
+.lx-bank-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 18px 0 10px;
+}
+.lx-bank-list {
+  list-style: none;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r-lg);
+  background: var(--lx-surface);
+  overflow: hidden;
+}
+.lx-bank-list li + li {
+  border-top: 1px solid var(--lx-line);
+}
+.lx-bank-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 14px 18px;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+.lx-bank-item:hover {
+  background: var(--lx-tint);
+}
+.lx-bank-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.lx-bank-q {
+  font-size: 15px;
+  line-height: 1.5;
+}
+.lx-bank-more {
+  margin-top: 14px;
+}
+.lx-lvl-1 {
+  --lvl: #16a34a;
+  --lvl-bg: #e7f6ec;
+}
+.lx-lvl-2 {
+  --lvl: #d97706;
+  --lvl-bg: #fdf1dc;
+}
+.lx-lvl-3 {
+  --lvl: #dc2626;
+  --lvl-bg: #fdeaea;
+}
+.lx-lvl-chip {
+  background: var(--lvl-bg);
+  color: var(--lvl);
+}
+@media (max-width: 900px) {
+  .lx-bank-filters {
+    grid-template-columns: 1fr;
+  }
+}

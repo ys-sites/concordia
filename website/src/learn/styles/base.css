@@ -347,6 +347,13 @@ body::before {
 }
 
 /* shared pieces used on several pages */
+.lx-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
 .lx-dialog-backdrop {
   position: fixed;
   inset: 0;
