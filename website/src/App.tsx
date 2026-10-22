@@ -8,11 +8,10 @@ import { safeLazy } from './utils/safeLazy';
 import { formatRoute, parseRoute, useRoute } from './learn/router';
 import { TopBar, MobileNav, Footer } from './learn/shell/TopBar';
 import { Home } from './learn/pages/Home';
-import { onOpenDoc } from './learn/docBus';
+import { getPdfUrl } from './utils/pdfUrl';
 import { loadCurricula } from './learn/data';
 import { addStudyTime, useSaveBlocked } from './learn/progress/store';
 import { migrateOldProgress } from './learn/progress/migrate';
-import type { DocRef } from './learn/model';
 
 // The home page paints with no data beyond a few hundred bytes of course stats; everything else loads on demand.
 const CoursePage = safeLazy(() => import('./learn/pages/CoursePage'));
@@ -21,7 +20,6 @@ const MyLearning = safeLazy(() => import('./learn/pages/MyLearning'));
 const SearchPage = safeLazy(() => import('./learn/pages/SearchPage'));
 const QuestionBank = safeLazy(() => import('./learn/pages/QuestionBank'));
 const PracticePicker = safeLazy(() => import('./learn/components/PracticePicker'));
-const DocViewer = safeLazy(() => import('./learn/components/DocViewer'));
 const ContactModal = safeLazy(() => import('./components/ContactModal').then((m) => ({ default: m.ContactModal })));
 
 const LEARNING_PAGES = new Set(['learn', 'bank']);
@@ -39,7 +37,6 @@ const SaveBlocked: React.FC = () =>
 
 export function App() {
   const route = useRoute();
-  const [doc, setDoc] = useState<DocRef | null>(null);
   const [contact, setContact] = useState<{ subject?: string; message?: string } | null>(null);
   const [practice, setPractice] = useState(false);
 
@@ -49,17 +46,15 @@ export function App() {
     if (window.location.hash !== canonical) window.history.replaceState(null, '', canonical);
   }, [route]);
 
-  useEffect(() => onOpenDoc(setDoc), []);
-
   useEffect(() => {
     const open = (event: Event) => setContact((event as CustomEvent<{ subject?: string; message?: string }>).detail ?? {});
     window.addEventListener('concordia:feedback', open);
     return () => window.removeEventListener('concordia:feedback', open);
   }, []);
 
-  // a legacy "?doc=" link opens its document on the course page
+  // a legacy "?doc=" link goes straight to its document
   useEffect(() => {
-    if (route.name === 'course' && route.doc) setDoc({ path: route.doc, title: route.doc.split('/').pop()!.replace(/\.pdf$/i, '') });
+    if (route.name === 'course' && route.doc) window.location.replace(getPdfUrl(route.doc));
   }, [route]);
 
   useEffect(() => {
@@ -107,11 +102,6 @@ export function App() {
       {practice && (
         <Suspense fallback={null}>
           <PracticePicker onClose={() => setPractice(false)} initial={route.name === 'course' ? route.course : null} />
-        </Suspense>
-      )}
-      {doc && (
-        <Suspense fallback={null}>
-          <DocViewer doc={doc} onClose={() => setDoc(null)} />
         </Suspense>
       )}
       {contact && (

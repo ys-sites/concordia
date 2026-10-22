@@ -189,6 +189,8 @@
   border-radius: var(--lx-r);
   background: var(--lx-surface-2);
   overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
 }
 .lx-ans-card p.lx-move-note {
   font-size: 14px;
@@ -215,6 +217,8 @@
   border-radius: var(--lx-r);
   max-width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
 }
 
 /* From the course */

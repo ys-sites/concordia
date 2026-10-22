@@ -10,7 +10,6 @@ body {
   font-family: var(--lx-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: clip;
 }
 *,
 *::before,
@@ -23,6 +22,9 @@ body::before {
 }
 
 .lx-app {
+  /* stray wide content never widens the page; clip (unlike hidden on the root) cannot be scrolled by code,
+     so nothing can shift the page sideways out of reach */
+  overflow-x: clip;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -325,6 +327,7 @@ body::before {
   gap: 4px;
   border-bottom: 1px solid var(--lx-line);
   overflow-x: auto;
+  overflow-y: hidden;
   scrollbar-width: none;
 }
 .lx-tabs::-webkit-scrollbar {

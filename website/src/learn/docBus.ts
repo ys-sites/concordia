@@ -1,13 +1,10 @@
-// Any component can open a course document (a lesson's slides, a resource) without prop drilling; the app shell
-// listens and shows the viewer.
+// Course documents (a lesson's slides, a guide, a resource) open in a new tab at the right page: the browser's
+// PDF viewer reads #page=N, and the lesson, video or quiz stays exactly where it was.
 import type { DocRef } from './model';
+import { getPdfUrl } from '../utils/pdfUrl';
 
-const EVENT = 'lx-open-doc';
+export const docUrl = (doc: DocRef) => getPdfUrl(doc.path) + (doc.page ? `#page=${doc.page}` : '');
 
-export const openDoc = (doc: DocRef) => window.dispatchEvent(new CustomEvent<DocRef>(EVENT, { detail: doc }));
-
-export const onOpenDoc = (fn: (d: DocRef) => void) => {
-  const h = (e: Event) => fn((e as CustomEvent<DocRef>).detail);
-  window.addEventListener(EVENT, h);
-  return () => window.removeEventListener(EVENT, h);
+export const openDoc = (doc: DocRef) => {
+  window.open(docUrl(doc), '_blank', 'noopener');
 };

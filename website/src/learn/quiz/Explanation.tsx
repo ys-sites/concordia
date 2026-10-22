@@ -86,10 +86,12 @@ export const SolutionVideo: React.FC<{ videoId: string }> = ({ videoId }) => {
   );
 };
 
-const Steps: React.FC<{ q: LearnQuestion }> = ({ q }) => {
+// Right (or reviewing): the whole process at once, to confirm how it is done. Wrong: one move at a time, so
+// the student can try the next move before seeing it.
+const Steps: React.FC<{ q: LearnQuestion; stepwise: boolean }> = ({ q, stepwise }) => {
   const moves = useMemo(() => babySteps(q), [q]);
-  const [shown, setShown] = useState(1);
-  useEffect(() => setShown(1), [q.id]);
+  const [shown, setShown] = useState(stepwise ? 1 : moves.length);
+  useEffect(() => setShown(stepwise ? 1 : moves.length), [q.id, stepwise, moves.length]);
   if (!moves.length) return null;
   const visible = moves.slice(0, shown);
   const speech = moves.map((m) => [m.title, m.text, m.note].filter(Boolean).join('. ')).join('. ');
@@ -167,9 +169,11 @@ export function useCourseDocs(q: LearnQuestion) {
     for (const s of cur.sections)
       for (const l of s.lessons)
         if (!lesson && l.steps.some((st) => st.questionIds?.includes(q.id))) {
-          const notes = l.steps.find((st) => st.kind === 'notes' || st.kind === 'video' || st.kind === 'reading');
-          lesson = { id: l.id, title: l.title, stepId: notes?.id };
-          more = [...(l.steps.find((st) => st.kind === 'notes')?.docs ?? []), ...(l.resources ?? [])].filter((d) => !slides.some((x) => x.path === d.path)).slice(0, 3);
+          // the lesson's lead step (its video, or key notes when there is no video) carries its references
+          const lead = l.steps.find((st) => st.kind === 'video' || st.kind === 'extra' || st.kind === 'notes' || st.kind === 'reading');
+          lesson = { id: l.id, title: l.title, stepId: lead?.id };
+          const seen = new Set(slides.map((x) => x.path));
+          more = [...(lead?.docs ?? []), ...(l.resources ?? [])].filter((d) => !seen.has(d.path) && !!seen.add(d.path)).slice(0, 3);
           if (!slides.length) slides.push(...more.splice(0, 1));
         }
     return { slides, lesson, more };
@@ -246,7 +250,7 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
             </p>
           </section>
         )}
-        <Steps q={q} />
+        <Steps q={q} stepwise={correct === false} />
         {e.solution && (
           <section className="lx-ans-card">
             <h4>Full solution</h4>

@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import { BookOpen, Check, CheckCircle2, Eye, Flag, HelpCircle, Lightbulb, XCircle } from 'lucide-react';
+import { BookOpen, Check, CheckCircle2, Eye, Flag, HelpCircle, Lightbulb, MessageSquareWarning, XCircle } from 'lucide-react';
 import type { LearnQuestion } from '../model';
 import { LEVEL_LABEL } from '../model';
 import type { Answer, Confidence } from '../progress/store';
 import { updateProgress, useProgress } from '../progress/store';
 import { openDoc } from '../docBus';
+import { COURSE_BY_ID } from '../courses';
+import { trackStudy } from '../analytics';
 import { MathText } from '../../utils/mathRenderer';
 import { OptionContent } from '../../components/OptionContent';
 import { ReadAloudButton } from '../../components/ReadAloudButton';
@@ -67,6 +69,19 @@ export const QuestionView: React.FC<QuestionViewProps> = (p) => {
   const autoRead = useProgress((s) => !!s.settings.autoRead);
   const docs = useCourseDocs(q);
   const slide = docs.slides[0];
+  // the source line often names the same lecture page as the slide chip: show it once
+  const plain = (x: string) => x.toLowerCase().replace(/\.pdf/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const sourceIsSlide = !!slide && !!q.source && plain(q.source).startsWith(plain(slide.title));
+  const report = () => {
+    trackStudy('report_problem', { course: q.courseId, question: q.id });
+    window.dispatchEvent(
+      new CustomEvent('concordia:feedback', { detail: { subject: 'Practice Drill Feedback', message: `Problem with a ${COURSE_BY_ID[q.courseId].code} question (${q.topic})
+Reference: ${q.id}
+
+What went wrong:
+` } })
+    );
+  };
   const yourAnswer = q.options ? chosen.map((o) => `(${LETTER[order.indexOf(o)]}) ${q.options![o]}`).join(', ') : typeof p.answer === 'string' ? p.answer : undefined;
   const speech = `${q.prompt}${q.options ? '. ' + order.map((o, i) => `Option ${LETTER[i]}: ${q.options![o]}`).join('. ') : ''}`;
 
@@ -77,15 +92,16 @@ export const QuestionView: React.FC<QuestionViewProps> = (p) => {
           <span className="lx-q-count lx-num">
             Question {p.index + 1} <span>of {p.total}</span>
           </span>
-          <span className="lx-q-meter" aria-hidden>
-            <i style={{ width: `${((p.index + 1) / Math.max(1, p.total)) * 100}%` }} />
-          </span>
           <span className="lx-q-head-tools">
             <ReadAloudButton text={speech} stopKey={q.id} autoPlay={autoRead && !p.locked} />
             <label className="lx-autoread" title="Read each new question aloud">
               <input type="checkbox" checked={autoRead} onChange={(e) => updateProgress((s) => void (s.settings.autoRead = e.target.checked))} />
               <span>Auto-read</span>
             </label>
+            <button type="button" className="lx-icon-btn" onClick={report} title="Report a problem with this question">
+              <MessageSquareWarning size={17} />
+              <span className="lx-sr">Report a problem with this question</span>
+            </button>
             <button type="button" className={`lx-icon-btn lx-flag${p.flagged ? ' is-on' : ''}`} aria-pressed={p.flagged} onClick={p.onFlag} title={p.flagged ? 'Remove flag' : 'Flag for review'}>
               <Flag size={17} />
               <span className="lx-sr">{p.flagged ? 'Remove flag' : 'Flag for review'}</span>
@@ -101,7 +117,7 @@ export const QuestionView: React.FC<QuestionViewProps> = (p) => {
               {slide.page ? ` · p. ${slide.page}` : ''}
             </button>
           )}
-          {q.source && <span className={`lx-chip${q.pastPaper ? ' lx-chip--warn' : ''}`}>{q.source}</span>}
+          {q.source && !sourceIsSlide && <span className={`lx-chip${q.pastPaper ? ' lx-chip--warn' : ''}`}>{q.source}</span>}
         </div>
       </header>
 

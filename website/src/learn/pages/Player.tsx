@@ -27,8 +27,14 @@ const Sidebar: React.FC<{ cur: Curriculum; lessonId: string; stepId: string; don
   useEffect(() => {
     if (currentSection) setOpenSections((o) => new Set(o).add(currentSection));
     setOpenLessons((o) => new Set(o).add(lessonId));
-    // bring the current step into view
-    requestAnimationFrame(() => document.querySelector('.lx-side-step.is-current')?.scrollIntoView({ block: 'nearest' }));
+    // bring the current step into view inside the sidebar only (scrollIntoView would also move the page)
+    requestAnimationFrame(() => {
+      const side = document.querySelector<HTMLElement>('.lx-pside');
+      const el = side?.querySelector<HTMLElement>('.lx-side-step.is-current');
+      if (!side || !el) return;
+      const top = el.getBoundingClientRect().top - side.getBoundingClientRect().top + side.scrollTop;
+      if (top < side.scrollTop + 60 || top > side.scrollTop + side.clientHeight - el.offsetHeight) side.scrollTop = Math.max(0, top - side.clientHeight / 3);
+    });
   }, [lessonId, currentSection]);
   const toggle = (set: React.Dispatch<React.SetStateAction<Set<string>>>, id: string) =>
     set((o) => {
@@ -314,6 +320,9 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
 
           {(step.kind === 'video' || step.kind === 'extra') && <LessonReferences course={course} step={step} />}
 
+          {/* a quiz is its own page: no lesson tabs or step survey under it (report a question from its header) */}
+          {!quiz && (
+            <>
           <section className="lx-step-feedback" aria-label="Step feedback">
             <span>
               <strong>Was this step helpful?</strong>
@@ -420,6 +429,8 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
                 <p className="lx-empty">No extra documents for this lesson. The course’s full library is in the Resources tab of the course page.</p>
               ))}
           </div>
+            </>
+          )}
         </main>
 
         <aside className={`lx-pside${drawer ? ' is-open' : ''}`} aria-label="Course content">

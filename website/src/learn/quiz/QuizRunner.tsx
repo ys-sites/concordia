@@ -44,6 +44,76 @@ export interface QuizRunnerProps {
   continueLabel?: string;
 }
 
+// The question navigator: Prev, a numbered pill per question (right, wrong, answered, flagged, current), Next,
+// and the mode, tally and clock under it. Questions not drawn yet (adaptive sets) show as dashes.
+const QuestionNav: React.FC<{
+  session: QuizSession;
+  total: number;
+  mode: string;
+  exam: boolean;
+  remaining: number | null;
+  onGo: (i: number) => void;
+  onNext: () => void;
+}> = ({ session, total, mode, exam, remaining, onGo, onNext }) => {
+  const strip = useRef<HTMLDivElement>(null);
+  // keep the current pill in view inside the strip (never scrolls the page)
+  useEffect(() => {
+    const el = strip.current?.querySelector<HTMLElement>('[aria-current="step"]');
+    const box = strip.current;
+    if (el && box) box.scrollTo({ left: el.offsetLeft - box.clientWidth / 2 + el.clientWidth / 2, behavior: 'smooth' });
+  }, [session.i]);
+  const right = session.order.filter((x) => session.checked[x] === true).length;
+  const checked = session.order.filter((x) => session.checked[x] !== undefined).length;
+  const answered = session.order.filter((x) => session.answers[x] !== undefined).length;
+  return (
+    <div className="lx-qnav">
+      <div className="lx-qnav-row">
+        <button type="button" className="lx-qnav-step" onClick={() => onGo(Math.max(0, session.i - 1))} disabled={session.i === 0} aria-label="Previous question">
+          <ArrowLeft size={16} /> <span>Prev</span>
+        </button>
+        <div className="lx-qnav-strip" ref={strip} role="navigation" aria-label="Questions">
+          {Array.from({ length: Math.max(total, session.order.length) }, (_, n) => {
+            const qid = session.order[n];
+            if (!qid)
+              return (
+                <span key={n} className="lx-qnav-pill is-later" aria-hidden>
+                  {n + 1}
+                </span>
+              );
+            const ok = session.checked[qid];
+            const state = ok === true ? 'is-right' : ok === false ? 'is-wrong' : session.answers[qid] !== undefined ? 'is-answered' : '';
+            const label = `Question ${n + 1}${ok === true ? ', right' : ok === false ? ', wrong' : session.answers[qid] !== undefined ? ', answered' : ''}${session.flags.includes(qid) ? ', flagged' : ''}`;
+            return (
+              <button
+                key={qid}
+                type="button"
+                className={`lx-qnav-pill lx-num ${state}${n === session.i ? ' is-current' : ''}${session.flags.includes(qid) ? ' is-flagged' : ''}`}
+                aria-current={n === session.i ? 'step' : undefined}
+                aria-label={label}
+                onClick={() => onGo(n)}
+              >
+                {n + 1}
+              </button>
+            );
+          })}
+        </div>
+        <button type="button" className="lx-qnav-step" onClick={onNext} aria-label="Next question">
+          <span>Next</span> <ArrowRight size={16} />
+        </button>
+      </div>
+      <div className="lx-qnav-meta lx-meta lx-num">
+        <span>{mode}</span>
+        <span>{exam ? `${answered} of ${session.order.length} answered` : checked ? `${right} of ${checked} right` : `${session.order.length} questions`}</span>
+        {remaining !== null && (
+          <span className={`lx-timer lx-num${remaining < 120 ? ' is-low' : ''}`} role="timer" aria-label="Time left">
+            <Clock size={15} aria-hidden /> {fmt(remaining)}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+};
+
 export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, onFinished, onContinue, continueLabel }) => {
   const key = stepKey(course, step.id);
   const session = useProgress((s) => s.quizzes[key]);
@@ -51,7 +121,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   const attempts = useProgress((s) => s.attempts);
   const idx = useCourseQuestions(course);
   const [resumeAsked, setResumeAsked] = useState(false);
-  const [review, setReview] = useState<string | null>(null);
+  const [closed, setClosed] = useState<Set<string>>(new Set()); // results rows the student folded away
+  const nextBtn = useRef<HTMLButtonElement>(null);
   const [pickLevel, setPickLevel] = useState<'adaptive' | 1 | 2 | 3>('adaptive');
   const defaultMode: Mode = step.kind === 'check' ? 'check' : step.kind === 'exam' && step.timeLimit ? 'exam' : 'practice';
   const lastAttempt = useMemo(() => [...attempts].reverse().find((a) => a.course === course && a.stepId === step.id), [attempts, course, step.id]);
@@ -137,7 +208,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
         };
       });
       setResumeAsked(true);
-      setReview(null);
+      setClosed(new Set());
       trackStudy('quiz_start', { course, lesson: lesson.id, step: step.id, mode, questions: size, practice_size_variant: mode === 'practice' ? practiceSizeVariant() : null });
     },
     [idx, step, key, course, lesson.id, pickAdaptive, rank, optionOrderFor]
@@ -263,6 +334,13 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
       recordAbandonment();
     };
   }, [course, lesson.id, step.id]);
+
+  // once a question is checked, Enter moves on; focus goes to Next without scrolling, so the student stays on
+  // the answer they are reading
+  const checkedNow = session ? session.checked[session.order[session.i]] : undefined;
+  useEffect(() => {
+    if (checkedNow !== undefined) nextBtn.current?.focus({ preventScroll: true });
+  }, [checkedNow, session?.i]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Enter checks or moves on (when focus is not in a text field, which handles its own Enter)
   useEffect(() => {
@@ -494,7 +572,12 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
           {results.map((r, i) =>
             r.q ? (
               <li key={r.id} className={r.ok ? 'is-right' : 'is-wrong'}>
-                <button type="button" className="lx-review-row" aria-expanded={review === r.id} onClick={() => setReview(review === r.id ? null : r.id)}>
+                <button
+                  type="button"
+                  className="lx-review-row"
+                  aria-expanded={!closed.has(r.id)}
+                  onClick={() => setClosed((s) => (s.has(r.id) ? new Set([...s].filter((x) => x !== r.id)) : new Set([...s, r.id])))}
+                >
                   {pending.includes(r.id) ? <Eye size={18} aria-label="to mark" className="lx-review-pending" /> : r.ok ? <CheckCircle2 size={18} aria-hidden /> : <XCircle size={18} aria-hidden />}
                   <span className="lx-num">{i + 1}.</span>
                   <span className="lx-review-q">
@@ -512,7 +595,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
                     </button>
                   </span>
                 )}
-                {review === r.id && (
+                {!closed.has(r.id) && (
                   <div className="lx-review-body">
                     <p>
                       <strong>Answer: </strong>
@@ -540,6 +623,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   const q = qs(id);
   const exam = session.mode === 'exam';
   const result = session.checked[id];
+  const shown = session.revealed.includes(id); // the student asked for the answer (exam questions open up too)
   const answered = q ? isAnswered(q, session.answers[id]) : false;
   const ad = session.adaptive;
   const adaptiveMore = !!ad && session.order.length < ad.size && !!pickAdaptive(ad.pool, session.order, ad.level);
@@ -563,6 +647,18 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
       }
     });
   }
+  // "Show answer": the answer and its worked steps now, even mid-exam. The question is graded as it stands
+  // (unanswered or wrong counts as wrong); an open question is marked by the student after seeing it.
+  function showAnswer(qid: string) {
+    const qq = qs(qid);
+    if (!qq) return;
+    const ok = qq.kind === 'self' ? null : grade(qq, session!.answers[qid]) === true;
+    if (ok !== null) recordAnswer(qid, ok, { course, topic: qq.topic });
+    patch((ss) => {
+      if (!ss.revealed.includes(qid)) ss.revealed.push(qid);
+      if (ok !== null) ss.checked[qid] = ok;
+    });
+  }
   function next() {
     if (last) return finish({ ...session!, elapsed: elapsedRef.current });
     patch((ss) => {
@@ -579,35 +675,15 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
 
   return (
     <div className={`lx-quiz${exam ? ' is-exam' : ''}`}>
-      <div className="lx-quiz-bar">
-        <div className="lx-quiz-progress" aria-hidden>
-          <span style={{ width: `${((session.i + (result !== undefined ? 1 : 0)) / (ad?.size ?? session.order.length)) * 100}%` }} />
-        </div>
-        <span className="lx-meta lx-num">
-          {exam ? 'Timed exam · answers at the end' : session.mode === 'check' ? 'Quick check' : ad ? `Building up · level ${ad.level} of 3` : session.only ? `Practice · ${LEVEL_LABEL[session.only].toLowerCase()} only` : 'Practice'}
-        </span>
-        {remaining !== null && (
-          <span className={`lx-timer lx-num${remaining < 120 ? ' is-low' : ''}`} role="timer" aria-label="Time left">
-            <Clock size={15} aria-hidden /> {fmt(remaining)}
-          </span>
-        )}
-      </div>
-
-      {exam && (
-        <nav className="lx-navgrid" aria-label="Questions">
-          {session.order.map((qid, i) => (
-            <button
-              key={qid}
-              type="button"
-              className={`${i === session.i ? 'is-current' : ''}${session.answers[qid] !== undefined ? ' is-answered' : ''}${session.flags.includes(qid) ? ' is-flagged' : ''}`}
-              aria-current={i === session.i ? 'step' : undefined}
-              onClick={() => patch((ss) => void (ss.i = i))}
-            >
-              {i + 1}
-            </button>
-          ))}
-        </nav>
-      )}
+      <QuestionNav
+        session={session}
+        total={ad?.size ?? session.order.length}
+        mode={exam ? 'Timed exam · answers at the end' : session.mode === 'check' ? 'Quick check' : ad ? `Building up · level ${ad.level} of 3` : session.only ? `Practice · ${LEVEL_LABEL[session.only].toLowerCase()} only` : 'Practice'}
+        exam={exam}
+        remaining={remaining}
+        onGo={(n) => patch((ss) => void (ss.i = n))}
+        onNext={next}
+      />
 
       {q ? (
         <QuestionView
@@ -615,15 +691,15 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
           q={q}
           index={session.i}
           total={ad?.size ?? session.order.length}
-          examMode={exam}
+          examMode={exam && !shown}
           optionOrder={session.optionOrder[id]}
           answer={session.answers[id]}
-          result={exam ? undefined : result}
+          result={exam && !shown ? undefined : result}
           revealed={session.revealed.includes(id)}
           flagged={session.flags.includes(id)}
           confidence={session.confidence[id]}
           hintShown={session.hints.includes(id)}
-          locked={!exam && result !== undefined}
+          locked={(!exam || shown) && result !== undefined}
           onAnswer={(a) => patch((ss) => void (ss.answers[id] = a))}
           onCheck={() => check(id)}
           onFlag={() => {
@@ -652,7 +728,12 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
           </button>
         )}
         <span className="lx-quiz-nav-spacer" />
-        {exam ? (
+        {result === undefined && !(q?.kind === 'self' && shown) && (
+          <button type="button" className="lx-btn lx-btn--ghost" onClick={() => showAnswer(id)} title="See the answer and how it is done (counts as not right)">
+            <Eye size={16} /> Show answer
+          </button>
+        )}
+        {exam && !(shown && result !== undefined) ? (
           last ? (
             <button
               type="button"
@@ -681,7 +762,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
             )}
           </>
         ) : (
-          <button type="button" className="lx-btn lx-btn--primary" onClick={next} autoFocus>
+          <button type="button" ref={nextBtn} className="lx-btn lx-btn--primary" onClick={next}>
             {last ? 'See results' : 'Next question'} <ArrowRight size={17} />
           </button>
         )}
