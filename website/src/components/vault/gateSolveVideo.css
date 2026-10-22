@@ -1,0 +1,28 @@
+/* Per-question video solution inside the Midterm Gate (GateSolveVideo.tsx) */
+.gsv {
+  margin: 10px 0 14px;
+}
+
+.gsv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  border: 1px solid #c7d2fe;
+  background: #eef2ff;
+  color: #3730a3;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.gsv-btn:hover,
+.gsv-btn.open {
+  background: #e0e7ff;
+  border-color: #a5b4fc;
+}
+
+.gsv .ec-lesson-card {
+  margin-top: 10px;
+}

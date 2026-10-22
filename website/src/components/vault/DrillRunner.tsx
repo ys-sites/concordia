@@ -6,6 +6,7 @@ import { ReadAloudButton } from '../ReadAloudButton';
 import { DrillItem, grade, letter, recordResult } from './drill';
 import { CodeBlock, LectureButton } from './shared';
 import type { GateIndex } from './shared';
+import { GateSolveVideo } from './GateSolveVideo';
 import type { GateContent, GateNav } from './vaultTypes';
 
 const BADGE: Record<string, { text: string; cls: string }> = {
@@ -315,6 +316,7 @@ export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, em
                 {item.kind === 'output' ? <CodeBlock code={item.answerText} /> : <MathText text={item.answerText} />}
                 {item.kind === 'num' && item.unit ? ` ${item.unit}` : ''}
               </div>
+              <GateSolveVideo videos={idx?.solveVideos} itemKey={item.key} />
               {item.solution && <CodeBlock code={item.solution} />}
               {item.steps && item.steps.length > 0 ? (
                 <StepsList steps={item.steps} open={stepsOpen} onToggle={() => setStepsOpen((v) => !v)} />

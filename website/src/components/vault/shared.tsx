@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { BookOpen, Eye, EyeOff, Presentation, Sigma, Video } from 'lucide-react';
 import { MathText } from '../../utils/mathRenderer';
 import type { Cluster, Exam, Formula, GateContent, GateNav, LectureRef, MatchType, Question, Subject, Topic } from './vaultTypes';
+import { GateSolveVideo } from './GateSolveVideo';
 
 export interface GateIndex {
   q: Map<string, Question>;
@@ -16,6 +17,8 @@ export interface GateIndex {
   paperIds: string[];
   // kept for older call sites
   midtermIds: string[];
+  // per-question solve videos (drill key → video), from the encrypted content
+  solveVideos: NonNullable<GateContent['solveVideos']>;
 }
 
 export const useGateIndex = (c: GateContent): GateIndex =>
@@ -35,7 +38,8 @@ export const useGateIndex = (c: GateContent): GateIndex =>
       clustersOfQ,
       docs: c.docs,
       paperIds,
-      midtermIds: paperIds
+      midtermIds: paperIds,
+      solveVideos: c.solveVideos ?? {}
     };
   }, [c]);
 
@@ -207,6 +211,7 @@ export const QuestionCard: React.FC<{
               <b>Answer:</b> {q.kind === 'output' ? <CodeBlock code={q.ans} /> : <MathText text={q.ans} />}
             </div>
           )}
+          <GateSolveVideo videos={idx.solveVideos} itemKey={q.id} />
           {q.solution && <CodeBlock code={q.solution} />}
           {q.keyAns && <div className="mg-answer mg-small" style={{ color: 'var(--status-warning)' }}>The posted key says {q.opts ? `(${q.keyAns})` : q.keyAns}, which is wrong. See the note.</div>}
           {q.steps && q.steps.length > 0 && (

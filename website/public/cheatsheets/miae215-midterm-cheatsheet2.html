@@ -20,7 +20,7 @@
     color: #0f172a;
     background-color: #ffffff;
     line-height: 1.15;
-    font-size: 9.8px;
+    font-size: 8.8px;
     margin: 0;
     padding: 0;
     -webkit-print-color-adjust: exact;
@@ -31,7 +31,7 @@
     width: 8.5in;
     height: 11in;
     max-height: 11in;
-    padding: 0.05in 0.14in 0.03in 0.14in;
+    padding: 0.08in 0.16in 0.06in 0.16in;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -47,9 +47,9 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #b91c1c;
-    padding-bottom: 1px;
-    margin-bottom: 1.5px;
-    font-size: 10.2px;
+    padding-bottom: 1.5px;
+    margin-bottom: 2px;
+    font-size: 9.6px;
     font-weight: 800;
   }
   .top-strip .title {
@@ -57,19 +57,19 @@
     letter-spacing: -0.01em;
   }
   .top-strip .meta {
-    font-size: 9.2px;
+    font-size: 8.6px;
     font-weight: 700;
     color: #475569;
   }
 
   /* Section Title */
   .section-title {
-    font-size: 10.2px;
+    font-size: 9.3px;
     font-weight: 800;
     color: #0f172a;
     border-left: 3px solid #b91c1c;
     padding-left: 4px;
-    margin: 1px 0 0.8px 0;
+    margin: 1.5px 0 1.2px 0;
     text-transform: uppercase;
     letter-spacing: 0.02em;
     display: flex;
@@ -79,7 +79,7 @@
   .section-title.teal { border-left-color: #0d9488; }
   .section-title.blue { border-left-color: #2563eb; }
   .section-title span.badge {
-    font-size: 8.8px;
+    font-size: 8.2px;
     font-weight: 700;
     background: #f1f5f9;
     color: #475569;
@@ -91,7 +91,7 @@
   /* Grid layouts */
   .grid-2 {
     display: grid;
-    grid-template-columns: 1.15fr 1.1fr;
+    grid-template-columns: 1.12fr 1.13fr;
     gap: 3px;
   }
   .grid-3 {
@@ -101,7 +101,7 @@
   }
   .grid-4 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1.25fr;
+    grid-template-columns: 1fr 1.05fr 1fr 1.2fr;
     gap: 2.5px;
   }
 
@@ -117,7 +117,7 @@
   }
 
   .card-header {
-    font-size: 9.6px;
+    font-size: 8.9px;
     font-weight: 800;
     color: #1e293b;
     text-transform: uppercase;
@@ -129,7 +129,7 @@
   }
 
   .tag {
-    font-size: 8.2px;
+    font-size: 7.8px;
     font-weight: 800;
     padding: 0.5px 3px;
     border-radius: 2px;
@@ -140,31 +140,10 @@
   .tag-amber { background: #fef3c7; color: #92400e; }
   .tag-dark { background: #1e293b; color: #f8fafc; }
 
-  /* Compact Tables */
-  table.compact-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 9.2px;
-  }
-  table.compact-table th {
-    background: #f8fafc;
-    color: #334155;
-    font-weight: 700;
-    font-size: 8.8px;
-    text-align: left;
-    padding: 0.6px 2px;
-    border-bottom: 1px solid #cbd5e1;
-  }
-  table.compact-table td {
-    padding: 0.5px 2px;
-    border-bottom: 1px solid #f1f5f9;
-    vertical-align: middle;
-  }
-
   /* Code elements */
   code, .mono {
     font-family: Consolas, "Courier New", monospace;
-    font-size: 9.3px;
+    font-size: 8.3px;
     font-weight: 600;
     color: #0f172a;
   }
@@ -173,10 +152,10 @@
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 2px;
-    padding: 1.2px 3px;
+    padding: 1px 2.5px;
     font-family: Consolas, "Courier New", monospace;
-    font-size: 9.1px;
-    line-height: 1.14;
+    font-size: 8.1px;
+    line-height: 1.12;
     color: #0f172a;
     white-space: pre-wrap;
   }
@@ -186,32 +165,6 @@
   .code-num { color: #d97706; }
   .code-cmt { color: #64748b; font-style: italic; }
 
-  /* Tracing table */
-  table.trace-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Consolas, monospace;
-    font-size: 8.8px;
-  }
-  table.trace-table th {
-    background: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #fca5a5;
-    padding: 0.5px 2px;
-    font-size: 8.4px;
-    text-align: center;
-  }
-  table.trace-table td {
-    border: 1px solid #e2e8f0;
-    padding: 0.4px 2px;
-    text-align: center;
-  }
-  .highlight-garbage {
-    background: #fef2f2;
-    color: #dc2626;
-    font-weight: 800;
-  }
-
   ul.clean-list {
     list-style: none;
     padding: 0;
@@ -219,10 +172,10 @@
   }
   ul.clean-list li {
     position: relative;
-    padding-left: 6.5px;
-    margin-bottom: 0.4px;
-    line-height: 1.14;
-    font-size: 9.1px;
+    padding-left: 6px;
+    margin-bottom: 0.3px;
+    line-height: 1.12;
+    font-size: 8.2px;
   }
   ul.clean-list li:before {
     content: "•";
@@ -238,12 +191,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 8.4px;
+    font-size: 8.0px;
     font-weight: 700;
     color: #64748b;
     border-top: 1px solid #e2e8f0;
-    padding-top: 1px;
-    margin-top: 0.5px;
+    padding-top: 1.5px;
+    margin-top: 1px;
   }
 </style>
 </head>
@@ -274,20 +227,18 @@
 <span class="code-cmt">#include &lt;fstream&gt;</span>
 <span class="code-kw">using namespace</span> std;
 <span class="code-type">int</span> main() {
-  <span class="code-cmt">// a) Input 1D array A of 10 doubles from keyboard:</span>
+  <span class="code-cmt">// a) Task: Input 1D array A of 10 doubles from keyboard:</span>
   <span class="code-type">double</span> A[<span class="code-num">10</span>];
   <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; <span class="code-num">10</span>; i++) cin &gt;&gt; A[i];
 
-  <span class="code-cmt">// b) Minimum element &amp; index: CRITICAL TRAP -> MUST init minVal = A[0]!</span>
-  <span class="code-cmt">// (NEVER init to 0.0: fails if all numbers in array are strictly positive!)</span>
+  <span class="code-cmt">// b) Task: Minimum element &amp; index -> MUST init minVal = A[0] (fails if 0.0):</span>
   <span class="code-type">double</span> minVal = A[<span class="code-num">0</span>]; <span class="code-type">int</span> minIdx = <span class="code-num">0</span>;
   <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">1</span>; i &lt; <span class="code-num">10</span>; i++) {
     <span class="code-kw">if</span> (A[i] &lt; minVal) { minVal = A[i]; minIdx = i; }
   }
   cout &lt;&lt; <span class="code-str">"Min: A["</span> &lt;&lt; minIdx &lt;&lt; <span class="code-str">"] = "</span> &lt;&lt; minVal &lt;&lt; <span class="code-str">"\n"</span>;
 
-  <span class="code-cmt">// c) Range [-7, 7] verification: if all elements in range print message;</span>
-  <span class="code-cmt">// otherwise stop program immediately (use return 0 or exit(0)):</span>
+  <span class="code-cmt">// c) Task: Check all elements in range [-7, 7]; else terminate immediately:</span>
   <span class="code-type">bool</span> inRange = <span class="code-kw">true</span>;
   <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; <span class="code-num">10</span>; i++) {
     <span class="code-kw">if</span> (A[i] &lt; <span class="code-num">-7.0</span> || A[i] &gt; <span class="code-num">7.0</span>) { inRange = <span class="code-kw">false</span>; <span class="code-kw">break</span>; }
@@ -295,17 +246,16 @@
   <span class="code-kw">if</span> (inRange) cout &lt;&lt; <span class="code-str">"elements of A are in range\n"</span>;
   <span class="code-kw">else return</span> <span class="code-num">0</span>; <span class="code-cmt">// Immediate halt</span>
 
-  <span class="code-cmt">// d) Repeatedly input i1, i2 until valid (0..9 and i1 != i2):</span>
-  <span class="code-cmt">// Continuation condition (De Morgan): repeat while ANY condition is violated!</span>
+  <span class="code-cmt">// d) Task: Repeatedly input i1, i2 until valid (0..9 and i1 != i2):</span>
   <span class="code-type">int</span> i1, i2;
   <span class="code-kw">do</span> {
     cin &gt;&gt; i1 &gt;&gt; i2;
   } <span class="code-kw">while</span> (i1 &lt; <span class="code-num">0</span> || i1 &gt; <span class="code-num">9</span> || i2 &lt; <span class="code-num">0</span> || i2 &gt; <span class="code-num">9</span> || i1 == i2);
 
-  <span class="code-cmt">// e) Swap elements i1 and i2 of A: MUST use temp to prevent data overwrite!</span>
+  <span class="code-cmt">// e) Task: Swap elements i1 and i2 of A -> MUST use temp to avoid overwrite:</span>
   <span class="code-type">double</span> temp = A[i1]; A[i1] = A[i2]; A[i2] = temp;
 
-  <span class="code-cmt">// f) Save elements to "A.txt": open file stream, verify, write, close:</span>
+  <span class="code-cmt">// f) Task: Save elements of A to "A.txt" -> open ofstream, verify, write, close:</span>
   ofstream fout(<span class="code-str">"A.txt"</span>);
   <span class="code-kw">if</span> (!fout) <span class="code-kw">return</span> <span class="code-num">1</span>;
   <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; <span class="code-num">10</span>; i++) fout &lt;&lt; A[i] &lt;&lt; <span class="code-str">"\n"</span>;
@@ -314,65 +264,57 @@
 }</div>
     </div>
 
-    <!-- Q2 TRACING & RULES & FULL TABLES (OPTIMIZED - ZERO BLANK SPACE) -->
+    <!-- Q2: EXAM TRACING ENGINE & CRITICAL CORE CONCEPTS (REPLACED SPECIFIC TRACE NUMBERS) -->
     <div class="card" style="border-left: 2.5px solid #2563eb;">
       <div class="card-header">
-        <span>Q2: Signature Output Tracing Engine, Code Snippets &amp; Execution Tables</span>
-        <span class="tag tag-blue">Dr. Gordon Traps</span>
+        <span>Q2: Universal Tracing Protocol &amp; Critical Exam Core Concepts</span>
+        <span class="tag tag-blue">50% Weight</span>
       </div>
+      <!-- 8 Golden Gordon Traps -->
       <ul class="clean-list">
-        <li><b>1. Truncating Integer Div:</b> <code>1/(0+3) = 1/3 = 0</code> (NOT 0.33!). <code>7/2 = 3</code>. Float div: <code>7.0/2 = 3.5</code>.</li>
-        <li><b>2. IEEE-754 Div by Zero:</b> <code>7.0/(1-1) = 7.0/0.0 = inf</code> &rarr; <b>Does NOT crash!</b> Float div by zero yields <code>inf</code>.</li>
-        <li><b>3. Logical NOT <code>!i</code>:</b> <code>!0 = true (1)</code>; all non-zero numbers are true, so <code>!1 = !2 = false (0)</code>. <code>else if (!i)</code> executes ONLY at iteration <i>i=0</i>!</li>
-        <li><b>4. Array Left-Shift:</b> <code>B[i]=B[i+1]; i++;</code> sequentially shifts neighbor into current slot.</li>
-        <li class="warn"><b>5. Uninitialized Garbage (<code>G</code>):</b> <code>int x;</code> holds undefined RAM garbage. <code>x += B[i];</code> stays Garbage! Write <b>"Garbage"</b> or <b>"G"</b> in booklet!</li>
-        <li class="warn"><b>6. Loop Counter Retention &amp; Bounds:</b> After <code>for(i=0;i&lt;5;i++)</code>, <i>i</i> is <b>5</b>! In size-4 array, <code>A[4]</code> is out-of-bounds &rarr; <b>Garbage (G)</b>!</li>
-        <li><b>7. Pre-Break Trap:</b> Statements before <code>if(cond) break;</code> execute even on the terminating pass!</li>
-        <li><b>8. Modulo <code>%</code> Rules:</b> <code>20 % 7 = 6</code>. Sign follows LHS: <code>-20 % 7 = -6</code>; <code>20 % -7 = +6</code>.</li>
+        <li><b>1. Truncating Integer Div:</b> <code>1/(0+3)=1/3=0</code> (NOT 0.33!). <code>7/2=3</code>. Float div: <code>7.0/2=3.5</code>.</li>
+        <li><b>2. IEEE-754 Div by Zero:</b> <code>7.0/(1-1)=7.0/0.0=inf</code> &rarr; <b>Does NOT crash!</b> Float div yields <code>inf</code>.</li>
+        <li><b>3. Logical NOT <code>!i</code>:</b> <code>!0=1 (true)</code>; <code>!1=!2=0 (false)</code>. <code>else if (!i)</code> runs ONLY at <i>i=0</i>!</li>
+        <li class="warn"><b>4. Uninitialized Garbage (<code>G</code>):</b> <code>int x;</code> holds undefined RAM garbage. <code>x += B[i];</code> stays <b>Garbage (G)</b>!</li>
+        <li class="warn"><b>5. Loop Variable Retention &amp; Bounds:</b> After <code>for(i=0;i&lt;N;i++)</code>, <i>i</i> retains <b>N</b>! Reading <code>A[N]</code> is out-of-bounds &rarr; <b>Garbage (G)</b>!</li>
+        <li><b>6. Pre-Break Trap:</b> Statements before <code>if(cond) break;</code> execute even on the terminating pass!</li>
+        <li><b>7. Modulo <code>%</code> Rules:</b> <code>20 % 7 = 6</code>. Sign follows LHS: <code>-20 % 7 = -6</code>; <code>20 % -7 = +6</code>.</li>
+        <li><b>8. Pre/Post-Inc &amp; Semicolons:</b> <code>y=x++</code> (uses old <i>x</i>, then inc); <code>y=++x</code> (inc first). Semicolon <code>for(..);</code> loops empty; body runs once!</li>
       </ul>
 
-      <!-- Q2A STEP TRACE TABLE -->
-      <div style="margin-top:1px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px; padding:1.5px 2px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1px;">
-          <b style="color:#991b1b; font-size:8.8px;">Live Q2(a) Trace Table (double A[5]={2,3,5,7,11}, x=0.0):</b>
-          <span style="font-family:Consolas, monospace; font-size:8.5px; font-weight:800; color:#0f766e;">Box: 0, inf, 7, 3.5, 4.5, 5</span>
-        </div>
-        <table class="trace-table">
-          <tr><th><code>i</code></th><th><code>A[i]</code></th><th>Branch Evaluated</th><th><code>x</code> Expression &amp; Value</th><th>Console Output</th></tr>
-          <tr><td>0</td><td>2</td><td><code>else if (!i)</code> &rarr; <code>!0</code> is TRUE</td><td><code>1 / (0 + 3) = 1 / 3 = <b>0</b></code> (int div truncates)</td><td><b>0</b></td></tr>
-          <tr><td>1</td><td>3</td><td><code>else</code> &rarr; <code>7.0 / (1 - 1)</code></td><td><code>7.0 / 0.0 = <b>inf</b></code> (IEEE-754 double div)</td><td><b>inf</b></td></tr>
-          <tr><td>2</td><td>5</td><td><code>else</code> &rarr; <code>7.0 / (2 - 1)</code></td><td><code>7.0 / 1.0 = <b>7</b></code></td><td><b>7</b></td></tr>
-          <tr><td>3</td><td>7</td><td><code>else</code> &rarr; <code>7.0 / (3 - 1)</code></td><td><code>7.0 / 2.0 = <b>3.5</b></code> (<code>7 &gt; 7</code> is FALSE)</td><td><b>3.5</b></td></tr>
-          <tr><td>4</td><td>11</td><td><code>if (A[i] &gt; 7)</code> &rarr; <code>11 &gt; 7</code> TRUE</td><td><code>x++</code> &rarr; <code>3.5 + 1 = <b>4.5</b></code></td><td><b>4.5</b></td></tr>
-          <tr><td>post</td><td>—</td><td>Loop terminates: <code>5 &lt; 5</code> is FALSE</td><td>Counter <i>i</i> retains failure value: <b>5</b></td><td><b>5</b></td></tr>
-        </table>
-      </div>
-
-      <!-- Q2B STEP TRACE TABLE & PAST EXAM KEYS -->
-      <div style="display:flex; gap:2.5px; margin-top:1.5px;">
-        <div style="flex:1.4; background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px; padding:1.5px 2.5px;">
-          <b style="color:#991b1b; font-size:8.8px;">Live Q2(b) Trace (int B[]={11,7,5,3,2,1}, i=0, x, a=20%7):</b>
-          <div style="font-family:Consolas, monospace; font-size:8.4px; line-height:1.14; color:#0f172a;">
-            • <i>a</i> = 20 % 7 = <b>6</b>; <i>x</i> is uninitialized &rarr; <b>Garbage (G)</b>!<br>
-            • Pass 1: B[0]=7 &rarr; {7,7,5,3,2,1}, i=1, x+=7 &rarr; <b>G</b><br>
-            • Pass 2: B[1]=5 &rarr; {7,5,5,3,2,1}, i=2, x+=5 &rarr; <b>G</b><br>
-            • Pass 3: B[2]=3 &rarr; {7,5,3,3,2,1}, i=3, x+=3 &rarr; <b>G</b><br>
-            • Pass 4: B[3]=2 &rarr; {7,5,3,2,2,1}, i=4, x+=2 &rarr; <b>G</b><br>
-            • Pass 5: B[4]=1 &rarr; {7,5,3,2,1,1}, i=5, x+=1 &rarr; <b>G</b><br>
-            • Pass 6: B[5]=1 &ge; 2 is <b>FALSE</b> &rarr; loop exits at <i>i=5</i>!<br>
-            • Print: B[2]=<b>3</b>, B[3]=<b>2</b>, i=<b>5</b>, a=<b>6</b>, x=<b>G</b> &rarr; <b style="color:#0f766e;">3 2 5 6 G</b>
+      <!-- 4 High-Yield Exam Modules (Pass by Ref, File Streams, C-Strings, Tracing Protocol) -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2.5px; margin-top:2px;">
+        <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px; padding:2px 3px;">
+          <b style="color:#0f766e; font-size:8.3px;">Pass-by-Reference vs Array Decay:</b>
+          <div style="font-family:Consolas, monospace; font-size:7.7px; line-height:1.14; color:#0f172a;">
+            • <b>Swap by Ref:</b> <code>void swap(double &amp;a, double &amp;b){ double t=a; a=b; b=t; }</code> (modifies caller!)<br>
+            • <b>Array Decay:</b> <code>void f(double A[], int n)</code> (passes pointer, always pass size <i>n</i>)<br>
+            • <b>Pass by Value:</b> <code>void f(int x)</code> (local copy; caller unaffected)
           </div>
         </div>
 
-        <div style="flex:1; background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px; padding:1.5px 2.5px;">
-          <b style="color:#1e40af; font-size:8.8px;">Past Exam Verified Box Keys:</b>
-          <div style="font-family:Consolas, monospace; font-size:8.4px; line-height:1.14; color:#0f172a;">
-            <b>F23 Q2a:</b> <code>1 8</code> / <code>2 14</code> / <code>3 19</code><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>29 19 26</b> (pre-break!)<br>
-            <b>F23 Q2b:</b> <code>-9</code> / <code>-9</code> / <code>7</code> / <code>7</code> / <b style="color:#dc2626;">G</b><br>
-            (A[4] is past size 4 &rarr; Garbage G)<br>
-            <b>F22 Q2:</b> <code>3 5</code> / <code>7 2</code> (modulo remainder)<br>
-            <b>Q1/Q2 Tracing:</b> <code>y=x++</code> vs <code>y=++x</code>
+        <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px; padding:2px 3px;">
+          <b style="color:#1e40af; font-size:8.3px;">File I/O Streams (<code>&lt;fstream&gt;</code>):</b>
+          <div style="font-family:Consolas, monospace; font-size:7.7px; line-height:1.14; color:#0f172a;">
+            • <b>Read EOF Loop:</b> <code>ifstream fin("in.txt"); if(!fin) return 1; while(fin &gt;&gt; A[n] &amp;&amp; n&lt;MAX) n++; fin.close();</code><br>
+            • <b>Write File:</b> <code>ofstream fout("A.txt"); for(int i=0;i&lt;n;i++) fout&lt;&lt;A[i]&lt;&lt;"\n"; fout.close();</code>
+          </div>
+        </div>
+
+        <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px; padding:2px 3px;">
+          <b style="color:#991b1b; font-size:8.3px;">C-Strings &amp; Space Stripper:</b>
+          <div style="font-family:Consolas, monospace; font-size:7.7px; line-height:1.14; color:#0f172a;">
+            • <b>Null Terminator:</b> <code>char s[20];</code> must end with <code>'\0'</code>. <code>strlen(s)</code> excludes <code>'\0'</code>.<br>
+            • <b>Space Removal:</b> <code>int j=0; for(int i=0;s[i]!='\0';i++) if(s[i]!=' ') s[j++]=s[i]; s[j]='\0';</code>
+          </div>
+        </div>
+
+        <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:2px; padding:2px 3px;">
+          <b style="color:#7c2d12; font-size:8.3px;">Universal Tracing Table Protocol:</b>
+          <div style="font-family:Consolas, monospace; font-size:7.7px; line-height:1.14; color:#0f172a;">
+            • <b>Columns:</b> <code>i | Condition | Variables that Change | Output</code><br>
+            • <b>Rule:</b> Only record changed values (Gordon shortcut).<br>
+            • <b>Box Answers:</b> Always draw a clean box around final outputs inside answer booklet!
           </div>
         </div>
       </div>
@@ -390,9 +332,10 @@
     <div class="card">
       <div class="card-header">
         <span>1. Validated Size n &amp; 2 Arrays</span>
-        <span class="tag tag-teal">Resembles Q1a</span>
+        <span class="tag tag-teal">F22 Q1a / Rev 4</span>
       </div>
-      <div class="code-block"><span class="code-type">int</span> n; cin &gt;&gt; n;
+      <div class="code-block"><span class="code-cmt">// Task (a): Input two 1D arrays of doubles (size n) with validation:</span>
+<span class="code-type">int</span> n; cin &gt;&gt; n;
 <span class="code-kw">while</span> (n &lt; <span class="code-num">1</span> || n &gt; <span class="code-num">100</span>) {
   cout &lt;&lt; <span class="code-str">"Re-enter n (1-100): "</span>; cin &gt;&gt; n;
 }
@@ -401,98 +344,90 @@
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) cin &gt;&gt; B[i];</div>
     </div>
 
-    <!-- BLUEPRINT 2: MAX SEARCH & AVERAGE OF POSITIVES -->
+    <!-- BLUEPRINT 2: VECTOR DOT PRODUCT -->
     <div class="card">
       <div class="card-header">
-        <span>2. Max Search &amp; Pos Avg</span>
-        <span class="tag tag-amber">Resembles Q1b</span>
+        <span>2. Vector Dot Product</span>
+        <span class="tag tag-amber">F22 Q1b / Quiz 2</span>
       </div>
-      <div class="code-block"><span class="code-cmt">// Max search (init maxVal = A[0]):</span>
-<span class="code-type">double</span> maxV = A[<span class="code-num">0</span>]; <span class="code-type">int</span> maxIdx = <span class="code-num">0</span>;
-<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">1</span>; i &lt; n; i++)
-  <span class="code-kw">if</span> (A[i] &gt; maxV) { maxV = A[i]; maxIdx = i; }
-<span class="code-cmt">// Average of positive elements only:</span>
-<span class="code-type">double</span> s = <span class="code-num">0</span>; <span class="code-type">int</span> cnt = <span class="code-num">0</span>;
-<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++)
-  <span class="code-kw">if</span> (A[i] &gt; <span class="code-num">0</span>) { s += A[i]; cnt++; }
-<span class="code-type">double</span> avg = cnt ? s / cnt : <span class="code-num">0.0</span>;</div>
+      <div class="code-block"><span class="code-cmt">// Task (b): Calculate dot product of A and B (sum += A[i]*B[i]):</span>
+<span class="code-type">double</span> dot = <span class="code-num">0.0</span>;
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) dot += A[i] * B[i];
+cout &lt;&lt; <span class="code-str">"Dot product = "</span> &lt;&lt; dot &lt;&lt; <span class="code-str">"\n"</span>;
+<span class="code-cmt">// Pos average: if (A[i] &gt; 0) { s += A[i]; cnt++; } avg = s / cnt;</span></div>
     </div>
 
     <!-- BLUEPRINT 3: STRICT RANGE FILTERING & PI -->
     <div class="card">
       <div class="card-header">
         <span>3. Strict Range Filter (0, PI)</span>
-        <span class="tag tag-blue">Resembles Q1c</span>
+        <span class="tag tag-blue">F22 Q1c</span>
       </div>
-      <div class="code-block"><span class="code-cmt">// Count elements strictly inside (0, PI):</span>
+      <div class="code-block"><span class="code-cmt">// Task (c): Count elements of B strictly between 0 and PI:</span>
 <span class="code-type">const double</span> PI = <span class="code-num">4.0</span> * atan(<span class="code-num">1.0</span>);
 <span class="code-type">int</span> count = <span class="code-num">0</span>;
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) {
   <span class="code-kw">if</span> (B[i] &gt; <span class="code-num">0.0</span> &amp;&amp; B[i] &lt; PI) count++;
 }
-<span class="code-cmt">// Check all positive; if not exit immediately:</span>
-<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++)
-  <span class="code-kw">if</span> (B[i] &lt;= <span class="code-num">0.0</span>) <span class="code-kw">return</span> <span class="code-num">0</span>;</div>
+cout &lt;&lt; <span class="code-str">"Elements in (0, PI) = "</span> &lt;&lt; count &lt;&lt; <span class="code-str">"\n"</span>;</div>
     </div>
 
-    <!-- BLUEPRINT 4: MENU LOOP (DE MORGAN ALL FLAGS) -->
+    <!-- BLUEPRINT 4: ARRAY MERGE / CONCATENATE -->
     <div class="card">
       <div class="card-header">
-        <span>4. Menu Loop All-Option Flag</span>
-        <span class="tag tag-teal">Resembles Q1d</span>
+        <span>4. Array Merge / Concatenate</span>
+        <span class="tag tag-teal">F22 Q1d</span>
       </div>
-      <div class="code-block"><span class="code-type">bool</span> used[<span class="code-num">4</span>] = { <span class="code-kw">false</span> }; <span class="code-type">int</span> ch;
-<span class="code-kw">do</span> {
-  cout &lt;&lt; <span class="code-str">"1=Avg, 2=Min, 3=Dot: "</span>; cin &gt;&gt; ch;
-  <span class="code-kw">if</span> (ch == <span class="code-num">1</span>) { <span class="code-cmt">/* avg */</span> used[<span class="code-num">1</span>] = <span class="code-kw">true</span>; }
-  <span class="code-kw">else if</span> (ch == <span class="code-num">2</span>) { <span class="code-cmt">/* min */</span> used[<span class="code-num">2</span>] = <span class="code-kw">true</span>; }
-  <span class="code-kw">else if</span> (ch == <span class="code-num">3</span>) { <span class="code-cmt">/* dot */</span> used[<span class="code-num">3</span>] = <span class="code-kw">true</span>; }
-} <span class="code-kw">while</span> (!(used[<span class="code-num">1</span>] &amp;&amp; used[<span class="code-num">2</span>] &amp;&amp; used[<span class="code-num">3</span>]));</div>
+      <div class="code-block"><span class="code-cmt">// Task (d): Combine arrays A and B into single array C of size 2n:</span>
+<span class="code-type">double</span> C[<span class="code-num">200</span>];
+<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) {
+  C[i]     = A[i]; <span class="code-cmt">// 1st half: indices 0..n-1</span>
+  C[i + n] = B[i]; <span class="code-cmt">// 2nd half: indices n..2n-1</span>
+}</div>
     </div>
 
-    <!-- BLUEPRINT 5: IN-PLACE ARRAY REVERSAL -->
+    <!-- BLUEPRINT 5: SENTINEL LOOP & POSITIVES -->
     <div class="card">
       <div class="card-header">
-        <span>5. In-Place Array Reversal</span>
-        <span class="tag tag-red">Resembles Q1e</span>
+        <span>5. Sentinel Loop &amp; Positives</span>
+        <span class="tag tag-red">F22 Q1e</span>
       </div>
-      <div class="code-block"><span class="code-cmt">// Symmetrical swap i with n-1-i up to n/2:</span>
+      <div class="code-block"><span class="code-cmt">// Task (e): Input k until negative (sentinel break); print pos count &amp; sum:</span>
+<span class="code-type">int</span> k, posCount = <span class="code-num">0</span>, posSum = <span class="code-num">0</span>;
+<span class="code-kw">while</span> (<span class="code-kw">true</span>) {
+  cin &gt;&gt; k;
+  <span class="code-kw">if</span> (k &lt; <span class="code-num">0</span>) <span class="code-kw">break</span>;
+  <span class="code-kw">if</span> (k &gt; <span class="code-num">0</span>) { posCount++; posSum += k; }
+}
+cout &lt;&lt; <span class="code-str">"Pos count="</span> &lt;&lt; posCount &lt;&lt; <span class="code-str">", Sum="</span> &lt;&lt; posSum &lt;&lt; <span class="code-str">"\n"</span>;</div>
+    </div>
+
+    <!-- BLUEPRINT 6: IN-PLACE ARRAY REVERSAL -->
+    <div class="card">
+      <div class="card-header">
+        <span>6. In-Place Array Reversal</span>
+        <span class="tag tag-amber">F23 Q1c</span>
+      </div>
+      <div class="code-block"><span class="code-cmt">// Task: Swap elements symmetrically up to n/2 (zero extra memory):</span>
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n / <span class="code-num">2</span>; i++) {
   <span class="code-type">double</span> temp = A[i];
   A[i] = A[n - <span class="code-num">1</span> - i];
   A[n - <span class="code-num">1</span> - i] = temp;
 }
-<span class="code-cmt">// Zero auxiliary RAM! Traverses only first half.</span></div>
+<span class="code-cmt">// Traverses only first half (n/2); avoids double-swapping!</span></div>
     </div>
 
-    <!-- BLUEPRINT 6: CYCLIC FORWARD SHIFT -->
+    <!-- BLUEPRINT 7: CYCLIC FORWARD SHIFT -->
     <div class="card">
       <div class="card-header">
-        <span>6. Cyclic Forward Shift</span>
-        <span class="tag tag-amber">Resembles Q1e &amp; Q2b</span>
+        <span>7. Cyclic Forward Shift</span>
+        <span class="tag tag-blue">F22 Q1d / Rev 4</span>
       </div>
-      <div class="code-block"><span class="code-cmt">// Shift forward: A[n-1] to 0, A[i] to i+1</span>
+      <div class="code-block"><span class="code-cmt">// Task: Shift forward: wrap last element A[n-1] to 0, shift others right:</span>
 <span class="code-type">double</span> A_sh[<span class="code-num">100</span>];
 A_sh[<span class="code-num">0</span>] = A[n - <span class="code-num">1</span>]; <span class="code-cmt">// Wrap last element</span>
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n - <span class="code-num">1</span>; i++) A_sh[i + <span class="code-num">1</span>] = A[i];
-<span class="code-cmt">// In-place alternative (backward loop):</span>
-<span class="code-type">double</span> last = A[n - <span class="code-num">1</span>];
-<span class="code-kw">for</span> (<span class="code-type">int</span> i = n - <span class="code-num">1</span>; i &gt; <span class="code-num">0</span>; i--) A[i] = A[i - <span class="code-num">1</span>];
-A[<span class="code-num">0</span>] = last;</div>
-    </div>
-
-    <!-- BLUEPRINT 7: ARRAY MERGE / CONCATENATE -->
-    <div class="card">
-      <div class="card-header">
-        <span>7. Array Merge / Concatenate</span>
-        <span class="tag tag-blue">F22 Q1d</span>
-      </div>
-      <div class="code-block"><span class="code-cmt">// Merge A and B (size n) into C (size 2n):</span>
-<span class="code-type">double</span> C[<span class="code-num">200</span>];
-<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) {
-  C[i]     = A[i]; <span class="code-cmt">// 1st half: 0..n-1</span>
-  C[i + n] = B[i]; <span class="code-cmt">// 2nd half: n..2n-1</span>
-}</div>
+<span class="code-cmt">// In-place: double last = A[n-1]; for(i=n-1;i&gt;0;i--) A[i]=A[i-1]; A[0]=last;</span></div>
     </div>
 
     <!-- BLUEPRINT 8: ARRAY EQUALITY TEST -->
@@ -501,31 +436,30 @@ A[<span class="code-num">0</span>] = last;</div>
         <span>8. Array Equality Test</span>
         <span class="tag tag-teal">Midterm Rev 1</span>
       </div>
-      <div class="code-block"><span class="code-type">bool</span> equal = <span class="code-kw">true</span>;
+      <div class="code-block"><span class="code-cmt">// Task: Check if A and B equal: assume true, break on first mismatch:</span>
+<span class="code-type">bool</span> equal = <span class="code-kw">true</span>;
 <span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) {
-  <span class="code-cmt">// Doubles: if (fabs(A[i]-B[i]) &gt; 1e-7)</span>
+  <span class="code-cmt">// Doubles tolerance: if (fabs(A[i] - B[i]) &gt; 1e-7)</span>
   <span class="code-kw">if</span> (A[i] != B[i]) { equal = <span class="code-kw">false</span>; <span class="code-kw">break</span>; }
-  <span class="code-cmt">// TRAP: NEVER add 'else equal=true;'!</span>
+  <span class="code-cmt">// TRAP: NEVER add 'else equal=true;' inside loop!</span>
 }
 <span class="code-kw">if</span> (equal) cout &lt;&lt; <span class="code-str">"Equal"</span>; <span class="code-kw">else</span> cout &lt;&lt; <span class="code-str">"Not equal"</span>;</div>
     </div>
 
-    <!-- BLUEPRINT 9: DOT PRODUCT, FREQ & DYNAMIC -->
+    <!-- BLUEPRINT 9: MENU LOOP (ALL-OPTION FLAG) -->
     <div class="card">
       <div class="card-header">
-        <span>9. Dot Product &amp; Freq &amp; new[]</span>
-        <span class="tag tag-dark">Q2 / Rev 4</span>
+        <span>9. Menu Loop All-Option Flag</span>
+        <span class="tag tag-dark">Quiz 2 / Rev 1</span>
       </div>
-      <div class="code-block"><span class="code-cmt">// Dot product: sum(A[i]*B[i]):</span>
-<span class="code-type">double</span> dot = <span class="code-num">0.0</span>;
-<span class="code-kw">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; n; i++) dot += A[i] * B[i];
-
-<span class="code-cmt">// Frequency count (val 1..7):</span>
-<span class="code-type">int</span> freq[<span class="code-num">8</span>] = { <span class="code-num">0</span> }, v;
-<span class="code-kw">while</span> (cin &gt;&gt; v &amp;&amp; v &gt;= <span class="code-num">1</span> &amp;&amp; v &lt;= <span class="code-num">7</span>) freq[v]++;
-
-<span class="code-cmt">// Dynamic array (zero leak):</span>
-<span class="code-type">double</span> *p = <span class="code-kw">new double</span>[n]; <span class="code-kw">delete</span>[] p; p = <span class="code-type">nullptr</span>;</div>
+      <div class="code-block"><span class="code-cmt">// Task: Repeat menu until every option (1=Avg, 2=Min, 3=Dot) chosen &gt;= 1 time:</span>
+<span class="code-type">bool</span> used[<span class="code-num">4</span>] = { <span class="code-kw">false</span> }; <span class="code-type">int</span> ch;
+<span class="code-kw">do</span> {
+  cout &lt;&lt; <span class="code-str">"1=Avg, 2=Min, 3=Dot: "</span>; cin &gt;&gt; ch;
+  <span class="code-kw">if</span> (ch == <span class="code-num">1</span>) { <span class="code-cmt">/* avg */</span> used[<span class="code-num">1</span>] = <span class="code-kw">true</span>; }
+  <span class="code-kw">else if</span> (ch == <span class="code-num">2</span>) { <span class="code-cmt">/* min */</span> used[<span class="code-num">2</span>] = <span class="code-kw">true</span>; }
+  <span class="code-kw">else if</span> (ch == <span class="code-num">3</span>) { <span class="code-cmt">/* dot */</span> used[<span class="code-num">3</span>] = <span class="code-kw">true</span>; }
+} <span class="code-kw">while</span> (!(used[<span class="code-num">1</span>] &amp;&amp; used[<span class="code-num">2</span>] &amp;&amp; used[<span class="code-num">3</span>]));</div>
     </div>
   </div>
 
@@ -542,7 +476,7 @@ A[<span class="code-num">0</span>] = last;</div>
         <span>Directives &amp; Headers</span>
         <span class="tag tag-teal">Boilerplate</span>
       </div>
-      <div style="font-size:8.9px; line-height:1.14;">
+      <div style="font-size:8.0px; line-height:1.12;">
         <code>#include &lt;iostream&gt;</code> (cin, cout)<br>
         <code>#include &lt;cmath&gt;</code> (sqrt, pow, fabs, sin)<br>
         <code>#include &lt;fstream&gt;</code> (ifstream, ofstream)<br>
@@ -558,7 +492,7 @@ A[<span class="code-num">0</span>] = last;</div>
         <span>Math &amp; Formatting</span>
         <span class="tag tag-amber">Formulas</span>
       </div>
-      <div style="font-size:8.9px; line-height:1.14;">
+      <div style="font-size:8.0px; line-height:1.12;">
         <b>Concordia PI Constant:</b><br>
         <code>const double PI = 4.0 * atan(1.0);</code><br>
         <b>Float Equality (NEVER ==):</b><br>
@@ -574,7 +508,7 @@ A[<span class="code-num">0</span>] = last;</div>
         <span>Operator Precedence</span>
         <span class="tag tag-blue">Order</span>
       </div>
-      <div style="font-size:8.8px; line-height:1.14;">
+      <div style="font-size:7.9px; line-height:1.12;">
         1. <code>() [] x++ x--</code><br>
         2. <code>++x --x ! (type) sizeof</code> (R-to-L)<br>
         3. <code>* / %</code> &nbsp;&nbsp; 4. <code>+ -</code><br>
@@ -584,19 +518,18 @@ A[<span class="code-num">0</span>] = last;</div>
       </div>
     </div>
 
-    <!-- FUNCTIONS & STREAMS (REPLACED THE USELESS 75-MIN PROTOCOL!) -->
+    <!-- DYNAMIC MEMORY & POINTERS -->
     <div class="card" style="border-left: 2px solid #0d9488;">
       <div class="card-header">
-        <span>Functions &amp; File Streams</span>
-        <span class="tag tag-teal">High Yield</span>
+        <span>Dynamic Memory &amp; Pointers</span>
+        <span class="tag tag-teal">Zero Leak</span>
       </div>
-      <div style="font-size:8.8px; line-height:1.14;">
-        <b>Pass-by-Reference Swap (Modifies Caller):</b><br>
-        <code>void swap(double &amp;a, double &amp;b){ double t=a; a=b; b=t; }</code><br>
-        <b>Array Decay (Always pass size n):</b><br>
-        <code>void proc(double A[], int n){ /* modifies A directly */ }</code><br>
-        <b>File Reading Loop:</b><br>
-        <code>ifstream fin("in.txt"); while(fin &gt;&gt; A[n] &amp;&amp; n &lt; MAX) n++;</code>
+      <div style="font-size:8.0px; line-height:1.12;">
+        <b>Dynamic Array Alloc &amp; Delete:</b><br>
+        <code>double *A = new double[n];</code><br>
+        <code>if (!A) return 1; /* check allocation */</code><br>
+        <code>delete[] A; A = nullptr; /* free RAM */</code><br>
+        <b>Pointer Dereference:</b> <code>*p</code> accesses value; <code>&amp;x</code> gets address.
       </div>
     </div>
   </div>

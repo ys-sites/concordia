@@ -7,6 +7,7 @@ import type { GateContent, GateNav, LectureRef, Video, VideoStop } from './vault
 import type { GateIndex } from './shared';
 import { ExamTag, LectureButton, MatchBadge, StatusBadge } from './shared';
 import type { DrillItem } from './drill';
+import { GateSolveVideo } from './GateSolveVideo';
 
 export type VideoDepth = 'quick' | 'deep';
 
@@ -183,6 +184,7 @@ export const SourcePanel: React.FC<PanelProps> = ({ item, idx, content, nav, dep
 
   return (
     <div className="sq-explain">
+      <GateSolveVideo videos={idx.solveVideos} itemKey={item.key} />
       <div className="sq-ex-block">
         <div className="sq-ex-head">
           <MapPin size={14} /> Where this question comes from

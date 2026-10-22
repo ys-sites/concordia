@@ -1,4 +1,5 @@
 // Shape of a decrypted Midterm Gate (see scripts/encrypt-vault.mjs). One blob per course.
+import type { MotionLesson } from '../../data/engr213Lessons';
 
 export type ExamKind = 'midterm' | 'quiz' | 'final' | 'homework';
 export type AnswerStatus = 'verified' | 'key' | 'corrected' | 'unofficial';
@@ -212,6 +213,8 @@ export interface GateContent {
   clusters: Cluster[];
   formulas: Formula[];
   videoStops: VideoStop[];
+  // narrated solve video per question, keyed by drill key (exam question id or "L:<lesson>:<index>")
+  solveVideos?: Record<string, MotionLesson>;
   plan: { intro: string; phases: PlanPhase[] };
   paperDoc?: PaperDoc;
   gradesaver?: {
