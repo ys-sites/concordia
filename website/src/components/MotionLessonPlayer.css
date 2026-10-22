@@ -484,3 +484,9 @@
   }
 }
 
+
+.ec-lesson-card.is-bare {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}

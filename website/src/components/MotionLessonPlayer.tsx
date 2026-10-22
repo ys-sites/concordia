@@ -27,13 +27,23 @@ interface MotionLessonPlayerProps {
   lesson: MotionLesson;
   badge?: string;
   disclosure?: string;
+  // learning site: resume where the student stopped, report progress, know when it ends
+  startAt?: number;
+  onProgress?: (t: number, d: number) => void;
+  onEnded?: () => void;
+  bare?: boolean; // no header or disclosure: the page around the player shows them
 }
 
 export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   lesson,
   badge = 'Motion Lesson · Watch First',
-  disclosure = 'based directly on Concordia teacher lecture notes'
+  disclosure = 'based directly on Concordia teacher lecture notes',
+  startAt,
+  onProgress,
+  onEnded,
+  bare = false
 }) => {
+  const lastReport = useRef(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hideControlsTimerRef = useRef<number | null>(null);
@@ -332,6 +342,11 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
     const v = videoRef.current;
     if (!v) return;
     setCurrentTime(v.currentTime);
+    // report about every 5 seconds of playback
+    if (onProgress && Math.abs(v.currentTime - lastReport.current) >= 5) {
+      lastReport.current = v.currentTime;
+      onProgress(v.currentTime, v.duration || lesson.duration);
+    }
 
     // Update buffer progress
     if (v.buffered.length > 0) {
@@ -344,11 +359,18 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
     const v = videoRef.current;
     if (!v) return;
     setDuration(v.duration || lesson.duration);
+    if (startAt && startAt > 3 && startAt < (v.duration || lesson.duration) - 5) {
+      v.currentTime = startAt;
+      setCurrentTime(startAt);
+    }
   };
 
   const handleEnded = () => {
     setIsPlaying(false);
     setShowControls(true);
+    const v = videoRef.current;
+    if (v && onProgress) onProgress(v.duration, v.duration);
+    onEnded?.();
   };
 
   const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
@@ -365,8 +387,9 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="ec-lesson-card">
+    <div className={`ec-lesson-card${bare ? ' is-bare' : ''}`}>
       {/* Header Info */}
+      {!bare && (
       <div className="ec-lesson-head">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <span className="ec-lesson-badge">
@@ -380,6 +403,7 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
           {formatLessonTime(duration)} · {lesson.source}
         </span>
       </div>
+      )}
 
       {/* Main Video Viewport with Fullscreen & Auto-Hide Control System */}
       <div
@@ -401,7 +425,11 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
           poster={getVideoUrl(lesson.poster)}
           src={getVideoUrl(lesson.video)}
           onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
+          onPause={() => {
+            setIsPlaying(false);
+            const v = videoRef.current;
+            if (v && onProgress) onProgress(v.currentTime, v.duration || lesson.duration);
+          }}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={handleEnded}
@@ -579,12 +607,14 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
       )}
 
       {/* AI Vector-Synthesis Disclosure */}
+      {!bare && (
       <div className="ec-lesson-ai-disclosure">
         <Sparkles size={14} className="ec-ai-sparkle-icon" />
         <div>
           <strong>AI-Generated from Code:</strong> This motion-graphics video was programmatically synthesized from algorithmic code (vector graphics &amp; parametric mathematical animations) {disclosure}.
         </div>
       </div>
+      )}
     </div>
   );
 };
