@@ -1584,6 +1584,463 @@ do {
 };
 
 // -------------------------------------------------------------------------------------------------
+// Winter 2024 (M24) Midterm Traces
+// -------------------------------------------------------------------------------------------------
+
+export const M24_HALVING_LOOP_TRACE: SimulatorTrace = {
+  id: 'M24_HALVING_LOOP',
+  title: 'Winter 2024 Midterm Q2(b) — Halving Loop & Post-Loop Print Trap',
+  code: `int i, j = 0;
+for (i = 5; i > 0; i /= 2) {
+    j++;
+    cout << j;
+}
+cout << j;`,
+  correctOptionIndex: 0,
+  options: ['1233', '123', '1244', '3333'],
+  whyWrong: {
+    '1': 'Omits the final cout << j statement outside the loop body.',
+    '2': 'j only increments 3 times (for i=5, 2, 1), not 4 times.',
+    '3': 'j increments sequentially on each pass (1, then 2, then 3).'
+  },
+  coreConcept: 'Integer halving (i /= 2) truncates towards zero. The loop runs for i=5, i=2, i=1 (3 passes), then when i becomes 0 (1/2 = 0) it terminates. Outside the loop, cout << j prints the final value of j (3) once more, resulting in 1233.',
+  commonTrap: 'Forgetting that cout << j appears BOTH inside the loop AND after the loop.',
+  steps: [
+    {
+      stepIndex: 0,
+      lineNumber: 1,
+      lineContent: 'int i, j = 0;',
+      iterationLabel: 'Initialization',
+      variables: { j: 0 },
+      changedVars: ['j'],
+      consoleOutput: [],
+      explanation: 'Initialize counter j = 0. i is uninitialized until loop header.'
+    },
+    // Pass 1: i = 5
+    {
+      stepIndex: 1,
+      lineNumber: 2,
+      lineContent: 'for (i = 5; i > 0; i /= 2) {',
+      iterationLabel: 'Pass 1 (i = 5)',
+      variables: { i: 5, j: 0 },
+      changedVars: ['i'],
+      conditionEval: { expression: 'i > 0', evaluatedTo: '5 > 0', result: true },
+      consoleOutput: [],
+      explanation: 'Initialize i = 5. Condition 5 > 0 is true: enter loop body.'
+    },
+    {
+      stepIndex: 2,
+      lineNumber: 3,
+      lineContent: '    j++;',
+      iterationLabel: 'Pass 1 (i = 5)',
+      variables: { i: 5, j: 1 },
+      changedVars: ['j'],
+      consoleOutput: [],
+      explanation: 'Increment j from 0 to 1.'
+    },
+    {
+      stepIndex: 3,
+      lineNumber: 4,
+      lineContent: '    cout << j;',
+      iterationLabel: 'Pass 1 (i = 5)',
+      variables: { i: 5, j: 1 },
+      consoleOutput: ['1'],
+      newOutput: '1',
+      explanation: 'Print j (1) to console.'
+    },
+    // Pass 2: i = 2
+    {
+      stepIndex: 4,
+      lineNumber: 2,
+      lineContent: 'for (i = 5; i > 0; i /= 2) {',
+      iterationLabel: 'Pass 2 (i = 2)',
+      variables: { i: 2, j: 1 },
+      changedVars: ['i'],
+      conditionEval: { expression: 'i > 0', evaluatedTo: '2 > 0', result: true },
+      consoleOutput: ['1'],
+      explanation: 'Step i /= 2 (5 / 2 = 2 via integer division). Condition 2 > 0 is true: enter loop body.'
+    },
+    {
+      stepIndex: 5,
+      lineNumber: 3,
+      lineContent: '    j++;',
+      iterationLabel: 'Pass 2 (i = 2)',
+      variables: { i: 2, j: 2 },
+      changedVars: ['j'],
+      consoleOutput: [],
+      explanation: 'Increment j from 1 to 2.'
+    },
+    {
+      stepIndex: 6,
+      lineNumber: 4,
+      lineContent: '    cout << j;',
+      iterationLabel: 'Pass 2 (i = 2)',
+      variables: { i: 2, j: 2 },
+      consoleOutput: ['12'],
+      newOutput: '2',
+      explanation: 'Print j (2) to console. Accumulated output: "12".'
+    },
+    // Pass 3: i = 1
+    {
+      stepIndex: 7,
+      lineNumber: 2,
+      lineContent: 'for (i = 5; i > 0; i /= 2) {',
+      iterationLabel: 'Pass 3 (i = 1)',
+      variables: { i: 1, j: 2 },
+      changedVars: ['i'],
+      conditionEval: { expression: 'i > 0', evaluatedTo: '1 > 0', result: true },
+      consoleOutput: ['12'],
+      explanation: 'Step i /= 2 (2 / 2 = 1). Condition 1 > 0 is true: enter loop body.'
+    },
+    {
+      stepIndex: 8,
+      lineNumber: 3,
+      lineContent: '    j++;',
+      iterationLabel: 'Pass 3 (i = 1)',
+      variables: { i: 1, j: 3 },
+      changedVars: ['j'],
+      consoleOutput: [],
+      explanation: 'Increment j from 2 to 3.'
+    },
+    {
+      stepIndex: 9,
+      lineNumber: 4,
+      lineContent: '    cout << j;',
+      iterationLabel: 'Pass 3 (i = 1)',
+      variables: { i: 1, j: 3 },
+      consoleOutput: ['123'],
+      newOutput: '3',
+      explanation: 'Print j (3) to console. Accumulated output: "123".'
+    },
+    // Loop Exit: i = 0
+    {
+      stepIndex: 10,
+      lineNumber: 2,
+      lineContent: 'for (i = 5; i > 0; i /= 2) {',
+      iterationLabel: 'Loop Exit (i = 0)',
+      variables: { i: 0, j: 3 },
+      changedVars: ['i'],
+      conditionEval: { expression: 'i > 0', evaluatedTo: '0 > 0', result: false },
+      trapWarning: 'Integer Division: 1 / 2 = 0. Since 0 > 0 is FALSE, loop terminates!',
+      consoleOutput: ['123'],
+      explanation: 'Step i /= 2 (1 / 2 = 0). Condition 0 > 0 is false! Loop exits.'
+    },
+    // Post-loop print
+    {
+      stepIndex: 11,
+      lineNumber: 6,
+      lineContent: 'cout << j;',
+      iterationLabel: 'Post-Loop Final Print',
+      variables: { i: 0, j: 3 },
+      trapWarning: 'Post-Loop Trap: cout << j prints the final value of j (3) outside the loop!',
+      consoleOutput: ['1233'],
+      newOutput: '3',
+      explanation: 'Prints j (3) again outside the loop. Final output stream: "1233".'
+    }
+  ]
+};
+
+export const M24_DIGIT_PEEL_TRACE: SimulatorTrace = {
+  id: 'M24_DIGIT_PEEL',
+  title: 'Winter 2024 Midterm Q2(a) — While Loop Digit Counter',
+  code: `int num = 4321, a = 0;
+while (num > 0) {
+    num = num / 10;
+    a++;
+}
+cout << a;`,
+  correctOptionIndex: 0,
+  options: ['4', '5', '3', '0'],
+  whyWrong: {
+    '1': 'Fence-post error: 4321 has exactly 4 digits, not 5.',
+    '2': 'The loop continues until num reaches 0, executing for all 4 digits.',
+    '3': 'a increments on every pass, ending at 4.'
+  },
+  coreConcept: 'Integer division by 10 (num = num / 10) peels off the least significant digit on every pass until num reaches 0. Counter a tracks the total number of digits.',
+  commonTrap: 'Counting loop iterations incorrectly when num reaches single digits.',
+  steps: [
+    {
+      stepIndex: 0,
+      lineNumber: 1,
+      lineContent: 'int num = 4321, a = 0;',
+      iterationLabel: 'Initialization',
+      variables: { num: 4321, a: 0 },
+      changedVars: ['num', 'a'],
+      consoleOutput: [],
+      explanation: 'Initialize num = 4321 (simulating user input) and digit counter a = 0.'
+    },
+    // Pass 1
+    {
+      stepIndex: 1,
+      lineNumber: 2,
+      lineContent: 'while (num > 0) {',
+      iterationLabel: 'Pass 1 (num = 4321)',
+      variables: { num: 4321, a: 0 },
+      conditionEval: { expression: 'num > 0', evaluatedTo: '4321 > 0', result: true },
+      consoleOutput: [],
+      explanation: 'Condition 4321 > 0 is true. Enter loop body.'
+    },
+    {
+      stepIndex: 2,
+      lineNumber: 3,
+      lineContent: '    num = num / 10;',
+      iterationLabel: 'Pass 1',
+      variables: { num: 432, a: 0 },
+      changedVars: ['num'],
+      consoleOutput: [],
+      explanation: 'num = 4321 / 10 = 432 (peels off digit 1).'
+    },
+    {
+      stepIndex: 3,
+      lineNumber: 4,
+      lineContent: '    a++;',
+      iterationLabel: 'Pass 1',
+      variables: { num: 432, a: 1 },
+      changedVars: ['a'],
+      consoleOutput: [],
+      explanation: 'Increment digit counter a to 1.'
+    },
+    // Pass 2
+    {
+      stepIndex: 4,
+      lineNumber: 3,
+      lineContent: '    num = num / 10;',
+      iterationLabel: 'Pass 2',
+      variables: { num: 43, a: 1 },
+      changedVars: ['num'],
+      conditionEval: { expression: 'num > 0', evaluatedTo: '432 > 0', result: true },
+      consoleOutput: [],
+      explanation: 'num = 432 / 10 = 43 (peels off digit 2).'
+    },
+    {
+      stepIndex: 5,
+      lineNumber: 4,
+      lineContent: '    a++;',
+      iterationLabel: 'Pass 2',
+      variables: { num: 43, a: 2 },
+      changedVars: ['a'],
+      consoleOutput: [],
+      explanation: 'Increment digit counter a to 2.'
+    },
+    // Pass 3
+    {
+      stepIndex: 6,
+      lineNumber: 3,
+      lineContent: '    num = num / 10;',
+      iterationLabel: 'Pass 3',
+      variables: { num: 4, a: 2 },
+      changedVars: ['num'],
+      conditionEval: { expression: 'num > 0', evaluatedTo: '43 > 0', result: true },
+      consoleOutput: [],
+      explanation: 'num = 43 / 10 = 4 (peels off digit 3).'
+    },
+    {
+      stepIndex: 7,
+      lineNumber: 4,
+      lineContent: '    a++;',
+      iterationLabel: 'Pass 3',
+      variables: { num: 4, a: 3 },
+      changedVars: ['a'],
+      consoleOutput: [],
+      explanation: 'Increment digit counter a to 3.'
+    },
+    // Pass 4
+    {
+      stepIndex: 8,
+      lineNumber: 3,
+      lineContent: '    num = num / 10;',
+      iterationLabel: 'Pass 4',
+      variables: { num: 0, a: 3 },
+      changedVars: ['num'],
+      conditionEval: { expression: 'num > 0', evaluatedTo: '4 > 0', result: true },
+      consoleOutput: [],
+      explanation: 'num = 4 / 10 = 0 (peels off final digit 4).'
+    },
+    {
+      stepIndex: 9,
+      lineNumber: 4,
+      lineContent: '    a++;',
+      iterationLabel: 'Pass 4',
+      variables: { num: 0, a: 4 },
+      changedVars: ['a'],
+      consoleOutput: [],
+      explanation: 'Increment digit counter a to 4.'
+    },
+    // Exit & print
+    {
+      stepIndex: 10,
+      lineNumber: 2,
+      lineContent: 'while (num > 0) {',
+      iterationLabel: 'Loop Exit (num = 0)',
+      variables: { num: 0, a: 4 },
+      conditionEval: { expression: 'num > 0', evaluatedTo: '0 > 0', result: false },
+      consoleOutput: [],
+      explanation: 'Condition 0 > 0 is false! Loop terminates.'
+    },
+    {
+      stepIndex: 11,
+      lineNumber: 6,
+      lineContent: 'cout << a;',
+      iterationLabel: 'Console Output',
+      variables: { num: 0, a: 4 },
+      consoleOutput: ['4'],
+      newOutput: '4',
+      explanation: 'Prints "4" to stdout: 4321 has 4 digits.'
+    }
+  ]
+};
+
+export const M24_SHORT_CIRCUIT_TRACE: SimulatorTrace = {
+  id: 'M24_SHORT_CIRCUIT',
+  title: 'Winter 2024 Midterm Q3(a) — Short-Circuit Logical Evaluation & Decrement',
+  code: `int found = 1, count = 4;
+if (!found || --count == 0) cout << "safe\\n";
+cout << "count = " << count;`,
+  correctOptionIndex: 0,
+  options: ['count = 3', 'count = 4', 'safe\\ncount = 3', 'safe\\ncount = 4'],
+  whyWrong: {
+    '1': 'Assumes || short-circuited and skipped --count. But !found is !1 = false, so RHS MUST be evaluated.',
+    '2': 'Prints "safe" only if the condition is true. 3 == 0 is false, so "safe" does NOT print.',
+    '3': 'Both wrong: "safe" does not print and count decrements to 3.'
+  },
+  coreConcept: 'Short-Circuit Rules: In A || B, if A is false, B MUST be evaluated. Since found = 1, !found is false, so --count executes, decrementing count from 4 to 3. Then 3 == 0 is false, so the if block is skipped.',
+  commonTrap: 'Assuming logical OR always short-circuits without checking whether the left operand was true or false.',
+  steps: [
+    {
+      stepIndex: 0,
+      lineNumber: 1,
+      lineContent: 'int found = 1, count = 4;',
+      iterationLabel: 'Initialization',
+      variables: { found: 1, count: 4 },
+      changedVars: ['found', 'count'],
+      consoleOutput: [],
+      explanation: 'Initialize found = 1 and count = 4.'
+    },
+    {
+      stepIndex: 1,
+      lineNumber: 2,
+      lineContent: 'if (!found || --count == 0) cout << "safe\\n";',
+      iterationLabel: 'Left Operand Evaluation',
+      variables: { found: 1, count: 4 },
+      conditionEval: { expression: '!found', evaluatedTo: '!1 = false', result: false },
+      trapWarning: '!found is FALSE! Logical OR (||) cannot short-circuit when the left side is false. It MUST evaluate the right operand!',
+      consoleOutput: [],
+      explanation: '!found evaluates to !1 = false. Therefore, C++ must evaluate the right operand (--count == 0).'
+    },
+    {
+      stepIndex: 2,
+      lineNumber: 2,
+      lineContent: 'if (!found || --count == 0) cout << "safe\\n";',
+      iterationLabel: 'Right Operand Pre-decrement',
+      variables: { found: 1, count: 3 },
+      changedVars: ['count'],
+      conditionEval: { expression: '--count == 0', evaluatedTo: '3 == 0', result: false },
+      consoleOutput: [],
+      explanation: '--count decrements count from 4 to 3. Then 3 == 0 evaluates to false. Neither operand was true, so "safe" does not print!'
+    },
+    {
+      stepIndex: 3,
+      lineNumber: 3,
+      lineContent: 'cout << "count = " << count;',
+      iterationLabel: 'Console Output',
+      variables: { found: 1, count: 3 },
+      consoleOutput: ['count = 3'],
+      newOutput: 'count = 3',
+      explanation: 'Prints "count = 3" to stdout. count was decremented by the evaluated RHS expression.'
+    }
+  ]
+};
+
+export const M24_MULTI_VAR_ACCUMULATOR_TRACE: SimulatorTrace = {
+  id: 'M24_MULTI_VAR',
+  title: 'Winter 2024 Midterm Q3(c) — Multi-Variable Compound Accumulator Trace',
+  code: `double x=4, y=4, z=4, q=4;
+for(int i=0; i<4; i++) {
+    x = x * 1.5;
+    y *= 2;
+    z /= 2;
+    q += 4;
+}
+cout << x << " " << y << " " << z << " " << q;`,
+  correctOptionIndex: 0,
+  options: ['20.25 64 0.25 20', '20.25 32 0.5 16', '16 64 0.25 20', '20.25 64 0 20'],
+  whyWrong: {
+    '1': 'Only 3 passes traced instead of 4.',
+    '2': 'x arithmetic error: 4 * 1.5^4 = 20.25, not 16.',
+    '3': 'z is a double, so 4 / 2^4 = 4 / 16 = 0.25, not 0 integer truncation.'
+  },
+  coreConcept: 'Dr. Gordon Simplified Table Approach: Track each variable in its own column across all 4 iterations (i = 0, 1, 2, 3). x grows by 1.5x each time, y doubles, z halves (floating point), q increases by 4.',
+  commonTrap: 'Thinking z /= 2 truncates to 0; z is declared as double, so 0.5 / 2 = 0.25.',
+  steps: [
+    {
+      stepIndex: 0,
+      lineNumber: 1,
+      lineContent: 'double x=4, y=4, z=4, q=4;',
+      iterationLabel: 'Initialization',
+      variables: { x: 4.0, y: 4.0, z: 4.0, q: 4.0 },
+      changedVars: ['x', 'y', 'z', 'q'],
+      consoleOutput: [],
+      explanation: 'Initialize all four double variables x = 4, y = 4, z = 4, q = 4.'
+    },
+    // Pass 1
+    {
+      stepIndex: 1,
+      lineNumber: 3,
+      lineContent: '    x = x * 1.5; y *= 2; z /= 2; q += 4;',
+      iterationLabel: 'Pass 1 (i = 0)',
+      variables: { x: 6.0, y: 8.0, z: 2.0, q: 8.0, i: 0 },
+      changedVars: ['x', 'y', 'z', 'q'],
+      consoleOutput: [],
+      explanation: 'Pass 1: x = 4*1.5 = 6; y = 4*2 = 8; z = 4/2 = 2; q = 4+4 = 8.'
+    },
+    // Pass 2
+    {
+      stepIndex: 2,
+      lineNumber: 3,
+      lineContent: '    x = x * 1.5; y *= 2; z /= 2; q += 4;',
+      iterationLabel: 'Pass 2 (i = 1)',
+      variables: { x: 9.0, y: 16.0, z: 1.0, q: 12.0, i: 1 },
+      changedVars: ['x', 'y', 'z', 'q'],
+      consoleOutput: [],
+      explanation: 'Pass 2: x = 6*1.5 = 9; y = 8*2 = 16; z = 2/2 = 1; q = 8+4 = 12.'
+    },
+    // Pass 3
+    {
+      stepIndex: 3,
+      lineNumber: 3,
+      lineContent: '    x = x * 1.5; y *= 2; z /= 2; q += 4;',
+      iterationLabel: 'Pass 3 (i = 2)',
+      variables: { x: 13.5, y: 32.0, z: 0.5, q: 16.0, i: 2 },
+      changedVars: ['x', 'y', 'z', 'q'],
+      consoleOutput: [],
+      explanation: 'Pass 3: x = 9*1.5 = 13.5; y = 16*2 = 32; z = 1/2 = 0.5; q = 12+4 = 16.'
+    },
+    // Pass 4
+    {
+      stepIndex: 4,
+      lineNumber: 3,
+      lineContent: '    x = x * 1.5; y *= 2; z /= 2; q += 4;',
+      iterationLabel: 'Pass 4 (i = 3)',
+      variables: { x: 20.25, y: 64.0, z: 0.25, q: 20.0, i: 3 },
+      changedVars: ['x', 'y', 'z', 'q'],
+      consoleOutput: [],
+      explanation: 'Pass 4: x = 13.5*1.5 = 20.25; y = 32*2 = 64; z = 0.5/2 = 0.25; q = 16+4 = 20.'
+    },
+    // Output
+    {
+      stepIndex: 5,
+      lineNumber: 9,
+      lineContent: 'cout << x << " " << y << " " << z << " " << q;',
+      iterationLabel: 'Console Output',
+      variables: { x: 20.25, y: 64.0, z: 0.25, q: 20.0, i: 4 },
+      consoleOutput: ['20.25 64 0.25 20'],
+      newOutput: '20.25 64 0.25 20',
+      explanation: 'Prints "20.25 64 0.25 20" to stdout.'
+    }
+  ]
+};
+
+// -------------------------------------------------------------------------------------------------
 // Generic Trace Generator: Advanced C++ Simulation Engine
 // -------------------------------------------------------------------------------------------------
 
@@ -1601,14 +2058,41 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
     if (clean === 'true') return true;
     if (clean === 'false') return false;
 
+    // Single character literal: 'a', '\n', ' '
+    const charMatch = clean.match(/^'(\\n|\\t|\\r|\\0|.)'$/);
+    if (charMatch) {
+      if (charMatch[1] === '\\n') return '\n';
+      if (charMatch[1] === '\\t') return '\t';
+      return charMatch[1];
+    }
+
     // Direct number check
     if (!isNaN(Number(clean)) && clean !== '') {
       return Number(clean);
     }
 
     // String literal check
-    if ((clean.startsWith('"') && clean.endsWith('"')) || (clean.startsWith("'") && clean.endsWith("'"))) {
+    if (clean.startsWith('"') && clean.endsWith('"')) {
       return clean.slice(1, -1);
+    }
+
+    // Handle C++ casting: (int)ch or (int)f2 or (char)x
+    const castMatch = clean.match(/^\(([a-zA-Z_]\w*)\)\s*(.+)$/);
+    if (castMatch) {
+      const targetType = castMatch[1];
+      const innerVal = evalExpr(castMatch[2]);
+      if (targetType === 'int') {
+        if (typeof innerVal === 'string' && innerVal.length === 1) {
+          return innerVal.charCodeAt(0);
+        }
+        return Math.trunc(Number(innerVal));
+      }
+      if (targetType === 'char') {
+        return String.fromCharCode(Number(innerVal));
+      }
+      if (targetType === 'double' || targetType === 'float') {
+        return Number(innerVal);
+      }
     }
 
     // Check if it is a single variable name
@@ -1630,6 +2114,11 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
     // Evaluate basic math with variable replacement
     try {
       let mathExpr = clean;
+      // Strip outer parens
+      if (mathExpr.startsWith('(') && mathExpr.endsWith(')')) {
+        mathExpr = mathExpr.slice(1, -1);
+      }
+
       // Replace array accesses first
       mathExpr = mathExpr.replace(/([a-zA-Z_]\w*)\s*\[\s*([^\]]+)\s*\]/g, (_, arrName, idxExpr) => {
         const idx = Number(evalExpr(idxExpr));
@@ -1642,7 +2131,13 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
       // Replace known variables
       Object.keys(variables).forEach((v) => {
         const regex = new RegExp(`\\b${v}\\b`, 'g');
-        mathExpr = mathExpr.replace(regex, String(variables[v]));
+        const vVal = variables[v];
+        if (typeof vVal === 'string' && vVal.length === 1 && !isNaN(vVal.charCodeAt(0))) {
+          // If char variable used in math context
+          mathExpr = mathExpr.replace(regex, String(vVal.charCodeAt(0)));
+        } else {
+          mathExpr = mathExpr.replace(regex, String(vVal));
+        }
       });
 
       // Replace C++ math functions
@@ -1653,7 +2148,7 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
       mathExpr = mathExpr.replace(/\bexp\b/g, 'Math.exp');
       mathExpr = mathExpr.replace(/\bpow\b/g, 'Math.pow');
 
-      // Check for integer division truncation: e.g. 5 / 2 -> Math.floor(5 / 2)
+      // Check for integer division truncation: e.g. 5 / 2 -> Math.trunc(5 / 2)
       mathExpr = mathExpr.replace(/(\b\d+)\s*\/\s*(\b\d+)(?!\.)/g, 'Math.trunc($1 / $2)');
 
       // eslint-disable-next-line no-eval
@@ -1678,6 +2173,17 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
       return;
     }
 
+    // Separate executable code from inline comment (e.g. u--; // line 1)
+    let codePart = trimmed;
+    const commentIdx = trimmed.indexOf('//');
+    if (commentIdx !== -1) {
+      codePart = trimmed.slice(0, commentIdx).trim();
+    }
+
+    if (!codePart) {
+      return;
+    }
+
     const changed: string[] = [];
     let explanation = `Executing line ${lineNum}: ${trimmed}`;
     let newOut: string | undefined = undefined;
@@ -1685,7 +2191,7 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
     let trapWarn: string | undefined = undefined;
 
     // 1. Array declaration: double A[4] = { 1, 2, 3, 4 }; or int B[] = { 1, 2 };
-    const arrDeclMatch = trimmed.match(/(?:int|double|float|char|bool)\s+([a-zA-Z_]\w*)\s*(?:\[[^\]]*\])+\s*=\s*\{([^}]+)\}/);
+    const arrDeclMatch = codePart.match(/(?:int|double|float|char|bool)\s+([a-zA-Z_]\w*)\s*(?:\[[^\]]*\])+\s*=\s*\{([^}]+)\}/);
     if (arrDeclMatch) {
       const arrName = arrDeclMatch[1];
       const elements = arrDeclMatch[2].split(',').map((s) => {
@@ -1697,17 +2203,36 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
       explanation = `Initialize array '${arrName}[]' with ${elements.length} elements: {${elements.join(', ')}}.`;
     }
 
-    // 2. Variable declarations: int x = 10, y = 20; or double u=0.0, v=1.1; or int y, z;
-    const typeDeclMatch = trimmed.match(/^(?:int|double|float|char|bool)\s+([^;]+);/);
-    if (typeDeclMatch && !arrDeclMatch) {
-      const isIntType = trimmed.startsWith('int') || trimmed.startsWith('bool') || trimmed.startsWith('char');
+    // 2. Chained assignment: a = b = c = 7;
+    const chainedMatch = codePart.match(/^([a-zA-Z_]\w*\s*=\s*){2,}([^;]+);/);
+    if (chainedMatch) {
+      const varNames = [...codePart.matchAll(/([a-zA-Z_]\w*)\s*=/g)].map((m) => m[1]);
+      const valPart = codePart.split('=').pop()!.replace(/;$/, '').trim();
+      const evaluated = evalExpr(valPart);
+      varNames.forEach((v) => {
+        variables[v] = evaluated;
+        changed.push(v);
+      });
+      explanation = `Chained assignment: set ${varNames.join(', ')} to ${evaluated}.`;
+    }
+
+    // 3. Variable declarations: int x = 10, y = 20; or double u=0.0, v=1.1; or int y, z;
+    const typeDeclMatch = codePart.match(/^(?:int|double|float|char|bool)\s+([^;]+);/);
+    if (typeDeclMatch && !arrDeclMatch && !chainedMatch) {
+      const isIntType = codePart.startsWith('int') || codePart.startsWith('bool');
+      const isCharType = codePart.startsWith('char');
       const declList = typeDeclMatch[1].split(',');
       declList.forEach((declItem) => {
         const parts = declItem.split('=').map((p) => p.trim());
         const varName = parts[0];
         if (parts.length > 1) {
           const evaluated = evalExpr(parts[1]);
-          const finalVal = isIntType && typeof evaluated === 'number' ? Math.trunc(evaluated) : evaluated;
+          let finalVal = evaluated;
+          if (isIntType && typeof evaluated === 'number') {
+            finalVal = Math.trunc(evaluated);
+          } else if (isCharType) {
+            finalVal = String(evaluated);
+          }
           variables[varName] = finalVal;
           changed.push(varName);
         } else {
@@ -1720,8 +2245,8 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
       explanation = `Variable declaration: initialized ${changed.join(', ')}.`;
     }
 
-    // 3. Increment / Decrement: u--; or w++; or ++i;
-    const incDecMatch = trimmed.match(/^([a-zA-Z_]\w*)(\+\+|--);/);
+    // 4. Increment / Decrement: u--; or w++; or ++i;
+    const incDecMatch = codePart.match(/^([a-zA-Z_]\w*)(\+\+|--);/);
     if (incDecMatch) {
       const varName = incDecMatch[1];
       const op = incDecMatch[2];
@@ -1732,8 +2257,8 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
       explanation = `${op === '++' ? 'Increment' : 'Decrement'} ${varName} from ${currentVal} to ${nextVal}.`;
     }
 
-    // 4. Compound assignments: x += 3; x -= 2; x *= 2; x /= 4;
-    const compoundMatch = trimmed.match(/^([a-zA-Z_]\w*)\s*(\+=|-=|\*=|\/=)\s*([^;]+);/);
+    // 5. Compound assignments: x += 3; x -= 2; x *= 2; x /= 4;
+    const compoundMatch = codePart.match(/^([a-zA-Z_]\w*)\s*(\+=|-=|\*=|\/=)\s*([^;]+);/);
     if (compoundMatch) {
       const varName = compoundMatch[1];
       const op = compoundMatch[2];
@@ -1751,9 +2276,9 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
       explanation = `Compound assignment: ${varName} ${op} ${rhs} ⟶ ${varName} = ${nextVal}.`;
     }
 
-    // 5. Standard assignment: z = y + 1; or x = 2*x + 1;
-    const assignMatch = trimmed.match(/^([a-zA-Z_]\w*)\s*=\s*([^;]+);/);
-    if (assignMatch && !trimmed.startsWith('int') && !trimmed.startsWith('double') && !trimmed.startsWith('float')) {
+    // 6. Standard assignment: z = y + 1; or x = 2*x + 1;
+    const assignMatch = codePart.match(/^([a-zA-Z_]\w*)\s*=\s*([^;]+);/);
+    if (assignMatch && !codePart.startsWith('int') && !codePart.startsWith('double') && !codePart.startsWith('float') && !codePart.startsWith('char') && !chainedMatch) {
       const varName = assignMatch[1];
       const rhsExpr = assignMatch[2].trim();
       const rhsVal = evalExpr(rhsExpr);
@@ -1768,19 +2293,19 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
       explanation = `Assign '${varName}' = ${variables[varName]} (evaluated from '${rhsExpr}').`;
     }
 
-    // 6. Cout statements: cout << ...
-    if (trimmed.includes('cout')) {
-      const coutContent = trimmed.replace(/cout\s*<<\s*/, '').replace(/;$/, '');
+    // 7. Cout statements: cout << ...
+    if (codePart.includes('cout')) {
+      const coutContent = codePart.replace(/cout\s*<<\s*/, '').replace(/;$/, '');
       const parts = coutContent.split('<<').map((p) => p.trim());
       const printedParts: string[] = [];
 
       parts.forEach((p) => {
         if (p.startsWith('"') && p.endsWith('"')) {
-          printedParts.push(p.slice(1, -1).replace(/\\n/g, ''));
+          printedParts.push(p.slice(1, -1).replace(/\\n/g, '\n').replace(/\\t/g, '\t'));
         } else if (p.startsWith("'") && p.endsWith("'")) {
-          printedParts.push(p.slice(1, -1).replace(/\\n/g, ''));
+          printedParts.push(evalExpr(p) as string);
         } else if (p === 'endl') {
-          // newline
+          printedParts.push('\n');
         } else {
           const evaluated = evalExpr(p);
           if (String(evaluated).includes('Garbage')) {
@@ -1792,18 +2317,20 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
         }
       });
 
-      const printedStr = printedParts.join('').trim();
-      if (printedStr) {
-        consoleOutput.push(printedStr);
-        newOut = printedStr;
-        explanation = `Print to console (stdout): "${printedStr}".`;
-      } else {
-        explanation = `Print newline to console.`;
-      }
+      const fullPrinted = printedParts.join('');
+      const printedLines = fullPrinted.split('\n');
+      printedLines.forEach((pl) => {
+        if (pl.length > 0) {
+          consoleOutput.push(pl);
+        }
+      });
+
+      newOut = fullPrinted.trim();
+      explanation = `Print to console (stdout): "${newOut}".`;
     }
 
-    // 7. If condition evaluation: if ( i == 1 ) or if ( (z/2) > 1 )
-    const ifMatch = trimmed.match(/^if\s*\((.*)\)/);
+    // 8. If condition evaluation: if ( i == 1 ) or if ( (z/2) > 1 )
+    const ifMatch = codePart.match(/^if\s*\((.*)\)/);
     if (ifMatch) {
       const cond = ifMatch[1];
       const res = Boolean(evalExpr(cond));
@@ -1815,8 +2342,8 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
       explanation = `Evaluate condition 'if (${cond})' ⟶ ${res ? 'TRUE (execute branch)' : 'FALSE (skip branch)'}.`;
     }
 
-    // 8. For loop header: for(int i=0; i<5; i++)
-    const forMatch = trimmed.match(/^for\s*\((.*?);(.*?);(.*?)\)/);
+    // 9. For loop header: for(int i=0; i<5; i++)
+    const forMatch = codePart.match(/^for\s*\((.*?);(.*?);(.*?)\)/);
     if (forMatch) {
       const iterInit = forMatch[1].trim();
       const iterCond = forMatch[2].trim();
@@ -1829,8 +2356,8 @@ export function generateGenericTrace(codeSnippet: string, title = 'C++ Code Simu
       };
     }
 
-    // 9. While loop condition
-    const whileMatch = trimmed.match(/^while\s*\((.*)\)/);
+    // 10. While loop condition
+    const whileMatch = codePart.match(/^while\s*\((.*)\)/);
     if (whileMatch) {
       explanation = `Loop condition: check while (${whileMatch[1]}).`;
       condEval = {
@@ -1883,9 +2410,11 @@ export function getTraceForQuestion(
 ): SimulatorTrace {
   const normalized = codeSnippet.replace(/\s+/g, ' ').trim();
   const lowerTitle = (questionTitle || '').toLowerCase();
+  const qid = questionId || '';
 
-  // 1. Vector Dot Product Accumulator (Quiz 2 Wednesday Part f)
+  // 1. Vector Dot Product Accumulator (Quiz 2 Wednesday Part f & Fall 2022 Q1(b))
   if (
+    qid === 'TX_MIAE215_19' ||
     normalized.includes('dot += A[i] * B[i]') ||
     normalized.includes('dot product') ||
     lowerTitle.includes('dot product') ||
@@ -1943,7 +2472,40 @@ export function getTraceForQuestion(
     return MENU_CONDITION_TRACE;
   }
 
+  // 9. Winter 2024 Midterm Q2(b) — Halving Loop & Post-Loop Print
+  if (
+    qid === 'M24-2b' ||
+    (normalized.includes('for (i=5; i>0; i/=2)') || (normalized.includes('i /= 2') && normalized.includes('cout << j')))
+  ) {
+    return M24_HALVING_LOOP_TRACE;
+  }
+
+  // 10. Winter 2024 Midterm Q2(a) — Digit Peeler
+  if (
+    qid === 'M24-2a' ||
+    (normalized.includes('num = num / 10') && normalized.includes('a++'))
+  ) {
+    return M24_DIGIT_PEEL_TRACE;
+  }
+
+  // 11. Winter 2024 Midterm Q3(a) — Short-Circuit Logical Decrement
+  if (
+    qid === 'M24-3a' ||
+    (normalized.includes('!found') && normalized.includes('--count'))
+  ) {
+    return M24_SHORT_CIRCUIT_TRACE;
+  }
+
+  // 12. Winter 2024 Midterm Q3(c) — Multi-Variable Compound Accumulator
+  if (
+    qid === 'M24-3c' ||
+    (normalized.includes('x = x * 1.5') && normalized.includes('y *= 2') && normalized.includes('z /= 2'))
+  ) {
+    return M24_MULTI_VAR_ACCUMULATOR_TRACE;
+  }
+
   // Default to dynamic trace generator
   return generateGenericTrace(codeSnippet, questionTitle || 'MIAE 215 C++ Code Simulator');
 }
+
 
