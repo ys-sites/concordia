@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Check, CheckCircle2, Eye, Flag, HelpCircle, Lightbulb, XCircle } from 'lucide-react';
 import type { LearnQuestion } from '../model';
+import { LEVEL_LABEL } from '../model';
 import type { Answer, Confidence } from '../progress/store';
 import { MathText } from '../../utils/mathRenderer';
 import { OptionContent } from '../../components/OptionContent';
@@ -68,6 +69,7 @@ export const QuestionView: React.FC<QuestionViewProps> = (p) => {
         <span className="lx-q-count lx-num">
           Question {p.index + 1} of {p.total}
         </span>
+        <span className={`lx-chip lx-lvl-chip lx-lvl-${q.level}`}>{LEVEL_LABEL[q.level]}</span>
         <span className="lx-chip">{q.topic}</span>
         {q.pastPaper && q.source && <span className="lx-chip lx-chip--warn">{q.source}</span>}
         <span className="lx-q-head-tools">

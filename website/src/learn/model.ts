@@ -124,6 +124,8 @@ export type QuestionKind =
   | 'indices' // type Miller indices, e.g. [1 -1 0]
   | 'self'; // open question: reveal the solution and mark yourself
 
+export const LEVEL_LABEL = { 1: 'Easy', 2: 'Medium', 3: 'Hard' } as const;
+
 export type QuestionOrigin = 'bank' | 'teacher' | 'drill' | 'exam' | 'lesson' | 'gordon';
 
 export interface LearnQuestion {
@@ -146,6 +148,7 @@ export interface LearnQuestion {
   answerText: string; // the answer as shown after checking
   topic: string;
   difficulty?: string;
+  level: 1 | 2 | 3; // 1 easy (foundation) · 2 medium (midterm level) · 3 hard (exam master, real past papers)
   source?: string; // "Winter 2017 First Midterm · Q1a", "Lecture 3, Example 2"
   pastPaper?: boolean;
   hint?: string;

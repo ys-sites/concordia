@@ -27,6 +27,9 @@ export interface QuizSession {
   elapsed: number; // seconds of active time
   timeLimit?: number; // seconds
   finished?: boolean;
+  // "start easy, build up": the next question is picked after each answer, one level at a time
+  adaptive?: { level: 1 | 2 | 3; size: number; pool: string[] };
+  only?: 1 | 2 | 3; // a single difficulty level
 }
 
 export interface Attempt {

@@ -10,6 +10,8 @@ const LETTERS = 'abcdefgh';
 const letterIdx = (l: string) => LETTERS.indexOf(l.trim().toLowerCase());
 const optLabel = (opts: string[], i: number) => `(${LETTERS[i]}) ${opts[i] ?? ''}`;
 
+const LEVEL_OF: Record<string, 1 | 2 | 3> = { Foundation: 1, 'Midterm Level': 2, 'Exam Master': 3 };
+
 // ── practice bank, teacher papers, ENGR 213 method drills (all PracticeQuestion) ──────────────
 export function fromPractice(q: PracticeQuestion, prefix: 'b' | 't' | 'd', videoId?: string): LearnQuestion {
   const tf = q.options.length === 2 && /^true$/i.test(q.options[0].trim()) && /^false$/i.test(q.options[1].trim());
@@ -29,6 +31,7 @@ export function fromPractice(q: PracticeQuestion, prefix: 'b' | 't' | 'd', video
     answerText: tf ? q.options[q.correctIndex] : q.options[q.correctIndex],
     topic: q.topic,
     difficulty: q.difficulty,
+    level: LEVEL_OF[q.difficulty] ?? (prefix === 't' ? 3 : 2),
     source: q.pastPaper ?? (q.source?.[0] ? `${q.source[0].deck.replace(/\.pdf$/i, '')} · ${q.source[0].location}` : undefined),
     pastPaper: !!q.pastPaper,
     explain: {
@@ -65,6 +68,7 @@ export function fromGateExam(c: CourseId, g: GateContent, q: GateQuestion, video
     prompt: q.q,
     code: q.code,
     topic: g.topics.find((t) => t.id === q.topic)?.name ?? q.topic,
+    level: 3 as const,
     source: `${exam?.label ?? q.exam} · Q${q.n}`,
     pastPaper: true,
     videoId,
@@ -161,6 +165,8 @@ export function fromLessonItem(c: CourseId, g: GateContent, f: Formula, i: numbe
     courseId: c,
     origin: 'lesson' as const,
     topic: f.name,
+    // concept checks are easy, calculations medium, open derivations hard
+    level: (item.type === 'mc' || item.type === 'tf' ? 1 : item.type === 'open' ? 3 : 2) as 1 | 2 | 3,
     source: item.src,
     videoId,
     explain: {} as LearnQuestion['explain']
@@ -192,6 +198,7 @@ export function fromGordon(p: GordonExamPaper, q: GordonExamQuestion): LearnQues
     prompt: `${q.title}${q.points ? ` (${q.points})` : ''}. ${q.description}`,
     code: q.codeSnippet || undefined,
     topic: q.conceptsTested[0] ?? 'Programming',
+    level: 3 as const,
     source: `${p.title} · ${q.part}`,
     pastPaper: true,
     correct: [],

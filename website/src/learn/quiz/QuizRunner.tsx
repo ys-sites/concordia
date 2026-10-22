@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Flag, GraduationCap, ListChecks, Play, RefreshCw, RotateCcw, Timer, Trophy, XCircle } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { LearnQuestion, Lesson, Step } from '../model';
+import { LEVEL_LABEL } from '../model';
 import { Attempt, QuizSession, recordAnswer, stepKey, toggleFlag, updateProgress, useProgress } from '../progress/store';
 import { useCourseQuestions } from '../questions';
 import { grade, isAnswered } from '../questions/grade';
@@ -45,35 +46,67 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   const idx = useCourseQuestions(course);
   const [resumeAsked, setResumeAsked] = useState(false);
   const [review, setReview] = useState<string | null>(null);
+  const [pickLevel, setPickLevel] = useState<'adaptive' | 1 | 2 | 3>('adaptive');
   const defaultMode: Mode = step.kind === 'check' ? 'check' : step.kind === 'exam' && step.timeLimit ? 'exam' : 'practice';
   const lastAttempt = useMemo(() => [...attempts].reverse().find((a) => a.course === course && a.stepId === step.id), [attempts, course, step.id]);
 
   const qs = useCallback((id: string): LearnQuestion | undefined => idx?.byId.get(id), [idx]);
 
   // ── session operations ─────────────────────────────────────────────────────────
+  // questions not yet mastered come first: never seen or last wrong, then unsure, then by Leitner box
+  const rank = useCallback(
+    (id: string) => {
+      const st = stats[id];
+      return !st || !st.seen || st.last === 0 ? 0 : st.unsure ? 1 : 1 + st.box;
+    },
+    [stats]
+  );
+  const optionOrderFor = useCallback(
+    (ids: string[]) => {
+      const out: Record<string, number[]> = {};
+      for (const id of ids) {
+        const q = idx?.byId.get(id);
+        if (q && (q.kind === 'mc' || q.kind === 'multi') && !q.keepOrder && q.options) out[id] = shuffle(q.options.map((_, i) => i));
+      }
+      return out;
+    },
+    [idx]
+  );
+  // the next question of a "start easy, build up" session: the current level first, then the nearest level
+  const pickAdaptive = useCallback(
+    (pool: string[], used: string[], level: 1 | 2 | 3): { id: string; level: 1 | 2 | 3 } | null => {
+      const free = pool.filter((id) => !used.includes(id));
+      for (const l of [level, level + 1, level - 1, level + 2, level - 2] as number[]) {
+        if (l < 1 || l > 3) continue;
+        const at = shuffle(free.filter((id) => idx?.byId.get(id)?.level === l)).sort((a, b) => rank(a) - rank(b));
+        if (at.length) return { id: at[0], level: l as 1 | 2 | 3 };
+      }
+      return null;
+    },
+    [idx, rank]
+  );
+
   const start = useCallback(
-    (mode: Mode, ids?: string[]) => {
+    (mode: Mode, ids?: string[], level: 'adaptive' | 1 | 2 | 3 | 'all' = 'all') => {
       if (!idx) return;
-      const pool = (ids ?? step.questionIds ?? []).filter((id) => idx.byId.has(id));
+      let pool = (ids ?? step.questionIds ?? []).filter((id) => idx.byId.has(id));
       let order: string[];
+      let adaptive: QuizSession['adaptive'];
+      if (typeof level === 'number') pool = pool.filter((id) => idx.byId.get(id)!.level === level);
+      const size = step.size && step.size < pool.length ? step.size : pool.length;
       if (ids || step.ordered) order = pool;
-      else {
-        const size = step.size && step.size < pool.length ? step.size : pool.length;
-        // questions not yet mastered come first: never seen or last wrong, then unsure, then by Leitner box
-        const rank = (id: string) => {
-          const st = stats[id];
-          return !st || !st.seen || st.last === 0 ? 0 : st.unsure ? 1 : 1 + st.box;
-        };
+      else if (level === 'adaptive') {
+        const first = pickAdaptive(pool, [], 1);
+        order = first ? [first.id] : [];
+        adaptive = { level: first?.level ?? 1, size, pool };
+      } else {
         order = shuffle(pool)
           .sort((a, b) => rank(a) - rank(b))
           .slice(0, size);
-        if (mode !== 'exam') order = shuffle(order);
+        // easy to hard within the set; random order inside each level
+        order = mode === 'exam' ? order : shuffle(order).sort((a, b) => idx.byId.get(a)!.level - idx.byId.get(b)!.level);
       }
-      const optionOrder: Record<string, number[]> = {};
-      for (const id of order) {
-        const q = idx.byId.get(id)!;
-        if ((q.kind === 'mc' || q.kind === 'multi') && !q.keepOrder && q.options) optionOrder[id] = shuffle(q.options.map((_, i) => i));
-      }
+      const optionOrder = optionOrderFor(order);
       updateProgress((s) => {
         s.quizzes[key] = {
           course,
@@ -91,13 +124,15 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
           revealed: [],
           startedAt: Date.now(),
           elapsed: 0,
+          ...(adaptive ? { adaptive } : {}),
+          ...(typeof level === 'number' ? { only: level } : {}),
           ...(mode === 'exam' && step.timeLimit ? { timeLimit: Math.round(step.timeLimit * 60 * (order.length / Math.max(1, step.size || (step.questionIds?.length ?? order.length)))) || step.timeLimit * 60 } : {})
         };
       });
       setResumeAsked(true);
       setReview(null);
     },
-    [idx, step, stats, key, course, lesson.id]
+    [idx, step, key, course, lesson.id, pickAdaptive, rank, optionOrderFor]
   );
 
   const patch = (fn: (ss: QuizSession) => void) =>
@@ -187,6 +222,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
 
   const available = (step.questionIds ?? []).filter((id) => idx.byId.has(id));
   const setSize = step.size && step.size < available.length ? step.size : available.length;
+  const mix = [1, 2, 3].map((l) => available.filter((id) => idx.byId.get(id)?.level === l).length);
+  const sameKind = (ss: QuizSession): 'adaptive' | 1 | 2 | 3 | 'all' => (ss.adaptive ? 'adaptive' : ss.only ?? 'all');
 
   // ── intro ──────────────────────────────────────────────────────────────────────
   if (!session) {
@@ -219,6 +256,41 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
             <CheckCircle2 size={16} aria-hidden /> Pass mark {Math.round((step.passMark ?? 0.7) * 100)}%
           </li>
         </ul>
+        {step.kind === 'practice' && mix.filter(Boolean).length > 1 && (
+          <div className="lx-diff">
+            <div className="lx-diff-head">
+              <strong>Difficulty</strong>
+              <span className="lx-meta lx-num">
+                {mix[0]} easy · {mix[1]} medium · {mix[2]} hard
+              </span>
+            </div>
+            <div className="lx-diff-bar" aria-hidden>
+              {mix.map((n, i) => (n ? <span key={i} className={`lx-lvl-${i + 1}`} style={{ flex: n }} /> : null))}
+            </div>
+            <div className="lx-diff-choices" role="radiogroup" aria-label="Difficulty">
+              {(['adaptive', 1, 2, 3] as const).map((l) => {
+                const n = l === 'adaptive' ? available.length : mix[l - 1];
+                const mastered = l === 'adaptive' ? 0 : available.filter((id) => idx.byId.get(id)?.level === l && stats[id]?.last === 1).length;
+                return (
+                  <button
+                    key={l}
+                    type="button"
+                    role="radio"
+                    aria-checked={pickLevel === l}
+                    disabled={!n}
+                    className={`lx-diff-choice${pickLevel === l ? ' is-on' : ''}`}
+                    onClick={() => setPickLevel(l)}
+                  >
+                    <strong>{l === 'adaptive' ? 'Start easy, build up' : LEVEL_LABEL[l]}</strong>
+                    <span className="lx-meta lx-num">
+                      {l === 'adaptive' ? 'Moves up a level after 3 right in a row' : `${n} questions${mastered ? ` · ${mastered} right last time` : ''}`}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
         {lastAttempt && (
           <p className="lx-meta lx-num">
             Last time: {lastAttempt.score} / {lastAttempt.total} ({Math.round((lastAttempt.score / Math.max(1, lastAttempt.total)) * 100)}%) on {new Date(lastAttempt.at).toLocaleDateString()}
@@ -235,7 +307,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
               </button>
             </>
           ) : (
-            <button type="button" className="lx-btn lx-btn--primary lx-btn--lg" onClick={() => start(defaultMode)} disabled={!available.length}>
+            <button type="button" className="lx-btn lx-btn--primary lx-btn--lg" onClick={() => start(defaultMode, undefined, step.kind === 'practice' && mix.filter(Boolean).length > 1 ? pickLevel : 'all')} disabled={!available.length}>
               <Play size={18} /> Start
             </button>
           )}
@@ -261,7 +333,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
           <button type="button" className="lx-btn lx-btn--primary lx-btn--lg" onClick={() => setResumeAsked(true)}>
             <Play size={18} /> Resume quiz
           </button>
-          <button type="button" className="lx-btn lx-btn--lg" onClick={() => start(session.mode)}>
+          <button type="button" className="lx-btn lx-btn--lg" onClick={() => start(session.mode, undefined, sameKind(session))}>
             <RefreshCw size={18} /> Restart
           </button>
         </div>
@@ -309,10 +381,25 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
               <RotateCcw size={18} /> Retry the {wrong.length} I missed
             </button>
           )}
-          <button type="button" className="lx-btn lx-btn--lg" onClick={() => start(session.mode)}>
+          <button type="button" className="lx-btn lx-btn--lg" onClick={() => start(session.mode, undefined, sameKind(session))}>
             <RefreshCw size={18} /> {step.ordered ? 'Sit it again' : 'New set'}
           </button>
         </div>
+        {new Set(results.map((r) => r.q?.level)).size > 1 && (
+          <ul className="lx-level-break lx-num" aria-label="By difficulty">
+            {([1, 2, 3] as const).map((l) => {
+              const at = results.filter((r) => r.q?.level === l);
+              return at.length ? (
+                <li key={l} className={`lx-lvl-${l}`}>
+                  <span>{LEVEL_LABEL[l]}</span>
+                  <strong>
+                    {at.filter((r) => r.ok).length} / {at.length}
+                  </strong>
+                </li>
+              ) : null;
+            })}
+          </ul>
+        )}
         <h3 className="lx-h3 lx-review-title">Review your answers</h3>
         <ol className="lx-review">
           {results.map((r, i) =>
@@ -349,7 +436,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   const exam = session.mode === 'exam';
   const result = session.checked[id];
   const answered = q ? isAnswered(q, session.answers[id]) : false;
-  const last = session.i === session.order.length - 1;
+  const ad = session.adaptive;
+  const adaptiveMore = !!ad && session.order.length < ad.size && !!pickAdaptive(ad.pool, session.order, ad.level);
+  const last = session.i === session.order.length - 1 && !adaptiveMore;
   const remaining = session.timeLimit ? session.timeLimit - elapsedRef.current : null;
 
   function check(qid: string) {
@@ -358,20 +447,40 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
     const ok = grade(qq, session!.answers[qid]);
     if (ok === null) return;
     recordAnswer(qid, ok, { course, topic: qq.topic, unsure: session!.confidence[qid] === 'unsure' });
-    patch((ss) => void (ss.checked[qid] = ok));
+    patch((ss) => {
+      ss.checked[qid] = ok;
+      if (ss.adaptive) {
+        // three right in a row at this level: up one; two wrong in a row: back down one
+        const atLevel = ss.order.filter((id) => ss.checked[id] !== undefined && qs(id)?.level === ss.adaptive!.level).map((id) => ss.checked[id]);
+        const tail = atLevel.slice(-3);
+        if (tail.length === 3 && tail.every(Boolean) && ss.adaptive.level < 3) ss.adaptive.level = (ss.adaptive.level + 1) as 2 | 3;
+        else if (atLevel.slice(-2).length === 2 && atLevel.slice(-2).every((x) => !x) && ss.adaptive.level > 1) ss.adaptive.level = (ss.adaptive.level - 1) as 1 | 2;
+      }
+    });
   }
   function next() {
-    if (last) finish({ ...session!, elapsed: elapsedRef.current });
-    else patch((ss) => void (ss.i = Math.min(ss.order.length - 1, ss.i + 1)));
+    if (last) return finish({ ...session!, elapsed: elapsedRef.current });
+    patch((ss) => {
+      if (ss.adaptive && ss.i === ss.order.length - 1) {
+        const n = pickAdaptive(ss.adaptive.pool, ss.order, ss.adaptive.level);
+        if (n) {
+          ss.order.push(n.id);
+          Object.assign(ss.optionOrder, optionOrderFor([n.id]));
+        }
+      }
+      ss.i = Math.min(ss.order.length - 1, ss.i + 1);
+    });
   }
 
   return (
     <div className={`lx-quiz${exam ? ' is-exam' : ''}`}>
       <div className="lx-quiz-bar">
         <div className="lx-quiz-progress" aria-hidden>
-          <span style={{ width: `${((session.i + (result !== undefined ? 1 : 0)) / session.order.length) * 100}%` }} />
+          <span style={{ width: `${((session.i + (result !== undefined ? 1 : 0)) / (ad?.size ?? session.order.length)) * 100}%` }} />
         </div>
-        <span className="lx-meta lx-num">{exam ? 'Timed exam · answers at the end' : session.mode === 'check' ? 'Quick check' : 'Practice'}</span>
+        <span className="lx-meta lx-num">
+          {exam ? 'Timed exam · answers at the end' : session.mode === 'check' ? 'Quick check' : ad ? `Building up · level ${ad.level} of 3` : session.only ? `Practice · ${LEVEL_LABEL[session.only].toLowerCase()} only` : 'Practice'}
+        </span>
         {remaining !== null && (
           <span className={`lx-timer lx-num${remaining < 120 ? ' is-low' : ''}`} role="timer" aria-label="Time left">
             <Clock size={15} aria-hidden /> {fmt(remaining)}
@@ -400,7 +509,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
           key={q.id}
           q={q}
           index={session.i}
-          total={session.order.length}
+          total={ad?.size ?? session.order.length}
           examMode={exam}
           optionOrder={session.optionOrder[id]}
           answer={session.answers[id]}
