@@ -74,6 +74,82 @@ export const VideoStep: React.FC<{ course: CourseId; step: Step; onWatched: () =
   );
 };
 
+// ── read alongside the video ─────────────────────────────────────────────────────────
+// Under a lesson's video: the teacher's slides at the right page, the guides and summaries, and the key notes,
+// for going deeper after (or while) watching.
+const DOC_KIND: [RegExp, string][] = [
+  [/Teacher Lecture Notes/i, 'Teacher’s slides'],
+  [/In-Class Lecture Notes/i, 'Class notes'],
+  [/Explained|Topic Guides|Expanded Notes/i, 'Study guide'],
+  [/Summary|Review Sheets|Overview/i, 'Summary'],
+  [/Tutorial|Worked Problems|Practice Problems/i, 'Worked problems'],
+  [/Textbook/i, 'Textbook'],
+  [/Syllabus/i, 'Syllabus'],
+  [/Professor|Mini Course|Calculus Review/i, 'Outside notes']
+];
+const docKind = (d: DocRef) => DOC_KIND.find(([re]) => re.test(d.path.split('/')[1] ?? ''))?.[1] ?? 'Course document';
+
+const FormulaCards: React.FC<{ course: CourseId; ids: string[] }> = ({ course, ids }) => {
+  const g = useGate(course);
+  if (!g) return <Loading label="Loading the notes…" />;
+  return (
+    <div className="lx-notes">
+      {ids.map((id) => g.formulas.find((f) => f.id === id)).map((f) => f && <FormulaNotes key={f.id} f={f} />)}
+    </div>
+  );
+};
+
+export const LessonReferences: React.FC<{ course: CourseId; step: Step }> = ({ course, step }) => {
+  const docs = step.docs ?? [];
+  const ids = step.formulaIds ?? [];
+  if (!docs.length && !ids.length) return null;
+  return (
+    <section className="lx-refs" aria-labelledby="lx-refs-title">
+      <header className="lx-refs-head">
+        <h2 id="lx-refs-title" className="lx-h3">
+          <BookOpen size={18} aria-hidden /> Read alongside this video
+        </h2>
+        <p className="lx-meta">The teacher’s slides at the right page and the guides for this lesson, to go deeper. The video keeps its place.</p>
+      </header>
+      {docs.length > 0 && (
+        <ul className="lx-refs-grid">
+          {docs.map((d, i) => (
+            <li key={d.path + (d.page ?? '') + i}>
+              <button type="button" className="lx-ref-card" onClick={() => openDoc(d)}>
+                <FileText size={18} aria-hidden className="lx-ref-icon" />
+                <span className="lx-ref-text">
+                  <span className="lx-ref-kind">{docKind(d)}</span>
+                  <strong>{d.label ?? d.title}</strong>
+                  {(d.label || d.page) && (
+                    <span className="lx-meta">
+                      {d.label ? d.title : ''}
+                      {d.label && d.page ? ' · ' : ''}
+                      {d.page ? `page ${d.page}` : ''}
+                    </span>
+                  )}
+                </span>
+                <ExternalLink size={14} aria-hidden className="lx-ref-go" />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      {ids.length > 0 && (
+        <details className="lx-refs-notes">
+          <summary>
+            <Lightbulb size={16} aria-hidden /> Key notes for this lesson
+            <span className="lx-meta">
+              {ids.length} card{ids.length > 1 ? 's' : ''}: the idea, when to use it, the recipe and the traps
+            </span>
+            <ChevronRight size={16} aria-hidden className="lx-refs-chev" />
+          </summary>
+          <FormulaCards course={course} ids={ids} />
+        </details>
+      )}
+    </section>
+  );
+};
+
 // ── key notes ────────────────────────────────────────────────────────────────────
 const DocButtons: React.FC<{ docs: DocRef[] }> = ({ docs }) =>
   docs.length ? (
@@ -524,7 +600,8 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
         )}
       </div>
       <p className="lx-meta">
-        <Youtube size={14} aria-hidden /> {v.channel} · {v.len} · an outside explanation, optional
+        <Youtube size={14} aria-hidden /> {v.channel} · {v.len}
+        {step.optional ? ' · an outside explanation, optional' : ''}
       </p>
       {v.watch && v.watch.length > 0 && (
         <div className="lx-ex-block">

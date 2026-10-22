@@ -720,3 +720,30 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* timed exam: open answers marked on the results screen */
+.lx-self-pending {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: var(--lx-r);
+  background: var(--lx-warn-bg);
+  color: var(--lx-warn);
+  font-weight: 600;
+  font-size: 14px;
+}
+.lx-self-pending svg {
+  flex: none;
+  margin-top: 2px;
+}
+.lx-review-mark {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 0 10px 34px;
+}
+.lx-review .lx-review-pending {
+  color: var(--lx-warn);
+}

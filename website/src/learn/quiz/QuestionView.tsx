@@ -185,7 +185,12 @@ export const QuestionView: React.FC<QuestionViewProps> = (p) => {
         </form>
       )}
 
-      {q.kind === 'self' && !showFeedback && (
+      {q.kind === 'self' && !showFeedback && p.examMode && (
+        <div className="lx-self">
+          <p className="lx-meta">An open question: work it out on paper. After you submit the exam, you compare with the solution and mark yourself.</p>
+        </div>
+      )}
+      {q.kind === 'self' && !showFeedback && !p.examMode && (
         <div className="lx-self">
           <p className="lx-meta">An open question: work it out on paper, then compare with the solution and mark yourself honestly.</p>
           {!p.revealed ? (

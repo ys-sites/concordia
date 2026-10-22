@@ -36,6 +36,7 @@ export interface QuizSession {
   confidence: Record<string, Confidence>;
   hints: string[];
   revealed: string[]; // solutions shown before answering
+  selfPending?: string[]; // timed exam: open answers the student marks after submitting
   startedAt: number;
   elapsed: number; // seconds of active time
   timeLimit?: number; // seconds

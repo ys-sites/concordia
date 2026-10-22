@@ -18,32 +18,32 @@ Minimum stock per teaching lesson: 1 explanation (video or notes), 3 check quest
 | Lesson | Min | Videos | Notes | Worked | Check | Practice | Mix F/M/E | Steps / video solutions | Flags |
 |---|---|---|---|---|---|---|---|---|---|
 | **What a differential equation is** | | | | | | | | | |
-| Order, linearity & the language of ODEs | 61 | 0 (+1 YT) | 2 | 1 | 4 | 26 | 15/6/9 | 19 / 9 |  |
-| Solutions, families & initial-value problems | 65 | 0 (+2 YT) | 2 | 1 | 4 | 22 | 6/7/13 | 21 / 10 | mix: 23/27/50 (target 40/40/20) |
-| Direction fields & autonomous equations | 20 | 0 | 1 | 0 | 3 | 2 | 3/2/0 | 4 / 0 | stockout: 2 practice questions (min 8); stockout: no worked example |
+| Order, linearity & the language of ODEs | 52 | 1 | 0 | 1 | 4 | 26 | 15/6/9 | 19 / 9 |  |
+| Solutions, families & initial-value problems | 54 | 1 (+1 YT) | 0 | 1 | 4 | 22 | 6/7/13 | 21 / 10 | mix: 23/27/50 (target 40/40/20) |
+| Direction fields & autonomous equations | 16 | 0 | 1 | 0 | 3 | 2 | 3/2/0 | 4 / 0 | stockout: 2 practice questions (min 8); stockout: no worked example |
 | **Solving first-order equations** | | | | | | | | | |
-| The integration you need | 30 | 0 | 1 | 0 | 0 | 50 | 0/50/0 | 35 / 0 | stockout: 0 check questions (min 3); stockout: no worked example; mix: 0/100/0 (target 40/40/20); mix: no foundation questions to start on |
-| Separable equations | 68 | 1 (+2 YT) | 2 | 1 | 4 | 71 | 6/59/10 | 71 / 13 | mix: 8/79/13 (target 40/40/20) |
-| Linear equations & the integrating factor | 52 | 1 (+2 YT) | 1 | 1 | 4 | 70 | 6/60/8 | 68 / 11 | mix: 8/81/11 (target 40/40/20) |
-| Exact equations | 65 | 1 (+2 YT) | 2 | 1 | 4 | 73 | 6/60/11 | 72 / 12 | mix: 8/78/14 (target 40/40/20) |
-| Non-exact equations: special integrating factors | 40 | 1 | 1 | 0 | 3 | 54 | 1/52/4 | 57 / 0 | stockout: no worked example; mix: 2/91/7 (target 40/40/20) |
-| Bernoulli equations | 61 | 1 (+2 YT) | 2 | 1 | 4 | 63 | 5/54/8 | 63 / 10 | mix: 7/81/12 (target 40/40/20) |
-| Homogeneous equations: y = ux | 47 | 1 (+2 YT) | 1 | 1 | 4 | 62 | 6/54/6 | 61 / 8 | mix: 9/82/9 (target 40/40/20) |
+| The integration you need | 26 | 0 | 1 | 0 | 0 | 50 | 0/50/0 | 35 / 0 | stockout: 0 check questions (min 3); stockout: no worked example; mix: 0/100/0 (target 40/40/20); mix: no foundation questions to start on |
+| Separable equations | 51 | 1 (+2 YT) | 0 | 1 | 4 | 71 | 6/59/10 | 71 / 13 | mix: 8/79/13 (target 40/40/20) |
+| Linear equations & the integrating factor | 45 | 1 (+2 YT) | 0 | 1 | 4 | 70 | 6/60/8 | 68 / 11 | mix: 8/81/11 (target 40/40/20) |
+| Exact equations | 48 | 1 (+2 YT) | 0 | 1 | 4 | 73 | 6/60/11 | 72 / 12 | mix: 8/78/14 (target 40/40/20) |
+| Non-exact equations: special integrating factors | 30 | 1 | 0 | 0 | 3 | 54 | 1/52/4 | 57 / 0 | stockout: no worked example; mix: 2/91/7 (target 40/40/20) |
+| Bernoulli equations | 44 | 1 (+2 YT) | 0 | 1 | 4 | 63 | 5/54/8 | 63 / 10 | mix: 7/81/12 (target 40/40/20) |
+| Homogeneous equations: y = ux | 40 | 1 (+2 YT) | 0 | 1 | 4 | 62 | 6/54/6 | 61 / 8 | mix: 9/82/9 (target 40/40/20) |
 | Reduction to separable: y' = f(Ax + By + C) | 29 | 1 | 0 | 0 | 3 | 50 | 0/53/0 | 53 / 0 | stockout: no worked example; mix: 0/100/0 (target 40/40/20); mix: no foundation questions to start on |
 | Which method? Recognising the equation | 13 | 0 | 0 | 0 | 3 | 4 | 3/4/0 | 4 / 0 | stockout: no video or notes; stockout: 4 practice questions (min 8); stockout: no worked example |
 | **Modelling with first-order equations** | | | | | | | | | |
-| Building a model | 15 | 0 | 1 | 0 | 3 | 0 | 2/1/0 | 0 / 0 | stockout: 0 practice questions (min 8); stockout: no worked example |
-| Growth & decay | 42 | 0 (+1 YT) | 1 | 1 | 4 | 10 | 3/5/6 | 14 / 8 |  |
-| Newton's law of cooling | 46 | 0 (+1 YT) | 1 | 1 | 3 | 31 | 0/30/4 | 33 / 3 | mix: 0/88/12 (target 40/40/20); mix: no foundation questions to start on |
+| Building a model | 11 | 0 | 1 | 0 | 3 | 0 | 2/1/0 | 0 / 0 | stockout: 0 practice questions (min 8); stockout: no worked example |
+| Growth & decay | 48 | 1 | 0 | 1 | 4 | 10 | 3/5/6 | 14 / 8 |  |
+| Newton's law of cooling | 62 | 1 | 0 | 1 | 3 | 31 | 0/30/4 | 33 / 3 | mix: 0/88/12 (target 40/40/20); mix: no foundation questions to start on |
 | Mixtures & circuits | 25 | 0 | 0 | 0 | 3 | 33 | 1/33/2 | 35 / 0 | stockout: no video or notes; stockout: no worked example; mix: 3/92/6 (target 40/40/20) |
-| Logistic & nonlinear models | 41 | 0 (+1 YT) | 2 | 1 | 3 | 2 | 0/4/1 | 5 / 2 | stockout: 2 practice questions (min 8) |
+| Logistic & nonlinear models | 67 | 1 | 0 | 1 | 3 | 2 | 0/4/1 | 5 / 2 | stockout: 2 practice questions (min 8) |
 | **Complex numbers** | | | | | | | | | |
-| Complex arithmetic, modulus & polar form | 57 | 0 (+1 YT) | 2 | 1 | 4 | 23 | 5/21/1 | 25 / 3 | mix: 19/78/4 (target 40/40/20) |
-| Powers & roots: De Moivre | 41 | 0 (+2 YT) | 1 | 1 | 3 | 39 | 2/38/2 | 38 / 4 | mix: 5/90/5 (target 40/40/20) |
+| Complex arithmetic, modulus & polar form | 41 | 1 | 0 | 1 | 4 | 23 | 5/21/1 | 25 / 3 | mix: 19/78/4 (target 40/40/20) |
+| Powers & roots: De Moivre | 35 | 1 (+1 YT) | 0 | 1 | 3 | 39 | 2/38/2 | 38 / 4 | mix: 5/90/5 (target 40/40/20) |
 | **Higher-order linear equations** | | | | | | | | | |
-| Theory of higher-order linear equations | 20 | 0 | 2 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
-| Second-order equations with constant coefficients | 15 | 1 | 1 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
-| Looking ahead: Laplace transforms | 10 | 0 | 1 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
+| Theory of higher-order linear equations | 6 | 0 | 1 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
+| Second-order equations with constant coefficients | 5 | 1 | 0 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
+| Looking ahead: Laplace transforms | 6 | 0 | 1 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
 | **Exam prep: past papers & mock midterm** | | | | | | | | | |
 | How the exam is built | 10 | 0 | 2 | 0 | 0 | 0 | 0/0/0 | 0 / 0 |  |
 | Mock midterm | 75 | 0 | 0 | 0 | 0 | 178 | 27/70/81 | 160 / 54 |  |
@@ -108,41 +108,41 @@ Documents in the course library that no lesson points to (40):
 | Lesson | Min | Videos | Notes | Worked | Check | Practice | Mix F/M/E | Steps / video solutions | Flags |
 |---|---|---|---|---|---|---|---|---|---|
 | **Introduction, atoms & bonding** | | | | | | | | | |
-| Materials and why structure decides properties | 42 | 1 | 1 | 1 | 4 | 23 | 21/5/1 | 6 / 0 | mix: 78/19/4 (target 40/40/20) |
-| Atomic structure, moles & electron configuration | 60 | 1 (+3 YT) | 1 | 1 | 3 | 20 | 7/9/7 | 7 / 0 |  |
-| Bond types & % ionic character | 68 | 0 (+2 YT) | 1 | 1 | 4 | 31 | 8/10/17 | 8 / 0 | mix: 23/29/49 (target 40/40/20) |
-| Force–energy curves & properties from bonding | 70 | 0 (+3 YT) | 1 | 2 | 4 | 20 | 2/13/9 | 6 / 0 | mix: 8/54/38 (target 40/40/20) |
+| Materials and why structure decides properties | 35 | 1 | 0 | 1 | 4 | 23 | 21/5/1 | 6 / 0 | mix: 78/19/4 (target 40/40/20) |
+| Atomic structure, moles & electron configuration | 53 | 1 (+3 YT) | 0 | 1 | 3 | 20 | 7/9/7 | 7 / 0 |  |
+| Bond types & % ionic character | 68 | 1 (+1 YT) | 0 | 1 | 4 | 31 | 8/10/17 | 8 / 0 | mix: 23/29/49 (target 40/40/20) |
+| Force–energy curves & properties from bonding | 70 | 1 (+2 YT) | 0 | 2 | 4 | 20 | 2/13/9 | 6 / 0 | mix: 8/54/38 (target 40/40/20) |
 | **Crystal structures** | | | | | | | | | |
-| Unit cells: n, CN, APF & crystal systems | 64 | 1 (+4 YT) | 1 | 1 | 3 | 28 | 11/11/9 | 10 / 0 |  |
-| Theoretical density | 37 | 0 (+2 YT) | 1 | 1 | 3 | 8 | 0/5/6 | 7 / 0 | mix: 0/45/55 (target 40/40/20); mix: no foundation questions to start on |
-| Crystalline, amorphous & polycrystalline | 38 | 0 (+2 YT) | 1 | 0 | 4 | 13 | 5/1/11 | 2 / 0 | stockout: no worked example; mix: 29/6/65 (target 40/40/20) |
+| Unit cells: n, CN, APF & crystal systems | 57 | 1 (+4 YT) | 0 | 1 | 3 | 28 | 11/11/9 | 10 / 0 |  |
+| Theoretical density | 35 | 1 (+1 YT) | 0 | 1 | 3 | 8 | 0/5/6 | 7 / 0 | mix: 0/45/55 (target 40/40/20); mix: no foundation questions to start on |
+| Crystalline, amorphous & polycrystalline | 40 | 1 (+1 YT) | 0 | 0 | 4 | 13 | 5/1/11 | 2 / 0 | stockout: no worked example; mix: 29/6/65 (target 40/40/20) |
 | **Crystallography & X-rays** | | | | | | | | | |
-| Miller indices: directions | 37 | 0 (+2 YT) | 1 | 1 | 3 | 8 | 1/6/4 | 5 / 0 | mix: 9/55/36 (target 40/40/20) |
-| Miller indices: planes | 44 | 0 (+4 YT) | 1 | 1 | 3 | 11 | 1/4/9 | 4 / 0 | mix: 7/29/64 (target 40/40/20) |
-| Linear & planar density, close packing | 54 | 1 (+2 YT) | 1 | 1 | 4 | 13 | 2/7/8 | 9 / 0 | mix: 12/41/47 (target 40/40/20) |
-| X-ray diffraction & Bragg's law | 35 | 0 (+3 YT) | 1 | 1 | 3 | 7 | 3/3/4 | 6 / 0 | stockout: 7 practice questions (min 8) |
+| Miller indices: directions | 37 | 1 (+1 YT) | 0 | 1 | 3 | 8 | 1/6/4 | 5 / 0 | mix: 9/55/36 (target 40/40/20) |
+| Miller indices: planes | 46 | 1 (+3 YT) | 0 | 1 | 3 | 11 | 1/4/9 | 4 / 0 | mix: 7/29/64 (target 40/40/20) |
+| Linear & planar density, close packing | 47 | 1 (+2 YT) | 0 | 1 | 4 | 13 | 2/7/8 | 9 / 0 | mix: 12/41/47 (target 40/40/20) |
+| X-ray diffraction & Bragg's law | 33 | 1 (+2 YT) | 0 | 1 | 3 | 7 | 3/3/4 | 6 / 0 | stockout: 7 practice questions (min 8) |
 | **Imperfections in solids** | | | | | | | | | |
-| Point defects & vacancy concentration | 57 | 1 (+2 YT) | 1 | 1 | 4 | 14 | 3/6/9 | 10 / 0 | mix: 17/33/50 (target 40/40/20) |
-| Impurities & solid solutions | 36 | 0 (+3 YT) | 1 | 1 | 4 | 7 | 3/5/3 | 6 / 0 | stockout: 7 practice questions (min 8) |
-| Dislocations, grain boundaries & microscopy | 26 | 1 (+2 YT) | 1 | 0 | 3 | 5 | 1/2/5 | 3 / 0 | stockout: 5 practice questions (min 8); stockout: no worked example; mix: 13/25/63 (target 40/40/20) |
+| Point defects & vacancy concentration | 50 | 1 (+2 YT) | 0 | 1 | 4 | 14 | 3/6/9 | 10 / 0 | mix: 17/33/50 (target 40/40/20) |
+| Impurities & solid solutions | 37 | 1 (+2 YT) | 0 | 1 | 4 | 7 | 3/5/3 | 6 / 0 | stockout: 7 practice questions (min 8) |
+| Dislocations, grain boundaries & microscopy | 20 | 1 (+2 YT) | 0 | 0 | 3 | 5 | 1/2/5 | 3 / 0 | stockout: 5 practice questions (min 8); stockout: no worked example; mix: 13/25/63 (target 40/40/20) |
 | **Diffusion** | | | | | | | | | |
-| Diffusion mechanisms & D(T) | 46 | 1 (+4 YT) | 2 | 1 | 3 | 4 | 1/2/4 | 2 / 0 | stockout: 4 practice questions (min 8) |
-| Fick's first law: steady state | 26 | 0 (+2 YT) | 1 | 1 | 3 | 2 | 1/2/2 | 2 / 0 | stockout: 2 practice questions (min 8) |
-| Fick's second law, erf & carburizing | 33 | 0 (+3 YT) | 1 | 2 | 4 | 3 | 1/3/3 | 2 / 0 | stockout: 3 practice questions (min 8) |
+| Diffusion mechanisms & D(T) | 29 | 1 (+4 YT) | 0 | 1 | 3 | 4 | 1/2/4 | 2 / 0 | stockout: 4 practice questions (min 8) |
+| Fick's first law: steady state | 27 | 1 (+1 YT) | 0 | 1 | 3 | 2 | 1/2/2 | 2 / 0 | stockout: 2 practice questions (min 8) |
+| Fick's second law, erf & carburizing | 36 | 1 (+2 YT) | 0 | 2 | 4 | 3 | 1/3/3 | 2 / 0 | stockout: 3 practice questions (min 8) |
 | **Mechanical properties of metals** | | | | | | | | | |
-| Stress, strain, Hooke's law & Poisson's ratio | 68 | 1 (+5 YT) | 1 | 2 | 4 | 15 | 7/7/5 | 7 / 0 |  |
-| The tensile curve: yield, TS, ductility & hardness | 118 | 0 (+3 YT) | 1 | 5 | 4 | 38 | 12/12/18 | 12 / 0 |  |
-| Plastic deformation, true stress & design | 37 | 1 | 1 | 0 | 4 | 7 | 4/6/1 | 11 / 0 | stockout: 7 practice questions (min 8); stockout: no worked example |
+| Stress, strain, Hooke's law & Poisson's ratio | 60 | 1 (+5 YT) | 0 | 2 | 4 | 15 | 7/7/5 | 7 / 0 |  |
+| The tensile curve: yield, TS, ductility & hardness | 114 | 1 (+2 YT) | 0 | 5 | 4 | 38 | 12/12/18 | 12 / 0 |  |
+| Plastic deformation, true stress & design | 27 | 1 | 0 | 0 | 4 | 7 | 4/6/1 | 11 / 0 | stockout: 7 practice questions (min 8); stockout: no worked example |
 | **Dislocations & strengthening** | | | | | | | | | |
 | Dislocations & slip systems | 14 | 1 (+3 YT) | 0 | 0 | 2 | 1 | 0/2/1 | 2 / 0 | stockout: 2 check questions (min 3); stockout: 1 practice question (min 8); stockout: no worked example |
 | Strengthening mechanisms & annealing | 10 | 0 | 0 | 0 | 3 | 1 | 2/2/0 | 4 / 0 | stockout: no video or notes; stockout: 1 practice question (min 8); stockout: no worked example |
 | **Phase diagrams** | | | | | | | | | |
-| Binary phase diagrams & the lever rule | 20 | 0 (+1 YT) | 1 | 0 | 3 | 2 | 2/2/1 | 5 / 0 | stockout: 2 practice questions (min 8); stockout: no worked example |
-| The iron–carbon system | 25 | 0 (+2 YT) | 2 | 0 | 3 | 0 | 1/1/1 | 3 / 0 | stockout: 0 practice questions (min 8); stockout: no worked example |
+| Binary phase diagrams & the lever rule | 15 | 1 | 0 | 0 | 3 | 2 | 2/2/1 | 5 / 0 | stockout: 2 practice questions (min 8); stockout: no worked example |
+| The iron–carbon system | 14 | 1 (+1 YT) | 0 | 0 | 3 | 0 | 1/1/1 | 3 / 0 | stockout: 0 practice questions (min 8); stockout: no worked example |
 | **Ceramics, polymers & properties** | | | | | | | | | |
-| Ceramics | 20 | 0 | 2 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
-| Polymers | 30 | 0 (+1 YT) | 3 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
-| Electrical, thermal, magnetic & optical properties | 40 | 0 | 4 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
+| Ceramics | 6 | 0 | 1 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
+| Polymers | 8 | 1 | 0 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
+| Electrical, thermal, magnetic & optical properties | 6 | 0 | 1 | 0 | 0 | 0 | 0/0/0 | 0 / 0 | stockout: 0 check questions (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
 | **Exam prep: past papers & mock midterm** | | | | | | | | | |
 | How the exam is built | 10 | 0 | 2 | 0 | 0 | 0 | 0/0/0 | 0 / 0 |  |
 | Mock midterm (Ch 1–7.4) | 90 | 0 | 0 | 0 | 0 | 254 | 48/70/136 | 82 / 0 |  |
@@ -201,28 +201,28 @@ Documents in the course library that no lesson points to (24):
 | Lesson | Min | Videos | Notes | Worked | Check | Practice | Mix F/M/E | Steps / video solutions | Flags |
 |---|---|---|---|---|---|---|---|---|---|
 | **Getting started with C++** | | | | | | | | | |
-| How a C++ program is built | 56 | 0 | 3 | 0 | 4 | 15 | 15/4/0 | 2 / 0 | stockout: no worked example; mix: 79/21/0 (target 40/40/20) |
+| How a C++ program is built | 32 | 0 | 1 | 0 | 4 | 15 | 15/4/0 | 2 / 0 | stockout: no worked example; mix: 79/21/0 (target 40/40/20) |
 | Input, output & formatting | 10 | 0 | 0 | 0 | 3 | 1 | 3/1/0 | 0 / 0 | stockout: no video or notes; stockout: 1 practice question (min 8); stockout: no worked example |
 | **Variables & data types** | | | | | | | | | |
-| Data types, sizes & overflow | 47 | 0 (+1 YT) | 2 | 1 | 4 | 27 | 16/11/4 | 10 / 0 |  |
-| Casting & mixed-type expressions | 29 | 0 (+1 YT) | 1 | 1 | 4 | 6 | 1/9/0 | 3 / 0 | stockout: 6 practice questions (min 8); mix: 10/90/0 (target 40/40/20) |
+| Data types, sizes & overflow | 45 | 1 | 0 | 1 | 4 | 27 | 16/11/4 | 10 / 0 |  |
+| Casting & mixed-type expressions | 26 | 1 | 0 | 1 | 4 | 6 | 1/9/0 | 3 / 0 | stockout: 6 practice questions (min 8); mix: 10/90/0 (target 40/40/20) |
 | **Expressions & operators** | | | | | | | | | |
-| Integer division & the % operator | 42 | 0 (+1 YT) | 1 | 1 | 4 | 11 | 6/7/2 | 7 / 0 |  |
-| ++, --, compound assignment & precedence | 52 | 0 (+2 YT) | 2 | 1 | 4 | 23 | 6/17/4 | 14 / 0 |  |
-| The cmath library | 34 | 0 (+1 YT) | 1 | 1 | 4 | 7 | 3/6/2 | 2 / 0 | stockout: 7 practice questions (min 8) |
+| Integer division & the % operator | 40 | 1 | 0 | 1 | 4 | 11 | 6/7/2 | 7 / 0 |  |
+| ++, --, compound assignment & precedence | 40 | 1 (+1 YT) | 0 | 1 | 4 | 23 | 6/17/4 | 14 / 0 |  |
+| The cmath library | 30 | 1 | 0 | 1 | 4 | 7 | 3/6/2 | 2 / 0 | stockout: 7 practice questions (min 8) |
 | **Control statements & loops** | | | | | | | | | |
-| if / else-if ladders | 53 | 0 (+1 YT) | 2 | 1 | 4 | 18 | 6/12/4 | 8 / 0 |  |
-| Logical operators & short-circuit evaluation | 32 | 0 (+1 YT) | 1 | 1 | 4 | 6 | 1/7/2 | 3 / 0 | stockout: 6 practice questions (min 8); mix: 10/70/20 (target 40/40/20) |
-| for loops | 42 | 0 (+1 YT) | 1 | 1 | 4 | 15 | 5/9/5 | 12 / 0 |  |
-| while, do-while & digit loops | 28 | 0 (+1 YT) | 1 | 1 | 4 | 5 | 1/6/2 | 2 / 0 | stockout: 5 practice questions (min 8); mix: 11/67/22 (target 40/40/20) |
-| break & continue | 22 | 0 (+1 YT) | 1 | 1 | 4 | 2 | 0/4/2 | 0 / 0 | stockout: 2 practice questions (min 8) |
-| Nested loops | 28 | 0 (+1 YT) | 1 | 1 | 4 | 4 | 0/4/4 | 3 / 0 | stockout: 4 practice questions (min 8); mix: 0/50/50 (target 40/40/20); mix: no foundation questions to start on |
+| if / else-if ladders | 50 | 1 | 0 | 1 | 4 | 18 | 6/12/4 | 8 / 0 |  |
+| Logical operators & short-circuit evaluation | 28 | 1 | 0 | 1 | 4 | 6 | 1/7/2 | 3 / 0 | stockout: 6 practice questions (min 8); mix: 10/70/20 (target 40/40/20) |
+| for loops | 39 | 1 | 0 | 1 | 4 | 15 | 5/9/5 | 12 / 0 |  |
+| while, do-while & digit loops | 24 | 1 | 0 | 1 | 4 | 5 | 1/6/2 | 2 / 0 | stockout: 5 practice questions (min 8); mix: 11/67/22 (target 40/40/20) |
+| break & continue | 17 | 1 | 0 | 1 | 4 | 2 | 0/4/2 | 0 / 0 | stockout: 2 practice questions (min 8) |
+| Nested loops | 25 | 1 | 0 | 1 | 4 | 4 | 0/4/4 | 3 / 0 | stockout: 4 practice questions (min 8); mix: 0/50/50 (target 40/40/20); mix: no foundation questions to start on |
 | **Arrays & C-strings** | | | | | | | | | |
-| 1-D arrays: sum, max, search & dot product | 32 | 0 (+1 YT) | 2 | 1 | 4 | 2 | 0/6/0 | 0 / 0 | stockout: 2 practice questions (min 8) |
-| 2-D arrays | 21 | 0 (+1 YT) | 1 | 1 | 3 | 1 | 0/3/1 | 0 / 0 | stockout: 1 practice question (min 8) |
-| C-strings & the null terminator | 21 | 0 (+1 YT) | 1 | 1 | 3 | 1 | 0/3/1 | 1 / 0 | stockout: 1 practice question (min 8) |
+| 1-D arrays: sum, max, search & dot product | 20 | 1 | 0 | 1 | 4 | 2 | 0/6/0 | 0 / 0 | stockout: 2 practice questions (min 8) |
+| 2-D arrays | 22 | 1 | 0 | 1 | 3 | 1 | 0/3/1 | 0 / 0 | stockout: 1 practice question (min 8) |
+| C-strings & the null terminator | 26 | 1 | 0 | 1 | 3 | 1 | 0/3/1 | 1 / 0 | stockout: 1 practice question (min 8) |
 | **Writing complete programs** | | | | | | | | | |
-| Writing a full program | 30 | 0 (+1 YT) | 1 | 1 | 3 | 3 | 3/0/3 | 0 / 0 | stockout: 3 practice questions (min 8) |
+| Writing a full program | 27 | 1 | 0 | 1 | 3 | 3 | 3/0/3 | 0 / 0 | stockout: 3 practice questions (min 8) |
 | Flowcharts & Flowgorithm | 3 | 0 | 0 | 0 | 1 | 0 | 1/0/0 | 0 / 0 | stockout: no video or notes; stockout: 1 check question (min 3); stockout: 0 practice questions (min 8); stockout: no worked example |
 | **Exam prep: past papers & mock midterm** | | | | | | | | | |
 | How the exam is built | 10 | 0 | 2 | 0 | 0 | 0 | 0/0/0 | 0 / 0 |  |
@@ -273,26 +273,26 @@ Documents in the course library that no lesson points to (4):
 | Engineering, science & the profession | 52 | 0 | 1 | 1 | 3 | 30 | 20/5/8 | 4 / 0 |  |
 | Industrial & systems engineering | 44 | 0 | 1 | 1 | 3 | 14 | 8/3/6 | 2 / 0 |  |
 | **Manufacturing engineering** | | | | | | | | | |
-| Bill of materials & industrial processes | 37 | 0 (+1 YT) | 1 | 1 | 4 | 22 | 15/11/0 | 8 / 0 |  |
-| Cost-volume & break-even analysis | 42 | 0 (+2 YT) | 1 | 1 | 4 | 10 | 4/8/2 | 7 / 0 |  |
+| Bill of materials & industrial processes | 33 | 1 | 0 | 1 | 4 | 22 | 15/11/0 | 8 / 0 |  |
+| Cost-volume & break-even analysis | 38 | 1 (+1 YT) | 0 | 1 | 4 | 10 | 4/8/2 | 7 / 0 |  |
 | **Facility location & layout** | | | | | | | | | |
-| Facility location: transportation & centre of gravity | 67 | 0 (+2 YT) | 1 | 2 | 3 | 26 | 10/9/10 | 11 / 0 |  |
-| Facility layout | 42 | 0 (+1 YT) | 1 | 1 | 4 | 13 | 9/6/2 | 4 / 0 |  |
+| Facility location: transportation & centre of gravity | 66 | 1 (+1 YT) | 0 | 2 | 3 | 26 | 10/9/10 | 11 / 0 |  |
+| Facility layout | 39 | 1 | 0 | 1 | 4 | 13 | 9/6/2 | 4 / 0 |  |
 | **Material handling & routing** | | | | | | | | | |
-| Material handling equipment & principles | 36 | 0 | 1 | 0 | 4 | 12 | 12/4/0 | 3 / 0 | stockout: no worked example; mix: 75/25/0 (target 40/40/20) |
-| Routing: TSP & Clark-Wright savings | 72 | 0 (+3 YT) | 1 | 2 | 4 | 23 | 6/11/10 | 17 / 0 |  |
+| Material handling equipment & principles | 32 | 0 | 1 | 0 | 4 | 12 | 12/4/0 | 3 / 0 | stockout: no worked example; mix: 75/25/0 (target 40/40/20) |
+| Routing: TSP & Clark-Wright savings | 70 | 1 (+2 YT) | 0 | 2 | 4 | 23 | 6/11/10 | 17 / 0 |  |
 | **Operations planning & control** | | | | | | | | | |
-| Demand forecasting | 15 | 0 | 1 | 0 | 3 | 0 | 1/1/1 | 3 / 0 | stockout: 0 practice questions (min 8); stockout: no worked example |
-| Inventory: EOQ & reorder points | 20 | 0 | 1 | 0 | 3 | 2 | 1/3/1 | 5 / 0 | stockout: 2 practice questions (min 8); stockout: no worked example |
-| Aggregate planning, MRP, ERP & JIT | 22 | 0 | 1 | 0 | 4 | 3 | 5/1/1 | 7 / 0 | stockout: 3 practice questions (min 8); stockout: no worked example |
+| Demand forecasting | 11 | 0 | 1 | 0 | 3 | 0 | 1/1/1 | 3 / 0 | stockout: 0 practice questions (min 8); stockout: no worked example |
+| Inventory: EOQ & reorder points | 16 | 0 | 1 | 0 | 3 | 2 | 1/3/1 | 5 / 0 | stockout: 2 practice questions (min 8); stockout: no worked example |
+| Aggregate planning, MRP, ERP & JIT | 18 | 0 | 1 | 0 | 4 | 3 | 5/1/1 | 7 / 0 | stockout: 3 practice questions (min 8); stockout: no worked example |
 | **Operations research & queuing** | | | | | | | | | |
-| Linear programming | 20 | 0 | 1 | 0 | 3 | 2 | 2/3/0 | 5 / 0 | stockout: 2 practice questions (min 8); stockout: no worked example |
-| Queuing models | 23 | 0 | 1 | 0 | 3 | 4 | 2/3/2 | 7 / 0 | stockout: 4 practice questions (min 8); stockout: no worked example |
+| Linear programming | 16 | 0 | 1 | 0 | 3 | 2 | 2/3/0 | 5 / 0 | stockout: 2 practice questions (min 8); stockout: no worked example |
+| Queuing models | 19 | 0 | 1 | 0 | 3 | 4 | 2/3/2 | 7 / 0 | stockout: 4 practice questions (min 8); stockout: no worked example |
 | **Quality, work design & human factors** | | | | | | | | | |
-| Quality control & SPC | 24 | 0 | 1 | 0 | 4 | 4 | 5/3/0 | 7 / 0 | stockout: 4 practice questions (min 8); stockout: no worked example |
-| Work design & human factors | 24 | 0 | 1 | 0 | 4 | 4 | 6/1/1 | 6 / 0 | stockout: 4 practice questions (min 8); stockout: no worked example; mix: 75/13/13 (target 40/40/20) |
+| Quality control & SPC | 20 | 0 | 1 | 0 | 4 | 4 | 5/3/0 | 7 / 0 | stockout: 4 practice questions (min 8); stockout: no worked example |
+| Work design & human factors | 20 | 0 | 1 | 0 | 4 | 4 | 6/1/1 | 6 / 0 | stockout: 4 practice questions (min 8); stockout: no worked example; mix: 75/13/13 (target 40/40/20) |
 | **Project management** | | | | | | | | | |
-| CPM & PERT | 21 | 0 | 1 | 0 | 3 | 3 | 1/5/0 | 6 / 0 | stockout: 3 practice questions (min 8); stockout: no worked example |
+| CPM & PERT | 17 | 0 | 1 | 0 | 3 | 3 | 1/5/0 | 6 / 0 | stockout: 3 practice questions (min 8); stockout: no worked example |
 | **Exam prep: past papers & mock midterm** | | | | | | | | | |
 | How the exam is built | 10 | 0 | 2 | 0 | 0 | 0 | 0/0/0 | 0 / 0 |  |
 | Mock midterm (Chapters 1–5) | 75 | 0 | 0 | 0 | 0 | 149 | 67/44/38 | 46 / 0 |  |

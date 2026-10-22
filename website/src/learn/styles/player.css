@@ -841,3 +841,118 @@
     background: rgba(15, 23, 42, 0.3);
   }
 }
+
+/* read alongside the video: references and key notes under a lesson's video */
+.lx-refs {
+  margin: 0 auto;
+  padding: 20px 24px 8px;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.lx-refs-head .lx-h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+}
+.lx-refs-head .lx-meta {
+  margin: 0;
+}
+.lx-refs-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 10px;
+}
+.lx-ref-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r-lg);
+  background: var(--lx-surface);
+  text-align: left;
+  color: var(--lx-ink);
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.lx-ref-card:hover {
+  border-color: var(--lx-accent);
+  box-shadow: 0 0 0 3px var(--lx-tint);
+}
+.lx-ref-icon {
+  flex: none;
+  margin-top: 2px;
+  color: var(--lx-accent);
+}
+.lx-ref-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.35;
+}
+.lx-ref-text strong {
+  font-size: 14.5px;
+  overflow-wrap: anywhere;
+}
+.lx-ref-kind {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--lx-accent-deep);
+}
+.lx-ref-go {
+  flex: none;
+  margin-top: 3px;
+  color: var(--lx-muted);
+}
+.lx-refs-notes {
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r-lg);
+  background: var(--lx-surface);
+}
+.lx-refs-notes > summary {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+}
+.lx-refs-notes > summary::-webkit-details-marker {
+  display: none;
+}
+.lx-refs-notes > summary svg:first-child {
+  color: var(--lx-accent);
+}
+.lx-refs-notes > summary .lx-meta {
+  font-weight: 400;
+}
+.lx-refs-chev {
+  margin-left: auto;
+  color: var(--lx-muted);
+  transition: transform 0.2s var(--lx-ease);
+}
+.lx-refs-notes[open] .lx-refs-chev {
+  transform: rotate(90deg);
+}
+.lx-refs-notes > .lx-notes {
+  padding: 0 16px 16px;
+}
+@media (max-width: 720px) {
+  .lx-refs {
+    padding: 16px 16px 4px;
+  }
+}

@@ -11,7 +11,7 @@ import { BrandMark } from '../../components/BrandMark';
 import { AskAiButton } from '../components/AskAi';
 import { openDoc } from '../docBus';
 import { QuizRunner } from '../quiz/QuizRunner';
-import { ExtraStep, NotesStep, ReadingStep, ToolStep, VideoStep, WorkedStep } from '../player/StepViews';
+import { ExtraStep, LessonReferences, NotesStep, ReadingStep, ToolStep, VideoStep, WorkedStep } from '../player/StepViews';
 import { trackStudy, trackStudyOnce } from '../analytics';
 import '../styles/player.css';
 
@@ -268,7 +268,7 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
           <div className="lx-pbar">
             <div className="lx-pbar-title">
               <span className="lx-meta">
-                <StepIcon step={step} size={14} /> {KIND_LABEL[step.kind]} · {step.minutes} min · step {lesson.steps.indexOf(step) + 1} of {lesson.steps.length} in this lesson
+                <StepIcon step={step} size={14} /> {step.kind === 'extra' && !step.optional ? 'Video' : KIND_LABEL[step.kind]} · {step.minutes} min · step {lesson.steps.indexOf(step) + 1} of {lesson.steps.length} in this lesson
               </span>
               <h1 className="lx-h2">{step.title}</h1>
             </div>
@@ -311,6 +311,8 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
               </button>
             </div>
           )}
+
+          {(step.kind === 'video' || step.kind === 'extra') && <LessonReferences course={course} step={step} />}
 
           <section className="lx-step-feedback" aria-label="Step feedback">
             <span>

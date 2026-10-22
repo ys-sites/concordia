@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Flag, GraduationCap, ListChecks, Play, RefreshCw, RotateCcw, Timer, Trophy, XCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Eye, Flag, GraduationCap, ListChecks, Play, RefreshCw, RotateCcw, Timer, Trophy, XCircle } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { LearnQuestion, Lesson, Step } from '../model';
 import { LEVEL_LABEL } from '../model';
-import { Attempt, QuizSession, recordAnswer, stepKey, toggleFlag, updateProgress, useProgress } from '../progress/store';
+import { Answer, Attempt, QuizSession, recordAnswer, stepKey, toggleFlag, updateProgress, useProgress } from '../progress/store';
 import { useCourseQuestions } from '../questions';
 import { grade, isAnswered } from '../questions/grade';
 import { QuestionView } from './QuestionView';
@@ -29,6 +29,10 @@ const shuffle = <T,>(a: T[]) => {
   return b;
 };
 
+const LETTER = 'ABCDEFGH';
+// what the student answered, in words, for the explanation and the AI tutor
+const answerText = (q: LearnQuestion, a: Answer | undefined, order?: number[]) =>
+  a === undefined ? undefined : Array.isArray(a) ? a.map((i) => `(${LETTER[(order ?? []).indexOf(i)] ?? LETTER[i]}) ${q.options?.[i] ?? ''}`).join(', ') : a.startsWith('self:') ? undefined : a;
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.max(0, Math.floor(s % 60))).padStart(2, '0')}`;
 
 export interface QuizRunnerProps {
@@ -174,11 +178,17 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
 
   const finish = useCallback(
     (ss: QuizSession) => {
-      // exam: everything is graded now; practice and check were graded question by question
+      // exam: everything is graded now; practice and check were graded question by question. Open questions
+      // in a timed exam wait for the student to mark them on the results screen.
+      const pending: string[] = [];
       const results = ss.order.map((id) => {
         const q = qs(id);
         let ok = ss.checked[id];
         if (ok === undefined) {
+          if (q?.kind === 'self' && ss.mode === 'exam') {
+            pending.push(id);
+            return { q: id, ok: false };
+          }
           ok = q ? grade(q, ss.answers[id]) === true : false;
           if (q) recordAnswer(id, ok, { course, topic: q.topic, unsure: ss.confidence[id] === 'unsure' });
         }
@@ -190,7 +200,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
         const cur = s.quizzes[key];
         if (cur) {
           cur.finished = true;
-          for (const r of results) cur.checked[r.q] = r.ok;
+          for (const r of results) if (!pending.includes(r.q)) cur.checked[r.q] = r.ok;
+          if (pending.length) cur.selfPending = pending;
         }
         s.attempts.push(attempt);
         if (s.attempts.length > 400) s.attempts.splice(0, s.attempts.length - 400);
@@ -400,6 +411,24 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
 
   // ── results ────────────────────────────────────────────────────────────────────
   if (session.finished) {
+    const pending = session.selfPending ?? [];
+    // an open answer marked after the exam updates this session and the saved attempt
+    const markSelf = (qid: string, right: boolean) => {
+      const qq = qs(qid);
+      if (qq) recordAnswer(qid, right, { course, topic: qq.topic });
+      patch((ss) => {
+        ss.checked[qid] = right;
+        ss.selfPending = (ss.selfPending ?? []).filter((x) => x !== qid);
+      });
+      updateProgress((s) => {
+        const a = [...s.attempts].reverse().find((x) => x.course === course && x.stepId === step.id);
+        const r = a?.results.find((x) => x.q === qid);
+        if (a && r && r.ok !== right) {
+          r.ok = right;
+          a.score += right ? 1 : -1;
+        }
+      });
+    };
     const results = session.order.map((id) => ({ id, ok: !!session.checked[id], q: qs(id) }));
     const score = results.filter((r) => r.ok).length;
     const pct = Math.round((score / Math.max(1, results.length)) * 100);
@@ -457,26 +486,47 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
             })}
           </ul>
         )}
+        {pending.length > 0 && (
+          <p className="lx-self-pending">
+            <Eye size={16} aria-hidden /> {pending.length} open answer{pending.length > 1 ? 's' : ''} to mark: open {pending.length > 1 ? 'each one' : 'it'} below, compare with the solution and mark yourself. Your score updates as you go.
+          </p>
+        )}
         <h3 className="lx-h3 lx-review-title">Review your answers</h3>
         <ol className="lx-review">
           {results.map((r, i) =>
             r.q ? (
               <li key={r.id} className={r.ok ? 'is-right' : 'is-wrong'}>
                 <button type="button" className="lx-review-row" aria-expanded={review === r.id} onClick={() => setReview(review === r.id ? null : r.id)}>
-                  {r.ok ? <CheckCircle2 size={18} aria-hidden /> : <XCircle size={18} aria-hidden />}
+                  {pending.includes(r.id) ? <Eye size={18} aria-label="to mark" className="lx-review-pending" /> : r.ok ? <CheckCircle2 size={18} aria-hidden /> : <XCircle size={18} aria-hidden />}
                   <span className="lx-num">{i + 1}.</span>
                   <span className="lx-review-q">
                     <MathText text={r.q.prompt.length > 160 ? r.q.prompt.slice(0, 160).replace(/\$[^$]*$/, '') + '…' : r.q.prompt} />
                   </span>
                   {session.flags.includes(r.id) && <Flag size={15} aria-label="flagged" />}
                 </button>
+                {pending.includes(r.id) && (
+                  <span className="lx-self-mark lx-review-mark">
+                    <button type="button" className="lx-btn lx-btn--good lx-btn--sm" onClick={() => markSelf(r.id, true)}>
+                      <CheckCircle2 size={15} /> I got it right
+                    </button>
+                    <button type="button" className="lx-btn lx-btn--bad lx-btn--sm" onClick={() => markSelf(r.id, false)}>
+                      <XCircle size={15} /> I missed it
+                    </button>
+                  </span>
+                )}
                 {review === r.id && (
                   <div className="lx-review-body">
                     <p>
                       <strong>Answer: </strong>
                       <MathText text={r.q.answerText} />
                     </p>
-                    <Explanation q={r.q} chosen={Array.isArray(session.answers[r.id]) ? (session.answers[r.id] as number[]) : undefined} correct={r.ok} />
+                    <Explanation
+                      q={r.q}
+                      chosen={Array.isArray(session.answers[r.id]) ? (session.answers[r.id] as number[]) : undefined}
+                      correct={pending.includes(r.id) ? null : r.ok}
+                      order={session.optionOrder[r.id]}
+                      yourAnswer={answerText(r.q, session.answers[r.id], session.optionOrder[r.id])}
+                    />
                   </div>
                 )}
               </li>
@@ -622,16 +672,16 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
             </button>
           )
         ) : result === undefined ? (
-          q?.kind !== 'self' && (
-            <>
-              <button type="button" className="lx-btn lx-btn--ghost" onClick={next} title="Skip this question for now">
-                Skip
-              </button>
+          <>
+            <button type="button" className="lx-btn lx-btn--ghost" onClick={next} title="Skip this question for now">
+              Skip
+            </button>
+            {q?.kind !== 'self' && (
               <button type="button" className="lx-btn lx-btn--primary" disabled={!answered} onClick={() => check(id)}>
                 Check answer
               </button>
-            </>
-          )
+            )}
+          </>
         ) : (
           <button type="button" className="lx-btn lx-btn--primary" onClick={next} autoFocus>
             {last ? 'See results' : 'Next question'} <ArrowRight size={17} />

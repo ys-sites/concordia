@@ -148,10 +148,7 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     const topics = l.gate ?? [];
     for (const t of topics) if (!gate.topics.some((x) => x.id === t)) problems.push(`${l.id}: unknown exam-prep topic ${t}`);
     const steps: Step[] = [];
-    (l.videos ?? []).forEach((v) => {
-      const s = videoStep(l.id, v);
-      if (s) steps.push(s);
-    });
+    const videos = (l.videos ?? []).map((v) => videoStep(l.id, v)).filter((s): s is Step => !!s);
 
     const fs = formulasOf(topics);
     const lecRefs = topics.flatMap((t) => gate.topics.find((x) => x.id === t)?.lec ?? []);
@@ -160,10 +157,29 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
       const p = lectureDoc(r);
       if (p && !slides.some((s) => s.path === p && s.page === r.s)) slides.push(docRef(p, r.s, r.label));
     }
-    if (fs.length || slides.length) {
-      steps.push({ id: `${l.id}.notes`, kind: 'notes', title: 'Key notes', minutes: minutesFor('notes') + fs.length, formulaIds: fs.map((f) => f.id), docs: slides.slice(0, 8) });
+    const refs = [...slides.slice(0, 8), ...matchDocs(l.read, l.id).map((p) => docRef(p))];
+
+    // outside explanations
+    const seen = new Set<string>();
+    const yt = [
+      ...topics.flatMap((t) => gate.videoStops.filter((v) => v.topic === t).flatMap((v) => v.videos)).map((v) => ({ id: v.id, title: v.title, channel: v.channel, len: v.len, watch: v.watch })),
+      ...(l.youtube ?? []).map((id) => {
+        const v = input.youtube221.find((x) => x.youtubeId === id);
+        if (!v) problems.push(`${l.id}: unknown YouTube companion ${id}`);
+        return v ? { id, title: v.videoTitle, channel: v.channel, len: v.duration, watch: v.keyTakeaways } : null;
+      })
+    ].filter((v): v is NonNullable<typeof v> => !!v && !seen.has(v.id) && !!seen.add(v.id));
+    const ytStep = (v: (typeof yt)[number], optional: boolean): Step => ({ id: `${l.id}.yt-${v.id}`, kind: 'extra', title: v.title, minutes: Math.round(parseLen(v.len)), youtube: v, ...(optional ? { optional: true } : {}) });
+
+    // A lesson is its video. The teacher's slides (at the right pages), the guides and the key notes sit under
+    // it as references; with no course video, the best outside one takes its place. Only a lesson with no
+    // video at all keeps a key-notes step, with the same references.
+    const main = videos[0] ?? (yt.length ? ytStep(yt.shift()!, false) : undefined);
+    if (main) {
+      steps.push({ ...main, ...(refs.length ? { docs: refs } : {}), ...(fs.length ? { formulaIds: fs.map((f) => f.id) } : {}) }, ...videos.slice(1));
+    } else if (fs.length || refs.length) {
+      steps.push({ id: `${l.id}.notes`, kind: 'notes', title: 'Key notes', minutes: minutesFor('notes') + fs.length, formulaIds: fs.map((f) => f.id), docs: refs });
     }
-    matchDocs(l.read, l.id).forEach((p) => steps.push({ id: `${l.id}.read-${slug(fileTitle(p))}`, kind: 'reading', title: `Read: ${fileTitle(p)}`, minutes: minutesFor('reading'), docs: [docRef(p)] }));
 
     const worked = fs.filter((f) => f.learn?.example);
     if (worked.length) steps.push({ id: `${l.id}.worked`, kind: 'worked', title: worked.length > 1 ? 'Worked examples' : 'Worked example', minutes: 4 * worked.length, formulaIds: worked.map((f) => f.id) });
@@ -195,17 +211,8 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     const s3 = qStep(l.id, 'exam', `Past exam questions (${exam.length})`, exam);
     if (s3) steps.push(s3);
 
-    // outside explanations, optional
-    const seen = new Set<string>();
-    const yt = [
-      ...topics.flatMap((t) => gate.videoStops.filter((v) => v.topic === t).flatMap((v) => v.videos)).map((v) => ({ id: v.id, title: v.title, channel: v.channel, len: v.len, watch: v.watch })),
-      ...(l.youtube ?? []).map((id) => {
-        const v = input.youtube221.find((x) => x.youtubeId === id);
-        if (!v) problems.push(`${l.id}: unknown YouTube companion ${id}`);
-        return v ? { id, title: v.videoTitle, channel: v.channel, len: v.duration, watch: v.keyTakeaways } : null;
-      })
-    ].filter((v): v is NonNullable<typeof v> => !!v && !seen.has(v.id) && !!seen.add(v.id));
-    yt.forEach((v) => steps.push({ id: `${l.id}.yt-${v.id}`, kind: 'extra', title: v.title, minutes: Math.round(parseLen(v.len)), optional: true, youtube: v }));
+    // more outside explanations, optional
+    yt.forEach((v) => steps.push(ytStep(v, true)));
     return steps;
   };
 
@@ -244,6 +251,9 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     const fs = formulasOf(l.gate ?? []);
     const firstVideo = steps.find((s) => s.videoId && videoById.has(s.videoId));
     const resources = matchDocs(l.resources, `${l.id} resources`).map((p) => docRef(p));
+    const lead = steps[0];
+    if (lead && (lead.kind === 'video' || lead.kind === 'extra' || lead.kind === 'notes') && resources.length && !l.steps)
+      lead.docs = [...(lead.docs ?? []), ...resources.filter((r) => !lead.docs?.some((d) => d.path === r.path))];
     return {
       id: l.id,
       title: l.title,
