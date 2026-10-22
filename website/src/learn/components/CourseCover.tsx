@@ -1,131 +1,263 @@
-import React from 'react';
+import React, { useId } from 'react';
 import type { CourseId } from '../../types';
 import { COURSE_BY_ID } from '../courses';
 
-// Each course's cover is drawn from its own subject, in its own colour: the direction field of an ODE, a face-
-// centred cubic cell, a C++ loop, and a delivery route. 16:9, scales to any width.
+// Each course's cover is a small illustrated landscape in flat, layered vector (gradient sky, sun, hills in
+// receding tones, a foreground with the subject in it), drawn in the course's own colours:
+//   ENGR 213  dawn over a river that winds like a solution curve, wind streaks as its direction field
+//   MIAE 221  sunset over faceted crystal mountains
+//   MIAE 215  twilight lake, a cabin whose window glows with a loop of C++
+//   INDU 211  a factory by the river, trucks on the delivery route between the houses
+// 16:9, scales to any width, no images to download.
 const W = 320;
 const H = 180;
 
-const SlopeField: React.FC = () => {
-  // a direction field in screen coordinates: every solution is pulled towards y = 96 while a wave rides on it,
-  // and one solution curve is traced through it from an initial point
-  const f = (x: number, y: number) => 0.9 * Math.cos(x / 26) - (y - 96) / 42;
-  const segs: React.ReactNode[] = [];
-  for (let x = 122; x <= 304; x += 18)
-    for (let y = 20; y <= 168; y += 18) {
-      const a = Math.atan(f(x, y));
-      const dx = 6 * Math.cos(a);
-      const dy = 6 * Math.sin(a);
-      segs.push(<line key={`${x}-${y}`} x1={x - dx} y1={y - dy} x2={x + dx} y2={y + dy} />);
-    }
-  let y = 160;
-  const pts: string[] = [];
-  for (let x = 116; x <= 312; x += 1) {
-    pts.push(`${x},${y.toFixed(1)}`);
-    y += f(x, y);
+// smooth ridge through (x, y) points, closed down to the bottom of the frame
+const ridge = (pts: [number, number][]) => {
+  let d = `M0 ${H} L${pts[0][0]} ${pts[0][1]}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [x0, y0] = pts[i];
+    const [x1, y1] = pts[i + 1];
+    const mx = (x0 + x1) / 2;
+    d += ` C${mx} ${y0} ${mx} ${y1} ${x1} ${y1}`;
   }
-  return (
-    <g>
-      <g stroke="var(--lx-accent)" strokeOpacity="0.35" strokeWidth="2" strokeLinecap="round">
-        {segs}
-      </g>
-      <polyline points={pts.join(' ')} fill="none" stroke="var(--lx-accent)" strokeWidth="4" strokeLinecap="round" />
-      <circle cx="116" cy="160" r="6" fill="var(--lx-accent)" />
-    </g>
-  );
+  return `${d} L${W} ${H} Z`;
 };
+const hills = (base: number, amp: number, n: number, phase: number): [number, number][] =>
+  Array.from({ length: n + 1 }, (_, i) => {
+    const x = (i / n) * W;
+    return [x, base - amp * Math.abs(Math.sin(i * 1.7 + phase)) - amp * 0.4 * Math.sin(i * 0.9 + phase * 2)];
+  });
 
-const UnitCell: React.FC = () => {
-  // isometric cube, atoms at 8 corners and 6 face centres
-  const o = { x: 205, y: 132 };
-  const s = 70;
-  const P = (a: number, b: number, c: number) => ({ x: o.x + (a - b) * s * 0.87, y: o.y + (a + b) * s * 0.5 - c * s * 1.0 - 40 });
-  const corners = [0, 1].flatMap((a) => [0, 1].flatMap((b) => [0, 1].map((c) => P(a, b, c))));
-  const faces = [P(0.5, 0.5, 0), P(0.5, 0.5, 1), P(0.5, 0, 0.5), P(0.5, 1, 0.5), P(0, 0.5, 0.5), P(1, 0.5, 0.5)];
-  const edges: [number[], number[]][] = [];
-  for (const a of [0, 1]) for (const b of [0, 1]) edges.push([[a, b, 0], [a, b, 1]], [[a, 0, b], [a, 1, b]], [[0, a, b], [1, a, b]]);
-  return (
-    <g>
-      <g stroke="var(--lx-accent)" strokeOpacity="0.45" strokeWidth="2">
-        {edges.map(([p, q], i) => {
-          const A = P(p[0], p[1], p[2]);
-          const B = P(q[0], q[1], q[2]);
-          return <line key={i} x1={A.x} y1={A.y} x2={B.x} y2={B.y} />;
-        })}
-      </g>
-      {[...corners, ...faces]
-        .sort((a, b) => a.y - b.y)
-        .map((p, i) => (
-          <circle key={i} cx={p.x} cy={p.y} r={i % 3 ? 15 : 13} fill="var(--lx-accent)" fillOpacity={0.55 + (p.y / H) * 0.4} stroke="var(--lx-tint)" strokeWidth="2.5" />
-        ))}
-    </g>
-  );
-};
+const Birds: React.FC<{ x: number; y: number; color: string; s?: number }> = ({ x, y, color, s = 1 }) => (
+  <g fill="none" stroke={color} strokeWidth={1.4} strokeLinecap="round" transform={`translate(${x} ${y}) scale(${s})`}>
+    <path d="M0 0 q4 -4 8 0 q4 -4 8 0" />
+    <path d="M20 -8 q3 -3 6 0 q3 -3 6 0" />
+    <path d="M10 -14 q2.5 -2.5 5 0 q2.5 -2.5 5 0" />
+  </g>
+);
 
-const CodeLoop: React.FC = () => {
-  const lines: [string, string][] = [
-    ['for (int i = 0; i < n; ++i) {', '0'],
-    ['    if (a[i] > max)', '1'],
-    ['        max = a[i];', '2'],
-    ['    sum += a[i];', '1'],
-    ['}', '0'],
-    ['cout << sum / n;', '0']
-  ];
-  return (
-    <g fontFamily="'JetBrains Mono', Consolas, monospace" fontSize="13.5" fontWeight="600">
-      <rect x="124" y="26" width="182" height="128" rx="8" fill="var(--lx-surface)" opacity="0.7" />
-      {lines.map(([t, depth], i) => (
-        <text key={i} x="134" y={50 + i * 19} fill="var(--lx-accent)" fillOpacity={depth === '0' ? 1 : depth === '1' ? 0.8 : 0.62} xmlSpace="preserve">
-          {t}
-        </text>
+const Pine: React.FC<{ x: number; y: number; h: number; color: string }> = ({ x, y, h, color }) => (
+  <path d={`M${x} ${y - h} L${x + h * 0.32} ${y - h * 0.45} L${x + h * 0.16} ${y - h * 0.45} L${x + h * 0.4} ${y} L${x - h * 0.4} ${y} L${x - h * 0.16} ${y - h * 0.45} L${x - h * 0.32} ${y - h * 0.45} Z`} fill={color} />
+);
+
+const Odes: React.FC<{ id: string }> = ({ id }) => (
+  <g>
+    <defs>
+      <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#5b7cfa" />
+        <stop offset="0.55" stopColor="#a9b8ff" />
+        <stop offset="1" stopColor="#ffd3a8" />
+      </linearGradient>
+      <linearGradient id={`${id}r`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#ffe2c2" />
+        <stop offset="1" stopColor="#8fa6ff" />
+      </linearGradient>
+    </defs>
+    <rect width={W} height={H} fill={`url(#${id}s)`} />
+    <circle cx="214" cy="92" r="30" fill="#fff4d6" opacity="0.55" />
+    <circle cx="214" cy="92" r="19" fill="#fff8e6" />
+    {/* wind streaks: the direction field */}
+    <g stroke="#ffffff" strokeOpacity="0.55" strokeWidth="1.6" strokeLinecap="round">
+      {[
+        [26, 40, 22, -4],
+        [70, 30, 20, -2],
+        [118, 46, 24, 2],
+        [40, 66, 18, 3],
+        [258, 34, 22, 4],
+        [290, 58, 16, 6],
+        [150, 22, 18, -1]
+      ].map(([x, y, l, dy], i) => (
+        <line key={i} x1={x} y1={y} x2={x + l} y2={y + dy} />
       ))}
-      <rect x="128" y="56" width="3" height="38" rx="1.5" fill="var(--lx-accent)" />
     </g>
-  );
-};
+    <path d={ridge(hills(112, 22, 7, 0.4))} fill="#8b9df0" />
+    <path d={ridge(hills(128, 18, 6, 1.9))} fill="#6176de" />
+    <path d={ridge(hills(146, 14, 5, 3.1))} fill="#3f53bd" />
+    {/* the river: a solution curve flowing to the horizon */}
+    <path d="M150 112 C142 124 176 132 166 142 C152 156 104 158 88 180 L156 180 C168 162 214 156 204 140 C196 128 160 122 156 112 Z" fill={`url(#${id}r)`} opacity="0.95" />
+    <path d={ridge([[0, 160], [60, 152], [120, 166], [180, 158], [250, 168], [320, 156]])} fill="#26337f" />
+    {[18, 34, 52, 268, 284, 300].map((x, i) => (
+      <Pine key={i} x={x} y={166 + (i % 2) * 4} h={22 + (i % 3) * 6} color="#1b2563" />
+    ))}
+    <Birds x={84} y={62} color="#2e3f9e" />
+  </g>
+);
 
-const Route: React.FC = () => {
-  const pts = [
-    [168, 128],
-    [208, 60],
-    [258, 42],
-    [296, 86],
-    [280, 140],
-    [226, 152],
-    [196, 104]
+const Crystals: React.FC<{ id: string }> = ({ id }) => {
+  // faceted peaks: [peak x, peak y, half width, base y]
+  const peaks: [number, number, number, number, string, string][] = [
+    [70, 70, 62, 150, '#f6a5c0', '#e07ba0'],
+    [180, 52, 74, 150, '#ef8db1', '#cf5d88'],
+    [276, 78, 60, 150, '#f6a5c0', '#e07ba0']
   ];
-  const tour = [...pts, pts[0]].map(([x, y]) => `${x},${y}`).join(' ');
   return (
     <g>
-      <polyline points={tour} fill="none" stroke="var(--lx-accent)" strokeWidth="3.5" strokeLinejoin="round" strokeDasharray="0" />
-      {pts.map(([x, y], i) =>
-        i === 0 ? (
-          <rect key={i} x={x - 11} y={y - 11} width="22" height="22" rx="4" fill="var(--lx-accent)" />
-        ) : (
-          <circle key={i} cx={x} cy={y} r="9" fill="var(--lx-tint)" stroke="var(--lx-accent)" strokeWidth="3.5" />
-        )
-      )}
+      <defs>
+        <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ff8fb1" />
+          <stop offset="0.6" stopColor="#ffc2a8" />
+          <stop offset="1" stopColor="#ffe6b8" />
+        </linearGradient>
+      </defs>
+      <rect width={W} height={H} fill={`url(#${id}s)`} />
+      <circle cx="120" cy="96" r="24" fill="#fff1d6" />
+      {peaks.map(([px, py, hw, by, light, dark], i) => (
+        <g key={i}>
+          <path d={`M${px - hw} ${by} L${px} ${py} L${px - hw * 0.18} ${by} Z`} fill={light} />
+          <path d={`M${px - hw * 0.18} ${by} L${px} ${py} L${px + hw} ${by} Z`} fill={dark} />
+          <path d={`M${px} ${py} L${px - hw * 0.08} ${py + 18} L${px + hw * 0.16} ${py + 14} Z`} fill="#fff" opacity="0.55" />
+        </g>
+      ))}
+      <path d={ridge([[0, 150], [80, 144], [160, 152], [240, 142], [320, 150]])} fill="#a83866" />
+      {/* foreground crystal cluster */}
+      <g transform="translate(232 178)">
+        {[
+          [-30, -58, 12, '#ffd0e0', '#e86b98'],
+          [-6, -78, 14, '#ffe2ec', '#d84a7f'],
+          [20, -50, 11, '#ffd0e0', '#e86b98'],
+          [-52, -36, 9, '#ffe2ec', '#c93e72']
+        ].map(([x, h, w, a, b], i) => (
+          <g key={i}>
+            <path d={`M${Number(x) - Number(w)} 0 L${Number(x) - Number(w)} ${Number(h) + Number(w) * 1.2} L${x} ${h} L${x} 0 Z`} fill={String(a)} />
+            <path d={`M${x} 0 L${x} ${h} L${Number(x) + Number(w)} ${Number(h) + Number(w) * 1.2} L${Number(x) + Number(w)} 0 Z`} fill={String(b)} />
+          </g>
+        ))}
+      </g>
+      <path d={ridge([[0, 166], [70, 160], [150, 170], [220, 168], [320, 162]])} fill="#7d1f48" />
+      {[
+        [40, 40],
+        [150, 30],
+        [292, 44],
+        [250, 18]
+      ].map(([x, y], i) => (
+        <path key={i} d={`M${x} ${y - 5} L${x + 1.4} ${y - 1.4} L${x + 5} ${y} L${x + 1.4} ${y + 1.4} L${x} ${y + 5} L${x - 1.4} ${y + 1.4} L${x - 5} ${y} L${x - 1.4} ${y - 1.4} Z`} fill="#fff" opacity="0.85" />
+      ))}
     </g>
   );
 };
 
-const ART: Record<CourseId, React.FC> = { ENGR213: SlopeField, MIAE221: UnitCell, MIAE215: CodeLoop, INDU211: Route };
+const Cabin: React.FC<{ id: string }> = ({ id }) => (
+  <g>
+    <defs>
+      <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#0f3d3a" />
+        <stop offset="0.55" stopColor="#1f7a63" />
+        <stop offset="1" stopColor="#9fe0b8" />
+      </linearGradient>
+    </defs>
+    <rect width={W} height={H} fill={`url(#${id}s)`} />
+    {[
+      [30, 22],
+      [64, 40],
+      [110, 16],
+      [150, 34],
+      [196, 20],
+      [240, 44],
+      [276, 14],
+      [300, 36],
+      [86, 12]
+    ].map(([x, y], i) => (
+      <circle key={i} cx={x} cy={y} r={i % 3 ? 1.1 : 1.7} fill="#eafff4" opacity="0.9" />
+    ))}
+    <path d="M258 40 a14 14 0 1 0 12 22 a11 11 0 1 1 -12 -22 Z" fill="#fff8d6" />
+    <path d={ridge(hills(110, 20, 6, 0.8))} fill="#2f8f72" />
+    <path d={ridge(hills(126, 14, 5, 2.4))} fill="#1d6e57" />
+    {/* lake */}
+    <rect x="0" y="138" width={W} height="42" fill="#3aa585" />
+    <g stroke="#bff3dc" strokeOpacity="0.6" strokeWidth="1.4" strokeLinecap="round">
+      <line x1="40" y1="150" x2="70" y2="150" />
+      <line x1="120" y1="160" x2="160" y2="160" />
+      <line x1="230" y1="152" x2="250" y2="152" />
+    </g>
+    {/* cabin with a screen of code in the window */}
+    <g transform="translate(186 92)">
+      <path d="M-4 22 L32 -2 L68 22 Z" fill="#0d3b31" />
+      <rect x="2" y="20" width="60" height="30" fill="#14513f" />
+      <rect x="10" y="26" width="26" height="18" rx="2" fill="#fff3b0" />
+      <g fontFamily="'JetBrains Mono', Consolas, monospace" fontSize="4.6" fontWeight="700" fill="#0f5a45">
+        <text x="12" y="31.5">for(i=0;i</text>
+        <text x="14" y="36.5">sum+=a[i];</text>
+        <text x="12" y="41.5">{'}'}</text>
+      </g>
+      <rect x="44" y="30" width="10" height="20" fill="#0d3b31" />
+      {/* the window's glow on the water */}
+      <rect x="12" y="52" width="22" height="3" rx="1.5" fill="#fff3b0" opacity="0.55" />
+      <rect x="16" y="58" width="14" height="2" rx="1" fill="#fff3b0" opacity="0.35" />
+    </g>
+    {[24, 44, 62, 132, 150, 290, 306].map((x, i) => (
+      <Pine key={i} x={x} y={142} h={26 + (i % 3) * 8} color="#0b3a2e" />
+    ))}
+  </g>
+);
+
+const Factory: React.FC<{ id: string }> = ({ id }) => (
+  <g>
+    <defs>
+      <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#ff9a4d" />
+        <stop offset="0.6" stopColor="#ffc98a" />
+        <stop offset="1" stopColor="#ffe7c2" />
+      </linearGradient>
+    </defs>
+    <rect width={W} height={H} fill={`url(#${id}s)`} />
+    <circle cx="78" cy="60" r="20" fill="#fff3d8" />
+    <path d={ridge(hills(104, 16, 6, 1.2))} fill="#f0a866" />
+    <path d={ridge(hills(120, 12, 5, 2.7))} fill="#e08947" />
+    {/* factory */}
+    <g transform="translate(180 72)">
+      <rect x="20" y="0" width="9" height="40" fill="#7a3a12" />
+      <rect x="36" y="10" width="9" height="30" fill="#7a3a12" />
+      <circle cx="26" cy="-8" r="7" fill="#fff" opacity="0.75" />
+      <circle cx="34" cy="-16" r="9" fill="#fff" opacity="0.6" />
+      <circle cx="44" cy="0" r="6" fill="#fff" opacity="0.7" />
+      <path d="M0 40 L0 22 L18 30 L18 22 L36 30 L36 22 L54 30 L54 22 L72 30 L72 40 Z" fill="#9c4a17" />
+      <rect x="0" y="40" width="72" height="22" fill="#b65a1f" />
+      {[8, 22, 36, 50].map((x) => (
+        <rect key={x} x={x} y="46" width="9" height="7" fill="#ffd79a" />
+      ))}
+    </g>
+    <path d={ridge([[0, 136], [80, 130], [160, 138], [240, 132], [320, 136]])} fill="#c96a28" />
+    {/* the delivery route between houses */}
+    <path d="M14 168 C60 140 96 172 140 150 S220 144 254 160 S300 170 312 152" fill="none" stroke="#fff1db" strokeWidth="6" strokeLinecap="round" />
+    <path d="M14 168 C60 140 96 172 140 150 S220 144 254 160 S300 170 312 152" fill="none" stroke="#c96a28" strokeWidth="1.4" strokeDasharray="5 5" />
+    {[
+      [14, 168],
+      [140, 150],
+      [254, 160],
+      [312, 152]
+    ].map(([x, y], i) => (
+      <g key={i} transform={`translate(${x - 9} ${y - 22})`}>
+        <path d="M0 9 L9 1 L18 9 Z" fill="#7a3a12" />
+        <rect x="2" y="9" width="14" height="11" fill="#fff6e8" />
+        <rect x="7" y="13" width="4" height="7" fill="#b65a1f" />
+      </g>
+    ))}
+    <g transform="translate(74 150)">
+      <rect x="0" y="0" width="16" height="9" rx="1.5" fill="#7a3a12" />
+      <rect x="16" y="3" width="7" height="6" rx="1.5" fill="#9c4a17" />
+      <circle cx="5" cy="10" r="2.4" fill="#3b1a07" />
+      <circle cx="18" cy="10" r="2.4" fill="#3b1a07" />
+    </g>
+    <path d={ridge([[0, 174], [100, 170], [200, 176], [320, 170]])} fill="#a24f17" />
+    <Birds x={230} y={36} color="#8a3f10" s={0.9} />
+  </g>
+);
+
+const ART: Record<CourseId, React.FC<{ id: string }>> = { ENGR213: Odes, MIAE221: Crystals, MIAE215: Cabin, INDU211: Factory };
 
 export const CourseCover: React.FC<{ course: CourseId; className?: string; label?: boolean }> = ({ course, className = '', label = true }) => {
   const c = COURSE_BY_ID[course];
   const Art = ART[course];
+  const id = useId().replace(/:/g, '');
   return (
-    <svg className={`lx-cover lx-c-${course} ${className}`} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${c.code} cover`} preserveAspectRatio="xMidYMid slice">
-      <rect width={W} height={H} fill="var(--lx-tint)" />
-      <Art />
+    <svg className={`lx-cover lx-c-${course} ${className}`} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${c.code}: ${c.title}`} preserveAspectRatio="xMidYMid slice">
+      <Art id={id} />
       {label && (
         <g>
-          <text x="18" y="44" fontFamily="var(--lx-font)" fontWeight="800" fontSize="26" letterSpacing="-0.5" fill="var(--lx-accent-deep)">
-            {c.code.split(' ')[0]}
-          </text>
-          <text x="18" y="76" fontFamily="var(--lx-font)" fontWeight="800" fontSize="34" letterSpacing="-0.5" fill="var(--lx-accent-deep)">
-            {c.code.split(' ')[1]}
+          <rect x="12" y="12" rx="7" width={c.code.length * 7.6 + 18} height="24" fill="#ffffff" opacity="0.92" />
+          <text x="21" y="28.5" fontFamily="Inter, sans-serif" fontWeight="800" fontSize="12.5" fill="var(--lx-accent-deep)">
+            {c.code}
           </text>
         </g>
       )}

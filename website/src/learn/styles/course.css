@@ -69,6 +69,15 @@
   display: none;
   margin-top: 8px;
 }
+.lx-course-layout.is-wide {
+  grid-template-columns: minmax(0, 1fr);
+}
+.lx-course-layout.is-wide .lx-course-side {
+  display: none;
+}
+.lx-course-layout.is-wide .lx-course-mobile-cta {
+  display: flex;
+}
 
 .lx-course-side {
   position: sticky;

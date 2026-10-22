@@ -22,6 +22,7 @@ import { daysUntil, readiness } from '../progress/insights';
 import { CourseCover } from '../components/CourseCover';
 import { StepIcon } from '../components/StepIcon';
 import { ResourceLibrary } from '../components/ResourceLibrary';
+import { VideoLibrary } from '../components/VideoLibrary';
 import { getVideoUrl } from '../../utils/pdfUrl';
 import '../styles/course.css';
 
@@ -138,63 +139,6 @@ const Curriculum: React.FC<{ cur: Curriculum; sections: Section[]; done: Record<
   );
 };
 
-// ── videos tab ───────────────────────────────────────────────────────────────────
-const VIDEO_FILTERS: { id: VideoCard['kind'] | 'all'; label: string }[] = [
-  { id: 'all', label: 'All' },
-  { id: 'lesson', label: 'Lessons' },
-  { id: 'solution', label: 'Solutions' },
-  { id: 'walkthrough', label: 'Walkthroughs' },
-  { id: 'extra', label: 'Extra (YouTube)' }
-];
-
-const VideosTab: React.FC<{ cur: Curriculum }> = ({ cur }) => {
-  const [filter, setFilter] = useState<(typeof VIDEO_FILTERS)[number]['id']>('all');
-  const positions = useProgress((s) => s.videos);
-  const kinds = new Set(cur.videos.map((v) => v.kind));
-  const list = cur.videos.filter((v) => filter === 'all' || v.kind === filter);
-  const bySection = cur.sections.map((s) => ({ s, vids: list.filter((v) => v.sectionId === s.id) })).filter((x) => x.vids.length);
-  const lessonTitle = (id: string) => cur.sections.flatMap((s) => s.lessons).find((l) => l.id === id)?.title ?? '';
-  return (
-    <div>
-      <div className="lx-filter-row" role="group" aria-label="Show videos">
-        {VIDEO_FILTERS.filter((f) => f.id === 'all' || kinds.has(f.id as VideoCard['kind'])).map((f) => (
-          <button key={f.id} type="button" className={`lx-chip lx-chip-btn${filter === f.id ? ' is-on' : ''}`} aria-pressed={filter === f.id} onClick={() => setFilter(f.id)}>
-            {f.label} <span className="lx-num">{f.id === 'all' ? cur.videos.length : cur.videos.filter((v) => v.kind === f.id).length}</span>
-          </button>
-        ))}
-      </div>
-      {bySection.map(({ s, vids }) => (
-        <section key={s.id} className="lx-vid-section">
-          <h3 className="lx-h3">
-            {s.title} <span className="lx-meta">· {s.subtitle}</span>
-          </h3>
-          <ul className="lx-vid-grid">
-            {vids.map((v) => {
-              const pos = positions[v.id];
-              const pct = pos && pos.d ? Math.min(100, Math.round((pos.t / pos.d) * 100)) : 0;
-              return (
-                <li key={v.id}>
-                  <a className="lx-vid-card" href={href({ name: 'learn', course: cur.id, lesson: v.lessonId, step: v.stepId })}>
-                    <span className="lx-vid-thumb">
-                      {v.poster ? <img src={getVideoUrl(v.poster)} alt="" loading="lazy" /> : <span className="lx-vid-yt">YouTube</span>}
-                      <span className="lx-vid-dur lx-num">{fmtClock(v.seconds)}</span>
-                      {pct > 0 && (
-                        <span className="lx-vid-watched" style={{ width: `${pct}%` }} aria-label={`${pct}% watched`} />
-                      )}
-                    </span>
-                    <span className="lx-vid-title">{v.title}</span>
-                    <span className="lx-meta">{v.kind === 'solution' ? `Solution · ${lessonTitle(v.lessonId)}` : v.kind === 'extra' ? v.source : lessonTitle(v.lessonId)}</span>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      ))}
-    </div>
-  );
-};
-
 // ── exam prep tab ────────────────────────────────────────────────────────────────
 const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ cur, done }) => {
   const p = useProgress((s) => s);
@@ -253,7 +197,7 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
   ];
   return (
     <div className={`lx-course ${courseClass(course)}`}>
-      <div className="lx-wrap lx-course-layout">
+      <div className={`lx-wrap lx-course-layout${tab === 'videos' ? ' is-wide' : ''}`}>
         <div className="lx-course-main">
           <section className="lx-course-hero">
             <nav className="lx-crumbs lx-meta" aria-label="Breadcrumb">
@@ -310,7 +254,7 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
                 </section>
               </>
             ) : tab === 'videos' ? (
-              <VideosTab cur={cur} />
+              <VideoLibrary cur={cur} />
             ) : tab === 'exam' ? (
               <ExamTab cur={cur} done={done} />
             ) : (
