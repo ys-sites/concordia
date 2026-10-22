@@ -1,0 +1,3545 @@
+{
+ "generated": "2026-10-22T17:49:05.659Z",
+ "rules": {
+  "MIN": {
+   "explanation": 1,
+   "check": 3,
+   "practice": 8,
+   "worked": 1
+  },
+  "TARGET_MIX": {
+   "1": 0.4,
+   "2": 0.4,
+   "3": 0.2
+  },
+  "MIX_TOLERANCE": 0.25,
+  "OVERSTOCK": 4
+ },
+ "broken": [],
+ "unusedDocs": {
+  "ENGR213": [
+   "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Advanced_Engineering_Mathematics_Solutions_Manual.pdf",
+   "Engr 213/00 - Course Syllabus & Textbook/Calculus for Differential Equations - Master Sheet.pdf",
+   "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Textbook Chapter 1 - Introduction to Differential Equations.pdf",
+   "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Textbook Chapter 2 - First-Order Differential Equations.pdf",
+   "Engr 213/00 - Course Syllabus & Textbook/Textbook Chapters/Textbook Chapter 4 - The Laplace Transform.pdf",
+   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Engr 213 Tutor.pdf",
+   "Engr 213/02 - Lecture Notes Explained/Archive & Alternatives/Lecture 1 - Beginners Guide (Alternative Draft).pdf",
+   "Engr 213/02 - Lecture Notes Explained/Archive & Alternatives/Lecture 2 - Plain English Guide (Alternative Draft).pdf",
+   "Engr 213/02 - Lecture Notes Explained/Archive & Alternatives/Lecture 3 - Detailed Calculation Notes.pdf",
+   "Engr 213/02 - Textbook Expanded Notes/Chapter 02 - First-Order Differential Equations & Modeling (Expanded).pdf",
+   "Engr 213/02 - Textbook Expanded Notes/Chapter 05 - Power Series Solutions about Ordinary Points (Expanded).pdf",
+   "Engr 213/02 - Textbook Expanded Notes/Chapter 10 - Systems of Linear Differential Equations & Eigenvalues (Expanded).pdf",
+   "Engr 213/02 - Textbook Expanded Notes/ENGR 213 - Textbook ODE Chapters Master Study Guide (Expanded & Condensed).pdf",
+   "Engr 213/04 - Chapter 2 Summary/Chapter 2 - Master Summary.pdf",
+   "Engr 213/04 - Chapter 2 Summary/Chapter 2 - Textbook Excerpt.pdf",
+   "Engr 213/Professor Dave/00 - Professor Dave - Differential Equations Complete Roadmap & Intuition.pdf",
+   "Engr 213/Professor Dave/10 - Numerical Methods for Differential Equations.pdf",
+   "Engr 213/Professor Dave/11 - Power Series Solutions - Leibniz Method.pdf",
+   "Engr 213/Professor Dave/12 - Power Series Solutions - Frobenius Method.pdf",
+   "Engr 213/Professor Dave/13 - Systems of Differential Equations - Modeling & Elimination.pdf",
+   "Engr 213/Professor Dave/14 - Systems of Differential Equations - Matrices & Stability.pdf",
+   "Engr 213/Professor Dave/17 - Difference Equations & Z-Transforms.pdf",
+   "Engr 213/Professor Dave/18 - Introduction to Partial Differential Equations & Differential Operators.pdf",
+   "Engr 213/Professor Dave/19 - Quasi-Linear First-Order PDEs - Lagrange's Method.pdf",
+   "Engr 213/Professor Dave/20 - Laplace's Equation & Separation of Variables.pdf",
+   "Engr 213/Professor Dave/21 - Fourier Series & Frequency Analysis.pdf",
+   "Engr 213/Professor Dave/22 - Fourier Transforms, Power Spectra & K-Space.pdf",
+   "Engr 213/Professor Dave/23 - The Wave Equation - Vibrations in 1D.pdf",
+   "Engr 213/Professor Dave/24 - The Wave Equation - Multidimensional Waves & Dispersion.pdf",
+   "Engr 213/Professor Dave/25 - The Diffusion Equation - Separation of Variables.pdf",
+   "Engr 213/Professor Dave/26 - The Diffusion Equation - Dimensional Analysis & Self-Similarity.pdf",
+   "Engr 213/Professor Dave/27 - The Diffusion Equation - Green's Functions.pdf",
+   "Engr 213/Professor Leonard/00 - Professor Leonard - Differential Equations Complete Roadmap & Intuition.pdf",
+   "Engr 213/Professor Leonard/01 - The Plan for Differential Equations (Lesson 1).pdf",
+   "Engr 213/Professor Leonard/02 - Introduction to Differential Equations (Lesson 2).pdf",
+   "Engr 213/Professor Leonard/05 - Introduction to Time Rate of Change (Lesson 5).pdf",
+   "Engr 213/Professor Leonard/06 - Solving Basic Differential Equations with Integration (Lesson 6).pdf",
+   "Engr 213/Professor Leonard/07 - Differential Equations with Velocity and Acceleration (Lesson 7).pdf",
+   "Engr 213/Professor Leonard/08 - Problem Solving with Velocity and Acceleration (Lesson 8).pdf",
+   "Engr 213/Professor Leonard/15 - Linear Systems of ODEs & Phase Plane Portraits.pdf"
+  ],
+  "MIAE221": [
+   "Miae 221/00 - Course Overview & Study Guide/MIAE 221 - Callister Chapter-by-Chapter Master Study Guide & Teacher Comparison.pdf",
+   "Miae 221/00 - Course Overview & Study Guide/MIAE 221 - Master Study Guide & Exam Strategy.pdf",
+   "Miae 221/01 - In-Class Lecture Notes (Student Annotated)/MIAE 221 - In-Class Lecture Notes Master Compendium (Lectures 1-11 Annotated).pdf",
+   "Miae 221/01 - Teacher Lecture Notes/lecture 11-mech prop 2-students26.pdf",
+   "Miae 221/01 - Teacher Lecture Notes/Practice Problem Set #1.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 01 - Introduction.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 02 - Chemistry Review I.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 03 - Chemistry Review II.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 04 - Crystal Structure I.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 05 - Crystal Structure II.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 06 - Crystal Structure III.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 07 - Imperfections in Solids I.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 08 - Imperfections in Solids II.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 09 - Diffusion.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 10 - Mechanical Properties I.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 11 - Mechanical Properties II.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 12 - Mechanical Properties III.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 26 - Review for Final I.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/Lecture 27 - Review for Final II.pdf",
+   "Miae 221/01 - Teacher Lecture Notes (Dr. Medraj)/MECH 221 - Greek Alphabet Reference.pdf",
+   "Miae 221/02 - Callister Textbook Expanded Notes/MIAE 221 - Callister Chapters 1-21 Master Study Guide (Expanded & Condensed).pdf",
+   "Miae 221/04 - Practice Problems & Step-by-Step Solutions/MIAE 221 - Step-by-Step Quantitative Problem Guide.pdf",
+   "Miae 221/04 - Practice Problems & Step-by-Step Solutions/Tutorial 1 - Fully Solved Master Guide.pdf",
+   "Miae 221/04 - Practice Problems & Step-by-Step Solutions/Tutorial 2 - Fully Solved Master Guide.pdf"
+  ],
+  "MIAE215": [
+   "Miae 215/01 - Teacher Lecture Notes & Slides/Week 4 - Lecture 1 - Moodle page.pdf",
+   "Miae 215/01 - Teacher Lecture Notes & Slides/Week 4 - Lecture 2 - Moodle page.pdf",
+   "Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf",
+   "Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Memory Aide & Exam Survival Sheet.pdf"
+  ],
+  "INDU211": [
+   "Indu 211/00 - Course Overview & Study Guide/INDU 211 - Master Study Guide & Exam Strategy.pdf",
+   "Indu 211/04 - Worked Problems & Quantitative Analysis/INDU 211 - Final Exam Quantitative Problem Guide (LP Modeling, Queuing, SPC & PERT).pdf",
+   "Indu 211/04 - Worked Problems & Quantitative Analysis/INDU 211 - Step-by-Step Quantitative Operations Guide.pdf",
+   "Indu 211/YouTube Tutorial Solutions/00 - INDU 211 - Problem Solutions Complete Roadmap & Video Guide.pdf"
+  ]
+ },
+ "lessons": [
+  {
+   "course": "ENGR213",
+   "section": "What a differential equation is",
+   "lesson": "Order, linearity & the language of ODEs",
+   "lessonId": "classify",
+   "minutes": 61,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 2,
+   "worked": 1,
+   "check": 4,
+   "practice": 26,
+   "mix": {
+    "1": 15,
+    "2": 6,
+    "3": 9
+   },
+   "withSteps": 19,
+   "withVideo": 9,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "What a differential equation is",
+   "lesson": "Solutions, families & initial-value problems",
+   "lessonId": "solutions-ivps",
+   "minutes": 65,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 2,
+   "worked": 1,
+   "check": 4,
+   "practice": 22,
+   "mix": {
+    "1": 6,
+    "2": 7,
+    "3": 13
+   },
+   "withSteps": 21,
+   "withVideo": 10,
+   "flags": [
+    "mix: 23/27/50 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "What a differential equation is",
+   "lesson": "Direction fields & autonomous equations",
+   "lessonId": "direction-fields",
+   "minutes": 20,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 3,
+   "practice": 2,
+   "mix": {
+    "1": 3,
+    "2": 2,
+    "3": 0
+   },
+   "withSteps": 4,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 2 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Solving first-order equations",
+   "lesson": "The integration you need",
+   "lessonId": "calculus-toolkit",
+   "minutes": 30,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 0,
+   "practice": 50,
+   "mix": {
+    "1": 0,
+    "2": 50,
+    "3": 0
+   },
+   "withSteps": 35,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 0 check questions (min 3)",
+    "stockout: no worked example",
+    "mix: 0/100/0 (target 40/40/20)",
+    "mix: no foundation questions to start on"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Solving first-order equations",
+   "lesson": "Separable equations",
+   "lessonId": "separable",
+   "minutes": 68,
+   "videos": 1,
+   "youtube": 2,
+   "notes": 2,
+   "worked": 1,
+   "check": 4,
+   "practice": 71,
+   "mix": {
+    "1": 6,
+    "2": 59,
+    "3": 10
+   },
+   "withSteps": 71,
+   "withVideo": 13,
+   "flags": [
+    "mix: 8/79/13 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Solving first-order equations",
+   "lesson": "Linear equations & the integrating factor",
+   "lessonId": "linear",
+   "minutes": 52,
+   "videos": 1,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 70,
+   "mix": {
+    "1": 6,
+    "2": 60,
+    "3": 8
+   },
+   "withSteps": 68,
+   "withVideo": 11,
+   "flags": [
+    "mix: 8/81/11 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Solving first-order equations",
+   "lesson": "Exact equations",
+   "lessonId": "exact",
+   "minutes": 65,
+   "videos": 1,
+   "youtube": 2,
+   "notes": 2,
+   "worked": 1,
+   "check": 4,
+   "practice": 73,
+   "mix": {
+    "1": 6,
+    "2": 60,
+    "3": 11
+   },
+   "withSteps": 72,
+   "withVideo": 12,
+   "flags": [
+    "mix: 8/78/14 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Solving first-order equations",
+   "lesson": "Non-exact equations: special integrating factors",
+   "lessonId": "integrating-factors",
+   "minutes": 40,
+   "videos": 1,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 3,
+   "practice": 54,
+   "mix": {
+    "1": 1,
+    "2": 52,
+    "3": 4
+   },
+   "withSteps": 57,
+   "withVideo": 0,
+   "flags": [
+    "stockout: no worked example",
+    "mix: 2/91/7 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Solving first-order equations",
+   "lesson": "Bernoulli equations",
+   "lessonId": "bernoulli",
+   "minutes": 61,
+   "videos": 1,
+   "youtube": 2,
+   "notes": 2,
+   "worked": 1,
+   "check": 4,
+   "practice": 63,
+   "mix": {
+    "1": 5,
+    "2": 54,
+    "3": 8
+   },
+   "withSteps": 63,
+   "withVideo": 10,
+   "flags": [
+    "mix: 7/81/12 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Solving first-order equations",
+   "lesson": "Homogeneous equations: y = ux",
+   "lessonId": "homogeneous",
+   "minutes": 47,
+   "videos": 1,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 62,
+   "mix": {
+    "1": 6,
+    "2": 54,
+    "3": 6
+   },
+   "withSteps": 61,
+   "withVideo": 8,
+   "flags": [
+    "mix: 9/82/9 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Solving first-order equations",
+   "lesson": "Reduction to separable: y' = f(Ax + By + C)",
+   "lessonId": "reduction",
+   "minutes": 29,
+   "videos": 1,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 3,
+   "practice": 50,
+   "mix": {
+    "1": 0,
+    "2": 53,
+    "3": 0
+   },
+   "withSteps": 53,
+   "withVideo": 0,
+   "flags": [
+    "stockout: no worked example",
+    "mix: 0/100/0 (target 40/40/20)",
+    "mix: no foundation questions to start on"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Solving first-order equations",
+   "lesson": "Which method? Recognising the equation",
+   "lessonId": "which-method",
+   "minutes": 13,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 3,
+   "practice": 4,
+   "mix": {
+    "1": 3,
+    "2": 4,
+    "3": 0
+   },
+   "withSteps": 4,
+   "withVideo": 0,
+   "flags": [
+    "stockout: no video or notes",
+    "stockout: 4 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Modelling with first-order equations",
+   "lesson": "Building a model",
+   "lessonId": "modelling",
+   "minutes": 15,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 3,
+   "practice": 0,
+   "mix": {
+    "1": 2,
+    "2": 1,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 0 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Modelling with first-order equations",
+   "lesson": "Growth & decay",
+   "lessonId": "growth-decay",
+   "minutes": 42,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 10,
+   "mix": {
+    "1": 3,
+    "2": 5,
+    "3": 6
+   },
+   "withSteps": 14,
+   "withVideo": 8,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Modelling with first-order equations",
+   "lesson": "Newton's law of cooling",
+   "lessonId": "cooling",
+   "minutes": 46,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 31,
+   "mix": {
+    "1": 0,
+    "2": 30,
+    "3": 4
+   },
+   "withSteps": 33,
+   "withVideo": 3,
+   "flags": [
+    "mix: 0/88/12 (target 40/40/20)",
+    "mix: no foundation questions to start on"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Modelling with first-order equations",
+   "lesson": "Mixtures & circuits",
+   "lessonId": "mixtures-circuits",
+   "minutes": 25,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 3,
+   "practice": 33,
+   "mix": {
+    "1": 1,
+    "2": 33,
+    "3": 2
+   },
+   "withSteps": 35,
+   "withVideo": 0,
+   "flags": [
+    "stockout: no video or notes",
+    "stockout: no worked example",
+    "mix: 3/92/6 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Modelling with first-order equations",
+   "lesson": "Logistic & nonlinear models",
+   "lessonId": "logistic",
+   "minutes": 41,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 2,
+   "worked": 1,
+   "check": 3,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 4,
+    "3": 1
+   },
+   "withSteps": 5,
+   "withVideo": 2,
+   "flags": [
+    "stockout: 2 practice questions (min 8)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Complex numbers",
+   "lesson": "Complex arithmetic, modulus & polar form",
+   "lessonId": "complex-arithmetic",
+   "minutes": 57,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 2,
+   "worked": 1,
+   "check": 4,
+   "practice": 23,
+   "mix": {
+    "1": 5,
+    "2": 21,
+    "3": 1
+   },
+   "withSteps": 25,
+   "withVideo": 3,
+   "flags": [
+    "mix: 19/78/4 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Complex numbers",
+   "lesson": "Powers & roots: De Moivre",
+   "lessonId": "roots-de-moivre",
+   "minutes": 41,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 39,
+   "mix": {
+    "1": 2,
+    "2": 38,
+    "3": 2
+   },
+   "withSteps": 38,
+   "withVideo": 4,
+   "flags": [
+    "mix: 5/90/5 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Higher-order linear equations",
+   "lesson": "Theory of higher-order linear equations",
+   "lessonId": "higher-order-theory",
+   "minutes": 20,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 2,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 0 check questions (min 3)",
+    "stockout: 0 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Higher-order linear equations",
+   "lesson": "Second-order equations with constant coefficients",
+   "lessonId": "constant-coefficients",
+   "minutes": 15,
+   "videos": 1,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 0 check questions (min 3)",
+    "stockout: 0 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Higher-order linear equations",
+   "lesson": "Looking ahead: Laplace transforms",
+   "lessonId": "laplace-preview",
+   "minutes": 10,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 0 check questions (min 3)",
+    "stockout: 0 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "How the exam is built",
+   "lessonId": "exam-insights",
+   "minutes": 10,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 2,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Mock midterm",
+   "lessonId": "mock-midterm",
+   "minutes": 75,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 178,
+   "mix": {
+    "1": 27,
+    "2": 70,
+    "3": 81
+   },
+   "withSteps": 160,
+   "withVideo": 54,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Fall 2018 Midterm 1 (Oct 19, 2018)",
+   "lessonId": "paper-f18",
+   "minutes": 10,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 5,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 5
+   },
+   "withSteps": 5,
+   "withVideo": 5,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Winter 2017 First Midterm (Feb 5, 2017)",
+   "lessonId": "paper-w17",
+   "minutes": 18,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 9,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 9
+   },
+   "withSteps": 9,
+   "withVideo": 9,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Winter 2025 Term Test 1, version 2 (Feb 21, 2025)",
+   "lessonId": "paper-w25t",
+   "minutes": 12,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 6,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 6
+   },
+   "withSteps": 6,
+   "withVideo": 6,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Winter 2025 Quizzes 1–2",
+   "lessonId": "paper-w25q",
+   "minutes": 5,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 2
+   },
+   "withSteps": 2,
+   "withVideo": 2,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Summer 2021 Quizzes 1–2 (Dr. Eskandarian)",
+   "lessonId": "paper-s21",
+   "minutes": 18,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 9,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 9
+   },
+   "withSteps": 9,
+   "withVideo": 9,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Fall 2021 Quiz 1 (Dr. Eskandarian) and a later copy of it",
+   "lessonId": "paper-f21",
+   "minutes": 16,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 8,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 8
+   },
+   "withSteps": 8,
+   "withVideo": 8,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Other Concordia quizzes (2016–2022, WebWork)",
+   "lessonId": "paper-oq",
+   "minutes": 30,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 15,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 15
+   },
+   "withSteps": 15,
+   "withVideo": 15,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Exam-style questions: midterms & quizzes",
+   "lessonId": "bank-past",
+   "minutes": 40,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 28,
+   "mix": {
+    "1": 1,
+    "2": 21,
+    "3": 6
+   },
+   "withSteps": 28,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Exam-style questions: finals",
+   "lessonId": "bank-past-final",
+   "minutes": 40,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 22,
+   "mix": {
+    "1": 0,
+    "2": 3,
+    "3": 19
+   },
+   "withSteps": 22,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Tutor notes & solving system",
+   "lesson": "The Gradesaver solving system",
+   "lessonId": "gradesaver",
+   "minutes": 22,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 2,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "ENGR213",
+   "section": "Tutor notes & solving system",
+   "lesson": "Tutorial exercises",
+   "lessonId": "tutorials",
+   "minutes": 30,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 3,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Introduction, atoms & bonding",
+   "lesson": "Materials and why structure decides properties",
+   "lessonId": "materials-intro",
+   "minutes": 42,
+   "videos": 1,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 23,
+   "mix": {
+    "1": 21,
+    "2": 5,
+    "3": 1
+   },
+   "withSteps": 6,
+   "withVideo": 0,
+   "flags": [
+    "mix: 78/19/4 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Introduction, atoms & bonding",
+   "lesson": "Atomic structure, moles & electron configuration",
+   "lessonId": "atomic-structure",
+   "minutes": 60,
+   "videos": 1,
+   "youtube": 3,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 20,
+   "mix": {
+    "1": 7,
+    "2": 9,
+    "3": 7
+   },
+   "withSteps": 7,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Introduction, atoms & bonding",
+   "lesson": "Bond types & % ionic character",
+   "lessonId": "bonding",
+   "minutes": 68,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 31,
+   "mix": {
+    "1": 8,
+    "2": 10,
+    "3": 17
+   },
+   "withSteps": 8,
+   "withVideo": 0,
+   "flags": [
+    "mix: 23/29/49 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Introduction, atoms & bonding",
+   "lesson": "Force–energy curves & properties from bonding",
+   "lessonId": "bond-energy",
+   "minutes": 70,
+   "videos": 0,
+   "youtube": 3,
+   "notes": 1,
+   "worked": 2,
+   "check": 4,
+   "practice": 20,
+   "mix": {
+    "1": 2,
+    "2": 13,
+    "3": 9
+   },
+   "withSteps": 6,
+   "withVideo": 0,
+   "flags": [
+    "mix: 8/54/38 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Crystal structures",
+   "lesson": "Unit cells: n, CN, APF & crystal systems",
+   "lessonId": "unit-cells",
+   "minutes": 64,
+   "videos": 1,
+   "youtube": 4,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 28,
+   "mix": {
+    "1": 11,
+    "2": 11,
+    "3": 9
+   },
+   "withSteps": 10,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Crystal structures",
+   "lesson": "Theoretical density",
+   "lessonId": "theoretical-density",
+   "minutes": 37,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 8,
+   "mix": {
+    "1": 0,
+    "2": 5,
+    "3": 6
+   },
+   "withSteps": 7,
+   "withVideo": 0,
+   "flags": [
+    "mix: 0/45/55 (target 40/40/20)",
+    "mix: no foundation questions to start on"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Crystal structures",
+   "lesson": "Crystalline, amorphous & polycrystalline",
+   "lessonId": "crystalline-amorphous",
+   "minutes": 38,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 0,
+   "check": 4,
+   "practice": 13,
+   "mix": {
+    "1": 5,
+    "2": 1,
+    "3": 11
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": [
+    "stockout: no worked example",
+    "mix: 29/6/65 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Crystallography & X-rays",
+   "lesson": "Miller indices: directions",
+   "lessonId": "directions",
+   "minutes": 37,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 8,
+   "mix": {
+    "1": 1,
+    "2": 6,
+    "3": 4
+   },
+   "withSteps": 5,
+   "withVideo": 0,
+   "flags": [
+    "mix: 9/55/36 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Crystallography & X-rays",
+   "lesson": "Miller indices: planes",
+   "lessonId": "planes",
+   "minutes": 44,
+   "videos": 0,
+   "youtube": 4,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 11,
+   "mix": {
+    "1": 1,
+    "2": 4,
+    "3": 9
+   },
+   "withSteps": 4,
+   "withVideo": 0,
+   "flags": [
+    "mix: 7/29/64 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Crystallography & X-rays",
+   "lesson": "Linear & planar density, close packing",
+   "lessonId": "linear-planar-density",
+   "minutes": 54,
+   "videos": 1,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 13,
+   "mix": {
+    "1": 2,
+    "2": 7,
+    "3": 8
+   },
+   "withSteps": 9,
+   "withVideo": 0,
+   "flags": [
+    "mix: 12/41/47 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Crystallography & X-rays",
+   "lesson": "X-ray diffraction & Bragg's law",
+   "lessonId": "xrd",
+   "minutes": 35,
+   "videos": 0,
+   "youtube": 3,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 7,
+   "mix": {
+    "1": 3,
+    "2": 3,
+    "3": 4
+   },
+   "withSteps": 6,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 7 practice questions (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Imperfections in solids",
+   "lesson": "Point defects & vacancy concentration",
+   "lessonId": "point-defects",
+   "minutes": 57,
+   "videos": 1,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 14,
+   "mix": {
+    "1": 3,
+    "2": 6,
+    "3": 9
+   },
+   "withSteps": 10,
+   "withVideo": 0,
+   "flags": [
+    "mix: 17/33/50 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Imperfections in solids",
+   "lesson": "Impurities & solid solutions",
+   "lessonId": "solid-solutions",
+   "minutes": 36,
+   "videos": 0,
+   "youtube": 3,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 7,
+   "mix": {
+    "1": 3,
+    "2": 5,
+    "3": 3
+   },
+   "withSteps": 6,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 7 practice questions (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Imperfections in solids",
+   "lesson": "Dislocations, grain boundaries & microscopy",
+   "lessonId": "dislocations-grains",
+   "minutes": 26,
+   "videos": 1,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 0,
+   "check": 3,
+   "practice": 5,
+   "mix": {
+    "1": 1,
+    "2": 2,
+    "3": 5
+   },
+   "withSteps": 3,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 5 practice questions (min 8)",
+    "stockout: no worked example",
+    "mix: 13/25/63 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Diffusion",
+   "lesson": "Diffusion mechanisms & D(T)",
+   "lessonId": "diffusion-mechanisms",
+   "minutes": 46,
+   "videos": 1,
+   "youtube": 4,
+   "notes": 2,
+   "worked": 1,
+   "check": 3,
+   "practice": 4,
+   "mix": {
+    "1": 1,
+    "2": 2,
+    "3": 4
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 4 practice questions (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Diffusion",
+   "lesson": "Fick's first law: steady state",
+   "lessonId": "fick-first",
+   "minutes": 26,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 2,
+   "mix": {
+    "1": 1,
+    "2": 2,
+    "3": 2
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 2 practice questions (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Diffusion",
+   "lesson": "Fick's second law, erf & carburizing",
+   "lessonId": "fick-second",
+   "minutes": 33,
+   "videos": 0,
+   "youtube": 3,
+   "notes": 1,
+   "worked": 2,
+   "check": 4,
+   "practice": 3,
+   "mix": {
+    "1": 1,
+    "2": 3,
+    "3": 3
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 3 practice questions (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Mechanical properties of metals",
+   "lesson": "Stress, strain, Hooke's law & Poisson's ratio",
+   "lessonId": "elastic",
+   "minutes": 68,
+   "videos": 1,
+   "youtube": 5,
+   "notes": 1,
+   "worked": 2,
+   "check": 4,
+   "practice": 15,
+   "mix": {
+    "1": 7,
+    "2": 7,
+    "3": 5
+   },
+   "withSteps": 7,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Mechanical properties of metals",
+   "lesson": "The tensile curve: yield, TS, ductility & hardness",
+   "lessonId": "tensile",
+   "minutes": 118,
+   "videos": 0,
+   "youtube": 3,
+   "notes": 1,
+   "worked": 5,
+   "check": 4,
+   "practice": 38,
+   "mix": {
+    "1": 12,
+    "2": 12,
+    "3": 18
+   },
+   "withSteps": 12,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Mechanical properties of metals",
+   "lesson": "Plastic deformation, true stress & design",
+   "lessonId": "plastic-true-stress",
+   "minutes": 37,
+   "videos": 1,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 4,
+   "practice": 7,
+   "mix": {
+    "1": 4,
+    "2": 6,
+    "3": 1
+   },
+   "withSteps": 11,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 7 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Dislocations & strengthening",
+   "lesson": "Dislocations & slip systems",
+   "lessonId": "slip-systems",
+   "minutes": 14,
+   "videos": 1,
+   "youtube": 3,
+   "notes": 0,
+   "worked": 0,
+   "check": 2,
+   "practice": 1,
+   "mix": {
+    "1": 0,
+    "2": 2,
+    "3": 1
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 2 check questions (min 3)",
+    "stockout: 1 practice question (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Dislocations & strengthening",
+   "lesson": "Strengthening mechanisms & annealing",
+   "lessonId": "strengthening",
+   "minutes": 10,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 3,
+   "practice": 1,
+   "mix": {
+    "1": 2,
+    "2": 2,
+    "3": 0
+   },
+   "withSteps": 4,
+   "withVideo": 0,
+   "flags": [
+    "stockout: no video or notes",
+    "stockout: 1 practice question (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Phase diagrams",
+   "lesson": "Binary phase diagrams & the lever rule",
+   "lessonId": "phase-diagrams",
+   "minutes": 20,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 0,
+   "check": 3,
+   "practice": 2,
+   "mix": {
+    "1": 2,
+    "2": 2,
+    "3": 1
+   },
+   "withSteps": 5,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 2 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Phase diagrams",
+   "lesson": "The iron–carbon system",
+   "lessonId": "iron-carbon",
+   "minutes": 25,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 2,
+   "worked": 0,
+   "check": 3,
+   "practice": 0,
+   "mix": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "withSteps": 3,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 0 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Ceramics, polymers & properties",
+   "lesson": "Ceramics",
+   "lessonId": "ceramics",
+   "minutes": 20,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 2,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 0 check questions (min 3)",
+    "stockout: 0 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Ceramics, polymers & properties",
+   "lesson": "Polymers",
+   "lessonId": "polymers",
+   "minutes": 30,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 3,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 0 check questions (min 3)",
+    "stockout: 0 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Ceramics, polymers & properties",
+   "lesson": "Electrical, thermal, magnetic & optical properties",
+   "lessonId": "functional-properties",
+   "minutes": 40,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 4,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 0 check questions (min 3)",
+    "stockout: 0 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "How the exam is built",
+   "lessonId": "exam-insights",
+   "minutes": 10,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 2,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Mock midterm (Ch 1–7.4)",
+   "lessonId": "mock-midterm",
+   "minutes": 90,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 254,
+   "mix": {
+    "1": 48,
+    "2": 70,
+    "3": 136
+   },
+   "withSteps": 82,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Fall 2024 midterm",
+   "lessonId": "paper-f24",
+   "minutes": 60,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 30,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 30
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Midterm 2025 (Version A)",
+   "lessonId": "paper-a25",
+   "minutes": 60,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 30,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 30
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Winter 2026 midterm",
+   "lessonId": "paper-w26",
+   "minutes": 80,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 40,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 40
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Old final (MECH 221, undated)",
+   "lessonId": "paper-fx",
+   "minutes": 18,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 9,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 9
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Final 2017 (MECH 221)",
+   "lessonId": "paper-f17",
+   "minutes": 12,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 6,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 6
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Practice Problem Set #1 (Fall 2026)",
+   "lessonId": "paper-pps1",
+   "minutes": 10,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 5,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 5
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Midterm drill: 40 questions",
+   "lessonId": "bank-midterm-drill",
+   "minutes": 40,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 40,
+   "mix": {
+    "1": 23,
+    "2": 14,
+    "3": 3
+   },
+   "withSteps": 35,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Exam-style questions: midterms",
+   "lessonId": "bank-past",
+   "minutes": 40,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 33,
+   "mix": {
+    "1": 15,
+    "2": 10,
+    "3": 8
+   },
+   "withSteps": 32,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Exam-style questions: finals",
+   "lessonId": "bank-past-final",
+   "minutes": 40,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 23,
+   "mix": {
+    "1": 5,
+    "2": 14,
+    "3": 4
+   },
+   "withSteps": 19,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Teacher's sample midterm 2017",
+   "lesson": "Miller indices: planes",
+   "lessonId": "tp-miller-planes",
+   "minutes": 6,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 3,
+   "mix": {
+    "1": 0,
+    "2": 3,
+    "3": 0
+   },
+   "withSteps": 3,
+   "withVideo": 3,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Teacher's sample midterm 2017",
+   "lesson": "Crystal structures & densities",
+   "lessonId": "tp-crystal-densities",
+   "minutes": 12,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 6,
+   "mix": {
+    "1": 3,
+    "2": 2,
+    "3": 1
+   },
+   "withSteps": 5,
+   "withVideo": 6,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Teacher's sample midterm 2017",
+   "lesson": "Atomic bonding",
+   "lessonId": "tp-bonding",
+   "minutes": 6,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 3,
+   "mix": {
+    "1": 2,
+    "2": 1,
+    "3": 0
+   },
+   "withSteps": 3,
+   "withVideo": 3,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Teacher's sample midterm 2017",
+   "lesson": "Defects & solid solutions",
+   "lessonId": "tp-defects",
+   "minutes": 8,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 4,
+   "mix": {
+    "1": 2,
+    "2": 2,
+    "3": 0
+   },
+   "withSteps": 4,
+   "withVideo": 4,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Teacher's sample midterm 2017",
+   "lesson": "Dislocations & slip",
+   "lessonId": "tp-dislocations",
+   "minutes": 6,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 3,
+   "mix": {
+    "1": 1,
+    "2": 2,
+    "3": 0
+   },
+   "withSteps": 3,
+   "withVideo": 3,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Teacher's sample midterm 2017",
+   "lesson": "Microscopy",
+   "lessonId": "tp-microscopy",
+   "minutes": 5,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 2,
+   "mix": {
+    "1": 2,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 2,
+   "withVideo": 2,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Teacher's sample midterm 2017",
+   "lesson": "Diffusion",
+   "lessonId": "tp-diffusion",
+   "minutes": 12,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 6,
+   "mix": {
+    "1": 4,
+    "2": 1,
+    "3": 1
+   },
+   "withSteps": 3,
+   "withVideo": 6,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Teacher's sample midterm 2017",
+   "lesson": "The stress–strain curve (Figure 1)",
+   "lessonId": "tp-stress-strain",
+   "minutes": 20,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 10,
+   "mix": {
+    "1": 4,
+    "2": 6,
+    "3": 0
+   },
+   "withSteps": 10,
+   "withVideo": 10,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Teacher's sample midterm 2017",
+   "lesson": "Tensile test calculations",
+   "lessonId": "tp-tensile",
+   "minutes": 6,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 3,
+   "mix": {
+    "1": 0,
+    "2": 2,
+    "3": 1
+   },
+   "withSteps": 3,
+   "withVideo": 3,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Teacher's sample midterm 2017",
+   "lesson": "Sit the whole 2017 sample midterm",
+   "lessonId": "tp-full-paper",
+   "minutes": 80,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 40,
+   "mix": {
+    "1": 18,
+    "2": 19,
+    "3": 3
+   },
+   "withSteps": 36,
+   "withVideo": 40,
+   "flags": []
+  },
+  {
+   "course": "MIAE221",
+   "section": "Exam kit",
+   "lesson": "Your one-page cheat sheet",
+   "lessonId": "cheat-sheet",
+   "minutes": 30,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 3,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Getting started with C++",
+   "lesson": "How a C++ program is built",
+   "lessonId": "build-process",
+   "minutes": 56,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 3,
+   "worked": 0,
+   "check": 4,
+   "practice": 15,
+   "mix": {
+    "1": 15,
+    "2": 4,
+    "3": 0
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": [
+    "stockout: no worked example",
+    "mix: 79/21/0 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Getting started with C++",
+   "lesson": "Input, output & formatting",
+   "lessonId": "input-output",
+   "minutes": 10,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 3,
+   "practice": 1,
+   "mix": {
+    "1": 3,
+    "2": 1,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: no video or notes",
+    "stockout: 1 practice question (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Variables & data types",
+   "lesson": "Data types, sizes & overflow",
+   "lessonId": "data-types",
+   "minutes": 47,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 2,
+   "worked": 1,
+   "check": 4,
+   "practice": 27,
+   "mix": {
+    "1": 16,
+    "2": 11,
+    "3": 4
+   },
+   "withSteps": 10,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Variables & data types",
+   "lesson": "Casting & mixed-type expressions",
+   "lessonId": "casting",
+   "minutes": 29,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 6,
+   "mix": {
+    "1": 1,
+    "2": 9,
+    "3": 0
+   },
+   "withSteps": 3,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 6 practice questions (min 8)",
+    "mix: 10/90/0 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Expressions & operators",
+   "lesson": "Integer division & the % operator",
+   "lessonId": "integer-division",
+   "minutes": 42,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 11,
+   "mix": {
+    "1": 6,
+    "2": 7,
+    "3": 2
+   },
+   "withSteps": 7,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Expressions & operators",
+   "lesson": "++, --, compound assignment & precedence",
+   "lessonId": "operators",
+   "minutes": 52,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 2,
+   "worked": 1,
+   "check": 4,
+   "practice": 23,
+   "mix": {
+    "1": 6,
+    "2": 17,
+    "3": 4
+   },
+   "withSteps": 14,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Expressions & operators",
+   "lesson": "The cmath library",
+   "lessonId": "math-library",
+   "minutes": 34,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 7,
+   "mix": {
+    "1": 3,
+    "2": 6,
+    "3": 2
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 7 practice questions (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Control statements & loops",
+   "lesson": "if / else-if ladders",
+   "lessonId": "if-else",
+   "minutes": 53,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 2,
+   "worked": 1,
+   "check": 4,
+   "practice": 18,
+   "mix": {
+    "1": 6,
+    "2": 12,
+    "3": 4
+   },
+   "withSteps": 8,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Control statements & loops",
+   "lesson": "Logical operators & short-circuit evaluation",
+   "lessonId": "logical-operators",
+   "minutes": 32,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 6,
+   "mix": {
+    "1": 1,
+    "2": 7,
+    "3": 2
+   },
+   "withSteps": 3,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 6 practice questions (min 8)",
+    "mix: 10/70/20 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Control statements & loops",
+   "lesson": "for loops",
+   "lessonId": "for-loops",
+   "minutes": 42,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 15,
+   "mix": {
+    "1": 5,
+    "2": 9,
+    "3": 5
+   },
+   "withSteps": 12,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Control statements & loops",
+   "lesson": "while, do-while & digit loops",
+   "lessonId": "while-loops",
+   "minutes": 28,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 5,
+   "mix": {
+    "1": 1,
+    "2": 6,
+    "3": 2
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 5 practice questions (min 8)",
+    "mix: 11/67/22 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Control statements & loops",
+   "lesson": "break & continue",
+   "lessonId": "break-continue",
+   "minutes": 22,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 4,
+    "3": 2
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 2 practice questions (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Control statements & loops",
+   "lesson": "Nested loops",
+   "lessonId": "nested-loops",
+   "minutes": 28,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 4,
+   "mix": {
+    "1": 0,
+    "2": 4,
+    "3": 4
+   },
+   "withSteps": 3,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 4 practice questions (min 8)",
+    "mix: 0/50/50 (target 40/40/20)",
+    "mix: no foundation questions to start on"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Arrays & C-strings",
+   "lesson": "1-D arrays: sum, max, search & dot product",
+   "lessonId": "arrays-1d",
+   "minutes": 32,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 2,
+   "worked": 1,
+   "check": 4,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 6,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 2 practice questions (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Arrays & C-strings",
+   "lesson": "2-D arrays",
+   "lessonId": "arrays-2d",
+   "minutes": 21,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 1,
+   "mix": {
+    "1": 0,
+    "2": 3,
+    "3": 1
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 1 practice question (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Arrays & C-strings",
+   "lesson": "C-strings & the null terminator",
+   "lessonId": "c-strings",
+   "minutes": 21,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 1,
+   "mix": {
+    "1": 0,
+    "2": 3,
+    "3": 1
+   },
+   "withSteps": 1,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 1 practice question (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Writing complete programs",
+   "lesson": "Writing a full program",
+   "lessonId": "write-program",
+   "minutes": 30,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 3,
+   "mix": {
+    "1": 3,
+    "2": 0,
+    "3": 3
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 3 practice questions (min 8)"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Writing complete programs",
+   "lesson": "Flowcharts & Flowgorithm",
+   "lessonId": "flowcharts",
+   "minutes": 3,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 1,
+   "practice": 0,
+   "mix": {
+    "1": 1,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": [
+    "stockout: no video or notes",
+    "stockout: 1 check question (min 3)",
+    "stockout: 0 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "MIAE215",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "How the exam is built",
+   "lessonId": "exam-insights",
+   "minutes": 10,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 2,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Mock midterm",
+   "lessonId": "mock-midterm",
+   "minutes": 90,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 135,
+   "mix": {
+    "1": 55,
+    "2": 44,
+    "3": 36
+   },
+   "withSteps": 65,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Winter 2024 midterm (2024/02/22)",
+   "lessonId": "paper-m24",
+   "minutes": 18,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 9,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 9
+   },
+   "withSteps": 1,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Fall 2023 midterm, Question 2 (40 %)",
+   "lessonId": "paper-f23",
+   "minutes": 5,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 2
+   },
+   "withSteps": 1,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Midterm Review #1, as posted in 2021/22",
+   "lessonId": "paper-r21",
+   "minutes": 8,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 4,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 4
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Midterm Review #1, as posted again in 2025/26",
+   "lessonId": "paper-r25",
+   "minutes": 5,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 2
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Quiz #2 (60-minute programming quiz)",
+   "lessonId": "paper-q2",
+   "minutes": 5,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 1,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 1
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Exam-style tracing & programming questions",
+   "lessonId": "bank-past",
+   "minutes": 40,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 22,
+   "mix": {
+    "1": 5,
+    "2": 11,
+    "3": 6
+   },
+   "withSteps": 22,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Teacher's midterm practice",
+   "lesson": "Output tracing",
+   "lessonId": "tp-output-tracing",
+   "minutes": 12,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 6,
+   "mix": {
+    "1": 2,
+    "2": 4,
+    "3": 0
+   },
+   "withSteps": 6,
+   "withVideo": 6,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Teacher's midterm practice",
+   "lesson": "Nested loops & 2-D arrays",
+   "lessonId": "tp-nested-2d",
+   "minutes": 8,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 4,
+   "mix": {
+    "1": 2,
+    "2": 2,
+    "3": 0
+   },
+   "withSteps": 4,
+   "withVideo": 4,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Teacher's midterm practice",
+   "lesson": "Array algorithms",
+   "lessonId": "tp-array-algorithms",
+   "minutes": 12,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 6,
+   "mix": {
+    "1": 2,
+    "2": 3,
+    "3": 1
+   },
+   "withSteps": 6,
+   "withVideo": 6,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Teacher's midterm practice",
+   "lesson": "Loops, menus & input validation",
+   "lessonId": "tp-menus-validation",
+   "minutes": 12,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 6,
+   "mix": {
+    "1": 1,
+    "2": 3,
+    "3": 2
+   },
+   "withSteps": 6,
+   "withVideo": 6,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Teacher's midterm practice",
+   "lesson": "Input, output & formatting",
+   "lessonId": "tp-input-output",
+   "minutes": 10,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 5,
+   "mix": {
+    "1": 3,
+    "2": 2,
+    "3": 0
+   },
+   "withSteps": 5,
+   "withVideo": 5,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Teacher's midterm practice",
+   "lesson": "Variable limits & overflow",
+   "lessonId": "tp-limits-overflow",
+   "minutes": 8,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 4,
+   "mix": {
+    "1": 0,
+    "2": 4,
+    "3": 0
+   },
+   "withSteps": 4,
+   "withVideo": 4,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Teacher's midterm practice",
+   "lesson": "Practice midterm 2026",
+   "lessonId": "practice-midterm-2026",
+   "minutes": 23,
+   "videos": 3,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 3,
+   "mix": {
+    "1": 0,
+    "2": 1,
+    "3": 2
+   },
+   "withSteps": 3,
+   "withVideo": 3,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "C++ code lab: write the program",
+   "lesson": "Official midterm 2022 multi-part problem",
+   "lessonId": "lab-midterm-2022",
+   "minutes": 31,
+   "videos": 1,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "C++ code lab: write the program",
+   "lesson": "Array statistics & circular shift",
+   "lessonId": "lab-stats-shift",
+   "minutes": 27,
+   "videos": 1,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "C++ code lab: write the program",
+   "lesson": "Frequency histogram & sentinel input",
+   "lessonId": "lab-histogram",
+   "minutes": 27,
+   "videos": 1,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "C++ code lab: write the program",
+   "lesson": "Array equality & first mismatch",
+   "lessonId": "lab-equality",
+   "minutes": 27,
+   "videos": 1,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "C++ code lab: write the program",
+   "lesson": "Menu-driven validation & alternating series",
+   "lessonId": "lab-menu-series",
+   "minutes": 27,
+   "videos": 1,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Dr. Gordon's past midterms",
+   "lesson": "Fall 2026 midterm (live revision paper)",
+   "lessonId": "gordon-fall2026",
+   "minutes": 12,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 0,
+   "practice": 3,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 3
+   },
+   "withSteps": 3,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Dr. Gordon's past midterms",
+   "lesson": "Fall 2023 midterm, Question 2",
+   "lessonId": "gordon-fall2023",
+   "minutes": 11,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 0,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 2
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Dr. Gordon's past midterms",
+   "lesson": "Fall 2022 midterm, Question 1",
+   "lessonId": "gordon-fall2022",
+   "minutes": 16,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 0,
+   "practice": 5,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 5
+   },
+   "withSteps": 5,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Dr. Gordon's past midterms",
+   "lesson": "Midterm Review #1",
+   "lessonId": "gordon-review1",
+   "minutes": 11,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 0,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 2
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Dr. Gordon's past midterms",
+   "lesson": "Midterm Review #4",
+   "lessonId": "gordon-review4",
+   "minutes": 11,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 0,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 2
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Dr. Gordon's past midterms",
+   "lesson": "60-minute quizzes",
+   "lessonId": "gordon-quizzes",
+   "minutes": 11,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 0,
+   "practice": 1,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 1
+   },
+   "withSteps": 1,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Dr. Gordon's past midterms",
+   "lesson": "What Dr. Gordon tests, and the traps",
+   "lessonId": "gordon-analytics",
+   "minutes": 20,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 2,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "MIAE215",
+   "section": "Exam kit",
+   "lesson": "Your one-page formula sheet",
+   "lessonId": "cheat-sheet",
+   "minutes": 20,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 2,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Engineering & industrial engineering",
+   "lesson": "Engineering, science & the profession",
+   "lessonId": "engineering-profession",
+   "minutes": 52,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 30,
+   "mix": {
+    "1": 20,
+    "2": 5,
+    "3": 8
+   },
+   "withSteps": 4,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Engineering & industrial engineering",
+   "lesson": "Industrial & systems engineering",
+   "lessonId": "industrial-systems",
+   "minutes": 44,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 1,
+   "check": 3,
+   "practice": 14,
+   "mix": {
+    "1": 8,
+    "2": 3,
+    "3": 6
+   },
+   "withSteps": 2,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Manufacturing engineering",
+   "lesson": "Bill of materials & industrial processes",
+   "lessonId": "bom-processes",
+   "minutes": 37,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 22,
+   "mix": {
+    "1": 15,
+    "2": 11,
+    "3": 0
+   },
+   "withSteps": 8,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Manufacturing engineering",
+   "lesson": "Cost-volume & break-even analysis",
+   "lessonId": "break-even",
+   "minutes": 42,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 10,
+   "mix": {
+    "1": 4,
+    "2": 8,
+    "3": 2
+   },
+   "withSteps": 7,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Facility location & layout",
+   "lesson": "Facility location: transportation & centre of gravity",
+   "lessonId": "location",
+   "minutes": 67,
+   "videos": 0,
+   "youtube": 2,
+   "notes": 1,
+   "worked": 2,
+   "check": 3,
+   "practice": 26,
+   "mix": {
+    "1": 10,
+    "2": 9,
+    "3": 10
+   },
+   "withSteps": 11,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Facility location & layout",
+   "lesson": "Facility layout",
+   "lessonId": "layout",
+   "minutes": 42,
+   "videos": 0,
+   "youtube": 1,
+   "notes": 1,
+   "worked": 1,
+   "check": 4,
+   "practice": 13,
+   "mix": {
+    "1": 9,
+    "2": 6,
+    "3": 2
+   },
+   "withSteps": 4,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Material handling & routing",
+   "lesson": "Material handling equipment & principles",
+   "lessonId": "material-handling",
+   "minutes": 36,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 4,
+   "practice": 12,
+   "mix": {
+    "1": 12,
+    "2": 4,
+    "3": 0
+   },
+   "withSteps": 3,
+   "withVideo": 0,
+   "flags": [
+    "stockout: no worked example",
+    "mix: 75/25/0 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "INDU211",
+   "section": "Material handling & routing",
+   "lesson": "Routing: TSP & Clark-Wright savings",
+   "lessonId": "routing",
+   "minutes": 72,
+   "videos": 0,
+   "youtube": 3,
+   "notes": 1,
+   "worked": 2,
+   "check": 4,
+   "practice": 23,
+   "mix": {
+    "1": 6,
+    "2": 11,
+    "3": 10
+   },
+   "withSteps": 17,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Operations planning & control",
+   "lesson": "Demand forecasting",
+   "lessonId": "forecasting",
+   "minutes": 15,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 3,
+   "practice": 0,
+   "mix": {
+    "1": 1,
+    "2": 1,
+    "3": 1
+   },
+   "withSteps": 3,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 0 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "INDU211",
+   "section": "Operations planning & control",
+   "lesson": "Inventory: EOQ & reorder points",
+   "lessonId": "inventory",
+   "minutes": 20,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 3,
+   "practice": 2,
+   "mix": {
+    "1": 1,
+    "2": 3,
+    "3": 1
+   },
+   "withSteps": 5,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 2 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "INDU211",
+   "section": "Operations planning & control",
+   "lesson": "Aggregate planning, MRP, ERP & JIT",
+   "lessonId": "mrp-jit",
+   "minutes": 22,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 4,
+   "practice": 3,
+   "mix": {
+    "1": 5,
+    "2": 1,
+    "3": 1
+   },
+   "withSteps": 7,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 3 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "INDU211",
+   "section": "Operations research & queuing",
+   "lesson": "Linear programming",
+   "lessonId": "linear-programming",
+   "minutes": 20,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 3,
+   "practice": 2,
+   "mix": {
+    "1": 2,
+    "2": 3,
+    "3": 0
+   },
+   "withSteps": 5,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 2 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "INDU211",
+   "section": "Operations research & queuing",
+   "lesson": "Queuing models",
+   "lessonId": "queuing",
+   "minutes": 23,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 3,
+   "practice": 4,
+   "mix": {
+    "1": 2,
+    "2": 3,
+    "3": 2
+   },
+   "withSteps": 7,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 4 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "INDU211",
+   "section": "Quality, work design & human factors",
+   "lesson": "Quality control & SPC",
+   "lessonId": "quality",
+   "minutes": 24,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 4,
+   "practice": 4,
+   "mix": {
+    "1": 5,
+    "2": 3,
+    "3": 0
+   },
+   "withSteps": 7,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 4 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "INDU211",
+   "section": "Quality, work design & human factors",
+   "lesson": "Work design & human factors",
+   "lessonId": "work-design",
+   "minutes": 24,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 4,
+   "practice": 4,
+   "mix": {
+    "1": 6,
+    "2": 1,
+    "3": 1
+   },
+   "withSteps": 6,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 4 practice questions (min 8)",
+    "stockout: no worked example",
+    "mix: 75/13/13 (target 40/40/20)"
+   ]
+  },
+  {
+   "course": "INDU211",
+   "section": "Project management",
+   "lesson": "CPM & PERT",
+   "lessonId": "cpm-pert",
+   "minutes": 21,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 1,
+   "worked": 0,
+   "check": 3,
+   "practice": 3,
+   "mix": {
+    "1": 1,
+    "2": 5,
+    "3": 0
+   },
+   "withSteps": 6,
+   "withVideo": 0,
+   "flags": [
+    "stockout: 3 practice questions (min 8)",
+    "stockout: no worked example"
+   ]
+  },
+  {
+   "course": "INDU211",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "How the exam is built",
+   "lessonId": "exam-insights",
+   "minutes": 10,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 2,
+   "worked": 0,
+   "check": 0,
+   "practice": 0,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Mock midterm (Chapters 1–5)",
+   "lessonId": "mock-midterm",
+   "minutes": 75,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 149,
+   "mix": {
+    "1": 67,
+    "2": 44,
+    "3": 38
+   },
+   "withSteps": 46,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Fall 2020 midterm (Oct 20, 2020)",
+   "lessonId": "paper-m20",
+   "minutes": 32,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 16,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 16
+   },
+   "withSteps": 4,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "2019 midterm sample (handed out again in 2020, 2022 and 2024)",
+   "lessonId": "paper-s19",
+   "minutes": 6,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 3,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 3
+   },
+   "withSteps": 1,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Fall 2020 final, Chapter 1–5 questions only",
+   "lessonId": "paper-f20",
+   "minutes": 5,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 2
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "2022 sample final, Chapter 1–5 questions only",
+   "lessonId": "paper-sf22",
+   "minutes": 5,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 2,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 2
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Assignment 2 (current instructor, 2025)",
+   "lessonId": "paper-a2",
+   "minutes": 12,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 6,
+   "mix": {
+    "1": 0,
+    "2": 0,
+    "3": 6
+   },
+   "withSteps": 0,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Exam-style questions: midterm",
+   "lessonId": "bank-past-mid",
+   "minutes": 40,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 21,
+   "mix": {
+    "1": 7,
+    "2": 10,
+    "3": 4
+   },
+   "withSteps": 15,
+   "withVideo": 0,
+   "flags": []
+  },
+  {
+   "course": "INDU211",
+   "section": "Exam prep: past papers & mock midterm",
+   "lesson": "Exam-style questions: final",
+   "lessonId": "bank-past-final",
+   "minutes": 40,
+   "videos": 0,
+   "youtube": 0,
+   "notes": 0,
+   "worked": 0,
+   "check": 0,
+   "practice": 18,
+   "mix": {
+    "1": 8,
+    "2": 6,
+    "3": 4
+   },
+   "withSteps": 16,
+   "withVideo": 0,
+   "flags": []
+  }
+ ]
+}
