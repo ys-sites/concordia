@@ -12,7 +12,8 @@ export type Route =
   | { name: 'learn'; course: CourseId; lesson: string; step?: string }
   | { name: 'my-learning' }
   | { name: 'search'; q: string }
-  | { name: 'bank'; course?: CourseId };
+  | { name: 'bank'; course?: CourseId }
+  | { name: 'practice'; course: CourseId };
 
 // old drill sections → the lesson that now holds those questions
 const LEGACY_SECTIONS: Partial<Record<CourseId, Record<string, string>>> = {
@@ -71,6 +72,8 @@ export function parseRoute(hash: string): Route {
       return { name: 'search', q: params.get('q') ?? '' };
     case 'bank':
       return isCourseId(course) ? { name: 'bank', course } : { name: 'bank' };
+    case 'practice':
+      return isCourseId(course) ? { name: 'practice', course } : { name: 'home' };
     case 'quiz': {
       if (!isCourseId(course)) return { name: 'home' };
       const lesson = LEGACY_SECTIONS[course]?.[parts[2]];
@@ -98,6 +101,8 @@ export function formatRoute(r: Route): string {
       return `#/search${r.q ? '?q=' + encodeURIComponent(r.q) : ''}`;
     case 'bank':
       return `#/bank${r.course ? '/' + r.course : ''}`;
+    case 'practice':
+      return `#/practice/${r.course}`;
   }
 }
 

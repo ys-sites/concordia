@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, Brain, ChevronRight, FileStack, GraduationCap, RotateCcw, Timer, X } from 'lucide-react';
+import { ArrowLeft, Brain, ChevronRight, FileStack, GraduationCap, RotateCcw, Target, Timer, X } from 'lucide-react';
 import type { CourseId } from '../../types';
 import { COURSES, COURSE_BY_ID, courseClass } from '../courses';
 import { useCurriculum } from '../data';
@@ -20,6 +20,11 @@ const Topics: React.FC<{ course: CourseId; onPick: () => void }> = ({ course, on
   return (
     <div className="lx-pp-topics">
       <div className="lx-pp-quick">
+        <a className="lx-pp-tile is-build" href={href({ name: 'practice', course })} onClick={onPick}>
+          <Target size={20} aria-hidden />
+          <strong>Build your own quiz</strong>
+          <span className="lx-meta">Pick chapters, subtopics and question types</span>
+        </a>
         {mock && (
           <a className="lx-pp-tile" href={href({ name: 'learn', course, lesson: mock.id, step: mock.steps[0].id })} onClick={onPick}>
             <Timer size={20} aria-hidden />

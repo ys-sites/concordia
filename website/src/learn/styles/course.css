@@ -481,3 +481,31 @@
   display: inline-block;
   padding-block: 4px;
 }
+
+.lx-exam-build {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  margin: 4px 0 16px;
+  padding: 16px 18px;
+  border: 1.5px solid var(--lx-accent);
+  border-radius: var(--lx-r-lg);
+  background: var(--lx-tint);
+  color: var(--lx-accent-deep);
+  text-decoration: none;
+}
+.lx-exam-build > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lx-exam-build strong {
+  font-size: 16px;
+}
+.lx-exam-build .lx-meta {
+  color: var(--lx-ink-2);
+}
+.lx-exam-build:hover {
+  box-shadow: 0 0 0 3px var(--lx-tint-2);
+}

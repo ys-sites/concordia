@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import {
   ArrowRight,
+  CalendarClock,
   Check,
   CheckCircle2,
   ChevronDown,
@@ -10,8 +11,8 @@ import {
   HelpCircle,
   LibraryBig,
   PlayCircle,
-  Timer,
-  CalendarClock
+  Target,
+  Timer
 } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { Curriculum, Lesson, Section, VideoCard } from '../model';
@@ -175,6 +176,14 @@ const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ 
           </div>
         </div>
       </div>
+      <a className="lx-exam-build" href={href({ name: 'practice', course: cur.id })}>
+        <Target size={22} aria-hidden />
+        <span>
+          <strong>Build your own quiz</strong>
+          <span className="lx-meta">Choose the chapters or single subtopics, the kinds of questions (repeated on past papers, similar, asked once, possible) and how many.</span>
+        </span>
+        <ArrowRight size={18} aria-hidden />
+      </a>
       <p className="lx-exam-note lx-meta">Past papers are practised one question at a time in the quiz, with the worked solution after each answer. No exam is shown as a PDF.</p>
       <Curriculum cur={cur} sections={sections} done={done} />
     </div>

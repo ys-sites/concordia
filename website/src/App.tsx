@@ -19,6 +19,7 @@ const Player = safeLazy(() => import('./learn/pages/Player'));
 const MyLearning = safeLazy(() => import('./learn/pages/MyLearning'));
 const SearchPage = safeLazy(() => import('./learn/pages/SearchPage'));
 const QuestionBank = safeLazy(() => import('./learn/pages/QuestionBank'));
+const PracticeBuilder = safeLazy(() => import('./learn/pages/PracticeBuilder'));
 const PracticePicker = safeLazy(() => import('./learn/components/PracticePicker'));
 const ContactModal = safeLazy(() => import('./components/ContactModal').then((m) => ({ default: m.ContactModal })));
 
@@ -94,6 +95,7 @@ export function App() {
             {route.name === 'my-learning' && <MyLearning />}
             {route.name === 'search' && <SearchPage q={route.q} />}
             {route.name === 'bank' && <QuestionBank course={route.course} />}
+            {route.name === 'practice' && <PracticeBuilder key={route.course} course={route.course} />}
           </Suspense>
         </AppErrorBoundary>
       </main>

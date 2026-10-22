@@ -42,6 +42,7 @@ export interface QuizRunnerProps {
   onFinished?: (passed: boolean) => void;
   onContinue?: () => void;
   continueLabel?: string;
+  autoStart?: boolean; // a quiz built on the spot starts without the intro screen
 }
 
 // The question navigator: Prev, a numbered pill per question (right, wrong, answered, flagged, current), Next,
@@ -114,7 +115,7 @@ const QuestionNav: React.FC<{
   );
 };
 
-export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, onFinished, onContinue, continueLabel }) => {
+export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, onFinished, onContinue, continueLabel, autoStart }) => {
   const key = stepKey(course, step.id);
   const session = useProgress((s) => s.quizzes[key]);
   const stats = useProgress((s) => s.questions);
@@ -213,6 +214,10 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
     },
     [idx, step, key, course, lesson.id, pickAdaptive, rank, optionOrderFor]
   );
+
+  useEffect(() => {
+    if (autoStart && idx && !session) start(defaultMode);
+  }, [autoStart, idx, session]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const patch = (fn: (ss: QuizSession) => void) =>
     updateProgress((s) => {
