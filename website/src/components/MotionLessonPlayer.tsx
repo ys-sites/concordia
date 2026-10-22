@@ -113,44 +113,89 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
     setShowSpeedMenu(false);
   };
 
-  // Fullscreen toggle (using Fullscreen API on container)
-  const toggleFullscreen = useCallback(async () => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    try {
-      if (!document.fullscreenElement) {
-        if (container.requestFullscreen) {
-          await container.requestFullscreen();
-        } else if ((container as any).webkitRequestFullscreen) {
-          await (container as any).webkitRequestFullscreen();
-        }
-      } else {
-        if (document.exitFullscreen) {
-          await document.exitFullscreen();
-        } else if ((document as any).webkitExitFullscreen) {
-          await (document as any).webkitExitFullscreen();
-        }
-      }
-    } catch (err) {
-      console.warn('Fullscreen toggle error:', err);
-    }
-  }, []);
-
-  // Exit fullscreen explicitly (ESC button)
+  // Exit fullscreen explicitly
   const exitFullscreen = useCallback(async () => {
     try {
-      if (document.fullscreenElement) {
+      const isNativeFs = !!(
+        document.fullscreenElement ||
+        (document as any).webkitFullscreenElement ||
+        (document as any).mozFullScreenElement ||
+        (document as any).msFullscreenElement
+      );
+      if (isNativeFs) {
         if (document.exitFullscreen) {
           await document.exitFullscreen();
         } else if ((document as any).webkitExitFullscreen) {
           await (document as any).webkitExitFullscreen();
         }
       }
+      // Unlock screen orientation if locked
+      try {
+        if ((screen.orientation as any)?.unlock) {
+          (screen.orientation as any).unlock();
+        }
+      } catch {}
     } catch (err) {
       console.warn('Exit fullscreen error:', err);
+    } finally {
+      setIsFullscreen(false);
     }
   }, []);
+
+  // Fullscreen toggle (multi-tier support: standard container Fullscreen API, iOS Safari native video fullscreen, and CSS viewport fallback)
+  const toggleFullscreen = useCallback(async () => {
+    const container = containerRef.current;
+    const v = videoRef.current;
+    if (!container) return;
+
+    const isNativeFs = !!(
+      document.fullscreenElement ||
+      (document as any).webkitFullscreenElement ||
+      (document as any).mozFullScreenElement ||
+      (document as any).msFullscreenElement
+    );
+
+    // If currently in fullscreen (native or pseudo-fullscreen), exit
+    if (isNativeFs || isFullscreen) {
+      await exitFullscreen();
+      return;
+    }
+
+    // Tier 1: Try container.requestFullscreen (Chrome, Android, Edge, Firefox, Mac Safari)
+    try {
+      if (container.requestFullscreen) {
+        await container.requestFullscreen();
+        setIsFullscreen(true);
+        // Attempt orientation lock on mobile devices supporting it
+        try {
+          if ((screen.orientation as any)?.lock) {
+            await (screen.orientation as any).lock('landscape').catch(() => {});
+          }
+        } catch {}
+        return;
+      } else if ((container as any).webkitRequestFullscreen) {
+        await (container as any).webkitRequestFullscreen();
+        setIsFullscreen(true);
+        return;
+      }
+    } catch (err) {
+      console.warn('Container requestFullscreen failed, attempting video fallback:', err);
+    }
+
+    // Tier 2: iOS Safari / iPhone (HTMLVideoElement has webkitEnterFullscreen, divs do not)
+    if (v && typeof (v as any).webkitEnterFullscreen === 'function') {
+      try {
+        (v as any).webkitEnterFullscreen();
+        setIsFullscreen(true);
+        return;
+      } catch (err) {
+        console.warn('Video webkitEnterFullscreen failed:', err);
+      }
+    }
+
+    // Tier 3: CSS Full-Viewport Fallback (guaranteed to work across all mobile aspect ratios & browsers)
+    setIsFullscreen(true);
+  }, [isFullscreen, exitFullscreen]);
 
   // Track native fullscreen change
   useEffect(() => {
@@ -188,6 +233,27 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
       document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
       document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
       document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Listen for iOS Safari video fullscreen events
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    const handleWebkitBegin = () => {
+      setIsFullscreen(true);
+    };
+    const handleWebkitEnd = () => {
+      setIsFullscreen(false);
+    };
+
+    v.addEventListener('webkitbeginfullscreen', handleWebkitBegin);
+    v.addEventListener('webkitendfullscreen', handleWebkitEnd);
+
+    return () => {
+      v.removeEventListener('webkitbeginfullscreen', handleWebkitBegin);
+      v.removeEventListener('webkitendfullscreen', handleWebkitEnd);
     };
   }, []);
 

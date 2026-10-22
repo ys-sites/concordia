@@ -58,7 +58,12 @@ export const VideoPlayer: React.FC<{ v: Video; compact?: boolean }> = ({ v, comp
   return (
     <div className={`gp-video ${compact ? 'compact' : ''}`}>
       {playing ? (
-        <iframe src={`https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0`} title={v.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0&playsinline=1`}
+          title={v.title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+          allowFullScreen
+        />
       ) : (
         <button type="button" className="mg-thumb" onClick={() => setPlaying(true)} aria-label={`Play ${v.title}`}>
           <img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt="" loading="lazy" />

@@ -42,6 +42,8 @@ import type { GateContent, GateNav } from './vaultTypes';
 import type { GateIndex } from './shared';
 import { buildStepByStepSolution, getDetailedWorkedSolution, resolveFoundationSources } from './vaultFoundation';
 import { VideoPlayer } from './QuizExplain';
+import { GateSolveVideo } from './GateSolveVideo';
+import { AskAiButton } from './AskAiModal';
 import './midtermGate.css';
 import './gateExtras.css';
 
@@ -949,12 +951,27 @@ export const VaultQuizSubPage: React.FC<Props> = ({
           </div>
         )}
 
-        {/* Unanswered navigation review helper */}
-        {!isAnswered && currentIndex > 0 && (
-          <div className="unanswered-nav-row" style={{ marginTop: 10 }}>
-            <button type="button" className="quiz-prev-subtle-btn" onClick={handlePrevious}>
-              <ArrowLeft size={14} />
-              <span>Review Previous Question (Q{currentIndex})</span>
+        {/* Unanswered navigation review & reveal helper */}
+        {!isAnswered && (
+          <div className="unanswered-nav-row" style={{ marginTop: 12, display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+            {currentIndex > 0 && (
+              <button type="button" className="quiz-prev-subtle-btn" onClick={handlePrevious}>
+                <ArrowLeft size={14} />
+                <span>Review Previous Question (Q{currentIndex})</span>
+              </button>
+            )}
+            <button
+              type="button"
+              className="mg-btn small"
+              onClick={() => {
+                audio.playClick();
+                setGradedResults((prev) => ({ ...prev, [currentIndex]: false }));
+              }}
+              style={{ background: '#f8fafc', border: '1px solid #cbd5e1', color: '#475569', fontSize: 12, fontWeight: 600 }}
+              title="Reveal the full worked solution and video explanation"
+            >
+              <Lightbulb size={13} className="text-amber" />
+              <span>Reveal Solution & Video Explanation</span>
             </button>
           </div>
         )}
@@ -1184,6 +1201,26 @@ export const VaultQuizSubPage: React.FC<Props> = ({
                     <VideoPlayer v={foundation.video.video} />
                   </div>
                 )}
+              </div>
+
+              {/* Dedicated Narrated Video Solution & AI Explainer */}
+              <div style={{ margin: '4px 0 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <GateSolveVideo videos={idx.solveVideos} itemKey={currentQ.key || currentQ.qid} />
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+                  <AskAiButton
+                    problem={{
+                      id: currentQ.key || currentQ.qid || '',
+                      courseTitle: `${course.code} · ${course.name}`,
+                      topic: topicObj?.name,
+                      questionText: currentQ.prompt,
+                      options: currentQ.opts?.map((o, optIdx) => ({ key: String.fromCharCode(65 + optIdx), text: o })),
+                      answerText: currentQ.answerText,
+                      solution: currentQ.solution,
+                      steps: currentQ.steps,
+                      note: currentQ.note
+                    }}
+                  />
+                </div>
               </div>
 
               {/* Step-by-Step Calculation (Baby Steps) - exactly matching WorkedSolution.tsx */}
