@@ -4,6 +4,8 @@ import {
   Award,
   BarChart3,
   BookOpen,
+  Brain,
+  Calendar,
   Check,
   CheckCircle2,
   Clock,
@@ -21,8 +23,8 @@ import {
   Sparkles,
   Terminal
 } from 'lucide-react';
-import { MathText } from '../../utils/mathRenderer';
-import type { GateContent, GateNav, GordonExamPaper, GordonExamQuestion } from './vaultTypes';
+import type { GateContent, GateNav } from './vaultTypes';
+import '../TeacherMidtermPractice.css';
 import './gateExtras.css';
 
 interface Props {
@@ -30,7 +32,7 @@ interface Props {
   nav: GateNav;
 }
 
-export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
+export const GordonMidtermsDoc: React.FC<Props> = ({ content }) => {
   const [activeTab, setActiveTab] = useState<'f26' | 'cheatsheet' | 'analytics' | 'f23' | 'f22' | 'reviews' | 'quizzes'>('f26');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -44,7 +46,6 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
   };
 
   const openInCodeLab = (codeSnippet: string) => {
-    // Scroll smoothly to code lab if present on the page, or dispatch event
     const codeLab = document.getElementById('code-lab');
     if (codeLab) {
       codeLab.scrollIntoView({ behavior: 'smooth' });
@@ -54,9 +55,9 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
 
   if (!gordonData) {
     return (
-      <div className="mg-panel mg-panel-pad">
-        <h3 className="mg-section-title">Dr. Gordon Midterms &amp; Exam Analytics</h3>
-        <p className="mg-section-sub">Exam intelligence dataset is currently loading or decrypting...</p>
+      <div className="tp-info-card" style={{ padding: '2.5rem', textAlign: 'center' }}>
+        <h3 className="tp-main-title">Dr. Gordon Midterms &amp; Exam Intelligence</h3>
+        <p className="tp-subtitle">Exam intelligence dataset is currently loading or decrypting...</p>
       </div>
     );
   }
@@ -68,48 +69,91 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
   const quizPaper = gordonData.papers.find((p) => p.id === 'gordon-quizzes');
 
   return (
-    <div className="mg-root" style={{ gap: 20 }}>
-      {/* Hero Header */}
-      <section className="mg-panel mg-panel-pad mg-gordon-hero">
-        <div className="mg-gordon-badge">
-          <Sparkles size={15} /> Dr. Brandon Gordon · Official Midterms &amp; Exam Intelligence
+    <div className="teacher-practice-hub" style={{ '--accent': '#2563eb', gap: 20 } as React.CSSProperties}>
+      {/* Header Banner - Matching Teacher Midterm Practice Aesthetic */}
+      <div className="tp-header-banner">
+        <div className="tp-badge-row">
+          <span className="tp-course-pill" style={{ backgroundColor: '#2563eb' }}>
+            MIAE 215
+          </span>
+          <span className="tp-verified-badge">
+            <Sparkles size={14} /> Dr. Brandon Gordon · Official Midterms &amp; Exam Intelligence
+          </span>
+          <span
+            className="tp-verified-badge"
+            style={{
+              color: '#059669',
+              background: 'rgba(16, 185, 129, 0.08)',
+              border: '1px solid rgba(16, 185, 129, 0.25)'
+            }}
+          >
+            <Award size={14} /> 100% Verified Solutions &amp; Trace Keys
+          </span>
         </div>
-        <h2 className="mg-gordon-title">Historical Midterms, Verified Solutions &amp; Empirical Analytics</h2>
-        <p className="mg-section-sub" style={{ maxWidth: 850, marginTop: 6 }}>
-          {gordonData.summary}
-        </p>
+
+        <h1 className="tp-main-title">Historical Midterms, Verified Solutions &amp; Empirical Analytics</h1>
+        <p className="tp-subtitle">{gordonData.summary}</p>
+
+        {/* Exam Protocol & Countdown Bar */}
+        <div className="tp-countdown-bar">
+          <div className="tp-countdown-left">
+            <Calendar size={22} className="tp-calendar-icon" />
+            <div>
+              <div className="tp-date-label">MIAE 215 Midterm Examination Vault</div>
+              <div className="tp-date-sub">75 Minutes · 1-Sided Formula Sheet Allowed · ENCS Approved Non-Programmable Calculator</div>
+              <div className="tp-assignment-notice">
+                <Clock size={13} /> 100% 1D Arrays &amp; Tracing · 0% 2D Arrays &amp; 0% Strings
+              </div>
+            </div>
+          </div>
+
+          <div className="tp-countdown-right">
+            <a
+              href="/cheatsheets/miae215-cheatsheet2.pdf"
+              download="MIAE 215 - Midterm Cheatsheet 2.0 (Single-Sided).pdf"
+              className="tp-start-drill-btn"
+              style={{
+                textDecoration: 'none',
+                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                borderColor: '#059669',
+                boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)'
+              }}
+            >
+              <Printer size={16} />
+              <span>Cheatsheet 2.0 PDF</span>
+            </a>
+            <button
+              type="button"
+              className="tp-start-drill-btn"
+              onClick={() => setActiveTab('f26')}
+            >
+              <Flame size={16} />
+              <span>Live 2026 Revision</span>
+            </button>
+          </div>
+        </div>
 
         {/* Tab Navigation */}
-        <div className="mg-gordon-tab-bar" style={{ marginTop: 18 }}>
+        <div className="tp-tab-row" role="tablist">
           <button
             type="button"
-            className={`mg-gordon-tab ${activeTab === 'f26' ? 'active' : ''}`}
+            className={`tp-tab-btn ${activeTab === 'f26' ? 'active' : ''}`}
             onClick={() => setActiveTab('f26')}
-            style={{
-              borderColor: activeTab === 'f26' ? '#ef4444' : undefined,
-              background: activeTab === 'f26' ? 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(185, 28, 28, 0.16))' : undefined,
-              color: activeTab === 'f26' ? '#fca5a5' : undefined
-            }}
           >
             <Flame size={16} />
-            <span>🔥 Exam 2026 Revision (Live Paper)</span>
+            <span>🔥 Live Paper (Fall 2026)</span>
           </button>
           <button
             type="button"
-            className={`mg-gordon-tab ${activeTab === 'cheatsheet' ? 'active' : ''}`}
+            className={`tp-tab-btn ${activeTab === 'cheatsheet' ? 'active' : ''}`}
             onClick={() => setActiveTab('cheatsheet')}
-            style={{
-              borderColor: activeTab === 'cheatsheet' ? '#10b981' : undefined,
-              background: activeTab === 'cheatsheet' ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(5, 150, 105, 0.16))' : undefined,
-              color: activeTab === 'cheatsheet' ? '#6ee7b7' : undefined
-            }}
           >
             <Printer size={16} />
-            <span>📄 Cheatsheet 2.0 (Single-Sided Aid)</span>
+            <span>📄 Cheatsheet 2.0 (Formula Aid)</span>
           </button>
           <button
             type="button"
-            className={`mg-gordon-tab ${activeTab === 'analytics' ? 'active' : ''}`}
+            className={`tp-tab-btn ${activeTab === 'analytics' ? 'active' : ''}`}
             onClick={() => setActiveTab('analytics')}
           >
             <BarChart3 size={16} />
@@ -117,23 +161,23 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
           </button>
           <button
             type="button"
-            className={`mg-gordon-tab ${activeTab === 'f23' ? 'active' : ''}`}
+            className={`tp-tab-btn ${activeTab === 'f23' ? 'active' : ''}`}
             onClick={() => setActiveTab('f23')}
           >
             <FileText size={16} />
-            <span>📝 Fall 2023 Midterm (40% Weight)</span>
+            <span>📝 Fall 2023 Midterm</span>
           </button>
           <button
             type="button"
-            className={`mg-gordon-tab ${activeTab === 'f22' ? 'active' : ''}`}
+            className={`tp-tab-btn ${activeTab === 'f22' ? 'active' : ''}`}
             onClick={() => setActiveTab('f22')}
           >
             <FileText size={16} />
-            <span>📝 Fall 2022 Midterm (50% Weight)</span>
+            <span>📝 Fall 2022 Midterm</span>
           </button>
           <button
             type="button"
-            className={`mg-gordon-tab ${activeTab === 'reviews' ? 'active' : ''}`}
+            className={`tp-tab-btn ${activeTab === 'reviews' ? 'active' : ''}`}
             onClick={() => setActiveTab('reviews')}
           >
             <BookOpen size={16} />
@@ -141,74 +185,65 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
           </button>
           <button
             type="button"
-            className={`mg-gordon-tab ${activeTab === 'quizzes' ? 'active' : ''}`}
+            className={`tp-tab-btn ${activeTab === 'quizzes' ? 'active' : ''}`}
             onClick={() => setActiveTab('quizzes')}
           >
             <Layers size={16} />
             <span>⚡ Precursor Quizzes</span>
           </button>
         </div>
-      </section>
+      </div>
 
       {/* ──────────────────────────────────────────────────────────────────────────
           TAB 0: FALL 2026 LIVE MIDTERM REVISION PAPER
          ────────────────────────────────────────────────────────────────────────── */}
       {activeTab === 'f26' && f26Paper && (
-        <>
-          {/* Header Banner */}
-          <section className="mg-panel mg-panel-pad" style={{ borderColor: 'rgba(239, 68, 68, 0.4)' }}>
-            <div className="mg-paper-meta-banner">
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                  <span className="mg-badge" style={{ background: '#ef4444', color: '#fff', fontWeight: 700 }}>
-                    🔥 LIVE MIDTERM REVISION
-                  </span>
-                  <span className="mg-badge template">{f26Paper.term} · Section XX</span>
-                </div>
-                <h3 className="mg-section-title" style={{ fontSize: '1.4rem' }}>{f26Paper.title}</h3>
-                <p className="mg-section-sub" style={{ marginTop: 6 }}>
-                  {f26Paper.overview}
-                </p>
+        <div className="tp-tab-content">
+          {/* Header Card */}
+          <div className="tp-info-card" style={{ marginBottom: 20 }}>
+            <div className="tp-file-top">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                <span className="tp-file-badge" style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#dc2626' }}>
+                  🔥 LIVE MIDTERM REVISION
+                </span>
+                <span className="tp-file-year">{f26Paper.term} · Section XX</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end' }}>
-                <span className="mg-badge exact" style={{ fontSize: '0.9rem', padding: '8px 14px' }}>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                <span className="tp-tag" style={{ fontWeight: 700, color: '#dc2626' }}>
                   {f26Paper.officialWeight}
                 </span>
                 <button
                   type="button"
-                  className="mg-btn small primary"
+                  className="tp-btn-secondary"
                   onClick={() => setActiveTab('cheatsheet')}
-                  style={{
-                    background: '#10b981',
-                    borderColor: '#059669',
-                    color: '#fff',
-                    fontWeight: 700,
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 5
-                  }}
+                  style={{ padding: '6px 12px', fontSize: 12 }}
                 >
-                  <Printer size={13} /> View Cheatsheet 2.0
+                  <Printer size={13} /> Cheatsheet 2.0
                 </button>
               </div>
             </div>
+
+            <h2 className="tp-file-title" style={{ fontSize: '1.35rem', marginBottom: 6 }}>
+              {f26Paper.title}
+            </h2>
+            <p className="tp-file-desc">{f26Paper.overview}</p>
 
             {/* Official Exam Rules / Scope */}
             {f26Paper.officialNotes && (
               <div
                 style={{
                   marginTop: 16,
-                  padding: '12px 16px',
-                  background: 'rgba(30, 41, 59, 0.6)',
-                  borderRadius: 8,
-                  border: '1px solid rgba(148, 163, 184, 0.2)'
+                  padding: '14px 18px',
+                  background: 'var(--surface-subtle, rgba(99, 102, 241, 0.04))',
+                  borderRadius: 12,
+                  border: '1px solid var(--border-subtle, #e2e8f0)'
                 }}
               >
-                <div style={{ fontWeight: 600, color: '#f8fafc', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.88rem' }}>
-                  <Clock size={15} style={{ color: '#38bdf8' }} />
-                  <span>Official Exam Constraints &amp; Permitted Aids:</span>
+                <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.9rem' }}>
+                  <Clock size={16} style={{ color: 'var(--accent, #6366f1)' }} />
+                  <span>Official Exam Scope &amp; Permitted Aids:</span>
                 </div>
-                <ul style={{ margin: 0, paddingLeft: 20, color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                <ul style={{ margin: 0, paddingLeft: 20, color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.65 }}>
                   {f26Paper.officialNotes.map((note, ni) => (
                     <li key={ni}>{note}</li>
                   ))}
@@ -222,9 +257,9 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                 style={{
                   marginTop: 18,
                   padding: '16px',
-                  background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(15, 23, 42, 0.75))',
-                  borderRadius: 10,
-                  border: '1px solid rgba(59, 130, 246, 0.35)'
+                  background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(99, 102, 241, 0.04))',
+                  borderRadius: 12,
+                  border: '1px solid rgba(59, 130, 246, 0.25)'
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
@@ -233,36 +268,27 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                       style={{
                         width: 40,
                         height: 40,
-                        borderRadius: 8,
+                        borderRadius: 10,
                         background: '#2563eb',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: '#fff'
+                        color: '#fff',
+                        boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)'
                       }}
                     >
-                      <PlayCircle size={24} />
+                      <PlayCircle size={22} />
                     </div>
                     <div>
-                      <div style={{ fontWeight: 700, color: '#f8fafc', fontSize: '1rem' }}>
+                      <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.96rem' }}>
                         {f26Paper.videoPlaceholder.title}
                       </div>
-                      <div style={{ color: '#94a3b8', fontSize: '0.82rem' }}>
+                      <div style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>
                         {f26Paper.videoPlaceholder.description}
                       </div>
                     </div>
                   </div>
-                  <span
-                    style={{
-                      background: 'rgba(59, 130, 246, 0.2)',
-                      color: '#60a5fa',
-                      padding: '4px 10px',
-                      borderRadius: 6,
-                      fontSize: '0.78rem',
-                      fontWeight: 600,
-                      border: '1px solid rgba(59, 130, 246, 0.4)'
-                    }}
-                  >
+                  <span className="tp-verified-badge" style={{ fontSize: '0.78rem' }}>
                     📹 Video Walkthrough Stream
                   </span>
                 </div>
@@ -271,97 +297,103 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                   style={{
                     marginTop: 14,
                     padding: '24px 16px',
-                    borderRadius: 8,
-                    background: 'rgba(15, 23, 42, 0.85)',
+                    borderRadius: 10,
+                    background: 'var(--surface, #ffffff)',
                     border: '1px dashed rgba(59, 130, 246, 0.4)',
                     textAlign: 'center'
                   }}
                 >
-                  <PlayCircle size={36} style={{ color: '#38bdf8', margin: '0 auto 8px', display: 'block', opacity: 0.85 }} />
-                  <p style={{ margin: 0, color: '#e2e8f0', fontWeight: 600, fontSize: '0.92rem' }}>
+                  <PlayCircle size={36} style={{ color: '#2563eb', margin: '0 auto 8px', display: 'block', opacity: 0.9 }} />
+                  <p style={{ margin: 0, color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.92rem' }}>
                     Narrated Step-by-Step Solve Video
                   </p>
-                  <p style={{ margin: '4px 0 0', color: '#94a3b8', fontSize: '0.8rem' }}>
-                    Integrated here in the Gordon Hidden Vault and simultaneously playable in the Teacher Midterm Practice Drills.
+                  <p style={{ margin: '4px 0 0', color: 'var(--text-muted, #64748b)', fontSize: '0.82rem' }}>
+                    Streamable inside the Gordon Hidden Vault and simultaneously playable in the Teacher Midterm Practice Drills.
                   </p>
                 </div>
               </div>
             )}
-          </section>
+          </div>
 
           {/* Full Integrated C++ Program (Question 1) */}
           {f26Paper.fullProgramCode && (
-            <section className="mg-panel mg-panel-pad">
-              <div className="mg-gordon-card-top" style={{ marginBottom: 12 }}>
+            <div className="tp-info-card" style={{ marginBottom: 20 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 14 }}>
                 <div>
-                  <div className="mg-gordon-item-title" style={{ fontSize: '1.15rem' }}>
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                     💻 Question 1: Complete Compiled C++ Solution (Parts a - f)
-                  </div>
-                  <div className="mg-gordon-source">
-                    Verified with Code::Blocks MinGW Compiler · All 6 tasks unified into a single executable
-                  </div>
+                  </h3>
+                  <p style={{ margin: '4px 0 0 0', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                    Verified with Code::Blocks MinGW Compiler · All 6 tasks unified into a single executable with pedagogical comments
+                  </p>
                 </div>
-                <div className="mg-gordon-card-actions">
+                <div style={{ display: 'flex', gap: 8 }}>
                   <button
                     type="button"
-                    className="mg-btn small"
+                    className="tp-btn-secondary"
                     onClick={() => copyCode('f26-full', f26Paper.fullProgramCode!)}
                     title="Copy full C++ program"
                   >
-                    {copiedId === 'f26-full' ? <Check size={13} /> : <Copy size={13} />}
-                    {copiedId === 'f26-full' ? 'Copied' : 'Copy Full Program'}
+                    {copiedId === 'f26-full' ? <Check size={14} /> : <Copy size={14} />}
+                    <span>{copiedId === 'f26-full' ? 'Copied' : 'Copy Full Program'}</span>
                   </button>
                   <button
                     type="button"
-                    className="mg-btn small primary"
+                    className="tp-btn-primary"
                     onClick={() => openInCodeLab(f26Paper.fullProgramCode!)}
                     title="Run full program in Code Lab"
                   >
-                    <PlayCircle size={13} /> Run in Code Lab
+                    <PlayCircle size={14} />
+                    <span>Run in Code Lab</span>
                   </button>
                 </div>
               </div>
-              <pre className="mg-code mg-gordon-code" style={{ maxHeight: 420, overflowY: 'auto' }}>
+              <pre className="mg-code mg-gordon-code" style={{ maxHeight: 440, overflowY: 'auto' }}>
                 {f26Paper.fullProgramCode}
               </pre>
-            </section>
+            </div>
           )}
 
           {/* Individual Exam Questions (Q1, Q2a, Q2b) */}
           <div className="mg-paper-questions-list">
             {f26Paper.questions.map((q) => (
-              <div key={q.id} className="mg-gordon-card" style={{ marginBottom: 20 }}>
-                <div className="mg-gordon-card-top">
+              <div key={q.id} className="tp-info-card" style={{ marginBottom: 20 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginBottom: 10 }}>
                   <div>
-                    <div className="mg-gordon-item-title" style={{ fontSize: '1.1rem' }}>
+                    <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                       {q.part}: {q.title}
-                    </div>
-                    <div className="mg-gordon-source">
-                      <span className="mg-source-label">Format:</span> {q.points} {q.weight ? `· (${q.weight})` : ''}
+                    </h3>
+                    <div style={{ fontSize: '0.82rem', color: 'var(--text-muted, #64748b)', marginTop: 2 }}>
+                      Format: <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{q.points}</span> {q.weight ? `· (${q.weight})` : ''}
                     </div>
                   </div>
-                  <div className="mg-gordon-card-actions">
+                  <div style={{ display: 'flex', gap: 8 }}>
                     <button
                       type="button"
-                      className="mg-btn small"
+                      className="tp-btn-secondary"
                       onClick={() => copyCode(q.id, q.codeSnippet)}
+                      style={{ padding: '6px 12px', fontSize: 12 }}
                       title="Copy code"
                     >
                       {copiedId === q.id ? <Check size={13} /> : <Copy size={13} />}
-                      {copiedId === q.id ? 'Copied' : 'Copy'}
+                      <span>{copiedId === q.id ? 'Copied' : 'Copy'}</span>
                     </button>
                     <button
                       type="button"
-                      className="mg-btn small primary"
+                      className="tp-btn-primary"
                       onClick={() => openInCodeLab(q.codeSnippet)}
+                      style={{ padding: '6px 12px', fontSize: 12 }}
                       title="Run in Code Lab"
                     >
-                      <PlayCircle size={13} /> Run in Code Lab
+                      <PlayCircle size={13} />
+                      <span>Run Snippet</span>
                     </button>
                   </div>
                 </div>
 
-                <p className="mg-q-desc" style={{ marginTop: 8 }}>{q.description}</p>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: '8px 0 12px' }}>
+                  {q.description}
+                </p>
 
                 {/* Code and Output Grid */}
                 <div className="mg-gordon-code-grid" style={{ marginTop: 12 }}>
@@ -384,7 +416,7 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
 
                 {/* Step-by-Step Trace Table if present */}
                 {q.traceTable && (
-                  <div className="mg-trace-table-wrap" style={{ marginTop: 14 }}>
+                  <div className="mg-trace-table-wrap" style={{ marginTop: 16 }}>
                     <div className="mg-gordon-col-label" style={{ marginBottom: 8 }}>
                       <ListChecks size={13} /> Step-by-Step Execution Trace Table
                     </div>
@@ -416,27 +448,39 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
 
                 {/* Trap Alert */}
                 {q.trapAlert && (
-                  <div className="mg-gordon-card-trap" style={{ marginTop: 12 }}>
-                    <ShieldAlert size={16} />
-                    <div>
-                      <strong>Critical Exam Trap:</strong> {q.trapAlert}
+                  <div
+                    style={{
+                      marginTop: 14,
+                      padding: '12px 16px',
+                      borderRadius: 10,
+                      background: 'rgba(239, 68, 68, 0.06)',
+                      border: '1px solid rgba(239, 68, 68, 0.25)',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 10
+                    }}
+                  >
+                    <ShieldAlert size={18} style={{ color: '#ef4444', flexShrink: 0, marginTop: 2 }} />
+                    <div style={{ fontSize: '0.88rem', color: 'var(--text-primary)', lineHeight: 1.5 }}>
+                      <strong style={{ color: '#ef4444' }}>Critical Exam Trap: </strong>
+                      {q.trapAlert}
                     </div>
                   </div>
                 )}
 
                 {/* Solution Notes */}
                 {q.solutionNotes && (
-                  <div style={{ marginTop: 10, fontSize: '0.85rem', color: '#cbd5e1' }}>
-                    <strong style={{ color: '#38bdf8' }}>Exam Strategy Note: </strong>
+                  <div style={{ marginTop: 12, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                    <strong style={{ color: 'var(--accent, #6366f1)' }}>Exam Strategy Note: </strong>
                     {q.solutionNotes}
                   </div>
                 )}
 
                 {/* Concepts Tested */}
-                <div className="mg-freq-occurrences" style={{ marginTop: 12 }}>
-                  <strong>Key Curriculum Concepts: </strong>
+                <div className="mg-freq-occurrences" style={{ marginTop: 14 }}>
+                  <strong style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>Key Curriculum Concepts: </strong>
                   {q.conceptsTested.map((c, ci) => (
-                    <span key={ci} className="mg-occurrence-tag">
+                    <span key={ci} className="tp-tag">
                       {c}
                     </span>
                   ))}
@@ -447,18 +491,18 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
 
           {/* Cross-Curriculum Similarity Matrix */}
           {f26Paper.similarQuestionsAnalysis && f26Paper.similarQuestionsAnalysis.length > 0 && (
-            <section className="mg-panel mg-panel-pad" style={{ marginTop: 10 }}>
-              <div className="mg-paper-meta-banner">
+            <div className="tp-info-card" style={{ marginTop: 16 }}>
+              <div className="tp-file-top">
                 <div>
-                  <h3 className="mg-section-title">
-                    🎯 Historical Exam Twins &amp; Structural Precursors
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                    🎯 Historical Exam Twins &amp; Resembling Questions
                   </h3>
-                  <p className="mg-section-sub">
-                    Direct mapping of each question part from this paper to past exams handed out by Dr. Brandon Gordon:
+                  <p style={{ margin: '4px 0 0 0', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                    Direct structural precursors from past exams handed out by Dr. Brandon Gordon:
                   </p>
                 </div>
-                <span className="mg-badge template" style={{ fontSize: '0.85rem', padding: '6px 12px' }}>
-                  100% Curriculum Alignment
+                <span className="tp-verified-badge">
+                  100% Curriculum Match
                 </span>
               </div>
 
@@ -467,69 +511,77 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                   <div
                     key={si}
                     style={{
-                      background: 'rgba(30, 41, 59, 0.7)',
-                      padding: '14px',
-                      borderRadius: 8,
-                      border: '1px solid rgba(148, 163, 184, 0.18)',
+                      background: 'var(--surface-subtle, rgba(99, 102, 241, 0.03))',
+                      padding: '16px',
+                      borderRadius: 12,
+                      border: '1px solid var(--border-subtle, #e2e8f0)',
                       display: 'flex',
                       flexDirection: 'column',
-                      gap: 8
+                      gap: 10
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 6 }}>
-                      <span style={{ fontWeight: 700, color: '#f8fafc', fontSize: '0.9rem' }}>
+                      <span style={{ fontWeight: 800, color: 'var(--text-primary)', fontSize: '0.92rem' }}>
                         {sim.currentQuestionPart}
                       </span>
-                      <span className="mg-badge exact" style={{ fontSize: '0.75rem', padding: '3px 8px' }}>
+                      <span className="tp-file-badge" style={{ fontSize: '0.72rem' }}>
                         {sim.similarGordonExam}
                       </span>
                     </div>
 
-                    <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.82rem', lineHeight: 1.5 }}>
-                      <strong>Why It Matches:</strong> {sim.whyItMatches}
+                    <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.5 }}>
+                      <strong style={{ color: 'var(--text-primary)' }}>Why It Resembles: </strong> {sim.whyItMatches}
                     </p>
 
                     <div
                       style={{
                         marginTop: 'auto',
-                        padding: '6px 10px',
-                        background: 'rgba(15, 23, 42, 0.6)',
-                        borderRadius: 6,
-                        borderLeft: '3px solid #38bdf8',
-                        color: '#38bdf8',
-                        fontSize: '0.8rem',
-                        fontWeight: 600
+                        padding: '8px 12px',
+                        background: 'rgba(56, 189, 248, 0.08)',
+                        borderRadius: 8,
+                        borderLeft: '3px solid #0284c7',
+                        color: '#0369a1',
+                        fontSize: '0.82rem',
+                        fontWeight: 700
                       }}
                     >
-                      💡 Rule: {sim.coreLesson}
+                      💡 Golden Rule: {sim.coreLesson}
                     </div>
                   </div>
                 ))}
               </div>
-            </section>
+            </div>
           )}
-        </>
+        </div>
       )}
 
       {/* ──────────────────────────────────────────────────────────────────────────
-          TAB: CHEATSHEET 2.0 (OFFICIAL SINGLE-SIDED EXAM FORMULA SHEET)
+          TAB 1: CHEATSHEET 2.0 (OFFICIAL SINGLE-SIDED EXAM FORMULA SHEET)
          ────────────────────────────────────────────────────────────────────────── */}
       {activeTab === 'cheatsheet' && (
-        <>
-          <section className="mg-panel mg-panel-pad" style={{ borderColor: 'rgba(16, 185, 129, 0.4)' }}>
-            <div className="mg-paper-meta-banner">
+        <div className="tp-tab-content">
+          <div className="tp-info-card" style={{ marginBottom: 20 }}>
+            <div className="tp-file-top">
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
-                  <span className="mg-badge" style={{ background: '#10b981', color: '#fff', fontWeight: 700 }}>
-                    ⭐ STRICT SINGLE-SIDED FORMULA SHEET
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
+                  <span
+                    className="tp-verified-badge"
+                    style={{
+                      color: '#059669',
+                      background: 'rgba(16, 185, 129, 0.08)',
+                      border: '1px solid rgba(16, 185, 129, 0.25)',
+                      fontWeight: 800
+                    }}
+                  >
+                    ⭐ STRICT SINGLE-SIDED FORMULA AID
                   </span>
-                  <span className="mg-badge template">Dr. Gordon Moodle Rules · Exact 1 Page Aid</span>
-                  <span className="mg-badge exact">Letter Portrait · 10pt Font</span>
+                  <span className="tp-tag">Letter Portrait · 10pt Font</span>
+                  <span className="tp-tag">Zero Blank Space</span>
                 </div>
-                <h3 className="mg-section-title" style={{ fontSize: '1.4rem' }}>
+                <h2 className="tp-file-title" style={{ fontSize: '1.35rem', marginBottom: 6 }}>
                   MIAE 215 Midterm Cheatsheet 2.0 — Dr. Gordon Official Exam Blueprint &amp; System
-                </h3>
-                <p className="mg-section-sub" style={{ marginTop: 6, maxWidth: 900 }}>
+                </h2>
+                <p className="tp-file-desc" style={{ maxWidth: 900 }}>
                   Ultra-dense single-sided formula sheet engineered specifically to Dr. Brandon Gordon&apos;s official 75-minute midterm exam constraints.
                   Front side only (back must be completely blank). Integrates the unified 6-part array live program, the Question 2 output tracing engine with all 8 golden traps and verified past exam boxed keys, and all 9 historical programming algorithms.
                 </p>
@@ -541,104 +593,97 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                   href="/cheatsheets/miae215-midterm-cheatsheet2.html"
                   target="_blank"
                   rel="noreferrer"
-                  className="mg-btn primary"
-                  style={{
-                    background: '#10b981',
-                    borderColor: '#059669',
-                    color: '#fff',
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 6
-                  }}
+                  className="tp-btn-secondary"
+                  style={{ textDecoration: 'none' }}
                 >
-                  <ExternalLink size={14} /> Fullscreen HTML
+                  <ExternalLink size={14} /> <span>Fullscreen HTML</span>
                 </a>
                 <a
                   href="/cheatsheets/miae215-cheatsheet2.pdf"
                   download="MIAE 215 - Midterm Cheatsheet 2.0 (Single-Sided).pdf"
-                  className="mg-btn"
+                  className="tp-btn-primary"
                   style={{
                     textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 6
+                    background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                    borderColor: '#059669',
+                    boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)'
                   }}
                 >
-                  <Download size={14} /> Download PDF
+                  <Download size={14} /> <span>Download PDF</span>
                 </a>
                 <button
                   type="button"
-                  className="mg-btn"
+                  className="tp-btn-secondary"
                   onClick={() => window.open('/cheatsheets/miae215-midterm-cheatsheet2.html', '_blank')}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 6
-                  }}
                 >
-                  <Printer size={14} /> Print Aid
+                  <Printer size={14} /> <span>Print Sheet</span>
                 </button>
               </div>
             </div>
 
-            {/* Moodle Exam Rules Summary */}
+            {/* Moodle Rules Summary */}
             <div
               style={{
-                marginTop: 16,
-                padding: '12px 16px',
-                background: 'rgba(15, 23, 42, 0.6)',
-                borderRadius: 8,
-                border: '1px solid rgba(16, 185, 129, 0.25)',
+                marginTop: 18,
+                padding: '16px',
+                background: 'var(--surface-subtle, rgba(16, 185, 129, 0.04))',
+                borderRadius: 12,
+                border: '1px solid rgba(16, 185, 129, 0.2)',
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-                gap: 12
+                gap: 16
               }}
             >
               <div>
-                <b style={{ color: '#6ee7b7', fontSize: '0.88rem' }}>1. Single-Sided Sheet Constraint:</b>
-                <p style={{ margin: '4px 0 0 0', color: '#94a3b8', fontSize: '0.82rem', lineHeight: 1.5 }}>
-                  Dr. Gordon allows exactly ONE piece of paper, front side only. Back must be blank. Font scale calibrated to 10pt minimum.
+                <b style={{ color: '#059669', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <Award size={15} /> 1. Single-Sided Sheet Constraint
+                </b>
+                <p style={{ margin: '6px 0 0 0', color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.55 }}>
+                  Dr. Gordon allows exactly ONE piece of paper, front side only. Back must be blank. Calibrated to 10pt font.
                 </p>
               </div>
               <div>
-                <b style={{ color: '#6ee7b7', fontSize: '0.88rem' }}>2. Permitted Exam Calculator:</b>
-                <p style={{ margin: '4px 0 0 0', color: '#94a3b8', fontSize: '0.82rem', lineHeight: 1.5 }}>
+                <b style={{ color: '#059669', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <ShieldAlert size={15} /> 2. Permitted Exam Calculator
+                </b>
+                <p style={{ margin: '6px 0 0 0', color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.55 }}>
                   Non-programmable calculator with faculty-approved ENCS sticker is required. No graphers or phones allowed.
                 </p>
               </div>
               <div>
-                <b style={{ color: '#6ee7b7', fontSize: '0.88rem' }}>3. 0% 2D Array &amp; 0% String Midterm Law:</b>
-                <p style={{ margin: '4px 0 0 0', color: '#94a3b8', fontSize: '0.82rem', lineHeight: 1.5 }}>
+                <b style={{ color: '#059669', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <CheckCircle2 size={15} /> 3. 0% 2D Array &amp; 0% String Law
+                </b>
+                <p style={{ margin: '6px 0 0 0', color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.55 }}>
                   0% Strings, 0% 2D Arrays on Midterm. Strictly 100% focused on 1D arrays, loop tracing, integer division, and file I/O.
                 </p>
               </div>
             </div>
 
             {/* Live Interactive Embed Iframe */}
-            <div style={{ marginTop: 20 }}>
+            <div style={{ marginTop: 22 }}>
               <div
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  marginBottom: 8
+                  marginBottom: 10
                 }}
               >
-                <div style={{ fontWeight: 700, color: '#f8fafc', fontSize: '0.92rem', display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <FileText size={16} style={{ color: '#10b981' }} />
+                <div style={{ fontWeight: 800, color: 'var(--text-primary)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <FileText size={18} style={{ color: '#059669' }} />
                   <span>Interactive High-Fidelity Cheatsheet 2.0 Sheet Preview (1 Page Letter):</span>
                 </div>
-                <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                <span className="tp-tag">
                   Scrollable · Responsive · Print-Optimized
                 </span>
               </div>
               <div
                 style={{
-                  borderRadius: 10,
+                  borderRadius: 12,
                   overflow: 'hidden',
-                  border: '1px solid rgba(148, 163, 184, 0.3)',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.35)',
+                  border: '1px solid var(--border-subtle, #cbd5e1)',
+                  boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)',
                   background: '#ffffff'
                 }}
               >
@@ -655,13 +700,17 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                 />
               </div>
             </div>
-          </section>
-        </>
+          </div>
+        </div>
       )}
+
+      {/* ──────────────────────────────────────────────────────────────────────────
+          TAB 2: EXAM ANALYTICS & BLUEPRINT
+         ────────────────────────────────────────────────────────────────────────── */}
       {activeTab === 'analytics' && (
-        <>
+        <div className="tp-tab-content">
           {/* Architecture Cards */}
-          <div className="mg-gordon-metric-grid">
+          <div className="mg-gordon-metric-grid" style={{ marginBottom: 20 }}>
             <div className="mg-metric-tile accent-blue">
               <div className="mg-metric-head">
                 <Terminal size={18} />
@@ -700,20 +749,21 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                 <Clock size={18} />
                 <span>Total Exam Duration</span>
               </div>
-              <div className="mg-metric-value">90 min</div>
+              <div className="mg-metric-value">75 min</div>
               <div className="mg-metric-desc">
-                Recommended: 35 min on trace tables, 45 min on algorithmic code writing, 10 min audit.
+                Recommended: 30 min on trace tables, 40 min on algorithmic code writing, 5 min audit.
               </div>
             </div>
           </div>
 
           {/* Official Gordon Exam Guidelines */}
-          <section className="mg-panel mg-panel-pad">
-            <h3 className="mg-section-title">
-              <ListChecks size={18} /> Official Exam Structure &amp; Dr. Gordon Directives
-            </h3>
-            <p className="mg-section-sub">
-              Key instructions directly from Dr. Gordon’s official course memos (Fall 2022 – Fall 2024):
+          <div className="tp-info-card" style={{ marginBottom: 20 }}>
+            <div className="tp-card-header">
+              <ListChecks size={20} style={{ color: 'var(--accent, #6366f1)' }} />
+              <h3>Official Exam Structure &amp; Dr. Gordon Directives</h3>
+            </div>
+            <p className="tp-subtitle" style={{ marginBottom: 14 }}>
+              Key instructions directly from Dr. Gordon’s official course memos:
             </p>
             <div className="mg-rules-grid">
               {gordonData.analytics.weightDistribution.rulesSummary.map((rule, idx) => (
@@ -723,14 +773,15 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                 </div>
               ))}
             </div>
-          </section>
+          </div>
 
           {/* Topic Frequency Matrix */}
-          <section className="mg-panel mg-panel-pad">
-            <h3 className="mg-section-title">
-              <BarChart3 size={18} /> Historical Topic Frequency Matrix
-            </h3>
-            <p className="mg-section-sub">
+          <div className="tp-info-card" style={{ marginBottom: 20 }}>
+            <div className="tp-card-header">
+              <BarChart3 size={20} style={{ color: 'var(--accent, #6366f1)' }} />
+              <h3>Historical Topic Frequency Matrix</h3>
+            </div>
+            <p className="tp-subtitle" style={{ marginBottom: 14 }}>
               Empirical occurrence rate across past Gordon midterms, official review packets, and precursor quizzes:
             </p>
             <div className="mg-topic-freq-list">
@@ -758,7 +809,7 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                   <div className="mg-freq-occurrences">
                     <strong>Past Exams: </strong>
                     {tf.examOccurrences.map((ex, j) => (
-                      <span key={j} className="mg-occurrence-tag">
+                      <span key={j} className="tp-tag">
                         {ex}
                       </span>
                     ))}
@@ -774,14 +825,15 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                 </div>
               ))}
             </div>
-          </section>
+          </div>
 
           {/* Top Gordon Traps */}
-          <section className="mg-panel mg-panel-pad">
-            <h3 className="mg-section-title" style={{ color: 'var(--amber-300, #fbbf24)' }}>
-              <Flame size={18} /> Top 5 High-Yield "Gordon Traps" Exposed
-            </h3>
-            <p className="mg-section-sub">
+          <div className="tp-info-card" style={{ marginBottom: 20 }}>
+            <div className="tp-card-header">
+              <Flame size={20} style={{ color: '#ef4444' }} />
+              <h3>Top 5 High-Yield "Gordon Traps" Exposed</h3>
+            </div>
+            <p className="tp-subtitle" style={{ marginBottom: 14 }}>
               These recurring pitfalls account for over 70% of lost marks on Dr. Gordon midterms:
             </p>
             <div className="mg-traps-list">
@@ -820,276 +872,309 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                 </div>
               ))}
             </div>
-          </section>
-        </>
+          </div>
+        </div>
       )}
 
       {/* ──────────────────────────────────────────────────────────────────────────
-          TAB 2: FALL 2023 MIDTERM (Q2 · 40% WEIGHT)
+          TAB 3: FALL 2023 MIDTERM (Q2 · 40% WEIGHT)
          ────────────────────────────────────────────────────────────────────────── */}
       {activeTab === 'f23' && f23Paper && (
-        <section className="mg-panel mg-panel-pad">
-          <div className="mg-paper-meta-banner">
-            <div>
-              <h3 className="mg-section-title">{f23Paper.title}</h3>
-              <p className="mg-section-sub">{f23Paper.overview}</p>
+        <div className="tp-tab-content">
+          <div className="tp-info-card" style={{ marginBottom: 20 }}>
+            <div className="tp-file-top">
+              <div>
+                <h3 className="tp-file-title">{f23Paper.title}</h3>
+                <p className="tp-file-desc">{f23Paper.overview}</p>
+              </div>
+              <span className="tp-tag" style={{ fontWeight: 700, color: '#2563eb' }}>
+                {f23Paper.officialWeight}
+              </span>
             </div>
-            <span className="mg-badge exact" style={{ fontSize: '0.85rem', padding: '6px 12px' }}>
-              {f23Paper.officialWeight}
-            </span>
-          </div>
 
-          <div className="mg-paper-questions-list">
-            {f23Paper.questions.map((q) => (
-              <div key={q.id} className="mg-gordon-card" style={{ marginTop: 20 }}>
-                <div className="mg-gordon-card-top">
-                  <div>
-                    <div className="mg-gordon-item-title">
-                      {q.part}: {q.title}
+            <div className="mg-paper-questions-list">
+              {f23Paper.questions.map((q) => (
+                <div key={q.id} className="tp-info-card" style={{ marginTop: 16 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginBottom: 10 }}>
+                    <div>
+                      <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                        {q.part}: {q.title}
+                      </h4>
+                      <div style={{ fontSize: '0.82rem', color: 'var(--text-muted, #64748b)', marginTop: 2 }}>
+                        Weight: <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{q.points}</span> ({q.weight})
+                      </div>
                     </div>
-                    <div className="mg-gordon-source">
-                      <span className="mg-source-label">Weight:</span> {q.points} ({q.weight})
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <button
+                        type="button"
+                        className="tp-btn-secondary"
+                        onClick={() => copyCode(q.id, q.codeSnippet)}
+                        style={{ padding: '6px 12px', fontSize: 12 }}
+                        title="Copy C++ code"
+                      >
+                        {copiedId === q.id ? <Check size={13} /> : <Copy size={13} />}
+                        <span>{copiedId === q.id ? 'Copied' : 'Copy'}</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="tp-btn-primary"
+                        onClick={() => openInCodeLab(q.codeSnippet)}
+                        style={{ padding: '6px 12px', fontSize: 12 }}
+                        title="Run in Code Lab"
+                      >
+                        <PlayCircle size={13} />
+                        <span>Run Snippet</span>
+                      </button>
                     </div>
                   </div>
-                  <div className="mg-gordon-card-actions">
-                    <button
-                      type="button"
-                      className="mg-btn small"
-                      onClick={() => copyCode(q.id, q.codeSnippet)}
-                      title="Copy C++ code"
-                    >
-                      {copiedId === q.id ? <Check size={13} /> : <Copy size={13} />}
-                      {copiedId === q.id ? 'Copied' : 'Copy'}
-                    </button>
-                    <button
-                      type="button"
-                      className="mg-btn small primary"
-                      onClick={() => openInCodeLab(q.codeSnippet)}
-                      title="Open and run in interactive Code Lab"
-                    >
-                      <PlayCircle size={13} /> Run in Code Lab
-                    </button>
-                  </div>
-                </div>
 
-                <p className="mg-q-desc">{q.description}</p>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: '8px 0 12px' }}>
+                    {q.description}
+                  </p>
 
-                {/* Code and Answer Box */}
-                <div className="mg-gordon-code-grid">
-                  <div className="mg-gordon-code-col">
-                    <div className="mg-gordon-col-label">
-                      <Code size={13} /> C++ Exam Code Snippet
+                  {/* Code and Answer Box */}
+                  <div className="mg-gordon-code-grid">
+                    <div className="mg-gordon-code-col">
+                      <div className="mg-gordon-col-label">
+                        <Code size={13} /> C++ Exam Code Snippet
+                      </div>
+                      <pre className="mg-code mg-gordon-code">{q.codeSnippet}</pre>
                     </div>
-                    <pre className="mg-code mg-gordon-code">{q.codeSnippet}</pre>
+
+                    <div className="mg-gordon-out-col">
+                      <div className="mg-gordon-col-label">
+                        <Terminal size={13} /> Official Exam Answer Box (Inside Booklet)
+                      </div>
+                      <pre className="mg-gordon-output-box">{q.expectedOutput}</pre>
+                    </div>
                   </div>
 
-                  <div className="mg-gordon-out-col">
-                    <div className="mg-gordon-col-label">
-                      <Terminal size={13} /> Official Exam Answer Box (Inside Booklet)
-                    </div>
-                    <pre className="mg-gordon-output-box">{q.expectedOutput}</pre>
-                  </div>
-                </div>
-
-                {/* Step-by-Step Trace Table */}
-                {q.traceTable && (
-                  <div className="mg-trace-table-wrap">
-                    <div className="mg-gordon-col-label" style={{ marginBottom: 8 }}>
-                      <ListChecks size={13} /> Dr. Gordon Official Step-by-Step State Trace Table
-                    </div>
-                    <div className="mg-table-scroll">
-                      <table className="mg-trace-table">
-                        <thead>
-                          <tr>
-                            {q.traceTable.headers.map((h, hi) => (
-                              <th key={hi}>{h}</th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {q.traceTable.rows.map((row, ri) => (
-                            <tr key={ri} className={String(row[row.length - 1]).includes('—') ? '' : 'has-output'}>
-                              {row.map((cell, ci) => (
-                                <td key={ci} className={ci === row.length - 1 && cell !== '—' ? 'cell-output' : ''}>
-                                  {cell}
-                                </td>
+                  {/* Step-by-Step Trace Table */}
+                  {q.traceTable && (
+                    <div className="mg-trace-table-wrap" style={{ marginTop: 16 }}>
+                      <div className="mg-gordon-col-label" style={{ marginBottom: 8 }}>
+                        <ListChecks size={13} /> Dr. Gordon Official Step-by-Step State Trace Table
+                      </div>
+                      <div className="mg-table-scroll">
+                        <table className="mg-trace-table">
+                          <thead>
+                            <tr>
+                              {q.traceTable.headers.map((h, hi) => (
+                                <th key={hi}>{h}</th>
                               ))}
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                          </thead>
+                          <tbody>
+                            {q.traceTable.rows.map((row, ri) => (
+                              <tr key={ri} className={String(row[row.length - 1]).includes('—') ? '' : 'has-output'}>
+                                {row.map((cell, ci) => (
+                                  <td key={ci} className={ci === row.length - 1 && cell !== '—' ? 'cell-output' : ''}>
+                                    {cell}
+                                  </td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      {q.traceTable.caption && <p className="mg-table-caption">{q.traceTable.caption}</p>}
                     </div>
-                    {q.traceTable.caption && <p className="mg-table-caption">{q.traceTable.caption}</p>}
-                  </div>
-                )}
+                  )}
 
-                {/* Trap Callout */}
-                {q.trapAlert && (
-                  <div className="mg-gordon-note warning">
-                    <AlertTriangle size={15} />
-                    <span>
-                      <strong>High-Yield Trap &amp; Exam Strategy: </strong>
-                      {q.trapAlert}
-                    </span>
-                  </div>
-                )}
-              </div>
-            ))}
+                  {/* Trap Callout */}
+                  {q.trapAlert && (
+                    <div
+                      style={{
+                        marginTop: 14,
+                        padding: '12px 16px',
+                        borderRadius: 10,
+                        background: 'rgba(239, 68, 68, 0.06)',
+                        border: '1px solid rgba(239, 68, 68, 0.25)',
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: 10
+                      }}
+                    >
+                      <AlertTriangle size={18} style={{ color: '#ef4444', flexShrink: 0, marginTop: 2 }} />
+                      <div style={{ fontSize: '0.88rem', color: 'var(--text-primary)', lineHeight: 1.5 }}>
+                        <strong style={{ color: '#ef4444' }}>High-Yield Trap &amp; Exam Strategy: </strong>
+                        {q.trapAlert}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </section>
+        </div>
       )}
 
       {/* ──────────────────────────────────────────────────────────────────────────
-          TAB 3: FALL 2022 MIDTERM (Q1 · 50% WEIGHT)
+          TAB 4: FALL 2022 MIDTERM (Q1 · 50% WEIGHT)
          ────────────────────────────────────────────────────────────────────────── */}
       {activeTab === 'f22' && f22Paper && (
-        <section className="mg-panel mg-panel-pad">
-          <div className="mg-paper-meta-banner">
-            <div>
-              <h3 className="mg-section-title">{f22Paper.title}</h3>
-              <p className="mg-section-sub">{f22Paper.overview}</p>
-            </div>
-            <span className="mg-badge exact" style={{ fontSize: '0.85rem', padding: '6px 12px' }}>
-              {f22Paper.officialWeight}
-            </span>
-          </div>
-
-          {/* Full C++ Program Code */}
-          <div className="mg-gordon-card" style={{ marginTop: 20 }}>
-            <div className="mg-gordon-card-top">
+        <div className="tp-tab-content">
+          <div className="tp-info-card" style={{ marginBottom: 20 }}>
+            <div className="tp-file-top">
               <div>
-                <div className="mg-gordon-item-title">Complete 50-Point C++ Program (`program.cpp`)</div>
-                <div className="mg-gordon-source">
-                  Combines all 5 sub-questions (a, b, c, d, e) into one verified, executable file.
-                </div>
+                <h3 className="tp-file-title">{f22Paper.title}</h3>
+                <p className="tp-file-desc">{f22Paper.overview}</p>
               </div>
-              <div className="mg-gordon-card-actions">
-                <button
-                  type="button"
-                  className="mg-btn small"
-                  onClick={() => f22Paper.fullProgramCode && copyCode('f22-full', f22Paper.fullProgramCode)}
-                  title="Copy full source code"
-                >
-                  {copiedId === 'f22-full' ? <Check size={13} /> : <Copy size={13} />}
-                  {copiedId === 'f22-full' ? 'Copied' : 'Copy'}
-                </button>
-                <button
-                  type="button"
-                  className="mg-btn small primary"
-                  onClick={() => f22Paper.fullProgramCode && openInCodeLab(f22Paper.fullProgramCode)}
-                  title="Open and run in interactive Code Lab"
-                >
-                  <PlayCircle size={13} /> Run in Code Lab
-                </button>
-              </div>
+              <span className="tp-tag" style={{ fontWeight: 700, color: '#2563eb' }}>
+                {f22Paper.officialWeight}
+              </span>
             </div>
 
-            {f22Paper.fullProgramCode && (
-              <pre className="mg-code mg-gordon-code" style={{ maxHeight: 420, overflowY: 'auto' }}>
-                {f22Paper.fullProgramCode}
-              </pre>
-            )}
-          </div>
-
-          {/* Sub-parts Breakdown */}
-          <h4 style={{ margin: '24px 0 12px', fontSize: '1.05rem', color: 'var(--text-primary)' }}>
-            Exam Sub-Questions Breakdown (Parts A through E)
-          </h4>
-          <div className="mg-paper-questions-list">
-            {f22Paper.questions.map((q) => (
-              <div key={q.id} className="mg-gordon-card" style={{ marginBottom: 16 }}>
-                <div className="mg-gordon-card-top">
-                  <div>
-                    <div className="mg-gordon-item-title">
-                      {q.part}: {q.title}
-                    </div>
-                    <div className="mg-gordon-source">
-                      <span className="mg-source-label">Weight:</span> {q.points}
-                    </div>
+            {/* Full C++ Program Code */}
+            <div className="tp-info-card" style={{ marginTop: 16 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginBottom: 10 }}>
+                <div>
+                  <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                    Complete 50-Point C++ Program (`program.cpp`)
+                  </h4>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted, #64748b)', marginTop: 2 }}>
+                    Combines all 5 sub-questions (a, b, c, d, e) into one verified executable file.
                   </div>
+                </div>
+                <div style={{ display: 'flex', gap: 8 }}>
                   <button
                     type="button"
-                    className="mg-btn small"
-                    onClick={() => copyCode(q.id, q.codeSnippet)}
-                    title="Copy code snippet"
+                    className="tp-btn-secondary"
+                    onClick={() => f22Paper.fullProgramCode && copyCode('f22-full', f22Paper.fullProgramCode)}
+                    style={{ padding: '6px 12px', fontSize: 12 }}
+                    title="Copy full source code"
                   >
-                    {copiedId === q.id ? <Check size={13} /> : <Copy size={13} />}
-                    {copiedId === q.id ? 'Copied' : 'Copy'}
+                    {copiedId === 'f22-full' ? <Check size={13} /> : <Copy size={13} />}
+                    <span>{copiedId === 'f22-full' ? 'Copied' : 'Copy'}</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="tp-btn-primary"
+                    onClick={() => f22Paper.fullProgramCode && openInCodeLab(f22Paper.fullProgramCode)}
+                    style={{ padding: '6px 12px', fontSize: 12 }}
+                    title="Run in Code Lab"
+                  >
+                    <PlayCircle size={13} />
+                    <span>Run in Code Lab</span>
                   </button>
                 </div>
-
-                <p className="mg-q-desc">{q.description}</p>
-                <pre className="mg-code mg-gordon-code">{q.codeSnippet}</pre>
-
-                <div className="mg-freq-occurrences" style={{ marginTop: 10 }}>
-                  <strong>Core Concepts Tested: </strong>
-                  {q.conceptsTested.map((c, ci) => (
-                    <span key={ci} className="mg-occurrence-tag">
-                      {c}
-                    </span>
-                  ))}
-                </div>
               </div>
-            ))}
+
+              {f22Paper.fullProgramCode && (
+                <pre className="mg-code mg-gordon-code" style={{ maxHeight: 420, overflowY: 'auto' }}>
+                  {f22Paper.fullProgramCode}
+                </pre>
+              )}
+            </div>
+
+            {/* Sub-parts Breakdown */}
+            <h4 style={{ margin: '24px 0 12px', fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+              Exam Sub-Questions Breakdown (Parts A through E)
+            </h4>
+            <div className="mg-paper-questions-list">
+              {f22Paper.questions.map((q) => (
+                <div key={q.id} className="tp-info-card" style={{ marginBottom: 16 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginBottom: 10 }}>
+                    <div>
+                      <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                        {q.part}: {q.title}
+                      </h4>
+                      <div style={{ fontSize: '0.82rem', color: 'var(--text-muted, #64748b)', marginTop: 2 }}>
+                        Weight: <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{q.points}</span>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="tp-btn-secondary"
+                      onClick={() => copyCode(q.id, q.codeSnippet)}
+                      style={{ padding: '6px 12px', fontSize: 12 }}
+                      title="Copy code snippet"
+                    >
+                      {copiedId === q.id ? <Check size={13} /> : <Copy size={13} />}
+                      <span>{copiedId === q.id ? 'Copied' : 'Copy'}</span>
+                    </button>
+                  </div>
+
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: '8px 0 12px' }}>
+                    {q.description}
+                  </p>
+                  <pre className="mg-code mg-gordon-code">{q.codeSnippet}</pre>
+
+                  <div className="mg-freq-occurrences" style={{ marginTop: 12 }}>
+                    <strong style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>Core Concepts Tested: </strong>
+                    {q.conceptsTested.map((c, ci) => (
+                      <span key={ci} className="tp-tag">
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </section>
+        </div>
       )}
 
       {/* ──────────────────────────────────────────────────────────────────────────
-          TAB 4: MIDTERM REVIEWS (#1 & #4)
+          TAB 5: MIDTERM REVIEWS (#1 & #4)
          ────────────────────────────────────────────────────────────────────────── */}
       {activeTab === 'reviews' && (
-        <>
+        <div className="tp-tab-content">
           {reviewPapers.map((paper) => (
-            <section key={paper.id} className="mg-panel mg-panel-pad" style={{ marginBottom: 16 }}>
-              <div className="mg-paper-meta-banner">
+            <div key={paper.id} className="tp-info-card" style={{ marginBottom: 20 }}>
+              <div className="tp-file-top">
                 <div>
-                  <h3 className="mg-section-title">{paper.title}</h3>
-                  <p className="mg-section-sub">{paper.overview}</p>
+                  <h3 className="tp-file-title">{paper.title}</h3>
+                  <p className="tp-file-desc">{paper.overview}</p>
                 </div>
-                <span className="mg-badge template" style={{ fontSize: '0.85rem', padding: '6px 12px' }}>
+                <span className="tp-tag" style={{ fontWeight: 700, color: '#2563eb' }}>
                   {paper.officialWeight}
                 </span>
               </div>
 
               <div className="mg-paper-questions-list" style={{ marginTop: 16 }}>
                 {paper.questions.map((q) => (
-                  <div key={q.id} className="mg-gordon-card" style={{ marginBottom: 16 }}>
-                    <div className="mg-gordon-card-top">
+                  <div key={q.id} className="tp-info-card" style={{ marginBottom: 16 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginBottom: 10 }}>
                       <div>
-                        <div className="mg-gordon-item-title">
+                        <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
                           {q.part}: {q.title}
-                        </div>
-                        <div className="mg-gordon-source">
-                          <span className="mg-source-label">Format:</span> {q.points}
+                        </h4>
+                        <div style={{ fontSize: '0.82rem', color: 'var(--text-muted, #64748b)', marginTop: 2 }}>
+                          Format: <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{q.points}</span>
                         </div>
                       </div>
-                      <div className="mg-gordon-card-actions">
+                      <div style={{ display: 'flex', gap: 8 }}>
                         <button
                           type="button"
-                          className="mg-btn small"
+                          className="tp-btn-secondary"
                           onClick={() => copyCode(q.id, q.codeSnippet)}
+                          style={{ padding: '6px 12px', fontSize: 12 }}
                           title="Copy C++ snippet"
                         >
                           {copiedId === q.id ? <Check size={13} /> : <Copy size={13} />}
-                          {copiedId === q.id ? 'Copied' : 'Copy'}
+                          <span>{copiedId === q.id ? 'Copied' : 'Copy'}</span>
                         </button>
                         <button
                           type="button"
-                          className="mg-btn small primary"
+                          className="tp-btn-primary"
                           onClick={() => openInCodeLab(q.codeSnippet)}
-                          title="Open in Code Lab"
+                          style={{ padding: '6px 12px', fontSize: 12 }}
+                          title="Run Code"
                         >
-                          <PlayCircle size={13} /> Run Code
+                          <PlayCircle size={13} />
+                          <span>Run Code</span>
                         </button>
                       </div>
                     </div>
 
-                    <p className="mg-q-desc">{q.description}</p>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: '8px 0 12px' }}>
+                      {q.description}
+                    </p>
                     <pre className="mg-code mg-gordon-code">{q.codeSnippet}</pre>
 
                     {q.expectedOutput && (
-                      <div style={{ marginTop: 10 }}>
+                      <div style={{ marginTop: 12 }}>
                         <div className="mg-gordon-col-label">
                           <Terminal size={13} /> Expected Terminal Output
                         </div>
@@ -1097,10 +1182,10 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                       </div>
                     )}
 
-                    <div className="mg-freq-occurrences" style={{ marginTop: 10 }}>
-                      <strong>Concepts: </strong>
+                    <div className="mg-freq-occurrences" style={{ marginTop: 12 }}>
+                      <strong style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>Concepts: </strong>
                       {q.conceptsTested.map((c, ci) => (
-                        <span key={ci} className="mg-occurrence-tag">
+                        <span key={ci} className="tp-tag">
                           {c}
                         </span>
                       ))}
@@ -1108,76 +1193,83 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content, nav }) => {
                   </div>
                 ))}
               </div>
-            </section>
+            </div>
           ))}
-        </>
+        </div>
       )}
 
       {/* ──────────────────────────────────────────────────────────────────────────
-          TAB 5: PRECURSOR QUIZZES
+          TAB 6: PRECURSOR QUIZZES
          ────────────────────────────────────────────────────────────────────────── */}
       {activeTab === 'quizzes' && quizPaper && (
-        <section className="mg-panel mg-panel-pad">
-          <div className="mg-paper-meta-banner">
-            <div>
-              <h3 className="mg-section-title">{quizPaper.title}</h3>
-              <p className="mg-section-sub">{quizPaper.overview}</p>
-            </div>
-            <span className="mg-badge concept" style={{ fontSize: '0.85rem', padding: '6px 12px' }}>
-              {quizPaper.officialWeight}
-            </span>
-          </div>
-
-          <div className="mg-paper-questions-list" style={{ marginTop: 16 }}>
-            {quizPaper.questions.map((q) => (
-              <div key={q.id} className="mg-gordon-card" style={{ marginBottom: 16 }}>
-                <div className="mg-gordon-card-top">
-                  <div>
-                    <div className="mg-gordon-item-title">
-                      {q.part}: {q.title}
-                    </div>
-                    <div className="mg-gordon-source">
-                      <span className="mg-source-label">Format:</span> {q.points}
-                    </div>
-                  </div>
-                  <div className="mg-gordon-card-actions">
-                    <button
-                      type="button"
-                      className="mg-btn small"
-                      onClick={() => copyCode(q.id, q.codeSnippet)}
-                      title="Copy code"
-                    >
-                      {copiedId === q.id ? <Check size={13} /> : <Copy size={13} />}
-                      {copiedId === q.id ? 'Copied' : 'Copy'}
-                    </button>
-                    <button
-                      type="button"
-                      className="mg-btn small primary"
-                      onClick={() => openInCodeLab(q.codeSnippet)}
-                      title="Run in Code Lab"
-                    >
-                      <PlayCircle size={13} /> Run Code
-                    </button>
-                  </div>
-                </div>
-
-                <p className="mg-q-desc">{q.description}</p>
-                <pre className="mg-code mg-gordon-code" style={{ maxHeight: 380, overflowY: 'auto' }}>
-                  {q.codeSnippet}
-                </pre>
-
-                <div className="mg-freq-occurrences" style={{ marginTop: 10 }}>
-                  <strong>Key Skills: </strong>
-                  {q.conceptsTested.map((c, ci) => (
-                    <span key={ci} className="mg-occurrence-tag">
-                      {c}
-                    </span>
-                  ))}
-                </div>
+        <div className="tp-tab-content">
+          <div className="tp-info-card" style={{ marginBottom: 20 }}>
+            <div className="tp-file-top">
+              <div>
+                <h3 className="tp-file-title">{quizPaper.title}</h3>
+                <p className="tp-file-desc">{quizPaper.overview}</p>
               </div>
-            ))}
+              <span className="tp-tag" style={{ fontWeight: 700, color: '#2563eb' }}>
+                {quizPaper.officialWeight}
+              </span>
+            </div>
+
+            <div className="mg-paper-questions-list" style={{ marginTop: 16 }}>
+              {quizPaper.questions.map((q) => (
+                <div key={q.id} className="tp-info-card" style={{ marginBottom: 16 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginBottom: 10 }}>
+                    <div>
+                      <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>
+                        {q.part}: {q.title}
+                      </h4>
+                      <div style={{ fontSize: '0.82rem', color: 'var(--text-muted, #64748b)', marginTop: 2 }}>
+                        Format: <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{q.points}</span>
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <button
+                        type="button"
+                        className="tp-btn-secondary"
+                        onClick={() => copyCode(q.id, q.codeSnippet)}
+                        style={{ padding: '6px 12px', fontSize: 12 }}
+                        title="Copy code"
+                      >
+                        {copiedId === q.id ? <Check size={13} /> : <Copy size={13} />}
+                        <span>{copiedId === q.id ? 'Copied' : 'Copy'}</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="tp-btn-primary"
+                        onClick={() => openInCodeLab(q.codeSnippet)}
+                        style={{ padding: '6px 12px', fontSize: 12 }}
+                        title="Run in Code Lab"
+                      >
+                        <PlayCircle size={13} />
+                        <span>Run Code</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: '8px 0 12px' }}>
+                    {q.description}
+                  </p>
+                  <pre className="mg-code mg-gordon-code" style={{ maxHeight: 380, overflowY: 'auto' }}>
+                    {q.codeSnippet}
+                  </pre>
+
+                  <div className="mg-freq-occurrences" style={{ marginTop: 12 }}>
+                    <strong style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>Key Skills: </strong>
+                    {q.conceptsTested.map((c, ci) => (
+                      <span key={ci} className="tp-tag">
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </section>
+        </div>
       )}
     </div>
   );
