@@ -127,8 +127,49 @@ function questionCountsPlugin() {
   };
 }
 
+// The course curricula (sections → lessons → steps, with the question, video and document ids each step uses),
+// computed at build time from the course specs in src/learn/curriculum and the course data.
+//   virtual:curriculum-summary  — a few hundred bytes per course, for the home page
+//   virtual:curriculum          — the full curricula, loaded with the course pages
+function curriculumPlugin() {
+  const IDS = ['virtual:curriculum', 'virtual:curriculum-summary'];
+  const entry = path.resolve(__dirname, 'src/learn/build/entry.ts');
+  const semester1Root = path.resolve(__dirname, '..');
+  let built: Promise<{ curricula: Record<string, any>; inputs: string[] }> | null = null;
+  const build = async () => {
+    const out = await esbuild({ entryPoints: [entry], bundle: true, write: false, format: 'esm', platform: 'node', metafile: true, logLevel: 'silent', loader: { '.css': 'empty' } });
+    const mod = await import('data:text/javascript;base64,' + Buffer.from(out.outputFiles[0].text).toString('base64'));
+    const docs = buildDocumentRegistry(semester1Root).map(([p]) => p);
+    return { curricula: mod.buildAll(docs).curricula, inputs: Object.keys(out.metafile!.inputs).map((i) => path.resolve(__dirname, i)) };
+  };
+  return {
+    name: 'curriculum',
+    resolveId(id: string) {
+      return IDS.includes(id) ? '\0' + id : null;
+    },
+    async load(this: any, id: string) {
+      const name = id.startsWith('\0') ? id.slice(1) : '';
+      if (!IDS.includes(name)) return null;
+      built ??= build();
+      const { curricula, inputs } = await built;
+      for (const i of inputs) this.addWatchFile(i);
+      if (name === 'virtual:curriculum') return `export default ${JSON.stringify(curricula)};`;
+      const summary = Object.fromEntries(
+        Object.entries(curricula).map(([c, cur]) => {
+          const first = cur.sections[0].lessons[0];
+          return [c, { stats: cur.stats, midterm: cur.midterm, start: { lessonId: first.id, stepId: first.steps[0].id }, thumb: cur.sections.flatMap((s: any) => s.lessons).find((l: any) => l.thumb)?.thumb ?? null }];
+        })
+      );
+      return `export default ${JSON.stringify(summary)};`;
+    },
+    handleHotUpdate(ctx: any) {
+      if (built && /src[\\/](learn|data)[\\/]/.test(ctx.file)) built = null;
+    }
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), coursePdfPlugin(), questionCountsPlugin()],
+  plugins: [react(), coursePdfPlugin(), questionCountsPlugin(), curriculumPlugin()],
   build: {
     emptyOutDir: false
   },

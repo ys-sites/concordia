@@ -76,7 +76,8 @@ export const EXAM_PAPER_PATTERNS: RegExp[] = [
   /(^|\/)06 - Quiz & Midterm Exam Prep(\/|$)/i,
   /^Miae 215\/MIAE_215_midterm_review_questions(\/|$)/,
   /^Indu 211\/05 - Assignments & Solutions(\/|$)/,
-  /(^|\/)[^/]*exam archive[^/]*$/i
+  /(^|\/)[^/]*exam archive[^/]*$/i,
+  /(^|\/)[^/]*sample (final|midterm)[^/]*$/i
 ];
 
 // Study guides whose names mention a midterm but that hold no exam paper

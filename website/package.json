@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "validate:questions": "esbuild scripts/validate-questions.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-questions.mjs --loader:.css=empty && node node_modules/.cache/validate-questions.mjs"
+    "validate:questions": "esbuild scripts/validate-questions.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-questions.mjs --loader:.css=empty && node node_modules/.cache/validate-questions.mjs",
+    "validate:curriculum": "esbuild scripts/validate-curriculum.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-curriculum.mjs --loader:.css=empty && node node_modules/.cache/validate-curriculum.mjs"
   },
   "dependencies": {
     "@types/canvas-confetti": "^1.9.0",
