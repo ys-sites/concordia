@@ -8,7 +8,7 @@ const content: GateContent = {
  "builtFor": "MIAE 221 · Fall 2026 midterm (Ch 1–7.4)",
  "midterm": {
   "date": "2026-10-30",
-  "label": "Fri Oct 30 · in lecture",
+  "label": "Fri Oct 30, 8:30 AM · 25 % of the grade · closed book, no cheat sheet",
   "scope": "Ch 1–7.4: bonding, crystal structures & crystallography, imperfections, diffusion, mechanical properties, dislocations & slip systems (7.1–7.4)"
  },
  "labTitle": "Formula Lab",

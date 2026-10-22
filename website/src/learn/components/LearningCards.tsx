@@ -8,7 +8,7 @@ import { courseProgress, findStep, fmtMinutes, isDone, nextStep } from '../data'
 import { href } from '../router';
 import { Suggestion } from '../progress/insights';
 import { CourseCover } from './CourseCover';
-import { getVideoUrl } from '../../utils/pdfUrl';
+import { VideoThumb } from './VideoThumb';
 import '../styles/dashboard.css';
 
 // Cards shared by the home page and My learning: a course to continue, and a recommendation with its reason.
@@ -45,15 +45,15 @@ export const ContinueCard: React.FC<{ cur: Curriculum; p: ProgressState }> = ({ 
 };
 
 // the picture for a suggestion: the video it points at (its poster, or the YouTube thumbnail), else the cover
-const thumbOf = (cur: Curriculum, s: Suggestion): string | null => {
+const thumbOf = (cur: Curriculum, s: Suggestion): { yt?: string; poster?: string; videoId?: string } | null => {
   if (!s.stepId) return null;
   const st = findStep(cur, s.stepId)?.step;
   if (!st) return null;
-  if (st.youtube) return `https://i.ytimg.com/vi/${st.youtube.id}/mqdefault.jpg`;
+  if (st.youtube) return { yt: `https://i.ytimg.com/vi/${st.youtube.id}/mqdefault.jpg` };
   const lesson = findStep(cur, s.stepId)?.lesson;
   const vid = st.videoId ?? lesson?.steps.find((x) => x.videoId)?.videoId;
   const v = vid ? cur.videos.find((x) => x.id === vid) : null;
-  return v?.poster ? getVideoUrl(v.poster) : null;
+  return v?.poster ? { poster: v.poster, videoId: v.id } : null;
 };
 
 const KIND_LABEL: Record<Suggestion['kind'], string> = { weak: 'Strengthen', stale: 'Refresh', review: 'Review', exam: 'Exam prep', start: 'Start', continue: 'Continue' };
@@ -64,7 +64,7 @@ export const RecoCard: React.FC<{ cur: Curriculum; s: Suggestion; onReview?: (c:
   return (
     <article className={`lx-reco ${courseClass(s.course)}`}>
       <div className="lx-reco-media">
-        {thumb ? <img src={thumb} alt="" loading="lazy" crossOrigin={thumb.includes('r2.dev') ? 'anonymous' : undefined} /> : <CourseCover course={s.course} label={false} />}
+        {thumb?.yt ? <img src={thumb.yt} alt="" loading="lazy" /> : thumb ? <VideoThumb poster={thumb.poster} videoId={thumb.videoId} /> : <CourseCover course={s.course} label={false} />}
         <span className={`lx-reco-kind is-${s.kind}`}>{KIND_LABEL[s.kind]}</span>
         {s.minutes ? <span className="lx-vid-dur lx-num">{s.minutes} min</span> : null}
       </div>

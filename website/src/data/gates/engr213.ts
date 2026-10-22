@@ -7,9 +7,9 @@ const content: GateContent = {
  "course": "ENGR213",
  "builtFor": "ENGR 213 · Fall 2026 Midterm 1",
  "midterm": {
-  "date": "2026-10-19",
-  "label": "Mon Oct 19 · in tutorial",
-  "scope": "Chapter 1 basics, Chapter 2 (separable, linear, exact, substitutions, linear & nonlinear models) and CH 17.1–17.2 complex numbers"
+  "date": "2026-10-23",
+  "label": "Midterm 1 · Fri Oct 23, 2:00–3:45 PM · GNM 100",
+  "scope": "Chapter 2 (separable, linear, exact, substitutions, linear & nonlinear models) and Sections 17.1–17.2 (complex numbers), with the Chapter 1 basics they build on"
  },
  "labTitle": "Method Lab",
  "labBlurb": "Every solving method on Midterm 1, in lecture order. Each one: the idea, a past-exam problem solved step by step (reveal one line at a time), a calculator where the problem is numeric, and a practice set of real past questions. For “solve” questions, work on paper, reveal the solution, and mark yourself honestly.",

@@ -128,28 +128,19 @@
 
 /* countdowns */
 .lx-exam-strip {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr));
   gap: 12px;
 }
 .lx-exam-pill {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 12px;
-  padding: 12px 16px;
-  min-width: 280px;
-  flex: 1;
-  max-width: 420px;
+  padding: 12px 10px 12px 16px;
   background: var(--lx-tint);
   border-radius: var(--lx-r-lg);
   color: var(--lx-accent-deep);
-  text-decoration: none;
-}
-.lx-exam-pill > span:nth-child(2) {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.3;
-  flex: 1;
 }
 .lx-exam-pill .lx-meta {
   color: var(--lx-accent-deep);
@@ -158,6 +149,7 @@
 .lx-exam-days {
   font-size: 18px;
   font-weight: 800;
+  white-space: nowrap;
 }
 
 /* up next */
@@ -237,9 +229,5 @@
   .lx-course-grid,
   .lx-how-steps {
     grid-template-columns: 1fr;
-  }
-  .lx-exam-pill {
-    min-width: 0;
-    max-width: none;
   }
 }

@@ -3,7 +3,7 @@ import { CheckCircle2, Clapperboard, ExternalLink, ListVideo, PlayCircle, Sparkl
 import type { Curriculum, VideoCard } from '../model';
 import { resolveVideo, MotionLesson } from '../videoSources';
 import { MotionLessonPlayer } from '../../components/MotionLessonPlayer';
-import { getVideoUrl } from '../../utils/pdfUrl';
+import { VideoThumb } from './VideoThumb';
 import { fmtClock } from '../data';
 import { href } from '../router';
 import { markStep, saveVideoPosition, useProgress } from '../progress/store';
@@ -166,7 +166,7 @@ export const VideoLibrary: React.FC<{ cur: Curriculum }> = ({ cur }) => {
                   <li>
                     <button type="button" className={`lx-vlib-item${v.id === current.id ? ' is-current' : ''}`} onClick={() => setSelected(v.id)} aria-current={v.id === current.id ? 'true' : undefined}>
                       <span className="lx-vlib-thumb">
-                        {v.kind === 'extra' ? <img src={ytThumb(v.id.slice(3))} alt="" loading="lazy" /> : v.poster ? <img src={getVideoUrl(v.poster)} alt="" loading="lazy" crossOrigin="anonymous" /> : null}
+                        {v.kind === 'extra' ? <img src={ytThumb(v.id.slice(3))} alt="" loading="lazy" /> : <VideoThumb poster={v.poster} videoId={v.id} />}
                         <span className="lx-vid-dur lx-num">{fmtClock(v.seconds)}</span>
                         {w > 0 && <span className="lx-vid-watched" style={{ width: `${Math.round(w * 100)}%` }} />}
                       </span>

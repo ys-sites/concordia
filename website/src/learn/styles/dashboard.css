@@ -105,6 +105,7 @@
   background: var(--lx-dark);
 }
 .lx-reco-media img,
+.lx-reco-media video,
 .lx-reco-media .lx-cover {
   width: 100%;
   height: 100%;
@@ -402,23 +403,6 @@
   width: 12px;
   height: 4px;
   border-radius: 2px;
-}
-
-/* review dialog */
-.lx-dialog {
-  position: relative;
-  width: min(820px, 100%);
-  max-height: 92vh;
-  overflow-y: auto;
-  padding: 28px;
-  border-radius: var(--lx-r-lg);
-  background: var(--lx-surface);
-  box-shadow: var(--lx-float);
-}
-.lx-dialog-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
 }
 
 @media (max-width: 1100px) {

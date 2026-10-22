@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { ArrowRight, Brain, CalendarClock, Clock3, FileText, Flame, Info, ListChecks, PlayCircle, RotateCcw, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, Brain, Clock3, FileText, Flame, Info, ListChecks, PlayCircle, RotateCcw, ShieldCheck, Sparkles } from 'lucide-react';
 import ShinyText from '../../components/reactbits/ShinyText';
 import CountUp from '../../components/reactbits/CountUp';
 import type { CourseId } from '../../types';
@@ -8,7 +8,9 @@ import { SUMMARY, courseProgress, fmtHours, nextStep, useCurricula } from '../da
 import { href } from '../router';
 import { streak, useProgress } from '../progress/store';
 import { CourseCover } from '../components/CourseCover';
-import { daysUntil, dueForReview, suggestions } from '../progress/insights';
+import { dueForReview, suggestions } from '../progress/insights';
+import { nextExam, useReminders } from '../reminders';
+import { ComingUp } from '../components/Reminders';
 import { ContinueCard, RecoCard } from '../components/LearningCards';
 import '../styles/home.css';
 import '../styles/hero.css';
@@ -54,7 +56,7 @@ export const Home: React.FC = () => {
   const lastByCourse = useProgress((s) => s.lastByCourse);
   const days = useProgress((s) => s.days);
   const questions = useProgress((s) => s.questions);
-  const examDates = useProgress((s) => s.examDates);
+  const reminders = useReminders();
 
   const progress = useMemo(() => {
     if (!curricula) return null;
@@ -68,9 +70,9 @@ export const Home: React.FC = () => {
     if (!curricula) return [];
     const pool = startedCourses.length ? startedCourses : COURSES;
     return pool
-      .flatMap((c) => suggestions(curricula[c.id], progressState, progressState.examDates[c.id] ?? curricula[c.id].midterm.date).slice(0, startedCourses.length ? 2 : 1).map((s) => ({ s, cur: curricula[c.id] })))
+      .flatMap((c) => suggestions(curricula[c.id], progressState, nextExam(reminders, c.id)).slice(0, startedCourses.length ? 2 : 1).map((s) => ({ s, cur: curricula[c.id] })))
       .slice(0, 4);
-  }, [curricula, progressState]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [curricula, progressState, reminders]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const due = useMemo(() => dueForReview(questions), [questions]);
   const run = streak(days);
@@ -78,11 +80,6 @@ export const Home: React.FC = () => {
     const now = Date.now();
     return Math.round(Object.entries(days).filter(([d]) => now - new Date(d).getTime() < 7 * 86_400_000).reduce((n, [, s]) => n + s, 0) / 60);
   }, [days]);
-
-  const exams = COURSES.map((c) => ({ c, date: examDates[c.id] ?? SUMMARY[c.id].midterm.date, label: SUMMARY[c.id].midterm.label }))
-    .map((x) => ({ ...x, left: x.date ? daysUntil(x.date) : null }))
-    .filter((x) => x.left !== null && x.left >= 0)
-    .sort((a, b) => a.left! - b.left!);
 
   const resume = last && curricula ? curricula[last.course] : null;
   const totals = COURSES.reduce(
@@ -110,7 +107,7 @@ export const Home: React.FC = () => {
                 shineColor="#ffffff"
                 spread={120}
                 pauseOnHover={true}
-                gradient="linear-gradient(120deg, #4338ca 0%, #4f46e5 35%, #ffffff 50%, #4f46e5 65%, #4338ca 100%)"
+                gradient="linear-gradient(110deg, #4338ca 0%, #4f46e5 40%, #a5b4fc 50%, #4f46e5 60%, #4338ca 100%)"
               />
             </h1>
             <p className="hero-subtext">
@@ -181,25 +178,7 @@ export const Home: React.FC = () => {
       </section>
 
       <div className="lx-wrap">
-        {exams.length > 0 && (
-          <section className="lx-home-section" aria-labelledby="lx-exams">
-            <h2 id="lx-exams" className="lx-h2">
-              Coming up
-            </h2>
-            <div className="lx-exam-strip">
-              {exams.map(({ c, label, left }) => (
-                <a key={c.id} className={`lx-exam-pill ${courseClass(c.id)}`} href={href({ name: 'course', course: c.id, tab: 'exam' })}>
-                  <CalendarClock size={18} aria-hidden />
-                  <span>
-                    <strong>{c.code} midterm</strong>
-                    <span className="lx-meta">{label}</span>
-                  </span>
-                  <span className="lx-exam-days lx-num">{left === 0 ? 'Today' : left === 1 ? 'Tomorrow' : `${left} days`}</span>
-                </a>
-              ))}
-            </div>
-          </section>
-        )}
+        <ComingUp />
 
         {curricula && startedCourses.length > 0 && (
           <section className="lx-home-section" aria-labelledby="lx-continue">

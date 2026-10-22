@@ -1,13 +1,14 @@
 /**
- * Visitor Tracking Engine for Concordia Engineering Hub
- * Tracks:
- * 1. Live active visitors right now (via 25-30s heartbeats)
- * 2. Daily unique visitors (resets at midnight)
- * 3. Cumulative total visitors
- * 
- * Multi-Tier Persistence:
- * - Persistent Cloud KV (retained across all git pushes and Vercel rebuilds)
- * - LocalStorage sync (maintains values even offline or on refresh)
+ * Live site activity: visitors right now, today and all time.
+ *
+ * The counts live in an external store behind /api/visitors (see api/visitors.js), not in the deployment, so
+ * every push and redeploy keeps them. Never rename the store's namespace or keys there: that would restart
+ * the count from zero.
+ *
+ * The numbers shown never go down. This browser keeps the highest counts the server has reported, so a slow
+ * or failed request, a cold server or a network hiccup can never show a reset count; only "today" starts
+ * over, at midnight Montreal time. On localhost the counter reads the live site's numbers without adding a
+ * visit, so the preview shows the real counts.
  */
 
 export interface LiveVisitorData {
@@ -17,143 +18,86 @@ export interface LiveVisitorData {
   configured: boolean;
 }
 
-const STORAGE_KEYS = {
-  TOTAL: 'concordia_live_v3_total',
-  TODAY: 'concordia_live_v3_today',
-  LAST_DATE: 'concordia_live_v3_date',
-  SESSION_FLAG: 'concordia_live_v3_session_counted',
-  SESSION_ID: 'concordia_live_v3_session_id'
-};
+interface Seen {
+  total: number;
+  today: number;
+  date: string; // the day "today" counts, YYYY-MM-DD in Montreal
+}
 
-function cleanupOldKeys() {
-  if (typeof window === 'undefined') return;
+const SEEN_KEY = 'concordia_live_v3_seen';
+const SESSION_ID = 'concordia_live_v3_session_id';
+// numbers kept by earlier versions of this file: the local stand-in counts were not real, so they are dropped
+const OBSOLETE = ['concordia_live_v3_total', 'concordia_live_v3_today', 'concordia_live_v3_date', 'concordia_live_v3_session_counted'];
+
+const montrealDate = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto' }).format(new Date());
+
+function readSeen(): Seen | null {
   try {
-    const obsolete = [
-      'concordia_real_total_visits_v2',
-      'concordia_real_today_visits_v2',
-      'concordia_real_last_visit_date_v2',
-      'concordia_real_session_counted_v2',
-      'concordia_real_session_id_v2',
-      'concordia_eng_total_visits',
-      'concordia_eng_today_visits',
-      'concordia_eng_last_visit_date',
-      'concordia_eng_session_counted',
-      'concordia_eng_session_id'
-    ];
-    for (const k of obsolete) {
-      localStorage.removeItem(k);
-      sessionStorage.removeItem(k);
-    }
-
-    // Safety reset: if total or today in localStorage is greater than 100 (from previous artificial base), reset to 1
-    const curTotal = parseInt(localStorage.getItem(STORAGE_KEYS.TOTAL) || '0', 10);
-    if (curTotal > 100) {
-      localStorage.setItem(STORAGE_KEYS.TOTAL, '1');
-    }
-    const curToday = parseInt(localStorage.getItem(STORAGE_KEYS.TODAY) || '0', 10);
-    if (curToday > 100) {
-      localStorage.setItem(STORAGE_KEYS.TODAY, '1');
-    }
+    for (const k of OBSOLETE) localStorage.removeItem(k);
+    const s = JSON.parse(localStorage.getItem(SEEN_KEY) || 'null');
+    return s && typeof s.total === 'number' && s.total > 0 ? s : null;
   } catch {
-    // Ignore storage errors
+    return null;
   }
 }
 
-function getSessionId(): string {
-  if (typeof window === 'undefined') return 'server_session';
-  let sId = sessionStorage.getItem(STORAGE_KEYS.SESSION_ID);
-  if (!sId) {
-    sId = 's_' + Math.random().toString(36).substring(2, 9) + '_' + Date.now().toString(36);
-    sessionStorage.setItem(STORAGE_KEYS.SESSION_ID, sId);
-  }
-  return sId;
-}
-
-function getTodayString(): string {
-  const now = new Date();
-  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-}
-
-export function getLocalFallbackStats(): LiveVisitorData {
-  if (typeof window === 'undefined') {
-    return { live: 1, today: 1, total: 1, configured: true };
-  }
-
-  cleanupOldKeys();
-
-  const todayStr = getTodayString();
-  const lastRecordedDate = localStorage.getItem(STORAGE_KEYS.LAST_DATE);
-  const sessionCounted = sessionStorage.getItem(STORAGE_KEYS.SESSION_FLAG);
-
-  let total = parseInt(localStorage.getItem(STORAGE_KEYS.TOTAL) || '1', 10);
-  let today = parseInt(localStorage.getItem(STORAGE_KEYS.TODAY) || '1', 10);
-
-  if (isNaN(total) || total < 1) total = 1;
-  if (isNaN(today) || today < 1) today = 1;
-
-  if (lastRecordedDate !== todayStr) {
-    today = 1;
-    localStorage.setItem(STORAGE_KEYS.LAST_DATE, todayStr);
-    localStorage.setItem(STORAGE_KEYS.TODAY, today.toString());
-  }
-
-  if (!sessionCounted) {
-    today += 1;
-    total += 1;
-    localStorage.setItem(STORAGE_KEYS.TODAY, today.toString());
-    localStorage.setItem(STORAGE_KEYS.TOTAL, total.toString());
-    localStorage.setItem(STORAGE_KEYS.LAST_DATE, todayStr);
-    sessionStorage.setItem(STORAGE_KEYS.SESSION_FLAG, 'true');
-  }
-
-  return {
-    live: 1,
-    today,
-    total,
-    configured: true
-  };
-}
-
-export async function pingAndGetStats(isHeartbeat = false): Promise<LiveVisitorData> {
-  const sessionId = getSessionId();
-  const todayStr = getTodayString();
-
+function sessionId(): string {
   try {
-    const res = await fetch('/api/visitors', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sessionId, isHeartbeat }),
-      keepalive: true
-    });
+    let id = sessionStorage.getItem(SESSION_ID);
+    if (!id) {
+      id = 's_' + Math.random().toString(36).slice(2, 9) + '_' + Date.now().toString(36);
+      sessionStorage.setItem(SESSION_ID, id);
+    }
+    return id;
+  } catch {
+    return 's_' + Math.random().toString(36).slice(2, 9);
+  }
+}
 
+// What to paint before the server answers: the last real counts this browser saw, or nothing
+export function getLastSeenStats(): LiveVisitorData | null {
+  const s = readSeen();
+  if (!s) return null;
+  return { live: 1, total: s.total, today: s.date === montrealDate() ? s.today : 0, configured: true };
+}
+
+let last: LiveVisitorData | null = null;
+
+export async function pingAndGetStats(isHeartbeat = false): Promise<LiveVisitorData | null> {
+  try {
+    // the local preview only reads the live counts (proxied to the live site by vite.config.ts)
+    const res = import.meta.env.DEV
+      ? await fetch('/api/visitors')
+      : await fetch('/api/visitors', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId: sessionId(), isHeartbeat }),
+          keepalive: true
+        });
     if (res.ok) {
       const data = await res.json();
-      if (typeof data.total === 'number' && typeof data.today === 'number') {
-        const storedTotal = parseInt(localStorage.getItem(STORAGE_KEYS.TOTAL) || '1', 10);
-        const storedToday = parseInt(localStorage.getItem(STORAGE_KEYS.TODAY) || '1', 10);
-
-        const safeStoredTotal = (isNaN(storedTotal) || storedTotal > 100) ? 1 : storedTotal;
-        const safeStoredToday = (isNaN(storedToday) || storedToday > 100) ? 1 : storedToday;
-
-        // Trust the server's real counts at any size (the old < 500 cap hid real traffic)
-        const total = data.total > 0 ? data.total : safeStoredTotal;
-        const today = data.today > 0 ? data.today : safeStoredToday;
-
-        localStorage.setItem(STORAGE_KEYS.TOTAL, total.toString());
-        localStorage.setItem(STORAGE_KEYS.TODAY, today.toString());
-        localStorage.setItem(STORAGE_KEYS.LAST_DATE, todayStr);
-
-        return {
-          live: Math.max(1, data.live || 1),
-          today,
-          total,
-          configured: Boolean(data.configured)
-        };
+      const seen = readSeen();
+      const date = typeof data.date === 'string' ? data.date : montrealDate();
+      const sameDay = seen?.date === date;
+      const serverTotal = typeof data.total === 'number' ? data.total : 0;
+      const serverToday = typeof data.today === 'number' ? data.today : 0;
+      const next: Seen = {
+        total: Math.max(seen?.total ?? 0, serverTotal),
+        today: sameDay ? Math.max(seen!.today, serverToday) : serverToday,
+        date
+      };
+      if (next.total > 0) {
+        try {
+          localStorage.setItem(SEEN_KEY, JSON.stringify(next));
+        } catch {
+          // storage blocked: the numbers still show for this visit
+        }
+        last = { live: Math.max(1, data.live || 1), today: Math.max(next.today, 1), total: next.total, configured: Boolean(data.configured) };
+        return last;
       }
     }
   } catch {
-    // Ignore network error and fall back to local
+    // network error: keep showing the last real counts
   }
-
-  return getLocalFallbackStats();
+  return last ?? getLastSeenStats();
 }

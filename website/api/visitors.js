@@ -4,6 +4,11 @@
 // Tier 2: Persistent Cloud KV Engine (retained across all git pushes and Vercel redeploys)
 // Tier 3: In-memory sliding window for real-time active users
 //
+// THE COUNTS MUST SURVIVE EVERY DEPLOY. They live in the external store, never in this deployment, so a push
+// keeps them, as long as NAMESPACE and the key names below never change (a new name restarts at zero). When the
+// counts cannot be read, the response says so (null) instead of inventing a number, and the page keeps showing
+// the last real counts it saw. If Upstash is connected later, its counter starts from the cloud counter's total.
+//
 // Built to stay cheap under traffic: live users are a Redis sorted set (no KEYS scans),
 // heartbeats never call the external counter (totals are cached per instance), and every
 // outbound request has a short timeout so a slow upstream can't hold the function open.
@@ -24,7 +29,10 @@ const activeSessions = new Map();
 let lastPrune = 0;
 
 // Per-instance cache of the external counter, so heartbeats cost no outbound calls
-let totalsCache = { date: '', total: 1, today: 1, at: 0 };
+let totalsCache = { date: '', total: null, today: null, at: 0 };
+
+// "today" is the day in Montreal, so it starts over at local midnight (not 8 PM, as UTC would)
+const montrealDate = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto' }).format(new Date());
 
 const withTimeout = (url, init = {}) => fetch(url, { ...init, signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS) });
 
@@ -39,8 +47,8 @@ async function getOrHitCloudCounter(key, isHit = false) {
       if (typeof data.value === 'number') {
         return data.value;
       }
-    } else if (!isHit) {
-      // Key may not exist yet, initialize it
+    } else if (!isHit && res.status === 404) {
+      // Key does not exist yet, initialize it
       const initRes = await withTimeout(`${CLOUD_KV_BASE}/hit/${NAMESPACE}/${key}`);
       if (initRes.ok) {
         const initData = await initRes.json();
@@ -63,7 +71,7 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const todayStr = new Date().toISOString().slice(0, 10);
+  const todayStr = montrealDate();
   const now = Date.now();
 
   let body = {};
@@ -113,8 +121,21 @@ export default async function handler(req, res) {
       });
       const results = await resp.json();
 
-      const total = Math.max(1, parseInt(results[0]?.result || 1, 10));
+      let total = parseInt(results[0]?.result || 0, 10);
       const today = Math.max(1, parseInt(results[1]?.result || 1, 10));
+      // a fresh Upstash store (no total yet, or this is its first visit) continues from the cloud counter
+      if (total <= 1) {
+        const carried = await getOrHitCloudCounter('total_all_time', false);
+        if (carried && carried > total) {
+          const seed = await withTimeout(`${UPSTASH_URL}/pipeline`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(total ? [['INCRBY', 'concordia:total', String(carried)]] : [['SET', 'concordia:total', String(carried), 'NX'], ['GET', 'concordia:total']])
+          }).then((r) => r.json());
+          total = parseInt(seed[seed.length - 1]?.result || carried, 10);
+        }
+      }
+      total = Math.max(1, total);
       const live = Math.max(liveCount, parseInt(results[4]?.result || 0, 10));
 
       return res.status(200).json({ live, today, total, configured: true, date: todayStr });
@@ -132,11 +153,12 @@ export default async function handler(req, res) {
       getOrHitCloudCounter('total_all_time', isIncrement),
       getOrHitCloudCounter(`daily_${todayStr}`, isIncrement)
     ]);
+    // a failed read keeps the last counts this instance had (or null: unknown, never a made-up number)
     totalsCache = {
       date: todayStr,
-      total: Math.max(1, rawTotal ?? (totalsCache.date === todayStr ? totalsCache.total : 1)),
-      today: Math.max(1, rawDaily ?? (totalsCache.date === todayStr ? totalsCache.today : 1)),
-      at: now
+      total: rawTotal ?? totalsCache.total,
+      today: rawDaily ?? (totalsCache.date === todayStr ? totalsCache.today : null),
+      at: rawTotal == null ? 0 : now
     };
   }
 

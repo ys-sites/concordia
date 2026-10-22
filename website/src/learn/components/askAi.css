@@ -1,0 +1,72 @@
+/* Ask an AI tutor */
+.lx-ai {
+  width: min(560px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.lx-ai .lx-h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.lx-ai-ctx {
+  padding: 12px 14px;
+  border-radius: var(--lx-r);
+  background: var(--lx-surface-2);
+  font-size: 14px;
+}
+.lx-ai-q {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--lx-ink-2);
+}
+.lx-ai-ctx dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 12px;
+  margin: 10px 0 0;
+}
+.lx-ai-ctx dt {
+  color: var(--lx-muted);
+}
+.lx-ai-ctx dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.lx-ai-asks {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.lx-ai-asks legend {
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.lx-ai-asks .lx-chip-btn {
+  border-radius: var(--lx-pill);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.lx-ai .lx-input {
+  min-height: 0;
+  font-size: 15px;
+  resize: vertical;
+}
+.lx-ai-go {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.lx-ai > .lx-meta {
+  margin: -6px 0 0;
+}

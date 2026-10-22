@@ -219,7 +219,7 @@
     gap: 8px;
   }
   .lx-top-nav,
-  .lx-search {
+  .lx-sbox.is-top {
     display: none;
   }
   .lx-top-search-btn {

@@ -19,6 +19,7 @@ import { SUMMARY, courseProgress, fmtClock, fmtHours, fmtMinutes, lessonProgress
 import { CourseTab, href, navigate } from '../router';
 import { useProgress } from '../progress/store';
 import { daysUntil, readiness } from '../progress/insights';
+import { fmtDay, nextExam, useReminders } from '../reminders';
 import { CourseCover } from '../components/CourseCover';
 import { StepIcon } from '../components/StepIcon';
 import { ResourceLibrary } from '../components/ResourceLibrary';
@@ -142,17 +143,18 @@ const Curriculum: React.FC<{ cur: Curriculum; sections: Section[]; done: Record<
 // ── exam prep tab ────────────────────────────────────────────────────────────────
 const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ cur, done }) => {
   const p = useProgress((s) => s);
-  const date = p.examDates[cur.id] ?? cur.midterm.date;
-  const left = date ? daysUntil(date) : null;
+  const exam = nextExam(useReminders(), cur.id);
+  const left = exam ? daysUntil(exam.date) : null;
   const r = useMemo(() => readiness(cur, p), [cur, p]);
   const sections = cur.sections.filter((s) => s.examPrep);
   return (
     <div className="lx-exam-tab">
       <div className="lx-exam-head lx-panel lx-panel-pad">
         <div>
-          <p className="lx-meta">Midterm</p>
-          <h3 className="lx-h2">{cur.midterm.label}</h3>
-          <p className="lx-exam-scope">{cur.midterm.scope}</p>
+          <p className="lx-meta">{exam ? `Next exam · ${fmtDay(exam.date)}${exam.time ? ` · ${exam.time}` : ''}` : 'Midterm'}</p>
+          <h3 className="lx-h2">{exam ? exam.title : cur.midterm.label}</h3>
+          {exam?.detail && <p className="lx-exam-scope">{exam.detail}</p>}
+          {(!exam || exam.kind === 'midterm') && <p className="lx-exam-scope">{cur.midterm.scope}</p>}
         </div>
         <div className="lx-exam-figs">
           {left !== null && left >= 0 && (
@@ -187,6 +189,7 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
   const lastPlace = useProgress((st) => st.lastByCourse[course]);
   const prog = useMemo(() => (cur ? courseProgress(cur, done) : null), [cur, done]);
   const next = useMemo(() => (cur ? nextStep(cur, done, lastPlace?.stepId) : null), [cur, done, lastPlace]);
+  const sideExam = nextExam(useReminders(), course);
   const ctaHref = next ? href({ name: 'learn', course, lesson: next.lesson.id, step: next.step.id }) : href({ name: 'learn', course, lesson: SUMMARY[course].start.lessonId });
   const started = !!prog && prog.done > 0;
   const tabs: { id: CourseTab; label: string }[] = [
@@ -216,7 +219,7 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
                 <HelpCircle size={16} aria-hidden /> {s.questions} practice questions
               </li>
               <li>
-                <GraduationCap size={16} aria-hidden /> Midterm: {SUMMARY[course].midterm.label}
+                <GraduationCap size={16} aria-hidden /> {sideExam ? `${sideExam.title}: ${fmtDay(sideExam.date)}${sideExam.time ? `, ${sideExam.time}` : ''}` : `Midterm: ${SUMMARY[course].midterm.label}`}
               </li>
             </ul>
             <div className="lx-course-mobile-cta">

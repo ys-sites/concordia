@@ -141,6 +141,33 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
       if (ss) fn(ss);
     });
 
+  // A saved session can outlive a deploy: a question may have been removed, or its options changed, since it was
+  // started. Repair it rather than crash or grade against the wrong option: drop what is gone, reshuffle what changed.
+  useEffect(() => {
+    if (!idx || !session) return;
+    const opts = (id: string) => idx.byId.get(id)?.options?.length ?? 0;
+    const gone = session.order.filter((id) => !idx.byId.has(id));
+    const changed = Object.keys(session.optionOrder).filter((id) => idx.byId.has(id) && session.optionOrder[id].length !== opts(id));
+    const stale = Object.entries(session.answers)
+      .filter(([id, a]) => idx.byId.has(id) && Array.isArray(a) && a.some((i) => i >= opts(id)))
+      .map(([id]) => id);
+    if (!gone.length && !changed.length && !stale.length) return;
+    const fresh = optionOrderFor(changed);
+    patch((ss) => {
+      ss.order = ss.order.filter((id) => idx.byId.has(id));
+      for (const id of [...gone, ...changed, ...stale]) {
+        delete ss.answers[id];
+        delete ss.checked[id];
+      }
+      for (const id of changed) {
+        if (fresh[id]) ss.optionOrder[id] = fresh[id];
+        else delete ss.optionOrder[id];
+      }
+      ss.i = Math.min(ss.i, Math.max(0, ss.order.length - 1));
+      if (ss.adaptive) ss.adaptive.pool = ss.adaptive.pool.filter((id) => idx.byId.has(id));
+    });
+  }, [idx, session?.startedAt]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const finish = useCallback(
     (ss: QuizSession) => {
       // exam: everything is graded now; practice and check were graded question by question

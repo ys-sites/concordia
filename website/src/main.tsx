@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { AppErrorBoundary } from './components/AppErrorBoundary';
-import './index.css';
+import './legacy.css';
 
 // After a new deploy, an open tab may ask for code chunks that no longer exist.
 // Silently and instantly reload to pick up the new build without blocking user interaction.

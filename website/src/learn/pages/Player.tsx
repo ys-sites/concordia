@@ -8,7 +8,7 @@ import { href, navigate } from '../router';
 import { markStep, setPlace, updateProgress, useProgress } from '../progress/store';
 import { StepIcon, KIND_LABEL } from '../components/StepIcon';
 import { BrandMark } from '../../components/BrandMark';
-import { AskAiButton } from '../../components/vault/AskAiModal';
+import { AskAiButton } from '../components/AskAi';
 import { openDoc } from '../docBus';
 import { QuizRunner } from '../quiz/QuizRunner';
 import { ExtraStep, NotesStep, ReadingStep, ToolStep, VideoStep, WorkedStep } from '../player/StepViews';
@@ -188,7 +188,7 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
   const lessonDocs = [...new Map([...lesson.steps.flatMap((s) => s.docs ?? []), ...(lesson.resources ?? [])].map((d) => [d.path + (d.page ?? ''), d])).values()];
 
   return (
-    <div className={`lx-player ${courseClass(course)}`}>
+    <div className={`lx-player ${courseClass(course)}${quiz ? " is-focus" : ""}`}>
       <header className="lx-ptop">
         <a className="lx-ptop-brand" href={href({ name: 'course', course, tab: 'overview' })} aria-label={`Back to ${c.code}`}>
           <BrandMark size={30} />
@@ -350,7 +350,8 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
                 <p className="lx-lead">Stuck on {lesson.title.toLowerCase()}? Ask an AI tutor to explain it another way, with the lesson’s context already filled in.</p>
                 <AskAiButton
                   label={`Ask about “${lesson.title}”`}
-                  problem={{ id: `${course}/${lesson.id}`, courseTitle: `${c.code} · ${c.title}`, topic: lesson.title, questionText: `Explain ${lesson.title} (${section.title}). ${lesson.summary}`, answerText: '', steps: lesson.objectives }}
+                  className="lx-btn lx-btn--primary"
+                  ctx={{ course: `${c.code} · ${c.title}`, topic: `${lesson.title} (${section.title})`, question: `Teach me ${lesson.title}. ${lesson.summary}`, steps: lesson.objectives }}
                 />
               </div>
             )}

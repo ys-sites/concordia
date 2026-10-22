@@ -23,12 +23,19 @@ export interface VideoSource {
 
 const entries = <T,>(rec: Record<string, T>) => Object.entries(rec);
 
+// The Fall 2026 practice questions (TX_MIAE215_32–34) are solved by the Practice Midterm 2026 walkthroughs;
+// the three short solution videos the registry also lists were never rendered, so they are left out.
+const SOLVED_BY_WALKTHROUGH: Record<string, string> = { pm26_q1: 't:TX_MIAE215_32', pm26_q2a: 't:TX_MIAE215_33', pm26_q2b: 't:TX_MIAE215_34' };
+const NOT_RENDERED = new Set(['TX_MIAE215_32', 'TX_MIAE215_33', 'TX_MIAE215_34']);
+
 export const VIDEO_SOURCES: VideoSource[] = [
   ...entries(ENGR213_MOTION_LESSONS).map(([k, lesson]) => ({ id: `tutor:${k}`, courseId: 'ENGR213' as const, kind: 'lesson' as const, lesson })),
   ...MIAE221_MOTION_LESSONS.map((lesson) => ({ id: `topic221:${lesson.id}`, courseId: 'MIAE221' as const, kind: 'lesson' as const, lesson })),
   ...entries(MIAE215_CODELAB_VIDEOS).map(([k, lesson]) => ({ id: `lab215:${k}`, courseId: 'MIAE215' as const, kind: 'walkthrough' as const, lesson })),
-  ...entries(MIAE215_PRACTICE_MIDTERM_VIDEOS).map(([k, lesson]) => ({ id: `pm215:${k}`, courseId: 'MIAE215' as const, kind: 'walkthrough' as const, lesson })),
-  ...entries(MIAE215_MIDTERM_VIDEOS).map(([k, lesson]) => ({ id: `mid215:${k}`, courseId: 'MIAE215' as const, kind: 'solution' as const, lesson, questionId: `t:${k}` })),
+  ...entries(MIAE215_PRACTICE_MIDTERM_VIDEOS).map(([k, lesson]) => ({ id: `pm215:${k}`, courseId: 'MIAE215' as const, kind: 'walkthrough' as const, lesson, questionId: SOLVED_BY_WALKTHROUGH[k] })),
+  ...entries(MIAE215_MIDTERM_VIDEOS)
+    .filter(([k]) => !NOT_RENDERED.has(k))
+    .map(([k, lesson]) => ({ id: `mid215:${k}`, courseId: 'MIAE215' as const, kind: 'solution' as const, lesson, questionId: `t:${k}` })),
   ...entries(MIAE221_MIDTERM_VIDEOS).map(([k, lesson]) => ({ id: `mid221:${k}`, courseId: 'MIAE221' as const, kind: 'solution' as const, lesson, questionId: `t:${k}` }))
 ];
 

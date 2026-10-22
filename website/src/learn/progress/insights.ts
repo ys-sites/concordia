@@ -95,7 +95,8 @@ const DAY = 86_400_000;
 const firstOf = (l: Lesson, kinds: Step['kind'][]) => l.steps.find((s) => kinds.includes(s.kind));
 
 // Rule-based suggestions, each with the reason it was made
-export function suggestions(cur: Curriculum, p: ProgressState, examDate: string | null): Suggestion[] {
+// exam: the next midterm or final from the reminders (src/learn/reminders.ts)
+export function suggestions(cur: Curriculum, p: ProgressState, exam: { date: string; title: string } | null | undefined): Suggestion[] {
   const out: Suggestion[] = [];
   const mastery = masteryByLesson(cur, p);
   const now = Date.now();
@@ -139,14 +140,14 @@ export function suggestions(cur: Curriculum, p: ProgressState, examDate: string 
     });
   }
 
-  if (examDate) {
-    const left = daysUntil(examDate);
+  if (exam) {
+    const left = daysUntil(exam.date);
     if (left >= 0 && left <= 14) {
       const r = readiness(cur, p);
       out.push({
         kind: 'exam',
         title: left <= 3 ? 'Sit the timed mock midterm' : 'Work through a past paper',
-        why: `The midterm is in ${left} day${left === 1 ? '' : 's'} and your readiness is ${r.pct}%.`,
+        why: `${left === 0 ? `The ${exam.title.toLowerCase()} is today` : `The ${exam.title.toLowerCase()} is in ${left} day${left === 1 ? '' : 's'}`} and your readiness is ${r.pct}%.`,
         course: cur.id,
         lessonId: left <= 3 ? 'mock-midterm' : cur.sections.find((s) => s.examPrep)?.lessons.find((l) => l.id.startsWith('paper-'))?.id,
         minutes: left <= 3 ? 75 : 20

@@ -176,6 +176,8 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
+    // the live site activity counter reads the real counts from the live site (read only: no visit is added)
+    proxy: { '/api/visitors': { target: 'https://concordiainfo.vercel.app', changeOrigin: true } },
     fs: {
       allow: ['..']
     }

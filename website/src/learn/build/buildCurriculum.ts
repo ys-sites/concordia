@@ -125,14 +125,14 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
   // ── steps ──────────────────────────────────────────────────────────────────────
   const minutesFor = (kind: Step['kind'], n = 0) =>
     kind === 'notes' ? 6 : kind === 'reading' ? 10 : kind === 'worked' ? 5 : kind === 'tool' ? 5 : kind === 'check' ? Math.max(3, Math.round(n * 1.5)) : Math.max(5, Math.round(n * 2));
-  const videoStep = (lessonId: string, vid: string, k: number): Step | null => {
+  const videoStep = (lessonId: string, vid: string): Step | null => {
     const v = videoById.get(vid);
     if (!v) {
       problems.push(`${lessonId}: unknown video ${vid}`);
       return null;
     }
     stepVideoUses.set(vid, (stepVideoUses.get(vid) ?? 0) + 1);
-    return { id: `${lessonId}.video-${k + 1}`, kind: 'video', title: v.lesson.title.replace(/^[A-Z]?\d+\s*·\s*/, ''), minutes: Math.max(1, Math.round(v.lesson.duration / 60)), videoId: vid };
+    return { id: `${lessonId}.video-${slug(vid)}`, kind: 'video', title: v.lesson.title.replace(/^[A-Z]?\d+\s*·\s*/, ''), minutes: Math.max(1, Math.round(v.lesson.duration / 60)), videoId: vid };
   };
   const qStep = (id: string, kind: 'check' | 'practice' | 'exam', title: string, ids: string[], extra: Partial<Step> = {}): Step | null => {
     if (!ids.length) return null;
@@ -148,8 +148,8 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     const topics = l.gate ?? [];
     for (const t of topics) if (!gate.topics.some((x) => x.id === t)) problems.push(`${l.id}: unknown exam-prep topic ${t}`);
     const steps: Step[] = [];
-    (l.videos ?? []).forEach((v, k) => {
-      const s = videoStep(l.id, v, k);
+    (l.videos ?? []).forEach((v) => {
+      const s = videoStep(l.id, v);
       if (s) steps.push(s);
     });
 
@@ -163,7 +163,7 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     if (fs.length || slides.length) {
       steps.push({ id: `${l.id}.notes`, kind: 'notes', title: 'Key notes', minutes: minutesFor('notes') + fs.length, formulaIds: fs.map((f) => f.id), docs: slides.slice(0, 8) });
     }
-    matchDocs(l.read, l.id).forEach((p, k) => steps.push({ id: `${l.id}.read-${k + 1}`, kind: 'reading', title: `Read: ${fileTitle(p)}`, minutes: minutesFor('reading'), docs: [docRef(p)] }));
+    matchDocs(l.read, l.id).forEach((p) => steps.push({ id: `${l.id}.read-${slug(fileTitle(p))}`, kind: 'reading', title: `Read: ${fileTitle(p)}`, minutes: minutesFor('reading'), docs: [docRef(p)] }));
 
     const worked = fs.filter((f) => f.learn?.example);
     if (worked.length) steps.push({ id: `${l.id}.worked`, kind: 'worked', title: worked.length > 1 ? 'Worked examples' : 'Worked example', minutes: 4 * worked.length, formulaIds: worked.map((f) => f.id) });
@@ -213,7 +213,7 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     specs.flatMap((s) => {
       const id = `${l.id}.${s.slug}`;
       if (s.kind === 'video') {
-        const st = s.videoId ? videoStep(l.id, s.videoId, 0) : null;
+        const st = s.videoId ? videoStep(l.id, s.videoId) : null;
         return st ? [{ ...st, id, title: s.title }] : [];
       }
       const ids: string[] = [];

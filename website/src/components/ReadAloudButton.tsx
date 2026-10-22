@@ -9,6 +9,8 @@ interface ReadAloudButtonProps {
   stopKey?: string | number;
   label?: string;
   className?: string;
+  /** Start reading by itself whenever stopKey changes (the quiz's auto-read setting) */
+  autoPlay?: boolean;
 }
 
 /**
@@ -21,6 +23,7 @@ export const ReadAloudButton: React.FC<ReadAloudButtonProps> = ({
   stopKey,
   label = 'Listen',
   className = '',
+  autoPlay = false,
 }) => {
   const [speaking, setSpeaking] = useState(false);
 
@@ -28,7 +31,8 @@ export const ReadAloudButton: React.FC<ReadAloudButtonProps> = ({
   useEffect(() => {
     speechEngine.stop();
     setSpeaking(false);
-  }, [stopKey]);
+    if (autoPlay) speak();
+  }, [stopKey, autoPlay]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => () => speechEngine.stop(), []);
 
@@ -38,13 +42,17 @@ export const ReadAloudButton: React.FC<ReadAloudButtonProps> = ({
       setSpeaking(false);
       return;
     }
+    speak();
+  };
+
+  function speak() {
     speechEngine.speak(text, {
       rate: 0.95,
       onStart: () => setSpeaking(true),
       onEnd: () => setSpeaking(false),
       onError: () => setSpeaking(false),
     });
-  };
+  }
 
   return (
     <button

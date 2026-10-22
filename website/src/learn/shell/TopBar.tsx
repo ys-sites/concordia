@@ -5,6 +5,7 @@ import { VisitorCounter } from '../../components/VisitorCounter';
 import { COURSES, courseClass } from '../courses';
 import { href, navigate, Route } from '../router';
 import { streak, useProgress } from '../progress/store';
+import { TopSearch } from '../search/SearchBox';
 import './shell.css';
 import '../components/practicePicker.css';
 
@@ -46,12 +47,8 @@ const CoursesMenu: React.FC = () => {
 };
 
 export const TopBar: React.FC<{ route: Route; onPractice: () => void }> = ({ route, onPractice }) => {
-  const [q, setQ] = useState(route.name === 'search' ? route.q : '');
   const days = useProgress((s) => s.days);
   const run = streak(days);
-  useEffect(() => {
-    if (route.name === 'search') setQ(route.q);
-  }, [route]);
   return (
     <header className="lx-top">
       <div className="lx-top-inner">
@@ -64,33 +61,11 @@ export const TopBar: React.FC<{ route: Route; onPractice: () => void }> = ({ rou
         <nav className="lx-top-nav" aria-label="Main">
           <CoursesMenu />
         </nav>
-        <form
-          className="lx-search"
-          role="search"
-          onSubmit={(e) => {
-            e.preventDefault();
-            navigate({ name: 'search', q: q.trim() });
-          }}
-        >
-          <Search size={18} aria-hidden />
-          <input
-            type="search"
-            value={q}
-            onChange={(e) => {
-              setQ(e.target.value);
-              if (route.name === 'search') navigate({ name: 'search', q: e.target.value }, { replace: true });
-            }}
-            placeholder="Search lessons, videos, questions, notes…"
-            aria-label="Search the courses"
-          />
-        </form>
+        <TopSearch initial={route.name === 'search' ? route.q : ''} live={route.name === 'search'} />
         <nav className="lx-top-nav lx-top-right" aria-label="Your learning">
           <button type="button" className="lx-top-link lx-top-practice" onClick={onPractice}>
             <Brain size={16} aria-hidden /> Start a practice drill
           </button>
-          <a className={`lx-top-link${route.name === 'bank' ? ' is-active' : ''}`} href="#/bank">
-            Question bank
-          </a>
           <a className={`lx-top-link${route.name === 'my-learning' ? ' is-active' : ''}`} href="#/my-learning">
             My learning
             {run > 0 && (

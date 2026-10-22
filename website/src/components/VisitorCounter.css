@@ -68,6 +68,9 @@
   align-items: center;
   gap: 6px;
   font-size: 11px;
+  color: var(--lx-on-dark-muted, #cbd5e1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pulse-dot-green {
     animation: none;

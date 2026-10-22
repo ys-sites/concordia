@@ -164,6 +164,8 @@ export interface LearnQuestion {
     reference?: string;
   };
   videoId?: string; // a solution video for exactly this question
+  // where this is taught: the teacher's slides (a published PDF path, or just its file name for the practice bank)
+  refs?: { path?: string; deck?: string; page?: number; label?: string }[];
   regen?: () => LearnQuestion | null; // "new numbers" for calculator items
   raw?: unknown; // the original object, for components that render it natively (WorkedSolution)
 }

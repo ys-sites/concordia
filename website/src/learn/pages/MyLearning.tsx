@@ -1,12 +1,15 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { AlertTriangle, CalendarDays, CheckCircle2, Download, Flame, PlayCircle, RotateCcw, Target, Trophy, Upload, X } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { AlertTriangle, CalendarDays, CheckCircle2, Flame, PlayCircle, RotateCcw, Target, Trophy, X } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { Lesson, Step } from '../model';
 import { COURSES, COURSE_BY_ID, courseClass } from '../courses';
 import { courseProgress, isDone, nextStep, useCurricula } from '../data';
 import { href } from '../router';
-import { exportProgress, getProgress, importProgress, resetCourse, streak, today, updateProgress, useProgress } from '../progress/store';
+import { getProgress, streak, today, useProgress } from '../progress/store';
 import { daysUntil, dueForReview, masteryByLesson, readiness, suggestions, TopicMastery } from '../progress/insights';
+import type { ReminderItem } from '../reminders';
+import { fmtDay, nextExam, useReminders, whenText } from '../reminders';
+import { ReminderDialog, RemindersCard } from '../components/Reminders';
 import { ContinueCard, RecoCard } from '../components/LearningCards';
 import { WeekBars, ScoreLines, ScoreSeries } from '../components/Charts';
 import { QuizRunner } from '../quiz/QuizRunner';
@@ -53,15 +56,16 @@ export const MyLearning: React.FC = () => {
   const p = useProgress((s) => s);
   const [course, setCourse] = useState<CourseId | null>(null);
   const [review, setReview] = useState<CourseId | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
-  const fileRef = useRef<HTMLInputElement>(null);
+  const reminders = useReminders();
+  const [examEdit, setExamEdit] = useState<{ item?: ReminderItem; course: CourseId } | null>(null);
 
   const data = useMemo(() => {
     if (!curricula) return null;
     return COURSES.map((c) => {
       const cur = curricula[c.id];
       const prog = courseProgress(cur, p.steps);
-      const date = p.examDates[c.id] ?? cur.midterm.date;
+      const exam = nextExam(reminders, c.id);
+      const date = exam?.date ?? null;
       const left = date ? daysUntil(date) : null;
       const remaining = cur.sections.filter((s) => s.midterm).flatMap((s) => s.lessons).filter((l) => l.steps.some((st) => !st.optional && !isDone(p.steps, c.id, st)));
       return {
@@ -74,13 +78,14 @@ export const MyLearning: React.FC = () => {
         mastery: masteryByLesson(cur, p),
         ready: readiness(cur, p),
         due: dueForReview(p.questions, c.id),
-        suggestions: suggestions(cur, p, date),
+        suggestions: suggestions(cur, p, exam),
+        exam,
         date,
         left,
         remaining
       };
     });
-  }, [curricula, p]);
+  }, [curricula, p, reminders]);
 
   const week = useMemo(() => weekOf(p.days), [p.days]);
   const run = streak(p.days);
@@ -106,15 +111,6 @@ export const MyLearning: React.FC = () => {
   const allSuggestions = shown.flatMap((d) => d.suggestions.map((s) => ({ s, d }))).slice(0, 6);
   const completed = data.filter((d) => d.prog.lessons && d.prog.lessonsDone === d.prog.lessons).length;
   const totalDue = data.reduce((n, d) => n + d.due.length, 0);
-
-  const doExport = () => {
-    const blob = new Blob([exportProgress()], { type: 'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `study-progress-${today()}.json`;
-    a.click();
-    URL.revokeObjectURL(a.href);
-  };
 
   return (
     <div className="lx-wrap lx-dash">
@@ -277,6 +273,8 @@ export const MyLearning: React.FC = () => {
             )}
           </div>
 
+          <RemindersCard />
+
           <div className="lx-side-card">
             <h2 className="lx-h3">Exam readiness</h2>
             {data.map((d) => (
@@ -285,74 +283,29 @@ export const MyLearning: React.FC = () => {
                   <span>{d.ready.pct}%</span>
                 </span>
                 <span className="lx-ready-text">
-                  <strong>{d.c.code}</strong>
-                  <span className="lx-meta lx-num">
-                    {d.left === null ? 'Set the midterm date to plan for it' : d.left >= 0 ? `${d.left} day${d.left === 1 ? '' : 's'} to the midterm` : 'Midterm is over: set your next exam date'}
-                    {d.left !== null && d.left > 0 && d.remaining.length ? ` · about ${Math.ceil(d.remaining.length / d.left)} lesson${Math.ceil(d.remaining.length / d.left) > 1 ? 's' : ''} a day` : ''}
-                  </span>
-                  <label className="lx-ready-date">
-                    <CalendarDays size={13} aria-hidden />
-                    <input
-                      type="date"
-                      value={d.date ?? ''}
-                      onChange={(e) => updateProgress((s) => void (s.examDates[d.c.id] = e.target.value))}
-                      aria-label={`${d.c.code} midterm date`}
-                    />
-                  </label>
+                  <strong>
+                    {d.c.code}
+                    {d.exam ? <span className="lx-ready-exam"> · {d.exam.title}</span> : null}
+                  </strong>
+                  {d.exam && d.left !== null ? (
+                    <span className="lx-meta lx-num">
+                      {fmtDay(d.exam.date)} · {whenText(d.left)}
+                      {d.left > 0 && d.remaining.length ? ` · about ${Math.ceil(d.remaining.length / d.left)} lesson${Math.ceil(d.remaining.length / d.left) > 1 ? 's' : ''} a day` : ''}
+                    </span>
+                  ) : (
+                    <span className="lx-meta">No exam date yet</span>
+                  )}
+                  <button type="button" className="lx-linkbtn lx-ready-date" onClick={() => setExamEdit({ item: d.exam, course: d.c.id })}>
+                    <CalendarDays size={13} aria-hidden /> {d.exam ? 'Change the date or details' : 'Add the exam date'}
+                  </button>
                 </span>
               </div>
             ))}
           </div>
-
-          <div className="lx-side-card lx-data">
-            <h2 className="lx-h3">Your data</h2>
-            <p className="lx-meta">Move your progress to another browser, or start a course over.</p>
-            <div className="lx-data-actions">
-              <button type="button" className="lx-btn lx-btn--sm" onClick={doExport}>
-                <Download size={14} /> Export
-              </button>
-              <button type="button" className="lx-btn lx-btn--sm" onClick={() => fileRef.current?.click()}>
-                <Upload size={14} /> Import
-              </button>
-              <input
-                ref={fileRef}
-                type="file"
-                accept="application/json"
-                hidden
-                onChange={async (e) => {
-                  const f = e.target.files?.[0];
-                  if (!f) return;
-                  setMessage(importProgress(await f.text()) ? 'Progress imported.' : 'That file is not a progress export.');
-                  e.target.value = '';
-                }}
-              />
-            </div>
-            <div className="lx-data-actions">
-              {COURSES.map((c) => (
-                <button
-                  key={c.id}
-                  type="button"
-                  className="lx-btn lx-btn--sm lx-btn--ghost"
-                  onClick={() => {
-                    if (window.confirm(`Reset all progress in ${c.code}? Completed steps, quiz results and notes for this course will be deleted.`)) {
-                      resetCourse(c.id);
-                      setMessage(`${c.code} progress reset.`);
-                    }
-                  }}
-                >
-                  Reset {c.code}
-                </button>
-              ))}
-            </div>
-            {message && (
-              <p className="lx-meta" role="status">
-                {message}
-              </p>
-            )}
-          </div>
         </aside>
       </div>
 
+      {examEdit && <ReminderDialog item={examEdit.item} preset={{ course: examEdit.course, kind: 'midterm' }} onClose={() => setExamEdit(null)} />}
       {review && <ReviewSession course={review} ids={dueForReview(getProgress().questions, review)} onClose={() => setReview(null)} />}
     </div>
   );

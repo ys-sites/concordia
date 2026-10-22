@@ -44,9 +44,21 @@ export function fromPractice(q: PracticeQuestion, prefix: 'b' | 't' | 'd', video
       reference: e.reference
     },
     videoId,
+    refs: (q.source ?? []).slice(0, 2).map((r) => ({ deck: r.deck, page: Number(r.location.match(/Pages?\s+(\d+)/i)?.[1]) || undefined, label: r.location })),
     raw: q
   };
 }
+
+// the teacher's slides behind a lesson: { d: doc key } or { l: lecture number } (see GateContent.lectureMatch)
+const lecRefs = (g: GateContent, refs: { d?: string; l?: number; s?: number; label?: string }[] = []) =>
+  refs
+    .map((r) => {
+      const path = r.d ? g.docs[r.d]?.path : r.l != null && g.lectureMatch ? Object.values(g.docs).find((d) => new RegExp(g.lectureMatch!.replace('{l}', String(r.l)), 'i').test(d.path.split('/').pop() ?? ''))?.path : undefined;
+      if (path) return { path, page: r.s, label: r.label };
+      return r.l != null ? { deck: `Lecture ${r.l}`, page: r.s, label: r.label } : null;
+    })
+    .filter((x): x is NonNullable<typeof x> => !!x)
+    .slice(0, 2);
 
 // ── past-exam questions ──────────────────────────────────────────────────────────
 const workedFor = (id: string) => {
@@ -72,6 +84,7 @@ export function fromGateExam(c: CourseId, g: GateContent, q: GateQuestion, video
     source: `${exam?.label ?? q.exam} · Q${q.n}`,
     pastPaper: true,
     videoId,
+    refs: lecRefs(g, [...(q.f ?? []).flatMap((fid) => g.formulas.find((f) => f.id === fid)?.lec ?? []), ...(g.topics.find((t) => t.id === q.topic)?.lec ?? [])]),
     explain: {
       lines: q.steps,
       solution: q.solution,
@@ -169,6 +182,7 @@ export function fromLessonItem(c: CourseId, g: GateContent, f: Formula, i: numbe
     level: (item.type === 'mc' || item.type === 'tf' ? 1 : item.type === 'open' ? 3 : 2) as 1 | 2 | 3,
     source: item.src,
     videoId,
+    refs: lecRefs(g, f.lec.length ? f.lec : g.topics.find((t) => t.id === f.topic)?.lec),
     explain: {} as LearnQuestion['explain']
   };
   switch (item.type) {

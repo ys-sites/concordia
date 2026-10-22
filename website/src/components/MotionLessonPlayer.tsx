@@ -422,7 +422,9 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
           preload="metadata"
           playsInline
           crossOrigin="anonymous"
-          poster={getVideoUrl(lesson.poster)}
+          // its own copy of the poster: the CDN answers CORS and plain requests differently, and the cards'
+          // plain thumbnails must not share a cached copy with this CORS one (see learn/components/VideoThumb)
+          poster={`${getVideoUrl(lesson.poster)}?player`}
           src={getVideoUrl(lesson.video)}
           onPlay={() => setIsPlaying(true)}
           onPause={() => {

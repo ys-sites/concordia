@@ -1,13 +1,16 @@
 import React, { useEffect, useRef } from 'react';
-import { Check, CheckCircle2, Eye, Flag, HelpCircle, Lightbulb, XCircle } from 'lucide-react';
+import { BookOpen, Check, CheckCircle2, Eye, Flag, HelpCircle, Lightbulb, XCircle } from 'lucide-react';
 import type { LearnQuestion } from '../model';
 import { LEVEL_LABEL } from '../model';
 import type { Answer, Confidence } from '../progress/store';
+import { updateProgress, useProgress } from '../progress/store';
+import { openDoc } from '../docBus';
 import { MathText } from '../../utils/mathRenderer';
 import { OptionContent } from '../../components/OptionContent';
 import { ReadAloudButton } from '../../components/ReadAloudButton';
 import { CodeBlock } from '../components/CodeBlock';
-import { Explanation } from './Explanation';
+import { Explanation, useCourseDocs } from './Explanation';
+import '../styles/answer.css';
 
 const LETTER = 'ABCDEFGH';
 
@@ -61,24 +64,45 @@ export const QuestionView: React.FC<QuestionViewProps> = (p) => {
     return () => window.removeEventListener('keydown', onKey);
   });
 
+  const autoRead = useProgress((s) => !!s.settings.autoRead);
+  const docs = useCourseDocs(q);
+  const slide = docs.slides[0];
+  const yourAnswer = q.options ? chosen.map((o) => `(${LETTER[order.indexOf(o)]}) ${q.options![o]}`).join(', ') : typeof p.answer === 'string' ? p.answer : undefined;
   const speech = `${q.prompt}${q.options ? '. ' + order.map((o, i) => `Option ${LETTER[i]}: ${q.options![o]}`).join('. ') : ''}`;
 
   return (
     <article className="lx-q" aria-labelledby={`q-${q.id}`}>
       <header className="lx-q-head">
-        <span className="lx-q-count lx-num">
-          Question {p.index + 1} of {p.total}
-        </span>
-        <span className={`lx-chip lx-lvl-chip lx-lvl-${q.level}`}>{LEVEL_LABEL[q.level]}</span>
-        <span className="lx-chip">{q.topic}</span>
-        {q.pastPaper && q.source && <span className="lx-chip lx-chip--warn">{q.source}</span>}
-        <span className="lx-q-head-tools">
-          <ReadAloudButton text={speech} stopKey={q.id} />
-          <button type="button" className={`lx-icon-btn lx-flag${p.flagged ? ' is-on' : ''}`} aria-pressed={p.flagged} onClick={p.onFlag} title={p.flagged ? 'Remove flag' : 'Flag for review'}>
-            <Flag size={17} />
-            <span className="lx-sr">{p.flagged ? 'Remove flag' : 'Flag for review'}</span>
-          </button>
-        </span>
+        <div className="lx-q-bar">
+          <span className="lx-q-count lx-num">
+            Question {p.index + 1} <span>of {p.total}</span>
+          </span>
+          <span className="lx-q-meter" aria-hidden>
+            <i style={{ width: `${((p.index + 1) / Math.max(1, p.total)) * 100}%` }} />
+          </span>
+          <span className="lx-q-head-tools">
+            <ReadAloudButton text={speech} stopKey={q.id} autoPlay={autoRead && !p.locked} />
+            <label className="lx-autoread" title="Read each new question aloud">
+              <input type="checkbox" checked={autoRead} onChange={(e) => updateProgress((s) => void (s.settings.autoRead = e.target.checked))} />
+              <span>Auto-read</span>
+            </label>
+            <button type="button" className={`lx-icon-btn lx-flag${p.flagged ? ' is-on' : ''}`} aria-pressed={p.flagged} onClick={p.onFlag} title={p.flagged ? 'Remove flag' : 'Flag for review'}>
+              <Flag size={17} />
+              <span className="lx-sr">{p.flagged ? 'Remove flag' : 'Flag for review'}</span>
+            </button>
+          </span>
+        </div>
+        <div className="lx-q-tags">
+          <span className={`lx-chip lx-lvl-chip lx-lvl-${q.level}`}>{LEVEL_LABEL[q.level]}</span>
+          <span className="lx-chip">{q.topic}</span>
+          {slide && (
+            <button type="button" className="lx-chip lx-q-ref" onClick={() => openDoc(slide)} title={`Open ${slide.title}${slide.page ? `, page ${slide.page}` : ''}`}>
+              <BookOpen size={12} aria-hidden /> {slide.title.replace(/\.pdf$/i, '')}
+              {slide.page ? ` · p. ${slide.page}` : ''}
+            </button>
+          )}
+          {q.source && <span className={`lx-chip${q.pastPaper ? ' lx-chip--warn' : ''}`}>{q.source}</span>}
+        </div>
       </header>
 
       <div className="lx-q-prompt" id={`q-${q.id}`}>
@@ -98,7 +122,7 @@ export const QuestionView: React.FC<QuestionViewProps> = (p) => {
       )}
 
       {(q.kind === 'mc' || q.kind === 'tf' || q.kind === 'multi') && (
-        <div className={`lx-opts${q.kind === 'tf' ? ' is-tf' : ''}`} role={q.kind === 'multi' ? 'group' : 'radiogroup'} aria-label="Answer options">
+        <div className={`lx-opts${q.kind === 'tf' ? ' is-tf' : ''}${showFeedback ? ' is-done' : ''}`} role={q.kind === 'multi' ? 'group' : 'radiogroup'} aria-label="Answer options">
           {q.kind === 'multi' && <p className="lx-meta">Select every correct option.</p>}
           {order.map((orig, i) => {
             const picked = chosen.includes(orig);
@@ -182,7 +206,7 @@ export const QuestionView: React.FC<QuestionViewProps> = (p) => {
                   <XCircle size={16} /> I missed it
                 </button>
               </div>
-              <Explanation q={q} correct={null} />
+              <Explanation q={q} correct={null} order={order} />
             </>
           )}
         </div>
@@ -213,17 +237,20 @@ export const QuestionView: React.FC<QuestionViewProps> = (p) => {
 
       {showFeedback && (
         <div className={`lx-feedback ${p.result ? 'is-right' : 'is-wrong'}`} role="status" aria-live="polite">
-          <p className="lx-feedback-verdict">
-            {p.result ? <CheckCircle2 size={20} aria-hidden /> : <XCircle size={20} aria-hidden />}
-            {p.result ? 'Correct' : 'Not quite'}
-            {!p.result && q.kind !== 'self' && (
-              <span className="lx-feedback-answer">
-                The answer is <MathText text={q.answerText} />
-                {q.kind === 'num' && q.unit && !q.answerText.includes(q.unit) ? ` ${q.unit}` : ''}
-              </span>
-            )}
-          </p>
-          <Explanation q={q} chosen={chosen} correct={p.result ?? null} />
+          <div className="lx-feedback-verdict">
+            {p.result ? <CheckCircle2 size={22} aria-hidden /> : <XCircle size={22} aria-hidden />}
+            <span>
+              <strong>{p.result ? 'Correct. Nice work.' : 'Not quite. Let’s find where it went wrong.'}</strong>
+              {q.kind !== 'self' && (
+                <span className="lx-feedback-answer">
+                  {p.result ? 'Answer: ' : 'The right answer is '}
+                  <MathText text={q.answerText} />
+                  {q.kind === 'num' && q.unit && !q.answerText.includes(q.unit) ? ` ${q.unit}` : ''}
+                </span>
+              )}
+            </span>
+          </div>
+          <Explanation q={q} chosen={chosen} correct={p.result ?? null} order={order} yourAnswer={yourAnswer} />
         </div>
       )}
     </article>
