@@ -20,6 +20,7 @@ const Player = safeLazy(() => import('./learn/pages/Player'));
 const MyLearning = safeLazy(() => import('./learn/pages/MyLearning'));
 const SearchPage = safeLazy(() => import('./learn/pages/SearchPage'));
 const QuestionBank = safeLazy(() => import('./learn/pages/QuestionBank'));
+const PracticePicker = safeLazy(() => import('./learn/components/PracticePicker'));
 const DocViewer = safeLazy(() => import('./learn/components/DocViewer'));
 const ContactModal = safeLazy(() => import('./components/ContactModal').then((m) => ({ default: m.ContactModal })));
 
@@ -29,6 +30,7 @@ export function App() {
   const route = useRoute();
   const [doc, setDoc] = useState<DocRef | null>(null);
   const [contact, setContact] = useState(false);
+  const [practice, setPractice] = useState(false);
 
   // old links are rewritten to their new address, so the address bar always shows a real page
   useEffect(() => {
@@ -69,7 +71,7 @@ export function App() {
       <a className="lx-skip" href="#lx-main" onClick={(e) => (e.preventDefault(), document.getElementById('lx-main')?.focus())}>
         Skip to content
       </a>
-      {!player && <TopBar route={route} />}
+      {!player && <TopBar route={route} onPractice={() => setPractice(true)} />}
       <main id="lx-main" className="lx-main" tabIndex={-1}>
         <AppErrorBoundary resetKey={window.location.hash}>
           <Suspense fallback={<div className="lx-route-loading" aria-busy="true" />}>
@@ -83,7 +85,12 @@ export function App() {
         </AppErrorBoundary>
       </main>
       {!player && <Footer onContact={() => setContact(true)} />}
-      <MobileNav route={route} />
+      <MobileNav route={route} onPractice={() => setPractice(true)} />
+      {practice && (
+        <Suspense fallback={null}>
+          <PracticePicker onClose={() => setPractice(false)} initial={route.name === 'course' ? route.course : null} />
+        </Suspense>
+      )}
       {doc && (
         <Suspense fallback={null}>
           <DocViewer doc={doc} onClose={() => setDoc(null)} />

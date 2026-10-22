@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { BookOpen, ChevronDown, Flame, Home, Search, Library, LayoutGrid } from 'lucide-react';
+import { BookOpen, Brain, ChevronDown, Flame, Home, Search, Library, LayoutGrid } from 'lucide-react';
 import { BrandMark } from '../../components/BrandMark';
+import { VisitorCounter } from '../../components/VisitorCounter';
 import { COURSES, courseClass } from '../courses';
 import { href, navigate, Route } from '../router';
 import { streak, useProgress } from '../progress/store';
 import './shell.css';
+import '../components/practicePicker.css';
 
 const CoursesMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -43,7 +45,7 @@ const CoursesMenu: React.FC = () => {
   );
 };
 
-export const TopBar: React.FC<{ route: Route }> = ({ route }) => {
+export const TopBar: React.FC<{ route: Route; onPractice: () => void }> = ({ route, onPractice }) => {
   const [q, setQ] = useState(route.name === 'search' ? route.q : '');
   const days = useProgress((s) => s.days);
   const run = streak(days);
@@ -83,6 +85,9 @@ export const TopBar: React.FC<{ route: Route }> = ({ route }) => {
           />
         </form>
         <nav className="lx-top-nav lx-top-right" aria-label="Your learning">
+          <button type="button" className="lx-top-link lx-top-practice" onClick={onPractice}>
+            <Brain size={16} aria-hidden /> Start a practice drill
+          </button>
           <a className={`lx-top-link${route.name === 'bank' ? ' is-active' : ''}`} href="#/bank">
             Question bank
           </a>
@@ -103,22 +108,26 @@ export const TopBar: React.FC<{ route: Route }> = ({ route }) => {
   );
 };
 
-export const MobileNav: React.FC<{ route: Route }> = ({ route }) => {
-  const items = [
-    { r: { name: 'home' } as Route, label: 'Home', icon: Home, on: route.name === 'home' },
-    { r: { name: 'search', q: '' } as Route, label: 'Search', icon: Search, on: route.name === 'search' },
-    { r: { name: 'my-learning' } as Route, label: 'My learning', icon: BookOpen, on: route.name === 'my-learning' },
-    { r: { name: 'bank' } as Route, label: 'Questions', icon: Library, on: route.name === 'bank' }
-  ];
+export const MobileNav: React.FC<{ route: Route; onPractice: () => void }> = ({ route, onPractice }) => {
   if (route.name === 'learn') return null;
   return (
     <nav className="lx-mobile-nav" aria-label="Main">
-      {items.map(({ r, label, icon: Icon, on }) => (
-        <a key={label} href={href(r)} className={on ? 'is-active' : ''} aria-current={on ? 'page' : undefined}>
-          <Icon size={20} aria-hidden />
-          <span>{label}</span>
-        </a>
-      ))}
+      <a href="#/" className={route.name === 'home' ? 'is-active' : ''} aria-current={route.name === 'home' ? 'page' : undefined}>
+        <Home size={20} aria-hidden />
+        <span>Home</span>
+      </a>
+      <button type="button" onClick={onPractice}>
+        <Brain size={20} aria-hidden />
+        <span>Practice</span>
+      </button>
+      <a href="#/search" className={route.name === 'search' ? 'is-active' : ''} aria-current={route.name === 'search' ? 'page' : undefined}>
+        <Search size={20} aria-hidden />
+        <span>Search</span>
+      </a>
+      <a href="#/my-learning" className={route.name === 'my-learning' ? 'is-active' : ''} aria-current={route.name === 'my-learning' ? 'page' : undefined}>
+        <BookOpen size={20} aria-hidden />
+        <span>My learning</span>
+      </a>
     </nav>
   );
 };
@@ -150,6 +159,10 @@ export const Footer: React.FC<{ onContact: () => void }> = ({ onContact }) => (
         <button type="button" className="lx-linklike" onClick={onContact}>
           Contact & feedback
         </button>
+        <div className="lx-footer-live">
+          <span className="lx-meta">Live site activity</span>
+          <VisitorCounter />
+        </div>
       </nav>
     </div>
     <div className="lx-wrap lx-footer-note lx-meta">Independent student study material. Not an official Concordia University website.</div>

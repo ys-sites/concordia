@@ -405,15 +405,6 @@
 }
 
 /* review dialog */
-.lx-dialog-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 150;
-  background: rgba(15, 23, 42, 0.55);
-  display: grid;
-  place-items: center;
-  padding: 16px;
-}
 .lx-dialog {
   position: relative;
   width: min(820px, 100%);

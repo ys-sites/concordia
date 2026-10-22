@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Users, Activity } from 'lucide-react';
 import { pingAndGetStats, LiveVisitorData, getLocalFallbackStats } from '../utils/visitorStats';
 import { CountUp } from './reactbits';
+import './VisitorCounter.css';
 
 export const VisitorCounter: React.FC = () => {
   const [stats, setStats] = useState<LiveVisitorData | null>(null);

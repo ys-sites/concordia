@@ -195,6 +195,18 @@
 .lx-linklike:hover {
   text-decoration: underline;
 }
+.lx-footer-live {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 8px;
+}
+.lx-footer-live .lx-meta {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
 .lx-footer-note {
   padding-bottom: 28px;
   border-top: 1px solid #334155;
@@ -225,7 +237,12 @@
     border-top: 1px solid var(--lx-line);
     padding-bottom: env(safe-area-inset-bottom);
   }
-  .lx-mobile-nav a {
+  .lx-mobile-nav a,
+  .lx-mobile-nav button {
+    border: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
