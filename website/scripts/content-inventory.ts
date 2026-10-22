@@ -8,7 +8,8 @@ import type { CourseId } from '../src/types';
 import type { Lesson, LearnQuestion } from '../src/learn/model';
 import { buildAll } from '../src/learn/build/entry';
 import { buildDocumentRegistry } from '../build/publishedFiles';
-import { loadCourseQuestions } from '../src/learn/questions';
+import { loadCourseQuestions, setBankLoader } from '../src/learn/questions';
+import { PRACTICE_QUESTIONS } from '../src/data/questionsData';
 import { COURSE_BY_ID } from '../src/learn/courses';
 
 // minimum stock per teaching lesson (exam-prep lessons are past papers and follow their own shape)
@@ -36,6 +37,7 @@ interface Row {
   flags: string[];
 }
 
+setBankLoader(async (c) => PRACTICE_QUESTIONS.filter((q) => q.courseId === c));
 const root = path.resolve(process.cwd(), '..');
 const docs = buildDocumentRegistry(root).map(([p]) => p);
 const { curricula } = buildAll(docs);

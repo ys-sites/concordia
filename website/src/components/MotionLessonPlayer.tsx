@@ -10,7 +10,9 @@ import {
   Sparkles,
   Clapperboard,
   X,
-  Gauge
+  Gauge,
+  AlertTriangle,
+  ExternalLink
 } from 'lucide-react';
 import { getVideoUrl, publicCoursePath } from '../utils/pdfUrl';
 import type { MotionLesson } from '../data/engr213Lessons';
@@ -31,6 +33,7 @@ interface MotionLessonPlayerProps {
   startAt?: number;
   onProgress?: (t: number, d: number) => void;
   onEnded?: () => void;
+  onFallback?: () => void;
   bare?: boolean; // no header or disclosure: the page around the player shows them
 }
 
@@ -41,6 +44,7 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   startAt,
   onProgress,
   onEnded,
+  onFallback,
   bare = false
 }) => {
   const lastReport = useRef(0);
@@ -51,8 +55,15 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(lesson.duration || 0);
+  const [videoFailed, setVideoFailed] = useState(false);
+  const triedLocal = useRef(false);
   const [volume, setVolume] = useState<number>(1);
   const [isMuted, setIsMuted] = useState<boolean>(false);
+
+  useEffect(() => {
+    triedLocal.current = false;
+    setVideoFailed(false);
+  }, [lesson.video]);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [showControls, setShowControls] = useState<boolean>(true);
@@ -302,6 +313,9 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   // Keyboard controls (Space = play/pause, F = fullscreen, Esc = exit, Left/Right = seek)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const container = containerRef.current;
+      const active = document.activeElement;
+      if (!isFullscreen && (!container || !active || !container.contains(active))) return;
       // Don't capture when typing in inputs/textareas
       const tag = (e.target as HTMLElement)?.tagName?.toLowerCase();
       if (tag === 'input' || tag === 'textarea') return;
@@ -375,13 +389,15 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
 
   const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     const v = e.currentTarget;
-    const currentSrc = v.currentSrc || v.src;
     const localFallback = `/courses/${publicCoursePath(lesson.video)}`;
-    if (currentSrc && !currentSrc.endsWith(localFallback)) {
+    if (!triedLocal.current) {
+      triedLocal.current = true;
       console.warn(`[Video Player] Primary CDN stream failed. Retrying with local endpoint: ${localFallback}`);
       v.src = localFallback;
       v.load();
+      return;
     }
+    setVideoFailed(true);
   };
 
   const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
@@ -414,7 +430,13 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
         onMouseMove={handleUserActivity}
         onMouseEnter={handleUserActivity}
         onMouseLeave={handleMouseLeave}
-        onClick={handleUserActivity}
+        onClick={() => {
+          handleUserActivity();
+          containerRef.current?.focus({ preventScroll: true });
+        }}
+        tabIndex={0}
+        role="region"
+        aria-label={`${lesson.title} video player. Keyboard shortcuts: Space or K to play, arrow keys to seek, M to mute, F for fullscreen.`}
       >
         <video
           ref={videoRef}
@@ -437,7 +459,29 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
           onEnded={handleEnded}
           onError={handleVideoError}
           onClick={togglePlay}
+          aria-label={`${lesson.title} video`}
         />
+
+        {videoFailed && (
+          <div className="ec-video-error" role="alert">
+            <AlertTriangle size={28} aria-hidden />
+            <strong>This video could not load.</strong>
+            <span>Your place is saved. Use the lesson notes now, or open the video directly.</span>
+            <div>
+              {onFallback && <button type="button" onClick={onFallback}>Open lesson notes</button>}
+              <a href={`/courses/${publicCoursePath(lesson.video)}`} target="_blank" rel="noreferrer">Open video directly <ExternalLink size={14} aria-hidden /></a>
+              <button type="button" onClick={() => {
+                triedLocal.current = false;
+                setVideoFailed(false);
+                const v = videoRef.current;
+                if (v) {
+                  v.src = getVideoUrl(lesson.video);
+                  v.load();
+                }
+              }}>Try again</button>
+            </div>
+          </div>
+        )}
 
         {/* Big Center Play Icon overlay when paused */}
         {!isPlaying && (

@@ -10,6 +10,8 @@ import { QuestionView } from './QuestionView';
 import { Explanation } from './Explanation';
 import { MathText } from '../../utils/mathRenderer';
 import '../styles/quiz.css';
+import { scoreBucket, trackStudy, trackStudyOnce } from '../analytics';
+import { boundedPracticeSize, practiceSizeVariant } from '../experiments';
 
 // One quiz engine for every question in the site.
 //   check     a few questions, instant feedback (in a lesson)
@@ -93,7 +95,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
       let order: string[];
       let adaptive: QuizSession['adaptive'];
       if (typeof level === 'number') pool = pool.filter((id) => idx.byId.get(id)!.level === level);
-      const size = step.size && step.size < pool.length ? step.size : pool.length;
+      const configured = step.size && step.size < pool.length ? step.size : undefined;
+      const size = ids ? pool.length : mode === 'practice' ? boundedPracticeSize(pool.length, configured) : configured ?? pool.length;
       if (ids || step.ordered) order = pool;
       else if (level === 'adaptive') {
         const first = pickAdaptive(pool, [], 1);
@@ -131,6 +134,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
       });
       setResumeAsked(true);
       setReview(null);
+      trackStudy('quiz_start', { course, lesson: lesson.id, step: step.id, mode, questions: size, practice_size_variant: mode === 'practice' ? practiceSizeVariant() : null });
     },
     [idx, step, key, course, lesson.id, pickAdaptive, rank, optionOrderFor]
   );
@@ -191,6 +195,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
         s.attempts.push(attempt);
         if (s.attempts.length > 400) s.attempts.splice(0, s.attempts.length - 400);
       });
+      trackStudy('quiz_complete', { course, lesson: lesson.id, step: step.id, mode: ss.mode, score_bucket: scoreBucket(score, results.length), questions: results.length });
       onFinished?.(results.length > 0 && score / results.length >= (step.passMark ?? 0.7));
     },
     [qs, course, lesson.id, step.id, step.passMark, key, onFinished]
@@ -198,6 +203,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
 
   // ── timer (active time; counts down in exam mode) ─────────────────────────────
   const elapsedRef = useRef(session?.elapsed ?? 0);
+  const sessionRef = useRef(session);
+  sessionRef.current = session;
   const [, force] = useState(0);
   useEffect(() => {
     elapsedRef.current = session?.elapsed ?? 0;
@@ -224,6 +231,28 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
     };
   }, [session?.startedAt, session?.finished, resumeAsked]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Count a genuinely started quiz that is left unfinished. Keep the payload coarse and local:
+  // no answer values or question text are recorded, and the once-key prevents unload/unmount duplicates.
+  useEffect(() => {
+    const recordAbandonment = () => {
+      const current = sessionRef.current;
+      if (!current || current.finished || elapsedRef.current < 5) return;
+      trackStudyOnce(`quiz-abandon-${course}-${step.id}-${current.startedAt}`, 'quiz_abandon', {
+        course,
+        lesson: lesson.id,
+        step: step.id,
+        mode: current.mode,
+        questions: current.order.length,
+        answered: Object.keys(current.answers).length
+      });
+    };
+    window.addEventListener('pagehide', recordAbandonment);
+    return () => {
+      window.removeEventListener('pagehide', recordAbandonment);
+      recordAbandonment();
+    };
+  }, [course, lesson.id, step.id]);
+
   // Enter checks or moves on (when focus is not in a text field, which handles its own Enter)
   useEffect(() => {
     if (!session || session.finished) return;
@@ -248,7 +277,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   }
 
   const available = (step.questionIds ?? []).filter((id) => idx.byId.has(id));
-  const setSize = step.size && step.size < available.length ? step.size : available.length;
+  const configuredSetSize = step.size && step.size < available.length ? step.size : undefined;
+  const setSize = step.kind === 'practice' ? boundedPracticeSize(available.length, configuredSetSize) : configuredSetSize ?? available.length;
   const mix = [1, 2, 3].map((l) => available.filter((id) => idx.byId.get(id)?.level === l).length);
   const sameKind = (ss: QuizSession): 'adaptive' | 1 | 2 | 3 | 'all' => (ss.adaptive ? 'adaptive' : ss.only ?? 'all');
 

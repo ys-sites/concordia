@@ -40,7 +40,7 @@ const SaveBlocked: React.FC = () =>
 export function App() {
   const route = useRoute();
   const [doc, setDoc] = useState<DocRef | null>(null);
-  const [contact, setContact] = useState(false);
+  const [contact, setContact] = useState<{ subject?: string; message?: string } | null>(null);
   const [practice, setPractice] = useState(false);
 
   // old links are rewritten to their new address, so the address bar always shows a real page
@@ -50,6 +50,12 @@ export function App() {
   }, [route]);
 
   useEffect(() => onOpenDoc(setDoc), []);
+
+  useEffect(() => {
+    const open = (event: Event) => setContact((event as CustomEvent<{ subject?: string; message?: string }>).detail ?? {});
+    window.addEventListener('concordia:feedback', open);
+    return () => window.removeEventListener('concordia:feedback', open);
+  }, []);
 
   // a legacy "?doc=" link opens its document on the course page
   useEffect(() => {
@@ -96,7 +102,7 @@ export function App() {
           </Suspense>
         </AppErrorBoundary>
       </main>
-      {!player && <Footer onContact={() => setContact(true)} />}
+      {!player && <Footer onContact={() => setContact({})} />}
       <MobileNav route={route} onPractice={() => setPractice(true)} />
       {practice && (
         <Suspense fallback={null}>
@@ -110,7 +116,7 @@ export function App() {
       )}
       {contact && (
         <Suspense fallback={null}>
-          <ContactModal isOpen={contact} onClose={() => setContact(false)} />
+          <ContactModal isOpen initialSubject={contact.subject} initialMessage={contact.message} onClose={() => setContact(null)} />
         </Suspense>
       )}
       <Analytics />

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ArrowLeft, ArrowRight, Check, CheckCircle2, ChevronDown, Circle, ListTree, NotebookPen, Sparkles, FolderOpen, Info, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, CheckCircle2, ChevronDown, Circle, ListTree, NotebookPen, Sparkles, FolderOpen, Info, MessageSquareWarning, ThumbsDown, ThumbsUp, X } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { Curriculum, Lesson, Section, Step } from '../model';
 import { COURSE_BY_ID, courseClass } from '../courses';
@@ -12,6 +12,7 @@ import { AskAiButton } from '../components/AskAi';
 import { openDoc } from '../docBus';
 import { QuizRunner } from '../quiz/QuizRunner';
 import { ExtraStep, NotesStep, ReadingStep, ToolStep, VideoStep, WorkedStep } from '../player/StepViews';
+import { trackStudy, trackStudyOnce } from '../analytics';
 import '../styles/player.css';
 
 // The course player: the step on the stage, the curriculum in a sidebar (a drawer on phones), and the lesson's
@@ -135,6 +136,7 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
   const [drawer, setDrawer] = useState(false);
   const [tab, setTab] = useState<'overview' | 'notes' | 'ai' | 'resources'>('overview');
   const [upNext, setUpNext] = useState(false);
+  const [helpful, setHelpful] = useState<'yes' | 'no' | null>(null);
   const c = COURSE_BY_ID[course];
 
   const found = cur ? findLesson(cur, lessonId) : null;
@@ -155,6 +157,8 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
     if (!found || !step) return;
     setPlace({ course, lessonId, stepId: step.id, title: step.title, lessonTitle: found.lesson.title });
     setUpNext(false);
+    setHelpful(null);
+    trackStudyOnce(`lesson:${course}:${lessonId}`, 'lesson_start', { course, lesson: lessonId });
     document.title = `${step.title} · ${found.lesson.title} · ${c.code}`;
     return () => {
       document.title = 'Concordia Engineering Hub';
@@ -163,6 +167,10 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
 
   const goNext = useCallback(() => {
     if (step && MANUAL.includes(step.kind)) markStep(course, step.id);
+    if (step) {
+      if (MANUAL.includes(step.kind)) trackStudyOnce(`complete:${course}:${step.id}`, 'step_complete', { course, lesson: lessonId, step: step.id, kind: step.kind });
+      trackStudy('next_clicked', { course, lesson: lessonId, step: step.id, has_next: !!next });
+    }
     if (next) navigate({ name: 'learn', course, lesson: next.lesson.id, step: next.step.id });
     else navigate({ name: 'course', course, tab: 'overview' });
   }, [step, next, course]);
@@ -221,10 +229,16 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
             <div className="lx-stage-inner">
               {step.kind === 'video' && (
                 <VideoStep
+                  course={course}
                   step={step}
-                  onWatched={() => markStep(course, step.id)}
+                  onOpenNotes={() => setTab('overview')}
+                  onWatched={() => {
+                    markStep(course, step.id);
+                    trackStudyOnce(`complete:${course}:${step.id}`, 'step_complete', { course, lesson: lesson.id, step: step.id, kind: step.kind });
+                  }}
                   onEnded={() => {
                     markStep(course, step.id);
+                    trackStudyOnce(`complete:${course}:${step.id}`, 'step_complete', { course, lesson: lesson.id, step: step.id, kind: step.kind });
                     setUpNext(true);
                   }}
                 />
@@ -240,7 +254,10 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
                   course={course}
                   lesson={lesson}
                   step={step}
-                  onFinished={() => markStep(course, step.id)}
+                  onFinished={() => {
+                    markStep(course, step.id);
+                    trackStudyOnce(`complete:${course}:${step.id}`, 'step_complete', { course, lesson: lesson.id, step: step.id, kind: step.kind });
+                  }}
                   onContinue={goNext}
                   continueLabel={next ? `Next: ${next.step.title}` : 'Back to the course'}
                 />
@@ -257,7 +274,10 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
             </div>
             <div className="lx-pbar-actions">
               {!quiz && step.kind !== 'video' && (
-                <button type="button" className={`lx-btn lx-btn--sm${stepDone ? ' is-done' : ''}`} aria-pressed={stepDone} onClick={() => markStep(course, step.id, !stepDone)}>
+                <button type="button" className={`lx-btn lx-btn--sm${stepDone ? ' is-done' : ''}`} aria-pressed={stepDone} onClick={() => {
+                  markStep(course, step.id, !stepDone);
+                  if (!stepDone) trackStudyOnce(`complete:${course}:${step.id}`, 'step_complete', { course, lesson: lesson.id, step: step.id, kind: step.kind });
+                }}>
                   {stepDone ? <CheckCircle2 size={16} /> : <Circle size={16} />} {stepDone ? 'Completed' : 'Mark as complete'}
                 </button>
               )}
@@ -291,6 +311,27 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
               </button>
             </div>
           )}
+
+          <section className="lx-step-feedback" aria-label="Step feedback">
+            <span>
+              <strong>Was this step helpful?</strong>
+              <small>Your feedback helps improve this exact lesson.</small>
+            </span>
+            <div className="lx-step-feedback-actions">
+              <button type="button" className={`lx-btn lx-btn--sm${helpful === 'yes' ? ' is-done' : ''}`} aria-pressed={helpful === 'yes'} onClick={() => {
+                setHelpful('yes');
+                trackStudy('helpful_yes', { course, lesson: lesson.id, step: step.id, kind: step.kind });
+              }}><ThumbsUp size={15} aria-hidden /> Yes</button>
+              <button type="button" className={`lx-btn lx-btn--sm${helpful === 'no' ? ' is-done' : ''}`} aria-pressed={helpful === 'no'} onClick={() => {
+                setHelpful('no');
+                trackStudy('helpful_no', { course, lesson: lesson.id, step: step.id, kind: step.kind });
+              }}><ThumbsDown size={15} aria-hidden /> Not yet</button>
+              <button type="button" className="lx-btn lx-btn--ghost lx-btn--sm" onClick={() => {
+                trackStudy('report_problem', { course, lesson: lesson.id, step: step.id, kind: step.kind });
+                window.dispatchEvent(new CustomEvent('concordia:feedback', { detail: { subject: 'Practice Drill Feedback', message: `Problem in ${c.code} / ${lesson.title} / ${step.title}\nReference: ${course}/${step.id}\n\nWhat went wrong:\n` } }));
+              }}><MessageSquareWarning size={15} aria-hidden /> Report a problem</button>
+            </div>
+          </section>
 
           <div className="lx-tabs lx-ptabs" role="tablist" aria-label="Lesson">
             {(

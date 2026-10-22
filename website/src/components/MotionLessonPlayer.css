@@ -490,3 +490,36 @@
   padding: 0;
   background: transparent;
 }
+
+.ec-video-error {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  color: #f8fafc;
+  background: #0f172a;
+}
+.ec-video-error > span { color: #cbd5e1; max-width: 520px; }
+.ec-video-error > div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 6px; }
+.ec-video-error button,
+.ec-video-error a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 14px;
+  border: 1px solid #64748b;
+  border-radius: 8px;
+  color: #f8fafc;
+  background: #1e293b;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.ec-video-container:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }

@@ -625,7 +625,7 @@ const content: GateContent = {
    "code": "            Montreal  Ottawa  Toronto | Supply\nEdmonton        12       10       8   |   40\nWinnipeg         6       12      16   |   20\nSaskatoon        7       15       9   |   80\nDemand          50       30      60   |  140",
    "ans": "1280",
    "tol": 0.001,
-   "unit": "$",
+   "unit": "CAD",
    "steps": [
     "Cheapest cell first: Winnipeg → Montreal at 6: ship 20 (Winnipeg empty)",
     "Saskatoon → Montreal at 7: ship 30 (Montreal full)",
@@ -715,7 +715,7 @@ const content: GateContent = {
    "n": "P1a",
    "topic": "loc",
    "kind": "tf",
-   "q": "Lecture example: two feasible plans cost $39,900 and $42,300. “The first solution ($39,900) may be optimal.”",
+   "q": "Lecture example: two feasible plans cost CAD 39,900 and CAD 42,300. “The first solution (CAD 39,900) may be optimal.”",
    "code": "             San Antonio  Dallas  Houston | Capacity\nAmarillo          31        21      42    |   400\nWaco              20        21      30    |  1000\nHuntsville        23        20      15    |   600\nRequirement      300       900     800    |  2000",
    "ans": "True",
    "status": "verified",
@@ -727,7 +727,7 @@ const content: GateContent = {
    "n": "P1c",
    "topic": "loc",
    "kind": "tf",
-   "q": "“The first solution ($39,900) is definitely optimal.”",
+   "q": "“The first solution (CAD 39,900) is definitely optimal.”",
    "ans": "False",
    "status": "verified",
    "note": "Lowest-cost-first is a heuristic: no optimality guarantee."
@@ -738,10 +738,10 @@ const content: GateContent = {
    "n": "P1e",
    "topic": "loc",
    "kind": "tf",
-   "q": "“The second solution ($42,300) may be optimal.”",
+   "q": "“The second solution (CAD 42,300) may be optimal.”",
    "ans": "False",
    "status": "verified",
-   "note": "A cheaper feasible plan ($39,900) exists, so $42,300 is definitely not optimal."
+   "note": "A cheaper feasible plan (CAD 39,900) exists, so CAD 42,300 is definitely not optimal."
   },
   {
    "id": "A2-g",
@@ -1379,7 +1379,7 @@ const content: GateContent = {
      {
       "type": "calc",
       "badge": "lecture",
-      "q": "Slide 12: fixed cost ${F}, variable ${vc}/unit, price ${p}. Break-even volume?",
+      "q": "Slide 12: fixed cost CAD {F}, variable CAD {vc}/unit, price CAD {p}. Break-even volume?",
       "calc": "breakeven",
       "values": {
        "mode": "price",
@@ -1393,7 +1393,7 @@ const content: GateContent = {
      {
       "type": "calc",
       "badge": "similar",
-      "q": "Fixed cost ${F}, variable cost ${vc}/unit, selling price ${p}/unit. Break-even volume?",
+      "q": "Fixed cost CAD {F}, variable cost CAD {vc}/unit, selling price CAD {p}/unit. Break-even volume?",
       "calc": "breakeven",
       "values": {
        "mode": "price",
@@ -1428,7 +1428,7 @@ const content: GateContent = {
      {
       "type": "value",
       "badge": "lecture",
-      "q": "Slide 15: at what volume do processes B ($80,000 + $4) and C ($75,000 + $5) cost the same?",
+      "q": "Slide 15: at what volume do processes B (CAD 80,000 + CAD 4) and C (CAD 75,000 + CAD 5) cost the same?",
       "answer": 5000,
       "unit": "units",
       "steps": [
@@ -1601,7 +1601,7 @@ const content: GateContent = {
        }
       ],
       "row": "Total cost",
-      "unit": "$",
+      "unit": "CAD",
       "tol": 0.001,
       "hint": "Cheapest cell first; cross out exhausted rows/columns."
      }

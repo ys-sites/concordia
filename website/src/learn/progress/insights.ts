@@ -1,7 +1,7 @@
 // What the progress data says: what is due for review, how strong each topic is, how ready a course is, and
 // what to do next (with the reason). Rule-based, explainable, computed in the browser.
 import type { CourseId } from '../../types';
-import type { Curriculum, Lesson, Step } from '../model';
+import { questionCourse, type Curriculum, type Lesson, type Step } from '../model';
 import type { Attempt, ProgressState, QuestionStat } from './store';
 import { isDone, lessonProgress, stepsOf } from '../data';
 
@@ -12,14 +12,262 @@ export const daysUntil = (isoDate: string) => {
   return Math.round((d.getTime() - now.getTime()) / 86_400_000);
 };
 
-// Leitner review queue: questions answered wrong, or right but unsure, whose review date has come; flagged
-// questions always count.
-export function dueForReview(questions: Record<string, QuestionStat>, course?: CourseId): string[] {
-  const now = Date.now();
-  return Object.entries(questions)
-    .filter(([, q]) => (!course || q.course === course) && (q.flagged || (q.seen > 0 && (q.last === 0 || q.unsure || q.box < 3) && q.due <= now)))
-    .sort(([, a], [, b]) => Number(!!b.flagged) - Number(!!a.flagged) || a.box - b.box || a.due - b.due)
-    .map(([id]) => id);
+export const DAILY_REVIEW_LIMIT = 20;
+const DAY = 86_400_000;
+
+export type ReviewReason = 'leitner' | 'weak' | 'stale';
+
+export interface ReviewQueueItem {
+  id: string;
+  course: CourseId | null;
+  lessonId?: string;
+  reason: ReviewReason;
+}
+
+export interface ReviewQueueOptions {
+  course?: CourseId;
+  limit?: number;
+  curricula?: Curriculum[];
+  examDates?: Partial<Record<CourseId, string | null | undefined>>;
+  now?: number;
+}
+
+interface RankedReview extends ReviewQueueItem {
+  score: number;
+  due: number;
+}
+
+const isoDaysFrom = (iso: string | null | undefined, now: number) => {
+  if (!iso) return null;
+  const [year, month, day] = iso.split('-').map(Number);
+  if (!year || !month || !day) return null;
+  const target = new Date(year, month - 1, day, 12);
+  const current = new Date(now);
+  current.setHours(12, 0, 0, 0);
+  return Math.round((target.getTime() - current.getTime()) / DAY);
+};
+
+const examPriority = (iso: string | null | undefined, inScope: boolean, now: number) => {
+  const left = isoDaysFrom(iso, now);
+  if (left === null || left < 0 || left > 30) return 0;
+  const urgency = left <= 3 ? 4 : left <= 7 ? 3 : left <= 14 ? 2 : 1;
+  return urgency * (inScope ? 1_500 : 500);
+};
+
+// A single, explainable daily queue. Due Leitner cards lead; if there is room, weak (<60%) and
+// stale (7+ days) lesson pools replenish it with at most five questions from each topic.
+export function reviewQueue(questions: Record<string, QuestionStat>, options: ReviewQueueOptions = {}): ReviewQueueItem[] {
+  const now = options.now ?? Date.now();
+  const limit = Math.max(0, Math.min(DAILY_REVIEW_LIMIT, options.limit ?? DAILY_REVIEW_LIMIT));
+  const curricula = options.curricula ?? [];
+  const location = new Map<string, { course: CourseId; lessonId: string; midterm: boolean }>();
+  for (const cur of curricula)
+    for (const section of cur.sections)
+      for (const lesson of section.lessons)
+        for (const id of new Set(lesson.steps.flatMap((step) => step.questionIds ?? [])))
+          if (!location.has(id)) location.set(id, { course: cur.id, lessonId: lesson.id, midterm: !!section.midterm });
+
+  const ranked = new Map<string, RankedReview>();
+  const put = (item: RankedReview) => {
+    const prior = ranked.get(item.id);
+    if (!prior || item.score > prior.score) ranked.set(item.id, item);
+  };
+
+  for (const [id, stat] of Object.entries(questions)) {
+    const where = location.get(id);
+    const course = stat.course ?? where?.course ?? questionCourse(id);
+    if (options.course && course !== options.course) continue;
+    const due = stat.seen > 0 && stat.box < 5 && stat.due <= now;
+    if (!stat.flagged && !due) continue;
+    const overdueDays = due ? Math.min(30, Math.max(0, Math.floor((now - stat.due) / DAY))) : 0;
+    const score =
+      (stat.flagged ? 100_000 : 0) +
+      (stat.last === 0 ? 50_000 : 0) +
+      (stat.unsure ? 20_000 : 0) +
+      (due ? 10_000 : 0) +
+      (5 - Math.min(5, Math.max(1, stat.box))) * 400 +
+      overdueDays * 20 +
+      (course ? examPriority(options.examDates?.[course], where?.midterm ?? false, now) : 0);
+    put({ id, course, lessonId: where?.lessonId, reason: 'leitner', score, due: stat.due });
+  }
+
+  // Refill questions are not recycled again on the same calendar day. A wrong/flagged card can still
+  // remain in the Leitner portion above, but every id is unique in the returned queue.
+  const todayStart = new Date(now);
+  todayStart.setHours(0, 0, 0, 0);
+  for (const cur of curricula) {
+    if (options.course && cur.id !== options.course) continue;
+    for (const section of cur.sections) {
+      for (const lesson of section.lessons) {
+        const ids = [...new Set(lesson.steps.flatMap((step) => step.questionIds ?? []))];
+        if (!ids.length) continue;
+        const seen = ids.map((id) => questions[id]).filter((q): q is QuestionStat => !!q && q.seen > 0);
+        if (!seen.length) continue;
+        const accuracy = seen.filter((q) => q.last === 1).length / seen.length;
+        const lastAt = Math.max(...seen.map((q) => q.lastAt || 0));
+        const weak = accuracy < 0.6;
+        const stale = lastAt > 0 && now - lastAt >= 7 * DAY;
+        if (!weak && !stale) continue;
+
+        const topicScore =
+          (weak ? Math.round((0.6 - accuracy) * 8_000) + 4_000 : 0) +
+          (stale ? Math.min(2_500, Math.floor((now - lastAt) / DAY) * 80) : 0) +
+          examPriority(options.examDates?.[cur.id], !!section.midterm, now);
+        const candidates = ids
+          .filter((id) => !ranked.has(id))
+          .filter((id) => !questions[id]?.lastAt || questions[id].lastAt < todayStart.getTime())
+          .sort((a, b) => {
+            const qa = questions[a];
+            const qb = questions[b];
+            return (
+              Number(!!qb?.flagged) - Number(!!qa?.flagged) ||
+              Number(qb?.last === 0) - Number(qa?.last === 0) ||
+              (qa?.seen ?? 0) - (qb?.seen ?? 0) ||
+              (qa?.lastAt ?? 0) - (qb?.lastAt ?? 0) ||
+              a.localeCompare(b)
+            );
+          })
+          .slice(0, 5);
+        for (const [index, id] of candidates.entries()) {
+          const stat = questions[id];
+          put({
+            id,
+            course: cur.id,
+            lessonId: lesson.id,
+            reason: weak ? 'weak' : 'stale',
+            score: topicScore + (stat?.last === 0 ? 2_000 : 0) + (5 - index) * 10,
+            due: stat?.due ?? Number.MAX_SAFE_INTEGER
+          });
+        }
+      }
+    }
+  }
+
+  return [...ranked.values()]
+    .sort((a, b) => b.score - a.score || a.due - b.due || a.id.localeCompare(b.id))
+    .slice(0, limit)
+    .map(({ score: _score, due: _due, ...item }) => item);
+}
+
+// Kept as the compact id-only API used by quiz launchers and older callers.
+export function dueForReview(questions: Record<string, QuestionStat>, course?: CourseId, limit = DAILY_REVIEW_LIMIT, curricula?: Curriculum[], examDates?: ReviewQueueOptions['examDates']): string[] {
+  return reviewQueue(questions, { course, limit, curricula, examDates }).map((item) => item.id);
+}
+
+export interface StudyPlanTask {
+  id: string;
+  kind: 'lesson' | 'review';
+  title: string;
+  minutes: number;
+  lessonId?: string;
+  stepId?: string;
+  questionCount?: number;
+}
+
+export interface StudyPlanDay {
+  iso: string;
+  minutes: number;
+  tasks: StudyPlanTask[];
+}
+
+export interface StudyPlan {
+  days: StudyPlanDay[];
+  daysAvailable: number;
+  minutesPerDay: number;
+  totalMinutes: number;
+  availableMinutes: number;
+  unscheduledMinutes: number;
+  finishable: boolean;
+  remainingLessons: number;
+  reviewQuestions: number;
+  finishDate: string | null;
+}
+
+const localIso = (date: Date) =>
+  `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+// Turns unfinished required steps plus today's review queue into a concrete calendar. The exam date is
+// exclusive (study runs through the day before it), except that an exam today still gets one urgent block.
+export function buildStudyPlan(
+  cur: Curriculum,
+  p: ProgressState,
+  reviewIds: string[],
+  examDate: string,
+  hoursPerDay: number,
+  scope: 'midterm' | 'final' = 'midterm',
+  now = new Date()
+): StudyPlan | null {
+  const [year, month, day] = examDate.split('-').map(Number);
+  if (!year || !month || !day) return null;
+  const exam = new Date(year, month - 1, day, 12);
+  const start = new Date(now);
+  start.setHours(12, 0, 0, 0);
+  const left = Math.round((exam.getTime() - start.getTime()) / DAY);
+  if (left < 0) return null;
+
+  const daysAvailable = Math.max(1, left);
+  const minutesPerDay = Math.max(15, Math.round(Math.min(12, Math.max(0.25, hoursPerDay)) * 60));
+  const scopedSections = scope === 'midterm' && cur.sections.some((section) => section.midterm) ? cur.sections.filter((section) => section.midterm) : cur.sections;
+  const tasks: StudyPlanTask[] = [];
+  if (reviewIds.length) {
+    tasks.push({
+      id: `review-${cur.id}`,
+      kind: 'review',
+      title: `Review ${reviewIds.length} priority question${reviewIds.length === 1 ? '' : 's'}`,
+      minutes: Math.max(5, Math.ceil(reviewIds.length * 1.5)),
+      questionCount: reviewIds.length
+    });
+  }
+
+  const remainingLessonIds = new Set<string>();
+  for (const section of scopedSections)
+    for (const lesson of section.lessons)
+      for (const step of lesson.steps)
+        if (!step.optional && !isDone(p.steps, cur.id, step)) {
+          remainingLessonIds.add(lesson.id);
+          tasks.push({
+            id: `${lesson.id}/${step.id}`,
+            kind: 'lesson',
+            title: `${lesson.title}: ${step.title}`,
+            minutes: Math.max(1, step.minutes),
+            lessonId: lesson.id,
+            stepId: step.id
+          });
+        }
+
+  const totalMinutes = tasks.reduce((sum, task) => sum + task.minutes, 0);
+  const availableMinutes = daysAvailable * minutesPerDay;
+  const queue = tasks.map((task) => ({ task, remaining: task.minutes }));
+  const days: StudyPlanDay[] = [];
+  for (let index = 0; index < daysAvailable && queue.length; index++) {
+    let capacity = minutesPerDay;
+    const scheduled: StudyPlanTask[] = [];
+    while (capacity > 0 && queue.length) {
+      const current = queue[0];
+      const chunk = Math.min(capacity, current.remaining);
+      scheduled.push({ ...current.task, id: `${current.task.id}-${current.task.minutes - current.remaining}`, minutes: chunk });
+      current.remaining -= chunk;
+      capacity -= chunk;
+      if (current.remaining <= 0) queue.shift();
+    }
+    const date = new Date(start);
+    date.setDate(start.getDate() + index);
+    days.push({ iso: localIso(date), minutes: minutesPerDay - capacity, tasks: scheduled });
+  }
+
+  const unscheduledMinutes = queue.reduce((sum, item) => sum + item.remaining, 0);
+  return {
+    days,
+    daysAvailable,
+    minutesPerDay,
+    totalMinutes,
+    availableMinutes,
+    unscheduledMinutes,
+    finishable: unscheduledMinutes === 0,
+    remainingLessons: remainingLessonIds.size,
+    reviewQuestions: reviewIds.length,
+    finishDate: unscheduledMinutes === 0 && days.length ? days[days.length - 1].iso : null
+  };
 }
 
 export type Strength = 'strong' | 'okay' | 'weak' | 'new';
@@ -54,7 +302,7 @@ export function masteryByLesson(cur: Curriculum, p: ProgressState): TopicMastery
       }
       const accuracy = answered ? right / answered : null;
       const lp = lessonProgress(cur.id, l, p.steps);
-      const strength: Strength = accuracy === null || answered < 3 ? 'new' : accuracy >= 0.8 ? 'strong' : accuracy >= 0.55 ? 'okay' : 'weak';
+      const strength: Strength = accuracy === null ? 'new' : accuracy < 0.6 ? 'weak' : answered < 3 ? 'new' : accuracy >= 0.8 ? 'strong' : 'okay';
       out.push({ lesson: l, sectionTitle: s.title, answered, right, accuracy, strength, lastAt, stepsDone: lp.done, stepsTotal: lp.total });
     }
   }
@@ -90,8 +338,6 @@ export interface Suggestion {
   minutes?: number;
 }
 
-const DAY = 86_400_000;
-
 const firstOf = (l: Lesson, kinds: Step['kind'][]) => l.steps.find((s) => kinds.includes(s.kind));
 
 // Rule-based suggestions, each with the reason it was made
@@ -102,20 +348,19 @@ export function suggestions(cur: Curriculum, p: ProgressState, exam: { date: str
   const now = Date.now();
 
   for (const m of mastery.filter((x) => x.strength === 'weak').sort((a, b) => (a.accuracy ?? 0) - (b.accuracy ?? 0)).slice(0, 2)) {
-    const video = firstOf(m.lesson, ['video', 'notes']);
     const practice = firstOf(m.lesson, ['practice', 'check']);
     out.push({
       kind: 'weak',
-      title: video ? `${video.kind === 'video' ? 'Rewatch' : 'Reread'} “${video.title === 'Key notes' ? `the key notes of ${m.lesson.title}` : video.title}”, then practise again` : `Practise ${m.lesson.title} again`,
+      title: `Practise ${m.lesson.title} again`,
       why: `You got ${m.right} of ${m.answered} right (${Math.round((m.accuracy ?? 0) * 100)}%) on ${m.lesson.title}.`,
       course: cur.id,
       lessonId: m.lesson.id,
-      stepId: (video ?? practice)?.id,
-      minutes: (video?.minutes ?? 0) + (practice?.minutes ?? 0)
+      stepId: practice?.id,
+      minutes: practice?.minutes
     });
   }
 
-  for (const m of mastery.filter((x) => x.strength !== 'new' && x.lastAt && now - x.lastAt > 7 * DAY).sort((a, b) => a.lastAt - b.lastAt).slice(0, 1)) {
+  for (const m of mastery.filter((x) => x.strength !== 'new' && x.lastAt && now - x.lastAt >= 7 * DAY).sort((a, b) => a.lastAt - b.lastAt).slice(0, 1)) {
     const check = firstOf(m.lesson, ['check', 'practice']);
     out.push({
       kind: 'stale',
@@ -128,7 +373,7 @@ export function suggestions(cur: Curriculum, p: ProgressState, exam: { date: str
     });
   }
 
-  const due = dueForReview(p.questions, cur.id);
+  const due = dueForReview(p.questions, cur.id, DAILY_REVIEW_LIMIT, [cur], { [cur.id]: exam?.date });
   if (due.length) {
     const flagged = due.filter((id) => p.questions[id]?.flagged).length;
     out.push({

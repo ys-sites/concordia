@@ -1,12 +1,12 @@
-import React, { useMemo, useState } from 'react';
-import { AlertTriangle, CalendarDays, CheckCircle2, Flame, PlayCircle, RotateCcw, Target, Trophy, X } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { AlertTriangle, CalendarDays, CheckCircle2, Clock3, Flame, ListChecks, PlayCircle, RotateCcw, Target, Trophy, X } from 'lucide-react';
 import type { CourseId } from '../../types';
-import type { Lesson, Step } from '../model';
+import type { Curriculum, Lesson, Step } from '../model';
 import { COURSES, COURSE_BY_ID, courseClass } from '../courses';
 import { courseProgress, isDone, nextStep, useCurricula } from '../data';
 import { href } from '../router';
-import { getProgress, streak, today, useProgress } from '../progress/store';
-import { daysUntil, dueForReview, masteryByLesson, readiness, suggestions, TopicMastery } from '../progress/insights';
+import { streak, today, useProgress, type ProgressState } from '../progress/store';
+import { buildStudyPlan, DAILY_REVIEW_LIMIT, daysUntil, masteryByLesson, readiness, reviewQueue, suggestions, type ReviewQueueItem, type TopicMastery } from '../progress/insights';
 import type { ReminderItem } from '../reminders';
 import { fmtDay, nextExam, useReminders, whenText } from '../reminders';
 import { ReminderDialog, RemindersCard } from '../components/Reminders';
@@ -38,7 +38,7 @@ const STRENGTH: Record<TopicMastery['strength'], { label: string; cls: string }>
 
 const ReviewSession: React.FC<{ course: CourseId; ids: string[]; onClose: () => void }> = ({ course, ids, onClose }) => {
   const lesson: Lesson = { id: 'review', title: 'Review queue', summary: '', objectives: [], topicTags: [], minutes: 0, steps: [] };
-  const step: Step = { id: 'review', kind: 'practice', title: `Review: ${COURSE_BY_ID[course].code}`, minutes: 0, questionIds: ids, size: Math.min(15, ids.length), passMark: 0.7 };
+  const step: Step = { id: 'review', kind: 'check', title: `Review: ${COURSE_BY_ID[course].code}`, minutes: 0, questionIds: ids, size: ids.length, passMark: 0.7 };
   return (
     <div className="lx-dialog-backdrop" onClick={onClose}>
       <div className={`lx-dialog ${courseClass(course)}`} role="dialog" aria-modal="true" aria-label="Review" onClick={(e) => e.stopPropagation()}>
@@ -51,22 +51,201 @@ const ReviewSession: React.FC<{ course: CourseId; ids: string[]; onClose: () => 
   );
 };
 
+interface PlannerCourse {
+  id: CourseId;
+  cur: Curriculum;
+  exam?: ReminderItem;
+  due: ReviewQueueItem[];
+  started: boolean;
+}
+
+const planDayLabel = (iso: string) => {
+  const [year, month, day] = iso.split('-').map(Number);
+  const date = new Date(year, month - 1, day, 12);
+  return date.toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric' });
+};
+
+const studyTime = (minutes: number) => {
+  const hours = Math.floor(minutes / 60);
+  const rest = minutes % 60;
+  return hours ? `${hours} h${rest ? ` ${rest} min` : ''}` : `${rest} min`;
+};
+
+const StudyPlanSimulator: React.FC<{
+  courses: PlannerCourse[];
+  progress: ProgressState;
+  selectedCourse: CourseId | null;
+  onReview: (course: CourseId) => void;
+}> = ({ courses, progress, selectedCourse, onReview }) => {
+  const initial =
+    selectedCourse ??
+    courses
+      .filter((item) => item.exam && item.exam.left >= 0)
+      .sort((a, b) => (a.exam?.left ?? Number.MAX_SAFE_INTEGER) - (b.exam?.left ?? Number.MAX_SAFE_INTEGER))[0]?.id ??
+    courses.find((item) => item.started)?.id ??
+    courses[0]?.id;
+  const [planCourse, setPlanCourse] = useState<CourseId>(initial ?? COURSES[0].id);
+  const row = courses.find((item) => item.id === planCourse) ?? courses[0];
+  const [examDate, setExamDate] = useState(row?.exam?.date ?? '');
+  const [hoursPerDay, setHoursPerDay] = useState(1.5);
+
+  useEffect(() => {
+    if (selectedCourse) setPlanCourse(selectedCourse);
+  }, [selectedCourse]);
+
+  useEffect(() => {
+    setExamDate(row?.exam?.date ?? '');
+  }, [row?.id, row?.exam?.date]);
+
+  const plan = useMemo(
+    () =>
+      row && examDate
+        ? buildStudyPlan(row.cur, progress, row.due.map((item) => item.id), examDate, hoursPerDay, row.exam?.kind === 'final' ? 'final' : 'midterm')
+        : null,
+    [examDate, hoursPerDay, progress, row]
+  );
+  if (!row) return null;
+
+  const isPast = !!examDate && daysUntil(examDate) < 0;
+  const requiredDaily = plan?.daysAvailable ? Math.ceil((plan.totalMinutes / plan.daysAvailable / 60) * 10) / 10 : 0;
+  const reminderMatches = row.exam?.date === examDate;
+
+  return (
+    <section className={`lx-study-plan ${courseClass(row.id)}`} aria-labelledby="study-plan-title">
+      <div className="lx-study-plan-head">
+        <div>
+          <span className="lx-eyebrow">Study plan simulator</span>
+          <h2 id="study-plan-title" className="lx-h2">Can I finish before the exam?</h2>
+          <p className="lx-meta">Adjust the date or daily time. Your plan updates instantly and stays on this device.</p>
+        </div>
+        <span className="lx-local-badge">Browser local</span>
+      </div>
+
+      <div className="lx-plan-controls" aria-label="Study plan inputs">
+        <label>
+          <span>Course</span>
+          <select value={row.id} onChange={(event) => setPlanCourse(event.target.value as CourseId)}>
+            {courses.map((item) => (
+              <option key={item.id} value={item.id}>{COURSE_BY_ID[item.id].code}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>Exam date</span>
+          <input type="date" value={examDate} min={today()} onChange={(event) => setExamDate(event.target.value)} />
+          <small>{reminderMatches && row.exam ? `From ${row.exam.title}` : row.exam ? 'Custom date' : 'No reminder yet'}</small>
+        </label>
+        <label>
+          <span>Hours per day</span>
+          <input
+            type="number"
+            inputMode="decimal"
+            min="0.25"
+            max="12"
+            step="0.25"
+            value={hoursPerDay}
+            onChange={(event) => setHoursPerDay(Math.min(12, Math.max(0.25, Number(event.target.value) || 0.25)))}
+          />
+          <small>Focused study time</small>
+        </label>
+      </div>
+
+      {!examDate ? (
+        <div className="lx-plan-empty">
+          <CalendarDays size={24} aria-hidden />
+          <div><strong>Add an exam date to build the plan.</strong><span>The date can come from a reminder or be entered here.</span></div>
+        </div>
+      ) : isPast || !plan ? (
+        <div className="lx-plan-empty is-warning" role="alert">
+          <AlertTriangle size={24} aria-hidden />
+          <div><strong>This exam date has passed.</strong><span>Choose today or a future date to simulate a plan.</span></div>
+        </div>
+      ) : (
+        <>
+          <div className={`lx-plan-verdict ${plan.finishable ? 'is-finishable' : 'is-over'}`} aria-live="polite">
+            {plan.totalMinutes === 0 ? (
+              <div><CheckCircle2 size={22} aria-hidden /><span><strong>You are caught up.</strong>No unfinished steps in this exam scope or review questions are waiting.</span></div>
+            ) : plan.finishable ? (
+              <div><CheckCircle2 size={22} aria-hidden /><span><strong>Yes — this is finishable.</strong>You can finish by {plan.finishDate ? planDayLabel(plan.finishDate) : 'the exam'} with {studyTime(plan.availableMinutes - plan.totalMinutes)} of buffer.</span></div>
+            ) : (
+              <div><AlertTriangle size={22} aria-hidden /><span><strong>Not at {hoursPerDay} hours a day.</strong>You are short by {studyTime(plan.unscheduledMinutes)}. Plan for about {requiredDaily} hours a day or move the date.</span></div>
+            )}
+          </div>
+
+          <div className="lx-plan-metrics" aria-label="Plan summary">
+            <div><Clock3 size={18} aria-hidden /><strong>{studyTime(plan.totalMinutes)}</strong><span>Total work</span></div>
+            <div><CalendarDays size={18} aria-hidden /><strong>{plan.daysAvailable}</strong><span>Study days</span></div>
+            <div><PlayCircle size={18} aria-hidden /><strong>{plan.remainingLessons}</strong><span>Lessons left</span></div>
+            <div><ListChecks size={18} aria-hidden /><strong>{plan.reviewQuestions}</strong><span>Reviews today</span></div>
+          </div>
+
+          {plan.days.length ? (
+            <div className="lx-plan-schedule">
+              <div className="lx-plan-schedule-head">
+                <h3 className="lx-h3">Your day-by-day plan</h3>
+                <span className="lx-meta">{daysUntil(examDate) === 0 ? 'Urgent plan for today' : 'Exam day is kept free'}</span>
+              </div>
+              <ol>
+                {plan.days.map((day, index) => (
+                  <li key={day.iso}>
+                    <div className="lx-plan-day">
+                      <span>{index === 0 ? 'Today' : `Day ${index + 1}`}</span>
+                      <strong>{planDayLabel(day.iso)}</strong>
+                    </div>
+                    <ul className="lx-plan-tasks">
+                      {day.tasks.map((task) => (
+                        <li key={task.id}>
+                          {task.kind === 'review' ? (
+                            <button type="button" className="lx-linkbtn" onClick={() => onReview(row.id)}>{task.title}</button>
+                          ) : (
+                            <a href={href({ name: 'learn', course: row.id, lesson: task.lessonId!, step: task.stepId })}>{task.title}</a>
+                          )}
+                          <span className="lx-num">{task.minutes} min</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <strong className="lx-plan-total lx-num">{studyTime(day.minutes)}</strong>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ) : null}
+        </>
+      )}
+    </section>
+  );
+};
+
 export const MyLearning: React.FC = () => {
   const curricula = useCurricula();
   const p = useProgress((s) => s);
   const [course, setCourse] = useState<CourseId | null>(null);
-  const [review, setReview] = useState<CourseId | null>(null);
+  const [review, setReview] = useState<{ course: CourseId; ids: string[] } | null>(null);
   const reminders = useReminders();
   const [examEdit, setExamEdit] = useState<{ item?: ReminderItem; course: CourseId } | null>(null);
 
   const data = useMemo(() => {
     if (!curricula) return null;
+    const examDates = Object.fromEntries(COURSES.map((c) => [c.id, nextExam(reminders, c.id)?.date ?? null])) as Partial<Record<CourseId, string | null>>;
+    const dailyQueue = reviewQueue(p.questions, {
+      curricula: COURSES.map((c) => curricula[c.id]),
+      examDates,
+      limit: DAILY_REVIEW_LIMIT
+    });
     return COURSES.map((c) => {
       const cur = curricula[c.id];
       const prog = courseProgress(cur, p.steps);
       const exam = nextExam(reminders, c.id);
       const date = exam?.date ?? null;
       const left = date ? daysUntil(date) : null;
+      const due = dailyQueue.filter((item) => item.course === c.id);
+      const courseSuggestions = suggestions(cur, p, exam).flatMap((item) =>
+        item.kind !== 'review'
+          ? [item]
+          : due.length
+            ? [{ ...item, title: `Review ${due.length} question${due.length === 1 ? '' : 's'}`, minutes: Math.ceil(due.length * 1.5) }]
+            : []
+      );
       const remaining = cur.sections.filter((s) => s.midterm).flatMap((s) => s.lessons).filter((l) => l.steps.some((st) => !st.optional && !isDone(p.steps, c.id, st)));
       return {
         c,
@@ -77,8 +256,8 @@ export const MyLearning: React.FC = () => {
         minutesLeft: cur.sections.flatMap((s) => s.lessons).reduce((n, l) => n + l.steps.filter((st) => !st.optional && !isDone(p.steps, c.id, st)).reduce((m, st) => m + st.minutes, 0), 0),
         mastery: masteryByLesson(cur, p),
         ready: readiness(cur, p),
-        due: dueForReview(p.questions, c.id),
-        suggestions: suggestions(cur, p, exam),
+        due,
+        suggestions: courseSuggestions,
         exam,
         date,
         left,
@@ -111,6 +290,10 @@ export const MyLearning: React.FC = () => {
   const allSuggestions = shown.flatMap((d) => d.suggestions.map((s) => ({ s, d }))).slice(0, 6);
   const completed = data.filter((d) => d.prog.lessons && d.prog.lessonsDone === d.prog.lessons).length;
   const totalDue = data.reduce((n, d) => n + d.due.length, 0);
+  const openReview = (id: CourseId) => {
+    const ids = data.find((item) => item.c.id === id)?.due.map((item) => item.id) ?? [];
+    if (ids.length) setReview({ course: id, ids });
+  };
 
   return (
     <div className="lx-wrap lx-dash">
@@ -150,10 +333,17 @@ export const MyLearning: React.FC = () => {
             </h2>
             <div className="lx-reco-grid">
               {allSuggestions.map(({ s, d }, i) => (
-                <RecoCard key={i} cur={d.cur} s={s} onReview={setReview} />
+                <RecoCard key={i} cur={d.cur} s={s} onReview={openReview} />
               ))}
             </div>
           </section>
+
+          <StudyPlanSimulator
+            courses={data.map((item) => ({ id: item.c.id, cur: item.cur, exam: item.exam, due: item.due, started: item.started }))}
+            progress={p}
+            selectedCourse={course}
+            onReview={openReview}
+          />
 
           <section aria-labelledby="dash-mastery">
             <h2 id="dash-mastery" className="lx-h2">
@@ -166,9 +356,16 @@ export const MyLearning: React.FC = () => {
                   <h3 className="lx-h3">{d.c.code}</h3>
                   {rows.length ? (
                     <ul>
-                      {rows.map((m) => (
+                      {rows.map((m) => {
+                        const practice = m.strength === 'weak' ? m.lesson.steps.find((step) => step.kind === 'practice' || step.kind === 'check') : undefined;
+                        return (
                         <li key={m.lesson.id}>
-                          <a href={href({ name: 'learn', course: d.c.id, lesson: m.lesson.id })}>{m.lesson.title}</a>
+                          <a
+                            href={href({ name: 'learn', course: d.c.id, lesson: m.lesson.id, ...(practice ? { step: practice.id } : {}) })}
+                            aria-label={practice ? `${m.lesson.title}: open ${practice.title}` : undefined}
+                          >
+                            {m.lesson.title}
+                          </a>
                           <span className="lx-mastery-bar" aria-hidden>
                             <span className={STRENGTH[m.strength].cls} style={{ width: `${m.accuracy !== null ? Math.max(6, Math.round(m.accuracy * 100)) : 0}%` }} />
                           </span>
@@ -178,7 +375,8 @@ export const MyLearning: React.FC = () => {
                             {m.accuracy !== null && <span className="lx-num"> · {Math.round(m.accuracy * 100)}%</span>}
                           </span>
                         </li>
-                      ))}
+                        );
+                      })}
                     </ul>
                   ) : (
                     <p className="lx-meta">Answer a few questions in {d.c.code} and each topic’s strength shows up here.</p>
@@ -252,7 +450,7 @@ export const MyLearning: React.FC = () => {
 
           <div className="lx-side-card">
             <h2 className="lx-h3">Review queue</h2>
-            <p className="lx-meta">Questions you missed or were unsure about come back on a spaced schedule until they stick.</p>
+            <p className="lx-meta">Up to {DAILY_REVIEW_LIMIT} a day: flagged and missed questions first, then up to five from each weak or 7-day-stale topic.</p>
             {data.filter((d) => d.due.length).length ? (
               <ul className="lx-review-q">
                 {data
@@ -262,7 +460,7 @@ export const MyLearning: React.FC = () => {
                       <span>
                         <strong className="lx-num">{d.due.length}</strong> in {d.c.code}
                       </span>
-                      <button type="button" className="lx-btn lx-btn--sm lx-btn--accent" onClick={() => setReview(d.c.id)}>
+                      <button type="button" className="lx-btn lx-btn--sm lx-btn--accent" onClick={() => openReview(d.c.id)}>
                         <RotateCcw size={14} /> Review
                       </button>
                     </li>
@@ -306,7 +504,7 @@ export const MyLearning: React.FC = () => {
       </div>
 
       {examEdit && <ReminderDialog item={examEdit.item} preset={{ course: examEdit.course, kind: 'midterm' }} onClose={() => setExamEdit(null)} />}
-      {review && <ReviewSession course={review} ids={dueForReview(getProgress().questions, review)} onClose={() => setReview(null)} />}
+      {review && <ReviewSession course={review.course} ids={review.ids} onClose={() => setReview(null)} />}
     </div>
   );
 };

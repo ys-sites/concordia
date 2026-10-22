@@ -691,6 +691,25 @@
   display: inline;
 }
 
+.lx-step-feedback {
+  margin: 14px 24px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r);
+  background: var(--lx-surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.lx-step-feedback > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lx-step-feedback small { color: var(--lx-muted); }
+.lx-step-feedback-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
 @media (max-width: 1100px) {
   .lx-pbody {
     grid-template-columns: minmax(0, 1fr);
@@ -778,6 +797,12 @@
   .lx-notes-card {
     padding: 16px;
   }
+  .lx-step-feedback {
+    margin: 12px 16px 0;
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .lx-step-feedback-actions .lx-btn { min-height: 44px; }
 }
 
 /* quiz focus mode: on desktop the course content steps aside while a quiz runs, one click away */

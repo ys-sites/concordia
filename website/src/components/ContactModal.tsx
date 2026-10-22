@@ -5,13 +5,15 @@ import { audio } from '../utils/audio';
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialSubject?: string;
+  initialMessage?: string;
 }
 
-export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
+export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, initialSubject, initialMessage }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('General Feedback or Collaboration');
-  const [message, setMessage] = useState('');
+  const [subject, setSubject] = useState(initialSubject ?? 'General Feedback or Collaboration');
+  const [message, setMessage] = useState(initialMessage ?? '');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const isSubmittingRef = useRef(false);
@@ -21,9 +23,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     if (isOpen) {
       setStatus('idle');
       setErrorMessage('');
+      setSubject(initialSubject ?? 'General Feedback or Collaboration');
+      setMessage(initialMessage ?? '');
       isSubmittingRef.current = false;
     }
-  }, [isOpen]);
+  }, [isOpen, initialSubject, initialMessage]);
 
   // Handle ESC key to close
   useEffect(() => {

@@ -12,6 +12,7 @@ import { getPdfUrl } from '../../utils/pdfUrl';
 import { CodeBlock } from '../components/CodeBlock';
 import { openDoc } from '../docBus';
 import { saveVideoPosition, useProgress } from '../progress/store';
+import { trackStudyOnce } from '../analytics';
 
 const PdfCanvasViewer = lazy(() => import('../../components/PdfCanvasViewer'));
 const FormulaTool = lazy(() => import('../tools/FormulaTool'));
@@ -37,7 +38,7 @@ const Loading: React.FC<{ label?: string }> = ({ label = 'Loading…' }) => (
 );
 
 // ── video ────────────────────────────────────────────────────────────────────────
-export const VideoStep: React.FC<{ step: Step; onWatched: () => void; onEnded: () => void }> = ({ step, onWatched, onEnded }) => {
+export const VideoStep: React.FC<{ course: CourseId; step: Step; onWatched: () => void; onEnded: () => void; onOpenNotes?: () => void }> = ({ course, step, onWatched, onEnded, onOpenNotes }) => {
   const [lesson, setLesson] = useState<MotionLesson | null>(null);
   const pos = useProgress((s) => s.videos[step.videoId!]);
   useEffect(() => {
@@ -57,9 +58,18 @@ export const VideoStep: React.FC<{ step: Step; onWatched: () => void; onEnded: (
       startAt={pos && pos.t < pos.d - 5 ? pos.t : undefined}
       onProgress={(t, d) => {
         saveVideoPosition(step.videoId!, t, d);
+        if (d > 0) {
+          const pct = (t / d) * 100;
+          for (const milestone of [25, 50, 75] as const)
+            if (pct >= milestone) trackStudyOnce(`video:${step.videoId}:${milestone}`, 'video_progress', { course, step: step.id, milestone });
+        }
         if (d && t / d >= 0.9) onWatched();
       }}
-      onEnded={onEnded}
+      onEnded={() => {
+        trackStudyOnce(`video:${step.videoId}:100`, 'video_progress', { course, step: step.id, milestone: 100 });
+        onEnded();
+      }}
+      onFallback={onOpenNotes}
     />
   );
 };

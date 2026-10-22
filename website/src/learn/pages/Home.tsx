@@ -178,8 +178,6 @@ export const Home: React.FC = () => {
       </section>
 
       <div className="lx-wrap">
-        <ComingUp />
-
         {curricula && startedCourses.length > 0 && (
           <section className="lx-home-section" aria-labelledby="lx-continue">
             <h2 id="lx-continue" className="lx-h2">
@@ -196,8 +194,9 @@ export const Home: React.FC = () => {
         {recommended.length > 0 && (
           <section className="lx-home-section" aria-labelledby="lx-reco">
             <h2 id="lx-reco" className="lx-h2">
-              Recommended for you
+              Today’s plan
             </h2>
+            <p className="lx-section-intro">A focused queue based on your next lesson, due reviews and upcoming exams.</p>
             <div className="lx-reco-grid">
               {recommended.map(({ s, cur }, i) => (
                 <RecoCard key={i} cur={cur} s={s} />
@@ -216,6 +215,8 @@ export const Home: React.FC = () => {
             ))}
           </div>
         </section>
+
+        <ComingUp />
 
         <section className="lx-home-section lx-how" aria-labelledby="lx-how">
           <h2 id="lx-how" className="lx-h2">

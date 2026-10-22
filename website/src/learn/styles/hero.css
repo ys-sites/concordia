@@ -2,6 +2,7 @@
    subtext, academic disclaimer, metric pills). Copied from the old index.css so it survives that file's removal. */
 .hero-header-box {
   text-align: center;
+  width: 100%;
   max-width: 900px;
   margin: 0 auto;
   padding: 40px 0 4px;

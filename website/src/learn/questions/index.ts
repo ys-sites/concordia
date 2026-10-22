@@ -1,7 +1,7 @@
 // Loads every question of one course on demand (the bank, teacher papers and exam-prep data are large) and
 // indexes them by id. Each course loads once per visit.
 import { useEffect, useState } from 'react';
-import type { CourseId } from '../../types';
+import type { CourseId, PracticeQuestion } from '../../types';
 import type { LearnQuestion } from '../model';
 import { loadGate } from '../../data/gates';
 import { VIDEO_SOURCES } from '../videoSources';
@@ -14,9 +14,22 @@ export interface QuestionIndex {
 
 const cache = new Map<CourseId, Promise<QuestionIndex>>();
 
+// Each course's practice bank is its own chunk (vite.config.ts, questionBankPlugin): a quiz loads only its course
+const BANKS: Record<CourseId, () => Promise<{ default: PracticeQuestion[] }>> = {
+  ENGR213: () => import('virtual:practice-bank/ENGR213'),
+  INDU211: () => import('virtual:practice-bank/INDU211'),
+  MIAE215: () => import('virtual:practice-bank/MIAE215'),
+  MIAE221: () => import('virtual:practice-bank/MIAE221')
+};
+let loadBank = (c: CourseId) => BANKS[c]().then((m) => m.default);
+// node scripts (the content inventory) have no Vite: they read the bank from src/data instead
+export const setBankLoader = (fn: (c: CourseId) => Promise<PracticeQuestion[]>) => {
+  loadBank = fn;
+};
+
 async function build(c: CourseId): Promise<QuestionIndex> {
   const [bank, teacher, gate, drill] = await Promise.all([
-    import('../../data/questionsData').then((m) => m.PRACTICE_QUESTIONS),
+    loadBank(c),
     import('../../data/teacherExamQuestions').then((m) => m.TEACHER_EXAM_QUESTIONS),
     loadGate(c),
     c === 'ENGR213' ? import('../../data/engr213_midterm_drill_banks').then((m) => Object.values(m.ENGR213_MIDTERM_DRILL_BANKS).flat()) : Promise.resolve([])

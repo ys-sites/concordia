@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, Bell, CalendarClock, CalendarPlus, Check, Clock3, Pencil, RotateCcw, Trash2, X } from 'lucide-react';
+import { AlertTriangle, ArrowRight, Bell, CalendarClock, CalendarPlus, Check, Clock3, Pencil, RotateCcw, Trash2, X } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { Reminder, ReminderKind, Urgency } from '../progress/store';
 import { deleteReminder, editScheduled, saveReminder } from '../progress/store';
@@ -313,6 +313,24 @@ export const RemindersCard: React.FC = () => {
 };
 
 // ── Home: the next few, as cards ────────────────────────────────────────────────
+const examPrepHref = (r: ReminderItem) => (r.course && (r.kind === 'midterm' || r.kind === 'final') ? href({ name: 'course', course: r.course, tab: 'exam' }) : null);
+
+const ComingUpMain: React.FC<{ r: ReminderItem; onEdit: () => void; children: React.ReactNode }> = ({ r, onEdit, children }) => {
+  const to = examPrepHref(r);
+  return to ? (
+    <a className="lx-exam-main" href={to} aria-label={`Open exam prep for ${reminderTitle(r)}, ${fmtDay(r.date)}`}>
+      {children}
+      <span className="lx-exam-open">
+        Open exam prep <ArrowRight size={14} aria-hidden />
+      </span>
+    </a>
+  ) : (
+    <button type="button" className="lx-exam-main" onClick={onEdit} aria-label={`${reminderTitle(r)}, ${fmtDay(r.date)}. Edit`}>
+      {children}
+    </button>
+  );
+};
+
 export const ComingUp: React.FC = () => {
   const all = useReminders();
   const [adding, setAdding] = useState(false);
@@ -339,21 +357,28 @@ export const ComingUp: React.FC = () => {
           {next.map((r) => (
             <div key={r.id} className={`lx-exam-pill is-${r.urgency} ${r.course ? courseClass(r.course) : ''}`}>
               <CalendarClock size={18} aria-hidden />
-              <button type="button" className="lx-exam-main" onClick={() => setEdit(r)} aria-label={`${reminderTitle(r)}, ${fmtDay(r.date)}. Edit`}>
+              <ComingUpMain r={r} onEdit={() => setEdit(r)}>
                 <strong>{reminderTitle(r)}</strong>
                 <span className="lx-meta">
                   {fmtDay(r.date)}
                   {r.time ? ` · ${r.time}` : ''}
                 </span>
                 {r.detail && <span className="lx-meta lx-exam-detail">{r.detail}</span>}
-              </button>
+              </ComingUpMain>
               <span className="lx-exam-when">
                 <span className="lx-exam-days lx-num">{r.left === 0 ? 'Today' : r.left === 1 ? 'Tomorrow' : `${r.left} days`}</span>
                 {r.urgency === 'high' && <UrgencyChip u="high" />}
               </span>
-              <button type="button" className="lx-icon-btn lx-exam-x" onClick={() => cancel(r)} aria-label={`Cancel ${reminderTitle(r)}`} title="Cancel reminder">
-                <X size={16} />
-              </button>
+              <span className="lx-exam-tools">
+                {examPrepHref(r) && (
+                  <button type="button" className="lx-icon-btn lx-exam-edit" onClick={() => setEdit(r)} aria-label={`Edit ${reminderTitle(r)}`} title="Edit reminder">
+                    <Pencil size={15} />
+                  </button>
+                )}
+                <button type="button" className="lx-icon-btn lx-exam-x" onClick={() => cancel(r)} aria-label={`Cancel ${reminderTitle(r)}`} title="Cancel reminder">
+                  <X size={16} />
+                </button>
+              </span>
             </div>
           ))}
         </div>

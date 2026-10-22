@@ -9,6 +9,7 @@ import { loadFullIndex, loadIndex, queryWords, recentSearches, search, snippet, 
 import { KIND_ICON, KIND_NAME, SearchBox, openEntry } from '../search/SearchBox';
 import { Hl } from '../search/Highlight';
 import '../styles/search.css';
+import { countBucket, trackStudy } from '../analytics';
 
 // Every result for a search, best first, with the searched words marked. Lessons, videos, documents and dates
 // answer at once; the practice questions join as soon as their banks have loaded.
@@ -51,6 +52,12 @@ export const SearchPage: React.FC<{ q: string }> = ({ q }) => {
   const others = idx && ws.length && !all.length ? suggest(idx, q.split(/\s+/).slice(0, -1).join(' ') || q.slice(0, 3), 6) : [];
   const popular = useMemo(() => (idx ? [...idx.phrases.values()].sort((a, b) => b.w - a.w).slice(0, 14) : []), [idx]);
   const recent = useMemo(() => recentSearches(), [q]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!idx || !ws.length) return;
+    const timer = window.setTimeout(() => trackStudy('search', { results: countBucket(hits.length), course_filter: course !== 'all', kind_filter: kind !== 'all' }), 500);
+    return () => window.clearTimeout(timer);
+  }, [idx, q, course, kind, hits.length]); // query text is intentionally never stored
 
   return (
     <div className="lx-wrap lx-search-page">

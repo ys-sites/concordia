@@ -64,7 +64,7 @@ export const RecoCard: React.FC<{ cur: Curriculum; s: Suggestion; onReview?: (c:
   return (
     <article className={`lx-reco ${courseClass(s.course)}`}>
       <div className="lx-reco-media">
-        {thumb?.yt ? <img src={thumb.yt} alt="" loading="lazy" /> : thumb ? <VideoThumb poster={thumb.poster} videoId={thumb.videoId} /> : <CourseCover course={s.course} label={false} />}
+        {thumb?.yt ? <img src={thumb.yt} alt="" loading="lazy" /> : thumb ? <VideoThumb poster={thumb.poster} videoId={thumb.videoId} /> : <CourseCover course={s.course} label={false} variant="reco" />}
         <span className={`lx-reco-kind is-${s.kind}`}>{KIND_LABEL[s.kind]}</span>
         {s.minutes ? <span className="lx-vid-dur lx-num">{s.minutes} min</span> : null}
       </div>

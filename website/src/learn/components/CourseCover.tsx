@@ -9,8 +9,37 @@ import { COURSE_BY_ID } from '../courses';
 //   MIAE 215  twilight lake, a cabin whose window glows with a loop of C++
 //   INDU 211  a factory by the river, trucks on the delivery route between the houses
 // 16:9, scales to any width, no images to download.
+// `alt` is the same scene at another time of day (and mirrored), used on recommendation cards so they never
+// look identical to the course card next to them.
 const W = 320;
 const H = 180;
+
+type ArtProps = { id: string; alt?: boolean };
+
+const Sky: React.FC<{ id: string; stops: [string, string, string] }> = ({ id, stops }) => (
+  <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stopColor={stops[0]} />
+    <stop offset="0.55" stopColor={stops[1]} />
+    <stop offset="1" stopColor={stops[2]} />
+  </linearGradient>
+);
+
+const Stars: React.FC<{ color?: string }> = ({ color = '#ffffff' }) => (
+  <g fill={color}>
+    {[
+      [24, 18], [58, 34], [96, 14], [132, 28], [170, 12], [204, 30], [246, 16], [286, 26], [310, 50], [40, 52], [150, 46]
+    ].map(([x, y], i) => (
+      <circle key={i} cx={x} cy={y} r={i % 3 ? 1 : 1.6} opacity={0.75 + (i % 2) * 0.2} />
+    ))}
+  </g>
+);
+
+const Moon: React.FC<{ x: number; y: number; r?: number; color?: string }> = ({ x, y, r = 14, color = '#fff8d6' }) => (
+  <g>
+    <circle cx={x} cy={y} r={r * 1.9} fill={color} opacity="0.14" />
+    <path d={`M${x} ${y - r} a${r} ${r} 0 1 0 ${r * 0.86} ${r * 1.57} a${r * 0.8} ${r * 0.8} 0 1 1 -${r * 0.86} -${r * 1.57} Z`} fill={color} />
+  </g>
+);
 
 // smooth ridge through (x, y) points, closed down to the bottom of the frame
 const ridge = (pts: [number, number][]) => {
@@ -41,22 +70,27 @@ const Pine: React.FC<{ x: number; y: number; h: number; color: string }> = ({ x,
   <path d={`M${x} ${y - h} L${x + h * 0.32} ${y - h * 0.45} L${x + h * 0.16} ${y - h * 0.45} L${x + h * 0.4} ${y} L${x - h * 0.4} ${y} L${x - h * 0.16} ${y - h * 0.45} L${x - h * 0.32} ${y - h * 0.45} Z`} fill={color} />
 );
 
-const Odes: React.FC<{ id: string }> = ({ id }) => (
+const Odes: React.FC<ArtProps> = ({ id, alt }) => (
   <g>
     <defs>
-      <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#5b7cfa" />
-        <stop offset="0.55" stopColor="#a9b8ff" />
-        <stop offset="1" stopColor="#ffd3a8" />
-      </linearGradient>
+      <Sky id={`${id}s`} stops={alt ? ['#1e1b5e', '#5a5fd0', '#f7a8c4'] : ['#5b7cfa', '#a9b8ff', '#ffd3a8']} />
       <linearGradient id={`${id}r`} x1="0" y1="0" x2="0" y2="1">
         <stop offset="0" stopColor="#ffe2c2" />
         <stop offset="1" stopColor="#8fa6ff" />
       </linearGradient>
     </defs>
     <rect width={W} height={H} fill={`url(#${id}s)`} />
-    <circle cx="214" cy="92" r="30" fill="#fff4d6" opacity="0.55" />
-    <circle cx="214" cy="92" r="19" fill="#fff8e6" />
+    {alt ? (
+      <>
+        <Stars />
+        <Moon x={226} y={58} r={15} />
+      </>
+    ) : (
+      <>
+        <circle cx="214" cy="92" r="30" fill="#fff4d6" opacity="0.55" />
+        <circle cx="214" cy="92" r="19" fill="#fff8e6" />
+      </>
+    )}
     {/* wind streaks: the direction field */}
     <g stroke="#ffffff" strokeOpacity="0.55" strokeWidth="1.6" strokeLinecap="round">
       {[
@@ -84,7 +118,7 @@ const Odes: React.FC<{ id: string }> = ({ id }) => (
   </g>
 );
 
-const Crystals: React.FC<{ id: string }> = ({ id }) => {
+const Crystals: React.FC<ArtProps> = ({ id, alt }) => {
   // faceted peaks: [peak x, peak y, half width, base y]
   const peaks: [number, number, number, number, string, string][] = [
     [70, 70, 62, 150, '#f6a5c0', '#e07ba0'],
@@ -94,14 +128,17 @@ const Crystals: React.FC<{ id: string }> = ({ id }) => {
   return (
     <g>
       <defs>
-        <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#ff8fb1" />
-          <stop offset="0.6" stopColor="#ffc2a8" />
-          <stop offset="1" stopColor="#ffe6b8" />
-        </linearGradient>
+        <Sky id={`${id}s`} stops={alt ? ['#5b1a4a', '#c2507f', '#ffb3c7'] : ['#ff8fb1', '#ffc2a8', '#ffe6b8']} />
       </defs>
       <rect width={W} height={H} fill={`url(#${id}s)`} />
-      <circle cx="120" cy="96" r="24" fill="#fff1d6" />
+      {alt ? (
+        <>
+          <Stars color="#ffe4ee" />
+          <Moon x={124} y={60} r={13} color="#fff0f5" />
+        </>
+      ) : (
+        <circle cx="120" cy="96" r="24" fill="#fff1d6" />
+      )}
       {peaks.map(([px, py, hw, by, light, dark], i) => (
         <g key={i}>
           <path d={`M${px - hw} ${by} L${px} ${py} L${px - hw * 0.18} ${by} Z`} fill={light} />
@@ -137,17 +174,25 @@ const Crystals: React.FC<{ id: string }> = ({ id }) => {
   );
 };
 
-const Cabin: React.FC<{ id: string }> = ({ id }) => (
+const Cabin: React.FC<ArtProps> = ({ id, alt }) => (
   <g>
     <defs>
-      <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#0f3d3a" />
-        <stop offset="0.55" stopColor="#1f7a63" />
-        <stop offset="1" stopColor="#9fe0b8" />
-      </linearGradient>
+      <Sky id={`${id}s`} stops={alt ? ['#5fc9ad', '#a8ead2', '#fff1c4'] : ['#0f3d3a', '#1f7a63', '#9fe0b8']} />
     </defs>
     <rect width={W} height={H} fill={`url(#${id}s)`} />
-    {[
+    {alt && (
+      <g>
+        <circle cx="70" cy="52" r="30" fill="#fffbe6" opacity="0.35" />
+        <circle cx="70" cy="52" r="18" fill="#fff6cf" />
+        <g fill="#ffffff" opacity="0.85">
+          <ellipse cx="150" cy="34" rx="22" ry="7" />
+          <ellipse cx="166" cy="29" rx="14" ry="7" />
+          <ellipse cx="262" cy="50" rx="18" ry="6" />
+          <ellipse cx="274" cy="46" rx="10" ry="5" />
+        </g>
+      </g>
+    )}
+    {!alt && [
       [30, 22],
       [64, 40],
       [110, 16],
@@ -160,7 +205,7 @@ const Cabin: React.FC<{ id: string }> = ({ id }) => (
     ].map(([x, y], i) => (
       <circle key={i} cx={x} cy={y} r={i % 3 ? 1.1 : 1.7} fill="#eafff4" opacity="0.9" />
     ))}
-    <path d="M258 40 a14 14 0 1 0 12 22 a11 11 0 1 1 -12 -22 Z" fill="#fff8d6" />
+    {!alt && <path d="M258 40 a14 14 0 1 0 12 22 a11 11 0 1 1 -12 -22 Z" fill="#fff8d6" />}
     <path d={ridge(hills(110, 20, 6, 0.8))} fill="#2f8f72" />
     <path d={ridge(hills(126, 14, 5, 2.4))} fill="#1d6e57" />
     {/* lake */}
@@ -191,17 +236,20 @@ const Cabin: React.FC<{ id: string }> = ({ id }) => (
   </g>
 );
 
-const Factory: React.FC<{ id: string }> = ({ id }) => (
+const Factory: React.FC<ArtProps> = ({ id, alt }) => (
   <g>
     <defs>
-      <linearGradient id={`${id}s`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#ff9a4d" />
-        <stop offset="0.6" stopColor="#ffc98a" />
-        <stop offset="1" stopColor="#ffe7c2" />
-      </linearGradient>
+      <Sky id={`${id}s`} stops={alt ? ['#4a1d0c', '#c2541c', '#ffc27a'] : ['#ff9a4d', '#ffc98a', '#ffe7c2']} />
     </defs>
     <rect width={W} height={H} fill={`url(#${id}s)`} />
-    <circle cx="78" cy="60" r="20" fill="#fff3d8" />
+    {alt ? (
+      <>
+        <Stars color="#ffe9cc" />
+        <Moon x={84} y={52} r={13} color="#fff1d6" />
+      </>
+    ) : (
+      <circle cx="78" cy="60" r="20" fill="#fff3d8" />
+    )}
     <path d={ridge(hills(104, 16, 6, 1.2))} fill="#f0a866" />
     <path d={ridge(hills(120, 12, 5, 2.7))} fill="#e08947" />
     {/* factory */}
@@ -244,15 +292,26 @@ const Factory: React.FC<{ id: string }> = ({ id }) => (
   </g>
 );
 
-const ART: Record<CourseId, React.FC<{ id: string }>> = { ENGR213: Odes, MIAE221: Crystals, MIAE215: Cabin, INDU211: Factory };
+const ART: Record<CourseId, React.FC<ArtProps>> = { ENGR213: Odes, MIAE221: Crystals, MIAE215: Cabin, INDU211: Factory };
 
-export const CourseCover: React.FC<{ course: CourseId; className?: string; label?: boolean }> = ({ course, className = '', label = true }) => {
+// variant 'course' = the course's own cover; 'reco' = the alternate scene for recommendation cards
+export const CourseCover: React.FC<{ course: CourseId; className?: string; label?: boolean; variant?: 'course' | 'reco' }> = ({
+  course,
+  className = '',
+  label = true,
+  variant = 'course'
+}) => {
   const c = COURSE_BY_ID[course];
   const Art = ART[course];
   const id = useId().replace(/:/g, '');
+  const alt = variant === 'reco';
+  // mirror the alternate scene too (not MIAE 215's: its window holds readable code)
+  const flip = alt && course !== 'MIAE215' ? `translate(${W} 0) scale(-1 1)` : undefined;
   return (
     <svg className={`lx-cover lx-c-${course} ${className}`} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${c.code}: ${c.title}`} preserveAspectRatio="xMidYMid slice">
-      <Art id={id} />
+      <g transform={flip}>
+        <Art id={id} alt={alt} />
+      </g>
       {label && (
         <g>
           <rect x="12" y="12" rx="7" width={c.code.length * 7.6 + 18} height="24" fill="#ffffff" opacity="0.92" />

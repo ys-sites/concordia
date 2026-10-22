@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import {
+  ArrowRight,
   Check,
   CheckCircle2,
   ChevronDown,
@@ -190,14 +191,14 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
   const prog = useMemo(() => (cur ? courseProgress(cur, done) : null), [cur, done]);
   const next = useMemo(() => (cur ? nextStep(cur, done, lastPlace?.stepId) : null), [cur, done, lastPlace]);
   const sideExam = nextExam(useReminders(), course);
+  const urgentExam = sideExam && sideExam.left <= 21 ? sideExam : null;
+  const urgentExamLabel = urgentExam ? (urgentExam.left === 0 ? 'Today' : urgentExam.left === 1 ? 'Tomorrow' : `${urgentExam.left}d`) : null;
   const ctaHref = next ? href({ name: 'learn', course, lesson: next.lesson.id, step: next.step.id }) : href({ name: 'learn', course, lesson: SUMMARY[course].start.lessonId });
   const started = !!prog && prog.done > 0;
-  const tabs: { id: CourseTab; label: string }[] = [
-    { id: 'overview', label: 'Course content' },
-    { id: 'videos', label: `Videos (${s.videos})` },
-    { id: 'exam', label: 'Exam prep' },
-    { id: 'resources', label: `Resources (${s.documents})` }
-  ];
+  const examTab: { id: CourseTab; label: string } = { id: 'exam', label: urgentExamLabel ? `Exam prep · ${urgentExamLabel}` : 'Exam prep' };
+  const tabs: { id: CourseTab; label: string }[] = urgentExam
+    ? [examTab, { id: 'overview', label: 'Course content' }, { id: 'videos', label: `Videos (${s.videos})` }, { id: 'resources', label: `Resources (${s.documents})` }]
+    : [{ id: 'overview', label: 'Course content' }, { id: 'videos', label: `Videos (${s.videos})` }, examTab, { id: 'resources', label: `Resources (${s.documents})` }];
   return (
     <div className={`lx-course ${courseClass(course)}`}>
       <div className={`lx-wrap lx-course-layout${tab === 'videos' ? ' is-wide' : ''}`}>
@@ -229,7 +230,33 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
             </div>
           </section>
 
-          <div className="lx-tabs lx-course-tabs" role="tablist" aria-label="Course">
+          {urgentExam && (
+            <section className="lx-course-exam-callout" aria-labelledby="lx-course-exam-callout-title">
+              <span className="lx-course-exam-icon" aria-hidden>
+                <CalendarClock size={21} />
+              </span>
+              <div>
+                <p className="lx-course-exam-kicker lx-meta">
+                  Priority now · {urgentExam.left === 0 ? 'Exam today' : urgentExam.left === 1 ? 'Exam tomorrow' : `${urgentExam.left} days to go`}
+                </p>
+                <h2 id="lx-course-exam-callout-title" className="lx-h3">
+                  Prepare for {urgentExam.title}
+                </h2>
+                <p className="lx-course-exam-copy">
+                  {fmtDay(urgentExam.date)}{urgentExam.time ? ` · ${urgentExam.time}` : ''}. Use the focused prep sequence, timed practice and worked solutions.
+                </p>
+              </div>
+              {tab === 'exam' ? (
+                <span className="lx-chip lx-course-exam-open">Exam prep open</span>
+              ) : (
+                <a className="lx-btn lx-btn--accent lx-course-exam-cta" href={href({ name: 'course', course, tab: 'exam' })}>
+                  Open exam prep <ArrowRight size={16} aria-hidden />
+                </a>
+              )}
+            </section>
+          )}
+
+          <div className={`lx-tabs lx-course-tabs${urgentExam ? ' is-exam-near' : ''}`} role="tablist" aria-label="Course">
             {tabs.map((t) => (
               <button key={t.id} type="button" role="tab" className="lx-tab" aria-selected={tab === t.id} onClick={() => navigate({ name: 'course', course, tab: t.id }, { replace: true })}>
                 {t.label}
@@ -283,12 +310,19 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
                   </span>
                 </div>
               ) : null}
-              <a className="lx-btn lx-btn--accent lx-btn--lg lx-btn--block" href={ctaHref}>
+              {urgentExam && (
+                <button type="button" className="lx-btn lx-btn--accent lx-btn--lg lx-btn--block" onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}>
+                  <GraduationCap size={17} /> Exam prep · {urgentExamLabel}
+                </button>
+              )}
+              <a className={`lx-btn${urgentExam ? '' : ' lx-btn--accent'} lx-btn--lg lx-btn--block`} href={ctaHref}>
                 <PlayCircle size={18} /> {started ? 'Continue' : 'Start course'}
               </a>
-              <button type="button" className="lx-btn lx-btn--block" onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}>
-                <GraduationCap size={17} /> Exam prep
-              </button>
+              {!urgentExam && (
+                <button type="button" className="lx-btn lx-btn--block" onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}>
+                  <GraduationCap size={17} /> Exam prep
+                </button>
+              )}
               <p className="lx-meta lx-side-includes-title">This course includes</p>
               <ul className="lx-side-includes lx-num">
                 <li>{fmtHours(s.videoMinutes)} of narrated video</li>

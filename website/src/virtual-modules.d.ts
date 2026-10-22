@@ -10,6 +10,12 @@ declare module 'virtual:question-counts' {
   export default counts;
 }
 
+declare module 'virtual:practice-bank/*' {
+  // one course's practice questions (see vite.config.ts, questionBankPlugin)
+  const questions: import('./types').PracticeQuestion[];
+  export default questions;
+}
+
 declare module 'virtual:curriculum' {
   // every course's curriculum, built from src/learn/curriculum (see vite.config.ts, curriculumPlugin)
   const curricula: Record<import('./types').CourseId, import('./learn/model').Curriculum>;
