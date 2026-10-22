@@ -10,8 +10,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Fall 2023, Q2(a) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q01 - Output Tracing.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/01.jpg",
-    "duration": 186,
-    "sizeMB": 9.4,
+    "duration": 210,
+    "sizeMB": 11.2,
     "chapters": [
       {
         "label": "The Question",
@@ -26,8 +26,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 133.8
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 150.5
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 174.6
       }
     ]
   },
@@ -37,8 +41,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Fall 2023, Q2(a) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q02 - Output Tracing.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/02.jpg",
-    "duration": 68,
-    "sizeMB": 3.5,
+    "duration": 82,
+    "sizeMB": 4.5,
     "chapters": [
       {
         "label": "The Question",
@@ -53,8 +57,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 33
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 44.2
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 58
       }
     ]
   },
@@ -64,8 +72,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Fall 2023, Q2(a) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q03 - Output Tracing.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/03.jpg",
-    "duration": 55,
-    "sizeMB": 2.9,
+    "duration": 72,
+    "sizeMB": 4.4,
     "chapters": [
       {
         "label": "The Question",
@@ -80,8 +88,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 23.7
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 33.5
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 50.4
       }
     ]
   },
@@ -91,8 +103,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Fall 2023, Q2(b) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q04 - Output Tracing.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/04.jpg",
-    "duration": 100,
-    "sizeMB": 5,
+    "duration": 118,
+    "sizeMB": 6.2,
     "chapters": [
       {
         "label": "The Question",
@@ -107,8 +119,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 56.1
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 76.7
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 94.5
       }
     ]
   },
@@ -118,8 +134,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Fall 2023, Q2(b) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q05 - Output Tracing.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/05.jpg",
-    "duration": 74,
-    "sizeMB": 3.8,
+    "duration": 92,
+    "sizeMB": 5.2,
     "chapters": [
       {
         "label": "The Question",
@@ -134,8 +150,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 35.5
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 50.4
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 67.6
       }
     ]
   },
@@ -145,8 +165,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Fall 2023, Q2(b) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q06 - Output Tracing.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/06.jpg",
-    "duration": 69,
-    "sizeMB": 3.8,
+    "duration": 88,
+    "sizeMB": 5.2,
     "chapters": [
       {
         "label": "The Question",
@@ -161,8 +181,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 29.1
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 44.3
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 63.5
       }
     ]
   },
@@ -172,8 +196,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Review #1, Q2(a) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q07 - Nested Loops & 2D Arrays.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/07.jpg",
-    "duration": 80,
-    "sizeMB": 4.2,
+    "duration": 99,
+    "sizeMB": 5.7,
     "chapters": [
       {
         "label": "The Question",
@@ -188,8 +212,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 40.5
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 55.5
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 75
       }
     ]
   },
@@ -199,8 +227,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Review #1, Q2(a) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q08 - Nested Loops & 2D Arrays.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/08.jpg",
-    "duration": 89,
-    "sizeMB": 4.7,
+    "duration": 108,
+    "sizeMB": 6.4,
     "chapters": [
       {
         "label": "The Question",
@@ -215,8 +243,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 48.1
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 61.8
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 81.1
       }
     ]
   },
@@ -226,8 +258,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Review #1, Q2(a) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q09 - Nested Loops & 2D Arrays.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/09.jpg",
-    "duration": 81,
-    "sizeMB": 4.6,
+    "duration": 99,
+    "sizeMB": 6.1,
     "chapters": [
       {
         "label": "The Question",
@@ -242,8 +274,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 31
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 50.4
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 68.5
       }
     ]
   },
@@ -253,8 +289,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Review #1, Q2(a) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q10 - Nested Loops & 2D Arrays.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/10.jpg",
-    "duration": 65,
-    "sizeMB": 3.8,
+    "duration": 82,
+    "sizeMB": 5.3,
     "chapters": [
       {
         "label": "The Question",
@@ -269,8 +305,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 22.6
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 39.6
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 56.6
       }
     ]
   },
@@ -280,8 +320,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Review #1, Q1 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q11 - Array Algorithms.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/11.jpg",
-    "duration": 79,
-    "sizeMB": 4.5,
+    "duration": 96,
+    "sizeMB": 6,
     "chapters": [
       {
         "label": "The Question",
@@ -296,8 +336,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 42.5
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 56.8
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 73.7
       }
     ]
   },
@@ -307,8 +351,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Midterm Review #1, Q1 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q12 - Array Algorithms.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/12.jpg",
-    "duration": 79,
-    "sizeMB": 4.2,
+    "duration": 96,
+    "sizeMB": 5.6,
     "chapters": [
       {
         "label": "The Question",
@@ -323,8 +367,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 36.2
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 53.1
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 69.9
       }
     ]
   },
@@ -334,8 +382,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #2 (Thursday section), part (a) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q13 - Array Algorithms.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/13.jpg",
-    "duration": 94,
-    "sizeMB": 5.3,
+    "duration": 114,
+    "sizeMB": 7.1,
     "chapters": [
       {
         "label": "The Question",
@@ -350,8 +398,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 57.5
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 71.1
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 90.9
       }
     ]
   },
@@ -361,8 +413,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #2 (Thursday section), part (c) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q14 - Array Algorithms.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/14.jpg",
-    "duration": 66,
-    "sizeMB": 3.4,
+    "duration": 84,
+    "sizeMB": 4.7,
     "chapters": [
       {
         "label": "The Question",
@@ -377,8 +429,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 31.9
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 44
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 61.4
       }
     ]
   },
@@ -388,8 +444,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #2 (Thursday section), parts (d)–(e) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q15 - Array Algorithms.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/15.jpg",
-    "duration": 55,
-    "sizeMB": 2.9,
+    "duration": 75,
+    "sizeMB": 4.4,
     "chapters": [
       {
         "label": "The Question",
@@ -400,8 +456,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 13.8
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 36.5
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 56.6
       }
     ]
   },
@@ -411,8 +471,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #2 (Thursday section), part (f) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q16 - Loops, Menus & Input Validation.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/16.jpg",
-    "duration": 96,
-    "sizeMB": 5,
+    "duration": 114,
+    "sizeMB": 6.5,
     "chapters": [
       {
         "label": "The Question",
@@ -427,8 +487,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 60.4
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 76
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 93.6
       }
     ]
   },
@@ -438,8 +502,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #2 (Thursday section), part (f) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q17 - Loops, Menus & Input Validation.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/17.jpg",
-    "duration": 80,
-    "sizeMB": 4,
+    "duration": 100,
+    "sizeMB": 5.7,
     "chapters": [
       {
         "label": "The Question",
@@ -454,8 +518,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 45.1
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 57.2
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 77.4
       }
     ]
   },
@@ -465,8 +533,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #2 (Wednesday section), part (a) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q18 - Loops, Menus & Input Validation.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/18.jpg",
-    "duration": 88,
-    "sizeMB": 4.6,
+    "duration": 101,
+    "sizeMB": 5.9,
     "chapters": [
       {
         "label": "The Question",
@@ -481,8 +549,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 45.8
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 61.4
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 75.2
       }
     ]
   },
@@ -492,8 +564,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #2 (Wednesday section), part (f) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q19 - Array Algorithms.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/19.jpg",
-    "duration": 63,
-    "sizeMB": 3,
+    "duration": 78,
+    "sizeMB": 4.3,
     "chapters": [
       {
         "label": "The Question",
@@ -508,8 +580,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 35
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 44.8
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 59.7
       }
     ]
   },
@@ -519,8 +595,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #2 (Wednesday section), part (h) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q20 - Loops, Menus & Input Validation.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/20.jpg",
-    "duration": 72,
-    "sizeMB": 4.3,
+    "duration": 89,
+    "sizeMB": 5.9,
     "chapters": [
       {
         "label": "The Question",
@@ -535,8 +611,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 35.6
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 51.2
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 68.1
       }
     ]
   },
@@ -546,8 +626,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Tuesday section), Q1 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q21 - Input, Output & Formatting.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/21.jpg",
-    "duration": 71,
-    "sizeMB": 4,
+    "duration": 89,
+    "sizeMB": 5.6,
     "chapters": [
       {
         "label": "The Question",
@@ -562,8 +642,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 40.1
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 52.5
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 70.5
       }
     ]
   },
@@ -573,8 +657,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Tuesday section), Q1 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q22 - Input, Output & Formatting.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/22.jpg",
-    "duration": 64,
-    "sizeMB": 3,
+    "duration": 81,
+    "sizeMB": 4.5,
     "chapters": [
       {
         "label": "The Question",
@@ -589,8 +673,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 38.7
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 48.2
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 64.8
       }
     ]
   },
@@ -600,8 +688,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Tuesday section), Q2 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q23 - Input, Output & Formatting.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/23.jpg",
-    "duration": 79,
-    "sizeMB": 4.5,
+    "duration": 98,
+    "sizeMB": 6.4,
     "chapters": [
       {
         "label": "The Question",
@@ -616,8 +704,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 42.2
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 56.8
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 76.5
       }
     ]
   },
@@ -627,8 +719,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Tuesday section), Q2 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q24 - Input, Output & Formatting.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/24.jpg",
-    "duration": 76,
-    "sizeMB": 3.8,
+    "duration": 95,
+    "sizeMB": 5.5,
     "chapters": [
       {
         "label": "The Question",
@@ -639,8 +731,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 23
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 55.7
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 75.5
       }
     ]
   },
@@ -650,8 +746,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Tuesday section), Q3 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q25 - Variable Limits & Overflow.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/25.jpg",
-    "duration": 79,
-    "sizeMB": 4.2,
+    "duration": 99,
+    "sizeMB": 6,
     "chapters": [
       {
         "label": "The Question",
@@ -666,8 +762,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 36.4
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 52.8
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 72
       }
     ]
   },
@@ -677,8 +777,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Tuesday section), Q3 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q26 - Variable Limits & Overflow.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/26.jpg",
-    "duration": 67,
-    "sizeMB": 3.5,
+    "duration": 82,
+    "sizeMB": 4.9,
     "chapters": [
       {
         "label": "The Question",
@@ -693,8 +793,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 31.9
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 46.7
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 61
       }
     ]
   },
@@ -704,8 +808,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Wednesday section), Q1 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q27 - Input, Output & Formatting.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/27.jpg",
-    "duration": 67,
-    "sizeMB": 3.6,
+    "duration": 85,
+    "sizeMB": 5.2,
     "chapters": [
       {
         "label": "The Question",
@@ -720,8 +824,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 34.7
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 47.6
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 65.2
       }
     ]
   },
@@ -731,8 +839,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Wednesday section), Q2 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q28 - Loops, Menus & Input Validation.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/28.jpg",
-    "duration": 86,
-    "sizeMB": 4.5,
+    "duration": 104,
+    "sizeMB": 6.1,
     "chapters": [
       {
         "label": "The Question",
@@ -743,8 +851,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 23.2
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 60.2
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 78.7
       }
     ]
   },
@@ -754,8 +866,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Wednesday section), Q2 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q29 - Loops, Menus & Input Validation.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/29.jpg",
-    "duration": 66,
-    "sizeMB": 3,
+    "duration": 82,
+    "sizeMB": 4.5,
     "chapters": [
       {
         "label": "The Question",
@@ -770,8 +882,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 33.8
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 44.5
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 60.9
       }
     ]
   },
@@ -781,8 +897,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Wednesday section), Q3 · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q30 - Variable Limits & Overflow.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/30.jpg",
-    "duration": 78,
-    "sizeMB": 3.6,
+    "duration": 99,
+    "sizeMB": 5.3,
     "chapters": [
       {
         "label": "The Question",
@@ -797,8 +913,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 40.2
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 54.2
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 75.3
       }
     ]
   },
@@ -808,8 +928,8 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
     "source": "MIAE 215 Quiz #1 (Wednesday section), Q3(ii) · teacher practice paper",
     "video": "Miae 215/08 - Teacher Midterm Practice AI Videos/Q31 - Variable Limits & Overflow.mp4",
     "poster": "Miae 215/08 - Teacher Midterm Practice AI Videos/posters/31.jpg",
-    "duration": 70,
-    "sizeMB": 3.6,
+    "duration": 92,
+    "sizeMB": 5.4,
     "chapters": [
       {
         "label": "The Question",
@@ -824,8 +944,12 @@ export const MIAE215_MIDTERM_VIDEOS: Record<string, MotionLesson> = {
         "start": 35.1
       },
       {
-        "label": "Answer & Tips",
+        "label": "Cheat Sheet",
         "start": 46.3
+      },
+      {
+        "label": "Answer & Tips",
+        "start": 67.7
       }
     ]
   }
