@@ -59,6 +59,7 @@ export interface Lesson {
   steps: Step[];
   exam?: boolean; // lives in an exam-prep section
   thumb?: string; // poster path of the lesson's first video, if any
+  resources?: DocRef[]; // guides, review sheets and outside notes for this lesson
 }
 
 export interface Section {
@@ -120,6 +121,7 @@ export type QuestionKind =
   | 'tf' //    true / false
   | 'num' //   type a number (tolerance)
   | 'text' //  type the program's output
+  | 'indices' // type Miller indices, e.g. [1 -1 0]
   | 'self'; // open question: reveal the solution and mark yourself
 
 export type QuestionOrigin = 'bank' | 'teacher' | 'drill' | 'exam' | 'lesson' | 'gordon';
@@ -138,6 +140,8 @@ export interface LearnQuestion {
   keepOrder?: boolean;
   value?: number; // num
   tol?: number; // relative tolerance, num
+  ints?: number[]; // indices
+  anySign?: boolean; // indices: the opposite direction also counts
   unit?: string;
   answerText: string; // the answer as shown after checking
   topic: string;

@@ -243,6 +243,7 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     if (!steps.length) problems.push(`${l.id}: lesson has no steps`);
     const fs = formulasOf(l.gate ?? []);
     const firstVideo = steps.find((s) => s.videoId && videoById.has(s.videoId));
+    const resources = matchDocs(l.resources, `${l.id} resources`).map((p) => docRef(p));
     return {
       id: l.id,
       title: l.title,
@@ -252,7 +253,8 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
       minutes: steps.filter((s) => !s.optional).reduce((n, s) => n + s.minutes, 0),
       steps,
       ...(exam ? { exam: true } : {}),
-      ...(firstVideo ? { thumb: videoById.get(firstVideo.videoId!)!.lesson.poster } : {})
+      ...(firstVideo ? { thumb: videoById.get(firstVideo.videoId!)!.lesson.poster } : {}),
+      ...(resources.length ? { resources } : {})
     };
   };
   const toSection = (s: SectionSpec): Section => ({

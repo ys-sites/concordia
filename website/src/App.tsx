@@ -1,383 +1,99 @@
-import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
-import { CourseId, CourseDocument } from './types';
-import { COURSES_DATA, documentFromPath } from './data/coursesData';
-import { Navbar } from './components/Navbar';
-import { AppErrorBoundary } from './components/AppErrorBoundary';
-import { HeroCourseSelector } from './components/HeroCourseSelector';
-import { Footer } from './components/Footer';
-import { TEACHER_PRACTICE_FOLDER } from './data/teacherPracticeCourses';
-import { audio } from './utils/audio';
-import { parseHash, formatHash, RouteState } from './utils/navigationRouter';
+// base styles first, so page styles loaded after them can refine them
+import './learn/styles/base.css';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
-
+import { AppErrorBoundary } from './components/AppErrorBoundary';
 import { safeLazy } from './utils/safeLazy';
+import { formatRoute, parseRoute, useRoute } from './learn/router';
+import { TopBar, MobileNav, Footer } from './learn/shell/TopBar';
+import { Home } from './learn/pages/Home';
+import { onOpenDoc } from './learn/docBus';
+import { loadCurricula } from './learn/data';
+import { addStudyTime } from './learn/progress/store';
+import { migrateOldProgress } from './learn/progress/migrate';
+import type { DocRef } from './learn/model';
 
-// Screens that need the ~1 MB question bank load on demand, so the first page paints fast
-const QuizEngine = safeLazy(() => import('./components/QuizEngine').then((m) => ({ default: m.QuizEngine })));
-const QuizResults = safeLazy(() => import('./components/QuizResults').then((m) => ({ default: m.QuizResults })));
-const QuestionBankBrowser = safeLazy(() => import('./components/QuestionBankBrowser').then((m) => ({ default: m.QuestionBankBrowser })));
-const DrillPicker = safeLazy(() => import('./components/DrillPicker').then((m) => ({ default: m.DrillPicker })));
-// The course page carries KaTeX and the document lists; it is prefetched while idle after the first paint
-const loadWorkspace = () => import('./components/CourseWorkspace');
-const CourseWorkspace = safeLazy(() => loadWorkspace().then((m) => ({ default: m.CourseWorkspace })));
-if (typeof window !== 'undefined') {
-  // after the page has fully loaded, in idle time, so it never competes with the first render
-  const idle = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => void }).requestIdleCallback;
-  const prefetch = () => {
-    const run = () => {
-      loadWorkspace().catch(() => {
-        // Silently catch background prefetch failure to avoid triggering reload loops
-      });
-    };
-    if (idle) idle(run, { timeout: 4000 });
-    else setTimeout(run, 1500);
-  };
-  if (document.readyState === 'complete') prefetch();
-  else window.addEventListener('load', prefetch, { once: true });
-}
-// Opened on demand, so neither ships in the first-load bundle
-const PdfViewerModal = safeLazy(() => import('./components/PdfViewerModal').then((m) => ({ default: m.PdfViewerModal })));
+// The home page paints with no data beyond a few hundred bytes of course stats; everything else loads on demand.
+const CoursePage = safeLazy(() => import('./learn/pages/CoursePage'));
+const Player = safeLazy(() => import('./learn/pages/Player'));
+const MyLearning = safeLazy(() => import('./learn/pages/MyLearning'));
+const SearchPage = safeLazy(() => import('./learn/pages/SearchPage'));
+const QuestionBank = safeLazy(() => import('./learn/pages/QuestionBank'));
+const DocViewer = safeLazy(() => import('./learn/components/DocViewer'));
 const ContactModal = safeLazy(() => import('./components/ContactModal').then((m) => ({ default: m.ContactModal })));
-const FilteredSubSite = safeLazy(() => import('./components/FilteredSubSite').then((m) => ({ default: m.FilteredSubSite })));
 
-type ViewMode = 'HERO' | 'WORKSPACE' | 'QUIZ' | 'RESULTS' | 'QUESTION_BANK' | 'FILTERED_DOCUMENT';
-
-function findDoc(courseId: CourseId | null, docPath: string | null): CourseDocument | null {
-  if (!docPath) return null;
-  const decoded = decodeURIComponent(docPath);
-  for (const course of COURSES_DATA) {
-    if (!courseId || course.id === courseId) {
-      const found = course.documents.find(
-        (d) => d.relativePath === decoded || d.relativePath === docPath || d.id === decoded || d.filename === decoded
-      );
-      if (found) return found;
-    }
-  }
-  // Documents outside the course folders (protected sections, teacher exams): build the entry from its path
-  if (/\.pdf$/i.test(decoded)) {
-    const doc = documentFromPath(decoded);
-    if (doc && (!courseId || doc.courseId === courseId)) return doc;
-  }
-  return null;
-}
+const LEARNING_PAGES = new Set(['learn', 'bank']);
 
 export function App() {
-  const initialRoute = useMemo(() => parseHash(window.location.hash), []);
+  const route = useRoute();
+  const [doc, setDoc] = useState<DocRef | null>(null);
+  const [contact, setContact] = useState(false);
 
-  const [viewMode, setViewMode] = useState<ViewMode>(initialRoute.viewMode);
-  const [selectedCourseId, setSelectedCourseId] = useState<CourseId | null>(initialRoute.courseId);
-  const [folderPath, setFolderPath] = useState<string[]>(initialRoute.folderPath);
-  const [quizTarget, setQuizTarget] = useState<{ courseId: CourseId; sectionId: string } | null>(initialRoute.quizTarget);
-  const [drillRun, setDrillRun] = useState<number>(0);
-  const [pickerOpen, setPickerOpen] = useState<boolean>(false);
-  const [pickerCourse, setPickerCourse] = useState<CourseId | null>(null);
-  const [activePdfDoc, setActivePdfDoc] = useState<CourseDocument | null>(() =>
-    findDoc(initialRoute.courseId, initialRoute.docPath)
-  );
-  const [activePdfPage, setActivePdfPage] = useState<number | undefined>(undefined);
-  const [contactOpen, setContactOpen] = useState<boolean>(false);
-  const [quizResults, setQuizResults] = useState<any>(null);
-  const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
-
-  // Initialize hash if empty
+  // old links are rewritten to their new address, so the address bar always shows a real page
   useEffect(() => {
-    if (!window.location.hash) {
-      window.history.replaceState(null, '', '#/');
-    }
+    const canonical = formatRoute(parseRoute(window.location.hash));
+    if (window.location.hash !== canonical) window.history.replaceState(null, '', canonical);
+  }, [route]);
+
+  useEffect(() => onOpenDoc(setDoc), []);
+
+  // a legacy "?doc=" link opens its document on the course page
+  useEffect(() => {
+    if (route.name === 'course' && route.doc) setDoc({ path: route.doc, title: route.doc.split('/').pop()!.replace(/\.pdf$/i, '') });
+  }, [route]);
+
+  useEffect(() => {
+    migrateOldProgress();
+    const idle = (window as unknown as { requestIdleCallback?: (cb: () => void) => void }).requestIdleCallback;
+    const warm = () => loadCurricula().catch(() => {});
+    if (idle) idle(warm);
+    else setTimeout(warm, 1500);
   }, []);
 
-  // Listen to browser Back/Forward (popstate) and hashchange
+  // braces matter: newer browsers return a Promise from scrollTo, which React would take for a clean-up function
   useEffect(() => {
-    const handleHashChange = () => {
-      const route = parseHash(window.location.hash);
-      setViewMode(route.viewMode);
-      setSelectedCourseId(route.courseId);
-      setFolderPath(route.folderPath);
-      setQuizTarget(route.quizTarget);
-      if (route.docPath) {
-        setActivePdfDoc(findDoc(route.courseId, route.docPath));
-      } else {
-        setActivePdfDoc(null);
-      }
-    };
-
-    window.addEventListener('popstate', handleHashChange);
-    window.addEventListener('hashchange', handleHashChange);
-    return () => {
-      window.removeEventListener('popstate', handleHashChange);
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
-
-  // Central state & history pusher
-  const navigateTo = (nextState: Partial<RouteState>, replace = false) => {
-    const fullState: RouteState = {
-      viewMode: nextState.viewMode !== undefined ? nextState.viewMode : viewMode,
-      courseId: nextState.courseId !== undefined ? nextState.courseId : selectedCourseId,
-      folderPath:
-        nextState.folderPath !== undefined
-          ? nextState.folderPath
-          : nextState.courseId !== undefined && nextState.courseId !== selectedCourseId
-          ? []
-          : folderPath,
-      docPath: nextState.docPath !== undefined ? nextState.docPath : null,
-      quizTarget: nextState.quizTarget !== undefined ? nextState.quizTarget : null,
-    };
-
-    const newHash = formatHash(fullState);
-    if (window.location.hash !== newHash) {
-      if (replace) {
-        window.history.replaceState(null, '', newHash);
-      } else {
-        window.history.pushState(null, '', newHash);
-      }
-    }
-
-    setViewMode(fullState.viewMode);
-    setSelectedCourseId(fullState.courseId);
-    setFolderPath(fullState.folderPath);
-    setQuizTarget(fullState.quizTarget);
-    if (fullState.docPath) {
-      setActivePdfDoc(findDoc(fullState.courseId, fullState.docPath));
-    } else {
-      setActivePdfDoc(null);
-    }
     window.scrollTo(0, 0);
-  };
+  }, [route.name, route.name === 'course' ? route.course : '', route.name === 'learn' ? route.lesson : '']);
 
-  // Toggle sound
-  const handleToggleSound = () => {
-    const nextState = !soundEnabled;
-    setSoundEnabled(nextState);
-    audio.enabled = nextState;
-  };
+  // study time: counted in 15-second ticks while a lesson or the question bank is open and visible
+  useEffect(() => {
+    if (!LEARNING_PAGES.has(route.name)) return;
+    const t = setInterval(() => document.visibilityState === 'visible' && addStudyTime(15), 15_000);
+    return () => clearInterval(t);
+  }, [route.name]);
 
-  // Switch Course
-  const handleSelectCourse = (courseId: CourseId | null) => {
-    if (courseId === null) {
-      navigateTo({ viewMode: 'HERO', courseId: null, folderPath: [], docPath: null, quizTarget: null });
-    } else {
-      navigateTo({ viewMode: 'WORKSPACE', courseId, folderPath: [], docPath: null, quizTarget: null });
-    }
-  };
-
-  // Folder navigation inside a course workspace
-  const handleFolderChange = (nextPath: string[]) => {
-    navigateTo({ viewMode: 'WORKSPACE', courseId: selectedCourseId, folderPath: nextPath, docPath: null });
-  };
-
-  // View PDF Document (optionally jumping directly to a slide/page)
-  const handleViewPdf = (doc: CourseDocument, initialPage?: number) => {
-    setActivePdfPage(initialPage);
-    setActivePdfDoc(doc);
-    if (viewMode !== 'QUIZ' && viewMode !== 'RESULTS' && viewMode !== 'QUESTION_BANK') {
-      navigateTo({ viewMode: 'WORKSPACE', courseId: doc.courseId, folderPath, docPath: doc.relativePath });
-    }
-  };
-
-  // Close PDF Document
-  const handleClosePdf = () => {
-    setActivePdfPage(undefined);
-    const cur = parseHash(window.location.hash);
-    if (cur.docPath) {
-      window.history.back();
-    } else {
-      setActivePdfDoc(null);
-    }
-  };
-
-  // Start quiz picker
-  const handleStartQuiz = (courseId: CourseId | 'ALL') => {
-    setPickerCourse(courseId === 'ALL' ? null : courseId);
-    setPickerOpen(true);
-  };
-
-  const launchDrill = (courseId: CourseId, sectionId: string) => {
-    setPickerOpen(false);
-    setDrillRun((n) => n + 1);
-    navigateTo({
-      viewMode: 'QUIZ',
-      courseId,
-      folderPath: [],
-      docPath: null,
-      quizTarget: { courseId, sectionId }
-    });
-  };
-
-  // Complete Quiz Drill
-  const handleQuizComplete = (results: any) => {
-    setQuizResults(results);
-    navigateTo({
-      viewMode: 'RESULTS',
-      courseId: results.courseId,
-      folderPath: [],
-      docPath: null,
-      quizTarget: { courseId: results.courseId, sectionId: quizTarget?.sectionId || 'drill' }
-    });
-  };
-
-  // Open Full Question Bank
-  const handleOpenQuestionBank = () => {
-    navigateTo({ viewMode: 'QUESTION_BANK', courseId: selectedCourseId, folderPath: [], docPath: null });
-  };
-
-  const handleExitQuiz = () => {
-    if (selectedCourseId) {
-      navigateTo({ viewMode: 'WORKSPACE', courseId: selectedCourseId, folderPath: [], docPath: null });
-    } else {
-      navigateTo({ viewMode: 'HERO', courseId: null, folderPath: [], docPath: null });
-    }
-  };
-
-  const currentCourse = COURSES_DATA.find((c) => c.id === selectedCourseId) || null;
-
-  if (viewMode === 'FILTERED_DOCUMENT') {
-    return (
-      <>
-        <Suspense fallback={null}>
-          <FilteredSubSite />
-        </Suspense>
-        <Analytics />
-        <SpeedInsights />
-      </>
-    );
-  }
-
+  const player = route.name === 'learn';
   return (
-    <div className="app-root">
-      {/* Universal Navigation Bar */}
-      <Navbar 
-        activeCourseId={selectedCourseId}
-        onSelectCourse={handleSelectCourse}
-        onStartQuiz={handleStartQuiz}
-        onOpenQuestionBank={handleOpenQuestionBank}
-        onOpenContact={() => setContactOpen(true)}
-        soundEnabled={soundEnabled}
-        onToggleSound={handleToggleSound}
-      />
-
-      {/* Main Dynamic Viewport */}
-      <main className="main-content-layout">
-        {/* a failed page shows a recovery card under the navbar instead of blanking the site; cleared on navigation */}
-        <AppErrorBoundary resetKey={`${viewMode}|${selectedCourseId ?? ''}|${window.location.hash}`}>
-        <Suspense fallback={<div className="route-loading" aria-busy="true" />}>
-        {viewMode === 'HERO' && (
-          <HeroCourseSelector 
-            onSelectCourse={handleSelectCourse}
-            onStartQuiz={handleStartQuiz}
-            onOpenQuestionBank={handleOpenQuestionBank}
-            onOpenTeacherPractice={(courseId: CourseId) => {
-              navigateTo({
-                viewMode: 'WORKSPACE',
-                courseId,
-                folderPath: [TEACHER_PRACTICE_FOLDER],
-                docPath: null
-              });
-            }}
-          />
-        )}
-
-        {viewMode === 'WORKSPACE' && currentCourse && (
-          <CourseWorkspace 
-            course={currentCourse}
-            folderPath={folderPath}
-            onNavigateFolder={handleFolderChange}
-            onBack={() => {
-              if (window.history.length > 1) {
-                window.history.back();
-              } else {
-                handleSelectCourse(null);
-              }
-            }}
-            onStartQuiz={handleStartQuiz}
-            onLaunchDrill={launchDrill}
-            onViewPdf={handleViewPdf}
-          />
-        )}
-
-        {viewMode === 'QUIZ' && quizTarget && (
-          <QuizEngine 
-            key={drillRun}
-            courseId={quizTarget.courseId}
-            sectionId={quizTarget.sectionId}
-            onExit={handleExitQuiz}
-            onOpenPdf={handleViewPdf}
-            onComplete={handleQuizComplete}
-          />
-        )}
-
-        {viewMode === 'RESULTS' && quizResults && (
-          <QuizResults 
-            results={quizResults}
-            onRestartNewCycle={() => {
-              setDrillRun((n) => n + 1);
-              navigateTo({
-                viewMode: 'QUIZ',
-                courseId: quizResults.courseId,
-                folderPath: [],
-                docPath: null,
-                quizTarget: { courseId: quizResults.courseId, sectionId: quizTarget?.sectionId || 'drill' }
-              });
-            }}
-            onBackToCourse={() => {
-              if (selectedCourseId) {
-                navigateTo({ viewMode: 'WORKSPACE', courseId: selectedCourseId, folderPath: [], docPath: null });
-              } else {
-                navigateTo({ viewMode: 'HERO', courseId: null, folderPath: [], docPath: null });
-              }
-            }}
-            onOpenPdf={handleViewPdf}
-          />
-        )}
-
-        {viewMode === 'QUESTION_BANK' && (
-          <QuestionBankBrowser 
-            onBack={() => {
-              if (window.history.length > 1) {
-                window.history.back();
-              } else if (selectedCourseId) {
-                navigateTo({ viewMode: 'WORKSPACE', courseId: selectedCourseId, folderPath: [], docPath: null });
-              } else {
-                navigateTo({ viewMode: 'HERO', courseId: null, folderPath: [], docPath: null });
-              }
-            }}
-            onStartQuiz={handleStartQuiz}
-            onOpenPdf={handleViewPdf}
-          />
-        )}
-        </Suspense>
+    <div className={`lx-app${player ? ' is-player' : ' has-mobile-nav'}`}>
+      <a className="lx-skip" href="#lx-main" onClick={(e) => (e.preventDefault(), document.getElementById('lx-main')?.focus())}>
+        Skip to content
+      </a>
+      {!player && <TopBar route={route} />}
+      <main id="lx-main" className="lx-main" tabIndex={-1}>
+        <AppErrorBoundary resetKey={window.location.hash}>
+          <Suspense fallback={<div className="lx-route-loading" aria-busy="true" />}>
+            {route.name === 'home' && <Home />}
+            {route.name === 'course' && <CoursePage course={route.course} tab={route.tab} folder={route.folder} />}
+            {route.name === 'learn' && <Player course={route.course} lessonId={route.lesson} stepId={route.step} />}
+            {route.name === 'my-learning' && <MyLearning />}
+            {route.name === 'search' && <SearchPage q={route.q} />}
+            {route.name === 'bank' && <QuestionBank course={route.course} />}
+          </Suspense>
         </AppErrorBoundary>
       </main>
-
-      {pickerOpen && (
+      {!player && <Footer onContact={() => setContact(true)} />}
+      <MobileNav route={route} />
+      {doc && (
         <Suspense fallback={null}>
-          <DrillPicker open={pickerOpen} initialCourseId={pickerCourse} onClose={() => setPickerOpen(false)} onStart={launchDrill} />
+          <DocViewer doc={doc} onClose={() => setDoc(null)} />
         </Suspense>
       )}
-
-      {/* Embedded PDF Viewer Modal with direct slide jumping */}
-      {activePdfDoc && (
+      {contact && (
         <Suspense fallback={null}>
-          <PdfViewerModal document={activePdfDoc} initialPage={activePdfPage} onClose={handleClosePdf} />
+          <ContactModal isOpen={contact} onClose={() => setContact(false)} />
         </Suspense>
       )}
-
-      {/* FormSubmit Contact Modal */}
-      {contactOpen && (
-        <Suspense fallback={null}>
-          <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} />
-        </Suspense>
-      )}
-
-      {/* High-Fidelity Professional Engineering Footer */}
-      <Footer 
-        onSelectCourse={handleSelectCourse}
-        onStartQuiz={handleStartQuiz}
-        onOpenQuestionBank={handleOpenQuestionBank}
-        onOpenContact={() => setContactOpen(true)}
-      />
-
       <Analytics />
       <SpeedInsights />
     </div>

@@ -1,0 +1,193 @@
+.lx-lib-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.lx-lib-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.lx-lib-crumbs strong {
+  font-size: 15px;
+}
+.lx-lib-search {
+  flex: 0 1 360px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 4px 0 14px;
+  border: 1px solid var(--lx-line-strong);
+  border-radius: var(--lx-pill);
+  background: var(--lx-surface);
+  color: var(--lx-muted);
+}
+.lx-lib-search:focus-within {
+  border-color: var(--lx-ink);
+}
+.lx-lib-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  color: var(--lx-ink);
+}
+.lx-lib-search .lx-icon-btn {
+  width: 32px;
+  height: 32px;
+}
+.lx-lib-kind + .lx-lib-kind {
+  margin-top: 28px;
+}
+.lx-lib-kind > .lx-meta {
+  margin-top: 2px;
+}
+.lx-folder-grid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+}
+.lx-folder {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  min-height: 84px;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r-lg);
+  background: var(--lx-surface);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s var(--lx-ease), transform 0.15s var(--lx-ease);
+}
+.lx-folder:hover {
+  border-color: var(--lx-accent);
+  transform: translateY(-1px);
+}
+.lx-folder:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lx-folder-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--lx-r-lg);
+  background: var(--lx-tint);
+  color: var(--lx-accent);
+}
+.lx-folder-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.3;
+}
+.lx-folder-text strong {
+  font-size: 15px;
+}
+.lx-folder-go {
+  flex: none;
+  color: var(--lx-muted);
+}
+
+.lx-lib-heading {
+  margin: 4px 0 10px;
+}
+.lx-lib-sub + .lx-lib-sub {
+  margin-top: 22px;
+}
+.lx-file-list {
+  list-style: none;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r-lg);
+  background: var(--lx-surface);
+  overflow: hidden;
+}
+.lx-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 4px 0;
+}
+.lx-file + .lx-file {
+  border-top: 1px solid var(--lx-line);
+}
+.lx-file:hover {
+  background: var(--lx-tint);
+}
+.lx-file-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0 10px 16px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+}
+.lx-file-main svg {
+  flex: none;
+  color: var(--lx-accent);
+}
+.lx-file-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.lx-file-title {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.lx-file-main:hover .lx-file-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lx-file-used {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  max-width: 46%;
+}
+.lx-file-used .lx-chip {
+  height: 24px;
+  font-size: 12px;
+  text-decoration: none;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lx-file-used .lx-chip:hover {
+  text-decoration: underline;
+}
+@media (max-width: 720px) {
+  .lx-file {
+    flex-wrap: wrap;
+  }
+  .lx-file-used {
+    max-width: none;
+    justify-content: flex-start;
+    padding: 0 0 10px 46px;
+    order: 3;
+    width: 100%;
+  }
+  .lx-lib-search {
+    flex: 1 1 100%;
+  }
+}
