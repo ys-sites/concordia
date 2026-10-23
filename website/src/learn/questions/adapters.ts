@@ -3,6 +3,7 @@
 import type { CourseId, PracticeQuestion } from '../../types';
 import type { GateContent, Question as GateQuestion, QuizItem, Formula, GordonExamQuestion, GordonExamPaper, VarySpec } from '../../data/gates/types';
 import type { LearnQuestion } from '../model';
+import { examLabel } from '../examLabel';
 import { CALCULATORS, defaultsFor } from '../../components/vault/calculators';
 import { VAULT_WORKED_SOLUTIONS } from '../../components/vault/vaultWorkedSolutions';
 
@@ -213,7 +214,7 @@ export function fromGordon(p: GordonExamPaper, q: GordonExamQuestion): LearnQues
     code: q.codeSnippet || undefined,
     topic: q.conceptsTested[0] ?? 'Programming',
     level: 3 as const,
-    source: `${p.title} · ${q.part}`,
+    source: `${examLabel(p.title)} · ${q.part}`,
     pastPaper: true,
     correct: [],
     explain: { lines: q.conceptsTested.map((t) => `Tests: ${t}`), trap: q.trapAlert, solution: q.solutionNotes }

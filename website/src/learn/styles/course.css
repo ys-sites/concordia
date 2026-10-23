@@ -31,7 +31,9 @@
 }
 .lx-crumbs {
   display: flex;
+  align-items: center;
   gap: 8px;
+  line-height: 1.25;
   font-weight: 600;
   color: var(--lx-accent-deep);
 }

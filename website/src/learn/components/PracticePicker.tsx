@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, Brain, ChevronRight, FileStack, GraduationCap, RotateCcw, Target, Timer, X } from 'lucide-react';
+import { ArrowLeft, Brain, ChevronRight, GraduationCap, RotateCcw, Target, Timer, X } from 'lucide-react';
 import type { CourseId } from '../../types';
 import { COURSES, COURSE_BY_ID, courseClass } from '../courses';
 import { useCurriculum } from '../data';
@@ -8,22 +8,21 @@ import { useProgress } from '../progress/store';
 import { dueForReview } from '../progress/insights';
 import './practicePicker.css';
 
-// "Start a practice drill": pick a course, then what to practise (a topic's practice set, the timed mock,
-// the review queue or the past papers). Every choice opens the matching step of the course player.
+// "Start a practice drill": pick a course, then what to practise (build a quiz, the timed mock, or the
+// review queue). Previous-exam questions are reached through Build your own quiz, never as listed papers.
 const Topics: React.FC<{ course: CourseId; onPick: () => void }> = ({ course, onPick }) => {
   const cur = useCurriculum(course);
   const questions = useProgress((s) => s.questions);
   if (!cur) return <div className="lx-quiz-loading" aria-busy="true"><span className="lx-spinner" /> Loading…</div>;
   const due = dueForReview(questions, course).length;
   const mock = cur.sections.flatMap((s) => s.lessons).find((l) => l.id === 'mock-midterm');
-  const papers = cur.sections.flatMap((s) => s.lessons).filter((l) => l.id.startsWith('paper-'));
   return (
     <div className="lx-pp-topics">
       <div className="lx-pp-quick">
         <a className="lx-pp-tile is-build" href={href({ name: 'practice', course })} onClick={onPick}>
           <Target size={20} aria-hidden />
           <strong>Build your own quiz</strong>
-          <span className="lx-meta">Pick chapters, subtopics and question types</span>
+          <span className="lx-meta">Pick a source, chapters, subtopics and question types</span>
         </a>
         {mock && (
           <a className="lx-pp-tile" href={href({ name: 'learn', course, lesson: mock.id, step: mock.steps[0].id })} onClick={onPick}>
@@ -37,13 +36,6 @@ const Topics: React.FC<{ course: CourseId; onPick: () => void }> = ({ course, on
           <strong>Review queue</strong>
           <span className="lx-meta lx-num">{due ? `${due} due now` : 'nothing due yet'}</span>
         </a>
-        {papers.length > 0 && (
-          <a className="lx-pp-tile" href={href({ name: 'course', course, tab: 'exam' })} onClick={onPick}>
-            <FileStack size={20} aria-hidden />
-            <strong>Past papers</strong>
-            <span className="lx-meta">{papers.length} papers, question by question</span>
-          </a>
-        )}
       </div>
       <p className="lx-meta lx-pp-label">Or practise one topic</p>
       {cur.sections

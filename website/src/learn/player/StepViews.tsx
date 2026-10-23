@@ -4,6 +4,7 @@ import type { CourseId } from '../../types';
 import type { DocRef, Step } from '../model';
 import type { Formula, GateContent } from '../../data/gates/types';
 import { loadGate } from '../../data/gates';
+import { examLabel } from '../examLabel';
 import { resolveVideo, MotionLesson } from '../videoSources';
 import { MotionLessonPlayer } from '../../components/MotionLessonPlayer';
 import { ReadAloudButton } from '../../components/ReadAloudButton';
@@ -300,11 +301,11 @@ const InsightNotes: React.FC<{ g: GateContent; notesKey: string }> = ({ g, notes
           </p>
         </section>
         <section className="lx-notes-card">
-          <h3 className="lx-h3">The past papers in this course</h3>
+          <h3 className="lx-h3">The previous exams behind this course</h3>
           <ul className="lx-notes-list">
             {g.exams.map((e) => (
               <li key={e.id}>
-                <strong>{e.label}</strong> · {e.count} questions. {e.detail}
+                <strong>{examLabel(e.label)}</strong> · {e.count} questions
               </li>
             ))}
           </ul>

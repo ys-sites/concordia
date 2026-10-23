@@ -165,7 +165,7 @@ const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ 
         <Target size={22} aria-hidden />
         <span>
           <strong>Build your own quiz</strong>
-          <span className="lx-meta">Choose the chapters or single subtopics, the kinds of questions (repeated on past papers, similar, asked once, possible) and how many.</span>
+          <span className="lx-meta">Choose the source (class notes, previous exams, or everything), the chapters or single subtopics, the kinds of questions (repeated, similar, asked once, possible) and how many.</span>
         </span>
         <ArrowRight size={18} aria-hidden />
       </a>
@@ -320,7 +320,7 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
               <ul className="lx-side-includes lx-num">
                 <li>{fmtHours(s.videoMinutes)} of narrated video</li>
                 <li>{s.questions} questions with worked solutions</li>
-                <li>Every past paper as a timed practice exam</li>
+                <li>A timed mock midterm and exam-style practice sets</li>
                 <li>{s.documents} documents: slides, guides and review sheets</li>
               </ul>
             </div>

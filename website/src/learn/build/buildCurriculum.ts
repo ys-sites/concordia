@@ -6,6 +6,7 @@ import type { GateContent, Formula, Question as GateQuestion, LectureRef } from 
 import type { CourseSpec, LessonSpec, SectionSpec, StepSpec, BankRule, DrillRule } from '../curriculum/types';
 import type { Curriculum, DocRef, Lesson, ResourceGroup, Section, Step, VideoCard } from '../model';
 import type { VideoSource } from '../videoSources';
+import { genericExamSource } from '../examLabel';
 
 export interface DrillQuestion extends PracticeQuestion {
   methodId: string;
@@ -323,12 +324,16 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     const steps = [practice, timed && { ...timed, id: `${id}.timed` }].filter((s): s is Step => !!s);
     return { id, title: b.title, summary: b.summary, objectives: [], topicTags: [], minutes: steps.reduce((n, s) => n + s.minutes, 0), steps, exam: true };
   });
+  // Past papers are never listed as lessons: their questions live on inside Build your own quiz
+  // (the "Previous exams" source), so no exam document is browsable on the site. The paper lessons
+  // are still built above, which keeps every exam question placed in the coverage report.
+  void papers;
   sections.push({
     id: 'exam-prep',
-    title: 'Exam prep: past papers & mock midterm',
-    subtitle: `${papers.length} past papers · mock midterm · exam-style practice`,
+    title: 'Exam prep: mock midterm & practice',
+    subtitle: 'mock midterm · exam-style practice · build your own quiz',
     examPrep: true,
-    lessons: [insights, mock, ...papers, ...bankPast]
+    lessons: [insights, mock, ...bankPast]
   });
   for (const s of spec.examPrep.extra ?? []) sections.push(toSection({ ...s, examPrep: true }));
 
@@ -363,7 +368,7 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
           if (!vid || homed.has(vid)) continue;
           homed.add(vid);
           const v = vid.startsWith('solve:') ? gate.solveVideos?.[vid.slice(6)] : videoById.get(vid)?.lesson;
-          if (v) videos.push({ id: vid, kind: 'solution', title: v.title, source: v.source, seconds: v.duration, poster: v.poster, chapters: v.chapters.length, sectionId: s.id, lessonId: l.id, stepId: st.id, questionId: q });
+          if (v) videos.push({ id: vid, kind: 'solution', title: v.title, source: vid.startsWith('solve:') ? genericExamSource(v.source) : v.source, seconds: v.duration, poster: v.poster, chapters: v.chapters.length, sectionId: s.id, lessonId: l.id, stepId: st.id, questionId: q });
         }
       }
   const orphanVideos = [...[...videoById.keys()].filter((v) => !homed.has(v)), ...Object.keys(gate.solveVideos ?? {}).map((k) => `solve:${k}`).filter((v) => !homed.has(v))];

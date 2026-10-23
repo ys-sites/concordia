@@ -3,6 +3,7 @@
 // past-exam questions live in the course's exam-prep data (src/data/gates/engr213.ts) and are resolved lazily.
 import type { MotionLesson } from '../data/engr213Lessons';
 import type { CourseId } from '../types';
+import { genericExamSource } from './examLabel';
 import { ENGR213_MOTION_LESSONS } from '../data/engr213Lessons';
 import { MIAE221_MOTION_LESSONS } from '../data/miae221Lessons';
 import { MIAE215_CODELAB_VIDEOS } from '../data/miae215CodeLabVideos';
@@ -53,7 +54,9 @@ export const resolveVideo = async (id: string): Promise<MotionLesson | null> => 
   if (id.startsWith('solve:')) {
     const { loadGate } = await import('../data/gates');
     const gate = await loadGate('ENGR213');
-    return gate.solveVideos?.[id.slice('solve:'.length)] ?? null;
+    const v = gate.solveVideos?.[id.slice('solve:'.length)] ?? null;
+    // the stored source names the paper it came from; the player shows the generic label instead
+    return v ? { ...v, source: genericExamSource(v.source) } : null;
   }
   return null;
 };

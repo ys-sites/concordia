@@ -233,6 +233,8 @@
 .lx-plan-controls input,
 .lx-plan-controls select {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 44px;
   padding: 0 11px;
   color: var(--lx-ink);
@@ -751,8 +753,9 @@
     flex-direction: column;
     gap: 8px;
   }
+  /* minmax(0, …) plus min-width: 0 on the inputs keeps the native date field inside the card on phones */
   .lx-plan-controls {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .lx-plan-controls label:first-child {
     grid-column: auto;

@@ -18,6 +18,7 @@ export interface PoolEntry {
   id: string; // LearnQuestion id
   cat: QuizCat;
   topic: string;
+  src: 'exam' | 'notes'; // where the question comes from: a previous exam, or the class notes & tutorials
 }
 
 const MATCH_ORDER = ['exact', 'template', 'concept'] as const;
@@ -44,7 +45,8 @@ export function buildPool(course: CourseId, g: GateContent, exists: (id: string)
       const id = `x:${course}:${q.id}`;
       if (!exists(id)) continue;
       let cat: QuizCat;
-      if (papers.has(q.exam)) {
+      const fromExam = papers.has(q.exam);
+      if (fromExam) {
         const rt = repeatType(q.id);
         cat = rt === 'exact' || rt === 'template' ? 'repeat' : rt === 'concept' ? 'similar' : 'once';
       } else {
@@ -52,14 +54,14 @@ export function buildPool(course: CourseId, g: GateContent, exists: (id: string)
         const twin = (clustersOf.get(q.id) ?? []).some((cl) => cl.members.some((m) => m !== q.id && papers.has(examOf.get(m) ?? '')));
         cat = twin ? 'similar' : 'possible';
       }
-      out.push({ id, cat, topic: t.id });
+      out.push({ id, cat, topic: t.id, src: fromExam ? 'exam' : 'notes' });
     }
     for (const f of g.formulas) {
       if (f.topic !== t.id) continue;
       (f.learn?.quiz ?? []).forEach((it, i) => {
         const id = `l:${course}:${f.id}:${i}`;
         if (it.type === 'exam' || !exists(id)) return;
-        out.push({ id, cat: (it as { badge?: string }).badge === 'similar' ? 'similar' : 'possible', topic: t.id });
+        out.push({ id, cat: (it as { badge?: string }).badge === 'similar' ? 'similar' : 'possible', topic: t.id, src: 'notes' });
       });
     }
   }

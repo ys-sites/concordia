@@ -101,6 +101,26 @@
   margin-left: auto;
 }
 
+/* route loading: shown only until the warmed page chunk lands, which is normally instant */
+.lx-route-loading {
+  min-height: 42vh;
+  display: grid;
+  place-items: center;
+}
+.lx-route-spinner {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 3px solid var(--lx-line);
+  border-top-color: var(--lx-ink);
+  animation: lx-spin 0.7s linear infinite;
+}
+@keyframes lx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* courses menu */
 .lx-menu-wrap {
   position: relative;
@@ -218,9 +238,22 @@
     padding: 0 16px;
     gap: 8px;
   }
-  .lx-top-nav,
+  /* the Courses switcher stays in the header on phones too, so any course is one tap away
+     from any page; only the right-hand links and the wide search box drop out */
+  .lx-top-nav.lx-top-right,
   .lx-sbox.is-top {
     display: none;
+  }
+  .lx-top .lx-top-link {
+    padding: 0 8px;
+    font-size: 13.5px;
+  }
+  .lx-menu {
+    position: fixed;
+    top: calc(var(--lx-topbar-h) + 8px);
+    left: 12px;
+    right: 12px;
+    width: auto;
   }
   .lx-top-search-btn {
     display: inline-grid;
@@ -257,7 +290,7 @@
     color: var(--lx-ink);
   }
   .lx-app.has-mobile-nav .lx-main {
-    padding-bottom: 64px;
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
   }
   .lx-footer {
     margin-top: 48px;
