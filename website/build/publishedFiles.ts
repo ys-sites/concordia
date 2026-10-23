@@ -3,7 +3,7 @@
 // registry (virtual:course-documents), so the portal only ever lists files that were deployed.
 import path from 'path';
 import fs from 'fs';
-import { isHiddenFromSite, isFilteredDocumentPdf } from '../src/data/localOnly';
+import { isHiddenFromSite } from '../src/data/localOnly';
 import { slugSegment } from '../src/utils/pdfUrl';
 
 export const COURSE_DIRS: Record<string, string> = {
@@ -83,12 +83,10 @@ export function listPublishedFiles(semesterRoot: string): PublishedFile[] {
   return out;
 }
 
-// Registry for the course pages: [relativePath, sizeBytes] for every published PDF that is listed in
-// the course folders. Kept compact because it ships in the first-load bundle; src/data/coursesData.ts
-// expands each entry into a CourseDocument. Password-protected documents are left out (their own
-// sections carry their metadata), so the filter list never has to load on the home page.
+// Registry for the course pages: [relativePath, sizeBytes] for every published PDF. Kept compact because it
+// ships in the first-load bundle; src/data/coursesData.ts expands each entry into a CourseDocument.
 export function buildDocumentRegistry(semesterRoot: string): [string, number][] {
   return listPublishedFiles(semesterRoot)
-    .filter((f) => f.relativePath.toLowerCase().endsWith('.pdf') && !isFilteredDocumentPdf(f.relativePath))
+    .filter((f) => f.relativePath.toLowerCase().endsWith('.pdf'))
     .map((f) => [f.relativePath, f.sizeBytes]);
 }

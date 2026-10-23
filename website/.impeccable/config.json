@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-10-22T23:12:27.249Z",
+        "reason": "Brand body font (Inter + Outfit display), approved in the redesign"
+      }
+    ]
+  }
+}

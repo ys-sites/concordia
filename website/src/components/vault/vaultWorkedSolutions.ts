@@ -30,7 +30,7 @@ export const VAULT_WORKED_SOLUTIONS: Record<string, DetailedWorkedSolution> = {
       {
         title: 'Step 1: Determine the order',
         math: String.raw`\text{Highest derivative is } \frac{d^2y}{dx^2} \implies \text{Order 2}`,
-        explanation: 'The order of an ordinary differential equation is governed strictly by the highest derivative present. Here, the highest derivative is the second derivative $y\'\'.'
+        explanation: "The order of an ordinary differential equation is governed strictly by the highest derivative present. Here, the highest derivative is the second derivative $y''$."
       },
       {
         title: 'Step 2: Check linearity conditions',
@@ -82,7 +82,7 @@ export const VAULT_WORKED_SOLUTIONS: Record<string, DetailedWorkedSolution> = {
       {
         title: 'Step 1: Put into standard form and identify order',
         math: String.raw`(\tan x)y'' - e^{-x}y' - (4\sin x)y = 4e^{-x^2} \implies \text{Highest derivative is } y'' \implies \text{Order 2}`,
-        explanation: 'Rearrange all terms containing the dependent variable $y$ and its derivatives to one side. The highest derivative present is $y\'\', giving order 2.'
+        explanation: "Rearrange all terms containing the dependent variable $y$ and its derivatives to one side. The highest derivative present is $y''$, giving order 2."
       },
       {
         title: 'Step 2: Check linearity conditions',
@@ -134,7 +134,7 @@ export const VAULT_WORKED_SOLUTIONS: Record<string, DetailedWorkedSolution> = {
       {
         title: 'Step 1: Determine the order',
         math: String.raw`\text{Highest derivative is } y'' \implies \text{Order 2}`,
-        explanation: 'The highest derivative present is $y\'\', which represents order 2.'
+        explanation: "The highest derivative present is $y''$, which represents order 2."
       },
       {
         title: 'Step 2: Check linearity conditions',
@@ -208,7 +208,7 @@ export const VAULT_WORKED_SOLUTIONS: Record<string, DetailedWorkedSolution> = {
       {
         title: 'Step 4: Verify the solution',
         math: String.raw`\begin{aligned} &\text{Since } y = 3 \text{ is constant: } y' = 0 \\ &\text{Substitute into original equation: } 0 = (3)^2 - 4(3) + 3 \\ &0 = 9 - 12 + 3 \\ &\boxed{0 = 0} \quad \checkmark \end{aligned}`,
-        explanation: 'Since $y = 3$ is constant, $y\' = 0$. Substituting into the original equation gives $0 = (3)^2 - 4(3) + 3 = 9 - 12 + 3 \implies 0 = 0 \\checkmark$. The initial condition is also satisfied, and the equation has a unique solution through $y(0) = 3$.'
+        explanation: String.raw`Since $y = 3$ is constant, $y' = 0$. Substitute this into the original equation one arithmetic operation at a time: $0 = (3)^2 - 4(3) + 3 = 9 - 12 + 3 \implies 0 = 0 \checkmark$. The initial condition is satisfied, so $y(x) = 3$ is the required solution.`
       }
     ],
     finalAnswer: String.raw`y(x) = 3`,
@@ -271,7 +271,7 @@ export const VAULT_WORKED_SOLUTIONS: Record<string, DetailedWorkedSolution> = {
       {
         title: 'Step 2: Linearize using Bernoulli substitution $u = x^{1-n}$',
         math: String.raw`u = x^{1-4} = x^{-3} \implies \frac{du}{dy} = -3x^{-4}\frac{dx}{dy}`,
-        explanation: 'Divide the entire equation by $x^4$: $x^{-4}\frac{dx}{dy} + x^{-3} = y$. Substituting $x^{-4}\frac{dx}{dy} = -\frac{1}{3}u\'$ yields $-\frac{1}{3}u\' + u = y$.'
+        explanation: String.raw`Divide the entire equation by $x^4$: $x^{-4}\frac{dx}{dy} + x^{-3} = y$. Substituting $x^{-4}\frac{dx}{dy} = -\frac{1}{3}u'$ yields $-\frac{1}{3}u' + u = y$.`
       },
       {
         title: 'Step 3: Put into standard linear form and find integrating factor $\\mu(y)$',
@@ -334,7 +334,7 @@ export const VAULT_WORKED_SOLUTIONS: Record<string, DetailedWorkedSolution> = {
       {
         title: 'Step 2: Multiply through by $\\mu(x)$ and condense',
         math: String.raw`x^3y' + 3x^2y = x^7 \implies (x^3y)' = x^7`,
-        explanation: 'By the product rule, the left-hand side collapses into $(x^3y)\'.'
+        explanation: "By the product rule, the left-hand side collapses into $(x^3y)'$."
       },
       {
         title: 'Step 3: Integrate both sides',
@@ -630,7 +630,7 @@ export const VAULT_WORKED_SOLUTIONS: Record<string, DetailedWorkedSolution> = {
       {
         title: 'Step 2: Counterexample',
         math: String.raw`y' = y^{2/3}, \quad y(0) = 0 \implies \frac{\partial f}{\partial y} = \frac{2}{3}y^{-1/3} \quad (\text{undefined at } y = 0)`,
-        explanation: 'This IVP has infinitely many solutions (e.g. $y(x) = 0$ and $y(x) = \frac{1}{27}x^3$), violating uniqueness.'
+        explanation: String.raw`This IVP has infinitely many solutions (e.g. $y(x) = 0$ and $y(x) = \frac{1}{27}x^3$), violating uniqueness.`
       },
       {
         title: 'Step 3: Conclude',
@@ -1106,7 +1106,7 @@ export const VAULT_WORKED_SOLUTIONS: Record<string, DetailedWorkedSolution> = {
     },
     steps: [
       {
-        title: 'Step 1: Inspect $x\tan^{-1}(y)\frac{dy}{dx} = e^{x+y}$',
+        title: String.raw`Step 1: Inspect $x\tan^{-1}(y)\frac{dy}{dx} = e^{x+y}$`,
         math: String.raw`e^{x+y} = e^x \cdot e^y \implies x\tan^{-1}(y)\frac{dy}{dx} = e^x e^y \implies \frac{\tan^{-1}(y)}{e^y}\,dy = \frac{e^x}{x}\,dx`,
         explanation: 'Since $e^{x+y}$ splits into an $x$-factor times a $y$-factor, variables can be separated completely.'
       },
@@ -1272,7 +1272,7 @@ export const VAULT_WORKED_SOLUTIONS: Record<string, DetailedWorkedSolution> = {
       {
         title: 'Step 1: Recognize left side as exact derivative',
         math: String.raw`(y\sin x)' = 2\sin x\cos x = \sin(2x)`,
-        explanation: 'By the product rule, $(\\sin x)y\' + (\\cos x)y = (y\\sin x)\'.'
+        explanation: String.raw`By the product rule, $(\sin x)y' + (\cos x)y = (y\sin x)'$.`
       },
       {
         title: 'Step 2: Integrate both sides',

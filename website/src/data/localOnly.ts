@@ -69,10 +69,26 @@ export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   /(^|\/)[^/]*Advanced Engineering Mathematics\s*\(7th Edition\)[^/]*\.pdf$/i
 ];
 
-import { isFilteredDocumentRelativePath, hasFilteredDocumentUnder } from './filteredDocumentsData';
+// Whole exam papers, solved exam banks and graded work. A whole exam is never shown as a PDF: its questions
+// reach students as practice in the quiz system (src/learn), one question at a time with its solution.
+export const EXAM_PAPER_PATTERNS: RegExp[] = [
+  /^Engr 213\/(Midterm|Final)(\/|$)/,
+  /(^|\/)06 - Quiz & Midterm Exam Prep(\/|$)/i,
+  /^Miae 215\/MIAE_215_midterm_review_questions(\/|$)/,
+  /^Indu 211\/05 - Assignments & Solutions(\/|$)/,
+  /(^|\/)[^/]*exam archive[^/]*$/i,
+  /(^|\/)[^/]*sample (final|midterm)[^/]*$/i
+];
 
-export const isFilteredDocumentPdf = (relativePath: string): boolean => {
-  return isFilteredDocumentRelativePath(relativePath);
+// Study guides whose names mention a midterm but that hold no exam paper
+const STUDY_GUIDE_ALLOW: RegExp[] = [
+  /^Engr 213\/02 - Comprehensive Topic Guides \(Expanded & Intuitive\)\/Paradis notes - [^/]*\.pdf$/,
+  /^Indu 211\/04 - Worked Problems & Quantitative Analysis\/INDU 211 - (Midterm|Final Exam) Quantitative Problem Guide[^/]*\.pdf$/
+];
+
+export const isExamPaper = (relativePath: string): boolean => {
+  const p = relativePath.replace(/\\/g, '/');
+  return EXAM_PAPER_PATTERNS.some((re) => re.test(p));
 };
 
 export const isCheatsheetOrReviewPdf = (relativePath: string): boolean => {
@@ -83,19 +99,10 @@ export const isCheatsheetOrReviewPdf = (relativePath: string): boolean => {
 // Everything that must not appear on (or be deployed with) the website
 export const isHiddenFromSite = (relativePath: string, isDirectory = false): boolean => {
   const p = relativePath.replace(/\\/g, '/');
-  if (isCheatsheetOrReviewPdf(p)) {
-    return false; // Always published and available in course folders
-  }
-  if (isDirectory) {
-    if (hasFilteredDocumentUnder(p)) {
-      return false; // Whitelist directory traversal so protected vault PDFs are found
-    }
-    return isLocalOnly(p) || SITE_EXCLUDED_PATTERNS.some((re) => re.test(p));
-  }
-  if (isFilteredDocumentPdf(p)) {
-    return false; // Whitelist for password-protected Filtered Document access
-  }
-  return isLocalOnly(p) || SITE_EXCLUDED_PATTERNS.some((re) => re.test(p));
+  if (isLocalOnly(p) || isExamPaper(p)) return true;
+  if (isCheatsheetOrReviewPdf(p)) return false; // always published
+  if (!isDirectory && STUDY_GUIDE_ALLOW.some((re) => re.test(p))) return false;
+  return SITE_EXCLUDED_PATTERNS.some((re) => re.test(p));
 };
 
 

@@ -154,6 +154,35 @@
   font-family: monospace;
 }
 
+/* Answer walkthroughs are deliberately easy to expand, even before hover reveals the controls. */
+.ec-fs-enter-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 21;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.86);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+.ec-fs-enter-badge:hover {
+  background: var(--lx-brand, #2563eb);
+  border-color: #fff;
+}
+.ec-fs-enter-badge:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
 /* Custom Controls Bar */
 .ec-custom-controls {
   position: absolute;
@@ -286,10 +315,11 @@
 
 .ec-progress-scrubber {
   position: absolute;
-  top: 0;
+  /* a taller invisible hit area than the bar it sits on, so it is easy to grab on a phone */
+  top: -6px;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 12px);
   opacity: 0;
   cursor: pointer;
   margin: 0;
@@ -442,7 +472,7 @@
 .ec-lesson-chip span {
   font-variant-numeric: tabular-nums;
   font-weight: 800;
-  color: #6366f1;
+  color: #4338ca;
 }
 
 .ec-lesson-chip:hover {
@@ -484,3 +514,42 @@
   }
 }
 
+
+.ec-lesson-card.is-bare {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.ec-video-error {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  color: #f8fafc;
+  background: #0f172a;
+}
+.ec-video-error > span { color: #cbd5e1; max-width: 520px; }
+.ec-video-error > div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 6px; }
+.ec-video-error button,
+.ec-video-error a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 14px;
+  border: 1px solid #64748b;
+  border-radius: 8px;
+  color: #f8fafc;
+  background: #1e293b;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.ec-video-container:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }

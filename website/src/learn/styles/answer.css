@@ -1,0 +1,492 @@
+/* One question's header and its answer: what went wrong, the idea, the steps one at a time, the trap, and the
+   course documents that teach it ("From the course") */
+
+/* header: count, meter and tools, then the tags */
+.lx-q-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+.lx-q-count span {
+  font-weight: 500;
+  color: var(--lx-muted);
+}
+.lx-q-meter {
+  flex: 1;
+  max-width: 180px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--lx-surface-3);
+  overflow: hidden;
+}
+.lx-q-meter i {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--lx-accent);
+  transition: width 0.3s var(--lx-ease);
+}
+.lx-autoread {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  height: 32px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--lx-ink-2);
+  cursor: pointer;
+  user-select: none;
+}
+.lx-autoread input {
+  accent-color: var(--lx-accent);
+  width: 15px;
+  height: 15px;
+}
+.lx-q-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+}
+.lx-q-ref {
+  cursor: pointer;
+  border: 1px solid var(--lx-brand-line);
+  background: var(--lx-brand-tint);
+  color: var(--lx-brand);
+}
+.lx-q-ref:hover {
+  text-decoration: underline;
+}
+.lx-opts.is-done .lx-opt:not(.is-right):not(.is-wrong) {
+  opacity: 0.5;
+}
+.lx-feedback-verdict > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lx-feedback-verdict svg {
+  flex: none;
+  align-self: flex-start;
+  margin-top: 1px;
+}
+
+/* the answer */
+.lx-ans {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 16px;
+  align-items: start;
+}
+.lx-ans-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.lx-ans-card {
+  padding: 14px 16px;
+  border-radius: var(--lx-r-lg);
+  background: var(--lx-surface);
+  border: 1px solid var(--lx-line);
+}
+.lx-ans-card h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 6px;
+  font-family: var(--lx-font);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--lx-ink-2);
+}
+.lx-ans-card p {
+  margin: 0;
+  line-height: 1.6;
+}
+.lx-ans-card.is-wrong {
+  border-left: 4px solid var(--lx-bad);
+}
+.lx-ans-card.is-wrong h4 {
+  color: var(--lx-bad);
+}
+.lx-ans-card.is-idea {
+  border-left: 4px solid var(--lx-brand);
+}
+.lx-ans-card.is-idea h4 {
+  color: var(--lx-brand);
+}
+.lx-ans-card.is-trap {
+  background: var(--lx-warn-bg);
+  border-color: #efd9a6;
+}
+.lx-ans-card.is-trap h4 {
+  color: var(--lx-warn);
+}
+.lx-ans-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.lx-ans-card-head h4 {
+  margin: 0;
+}
+.lx-ans-card-head .lx-chip {
+  font-size: 12px;
+}
+.lx-ans-card-head .read-aloud-btn {
+  margin-left: auto;
+}
+
+/* baby steps */
+.lx-moves {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.lx-moves li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 10px;
+  padding: 4px 0;
+}
+.lx-moves li.is-new-step {
+  padding-top: 12px;
+}
+.lx-moves li.is-new-step:first-child {
+  padding-top: 0;
+}
+.lx-moves li:not(.is-new-step) .lx-move-body {
+  grid-column: 2;
+}
+.lx-move-no {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--lx-ink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+}
+.lx-move-body {
+  min-width: 0;
+}
+.lx-move-body > strong {
+  display: block;
+  line-height: 1.5;
+  margin-top: 2px;
+}
+.lx-move-math {
+  margin: 6px 0 2px;
+  padding: 8px 12px;
+  border-radius: var(--lx-r);
+  background: var(--lx-surface-2);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+.lx-ans-card p.lx-move-note {
+  font-size: 14px;
+  color: var(--lx-ink-2);
+  margin-top: 4px;
+}
+.lx-moves-more {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--lx-line-strong);
+}
+.lx-ans-final {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 10px 16px;
+  border: 2px solid var(--lx-ink);
+  border-radius: var(--lx-r);
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+/* From the course */
+.lx-ans-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border-radius: var(--lx-r-lg);
+  background: var(--lx-surface);
+  border: 1px solid var(--lx-line);
+  position: sticky;
+  top: 12px;
+}
+.lx-ans-side-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--lx-font);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--lx-muted);
+}
+.lx-ans-doc {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--lx-line-strong);
+  border-radius: var(--lx-r);
+  background: var(--lx-surface);
+  text-align: left;
+  cursor: pointer;
+  color: var(--lx-ink);
+}
+.lx-ans-doc:hover {
+  border-color: var(--lx-accent);
+  background: var(--lx-tint);
+}
+.lx-ans-doc > svg:first-child {
+  color: var(--lx-accent);
+  grid-row: span 2;
+}
+.lx-ans-doc > span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+.lx-ans-doc strong {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.lx-ans-doc .lx-chip {
+  grid-column: 2;
+  justify-self: start;
+  font-size: 11.5px;
+}
+.lx-ans-doc > svg:last-child {
+  grid-column: 3;
+  grid-row: 1;
+  color: var(--lx-muted);
+}
+.lx-ans-lesson {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  border-radius: var(--lx-r);
+  background: var(--lx-tint);
+  color: var(--lx-accent-deep);
+  text-decoration: none;
+  line-height: 1.35;
+}
+.lx-ans-lesson .lx-meta {
+  color: var(--lx-accent-deep);
+  opacity: 0.8;
+}
+.lx-ans-lesson:hover strong {
+  text-decoration: underline;
+}
+.lx-ans-more {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lx-ans-more button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 2px;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-size: 13.5px;
+  color: var(--lx-ink-2);
+  cursor: pointer;
+}
+.lx-ans-more button:hover {
+  color: var(--lx-brand);
+  text-decoration: underline;
+}
+.lx-ans-refnote {
+  margin: 0;
+  font-size: 13px;
+}
+.lx-ans-ai {
+  justify-content: center;
+}
+
+/* solution video thumbnail */
+.lx-solvid-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--lx-ink);
+}
+.lx-solvid-card > span:last-child {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.35;
+}
+.lx-solvid-card strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+.lx-solvid-thumb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--lx-r);
+  overflow: hidden;
+  background: var(--lx-dark);
+}
+.lx-solvid-thumb img,
+.lx-solvid-thumb video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lx-solvid-thumb > svg {
+  position: relative;
+  color: #fff;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  transition: transform 0.15s var(--lx-ease);
+}
+.lx-solvid-card:hover .lx-solvid-thumb > svg {
+  transform: scale(1.1);
+}
+.lx-solvid-thumb .lx-vid-dur {
+  right: 6px;
+  bottom: 6px;
+}
+.lx-solvid-open {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* The video is a continuation of the worked solution, never a squeezed side-rail preview. */
+.lx-ans-video {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r-lg);
+  background: linear-gradient(135deg, var(--lx-surface) 0%, var(--lx-tint) 100%);
+}
+.lx-ans-video > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 20px;
+}
+.lx-ans-video > header p {
+  margin: 0;
+  max-width: 52rem;
+}
+.lx-ans-video-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--lx-ink);
+  font-weight: 850;
+}
+.lx-ans-video .lx-solvid-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+}
+.lx-ans-video .lx-solvid-thumb {
+  max-height: min(66vh, 620px);
+  border-radius: var(--lx-r-lg);
+}
+.lx-ans-video .lx-solvid-card > span:last-child {
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.lx-ans-video .lx-solvid-open {
+  gap: 12px;
+}
+.lx-ans-video .ec-video-container {
+  border-radius: var(--lx-r-lg);
+}
+
+@media (max-width: 900px) {
+  .lx-ans {
+    grid-template-columns: 1fr;
+  }
+  .lx-ans-side {
+    position: static;
+  }
+  .lx-solvid-card {
+    flex-direction: row;
+    align-items: center;
+  }
+  .lx-solvid-thumb {
+    width: 140px;
+    flex: none;
+  }
+  .lx-ans-video .lx-solvid-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .lx-ans-video .lx-solvid-thumb {
+    width: auto;
+  }
+  .lx-ans-video .lx-solvid-card > span:last-child {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 520px) {
+  .lx-q-meter {
+    display: none;
+  }
+}
+
+/* the code stepper sits above the answer, full width */
+.lx-ans-code {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.lx-ans-code-title {
+  margin: 0;
+  font-family: var(--lx-font);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--lx-ink-2);
+}

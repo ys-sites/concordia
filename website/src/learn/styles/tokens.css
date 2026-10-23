@@ -1,0 +1,90 @@
+/* Design tokens for the learning site. Cool off-white (slate) ground, white surfaces, one ink, one identity colour per
+   course (set by .lx-c-<course> on any container), emerald / rose only for right and wrong. Surfaces are
+   separated by a 1px line or a tone step, not by shadows; only things that float (menus, dialogs, the
+   mobile course drawer) cast one. */
+:root {
+  /* cool off-white (slate) neutrals, the tone of the original site */
+  --lx-bg: #f8fafc;
+  --lx-surface: #ffffff;
+  --lx-surface-2: #f1f5f9;
+  --lx-surface-3: #e2e8f0;
+  --lx-ink: #0f172a;
+  --lx-ink-2: #334155;
+  --lx-muted: #5b6b80;
+  --lx-line: #e2e8f0;
+  --lx-line-strong: #cbd5e1;
+  --lx-dark: #0f172a;
+  --lx-dark-2: #1e293b;
+  --lx-on-dark: #ffffff;
+  --lx-on-dark-muted: #cbd5e1;
+  --lx-brand: #4f46e5;
+  --lx-brand-tint: #eef2ff;
+  --lx-brand-line: #c7d2fe;
+
+  --lx-good: #17714a;
+  --lx-good-bg: #e6f3ec;
+  --lx-bad: #b3263c;
+  --lx-bad-bg: #fbeaec;
+  --lx-warn: #8a5a00;
+  --lx-warn-bg: #fcf1d8;
+  --lx-info: #1f5fbf;
+  --lx-info-bg: #e8f0fc;
+
+  /* default course colour (overridden per course) */
+  --lx-accent: #4f46e5;
+  --lx-accent-deep: #3730a3;
+  --lx-tint: #eef2ff;
+  --lx-tint-2: #e0e7ff;
+
+  --lx-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --lx-display: 'Outfit', 'Inter', -apple-system, sans-serif;
+  --lx-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  --lx-r-sm: 6px;
+  --lx-r: 8px;
+  --lx-r-lg: 12px;
+  --lx-pill: 999px;
+
+  --lx-s1: 4px;
+  --lx-s2: 8px;
+  --lx-s3: 12px;
+  --lx-s4: 16px;
+  --lx-s5: 24px;
+  --lx-s6: 32px;
+  --lx-s7: 48px;
+  --lx-s8: 64px;
+
+  --lx-float: 0 12px 32px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(15, 23, 42, 0.06);
+  --lx-lift: 0 14px 30px rgba(15, 23, 42, 0.09), 0 2px 6px rgba(15, 23, 42, 0.04);
+  --lx-motion-fast: 140ms;
+  --lx-motion: 220ms;
+  --lx-topbar-h: 64px;
+  --lx-max: 1240px;
+  --lx-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Course identity. Accent passes WCAG AA (≥ 4.5:1) on white and on its tint. */
+.lx-c-ENGR213 {
+  --lx-accent: #2f4fc4;
+  --lx-accent-deep: #1d348a;
+  --lx-tint: #e9edfb;
+  --lx-tint-2: #d7def7;
+}
+.lx-c-MIAE221 {
+  --lx-accent: #b3294a;
+  --lx-accent-deep: #7d1a32;
+  --lx-tint: #fbe9ed;
+  --lx-tint-2: #f5d3db;
+}
+.lx-c-MIAE215 {
+  --lx-accent: #0d6f55;
+  --lx-accent-deep: #08503d;
+  --lx-tint: #e2f2ea;
+  --lx-tint-2: #c8e7d8;
+}
+.lx-c-INDU211 {
+  --lx-accent: #a8500a;
+  --lx-accent-deep: #723604;
+  --lx-tint: #fcede0;
+  --lx-tint-2: #f7dbc2;
+}

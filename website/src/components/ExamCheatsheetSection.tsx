@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ArrowLeft,
   Sparkles,
-  Download,
   Eye,
   Printer,
   ExternalLink,
@@ -272,12 +271,13 @@ export const ExamCheatsheetSection: React.FC<ExamCheatsheetSectionProps> = ({
                 gap: '6px'
               }}
               href={getPdfUrl(onePageRelativePath)}
-              download={onePagePdfFilename}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => audio.playClick()}
-              title="Download 1-page PDF"
+              title="Open 1-page PDF in a new tab"
             >
-              <Download size={16} />
-              <span>Download 1-Page PDF</span>
+              <ExternalLink size={16} />
+              <span>Open 1-Page PDF</span>
             </a>
 
             <button
@@ -372,12 +372,13 @@ export const ExamCheatsheetSection: React.FC<ExamCheatsheetSectionProps> = ({
                 gap: '6px'
               }}
               href={getPdfUrl(masterGuideRelativePath)}
-              download={masterGuidePdfFilename}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => audio.playClick()}
-              title="Download Master Guide PDF"
+              title="Open Master Guide PDF in a new tab"
             >
-              <Download size={15} />
-              <span>Download Master Guide PDF</span>
+              <ExternalLink size={15} />
+              <span>Open Master Guide PDF</span>
             </a>
 
             <button

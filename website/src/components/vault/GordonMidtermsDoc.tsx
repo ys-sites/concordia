@@ -11,7 +11,6 @@ import {
   Clock,
   Code,
   Copy,
-  Download,
   ExternalLink,
   FileText,
   Flame,
@@ -110,7 +109,8 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content }) => {
           <div className="tp-countdown-right">
             <a
               href="/cheatsheets/miae215-cheatsheet2.pdf"
-              download="MIAE 215 - Midterm Cheatsheet 2.0 (Single-Sided).pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="tp-start-drill-btn"
               style={{
                 textDecoration: 'none',
@@ -120,7 +120,7 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content }) => {
               }}
             >
               <Printer size={16} />
-              <span>Cheatsheet 2.0 PDF</span>
+              <span>Open Cheatsheet 2.0 PDF</span>
             </a>
             <button
               type="button"
@@ -600,7 +600,8 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content }) => {
                 </a>
                 <a
                   href="/cheatsheets/miae215-cheatsheet2.pdf"
-                  download="MIAE 215 - Midterm Cheatsheet 2.0 (Single-Sided).pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="tp-btn-primary"
                   style={{
                     textDecoration: 'none',
@@ -609,7 +610,7 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content }) => {
                     boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)'
                   }}
                 >
-                  <Download size={14} /> <span>Download PDF</span>
+                  <ExternalLink size={14} /> <span>Open PDF</span>
                 </a>
                 <button
                   type="button"

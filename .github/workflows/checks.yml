@@ -1,0 +1,21 @@
+# Content and code checks on every push: questions, curriculum (including the saved-progress id lock),
+# the content inventory and the type-check. The inventory fails only on broken references; its stock
+# warnings are in website/docs/content-inventory.md.
+name: checks
+on: [push, pull_request]
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-package-lock
+      - run: npx tsc --noEmit
+      - run: npm run validate:questions
+      - run: npm run validate:curriculum
+      - run: npm run inventory

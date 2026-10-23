@@ -10,7 +10,9 @@ import {
   Sparkles,
   Clapperboard,
   X,
-  Gauge
+  Gauge,
+  AlertTriangle,
+  ExternalLink
 } from 'lucide-react';
 import { getVideoUrl, publicCoursePath } from '../utils/pdfUrl';
 import type { MotionLesson } from '../data/engr213Lessons';
@@ -27,13 +29,27 @@ interface MotionLessonPlayerProps {
   lesson: MotionLesson;
   badge?: string;
   disclosure?: string;
+  // learning site: resume where the student stopped, report progress, know when it ends
+  startAt?: number;
+  onProgress?: (t: number, d: number) => void;
+  onEnded?: () => void;
+  onFallback?: () => void;
+  bare?: boolean; // no header or disclosure: the page around the player shows them
+  alwaysShowFullscreen?: boolean; // keeps an explicit control visible for embedded answer videos
 }
 
 export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   lesson,
   badge = 'Motion Lesson · Watch First',
-  disclosure = 'based directly on Concordia teacher lecture notes'
+  disclosure = 'based directly on Concordia teacher lecture notes',
+  startAt,
+  onProgress,
+  onEnded,
+  onFallback,
+  bare = false,
+  alwaysShowFullscreen = false
 }) => {
+  const lastReport = useRef(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hideControlsTimerRef = useRef<number | null>(null);
@@ -41,8 +57,15 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(lesson.duration || 0);
+  const [videoFailed, setVideoFailed] = useState(false);
+  const triedLocal = useRef(false);
   const [volume, setVolume] = useState<number>(1);
   const [isMuted, setIsMuted] = useState<boolean>(false);
+
+  useEffect(() => {
+    triedLocal.current = false;
+    setVideoFailed(false);
+  }, [lesson.video]);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [showControls, setShowControls] = useState<boolean>(true);
@@ -292,6 +315,9 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   // Keyboard controls (Space = play/pause, F = fullscreen, Esc = exit, Left/Right = seek)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const container = containerRef.current;
+      const active = document.activeElement;
+      if (!isFullscreen && (!container || !active || !container.contains(active))) return;
       // Don't capture when typing in inputs/textareas
       const tag = (e.target as HTMLElement)?.tagName?.toLowerCase();
       if (tag === 'input' || tag === 'textarea') return;
@@ -332,6 +358,11 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
     const v = videoRef.current;
     if (!v) return;
     setCurrentTime(v.currentTime);
+    // report about every 5 seconds of playback
+    if (onProgress && Math.abs(v.currentTime - lastReport.current) >= 5) {
+      lastReport.current = v.currentTime;
+      onProgress(v.currentTime, v.duration || lesson.duration);
+    }
 
     // Update buffer progress
     if (v.buffered.length > 0) {
@@ -344,29 +375,39 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
     const v = videoRef.current;
     if (!v) return;
     setDuration(v.duration || lesson.duration);
+    if (startAt && startAt > 3 && startAt < (v.duration || lesson.duration) - 5) {
+      v.currentTime = startAt;
+      setCurrentTime(startAt);
+    }
   };
 
   const handleEnded = () => {
     setIsPlaying(false);
     setShowControls(true);
+    const v = videoRef.current;
+    if (v && onProgress) onProgress(v.duration, v.duration);
+    onEnded?.();
   };
 
   const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     const v = e.currentTarget;
-    const currentSrc = v.currentSrc || v.src;
     const localFallback = `/courses/${publicCoursePath(lesson.video)}`;
-    if (currentSrc && !currentSrc.endsWith(localFallback)) {
+    if (!triedLocal.current) {
+      triedLocal.current = true;
       console.warn(`[Video Player] Primary CDN stream failed. Retrying with local endpoint: ${localFallback}`);
       v.src = localFallback;
       v.load();
+      return;
     }
+    setVideoFailed(true);
   };
 
   const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="ec-lesson-card">
+    <div className={`ec-lesson-card${bare ? ' is-bare' : ''}`}>
       {/* Header Info */}
+      {!bare && (
       <div className="ec-lesson-head">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <span className="ec-lesson-badge">
@@ -380,6 +421,7 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
           {formatLessonTime(duration)} · {lesson.source}
         </span>
       </div>
+      )}
 
       {/* Main Video Viewport with Fullscreen & Auto-Hide Control System */}
       <div
@@ -390,7 +432,13 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
         onMouseMove={handleUserActivity}
         onMouseEnter={handleUserActivity}
         onMouseLeave={handleMouseLeave}
-        onClick={handleUserActivity}
+        onClick={() => {
+          handleUserActivity();
+          containerRef.current?.focus({ preventScroll: true });
+        }}
+        tabIndex={0}
+        role="region"
+        aria-label={`${lesson.title} video player. Keyboard shortcuts: Space or K to play, arrow keys to seek, M to mute, F for fullscreen.`}
       >
         <video
           ref={videoRef}
@@ -398,16 +446,44 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
           preload="metadata"
           playsInline
           crossOrigin="anonymous"
-          poster={getVideoUrl(lesson.poster)}
+          // its own copy of the poster: the CDN answers CORS and plain requests differently, and the cards'
+          // plain thumbnails must not share a cached copy with this CORS one (see learn/components/VideoThumb)
+          poster={`${getVideoUrl(lesson.poster)}?player`}
           src={getVideoUrl(lesson.video)}
           onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
+          onPause={() => {
+            setIsPlaying(false);
+            const v = videoRef.current;
+            if (v && onProgress) onProgress(v.currentTime, v.duration || lesson.duration);
+          }}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={handleEnded}
           onError={handleVideoError}
           onClick={togglePlay}
+          aria-label={`${lesson.title} video`}
         />
+
+        {videoFailed && (
+          <div className="ec-video-error" role="alert">
+            <AlertTriangle size={28} aria-hidden />
+            <strong>This video could not load.</strong>
+            <span>Your place is saved. Use the lesson notes now, or open the video directly.</span>
+            <div>
+              {onFallback && <button type="button" onClick={onFallback}>Open lesson notes</button>}
+              <a href={`/courses/${publicCoursePath(lesson.video)}`} target="_blank" rel="noreferrer">Open video directly <ExternalLink size={14} aria-hidden /></a>
+              <button type="button" onClick={() => {
+                triedLocal.current = false;
+                setVideoFailed(false);
+                const v = videoRef.current;
+                if (v) {
+                  v.src = getVideoUrl(lesson.video);
+                  v.load();
+                }
+              }}>Try again</button>
+            </div>
+          </div>
+        )}
 
         {/* Big Center Play Icon overlay when paused */}
         {!isPlaying && (
@@ -432,6 +508,19 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
             <X size={15} />
             <span>Exit Fullscreen</span>
             <kbd>ESC</kbd>
+          </button>
+        )}
+
+        {alwaysShowFullscreen && !isFullscreen && (
+          <button
+            type="button"
+            className="ec-fs-enter-badge"
+            onClick={toggleFullscreen}
+            title="Fullscreen"
+            aria-label="Open video in fullscreen"
+          >
+            <Maximize size={16} />
+            <span>Full screen</span>
           </button>
         )}
 
@@ -579,12 +668,14 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
       )}
 
       {/* AI Vector-Synthesis Disclosure */}
+      {!bare && (
       <div className="ec-lesson-ai-disclosure">
         <Sparkles size={14} className="ec-ai-sparkle-icon" />
         <div>
           <strong>AI-Generated from Code:</strong> This motion-graphics video was programmatically synthesized from algorithmic code (vector graphics &amp; parametric mathematical animations) {disclosure}.
         </div>
       </div>
+      )}
     </div>
   );
 };

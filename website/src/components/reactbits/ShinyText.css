@@ -1,21 +1,33 @@
+/* One smooth sweep, then a rest, forever. The gradient is three times the text's width with the shine in the
+   middle third, so at both ends of the loop the visible part is plain colour and the restart cannot be seen.
+   Linear timing keeps the sweep's speed even. */
 @keyframes shinyTextShimmer {
   0% {
-    background-position: 150% center;
+    background-position: 100% 50%;
   }
+  65%,
   100% {
-    background-position: -50% center;
+    background-position: 0% 50%;
   }
 }
 
 .shiny-text {
   display: inline-block;
-  background-size: 200% auto;
+  background-size: 300% 100%;
+  background-position: 100% 50%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shinyTextShimmer var(--shiny-speed, 4.5s) ease-in-out 3;
+  animation: shinyTextShimmer var(--shiny-speed, 4.5s) linear infinite;
+  will-change: background-position;
 }
 
 .shiny-text.pause-on-hover:hover {
   animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shiny-text {
+    animation: none;
+  }
 }
