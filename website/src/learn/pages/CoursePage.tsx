@@ -20,7 +20,6 @@ import { COURSE_BY_ID, courseClass } from '../courses';
 import { SUMMARY, courseProgress, fmtClock, fmtHours, fmtMinutes, lessonProgress, nextStep, useCurriculum } from '../data';
 import { CourseTab, href, navigate } from '../router';
 import { useProgress } from '../progress/store';
-import { daysUntil, readiness } from '../progress/insights';
 import { fmtDay, nextExam, useReminders } from '../reminders';
 import { CourseCover } from '../components/CourseCover';
 import { StepIcon } from '../components/StepIcon';
@@ -144,38 +143,24 @@ const Curriculum: React.FC<{ cur: Curriculum; sections: Section[]; done: Record<
 
 // ── exam prep tab ────────────────────────────────────────────────────────────────
 const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ cur, done }) => {
-  const p = useProgress((s) => s);
-  const exam = nextExam(useReminders(), cur.id);
-  const left = exam ? daysUntil(exam.date) : null;
-  const r = useMemo(() => readiness(cur, p), [cur, p]);
   const sections = cur.sections.filter((s) => s.examPrep);
+  const fullTeacherPaper = sections.flatMap((s) => s.lessons).find((l) => l.id === 'tp-full-paper');
+  const fullTeacherStep = fullTeacherPaper?.steps.find((s) => s.kind === 'exam');
   return (
     <div className="lx-exam-tab">
-      <div className="lx-exam-head lx-panel lx-panel-pad">
-        <div>
-          <p className="lx-meta">{exam ? `Next exam · ${fmtDay(exam.date)}${exam.time ? ` · ${exam.time}` : ''}` : 'Midterm'}</p>
-          <h3 className="lx-h2">{exam ? exam.title : cur.midterm.label}</h3>
-          {exam?.detail && <p className="lx-exam-scope">{exam.detail}</p>}
-          {(!exam || exam.kind === 'midterm') && <p className="lx-exam-scope">{cur.midterm.scope}</p>}
-        </div>
-        <div className="lx-exam-figs">
-          {left !== null && left >= 0 && (
-            <div>
-              <CalendarClock size={18} aria-hidden />
-              <strong className="lx-num">{left === 0 ? 'Today' : `${left} day${left === 1 ? '' : 's'}`}</strong>
-              <span className="lx-meta">left</span>
-            </div>
-          )}
-          <div>
-            <span className="lx-ring" style={{ ['--p' as string]: r.pct, ['--size' as string]: '52px' }}>
-              <span>{r.pct}%</span>
-            </span>
-            <span className="lx-meta">
-              ready · {r.covered} of {r.total} lessons started
-            </span>
-          </div>
-        </div>
-      </div>
+      {fullTeacherPaper && fullTeacherStep && (
+        <a className="lx-exam-build lx-exam-build--teacher" href={href({ name: 'learn', course: cur.id, lesson: fullTeacherPaper.id, step: fullTeacherStep.id })}>
+          <GraduationCap size={23} aria-hidden />
+          <span>
+            <strong>Work through the complete midterm subject bundle</strong>
+            <span className="lx-meta">Questions are organized by subject, not by year or instructor, with worked solutions after you answer.</span>
+          </span>
+          <span className="lx-exam-build-go">
+            {fullTeacherStep.timeLimit ? <span className="lx-chip lx-num">{fullTeacherStep.timeLimit} min</span> : null}
+            Start <ArrowRight size={17} aria-hidden />
+          </span>
+        </a>
+      )}
       <a className="lx-exam-build" href={href({ name: 'practice', course: cur.id })}>
         <Target size={22} aria-hidden />
         <span>
@@ -184,7 +169,6 @@ const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ 
         </span>
         <ArrowRight size={18} aria-hidden />
       </a>
-      <p className="lx-exam-note lx-meta">Past papers are practised one question at a time in the quiz, with the worked solution after each answer. No exam is shown as a PDF.</p>
       <Curriculum cur={cur} sections={sections} done={done} />
     </div>
   );

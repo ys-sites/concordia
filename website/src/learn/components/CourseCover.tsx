@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useId, useState } from 'react';
 import type { CourseId } from '../../types';
 import { COURSE_BY_ID } from '../courses';
 
@@ -293,6 +293,11 @@ const Factory: React.FC<ArtProps> = ({ id, alt }) => (
 );
 
 const ART: Record<CourseId, React.FC<ArtProps>> = { ENGR213: Odes, MIAE221: Crystals, MIAE215: Cabin, INDU211: Factory };
+const GENERATED_COVERS: Partial<Record<CourseId, string>> = {
+  MIAE221: '/course-covers/miae221-fallback.png',
+  MIAE215: '/course-covers/miae215-fallback.png',
+  INDU211: '/course-covers/indu211-fallback.png'
+};
 
 // variant 'course' = the course's own cover; 'reco' = the alternate scene for recommendation cards
 export const CourseCover: React.FC<{ course: CourseId; className?: string; label?: boolean; variant?: 'course' | 'reco' }> = ({
@@ -304,9 +309,23 @@ export const CourseCover: React.FC<{ course: CourseId; className?: string; label
   const c = COURSE_BY_ID[course];
   const Art = ART[course];
   const id = useId().replace(/:/g, '');
+  const [imageFailed, setImageFailed] = useState(false);
   const alt = variant === 'reco';
   // mirror the alternate scene too (not MIAE 215's: its window holds readable code)
   const flip = alt && course !== 'MIAE215' ? `translate(${W} 0) scale(-1 1)` : undefined;
+  // Generated subject artwork is the meaningful fallback for a learning card with no lesson video.
+  // The original vector illustration remains a no-network, no-blank fallback if an asset is unavailable.
+  const generatedCover = GENERATED_COVERS[course];
+  // ENGR 213 deliberately keeps its hand-drawn night landscape for recommendations.
+  // It reads cleanly at a small card size while the river and wind streaks still echo a solution curve and direction field.
+  if (generatedCover && !imageFailed) {
+    return (
+      <div className={`lx-cover lx-cover--generated lx-c-${course} ${className}`} role="img" aria-label={`${c.code}: ${c.title}`}>
+        <img src={generatedCover} alt="" loading="lazy" decoding="async" onError={() => setImageFailed(true)} />
+        {label && <span className="lx-cover-label">{c.code}</span>}
+      </div>
+    );
+  }
   return (
     <svg className={`lx-cover lx-c-${course} ${className}`} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${c.code}: ${c.title}`} preserveAspectRatio="xMidYMid slice">
       <g transform={flip}>

@@ -6,6 +6,7 @@ import type { LearnQuestion } from '../model';
 import { loadGate } from '../../data/gates';
 import { VIDEO_SOURCES } from '../videoSources';
 import { fromGateExam, fromGordon, fromLessonItem, fromPractice } from './adapters';
+import { openToChoices } from './choices';
 
 export interface QuestionIndex {
   course: CourseId;
@@ -48,6 +49,7 @@ async function build(c: CourseId): Promise<QuestionIndex> {
   for (const q of gate.questions) add(fromGateExam(c, gate, q, solve.get(`x:${c}:${q.id}`)));
   for (const f of gate.formulas) (f.learn?.quiz ?? []).forEach((_, i) => add(fromLessonItem(c, gate, f, i, solve.get(`l:${c}:${f.id}:${i}`))));
   for (const p of gate.gordonExamsData?.papers ?? []) for (const q of p.questions) add(fromGordon(p, q));
+  openToChoices(byId);
   return { course: c, byId };
 }
 

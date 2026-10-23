@@ -10,7 +10,7 @@ import { TopBar, MobileNav, Footer } from './learn/shell/TopBar';
 import { Home } from './learn/pages/Home';
 import { getPdfUrl } from './utils/pdfUrl';
 import { loadCurricula } from './learn/data';
-import { addStudyTime, useSaveBlocked } from './learn/progress/store';
+import { addStudyTime } from './learn/progress/store';
 import { migrateOldProgress } from './learn/progress/migrate';
 
 // The home page paints with no data beyond a few hundred bytes of course stats; everything else loads on demand.
@@ -24,17 +24,6 @@ const PracticePicker = safeLazy(() => import('./learn/components/PracticePicker'
 const ContactModal = safeLazy(() => import('./components/ContactModal').then((m) => ({ default: m.ContactModal })));
 
 const LEARNING_PAGES = new Set(['learn', 'bank']);
-
-// A newer version of the site saved progress in another tab: this tab stops saving (so it cannot overwrite it)
-const SaveBlocked: React.FC = () =>
-  useSaveBlocked() ? (
-    <div className="lx-toast lx-save-blocked" role="alert">
-      <span>The site was updated in another tab. Reload to keep saving your progress.</span>
-      <button type="button" onClick={() => window.location.reload()}>
-        Reload
-      </button>
-    </div>
-  ) : null;
 
 export function App() {
   const route = useRoute();
@@ -85,7 +74,6 @@ export function App() {
         Skip to content
       </a>
       {!player && <TopBar route={route} onPractice={() => setPractice(true)} />}
-      <SaveBlocked />
       <main id="lx-main" className="lx-main" tabIndex={-1}>
         <AppErrorBoundary resetKey={window.location.hash}>
           <Suspense fallback={<div className="lx-route-loading" aria-busy="true" />}>

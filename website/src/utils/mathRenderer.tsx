@@ -58,7 +58,14 @@ const sanitizeTex = (tex: string): string => {
   // If a command was accidentally double-escaped (e.g. \\frac, \\dfrac, \\partial, \\sin, \\cos, \\text),
   // KaTeX treats the leading \\ as a line break and renders the command name as plain text (e.g. "fracddx").
   // Normalize \\command to \command when directly followed by letters, preserving matrix row breaks.
-  return tex.replace(/\\\\([a-zA-Z]+)/g, '\\$1');
+  const normalized = tex.replace(/\\\\([a-zA-Z]+)/g, '\\$1');
+  // Older hand-authored answer text occasionally lost the slash before an operator when
+  // JavaScript parsed a normal quoted string (for example, "3implies0"). Repair only the
+  // small, unambiguous operator set and only inside a math segment.
+  return normalized.replace(
+    /([0-9A-Za-z)}])\s*(implies|Rightarrow|Longrightarrow|checkmark)\s*(?=[0-9A-Za-z({\\])/g,
+    (_match, before: string, command: string) => `${before} \\${command} `
+  );
 };
 
 // KaTeX is the slowest thing on most pages, and the same formulas re-render on every keystroke

@@ -117,9 +117,14 @@ export default async function handler(req, res) {
       else commands.push(['ECHO', '0']);
       commands.push(['ZREMRANGEBYSCORE', KEY.live, '0', String(now - LIVE_WINDOW_MS)], ['ZCARD', KEY.live], ['PEXPIRE', KEY.live, String(LIVE_WINDOW_MS * 2)]);
       const r = await call(commands);
+      const todayCount = Math.max(0, parseInt(r[1]?.result || 0, 10));
+      const liveCount = Math.max(liveHere, parseInt(r[4]?.result || 0, 10));
       return res.status(200).json({
-        live: Math.max(liveHere, parseInt(r[4]?.result || 0, 10)),
-        today: parseInt(r[1]?.result || 0, 10),
+        // Every live device must also be part of today's unique visitor count.
+        // This prevents an overnight tab or a stale cache from producing a
+        // confusing "6 live · Today: 4" display.
+        live: Math.min(liveCount, todayCount),
+        today: todayCount,
         total: parseInt(r[0]?.result || 0, 10),
         configured: true,
         date: today
@@ -143,5 +148,6 @@ export default async function handler(req, res) {
       at: total == null ? 0 : now
     };
   }
-  return res.status(200).json({ live: liveHere, today: totalsCache.today, total: totalsCache.total, configured: true, date: today });
+  const todayCount = Math.max(0, Number(totalsCache.today) || 0);
+  return res.status(200).json({ live: Math.min(liveHere, todayCount), today: todayCount, total: totalsCache.total, configured: true, date: today });
 }

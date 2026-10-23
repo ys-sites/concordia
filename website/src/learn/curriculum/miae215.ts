@@ -199,8 +199,8 @@ export const MIAE215_SPEC: CourseSpec = {
     extra: [
       {
         id: 'teacher-practice',
-        title: "Teacher's midterm practice",
-        subtitle: '34 questions from the teacher’s practice papers, each with a video solution',
+        title: 'Midterm practice by subject',
+        subtitle: '34 midterm questions grouped by subject, each with a video solution',
         lessons: [
           { id: 'tp-output-tracing', title: 'Output tracing', summary: 'Predict exactly what each program prints.', steps: [{ kind: 'practice', title: 'Trace the programs', slug: 'practice', questions: { teacher: /^Output Tracing$/ }, ordered: true }] },
           { id: 'tp-nested-2d', title: 'Nested loops & 2-D arrays', summary: 'Two counters, one table: trace them together.', steps: [{ kind: 'practice', title: 'Trace the loops', slug: 'practice', questions: { teacher: /^Nested Loops & 2D Arrays$/ }, ordered: true }] },
@@ -209,14 +209,20 @@ export const MIAE215_SPEC: CourseSpec = {
           { id: 'tp-input-output', title: 'Input, output & formatting', summary: 'What cout prints, character by character.', steps: [{ kind: 'practice', title: 'Predict the output', slug: 'practice', questions: { teacher: /^Input, Output & Formatting$/ }, ordered: true }] },
           { id: 'tp-limits-overflow', title: 'Variable limits & overflow', summary: 'What happens at the edge of a type.', steps: [{ kind: 'practice', title: 'Find the limits', slug: 'practice', questions: { teacher: /^Variable Limits & Overflow$/ }, ordered: true }] },
           {
+            id: 'tp-full-paper',
+            title: 'Complete midterm subject bundle',
+            summary: 'A complete midterm practice set grouped by subject, with immediate answer feedback and worked solutions.',
+            steps: [{ kind: 'exam', title: 'Complete midterm subject bundle', slug: 'exam', questions: { teacher: /./ }, ordered: false, timeLimit: 90 }]
+          },
+          {
             id: 'practice-midterm-2026',
-            title: 'Practice midterm 2026',
-            summary: "The teacher's Fall 2026 practice midterm: one program to write and two traces, each solved on video.",
+            title: 'Fall Midterm practice',
+            summary: 'A Fall midterm practice set: one program to write and two traces, each solved on video.',
             steps: [
               { kind: 'video', title: 'Q1 · Write the program (a–f)', slug: 'q1-video', videoId: 'pm215:pm26_q1' },
               { kind: 'video', title: 'Q2(a) · Output tracing', slug: 'q2a-video', videoId: 'pm215:pm26_q2a' },
               { kind: 'video', title: 'Q2(b) · Output tracing', slug: 'q2b-video', videoId: 'pm215:pm26_q2b' },
-              { kind: 'exam', title: 'Sit the paper (3 questions)', slug: 'exam', questions: { teacher: /^(1D Arrays & Search Algorithms|If-Else Ladders & Integer Truncation|While Loops & Array Index Traversal)$/ }, ordered: true, timeLimit: 45 }
+              { kind: 'exam', title: 'Fall Midterm practice (3 questions)', slug: 'exam', questions: { teacher: /^(1D Arrays & Search Algorithms|If-Else Ladders & Integer Truncation|While Loops & Array Index Traversal)$/ }, ordered: false, timeLimit: 45 }
             ]
           }
         ]

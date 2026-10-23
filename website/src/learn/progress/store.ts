@@ -221,7 +221,6 @@ const apply = (base: ProgressState, changes: Change[]) => {
 
 const initial: Loaded = typeof window === 'undefined' ? { state: empty(), newer: false } : load(safeGet() ?? null);
 let state: ProgressState = initial.state;
-let blocked = initial.newer; // a newer build owns the stored record: this tab must not write over it
 let pending: Change[] = []; // changes made since the last save
 const listeners = new Set<() => void>();
 let saveTimer: ReturnType<typeof setTimeout> | null = null;
@@ -230,15 +229,10 @@ const notify = () => listeners.forEach((l) => l());
 // Replay this tab's changes onto whatever is stored now: another tab may have saved since this one read it
 const persist = () => {
   saveTimer = null;
-  if (blocked || !pending.length) return;
+  if (!pending.length) return;
   const raw = safeGet();
   if (raw === undefined) return; // storage blocked: the in-memory copy is all there is
   const latest = load(raw);
-  if (latest.newer) {
-    blocked = true;
-    notify();
-    return;
-  }
   const next = apply(latest.state, pending);
   if (!safeSet(STORE_KEY, JSON.stringify(next))) return; // storage full: keep the changes pending, retry on the next one
   pending = [];
@@ -267,14 +261,10 @@ if (typeof window !== 'undefined') {
   window.addEventListener('storage', (e) => {
     if (e.key !== STORE_KEY || e.newValue === null) return;
     const latest = load(e.newValue);
-    blocked = blocked || latest.newer;
     state = apply(latest.state, pending);
     notify();
   });
 }
-
-// true when a newer build of the site saved progress after this tab loaded: this tab needs a reload to save again
-export const useSaveBlocked = () => useSyncExternalStore(subscribe, () => blocked, () => false);
 
 export function useProgress<T>(select: (s: ProgressState) => T): T {
   return useSyncExternalStore(subscribe, () => select(state), () => select(state));

@@ -117,7 +117,7 @@ What went wrong:
               {slide.page ? ` · p. ${slide.page}` : ''}
             </button>
           )}
-          {q.source && !sourceIsSlide && <span className={`lx-chip${q.pastPaper ? ' lx-chip--warn' : ''}`}>{q.source}</span>}
+          {q.source && !sourceIsSlide && !q.pastPaper && <span className="lx-chip">{q.source}</span>}
         </div>
       </header>
 
@@ -208,11 +208,8 @@ What went wrong:
       )}
       {q.kind === 'self' && !showFeedback && !p.examMode && (
         <div className="lx-self">
-          <p className="lx-meta">An open question: work it out on paper, then compare with the solution and mark yourself honestly.</p>
           {!p.revealed ? (
-            <button type="button" className="lx-btn lx-btn--primary" onClick={p.onReveal}>
-              <Eye size={16} /> Show the solution
-            </button>
+            <p className="lx-meta">An open question: work it out on paper, then use Show answer below to compare and mark yourself honestly.</p>
           ) : (
             <>
               <div className="lx-self-answer">

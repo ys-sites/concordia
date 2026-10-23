@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { AlertTriangle, ArrowRight, Bell, CalendarClock, CalendarPlus, Check, Clock3, Pencil, RotateCcw, Trash2, X } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { Reminder, ReminderKind, Urgency } from '../progress/store';
@@ -72,7 +73,7 @@ export const ReminderDialog: React.FC<{ item?: ReminderItem; preset?: { course?:
     onClose();
   };
 
-  return (
+  return createPortal(
     <div className="lx-dialog-backdrop" onClick={onClose}>
       <form className="lx-dialog lx-rem-dialog" role="dialog" aria-modal="true" aria-labelledby="lx-rem-title" onClick={(e) => e.stopPropagation()} onSubmit={save} noValidate>
         <button type="button" className="lx-icon-btn lx-dialog-close" onClick={onClose} aria-label="Close">
@@ -189,7 +190,8 @@ export const ReminderDialog: React.FC<{ item?: ReminderItem; preset?: { course?:
           </button>
         </div>
       </form>
-    </div>
+    </div>,
+    document.body
   );
 };
 

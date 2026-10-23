@@ -428,6 +428,44 @@
   margin: 14px 0 18px;
 }
 
+.lx-exam-full-teacher {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  padding: 16px 18px;
+  border: 1px solid color-mix(in srgb, var(--lx-accent) 38%, var(--lx-line));
+  border-radius: var(--lx-r-lg);
+  background: linear-gradient(110deg, var(--lx-tint), var(--lx-surface));
+  color: var(--lx-accent-deep);
+  text-decoration: none;
+}
+.lx-exam-full-teacher > span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.lx-exam-full-teacher strong {
+  color: var(--lx-ink);
+  font-size: 16px;
+}
+.lx-exam-full-teacher .lx-meta {
+  color: var(--lx-ink-2);
+}
+.lx-exam-full-teacher-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+.lx-exam-full-teacher:hover {
+  box-shadow: 0 0 0 3px var(--lx-tint-2);
+}
+
 @media (max-width: 1000px) {
   .lx-course-layout {
     grid-template-columns: minmax(0, 1fr);
@@ -508,4 +546,15 @@
 }
 .lx-exam-build:hover {
   box-shadow: 0 0 0 3px var(--lx-tint-2);
+}
+.lx-exam-build--teacher {
+  margin-top: 0;
+}
+.lx-exam-build-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 850;
+  white-space: nowrap;
 }

@@ -809,43 +809,6 @@
   .lx-step-feedback-actions .lx-btn { min-height: 44px; }
 }
 
-/* quiz focus mode: on desktop the course content steps aside while a quiz runs, one click away */
-@media (min-width: 1101px) {
-  .lx-player.is-focus .lx-pbody {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .lx-player.is-focus .lx-ptop-content {
-    display: inline-flex;
-  }
-  .lx-player.is-focus .lx-pside {
-    position: fixed;
-    z-index: 80;
-    top: 56px;
-    right: 0;
-    bottom: 0;
-    width: 400px;
-    height: auto;
-    box-shadow: var(--lx-float);
-    transform: translateX(105%);
-    transition: transform 0.28s var(--lx-ease);
-    visibility: hidden;
-  }
-  .lx-player.is-focus .lx-pside.is-open {
-    transform: none;
-    visibility: visible;
-  }
-  .lx-player.is-focus .lx-pside-close {
-    display: grid;
-  }
-  .lx-player.is-focus .lx-pside-scrim {
-    display: block;
-    position: fixed;
-    inset: 56px 0 0;
-    z-index: 70;
-    background: rgba(15, 23, 42, 0.3);
-  }
-}
-
 /* read alongside the video: references and key notes under a lesson's video */
 .lx-refs {
   margin: 0 auto;

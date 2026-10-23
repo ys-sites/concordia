@@ -9,6 +9,7 @@ import { navigate } from '../router';
 import { useProgress } from '../progress/store';
 import { useCourseQuestions } from '../questions';
 import { QuizRunner } from '../quiz/QuizRunner';
+import { examLabel } from '../examLabel';
 import { MathText } from '../../utils/mathRenderer';
 import '../styles/bank.css';
 
@@ -150,7 +151,7 @@ export const QuestionBank: React.FC<{ course?: CourseId }> = ({ course: routeCou
               <button type="button" className="lx-bank-item" onClick={() => setRun({ ids: [x.id], title: 'One question' })}>
                 <span className="lx-bank-tags">
                   <span className={`lx-chip lx-lvl-chip lx-lvl-${x.level}`}>{LEVEL_LABEL[x.level]}</span>
-                  {x.pastPaper && <span className="lx-chip lx-chip--warn">{x.source ?? 'Past exam'}</span>}
+                  {x.pastPaper && <span className="lx-chip lx-chip--warn">{examLabel(typeof x.source === 'string' ? x.source : typeof x.pastPaper === 'string' ? x.pastPaper : undefined)}</span>}
                   {st?.seen ? <span className={`lx-chip ${st.last ? 'lx-chip--good' : 'lx-chip--bad'}`}>{st.last ? 'Right last time' : 'Missed last time'}</span> : null}
                 </span>
                 <span className="lx-bank-q">

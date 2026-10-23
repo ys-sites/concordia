@@ -392,6 +392,57 @@
   gap: 8px;
 }
 
+/* The video is a continuation of the worked solution, never a squeezed side-rail preview. */
+.lx-ans-video {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r-lg);
+  background: linear-gradient(135deg, var(--lx-surface) 0%, var(--lx-tint) 100%);
+}
+.lx-ans-video > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 20px;
+}
+.lx-ans-video > header p {
+  margin: 0;
+  max-width: 52rem;
+}
+.lx-ans-video-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--lx-ink);
+  font-weight: 850;
+}
+.lx-ans-video .lx-solvid-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+}
+.lx-ans-video .lx-solvid-thumb {
+  max-height: min(66vh, 620px);
+  border-radius: var(--lx-r-lg);
+}
+.lx-ans-video .lx-solvid-card > span:last-child {
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.lx-ans-video .lx-solvid-open {
+  gap: 12px;
+}
+.lx-ans-video .ec-video-container {
+  border-radius: var(--lx-r-lg);
+}
+
 @media (max-width: 900px) {
   .lx-ans {
     grid-template-columns: 1fr;
@@ -407,9 +458,35 @@
     width: 140px;
     flex: none;
   }
+  .lx-ans-video .lx-solvid-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .lx-ans-video .lx-solvid-thumb {
+    width: auto;
+  }
+  .lx-ans-video .lx-solvid-card > span:last-child {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 @media (max-width: 520px) {
   .lx-q-meter {
     display: none;
   }
+}
+
+/* the code stepper sits above the answer, full width */
+.lx-ans-code {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.lx-ans-code-title {
+  margin: 0;
+  font-family: var(--lx-font);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--lx-ink-2);
 }

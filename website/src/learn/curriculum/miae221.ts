@@ -312,7 +312,7 @@ export const MIAE221_SPEC: CourseSpec = {
     extra: [
       {
         id: 'teacher-practice',
-        title: "Teacher's sample midterm 2017",
+        title: 'Midterm practice by subject',
         subtitle: '40 questions from the official marking key, each with a video solution',
         lessons: [
           { id: 'tp-miller-planes', title: 'Miller indices: planes', summary: 'Q1–Q3.', steps: [{ kind: 'practice', title: 'Index the planes', slug: 'practice', questions: { teacher: /^Miller Indices/ }, ordered: true }] },
@@ -326,9 +326,9 @@ export const MIAE221_SPEC: CourseSpec = {
           { id: 'tp-tensile', title: 'Tensile test calculations', summary: 'Stress, strain and elongation by hand.', steps: [{ kind: 'practice', title: 'Do the calculations', slug: 'practice', questions: { teacher: /^Tensile Test Calculations$/ }, ordered: true }] },
           {
             id: 'tp-full-paper',
-            title: 'Sit the whole 2017 sample midterm',
-            summary: 'All 40 questions in paper order, timed like the real midterm, marked at the end.',
-            steps: [{ kind: 'exam', title: 'Timed paper (40 questions)', slug: 'exam', questions: { teacher: /./ }, ordered: true, timeLimit: 90 }]
+            title: 'Complete midterm subject bundle',
+            summary: 'All 40 midterm questions grouped by subject, with a timer, immediate feedback, and worked solutions.',
+            steps: [{ kind: 'exam', title: 'Complete midterm subject bundle (40 questions)', slug: 'exam', questions: { teacher: /./ }, ordered: false, timeLimit: 90 }]
           }
         ]
       },

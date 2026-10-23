@@ -154,6 +154,35 @@
   font-family: monospace;
 }
 
+/* Answer walkthroughs are deliberately easy to expand, even before hover reveals the controls. */
+.ec-fs-enter-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 21;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.86);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+.ec-fs-enter-badge:hover {
+  background: var(--lx-brand, #2563eb);
+  border-color: #fff;
+}
+.ec-fs-enter-badge:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
 /* Custom Controls Bar */
 .ec-custom-controls {
   position: absolute;

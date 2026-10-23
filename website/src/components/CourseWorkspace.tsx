@@ -30,7 +30,6 @@ import {
   AlertTriangle,
   Sparkles,
   Clapperboard,
-  Download,
   Printer
 } from 'lucide-react';
 import { audio } from '../utils/audio';
@@ -272,20 +271,6 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
             <Eye size={14} />
             <span>View</span>
           </button>
-          <a
-            className="fx-btn fx-btn-tab"
-            href={url}
-            download={doc.filename}
-            title={`Download ${doc.filename}`}
-            aria-label="Download file"
-            onClick={(e) => {
-              e.stopPropagation();
-              audio.playClick();
-            }}
-          >
-            <Download size={14} />
-            <span className="fx-btn-tab-text">Download</span>
-          </a>
           <a 
             className="fx-btn fx-btn-tab" 
             href={url} 
@@ -570,7 +555,7 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
                     {String(tree.folders.length).padStart(2, '0')}
                   </span>
                   <span className="fx-folder-name">Cheatsheet for the exam</span>
-                  <span className="fx-folder-meta">Official 1-Page Cheatsheet · Single-Sided · Easy Download</span>
+                  <span className="fx-folder-meta">Official 1-Page Cheatsheet · Single-Sided · Open in viewer</span>
                 </span>
                 <ChevronRight size={18} className="fx-folder-chevron" />
               </button>

@@ -4,7 +4,7 @@
  * Course files are published under URL-safe names (see vite.config.ts): every path segment keeps only
  * letters, digits, '.', '_' and '-'. Real names contain characters such as '&', ',', '+', '#' and '()'
  * that static hosts decode inconsistently (Vercel reads '+' as a space; '#' starts a fragment), which
- * made some PDFs fail to load. Downloads still use the original file name via the `download` attribute.
+ * made some PDFs fail to load. Course materials are deliberately opened in the viewer or a new tab, never downloaded from the portal UI.
  */
 export const slugSegment = (name: string): string =>
   name

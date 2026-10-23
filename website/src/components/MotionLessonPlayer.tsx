@@ -35,6 +35,7 @@ interface MotionLessonPlayerProps {
   onEnded?: () => void;
   onFallback?: () => void;
   bare?: boolean; // no header or disclosure: the page around the player shows them
+  alwaysShowFullscreen?: boolean; // keeps an explicit control visible for embedded answer videos
 }
 
 export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
@@ -45,7 +46,8 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   onProgress,
   onEnded,
   onFallback,
-  bare = false
+  bare = false,
+  alwaysShowFullscreen = false
 }) => {
   const lastReport = useRef(0);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -506,6 +508,19 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
             <X size={15} />
             <span>Exit Fullscreen</span>
             <kbd>ESC</kbd>
+          </button>
+        )}
+
+        {alwaysShowFullscreen && !isFullscreen && (
+          <button
+            type="button"
+            className="ec-fs-enter-badge"
+            onClick={toggleFullscreen}
+            title="Fullscreen"
+            aria-label="Open video in fullscreen"
+          >
+            <Maximize size={16} />
+            <span>Full screen</span>
           </button>
         )}
 

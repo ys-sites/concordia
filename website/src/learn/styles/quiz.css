@@ -59,6 +59,36 @@
   gap: 10px;
 }
 
+/* A compact, date-free assessment header. The global course dropdown stays unchanged. */
+.lx-exam-context {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 42px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--lx-tint-2);
+  border-left: 4px solid var(--lx-accent);
+  background: var(--lx-tint);
+  color: var(--lx-accent-deep);
+  font-size: 13px;
+  line-height: 1.25;
+}
+.lx-exam-context span {
+  font-weight: 650;
+}
+.lx-exam-context strong {
+  color: var(--lx-accent-deep);
+  font-size: 15px;
+}
+@media (max-width: 620px) {
+  .lx-exam-context {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+}
+
 /* bar */
 .lx-timer {
   display: inline-flex;

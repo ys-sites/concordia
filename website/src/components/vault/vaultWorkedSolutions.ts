@@ -208,7 +208,7 @@ export const VAULT_WORKED_SOLUTIONS: Record<string, DetailedWorkedSolution> = {
       {
         title: 'Step 4: Verify the solution',
         math: String.raw`\begin{aligned} &\text{Since } y = 3 \text{ is constant: } y' = 0 \\ &\text{Substitute into original equation: } 0 = (3)^2 - 4(3) + 3 \\ &0 = 9 - 12 + 3 \\ &\boxed{0 = 0} \quad \checkmark \end{aligned}`,
-        explanation: 'Since $y = 3$ is constant, $y\' = 0$. Substituting into the original equation gives $0 = (3)^2 - 4(3) + 3 = 9 - 12 + 3 \implies 0 = 0 \\checkmark$. The initial condition is also satisfied, and the equation has a unique solution through $y(0) = 3$.'
+        explanation: String.raw`Since $y = 3$ is constant, $y' = 0$. Substitute this into the original equation one arithmetic operation at a time: $0 = (3)^2 - 4(3) + 3 = 9 - 12 + 3 \implies 0 = 0 \checkmark$. The initial condition is satisfied, so $y(x) = 3$ is the required solution.`
       }
     ],
     finalAnswer: String.raw`y(x) = 3`,

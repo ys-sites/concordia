@@ -23,7 +23,6 @@ import {
   ListChecks,
   Shuffle,
   Zap,
-  Download,
   Printer,
   Clapperboard
 } from 'lucide-react';
@@ -446,7 +445,7 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
             <div className="tp-info-card" style={{ marginTop: '1.25rem', border: '1.5px solid var(--accent)' }}>
               <div className="tp-card-header">
                 <Sparkles size={18} style={{ color: course.accentHex }} />
-                <h3>Official 1-Page Exam Cheatsheet &amp; Memory Aide (Visible &amp; Downloadable)</h3>
+                <h3>Official 1-Page Exam Cheatsheet &amp; Memory Aide</h3>
               </div>
               <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: '4px 0 12px' }}>
                 {course.id === 'MIAE215'
@@ -460,11 +459,12 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
                   href={getPdfUrl(course.id === 'MIAE215'
                     ? 'Miae 215/03 - 1-Page Rapid Review Sheets/MIAE 215 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf'
                     : 'Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Document Cheatsheet & Exam Survival Guide.pdf')}
-                  download={course.id === 'MIAE215' ? 'MIAE 215 Midterm Cheatsheet.pdf' : 'MIAE 221 Midterm Cheatsheet.pdf'}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => audio.playClick()}
                 >
-                  <Download size={16} />
-                  <span>Download PDF Cheatsheet</span>
+                  <ExternalLink size={16} />
+                  <span>Open PDF Cheatsheet</span>
                 </a>
                 <a
                   className="tp-btn-secondary"
@@ -524,11 +524,12 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
                     <a
                       className="tp-btn-secondary"
                       href={getPdfUrl(blueprint.practiceFiles.find((f) => f.id === '221-recent-post2020-archive')!.relativePath)}
-                      download="MIAE 221 - Recent Post-2020 Midterm Exam Archive & Multi-Instructor Solutions Guide (2021-2026).pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => audio.playClick()}
                     >
-                      <Download size={15} />
-                      <span>Download Archive</span>
+                      <ExternalLink size={15} />
+                      <span>Open Archive</span>
                     </a>
                   )}
                 </div>
@@ -586,16 +587,6 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
                           <Eye size={16} />
                           <span>Preview PDF</span>
                         </button>
-                        <a
-                          className="tp-btn-secondary"
-                          href={url}
-                          download={file.filename}
-                          title={`Download ${file.filename}`}
-                          onClick={() => audio.playClick()}
-                        >
-                          <Download size={14} />
-                          <span>Download</span>
-                        </a>
                         {file.badge === '1-Page Memory Aide' && (
                           <a
                             className="tp-btn-secondary"

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
 import { AlertTriangle, BookOpen, ChevronDown, Clapperboard, ExternalLink, FileText, Lightbulb, ListOrdered, PlayCircle, Search } from 'lucide-react';
 import type { DocRef, LearnQuestion } from '../model';
 import type { MotionLesson } from '../videoSources';
@@ -18,6 +18,8 @@ import { saveVideoPosition, useProgress } from '../progress/store';
 //   main column   where your answer went wrong · the idea · the solution one small move at a time · the trap
 //   side column   from the course: the teacher's slide at the right page, the lesson and its guides, the video
 const LETTER = 'ABCDEFGH';
+// the C++ stepper loads only with a question that has code
+const CodeStepper = lazy(() => import('../cpp/CodeStepper').then((m) => ({ default: m.CodeStepper })));
 
 // ── baby steps: every worked step is split at its "⇒" and line breaks, so each reveal is one move ──
 interface Move {
@@ -27,11 +29,18 @@ interface Move {
   text?: string;
   note?: string;
 }
-const splitMath = (tex: string) =>
-  tex
+const STRUCTURED_MATH_ENVIRONMENT = /\\begin\{(?:aligned|align\*?|gathered|cases|matrix|pmatrix|bmatrix|vmatrix|Vmatrix|smallmatrix|array|split)\}/;
+
+const splitMath = (tex: string) => {
+  const clean = tex.trim();
+  // An aligned/cases block is already a carefully structured sequence. Splitting it on its
+  // internal line breaks leaves fragments such as "\\begin{aligned}" for KaTeX to render.
+  if (STRUCTURED_MATH_ENVIRONMENT.test(clean)) return [clean];
+  return clean
     .split(/\\\\|\\(?:quad|;|qquad)?\s*\\(?:Rightarrow|implies|Longrightarrow)\s*(?:\\(?:quad|;|qquad))?/)
     .map((x) => x.trim())
     .filter((x) => x && x !== '&');
+};
 
 export const babySteps = (q: LearnQuestion): Move[] => {
   const e = q.explain;
@@ -64,7 +73,7 @@ export const SolutionVideo: React.FC<{ videoId: string }> = ({ videoId }) => {
   const mmss = `${Math.floor(lesson.duration / 60)}:${String(Math.round(lesson.duration % 60)).padStart(2, '0')}`;
   return open ? (
     <div className="lx-solvid-open">
-      <MotionLessonPlayer lesson={lesson} bare startAt={pos?.t} onProgress={(t, d) => saveVideoPosition(videoId, t, d)} />
+      <MotionLessonPlayer lesson={lesson} bare alwaysShowFullscreen startAt={pos?.t} onProgress={(t, d) => saveVideoPosition(videoId, t, d)} />
       <button type="button" className="lx-btn lx-btn--ghost lx-btn--sm" onClick={() => setOpen(false)}>
         Hide the video
       </button>
@@ -198,7 +207,6 @@ const CourseDocs: React.FC<{ q: LearnQuestion; yourAnswer?: string }> = ({ q, yo
           <ExternalLink size={14} aria-hidden />
         </button>
       ))}
-      {q.videoId && <SolutionVideo videoId={q.videoId} />}
       {found.lesson && (
         <a className="lx-ans-lesson" href={href({ name: 'learn', course: q.courseId, lesson: found.lesson.id, step: found.lesson.stepId })}>
           <span className="lx-meta">Review the lesson</span>
@@ -228,6 +236,15 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
   const wrongIdx = chosen && correct === false ? chosen.find((i) => !q.correct.includes(i)) : undefined;
   const wrongNote = wrongIdx !== undefined ? e.whyWrong?.[wrongIdx] : undefined;
   return (
+    <>
+    {q.code && q.courseId === 'MIAE215' && (
+      <section className="lx-ans-code">
+        <h4 className="lx-ans-code-title">Step through the code</h4>
+        <Suspense fallback={<div className="lx-quiz-loading" aria-busy="true"><span className="lx-spinner" /> Loading the code stepper…</div>}>
+          <CodeStepper code={q.code} questionId={q.id} prompt={q.prompt} />
+        </Suspense>
+      </section>
+    )}
     <div className="lx-ans">
       <div className="lx-ans-main">
         {wrongNote && (
@@ -281,5 +298,17 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
       </div>
       <CourseDocs q={q} yourAnswer={yourAnswer} />
     </div>
+    {q.videoId && (
+      <section className="lx-ans-video" aria-label="Video solution">
+        <header>
+          <span className="lx-ans-video-kicker">
+            <Clapperboard size={17} aria-hidden /> Watch the full walkthrough
+          </span>
+          <p className="lx-meta">The narrated solution stays with the written steps, while your course files remain available beside them.</p>
+        </header>
+        <SolutionVideo videoId={q.videoId} />
+      </section>
+    )}
+    </>
   );
 };

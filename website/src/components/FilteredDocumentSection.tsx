@@ -25,8 +25,7 @@ import {
   Sparkles,
   Calendar,
   Award,
-  Clock,
-  Download
+  Clock
 } from 'lucide-react';
 import { audio } from '../utils/audio';
 import { getPdfUrl } from '../utils/pdfUrl';
@@ -757,20 +756,6 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                     <a
                       className="fx-btn fx-btn-tab"
                       href={url}
-                      download={doc.filename}
-                      title={`Download ${doc.filename}`}
-                      aria-label="Download file"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        audio.playClick();
-                      }}
-                    >
-                      <Download size={14} />
-                      <span className="fx-btn-tab-text">Download</span>
-                    </a>
-                    <a
-                      className="fx-btn fx-btn-tab"
-                      href={url}
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Open PDF directly in a new window / tab"
@@ -882,20 +867,6 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                     <Eye size={14} />
                     <span>View</span>
                   </button>
-                  <a
-                    className="fx-btn fx-btn-tab"
-                    href={url}
-                    download={doc.filename}
-                    title={`Download ${doc.filename}`}
-                    aria-label="Download file"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      audio.playClick();
-                    }}
-                  >
-                    <Download size={14} />
-                    <span className="fx-btn-tab-text">Download</span>
-                  </a>
                   <a
                     className="fx-btn fx-btn-tab"
                     href={url}

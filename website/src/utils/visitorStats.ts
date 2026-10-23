@@ -1,6 +1,6 @@
 /**
  * Live site activity, counted in people (devices), not page loads (see api/visitors.js):
- *   live   people with the site open right now (a browser with several tabs is one person)
+ *   live   people with the site open right now who have been counted today (a browser with several tabs is one person)
  *   today  people who opened the site today, Montreal time (refreshing never adds)
  *   total  visits: one per person per day (coming back on another day is another visit)
  *
@@ -81,14 +81,17 @@ function readSeen(): Seen | null {
 export function getLastSeenStats(): LiveVisitorData | null {
   const s = readSeen();
   if (!s) return null;
-  return { live: 1, total: s.total, today: s.date === montrealDate() ? s.today : 0, configured: true };
+  const isToday = s.date === montrealDate();
+  return { live: isToday ? Math.min(1, s.today) : 0, total: s.total, today: isToday ? s.today : 0, configured: true };
 }
 
 let last: LiveVisitorData | null = null;
 
 export async function pingAndGetStats(isHeartbeat = false): Promise<LiveVisitorData | null> {
   const day = montrealDate();
-  const visit = !isHeartbeat && store.get(COUNTED_KEY) !== day;
+  // A tab that remains open across midnight needs its first heartbeat of the new
+  // day counted too; otherwise it could be live without appearing in Today.
+  const visit = store.get(COUNTED_KEY) !== day;
   try {
     // the local preview only reads the live counts (proxied to the live site by vite.config.ts)
     const res = import.meta.env.DEV
@@ -112,7 +115,9 @@ export async function pingAndGetStats(isHeartbeat = false): Promise<LiveVisitorD
         date
       };
       store.set(SEEN_KEY, JSON.stringify(next));
-      last = { live: Math.max(1, data.live || 1), today: Math.max(next.today, 1), total: Math.max(next.total, 1), configured: Boolean(data.configured) };
+      const todayCount = Math.max(next.today, 1);
+      const liveCount = Math.max(0, Number(data.live) || 0);
+      last = { live: Math.min(liveCount, todayCount), today: todayCount, total: Math.max(next.total, 1), configured: Boolean(data.configured) };
       return last;
     }
   } catch {

@@ -70,7 +70,7 @@ export const TopBar: React.FC<{ route: Route; onPractice: () => void }> = ({ rou
             My learning
             {run > 0 && (
               <span className="lx-streak" title={`${run}-day study streak`}>
-                <Flame size={14} aria-hidden /> {run}
+                <Flame size={14} fill="currentColor" strokeWidth={2.25} aria-hidden /> {run}
               </span>
             )}
           </a>

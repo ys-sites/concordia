@@ -12,11 +12,13 @@ import { MathText } from '../../utils/mathRenderer';
 import '../styles/quiz.css';
 import { scoreBucket, trackStudy, trackStudyOnce } from '../analytics';
 import { boundedPracticeSize, practiceSizeVariant } from '../experiments';
+import { COURSE_BY_ID } from '../courses';
+import { examLabel } from '../examLabel';
 
 // One quiz engine for every question in the site.
 //   check     a few questions, instant feedback (in a lesson)
 //   practice  a set drawn from the lesson's pool, feedback after each question
-//   exam      timed, answers revealed only at the end; past papers keep the paper's order
+//   exam      timed practice with immediate feedback and worked solutions
 // The session lives in the progress store, so a reload returns to the same question with the same answers.
 type Mode = QuizSession['mode'];
 
@@ -55,7 +57,9 @@ const QuestionNav: React.FC<{
   remaining: number | null;
   onGo: (i: number) => void;
   onNext: () => void;
-}> = ({ session, total, mode, exam, remaining, onGo, onNext }) => {
+  nextLabel: string;
+  nextDisabled?: boolean;
+}> = ({ session, total, mode, exam, remaining, onGo, onNext, nextLabel, nextDisabled = false }) => {
   const strip = useRef<HTMLDivElement>(null);
   // keep the current pill in view inside the strip (never scrolls the page)
   useEffect(() => {
@@ -98,8 +102,8 @@ const QuestionNav: React.FC<{
             );
           })}
         </div>
-        <button type="button" className="lx-qnav-step" onClick={onNext} aria-label="Next question">
-          <span>Next</span> <ArrowRight size={16} />
+        <button type="button" className="lx-qnav-step" onClick={onNext} disabled={nextDisabled} aria-label={nextLabel === 'Submit answer' ? 'Submit answer' : 'Next question'}>
+          <span>{nextLabel}</span> {nextLabel === 'Submit answer' ? <CheckCircle2 size={16} /> : <ArrowRight size={16} />}
         </button>
       </div>
       <div className="lx-qnav-meta lx-meta lx-num">
@@ -347,7 +351,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
     if (checkedNow !== undefined) nextBtn.current?.focus({ preventScroll: true });
   }, [checkedNow, session?.i]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Enter checks or moves on (when focus is not in a text field, which handles its own Enter)
+  // Enter submits an answer first; it can only move on after the result is visible.
   useEffect(() => {
     if (!session || session.finished) return;
     const onKey = (e: KeyboardEvent) => {
@@ -355,8 +359,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
       const id = session.order[session.i];
       const q = qs(id);
       if (!q) return;
-      if (session.mode !== 'exam' && session.checked[id] === undefined && isAnswered(q, session.answers[id])) check(id);
-      else if (session.checked[id] !== undefined || session.mode === 'exam') next();
+      if (session.checked[id] === undefined && isAnswered(q, session.answers[id])) check(id);
+      else if (session.checked[id] !== undefined) next();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -390,7 +394,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
             : step.kind === 'practice'
               ? `${setSize} questions from a pool of ${available.length}, the ones you have not mastered first. Feedback and a worked solution after each.`
               : step.timeLimit
-                ? `${setSize} questions${step.ordered ? ' in the paper’s order' : ''}. Sit them timed like the real exam and see everything at the end, or practise them with feedback after each.`
+                ? `${setSize} questions${step.ordered ? ' in course order' : ''}. Submit each answer to see the result and worked solution immediately; the timer stays on while you practise.`
                 : `${available.length} real past exam questions on this topic, with the worked solution${available.some((id) => idx.byId.get(id)?.videoId) ? ' and a video' : ''} after each.`}
         </p>
         <ul className="lx-quiz-facts lx-num">
@@ -453,7 +457,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
                 <Timer size={18} /> Start timed ({step.timeLimit} min)
               </button>
               <button type="button" className="lx-btn lx-btn--lg" onClick={() => start('practice')}>
-                <Play size={18} /> Practise with feedback
+                <Play size={18} /> Practise without a timer
               </button>
             </>
           ) : (
@@ -628,7 +632,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   const q = qs(id);
   const exam = session.mode === 'exam';
   const result = session.checked[id];
-  const shown = session.revealed.includes(id); // the student asked for the answer (exam questions open up too)
+  const shown = session.revealed.includes(id);
   const answered = q ? isAnswered(q, session.answers[id]) : false;
   const ad = session.adaptive;
   const adaptiveMore = !!ad && session.order.length < ad.size && !!pickAdaptive(ad.pool, session.order, ad.level);
@@ -680,14 +684,29 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
 
   return (
     <div className={`lx-quiz${exam ? ' is-exam' : ''}`}>
+      {q?.pastPaper && (
+        <div className="lx-exam-context" aria-label="Exam context">
+          <span>{COURSE_BY_ID[course].code} · {COURSE_BY_ID[course].title}</span>
+          <strong>{examLabel(typeof q.source === 'string' ? q.source : typeof q.pastPaper === 'string' ? q.pastPaper : undefined)}</strong>
+        </div>
+      )}
       <QuestionNav
         session={session}
         total={ad?.size ?? session.order.length}
-        mode={exam ? 'Timed exam · answers at the end' : session.mode === 'check' ? 'Quick check' : ad ? `Building up · level ${ad.level} of 3` : session.only ? `Practice · ${LEVEL_LABEL[session.only].toLowerCase()} only` : 'Practice'}
+        mode={exam ? 'Timed practice · feedback after each answer' : session.mode === 'check' ? 'Quick check' : ad ? `Building up · level ${ad.level} of 3` : session.only ? `Practice · ${LEVEL_LABEL[session.only].toLowerCase()} only` : 'Practice'}
         exam={exam}
         remaining={remaining}
-        onGo={(n) => patch((ss) => void (ss.i = n))}
-        onNext={next}
+        onGo={(n) => {
+          // A later question cannot be reached until the current answer is submitted.
+          if (n <= session.i || result !== undefined) patch((ss) => void (ss.i = n));
+        }}
+        onNext={() => {
+          if (!q) return;
+          if (result !== undefined) next();
+          else if (q.kind !== 'self' && answered) check(id);
+        }}
+        nextLabel={result !== undefined ? 'Next' : 'Submit answer'}
+        nextDisabled={result === undefined && (!answered || q?.kind === 'self')}
       />
 
       {q ? (
@@ -696,15 +715,15 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
           q={q}
           index={session.i}
           total={ad?.size ?? session.order.length}
-          examMode={exam && !shown}
+          examMode={false}
           optionOrder={session.optionOrder[id]}
           answer={session.answers[id]}
-          result={exam && !shown ? undefined : result}
+          result={result}
           revealed={session.revealed.includes(id)}
           flagged={session.flags.includes(id)}
           confidence={session.confidence[id]}
           hintShown={session.hints.includes(id)}
-          locked={(!exam || shown) && result !== undefined}
+          locked={result !== undefined}
           onAnswer={(a) => patch((ss) => void (ss.answers[id] = a))}
           onCheck={() => check(id)}
           onFlag={() => {
@@ -738,31 +757,11 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
             <Eye size={16} /> Show answer
           </button>
         )}
-        {exam && !(shown && result !== undefined) ? (
-          last ? (
-            <button
-              type="button"
-              className="lx-btn lx-btn--primary"
-              onClick={() => {
-                const unanswered = session.order.filter((x) => session.answers[x] === undefined).length;
-                if (!unanswered || window.confirm(`${unanswered} question${unanswered > 1 ? 's are' : ' is'} unanswered. Submit anyway?`)) finish({ ...session, elapsed: elapsedRef.current });
-              }}
-            >
-              Submit the exam <CheckCircle2 size={17} />
-            </button>
-          ) : (
-            <button type="button" className="lx-btn lx-btn--primary" onClick={next}>
-              Next <ArrowRight size={17} />
-            </button>
-          )
-        ) : result === undefined ? (
+        {result === undefined ? (
           <>
-            <button type="button" className="lx-btn lx-btn--ghost" onClick={next} title="Skip this question for now">
-              Skip
-            </button>
             {q?.kind !== 'self' && (
               <button type="button" className="lx-btn lx-btn--primary" disabled={!answered} onClick={() => check(id)}>
-                Check answer
+                Submit answer <CheckCircle2 size={17} />
               </button>
             )}
           </>

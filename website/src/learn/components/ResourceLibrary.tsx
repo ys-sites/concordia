@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowLeft, BookOpen, ChevronRight, Download, FileCheck2, FileText, Folder, GraduationCap, Layers, Library, PencilRuler, Rocket, Search, X } from 'lucide-react';
+import { ArrowLeft, BookOpen, ChevronRight, ExternalLink, FileCheck2, FileText, Folder, GraduationCap, Layers, Library, PencilRuler, Rocket, Search, X } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { Curriculum, DocRef } from '../model';
 import { COURSE_BY_ID } from '../courses';
@@ -98,9 +98,9 @@ export const ResourceLibrary: React.FC<{ cur: Curriculum; folder?: string }> = (
             {lessons.length > 3 && <span className="lx-meta">+{lessons.length - 3}</span>}
           </span>
         )}
-        <a className="lx-icon-btn" href={getPdfUrl(f.path)} download title="Download">
-          <Download size={17} />
-          <span className="lx-sr">Download {f.title}</span>
+        <a className="lx-icon-btn" href={getPdfUrl(f.path)} target="_blank" rel="noreferrer" title="Open in a new tab">
+          <ExternalLink size={17} />
+          <span className="lx-sr">Open {f.title} in a new tab</span>
         </a>
       </li>
     );

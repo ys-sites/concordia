@@ -202,7 +202,7 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
   const lessonDocs = [...new Map([...lesson.steps.flatMap((s) => s.docs ?? []), ...(lesson.resources ?? [])].map((d) => [d.path + (d.page ?? ''), d])).values()];
 
   return (
-    <div className={`lx-player ${courseClass(course)}${quiz ? " is-focus" : ""}`}>
+    <div className={`lx-player ${courseClass(course)}`}>
       <header className="lx-ptop">
         <a className="lx-ptop-brand" href={href({ name: 'course', course, tab: 'overview' })} aria-label={`Back to ${c.code}`}>
           <BrandMark size={30} />
@@ -320,9 +320,9 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
 
           {(step.kind === 'video' || step.kind === 'extra') && <LessonReferences course={course} step={step} />}
 
-          {/* a quiz is its own page: no lesson tabs or step survey under it (report a question from its header) */}
-          {!quiz && (
-            <>
+          {/* Checks, practice and worked answers stay inside the lesson frame so the course sequence and files are
+              available exactly where the student needs them. */}
+          <>
           <section className="lx-step-feedback" aria-label="Step feedback">
             <span>
               <strong>Was this step helpful?</strong>
@@ -429,8 +429,7 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
                 <p className="lx-empty">No extra documents for this lesson. The course’s full library is in the Resources tab of the course page.</p>
               ))}
           </div>
-            </>
-          )}
+          </>
         </main>
 
         <aside className={`lx-pside${drawer ? ' is-open' : ''}`} aria-label="Course content">
