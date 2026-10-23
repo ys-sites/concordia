@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { ArrowRight, Brain, Clock3, FileText, Flame, Info, ListChecks, PlayCircle, RotateCcw, ShieldCheck, Sparkles } from 'lucide-react';
 import ShinyText from '../../components/reactbits/ShinyText';
 import CountUp from '../../components/reactbits/CountUp';
@@ -6,7 +6,7 @@ import type { CourseId } from '../../types';
 import { COURSES, COURSE_BY_ID, courseClass } from '../courses';
 import { SUMMARY, courseProgress, fmtHours, nextStep, useCurricula } from '../data';
 import { href } from '../router';
-import { streak, useProgress } from '../progress/store';
+import { streak, useProgress, type ProgressState } from '../progress/store';
 import { CourseCover } from '../components/CourseCover';
 import { dueForReview, suggestions } from '../progress/insights';
 import { nextExam, useReminders } from '../reminders';
@@ -46,6 +46,52 @@ const CourseCard: React.FC<{ id: CourseId; pct: number | null; lessonsDone: numb
         )}
       </div>
     </a>
+  );
+};
+
+const StudyLaunchpad: React.FC<{
+  curricula: NonNullable<ReturnType<typeof useCurricula>>;
+  done: Record<string, number>;
+  lastByCourse: ProgressState['lastByCourse'];
+  preferred: CourseId;
+}> = ({ curricula, done, lastByCourse, preferred }) => {
+  const [selected, setSelected] = useState<CourseId>(preferred);
+  const course = COURSE_BY_ID[selected];
+  const cur = curricula[selected];
+  const progress = courseProgress(cur, done);
+  const next = nextStep(cur, done, lastByCourse[selected]?.stepId);
+  const started = progress.done > 0 || !!lastByCourse[selected];
+  const destination = next ? href({ name: 'learn', course: selected, lesson: next.lesson.id, step: next.step.id }) : href({ name: 'course', course: selected, tab: 'overview' });
+
+  return (
+    <section className={`lx-launchpad ${courseClass(selected)}`} aria-labelledby="launchpad-title">
+      <div className="lx-launchpad-copy">
+        <span className="lx-launchpad-eyebrow">Study launchpad</span>
+        <h2 id="launchpad-title" className="lx-h2">Choose one focused next step.</h2>
+        <p>Pick a course, continue its best next lesson, or switch straight into a targeted practice drill.</p>
+      </div>
+      <div className="lx-launchpad-main">
+        <div className="lx-launchpad-courses" role="group" aria-label="Choose a course">
+          {COURSES.map((item) => (
+            <button key={item.id} type="button" className={selected === item.id ? 'is-selected' : ''} aria-pressed={selected === item.id} onClick={() => setSelected(item.id)}>
+              <span>{item.code}</span>
+              <small>{item.short}</small>
+            </button>
+          ))}
+        </div>
+        <div className="lx-launchpad-action">
+          <div>
+            <span className="lx-meta">{started ? 'Next up' : 'Start here'} · {course.code}</span>
+            <strong>{next ? `${next.lesson.title} — ${next.step.title}` : 'Explore the course overview'}</strong>
+            <span className="lx-launchpad-progress"><span aria-hidden><i style={{ width: `${progress.pct}%` }} /></span>{progress.pct}% complete</span>
+          </div>
+          <div className="lx-launchpad-actions">
+            <a className="lx-btn lx-btn--accent" href={destination}>{started ? 'Resume lesson' : 'Start course'} <ArrowRight size={16} /></a>
+            <a className="lx-btn" href={href({ name: 'practice', course: selected })}>Practice {course.code}</a>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -178,6 +224,7 @@ export const Home: React.FC = () => {
       </section>
 
       <div className="lx-wrap">
+        {curricula && <StudyLaunchpad curricula={curricula} done={done} lastByCourse={lastByCourse} preferred={last?.course ?? startedCourses[0]?.id ?? COURSES[0].id} />}
         <ComingUp />
 
         {curricula && startedCourses.length > 0 && (

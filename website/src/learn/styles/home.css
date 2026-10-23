@@ -105,6 +105,127 @@ a:hover .lx-cover--generated img {
 .lx-home-section {
   margin-top: 44px;
 }
+
+/* A fast first decision keeps the homepage useful for both a returning student and a new visitor. */
+.lx-launchpad {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.78fr) minmax(0, 1.5fr);
+  gap: 24px;
+  margin-top: 28px;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--lx-tint), var(--lx-surface) 64%);
+  border: 1px solid var(--lx-tint-2);
+  border-radius: var(--lx-r-lg);
+}
+.lx-launchpad-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+}
+.lx-launchpad-eyebrow {
+  color: var(--lx-accent-deep);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lx-launchpad-copy p {
+  color: var(--lx-ink-2);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.lx-launchpad-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lx-launchpad-courses {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.lx-launchpad-courses button {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 10px;
+  border: 1px solid var(--lx-line-strong);
+  border-radius: var(--lx-r);
+  background: var(--lx-surface);
+  color: var(--lx-ink-2);
+  text-align: left;
+  cursor: pointer;
+}
+.lx-launchpad-courses button:hover,
+.lx-launchpad-courses button.is-selected {
+  border-color: var(--lx-accent);
+  background: var(--lx-tint);
+  color: var(--lx-accent-deep);
+}
+.lx-launchpad-courses button span {
+  font-size: 13px;
+  font-weight: 850;
+}
+.lx-launchpad-courses button small {
+  overflow: hidden;
+  color: inherit;
+  font-size: 11px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lx-launchpad-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r);
+  background: rgba(255, 255, 255, 0.84);
+}
+.lx-launchpad-action > div:first-child {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+.lx-launchpad-action strong {
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lx-launchpad-progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  color: var(--lx-muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.lx-launchpad-progress > span {
+  width: 86px;
+  height: 5px;
+  overflow: hidden;
+  border-radius: var(--lx-pill);
+  background: var(--lx-surface-3);
+}
+.lx-launchpad-progress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--lx-accent);
+}
+.lx-launchpad-actions {
+  display: flex;
+  flex: none;
+  gap: 8px;
+}
 .lx-home-section > .lx-h2 {
   margin-bottom: 16px;
 }
@@ -260,6 +381,29 @@ a:hover .lx-cover--generated img {
   }
 }
 @media (max-width: 640px) {
+  .lx-launchpad {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 20px;
+    padding: 18px;
+  }
+  .lx-launchpad-courses {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .lx-launchpad-action {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .lx-launchpad-action strong {
+    white-space: normal;
+  }
+  .lx-launchpad-actions {
+    width: 100%;
+  }
+  .lx-launchpad-actions .lx-btn {
+    flex: 1;
+    padding: 0 10px;
+  }
   .lx-home-hero-inner {
     padding-top: 24px;
     padding-bottom: 24px;
