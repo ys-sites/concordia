@@ -6,6 +6,7 @@ import { COURSES, courseClass } from '../courses';
 import { href, navigate, Route } from '../router';
 import { streak, useProgress } from '../progress/store';
 import { TopSearch } from '../search/SearchBox';
+import { QuickJump } from '../components/QuickJump';
 import './shell.css';
 import '../components/practicePicker.css';
 
@@ -62,6 +63,7 @@ export const TopBar: React.FC<{ route: Route; onPractice: () => void }> = ({ rou
           <CoursesMenu />
         </nav>
         <TopSearch initial={route.name === 'search' ? route.q : ''} live={route.name === 'search'} />
+        <QuickJump onPractice={onPractice} />
         <nav className="lx-top-nav lx-top-right" aria-label="Your learning">
           <button type="button" className="lx-top-link lx-top-practice" onClick={onPractice}>
             <Brain size={16} aria-hidden /> Start a practice drill
