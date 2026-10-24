@@ -2701,9 +2701,16 @@ const content: GateContent = {
    "n": 1,
    "topic": "config",
    "kind": "concept",
-   "q": "Classify six electron configurations as inert gas, halogen, alkali, alkaline earth or transition metal.",
-   "ans": "See the solved Tutorial 1 guide",
-   "status": "key"
+   "q": "Which of the following electron configurations is correctly matched with its periodic group classification?",
+   "opts": [
+    "$1s^2 2s^2 2p^6 3s^2 3p^6 3d^7 4s^2$ → Transition metal; $1s^2 2s^2 2p^5$ → Halogen",
+    "$1s^2 2s^2 2p^6 3s^2 3p^6$ → Alkali metal; $1s^2 2s^2 2p^6 3s^2$ → Halogen",
+    "$1s^2 2s^2 2p^6 3s^2 3p^6 4s^1$ → Alkaline earth metal; $1s^2 2s^2 2p^5$ → Inert gas",
+    "$1s^2 2s^2 2p^6 3s^2$ → Transition metal; $1s^2 2s^2 2p^6 3s^2 3p^6 3d^2 4s^2$ → Alkali metal"
+   ],
+   "ans": "a",
+   "status": "verified",
+   "note": "Elements with partially filled inner d-orbitals ($3d^7 4s^2$) are transition metals (Co, $Z=27$). Elements with $ns^2 np^5$ valence shells lack 1 electron for an octet, classifying them as halogens (F, $Z=9$)."
   },
   {
    "id": "PPS1-2",
@@ -2711,9 +2718,16 @@ const content: GateContent = {
    "n": 2,
    "topic": "bonding",
    "kind": "calc",
-   "q": "Bond type of brass, TiO₂, diamond, ZnTe, rubber, H₂O, Xe, bronze, nylon, CaCl₂; %IC where ionic + covalent.",
-   "ans": "See the solved Tutorial 1 guide",
-   "status": "key",
+   "q": "Using Pauling's formula $\\%\\text{IC} = [1 - \\exp(-0.25(\\Delta X)^2)] \\times 100\\%$, what is the dominant bond type and % ionic character of $\\text{TiO}_2$ ($X_{\\text{Ti}} = 1.5, X_{\\text{O}} = 3.5$) and diamond ($C$)?",
+   "opts": [
+    "$\\text{TiO}_2$: mixed (63.2% ionic); Diamond: pure covalent (0% ionic)",
+    "$\\text{TiO}_2$: pure covalent (0% ionic); Diamond: metallic",
+    "$\\text{TiO}_2$: metallic alloy; Diamond: mixed (63.2% ionic)",
+    "$\\text{TiO}_2$: 36.8% ionic; Diamond: 50% covalent"
+   ],
+   "ans": "a",
+   "status": "verified",
+   "note": "For $\\text{TiO}_2$, $\\Delta X = 3.5 - 1.5 = 2.0 \\implies \\%\\text{IC} = 1 - e^{-0.25(4)} = 1 - e^{-1} = 63.2\\%$ (predominantly ionic). Diamond has $\\Delta X = 0 \\implies 0\\%$ ionic (100% covalent).",
    "f": [
     "ionic"
    ]
@@ -2724,9 +2738,16 @@ const content: GateContent = {
    "n": 3,
    "topic": "bondcurve",
    "kind": "calc",
-   "q": "K⁺–Cl⁻: $E_A = -1.436/r$, $E_R = 5.8\\times10^{-6}/r^9$ (eV, nm). Find $r_0$ and $E_0$.",
-   "ans": "$r_0 = 0.279$ nm, $E_0 = -4.58$ eV",
+   "q": "For a $\\text{K}^+–\\text{Cl}^-$ ion pair where $E_A(r) = -1.436/r$ and $E_R(r) = 5.8\\times10^{-6}/r^9$ (eV, nm), calculate the equilibrium spacing $r_0$ and bond energy $E_0$.",
+   "opts": [
+    "$r_0 = 0.279\\text{ nm},\\; E_0 = -4.58\\text{ eV}$",
+    "$r_0 = 0.140\\text{ nm},\\; E_0 = -9.16\\text{ eV}$",
+    "$r_0 = 0.558\\text{ nm},\\; E_0 = -2.29\\text{ eV}$",
+    "$r_0 = 0.279\\text{ nm},\\; E_0 = +4.58\\text{ eV}$"
+   ],
+   "ans": "a",
    "status": "verified",
+   "note": "$dE_N/dr = 1.436/r^2 - 5.22\\times10^{-5}/r^{10} = 0 \\implies r_0^8 = 3.635\\times10^{-5} \\implies r_0 = 0.2789\\text{ nm} \\approx 0.279\\text{ nm}$. $E_0 = E_N(r_0) = -1.436/0.2789 + 5.8\\times10^{-6}/(0.2789)^9 = -4.58\\text{ eV}$.",
    "f": [
     "bondwell"
    ]
@@ -2737,9 +2758,16 @@ const content: GateContent = {
    "n": 4,
    "topic": "bondcurve",
    "kind": "calc",
-   "q": "Force of attraction between K⁺ and O²⁻ at 1.5 nm; repulsive force if that is the equilibrium spacing.",
-   "ans": "$F_A = 2.05\\times10^{-10}$ N; $F_R = -F_A$",
+   "q": "Calculate the electrostatic force of attraction $F_A$ between $\\text{K}^+$ ($z_1=+1$) and $\\text{O}^{2-}$ ($z_2=-2$) at $r = 1.5\\text{ nm}$, and the repulsive force $F_R$ if this is the equilibrium spacing.",
+   "opts": [
+    "$F_A = 2.05\\times10^{-10}\\text{ N},\\; F_R = -2.05\\times10^{-10}\\text{ N}$ (equal magnitude, repulsive)",
+    "$F_A = 1.02\\times10^{-10}\\text{ N},\\; F_R = +1.02\\times10^{-10}\\text{ N}$",
+    "$F_A = 4.10\\times10^{-10}\\text{ N},\\; F_R = 0\\text{ N}$",
+    "$F_A = 2.05\\times10^{-10}\\text{ N},\\; F_R = 0\\text{ N}$"
+   ],
+   "ans": "a",
    "status": "verified",
+   "note": "$F_A = \\frac{|z_1 z_2| e^2}{4\\pi \\varepsilon_0 r^2} = \\frac{2(1.602\\times10^{-19})^2}{4\\pi(8.854\\times10^{-12})(1.5\\times10^{-9})^2} = 2.05\\times10^{-10}\\text{ N}$. At equilibrium, $F_N = F_A + F_R = 0 \\implies F_R = -F_A$.",
    "f": [
     "ionforce"
    ]
@@ -2750,9 +2778,16 @@ const content: GateContent = {
    "n": 5,
    "topic": "atomsmass",
    "kind": "calc",
-   "q": "Atoms in a gold wire (0.70 mm dia, 8.0 cm, ρ = 19.3 g/cm³); atoms in one ton of iron.",
-   "ans": "$1.82\\times10^{21}$ atoms; $1.08\\times10^{28}$ atoms (metric ton)",
+   "q": "How many atoms are in a gold wire ($d = 0.70\\text{ mm}$, $L = 8.0\\text{ cm}$, $\\rho = 19.3\\text{ g/cm}^3$, $A = 196.97\\text{ g/mol}$) and in one metric ton of iron ($A = 55.85\\text{ g/mol}$)?",
+   "opts": [
+    "Au: $1.82\\times10^{21}$ atoms; Fe: $1.08\\times10^{28}$ atoms",
+    "Au: $7.28\\times10^{21}$ atoms; Fe: $1.08\\times10^{28}$ atoms",
+    "Au: $1.82\\times10^{23}$ atoms; Fe: $5.40\\times10^{27}$ atoms",
+    "Au: $3.64\\times10^{20}$ atoms; Fe: $2.16\\times10^{28}$ atoms"
+   ],
+   "ans": "a",
    "status": "verified",
+   "note": "Au: $V = \\pi(0.035\\text{ cm})^2(8.0\\text{ cm}) = 0.0308\\text{ cm}^3$, $m = 19.3 \\times 0.0308 = 0.594\\text{ g} \\implies N = (0.594/196.97) \\times 6.022\\times10^{23} = 1.82\\times10^{21}$ atoms. Fe: $m = 10^6\\text{ g} \\implies N = (10^6/55.85) \\times 6.022\\times10^{23} = 1.08\\times10^{28}$ atoms.",
    "f": [
     "atoms"
    ]

@@ -90,9 +90,9 @@ export const VideoLibrary: React.FC<{ cur: Curriculum }> = ({ cur }) => {
             {current.kind === 'extra' ? (
               ytPlay ? (
                 <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${current.id.slice(3)}?autoplay=1&rel=0&playsinline=1`}
+                  src={`https://www.youtube.com/embed/${current.id.slice(3)}?autoplay=1&rel=0&playsinline=1&fs=1&enablejsapi=1`}
                   title={current.title}
-                  allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                 />
               ) : (
