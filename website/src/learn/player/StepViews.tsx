@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
-import { AlertTriangle, BookOpen, CheckCircle2, ChevronRight, ExternalLink, FileText, Lightbulb, ListOrdered, Maximize2, PlayCircle, Target, Youtube } from 'lucide-react';
+import { AlertTriangle, BookOpen, CheckCircle2, ChevronRight, ExternalLink, FileText, Lightbulb, ListOrdered, Maximize2, PlayCircle, Sparkles, Target, Youtube } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { DocRef, Step } from '../model';
 import type { Formula, GateContent } from '../../data/gates/types';
@@ -588,6 +588,21 @@ export const ReadingStep: React.FC<{ step: Step }> = ({ step }) => {
 export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
   const v = step.youtube!;
   const [play, setPlay] = useState(false);
+  const [showRefVideo, setShowRefVideo] = useState(false);
+  const [refLesson, setRefLesson] = useState<MotionLesson | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    if (v.refVideoId) {
+      resolveVideo(v.refVideoId).then((l) => {
+        if (alive) setRefLesson(l);
+      });
+    }
+    return () => {
+      alive = false;
+    };
+  }, [v.refVideoId]);
+
   return (
     <div className="lx-extra">
       <div className="lx-extra-frame">
@@ -616,6 +631,31 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+      {v.refVideoId && refLesson && (
+        <div className="lx-ref-video-card">
+          <div className="lx-ref-video-header">
+            <div className="lx-ref-video-info">
+              <span className="lx-ref-badge">
+                <Sparkles size={13} aria-hidden /> Course Lesson Video Reference
+              </span>
+              <h4 className="lx-ref-title">{refLesson.title}</h4>
+              <p className="lx-ref-desc">Review the course animation and step-by-step lecture problem for this concept.</p>
+            </div>
+            <button
+              type="button"
+              className={`lx-btn lx-btn--sm ${showRefVideo ? 'lx-btn--ghost' : 'lx-btn--primary'}`}
+              onClick={() => setShowRefVideo(!showRefVideo)}
+            >
+              {showRefVideo ? 'Hide Course Video' : 'Watch Course Video'}
+            </button>
+          </div>
+          {showRefVideo && (
+            <div className="lx-ref-video-player">
+              <MotionLessonPlayer lesson={refLesson} bare />
+            </div>
+          )}
         </div>
       )}
     </div>

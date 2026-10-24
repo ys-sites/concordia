@@ -231,5 +231,67 @@ export const MIAE221_YOUTUBE_COMPANION: SubSubjectVideo[] = [
       'Thermosets: cross-linked/network covalent bonds, degrade rather than melt.',
       'Below Tg: hard, rigid, glassy; Above Tg: rubbery, flexible.'
     ]
+  },
+  {
+    id: 'yt-12-microscopy',
+    subtopicNum: 12,
+    subtopicTitle: 'Optical Microscopy & Scanning Electron Microscopy (SEM)',
+    lectureRef: 'Lecture 8 (Callister Ch. 4)',
+    videoTitle: 'Optical Microscopy & Scanning Electron Microscopy (SEM)',
+    channel: 'Penn State MRI · Materials Characterization',
+    duration: '7:20',
+    durationSec: 440,
+    youtubeId: '9W_qBhywhvY',
+    embedUrl: 'https://www.youtube.com/embed/9W_qBhywhvY',
+    watchUrl: 'https://www.youtube.com/watch?v=9W_qBhywhvY',
+    summary: 'Concise breakdown of metallurgical sample preparation, etching to reveal grain boundary groove contrast, and SEM secondary electron imaging.',
+    keyTakeaways: [
+      'Etching preferentially attacks higher-energy grain boundaries, creating small grooved steps.',
+      'Reflected light scatters at grain boundary grooves, making boundaries appear dark under optical microscopes.',
+      'Optical resolution is limited by visible light wavelength (~0.2 μm); electron beams allow magnification beyond 50,000x.',
+      'SEM uses focused electron beams; secondary electrons yield high-depth-of-field 3D surface morphology.'
+    ]
+  },
+  {
+    id: 'yt-13-tensile-calc',
+    subtopicNum: 13,
+    subtopicTitle: 'Tensile Test Calculations: Stress, Strain & Ductility',
+    lectureRef: 'Lecture 10–11 (Callister Ch. 6)',
+    videoTitle: 'Tensile Test Calculations: Stress, Strain & Ductility',
+    channel: 'The Efficient Engineer',
+    duration: '7:45',
+    durationSec: 465,
+    youtubeId: 'f08Y39N416I',
+    embedUrl: 'https://www.youtube.com/embed/f08Y39N416I',
+    watchUrl: 'https://www.youtube.com/watch?v=f08Y39N416I',
+    summary: 'Step-by-step mathematical walkthrough of engineering stress (σ = F/A0), engineering strain (ε = ΔL/L0), percent elongation (%EL), and percent reduction in area (%RA).',
+    keyTakeaways: [
+      'Engineering stress uses initial original cross-sectional area A0: σ = F / A0 (units: N/m² or Pa).',
+      'Engineering strain is dimensionless ratio of elongation to original gauge length: ε = (Li - L0) / L0.',
+      'Ductility expressed as percent elongation %EL = [(Lf - L0) / L0] * 100%.',
+      'Percent reduction in area %RA = [(A0 - Af) / A0] * 100%.',
+      'Within linear elastic limit, Hooke’s law relates stress and strain: σ = E * ε.'
+    ]
+  },
+  {
+    id: 'yt-14-braggs-law',
+    subtopicNum: 14,
+    subtopicTitle: "Bragg's Law & X-Ray Diffraction (XRD)",
+    lectureRef: 'Lecture 6 (Callister Ch. 3)',
+    videoTitle: "Bragg's Law & X-Ray Diffraction (XRD) Explained",
+    channel: 'Materials Characterization Explained',
+    duration: '7:50',
+    durationSec: 470,
+    youtubeId: 'EZfIZ--t_BW',
+    embedUrl: 'https://www.youtube.com/embed/EZfIZ--t_BW',
+    watchUrl: 'https://www.youtube.com/watch?v=EZfIZ--t_BW',
+    summary: 'Geometrical derivation of Bragg’s Law nλ = 2d sin(θ), constructive vs destructive wave interference, and how peak diffraction angles (2θ) determine crystal lattice spacing d_hkl.',
+    keyTakeaways: [
+      'Constructive interference condition: extra path length must equal integer wavelengths (nλ = 2d sin θ).',
+      'Interplanar spacing for cubic crystals: d_hkl = a / √(h² + k² + l²).',
+      'Diffractometers record intensity against detector angle 2θ; remember to divide by 2 for Bragg angle θ.',
+      'Peak angular positions determine unit cell size (a); peak intensities determine atomic positions inside the unit cell.'
+    ]
   }
 ];
+

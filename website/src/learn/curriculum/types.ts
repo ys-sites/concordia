@@ -25,6 +25,8 @@ export interface StepSpec {
   minutes?: number;
   optional?: boolean;
   videoId?: string;
+  youtubeId?: string;
+  refVideoId?: string;
   docs?: RegExp[];
   notesKey?: string;
   questions?: { teacher?: RegExp; teacherIds?: string[]; gordonPaper?: string; ids?: string[]; examId?: string };

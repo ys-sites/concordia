@@ -28,6 +28,8 @@ export interface YouTubeRef {
   channel: string;
   len: string;
   watch?: string[];
+  refVideoId?: string;
+  refVideoTitle?: string;
 }
 
 export interface Step {

@@ -56,5 +56,13 @@ export const RETIRED_IDS: string[] = [
   'MIAE221/paper-pps1',
   'MIAE221/paper-pps1.exam',
   'MIAE221/paper-w26',
-  'MIAE221/paper-w26.exam'
+  'MIAE221/paper-w26.exam',
+  // Retired outside YouTube creator steps from course section (moved to Exam Prep):
+  'MIAE221/atomic-structure.yt-6MAKMnZdfbs',
+  'MIAE221/atomic-structure.yt-NIwcDnFjj98',
+  'MIAE221/atomic-structure.yt-aQf6Q8t1FQE',
+  'MIAE221/unit-cells.yt-PaGJwOPg2kU',
+  'MIAE221/polymers.yt-jWpB7_6X81Q',
+  'yt:jWpB7_6X81Q'
 ];
+

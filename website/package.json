@@ -12,7 +12,10 @@
     "validate:curriculum": "esbuild scripts/validate-curriculum.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-curriculum.mjs --loader:.css=empty && node node_modules/.cache/validate-curriculum.mjs",
     "validate:integrity": "esbuild scripts/qa-integrity.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/qa-integrity.mjs --loader:.css=empty --external:virtual:* && node node_modules/.cache/qa-integrity.mjs",
     "inventory": "esbuild scripts/content-inventory.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/content-inventory.mjs --loader:.css=empty --external:virtual:* && node node_modules/.cache/content-inventory.mjs",
-    "validate:cpp": "esbuild scripts/validate-cpp.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-cpp.mjs --loader:.css=empty --external:virtual:* && node node_modules/.cache/validate-cpp.mjs"
+    "validate:cpp": "esbuild scripts/validate-cpp.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-cpp.mjs --loader:.css=empty --external:virtual:* && node node_modules/.cache/validate-cpp.mjs",
+    "process-lesson": "node scripts/process-lesson.mjs",
+    "lesson:pipeline": "node scripts/process-lesson.mjs",
+    "lesson:scan": "node scripts/process-lesson.mjs --scan"
   },
   "dependencies": {
     "@types/canvas-confetti": "^1.9.0",

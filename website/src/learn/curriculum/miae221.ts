@@ -35,7 +35,6 @@ export const MIAE221_SPEC: CourseSpec = {
           gate: ['config', 'atomsmass'],
           videos: ['topic221:m221-02-bonding'],
           bank: [{ ch: 'bonding', re: /atomic number|isotope|avogadro|\bmole\b|bohr|wave-mechanical|electron config|stable electron|electronegativity scale|electropositive|atoms in|volume of a mole|density of solids/i }],
-          youtube: ['aQf6Q8t1FQE'],
           resources: [/^03 - 1-Page Rapid Review Sheets\/Part 1 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 02 /]
         },
         {
@@ -68,7 +67,6 @@ export const MIAE221_SPEC: CourseSpec = {
           gate: ['cells'],
           videos: ['topic221:m221-03-crystal'],
           bank: [{ ch: 'crystal' }, { ch: 'mixed' }],
-          youtube: ['PaGJwOPg2kU'],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 03 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 3 - /, /^03 - 1-Page Rapid Review Sheets\/Part 3 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 0[45] /]
         },
         {
@@ -289,7 +287,6 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'Polymers',
           summary: 'Polymer structure, crystallinity, the glass transition and mechanical behaviour.',
           read: [/^01 - Teacher Lecture Notes \(Dr\. Medraj\)\/Lecture 19 - /, /^01 - Teacher Lecture Notes \(Dr\. Medraj\)\/Lecture 2[01] - /],
-          youtube: ['jWpB7_6X81Q'],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 14 & 15 /]
         },
         {
@@ -313,17 +310,89 @@ export const MIAE221_SPEC: CourseSpec = {
       {
         id: 'teacher-practice',
         title: 'Midterm practice by subject',
-        subtitle: '40 questions from the official marking key, each with a video solution',
+        subtitle: '40 questions from the official marking key, each with a video solution and top creator walkthrough',
         lessons: [
-          { id: 'tp-miller-planes', title: 'Miller indices: planes', summary: 'Q1–Q3.', steps: [{ kind: 'practice', title: 'Index the planes', slug: 'practice', questions: { teacher: /^Miller Indices/ }, ordered: true }] },
-          { id: 'tp-crystal-densities', title: 'Crystal structures & densities', summary: 'Packing, density and structure questions.', steps: [{ kind: 'practice', title: 'Solve the structure questions', slug: 'practice', questions: { teacher: /^Crystal Structures & Densities$/ }, ordered: true }] },
-          { id: 'tp-bonding', title: 'Atomic bonding', summary: 'Bond types and energies.', steps: [{ kind: 'practice', title: 'Answer the bonding questions', slug: 'practice', questions: { teacher: /^Atomic Bonding$/ }, ordered: true }] },
-          { id: 'tp-defects', title: 'Defects & solid solutions', summary: 'Vacancies and solid solutions.', steps: [{ kind: 'practice', title: 'Answer the defect questions', slug: 'practice', questions: { teacher: /^Defects & Solid Solutions$/ }, ordered: true }] },
-          { id: 'tp-dislocations', title: 'Dislocations & slip', summary: 'Slip systems and dislocations.', steps: [{ kind: 'practice', title: 'Answer the slip questions', slug: 'practice', questions: { teacher: /^Dislocations & Slip$/ }, ordered: true }] },
-          { id: 'tp-microscopy', title: 'Microscopy', summary: 'How microstructure is observed.', steps: [{ kind: 'practice', title: 'Answer the microscopy questions', slug: 'practice', questions: { teacher: /^Microscopy$/ }, ordered: true }] },
-          { id: 'tp-diffusion', title: 'Diffusion', summary: "Fick's laws on the 2017 paper.", steps: [{ kind: 'practice', title: 'Solve the diffusion questions', slug: 'practice', questions: { teacher: /^Diffusion$/ }, ordered: true }] },
-          { id: 'tp-stress-strain', title: 'The stress–strain curve (Figure 1)', summary: 'Ten questions read off one tensile curve.', steps: [{ kind: 'practice', title: 'Read the curve', slug: 'practice', questions: { teacher: /^Stress–Strain Curve/ }, ordered: true }] },
-          { id: 'tp-tensile', title: 'Tensile test calculations', summary: 'Stress, strain and elongation by hand.', steps: [{ kind: 'practice', title: 'Do the calculations', slug: 'practice', questions: { teacher: /^Tensile Test Calculations$/ }, ordered: true }] },
+          {
+            id: 'tp-miller-planes',
+            title: 'Miller indices: planes',
+            summary: 'Q1–Q3 on the 2017 exam paper: coordinate intercepts, reciprocals and plane indices (hkl).',
+            steps: [
+              { kind: 'extra', title: 'Watch: Crystal Plane Miller Indices (LearnChemE)', slug: 'yt-miller', youtubeId: 'W5v_3vH7p2E', minutes: 8, refVideoId: 'topic221:m221-04-densities' },
+              { kind: 'practice', title: 'Index the planes', slug: 'practice', questions: { teacher: /^Miller Indices/ }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-crystal-densities',
+            title: 'Crystal structures & densities',
+            summary: 'Packing factor, coordination, theoretical density and unit cell geometries.',
+            steps: [
+              { kind: 'extra', title: 'Watch: Crystal Structures & Atomic Packing (The Efficient Engineer)', slug: 'yt-crystal', youtubeId: 'PaGJwOPg2kU', minutes: 8, refVideoId: 'topic221:m221-03-crystal' },
+              { kind: 'practice', title: 'Solve the structure questions', slug: 'practice', questions: { teacher: /^Crystal Structures & Densities$/ }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-bonding',
+            title: 'Atomic bonding',
+            summary: 'Primary and secondary bond types, force-energy curves and percent ionic character.',
+            steps: [
+              { kind: 'extra', title: 'Watch: Interatomic Bonding & Energy Curves (The Efficient Engineer)', slug: 'yt-bonding', youtubeId: 'aQf6Q8t1FQE', minutes: 8, refVideoId: 'topic221:m221-02-bonding' },
+              { kind: 'practice', title: 'Answer the bonding questions', slug: 'practice', questions: { teacher: /^Atomic Bonding$/ }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-defects',
+            title: 'Defects & solid solutions',
+            summary: 'Vacancies, equilibrium Arrhenius concentration and Hume-Rothery solubility criteria.',
+            steps: [
+              { kind: 'extra', title: 'Watch: Point Defects & Hume-Rothery Rules (LearnChemE)', slug: 'yt-defects', youtubeId: '2_j_xV3sQBo', minutes: 6, refVideoId: 'topic221:m221-05-defects' },
+              { kind: 'practice', title: 'Answer the defect questions', slug: 'practice', questions: { teacher: /^Defects & Solid Solutions$/ }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-dislocations',
+            title: 'Dislocations & slip',
+            summary: 'Burgers vectors, slip planes and directions, and Schmid’s law resolved shear stress.',
+            steps: [
+              { kind: 'extra', title: 'Watch: Resolved Shear Stress & Schmid’s Law (LearnChemE)', slug: 'yt-slip', youtubeId: 's48K4mK_E7c', minutes: 5, refVideoId: 'topic221:m221-09-strengthening' },
+              { kind: 'practice', title: 'Answer the slip questions', slug: 'practice', questions: { teacher: /^Dislocations & Slip$/ }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-microscopy',
+            title: 'Microscopy',
+            summary: 'Sample polishing, chemical etching of grain boundaries, optical reflection and SEM.',
+            steps: [
+              { kind: 'extra', title: 'Watch: Optical & SEM Microscopy (Penn State MRI)', slug: 'yt-microscopy', youtubeId: '9W_qBhywhvY', minutes: 7, refVideoId: 'topic221:m221-06-microscopy' },
+              { kind: 'practice', title: 'Answer the microscopy questions', slug: 'practice', questions: { teacher: /^Microscopy$/ }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-diffusion',
+            title: 'Diffusion',
+            summary: "Fick's 1st law steady-state flux and 2nd law non-steady state concentration profiles.",
+            steps: [
+              { kind: 'extra', title: 'Watch: Diffusion in Solids & Fick’s Laws (LearnChemE)', slug: 'yt-diffusion', youtubeId: 'W0E0nQe3v68', minutes: 7, refVideoId: 'topic221:m221-07-diffusion' },
+              { kind: 'practice', title: 'Solve the diffusion questions', slug: 'practice', questions: { teacher: /^Diffusion$/ }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-stress-strain',
+            title: 'The stress–strain curve (Figure 1)',
+            summary: 'Modulus E, 0.2% offset yield strength, ultimate tensile strength and necking.',
+            steps: [
+              { kind: 'extra', title: 'Watch: Stress–Strain Curve & Mechanical Properties (The Efficient Engineer)', slug: 'yt-stress-strain', youtubeId: 'WSRqJdT2COE', minutes: 8, refVideoId: 'topic221:m221-08-mechanical' },
+              { kind: 'practice', title: 'Read the curve', slug: 'practice', questions: { teacher: /^Stress–Strain Curve/ }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-tensile',
+            title: 'Tensile test calculations',
+            summary: 'Engineering stress, engineering strain, percent elongation (%EL) and reduction in area (%RA).',
+            steps: [
+              { kind: 'extra', title: 'Watch: Tensile Test Calculations & Ductility (The Efficient Engineer)', slug: 'yt-tensile-calc', youtubeId: 'f08Y39N416I', minutes: 7, refVideoId: 'topic221:m221-08-mechanical' },
+              { kind: 'practice', title: 'Do the calculations', slug: 'practice', questions: { teacher: /^Tensile Test Calculations$/ }, ordered: true }
+            ]
+          },
           {
             id: 'tp-full-paper',
             title: 'Complete midterm subject bundle',

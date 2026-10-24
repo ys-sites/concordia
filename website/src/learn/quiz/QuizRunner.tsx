@@ -48,7 +48,8 @@ export interface QuizRunnerProps {
 }
 
 // The question navigator: Prev, a numbered pill per question (right, wrong, answered, flagged, current), Next,
-// and the mode, tally and clock under it. Questions not drawn yet (adaptive sets) show as dashes.
+// and the mode, tally and clock under it. It is deliberately non-linear: students can leave a question blank,
+// work on another one, and return later. Questions not drawn yet (adaptive sets) show as dashes.
 const QuestionNav: React.FC<{
   session: QuizSession;
   total: number;
@@ -669,7 +670,16 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
     });
   }
   function next() {
-    if (last) return finish({ ...session!, elapsed: elapsedRef.current });
+    // Do not end a set while there are skipped questions. Returning to the first one that still has no
+    // checked result keeps a skipped question available to solve after the student has worked ahead.
+    if (last) {
+      const skipped = session!.order.findIndex((qid, index) => index !== session!.i && session!.checked[qid] === undefined);
+      if (skipped >= 0) {
+        patch((ss) => void (ss.i = skipped));
+        return;
+      }
+      return finish({ ...session!, elapsed: elapsedRef.current });
+    }
     patch((ss) => {
       if (ss.adaptive && ss.i === ss.order.length - 1) {
         const n = pickAdaptive(ss.adaptive.pool, ss.order, ss.adaptive.level);
@@ -696,17 +706,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
         mode={exam ? 'Timed practice · feedback after each answer' : session.mode === 'check' ? 'Quick check' : ad ? `Building up · level ${ad.level} of 3` : session.only ? `Practice · ${LEVEL_LABEL[session.only].toLowerCase()} only` : 'Practice'}
         exam={exam}
         remaining={remaining}
-        onGo={(n) => {
-          // A later question cannot be reached until the current answer is submitted.
-          if (n <= session.i || result !== undefined) patch((ss) => void (ss.i = n));
-        }}
+        onGo={(n) => patch((ss) => void (ss.i = n))}
         onNext={() => {
           if (!q) return;
           if (result !== undefined) next();
           else if (q.kind !== 'self' && answered) check(id);
+          else next();
         }}
-        nextLabel={result !== undefined ? 'Next' : 'Submit answer'}
-        nextDisabled={result === undefined && (!answered || q?.kind === 'self')}
+        nextLabel={result !== undefined ? (last ? 'See results' : 'Next question') : q?.kind !== 'self' && answered ? 'Submit answer' : 'Skip for now'}
       />
 
       {q ? (
@@ -759,6 +766,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
         )}
         {result === undefined ? (
           <>
+            <button type="button" className="lx-btn lx-btn--ghost" onClick={next}>
+              {last ? 'Review skipped questions' : 'Skip for now'} <ArrowRight size={17} />
+            </button>
             {q?.kind !== 'self' && (
               <button type="button" className="lx-btn lx-btn--primary" disabled={!answered} onClick={() => check(id)}>
                 Submit answer <CheckCircle2 size={17} />

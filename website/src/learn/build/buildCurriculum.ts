@@ -13,6 +13,7 @@ export interface DrillQuestion extends PracticeQuestion {
 }
 
 export interface YouTubeCompanion {
+  id?: string;
   youtubeId: string;
   videoTitle: string;
   channel: string;
@@ -223,6 +224,27 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
       if (s.kind === 'video') {
         const st = s.videoId ? videoStep(l.id, s.videoId) : null;
         return st ? [{ ...st, id, title: s.title }] : [];
+      }
+      if (s.kind === 'extra') {
+        const y = s.youtubeId ? input.youtube221.find((x) => x.youtubeId === s.youtubeId || x.id === s.youtubeId) : undefined;
+        if (y) {
+          const refV = s.refVideoId ? videoById.get(s.refVideoId) : undefined;
+          return [{
+            id,
+            kind: 'extra',
+            title: s.title || y.videoTitle,
+            minutes: s.minutes ?? Math.round(parseLen(y.duration)),
+            optional: s.optional ?? false,
+            youtube: {
+              id: y.youtubeId,
+              title: y.videoTitle,
+              channel: y.channel,
+              len: y.duration,
+              watch: y.keyTakeaways,
+              ...(s.refVideoId ? { refVideoId: s.refVideoId, refVideoTitle: refV?.lesson.title.replace(/^[A-Z]?\d+\s*·\s*/, '') ?? 'Course Motion Lesson' } : {})
+            }
+          }];
+        }
       }
       const ids: string[] = [];
       if (s.questions) {

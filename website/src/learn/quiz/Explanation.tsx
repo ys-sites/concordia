@@ -95,8 +95,8 @@ export const SolutionVideo: React.FC<{ videoId: string }> = ({ videoId }) => {
   );
 };
 
-// Right (or reviewing): the whole process at once, to confirm how it is done. Wrong: one move at a time, so
-// the student can try the next move before seeing it.
+// Always present the complete worked solution at once. Students can still work independently before checking,
+// but once they ask for feedback, no reasoning step is hidden behind another click.
 const Steps: React.FC<{ q: LearnQuestion; stepwise: boolean }> = ({ q, stepwise }) => {
   const moves = useMemo(() => babySteps(q), [q]);
   const [shown, setShown] = useState(stepwise ? 1 : moves.length);
@@ -267,7 +267,7 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
             </p>
           </section>
         )}
-        <Steps q={q} stepwise={correct === false} />
+        <Steps q={q} stepwise={false} />
         {e.solution && (
           <section className="lx-ans-card">
             <h4>Full solution</h4>
