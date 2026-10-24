@@ -591,11 +591,15 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
   const [showRefVideo, setShowRefVideo] = useState(false);
   const [refLesson, setRefLesson] = useState<MotionLesson | null>(null);
   const frameRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     const handleFs = () => {
-      setIsFullscreen(document.fullscreenElement === frameRef.current);
+      setIsFullscreen(
+        document.fullscreenElement === iframeRef.current ||
+        document.fullscreenElement === frameRef.current
+      );
     };
     document.addEventListener('fullscreenchange', handleFs);
     return () => document.removeEventListener('fullscreenchange', handleFs);
@@ -603,11 +607,38 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      frameRef.current?.requestFullscreen?.().catch(() => {});
+      const target = iframeRef.current || frameRef.current;
+      target?.requestFullscreen?.().catch(() => {
+        frameRef.current?.requestFullscreen?.().catch(() => {});
+      });
     } else {
       document.exitFullscreen?.().catch(() => {});
     }
   };
+
+  useEffect(() => {
+    let idleTimer: NodeJS.Timeout;
+    const handleMove = () => {
+      frameRef.current?.classList.remove('is-idle');
+      clearTimeout(idleTimer);
+      if (document.fullscreenElement) {
+        idleTimer = setTimeout(() => {
+          if (document.fullscreenElement) {
+            frameRef.current?.classList.add('is-idle');
+          }
+        }, 2000);
+      }
+    };
+
+    const node = frameRef.current;
+    node?.addEventListener('mousemove', handleMove);
+    node?.addEventListener('mouseenter', handleMove);
+    return () => {
+      clearTimeout(idleTimer);
+      node?.removeEventListener('mousemove', handleMove);
+      node?.removeEventListener('mouseenter', handleMove);
+    };
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -626,7 +657,8 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
       <div className="lx-extra-frame" ref={frameRef}>
         {play ? (
           <iframe
-            src={`https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0&playsinline=1&fs=1&enablejsapi=1`}
+            ref={iframeRef}
+            src={`https://www.youtube.com/embed/${v.id}?autoplay=1&autohide=1&controls=1&fs=1&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1`}
             title={v.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             allowFullScreen
@@ -637,30 +669,28 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
             <PlayCircle size={64} aria-hidden />
           </button>
         )}
-        <button
-          type="button"
-          className="lx-extra-fs-btn"
-          onClick={toggleFullscreen}
-          title={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
-          aria-label={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
-        >
-          {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
-        </button>
       </div>
       <div className="lx-extra-bar">
+        <div className="lx-extra-bar-left">
+          <span className="lx-yt-tag">
+            <Youtube size={16} aria-hidden />
+            <span>{v.channel}</span>
+          </span>
+          <button
+            type="button"
+            className="lx-extra-fs-text-btn"
+            onClick={toggleFullscreen}
+            title={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
+            aria-label={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
+          >
+            {isFullscreen ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
+            <span>{isFullscreen ? 'Exit Full Screen' : 'Full Screen'}</span>
+          </button>
+        </div>
         <p className="lx-meta">
-          <Youtube size={14} aria-hidden /> {v.channel} · {v.len}
+          {v.len}
           {step.optional ? ' · an outside explanation, optional' : ''}
         </p>
-        <button
-          type="button"
-          className="lx-extra-fs-text-btn"
-          onClick={toggleFullscreen}
-          title={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
-        >
-          {isFullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
-          <span>{isFullscreen ? 'Exit Full Screen' : 'Full Screen'}</span>
-        </button>
       </div>
       {v.watch && v.watch.length > 0 && (
         <div className="lx-ex-block">
