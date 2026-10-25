@@ -75,6 +75,7 @@ export const VideoDrawer: React.FC<{ topic: string; content: GateContent; idx: G
 
 // True when a topic (or its chapter) has at least one video
 export const hasVideo = (topic: string, content: GateContent, idx: GateIndex) => {
+  if (idx.topicVideos[topic]) return true;
   if (content.videoStops.some((s) => s.topic === topic)) return true;
   const subj = idx.subjectOfTopic.get(topic);
   return !!subj && content.videoStops.some((s) => subj.topics.includes(s.topic));

@@ -8,6 +8,7 @@ import type { GateIndex } from './shared';
 import { ExamTag, LectureButton, MatchBadge, StatusBadge } from './shared';
 import type { DrillItem } from './drill';
 import { GateSolveVideo } from './GateSolveVideo';
+import { MotionLessonPlayer } from '../MotionLessonPlayer';
 import { AskAiButton } from './AskAiModal';
 
 export type VideoDepth = 'quick' | 'deep';
@@ -128,31 +129,46 @@ export const ConceptVideo: React.FC<{ topic: string; content: GateContent; idx: 
   );
 };
 
-// All videos of one topic stop, for the guided plan
+// All videos of one topic: the narrated topic explanation first, then the topic stop, for the guided plan
 export const TopicVideos: React.FC<{ topic: string; content: GateContent; idx: GateIndex; nav: GateNav }> = ({ topic, content, idx, nav }) => {
   const { stop } = videosFor(topic, content, idx);
-  if (!stop) return <p className="mg-small mg-muted">No video picked for this topic yet.</p>;
+  const own = idx.topicVideos[topic];
+  if (!stop && !own) return <p className="mg-small mg-muted">No video picked for this topic yet.</p>;
   return (
     <div>
-      <p className="mg-small" style={{ color: 'var(--text-secondary)', margin: '0 0 10px' }}>
-        <MathText text={stop.why} />
-      </p>
-      <div className="gp-videos">
-        {stop.videos.map((v) => (
-          <VideoPlayer key={v.id} v={v} />
-        ))}
-      </div>
-      <div className="mg-after" style={{ marginTop: 10 }}>
-        <b>Then do this:</b> <MathText text={stop.after} />
-        {stop.gate.length > 0 && (
-          <div className="mg-refs" style={{ marginTop: 8 }}>
-            {stop.gate.map((g) => {
-              const q = idx.q.get(g);
-              return q ? <ExamTag key={g} q={q} idx={idx} onClick={() => nav.openQuestion(g)} /> : null;
-            })}
+      {own && (
+        <div style={{ marginBottom: stop ? 16 : 0 }}>
+          <MotionLessonPlayer
+            key={topic}
+            lesson={own}
+            badge="Topic Explained · Watch First"
+            disclosure="the whole subtopic: the big idea, how it shows up on the exam, the method, a worked example and the traps"
+          />
+        </div>
+      )}
+      {stop && (
+        <>
+          <p className="mg-small" style={{ color: 'var(--text-secondary)', margin: '0 0 10px' }}>
+            <MathText text={stop.why} />
+          </p>
+          <div className="gp-videos">
+            {stop.videos.map((v) => (
+              <VideoPlayer key={v.id} v={v} />
+            ))}
           </div>
-        )}
-      </div>
+          <div className="mg-after" style={{ marginTop: 10 }}>
+            <b>Then do this:</b> <MathText text={stop.after} />
+            {stop.gate.length > 0 && (
+              <div className="mg-refs" style={{ marginTop: 8 }}>
+                {stop.gate.map((g) => {
+                  const q = idx.q.get(g);
+                  return q ? <ExamTag key={g} q={q} idx={idx} onClick={() => nav.openQuestion(g)} /> : null;
+                })}
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

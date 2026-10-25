@@ -5,6 +5,7 @@ import type { CourseId, PracticeQuestion } from '../../types';
 import type { LearnQuestion } from '../model';
 import { loadGate } from '../../data/gates';
 import { VIDEO_SOURCES } from '../videoSources';
+import { solveVideoId } from '../solveVideoId';
 import { fromGateExam, fromGordon, fromLessonItem, fromPractice } from './adapters';
 import { openToChoices } from './choices';
 
@@ -39,7 +40,7 @@ async function build(c: CourseId): Promise<QuestionIndex> {
   for (const v of VIDEO_SOURCES) if (v.questionId) solve.set(v.questionId, v.id);
   for (const key of Object.keys(gate.solveVideos ?? {})) {
     const m = key.match(/^L:([^:]+):(\d+)$/);
-    solve.set(m ? `l:${c}:${m[1]}:${m[2]}` : `x:${c}:${key}`, `solve:${key}`);
+    solve.set(m ? `l:${c}:${m[1]}:${m[2]}` : `x:${c}:${key}`, solveVideoId(c, key));
   }
   const byId = new Map<string, LearnQuestion>();
   const add = (q: LearnQuestion | null) => q && !byId.has(q.id) && byId.set(q.id, q);

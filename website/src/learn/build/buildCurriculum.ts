@@ -7,6 +7,7 @@ import type { CourseSpec, LessonSpec, SectionSpec, StepSpec, BankRule, DrillRule
 import type { Curriculum, DocRef, Lesson, ResourceGroup, Section, Step, VideoCard } from '../model';
 import type { VideoSource } from '../videoSources';
 import { genericExamSource } from '../examLabel';
+import { parseSolveVideoId, solveVideoId } from '../solveVideoId';
 
 export interface DrillQuestion extends PracticeQuestion {
   methodId: string;
@@ -120,7 +121,7 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
   for (const v of videoById.values()) if (v.questionId) solveFor.set(v.questionId, v.id);
   for (const key of Object.keys(gate.solveVideos ?? {})) {
     const m = key.match(/^L:([^:]+):(\d+)$/);
-    solveFor.set(m ? `l:${c}:${m[1]}:${m[2]}` : examQid(c, key), `solve:${key}`);
+    solveFor.set(m ? `l:${c}:${m[1]}:${m[2]}` : examQid(c, key), solveVideoId(c, key));
   }
   const stepVideoUses = new Map<string, number>();
 
@@ -150,7 +151,9 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     const topics = l.gate ?? [];
     for (const t of topics) if (!gate.topics.some((x) => x.id === t)) problems.push(`${l.id}: unknown exam-prep topic ${t}`);
     const steps: Step[] = [];
-    const videos = (l.videos ?? []).map((v) => videoStep(l.id, v)).filter((s): s is Step => !!s);
+    // the lesson's own videos, then the narrated explanation of each of its exam-prep topics
+    const topicVideos = [...videoById.values()].filter((v) => v.gateTopic && topics.includes(v.gateTopic) && !l.videos?.includes(v.id)).map((v) => v.id);
+    const videos = [...(l.videos ?? []), ...topicVideos].map((v) => videoStep(l.id, v)).filter((s): s is Step => !!s);
 
     const fs = formulasOf(topics);
     const lecRefs = topics.flatMap((t) => gate.topics.find((x) => x.id === t)?.lec ?? []);
@@ -389,11 +392,12 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
           const vid = solveFor.get(q);
           if (!vid || homed.has(vid)) continue;
           homed.add(vid);
-          const v = vid.startsWith('solve:') ? gate.solveVideos?.[vid.slice(6)] : videoById.get(vid)?.lesson;
-          if (v) videos.push({ id: vid, kind: 'solution', title: v.title, source: vid.startsWith('solve:') ? genericExamSource(v.source) : v.source, seconds: v.duration, poster: v.poster, chapters: v.chapters.length, sectionId: s.id, lessonId: l.id, stepId: st.id, questionId: q });
+          const solve = parseSolveVideoId(vid);
+          const v = solve ? gate.solveVideos?.[solve.key] : videoById.get(vid)?.lesson;
+          if (v) videos.push({ id: vid, kind: 'solution', title: v.title, source: solve ? genericExamSource(v.source) : v.source, seconds: v.duration, poster: v.poster, chapters: v.chapters.length, sectionId: s.id, lessonId: l.id, stepId: st.id, questionId: q });
         }
       }
-  const orphanVideos = [...[...videoById.keys()].filter((v) => !homed.has(v)), ...Object.keys(gate.solveVideos ?? {}).map((k) => `solve:${k}`).filter((v) => !homed.has(v))];
+  const orphanVideos = [...[...videoById.keys()].filter((v) => !homed.has(v)), ...Object.keys(gate.solveVideos ?? {}).map((k) => solveVideoId(c, k)).filter((v) => !homed.has(v))];
   const duplicateVideos = [...stepVideoUses].filter(([, n]) => n > 1).map(([v]) => v);
   for (const v of videoById.values()) if (v.kind === 'solution' && stepVideoUses.has(v.id)) duplicateVideos.push(`${v.id} (solution video also used as a lesson step)`);
 

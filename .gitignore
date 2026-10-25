@@ -28,6 +28,8 @@ website/node_modules/
 !Miae 215/08 - Teacher Midterm Practice AI Videos/*.mp4
 !Miae 215/09 - Code Lab Walkthrough AI Videos/*.mp4
 !Miae 215/10 - Practice Midterm 2026 AI Videos/*.mp4
+# MIAE 221 exam-question solve videos (200): MP4s and posters are served from Cloudflare R2 only
+Miae 221/10 - Midterm Exam Solve AI Videos/posters/
 *.mov
 *.avi
 *.mkv

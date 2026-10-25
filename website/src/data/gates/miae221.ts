@@ -1,6 +1,8 @@
 // MIAE221 exam-prep content: past-exam questions, topics, lessons, repeat clusters and study videos.
 // Formerly the encrypted Midterm Gate; migrated to plain data when the password was removed (see ARCHITECTURE.md, Part C).
 import type { GateContent } from './types';
+import { MIAE221_SOLVE_VIDEOS } from './miae221SolveVideos';
+import { MIAE221_TOPIC_VIDEOS } from './miae221TopicVideos';
 
 const content: GateContent = {
  "version": 2,
@@ -134,7 +136,7 @@ const content: GateContent = {
    "The F24, A25 and W26 midterms were written by different instructors, but they reuse the same question bank: identical stems, identical option lists, sometimes only shuffled.",
    "Calculation questions keep the template and change the numbers: a different metal, temperature, thickness or plane. The lecture and Callister examples are the originals.",
    "True/False sections recycle definitions word for word, often with one word flipped (elastic/plastic, FCC/HCP, θ/2θ).",
-   "Three posted answer keys are wrong (A25 Q4, A25 Q20, A25 T/F 30), and the photographed W26 paper has student marks on Q6 and Q12 that are wrong. Use the corrected answers here.",
+   "Three posted answer keys are wrong (A25 Q4, A25 Q20, A25 T/F 30), and the photographed W26 paper has student marks on Q2, Q3, Q6, Q12 and Q16 that are wrong. Use the corrected answers here.",
    "New this term: Ch 7.1–7.4 is inside the midterm scope. Old midterms barely touched it."
   ]
  },
@@ -1369,7 +1371,7 @@ const content: GateContent = {
    ],
    "ans": "c",
    "status": "key",
-   "note": "ACGE is the diagonal {110} plane, the most densely packed plane in BCC. Strictly, BCC has no perfectly close-packed plane; this exam uses “close-packed” to mean densest.",
+   "note": "ACGE is the diagonal {110} plane, the most densely packed plane in BCC. Strictly, BCC has no perfectly close-packed plane; this exam uses “close-packed” to mean densest. Careful: ABGF (b) is also a {110} diagonal plane through the body centre (Q3 on the same paper says so), so it is equally dense; the key takes (c).",
    "drill": false
   },
   {
@@ -1842,6 +1844,7 @@ const content: GateContent = {
    ],
    "ans": "b",
    "status": "unofficial",
+   "note": "Re-read from the figure: B runs from $(1, 0, \\tfrac23)$ to $(0, 1, \\tfrac13)$ → $(-1, 1, -\\tfrac13)$ → $[\\bar{3}3\\bar{1}]$, which leaves (b) or (c). A runs from $(1, 1, 0)$ to $(\\tfrac14, 0, 1)$ → $(-\\tfrac34, -1, 1)$ → $[\\bar{3}\\bar{4}4]$; the photo shows (b) as $[3\\bar{4}4]$ (the first bar is probably lost in the photo), and (b) is the only option with A’s 3-4-4 and the right B.",
    "f": [
     "direction"
    ],
@@ -1861,9 +1864,9 @@ const content: GateContent = {
     "C $[1\\bar{1}4]$, D $[3\\bar{4}\\bar{3}]$",
     "C $[4\\bar{4}1]$, D $[3\\bar{4}\\bar{3}]$"
    ],
-   "ans": "b",
+   "ans": "e",
    "status": "unofficial",
-   "note": "Both (b) and (e) are circled on the photo; both give C = $[4\\bar{4}1]$. Use it as method practice.",
+   "note": "Re-read from the figure: C runs from $(0, 1, \\tfrac12)$ to $(1, 0, \\tfrac14)$ → $(1, -1, -\\tfrac14)$ → $[4\\bar{4}\\bar{1}]$ (the photo’s student working says the same); D runs from $(0, 1, \\tfrac34)$ to $(\\tfrac34, 0, 0)$ → $(\\tfrac34, -1, -\\tfrac34)$ → $[3\\bar{4}\\bar{3}]$. Only (e) has that D; (b)’s $[4\\bar{3}\\bar{4}]$ cannot come from this figure. Both (b) and (e) are circled on the photo, so this replaces the earlier (b).",
    "f": [
     "direction"
    ],
@@ -1879,12 +1882,13 @@ const content: GateContent = {
    "opts": [
     "A (034), B $(0\\bar{1}3)$",
     "A (332), B (130)",
-    "A $(0\\bar{1}4)$, B $(0\\bar{1}3)$",
+    "A $(0\\bar{1}\\bar{4})$, B $(0\\bar{1}3)$",
     "A (034), B (130)",
     "A $(0\\bar{1}4)$, B (230)"
    ],
-   "ans": "e",
+   "ans": "c",
    "status": "unofficial",
+   "note": "Re-read from the figure: plane A contains the top edge $(x, 0, 1)$ and drops to $z = \\tfrac34$ at $y = 1$, so $z = 1 - y/4$ → intercepts $(\\infty, 4, 1)$ → (014), the same plane as $(0\\bar{1}\\bar{4})$. Plane B contains the x-axis and rises to $z = \\tfrac13$ at $y = 1$ (it passes through the origin): move the origin to $(0, 1, 0)$ → intercepts $(\\infty, -1, \\tfrac13)$ → $(0\\bar{1}3)$, as the student’s own working on the photo shows. Only (c) has both; the circled (e) has B = (230), which does not fit. Option (c) is printed as $(0\\bar{1}\\bar{4})$.",
    "f": [
     "plane"
    ],
@@ -2137,9 +2141,9 @@ const content: GateContent = {
     "114 GPa",
     "58 GPa"
    ],
-   "ans": "d",
+   "ans": "e",
    "status": "verified",
-   "note": "Inset: ≈200 MPa at ε ≈ 0.00175 → $E \\approx 114$ GPa. Read the inset, not the main plot.",
+   "note": "Read the inset: its strain axis runs 0 → 0.005 → 0.010 (minor ticks every 0.001), and the 200 MPa line meets the curve at ε ≈ 0.0034 → $E = 200/0.0034 \\approx 59$ GPa → (e). 114 GPa is what you get by misreading the inset scale by a factor of 2 (ε ≈ 0.00175). The figure is Callister’s aluminium-alloy curve (textbook value 62.5 GPa). Do not use the main plot: its elastic line is almost vertical.",
    "f": [
     "modulus"
    ],
@@ -2180,7 +2184,7 @@ const content: GateContent = {
    ],
    "ans": "a",
    "status": "verified",
-   "note": "Fracture strain ≈ 0.155 minus the elastic recovery (σ/E ≈ 0.002) ≈ 15.4 %.",
+   "note": "Fracture strain ≈ 0.157 minus the elastic recovery at fracture (σ/E ≈ 300/60 000 ≈ 0.005) ≈ 0.152 → about 15 %, closest option 15.4 %. (b) 16.0 % forgets the elastic recovery.",
    "drill": false
   },
   {
@@ -2218,7 +2222,7 @@ const content: GateContent = {
    ],
    "ans": "c",
    "status": "verified",
-   "note": "At 320 MPa total ε ≈ 0.028; elastic part $320/114000 = 0.0028$ recovers → plastic ≈ 0.025 → 2.5 mm.",
+   "note": "On the main curve 320 MPa is reached at ε ≈ 0.02–0.03 (the curve is very flat there); the elastic part $320/60\\,000 \\approx 0.005$ recovers → plastic ≈ 0.015–0.025 → about 2 mm on 100 mm. Closest option 2.5 mm; the others are 10× too small or too large.",
    "f": [
     "recovery"
    ],
@@ -3481,7 +3485,7 @@ const content: GateContent = {
     "A25-19",
     "A25-20"
    ],
-   "changes": "W26 spent 10 marks on one metal’s curve; it follows Callister Ex 6.3 (brass, Fig. 6.12) step for step: E, offset yield, TS/necking, change in length under a stress. A25 compared five curves (stiffest, strongest, most ductile).",
+   "changes": "W26 spent 10 marks on one metal’s curve (Callister’s aluminium-alloy curve with a low-strain inset), following the Callister Ex 6.3 procedure step for step: E from the inset (≈ 60 GPa), offset yield, %EL, necking, permanent set after unloading. A25 compared five curves (stiffest, strongest, most ductile).",
    "study": "E = slope of the inset. 0.2 % offset: line parallel to the elastic slope from ε = 0.002. Necking starts at the curve’s maximum. %EL = plastic strain at fracture. After unloading, only σ/E is recovered.",
    "trap": "Swapping yield strength and TS. Taking ductility as the largest area (that is toughness, which is the A25 key’s mistake). Forgetting the elastic recovery.",
    "refs": {
@@ -7167,11 +7171,11 @@ const content: GateContent = {
    "vars": [],
    "presets": [
     {
-     "label": "W26 Q16 — 200 MPa at ε = 0.00175",
+     "label": "W26 Q16 — 200 MPa at ε ≈ 0.0034",
      "from": "W26-16",
      "values": {
       "sigma": 200,
-      "eps": 0.00175
+      "eps": 0.0034
      }
     },
     {
@@ -7222,15 +7226,15 @@ const content: GateContent = {
     ],
     "example": {
      "title": "W26 Q16: read the inset",
-     "given": "the inset elastic line passes through σ = 200 MPa at ε = 0.00175",
+     "given": "the inset elastic line passes through σ = 200 MPa at ε ≈ 0.0034 (the inset strain axis runs 0 → 0.005 → 0.010)",
      "find": "E",
      "steps": [
       {
        "say": "Slope of the line from the origin.",
-       "tex": "E = \\frac{\\sigma}{\\varepsilon} = \\frac{200\\ \\text{MPa}}{0.00175} = 114\\,000\\ \\text{MPa} = 114\\ \\text{GPa}"
+       "tex": "E = \\frac{\\sigma}{\\varepsilon} = \\frac{200\\ \\text{MPa}}{0.0034} = 58\\,800\\ \\text{MPa} \\approx 59\\ \\text{GPa}"
       }
      ],
-     "answer": "E ≈ 114 GPa (option d)"
+     "answer": "E ≈ 59 GPa (option e; 114 GPa comes from misreading the inset scale by a factor of 2)"
     },
     "quiz": [
      {
@@ -7240,7 +7244,7 @@ const content: GateContent = {
       "calc": "modulus",
       "values": {
        "sigma": 200,
-       "eps": 0.00175
+       "eps": 0.0034
       },
       "vary": [
        {
@@ -7572,12 +7576,12 @@ const content: GateContent = {
    "vars": [],
    "presets": [
     {
-     "label": "W26 Q20 — 320 MPa, ε ≈ 0.028, E = 114 GPa, 100 mm",
+     "label": "W26 Q20 — 320 MPa, ε ≈ 0.025, E ≈ 60 GPa, 100 mm",
      "from": "W26-20",
      "values": {
       "sigma": 320,
-      "E": 114,
-      "eps": 0.028,
+      "E": 60,
+      "eps": 0.025,
       "L0": 100
      }
     }
@@ -7606,23 +7610,23 @@ const content: GateContent = {
     ],
     "example": {
      "title": "W26 Q20",
-     "given": "σ = 320 MPa, total ε ≈ 0.028 from the curve, E = 114 GPa, l₀ = 100 mm",
+     "given": "σ = 320 MPa, total ε ≈ 0.025 read from the (very flat) curve, E ≈ 60 GPa from the inset (Q16), l₀ = 100 mm",
      "find": "permanent Δl",
      "steps": [
       {
        "say": "Elastic strain that recovers.",
-       "tex": "\\varepsilon_e = \\frac{320}{114\\,000} = 0.0028"
+       "tex": "\\varepsilon_e = \\frac{320}{60\\,000} = 0.0053"
       },
       {
        "say": "Plastic strain that stays.",
-       "tex": "\\varepsilon_p = 0.028 - 0.0028 = 0.025"
+       "tex": "\\varepsilon_p = 0.025 - 0.0053 = 0.0197"
       },
       {
        "say": "Length change.",
-       "tex": "\\Delta l = 0.025\\times100 = 2.5\\ \\text{mm}"
+       "tex": "\\Delta l = 0.0197\\times100 \\approx 2\\ \\text{mm}"
       }
      ],
-     "answer": "≈ 2.5 mm (option c)"
+     "answer": "≈ 2 mm → closest option 2.5 mm (c); the other options are 10× off"
     },
     "quiz": [
      {
@@ -7632,8 +7636,8 @@ const content: GateContent = {
       "calc": "recovery",
       "values": {
        "sigma": 320,
-       "E": 114,
-       "eps": 0.028,
+       "E": 60,
+       "eps": 0.025,
        "L0": 100
       },
       "vary": [
@@ -9202,7 +9206,7 @@ const content: GateContent = {
      {
       "id": "p39",
       "kind": "task",
-      "text": "Re-read the answer-key corrections at the bottom of Topics (A25 Q4, Q20, T/F 30; W26 Q6, Q12).",
+      "text": "Re-read the answer-key corrections at the bottom of Topics (A25 Q4, Q20, T/F 30; W26 Q2, Q3, Q6, Q12, Q16).",
       "minutes": 5
      },
      {
@@ -9225,5 +9229,10 @@ const content: GateContent = {
   ]
  }
 };
+
+// narrated solve video per question (generated by the motion-lesson publisher)
+content.solveVideos = MIAE221_SOLVE_VIDEOS;
+// narrated "topic explained" video per subtopic (same publisher)
+content.topicVideos = MIAE221_TOPIC_VIDEOS;
 
 export default content;

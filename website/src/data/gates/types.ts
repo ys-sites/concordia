@@ -215,6 +215,8 @@ export interface GateContent {
   videoStops: VideoStop[];
   // narrated solve video per question, keyed by drill key (exam question id or "L:<lesson>:<index>")
   solveVideos?: Record<string, MotionLesson>;
+  // narrated "topic explained" video per subtopic, keyed by topic id (shown first in the topic's Watch drawer)
+  topicVideos?: Record<string, MotionLesson>;
   plan: { intro: string; phases: PlanPhase[] };
   paperDoc?: PaperDoc;
   gradesaver?: {

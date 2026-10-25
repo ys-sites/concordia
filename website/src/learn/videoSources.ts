@@ -4,12 +4,14 @@
 import type { MotionLesson } from '../data/engr213Lessons';
 import type { CourseId } from '../types';
 import { genericExamSource } from './examLabel';
+import { parseSolveVideoId } from './solveVideoId';
 import { ENGR213_MOTION_LESSONS } from '../data/engr213Lessons';
 import { MIAE221_MOTION_LESSONS } from '../data/miae221Lessons';
 import { MIAE215_CODELAB_VIDEOS } from '../data/miae215CodeLabVideos';
 import { MIAE215_MIDTERM_VIDEOS } from '../data/miae215MidtermVideos';
 import { MIAE215_PRACTICE_MIDTERM_VIDEOS } from '../data/miae215PracticeMidtermVideos';
 import { MIAE221_MIDTERM_VIDEOS } from '../data/miae221MidtermVideos';
+import { MIAE221_TOPIC_VIDEOS } from '../data/gates/miae221TopicVideos';
 
 export type { MotionLesson };
 
@@ -20,6 +22,7 @@ export interface VideoSource {
   kind: 'lesson' | 'solution' | 'walkthrough';
   lesson: MotionLesson;
   questionId?: string; // LearnQuestion id this video solves
+  gateTopic?: string; // exam-prep topic this video explains: it joins every lesson whose `gate` lists the topic
 }
 
 const entries = <T,>(rec: Record<string, T>) => Object.entries(rec);
@@ -32,6 +35,7 @@ const NOT_RENDERED = new Set(['TX_MIAE215_32', 'TX_MIAE215_33', 'TX_MIAE215_34']
 export const VIDEO_SOURCES: VideoSource[] = [
   ...entries(ENGR213_MOTION_LESSONS).map(([k, lesson]) => ({ id: `tutor:${k}`, courseId: 'ENGR213' as const, kind: 'lesson' as const, lesson })),
   ...MIAE221_MOTION_LESSONS.map((lesson) => ({ id: `topic221:${lesson.id}`, courseId: 'MIAE221' as const, kind: 'lesson' as const, lesson })),
+  ...entries(MIAE221_TOPIC_VIDEOS).map(([t, lesson]) => ({ id: `explain221:${t}`, courseId: 'MIAE221' as const, kind: 'lesson' as const, lesson, gateTopic: t })),
   ...entries(MIAE215_CODELAB_VIDEOS).map(([k, lesson]) => ({ id: `lab215:${k}`, courseId: 'MIAE215' as const, kind: 'walkthrough' as const, lesson })),
   ...entries(MIAE215_PRACTICE_MIDTERM_VIDEOS).map(([k, lesson]) => ({ id: `pm215:${k}`, courseId: 'MIAE215' as const, kind: 'walkthrough' as const, lesson, questionId: SOLVED_BY_WALKTHROUGH[k] })),
   ...entries(MIAE215_MIDTERM_VIDEOS)
@@ -44,17 +48,17 @@ const BY_ID = new Map(VIDEO_SOURCES.map((v) => [v.id, v]));
 
 export const staticVideo = (id: string): VideoSource | undefined => BY_ID.get(id);
 
-// ENGR 213 past-exam solve videos: id `solve:<drill key>` where the drill key is the past-exam question id or
-// "L:<lesson>:<index>" (see src/data/gates/types.ts, solveVideos)
-export const solveVideoId = (drillKey: string) => `solve:${drillKey}`;
+// past-exam solve videos (ids from ./solveVideoId) are resolved lazily from the course's exam-prep data
+export { solveVideoId } from './solveVideoId';
 
 export const resolveVideo = async (id: string): Promise<MotionLesson | null> => {
   const s = BY_ID.get(id);
   if (s) return s.lesson;
-  if (id.startsWith('solve:')) {
+  const solve = parseSolveVideoId(id);
+  if (solve) {
     const { loadGate } = await import('../data/gates');
-    const gate = await loadGate('ENGR213');
-    const v = gate.solveVideos?.[id.slice('solve:'.length)] ?? null;
+    const gate = await loadGate(solve.course);
+    const v = gate.solveVideos?.[solve.key] ?? null;
     // the stored source names the paper it came from; the player shows the generic label instead
     return v ? { ...v, source: genericExamSource(v.source) } : null;
   }

@@ -20,6 +20,8 @@ export interface GateIndex {
   midtermIds: string[];
   // per-question solve videos (drill key → video), from the encrypted content
   solveVideos: NonNullable<GateContent['solveVideos']>;
+  // narrated topic explanation per subtopic (topic id → video)
+  topicVideos: NonNullable<GateContent['topicVideos']>;
 }
 
 export const useGateIndex = (c: GateContent): GateIndex =>
@@ -40,7 +42,8 @@ export const useGateIndex = (c: GateContent): GateIndex =>
       docs: c.docs,
       paperIds,
       midtermIds: paperIds,
-      solveVideos: c.solveVideos ?? {}
+      solveVideos: c.solveVideos ?? {},
+      topicVideos: c.topicVideos ?? {}
     };
   }, [c]);
 
