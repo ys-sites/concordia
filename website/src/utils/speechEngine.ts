@@ -304,8 +304,10 @@ type KokoroInstance = Awaited<ReturnType<typeof KokoroTTS.from_pretrained>>;
 
 const KOKORO_MODEL_ID = 'onnx-community/Kokoro-82M-v1.0-ONNX';
 let kokoroPromise: Promise<KokoroInstance> | null = null;
+let kokoro: KokoroInstance | null = null;
 
 function loadKokoro(onLoading?: (pct: number) => void): Promise<KokoroInstance> {
+  if (kokoro) return Promise.resolve(kokoro);
   if (!kokoroPromise) {
     onLoading?.(5);
     kokoroPromise = import('kokoro-js')
@@ -316,12 +318,20 @@ function loadKokoro(onLoading?: (pct: number) => void): Promise<KokoroInstance> 
           if (progressInfo.status === 'progress') onLoading?.(Math.max(5, Math.round(progressInfo.progress * 0.8)));
         }
       }))
+      .then((model) => {
+        kokoro = model;
+        return model;
+      })
       .catch((error) => {
         kokoroPromise = null;
         throw error;
       });
   }
   return kokoroPromise;
+}
+
+function warmKokoro() {
+  void loadKokoro().catch(() => undefined);
 }
 
 export interface SpeakOptions {
@@ -375,7 +385,7 @@ class SpeechEngine {
   }
 
   public getVoiceName(): string {
-    return 'Kokoro · Heart';
+    return kokoro ? 'Kokoro · Heart' : this.voice?.name ?? 'Device voice';
   }
 
   public isSpeaking(): boolean {
@@ -417,6 +427,14 @@ class SpeechEngine {
     this.stop();
     this.lastText = rawText;
     const session = this.session;
+
+    // Start immediately while the optional local model downloads. Awaiting a model
+    // can outlive the original click, which browsers then treat as an autoplay attempt.
+    if (!kokoro && this.hasDeviceVoice()) {
+      this.speakWithDevice(spoken, options, session);
+      warmKokoro();
+      return;
+    }
 
     try {
       const kokoro = await loadKokoro(options.onLoading);

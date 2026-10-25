@@ -8,7 +8,9 @@
 export const ID_ALIASES: Record<string, string> = {
   'MIAE221/atomic-structure.video-topic221-m221-02-bonding': 'MIAE221/bonding.video-topic221-m221-02-bonding',
   'MIAE221/bonding.yt-DVtJ-nTjflI': 'MIAE221/bonding.video-topic221-m221-02-bonding',
-  'yt:DVtJ-nTjflI': 'topic221:m221-02-bonding'
+  'yt:DVtJ-nTjflI': 'topic221:m221-02-bonding',
+  'MIAE221/bond-energy.yt-idp9TI72Yys': 'MIAE221/bond-energy.video-topic221-m221-02b-bondcurve',
+  'yt:idp9TI72Yys': 'topic221:m221-02b-bondcurve'
 };
 
 // Ids removed on purpose (the content itself was taken down). Their saved progress stays in the record, unused.

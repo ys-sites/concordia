@@ -95,6 +95,44 @@ export const MIAE221_MOTION_LESSONS: TopicLesson[] = [
     ]
   },
   {
+    "id": "m221-02b-bondcurve",
+    "num": "02b",
+    "title": "Interatomic Forces & Potential Energy Curves",
+    "source": "MIAE 221 Lecture 3 · Interatomic Forces & Potential Wells (Callister Ch. 2)",
+    "section": "bondcurve",
+    "lectures": "Lecture 3 (Slides 8–24)",
+    "video": "Miae 221/08 - Teacher Topics Explained AI Videos/02b - Interatomic Forces & Potential Energy Curves.mp4",
+    "poster": "Miae 221/08 - Teacher Topics Explained AI Videos/posters/02b.jpg",
+    "duration": 393,
+    "sizeMB": 20.3,
+    "chapters": [
+      {
+        "label": "The Big Idea & Microscopic Springs",
+        "start": 0
+      },
+      {
+        "label": "1. Force Curves: FA, FR & Net Force",
+        "start": 41
+      },
+      {
+        "label": "2. The Potential Energy Well",
+        "start": 97.8
+      },
+      {
+        "label": "3. Whiteboard Derivation & Calculation",
+        "start": 150
+      },
+      {
+        "label": "4. Predicting Properties: Tm, E & Alpha",
+        "start": 278.9
+      },
+      {
+        "label": "Exam Blueprint & Traps",
+        "start": 338.7
+      }
+    ]
+  },
+  {
     "id": "m221-03-crystal",
     "num": 3,
     "title": "Crystal Structures",

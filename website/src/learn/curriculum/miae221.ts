@@ -50,6 +50,7 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'Force–energy curves & properties from bonding',
           summary: 'The potential well: equilibrium spacing, bond energy, and why it predicts melting point, stiffness and expansion.',
           gate: ['bondcurve'],
+          videos: ['topic221:m221-02b-bondcurve'],
           bank: [{ ch: 'bonding', re: /potential|well|energy|separation|melting|thermal expansion/i }, { ch: 'mixed', re: /bond energy|melting/i }]
         }
       ]

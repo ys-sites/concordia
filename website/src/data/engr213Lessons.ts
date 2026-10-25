@@ -2,7 +2,7 @@
 // Motion lessons for the ENGR 213 Midterm Mastery archetypes. Paths are course-relative
 // (served from /courses/ via getPdfUrl), so the videos live only in Engr 213/Tutor Videos.
 export interface MotionLesson {
-  num: number;
+  num: number | string;
   title: string;
   source: string;
   video: string;

@@ -26,6 +26,17 @@ AI-generated motion-graphics lessons, one per teacher topic (Chapters 1–7). Ea
 - 4:44 % Ionic Character & Pauling Formula
 - 5:53 Exam Blueprint & Traps
 
+## 02b · Interatomic Forces & Potential Energy Curves (6:33)
+
+[02b - Interatomic Forces & Potential Energy Curves.mp4](./02b%20-%20Interatomic%20Forces%20&%20Potential%20Energy%20Curves.mp4) · MIAE 221 Lecture 3 · Interatomic Forces & Potential Wells (Callister Ch. 2)
+
+- 0:00 The Big Idea & Microscopic Springs
+- 0:41 1. Force Curves: FA, FR & Net Force
+- 1:37 2. The Potential Energy Well
+- 2:30 3. Whiteboard Derivation & Calculation
+- 4:38 4. Predicting Properties: Tm, E & Alpha
+- 5:38 Exam Blueprint & Traps
+
 ## 03 · Crystal Structures (6:55)
 
 [03 - Crystal Structures.mp4](./03%20-%20Crystal%20Structures.mp4) · Lectures 4–5 · Crystal Structure (Callister Ch. 3)
