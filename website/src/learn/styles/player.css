@@ -563,7 +563,9 @@
   min-width: 160px;
 }
 .lx-reading-frame {
+  position: relative;
   height: min(78vh, 900px);
+  min-width: 0;
   overflow: auto;
   border: 1px solid var(--lx-line);
   border-radius: var(--lx-r-lg);

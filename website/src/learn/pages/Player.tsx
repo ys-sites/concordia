@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, Check, CheckCircle2, ChevronDown, Circle, ListTr
 import type { CourseId } from '../../types';
 import type { Curriculum, Lesson, Section, Step } from '../model';
 import { COURSE_BY_ID, courseClass } from '../courses';
-import { courseProgress, findLesson, fmtMinutes, isDone, lessonProgress, stepsOf, useCurriculum } from '../data';
+import { courseProgress, findLesson, fmtMinutes, isDone, lessonProgress, useCurriculum } from '../data';
 import { href, navigate } from '../router';
 import { markStep, setPlace, updateProgress, useProgress } from '../progress/store';
 import { StepIcon, KIND_LABEL } from '../components/StepIcon';
@@ -20,7 +20,8 @@ import '../styles/player.css';
 // sections; Next marks reading steps complete, videos complete at 90 % watched, quizzes when finished.
 const MANUAL: Step['kind'][] = ['notes', 'reading', 'worked', 'tool', 'extra'];
 
-const Sidebar: React.FC<{ cur: Curriculum; lessonId: string; stepId: string; done: Record<string, number>; onPick: () => void }> = ({ cur, lessonId, stepId, done, onPick }) => {
+const Sidebar: React.FC<{ cur: Curriculum; lessonId: string; stepId: string; done: Record<string, number>; examPrep: boolean; onPick: () => void }> = ({ cur, lessonId, stepId, done, examPrep, onPick }) => {
+  const sections = cur.sections.filter((section) => Boolean(section.examPrep) === examPrep);
   const currentSection = cur.sections.find((s) => s.lessons.some((l) => l.id === lessonId))?.id;
   const [openSections, setOpenSections] = useState<Set<string>>(() => new Set(currentSection ? [currentSection] : []));
   const [openLessons, setOpenLessons] = useState<Set<string>>(() => new Set([lessonId]));
@@ -44,8 +45,8 @@ const Sidebar: React.FC<{ cur: Curriculum; lessonId: string; stepId: string; don
       return n;
     });
   return (
-    <nav className="lx-side-list" aria-label="Course content">
-      {cur.sections.map((s: Section, si) => {
+    <nav className="lx-side-list" aria-label={examPrep ? 'Midterm preparation' : 'Course content'}>
+      {sections.map((s: Section, si) => {
         const done_ = s.lessons.filter((l) => lessonProgress(cur.id, l, done).complete).length;
         const open = openSections.has(s.id);
         return (
@@ -53,7 +54,7 @@ const Sidebar: React.FC<{ cur: Curriculum; lessonId: string; stepId: string; don
             <button type="button" className="lx-side-sec-head" aria-expanded={open} onClick={() => toggle(setOpenSections, s.id)}>
               <span>
                 <strong>
-                  {s.examPrep ? '' : `Section ${si + 1}: `}
+                  {examPrep ? '' : `Section ${si + 1}: `}
                   {s.title}
                 </strong>
                 <span className="lx-meta lx-num">
@@ -147,7 +148,12 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
 
   const found = cur ? findLesson(cur, lessonId) : null;
   const step = found ? found.lesson.steps.find((s) => s.id === stepId) ?? found.lesson.steps.find((s) => !s.optional && !done[`${course}/${s.id}`]) ?? found.lesson.steps[0] : null;
-  const all = cur ? stepsOf(cur) : [];
+  const isExamPrep = Boolean(found?.section.examPrep);
+  const all = cur
+    ? cur.sections
+      .filter((section) => Boolean(section.examPrep) === isExamPrep)
+      .flatMap((section) => section.lessons.flatMap((lesson) => lesson.steps.map((currentStep) => ({ lesson, step: currentStep }))))
+    : [];
   const at = step ? all.findIndex((x) => x.step.id === step.id) : -1;
   const prev = at > 0 ? all[at - 1] : null;
   const next = at >= 0 && at < all.length - 1 ? all[at + 1] : null;
@@ -197,6 +203,7 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
 
   if (!cur || !found || !step) return <div className="lx-player-loading" aria-busy="true" />;
   const { lesson, section } = found;
+  const contentLabel = isExamPrep ? 'Midterm preparation' : 'Course content';
   const stepDone = isDone(done, course, step);
   const quiz = step.kind === 'check' || step.kind === 'practice' || step.kind === 'exam';
   const lessonDocs = [...new Map([...lesson.steps.flatMap((s) => s.docs ?? []), ...(lesson.resources ?? [])].map((d) => [d.path + (d.page ?? ''), d])).values()];
@@ -222,7 +229,7 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
           </div>
         )}
         <button type="button" className="lx-ptop-content" onClick={() => setDrawer(true)}>
-          <ListTree size={18} /> <span>Course content</span>
+          <ListTree size={18} /> <span>{contentLabel}</span>
         </button>
         <a className="lx-ptop-close" href="#/" aria-label="Close the player">
           <X size={20} />
@@ -432,14 +439,14 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
           </>
         </main>
 
-        <aside className={`lx-pside${drawer ? ' is-open' : ''}`} aria-label="Course content">
+        <aside className={`lx-pside${drawer ? ' is-open' : ''}`} aria-label={contentLabel}>
           <div className="lx-pside-head">
-            <strong>Course content</strong>
-            <button type="button" className="lx-icon-btn lx-pside-close" onClick={() => setDrawer(false)} aria-label="Close course content">
+            <strong>{contentLabel}</strong>
+            <button type="button" className="lx-icon-btn lx-pside-close" onClick={() => setDrawer(false)} aria-label={`Close ${contentLabel.toLowerCase()}`}>
               <X size={20} />
             </button>
           </div>
-          <Sidebar cur={cur} lessonId={lesson.id} stepId={step.id} done={done} onPick={() => setDrawer(false)} />
+          <Sidebar cur={cur} lessonId={lesson.id} stepId={step.id} done={done} examPrep={isExamPrep} onPick={() => setDrawer(false)} />
         </aside>
         {drawer && <div className="lx-pside-scrim" onClick={() => setDrawer(false)} aria-hidden />}
       </div>
