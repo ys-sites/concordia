@@ -1,5 +1,5 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
-import { AlertTriangle, BookOpen, CheckCircle2, ChevronRight, ExternalLink, FileText, Lightbulb, ListOrdered, Maximize2, PlayCircle, Sparkles, Target, Youtube } from 'lucide-react';
+import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { AlertTriangle, BookOpen, CheckCircle2, ChevronRight, ExternalLink, FileText, Lightbulb, ListOrdered, Maximize2, Minimize2, PlayCircle, Sparkles, Target, Youtube } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { DocRef, Step } from '../model';
 import type { Formula, GateContent } from '../../data/gates/types';
@@ -590,6 +590,55 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
   const [play, setPlay] = useState(false);
   const [showRefVideo, setShowRefVideo] = useState(false);
   const [refLesson, setRefLesson] = useState<MotionLesson | null>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const handleFs = () => {
+      setIsFullscreen(
+        document.fullscreenElement === iframeRef.current ||
+        document.fullscreenElement === frameRef.current
+      );
+    };
+    document.addEventListener('fullscreenchange', handleFs);
+    return () => document.removeEventListener('fullscreenchange', handleFs);
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      const target = iframeRef.current || frameRef.current;
+      target?.requestFullscreen?.().catch(() => {
+        frameRef.current?.requestFullscreen?.().catch(() => {});
+      });
+    } else {
+      document.exitFullscreen?.().catch(() => {});
+    }
+  };
+
+  useEffect(() => {
+    let idleTimer: NodeJS.Timeout;
+    const handleMove = () => {
+      frameRef.current?.classList.remove('is-idle');
+      clearTimeout(idleTimer);
+      if (document.fullscreenElement) {
+        idleTimer = setTimeout(() => {
+          if (document.fullscreenElement) {
+            frameRef.current?.classList.add('is-idle');
+          }
+        }, 2000);
+      }
+    };
+
+    const node = frameRef.current;
+    node?.addEventListener('mousemove', handleMove);
+    node?.addEventListener('mouseenter', handleMove);
+    return () => {
+      clearTimeout(idleTimer);
+      node?.removeEventListener('mousemove', handleMove);
+      node?.removeEventListener('mouseenter', handleMove);
+    };
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -605,9 +654,15 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
 
   return (
     <div className="lx-extra">
-      <div className="lx-extra-frame">
+      <div className="lx-extra-frame" ref={frameRef}>
         {play ? (
-          <iframe src={`https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0&playsinline=1`} title={v.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
+          <iframe
+            ref={iframeRef}
+            src={`https://www.youtube.com/embed/${v.id}?autoplay=1&autohide=1&controls=1&fs=1&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1`}
+            title={v.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+            allowFullScreen
+          />
         ) : (
           <button type="button" className="lx-extra-poster" onClick={() => setPlay(true)} aria-label={`Play ${v.title}`}>
             <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt="" loading="lazy" />
@@ -615,10 +670,28 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
           </button>
         )}
       </div>
-      <p className="lx-meta">
-        <Youtube size={14} aria-hidden /> {v.channel} · {v.len}
-        {step.optional ? ' · an outside explanation, optional' : ''}
-      </p>
+      <div className="lx-extra-bar">
+        <div className="lx-extra-bar-left">
+          <span className="lx-yt-tag">
+            <Youtube size={16} aria-hidden />
+            <span>{v.channel}</span>
+          </span>
+          <button
+            type="button"
+            className="lx-extra-fs-text-btn"
+            onClick={toggleFullscreen}
+            title={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
+            aria-label={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
+          >
+            {isFullscreen ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
+            <span>{isFullscreen ? 'Exit Full Screen' : 'Full Screen'}</span>
+          </button>
+        </div>
+        <p className="lx-meta">
+          {v.len}
+          {step.optional ? ' · an outside explanation, optional' : ''}
+        </p>
+      </div>
       {v.watch && v.watch.length > 0 && (
         <div className="lx-ex-block">
           <h3 className="lx-ex-title">
