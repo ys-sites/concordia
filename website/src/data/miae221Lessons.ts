@@ -103,8 +103,8 @@ export const MIAE221_MOTION_LESSONS: TopicLesson[] = [
     "lectures": "Lecture 3 (Slides 8–24)",
     "video": "Miae 221/08 - Teacher Topics Explained AI Videos/02b - Interatomic Forces & Potential Energy Curves.mp4",
     "poster": "Miae 221/08 - Teacher Topics Explained AI Videos/posters/02b.jpg",
-    "duration": 393,
-    "sizeMB": 20.3,
+    "duration": 402,
+    "sizeMB": 21.9,
     "chapters": [
       {
         "label": "The Big Idea & Microscopic Springs",
@@ -112,23 +112,23 @@ export const MIAE221_MOTION_LESSONS: TopicLesson[] = [
       },
       {
         "label": "1. Force Curves: FA, FR & Net Force",
-        "start": 41
+        "start": 40.5
       },
       {
         "label": "2. The Potential Energy Well",
-        "start": 97.8
+        "start": 99.2
       },
       {
         "label": "3. Whiteboard Derivation & Calculation",
-        "start": 150
+        "start": 153.3
       },
       {
         "label": "4. Predicting Properties: Tm, E & Alpha",
-        "start": 278.9
+        "start": 284.1
       },
       {
         "label": "Exam Blueprint & Traps",
-        "start": 338.7
+        "start": 345.8
       }
     ]
   },

@@ -8073,36 +8073,38 @@ const content: GateContent = {
    "why": "r₀ from a force curve (F24), the correct-statement MC (W26), and 4 T/Fs on bond strength vs properties across F24 and W26.",
    "videos": [
     {
-     "id": "idp9TI72Yys",
-     "title": "Describing bonds in terms of interatomic forces",
-     "channel": "Taylor Sparks",
-     "len": "7:42",
+     "id": "DLE-ieOVFjI",
+     "title": "Understanding Young's Modulus & Interatomic Bonds",
+     "channel": "The Efficient Engineer",
+     "len": "6:42",
      "role": "learn",
      "watch": [
-      "Note that equilibrium is where the NET force crosses zero.",
-      "Sketch F_A, F_R and F_N on one axis."
+          "Note how Hooke's law at the macro scale emerges directly from the interatomic force curve.",
+          "Sketch F_A, F_R and F_N on one axis to see the net force root r_0."
      ]
-    },
+},
     {
-     "id": "b92UJQS9weU",
-     "title": "Describing bonds in terms of \"energy potential wells\"",
-     "channel": "Taylor Sparks",
-     "len": "11:40",
+     "id": "U43-NTF-79E",
+     "title": "Bond Energy & Potential Energy Curves",
+     "channel": "The Organic Chemistry Tutor",
+     "len": "11:35",
      "role": "learn",
      "watch": [
-      "Link the well depth to Tm and the curvature to E, and the asymmetry to α (Lecture 3 slides 14–16)."
+          "Link well depth E_0 to melting temperature Tm, and well curvature to stiffness E.",
+          "See why repulsive Pauli wall creates asymmetry leading to thermal expansion."
      ]
-    },
+},
     {
-     "id": "r79VlVcnaVU",
-     "title": "interatomic forces example problem",
-     "channel": "Taylor Sparks",
-     "len": "11:17",
+     "id": "-mZAsdJnnMM",
+     "title": "Interpreting Potential Energy Curves Worked Example",
+     "channel": "Khan Academy",
+     "len": "7:15",
      "role": "worked",
      "watch": [
-      "This is the Practice Set Q3–Q4 type. Pause before each derivative and do it yourself."
+          "Follow the calculation of r_0 where dE/dr = 0 and well depth E_0.",
+          "Practice setting up the power-law derivatives step-by-step."
      ]
-    }
+}
    ],
    "after": "Load Practice Set Q3 in the Formula Lab (r₀ = 0.279 nm, E₀ = −4.58 eV), then answer the four bond-property T/Fs.",
    "gate": [
@@ -8135,25 +8137,27 @@ const content: GateContent = {
      ]
     },
     {
-     "id": "FL6X9CXTHo8",
-     "title": "BCC crystal structure",
-     "channel": "Taylor Sparks",
-     "len": "5:46",
-     "role": "extra",
+     "id": "HCWwRh5CXYU",
+     "title": "Unit Cell Chemistry: Simple Cubic, BCC & FCC Crystal Structures",
+     "channel": "The Organic Chemistry Tutor",
+     "len": "17:21",
+     "role": "learn",
      "watch": [
-      "Visualise the body diagonal 4R = a√3."
+          "Visualize atom packing, coordination numbers, and lattice parameter geometry for BCC.",
+          "Verify the 2 atoms per cell calculation along the body diagonal."
      ]
-    },
+},
     {
-     "id": "A9OHxbv1vbM",
-     "title": "HCP crystal structure",
-     "channel": "Taylor Sparks",
-     "len": "3:01",
-     "role": "extra",
+     "id": "vK913oWl_XI",
+     "title": "Miller-Bravais Indices & HCP Unit Cell Structure",
+     "channel": "LearnChemE",
+     "len": "3:47",
+     "role": "learn",
      "watch": [
-      "Note n = 6 and APF = 0.74, the same as FCC."
+          "Understand the 4-index system (hkil) and basal plane geometry of HCP.",
+          "Note the c/a ratio and 6 atoms per unit cell."
      ]
-    }
+}
    ],
    "after": "Without notes, derive APF for BCC and FCC. Then A25 Q15, W26 Q5, F24 T/F 30, A25 T/F 25.",
    "gate": [
@@ -8174,25 +8178,27 @@ const content: GateContent = {
    "why": "Tungsten (A25) forward, thorium (F24) backwards. Lecture 5 slide 8 is the same template.",
    "videos": [
     {
-     "id": "CzZrioY5BGQ",
-     "title": "How to calculate theoretical density for crystal structures",
-     "channel": "Taylor Sparks",
-     "len": "4:57",
+     "id": "HCWwRh5CXYU",
+     "title": "Theoretical Density Calculation for Crystal Structures",
+     "channel": "The Organic Chemistry Tutor",
+     "len": "17:21",
      "role": "learn",
      "watch": [
-      "Keep track of the unit conversions on screen (nm → cm)."
+          "Use rho = n·A / (Vc·NA) and convert lattice parameter 'a' from nm to cm.",
+          "Check unit conversions carefully for grams per cubic centimeter."
      ]
-    },
+},
     {
-     "id": "819YK-SSnVQ",
-     "title": "crystal structure and theoretical density worked example",
-     "channel": "Taylor Sparks",
-     "len": "5:59",
+     "id": "Cwdef3TlOtE",
+     "title": "Theoretical Density of an Element Worked Problem",
+     "channel": "LearnChemE",
+     "len": "5:53",
      "role": "worked",
      "watch": [
-      "Pause after the setup and finish it yourself, then compare."
+          "Watch the step-by-step substitution into the theoretical density formula.",
+          "Compare theoretical density against periodic table handbook values."
      ]
-    }
+}
    ],
    "after": "Do A25 Q8 by hand, then check with the calculator. Then F24 Q17 using the “find a” mode.",
    "gate": [
@@ -8247,36 +8253,38 @@ const content: GateContent = {
    "why": "Planes appeared in all three midterms and both finals; W26 alone had 4 marks of them.",
    "videos": [
     {
-     "id": "SelyoeEkRXs",
-     "title": "Easy steps to label and draw crystal planes with Miller Indices",
-     "channel": "Taylor Sparks",
-     "len": "9:15",
+     "id": "pMTA_wiY784",
+     "title": "Crystal Plane Miller Indices (hkl)",
+     "channel": "LearnChemE",
+     "len": "4:45",
      "role": "learn",
      "watch": [
-      "Watch the origin shift closely: it is the step people skip.",
-      "Practise drawing (110), (111) and (012) as he does."
+          "Step 1: intercepts, Step 2: reciprocals, Step 3: reduction to smallest integers.",
+          "Remember overbar for negative intercepts."
      ]
-    },
+},
     {
-     "id": "UVwswp0-SRU",
-     "title": "Simple rules for labeling planes with Miller indices",
-     "channel": "Taylor Sparks",
-     "len": "5:03",
-     "role": "worked",
+     "id": "6DK7DX0ekAY",
+     "title": "Miller Indices of Crystal Planes & Directions",
+     "channel": "The Organic Chemistry Tutor",
+     "len": "14:20",
+     "role": "learn",
      "watch": [
-      "A fast recap. Rewatch the morning of the exam."
+          "The complete, intuitive guide to drawing and identifying planes in cubic unit cells.",
+          "Rules for shifting the origin when a plane passes through (0,0,0)."
      ]
-    },
+},
     {
-     "id": "629bin6Sqgw",
-     "title": "How to identify the miller indices of a plane containing 3 points",
-     "channel": "Taylor Sparks",
-     "len": "9:51",
-     "role": "extra",
+     "id": "pMTA_wiY784",
+     "title": "Determining Miller Indices of a Crystal Plane",
+     "channel": "LearnChemE",
+     "len": "4:45",
+     "role": "learn",
      "watch": [
-      "Useful when the exam marks three points (like F24 plane K) instead of intercepts."
+          "Find plane intercepts along x, y, and z axes and take reciprocals.",
+          "Clear fractional intercepts with a common denominator."
      ]
-    }
+}
    ],
    "after": "Plane calculator: Final 2017 Q1 and Callister Ex 3.10. Then A25 Q3, W26 Q3–4, and the old final T/F 31.",
    "gate": [
@@ -8300,15 +8308,16 @@ const content: GateContent = {
    "why": "Planar density is in A25, W26 and F17, each time on a different plane from the lecture example. Close-packed T/Fs in W26.",
    "videos": [
     {
-     "id": "WOBvAGgmyxk",
-     "title": "How to calculate linear and planar density",
-     "channel": "Taylor Sparks",
-     "len": "2:50",
+     "id": "9Rd8349JwWc",
+     "title": "Linear and Planar Atomic Densities",
+     "channel": "LearnChemE",
+     "len": "4:55",
      "role": "learn",
      "watch": [
-      "The short method: count only atoms whose centres sit on the plane."
+          "Linear density = atoms centered on vector / vector length.",
+          "Planar density = atoms centered on plane / plane area."
      ]
-    },
+},
     {
      "id": "F0uEfVntPMo",
      "title": "FCC Planar Density",
@@ -8340,25 +8349,27 @@ const content: GateContent = {
    "why": "Bragg appeared in all three midterms: Pt (F24, then recycled as an A25 T/F) and Rh solved backwards (W26).",
    "videos": [
     {
-     "id": "rLSReSyKhBw",
-     "title": "X-ray diffraction and interplanar spacings",
-     "channel": "Taylor Sparks",
-     "len": "5:15",
+     "id": "MU2jpHg2vX8",
+     "title": "X-Ray Diffraction Peak Analysis & Bragg's Law",
+     "channel": "LearnChemE",
+     "len": "4:11",
      "role": "learn",
      "watch": [
-      "Connect d_hkl = a/√(h²+k²+l²) to Lecture 6 slide 10."
+          "Relate peak angles 2-theta to interplanar spacing d_hkl using n·lambda = 2·d·sin(theta).",
+          "Notice selection rules for BCC and FCC peak reflections."
      ]
-    },
+},
     {
-     "id": "6IzrOWIw3zQ",
-     "title": "XRD X-ray diffraction worked example problem",
-     "channel": "Taylor Sparks",
-     "len": "9:00",
+     "id": "Cjce4QumZNk",
+     "title": "Bragg's Equation For X-Ray Diffraction Practice Problems",
+     "channel": "The Organic Chemistry Tutor",
+     "len": "14:58",
      "role": "worked",
      "watch": [
-      "Pause when he gets d and finish to 2θ yourself."
+          "Solve for lattice parameter 'a' from diffraction peak angle 2-theta.",
+          "Watch the distinction between theta and 2-theta."
      ]
-    },
+},
     {
      "id": "Cjce4QumZNk",
      "title": "Bragg's Equation For X-Ray Diffraction In Chemistry - Practice Problems",
@@ -8386,25 +8397,27 @@ const content: GateContent = {
    "why": "The highest-repeat T/F area: polycrystalline-vs-polymorph (F24, W26), amorphous grain boundaries (A25, W26), order (F24, A25).",
    "videos": [
     {
-     "id": "Kp7PW0UHypo",
-     "title": "Two-dimensional defects in materials",
-     "channel": "Taylor Sparks",
-     "len": "8:14",
+     "id": "cpvTwYAUeA8",
+     "title": "Dislocations, Grain Boundaries & 2D Defects",
+     "channel": "LearnChemE",
+     "len": "4:04",
      "role": "learn",
      "watch": [
-      "Grain boundaries are interfaces between crystals, so no crystals means no boundaries."
+          "Understand interfacial defects, grain boundaries, and high interfacial energy.",
+          "How grain boundaries impede dislocation movement and strengthen metals."
      ]
-    },
+},
     {
-     "id": "-5HNjoCpdXQ",
-     "title": "Crystal systems and Bravais Lattices",
-     "channel": "Taylor Sparks",
-     "len": "5:07",
-     "role": "extra",
+     "id": "Wj6qR1zvldc",
+     "title": "Crystal Systems and Bravais Lattices",
+     "channel": "Professor Dave Explains",
+     "len": "10:53",
+     "role": "learn",
      "watch": [
-      "For the body-centred tetragonal definition (A25 Q16)."
+          "The 7 crystal systems and 14 Bravais lattices defined by axial lengths and angles.",
+          "Distinguish simple, body-centered, face-centered, and base-centered lattices."
      ]
-    }
+}
    ],
    "after": "Do all eight T/Fs in a row; they are free marks once the definitions are clean.",
    "gate": [
@@ -8427,25 +8440,27 @@ const content: GateContent = {
    "why": "Appeared in every exam: W26 (= old final, = Callister Ex 4.1 at a new T), A25 inverse, F17 another metal.",
    "videos": [
     {
-     "id": "tCJ38IbigMg",
-     "title": "Point defects in metals",
-     "channel": "Taylor Sparks",
-     "len": "8:40",
+     "id": "idqQhFwg-mo",
+     "title": "Vacancies in Metals: Equilibrium Concentration",
+     "channel": "LearnChemE",
+     "len": "2:52",
      "role": "learn",
      "watch": [
-      "Where the exponential comes from; vacancy vs self-interstitial (F24 Q10)."
+          "Boltzmann-type Arrhenius relation: Nv = N·exp(-Qv / kT).",
+          "Notice how vacancy concentration increases exponentially with temperature."
      ]
-    },
+},
     {
-     "id": "m62X8sM6-wI",
-     "title": "Materials science vacancies example problem",
-     "channel": "Taylor Sparks",
-     "len": "2:36",
+     "id": "-RDRYZqxrfs",
+     "title": "Equilibrium Vacancy Concentration Calculation",
+     "channel": "LearnChemE",
+     "len": "2:37",
      "role": "worked",
      "watch": [
-      "Watch the two-step structure: N first, then the exponential."
+          "Calculate total atomic sites N per unit volume using density and atomic weight.",
+          "Substitute activation energy Qv and Boltzmann constant k."
      ]
-    }
+}
    ],
    "after": "Calculator: Callister Ex 4.1 (2.2×10²⁵), then W26 Q8 at 20 °C (2.8×10¹³). Note how T changes the answer by 12 orders of magnitude. Then A25 Q17 in the Qᵥ mode.",
    "gate": [
@@ -8466,15 +8481,16 @@ const content: GateContent = {
    "why": "A25 Q10 = 2017 final Q18 (same options). W26 asked ferrite (interstitial).",
    "videos": [
     {
-     "id": "zJZ0_nDd4ao",
-     "title": "Alloys and solubility rules",
-     "channel": "Taylor Sparks",
-     "len": "7:52",
+     "id": "5yW9YnOcEpg",
+     "title": "Hume-Rothery Rules for Solid Solutions",
+     "channel": "LearnChemE",
+     "len": "5:10",
      "role": "learn",
      "watch": [
-      "Hume-Rothery: size within 15 %, same structure, similar electronegativity, similar valence."
+          "The 4 Hume-Rothery conditions: atomic size (<15%), crystal structure, electronegativity, valence.",
+          "Predicting complete vs partial solid solubility in binary alloys."
      ]
-    },
+},
     {
      "id": "5yW9YnOcEpg",
      "title": "Hume-Rothery Rules",
@@ -8512,15 +8528,16 @@ const content: GateContent = {
      ]
     },
     {
-     "id": "aR_7duBM_2Y",
-     "title": "1D defects and dislocations",
-     "channel": "Taylor Sparks",
-     "len": "6:30",
-     "role": "extra",
+     "id": "PaGJwOPg2kU",
+     "title": "Understanding Dislocations & Crystal Defects in Metals",
+     "channel": "The Efficient Engineer",
+     "len": "17:57",
+     "role": "learn",
      "watch": [
-      "Why dislocations make metals ductile (they are not “only negative”, W26 Q10)."
+          "Visualize edge and screw dislocations and their Burgers vectors.",
+          "See how dislocation slip generates plastic deformation in crystalline metals."
      ]
-    }
+}
    ],
    "after": "A25 Q14, W26 Q10, A25 Q13, old final Q8.",
    "gate": [
@@ -8539,25 +8556,27 @@ const content: GateContent = {
    "why": "A25 and W26 both asked the Lecture 9 slide 9 hydrogen-purification problem with new numbers.",
    "videos": [
     {
-     "id": "EKhFRe0zIT4",
-     "title": "Ficks First Law for steady-state diffusion",
-     "channel": "Taylor Sparks",
-     "len": "7:38",
+     "id": "cTcsp1tyxOM",
+     "title": "Fick's First Law of Steady-State Diffusion",
+     "channel": "LearnChemE",
+     "len": "7:10",
      "role": "learn",
      "watch": [
-      "Steady state means a straight-line profile, so dC/dx = ΔC/Δx."
+          "Diffusion flux J = -D·(dC/dx): negative sign denotes flow down the concentration gradient.",
+          "Steady-state conditions where concentration profile does not change with time."
      ]
-    },
+},
     {
-     "id": "b51J0klp0bY",
-     "title": "mass transport Ficks first law steady state diffusion example problem",
-     "channel": "Taylor Sparks",
-     "len": "3:10",
+     "id": "m-sigBs5ilE",
+     "title": "Steady-State Diffusion Example Problem",
+     "channel": "LearnChemE",
+     "len": "11:15",
      "role": "worked",
      "watch": [
-      "Then convert flux into kg per hour: × area × 3600."
+          "Compute gas diffusion flux through a metal purification membrane.",
+          "Convert concentration units to kg/m^3 or atoms/m^3."
      ]
-    }
+}
    ],
    "after": "Calculator: Lecture 9 slide 9, A25 Q7, W26 Q13. Same method three times, with new numbers each time.",
    "gate": [
@@ -8574,25 +8593,27 @@ const content: GateContent = {
    "why": "F24 had an erf calculation plus a carburizing-speed concept question; W26 had a T/F.",
    "videos": [
     {
-     "id": "SCWOvR3s3tU",
-     "title": "Fick's Second Law and non-steady state diffusion",
-     "channel": "Taylor Sparks",
-     "len": "10:41",
+     "id": "U_G3qaxKWHg",
+     "title": "Fick's Second Law & Non-Steady State Diffusion",
+     "channel": "Dr Kidd Engineering",
+     "len": "5:22",
      "role": "learn",
      "watch": [
-      "Boundary conditions → the erf solution on your equation sheet."
+          "Governing PDE: dC/dt = D·(d²C/dx²) and its Gaussian error function solution.",
+          "The semi-infinite solid boundary condition: (Cx - C0)/(Cs - C0) = 1 - erf(x / (2*sqrt(Dt)))."
      ]
-    },
+},
     {
-     "id": "6Nb2q4uYvkY",
-     "title": "mass transport Ficks second law non-steady state diffusion example problem",
-     "channel": "Taylor Sparks",
-     "len": "4:12",
+     "id": "U_G3qaxKWHg",
+     "title": "Non-Steady State Diffusion Error Function Example",
+     "channel": "Dr Kidd Engineering",
+     "len": "5:22",
      "role": "worked",
      "watch": [
-      "Pause at the erf table lookup and interpolate yourself."
+          "Linear interpolation of the error function erf(z) table.",
+          "Solving for carburization depth x or required processing time t."
      ]
-    },
+},
     {
      "id": "FkD_rPpIb2Q",
      "title": "Error function solution of Fick's second law",
@@ -8621,15 +8642,16 @@ const content: GateContent = {
    "why": "The BCC vs FCC carbon question appeared at 910 °C (F24) and 1200 °C (W26); expect another temperature.",
    "videos": [
     {
-     "id": "0RfGILRniA8",
-     "title": "Atomistic view of diffusion",
-     "channel": "Taylor Sparks",
-     "len": "10:03",
+     "id": "Zakqi78EwhM",
+     "title": "Diffusion Mechanisms: Vacancy vs Interstitial Diffusion",
+     "channel": "LearnChemE",
+     "len": "2:25",
      "role": "learn",
      "watch": [
-      "Vacancy vs interstitial mechanism; why interstitial is faster (F24 T/F 27)."
+          "Why interstitial diffusion (small atoms like C in Fe) is orders of magnitude faster than vacancy diffusion.",
+          "Activation energy barrier comparison between host atoms and interstitial solutes."
      ]
-    },
+},
     {
      "id": "3mXUA58GuhE",
      "title": "Materials Science Arrhenius Temperature Dependence of Diffusion and Calculation of Activation Energy",
@@ -8668,35 +8690,38 @@ const content: GateContent = {
    "why": "Rod elongation pair (F24), Poisson in F24 and F17, stiffness vs strength concept (F24).",
    "videos": [
     {
-     "id": "kDW3Iw-Oe4s",
-     "title": "Stress-strain curves and modulus of elasticity",
-     "channel": "Taylor Sparks",
-     "len": "9:52",
+     "id": "AkX6JqlWRqc",
+     "title": "Understanding True Stress and True Strain",
+     "channel": "The Efficient Engineer",
+     "len": "6:50",
      "role": "learn",
      "watch": [
-      "E comes from bond stiffness, so all steels share E ≈ 207 GPa (F24 Q9)."
+          "The engineering stress-strain curve from elastic limit to necking and fracture.",
+          "Calculating Young's modulus E from the linear Hookean slope."
      ]
-    },
+},
     {
-     "id": "9f6VL9mcUbg",
-     "title": "Poisson's ratio",
-     "channel": "Taylor Sparks",
-     "len": "3:10",
+     "id": "tuOlM3P7ygA",
+     "title": "Understanding Poisson's Ratio",
+     "channel": "The Efficient Engineer",
+     "len": "9:45",
      "role": "learn",
      "watch": [
-      "Sign convention: lateral strain is negative."
+          "Formula: nu = -epsilon_lateral / epsilon_axial, typically 0.25 to 0.35 for metals.",
+          "Physical mechanism: conservation of volume during elastic stretching."
      ]
-    },
+},
     {
-     "id": "5xQxAW0So6Y",
-     "title": "Elasticity stress and strain example problem",
-     "channel": "Taylor Sparks",
-     "len": "4:39",
+     "id": "DLE-ieOVFjI",
+     "title": "Understanding Young's Modulus & Hooke's Law",
+     "channel": "The Efficient Engineer",
+     "len": "6:42",
      "role": "worked",
      "watch": [
-      "Pause before each unit conversion."
+          "Calculate axial elongation and lateral contraction under tensile load.",
+          "Check stress vs yield strength to ensure behavior remains in the elastic regime."
      ]
-    },
+},
     {
      "id": "tuOlM3P7ygA",
      "title": "Understanding Poisson's Ratio",
@@ -8737,15 +8762,16 @@ const content: GateContent = {
      ]
     },
     {
-     "id": "08pZQciPGiQ",
-     "title": "Ductility, toughness, and resilience",
-     "channel": "Taylor Sparks",
-     "len": "4:05",
+     "id": "WSRqJdT2COE",
+     "title": "Understanding Material Strength, Ductility & Toughness",
+     "channel": "The Efficient Engineer",
+     "len": "7:19",
      "role": "learn",
      "watch": [
-      "Ductility = strain, toughness = area, resilience = elastic area. This is exactly the A25 Q20 key mistake."
+          "Distinguish yield strength (0.2% offset) from ultimate tensile strength (UTS).",
+          "Modulus of resilience Ur vs fracture toughness (area under the curve)."
      ]
-    },
+},
     {
      "id": "WSRqJdT2COE",
      "title": "Understanding Material Strength, Ductility and Toughness",
@@ -8790,25 +8816,27 @@ const content: GateContent = {
    "why": "In your Fall 2026 midterm scope but barely tested before, so expect 1–2 conceptual questions.",
    "videos": [
     {
-     "id": "6BwDdMZVU1Y",
-     "title": "Deformation via dislocation motion",
-     "channel": "Taylor Sparks",
-     "len": "4:12",
+     "id": "PaGJwOPg2kU",
+     "title": "Understanding Plastic Deformation & Slip in Metals",
+     "channel": "The Efficient Engineer",
+     "len": "17:57",
      "role": "learn",
      "watch": [
-      "Slip plane + slip direction = slip system; the densest plane and direction win."
+          "Dislocation motion along close-packed slip planes and directions.",
+          "Schmid's law: resolved shear stress tau_R = sigma·cos(phi)·cos(lambda)."
      ]
-    },
+},
     {
-     "id": "dBoS7FQGKUU",
-     "title": "Strengthening mechanisms in metals",
-     "channel": "Taylor Sparks",
-     "len": "7:19",
-     "role": "extra",
+     "id": "cpvTwYAUeA8",
+     "title": "Dislocations & Strengthening Mechanisms in Metals",
+     "channel": "LearnChemE",
+     "len": "4:04",
+     "role": "learn",
      "watch": [
-      "Mostly Ch 7.8–7.10 (after the midterm). Watch the first part on why hindering dislocations = strengthening."
+          "The 4 strengthening mechanisms: grain size reduction, solid solution, strain hardening, precipitate hardening.",
+          "Why hindering dislocation motion increases yield strength."
      ]
-    }
+}
    ],
    "after": "Write FCC {111}<110> (12 systems) and BCC {110}<111> from memory; answer the old final T/F 32.",
    "gate": [
@@ -8950,7 +8978,7 @@ const content: GateContent = {
       "id": "p14",
       "kind": "videos",
       "topic": "planes",
-      "text": "Watch Taylor Sparks on labelling planes if (hkl) still feels slow.",
+      "text": "Watch LearnChemE on labelling planes if (hkl) still feels slow.",
       "minutes": 15
      },
      {
