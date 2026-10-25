@@ -210,7 +210,8 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'The tensile curve: yield, TS, ductility & hardness',
           summary: 'The 0.002 offset, tensile strength, %EL and %RA, elastic recovery, resilience and hardness.',
           gate: ['tensile'],
-          bank: [{ ch: 'mechanical' }]
+          bank: [{ ch: 'mechanical' }, { ch: 'lecture_12' }],
+          read: [/^01 - Teacher Lecture Notes\/lecture 12-mech prop 3/, /^02 - Comprehensive Topic Guides.*Lecture 12/]
         },
         {
           id: 'plastic-true-stress',

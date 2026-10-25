@@ -3,9 +3,12 @@ import { SolutionUpgrade } from './solutions/types';
 import { ENGR213_SOLUTIONS } from './solutions/engr213';
 import { ENGR213_EXTRA } from './extra/engr213';
 import { ENGR213_SUBSECTION_QUESTIONS } from './extra/engr213_subsections';
+import { ENGR213_LECTURE_11 } from './extra/engr213_lecture11';
+import { ENGR213_LECTURE_12 } from './extra/engr213_lecture12';
 import { MIAE221_SOLUTIONS } from './solutions/miae221';
 import { MIAE221_EXTRA } from './extra/miae221';
 import { MIAE221_MIDTERM_QUESTIONS } from './extra/miae221_midterm';
+import { MIAE221_LECTURE_12 } from './extra/miae221_lecture12';
 import { INDU211_SOLUTIONS } from './solutions/indu211';
 import { INDU211_EXTRA } from './extra/indu211';
 import { MIAE215_SOLUTIONS } from './solutions/miae215';
@@ -25,8 +28,11 @@ export const SOLUTION_UPGRADES: Record<string, SolutionUpgrade> = {
 export const EXTRA_QUESTIONS: PracticeQuestion[] = [
   ...ENGR213_EXTRA,
   ...ENGR213_SUBSECTION_QUESTIONS,
+  ...ENGR213_LECTURE_11,
+  ...ENGR213_LECTURE_12,
   ...MIAE221_EXTRA,
   ...MIAE221_MIDTERM_QUESTIONS,
+  ...MIAE221_LECTURE_12,
   ...INDU211_EXTRA,
   ...MIAE215_EXTRA
 ];

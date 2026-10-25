@@ -231,8 +231,17 @@ export const ENGR213_SPEC: CourseSpec = {
           title: 'Second-order equations with constant coefficients',
           summary: 'The auxiliary equation and its three cases: distinct, repeated and complex roots.',
           videos: ['tutor:second_order'],
-          read: [/^02 - Textbook Expanded Notes\/Chapter 03 /],
+          bank: [{ ch: 'lecture_11' }],
+          read: [/^01 - Teacher Lecture Notes\/ENGR213, Lecture 11/, /^02 - Comprehensive Topic Guides.*Lecture 11/, /^02 - Textbook Expanded Notes\/Chapter 03 /],
           resources: [/^Professor Leonard\/1[234] - /, /^Professor Dave\/0[89] - /]
+        },
+        {
+          id: 'undetermined-coefficients',
+          title: 'Nonhomogeneous equations: undetermined coefficients',
+          summary: 'The superposition principle y = yc + yp, the form rule for polynomials, exponentials and trig terms, and the multiplication rule for resonance.',
+          bank: [{ ch: 'lecture_12' }],
+          read: [/^01 - Teacher Lecture Notes\/ENGR213, Lecture 12/, /^02 - Comprehensive Topic Guides.*Lecture 12/],
+          resources: [/^Professor Leonard\/15 - /]
         },
         {
           id: 'laplace-preview',

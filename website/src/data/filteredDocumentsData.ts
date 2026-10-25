@@ -29,6 +29,9 @@ export const isTermPaperDoc = (relativePath: string): boolean =>
   /Term Paper & Final Project/i.test(relativePath);
 
 const RAW_FILTERED_RELATIVE_PATHS: string[] = [
+  "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Lecture 11 - Homogeneous Linear Equations & Auxiliary Equation (Visual Master Notes).pdf",
+  "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Lecture 12 - Undetermined Coefficients & Nonhomogeneous Equations (Comprehensive Guide).pdf",
+  "Miae 221/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Lecture 12 - Ductility, Toughness, Hardness & Slip Systems (Comprehensive Guide).pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/ENGR 213 - Gradesaver Master Solving System & Exam Blueprint (Tutor Edition).pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Engr 213 Tutor.pdf",
   "Miae 215/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Part 5 - Program Architecture, Output Tracing & Algorithmic Patterns.pdf",

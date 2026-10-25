@@ -1136,3 +1136,36 @@
 
 
 
+
+---
+
+### 📄 ENGR 213 Lecture 11 - Homogeneous Linear Equations & Auxiliary Equation (Visual Master Notes).pdf
+- **Exact Filename**: ENGR 213 Lecture 11 - Homogeneous Linear Equations & Auxiliary Equation (Visual Master Notes).pdf
+- **University**: Concordia University
+- **Course**: Applied Ordinary Differential Equations (ENGR 213)
+- **Category**: Lecture notes
+- **Title**: ENGR 213 - Lecture 11 Homogeneous Linear Equations & Auxiliary Equation (Visual Master Notes)
+- **Academic year**: 2025/2026
+- **Description**: Exhaustive 21-page visual lecture guide and step-by-step solutions manual for Dr. Haghighat\'s ENGR 213 Lecture 11 (Zill Section 3.3). Features in-depth coverage of homogeneous linear ODEs with constant coefficients, the auxiliary equation (^2+bm+c=0$), the 3 fundamental root cases (overdamped distinct roots, critically damped repeated roots with x-factor reduction of order derivation, and underdamped complex roots via Euler\'s formula), higher-order polynomial factoring with rational roots, IVP solutions, and common exam traps.
+
+---
+
+### 📄 ENGR 213 Lecture 12 - Undetermined Coefficients & Nonhomogeneous Equations (Comprehensive Guide).pdf
+- **Exact Filename**: ENGR 213 Lecture 12 - Undetermined Coefficients & Nonhomogeneous Equations (Comprehensive Guide).pdf
+- **University**: Concordia University
+- **Course**: Applied Ordinary Differential Equations (ENGR 213)
+- **Category**: Lecture notes
+- **Title**: ENGR 213 - Lecture 12 Undetermined Coefficients & Nonhomogeneous Equations (Comprehensive Guide)
+- **Academic year**: 2025/2026
+- **Description**: Comprehensive master study guide and step-by-step problem manual for Dr. Haghighat\'s ENGR 213 Lecture 12 (Zill Section 3.4). Covers nonhomogeneous linear differential equations, the Superposition Principle ( = y_c + y_p$), the Method of Undetermined Coefficients (Case I Form Rule for polynomial, exponential, and trig forcing functions; Case II Multiplication Rule for resonance and duplication with $), all 11 teacher lecture examples solved line-by-line with zero skipped algebra, initial-value problem resonance, and common exam traps.
+
+---
+
+### 📄 MIAE 221 Lecture 12 - Ductility, Toughness, Hardness & Slip Systems (Comprehensive Guide).pdf
+- **Exact Filename**: MIAE 221 Lecture 12 - Ductility, Toughness, Hardness & Slip Systems (Comprehensive Guide).pdf
+- **University**: Concordia University
+- **Course**: Materials Science (MIAE 221)
+- **Category**: Lecture notes
+- **Title**: MIAE 221 - Lecture 12 Ductility, Toughness, Hardness & Slip Systems (Comprehensive Guide)
+- **Academic year**: 2025/2026
+- **Description**: Comprehensive master study guide and pedagogical reference manual for Dr. Medraj\'s MIAE 221 Lecture 12 (Mechanical Properties III & Slip Systems, Callister Chapters 6 & 7). Covers quantitative measures of ductility (%EL and %RA), the Modulus of Resilience ( = \sigma_y^2 / 2E$) with dimensional proofs, tensile toughness vs Charpy/Izod notch impact toughness ( g (h - h')$), standard hardness testing comparison (Brinell, Rockwell, Vickers, Knoop, and Mohs scratch scale), the complete worked Callister tensile example 6.4, and the Taylor-Orowan-Polanyi dislocation slip theory explaining why metals yield at 1/1000 theoretical strength with crystallographic slip system comparisons across FCC (12 systems, ductile), BCC (48 systems), and HCP (3 systems, brittle).
