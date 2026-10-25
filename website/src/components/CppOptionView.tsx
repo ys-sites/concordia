@@ -14,6 +14,7 @@ interface Token {
 // Determines if an option is C++ code that should be rendered in a code structure box
 export const isCodeOption = (text: string | undefined): boolean => {
   if (!text) return false;
+  if (/(^|[^\\])\$[\s\S]+(?<!\\)\$/.test(text)) return false;
   // If it contains multiline C++ syntax or keywords
   if (text.includes('\n')) {
     // Check if it's C++ code
