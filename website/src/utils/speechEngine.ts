@@ -5,6 +5,7 @@
 // - Picks the most natural-sounding installed voice (Edge "Natural"/neural, Google, Apple Enhanced/Premium).
 // - Speaks long text as a queue of short sentence chunks (Chrome silently stops utterances after ~15 s).
 
+import type { KokoroTTS } from 'kokoro-js';
 import { splitMath } from './mathRenderer';
 
 /* ----------------------------------------------------------------------------
@@ -299,6 +300,30 @@ function splitIntoChunks(text: string, maxLen = 180): string[] {
   return chunks;
 }
 
+type KokoroInstance = Awaited<ReturnType<typeof KokoroTTS.from_pretrained>>;
+
+const KOKORO_MODEL_ID = 'onnx-community/Kokoro-82M-v1.0-ONNX';
+let kokoroPromise: Promise<KokoroInstance> | null = null;
+
+function loadKokoro(onLoading?: (pct: number) => void): Promise<KokoroInstance> {
+  if (!kokoroPromise) {
+    onLoading?.(5);
+    kokoroPromise = import('kokoro-js')
+      .then(({ KokoroTTS }) => KokoroTTS.from_pretrained(KOKORO_MODEL_ID, {
+        dtype: 'q8',
+        device: 'wasm',
+        progress_callback: (progressInfo) => {
+          if (progressInfo.status === 'progress') onLoading?.(Math.max(5, Math.round(progressInfo.progress * 0.8)));
+        }
+      }))
+      .catch((error) => {
+        kokoroPromise = null;
+        throw error;
+      });
+  }
+  return kokoroPromise;
+}
+
 export interface SpeakOptions {
   rate?: number;
   pitch?: number;
@@ -306,7 +331,7 @@ export interface SpeakOptions {
   onStart?: () => void;
   onEnd?: () => void;
   onError?: (err: unknown) => void;
-  /** Unused by the instant device-voice engine (kept for caller compatibility). */
+  /** Receives local-model download and preparation progress on first use. */
   onLoading?: (pct: number) => void;
 }
 
@@ -316,8 +341,6 @@ class SpeechEngine {
   private activeQueue: SpeechSynthesisUtterance[] = [];
   private audio: HTMLAudioElement | null = null;
   private audioUrl: string | null = null;
-  private request: AbortController | null = null;
-  private fishAvailable: boolean | null = null;
   private lastText = '';
 
   constructor() {
@@ -352,12 +375,12 @@ class SpeechEngine {
   }
 
   public getVoiceName(): string {
-    return 'Fish Audio';
+    return 'Kokoro · Heart';
   }
 
   public isSpeaking(): boolean {
-    const fishIsPlaying = !!this.audio && !this.audio.paused && !this.audio.ended;
-    return fishIsPlaying || (this.hasDeviceVoice() && window.speechSynthesis.speaking);
+    const kokoroIsPlaying = !!this.audio && !this.audio.paused && !this.audio.ended;
+    return kokoroIsPlaying || (this.hasDeviceVoice() && window.speechSynthesis.speaking);
   }
 
   public get lastSpokenText(): string {
@@ -366,8 +389,6 @@ class SpeechEngine {
 
   public stop() {
     this.session++;
-    this.request?.abort();
-    this.request = null;
     this.activeQueue = [];
     this.releaseAudio();
     if (this.hasDeviceVoice()) window.speechSynthesis.cancel();
@@ -396,35 +417,20 @@ class SpeechEngine {
     this.stop();
     this.lastText = rawText;
     const session = this.session;
-    if (this.fishAvailable === false) {
-      this.speakWithDevice(spoken, options, session);
-      return;
-    }
-    const request = new AbortController();
-    this.request = request;
-    options.onLoading?.(10);
 
     try {
-      const response = await fetch('/api/tts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: spoken }),
-        signal: request.signal
-      });
-      if (!response.ok) {
-        if (response.status === 503) this.fishAvailable = false;
-        throw new Error(`Fish Audio request failed (${response.status})`);
-      }
-
-      const audioBlob = await response.blob();
+      const kokoro = await loadKokoro(options.onLoading);
       if (session !== this.session) return;
-      this.fishAvailable = true;
-      options.onLoading?.(80);
+      options.onLoading?.(85);
+      const audioBlob = (await kokoro.generate(spoken, {
+        voice: 'af_heart',
+        speed: Math.min(1.15, Math.max(0.8, options.rate ?? 0.96))
+      })).toBlob();
+      if (session !== this.session) return;
+      options.onLoading?.(100);
       const audioUrl = URL.createObjectURL(audioBlob);
       const audio = new Audio(audioUrl);
       audio.preload = 'auto';
-      audio.playbackRate = Math.min(1.25, Math.max(0.8, options.rate ?? 0.96));
-      this.request = null;
       this.audio = audio;
       this.audioUrl = audioUrl;
       audio.onplay = () => session === this.session && options.onStart?.();
@@ -440,8 +446,7 @@ class SpeechEngine {
       };
       await audio.play();
     } catch (error) {
-      if (request.signal.aborted || session !== this.session) return;
-      this.request = null;
+      if (session !== this.session) return;
       this.speakWithDevice(spoken, options, session, error);
     }
   }
