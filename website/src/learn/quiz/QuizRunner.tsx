@@ -130,6 +130,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   const [closed, setClosed] = useState<Set<string>>(new Set()); // results rows the student folded away
   const nextBtn = useRef<HTMLButtonElement>(null);
   const [pickLevel, setPickLevel] = useState<'adaptive' | 1 | 2 | 3>('adaptive');
+  const [pastExamSize, setPastExamSize] = useState<number | null>(null);
   const defaultMode: Mode = step.kind === 'check' ? 'check' : step.kind === 'exam' && step.timeLimit ? 'exam' : 'practice';
   const lastAttempt = useMemo(() => [...attempts].reverse().find((a) => a.course === course && a.stepId === step.id), [attempts, course, step.id]);
 
@@ -170,15 +171,17 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   );
 
   const start = useCallback(
-    (mode: Mode, ids?: string[], level: 'adaptive' | 1 | 2 | 3 | 'all' = 'all') => {
+    (mode: Mode, ids?: string[], level: 'adaptive' | 1 | 2 | 3 | 'all' = 'all', requestedSize?: number) => {
       if (!idx) return;
       let pool = (ids ?? step.questionIds ?? []).filter((id) => idx.byId.has(id));
       let order: string[];
       let adaptive: QuizSession['adaptive'];
       if (typeof level === 'number') pool = pool.filter((id) => idx.byId.get(id)!.level === level);
       const configured = step.size && step.size < pool.length ? step.size : undefined;
-      const size = ids ? pool.length : mode === 'practice' ? boundedPracticeSize(pool.length, configured) : configured ?? pool.length;
-      if (ids || step.ordered) order = pool;
+      const defaultSize = ids ? pool.length : mode === 'practice' ? boundedPracticeSize(pool.length, configured) : configured ?? pool.length;
+      const size = Math.min(requestedSize ?? defaultSize, pool.length);
+      if (ids) order = pool;
+      else if (step.ordered) order = pool.slice(0, size);
       else if (level === 'adaptive') {
         const first = pickAdaptive(pool, [], 1);
         order = first ? [first.id] : [];
@@ -378,6 +381,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   const available = (step.questionIds ?? []).filter((id) => idx.byId.has(id));
   const configuredSetSize = step.size && step.size < available.length ? step.size : undefined;
   const setSize = step.kind === 'practice' ? boundedPracticeSize(available.length, configuredSetSize) : configuredSetSize ?? available.length;
+  const isPastExamSet = step.kind === 'exam' && !step.timeLimit;
+  const selectedPastExamSize = Math.min(pastExamSize ?? Math.min(5, available.length), available.length);
+  const displayedSetSize = isPastExamSet ? selectedPastExamSize : setSize;
   const mix = [1, 2, 3].map((l) => available.filter((id) => idx.byId.get(id)?.level === l).length);
   const sameKind = (ss: QuizSession): 'adaptive' | 1 | 2 | 3 | 'all' => (ss.adaptive ? 'adaptive' : ss.only ?? 'all');
 
@@ -396,11 +402,11 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
               ? `${setSize} questions from a pool of ${available.length}, the ones you have not mastered first. Feedback and a worked solution after each.`
               : step.timeLimit
                 ? `${setSize} questions${step.ordered ? ' in course order' : ''}. Submit each answer to see the result and worked solution immediately; the timer stays on while you practise.`
-                : `${available.length} real past exam questions on this topic, with the worked solution${available.some((id) => idx.byId.get(id)?.videoId) ? ' and a video' : ''} after each.`}
+                : `${selectedPastExamSize} real past exam question${selectedPastExamSize === 1 ? '' : 's'} from a verified pool of ${available.length}, with the worked solution${available.some((id) => idx.byId.get(id)?.videoId) ? ' and a video' : ''} after each.`}
         </p>
         <ul className="lx-quiz-facts lx-num">
           <li>
-            <ListChecks size={16} aria-hidden /> {setSize} question{setSize === 1 ? '' : 's'}
+            <ListChecks size={16} aria-hidden /> {displayedSetSize} question{displayedSetSize === 1 ? '' : 's'}
           </li>
           {step.timeLimit && (
             <li>
@@ -446,6 +452,19 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
             </div>
           </div>
         )}
+        {isPastExamSet && available.length > 1 && (
+          <label className="lx-diff lx-past-exam-size">
+            <span className="lx-diff-head">
+              <strong>How many past-exam questions?</strong>
+              <span className="lx-meta">Every question is from a verified previous paper.</span>
+            </span>
+            <select className="lx-input" value={selectedPastExamSize} onChange={(event) => setPastExamSize(Number(event.target.value))}>
+              {Array.from({ length: available.length }, (_, index) => index + 1).map((count) => (
+                <option key={count} value={count}>{count} question{count === 1 ? '' : 's'}</option>
+              ))}
+            </select>
+          </label>
+        )}
         {lastAttempt && (
           <p className="lx-meta lx-num">
             Last time: {lastAttempt.score} / {lastAttempt.total} ({Math.round((lastAttempt.score / Math.max(1, lastAttempt.total)) * 100)}%) on {new Date(lastAttempt.at).toLocaleDateString()}
@@ -462,7 +481,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
               </button>
             </>
           ) : (
-            <button type="button" className="lx-btn lx-btn--primary lx-btn--lg" onClick={() => start(defaultMode, undefined, step.kind === 'practice' && mix.filter(Boolean).length > 1 ? pickLevel : 'all')} disabled={!available.length}>
+            <button type="button" className="lx-btn lx-btn--primary lx-btn--lg" onClick={() => start(defaultMode, undefined, step.kind === 'practice' && mix.filter(Boolean).length > 1 ? pickLevel : 'all', isPastExamSet ? selectedPastExamSize : undefined)} disabled={!available.length}>
               <Play size={18} /> Start
             </button>
           )}

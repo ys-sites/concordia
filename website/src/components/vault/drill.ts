@@ -5,6 +5,7 @@ import { CALCULATORS, defaultsFor } from './calculators';
 import type { GateIndex } from './shared';
 import { repeatTypeOf } from './shared';
 import { QUESTION_OPTIONS_MAP, shuffleSynthesizedOptions, generateNumericChoices } from './quizOptionsMap';
+import { equivalentNumber } from '../../utils/answerGrading';
 
 export type DrillKind = 'mc' | 'multi' | 'tf' | 'num' | 'indices' | 'output' | 'open';
 
@@ -325,10 +326,8 @@ export const grade = (item: DrillItem, answer: string[]): boolean => {
       return u.length === c.length && u.every((val, i) => val === c[i]);
     }
     case 'num': {
-      const x = parseUserNumber(answer[0] ?? '');
       const v = item.value!;
-      if (!Number.isFinite(x)) return false;
-      return v === 0 ? Math.abs(x) < 1e-9 : Math.abs(x - v) <= Math.abs(v) * (item.tol ?? 0.02);
+      return equivalentNumber(answer[0] ?? '', v, item.unit, item.tol ?? 0.02);
     }
     case 'indices': {
       const u = parseIndices(answer[0] ?? '');

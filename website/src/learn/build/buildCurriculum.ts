@@ -212,7 +212,7 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     const s2 = qStep(l.id, 'practice', `Practice (${practice.length} questions)`, practice);
     if (s2) steps.push(s2);
 
-    const exam = [...examOf(topics).map((q) => examQid(c, q.id)), ...(teacherHome.get(l.id) ?? []).map((q) => `t:${q.id}`)];
+    const exam = examOf(topics).map((q) => examQid(c, q.id));
     const s3 = qStep(l.id, 'exam', `Past exam questions (${exam.length})`, exam);
     if (s3) steps.push(s3);
 

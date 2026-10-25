@@ -175,7 +175,7 @@ What went wrong:
           }}
         >
           <label className="lx-meta" htmlFor={`in-${q.id}`}>
-            {q.kind === 'num' ? `Your answer${q.unit ? ` (in ${q.unit})` : ''}: decimal or scientific notation accepted` : q.kind === 'indices' ? 'Your indices, e.g. [1 -1 0]' : 'What the program prints, exactly'}
+            {q.kind === 'num' ? `Your answer${q.unit ? ` (in ${q.unit})` : ''}: decimals, fractions, scientific notation, and compatible SI units accepted` : q.kind === 'indices' ? 'Your indices, e.g. [1 -1 0]' : 'What the program prints, exactly'}
           </label>
           {q.kind === 'text' ? (
             <textarea

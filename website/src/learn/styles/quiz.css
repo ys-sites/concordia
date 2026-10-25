@@ -692,6 +692,9 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
+.lx-past-exam-size .lx-input {
+  max-width: 210px;
+}
 .lx-level-break {
   list-style: none;
   display: flex;
