@@ -158,13 +158,13 @@ export const AskAiModal: React.FC<AskAiModalProps> = ({ isOpen, onClose, problem
             <span className="aai-tag verified">Verified Exam Problem</span>
           </div>
           <div className="aai-problem-body">
-            <MathText text={problem.questionText} />
+            <MathText text={problem.questionText} autoMath />
           </div>
           {problem.answerText && (
             <div className="aai-answer-preview">
               <span className="aai-ans-label">Correct Answer:</span>
               <span className="aai-ans-val">
-                <MathText text={problem.answerText} />
+                <MathText text={problem.answerText} autoMath />
               </span>
             </div>
           )}

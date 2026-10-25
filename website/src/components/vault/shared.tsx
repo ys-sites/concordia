@@ -171,7 +171,7 @@ export const QuestionCard: React.FC<{
         {q.kind === 'multi' && <span className="mg-badge info">Select all that apply</span>}
       </div>
       <div className="mg-q-text">
-        <MathText text={q.q} />
+        <MathText text={q.q} autoMath />
       </div>
       {q.code && <CodeBlock code={q.code} />}
       {q.opts && (
@@ -180,7 +180,7 @@ export const QuestionCard: React.FC<{
             <div key={i} className={`mg-opt ${show && answers.includes(i) ? 'right' : ''} ${show && i === keyIndex ? 'keywrong' : ''}`}>
               <b>{letter(i)})</b>
               <span>
-                <MathText text={o} />
+                <MathText text={o} autoMath />
               </span>
             </div>
           ))}

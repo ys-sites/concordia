@@ -353,7 +353,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
               {/* Statement */}
               <div className="question-statement-box">
                 <h2 className="statement-text">
-                  <MathText text={activeQ.question} />
+                  <MathText text={activeQ.question} autoMath />
                 </h2>
                 {activeQ.codeSnippet && (
                   <pre className="code-snippet-box">
@@ -504,7 +504,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
                       <div className="review-item-body">
                         <div className="full-question-statement">
                           <strong>Full Question:</strong>
-                          <p><MathText text={q.question} /></p>
+                          <p><MathText text={q.question} autoMath /></p>
                         </div>
 
                         <div className="options-review-grid">

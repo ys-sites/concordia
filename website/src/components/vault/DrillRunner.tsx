@@ -219,7 +219,7 @@ export const DrillRunner: React.FC<Props> = ({ course, title, items: initial, em
             {readAloud && <ReadAloudButton text={speakText} stopKey={`${item.key}:${i}`} label="Read aloud" />}
           </div>
           <div className="dr-prompt">
-            <MathText text={item.prompt} />
+            <MathText text={item.prompt} autoMath />
           </div>
           {item.code && <CodeBlock code={item.code} />}
 

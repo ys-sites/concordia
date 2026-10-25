@@ -1006,7 +1006,7 @@ export const FilteredDocumentSection: React.FC<FilteredDocumentSectionProps> = (
                           </span>
                         </div>
                         <div style={{ fontSize: '14px', color: 'var(--text-primary)', lineHeight: 1.5 }}>
-                          <MathText text={q.question} />
+                          <MathText text={q.question} autoMath />
                         </div>
                       </div>
 

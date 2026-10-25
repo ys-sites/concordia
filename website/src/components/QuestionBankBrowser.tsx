@@ -260,7 +260,7 @@ export const QuestionBankBrowser: React.FC<QuestionBankBrowserProps> = ({ onBack
                   <div className="full-statement">
                     <strong>Question Statement:</strong>
                     <div className="statement-math">
-                      <MathText text={q.question} />
+                      <MathText text={q.question} autoMath />
                     </div>
                     {q.codeSnippet && (
                       <pre className="code-block"><code>{q.codeSnippet}</code></pre>

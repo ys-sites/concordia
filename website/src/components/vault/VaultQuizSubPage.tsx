@@ -794,7 +794,7 @@ export const VaultQuizSubPage: React.FC<Props> = ({
           )}
 
           <h2 className="statement-text" style={{ fontSize: 20, margin: '14px 0 10px', color: '#0f172a' }}>
-            <MathText text={currentQ.prompt} />
+            <MathText text={currentQ.prompt} autoMath />
           </h2>
 
           {currentQ.code && (
@@ -845,7 +845,7 @@ export const VaultQuizSubPage: React.FC<Props> = ({
                 >
                   <div className="option-letter">{isMulti && !isAnswered && isSelected ? '✓' : optLet.toUpperCase()}</div>
                   <div className="option-text">
-                    <MathText text={opt} />
+                    <MathText text={opt} autoMath />
                     {isAnswered && isMulti && isCorrectOpt && !isSelected && <span className="vq-missed-tag">Missed</span>}
                   </div>
                   <div className="option-feedback-icon">
@@ -939,7 +939,7 @@ export const VaultQuizSubPage: React.FC<Props> = ({
                 >
                   <div className="option-letter">{optLet.toUpperCase()}</div>
                   <div className="option-text">
-                    <MathText text={opt} />
+                    <MathText text={opt} autoMath />
                   </div>
                   <div className="option-feedback-icon">
                     {isAnswered && isCorrectOpt && <CheckCircle2 size={20} className="text-emerald" />}

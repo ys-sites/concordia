@@ -15,6 +15,7 @@ import {
 import { MIAE215_TEACHER_EXAM } from '../data/teacherExamMiae215';
 import { OptionContent } from './OptionContent';
 import { audio } from '../utils/audio';
+import { MathText } from '../utils/mathRenderer';
 import './Miae215ExamPaper.css';
 
 interface Miae215ExamPaperProps {
@@ -299,7 +300,7 @@ export const Miae215ExamPaper: React.FC<Miae215ExamPaperProps> = ({ onLaunchDril
                     </div>
 
                     {/* Question Text */}
-                    <div className="m215-xp-q-text">{q.question}</div>
+                    <div className="m215-xp-q-text"><MathText text={q.question} autoMath /></div>
 
                     {/* Code Snippet (if present) */}
                     {q.codeSnippet && (

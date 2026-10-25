@@ -598,7 +598,7 @@ export const FilteredSubSite: React.FC = () => {
                           </div>
 
                           <div style={{ fontSize: '14px', color: 'var(--text-primary)', lineHeight: 1.5 }}>
-                            <MathText text={q.question} />
+                            <MathText text={q.question} autoMath />
                           </div>
                         </div>
 

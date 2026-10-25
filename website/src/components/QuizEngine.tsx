@@ -513,7 +513,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({ courseId, sectionId, onE
             </div>
           )}
           <h2 className="statement-text">
-            <MathText text={currentQ.question} />
+            <MathText text={currentQ.question} autoMath />
           </h2>
 
           {currentQ.codeSnippet && (

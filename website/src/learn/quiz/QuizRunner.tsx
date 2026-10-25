@@ -591,7 +591,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
                   {pending.includes(r.id) ? <Eye size={18} aria-label="to mark" className="lx-review-pending" /> : r.ok ? <CheckCircle2 size={18} aria-hidden /> : <XCircle size={18} aria-hidden />}
                   <span className="lx-num">{i + 1}.</span>
                   <span className="lx-review-q">
-                    <MathText text={r.q.prompt.length > 160 ? r.q.prompt.slice(0, 160).replace(/\$[^$]*$/, '') + '…' : r.q.prompt} />
+                    <MathText text={r.q.prompt.length > 160 ? r.q.prompt.slice(0, 160).replace(/\$[^$]*$/, '') + '…' : r.q.prompt} autoMath />
                   </span>
                   {session.flags.includes(r.id) && <Flag size={15} aria-label="flagged" />}
                 </button>

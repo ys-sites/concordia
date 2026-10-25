@@ -9,7 +9,7 @@ export const OptionContent: React.FC<{ text: string }> = ({ text }) => {
   if (isOutputOption(text)) {
     return <OutputOptionView output={text} />;
   }
-  return <MathText text={text} />;
+  return <MathText text={text} autoMath />;
 };
 
 export { isCodeOption, isOutputOption };

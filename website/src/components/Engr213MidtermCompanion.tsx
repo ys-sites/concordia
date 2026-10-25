@@ -2306,7 +2306,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                     <span>Mastery Worked Example:</span>
                   </div>
                   <div className="ec-worked-example-stmt">
-                    <MathText text={currentMethod.workedExample.problem} />
+                    <MathText text={currentMethod.workedExample.problem} autoMath />
                   </div>
                   <div className="ec-worked-example-steps">
                     {currentMethod.workedExample.solution.map((st, i) => (
@@ -2748,7 +2748,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                         return (
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                             <div style={{ fontSize: '14px', fontWeight: 600, color: '#0f172a', lineHeight: '1.5', background: '#f8fafc', padding: '12px 14px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                              <MathText text={currentVariant.problem} />
+                              <MathText text={currentVariant.problem} autoMath />
                             </div>
 
                             {/* Options */}
@@ -2795,7 +2795,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                                     }}
                                   >
                                     <strong>{['A', 'B', 'C', 'D'][oIdx]}. </strong>
-                                    <MathText text={opt} />
+                                    <MathText text={opt} autoMath />
                                   </button>
                                 );
                               })}
@@ -3289,7 +3289,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                         Given Differential Equation:
                       </span>
                       <div style={{ fontSize: '14.5px', fontWeight: 700, color: '#1e293b' }}>
-                        <MathText text={tut.question} />
+                        <MathText text={tut.question} autoMath />
                       </div>
                     </div>
 
@@ -3886,7 +3886,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
               </span>
             </div>
             <div style={{ fontSize: '16.5px', fontWeight: 600, color: '#0f172a', lineHeight: '1.6' }}>
-              <MathText text={currentDrillQuestion.question} />
+              <MathText text={currentDrillQuestion.question} autoMath />
             </div>
           </div>
 
@@ -4129,7 +4129,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                     {letter}
                   </span>
                   <div>
-                    <MathText text={opt} />
+                    <MathText text={opt} autoMath />
                   </div>
                 </button>
               );
