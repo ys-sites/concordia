@@ -5,7 +5,11 @@
 //
 // To rename: add `old: new` below (full ids as stored), run `npm run validate:curriculum -- --update-lock`.
 // Never remove an entry: a student who has not visited since still has the old id saved.
-export const ID_ALIASES: Record<string, string> = {};
+export const ID_ALIASES: Record<string, string> = {
+  'MIAE221/atomic-structure.video-topic221-m221-02-bonding': 'MIAE221/bonding.video-topic221-m221-02-bonding',
+  'MIAE221/bonding.yt-DVtJ-nTjflI': 'MIAE221/bonding.video-topic221-m221-02-bonding',
+  'yt:DVtJ-nTjflI': 'topic221:m221-02-bonding'
+};
 
 // Ids removed on purpose (the content itself was taken down). Their saved progress stays in the record, unused.
 export const RETIRED_IDS: string[] = [

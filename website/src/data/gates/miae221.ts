@@ -8032,14 +8032,14 @@ const content: GateContent = {
    "why": "Covalent definition appeared in F24, W26 and (inverted) A25. Na–Cl ionic MC in A25. Carbon bonding every year.",
    "videos": [
     {
-     "id": "DVtJ-nTjflI",
-     "title": "The four types of chemical bonds",
-     "channel": "Taylor Sparks",
-     "len": "7:24",
+     "id": "uDFLHTDJ4XA",
+     "title": "Ionic and covalent bonding: a clear foundation",
+     "channel": "The Organic Chemistry Tutor",
+     "len": "12:50",
      "role": "learn",
      "watch": [
-      "Make a 4-row table as he goes: ionic (transfer), covalent (sharing, directional), metallic (electron sea), van der Waals (dipoles).",
-      "For each row add one material: NaCl, diamond, Cu, ice."
+      "Focus on the electron-transfer versus electron-sharing comparison; it makes the ionic-covalent distinction clear before using percent ionic character.",
+      "Then connect the examples to this lesson: NaCl is predominantly ionic; diamond is covalent. Metallic and secondary bonds are covered in the lesson notes and practice that follow."
      ]
     },
     {

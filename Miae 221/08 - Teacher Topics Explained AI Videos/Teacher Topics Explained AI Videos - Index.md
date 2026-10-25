@@ -14,19 +14,17 @@ AI-generated motion-graphics lessons, one per teacher topic (Chapters 1–7). Ea
 - 3:33 When Materials Fail
 - 4:38 Recap
 
-## 02 · Atomic Structure & Bonding (6:57)
+## 02 · The Four Types of Chemical Bonds (6:52)
 
-[02 - Atomic Structure & Bonding.mp4](./02%20-%20Atomic%20Structure%20&%20Bonding.mp4) · Lectures 2–3 · Chemistry Review (Callister Ch. 2)
+[02 - The Four Types of Chemical Bonds.mp4](./02%20-%20The%20Four%20Types%20of%20Chemical%20Bonds.mp4) · MIAE 221 Lecture 3 · Chemical Bonding (Callister Ch. 2)
 
-- 0:00 The Atom
-- 1:00 Moles & Avogadro
-- 1:47 Electronegativity
-- 2:25 Bond Force & Energy
-- 3:08 Primary Bonds
-- 4:32 % Ionic Character
-- 5:14 Secondary Bonds
-- 5:51 Properties from Bonding
-- 6:26 Recap
+- 0:00 The Big Idea & Why Bonds Form
+- 1:04 1. Ionic Bonding
+- 1:56 2. Covalent Bonding
+- 2:47 3. Metallic Bonding
+- 3:32 4. Secondary & Hydrogen Bonds
+- 4:44 % Ionic Character & Pauling Formula
+- 5:53 Exam Blueprint & Traps
 
 ## 03 · Crystal Structures (6:55)
 

@@ -55,50 +55,42 @@ export const MIAE221_MOTION_LESSONS: TopicLesson[] = [
   {
     "id": "m221-02-bonding",
     "num": 2,
-    "title": "Atomic Structure & Bonding",
-    "source": "Lectures 2–3 · Chemistry Review (Callister Ch. 2)",
+    "title": "The Four Types of Chemical Bonds",
+    "source": "MIAE 221 Lecture 3 · Chemical Bonding (Callister Ch. 2)",
     "section": "bonding",
-    "lectures": "Lecture 2 · Lecture 3",
-    "video": "Miae 221/08 - Teacher Topics Explained AI Videos/02 - Atomic Structure & Bonding.mp4",
+    "lectures": "Lecture 3 (Slides 1–28)",
+    "video": "Miae 221/08 - Teacher Topics Explained AI Videos/02 - The Four Types of Chemical Bonds.mp4",
     "poster": "Miae 221/08 - Teacher Topics Explained AI Videos/posters/02.jpg",
-    "duration": 417,
-    "sizeMB": 17.1,
+    "duration": 412,
+    "sizeMB": 19.8,
     "chapters": [
       {
-        "label": "The Atom",
+        "label": "The Big Idea & Why Bonds Form",
         "start": 0
       },
       {
-        "label": "Moles & Avogadro",
-        "start": 60.5
+        "label": "1. Ionic Bonding",
+        "start": 64
       },
       {
-        "label": "Electronegativity",
-        "start": 107.2
+        "label": "2. Covalent Bonding",
+        "start": 116.2
       },
       {
-        "label": "Bond Force & Energy",
-        "start": 145.2
+        "label": "3. Metallic Bonding",
+        "start": 167.9
       },
       {
-        "label": "Primary Bonds",
-        "start": 188.2
+        "label": "4. Secondary & Hydrogen Bonds",
+        "start": 212.2
       },
       {
-        "label": "% Ionic Character",
-        "start": 272.6
+        "label": "% Ionic Character & Pauling Formula",
+        "start": 284.3
       },
       {
-        "label": "Secondary Bonds",
-        "start": 314.8
-      },
-      {
-        "label": "Properties from Bonding",
-        "start": 351.7
-      },
-      {
-        "label": "Recap",
-        "start": 386.6
+        "label": "Exam Blueprint & Traps",
+        "start": 353.6
       }
     ]
   },

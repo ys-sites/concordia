@@ -312,12 +312,16 @@ export interface SpeakOptions {
 
 class SpeechEngine {
   private voice: SpeechSynthesisVoice | null = null;
-  private session = 0;            // increments on every speak/stop so stale callbacks are ignored
-  private activeQueue: SpeechSynthesisUtterance[] = []; // strong refs: Chromium GCs utterances mid-speech otherwise
+  private session = 0;
+  private activeQueue: SpeechSynthesisUtterance[] = [];
+  private audio: HTMLAudioElement | null = null;
+  private audioUrl: string | null = null;
+  private request: AbortController | null = null;
+  private fishAvailable: boolean | null = null;
   private lastText = '';
 
   constructor() {
-    if (!this.isSupported()) return;
+    if (!this.hasDeviceVoice()) return;
     this.pickVoice();
     const synth = window.speechSynthesis;
     if (typeof synth.addEventListener === 'function') synth.addEventListener('voiceschanged', () => this.pickVoice());
@@ -325,6 +329,10 @@ class SpeechEngine {
   }
 
   public isSupported(): boolean {
+    return typeof window !== 'undefined' && ('Audio' in window || this.hasDeviceVoice());
+  }
+
+  private hasDeviceVoice(): boolean {
     return typeof window !== 'undefined' && 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
   }
 
@@ -344,11 +352,12 @@ class SpeechEngine {
   }
 
   public getVoiceName(): string {
-    return this.voice?.name ?? 'Default voice';
+    return 'Fish Audio';
   }
 
   public isSpeaking(): boolean {
-    return this.isSupported() && window.speechSynthesis.speaking;
+    const fishIsPlaying = !!this.audio && !this.audio.paused && !this.audio.ended;
+    return fishIsPlaying || (this.hasDeviceVoice() && window.speechSynthesis.speaking);
   }
 
   public get lastSpokenText(): string {
@@ -356,26 +365,93 @@ class SpeechEngine {
   }
 
   public stop() {
-    if (!this.isSupported()) return;
     this.session++;
+    this.request?.abort();
+    this.request = null;
     this.activeQueue = [];
-    window.speechSynthesis.cancel();
+    this.releaseAudio();
+    if (this.hasDeviceVoice()) window.speechSynthesis.cancel();
   }
 
-  /** Speak text that may contain LaTeX. Must be called from a user gesture the first time on iOS. */
-  public speak(rawText: string, options: SpeakOptions = {}) {
-    if (!this.isSupported()) {
-      options.onError?.(new Error('Speech synthesis is not supported in this browser'));
-      return;
+  private releaseAudio() {
+    if (this.audio) {
+      this.audio.onplay = null;
+      this.audio.onended = null;
+      this.audio.onerror = null;
+      this.audio.pause();
+      this.audio.removeAttribute('src');
+      this.audio.load();
+      this.audio = null;
     }
+    if (this.audioUrl) {
+      URL.revokeObjectURL(this.audioUrl);
+      this.audioUrl = null;
+    }
+  }
+
+  public async speak(rawText: string, options: SpeakOptions = {}) {
     const spoken = cleanTextForSpeech(rawText);
     if (!spoken) return;
 
     this.stop();
-    if (!this.voice) this.pickVoice();
     this.lastText = rawText;
-
     const session = this.session;
+    if (this.fishAvailable === false) {
+      this.speakWithDevice(spoken, options, session);
+      return;
+    }
+    const request = new AbortController();
+    this.request = request;
+    options.onLoading?.(10);
+
+    try {
+      const response = await fetch('/api/tts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: spoken }),
+        signal: request.signal
+      });
+      if (!response.ok) {
+        if (response.status === 503) this.fishAvailable = false;
+        throw new Error(`Fish Audio request failed (${response.status})`);
+      }
+
+      const audioBlob = await response.blob();
+      if (session !== this.session) return;
+      this.fishAvailable = true;
+      options.onLoading?.(80);
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      audio.preload = 'auto';
+      audio.playbackRate = Math.min(1.25, Math.max(0.8, options.rate ?? 0.96));
+      this.request = null;
+      this.audio = audio;
+      this.audioUrl = audioUrl;
+      audio.onplay = () => session === this.session && options.onStart?.();
+      audio.onended = () => {
+        if (session !== this.session || this.audio !== audio) return;
+        this.releaseAudio();
+        options.onEnd?.();
+      };
+      audio.onerror = () => {
+        if (session !== this.session || this.audio !== audio) return;
+        this.releaseAudio();
+        this.speakWithDevice(spoken, options, session);
+      };
+      await audio.play();
+    } catch (error) {
+      if (request.signal.aborted || session !== this.session) return;
+      this.request = null;
+      this.speakWithDevice(spoken, options, session, error);
+    }
+  }
+
+  private speakWithDevice(spoken: string, options: SpeakOptions, session: number, fishError?: unknown) {
+    if (!this.hasDeviceVoice()) {
+      options.onError?.(fishError ?? new Error('No text-to-speech engine is available in this browser'));
+      return;
+    }
+    if (!this.voice) this.pickVoice();
     const synth = window.speechSynthesis;
     const chunks = splitIntoChunks(spoken);
 
@@ -408,7 +484,6 @@ class SpeechEngine {
     this.activeQueue = utterances;
     // Chrome can get stuck in a paused state after tab switches
     if (synth.paused) synth.resume();
-    // Queue synchronously (no setTimeout) so iOS Safari still treats this as part of the tap gesture
     utterances.forEach(u => synth.speak(u));
   }
 }

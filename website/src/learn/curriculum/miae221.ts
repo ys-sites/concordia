@@ -33,7 +33,6 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'Atomic structure, moles & electron configuration',
           summary: 'Protons, isotopes and atomic mass; the mole; electron shells and the periodic table.',
           gate: ['config', 'atomsmass'],
-          videos: ['topic221:m221-02-bonding'],
           bank: [{ ch: 'bonding', re: /atomic number|isotope|avogadro|\bmole\b|bohr|wave-mechanical|electron config|stable electron|electronegativity scale|electropositive|atoms in|volume of a mole|density of solids/i }],
           resources: [/^03 - 1-Page Rapid Review Sheets\/Part 1 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 02 /]
         },
@@ -42,6 +41,7 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'Bond types & % ionic character',
           summary: 'Ionic, covalent, metallic and secondary bonds, and how electronegativity sets the ionic character.',
           gate: ['bonding'],
+          videos: ['topic221:m221-02-bonding'],
           bank: [{ ch: 'bonding', not: /potential|well|energy|separation|melting|thermal expansion/i }, { ch: 'mixed', re: /ionic character|bonding/i, not: /bond energy/i }],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 02 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 2 - /, /^03 - 1-Page Rapid Review Sheets\/Part 2 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 03 /]
         },

@@ -617,7 +617,7 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
   };
 
   useEffect(() => {
-    let idleTimer: NodeJS.Timeout;
+    let idleTimer: ReturnType<typeof setTimeout>;
     const handleMove = () => {
       frameRef.current?.classList.remove('is-idle');
       clearTimeout(idleTimer);

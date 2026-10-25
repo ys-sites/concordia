@@ -11,6 +11,10 @@
       "destination": "/api/visitors.js"
     },
     {
+      "source": "/api/tts",
+      "destination": "/api/tts.js"
+    },
+    {
       "source": "/filtered",
       "destination": "/filtered.html"
     },
