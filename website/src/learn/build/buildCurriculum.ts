@@ -152,7 +152,10 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     for (const t of topics) if (!gate.topics.some((x) => x.id === t)) problems.push(`${l.id}: unknown exam-prep topic ${t}`);
     const steps: Step[] = [];
     // the lesson's own videos, then the narrated explanation of each of its exam-prep topics
-    const topicVideos = [...videoById.values()].filter((v) => v.gateTopic && topics.includes(v.gateTopic) && !l.videos?.includes(v.id)).map((v) => v.id);
+    const topicVideos = [...videoById.values()]
+      .filter((v) => ((v.gateTopic && topics.includes(v.gateTopic)) || v.learnLesson === l.id) && !l.videos?.includes(v.id))
+      .sort((a, b) => Number(a.lesson.num ?? 0) - Number(b.lesson.num ?? 0))
+      .map((v) => v.id);
     const videos = [...(l.videos ?? []), ...topicVideos].map((v) => videoStep(l.id, v)).filter((s): s is Step => !!s);
 
     const fs = formulasOf(topics);

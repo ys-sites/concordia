@@ -12,6 +12,7 @@ import { MIAE215_MIDTERM_VIDEOS } from '../data/miae215MidtermVideos';
 import { MIAE215_PRACTICE_MIDTERM_VIDEOS } from '../data/miae215PracticeMidtermVideos';
 import { MIAE221_MIDTERM_VIDEOS } from '../data/miae221MidtermVideos';
 import { MIAE221_TOPIC_VIDEOS } from '../data/gates/miae221TopicVideos';
+import { INDU211_VISUAL_VIDEOS } from '../data/indu211VisualVideos';
 
 export type { MotionLesson };
 
@@ -24,6 +25,7 @@ export interface VideoSource {
   questionId?: string; // LearnQuestion id this video solves
   gateTopic?: string; // exam-prep topic this video explains: it joins every lesson whose `gate` lists the topic
   cdnOnly?: boolean; // the MP4 lives only on the media CDN (gitignored), so a fresh checkout does not have it
+  learnLesson?: string; // Learn lesson id this video joins directly (curriculum spec ids)
 }
 
 const entries = <T,>(rec: Record<string, T>) => Object.entries(rec);
@@ -37,6 +39,7 @@ export const VIDEO_SOURCES: VideoSource[] = [
   ...entries(ENGR213_MOTION_LESSONS).map(([k, lesson]) => ({ id: `tutor:${k}`, courseId: 'ENGR213' as const, kind: 'lesson' as const, lesson })),
   ...MIAE221_MOTION_LESSONS.map((lesson) => ({ id: `topic221:${lesson.id}`, courseId: 'MIAE221' as const, kind: 'lesson' as const, lesson })),
   ...entries(MIAE221_TOPIC_VIDEOS).map(([t, lesson]) => ({ id: `explain221:${t}`, courseId: 'MIAE221' as const, kind: 'lesson' as const, lesson, gateTopic: t, cdnOnly: true })),
+  ...entries(INDU211_VISUAL_VIDEOS).map(([k, { learn, ...lesson }]) => ({ id: `visual211:${k}`, courseId: 'INDU211' as const, kind: 'lesson' as const, lesson, learnLesson: learn, cdnOnly: true })),
   ...entries(MIAE215_CODELAB_VIDEOS).map(([k, lesson]) => ({ id: `lab215:${k}`, courseId: 'MIAE215' as const, kind: 'walkthrough' as const, lesson })),
   ...entries(MIAE215_PRACTICE_MIDTERM_VIDEOS).map(([k, lesson]) => ({ id: `pm215:${k}`, courseId: 'MIAE215' as const, kind: 'walkthrough' as const, lesson, questionId: SOLVED_BY_WALKTHROUGH[k] })),
   ...entries(MIAE215_MIDTERM_VIDEOS)
