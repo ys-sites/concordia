@@ -1,6 +1,7 @@
 I'm going to make this file, and it's called website_essential.sb. What this file does, basically, is my go-to file when it comes to website building. It should have all the GitHub repos that give a better functionality for a website. Also, the security aspect, and also, there's certain data to be that is trained to make this the web, my essential ground. So whenever I use this file on an anti-gravity or any AI system, it reads this file to use the basis to create these beautiful websites.
 
 ## Github:
+### Frontend & Website Design
 https://github.com/JCodesMore/ai-website-cloner-template
 https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
 https://github.com/motiondivision/motion
@@ -13,6 +14,37 @@ https://github.com/orgs/21st-dev/repositories
 https://github.com/Leonxlnx/taste-skill.git
 https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design
 https://github.com/kylezantos/design-motion-principles.git
+https://github.com/vercel-labs/agent-skills
+https://github.com/ItsssssJack/SlopMonster
+
+### Video & Motion Graphics
+https://github.com/calesthio/OpenMontage
+https://github.com/hiteshK03/davinci-resolve-mcp
+
+### AI Development & Agent Frameworks
+https://github.com/affaan-m/ECC
+https://github.com/affaan-m/everything-claude-code
+https://github.com/chaseai-yt/claudex-loop
+https://github.com/diegosouzapw/OmniRoute
+https://github.com/deepseek-ai/deepseek-harness
+https://github.com/HKUDS/CLI-Anything
+https://github.com/D4Vinci/Scrapling
+https://github.com/Vincentwei1021/anything2explainer
+https://github.com/xai-org/grok-build
+https://github.com/Graphify-Labs/graphify
+https://github.com/odysseus-dev/odysseus
+https://github.com/ruvnet/ruflo
+https://github.com/morluto/rea
+
+### Marketing, Ads & Social Growth
+https://github.com/charlesdove977/advertising-ops
+https://github.com/msitarzewski/agency-agents
+https://github.com/latent-spaces/brag
+https://github.com/Jakeschincariol/linkedin-agent-skill
+https://github.com/zubair-trabzada/ai-marketing-claude
+https://github.com/diwenne/openreply
+https://github.com/666ghj/MiroFish
+https://github.com/every-app/open-seo
 
 ## Security
 https://github.com/wiz-sec-public/secure-rules-files
