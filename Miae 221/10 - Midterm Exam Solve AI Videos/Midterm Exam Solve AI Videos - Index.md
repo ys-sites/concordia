@@ -2,6 +2,13 @@
 
 One slow, narrated, baby-step video per question of the MIAE 221 exam-prep gate: every past-exam question (Fall 2024, 2025 Version A and Winter 2026 midterms, the MECH 221 finals, Practice Problem Set #1) and every Formula Lab practice question. Each video reads the question, explains what it is testing, solves it step by step with every number worked out, goes deeper into the topic, and ends with the trap and an exam tip. On the website each video sits under its question in the drills, the Pattern Analyzer and the quiz explanations. The MP4s are served from the media CDN.
 
+- Practice 1 · Materials & Properties (2:19) · Material classes & processing → structure → properties · practice 1
+- Practice 2 · Materials & Properties (2:17) · Material classes & processing → structure → properties · practice 2
+- Practice 3 · Materials & Properties (2:17) · Material classes & processing → structure → properties · practice 3
+- Practice 4 · Materials & Properties (1:59) · Material classes & processing → structure → properties · practice 4
+- Practice 5 · Materials & Properties (1:53) · Material classes & processing → structure → properties · practice 5
+- Practice 6 · Materials & Properties (2:23) · Material classes & processing → structure → properties · practice 6
+- Practice 7 · Materials & Properties (2:04) · Material classes & processing → structure → properties · practice 7
 - A25-Q06 · Electron Configuration (3:17) · Midterm 2025 (Version A) · Question 6
 - A25-TF23 · Electron Configuration (2:05) · Midterm 2025 (Version A) · True/False 23
 - W26-TF36 · Electron Configuration (1:57) · Winter 2026 midterm · True/False 36
@@ -40,3 +47,158 @@ One slow, narrated, baby-step video per question of the MIAE 221 exam-prep gate:
 - Practice 1 · Force & Energy Curves (3:08) · Equilibrium spacing r₀ and bond energy E₀ · practice 1
 - Practice 2 · Force & Energy Curves (2:47) · Equilibrium spacing r₀ and bond energy E₀ · practice 2
 - Practice 3 · Force & Energy Curves (3:09) · Equilibrium spacing r₀ and bond energy E₀ · practice 3
+- Practice 4 · Force & Energy Curves (2:43) · Coulomb attraction between two ions · practice 1
+- Practice 5 · Force & Energy Curves (2:10) · Coulomb attraction between two ions · practice 2
+- Practice 6 · Force & Energy Curves (2:33) · Coulomb attraction between two ions · practice 3
+- Practice 7 · Force & Energy Curves (2:02) · Coulomb attraction between two ions · practice 4
+- F24-Q04 · Unit Cells & APF (3:22) · Fall 2024 midterm · Question 4
+- F24-TF26 · Unit Cells & APF (2:17) · Fall 2024 midterm · True/False 26
+- F24-TF30 · Unit Cells & APF (2:08) · Fall 2024 midterm · True/False 30
+- A25-Q01 · Unit Cells & APF (2:11) · Midterm 2025 (Version A) · Question 1
+- A25-Q15 · Unit Cells & APF (2:08) · Midterm 2025 (Version A) · Question 15
+- A25-Q16 · Unit Cells & APF (2:10) · Midterm 2025 (Version A) · Question 16
+- A25-TF25 · Unit Cells & APF (1:54) · Midterm 2025 (Version A) · True/False 25
+- W26-Q05 · Unit Cells & APF (1:55) · Winter 2026 midterm · Question 5
+- Practice 1 · Unit Cells & APF (2:21) · Unit-cell geometry: a(R), n, CN, APF · practice 4
+- Practice 2 · Unit Cells & APF (2:24) · Unit-cell geometry: a(R), n, CN, APF · practice 5
+- Practice 3 · Unit Cells & APF (1:46) · Unit-cell geometry: a(R), n, CN, APF · practice 6
+- F24-Q17 · Theoretical Density (3:51) · Fall 2024 midterm · Question 17
+- A25-Q08 · Theoretical Density (3:31) · Midterm 2025 (Version A) · Question 8
+- F17-Q16 · Theoretical Density (2:37) · Final 2017 (MECH 221) · Question 16
+- Practice 1 · Theoretical Density (2:55) · Theoretical density · practice 3
+- Practice 2 · Theoretical Density (2:46) · Theoretical density · practice 4
+- Practice 3 · Theoretical Density (2:16) · Theoretical density · practice 5
+- F24-TF25 · Crystals, Grains & Polymorphs (2:08) · Fall 2024 midterm · True/False 25
+- F24-TF29 · Crystals, Grains & Polymorphs (2:11) · Fall 2024 midterm · True/False 29
+- A25-Q11 · Crystals, Grains & Polymorphs (2:08) · Midterm 2025 (Version A) · Question 11
+- A25-TF21 · Crystals, Grains & Polymorphs (2:12) · Midterm 2025 (Version A) · True/False 21
+- A25-TF22 · Crystals, Grains & Polymorphs (1:54) · Midterm 2025 (Version A) · True/False 22
+- A25-TF30 · Crystals, Grains & Polymorphs (2:02) · Midterm 2025 (Version A) · True/False 30
+- W26-TF23 · Crystals, Grains & Polymorphs (2:19) · Winter 2026 midterm · True/False 23
+- W26-TF24 · Crystals, Grains & Polymorphs (1:55) · Winter 2026 midterm · True/False 24
+- W26-TF38 · Crystals, Grains & Polymorphs (1:57) · Winter 2026 midterm · True/False 38
+- W26-TF40 · Crystals, Grains & Polymorphs (1:41) · Winter 2026 midterm · True/False 40
+- F24-Q01 · Miller Indices - Directions (2:44) · Fall 2024 midterm · Question 1
+- F24-Q14 · Miller Indices - Directions (2:16) · Fall 2024 midterm · Question 14
+- W26-Q01 · Miller Indices - Directions (2:50) · Winter 2026 midterm · Question 1
+- W26-Q02 · Miller Indices - Directions (2:42) · Winter 2026 midterm · Question 2
+- Practice 1 · Miller Indices - Directions (2:12) · Direction indices [uvw] · practice 3
+- Practice 2 · Miller Indices - Directions (1:59) · Direction indices [uvw] · practice 4
+- Practice 3 · Miller Indices - Directions (1:49) · Direction indices [uvw] · practice 5
+- F24-Q13 · Miller Indices - Planes (2:25) · Fall 2024 midterm · Question 13
+- A25-Q03 · Miller Indices - Planes (2:36) · Midterm 2025 (Version A) · Question 3
+- A25-Q09 · Miller Indices - Planes (2:44) · Midterm 2025 (Version A) · Question 9
+- A25-TF24 · Miller Indices - Planes (2:07) · Midterm 2025 (Version A) · True/False 24
+- W26-Q03 · Miller Indices - Planes (2:46) · Winter 2026 midterm · Question 3
+- W26-Q04 · Miller Indices - Planes (2:42) · Winter 2026 midterm · Question 4
+- W26-TF29 · Miller Indices - Planes (2:01) · Winter 2026 midterm · True/False 29
+- FX-TF31 · Miller Indices - Planes (1:56) · Old final (MECH 221, undated) · True/False 31
+- F17-Q01 · Miller Indices - Planes (1:54) · Final 2017 (MECH 221) · Question 1
+- Practice 1 · Miller Indices - Planes (1:48) · Plane (Miller) indices (hkl) · practice 3
+- Practice 2 · Miller Indices - Planes (1:35) · Plane (Miller) indices (hkl) · practice 6
+- A25-Q02 · Linear & Planar Density (2:50) · Midterm 2025 (Version A) · Question 2
+- A25-Q04 · Linear & Planar Density (3:14) · Midterm 2025 (Version A) · Question 4
+- W26-Q06 · Linear & Planar Density (2:32) · Winter 2026 midterm · Question 6
+- W26-TF27 · Linear & Planar Density (2:19) · Winter 2026 midterm · True/False 27
+- W26-TF28 · Linear & Planar Density (2:09) · Winter 2026 midterm · True/False 28
+- FX-Q05 · Linear & Planar Density (2:24) · Old final (MECH 221, undated) · Question 5
+- F17-Q17 · Linear & Planar Density (2:21) · Final 2017 (MECH 221) · Question 17
+- Practice 1 · Linear & Planar Density (1:48) · Linear & planar density · practice 4
+- Practice 2 · Linear & Planar Density (2:37) · Linear & planar density · practice 5
+- Practice 3 · Linear & Planar Density (2:26) · Linear & planar density · practice 6
+- Practice 4 · Linear & Planar Density (2:06) · Linear & planar density · practice 7
+- F24-Q15 · X-Ray Diffraction (3:56) · Fall 2024 midterm · Question 15
+- A25-TF29 · X-Ray Diffraction (2:24) · Midterm 2025 (Version A) · True/False 29
+- W26-Q07 · X-Ray Diffraction (3:08) · Winter 2026 midterm · Question 7
+- Practice 1 · X-Ray Diffraction (2:11) · Bragg’s law + interplanar spacing · practice 4
+- Practice 2 · X-Ray Diffraction (2:20) · Bragg’s law + interplanar spacing · practice 5
+- Practice 3 · X-Ray Diffraction (1:48) · Bragg’s law + interplanar spacing · practice 6
+- F24-Q10 · Vacancies (2:28) · Fall 2024 midterm · Question 10
+- A25-Q13 · Vacancies (2:36) · Midterm 2025 (Version A) · Question 13
+- A25-Q17 · Vacancies (2:58) · Midterm 2025 (Version A) · Question 17
+- W26-Q08 · Vacancies (3:26) · Winter 2026 midterm · Question 8
+- W26-TF33 · Vacancies (1:50) · Winter 2026 midterm · True/False 33
+- FX-Q09 · Vacancies (2:19) · Old final (MECH 221, undated) · Question 9
+- F17-Q02 · Vacancies (3:10) · Final 2017 (MECH 221) · Question 2
+- Practice 1 · Vacancies (2:40) · Equilibrium vacancies · practice 4
+- Practice 2 · Vacancies (2:13) · Equilibrium vacancies · practice 5
+- A25-Q10 · Solid Solutions (2:36) · Midterm 2025 (Version A) · Question 10
+- W26-Q09 · Solid Solutions (2:19) · Winter 2026 midterm · Question 9
+- F17-Q18 · Solid Solutions (2:13) · Final 2017 (MECH 221) · Question 18
+- Practice 1 · Solid Solutions (2:58) · Weight % → atom % · practice 1
+- Practice 2 · Solid Solutions (1:57) · Weight % → atom % · practice 2
+- A25-Q14 · Dislocations & Interfaces (2:33) · Midterm 2025 (Version A) · Question 14
+- W26-Q10 · Dislocations & Interfaces (2:27) · Winter 2026 midterm · Question 10
+- W26-TF25 · Dislocations & Interfaces (2:00) · Winter 2026 midterm · True/False 25
+- FX-Q08 · Dislocations & Interfaces (1:49) · Old final (MECH 221, undated) · Question 8
+- FX-Q12 · Dislocations & Interfaces (2:02) · Old final (MECH 221, undated) · Question 12
+- F24-Q02 · Diffusion & D(T) (3:39) · Fall 2024 midterm · Question 2
+- F24-Q08 · Diffusion & D(T) (2:21) · Fall 2024 midterm · Question 8
+- F24-TF27 · Diffusion & D(T) (2:04) · Fall 2024 midterm · True/False 27
+- W26-Q12 · Diffusion & D(T) (3:14) · Winter 2026 midterm · Question 12
+- Practice 1 · Diffusion & D(T) (2:52) · Temperature dependence of D · practice 3
+- Practice 2 · Diffusion & D(T) (2:19) · Temperature dependence of D · practice 4
+- Practice 3 · Diffusion & D(T) (1:46) · Temperature dependence of D · practice 5
+- A25-Q07 · Fick's First Law (3:47) · Midterm 2025 (Version A) · Question 7
+- W26-Q13 · Fick's First Law (2:59) · Winter 2026 midterm · Question 13
+- Practice 1 · Fick's First Law (2:21) · Fick’s 1st law (steady state) · practice 3
+- Practice 2 · Fick's First Law (2:34) · Fick’s 1st law (steady state) · practice 4
+- Practice 3 · Fick's First Law (2:03) · Fick’s 1st law (steady state) · practice 5
+- F24-Q07 · Fick's Second Law (4:06) · Fall 2024 midterm · Question 7
+- F24-Q18 · Fick's Second Law (2:52) · Fall 2024 midterm · Question 18
+- W26-TF37 · Fick's Second Law (2:13) · Winter 2026 midterm · True/False 37
+- Practice 1 · Fick's Second Law (2:34) · Fick’s 2nd law — erf solution · practice 2
+- Practice 2 · Fick's Second Law (3:17) · Fick’s 2nd law — erf solution · practice 3
+- Practice 3 · Fick's Second Law (2:19) · Same profile ⇔ same Dt · practice 1
+- Practice 4 · Fick's Second Law (1:48) · Same profile ⇔ same Dt · practice 2
+- F24-Q09 · Stress, Strain & Poisson (2:20) · Fall 2024 midterm · Question 9
+- F24-Q11 · Stress, Strain & Poisson (3:27) · Fall 2024 midterm · Question 11
+- F24-Q12 · Stress, Strain & Poisson (2:14) · Fall 2024 midterm · Question 12
+- F24-Q19 · Stress, Strain & Poisson (2:54) · Fall 2024 midterm · Question 19
+- F17-Q12 · Stress, Strain & Poisson (3:00) · Final 2017 (MECH 221) · Question 12
+- Practice 1 · Stress, Strain & Poisson (2:14) · Stress, strain & Hooke’s law · practice 3
+- Practice 2 · Stress, Strain & Poisson (2:03) · Stress, strain & Hooke’s law · practice 4
+- Practice 3 · Stress, Strain & Poisson (1:41) · Stress, strain & Hooke’s law · practice 6
+- Practice 4 · Stress, Strain & Poisson (1:51) · Stress, strain & Hooke’s law · practice 7
+- Practice 5 · Stress, Strain & Poisson (1:32) · Stress, strain & Hooke’s law · practice 8
+- Practice 6 · Stress, Strain & Poisson (1:49) · Stress, strain & Hooke’s law · practice 9
+- Practice 7 · Stress, Strain & Poisson (1:47) · Poisson’s ratio · practice 3
+- Practice 8 · Stress, Strain & Poisson (2:15) · Poisson’s ratio · practice 4
+- Practice 9 · Stress, Strain & Poisson (2:31) · Poisson’s ratio · practice 5
+- Practice 10 · Stress, Strain & Poisson (1:23) · Poisson’s ratio · practice 6
+- Practice 11 · Stress, Strain & Poisson (1:52) · Poisson’s ratio · practice 7
+- Practice 12 · Stress, Strain & Poisson (1:58) · Poisson’s ratio · practice 8
+- F24-Q05 · The Tensile Curve (2:08) · Fall 2024 midterm · Question 5
+- F24-Q20 · The Tensile Curve (2:03) · Fall 2024 midterm · Question 20
+- F24-TF21 · The Tensile Curve (1:50) · Fall 2024 midterm · True/False 21
+- F24-TF23 · The Tensile Curve (1:55) · Fall 2024 midterm · True/False 23
+- A25-Q05 · The Tensile Curve (1:42) · Midterm 2025 (Version A) · Question 5
+- A25-Q18 · The Tensile Curve (1:44) · Midterm 2025 (Version A) · Question 18
+- A25-Q19 · The Tensile Curve (1:40) · Midterm 2025 (Version A) · Question 19
+- A25-Q20 · The Tensile Curve (2:01) · Midterm 2025 (Version A) · Question 20
+- W26-Q15 · The Tensile Curve (1:40) · Winter 2026 midterm · Question 15
+- W26-Q16 · The Tensile Curve (3:16) · Winter 2026 midterm · Question 16
+- W26-Q17 · The Tensile Curve (2:35) · Winter 2026 midterm · Question 17
+- W26-Q18 · The Tensile Curve (2:42) · Winter 2026 midterm · Question 18
+- W26-Q19 · The Tensile Curve (2:17) · Winter 2026 midterm · Question 19
+- W26-Q20 · The Tensile Curve (3:08) · Winter 2026 midterm · Question 20
+- W26-TF26 · The Tensile Curve (1:59) · Winter 2026 midterm · True/False 26
+- W26-TF32 · The Tensile Curve (1:43) · Winter 2026 midterm · True/False 32
+- W26-TF35 · The Tensile Curve (1:38) · Winter 2026 midterm · True/False 35
+- FX-TF35 · The Tensile Curve (1:50) · Old final (MECH 221, undated) · True/False 35
+- Practice 1 · The Tensile Curve (2:02) · E from the elastic slope · practice 1
+- Practice 2 · The Tensile Curve (1:44) · E from the elastic slope · practice 2
+- Practice 3 · The Tensile Curve (1:32) · E from the elastic slope · practice 3
+- Practice 4 · The Tensile Curve (2:14) · E from the elastic slope · practice 4
+- Practice 5 · The Tensile Curve (1:39) · E from the elastic slope · practice 5
+- Practice 6 · The Tensile Curve (1:38) · E from the elastic slope · practice 6
+- Practice 7 · The Tensile Curve (1:36) · E from the elastic slope · practice 7
+- Practice 8 · The Tensile Curve (1:57) · E from the elastic slope · practice 8
+- Practice 9 · The Tensile Curve (2:01) · Elastic recovery & permanent set · practice 1
+- Practice 10 · The Tensile Curve (1:50) · Elastic recovery & permanent set · practice 3
+- Practice 11 · The Tensile Curve (2:00) · Ductility: %EL and %RA · practice 1
+- Practice 12 · The Tensile Curve (1:46) · Ductility: %EL and %RA · practice 2
+- Practice 13 · The Tensile Curve (2:00) · Modulus of resilience · practice 1
+- Practice 14 · The Tensile Curve (1:28) · Modulus of resilience · practice 2
+- Practice 15 · The Tensile Curve (1:52) · True stress & true strain · practice 1
+- FX-TF32 · Dislocations & Slip (2:55) · Old final (MECH 221, undated) · True/False 32

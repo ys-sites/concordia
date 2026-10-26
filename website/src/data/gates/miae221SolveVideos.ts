@@ -4,6 +4,223 @@
 import type { MotionLesson } from '../engr213Lessons';
 
 export const MIAE221_SOLVE_VIDEOS: Record<string, MotionLesson> = {
+ "L:classes:0": {
+  "num": 1,
+  "title": "Practice 1 · Materials & Properties",
+  "source": "Material classes & processing → structure → properties · practice 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Materials & Properties.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Materials & Properties.jpg",
+  "duration": 139,
+  "sizeMB": 6.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.2
+   },
+   {
+    "label": "Solve It",
+    "start": 55
+   },
+   {
+    "label": "Go Deeper",
+    "start": 84.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 116.8
+   }
+  ]
+ },
+ "L:classes:1": {
+  "num": 2,
+  "title": "Practice 2 · Materials & Properties",
+  "source": "Material classes & processing → structure → properties · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Materials & Properties.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Materials & Properties.jpg",
+  "duration": 137,
+  "sizeMB": 7.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 33.5
+   },
+   {
+    "label": "Solve It",
+    "start": 46.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 81.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 110.4
+   }
+  ]
+ },
+ "L:classes:2": {
+  "num": 3,
+  "title": "Practice 3 · Materials & Properties",
+  "source": "Material classes & processing → structure → properties · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Materials & Properties.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Materials & Properties.jpg",
+  "duration": 137,
+  "sizeMB": 7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26.5
+   },
+   {
+    "label": "Solve It",
+    "start": 36.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 81
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 113.9
+   }
+  ]
+ },
+ "L:classes:3": {
+  "num": 4,
+  "title": "Practice 4 · Materials & Properties",
+  "source": "Material classes & processing → structure → properties · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 4 - Materials & Properties.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 4 - Materials & Properties.jpg",
+  "duration": 119,
+  "sizeMB": 5.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.9
+   },
+   {
+    "label": "Solve It",
+    "start": 39.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 62.5
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 92.2
+   }
+  ]
+ },
+ "L:classes:4": {
+  "num": 5,
+  "title": "Practice 5 · Materials & Properties",
+  "source": "Material classes & processing → structure → properties · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 5 - Materials & Properties.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 5 - Materials & Properties.jpg",
+  "duration": 113,
+  "sizeMB": 5.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.2
+   },
+   {
+    "label": "Solve It",
+    "start": 35.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 62.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 90.2
+   }
+  ]
+ },
+ "L:classes:5": {
+  "num": 6,
+  "title": "Practice 6 · Materials & Properties",
+  "source": "Material classes & processing → structure → properties · practice 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 6 - Materials & Properties.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 6 - Materials & Properties.jpg",
+  "duration": 143,
+  "sizeMB": 7.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 33.2
+   },
+   {
+    "label": "Solve It",
+    "start": 45
+   },
+   {
+    "label": "Go Deeper",
+    "start": 81.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 116.6
+   }
+  ]
+ },
+ "L:classes:6": {
+  "num": 7,
+  "title": "Practice 7 · Materials & Properties",
+  "source": "Material classes & processing → structure → properties · practice 7",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 7 - Materials & Properties.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 7 - Materials & Properties.jpg",
+  "duration": 124,
+  "sizeMB": 6.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.8
+   },
+   {
+    "label": "Solve It",
+    "start": 38.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 72.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 98.7
+   }
+  ]
+ },
  "A25-6": {
   "num": 8,
   "title": "A25-Q06 · Electron Configuration",
@@ -1267,6 +1484,5027 @@ export const MIAE221_SOLVE_VIDEOS: Record<string, MotionLesson> = {
    {
     "label": "Answer & Traps",
     "start": 160.7
+   }
+  ]
+ },
+ "L:ionforce:0": {
+  "num": 46,
+  "title": "Practice 4 · Force & Energy Curves",
+  "source": "Coulomb attraction between two ions · practice 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 4 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 4 - Force & Energy Curves.jpg",
+  "duration": 163,
+  "sizeMB": 6.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.3
+   },
+   {
+    "label": "Solve It",
+    "start": 40.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 99.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 131.7
+   }
+  ]
+ },
+ "L:ionforce:1": {
+  "num": 47,
+  "title": "Practice 5 · Force & Energy Curves",
+  "source": "Coulomb attraction between two ions · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 5 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 5 - Force & Energy Curves.jpg",
+  "duration": 130,
+  "sizeMB": 5.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.6
+   },
+   {
+    "label": "Solve It",
+    "start": 30.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 81.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 103.8
+   }
+  ]
+ },
+ "L:ionforce:2": {
+  "num": 48,
+  "title": "Practice 6 · Force & Energy Curves",
+  "source": "Coulomb attraction between two ions · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 6 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 6 - Force & Energy Curves.jpg",
+  "duration": 153,
+  "sizeMB": 6.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 31.9
+   },
+   {
+    "label": "Solve It",
+    "start": 42.2
+   },
+   {
+    "label": "Check It",
+    "start": 88.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 97.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 130.3
+   }
+  ]
+ },
+ "L:ionforce:3": {
+  "num": 49,
+  "title": "Practice 7 · Force & Energy Curves",
+  "source": "Coulomb attraction between two ions · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 7 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 7 - Force & Energy Curves.jpg",
+  "duration": 122,
+  "sizeMB": 6.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.5
+   },
+   {
+    "label": "Solve It",
+    "start": 37.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 66.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 96.2
+   }
+  ]
+ },
+ "F24-4": {
+  "num": 50,
+  "title": "F24-Q04 · Unit Cells & APF",
+  "source": "Fall 2024 midterm · Question 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q04 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q04 - Unit Cells & APF.jpg",
+  "duration": 202,
+  "sizeMB": 9.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.8
+   },
+   {
+    "label": "Solve It",
+    "start": 54.6
+   },
+   {
+    "label": "Check It",
+    "start": 112.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 128.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 170.3
+   }
+  ]
+ },
+ "F24-26": {
+  "num": 51,
+  "title": "F24-TF26 · Unit Cells & APF",
+  "source": "Fall 2024 midterm · True/False 26",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-TF26 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-TF26 - Unit Cells & APF.jpg",
+  "duration": 137,
+  "sizeMB": 7.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19.2
+   },
+   {
+    "label": "Solve It",
+    "start": 37.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 56.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 108.2
+   }
+  ]
+ },
+ "F24-30": {
+  "num": 52,
+  "title": "F24-TF30 · Unit Cells & APF",
+  "source": "Fall 2024 midterm · True/False 30",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-TF30 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-TF30 - Unit Cells & APF.jpg",
+  "duration": 128,
+  "sizeMB": 5.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 20.8
+   },
+   {
+    "label": "Solve It",
+    "start": 33.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 71.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 103.7
+   }
+  ]
+ },
+ "A25-1": {
+  "num": 53,
+  "title": "A25-Q01 · Unit Cells & APF",
+  "source": "Midterm 2025 (Version A) · Question 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q01 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q01 - Unit Cells & APF.jpg",
+  "duration": 131,
+  "sizeMB": 6.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.8
+   },
+   {
+    "label": "Solve It",
+    "start": 37.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 74.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 105
+   }
+  ]
+ },
+ "A25-15": {
+  "num": 54,
+  "title": "A25-Q15 · Unit Cells & APF",
+  "source": "Midterm 2025 (Version A) · Question 15",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q15 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q15 - Unit Cells & APF.jpg",
+  "duration": 128,
+  "sizeMB": 6.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21
+   },
+   {
+    "label": "Solve It",
+    "start": 34.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 61.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 96.1
+   }
+  ]
+ },
+ "A25-16": {
+  "num": 55,
+  "title": "A25-Q16 · Unit Cells & APF",
+  "source": "Midterm 2025 (Version A) · Question 16",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q16 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q16 - Unit Cells & APF.jpg",
+  "duration": 130,
+  "sizeMB": 6.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19.8
+   },
+   {
+    "label": "Solve It",
+    "start": 33.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 64.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 100.2
+   }
+  ]
+ },
+ "A25-25": {
+  "num": 56,
+  "title": "A25-TF25 · Unit Cells & APF",
+  "source": "Midterm 2025 (Version A) · True/False 25",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-TF25 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-TF25 - Unit Cells & APF.jpg",
+  "duration": 114,
+  "sizeMB": 5.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.3
+   },
+   {
+    "label": "Solve It",
+    "start": 37.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 60.5
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 88.1
+   }
+  ]
+ },
+ "W26-5": {
+  "num": 57,
+  "title": "W26-Q05 · Unit Cells & APF",
+  "source": "Winter 2026 midterm · Question 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q05 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q05 - Unit Cells & APF.jpg",
+  "duration": 115,
+  "sizeMB": 6.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.8
+   },
+   {
+    "label": "Solve It",
+    "start": 35
+   },
+   {
+    "label": "Go Deeper",
+    "start": 48.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 87.2
+   }
+  ]
+ },
+ "L:cubic:3": {
+  "num": 58,
+  "title": "Practice 1 · Unit Cells & APF",
+  "source": "Unit-cell geometry: a(R), n, CN, APF · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Unit Cells & APF.jpg",
+  "duration": 141,
+  "sizeMB": 6.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.8
+   },
+   {
+    "label": "Solve It",
+    "start": 39.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 77.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 116.5
+   }
+  ]
+ },
+ "L:cubic:4": {
+  "num": 59,
+  "title": "Practice 2 · Unit Cells & APF",
+  "source": "Unit-cell geometry: a(R), n, CN, APF · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Unit Cells & APF.jpg",
+  "duration": 144,
+  "sizeMB": 7.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.5
+   },
+   {
+    "label": "Solve It",
+    "start": 36.9
+   },
+   {
+    "label": "Check It",
+    "start": 76
+   },
+   {
+    "label": "Go Deeper",
+    "start": 87.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 115.6
+   }
+  ]
+ },
+ "L:cubic:5": {
+  "num": 60,
+  "title": "Practice 3 · Unit Cells & APF",
+  "source": "Unit-cell geometry: a(R), n, CN, APF · practice 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Unit Cells & APF.jpg",
+  "duration": 106,
+  "sizeMB": 5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19.4
+   },
+   {
+    "label": "Solve It",
+    "start": 30.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 53.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 82.1
+   }
+  ]
+ },
+ "F24-17": {
+  "num": 61,
+  "title": "F24-Q17 · Theoretical Density",
+  "source": "Fall 2024 midterm · Question 17",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q17 - Theoretical Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q17 - Theoretical Density.jpg",
+  "duration": 231,
+  "sizeMB": 12.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 28.2
+   },
+   {
+    "label": "The Plan",
+    "start": 58.9
+   },
+   {
+    "label": "Solve It",
+    "start": 67.8
+   },
+   {
+    "label": "Check It",
+    "start": 138.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 158.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 193.6
+   }
+  ]
+ },
+ "A25-8": {
+  "num": 62,
+  "title": "A25-Q08 · Theoretical Density",
+  "source": "Midterm 2025 (Version A) · Question 8",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q08 - Theoretical Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q08 - Theoretical Density.jpg",
+  "duration": 211,
+  "sizeMB": 10.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 29.4
+   },
+   {
+    "label": "The Plan",
+    "start": 40.9
+   },
+   {
+    "label": "Solve It",
+    "start": 56.1
+   },
+   {
+    "label": "Check It",
+    "start": 138.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 150.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 183.5
+   }
+  ]
+ },
+ "F17-16": {
+  "num": 63,
+  "title": "F17-Q16 · Theoretical Density",
+  "source": "Final 2017 (MECH 221) · Question 16",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F17-Q16 - Theoretical Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F17-Q16 - Theoretical Density.jpg",
+  "duration": 157,
+  "sizeMB": 6.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 31.8
+   },
+   {
+    "label": "The Plan",
+    "start": 47.4
+   },
+   {
+    "label": "Solve It",
+    "start": 63.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 102.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 129.9
+   }
+  ]
+ },
+ "L:density:2": {
+  "num": 64,
+  "title": "Practice 1 · Theoretical Density",
+  "source": "Theoretical density · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Theoretical Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Theoretical Density.jpg",
+  "duration": 175,
+  "sizeMB": 9.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26.1
+   },
+   {
+    "label": "Solve It",
+    "start": 36.7
+   },
+   {
+    "label": "Check It",
+    "start": 94.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 109.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 146.2
+   }
+  ]
+ },
+ "L:density:3": {
+  "num": 65,
+  "title": "Practice 2 · Theoretical Density",
+  "source": "Theoretical density · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Theoretical Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Theoretical Density.jpg",
+  "duration": 166,
+  "sizeMB": 8.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.9
+   },
+   {
+    "label": "Solve It",
+    "start": 31.8
+   },
+   {
+    "label": "Check It",
+    "start": 89.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 99.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 135.6
+   }
+  ]
+ },
+ "L:density:4": {
+  "num": 66,
+  "title": "Practice 3 · Theoretical Density",
+  "source": "Theoretical density · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Theoretical Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Theoretical Density.jpg",
+  "duration": 136,
+  "sizeMB": 7.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.8
+   },
+   {
+    "label": "Solve It",
+    "start": 36.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 82.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 108.4
+   }
+  ]
+ },
+ "F24-25": {
+  "num": 67,
+  "title": "F24-TF25 · Crystals, Grains & Polymorphs",
+  "source": "Fall 2024 midterm · True/False 25",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-TF25 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-TF25 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 128,
+  "sizeMB": 7.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.6
+   },
+   {
+    "label": "Solve It",
+    "start": 60.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 71.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 104.6
+   }
+  ]
+ },
+ "F24-29": {
+  "num": 68,
+  "title": "F24-TF29 · Crystals, Grains & Polymorphs",
+  "source": "Fall 2024 midterm · True/False 29",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-TF29 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-TF29 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 131,
+  "sizeMB": 10.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.2
+   },
+   {
+    "label": "Solve It",
+    "start": 34.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 74.5
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 104.5
+   }
+  ]
+ },
+ "A25-11": {
+  "num": 69,
+  "title": "A25-Q11 · Crystals, Grains & Polymorphs",
+  "source": "Midterm 2025 (Version A) · Question 11",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q11 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q11 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 128,
+  "sizeMB": 9.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.7
+   },
+   {
+    "label": "Solve It",
+    "start": 44
+   },
+   {
+    "label": "Go Deeper",
+    "start": 71.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 105.8
+   }
+  ]
+ },
+ "A25-21": {
+  "num": 70,
+  "title": "A25-TF21 · Crystals, Grains & Polymorphs",
+  "source": "Midterm 2025 (Version A) · True/False 21",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-TF21 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-TF21 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 132,
+  "sizeMB": 6.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25
+   },
+   {
+    "label": "Solve It",
+    "start": 40.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 70.5
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 106.7
+   }
+  ]
+ },
+ "A25-22": {
+  "num": 71,
+  "title": "A25-TF22 · Crystals, Grains & Polymorphs",
+  "source": "Midterm 2025 (Version A) · True/False 22",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-TF22 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-TF22 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 114,
+  "sizeMB": 6.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.4
+   },
+   {
+    "label": "Solve It",
+    "start": 35.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 59.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 89.9
+   }
+  ]
+ },
+ "A25-30": {
+  "num": 72,
+  "title": "A25-TF30 · Crystals, Grains & Polymorphs",
+  "source": "Midterm 2025 (Version A) · True/False 30",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-TF30 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-TF30 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 122,
+  "sizeMB": 7.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25
+   },
+   {
+    "label": "Solve It",
+    "start": 38.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 73.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 98.5
+   }
+  ]
+ },
+ "W26-23": {
+  "num": 73,
+  "title": "W26-TF23 · Crystals, Grains & Polymorphs",
+  "source": "Winter 2026 midterm · True/False 23",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF23 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF23 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 139,
+  "sizeMB": 8.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.7
+   },
+   {
+    "label": "Solve It",
+    "start": 42
+   },
+   {
+    "label": "Go Deeper",
+    "start": 72.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 108.9
+   }
+  ]
+ },
+ "W26-24": {
+  "num": 74,
+  "title": "W26-TF24 · Crystals, Grains & Polymorphs",
+  "source": "Winter 2026 midterm · True/False 24",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF24 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF24 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 115,
+  "sizeMB": 8.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.8
+   },
+   {
+    "label": "Solve It",
+    "start": 34.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 63.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 94.8
+   }
+  ]
+ },
+ "W26-38": {
+  "num": 75,
+  "title": "W26-TF38 · Crystals, Grains & Polymorphs",
+  "source": "Winter 2026 midterm · True/False 38",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF38 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF38 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 117,
+  "sizeMB": 8.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.6
+   },
+   {
+    "label": "Solve It",
+    "start": 37.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 59
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 93.8
+   }
+  ]
+ },
+ "W26-40": {
+  "num": 76,
+  "title": "W26-TF40 · Crystals, Grains & Polymorphs",
+  "source": "Winter 2026 midterm · True/False 40",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF40 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF40 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 101,
+  "sizeMB": 6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.2
+   },
+   {
+    "label": "Solve It",
+    "start": 34.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 50.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 78.5
+   }
+  ]
+ },
+ "F24-1": {
+  "num": 77,
+  "title": "F24-Q01 · Miller Indices - Directions",
+  "source": "Fall 2024 midterm · Question 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q01 - Miller Indices - Directions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q01 - Miller Indices - Directions.jpg",
+  "duration": 164,
+  "sizeMB": 7.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26.7
+   },
+   {
+    "label": "Solve It",
+    "start": 53.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 103.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 135.9
+   }
+  ]
+ },
+ "F24-14": {
+  "num": 78,
+  "title": "F24-Q14 · Miller Indices - Directions",
+  "source": "Fall 2024 midterm · Question 14",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q14 - Miller Indices - Directions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q14 - Miller Indices - Directions.jpg",
+  "duration": 136,
+  "sizeMB": 6.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 18.7
+   },
+   {
+    "label": "Solve It",
+    "start": 31.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 82.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 110.5
+   }
+  ]
+ },
+ "W26-1": {
+  "num": 79,
+  "title": "W26-Q01 · Miller Indices - Directions",
+  "source": "Winter 2026 midterm · Question 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q01 - Miller Indices - Directions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q01 - Miller Indices - Directions.jpg",
+  "duration": 170,
+  "sizeMB": 8.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.8
+   },
+   {
+    "label": "Solve It",
+    "start": 42
+   },
+   {
+    "label": "Go Deeper",
+    "start": 101.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 133
+   }
+  ]
+ },
+ "W26-2": {
+  "num": 80,
+  "title": "W26-Q02 · Miller Indices - Directions",
+  "source": "Winter 2026 midterm · Question 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q02 - Miller Indices - Directions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q02 - Miller Indices - Directions.jpg",
+  "duration": 162,
+  "sizeMB": 8.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19.5
+   },
+   {
+    "label": "Solve It",
+    "start": 35.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 95.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 131.5
+   }
+  ]
+ },
+ "L:direction:2": {
+  "num": 81,
+  "title": "Practice 1 · Miller Indices - Directions",
+  "source": "Direction indices [uvw] · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Miller Indices - Directions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Miller Indices - Directions.jpg",
+  "duration": 132,
+  "sizeMB": 6.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.5
+   },
+   {
+    "label": "Solve It",
+    "start": 35.6
+   },
+   {
+    "label": "Check It",
+    "start": 65.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 80.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 108.5
+   }
+  ]
+ },
+ "L:direction:3": {
+  "num": 82,
+  "title": "Practice 2 · Miller Indices - Directions",
+  "source": "Direction indices [uvw] · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Miller Indices - Directions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Miller Indices - Directions.jpg",
+  "duration": 119,
+  "sizeMB": 5.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19.4
+   },
+   {
+    "label": "Solve It",
+    "start": 27.4
+   },
+   {
+    "label": "Check It",
+    "start": 54.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 66.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 91
+   }
+  ]
+ },
+ "L:direction:4": {
+  "num": 83,
+  "title": "Practice 3 · Miller Indices - Directions",
+  "source": "Direction indices [uvw] · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Miller Indices - Directions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Miller Indices - Directions.jpg",
+  "duration": 109,
+  "sizeMB": 5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23
+   },
+   {
+    "label": "Solve It",
+    "start": 36.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 59.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 87.4
+   }
+  ]
+ },
+ "F24-13": {
+  "num": 84,
+  "title": "F24-Q13 · Miller Indices - Planes",
+  "source": "Fall 2024 midterm · Question 13",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q13 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q13 - Miller Indices - Planes.jpg",
+  "duration": 145,
+  "sizeMB": 7.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19.2
+   },
+   {
+    "label": "Solve It",
+    "start": 35.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 81.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 118.8
+   }
+  ]
+ },
+ "A25-3": {
+  "num": 85,
+  "title": "A25-Q03 · Miller Indices - Planes",
+  "source": "Midterm 2025 (Version A) · Question 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q03 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q03 - Miller Indices - Planes.jpg",
+  "duration": 156,
+  "sizeMB": 7.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.1
+   },
+   {
+    "label": "Solve It",
+    "start": 41.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 100.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 131.8
+   }
+  ]
+ },
+ "A25-9": {
+  "num": 86,
+  "title": "A25-Q09 · Miller Indices - Planes",
+  "source": "Midterm 2025 (Version A) · Question 9",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q09 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q09 - Miller Indices - Planes.jpg",
+  "duration": 164,
+  "sizeMB": 8.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19.8
+   },
+   {
+    "label": "Solve It",
+    "start": 30.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 99.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 139
+   }
+  ]
+ },
+ "A25-24": {
+  "num": 87,
+  "title": "A25-TF24 · Miller Indices - Planes",
+  "source": "Midterm 2025 (Version A) · True/False 24",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-TF24 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-TF24 - Miller Indices - Planes.jpg",
+  "duration": 127,
+  "sizeMB": 5.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.4
+   },
+   {
+    "label": "Solve It",
+    "start": 40.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 70.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 103.3
+   }
+  ]
+ },
+ "W26-3": {
+  "num": 88,
+  "title": "W26-Q03 · Miller Indices - Planes",
+  "source": "Winter 2026 midterm · Question 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q03 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q03 - Miller Indices - Planes.jpg",
+  "duration": 166,
+  "sizeMB": 8.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.5
+   },
+   {
+    "label": "Solve It",
+    "start": 40.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 101.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 137.1
+   }
+  ]
+ },
+ "W26-4": {
+  "num": 89,
+  "title": "W26-Q04 · Miller Indices - Planes",
+  "source": "Winter 2026 midterm · Question 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q04 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q04 - Miller Indices - Planes.jpg",
+  "duration": 162,
+  "sizeMB": 7.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19.6
+   },
+   {
+    "label": "Solve It",
+    "start": 34.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 100.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 133.8
+   }
+  ]
+ },
+ "W26-29": {
+  "num": 90,
+  "title": "W26-TF29 · Miller Indices - Planes",
+  "source": "Winter 2026 midterm · True/False 29",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF29 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF29 - Miller Indices - Planes.jpg",
+  "duration": 121,
+  "sizeMB": 5.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.6
+   },
+   {
+    "label": "Solve It",
+    "start": 36.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 58.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 97.4
+   }
+  ]
+ },
+ "FX-31": {
+  "num": 91,
+  "title": "FX-TF31 · Miller Indices - Planes",
+  "source": "Old final (MECH 221, undated) · True/False 31",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/FX-TF31 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/FX-TF31 - Miller Indices - Planes.jpg",
+  "duration": 116,
+  "sizeMB": 5.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 18.5
+   },
+   {
+    "label": "Solve It",
+    "start": 33.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 57.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 94
+   }
+  ]
+ },
+ "F17-1": {
+  "num": 92,
+  "title": "F17-Q01 · Miller Indices - Planes",
+  "source": "Final 2017 (MECH 221) · Question 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F17-Q01 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F17-Q01 - Miller Indices - Planes.jpg",
+  "duration": 114,
+  "sizeMB": 5.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.5
+   },
+   {
+    "label": "Solve It",
+    "start": 33.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 65.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 92.9
+   }
+  ]
+ },
+ "L:plane:2": {
+  "num": 93,
+  "title": "Practice 1 · Miller Indices - Planes",
+  "source": "Plane (Miller) indices (hkl) · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Miller Indices - Planes.jpg",
+  "duration": 108,
+  "sizeMB": 5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.9
+   },
+   {
+    "label": "Solve It",
+    "start": 30.9
+   },
+   {
+    "label": "Check It",
+    "start": 45.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 62.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 88.2
+   }
+  ]
+ },
+ "L:plane:5": {
+  "num": 94,
+  "title": "Practice 2 · Miller Indices - Planes",
+  "source": "Plane (Miller) indices (hkl) · practice 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Miller Indices - Planes.jpg",
+  "duration": 95,
+  "sizeMB": 4.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19.6
+   },
+   {
+    "label": "Solve It",
+    "start": 30.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 50.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 75.8
+   }
+  ]
+ },
+ "A25-2": {
+  "num": 95,
+  "title": "A25-Q02 · Linear & Planar Density",
+  "source": "Midterm 2025 (Version A) · Question 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q02 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q02 - Linear & Planar Density.jpg",
+  "duration": 170,
+  "sizeMB": 8.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.2
+   },
+   {
+    "label": "Solve It",
+    "start": 53.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 111.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 144.3
+   }
+  ]
+ },
+ "A25-4": {
+  "num": 96,
+  "title": "A25-Q04 · Linear & Planar Density",
+  "source": "Midterm 2025 (Version A) · Question 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q04 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q04 - Linear & Planar Density.jpg",
+  "duration": 194,
+  "sizeMB": 9.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.6
+   },
+   {
+    "label": "Solve It",
+    "start": 44
+   },
+   {
+    "label": "Check It",
+    "start": 104.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 126.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 159.8
+   }
+  ]
+ },
+ "W26-6": {
+  "num": 97,
+  "title": "W26-Q06 · Linear & Planar Density",
+  "source": "Winter 2026 midterm · Question 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q06 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q06 - Linear & Planar Density.jpg",
+  "duration": 152,
+  "sizeMB": 7.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.1
+   },
+   {
+    "label": "Solve It",
+    "start": 34.8
+   },
+   {
+    "label": "Check It",
+    "start": 68.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 85.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 126.5
+   }
+  ]
+ },
+ "W26-27": {
+  "num": 98,
+  "title": "W26-TF27 · Linear & Planar Density",
+  "source": "Winter 2026 midterm · True/False 27",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF27 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF27 - Linear & Planar Density.jpg",
+  "duration": 139,
+  "sizeMB": 7.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25
+   },
+   {
+    "label": "Solve It",
+    "start": 43.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 75.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 109.1
+   }
+  ]
+ },
+ "W26-28": {
+  "num": 99,
+  "title": "W26-TF28 · Linear & Planar Density",
+  "source": "Winter 2026 midterm · True/False 28",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF28 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF28 - Linear & Planar Density.jpg",
+  "duration": 129,
+  "sizeMB": 6.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.9
+   },
+   {
+    "label": "Solve It",
+    "start": 37.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 63.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 99.2
+   }
+  ]
+ },
+ "FX-5": {
+  "num": 100,
+  "title": "FX-Q05 · Linear & Planar Density",
+  "source": "Old final (MECH 221, undated) · Question 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/FX-Q05 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/FX-Q05 - Linear & Planar Density.jpg",
+  "duration": 144,
+  "sizeMB": 6.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.7
+   },
+   {
+    "label": "Solve It",
+    "start": 44.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 84.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 118.1
+   }
+  ]
+ },
+ "F17-17": {
+  "num": 101,
+  "title": "F17-Q17 · Linear & Planar Density",
+  "source": "Final 2017 (MECH 221) · Question 17",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F17-Q17 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F17-Q17 - Linear & Planar Density.jpg",
+  "duration": 141,
+  "sizeMB": 6.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.1
+   },
+   {
+    "label": "Solve It",
+    "start": 36
+   },
+   {
+    "label": "Check It",
+    "start": 65.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 89.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 118.8
+   }
+  ]
+ },
+ "L:pd:3": {
+  "num": 102,
+  "title": "Practice 1 · Linear & Planar Density",
+  "source": "Linear & planar density · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Linear & Planar Density.jpg",
+  "duration": 108,
+  "sizeMB": 5.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.1
+   },
+   {
+    "label": "Solve It",
+    "start": 32.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 56.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 85.1
+   }
+  ]
+ },
+ "L:pd:4": {
+  "num": 103,
+  "title": "Practice 2 · Linear & Planar Density",
+  "source": "Linear & planar density · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Linear & Planar Density.jpg",
+  "duration": 157,
+  "sizeMB": 7.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.1
+   },
+   {
+    "label": "Solve It",
+    "start": 34.1
+   },
+   {
+    "label": "Check It",
+    "start": 81.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 104.5
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 132.6
+   }
+  ]
+ },
+ "L:pd:5": {
+  "num": 104,
+  "title": "Practice 3 · Linear & Planar Density",
+  "source": "Linear & planar density · practice 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Linear & Planar Density.jpg",
+  "duration": 146,
+  "sizeMB": 6.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.9
+   },
+   {
+    "label": "Solve It",
+    "start": 34.6
+   },
+   {
+    "label": "Check It",
+    "start": 75.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 91.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 119
+   }
+  ]
+ },
+ "L:pd:6": {
+  "num": 105,
+  "title": "Practice 4 · Linear & Planar Density",
+  "source": "Linear & planar density · practice 7",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 4 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 4 - Linear & Planar Density.jpg",
+  "duration": 126,
+  "sizeMB": 6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.1
+   },
+   {
+    "label": "Solve It",
+    "start": 34
+   },
+   {
+    "label": "Go Deeper",
+    "start": 67.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 100.6
+   }
+  ]
+ },
+ "F24-15": {
+  "num": 106,
+  "title": "F24-Q15 · X-Ray Diffraction",
+  "source": "Fall 2024 midterm · Question 15",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q15 - X-Ray Diffraction.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q15 - X-Ray Diffraction.jpg",
+  "duration": 236,
+  "sizeMB": 12.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 33.2
+   },
+   {
+    "label": "The Plan",
+    "start": 59.4
+   },
+   {
+    "label": "Solve It",
+    "start": 73
+   },
+   {
+    "label": "Check It",
+    "start": 147.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 169.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 213.5
+   }
+  ]
+ },
+ "A25-29": {
+  "num": 107,
+  "title": "A25-TF29 · X-Ray Diffraction",
+  "source": "Midterm 2025 (Version A) · True/False 29",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-TF29 - X-Ray Diffraction.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-TF29 - X-Ray Diffraction.jpg",
+  "duration": 144,
+  "sizeMB": 7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 33.1
+   },
+   {
+    "label": "Solve It",
+    "start": 49.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 86.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 116.5
+   }
+  ]
+ },
+ "W26-7": {
+  "num": 108,
+  "title": "W26-Q07 · X-Ray Diffraction",
+  "source": "Winter 2026 midterm · Question 7",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q07 - X-Ray Diffraction.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q07 - X-Ray Diffraction.jpg",
+  "duration": 188,
+  "sizeMB": 9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 33.4
+   },
+   {
+    "label": "Solve It",
+    "start": 43.2
+   },
+   {
+    "label": "Check It",
+    "start": 108.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 127.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 162
+   }
+  ]
+ },
+ "L:bragg:3": {
+  "num": 109,
+  "title": "Practice 1 · X-Ray Diffraction",
+  "source": "Bragg’s law + interplanar spacing · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - X-Ray Diffraction.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - X-Ray Diffraction.jpg",
+  "duration": 131,
+  "sizeMB": 6.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 29.2
+   },
+   {
+    "label": "Solve It",
+    "start": 37.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 78.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 107.6
+   }
+  ]
+ },
+ "L:bragg:4": {
+  "num": 110,
+  "title": "Practice 2 · X-Ray Diffraction",
+  "source": "Bragg’s law + interplanar spacing · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - X-Ray Diffraction.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - X-Ray Diffraction.jpg",
+  "duration": 140,
+  "sizeMB": 6.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.5
+   },
+   {
+    "label": "Solve It",
+    "start": 35.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 83.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 114.8
+   }
+  ]
+ },
+ "L:bragg:5": {
+  "num": 111,
+  "title": "Practice 3 · X-Ray Diffraction",
+  "source": "Bragg’s law + interplanar spacing · practice 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - X-Ray Diffraction.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - X-Ray Diffraction.jpg",
+  "duration": 108,
+  "sizeMB": 4.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 18.2
+   },
+   {
+    "label": "Solve It",
+    "start": 33.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 48.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 86.2
+   }
+  ]
+ },
+ "F24-10": {
+  "num": 112,
+  "title": "F24-Q10 · Vacancies",
+  "source": "Fall 2024 midterm · Question 10",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q10 - Vacancies.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q10 - Vacancies.jpg",
+  "duration": 148,
+  "sizeMB": 9.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 34
+   },
+   {
+    "label": "Solve It",
+    "start": 52.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 84.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 119.9
+   }
+  ]
+ },
+ "A25-13": {
+  "num": 113,
+  "title": "A25-Q13 · Vacancies",
+  "source": "Midterm 2025 (Version A) · Question 13",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q13 - Vacancies.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q13 - Vacancies.jpg",
+  "duration": 156,
+  "sizeMB": 9.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 30.8
+   },
+   {
+    "label": "Solve It",
+    "start": 50.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 93.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 127.8
+   }
+  ]
+ },
+ "A25-17": {
+  "num": 114,
+  "title": "A25-Q17 · Vacancies",
+  "source": "Midterm 2025 (Version A) · Question 17",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q17 - Vacancies.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q17 - Vacancies.jpg",
+  "duration": 178,
+  "sizeMB": 8.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 28.2
+   },
+   {
+    "label": "The Plan",
+    "start": 44.9
+   },
+   {
+    "label": "Solve It",
+    "start": 53.6
+   },
+   {
+    "label": "Check It",
+    "start": 102.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 122.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 154.3
+   }
+  ]
+ },
+ "W26-8": {
+  "num": 115,
+  "title": "W26-Q08 · Vacancies",
+  "source": "Winter 2026 midterm · Question 8",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q08 - Vacancies.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q08 - Vacancies.jpg",
+  "duration": 206,
+  "sizeMB": 9.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 36.1
+   },
+   {
+    "label": "The Plan",
+    "start": 51.3
+   },
+   {
+    "label": "Solve It",
+    "start": 58.3
+   },
+   {
+    "label": "Check It",
+    "start": 125
+   },
+   {
+    "label": "Go Deeper",
+    "start": 144.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 175.8
+   }
+  ]
+ },
+ "W26-33": {
+  "num": 116,
+  "title": "W26-TF33 · Vacancies",
+  "source": "Winter 2026 midterm · True/False 33",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF33 - Vacancies.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF33 - Vacancies.jpg",
+  "duration": 110,
+  "sizeMB": 5.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.4
+   },
+   {
+    "label": "Solve It",
+    "start": 32.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 62.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 87.1
+   }
+  ]
+ },
+ "FX-9": {
+  "num": 117,
+  "title": "FX-Q09 · Vacancies",
+  "source": "Old final (MECH 221, undated) · Question 9",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/FX-Q09 - Vacancies.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/FX-Q09 - Vacancies.jpg",
+  "duration": 139,
+  "sizeMB": 6.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 28.8
+   },
+   {
+    "label": "Solve It",
+    "start": 41.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 86.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 119
+   }
+  ]
+ },
+ "F17-2": {
+  "num": 118,
+  "title": "F17-Q02 · Vacancies",
+  "source": "Final 2017 (MECH 221) · Question 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F17-Q02 - Vacancies.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F17-Q02 - Vacancies.jpg",
+  "duration": 190,
+  "sizeMB": 9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 32.6
+   },
+   {
+    "label": "Solve It",
+    "start": 42.6
+   },
+   {
+    "label": "Check It",
+    "start": 105.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 125.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 160.6
+   }
+  ]
+ },
+ "L:vacancy:3": {
+  "num": 119,
+  "title": "Practice 1 · Vacancies",
+  "source": "Equilibrium vacancies · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Vacancies.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Vacancies.jpg",
+  "duration": 160,
+  "sizeMB": 7.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 28.6
+   },
+   {
+    "label": "Solve It",
+    "start": 38.2
+   },
+   {
+    "label": "Check It",
+    "start": 94.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 109.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 136
+   }
+  ]
+ },
+ "L:vacancy:4": {
+  "num": 120,
+  "title": "Practice 2 · Vacancies",
+  "source": "Equilibrium vacancies · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Vacancies.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Vacancies.jpg",
+  "duration": 133,
+  "sizeMB": 6.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.6
+   },
+   {
+    "label": "Solve It",
+    "start": 35.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 77.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 108.4
+   }
+  ]
+ },
+ "A25-10": {
+  "num": 121,
+  "title": "A25-Q10 · Solid Solutions",
+  "source": "Midterm 2025 (Version A) · Question 10",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q10 - Solid Solutions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q10 - Solid Solutions.jpg",
+  "duration": 156,
+  "sizeMB": 10,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.3
+   },
+   {
+    "label": "Solve It",
+    "start": 46.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 85.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 128.3
+   }
+  ]
+ },
+ "W26-9": {
+  "num": 122,
+  "title": "W26-Q09 · Solid Solutions",
+  "source": "Winter 2026 midterm · Question 9",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q09 - Solid Solutions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q09 - Solid Solutions.jpg",
+  "duration": 139,
+  "sizeMB": 8.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.3
+   },
+   {
+    "label": "Solve It",
+    "start": 41.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 78.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 110.4
+   }
+  ]
+ },
+ "F17-18": {
+  "num": 123,
+  "title": "F17-Q18 · Solid Solutions",
+  "source": "Final 2017 (MECH 221) · Question 18",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F17-Q18 - Solid Solutions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F17-Q18 - Solid Solutions.jpg",
+  "duration": 133,
+  "sizeMB": 8.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.2
+   },
+   {
+    "label": "Solve It",
+    "start": 44.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 66.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 106.8
+   }
+  ]
+ },
+ "L:wtat:0": {
+  "num": 124,
+  "title": "Practice 1 · Solid Solutions",
+  "source": "Weight % → atom % · practice 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Solid Solutions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Solid Solutions.jpg",
+  "duration": 178,
+  "sizeMB": 7.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.9
+   },
+   {
+    "label": "The Plan",
+    "start": 45.1
+   },
+   {
+    "label": "Solve It",
+    "start": 58.2
+   },
+   {
+    "label": "Check It",
+    "start": 99.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 121.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 152.3
+   }
+  ]
+ },
+ "L:wtat:1": {
+  "num": 125,
+  "title": "Practice 2 · Solid Solutions",
+  "source": "Weight % → atom % · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Solid Solutions.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Solid Solutions.jpg",
+  "duration": 117,
+  "sizeMB": 4.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21
+   },
+   {
+    "label": "Solve It",
+    "start": 34.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 67.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 96
+   }
+  ]
+ },
+ "A25-14": {
+  "num": 126,
+  "title": "A25-Q14 · Dislocations & Interfaces",
+  "source": "Midterm 2025 (Version A) · Question 14",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q14 - Dislocations & Interfaces.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q14 - Dislocations & Interfaces.jpg",
+  "duration": 153,
+  "sizeMB": 8.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.3
+   },
+   {
+    "label": "Solve It",
+    "start": 45.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 88.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 126
+   }
+  ]
+ },
+ "W26-10": {
+  "num": 127,
+  "title": "W26-Q10 · Dislocations & Interfaces",
+  "source": "Winter 2026 midterm · Question 10",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q10 - Dislocations & Interfaces.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q10 - Dislocations & Interfaces.jpg",
+  "duration": 147,
+  "sizeMB": 9.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19
+   },
+   {
+    "label": "Solve It",
+    "start": 30.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 80.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 119.2
+   }
+  ]
+ },
+ "W26-25": {
+  "num": 128,
+  "title": "W26-TF25 · Dislocations & Interfaces",
+  "source": "Winter 2026 midterm · True/False 25",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF25 - Dislocations & Interfaces.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF25 - Dislocations & Interfaces.jpg",
+  "duration": 120,
+  "sizeMB": 6.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.9
+   },
+   {
+    "label": "Solve It",
+    "start": 36.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 66.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 98.8
+   }
+  ]
+ },
+ "FX-8": {
+  "num": 129,
+  "title": "FX-Q08 · Dislocations & Interfaces",
+  "source": "Old final (MECH 221, undated) · Question 8",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/FX-Q08 - Dislocations & Interfaces.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/FX-Q08 - Dislocations & Interfaces.jpg",
+  "duration": 109,
+  "sizeMB": 8.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.4
+   },
+   {
+    "label": "Solve It",
+    "start": 38.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 58.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 88
+   }
+  ]
+ },
+ "FX-12": {
+  "num": 130,
+  "title": "FX-Q12 · Dislocations & Interfaces",
+  "source": "Old final (MECH 221, undated) · Question 12",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/FX-Q12 - Dislocations & Interfaces.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/FX-Q12 - Dislocations & Interfaces.jpg",
+  "duration": 122,
+  "sizeMB": 7.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.1
+   },
+   {
+    "label": "Solve It",
+    "start": 42.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 68.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 100.2
+   }
+  ]
+ },
+ "F24-2": {
+  "num": 131,
+  "title": "F24-Q02 · Diffusion & D(T)",
+  "source": "Fall 2024 midterm · Question 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q02 - Diffusion & D(T).mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q02 - Diffusion & D(T).jpg",
+  "duration": 219,
+  "sizeMB": 10.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 40.9
+   },
+   {
+    "label": "The Plan",
+    "start": 58.6
+   },
+   {
+    "label": "Solve It",
+    "start": 66.7
+   },
+   {
+    "label": "Check It",
+    "start": 139.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 155.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 189.4
+   }
+  ]
+ },
+ "F24-8": {
+  "num": 132,
+  "title": "F24-Q08 · Diffusion & D(T)",
+  "source": "Fall 2024 midterm · Question 8",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q08 - Diffusion & D(T).mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q08 - Diffusion & D(T).jpg",
+  "duration": 141,
+  "sizeMB": 10.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25
+   },
+   {
+    "label": "Solve It",
+    "start": 40.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 77
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 108.5
+   }
+  ]
+ },
+ "F24-27": {
+  "num": 133,
+  "title": "F24-TF27 · Diffusion & D(T)",
+  "source": "Fall 2024 midterm · True/False 27",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-TF27 - Diffusion & D(T).mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-TF27 - Diffusion & D(T).jpg",
+  "duration": 124,
+  "sizeMB": 6.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.2
+   },
+   {
+    "label": "Solve It",
+    "start": 41
+   },
+   {
+    "label": "Go Deeper",
+    "start": 73.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 101.7
+   }
+  ]
+ },
+ "W26-12": {
+  "num": 134,
+  "title": "W26-Q12 · Diffusion & D(T)",
+  "source": "Winter 2026 midterm · Question 12",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q12 - Diffusion & D(T).mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q12 - Diffusion & D(T).jpg",
+  "duration": 194,
+  "sizeMB": 9.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26
+   },
+   {
+    "label": "Solve It",
+    "start": 41.4
+   },
+   {
+    "label": "Check It",
+    "start": 111.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 132.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 164.9
+   }
+  ]
+ },
+ "L:arrD:2": {
+  "num": 135,
+  "title": "Practice 1 · Diffusion & D(T)",
+  "source": "Temperature dependence of D · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Diffusion & D(T).mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Diffusion & D(T).jpg",
+  "duration": 172,
+  "sizeMB": 8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 37.2
+   },
+   {
+    "label": "Solve It",
+    "start": 46.9
+   },
+   {
+    "label": "Check It",
+    "start": 109.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 125.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 146.5
+   }
+  ]
+ },
+ "L:arrD:3": {
+  "num": 136,
+  "title": "Practice 2 · Diffusion & D(T)",
+  "source": "Temperature dependence of D · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Diffusion & D(T).mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Diffusion & D(T).jpg",
+  "duration": 139,
+  "sizeMB": 6.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.4
+   },
+   {
+    "label": "Solve It",
+    "start": 33.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 79.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 110.7
+   }
+  ]
+ },
+ "L:arrD:4": {
+  "num": 137,
+  "title": "Practice 3 · Diffusion & D(T)",
+  "source": "Temperature dependence of D · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Diffusion & D(T).mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Diffusion & D(T).jpg",
+  "duration": 106,
+  "sizeMB": 5.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.7
+   },
+   {
+    "label": "Solve It",
+    "start": 40.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 55.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 81.9
+   }
+  ]
+ },
+ "A25-7": {
+  "num": 138,
+  "title": "A25-Q07 · Fick's First Law",
+  "source": "Midterm 2025 (Version A) · Question 7",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q07 - Ficks First Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q07 - Ficks First Law.jpg",
+  "duration": 227,
+  "sizeMB": 11.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 47.8
+   },
+   {
+    "label": "The Plan",
+    "start": 75.8
+   },
+   {
+    "label": "Solve It",
+    "start": 87.9
+   },
+   {
+    "label": "Check It",
+    "start": 145.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 161.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 196.2
+   }
+  ]
+ },
+ "W26-13": {
+  "num": 139,
+  "title": "W26-Q13 · Fick's First Law",
+  "source": "Winter 2026 midterm · Question 13",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q13 - Ficks First Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q13 - Ficks First Law.jpg",
+  "duration": 179,
+  "sizeMB": 8.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 36.7
+   },
+   {
+    "label": "Solve It",
+    "start": 52.1
+   },
+   {
+    "label": "Check It",
+    "start": 106.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 125
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 150.3
+   }
+  ]
+ },
+ "L:fick1:2": {
+  "num": 140,
+  "title": "Practice 1 · Fick's First Law",
+  "source": "Fick’s 1st law (steady state) · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Ficks First Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Ficks First Law.jpg",
+  "duration": 141,
+  "sizeMB": 6.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 34
+   },
+   {
+    "label": "Solve It",
+    "start": 46.1
+   },
+   {
+    "label": "Check It",
+    "start": 77.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 87.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 115.2
+   }
+  ]
+ },
+ "L:fick1:3": {
+  "num": 141,
+  "title": "Practice 2 · Fick's First Law",
+  "source": "Fick’s 1st law (steady state) · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Ficks First Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Ficks First Law.jpg",
+  "duration": 154,
+  "sizeMB": 7.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 37.9
+   },
+   {
+    "label": "Solve It",
+    "start": 50
+   },
+   {
+    "label": "Check It",
+    "start": 84.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 91.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 123.6
+   }
+  ]
+ },
+ "L:fick1:4": {
+  "num": 142,
+  "title": "Practice 3 · Fick's First Law",
+  "source": "Fick’s 1st law (steady state) · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Ficks First Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Ficks First Law.jpg",
+  "duration": 123,
+  "sizeMB": 6.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26.4
+   },
+   {
+    "label": "Solve It",
+    "start": 39.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 71.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 101.7
+   }
+  ]
+ },
+ "F24-7": {
+  "num": 143,
+  "title": "F24-Q07 · Fick's Second Law",
+  "source": "Fall 2024 midterm · Question 7",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q07 - Ficks Second Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q07 - Ficks Second Law.jpg",
+  "duration": 246,
+  "sizeMB": 12.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 42
+   },
+   {
+    "label": "The Plan",
+    "start": 75.6
+   },
+   {
+    "label": "Solve It",
+    "start": 85.5
+   },
+   {
+    "label": "Check It",
+    "start": 166.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 190.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 216.1
+   }
+  ]
+ },
+ "F24-18": {
+  "num": 144,
+  "title": "F24-Q18 · Fick's Second Law",
+  "source": "Fall 2024 midterm · Question 18",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q18 - Ficks Second Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q18 - Ficks Second Law.jpg",
+  "duration": 172,
+  "sizeMB": 9.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.9
+   },
+   {
+    "label": "Solve It",
+    "start": 40.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 101.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 147.9
+   }
+  ]
+ },
+ "W26-37": {
+  "num": 145,
+  "title": "W26-TF37 · Fick's Second Law",
+  "source": "Winter 2026 midterm · True/False 37",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF37 - Ficks Second Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF37 - Ficks Second Law.jpg",
+  "duration": 133,
+  "sizeMB": 6.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26.2
+   },
+   {
+    "label": "Solve It",
+    "start": 41.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 78.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 109.4
+   }
+  ]
+ },
+ "L:erf:1": {
+  "num": 146,
+  "title": "Practice 1 · Fick's Second Law",
+  "source": "Fick’s 2nd law — erf solution · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Ficks Second Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Ficks Second Law.jpg",
+  "duration": 154,
+  "sizeMB": 7.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 33
+   },
+   {
+    "label": "Solve It",
+    "start": 40.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 99.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 126.6
+   }
+  ]
+ },
+ "L:erf:2": {
+  "num": 147,
+  "title": "Practice 2 · Fick's Second Law",
+  "source": "Fick’s 2nd law — erf solution · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Ficks Second Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Ficks Second Law.jpg",
+  "duration": 197,
+  "sizeMB": 9.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 38
+   },
+   {
+    "label": "Solve It",
+    "start": 49.9
+   },
+   {
+    "label": "Check It",
+    "start": 141.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 150.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 173.5
+   }
+  ]
+ },
+ "L:dtconst:0": {
+  "num": 148,
+  "title": "Practice 3 · Fick's Second Law",
+  "source": "Same profile ⇔ same Dt · practice 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Ficks Second Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Ficks Second Law.jpg",
+  "duration": 139,
+  "sizeMB": 6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 34.3
+   },
+   {
+    "label": "Solve It",
+    "start": 49.5
+   },
+   {
+    "label": "Check It",
+    "start": 74.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 89.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 112.6
+   }
+  ]
+ },
+ "L:dtconst:1": {
+  "num": 149,
+  "title": "Practice 4 · Fick's Second Law",
+  "source": "Same profile ⇔ same Dt · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 4 - Ficks Second Law.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 4 - Ficks Second Law.jpg",
+  "duration": 108,
+  "sizeMB": 5.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.3
+   },
+   {
+    "label": "Solve It",
+    "start": 34.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 60.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 84.2
+   }
+  ]
+ },
+ "F24-9": {
+  "num": 150,
+  "title": "F24-Q09 · Stress, Strain & Poisson",
+  "source": "Fall 2024 midterm · Question 9",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q09 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q09 - Stress, Strain & Poisson.jpg",
+  "duration": 140,
+  "sizeMB": 7.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 31
+   },
+   {
+    "label": "Solve It",
+    "start": 50.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 81.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 113.5
+   }
+  ]
+ },
+ "F24-11": {
+  "num": 151,
+  "title": "F24-Q11 · Stress, Strain & Poisson",
+  "source": "Fall 2024 midterm · Question 11",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q11 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q11 - Stress, Strain & Poisson.jpg",
+  "duration": 207,
+  "sizeMB": 9.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 39.4
+   },
+   {
+    "label": "Solve It",
+    "start": 53.5
+   },
+   {
+    "label": "Check It",
+    "start": 122.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 138.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 177.6
+   }
+  ]
+ },
+ "F24-12": {
+  "num": 152,
+  "title": "F24-Q12 · Stress, Strain & Poisson",
+  "source": "Fall 2024 midterm · Question 12",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q12 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q12 - Stress, Strain & Poisson.jpg",
+  "duration": 134,
+  "sizeMB": 6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.7
+   },
+   {
+    "label": "Solve It",
+    "start": 38.1
+   },
+   {
+    "label": "Check It",
+    "start": 67.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 81.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 110.2
+   }
+  ]
+ },
+ "F24-19": {
+  "num": 153,
+  "title": "F24-Q19 · Stress, Strain & Poisson",
+  "source": "Fall 2024 midterm · Question 19",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q19 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q19 - Stress, Strain & Poisson.jpg",
+  "duration": 174,
+  "sizeMB": 7.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 34.9
+   },
+   {
+    "label": "Solve It",
+    "start": 52.6
+   },
+   {
+    "label": "Check It",
+    "start": 95.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 105.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 145.5
+   }
+  ]
+ },
+ "F17-12": {
+  "num": 154,
+  "title": "F17-Q12 · Stress, Strain & Poisson",
+  "source": "Final 2017 (MECH 221) · Question 12",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F17-Q12 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F17-Q12 - Stress, Strain & Poisson.jpg",
+  "duration": 180,
+  "sizeMB": 8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 29.1
+   },
+   {
+    "label": "The Plan",
+    "start": 40.5
+   },
+   {
+    "label": "Solve It",
+    "start": 51
+   },
+   {
+    "label": "Check It",
+    "start": 104.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 129.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 157.2
+   }
+  ]
+ },
+ "L:hooke:2": {
+  "num": 155,
+  "title": "Practice 1 · Stress, Strain & Poisson",
+  "source": "Stress, strain & Hooke’s law · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Stress, Strain & Poisson.jpg",
+  "duration": 134,
+  "sizeMB": 6.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26.2
+   },
+   {
+    "label": "Solve It",
+    "start": 40
+   },
+   {
+    "label": "Go Deeper",
+    "start": 75.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 111.8
+   }
+  ]
+ },
+ "L:hooke:3": {
+  "num": 156,
+  "title": "Practice 2 · Stress, Strain & Poisson",
+  "source": "Stress, strain & Hooke’s law · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Stress, Strain & Poisson.jpg",
+  "duration": 123,
+  "sizeMB": 5.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 20.5
+   },
+   {
+    "label": "Solve It",
+    "start": 31.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 66.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 100.1
+   }
+  ]
+ },
+ "L:hooke:5": {
+  "num": 157,
+  "title": "Practice 3 · Stress, Strain & Poisson",
+  "source": "Stress, strain & Hooke’s law · practice 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Stress, Strain & Poisson.jpg",
+  "duration": 101,
+  "sizeMB": 4.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.7
+   },
+   {
+    "label": "Solve It",
+    "start": 33.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 56.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 83.1
+   }
+  ]
+ },
+ "L:hooke:6": {
+  "num": 158,
+  "title": "Practice 4 · Stress, Strain & Poisson",
+  "source": "Stress, strain & Hooke’s law · practice 7",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 4 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 4 - Stress, Strain & Poisson.jpg",
+  "duration": 111,
+  "sizeMB": 5.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26.3
+   },
+   {
+    "label": "Solve It",
+    "start": 40.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 66.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 88.2
+   }
+  ]
+ },
+ "L:hooke:7": {
+  "num": 159,
+  "title": "Practice 5 · Stress, Strain & Poisson",
+  "source": "Stress, strain & Hooke’s law · practice 8",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 5 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 5 - Stress, Strain & Poisson.jpg",
+  "duration": 92,
+  "sizeMB": 4.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 18.6
+   },
+   {
+    "label": "Solve It",
+    "start": 31.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 47.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 71.7
+   }
+  ]
+ },
+ "L:hooke:8": {
+  "num": 160,
+  "title": "Practice 6 · Stress, Strain & Poisson",
+  "source": "Stress, strain & Hooke’s law · practice 9",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 6 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 6 - Stress, Strain & Poisson.jpg",
+  "duration": 109,
+  "sizeMB": 5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.6
+   },
+   {
+    "label": "Solve It",
+    "start": 43.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 61.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 87
+   }
+  ]
+ },
+ "L:poisson:2": {
+  "num": 161,
+  "title": "Practice 7 · Stress, Strain & Poisson",
+  "source": "Poisson’s ratio · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 7 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 7 - Stress, Strain & Poisson.jpg",
+  "duration": 107,
+  "sizeMB": 4.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.1
+   },
+   {
+    "label": "Solve It",
+    "start": 33.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 60.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 84.9
+   }
+  ]
+ },
+ "L:poisson:3": {
+  "num": 162,
+  "title": "Practice 8 · Stress, Strain & Poisson",
+  "source": "Poisson’s ratio · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 8 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 8 - Stress, Strain & Poisson.jpg",
+  "duration": 135,
+  "sizeMB": 6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 29.5
+   },
+   {
+    "label": "Solve It",
+    "start": 36.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 82.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 109.3
+   }
+  ]
+ },
+ "L:poisson:4": {
+  "num": 163,
+  "title": "Practice 9 · Stress, Strain & Poisson",
+  "source": "Poisson’s ratio · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 9 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 9 - Stress, Strain & Poisson.jpg",
+  "duration": 151,
+  "sizeMB": 6.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 30.3
+   },
+   {
+    "label": "Solve It",
+    "start": 37.4
+   },
+   {
+    "label": "Check It",
+    "start": 91.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 97.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 125.3
+   }
+  ]
+ },
+ "L:poisson:5": {
+  "num": 164,
+  "title": "Practice 10 · Stress, Strain & Poisson",
+  "source": "Poisson’s ratio · practice 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 10 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 10 - Stress, Strain & Poisson.jpg",
+  "duration": 83,
+  "sizeMB": 3.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 16.3
+   },
+   {
+    "label": "Solve It",
+    "start": 26.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 39.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 64.3
+   }
+  ]
+ },
+ "L:poisson:6": {
+  "num": 165,
+  "title": "Practice 11 · Stress, Strain & Poisson",
+  "source": "Poisson’s ratio · practice 7",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 11 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 11 - Stress, Strain & Poisson.jpg",
+  "duration": 112,
+  "sizeMB": 4.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.8
+   },
+   {
+    "label": "Solve It",
+    "start": 37.6
+   },
+   {
+    "label": "Check It",
+    "start": 55.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 66.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 89.3
+   }
+  ]
+ },
+ "L:poisson:7": {
+  "num": 166,
+  "title": "Practice 12 · Stress, Strain & Poisson",
+  "source": "Poisson’s ratio · practice 8",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 12 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 12 - Stress, Strain & Poisson.jpg",
+  "duration": 118,
+  "sizeMB": 4.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.3
+   },
+   {
+    "label": "Solve It",
+    "start": 30.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 65
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 92.7
+   }
+  ]
+ },
+ "F24-5": {
+  "num": 167,
+  "title": "F24-Q05 · The Tensile Curve",
+  "source": "Fall 2024 midterm · Question 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q05 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q05 - The Tensile Curve.jpg",
+  "duration": 128,
+  "sizeMB": 6.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 35
+   },
+   {
+    "label": "Solve It",
+    "start": 47.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 76.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 106.2
+   }
+  ]
+ },
+ "F24-20": {
+  "num": 168,
+  "title": "F24-Q20 · The Tensile Curve",
+  "source": "Fall 2024 midterm · Question 20",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q20 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q20 - The Tensile Curve.jpg",
+  "duration": 123,
+  "sizeMB": 5.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.9
+   },
+   {
+    "label": "Solve It",
+    "start": 34.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 64.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 97.8
+   }
+  ]
+ },
+ "F24-21": {
+  "num": 169,
+  "title": "F24-TF21 · The Tensile Curve",
+  "source": "Fall 2024 midterm · True/False 21",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-TF21 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-TF21 - The Tensile Curve.jpg",
+  "duration": 110,
+  "sizeMB": 5.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 20.4
+   },
+   {
+    "label": "Solve It",
+    "start": 33.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 59.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 91.9
+   }
+  ]
+ },
+ "F24-23": {
+  "num": 170,
+  "title": "F24-TF23 · The Tensile Curve",
+  "source": "Fall 2024 midterm · True/False 23",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-TF23 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-TF23 - The Tensile Curve.jpg",
+  "duration": 115,
+  "sizeMB": 5.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.9
+   },
+   {
+    "label": "Solve It",
+    "start": 30.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 60.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 91.1
+   }
+  ]
+ },
+ "A25-5": {
+  "num": 171,
+  "title": "A25-Q05 · The Tensile Curve",
+  "source": "Midterm 2025 (Version A) · Question 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q05 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q05 - The Tensile Curve.jpg",
+  "duration": 102,
+  "sizeMB": 4.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.7
+   },
+   {
+    "label": "Solve It",
+    "start": 35.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 55.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 82.4
+   }
+  ]
+ },
+ "A25-18": {
+  "num": 172,
+  "title": "A25-Q18 · The Tensile Curve",
+  "source": "Midterm 2025 (Version A) · Question 18",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q18 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q18 - The Tensile Curve.jpg",
+  "duration": 104,
+  "sizeMB": 4.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.5
+   },
+   {
+    "label": "Solve It",
+    "start": 38.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 55.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 84.5
+   }
+  ]
+ },
+ "A25-19": {
+  "num": 173,
+  "title": "A25-Q19 · The Tensile Curve",
+  "source": "Midterm 2025 (Version A) · Question 19",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q19 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q19 - The Tensile Curve.jpg",
+  "duration": 100,
+  "sizeMB": 4.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 18.9
+   },
+   {
+    "label": "Solve It",
+    "start": 29.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 55.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 79.6
+   }
+  ]
+ },
+ "A25-20": {
+  "num": 174,
+  "title": "A25-Q20 · The Tensile Curve",
+  "source": "Midterm 2025 (Version A) · Question 20",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q20 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q20 - The Tensile Curve.jpg",
+  "duration": 121,
+  "sizeMB": 5.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.8
+   },
+   {
+    "label": "Solve It",
+    "start": 37.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 67.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 95.3
+   }
+  ]
+ },
+ "W26-15": {
+  "num": 175,
+  "title": "W26-Q15 · The Tensile Curve",
+  "source": "Winter 2026 midterm · Question 15",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q15 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q15 - The Tensile Curve.jpg",
+  "duration": 100,
+  "sizeMB": 4.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.7
+   },
+   {
+    "label": "Solve It",
+    "start": 34.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 50.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 80.3
+   }
+  ]
+ },
+ "W26-16": {
+  "num": 176,
+  "title": "W26-Q16 · The Tensile Curve",
+  "source": "Winter 2026 midterm · Question 16",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q16 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q16 - The Tensile Curve.jpg",
+  "duration": 196,
+  "sizeMB": 9.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 30.6
+   },
+   {
+    "label": "Solve It",
+    "start": 49
+   },
+   {
+    "label": "Check It",
+    "start": 96.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 124.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 169.8
+   }
+  ]
+ },
+ "W26-17": {
+  "num": 177,
+  "title": "W26-Q17 · The Tensile Curve",
+  "source": "Winter 2026 midterm · Question 17",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q17 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q17 - The Tensile Curve.jpg",
+  "duration": 155,
+  "sizeMB": 7.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 32.8
+   },
+   {
+    "label": "Solve It",
+    "start": 50.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 93.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 128.5
+   }
+  ]
+ },
+ "W26-18": {
+  "num": 178,
+  "title": "W26-Q18 · The Tensile Curve",
+  "source": "Winter 2026 midterm · Question 18",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q18 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q18 - The Tensile Curve.jpg",
+  "duration": 162,
+  "sizeMB": 7.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.6
+   },
+   {
+    "label": "Solve It",
+    "start": 41.3
+   },
+   {
+    "label": "Check It",
+    "start": 83
+   },
+   {
+    "label": "Go Deeper",
+    "start": 100.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 135.8
+   }
+  ]
+ },
+ "W26-19": {
+  "num": 179,
+  "title": "W26-Q19 · The Tensile Curve",
+  "source": "Winter 2026 midterm · Question 19",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q19 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q19 - The Tensile Curve.jpg",
+  "duration": 137,
+  "sizeMB": 6.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.6
+   },
+   {
+    "label": "Solve It",
+    "start": 44.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 79.5
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 113.4
+   }
+  ]
+ },
+ "W26-20": {
+  "num": 180,
+  "title": "W26-Q20 · The Tensile Curve",
+  "source": "Winter 2026 midterm · Question 20",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q20 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q20 - The Tensile Curve.jpg",
+  "duration": 188,
+  "sizeMB": 9.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 32.2
+   },
+   {
+    "label": "Solve It",
+    "start": 54.8
+   },
+   {
+    "label": "Check It",
+    "start": 119.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 131.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 161.6
+   }
+  ]
+ },
+ "W26-26": {
+  "num": 181,
+  "title": "W26-TF26 · The Tensile Curve",
+  "source": "Winter 2026 midterm · True/False 26",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF26 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF26 - The Tensile Curve.jpg",
+  "duration": 119,
+  "sizeMB": 6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24
+   },
+   {
+    "label": "Solve It",
+    "start": 37.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 67.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 94.5
+   }
+  ]
+ },
+ "W26-32": {
+  "num": 182,
+  "title": "W26-TF32 · The Tensile Curve",
+  "source": "Winter 2026 midterm · True/False 32",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF32 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF32 - The Tensile Curve.jpg",
+  "duration": 103,
+  "sizeMB": 4.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.5
+   },
+   {
+    "label": "Solve It",
+    "start": 35.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 53.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 81.3
+   }
+  ]
+ },
+ "W26-35": {
+  "num": 183,
+  "title": "W26-TF35 · The Tensile Curve",
+  "source": "Winter 2026 midterm · True/False 35",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF35 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF35 - The Tensile Curve.jpg",
+  "duration": 98,
+  "sizeMB": 4.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.4
+   },
+   {
+    "label": "Solve It",
+    "start": 31.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 52.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 78.6
+   }
+  ]
+ },
+ "FX-35": {
+  "num": 184,
+  "title": "FX-TF35 · The Tensile Curve",
+  "source": "Old final (MECH 221, undated) · True/False 35",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/FX-TF35 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/FX-TF35 - The Tensile Curve.jpg",
+  "duration": 110,
+  "sizeMB": 4.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.1
+   },
+   {
+    "label": "Solve It",
+    "start": 33.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 54.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 86.9
+   }
+  ]
+ },
+ "L:modulus:0": {
+  "num": 185,
+  "title": "Practice 1 · The Tensile Curve",
+  "source": "E from the elastic slope · practice 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - The Tensile Curve.jpg",
+  "duration": 122,
+  "sizeMB": 5.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.8
+   },
+   {
+    "label": "Solve It",
+    "start": 34.2
+   },
+   {
+    "label": "Check It",
+    "start": 62.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 74
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 97.6
+   }
+  ]
+ },
+ "L:modulus:1": {
+  "num": 186,
+  "title": "Practice 2 · The Tensile Curve",
+  "source": "E from the elastic slope · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - The Tensile Curve.jpg",
+  "duration": 104,
+  "sizeMB": 5.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.8
+   },
+   {
+    "label": "Solve It",
+    "start": 28.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 49.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 79.4
+   }
+  ]
+ },
+ "L:modulus:2": {
+  "num": 187,
+  "title": "Practice 3 · The Tensile Curve",
+  "source": "E from the elastic slope · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - The Tensile Curve.jpg",
+  "duration": 92,
+  "sizeMB": 4.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22
+   },
+   {
+    "label": "Solve It",
+    "start": 37.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 58.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 76.8
+   }
+  ]
+ },
+ "L:modulus:3": {
+  "num": 188,
+  "title": "Practice 4 · The Tensile Curve",
+  "source": "E from the elastic slope · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 4 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 4 - The Tensile Curve.jpg",
+  "duration": 134,
+  "sizeMB": 5.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 31.8
+   },
+   {
+    "label": "Solve It",
+    "start": 41.1
+   },
+   {
+    "label": "Check It",
+    "start": 80.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 91.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 113.1
+   }
+  ]
+ },
+ "L:modulus:4": {
+  "num": 189,
+  "title": "Practice 5 · The Tensile Curve",
+  "source": "E from the elastic slope · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 5 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 5 - The Tensile Curve.jpg",
+  "duration": 99,
+  "sizeMB": 4.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.7
+   },
+   {
+    "label": "Solve It",
+    "start": 32.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 51.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 80.1
+   }
+  ]
+ },
+ "L:modulus:5": {
+  "num": 190,
+  "title": "Practice 6 · The Tensile Curve",
+  "source": "E from the elastic slope · practice 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 6 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 6 - The Tensile Curve.jpg",
+  "duration": 98,
+  "sizeMB": 4.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.6
+   },
+   {
+    "label": "Solve It",
+    "start": 35.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 54.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 77.4
+   }
+  ]
+ },
+ "L:modulus:6": {
+  "num": 191,
+  "title": "Practice 7 · The Tensile Curve",
+  "source": "E from the elastic slope · practice 7",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 7 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 7 - The Tensile Curve.jpg",
+  "duration": 96,
+  "sizeMB": 4.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 18.9
+   },
+   {
+    "label": "Solve It",
+    "start": 29.9
+   },
+   {
+    "label": "Go Deeper",
+    "start": 47.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 73.4
+   }
+  ]
+ },
+ "L:modulus:7": {
+  "num": 192,
+  "title": "Practice 8 · The Tensile Curve",
+  "source": "E from the elastic slope · practice 8",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 8 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 8 - The Tensile Curve.jpg",
+  "duration": 117,
+  "sizeMB": 6.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26.9
+   },
+   {
+    "label": "Solve It",
+    "start": 45.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 69.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 97.5
+   }
+  ]
+ },
+ "L:recovery:0": {
+  "num": 193,
+  "title": "Practice 9 · The Tensile Curve",
+  "source": "Elastic recovery & permanent set · practice 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 9 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 9 - The Tensile Curve.jpg",
+  "duration": 121,
+  "sizeMB": 6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 28.7
+   },
+   {
+    "label": "Solve It",
+    "start": 40.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 71.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 97.1
+   }
+  ]
+ },
+ "L:recovery:2": {
+  "num": 194,
+  "title": "Practice 10 · The Tensile Curve",
+  "source": "Elastic recovery & permanent set · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 10 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 10 - The Tensile Curve.jpg",
+  "duration": 110,
+  "sizeMB": 5.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.9
+   },
+   {
+    "label": "Solve It",
+    "start": 34.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 64.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 88.8
+   }
+  ]
+ },
+ "L:ductility:0": {
+  "num": 195,
+  "title": "Practice 11 · The Tensile Curve",
+  "source": "Ductility: %EL and %RA · practice 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 11 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 11 - The Tensile Curve.jpg",
+  "duration": 120,
+  "sizeMB": 6.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.8
+   },
+   {
+    "label": "Solve It",
+    "start": 35.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 62.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 92.8
+   }
+  ]
+ },
+ "L:ductility:1": {
+  "num": 196,
+  "title": "Practice 12 · The Tensile Curve",
+  "source": "Ductility: %EL and %RA · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 12 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 12 - The Tensile Curve.jpg",
+  "duration": 106,
+  "sizeMB": 4.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.2
+   },
+   {
+    "label": "Solve It",
+    "start": 35.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 50.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 79.8
+   }
+  ]
+ },
+ "L:resilience:0": {
+  "num": 197,
+  "title": "Practice 13 · The Tensile Curve",
+  "source": "Modulus of resilience · practice 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 13 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 13 - The Tensile Curve.jpg",
+  "duration": 120,
+  "sizeMB": 5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.4
+   },
+   {
+    "label": "Solve It",
+    "start": 36.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 67.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 94.6
+   }
+  ]
+ },
+ "L:resilience:1": {
+  "num": 198,
+  "title": "Practice 14 · The Tensile Curve",
+  "source": "Modulus of resilience · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 14 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 14 - The Tensile Curve.jpg",
+  "duration": 88,
+  "sizeMB": 4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 20.9
+   },
+   {
+    "label": "Solve It",
+    "start": 26.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 48
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 69.3
+   }
+  ]
+ },
+ "L:truess:0": {
+  "num": 199,
+  "title": "Practice 15 · The Tensile Curve",
+  "source": "True stress & true strain · practice 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 15 - The Tensile Curve.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 15 - The Tensile Curve.jpg",
+  "duration": 112,
+  "sizeMB": 5.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.5
+   },
+   {
+    "label": "Solve It",
+    "start": 35
+   },
+   {
+    "label": "Go Deeper",
+    "start": 56.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 88.2
+   }
+  ]
+ },
+ "FX-32": {
+  "num": 200,
+  "title": "FX-TF32 · Dislocations & Slip",
+  "source": "Old final (MECH 221, undated) · True/False 32",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/FX-TF32 - Dislocations & Slip.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/FX-TF32 - Dislocations & Slip.jpg",
+  "duration": 175,
+  "sizeMB": 7.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 18.5
+   },
+   {
+    "label": "Solve It",
+    "start": 49.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 90.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 142.1
    }
   ]
  }
