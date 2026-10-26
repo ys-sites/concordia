@@ -116,5 +116,9 @@ scratch_test_img.pdf
 /package-lock.json
 /vercel.json
 /.vercelignore
+# Resource library and local material (NEVER push to GitHub)
 /001 Main/
+001 Main/
+001 Main/**
+**/001 Main/**
 
