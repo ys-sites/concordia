@@ -105,7 +105,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Intercepts, reciprocals and clearing fractions, including planes through the origin.',
           gate: ['planes'],
           bank: [{ ch: 'crystal', re: /plane|miller/i }],
-          youtube: ['W5v_3vH7p2E']
+          youtube: ['n84gzYlB0BQ']
         },
         {
           id: 'linear-planar-density',
@@ -146,7 +146,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Substitutional and interstitial solutions, the Hume-Rothery rules, and converting wt% to at%.',
           gate: ['solidsol'],
           bank: [{ ch: 'defects', re: /hume|solid solu|interstitial vs|weight %|atom %|substitutional/i }],
-          youtube: ['2_j_xV3sQBo']
+          youtube: ['aMCth97s-Ns']
         },
         {
           id: 'dislocations-grains',
@@ -171,7 +171,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Vacancy and interstitial diffusion, and the Arrhenius dependence of the diffusion coefficient.',
           gate: ['diffmech'],
           videos: ['topic221:m221-07-diffusion'],
-          youtube: ['W0E0nQe3v68'],
+          youtube: ['iOHFrtCxAxc'],
           read: [/^01 - Teacher Lecture Notes\/Lecture 9 - Diffusion in Solids \(Expanded/],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 05 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 9 - /, /^03 - 1-Page Rapid Review Sheets\/Part 9 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 09 /]
         },
@@ -237,7 +237,7 @@ export const MIAE221_SPEC: CourseSpec = {
           gate: ['slip'],
           videos: ['topic221:m221-09-strengthening'],
           bank: [{ ch: 'strengthening', re: /slip|schmid|resolved/i }],
-          youtube: ['s48K4mK_E7c'],
+          youtube: ['kwdQtThSFiw'],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 07 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 7 - /, /^03 - 1-Page Rapid Review Sheets\/Part 7 - /]
         },
         {
@@ -259,7 +259,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Read a binary diagram, find the phases present and their amounts with the lever rule.',
           bank: [{ ch: 'phase', not: /iron|steel|pearlite|eutectoid|ferrite|austenite/i }],
           read: [/^01 - Teacher Lecture Notes \(Dr\. Medraj\)\/Lecture 13 - /],
-          youtube: ['q_QkP56Dk9k'],
+          youtube: ['_UGVDKlquxo'],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 09 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 8 - /, /^03 - 1-Page Rapid Review Sheets\/Part 8 - /]
         },
         {
@@ -268,7 +268,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Ferrite, austenite, cementite and pearlite, and the microconstituents of hypoeutectoid steels.',
           bank: [{ ch: 'phase' }],
           read: [/^01 - Teacher Lecture Notes \(Dr\. Medraj\)\/Lecture 15 - /, /^01 - Teacher Lecture Notes \(Dr\. Medraj\)\/Lecture 16 - /],
-          youtube: ['vN4q0qBqR3M', '9oK2GqG_rLk']
+          youtube: ['l-7pNy-BlLg', 'P4FFlpsJ8No']
         }
       ]
     },
@@ -319,7 +319,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Miller indices: planes',
             summary: 'Q1–Q3 on the 2017 exam paper: coordinate intercepts, reciprocals and plane indices (hkl).',
             steps: [
-              { kind: 'extra', title: 'Watch: Crystal Plane Miller Indices (LearnChemE)', slug: 'yt-miller', youtubeId: 'W5v_3vH7p2E', minutes: 8, refVideoId: 'topic221:m221-04-densities' },
+              { kind: 'extra', title: 'Watch: Miller Indices Practice Examples (MrClean1796)', slug: 'yt-miller', youtubeId: 'n84gzYlB0BQ', minutes: 7, refVideoId: 'topic221:m221-04-densities' },
               { kind: 'practice', title: 'Index the planes', slug: 'practice', questions: { teacher: /^Miller Indices/ }, ordered: true }
             ]
           },
@@ -337,7 +337,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Atomic bonding',
             summary: 'Primary and secondary bond types, force-energy curves and percent ionic character.',
             steps: [
-              { kind: 'extra', title: 'Watch: Interatomic Bonding & Energy Curves (The Efficient Engineer)', slug: 'yt-bonding', youtubeId: 'aQf6Q8t1FQE', minutes: 8, refVideoId: 'topic221:m221-02-bonding' },
+              { kind: 'extra', title: 'Watch: Bonding Overview (Texas A&M lecture)', slug: 'yt-bonding', youtubeId: 'whmLL77C8e0', minutes: 20, refVideoId: 'topic221:m221-02-bonding' },
               { kind: 'practice', title: 'Answer the bonding questions', slug: 'practice', questions: { teacher: /^Atomic Bonding$/ }, ordered: true }
             ]
           },
@@ -346,7 +346,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Defects & solid solutions',
             summary: 'Vacancies, equilibrium Arrhenius concentration and Hume-Rothery solubility criteria.',
             steps: [
-              { kind: 'extra', title: 'Watch: Point Defects & Hume-Rothery Rules (LearnChemE)', slug: 'yt-defects', youtubeId: '2_j_xV3sQBo', minutes: 6, refVideoId: 'topic221:m221-05-defects' },
+              { kind: 'extra', title: 'Watch: Hume-Rothery Rules, worked example (Dr Kidd Engineering)', slug: 'yt-defects', youtubeId: 'aMCth97s-Ns', minutes: 7, refVideoId: 'topic221:m221-05-defects' },
               { kind: 'practice', title: 'Answer the defect questions', slug: 'practice', questions: { teacher: /^Defects & Solid Solutions$/ }, ordered: true }
             ]
           },
@@ -355,7 +355,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Dislocations & slip',
             summary: 'Burgers vectors, slip planes and directions, and Schmid’s law resolved shear stress.',
             steps: [
-              { kind: 'extra', title: 'Watch: Resolved Shear Stress & Schmid’s Law (LearnChemE)', slug: 'yt-slip', youtubeId: 's48K4mK_E7c', minutes: 5, refVideoId: 'topic221:m221-09-strengthening' },
+              { kind: 'extra', title: 'Watch: Schmid’s law example problem (Taylor Sparks)', slug: 'yt-slip', youtubeId: 'kwdQtThSFiw', minutes: 6, refVideoId: 'topic221:m221-09-strengthening' },
               { kind: 'practice', title: 'Answer the slip questions', slug: 'practice', questions: { teacher: /^Dislocations & Slip$/ }, ordered: true }
             ]
           },
@@ -364,7 +364,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Microscopy',
             summary: 'Sample polishing, chemical etching of grain boundaries, optical reflection and SEM.',
             steps: [
-              { kind: 'extra', title: 'Watch: Optical & SEM Microscopy (Penn State MRI)', slug: 'yt-microscopy', youtubeId: '9W_qBhywhvY', minutes: 7, refVideoId: 'topic221:m221-06-microscopy' },
+              { kind: 'extra', title: 'Watch: Introduction to Scanning Electron Microscopy (Penn State MRI)', slug: 'yt-microscopy', youtubeId: 'g-M6i2TQJP0', minutes: 4, refVideoId: 'topic221:m221-06-microscopy' },
               { kind: 'practice', title: 'Answer the microscopy questions', slug: 'practice', questions: { teacher: /^Microscopy$/ }, ordered: true }
             ]
           },
@@ -373,7 +373,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Diffusion',
             summary: "Fick's 1st law steady-state flux and 2nd law non-steady state concentration profiles.",
             steps: [
-              { kind: 'extra', title: 'Watch: Diffusion in Solids & Fick’s Laws (LearnChemE)', slug: 'yt-diffusion', youtubeId: 'W0E0nQe3v68', minutes: 7, refVideoId: 'topic221:m221-07-diffusion' },
+              { kind: 'extra', title: 'Watch: Fick’s first law (Texas A&M lecture)', slug: 'yt-diffusion', youtubeId: 'iOHFrtCxAxc', minutes: 8, refVideoId: 'topic221:m221-07-diffusion' },
               { kind: 'practice', title: 'Solve the diffusion questions', slug: 'practice', questions: { teacher: /^Diffusion$/ }, ordered: true }
             ]
           },
@@ -391,7 +391,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Tensile test calculations',
             summary: 'Engineering stress, engineering strain, percent elongation (%EL) and reduction in area (%RA).',
             steps: [
-              { kind: 'extra', title: 'Watch: Tensile Test Calculations & Ductility (The Efficient Engineer)', slug: 'yt-tensile-calc', youtubeId: 'f08Y39N416I', minutes: 7, refVideoId: 'topic221:m221-08-mechanical' },
+              { kind: 'extra', title: 'Watch: Extracting Tensile Properties from Stress-Strain Data (Swansea University)', slug: 'yt-tensile-calc', youtubeId: '_Utmj2jfUsM', minutes: 11, refVideoId: 'topic221:m221-08-mechanical' },
               { kind: 'practice', title: 'Do the calculations', slug: 'practice', questions: { teacher: /^Tensile Test Calculations$/ }, ordered: true }
             ]
           },

@@ -10,6 +10,7 @@
     "qa": "npm run validate:questions && npm run validate:answers && npm run validate:curriculum && npm run validate:integrity && npm run build",
     "validate:answers": "esbuild scripts/validate-answer-inputs.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-answer-inputs.mjs && node node_modules/.cache/validate-answer-inputs.mjs",
     "validate:questions": "esbuild scripts/validate-questions.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-questions.mjs --loader:.css=empty && node node_modules/.cache/validate-questions.mjs",
+    "check:youtube": "node scripts/check-youtube.mjs",
     "validate:curriculum": "esbuild scripts/validate-curriculum.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-curriculum.mjs --loader:.css=empty && node node_modules/.cache/validate-curriculum.mjs",
     "validate:integrity": "esbuild scripts/qa-integrity.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/qa-integrity.mjs --loader:.css=empty --external:virtual:* && node node_modules/.cache/qa-integrity.mjs",
     "inventory": "esbuild scripts/content-inventory.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/content-inventory.mjs --loader:.css=empty --external:virtual:* && node node_modules/.cache/content-inventory.mjs",

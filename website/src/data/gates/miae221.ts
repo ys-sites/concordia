@@ -8271,14 +8271,15 @@ const content: GateContent = {
      ]
 },
     {
-     "id": "6DK7DX0ekAY",
-     "title": "Miller Indices of Crystal Planes & Directions",
-     "channel": "The Organic Chemistry Tutor",
-     "len": "14:20",
+     "id": "1TG456bpUk4",
+     "title": "Crystallographic Planes (Texas A&M, Intro to Materials)",
+     "channel": "Patrick Shamberger",
+     "len": "9:54",
      "role": "learn",
      "watch": [
-          "The complete, intuitive guide to drawing and identifying planes in cubic unit cells.",
-          "Rules for shifting the origin when a plane passes through (0,0,0)."
+          "Find where the plane cuts each axis, in units of the cell edge; a plane parallel to an axis cuts it at infinity.",
+          "Take the reciprocals, clear the fractions, and write (hkl); a negative index gets a bar.",
+          "If the plane passes through the origin, move the origin to another corner first."
      ]
 },
     {
@@ -8404,25 +8405,14 @@ const content: GateContent = {
    "why": "The highest-repeat T/F area: polycrystalline-vs-polymorph (F24, W26), amorphous grain boundaries (A25, W26), order (F24, A25).",
    "videos": [
     {
-     "id": "cpvTwYAUeA8",
-     "title": "Dislocations, Grain Boundaries & 2D Defects",
-     "channel": "LearnChemE",
-     "len": "4:04",
+     "id": "KaJfI3IjcA0",
+     "title": "Single Crystal, Polycrystalline, Amorphous (Texas A&M, Intro to Materials)",
+     "channel": "Patrick Shamberger",
+     "len": "13:48",
      "role": "learn",
      "watch": [
-          "Understand interfacial defects, grain boundaries, and high interfacial energy.",
-          "How grain boundaries impede dislocation movement and strengthen metals."
-     ]
-},
-    {
-     "id": "Wj6qR1zvldc",
-     "title": "Crystal Systems and Bravais Lattices",
-     "channel": "Professor Dave Explains",
-     "len": "10:53",
-     "role": "learn",
-     "watch": [
-          "The 7 crystal systems and 14 Bravais lattices defined by axial lengths and angles.",
-          "Distinguish simple, body-centered, face-centered, and base-centered lattices."
+          "Single crystal: one continuous lattice. Polycrystal: many grains with different orientations, joined at grain boundaries. Amorphous: no long-range order.",
+          "How the form (and grain size) links to properties such as strength and anisotropy."
      ]
 }
    ],
@@ -8458,14 +8448,14 @@ const content: GateContent = {
      ]
 },
     {
-     "id": "-RDRYZqxrfs",
-     "title": "Equilibrium Vacancy Concentration Calculation",
-     "channel": "LearnChemE",
-     "len": "2:37",
+     "id": "m62X8sM6-wI",
+     "title": "Materials science vacancies example problem",
+     "channel": "Taylor Sparks",
+     "len": "2:35",
      "role": "worked",
      "watch": [
-          "Calculate total atomic sites N per unit volume using density and atomic weight.",
-          "Substitute activation energy Qv and Boltzmann constant k."
+          "Find N, the number of atomic sites per volume, from density and atomic weight: $N = N_A\\rho/A$.",
+          "Then $N_v = N\\exp(-Q_v/kT)$ with T in kelvin and k in eV/atom·K."
      ]
 }
    ],
@@ -8563,14 +8553,14 @@ const content: GateContent = {
    "why": "A25 and W26 both asked the Lecture 9 slide 9 hydrogen-purification problem with new numbers.",
    "videos": [
     {
-     "id": "cTcsp1tyxOM",
-     "title": "Fick's First Law of Steady-State Diffusion",
-     "channel": "LearnChemE",
-     "len": "7:10",
-     "role": "learn",
+     "id": "FuevAkamXNc",
+     "title": "Fick’s First Law Example: Steady-State Hydrogen Diffusion Through Palladium",
+     "channel": "Fertig Research Group",
+     "len": "7:29",
+     "role": "worked",
      "watch": [
-          "Diffusion flux J = -D·(dC/dx): negative sign denotes flow down the concentration gradient.",
-          "Steady-state conditions where concentration profile does not change with time."
+          "The classic palladium-sheet problem: a straight concentration profile, so $dC/dx$ is just the difference in concentration over the thickness.",
+          "Flux $J = -D\\,dC/dx$, then mass per hour = J × area × time."
      ]
 },
     {
@@ -8650,13 +8640,13 @@ const content: GateContent = {
    "videos": [
     {
      "id": "Zakqi78EwhM",
-     "title": "Diffusion Mechanisms: Vacancy vs Interstitial Diffusion",
+     "title": "Diffusion in Solids (Interactive Simulation)",
      "channel": "LearnChemE",
      "len": "2:25",
      "role": "learn",
      "watch": [
-          "Why interstitial diffusion (small atoms like C in Fe) is orders of magnitude faster than vacancy diffusion.",
-          "Activation energy barrier comparison between host atoms and interstitial solutes."
+          "Watch the concentration profile move into the solid as time and temperature change.",
+          "Higher temperature → larger D → atoms diffuse much deeper in the same time."
      ]
 },
     {
@@ -8835,7 +8825,7 @@ const content: GateContent = {
 },
     {
      "id": "cpvTwYAUeA8",
-     "title": "Dislocations & Strengthening Mechanisms in Metals",
+     "title": "Dislocations and Plastic Deformation",
      "channel": "LearnChemE",
      "len": "4:04",
      "role": "learn",
