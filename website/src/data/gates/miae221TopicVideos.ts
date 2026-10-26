@@ -3,4 +3,740 @@
 // course-relative (served via getVideoUrl).
 import type { MotionLesson } from '../engr213Lessons';
 
-export const MIAE221_TOPIC_VIDEOS: Record<string, MotionLesson> = {};
+export const MIAE221_TOPIC_VIDEOS: Record<string, MotionLesson> = {
+ "intro": {
+  "num": 1,
+  "title": "01 · Materials & Properties",
+  "source": "MIAE 221 · Materials & Properties",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/01 - Materials & Properties.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/01 - Materials & Properties.jpg",
+  "duration": 211,
+  "sizeMB": 13.3,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 67.3
+   },
+   {
+    "label": "The Method",
+    "start": 91.3
+   },
+   {
+    "label": "Worked Example",
+    "start": 123.1
+   },
+   {
+    "label": "The Traps",
+    "start": 164.1
+   },
+   {
+    "label": "Recap",
+    "start": 189.1
+   }
+  ]
+ },
+ "config": {
+  "num": 2,
+  "title": "02 · Electron Configuration",
+  "source": "MIAE 221 · Electron Configuration",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/02 - Electron Configuration.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/02 - Electron Configuration.jpg",
+  "duration": 165,
+  "sizeMB": 7.2,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 38.1
+   },
+   {
+    "label": "The Method",
+    "start": 58.3
+   },
+   {
+    "label": "Worked Example",
+    "start": 84.1
+   },
+   {
+    "label": "The Traps",
+    "start": 113.5
+   },
+   {
+    "label": "Recap",
+    "start": 141.6
+   }
+  ]
+ },
+ "atomsmass": {
+  "num": 3,
+  "title": "03 · Moles & Atoms",
+  "source": "MIAE 221 · Moles & Atoms",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/03 - Moles & Atoms.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/03 - Moles & Atoms.jpg",
+  "duration": 168,
+  "sizeMB": 6.3,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 36.8
+   },
+   {
+    "label": "The Method",
+    "start": 50.4
+   },
+   {
+    "label": "Worked Example",
+    "start": 74.9
+   },
+   {
+    "label": "The Traps",
+    "start": 118.8
+   },
+   {
+    "label": "Recap",
+    "start": 145.2
+   }
+  ]
+ },
+ "bonding": {
+  "num": 4,
+  "title": "04 · Bond Types",
+  "source": "MIAE 221 · Bond Types",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/04 - Bond Types.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/04 - Bond Types.jpg",
+  "duration": 176,
+  "sizeMB": 7.9,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 36.7
+   },
+   {
+    "label": "The Method",
+    "start": 58.8
+   },
+   {
+    "label": "Worked Example",
+    "start": 88.6
+   },
+   {
+    "label": "The Traps",
+    "start": 123.4
+   },
+   {
+    "label": "Recap",
+    "start": 155.4
+   }
+  ]
+ },
+ "bondcurve": {
+  "num": 5,
+  "title": "05 · Force & Energy Curves",
+  "source": "MIAE 221 · Force & Energy Curves",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/05 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/05 - Force & Energy Curves.jpg",
+  "duration": 183,
+  "sizeMB": 8,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 37.7
+   },
+   {
+    "label": "The Method",
+    "start": 63.2
+   },
+   {
+    "label": "Worked Example",
+    "start": 91.8
+   },
+   {
+    "label": "The Traps",
+    "start": 132
+   },
+   {
+    "label": "Recap",
+    "start": 158.5
+   }
+  ]
+ },
+ "cells": {
+  "num": 6,
+  "title": "06 · Unit Cells & APF",
+  "source": "MIAE 221 · Unit Cells & APF",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/06 - Unit Cells & APF.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/06 - Unit Cells & APF.jpg",
+  "duration": 185,
+  "sizeMB": 8.7,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 44.4
+   },
+   {
+    "label": "The Method",
+    "start": 66
+   },
+   {
+    "label": "Worked Example",
+    "start": 98.9
+   },
+   {
+    "label": "The Traps",
+    "start": 128.1
+   },
+   {
+    "label": "Recap",
+    "start": 160.1
+   }
+  ]
+ },
+ "density": {
+  "num": 7,
+  "title": "07 · Theoretical Density",
+  "source": "MIAE 221 · Theoretical Density",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/07 - Theoretical Density.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/07 - Theoretical Density.jpg",
+  "duration": 168,
+  "sizeMB": 8.3,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 31.3
+   },
+   {
+    "label": "The Method",
+    "start": 49.8
+   },
+   {
+    "label": "Worked Example",
+    "start": 72.4
+   },
+   {
+    "label": "The Traps",
+    "start": 121.5
+   },
+   {
+    "label": "Recap",
+    "start": 148.2
+   }
+  ]
+ },
+ "structure": {
+  "num": 8,
+  "title": "08 · Crystals, Grains & Polymorphs",
+  "source": "MIAE 221 · Crystals, Grains & Polymorphs",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/08 - Crystals, Grains & Polymorphs.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/08 - Crystals, Grains & Polymorphs.jpg",
+  "duration": 184,
+  "sizeMB": 10.8,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 34.6
+   },
+   {
+    "label": "The Method",
+    "start": 52.8
+   },
+   {
+    "label": "Worked Example",
+    "start": 85.1
+   },
+   {
+    "label": "The Traps",
+    "start": 124.7
+   },
+   {
+    "label": "Recap",
+    "start": 157.3
+   }
+  ]
+ },
+ "directions": {
+  "num": 9,
+  "title": "09 · Miller Indices - Directions",
+  "source": "MIAE 221 · Miller Indices: Directions",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/09 - Miller Indices - Directions.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/09 - Miller Indices - Directions.jpg",
+  "duration": 150,
+  "sizeMB": 6.4,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 38
+   },
+   {
+    "label": "The Method",
+    "start": 54.8
+   },
+   {
+    "label": "Worked Example",
+    "start": 80.4
+   },
+   {
+    "label": "The Traps",
+    "start": 104.9
+   },
+   {
+    "label": "Recap",
+    "start": 128
+   }
+  ]
+ },
+ "planes": {
+  "num": 10,
+  "title": "10 · Miller Indices - Planes",
+  "source": "MIAE 221 · Miller Indices: Planes",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/10 - Miller Indices - Planes.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/10 - Miller Indices - Planes.jpg",
+  "duration": 162,
+  "sizeMB": 7.1,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 36.1
+   },
+   {
+    "label": "The Method",
+    "start": 55.3
+   },
+   {
+    "label": "Worked Example",
+    "start": 81.9
+   },
+   {
+    "label": "The Traps",
+    "start": 110.4
+   },
+   {
+    "label": "Recap",
+    "start": 140.8
+   }
+  ]
+ },
+ "ldpd": {
+  "num": 11,
+  "title": "11 · Linear & Planar Density",
+  "source": "MIAE 221 · Linear & Planar Density",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/11 - Linear & Planar Density.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/11 - Linear & Planar Density.jpg",
+  "duration": 170,
+  "sizeMB": 8,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 34.9
+   },
+   {
+    "label": "The Method",
+    "start": 53
+   },
+   {
+    "label": "Worked Example",
+    "start": 79.5
+   },
+   {
+    "label": "The Traps",
+    "start": 111.8
+   },
+   {
+    "label": "Recap",
+    "start": 144.2
+   }
+  ]
+ },
+ "xrd": {
+  "num": 12,
+  "title": "12 · X-Ray Diffraction",
+  "source": "MIAE 221 · X-Ray Diffraction",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/12 - X-Ray Diffraction.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/12 - X-Ray Diffraction.jpg",
+  "duration": 162,
+  "sizeMB": 7.2,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 36.2
+   },
+   {
+    "label": "The Method",
+    "start": 54.3
+   },
+   {
+    "label": "Worked Example",
+    "start": 77.8
+   },
+   {
+    "label": "The Traps",
+    "start": 111.6
+   },
+   {
+    "label": "Recap",
+    "start": 142.8
+   }
+  ]
+ },
+ "vacancy": {
+  "num": 13,
+  "title": "13 · Vacancies",
+  "source": "MIAE 221 · Vacancies",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/13 - Vacancies.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/13 - Vacancies.jpg",
+  "duration": 189,
+  "sizeMB": 8.8,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 38.6
+   },
+   {
+    "label": "The Method",
+    "start": 61.2
+   },
+   {
+    "label": "Worked Example",
+    "start": 92.7
+   },
+   {
+    "label": "The Traps",
+    "start": 135.3
+   },
+   {
+    "label": "Recap",
+    "start": 166.6
+   }
+  ]
+ },
+ "solidsol": {
+  "num": 14,
+  "title": "14 · Solid Solutions",
+  "source": "MIAE 221 · Solid Solutions",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/14 - Solid Solutions.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/14 - Solid Solutions.jpg",
+  "duration": 176,
+  "sizeMB": 8.2,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 34.7
+   },
+   {
+    "label": "The Method",
+    "start": 53.2
+   },
+   {
+    "label": "Worked Example",
+    "start": 81.2
+   },
+   {
+    "label": "The Traps",
+    "start": 125.2
+   },
+   {
+    "label": "Recap",
+    "start": 152.2
+   }
+  ]
+ },
+ "defects": {
+  "num": 15,
+  "title": "15 · Dislocations & Interfaces",
+  "source": "MIAE 221 · Dislocations & Interfaces",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/15 - Dislocations & Interfaces.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/15 - Dislocations & Interfaces.jpg",
+  "duration": 174,
+  "sizeMB": 10.1,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 41.5
+   },
+   {
+    "label": "The Method",
+    "start": 60.7
+   },
+   {
+    "label": "Worked Example",
+    "start": 93.3
+   },
+   {
+    "label": "The Traps",
+    "start": 124.6
+   },
+   {
+    "label": "Recap",
+    "start": 150.6
+   }
+  ]
+ },
+ "diffmech": {
+  "num": 16,
+  "title": "16 · Diffusion & D(T)",
+  "source": "MIAE 221 · Diffusion & D(T)",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/16 - Diffusion & D(T).mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/16 - Diffusion & D(T).jpg",
+  "duration": 169,
+  "sizeMB": 8.5,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 38.8
+   },
+   {
+    "label": "The Method",
+    "start": 58
+   },
+   {
+    "label": "Worked Example",
+    "start": 84
+   },
+   {
+    "label": "The Traps",
+    "start": 119.9
+   },
+   {
+    "label": "Recap",
+    "start": 146.5
+   }
+  ]
+ },
+ "fick1": {
+  "num": 17,
+  "title": "17 · Fick's First Law",
+  "source": "MIAE 221 · Fick’s First Law",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/17 - Ficks First Law.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/17 - Ficks First Law.jpg",
+  "duration": 160,
+  "sizeMB": 6.6,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 33.9
+   },
+   {
+    "label": "The Method",
+    "start": 52.2
+   },
+   {
+    "label": "Worked Example",
+    "start": 75.9
+   },
+   {
+    "label": "The Traps",
+    "start": 114.7
+   },
+   {
+    "label": "Recap",
+    "start": 138.4
+   }
+  ]
+ },
+ "fick2": {
+  "num": 18,
+  "title": "18 · Fick's Second Law",
+  "source": "MIAE 221 · Fick’s Second Law",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/18 - Ficks Second Law.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/18 - Ficks Second Law.jpg",
+  "duration": 176,
+  "sizeMB": 7.8,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 36.2
+   },
+   {
+    "label": "The Method",
+    "start": 58.3
+   },
+   {
+    "label": "Worked Example",
+    "start": 87
+   },
+   {
+    "label": "The Traps",
+    "start": 128.5
+   },
+   {
+    "label": "Recap",
+    "start": 154.6
+   }
+  ]
+ },
+ "elastic": {
+  "num": 19,
+  "title": "19 · Stress, Strain & Poisson",
+  "source": "MIAE 221 · Stress, Strain & Poisson",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/19 - Stress, Strain & Poisson.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/19 - Stress, Strain & Poisson.jpg",
+  "duration": 184,
+  "sizeMB": 7.3,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 43.9
+   },
+   {
+    "label": "The Method",
+    "start": 63.9
+   },
+   {
+    "label": "Worked Example",
+    "start": 91.6
+   },
+   {
+    "label": "The Traps",
+    "start": 133.1
+   },
+   {
+    "label": "Recap",
+    "start": 158.2
+   }
+  ]
+ },
+ "tensile": {
+  "num": 20,
+  "title": "20 · The Tensile Curve",
+  "source": "MIAE 221 · The Tensile Curve",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/20 - The Tensile Curve.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/20 - The Tensile Curve.jpg",
+  "duration": 186,
+  "sizeMB": 8.4,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 33.8
+   },
+   {
+    "label": "The Method",
+    "start": 56.2
+   },
+   {
+    "label": "Worked Example",
+    "start": 88.8
+   },
+   {
+    "label": "The Traps",
+    "start": 125.9
+   },
+   {
+    "label": "Recap",
+    "start": 160.3
+   }
+  ]
+ },
+ "slip": {
+  "num": 21,
+  "title": "21 · Dislocations & Slip",
+  "source": "MIAE 221 · Dislocations & Slip",
+  "video": "Miae 221/11 - Exam Topics Explained AI Videos/21 - Dislocations & Slip.mp4",
+  "poster": "Miae 221/11 - Exam Topics Explained AI Videos/posters/21 - Dislocations & Slip.jpg",
+  "duration": 175,
+  "sizeMB": 8.6,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 39.3
+   },
+   {
+    "label": "The Method",
+    "start": 60.9
+   },
+   {
+    "label": "Worked Example",
+    "start": 90.3
+   },
+   {
+    "label": "The Traps",
+    "start": 125
+   },
+   {
+    "label": "Recap",
+    "start": 148.3
+   }
+  ]
+ }
+};
