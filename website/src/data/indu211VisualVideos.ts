@@ -3,4 +3,1113 @@
 // Paths are course-relative (served via getVideoUrl).
 import type { MotionLesson } from './engr213Lessons';
 
-export const INDU211_VISUAL_VIDEOS: Record<string, MotionLesson & { learn: string }> = {};
+export const INDU211_VISUAL_VIDEOS: Record<string, MotionLesson & { learn: string }> = {
+ "bom": {
+  "num": 1,
+  "title": "01 · Bill of Materials & Product Structure Trees",
+  "source": "INDU 211 · Chapter 3 · Manufacturing Engineering · Bill of materials",
+  "learn": "bom-processes",
+  "video": "Indu 211/08 - Visual Learning AI Videos/01 - Bill of Materials & Product Structure Trees.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/01 - Bill of Materials & Product Structure Trees.jpg",
+  "duration": 295,
+  "sizeMB": 13.8,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 37.6
+   },
+   {
+    "label": "The Method",
+    "start": 55.9
+   },
+   {
+    "label": "Worked Example 1 · The lecture tree",
+    "start": 79
+   },
+   {
+    "label": "Worked Example 2 · The bookcase BOM",
+    "start": 149.5
+   },
+   {
+    "label": "Worked Example 3 · 50 chairs",
+    "start": 198.7
+   },
+   {
+    "label": "The Traps",
+    "start": 232
+   },
+   {
+    "label": "Recap",
+    "start": 267.5
+   }
+  ]
+ },
+ "break-even": {
+  "num": 2,
+  "title": "02 · Break-Even Analysis",
+  "source": "INDU 211 · Chapter 3 · Manufacturing Engineering · Cost-volume analysis",
+  "learn": "break-even",
+  "video": "Indu 211/08 - Visual Learning AI Videos/02 - Break-Even Analysis.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/02 - Break-Even Analysis.jpg",
+  "duration": 257,
+  "sizeMB": 11,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 36.3
+   },
+   {
+    "label": "The Method",
+    "start": 52.8
+   },
+   {
+    "label": "Worked Example 1 · The lecture example",
+    "start": 82
+   },
+   {
+    "label": "Worked Example 2 · Target profit",
+    "start": 129.5
+   },
+   {
+    "label": "Worked Example 3 · Minimum price",
+    "start": 166.1
+   },
+   {
+    "label": "The Traps",
+    "start": 201.6
+   },
+   {
+    "label": "Recap",
+    "start": 232.9
+   }
+  ]
+ },
+ "process-selection": {
+  "num": 3,
+  "title": "03 · Choosing a Process with Cost-Volume Lines",
+  "source": "INDU 211 · Chapter 3 · Manufacturing Engineering · Process selection",
+  "learn": "break-even",
+  "video": "Indu 211/08 - Visual Learning AI Videos/03 - Choosing a Process with Cost-Volume Lines.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/03 - Choosing a Process with Cost-Volume Lines.jpg",
+  "duration": 256,
+  "sizeMB": 11.3,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 41
+   },
+   {
+    "label": "The Method",
+    "start": 54.4
+   },
+   {
+    "label": "Worked Example 1 · Processes A, B, C",
+    "start": 73.9
+   },
+   {
+    "label": "Worked Example 2 · Crossover points",
+    "start": 117.4
+   },
+   {
+    "label": "Worked Example 3 · Manual or automated",
+    "start": 159.6
+   },
+   {
+    "label": "The Traps",
+    "start": 196.7
+   },
+   {
+    "label": "Recap",
+    "start": 229.6
+   }
+  ]
+ },
+ "transportation": {
+  "num": 4,
+  "title": "04 · The Transportation Problem - Least-Cost Method",
+  "source": "INDU 211 · Chapter 4 · Facilities Location · Transportation method",
+  "learn": "location",
+  "video": "Indu 211/08 - Visual Learning AI Videos/04 - The Transportation Problem - Least-Cost Method.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/04 - The Transportation Problem - Least-Cost Method.jpg",
+  "duration": 335,
+  "sizeMB": 15.6,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 45.7
+   },
+   {
+    "label": "The Method",
+    "start": 62.2
+   },
+   {
+    "label": "Worked Example 1 · Plain View",
+    "start": 83.3
+   },
+   {
+    "label": "Worked Example 2 · The tie, the other way",
+    "start": 163.8
+   },
+   {
+    "label": "Worked Example 3 · Two more problems",
+    "start": 201.2
+   },
+   {
+    "label": "The Traps",
+    "start": 272.2
+   },
+   {
+    "label": "Recap",
+    "start": 308.3
+   }
+  ]
+ },
+ "centre-of-gravity": {
+  "num": 5,
+  "title": "05 · The Centre of Gravity Method",
+  "source": "INDU 211 · Chapter 4 · Facilities Location · Centre of gravity",
+  "learn": "location",
+  "video": "Indu 211/08 - Visual Learning AI Videos/05 - The Centre of Gravity Method.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/05 - The Centre of Gravity Method.jpg",
+  "duration": 257,
+  "sizeMB": 10.8,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 35.1
+   },
+   {
+    "label": "The Method",
+    "start": 48.7
+   },
+   {
+    "label": "Worked Example 1 · Equal shipments",
+    "start": 66
+   },
+   {
+    "label": "Worked Example 2 · Weighted shipments",
+    "start": 94.8
+   },
+   {
+    "label": "Worked Example 3 · How far is it?",
+    "start": 152.6
+   },
+   {
+    "label": "The Traps",
+    "start": 194.1
+   },
+   {
+    "label": "Recap",
+    "start": 227.9
+   }
+  ]
+ },
+ "tsp-nearest": {
+  "num": 6,
+  "title": "06 · Routing - the Nearest-Neighbour Heuristic",
+  "source": "INDU 211 · Chapter 5 · Material Handling, Distribution & Routing · TSP",
+  "learn": "routing",
+  "video": "Indu 211/08 - Visual Learning AI Videos/06 - Routing - the Nearest-Neighbour Heuristic.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/06 - Routing - the Nearest-Neighbour Heuristic.jpg",
+  "duration": 278,
+  "sizeMB": 13.3,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 38.4
+   },
+   {
+    "label": "The Method",
+    "start": 53.5
+   },
+   {
+    "label": "Worked Example 1 · From A, breaking the tie at B",
+    "start": 73.4
+   },
+   {
+    "label": "Worked Example 2 · The other tie, and the optimum",
+    "start": 132.8
+   },
+   {
+    "label": "Worked Example 3 · Five stops",
+    "start": 177.1
+   },
+   {
+    "label": "The Traps",
+    "start": 220
+   },
+   {
+    "label": "Recap",
+    "start": 253.5
+   }
+  ]
+ },
+ "tsp-complexity": {
+  "num": 7,
+  "title": "07 · Why the Travelling Salesman Problem Is Hard",
+  "source": "INDU 211 · Chapter 5 · Material Handling, Distribution & Routing · TSP",
+  "learn": "routing",
+  "video": "Indu 211/08 - Visual Learning AI Videos/07 - Why the Travelling Salesman Problem Is Hard.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/07 - Why the Travelling Salesman Problem Is Hard.jpg",
+  "duration": 217,
+  "sizeMB": 9.8,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 38.9
+   },
+   {
+    "label": "The Method",
+    "start": 51.8
+   },
+   {
+    "label": "Worked Example 1 · Counting tours",
+    "start": 78.3
+   },
+   {
+    "label": "Worked Example 2 · All 12 tours of A–E",
+    "start": 108.7
+   },
+   {
+    "label": "Worked Example 3 · Heuristic vs optimal",
+    "start": 129.9
+   },
+   {
+    "label": "The Traps",
+    "start": 161.1
+   },
+   {
+    "label": "Recap",
+    "start": 188.2
+   }
+  ]
+ },
+ "clarke-wright": {
+  "num": 8,
+  "title": "08 · Vehicle Routing with Clarke-Wright Savings",
+  "source": "INDU 211 · Chapter 5 · Material Handling, Distribution & Routing · VRP",
+  "learn": "routing",
+  "video": "Indu 211/08 - Visual Learning AI Videos/08 - Vehicle Routing with Clarke-Wright Savings.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/08 - Vehicle Routing with Clarke-Wright Savings.jpg",
+  "duration": 295,
+  "sizeMB": 13.2,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 41
+   },
+   {
+    "label": "The Method",
+    "start": 54.5
+   },
+   {
+    "label": "Worked Example 1 · The savings",
+    "start": 87.5
+   },
+   {
+    "label": "Worked Example 2 · Building the routes",
+    "start": 139.3
+   },
+   {
+    "label": "Worked Example 3 · The two routes",
+    "start": 206.7
+   },
+   {
+    "label": "The Traps",
+    "start": 241.2
+   },
+   {
+    "label": "Recap",
+    "start": 268.2
+   }
+  ]
+ },
+ "time-study": {
+  "num": 9,
+  "title": "09 · Time Study & Standard Time",
+  "source": "INDU 211 · Chapter 6 · Work Design & Work Measurement",
+  "learn": "work-design",
+  "video": "Indu 211/08 - Visual Learning AI Videos/09 - Time Study & Standard Time.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/09 - Time Study & Standard Time.jpg",
+  "duration": 285,
+  "sizeMB": 11.7,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 37.5
+   },
+   {
+    "label": "The Method",
+    "start": 54.4
+   },
+   {
+    "label": "Worked Example 1 · One task, nine readings",
+    "start": 83
+   },
+   {
+    "label": "Worked Example 2 · Four elements, two ratings",
+    "start": 121.2
+   },
+   {
+    "label": "Worked Example 3 · Output per shift",
+    "start": 173.4
+   },
+   {
+    "label": "The Traps",
+    "start": 220.1
+   },
+   {
+    "label": "Recap",
+    "start": 255.1
+   }
+  ]
+ },
+ "aggregate-planning": {
+  "num": 10,
+  "title": "10 · Aggregate Planning - Level or Chase",
+  "source": "INDU 211 · Chapter 7 · Operations Planning & Control · Operations planning",
+  "learn": "mrp-jit",
+  "video": "Indu 211/08 - Visual Learning AI Videos/10 - Aggregate Planning - Level or Chase.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/10 - Aggregate Planning - Level or Chase.jpg",
+  "duration": 266,
+  "sizeMB": 11.7,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 47.2
+   },
+   {
+    "label": "The Method",
+    "start": 63
+   },
+   {
+    "label": "Worked Example 1 · Rising demand",
+    "start": 81.2
+   },
+   {
+    "label": "Worked Example 2 · Falling demand",
+    "start": 129.6
+   },
+   {
+    "label": "Worked Example 3 · Reading the graph",
+    "start": 183.6
+   },
+   {
+    "label": "The Traps",
+    "start": 211.7
+   },
+   {
+    "label": "Recap",
+    "start": 237.5
+   }
+  ]
+ },
+ "eoq": {
+  "num": 11,
+  "title": "11 · Economic Order Quantity (EOQ)",
+  "source": "INDU 211 · Chapter 7 · Operations Planning & Control · Inventory",
+  "learn": "inventory",
+  "video": "Indu 211/08 - Visual Learning AI Videos/11 - Economic Order Quantity (EOQ).mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/11 - Economic Order Quantity (EOQ).jpg",
+  "duration": 380,
+  "sizeMB": 17.3,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 34.2
+   },
+   {
+    "label": "The Method",
+    "start": 54.9
+   },
+   {
+    "label": "Worked Example 1 · ABC widgets",
+    "start": 116.8
+   },
+   {
+    "label": "Worked Example 2 · A new problem",
+    "start": 210.8
+   },
+   {
+    "label": "Worked Example 3 · Reorder point & sensitivity",
+    "start": 275.8
+   },
+   {
+    "label": "The Traps",
+    "start": 308.5
+   },
+   {
+    "label": "Recap",
+    "start": 347.5
+   }
+  ]
+ },
+ "mrp-logic": {
+  "num": 12,
+  "title": "12 · MRP - How the Planning Logic Works",
+  "source": "INDU 211 · Chapter 7 · Operations Planning & Control · MRP",
+  "learn": "mrp-jit",
+  "video": "Indu 211/08 - Visual Learning AI Videos/12 - MRP - How the Planning Logic Works.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/12 - MRP - How the Planning Logic Works.jpg",
+  "duration": 588,
+  "sizeMB": 28.9,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 77.6
+   },
+   {
+    "label": "The Method",
+    "start": 113
+   },
+   {
+    "label": "Worked Example 1 · The chair",
+    "start": 238.1
+   },
+   {
+    "label": "Worked Example 2 · Exploding P1",
+    "start": 355
+   },
+   {
+    "label": "Worked Example 3 · Lead-time offsets",
+    "start": 434
+   },
+   {
+    "label": "The Traps",
+    "start": 489.8
+   },
+   {
+    "label": "Recap",
+    "start": 551.6
+   }
+  ]
+ },
+ "mrp-p1": {
+  "num": 13,
+  "title": "13 · MRP Example - the Full Table for Product P1",
+  "source": "INDU 211 · Chapter 7 · Operations Planning & Control · MRP Example 1",
+  "learn": "mrp-jit",
+  "video": "Indu 211/08 - Visual Learning AI Videos/13 - MRP Example - the Full Table for Product P1.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/13 - MRP Example - the Full Table for Product P1.jpg",
+  "duration": 397,
+  "sizeMB": 19.8,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 38.2
+   },
+   {
+    "label": "The Method",
+    "start": 76.7
+   },
+   {
+    "label": "Worked Example 1 · P1 and SA2",
+    "start": 98.3
+   },
+   {
+    "label": "Worked Example 2 · C3 and C4",
+    "start": 137.4
+   },
+   {
+    "label": "Worked Example 3 · C5",
+    "start": 198.5
+   },
+   {
+    "label": "Worked Example 4 · Your turn",
+    "start": 249.1
+   },
+   {
+    "label": "The Traps",
+    "start": 314.9
+   },
+   {
+    "label": "Recap",
+    "start": 364.9
+   }
+  ]
+ },
+ "mrp-lots": {
+  "num": 14,
+  "title": "14 · MRP with Lot Sizes - Shutters, Frames & Wood",
+  "source": "INDU 211 · Chapter 7 · Operations Planning & Control · MRP Example 2",
+  "learn": "mrp-jit",
+  "video": "Indu 211/08 - Visual Learning AI Videos/14 - MRP with Lot Sizes - Shutters, Frames & Wood.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/14 - MRP with Lot Sizes - Shutters, Frames & Wood.jpg",
+  "duration": 389,
+  "sizeMB": 20.3,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 40
+   },
+   {
+    "label": "The Method",
+    "start": 72.8
+   },
+   {
+    "label": "Worked Example 1 · Shutters",
+    "start": 101.8
+   },
+   {
+    "label": "Worked Example 2 · Frames, lots of 320",
+    "start": 125.7
+   },
+   {
+    "label": "Worked Example 3 · Wood, lots of 70",
+    "start": 193.7
+   },
+   {
+    "label": "Worked Example 4 · Lot-for-lot vs lots",
+    "start": 275.7
+   },
+   {
+    "label": "The Traps",
+    "start": 312.1
+   },
+   {
+    "label": "Recap",
+    "start": 355.2
+   }
+  ]
+ },
+ "mrp-practice": {
+  "num": 15,
+  "title": "15 · MRP Practice, MRP II, ERP & Kanban",
+  "source": "INDU 211 · Chapter 7 · Operations Planning & Control · MRP, ERP & JIT",
+  "learn": "mrp-jit",
+  "video": "Indu 211/08 - Visual Learning AI Videos/15 - MRP Practice, MRP II, ERP & Kanban.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/15 - MRP Practice, MRP II, ERP & Kanban.jpg",
+  "duration": 393,
+  "sizeMB": 17.3,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 40.8
+   },
+   {
+    "label": "The Method",
+    "start": 62.4
+   },
+   {
+    "label": "Worked Example 1 · A table lamp",
+    "start": 105.3
+   },
+   {
+    "label": "Worked Example 2 · Quick fire",
+    "start": 181.4
+   },
+   {
+    "label": "Worked Example 3 · True or false",
+    "start": 250.5
+   },
+   {
+    "label": "The Traps",
+    "start": 317.6
+   },
+   {
+    "label": "Recap",
+    "start": 357
+   }
+  ]
+ },
+ "moving-average": {
+  "num": 16,
+  "title": "16 · Forecasting with Moving Averages",
+  "source": "INDU 211 · Chapter 7 · Operations Planning & Control · Forecasting",
+  "learn": "forecasting",
+  "video": "Indu 211/08 - Visual Learning AI Videos/16 - Forecasting with Moving Averages.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/16 - Forecasting with Moving Averages.jpg",
+  "duration": 326,
+  "sizeMB": 14.6,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 36.8
+   },
+   {
+    "label": "The Method",
+    "start": 61.4
+   },
+   {
+    "label": "Worked Example 1 · Product A",
+    "start": 98
+   },
+   {
+    "label": "Worked Example 2 · Rolling forward",
+    "start": 158.5
+   },
+   {
+    "label": "Worked Example 3 · A trend",
+    "start": 196.3
+   },
+   {
+    "label": "The Traps",
+    "start": 261.5
+   },
+   {
+    "label": "Recap",
+    "start": 296.5
+   }
+  ]
+ },
+ "exp-smoothing": {
+  "num": 17,
+  "title": "17 · Exponential Smoothing",
+  "source": "INDU 211 · Chapter 7 · Operations Planning & Control · Forecasting",
+  "learn": "forecasting",
+  "video": "Indu 211/08 - Visual Learning AI Videos/17 - Exponential Smoothing.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/17 - Exponential Smoothing.jpg",
+  "duration": 305,
+  "sizeMB": 12.9,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 39.6
+   },
+   {
+    "label": "The Method",
+    "start": 56.7
+   },
+   {
+    "label": "Worked Example 1 · Complaints, α = 0.4",
+    "start": 75.8
+   },
+   {
+    "label": "Worked Example 2 · The same data, α = 0.1",
+    "start": 144.9
+   },
+   {
+    "label": "Worked Example 3 · Where the weights go",
+    "start": 204.7
+   },
+   {
+    "label": "The Traps",
+    "start": 240.6
+   },
+   {
+    "label": "Recap",
+    "start": 277.4
+   }
+  ]
+ },
+ "regression": {
+  "num": 18,
+  "title": "18 · Forecasting with Linear Regression",
+  "source": "INDU 211 · Chapter 7 · Operations Planning & Control · Forecasting",
+  "learn": "forecasting",
+  "video": "Indu 211/08 - Visual Learning AI Videos/18 - Forecasting with Linear Regression.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/18 - Forecasting with Linear Regression.jpg",
+  "duration": 302,
+  "sizeMB": 12.8,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 36.8
+   },
+   {
+    "label": "The Method",
+    "start": 51.2
+   },
+   {
+    "label": "Worked Example 1 · Weekly sales",
+    "start": 80.2
+   },
+   {
+    "label": "Worked Example 2 · Forecasting ahead",
+    "start": 155.5
+   },
+   {
+    "label": "Worked Example 3 · New data",
+    "start": 183.3
+   },
+   {
+    "label": "The Traps",
+    "start": 238.2
+   },
+   {
+    "label": "Recap",
+    "start": 268.5
+   }
+  ]
+ },
+ "lp-model": {
+  "num": 19,
+  "title": "19 · Linear Programming - Building the Model",
+  "source": "INDU 211 · Chapter 14 · Deterministic Operations Research · Linear programming",
+  "learn": "linear-programming",
+  "video": "Indu 211/08 - Visual Learning AI Videos/19 - Linear Programming - Building the Model.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/19 - Linear Programming - Building the Model.jpg",
+  "duration": 276,
+  "sizeMB": 11.5,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 37.3
+   },
+   {
+    "label": "The Method",
+    "start": 53.8
+   },
+   {
+    "label": "Worked Example 1 · Lawn Grow mowers",
+    "start": 89.4
+   },
+   {
+    "label": "Worked Example 2 · A bakery",
+    "start": 143.5
+   },
+   {
+    "label": "Worked Example 3 · A minimization model",
+    "start": 185.1
+   },
+   {
+    "label": "The Traps",
+    "start": 216.1
+   },
+   {
+    "label": "Recap",
+    "start": 244.2
+   }
+  ]
+ },
+ "lp-graphical": {
+  "num": 20,
+  "title": "20 · Solving a Linear Program Graphically",
+  "source": "INDU 211 · Chapter 14 · Deterministic Operations Research · Linear programming",
+  "learn": "linear-programming",
+  "video": "Indu 211/08 - Visual Learning AI Videos/20 - Solving a Linear Program Graphically.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/20 - Solving a Linear Program Graphically.jpg",
+  "duration": 308,
+  "sizeMB": 16,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 27.5
+   },
+   {
+    "label": "The Method",
+    "start": 44.3
+   },
+   {
+    "label": "Worked Example 1 · Lawn Grow",
+    "start": 67.4
+   },
+   {
+    "label": "Worked Example 2 · The lecture’s minimization",
+    "start": 166.4
+   },
+   {
+    "label": "Worked Example 3 · The bakery",
+    "start": 214.2
+   },
+   {
+    "label": "The Traps",
+    "start": 252.6
+   },
+   {
+    "label": "Recap",
+    "start": 277.3
+   }
+  ]
+ },
+ "queuing": {
+  "num": 21,
+  "title": "21 · Queuing - the Single-Server M∕M∕1 Model",
+  "source": "INDU 211 · Chapter 15 · Probabilistic Models · Queuing theory",
+  "learn": "queuing",
+  "video": "Indu 211/08 - Visual Learning AI Videos/21 - Queuing - the Single-Server M∕M∕1 Model.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/21 - Queuing - the Single-Server M∕M∕1 Model.jpg",
+  "duration": 328,
+  "sizeMB": 13.4,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 41.9
+   },
+   {
+    "label": "The Method",
+    "start": 61.9
+   },
+   {
+    "label": "Worked Example 1 · The drive-up window",
+    "start": 91.1
+   },
+   {
+    "label": "Worked Example 2 · Probabilities",
+    "start": 176.7
+   },
+   {
+    "label": "Worked Example 3 · New numbers",
+    "start": 215.5
+   },
+   {
+    "label": "The Traps",
+    "start": 265.2
+   },
+   {
+    "label": "Recap",
+    "start": 294.7
+   }
+  ]
+ },
+ "xbar-r": {
+  "num": 22,
+  "title": "22 · Control Charts for Variables - X-bar and R",
+  "source": "INDU 211 · Chapter 8 · Quality Control · Statistical process control",
+  "learn": "quality",
+  "video": "Indu 211/08 - Visual Learning AI Videos/22 - Control Charts for Variables - X-bar and R.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/22 - Control Charts for Variables - X-bar and R.jpg",
+  "duration": 302,
+  "sizeMB": 13.3,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 40.3
+   },
+   {
+    "label": "The Method",
+    "start": 60
+   },
+   {
+    "label": "Worked Example 1 · Bottling: the X-bar chart",
+    "start": 84.9
+   },
+   {
+    "label": "Worked Example 2 · Bottling: the R chart",
+    "start": 131.2
+   },
+   {
+    "label": "Worked Example 3 · Loan applications",
+    "start": 167.3
+   },
+   {
+    "label": "The Traps",
+    "start": 242.1
+   },
+   {
+    "label": "Recap",
+    "start": 270.6
+   }
+  ]
+ },
+ "p-chart": {
+  "num": 23,
+  "title": "23 · Control Charts for Attributes - p-Charts",
+  "source": "INDU 211 · Chapter 8 · Quality Control · Statistical process control",
+  "learn": "quality",
+  "video": "Indu 211/08 - Visual Learning AI Videos/23 - Control Charts for Attributes - p-Charts.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/23 - Control Charts for Attributes - p-Charts.jpg",
+  "duration": 244,
+  "sizeMB": 10.2,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 26.9
+   },
+   {
+    "label": "The Method",
+    "start": 41.3
+   },
+   {
+    "label": "Worked Example 1 · Jane Morgan’s bolts",
+    "start": 59.1
+   },
+   {
+    "label": "Worked Example 2 · Cans",
+    "start": 112.1
+   },
+   {
+    "label": "Worked Example 3 · Bigger samples",
+    "start": 162.8
+   },
+   {
+    "label": "The Traps",
+    "start": 200.6
+   },
+   {
+    "label": "Recap",
+    "start": 219
+   }
+  ]
+ },
+ "cpm": {
+  "num": 24,
+  "title": "24 · The Critical Path Method (CPM)",
+  "source": "INDU 211 · Chapter 17 · Project Management · CPM",
+  "learn": "cpm-pert",
+  "video": "Indu 211/08 - Visual Learning AI Videos/24 - The Critical Path Method (CPM).mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/24 - The Critical Path Method (CPM).jpg",
+  "duration": 279,
+  "sizeMB": 12.2,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 24.6
+   },
+   {
+    "label": "The Method",
+    "start": 41.4
+   },
+   {
+    "label": "Worked Example 1 · Forward pass",
+    "start": 71
+   },
+   {
+    "label": "Worked Example 2 · Backward pass",
+    "start": 128.4
+   },
+   {
+    "label": "Worked Example 3 · Slack and the critical path",
+    "start": 178.1
+   },
+   {
+    "label": "The Traps",
+    "start": 226.3
+   },
+   {
+    "label": "Recap",
+    "start": 252.1
+   }
+  ]
+ },
+ "pert": {
+  "num": 25,
+  "title": "25 · PERT - Three Time Estimates",
+  "source": "INDU 211 · Chapter 17 · Project Management · PERT",
+  "learn": "cpm-pert",
+  "video": "Indu 211/08 - Visual Learning AI Videos/25 - PERT - Three Time Estimates.mp4",
+  "poster": "Indu 211/08 - Visual Learning AI Videos/posters/25 - PERT - Three Time Estimates.jpg",
+  "duration": 297,
+  "sizeMB": 12.6,
+  "chapters": [
+   {
+    "label": "The Big Idea",
+    "start": 0
+   },
+   {
+    "label": "Spot It on the Exam",
+    "start": 29.3
+   },
+   {
+    "label": "The Method",
+    "start": 47.4
+   },
+   {
+    "label": "Worked Example 1 · The lecture’s PERT chart",
+    "start": 82.1
+   },
+   {
+    "label": "Worked Example 2 · Three estimates",
+    "start": 139
+   },
+   {
+    "label": "Worked Example 3 · Finishing on time",
+    "start": 192.7
+   },
+   {
+    "label": "The Traps",
+    "start": 245.9
+   },
+   {
+    "label": "Recap",
+    "start": 269.1
+   }
+  ]
+ }
+};

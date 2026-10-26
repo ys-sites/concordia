@@ -6,6 +6,15 @@
 // To rename: add `old: new` below (full ids as stored), run `npm run validate:curriculum -- --update-lock`.
 // Never remove an entry: a student who has not visited since still has the old id saved.
 export const ID_ALIASES: Record<string, string> = {
+  // INDU 211 Visual Learning videos (2026-10-26): a lesson's key-notes step became its first video step
+  'INDU211/cpm-pert.notes': 'INDU211/cpm-pert.video-visual211-cpm',
+  'INDU211/forecasting.notes': 'INDU211/forecasting.video-visual211-moving-average',
+  'INDU211/inventory.notes': 'INDU211/inventory.video-visual211-eoq',
+  'INDU211/linear-programming.notes': 'INDU211/linear-programming.video-visual211-lp-model',
+  'INDU211/mrp-jit.notes': 'INDU211/mrp-jit.video-visual211-aggregate-planning',
+  'INDU211/quality.notes': 'INDU211/quality.video-visual211-xbar-r',
+  'INDU211/queuing.notes': 'INDU211/queuing.video-visual211-queuing',
+  'INDU211/work-design.notes': 'INDU211/work-design.video-visual211-time-study',
   'MIAE221/bond-energy.yt-b92UJQS9weU': 'MIAE221/bond-energy.yt-U43-NTF-79E',
   'MIAE221/bond-energy.yt-r79VlVcnaVU': 'MIAE221/bond-energy.yt--mZAsdJnnMM',
   'MIAE221/crystalline-amorphous.yt--5HNjoCpdXQ': 'MIAE221/crystalline-amorphous.yt-Wj6qR1zvldc',
