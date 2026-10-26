@@ -124,6 +124,20 @@
   flex: 1;
   aspect-ratio: auto;
 }
+/* full screen, playing, 2 s without activity: the bar fades out in its own strip (hover brings it back) */
+.lx-ytp-bar {
+  transition: opacity 0.35s ease;
+}
+.lx-ytp.is-idle {
+  cursor: none;
+}
+.lx-ytp.is-idle .lx-ytp-bar {
+  opacity: 0;
+}
+/* a tap on the hidden bar only brings it back; it does not press the button underneath */
+.lx-ytp.is-idle .lx-ytp-bar > * {
+  pointer-events: none;
+}
 @media (max-width: 620px) {
   .lx-ytp-vol,
   .lx-ytp-btn[aria-label='Back 10 seconds'],

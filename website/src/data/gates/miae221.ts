@@ -8189,21 +8189,31 @@ const content: GateContent = {
      "len": "17:21",
      "role": "learn",
      "watch": [
-          "Use rho = n·A / (Vc·NA) and convert lattice parameter 'a' from nm to cm.",
-          "Check unit conversions carefully for grams per cubic centimeter."
+      "Use rho = n·A / (Vc·NA) and convert lattice parameter 'a' from nm to cm.",
+      "Check unit conversions carefully for grams per cubic centimeter."
      ]
-},
+    },
     {
-     "id": "Cwdef3TlOtE",
-     "title": "Theoretical Density of an Element Worked Problem",
-     "channel": "LearnChemE",
-     "len": "5:53",
+     "id": "ZmcmLibDg_8",
+     "title": "Calculation of the Estimated Density of Palladium",
+     "channel": "Engineering and Design Solutions",
+     "len": "6:26",
      "role": "worked",
      "watch": [
-          "Watch the step-by-step substitution into the theoretical density formula.",
-          "Compare theoretical density against periodic table handbook values."
+      "He sets up the FCC cell first: 4 atoms per cell and a = 2√2·R, so V_c = a³.",
+      "Then ρ = n·A / (V_c·N_A). Convert R from nm to cm before you cube it; that is where most answers go wrong."
      ]
-}
+    },
+    {
+     "id": "aQ6-gUUXKOk",
+     "title": "Calculating Density of a Hexagonal Close-Packed Cell of Magnesium",
+     "channel": "Engineering and Design Solutions",
+     "len": "7:55",
+     "role": "extra",
+     "watch": [
+      "The same formula with an HCP cell: 6 atoms per cell and V_c = (3√3/2)·a²·c."
+     ]
+    }
    ],
    "after": "Do A25 Q8 by hand, then check with the calculator. Then F24 Q17 using the “find a” mode.",
    "gate": [
@@ -8221,15 +8231,15 @@ const content: GateContent = {
    "why": "W26 had two direction questions (4 marks); F24 had two. Every drawing is new, so only the method transfers.",
    "videos": [
     {
-     "id": "fYK45OdnZH0",
-     "title": "Crystallographic Directions (Texas A&M, Intro to Materials)",
-     "channel": "Patrick Shamberger",
-     "len": "6:31",
+     "id": "9vs_uakh1p8",
+     "title": "Crystal Directions",
+     "channel": "Engineering and Design Solutions",
+     "len": "21:20",
      "role": "learn",
      "watch": [
-      "A direction is a vector between two points of the cell: head coordinates minus tail coordinates, in units of the cell edge.",
-      "Then clear the fractions and reduce to the smallest whole numbers; a negative number gets a bar on top.",
-      "Going the other way (drawing $[uvw]$ from its indices): divide by the largest index so the vector fits inside the cell."
+      "He starts with point coordinates: each one is a fraction of the cell edge along x, y and z.",
+      "A direction is head minus tail. Clear the fractions, reduce to the smallest whole numbers, and put a bar over a negative index.",
+      "Pause on each practice problem and find the tail and the head yourself before he does."
      ]
     },
     {
@@ -8260,39 +8270,37 @@ const content: GateContent = {
    "why": "Planes appeared in all three midterms and both finals; W26 alone had 4 marks of them.",
    "videos": [
     {
-     "id": "pMTA_wiY784",
-     "title": "Crystal Plane Miller Indices (hkl)",
-     "channel": "LearnChemE",
-     "len": "4:45",
+     "id": "9Tf1dB1yVKY",
+     "title": "Crystallographic Planes",
+     "channel": "Engineering and Design Solutions",
+     "len": "18:41",
      "role": "learn",
      "watch": [
-          "Step 1: intercepts, Step 2: reciprocals, Step 3: reduction to smallest integers.",
-          "Remember overbar for negative intercepts."
+      "Find where the plane cuts each axis in units of the cell edge; a plane parallel to an axis cuts it at infinity.",
+      "Take the reciprocals (1/∞ = 0), clear the fractions and write (hkl); a negative index gets a bar.",
+      "If the plane passes through the origin, move the origin to another corner first."
      ]
-},
+    },
     {
-     "id": "1TG456bpUk4",
-     "title": "Crystallographic Planes (Texas A&M, Intro to Materials)",
-     "channel": "Patrick Shamberger",
-     "len": "9:54",
-     "role": "learn",
+     "id": "1wsNHLkHiNs",
+     "title": "Planes in a Cubic Unit Cell",
+     "channel": "Engineering and Design Solutions",
+     "len": "3:26",
+     "role": "worked",
      "watch": [
-          "Find where the plane cuts each axis, in units of the cell edge; a plane parallel to an axis cuts it at infinity.",
-          "Take the reciprocals, clear the fractions, and write (hkl); a negative index gets a bar.",
-          "If the plane passes through the origin, move the origin to another corner first."
+      "A short worked problem: pause once he has marked the intercepts and finish it yourself."
      ]
-},
+    },
     {
-     "id": "pMTA_wiY784",
-     "title": "Determining Miller Indices of a Crystal Plane",
-     "channel": "LearnChemE",
-     "len": "4:45",
-     "role": "learn",
+     "id": "zfVWGH8ELc8",
+     "title": "Planes in a Unit Cell",
+     "channel": "Engineering and Design Solutions",
+     "len": "2:08",
+     "role": "worked",
      "watch": [
-          "Find plane intercepts along x, y, and z axes and take reciprocals.",
-          "Clear fractional intercepts with a common denominator."
+      "One more quick plane: intercepts, reciprocals, whole numbers."
      ]
-}
+    }
    ],
    "after": "Plane calculator: Final 2017 Q1 and Callister Ex 3.10. Then A25 Q3, W26 Q3–4, and the old final T/F 31.",
    "gate": [
@@ -8316,16 +8324,16 @@ const content: GateContent = {
    "why": "Planar density is in A25, W26 and F17, each time on a different plane from the lecture example. Close-packed T/Fs in W26.",
    "videos": [
     {
-     "id": "9Rd8349JwWc",
-     "title": "Linear and Planar Atomic Densities",
-     "channel": "LearnChemE",
-     "len": "4:55",
+     "id": "VAP_SozPa8M",
+     "title": "Linear and Planar Density",
+     "channel": "Engineering and Design Solutions",
+     "len": "17:11",
      "role": "learn",
      "watch": [
-          "Linear density = atoms centered on vector / vector length.",
-          "Planar density = atoms centered on plane / plane area."
+      "Linear density = atoms centred on the direction vector ÷ the length of the vector.",
+      "Planar density = atoms centred on the plane ÷ the area of the plane. Count only the share of each atom whose centre lies on the plane."
      ]
-},
+    },
     {
      "id": "F0uEfVntPMo",
      "title": "FCC Planar Density",
@@ -8333,8 +8341,18 @@ const content: GateContent = {
      "len": "15:45",
      "role": "worked",
      "watch": [
-      "He does (100), (110) and (111) for FCC. Write all three in terms of R.",
+      "He works FCC (100) and (110) for copper. Write both in terms of R, then try (111) the same way.",
       "Then do BCC (110) yourself: 3/(8√2R²)."
+     ]
+    },
+    {
+     "id": "aPC8YwHNrL0",
+     "title": "BCC Linear Density",
+     "channel": "Engineering and Design Solutions",
+     "len": "25:23",
+     "role": "extra",
+     "watch": [
+      "BCC [100], [110] and [111] for iron. The body diagonal [111] is the close-packed direction: 2 atoms in a length of 4R."
      ]
     }
    ],
@@ -8411,10 +8429,20 @@ const content: GateContent = {
      "len": "13:48",
      "role": "learn",
      "watch": [
-          "Single crystal: one continuous lattice. Polycrystal: many grains with different orientations, joined at grain boundaries. Amorphous: no long-range order.",
-          "How the form (and grain size) links to properties such as strength and anisotropy."
+      "Single crystal: one continuous lattice. Polycrystal: many grains with different orientations, joined at grain boundaries. Amorphous: no long-range order.",
+      "How the form (and grain size) links to properties such as strength and anisotropy."
      ]
-}
+    },
+    {
+     "id": "6l2at-u18sQ",
+     "title": "Silicon and Carbon Polymorphism, plus SiC",
+     "channel": "Engineering and Design Solutions",
+     "len": "17:42",
+     "role": "extra",
+     "watch": [
+      "Polymorphism: the same composition in more than one crystal structure (carbon as diamond and as graphite)."
+     ]
+    }
    ],
    "after": "Do all eight T/Fs in a row; they are free marks once the definitions are clean.",
    "gate": [
@@ -8553,27 +8581,37 @@ const content: GateContent = {
    "why": "A25 and W26 both asked the Lecture 9 slide 9 hydrogen-purification problem with new numbers.",
    "videos": [
     {
+     "id": "c0sigNy6FF4",
+     "title": "Diffusion Through a Polymer Film",
+     "channel": "Engineering and Design Solutions",
+     "len": "6:13",
+     "role": "worked",
+     "watch": [
+      "Steady state: the concentration falls in a straight line, so J = −D·ΔC/Δx.",
+      "Keep the units consistent: D in m²/s, C in kg/m³, x in m gives J in kg/(m²·s)."
+     ]
+    },
+    {
      "id": "FuevAkamXNc",
      "title": "Fick’s First Law Example: Steady-State Hydrogen Diffusion Through Palladium",
      "channel": "Fertig Research Group",
      "len": "7:29",
      "role": "worked",
      "watch": [
-          "The classic palladium-sheet problem: a straight concentration profile, so $dC/dx$ is just the difference in concentration over the thickness.",
-          "Flux $J = -D\\,dC/dx$, then mass per hour = J × area × time."
+      "The classic palladium-sheet problem: a straight concentration profile, so $dC/dx$ is just the difference in concentration over the thickness.",
+      "Flux $J = -D\\,dC/dx$, then mass per hour = J × area × time."
      ]
-},
+    },
     {
-     "id": "m-sigBs5ilE",
-     "title": "Steady-State Diffusion Example Problem",
-     "channel": "LearnChemE",
-     "len": "11:15",
-     "role": "worked",
+     "id": "G5pHnXrACfA",
+     "title": "Diffusion and Flux of Carbon in Steel",
+     "channel": "Engineering and Design Solutions",
+     "len": "14:50",
+     "role": "extra",
      "watch": [
-          "Compute gas diffusion flux through a metal purification membrane.",
-          "Convert concentration units to kg/m^3 or atoms/m^3."
+      "Carbon into steel, with the flux worked out from a linear concentration profile."
      ]
-}
+    }
    ],
    "after": "Calculator: Lecture 9 slide 9, A25 Q7, W26 Q13. Same method three times, with new numbers each time.",
    "gate": [
@@ -8590,35 +8628,24 @@ const content: GateContent = {
    "why": "F24 had an erf calculation plus a carburizing-speed concept question; W26 had a T/F.",
    "videos": [
     {
-     "id": "U_G3qaxKWHg",
-     "title": "Fick's Second Law & Non-Steady State Diffusion",
-     "channel": "Dr Kidd Engineering",
-     "len": "5:22",
+     "id": "WaR3uC-mzCQ",
+     "title": "Diffusion - Coefficients and Non Steady State",
+     "channel": "Engineering and Design Solutions",
+     "len": "23:28",
      "role": "learn",
      "watch": [
-          "Governing PDE: dC/dt = D·(d²C/dx²) and its Gaussian error function solution.",
-          "The semi-infinite solid boundary condition: (Cx - C0)/(Cs - C0) = 1 - erf(x / (2*sqrt(Dt)))."
+      "D(T) first, then non-steady state: (C_x − C₀)/(C_s − C₀) = 1 − erf(x / 2√(Dt)).",
+      "He writes k in one formula where R belongs but uses the right value: R = 8.314 J/(mol·K). The audio is quiet, so turn the volume up."
      ]
-},
+    },
     {
-     "id": "U_G3qaxKWHg",
-     "title": "Non-Steady State Diffusion Error Function Example",
-     "channel": "Dr Kidd Engineering",
-     "len": "5:22",
+     "id": "zQ86CTMb6O8",
+     "title": "Diffusion of Nitrogen into Iron, Concentration at a Depth",
+     "channel": "Engineering and Design Solutions",
+     "len": "12:00",
      "role": "worked",
      "watch": [
-          "Linear interpolation of the error function erf(z) table.",
-          "Solving for carburization depth x or required processing time t."
-     ]
-},
-    {
-     "id": "FkD_rPpIb2Q",
-     "title": "Error function solution of Fick's second law",
-     "channel": "Introduction to Materials Science and Engineering",
-     "len": "13:14",
-     "role": "extra",
-     "watch": [
-      "Shows why x ∝ √(Dt): the reason for Lecture 9 slide 17."
+      "Work out z = x / 2√(Dt), read erf(z) from the table (interpolate), then solve for C_x."
      ]
     }
    ],
@@ -8639,34 +8666,35 @@ const content: GateContent = {
    "why": "The BCC vs FCC carbon question appeared at 910 °C (F24) and 1200 °C (W26); expect another temperature.",
    "videos": [
     {
-     "id": "Zakqi78EwhM",
-     "title": "Diffusion in Solids (Interactive Simulation)",
-     "channel": "LearnChemE",
-     "len": "2:25",
+     "id": "K_1QmKJvNjc",
+     "title": "Introduction to Diffusion in Solids",
+     "channel": "Engineering and Design Solutions",
+     "len": "17:08",
      "role": "learn",
      "watch": [
-          "Watch the concentration profile move into the solid as time and temperature change.",
-          "Higher temperature → larger D → atoms diffuse much deeper in the same time."
-     ]
-},
-    {
-     "id": "3mXUA58GuhE",
-     "title": "Materials Science Arrhenius Temperature Dependence of Diffusion and Calculation of Activation Energy",
-     "channel": "Dr. Joshua Paul Steimel",
-     "len": "7:15",
-     "role": "worked",
-     "watch": [
-      "The ln D vs 1/T plot (Lecture 9 slide 20)."
+      "Diffusion is atoms hopping from site to site: into a neighbouring vacancy, or between atoms (interstitial).",
+      "Interstitial diffusion is faster: small atoms, and there are always empty interstitial sites next door."
      ]
     },
     {
-     "id": "x433GxEzryI",
-     "title": "Example: Temperature Dependent Diffusion",
-     "channel": "Dr Kidd Engineering",
-     "len": "6:56",
+     "id": "S8qDlpKiY9c",
+     "title": "Diffusion of Copper into Gold",
+     "channel": "Engineering and Design Solutions",
+     "len": "10:57",
+     "role": "worked",
+     "watch": [
+      "D = D₀·exp(−Q_d / RT): he uses one experiment to predict another at a different temperature.",
+      "Use R = 8.314 J/(mol·K) and temperatures in kelvin."
+     ]
+    },
+    {
+     "id": "unSnInC0RrI",
+     "title": "Basic Metal Diffusion",
+     "channel": "Engineering and Design Solutions",
+     "len": "10:14",
      "role": "extra",
      "watch": [
-      "One more plug-in rep with kJ → J."
+      "Iron into cobalt: solving D = D₀·exp(−Q_d / RT) for the temperature, so take ln of both sides."
      ]
     }
    ],
@@ -8687,46 +8715,45 @@ const content: GateContent = {
    "why": "Rod elongation pair (F24), Poisson in F24 and F17, stiffness vs strength concept (F24).",
    "videos": [
     {
+     "id": "zZKn1nrBg1E",
+     "title": "Hooke's Law for Solids",
+     "channel": "Engineering and Design Solutions",
+     "len": "17:49",
+     "role": "learn",
+     "watch": [
+      "σ = F/A₀ and ε = Δl/l₀; in the elastic region σ = E·ε.",
+      "Watch where Hooke’s law stops working: past the proportional limit the line bends."
+     ]
+    },
+    {
      "id": "AkX6JqlWRqc",
      "title": "Understanding True Stress and True Strain",
      "channel": "The Efficient Engineer",
      "len": "6:50",
      "role": "learn",
      "watch": [
-          "The engineering stress-strain curve from elastic limit to necking and fracture.",
-          "Calculating Young's modulus E from the linear Hookean slope."
+      "The engineering stress-strain curve from elastic limit to necking and fracture.",
+      "Calculating Young's modulus E from the linear Hookean slope."
      ]
-},
+    },
     {
-     "id": "tuOlM3P7ygA",
-     "title": "Understanding Poisson's Ratio",
-     "channel": "The Efficient Engineer",
-     "len": "9:45",
-     "role": "learn",
-     "watch": [
-          "Formula: nu = -epsilon_lateral / epsilon_axial, typically 0.25 to 0.35 for metals.",
-          "Physical mechanism: conservation of volume during elastic stretching."
-     ]
-},
-    {
-     "id": "DLE-ieOVFjI",
-     "title": "Understanding Young's Modulus & Hooke's Law",
-     "channel": "The Efficient Engineer",
-     "len": "6:42",
+     "id": "aZMeXmWtiFc",
+     "title": "Stress, Strain, Deformation, and Poisson's Ratio",
+     "channel": "Engineering and Design Solutions",
+     "len": "11:07",
      "role": "worked",
      "watch": [
-          "Calculate axial elongation and lateral contraction under tensile load.",
-          "Check stress vs yield strength to ensure behavior remains in the elastic regime."
+      "Poisson’s ratio ν = −ε_lateral / ε_axial; he links it to the shear modulus with E = 2G(1 + ν)."
      ]
-},
+    },
     {
-     "id": "tuOlM3P7ygA",
-     "title": "Understanding Poisson's Ratio",
-     "channel": "The Efficient Engineer",
-     "len": "9:46",
+     "id": "seYFFn5kAAg",
+     "title": "Load, Deformation, and Stress in Tension",
+     "channel": "Engineering and Design Solutions",
+     "len": "8:56",
      "role": "extra",
      "watch": [
-      "Intuition for why the cross-section shrinks."
+      "Load from stress × area, then the elongation from Δl = σ·l₀ / E, with a check of the units."
      ]
     }
    ],
@@ -8749,34 +8776,23 @@ const content: GateContent = {
    "why": "W26 Q16–20 was one curve worth 10 marks, the same sequence as Callister Ex 6.3. A25 compared 5 curves. Hardness MC three times.",
    "videos": [
     {
-     "id": "yxve9ZzpPrg",
-     "title": "Mechanics of Materials: Lesson 10 - .2% Offset Rule Explained, Yield Point",
-     "channel": "Jeff Hanson",
-     "len": "7:01",
+     "id": "pNIvZyd5djQ",
+     "title": "Stress-Strain Curve for Steel and Resulting Points of Interest",
+     "channel": "Engineering and Design Solutions",
+     "len": "17:47",
      "role": "learn",
      "watch": [
-      "Draw the offset line on W26’s inset as he does it."
+      "He turns load and length data into engineering stress and strain, then reads E, the yield strength, the tensile strength, the ductility and the resilience off the curve."
      ]
     },
     {
-     "id": "WSRqJdT2COE",
-     "title": "Understanding Material Strength, Ductility & Toughness",
-     "channel": "The Efficient Engineer",
-     "len": "7:19",
-     "role": "learn",
+     "id": "-qHEi9kijj0",
+     "title": "Stress Strain Offset",
+     "channel": "Engineering and Design Solutions",
+     "len": "35:03",
+     "role": "worked",
      "watch": [
-          "Distinguish yield strength (0.2% offset) from ultimate tensile strength (UTS).",
-          "Modulus of resilience Ur vs fracture toughness (area under the curve)."
-     ]
-},
-    {
-     "id": "WSRqJdT2COE",
-     "title": "Understanding Material Strength, Ductility and Toughness",
-     "channel": "The Efficient Engineer",
-     "len": "7:19",
-     "role": "extra",
-     "watch": [
-      "Necking starts at the maximum of the engineering curve."
+      "The 0.2% offset: draw a line with slope E starting at ε = 0.002; where it crosses the curve is the yield strength."
      ]
     }
    ],
@@ -8819,10 +8835,10 @@ const content: GateContent = {
      "len": "17:57",
      "role": "learn",
      "watch": [
-          "Dislocation motion along close-packed slip planes and directions.",
-          "Schmid's law: resolved shear stress tau_R = sigma·cos(phi)·cos(lambda)."
+      "Dislocation motion along close-packed slip planes and directions.",
+      "Schmid's law: resolved shear stress tau_R = sigma·cos(phi)·cos(lambda)."
      ]
-},
+    },
     {
      "id": "cpvTwYAUeA8",
      "title": "Dislocations and Plastic Deformation",
@@ -8830,10 +8846,21 @@ const content: GateContent = {
      "len": "4:04",
      "role": "learn",
      "watch": [
-          "The 4 strengthening mechanisms: grain size reduction, solid solution, strain hardening, precipitate hardening.",
-          "Why hindering dislocation motion increases yield strength."
+      "The 4 strengthening mechanisms: grain size reduction, solid solution, strain hardening, precipitate hardening.",
+      "Why hindering dislocation motion increases yield strength."
      ]
-}
+    },
+    {
+     "id": "QgymOJv0Igc",
+     "title": "Loading of a Single Crystal Along Various Slip Systems",
+     "channel": "Engineering and Design Solutions",
+     "len": "16:16",
+     "role": "worked",
+     "watch": [
+      "Resolved shear stress τ_R = σ·cos φ·cos λ, with φ measured to the slip-plane normal and λ to the slip direction.",
+      "The slip system with the largest τ_R slips first, once τ_R reaches the critical value τ_CRSS."
+     ]
+    }
    ],
    "after": "Write FCC {111}<110> (12 systems) and BCC {110}<111> from memory; answer the old final T/F 32.",
    "gate": [

@@ -4,7 +4,8 @@ import '../styles/ytPlayer.css';
 
 // An outside YouTube video with the site's own control bar instead of YouTube's: the embed runs with
 // controls=0 through the IFrame Player API, and play, seek, speed, captions, volume and full screen
-// sit in a bar under the picture (never on top of it, as YouTube's embed terms require).
+// sit in a bar under the picture (never on top of it, as YouTube's embed terms require). In full screen
+// the bar fades out after 2 s of no pointer or key activity while playing, and comes back on hover.
 
 interface YTPlayer {
   playVideo(): void;
@@ -47,6 +48,7 @@ const loadApi = () =>
   }));
 
 const SPEEDS = [0.75, 1, 1.25, 1.5, 1.75, 2];
+const IDLE_MS = 2000;
 const clock = (s: number) => {
   const t = Math.max(0, Math.floor(s));
   const h = Math.floor(t / 3600);
@@ -68,6 +70,8 @@ export const YouTubePlayer: React.FC<{ id: string; title: string; className?: st
   const [volume, setVolume] = useState(100);
   const [cc, setCc] = useState(false);
   const [full, setFull] = useState(false);
+  const [idle, setIdle] = useState(false);
+  const idleTimer = useRef<number>();
 
   useEffect(() => {
     let alive = true;
@@ -115,6 +119,19 @@ export const YouTubePlayer: React.FC<{ id: string; title: string; className?: st
     document.addEventListener('fullscreenchange', on);
     return () => document.removeEventListener('fullscreenchange', on);
   }, []);
+
+  // full screen and playing: hide the bar after IDLE_MS without activity. Pointer moves over the picture stay
+  // inside YouTube's iframe and never reach this page, so hovering the bar's strip (or entering the picture)
+  // is what brings it back.
+  const wake = useCallback(() => {
+    window.clearTimeout(idleTimer.current);
+    setIdle(false);
+    if (full && playing) idleTimer.current = window.setTimeout(() => setIdle(true), IDLE_MS);
+  }, [full, playing]);
+  useEffect(() => {
+    wake();
+    return () => window.clearTimeout(idleTimer.current);
+  }, [wake]);
 
   const toggle = useCallback(() => {
     const p = player.current;
@@ -164,6 +181,7 @@ export const YouTubePlayer: React.FC<{ id: string; title: string; className?: st
   };
 
   const onKey = (e: React.KeyboardEvent) => {
+    wake();
     if ((e.target as HTMLElement).closest('input, select')) return;
     if (e.key === ' ' || e.key === 'k') (e.preventDefault(), toggle());
     else if (e.key === 'ArrowRight' || e.key === 'l') (e.preventDefault(), seek(time + 10));
@@ -173,11 +191,19 @@ export const YouTubePlayer: React.FC<{ id: string; title: string; className?: st
   };
 
   return (
-    <div ref={wrapRef} className={`lx-ytp${full ? ' is-full' : ''} ${className}`} tabIndex={-1} onKeyDown={onKey} aria-label={title}>
-      <div className="lx-ytp-screen">
+    <div
+      ref={wrapRef}
+      className={`lx-ytp${full ? ' is-full' : ''}${idle ? ' is-idle' : ''} ${className}`}
+      tabIndex={-1}
+      onKeyDown={onKey}
+      onMouseMove={wake}
+      onPointerDown={wake}
+      aria-label={title}
+    >
+      <div className="lx-ytp-screen" onMouseOver={wake}>
         <div ref={mountRef} className="lx-ytp-mount" />
       </div>
-      <div className="lx-ytp-bar" role="group" aria-label="Video controls">
+      <div className="lx-ytp-bar" role="group" aria-label="Video controls" onFocus={wake}>
         <button type="button" className="lx-ytp-btn" onClick={toggle} disabled={!ready} aria-label={playing ? 'Pause' : 'Play'} title={playing ? 'Pause (k)' : 'Play (k)'}>
           {playing ? <Pause size={18} /> : <Play size={18} />}
         </button>

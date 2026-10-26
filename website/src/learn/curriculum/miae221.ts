@@ -105,7 +105,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Intercepts, reciprocals and clearing fractions, including planes through the origin.',
           gate: ['planes'],
           bank: [{ ch: 'crystal', re: /plane|miller/i }],
-          youtube: ['n84gzYlB0BQ']
+          youtube: ['9Tf1dB1yVKY']
         },
         {
           id: 'linear-planar-density',
@@ -171,7 +171,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Vacancy and interstitial diffusion, and the Arrhenius dependence of the diffusion coefficient.',
           gate: ['diffmech'],
           videos: ['topic221:m221-07-diffusion'],
-          youtube: ['iOHFrtCxAxc'],
+          youtube: ['K_1QmKJvNjc'],
           read: [/^01 - Teacher Lecture Notes\/Lecture 9 - Diffusion in Solids \(Expanded/],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 05 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 9 - /, /^03 - 1-Page Rapid Review Sheets\/Part 9 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 09 /]
         },
@@ -202,7 +202,6 @@ export const MIAE221_SPEC: CourseSpec = {
           gate: ['elastic'],
           videos: ['topic221:m221-08-mechanical'],
           bank: [{ ch: 'mechanical', re: /elastic|modulus calc|hooke|poisson|elongation under/i, not: /resilience|recovery|permanent/i }],
-          youtube: ['WSRqJdT2COE'],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 06 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 6 - /, /^03 - 1-Page Rapid Review Sheets\/Part 6 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 10 /]
         },
         {
@@ -237,7 +236,7 @@ export const MIAE221_SPEC: CourseSpec = {
           gate: ['slip'],
           videos: ['topic221:m221-09-strengthening'],
           bank: [{ ch: 'strengthening', re: /slip|schmid|resolved/i }],
-          youtube: ['kwdQtThSFiw'],
+          youtube: ['QgymOJv0Igc'],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 07 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 7 - /, /^03 - 1-Page Rapid Review Sheets\/Part 7 - /]
         },
         {
@@ -268,7 +267,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Ferrite, austenite, cementite and pearlite, and the microconstituents of hypoeutectoid steels.',
           bank: [{ ch: 'phase' }],
           read: [/^01 - Teacher Lecture Notes \(Dr\. Medraj\)\/Lecture 15 - /, /^01 - Teacher Lecture Notes \(Dr\. Medraj\)\/Lecture 16 - /],
-          youtube: ['l-7pNy-BlLg', 'P4FFlpsJ8No']
+          youtube: ['Cq6Ym5_OvEg', 'P4FFlpsJ8No']
         }
       ]
     },
@@ -319,7 +318,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Miller indices: planes',
             summary: 'Q1–Q3 on the 2017 exam paper: coordinate intercepts, reciprocals and plane indices (hkl).',
             steps: [
-              { kind: 'extra', title: 'Watch: Miller Indices Practice Examples (MrClean1796)', slug: 'yt-miller', youtubeId: 'n84gzYlB0BQ', minutes: 7, refVideoId: 'topic221:m221-04-densities' },
+              { kind: 'extra', title: 'Watch: Crystallographic Planes (Engineering and Design Solutions)', slug: 'yt-miller', youtubeId: '9Tf1dB1yVKY', minutes: 19, refVideoId: 'topic221:m221-04-densities' },
               { kind: 'practice', title: 'Index the planes', slug: 'practice', questions: { teacher: /^Miller Indices/ }, ordered: true }
             ]
           },
@@ -355,7 +354,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Dislocations & slip',
             summary: 'Burgers vectors, slip planes and directions, and Schmid’s law resolved shear stress.',
             steps: [
-              { kind: 'extra', title: 'Watch: Schmid’s law example problem (Taylor Sparks)', slug: 'yt-slip', youtubeId: 'kwdQtThSFiw', minutes: 6, refVideoId: 'topic221:m221-09-strengthening' },
+              { kind: 'extra', title: 'Watch: Loading a single crystal along its slip systems (Engineering and Design Solutions)', slug: 'yt-slip', youtubeId: 'QgymOJv0Igc', minutes: 16, refVideoId: 'topic221:m221-09-strengthening' },
               { kind: 'practice', title: 'Answer the slip questions', slug: 'practice', questions: { teacher: /^Dislocations & Slip$/ }, ordered: true }
             ]
           },
@@ -373,7 +372,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Diffusion',
             summary: "Fick's 1st law steady-state flux and 2nd law non-steady state concentration profiles.",
             steps: [
-              { kind: 'extra', title: 'Watch: Fick’s first law (Texas A&M lecture)', slug: 'yt-diffusion', youtubeId: 'iOHFrtCxAxc', minutes: 8, refVideoId: 'topic221:m221-07-diffusion' },
+              { kind: 'extra', title: 'Watch: Introduction to Diffusion in Solids (Engineering and Design Solutions)', slug: 'yt-diffusion', youtubeId: 'K_1QmKJvNjc', minutes: 17, refVideoId: 'topic221:m221-07-diffusion' },
               { kind: 'practice', title: 'Solve the diffusion questions', slug: 'practice', questions: { teacher: /^Diffusion$/ }, ordered: true }
             ]
           },
@@ -382,7 +381,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'The stress–strain curve (Figure 1)',
             summary: 'Modulus E, 0.2% offset yield strength, ultimate tensile strength and necking.',
             steps: [
-              { kind: 'extra', title: 'Watch: Stress–Strain Curve & Mechanical Properties (The Efficient Engineer)', slug: 'yt-stress-strain', youtubeId: 'WSRqJdT2COE', minutes: 8, refVideoId: 'topic221:m221-08-mechanical' },
+              { kind: 'extra', title: 'Watch: The stress–strain curve for steel and its key points (Engineering and Design Solutions)', slug: 'yt-stress-strain', youtubeId: 'pNIvZyd5djQ', minutes: 18, refVideoId: 'topic221:m221-08-mechanical' },
               { kind: 'practice', title: 'Read the curve', slug: 'practice', questions: { teacher: /^Stress–Strain Curve/ }, ordered: true }
             ]
           },
@@ -391,7 +390,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Tensile test calculations',
             summary: 'Engineering stress, engineering strain, percent elongation (%EL) and reduction in area (%RA).',
             steps: [
-              { kind: 'extra', title: 'Watch: Extracting Tensile Properties from Stress-Strain Data (Swansea University)', slug: 'yt-tensile-calc', youtubeId: '_Utmj2jfUsM', minutes: 11, refVideoId: 'topic221:m221-08-mechanical' },
+              { kind: 'extra', title: 'Watch: Stress–strain curve and the 0.2% offset yield strength (Engineering and Design Solutions)', slug: 'yt-tensile-calc', youtubeId: '-qHEi9kijj0', minutes: 35, refVideoId: 'topic221:m221-08-mechanical' },
               { kind: 'practice', title: 'Do the calculations', slug: 'practice', questions: { teacher: /^Tensile Test Calculations$/ }, ordered: true }
             ]
           },
