@@ -1,0 +1,177 @@
+/* Course "Formulas" tab (learn/components/FormulaSheet.tsx) */
+.lx-fs-intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.lx-fs-intro p {
+  margin: 0;
+  max-width: 72ch;
+  color: var(--lx-ink-2);
+  line-height: 1.6;
+}
+.lx-fs-intro .lx-chip {
+  height: 22px;
+  padding: 0 8px;
+  font-size: 12px;
+}
+.lx-fs-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.lx-fs-bar .lx-lib-search {
+  flex: 1 1 280px;
+  max-width: 420px;
+}
+.lx-fs .lx-seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--lx-line-strong);
+  border-radius: var(--lx-r);
+  overflow: hidden;
+  background: var(--lx-surface);
+}
+.lx-fs .lx-seg button {
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.lx-fs .lx-seg button + button {
+  border-left: 1px solid var(--lx-line);
+}
+.lx-fs .lx-seg button.is-on {
+  background: var(--lx-ink);
+  color: #fff;
+}
+.lx-fs-chapter {
+  margin-top: 28px;
+}
+.lx-fs-chapter > h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 12px;
+}
+.lx-fs-chapter > h2 .lx-meta {
+  font-size: 13px;
+  font-weight: 500;
+}
+.lx-fs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 12px;
+}
+.lx-fs-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r);
+  background: var(--lx-surface);
+  break-inside: avoid;
+}
+.lx-fs-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.lx-fs-card-head h3 {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.35;
+}
+.lx-fs-card-head .lx-chip {
+  flex: none;
+  height: 24px;
+  font-size: 12px;
+}
+.lx-fs-tex {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 4px;
+  border-radius: 8px;
+  background: var(--lx-surface-2);
+  font-size: 15px;
+}
+.lx-fs-meaning {
+  margin: 0;
+  color: var(--lx-ink-2);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.lx-fs .lx-vars {
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.lx-fs .lx-vars th,
+.lx-fs .lx-vars td {
+  padding: 5px 12px 5px 0;
+  text-align: left;
+  vertical-align: top;
+}
+.lx-fs .lx-vars tr + tr th,
+.lx-fs .lx-vars tr + tr td {
+  border-top: 1px solid var(--lx-line);
+}
+.lx-fs-note {
+  margin: 0;
+}
+.lx-fs-lesson {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 4px;
+  color: var(--lx-accent-deep);
+  font-size: 13.5px;
+  font-weight: 650;
+  text-decoration: none;
+}
+.lx-fs-lesson:hover {
+  text-decoration: underline;
+}
+.lx-fs-constants {
+  width: 100%;
+  max-width: 760px;
+  padding: 12px 16px;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-r);
+  background: var(--lx-surface);
+}
+@media (max-width: 620px) {
+  .lx-fs-intro {
+    flex-direction: column;
+  }
+  .lx-fs-card {
+    padding: 14px;
+  }
+}
+@media print {
+  .lx-fs-bar,
+  .lx-fs .lx-filter-row,
+  .lx-fs-intro button,
+  .lx-fs-lesson {
+    display: none !important;
+  }
+  .lx-fs-grid {
+    display: block;
+  }
+  .lx-fs-card {
+    margin-bottom: 8px;
+    border-color: #ccc;
+  }
+}

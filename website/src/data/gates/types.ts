@@ -62,6 +62,14 @@ export interface Question {
   steps?: string[];
   f?: string[];
   drill?: boolean;
+  fig?: QuestionFigure;
+}
+
+// the figure a question asks about, cropped from its paper (served from public/)
+export interface QuestionFigure {
+  src: string;
+  alt: string;
+  caption?: string;
 }
 
 export interface Cluster {

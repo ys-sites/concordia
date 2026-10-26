@@ -146,6 +146,8 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
 
   const formulasOf = (topics: string[]) => gate.formulas.filter((f) => topics.includes(f.topic));
   const examOf = (topics: string[]) => gate.questions.filter((q) => topics.includes(q.topic));
+  // homework and tutorial sets are not past exams: their questions go to the practice step
+  const homework = new Set(gate.exams.filter((e) => e.kind === 'homework').map((e) => e.id));
 
   const deriveSteps = (l: LessonSpec): Step[] => {
     const topics = l.gate ?? [];
@@ -207,15 +209,17 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     for (const f of fs.filter((x) => x.calc)) steps.push({ id: `${l.id}.tool-${f.id}`, kind: 'tool', title: `Formula lab: ${f.name}`, minutes: minutesFor('tool'), toolId: `formula:${f.id}`, formulaIds: [f.id] });
     for (const t of l.tools ?? []) steps.push({ id: `${l.id}.tool-${slug(t)}`, kind: 'tool', title: toolTitle(t), minutes: 8, toolId: t });
 
+    const examQs = examOf(topics);
     const practice = [
       ...items.map(({ f, i }) => itemId(c, f, i)).filter((id) => !check.includes(id)),
       ...bankQs.map((q) => `b:${q.id}`).filter((id) => !check.includes(id)),
-      ...(drillRoute.home.get(l.id) ?? []).map((q) => `d:${q.id}`)
+      ...(drillRoute.home.get(l.id) ?? []).map((q) => `d:${q.id}`),
+      ...examQs.filter((q) => homework.has(q.exam)).map((q) => examQid(c, q.id))
     ];
     const s2 = qStep(l.id, 'practice', `Practice (${practice.length} questions)`, practice);
     if (s2) steps.push(s2);
 
-    const exam = examOf(topics).map((q) => examQid(c, q.id));
+    const exam = examQs.filter((q) => !homework.has(q.exam)).map((q) => examQid(c, q.id));
     const s3 = qStep(l.id, 'exam', `Past exam questions (${exam.length})`, exam);
     if (s3) steps.push(s3);
 

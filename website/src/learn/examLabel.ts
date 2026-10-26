@@ -26,9 +26,9 @@ export const examLabel = (source?: string | null): string => {
         : /\bexam\b/.test(text)
           ? 'Exam'
           : '';
-  const version = text.match(/\bversion\s*(\d+)\b/)?.[1];
+  const version = text.match(/\bversion\s*(\d+|[a-z])\b/)?.[1]?.toUpperCase();
 
-  const label = [assessment, term, year].filter(Boolean).join(' ');
+  const label = [assessment, term, year || (/\bundated\b/.test(text) ? '(undated)' : '')].filter(Boolean).join(' ');
   if (!label) return 'Past exam';
   return version ? `${label} · Version ${version}` : label;
 };

@@ -25,6 +25,7 @@ import { CourseCover } from '../components/CourseCover';
 import { StepIcon } from '../components/StepIcon';
 import { ResourceLibrary } from '../components/ResourceLibrary';
 import { VideoLibrary } from '../components/VideoLibrary';
+import { FormulaSheet, hasFormulaSheet } from '../components/FormulaSheet';
 import { getVideoUrl } from '../../utils/pdfUrl';
 import '../styles/course.css';
 
@@ -189,9 +190,10 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
   const ctaHref = next ? href({ name: 'learn', course, lesson: next.lesson.id, step: next.step.id }) : href({ name: 'learn', course, lesson: SUMMARY[course].start.lessonId });
   const started = !!prog && prog.done > 0;
   const examTab: { id: CourseTab; label: string } = { id: 'exam', label: urgentExamLabel ? `Exam prep · ${urgentExamLabel}` : 'Exam prep' };
+  const formulasTab: { id: CourseTab; label: string }[] = hasFormulaSheet(course) ? [{ id: 'formulas', label: 'Formulas' }] : [];
   const tabs: { id: CourseTab; label: string }[] = urgentExam
-    ? [examTab, { id: 'overview', label: 'Course content' }, { id: 'videos', label: `Videos (${s.videos})` }, { id: 'resources', label: `Resources (${s.documents})` }]
-    : [{ id: 'overview', label: 'Course content' }, { id: 'videos', label: `Videos (${s.videos})` }, examTab, { id: 'resources', label: `Resources (${s.documents})` }];
+    ? [examTab, { id: 'overview', label: 'Course content' }, { id: 'videos', label: `Videos (${s.videos})` }, ...formulasTab, { id: 'resources', label: `Resources (${s.documents})` }]
+    : [{ id: 'overview', label: 'Course content' }, { id: 'videos', label: `Videos (${s.videos})` }, examTab, ...formulasTab, { id: 'resources', label: `Resources (${s.documents})` }];
   return (
     <div className={`lx-course ${courseClass(course)}`}>
       <div className={`lx-wrap lx-course-layout${tab === 'videos' ? ' is-wide' : ''}`}>
@@ -280,6 +282,8 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
               <VideoLibrary cur={cur} />
             ) : tab === 'exam' ? (
               <ExamTab cur={cur} done={done} />
+            ) : tab === 'formulas' && hasFormulaSheet(course) ? (
+              <FormulaSheet cur={cur} />
             ) : (
               <ResourceLibrary cur={cur} folder={folder} />
             )}

@@ -80,10 +80,12 @@ export function fromGateExam(c: CourseId, g: GateContent, q: GateQuestion, video
     origin: 'exam' as const,
     prompt: q.q,
     code: q.code,
+    ...(q.fig ? { figure: q.fig } : {}),
     topic: g.topics.find((t) => t.id === q.topic)?.name ?? q.topic,
     level: 3 as const,
     source: `${exam?.label ?? q.exam} · Q${q.n}`,
-    pastPaper: true,
+    // homework and tutorial sets are course material, not past papers
+    pastPaper: exam?.kind !== 'homework',
     videoId,
     refs: lecRefs(g, [...(q.f ?? []).flatMap((fid) => g.formulas.find((f) => f.id === fid)?.lec ?? []), ...(g.topics.find((t) => t.id === q.topic)?.lec ?? [])]),
     explain: {

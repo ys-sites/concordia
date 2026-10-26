@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import type { CourseId } from '../types';
 import { isCourseId } from './courses';
 
-export type CourseTab = 'overview' | 'videos' | 'exam' | 'resources';
+export type CourseTab = 'overview' | 'videos' | 'exam' | 'formulas' | 'resources';
 
 export type Route =
   | { name: 'home' }
@@ -47,7 +47,7 @@ export function parseRoute(hash: string): Route {
       if (!isCourseId(course)) return { name: 'home' };
       // old folder links ("?folder=01 - Teacher Lecture Notes/…") open that folder in Resources
       const folder = params.get('folder')?.split('/')[0];
-      const tab = (['overview', 'videos', 'exam', 'resources'].includes(parts[2])
+      const tab = (['overview', 'videos', 'exam', 'formulas', 'resources'].includes(parts[2])
         ? parts[2]
         : /midterm|practice|gate/i.test(folder ?? '')
           ? 'exam'

@@ -21,6 +21,11 @@ export const ID_ALIASES: Record<string, string> = {
   'MIAE221/crystalline-amorphous.yt-Kp7PW0UHypo': 'MIAE221/crystalline-amorphous.yt-cpvTwYAUeA8',
   'MIAE221/diffusion-mechanisms.yt-0RfGILRniA8': 'MIAE221/diffusion-mechanisms.yt-Zakqi78EwhM',
   'MIAE221/dislocations-grains.yt-aR_7duBM_2Y': 'MIAE221/dislocations-grains.yt-PaGJwOPg2kU',
+  // better outside videos for Miller-index directions (2026-10-26)
+  'MIAE221/directions.yt-iktLutyh4W8': 'MIAE221/directions.yt-fYK45OdnZH0',
+  'MIAE221/directions.yt-oPxi0hQo9cE': 'MIAE221/directions.yt-UobLvLs75l0',
+  'yt:iktLutyh4W8': 'yt:fYK45OdnZH0',
+  'yt:oPxi0hQo9cE': 'yt:UobLvLs75l0',
   'MIAE221/elastic.yt-5xQxAW0So6Y': 'MIAE221/elastic.yt-DLE-ieOVFjI',
   'MIAE221/elastic.yt-9f6VL9mcUbg': 'MIAE221/elastic.yt-tuOlM3P7ygA',
   'MIAE221/elastic.yt-kDW3Iw-Oe4s': 'MIAE221/elastic.yt-AkX6JqlWRqc',

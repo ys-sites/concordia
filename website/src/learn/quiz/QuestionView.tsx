@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import { BookOpen, Check, CheckCircle2, Eye, Flag, HelpCircle, Lightbulb, MessageSquareWarning, XCircle } from 'lucide-react';
+import { BookOpen, Check, CheckCircle2, Eye, Flag, GraduationCap, HelpCircle, Lightbulb, MessageSquareWarning, XCircle } from 'lucide-react';
 import type { LearnQuestion } from '../model';
 import { LEVEL_LABEL } from '../model';
 import type { Answer, Confidence } from '../progress/store';
 import { updateProgress, useProgress } from '../progress/store';
 import { openDoc } from '../docBus';
 import { COURSE_BY_ID } from '../courses';
+import { examLabel } from '../examLabel';
 import { trackStudy } from '../analytics';
 import { MathText } from '../../utils/mathRenderer';
 import { OptionContent } from '../../components/OptionContent';
@@ -72,6 +73,9 @@ export const QuestionView: React.FC<QuestionViewProps> = (p) => {
   // the source line often names the same lecture page as the slide chip: show it once
   const plain = (x: string) => x.toLowerCase().replace(/\.pdf/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
   const sourceIsSlide = !!slide && !!q.source && plain(q.source).startsWith(plain(slide.title));
+  // a past-exam question names its paper and question number; its slide reference waits for the answer panel
+  const paperQ = q.source?.match(/·\s*(Q\d+\w*)/i)?.[1];
+  const paper = q.pastPaper ? [examLabel(q.source), paperQ].filter(Boolean).join(' · ') : null;
   const report = () => {
     trackStudy('report_problem', { course: q.courseId, question: q.id });
     window.dispatchEvent(
@@ -110,8 +114,13 @@ What went wrong:
         </div>
         <div className="lx-q-tags">
           <span className={`lx-chip lx-lvl-chip lx-lvl-${q.level}`}>{LEVEL_LABEL[q.level]}</span>
+          {paper && (
+            <span className="lx-chip lx-chip--accent" title={q.source}>
+              <GraduationCap size={13} aria-hidden /> {paper}
+            </span>
+          )}
           <span className="lx-chip">{q.topic}</span>
-          {slide && (
+          {slide && !paper && (
             <button type="button" className="lx-chip lx-q-ref" onClick={() => openDoc(slide)} title={`Open ${slide.title}${slide.page ? `, page ${slide.page}` : ''}`}>
               <BookOpen size={12} aria-hidden /> {slide.title.replace(/\.pdf$/i, '')}
               {slide.page ? ` · p. ${slide.page}` : ''}

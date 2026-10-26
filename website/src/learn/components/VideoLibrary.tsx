@@ -4,6 +4,7 @@ import type { Curriculum, VideoCard } from '../model';
 import { resolveVideo, MotionLesson } from '../videoSources';
 import { MotionLessonPlayer } from '../../components/MotionLessonPlayer';
 import { VideoThumb } from './VideoThumb';
+import { YouTubePlayer } from './YouTubePlayer';
 import { fmtClock } from '../data';
 import { href } from '../router';
 import { markStep, saveVideoPosition, useProgress } from '../progress/store';
@@ -89,12 +90,7 @@ export const VideoLibrary: React.FC<{ cur: Curriculum }> = ({ cur }) => {
           <div className="lx-vlib-stage">
             {current.kind === 'extra' ? (
               ytPlay ? (
-                <iframe
-                  src={`https://www.youtube.com/embed/${current.id.slice(3)}?autoplay=1&rel=0&playsinline=1&fs=1&enablejsapi=1`}
-                  title={current.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-                  allowFullScreen
-                />
+                <YouTubePlayer id={current.id.slice(3)} title={current.title} className="lx-vlib-ytp" />
               ) : (
                 <button type="button" className="lx-vlib-poster" onClick={() => setYtPlay(true)} aria-label={`Play ${current.title}`}>
                   <img src={`https://i.ytimg.com/vi/${current.id.slice(3)}/hqdefault.jpg`} alt="" />

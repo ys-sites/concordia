@@ -3,6 +3,7 @@
 import type { GateContent } from './types';
 import { MIAE221_SOLVE_VIDEOS } from './miae221SolveVideos';
 import { MIAE221_TOPIC_VIDEOS } from './miae221TopicVideos';
+import { MIAE221_FIGURES } from './miae221Figures';
 
 const content: GateContent = {
  "version": 2,
@@ -951,7 +952,7 @@ const content: GateContent = {
    "n": 6,
    "topic": "bondcurve",
    "kind": "figure",
-   "q": "From a net bonding FORCE vs separation curve (crosses zero near 3 Å), what is the equilibrium spacing?",
+   "q": "The figure shows the net bonding force between two atoms. What is the equilibrium spacing between the two atoms? (1 Å = 10⁻¹⁰ m)",
    "opts": [
     "2 Å",
     "3 Å",
@@ -1064,7 +1065,7 @@ const content: GateContent = {
    "n": 12,
    "topic": "elastic",
    "kind": "calc",
-   "q": "The load on each rod above increases by 50 %. New length?",
+   "q": "Same rods as Q11 (steel, 20 mm diameter, 10 m long, each carrying 9800 N, E = 207 GPa). The load on each rod increases by 50 %. New length?",
    "opts": [
     "10.00151 m",
     "10.0023 m",
@@ -1085,7 +1086,7 @@ const content: GateContent = {
    "n": 13,
    "topic": "planes",
    "kind": "figure",
-   "q": "Plane K in the figure (intercepts −1, −1, 1 after choosing the origin) is…",
+   "q": "In the figure, plane K is best described by which Miller indices?",
    "opts": [
     "(111)",
     "(100)",
@@ -1105,7 +1106,7 @@ const content: GateContent = {
    "n": 14,
    "topic": "directions",
    "kind": "figure",
-   "q": "Direction I in the figure (head − tail = −1, −1, −½) is…",
+   "q": "In the figure, direction I is best described by which Miller indices?",
    "opts": [
     "[122]",
     "[221]",
@@ -1344,7 +1345,7 @@ const content: GateContent = {
    "n": 1,
    "topic": "cells",
    "kind": "figure",
-   "q": "The crystal structure in Figure 1 (corner atoms + one body-centre atom) is…",
+   "q": "The crystal structure illustrated in Figure 1 is…",
    "opts": [
     "BCC",
     "HCP",
@@ -1361,7 +1362,7 @@ const content: GateContent = {
    "n": 2,
    "topic": "ldpd",
    "kind": "figure",
-   "q": "In Figure 1 (BCC), which is a close-packed plane?",
+   "q": "In Figure 1, which of the following is a close-packed plane?",
    "opts": [
     "ABCD",
     "ABGF",
@@ -1398,7 +1399,7 @@ const content: GateContent = {
    "n": 4,
    "topic": "ldpd",
    "kind": "calc",
-   "q": "In Figure 1 (BCC), the planar density of the (110) plane in terms of R is…",
+   "q": "In Figure 1, the planar density of the (110) plane, in terms of the atomic radius R, is…",
    "opts": [
     "$1/(\\sqrt2R^2)$",
     "$1/(2\\sqrt2R^2)$",
@@ -1591,7 +1592,7 @@ const content: GateContent = {
    "n": 14,
    "topic": "defects",
    "kind": "figure",
-   "q": "The defect in Figure 3 (extra half-plane of atoms) is…",
+   "q": "The defect shown in Figure 3 is a representation of…",
    "opts": [
     "a vacancy",
     "a screw dislocation",
@@ -2441,7 +2442,7 @@ const content: GateContent = {
    "n": 1,
    "topic": "bondcurve",
    "kind": "figure",
-   "q": "From force/energy curves (Figure 1), the bond length is read at…",
+   "q": "In Figure 1, the bond length is obtained from…",
    "opts": [
     "point A",
     "points B or E",
@@ -2587,7 +2588,7 @@ const content: GateContent = {
    "n": 1,
    "topic": "planes",
    "kind": "figure",
-   "q": "Plane with intercepts x = 1, y = ∞, z = ½. Miller indices?",
+   "q": "The Miller indices of the plane shown in the cubic unit cell are…",
    "opts": [
     "(102)",
     "(1 1 ½)",
@@ -8220,23 +8221,25 @@ const content: GateContent = {
    "why": "W26 had two direction questions (4 marks); F24 had two. Every drawing is new, so only the method transfers.",
    "videos": [
     {
-     "id": "iktLutyh4W8",
-     "title": "crystallographic directions",
-     "channel": "Linda Vanasupa",
-     "len": "7:13",
+     "id": "fYK45OdnZH0",
+     "title": "Crystallographic Directions (Texas A&M, Intro to Materials)",
+     "channel": "Patrick Shamberger",
+     "len": "6:31",
      "role": "learn",
      "watch": [
-      "Head − tail, clear fractions, bars. Write the four steps in the margin."
+      "A direction is a vector between two points of the cell: head coordinates minus tail coordinates, in units of the cell edge.",
+      "Then clear the fractions and reduce to the smallest whole numbers; a negative number gets a bar on top.",
+      "Going the other way (drawing $[uvw]$ from its indices): divide by the largest index so the vector fits inside the cell."
      ]
     },
     {
-     "id": "oPxi0hQo9cE",
-     "title": "Miller Indices 01 - Identifying Crystallographic Directions",
-     "channel": "MideCali Engineer",
-     "len": "13:06",
+     "id": "UobLvLs75l0",
+     "title": "Miller Indices: Planes, Directions, and Structures Examples",
+     "channel": "MrClean1796",
+     "len": "7:41",
      "role": "worked",
      "watch": [
-      "Do each example before he reveals it, especially those with a fractional tail."
+      "Pause before each answer and work it yourself first; check the tail point every time before subtracting."
      ]
     }
    ],
@@ -9234,5 +9237,7 @@ const content: GateContent = {
 content.solveVideos = MIAE221_SOLVE_VIDEOS;
 // narrated "topic explained" video per subtopic (same publisher)
 content.topicVideos = MIAE221_TOPIC_VIDEOS;
+// the figure each past-exam question asks about
+for (const q of content.questions) if (MIAE221_FIGURES[q.id]) q.fig = MIAE221_FIGURES[q.id];
 
 export default content;

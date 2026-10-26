@@ -4,7 +4,11 @@
 import katex from 'katex';
 import { PRACTICE_QUESTIONS } from '../src/data/questionsData';
 import { TEACHER_EXAM_QUESTIONS, TEACHER_EXAM_CHAPTER } from '../src/data/teacherExamQuestions';
+import { existsSync } from 'node:fs';
 import { splitMath, hasInlineMath } from '../src/utils/mathRenderer';
+import miae221Gate from '../src/data/gates/miae221';
+import { MIAE221_CONSTANTS, MIAE221_FORMULAS } from '../src/data/miae221Formulas';
+import { MIAE221_SPEC } from '../src/learn/curriculum/miae221';
 
 const errors: string[] = [];
 const check = (id: string, where: string, text: string | undefined, bare = false) => {
@@ -80,6 +84,28 @@ for (const q of [...PRACTICE_QUESTIONS, ...TEACHER_EXAM_QUESTIONS]) {
   if (q.pastPaper) c.past++;
 }
 console.table(byCourse);
+
+// the Formulas tab: every formula typesets and links to a real lesson
+const miae221Lessons = new Set(MIAE221_SPEC.sections.flatMap((sec) => sec.lessons.map((l) => l.id)));
+const formulaIds = new Set<string>();
+for (const ch of MIAE221_FORMULAS)
+  for (const f of ch.formulas) {
+    const id = `formula ${ch.id}/${f.id}`;
+    if (formulaIds.has(f.id)) errors.push(`${id}: duplicate formula id`);
+    formulaIds.add(f.id);
+    check(id, 'tex', f.tex, true);
+    check(id, 'meaning', f.meaning);
+    f.vars?.forEach(([sym, what]) => (check(id, 'var', sym, true), check(id, 'var meaning', what)));
+    if (f.lesson && !miae221Lessons.has(f.lesson)) errors.push(`${id}: unknown lesson ${f.lesson}`);
+  }
+for (const k of MIAE221_CONSTANTS) (check(`constant ${k.sym}`, 'symbol', k.sym, true), check(`constant ${k.sym}`, 'value', k.value, true));
+
+// a past-exam question that asks about a figure must show it
+for (const q of miae221Gate.questions) {
+  const asksFigure = q.kind === 'figure' || /(in the (adjacent )?figure|figure \d|shown below|adjacent figure)/i.test(q.q);
+  if (asksFigure && !q.fig) errors.push(`MIAE221 ${q.id}: asks about a figure but has none (add it to gates/miae221Figures.ts)`);
+  if (q.fig && !existsSync(`public${q.fig.src}`)) errors.push(`MIAE221 ${q.id}: figure file public${q.fig.src} is missing`);
+}
 if (errors.length) {
   console.error(`${errors.length} problem(s):\n` + errors.join('\n'));
   process.exit(1);

@@ -199,3 +199,6 @@
     max-height: 560px;
   }
 }
+.lx-vlib-stage .lx-vlib-ytp {
+  border-radius: 0;
+}
