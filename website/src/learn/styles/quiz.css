@@ -146,11 +146,92 @@
   overflow-x: auto;
   overflow-y: hidden;
 }
+.lx-q-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.lx-q-figure-open {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--lx-r);
+  background: none;
+  cursor: zoom-in;
+}
+.lx-q-figure-open:focus-visible {
+  outline: 2px solid var(--lx-accent, #2563eb);
+  outline-offset: 2px;
+}
 .lx-q-figure img {
-  max-height: 360px;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 520px;
   border-radius: var(--lx-r);
   border: 1px solid var(--lx-line);
   background: #fff;
+}
+.lx-q-figure-zoom {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.62);
+  color: #fff;
+  opacity: 0.75;
+  transition: opacity 0.15s;
+}
+.lx-q-figure-open:hover .lx-q-figure-zoom,
+.lx-q-figure-open:focus-visible .lx-q-figure-zoom {
+  opacity: 1;
+}
+/* the figure opened full size */
+.lx-figzoom {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(2, 6, 23, 0.85);
+  cursor: zoom-out;
+}
+.lx-figzoom img {
+  width: min(96vw, 1300px);
+  height: auto;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  cursor: default;
+}
+.lx-figzoom-close {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  cursor: pointer;
+}
+.lx-figzoom-close:hover,
+.lx-figzoom-close:focus-visible {
+  background: rgba(255, 255, 255, 0.26);
 }
 
 /* code */

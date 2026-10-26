@@ -13,6 +13,7 @@ import { OptionContent } from '../../components/OptionContent';
 import { ReadAloudButton } from '../../components/ReadAloudButton';
 import { CodeBlock } from '../components/CodeBlock';
 import { Explanation, useCourseDocs } from './Explanation';
+import { QuestionFigure } from './QuestionFigure';
 import '../styles/answer.css';
 
 const LETTER = 'ABCDEFGH';
@@ -139,12 +140,7 @@ What went wrong:
         </div>
       )}
       {q.code && <CodeBlock code={q.code} />}
-      {q.figure && (
-        <figure className="lx-q-figure">
-          <img src={q.figure.src} alt={q.figure.alt} loading="lazy" />
-          {q.figure.caption && <figcaption className="lx-meta">{q.figure.caption}</figcaption>}
-        </figure>
-      )}
+      {q.figure && <QuestionFigure figure={q.figure} />}
 
       {(q.kind === 'mc' || q.kind === 'tf' || q.kind === 'multi') && (
         <div className={`lx-opts${q.kind === 'tf' ? ' is-tf' : ''}${showFeedback ? ' is-done' : ''}`} role={q.kind === 'multi' ? 'group' : 'radiogroup'} aria-label="Answer options">
