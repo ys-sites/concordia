@@ -3,4 +3,1271 @@
 // "L:<lesson>:<index>" for a Formula Lab question). Paths are course-relative (served via getVideoUrl).
 import type { MotionLesson } from '../engr213Lessons';
 
-export const MIAE221_SOLVE_VIDEOS: Record<string, MotionLesson> = {};
+export const MIAE221_SOLVE_VIDEOS: Record<string, MotionLesson> = {
+ "A25-6": {
+  "num": 8,
+  "title": "A25-Q06 · Electron Configuration",
+  "source": "Midterm 2025 (Version A) · Question 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q06 - Electron Configuration.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q06 - Electron Configuration.jpg",
+  "duration": 197,
+  "sizeMB": 9.9,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 18.9
+   },
+   {
+    "label": "Solve It",
+    "start": 51.7
+   },
+   {
+    "label": "Check It",
+    "start": 97.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 110.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 160.9
+   }
+  ]
+ },
+ "A25-23": {
+  "num": 9,
+  "title": "A25-TF23 · Electron Configuration",
+  "source": "Midterm 2025 (Version A) · True/False 23",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-TF23 - Electron Configuration.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-TF23 - Electron Configuration.jpg",
+  "duration": 125,
+  "sizeMB": 6.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24
+   },
+   {
+    "label": "Solve It",
+    "start": 42.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 67.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 96.9
+   }
+  ]
+ },
+ "W26-36": {
+  "num": 10,
+  "title": "W26-TF36 · Electron Configuration",
+  "source": "Winter 2026 midterm · True/False 36",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF36 - Electron Configuration.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF36 - Electron Configuration.jpg",
+  "duration": 117,
+  "sizeMB": 5.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.5
+   },
+   {
+    "label": "Solve It",
+    "start": 33.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 61.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 92.8
+   }
+  ]
+ },
+ "PPS1-1": {
+  "num": 11,
+  "title": "PPS1-Q01 · Electron Configuration",
+  "source": "Practice Problem Set #1 (Fall 2026) · Question 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/PPS1-Q01 - Electron Configuration.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/PPS1-Q01 - Electron Configuration.jpg",
+  "duration": 184,
+  "sizeMB": 9.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 24.5
+   },
+   {
+    "label": "Solve It",
+    "start": 50.4
+   },
+   {
+    "label": "Check It",
+    "start": 107.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 123.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 150
+   }
+  ]
+ },
+ "FX-6": {
+  "num": 12,
+  "title": "FX-Q06 · Moles & Atoms",
+  "source": "Old final (MECH 221, undated) · Question 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/FX-Q06 - Moles & Atoms.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/FX-Q06 - Moles & Atoms.jpg",
+  "duration": 173,
+  "sizeMB": 7.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.2
+   },
+   {
+    "label": "The Plan",
+    "start": 48.1
+   },
+   {
+    "label": "Solve It",
+    "start": 59.7
+   },
+   {
+    "label": "Check It",
+    "start": 93.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 110.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 141.9
+   }
+  ]
+ },
+ "PPS1-5": {
+  "num": 13,
+  "title": "PPS1-Q05 · Moles & Atoms",
+  "source": "Practice Problem Set #1 (Fall 2026) · Question 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/PPS1-Q05 - Moles & Atoms.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/PPS1-Q05 - Moles & Atoms.jpg",
+  "duration": 221,
+  "sizeMB": 10.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 36.6
+   },
+   {
+    "label": "Solve It",
+    "start": 52.2
+   },
+   {
+    "label": "Check It",
+    "start": 130.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 156.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 189.9
+   }
+  ]
+ },
+ "L:atoms:1": {
+  "num": 14,
+  "title": "Practice 1 · Moles & Atoms",
+  "source": "Number of atoms from mass · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Moles & Atoms.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Moles & Atoms.jpg",
+  "duration": 130,
+  "sizeMB": 5.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 19.2
+   },
+   {
+    "label": "Solve It",
+    "start": 29.9
+   },
+   {
+    "label": "Check It",
+    "start": 55.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 69.5
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 99.2
+   }
+  ]
+ },
+ "L:atoms:2": {
+  "num": 15,
+  "title": "Practice 2 · Moles & Atoms",
+  "source": "Number of atoms from mass · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Moles & Atoms.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Moles & Atoms.jpg",
+  "duration": 157,
+  "sizeMB": 6.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 27.9
+   },
+   {
+    "label": "Solve It",
+    "start": 37.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 103.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 131.2
+   }
+  ]
+ },
+ "L:atoms:3": {
+  "num": 16,
+  "title": "Practice 3 · Moles & Atoms",
+  "source": "Number of atoms from mass · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Moles & Atoms.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Moles & Atoms.jpg",
+  "duration": 120,
+  "sizeMB": 5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 20
+   },
+   {
+    "label": "Solve It",
+    "start": 30.9
+   },
+   {
+    "label": "Check It",
+    "start": 53
+   },
+   {
+    "label": "Go Deeper",
+    "start": 66.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 92.7
+   }
+  ]
+ },
+ "F24-3": {
+  "num": 17,
+  "title": "F24-Q03 · Bond Types",
+  "source": "Fall 2024 midterm · Question 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q03 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q03 - Bond Types.jpg",
+  "duration": 174,
+  "sizeMB": 9.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26.2
+   },
+   {
+    "label": "Solve It",
+    "start": 58.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 96.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 139.8
+   }
+  ]
+ },
+ "F24-16": {
+  "num": 18,
+  "title": "F24-Q16 · Bond Types",
+  "source": "Fall 2024 midterm · Question 16",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q16 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q16 - Bond Types.jpg",
+  "duration": 211,
+  "sizeMB": 11.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 20.8
+   },
+   {
+    "label": "Solve It",
+    "start": 60.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 111.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 171.5
+   }
+  ]
+ },
+ "F24-24": {
+  "num": 19,
+  "title": "F24-TF24 · Bond Types",
+  "source": "Fall 2024 midterm · True/False 24",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-TF24 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-TF24 - Bond Types.jpg",
+  "duration": 134,
+  "sizeMB": 6.5,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.7
+   },
+   {
+    "label": "Solve It",
+    "start": 39.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 68.5
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 107.8
+   }
+  ]
+ },
+ "A25-12": {
+  "num": 20,
+  "title": "A25-Q12 · Bond Types",
+  "source": "Midterm 2025 (Version A) · Question 12",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-Q12 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-Q12 - Bond Types.jpg",
+  "duration": 238,
+  "sizeMB": 11.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 29.5
+   },
+   {
+    "label": "The Plan",
+    "start": 64.3
+   },
+   {
+    "label": "Solve It",
+    "start": 79.4
+   },
+   {
+    "label": "Check It",
+    "start": 129.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 143.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 199.1
+   }
+  ]
+ },
+ "A25-26": {
+  "num": 21,
+  "title": "A25-TF26 · Bond Types",
+  "source": "Midterm 2025 (Version A) · True/False 26",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-TF26 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-TF26 - Bond Types.jpg",
+  "duration": 123,
+  "sizeMB": 5.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.3
+   },
+   {
+    "label": "Solve It",
+    "start": 43.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 62
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 94.3
+   }
+  ]
+ },
+ "A25-27": {
+  "num": 22,
+  "title": "A25-TF27 · Bond Types",
+  "source": "Midterm 2025 (Version A) · True/False 27",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-TF27 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-TF27 - Bond Types.jpg",
+  "duration": 117,
+  "sizeMB": 5.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 22.8
+   },
+   {
+    "label": "Solve It",
+    "start": 43.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 63.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 96.4
+   }
+  ]
+ },
+ "A25-28": {
+  "num": 23,
+  "title": "A25-TF28 · Bond Types",
+  "source": "Midterm 2025 (Version A) · True/False 28",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/A25-TF28 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/A25-TF28 - Bond Types.jpg",
+  "duration": 140,
+  "sizeMB": 6.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 29.3
+   },
+   {
+    "label": "Solve It",
+    "start": 61.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 86.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 113.7
+   }
+  ]
+ },
+ "W26-14": {
+  "num": 24,
+  "title": "W26-Q14 · Bond Types",
+  "source": "Winter 2026 midterm · Question 14",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q14 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q14 - Bond Types.jpg",
+  "duration": 135,
+  "sizeMB": 7.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.5
+   },
+   {
+    "label": "Solve It",
+    "start": 38.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 76.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 110.6
+   }
+  ]
+ },
+ "W26-22": {
+  "num": 25,
+  "title": "W26-TF22 · Bond Types",
+  "source": "Winter 2026 midterm · True/False 22",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF22 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF22 - Bond Types.jpg",
+  "duration": 126,
+  "sizeMB": 6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.6
+   },
+   {
+    "label": "Solve It",
+    "start": 43.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 68.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 99.7
+   }
+  ]
+ },
+ "W26-31": {
+  "num": 26,
+  "title": "W26-TF31 · Bond Types",
+  "source": "Winter 2026 midterm · True/False 31",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF31 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF31 - Bond Types.jpg",
+  "duration": 130,
+  "sizeMB": 6.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.4
+   },
+   {
+    "label": "Solve It",
+    "start": 36.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 65.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 100.5
+   }
+  ]
+ },
+ "W26-34": {
+  "num": 27,
+  "title": "W26-TF34 · Bond Types",
+  "source": "Winter 2026 midterm · True/False 34",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF34 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF34 - Bond Types.jpg",
+  "duration": 112,
+  "sizeMB": 5.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.2
+   },
+   {
+    "label": "Solve It",
+    "start": 35.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 55.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 87.2
+   }
+  ]
+ },
+ "W26-39": {
+  "num": 28,
+  "title": "W26-TF39 · Bond Types",
+  "source": "Winter 2026 midterm · True/False 39",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF39 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF39 - Bond Types.jpg",
+  "duration": 117,
+  "sizeMB": 5.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 17.9
+   },
+   {
+    "label": "Solve It",
+    "start": 32.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 57.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 95
+   }
+  ]
+ },
+ "PPS1-2": {
+  "num": 29,
+  "title": "PPS1-Q02 · Bond Types",
+  "source": "Practice Problem Set #1 (Fall 2026) · Question 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/PPS1-Q02 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/PPS1-Q02 - Bond Types.jpg",
+  "duration": 172,
+  "sizeMB": 9.3,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 29.2
+   },
+   {
+    "label": "Solve It",
+    "start": 45.8
+   },
+   {
+    "label": "Check It",
+    "start": 98
+   },
+   {
+    "label": "Go Deeper",
+    "start": 109.5
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 136.7
+   }
+  ]
+ },
+ "L:ionic:1": {
+  "num": 30,
+  "title": "Practice 1 · Bond Types",
+  "source": "% ionic character · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Bond Types.jpg",
+  "duration": 161,
+  "sizeMB": 7.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 20.2
+   },
+   {
+    "label": "The Plan",
+    "start": 34.4
+   },
+   {
+    "label": "Solve It",
+    "start": 44.1
+   },
+   {
+    "label": "Check It",
+    "start": 84.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 97.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 131.9
+   }
+  ]
+ },
+ "L:ionic:2": {
+  "num": 31,
+  "title": "Practice 2 · Bond Types",
+  "source": "% ionic character · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Bond Types.jpg",
+  "duration": 150,
+  "sizeMB": 6.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.2
+   },
+   {
+    "label": "Solve It",
+    "start": 37.8
+   },
+   {
+    "label": "Check It",
+    "start": 77.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 91.4
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 121.4
+   }
+  ]
+ },
+ "L:ionic:3": {
+  "num": 32,
+  "title": "Practice 3 · Bond Types",
+  "source": "% ionic character · practice 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Bond Types.jpg",
+  "duration": 140,
+  "sizeMB": 5.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 31.9
+   },
+   {
+    "label": "Solve It",
+    "start": 47.6
+   },
+   {
+    "label": "Go Deeper",
+    "start": 81.8
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 112.9
+   }
+  ]
+ },
+ "L:ionic:4": {
+  "num": 33,
+  "title": "Practice 4 · Bond Types",
+  "source": "% ionic character · practice 5",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 4 - Bond Types.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 4 - Bond Types.jpg",
+  "duration": 115,
+  "sizeMB": 4.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 20
+   },
+   {
+    "label": "Solve It",
+    "start": 35.4
+   },
+   {
+    "label": "Go Deeper",
+    "start": 64.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 92.1
+   }
+  ]
+ },
+ "F24-6": {
+  "num": 34,
+  "title": "F24-Q06 · Force & Energy Curves",
+  "source": "Fall 2024 midterm · Question 6",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-Q06 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-Q06 - Force & Energy Curves.jpg",
+  "duration": 155,
+  "sizeMB": 7.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.5
+   },
+   {
+    "label": "Solve It",
+    "start": 55
+   },
+   {
+    "label": "Go Deeper",
+    "start": 87.9
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 128.5
+   }
+  ]
+ },
+ "F24-22": {
+  "num": 35,
+  "title": "F24-TF22 · Force & Energy Curves",
+  "source": "Fall 2024 midterm · True/False 22",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-TF22 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-TF22 - Force & Energy Curves.jpg",
+  "duration": 165,
+  "sizeMB": 8.4,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 26.2
+   },
+   {
+    "label": "Solve It",
+    "start": 41.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 99.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 136.9
+   }
+  ]
+ },
+ "F24-28": {
+  "num": 36,
+  "title": "F24-TF28 · Force & Energy Curves",
+  "source": "Fall 2024 midterm · True/False 28",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/F24-TF28 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/F24-TF28 - Force & Energy Curves.jpg",
+  "duration": 128,
+  "sizeMB": 6.2,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 25.4
+   },
+   {
+    "label": "Solve It",
+    "start": 44
+   },
+   {
+    "label": "Go Deeper",
+    "start": 71.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 105.1
+   }
+  ]
+ },
+ "W26-11": {
+  "num": 37,
+  "title": "W26-Q11 · Force & Energy Curves",
+  "source": "Winter 2026 midterm · Question 11",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-Q11 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-Q11 - Force & Energy Curves.jpg",
+  "duration": 135,
+  "sizeMB": 7.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 18.5
+   },
+   {
+    "label": "Solve It",
+    "start": 29.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 86.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 113.3
+   }
+  ]
+ },
+ "W26-21": {
+  "num": 38,
+  "title": "W26-TF21 · Force & Energy Curves",
+  "source": "Winter 2026 midterm · True/False 21",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF21 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF21 - Force & Energy Curves.jpg",
+  "duration": 116,
+  "sizeMB": 5.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.7
+   },
+   {
+    "label": "Solve It",
+    "start": 37.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 65.3
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 94.8
+   }
+  ]
+ },
+ "W26-30": {
+  "num": 39,
+  "title": "W26-TF30 · Force & Energy Curves",
+  "source": "Winter 2026 midterm · True/False 30",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/W26-TF30 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/W26-TF30 - Force & Energy Curves.jpg",
+  "duration": 124,
+  "sizeMB": 6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 21.8
+   },
+   {
+    "label": "Solve It",
+    "start": 36.1
+   },
+   {
+    "label": "Go Deeper",
+    "start": 68.2
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 100.9
+   }
+  ]
+ },
+ "FX-1": {
+  "num": 40,
+  "title": "FX-Q01 · Force & Energy Curves",
+  "source": "Old final (MECH 221, undated) · Question 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/FX-Q01 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/FX-Q01 - Force & Energy Curves.jpg",
+  "duration": 131,
+  "sizeMB": 6.6,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 23.6
+   },
+   {
+    "label": "Solve It",
+    "start": 45.8
+   },
+   {
+    "label": "Go Deeper",
+    "start": 77.7
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 105.9
+   }
+  ]
+ },
+ "PPS1-3": {
+  "num": 41,
+  "title": "PPS1-Q03 · Force & Energy Curves",
+  "source": "Practice Problem Set #1 (Fall 2026) · Question 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/PPS1-Q03 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/PPS1-Q03 - Force & Energy Curves.jpg",
+  "duration": 253,
+  "sizeMB": 12.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 35.5
+   },
+   {
+    "label": "The Plan",
+    "start": 62
+   },
+   {
+    "label": "Solve It",
+    "start": 72.1
+   },
+   {
+    "label": "Check It",
+    "start": 157.7
+   },
+   {
+    "label": "Go Deeper",
+    "start": 182
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 217.9
+   }
+  ]
+ },
+ "PPS1-4": {
+  "num": 42,
+  "title": "PPS1-Q04 · Force & Energy Curves",
+  "source": "Practice Problem Set #1 (Fall 2026) · Question 4",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/PPS1-Q04 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/PPS1-Q04 - Force & Energy Curves.jpg",
+  "duration": 212,
+  "sizeMB": 11.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 30.3
+   },
+   {
+    "label": "Solve It",
+    "start": 45.7
+   },
+   {
+    "label": "Check It",
+    "start": 122.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 142
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 177
+   }
+  ]
+ },
+ "L:bondwell:0": {
+  "num": 43,
+  "title": "Practice 1 · Force & Energy Curves",
+  "source": "Equilibrium spacing r₀ and bond energy E₀ · practice 1",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 1 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 1 - Force & Energy Curves.jpg",
+  "duration": 188,
+  "sizeMB": 8.7,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 33.8
+   },
+   {
+    "label": "The Plan",
+    "start": 44.5
+   },
+   {
+    "label": "Solve It",
+    "start": 56.9
+   },
+   {
+    "label": "Check It",
+    "start": 112.5
+   },
+   {
+    "label": "Go Deeper",
+    "start": 130.5
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 166
+   }
+  ]
+ },
+ "L:bondwell:1": {
+  "num": 44,
+  "title": "Practice 2 · Force & Energy Curves",
+  "source": "Equilibrium spacing r₀ and bond energy E₀ · practice 2",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 2 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 2 - Force & Energy Curves.jpg",
+  "duration": 167,
+  "sizeMB": 7.8,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 33
+   },
+   {
+    "label": "The Plan",
+    "start": 44.1
+   },
+   {
+    "label": "Solve It",
+    "start": 52.5
+   },
+   {
+    "label": "Check It",
+    "start": 87.2
+   },
+   {
+    "label": "Go Deeper",
+    "start": 108.1
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 142.9
+   }
+  ]
+ },
+ "L:bondwell:2": {
+  "num": 45,
+  "title": "Practice 3 · Force & Energy Curves",
+  "source": "Equilibrium spacing r₀ and bond energy E₀ · practice 3",
+  "video": "Miae 221/10 - Midterm Exam Solve AI Videos/Practice 3 - Force & Energy Curves.mp4",
+  "poster": "Miae 221/10 - Midterm Exam Solve AI Videos/posters/Practice 3 - Force & Energy Curves.jpg",
+  "duration": 189,
+  "sizeMB": 9.1,
+  "chapters": [
+   {
+    "label": "The Question",
+    "start": 0
+   },
+   {
+    "label": "What Is It Testing?",
+    "start": 31.5
+   },
+   {
+    "label": "The Plan",
+    "start": 45.4
+   },
+   {
+    "label": "Solve It",
+    "start": 54.1
+   },
+   {
+    "label": "Check It",
+    "start": 113.3
+   },
+   {
+    "label": "Go Deeper",
+    "start": 129.6
+   },
+   {
+    "label": "Answer & Traps",
+    "start": 160.7
+   }
+  ]
+ }
+};

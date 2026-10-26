@@ -32,15 +32,20 @@ for (const r of reports) {
   if (issues.length > 40) console.log(`  … and ${issues.length - 40} more`);
   failed += issues.length;
 }
-// every published MP4 must be a registered video (and so have a home in its course)
-const registered = new Set(VIDEO_SOURCES.map((v) => v.lesson.video));
+// every published MP4 must be a registered video (and so have a home in its course); exam-prep solve videos
+// are registered in their gate
+const registered = new Set([
+  ...VIDEO_SOURCES.map((v) => v.lesson.video),
+  ...[ENGR213, INDU211, MIAE215, MIAE221].flatMap((g) => Object.values(g.solveVideos ?? {}).map((v) => v.video))
+]);
 const published = listPublishedFiles(root);
 const unregistered = published.filter((f) => f.relativePath.endsWith('.mp4') && !registered.has(f.relativePath));
 for (const f of unregistered) console.log(`  ✗ published video not in any registry: ${f.relativePath}`);
 failed += unregistered.length;
-// and every registered video (and its poster) must exist, or the player shows a broken video
+// and every registered video (and its poster) must exist, or the player shows a broken video (a CDN-only MP4
+// is not in a fresh checkout; its poster is)
 const files = new Set(published.map((f) => f.relativePath));
-const missing = VIDEO_SOURCES.flatMap((v) => [v.lesson.video, v.lesson.poster].filter((p) => !files.has(p)).map((p) => `${v.id}: ${p}`));
+const missing = VIDEO_SOURCES.flatMap((v) => [v.cdnOnly ? '' : v.lesson.video, v.lesson.poster].filter((p) => p && !files.has(p)).map((p) => `${v.id}: ${p}`));
 for (const m of missing) console.log(`  ✗ registered video file missing: ${m}`);
 failed += missing.length;
 

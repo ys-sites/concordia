@@ -1,0 +1,42 @@
+# MIAE 221 · Midterm Exam Solve AI Videos
+
+One slow, narrated, baby-step video per question of the MIAE 221 exam-prep gate: every past-exam question (Fall 2024, 2025 Version A and Winter 2026 midterms, the MECH 221 finals, Practice Problem Set #1) and every Formula Lab practice question. Each video reads the question, explains what it is testing, solves it step by step with every number worked out, goes deeper into the topic, and ends with the trap and an exam tip. On the website each video sits under its question in the drills, the Pattern Analyzer and the quiz explanations. The MP4s are served from the media CDN.
+
+- A25-Q06 · Electron Configuration (3:17) · Midterm 2025 (Version A) · Question 6
+- A25-TF23 · Electron Configuration (2:05) · Midterm 2025 (Version A) · True/False 23
+- W26-TF36 · Electron Configuration (1:57) · Winter 2026 midterm · True/False 36
+- PPS1-Q01 · Electron Configuration (3:04) · Practice Problem Set #1 (Fall 2026) · Question 1
+- FX-Q06 · Moles & Atoms (2:53) · Old final (MECH 221, undated) · Question 6
+- PPS1-Q05 · Moles & Atoms (3:41) · Practice Problem Set #1 (Fall 2026) · Question 5
+- Practice 1 · Moles & Atoms (2:10) · Number of atoms from mass · practice 2
+- Practice 2 · Moles & Atoms (2:37) · Number of atoms from mass · practice 3
+- Practice 3 · Moles & Atoms (2:00) · Number of atoms from mass · practice 4
+- F24-Q03 · Bond Types (2:54) · Fall 2024 midterm · Question 3
+- F24-Q16 · Bond Types (3:31) · Fall 2024 midterm · Question 16
+- F24-TF24 · Bond Types (2:14) · Fall 2024 midterm · True/False 24
+- A25-Q12 · Bond Types (3:58) · Midterm 2025 (Version A) · Question 12
+- A25-TF26 · Bond Types (2:03) · Midterm 2025 (Version A) · True/False 26
+- A25-TF27 · Bond Types (1:57) · Midterm 2025 (Version A) · True/False 27
+- A25-TF28 · Bond Types (2:20) · Midterm 2025 (Version A) · True/False 28
+- W26-Q14 · Bond Types (2:15) · Winter 2026 midterm · Question 14
+- W26-TF22 · Bond Types (2:06) · Winter 2026 midterm · True/False 22
+- W26-TF31 · Bond Types (2:10) · Winter 2026 midterm · True/False 31
+- W26-TF34 · Bond Types (1:52) · Winter 2026 midterm · True/False 34
+- W26-TF39 · Bond Types (1:57) · Winter 2026 midterm · True/False 39
+- PPS1-Q02 · Bond Types (2:52) · Practice Problem Set #1 (Fall 2026) · Question 2
+- Practice 1 · Bond Types (2:41) · % ionic character · practice 2
+- Practice 2 · Bond Types (2:30) · % ionic character · practice 3
+- Practice 3 · Bond Types (2:20) · % ionic character · practice 4
+- Practice 4 · Bond Types (1:55) · % ionic character · practice 5
+- F24-Q06 · Force & Energy Curves (2:35) · Fall 2024 midterm · Question 6
+- F24-TF22 · Force & Energy Curves (2:45) · Fall 2024 midterm · True/False 22
+- F24-TF28 · Force & Energy Curves (2:08) · Fall 2024 midterm · True/False 28
+- W26-Q11 · Force & Energy Curves (2:15) · Winter 2026 midterm · Question 11
+- W26-TF21 · Force & Energy Curves (1:56) · Winter 2026 midterm · True/False 21
+- W26-TF30 · Force & Energy Curves (2:04) · Winter 2026 midterm · True/False 30
+- FX-Q01 · Force & Energy Curves (2:11) · Old final (MECH 221, undated) · Question 1
+- PPS1-Q03 · Force & Energy Curves (4:13) · Practice Problem Set #1 (Fall 2026) · Question 3
+- PPS1-Q04 · Force & Energy Curves (3:32) · Practice Problem Set #1 (Fall 2026) · Question 4
+- Practice 1 · Force & Energy Curves (3:08) · Equilibrium spacing r₀ and bond energy E₀ · practice 1
+- Practice 2 · Force & Energy Curves (2:47) · Equilibrium spacing r₀ and bond energy E₀ · practice 2
+- Practice 3 · Force & Energy Curves (3:09) · Equilibrium spacing r₀ and bond energy E₀ · practice 3
