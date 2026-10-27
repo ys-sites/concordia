@@ -156,3 +156,35 @@ One narrated, step-by-step video per subtopic of the course (21), in the order o
 - 8:33 Families
 - 9:05 Mix-ups to avoid
 - 9:32 Recap
+
+## 11 · Linear & Planar Density (10:15)
+
+- 0:00 The Idea
+- 0:53 Linear density
+- 1:28 Example 1 · FCC along an edge
+- 1:57 Example 2 · FCC along a face diagonal
+- 2:42 Example 3 · BCC along a body diagonal
+- 3:44 Planar density
+- 4:25 Example 4 · FCC (100)
+- 4:53 Example 5 · FCC (110)
+- 5:37 Example 6 · FCC (111), the densest
+- 6:49 Example 7 · BCC (110) in numbers
+- 7:42 Try it
+- 8:10 Close-packed stacking
+- 8:45 Mix-ups to avoid
+- 9:22 Recap
+
+## 21 · Dislocations & Slip (10:32)
+
+- 0:00 The Idea
+- 1:05 Why dislocations
+- 1:51 Slip systems
+- 2:31 FCC: twelve slip systems
+- 3:43 BCC and HCP
+- 4:32 Why the number matters
+- 5:05 Seeing slip
+- 5:53 Resolved shear stress
+- 6:52 Example · Schmid’s law
+- 8:26 Try it
+- 9:15 Mix-ups to avoid
+- 9:58 Recap
