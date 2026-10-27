@@ -25,6 +25,18 @@ export interface PoolEntry {
 
 const MATCH_ORDER = ['exact', 'template', 'concept'] as const;
 
+// The year a paper belongs to, read off the exam itself so every course's
+// 2017 paper is recognised, not just MIAE 221's: the label's 4-digit year
+// first ("Winter 2017 First Midterm", "Final 2017"), else the term code
+// in the exam id (F17/W17/A25/W26/M24 -> 2017/2017/2025/2026/2024).
+function examYearOf(g: GateContent, examId: string): string {
+  const label = g.exams.find((e) => e.id === examId)?.label ?? '';
+  const fromLabel = label.match(/(19|20)\d{2}/)?.[0];
+  if (fromLabel) return fromLabel;
+  const term = examId.match(/^[A-Za-z]+(\d{2})/)?.[1];
+  return term ? `20${term}` : 'other';
+}
+
 export function buildPool(course: CourseId, g: GateContent, exists: (id: string) => boolean): PoolEntry[] {
   // past papers: midterms, in-class quizzes and the finals that count
   const papers = new Set(g.exams.filter((e) => e.kind === 'midterm' || e.kind === 'quiz' || e.counts).map((e) => e.id));
@@ -56,8 +68,8 @@ export function buildPool(course: CourseId, g: GateContent, exists: (id: string)
         const twin = (clustersOf.get(q.id) ?? []).some((cl) => cl.members.some((m) => m !== q.id && papers.has(examOf.get(m) ?? '')));
         cat = twin ? 'similar' : 'possible';
       }
-      const examYear = q.exam === 'F17' ? '2017' : q.exam === 'F24' ? '2024' : q.exam === 'A25' ? '2025' : q.exam === 'W26' ? '2026' : 'other';
-      out.push({ id, cat, topic: t.id, src: fromExam ? 'exam' : 'notes', paper: q.exam, examYear: fromExam ? examYear : undefined });
+      const examYear = examYearOf(g, q.exam);
+      out.push({ id, cat, topic: t.id, src: fromExam ? 'exam' : 'notes', paper: q.exam, examYear: examYear === 'other' ? undefined : examYear });
     }
     for (const f of g.formulas) {
       if (f.topic !== t.id) continue;

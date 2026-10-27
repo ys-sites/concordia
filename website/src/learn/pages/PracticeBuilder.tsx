@@ -93,7 +93,7 @@ export const PracticeBuilder: React.FC<{ course: CourseId }> = ({ course }) => {
   const quizPool = selected.filter((e) => cats.has(e.cat));
   const yearFilteredPool = useMemo(() => {
     if (examYear === '2017') {
-      return quizPool.filter((e) => e.examYear === '2017' || e.paper === '2017' || e.id.includes('2017') || e.id.includes('F17'));
+      return quizPool.filter((e) => e.examYear === '2017' || e.paper === '2017');
     }
     return quizPool;
   }, [quizPool, examYear]);
@@ -385,7 +385,7 @@ export const PracticeBuilder: React.FC<{ course: CourseId }> = ({ course }) => {
           </div>
           <p className="lx-pb-summary">
             <b>Your quiz:</b> {take} question{take === 1 ? '' : 's'} on {title()}, drawn from{' '}
-            {examYear === '2017' ? 'the official 2017 sample midterm (Drs. Pugh & Medraj)' : sourcePhrase}:{' '}
+            {examYear === '2017' ? (course === 'MIAE221' ? 'the official 2017 sample midterm (Drs. Pugh & Medraj)' : course === 'ENGR213' ? 'the Winter 2017 first midterm' : 'the 2017 exam paper') : sourcePhrase}:{' '}
             {QUIZ_CATS.filter((k) => cats.has(k))
               .map((k) => CAT_INFO[k].title.toLowerCase())
               .join(', ')}
