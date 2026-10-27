@@ -207,6 +207,40 @@ One narrated, step-by-step video per subtopic of the course (21), in the order o
 - 9:28 Mix-ups to avoid
 - 10:08 Recap
 
+## 14 · Solid Solutions (11:08)
+
+- 0:00 The Idea
+- 1:16 Solution or mixture?
+- 1:50 Two ways to dissolve
+- 2:53 Why it makes metals stronger
+- 3:26 The Hume-Rothery rules
+- 4:24 Example 1 · copper and nickel
+- 5:11 Example 2 · copper and zinc
+- 5:46 Example 3 · carbon in iron
+- 6:19 Describing the composition
+- 6:57 Example 4 · weight % to atom %
+- 7:48 The one-line formula
+- 8:26 Example 5 · atom % to weight %
+- 9:10 Try it
+- 9:51 Mix-ups to avoid
+- 10:25 Recap
+
+## 18 · Fick's Second Law (10:38)
+
+- 0:00 The Idea
+- 1:09 Fick’s second law
+- 1:46 The solution we use
+- 2:30 The error function
+- 3:19 The recipe
+- 3:48 Example 1 · a concentration
+- 5:16 Example 2 · how long?
+- 7:08 The same-profile shortcut
+- 8:03 Why the square root?
+- 8:23 Try it
+- 8:53 Speeding it up
+- 9:24 Mix-ups to avoid
+- 10:00 Recap
+
 ## 19 · Stress, Strain & Poisson (11:08)
 
 - 0:00 The Idea
