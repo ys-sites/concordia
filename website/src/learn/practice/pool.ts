@@ -19,6 +19,8 @@ export interface PoolEntry {
   cat: QuizCat;
   topic: string;
   src: 'exam' | 'notes'; // where the question comes from: a previous exam, or the class notes & tutorials
+  paper?: string;
+  examYear?: string;
 }
 
 const MATCH_ORDER = ['exact', 'template', 'concept'] as const;
@@ -54,7 +56,8 @@ export function buildPool(course: CourseId, g: GateContent, exists: (id: string)
         const twin = (clustersOf.get(q.id) ?? []).some((cl) => cl.members.some((m) => m !== q.id && papers.has(examOf.get(m) ?? '')));
         cat = twin ? 'similar' : 'possible';
       }
-      out.push({ id, cat, topic: t.id, src: fromExam ? 'exam' : 'notes' });
+      const examYear = q.exam === 'F17' ? '2017' : q.exam === 'F24' ? '2024' : q.exam === 'A25' ? '2025' : q.exam === 'W26' ? '2026' : 'other';
+      out.push({ id, cat, topic: t.id, src: fromExam ? 'exam' : 'notes', paper: q.exam, examYear: fromExam ? examYear : undefined });
     }
     for (const f of g.formulas) {
       if (f.topic !== t.id) continue;
@@ -63,6 +66,25 @@ export function buildPool(course: CourseId, g: GateContent, exists: (id: string)
         if (it.type === 'exam' || !exists(id)) return;
         out.push({ id, cat: (it as { badge?: string }).badge === 'similar' ? 'similar' : 'possible', topic: t.id, src: 'notes' });
       });
+    }
+  }
+  if (course === 'MIAE221') {
+    const MIAE221_TEACHER_TOPIC_MAP: Record<number, string> = {
+      1: 'planes', 2: 'planes', 3: 'planes', 4: 'ldpd', 5: 'diffmech', 6: 'diffmech',
+      7: 'tensile', 8: 'tensile', 9: 'elastic', 10: 'tensile', 11: 'tensile', 12: 'tensile',
+      13: 'tensile', 14: 'tensile', 15: 'elastic', 16: 'tensile', 17: 'bonding', 18: 'tensile',
+      19: 'tensile', 20: 'defects', 21: 'slip', 22: 'directions', 23: 'bonding', 24: 'diffmech',
+      25: 'cells', 26: 'diffmech', 27: 'slip', 28: 'directions', 29: 'fick1', 30: 'density',
+      31: 'slip', 32: 'defects', 33: 'defects', 34: 'tensile', 35: 'solidsol', 36: 'solidsol',
+      37: 'bonding', 38: 'defects', 39: 'diffmech', 40: 'cells'
+    };
+    for (let n = 1; n <= 40; n++) {
+      const qId = `TX_MIAE221_2017_Q${String(n).padStart(2, '0')}`;
+      const id = `t:${qId}`;
+      if (exists(id)) {
+        const topic = MIAE221_TEACHER_TOPIC_MAP[n] || 'planes';
+        out.push({ id, cat: 'repeat', topic, src: 'exam', paper: '2017', examYear: '2017' });
+      }
     }
   }
   return out;

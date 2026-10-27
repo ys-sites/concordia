@@ -19,6 +19,7 @@ import '../styles/practice.css';
 // with feedback or timed · then the quiz runs on this page. The choices are remembered in this browser.
 type Stage = 'source' | 'cover' | 'kind' | 'setup' | 'run';
 type SourceFilter = 'all' | 'notes' | 'exam';
+export type ExamYearFilter = 'all' | '2017';
 interface Settings {
   source: SourceFilter;
   topics: string[];
@@ -26,8 +27,9 @@ interface Settings {
   n: number; // 0 = all
   order: 'notes' | 'mixed';
   mode: 'practice' | 'exam';
+  examYear?: ExamYearFilter;
 }
-const DEFAULTS: Settings = { source: 'all', topics: [], cats: ['repeat', 'similar'], n: 10, order: 'notes', mode: 'practice' };
+const DEFAULTS: Settings = { source: 'all', topics: [], cats: ['repeat', 'similar'], n: 10, order: 'notes', mode: 'practice', examYear: 'all' };
 const KEY = (c: CourseId) => `concordia.practice.${c}`;
 const load = (c: CourseId): Settings => {
   try {
@@ -60,6 +62,7 @@ export const PracticeBuilder: React.FC<{ course: CourseId }> = ({ course }) => {
   const [n, setN] = useState(initial.n);
   const [order, setOrder] = useState(initial.order);
   const [mode, setMode] = useState(initial.mode);
+  const [examYear, setExamYear] = useState<ExamYearFilter>(initial.examYear ?? 'all');
   const [stage, setStage] = useState<Stage>('source');
   const [run, setRun] = useState<{ lesson: Lesson; step: Step } | null>(null);
 
@@ -72,11 +75,11 @@ export const PracticeBuilder: React.FC<{ course: CourseId }> = ({ course }) => {
   }, [course]);
   useEffect(() => {
     try {
-      localStorage.setItem(KEY(course), JSON.stringify({ source, topics: [...topics], cats: [...cats], n, order, mode }));
+      localStorage.setItem(KEY(course), JSON.stringify({ source, topics: [...topics], cats: [...cats], n, order, mode, examYear }));
     } catch {
       // the choices just won't be remembered
     }
-  }, [course, source, topics, cats, n, order, mode]);
+  }, [course, source, topics, cats, n, order, mode, examYear]);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [stage]);
@@ -88,7 +91,13 @@ export const PracticeBuilder: React.FC<{ course: CourseId }> = ({ course }) => {
   const topicOrder = allTopicIds.filter((t) => topics.has(t));
   const selected = visiblePool.filter((e) => topics.has(e.topic));
   const quizPool = selected.filter((e) => cats.has(e.cat));
-  const total = quizPool.length;
+  const yearFilteredPool = useMemo(() => {
+    if (examYear === '2017') {
+      return quizPool.filter((e) => e.examYear === '2017' || e.paper === '2017' || e.id.includes('2017') || e.id.includes('F17'));
+    }
+    return quizPool;
+  }, [quizPool, examYear]);
+  const total = yearFilteredPool.length;
   const take = n === 0 ? total : Math.min(n, total);
   const count = (pred: (e: (typeof pool)[number]) => boolean) => visiblePool.filter(pred).length;
   const sourcePhrase = source === 'all' ? 'class notes and previous exams' : source === 'exam' ? 'previous exams' : 'class notes';
@@ -117,12 +126,12 @@ export const PracticeBuilder: React.FC<{ course: CourseId }> = ({ course }) => {
   };
 
   const start = () => {
-    const ids = pickQuiz(quizPool, take, order, topicOrder).map((e) => e.id);
+    const ids = pickQuiz(yearFilteredPool, take, order, topicOrder).map((e) => e.id);
     const id = `custom-${Date.now().toString(36)}`;
     const step: Step = {
       id,
       kind: mode === 'exam' ? 'exam' : 'practice',
-      title: `Your quiz: ${title()}`,
+      title: `Your quiz: ${title()}${examYear === '2017' ? ' (2017 Exam)' : ''}`,
       minutes: ids.length * (mode === 'exam' ? 3 : 2),
       questionIds: ids,
       size: ids.length,
@@ -347,13 +356,40 @@ export const PracticeBuilder: React.FC<{ course: CourseId }> = ({ course }) => {
                 </button>
               </div>
             </fieldset>
+            <fieldset>
+              <legend>Exam paper / Year</legend>
+              <div className="lx-pb-opts">
+                <button
+                  type="button"
+                  className={`lx-chip-btn${examYear === 'all' ? ' is-on' : ''}`}
+                  aria-pressed={examYear === 'all'}
+                  onClick={() => setExamYear('all')}
+                >
+                  All year type exams
+                </button>
+                <button
+                  type="button"
+                  className={`lx-chip-btn${examYear === '2017' ? ' is-on' : ''}`}
+                  aria-pressed={examYear === '2017'}
+                  onClick={() => setExamYear('2017')}
+                >
+                  Just 2017 exam
+                </button>
+              </div>
+              {examYear === '2017' && total === 0 && (
+                <p className="lx-meta" style={{ color: 'var(--lx-accent, #c92a2a)', margin: '6px 0 0 0', fontSize: '13px' }}>
+                  No 2017 exam questions for the selected subtopics. Select other subtopics in Step 2 or switch to all year type exams.
+                </p>
+              )}
+            </fieldset>
           </div>
           <p className="lx-pb-summary">
-            <b>Your quiz:</b> {take} question{take === 1 ? '' : 's'} on {title()}, drawn from {sourcePhrase}:{' '}
+            <b>Your quiz:</b> {take} question{take === 1 ? '' : 's'} on {title()}, drawn from{' '}
+            {examYear === '2017' ? 'the official 2017 sample midterm (Drs. Pugh & Medraj)' : sourcePhrase}:{' '}
             {QUIZ_CATS.filter((k) => cats.has(k))
               .map((k) => CAT_INFO[k].title.toLowerCase())
               .join(', ')}
-            , spread across every subtopic you picked with repeated ones first.
+            {examYear === '2017' ? ' (2017 benchmark paper only)' : ', spread across every subtopic you picked with repeated ones first.'}
             {mode === 'exam' ? ` Timed at ${Math.max(5, take * 3)} minutes.` : ''}
           </p>
           <div className="lx-pb-actions">

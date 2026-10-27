@@ -4,7 +4,6 @@ import {
   TrendingUp,
   BarChart3,
   Calendar,
-  UserCheck,
   CheckCircle2,
   AlertTriangle,
   ChevronDown,
@@ -36,7 +35,6 @@ export const Miae221ExamStatisticsCard: React.FC<Miae221ExamStatisticsCardProps>
   const [selectedTopic, setSelectedTopic] = useState<string>('all');
   const [tableSearch, setTableSearch] = useState<string>('');
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
-  const [showPedigree, setShowPedigree] = useState<boolean>(true);
 
   const topics = useMemo(() => {
     const set = new Set<string>();
@@ -69,7 +67,7 @@ export const Miae221ExamStatisticsCard: React.FC<Miae221ExamStatisticsCardProps>
             <Sparkles size={14} /> 78.5% Historical Overlap Rate
           </span>
           <span className="m221-chip-pill m221-chip-blue">
-            <UserCheck size={14} /> Dr. Medraj & Dr. Pugh Blueprint
+            <BookOpen size={14} /> Verified Teacher Midterm Blueprint
           </span>
         </div>
 
@@ -115,47 +113,6 @@ export const Miae221ExamStatisticsCard: React.FC<Miae221ExamStatisticsCardProps>
             Zero discarded concepts. Every 2017 topic remains active in the 2026 midterm pool.
           </p>
         </div>
-      </div>
-
-      {/* Dr. Mamoun Medraj Instructor Pedigree Callout */}
-      <div className="m221-pedigree-box">
-        <div className="m221-pedigree-header" onClick={() => setShowPedigree(!showPedigree)}>
-          <div className="m221-pedigree-title">
-            <UserCheck size={18} className="m221-pedigree-icon" />
-            <span>
-              <strong>Instructor Verification: Dr. Mamoun Medraj's Question Pedigree</strong>
-            </span>
-          </div>
-          <button type="button" className="m221-toggle-btn" aria-label="Toggle details">
-            {showPedigree ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-          </button>
-        </div>
-
-        {showPedigree && (
-          <div className="m221-pedigree-body">
-            <p>
-              <strong>Does previous year exam mention instructor Medraj?</strong> Yes. <strong>Dr. Mamoun Medraj</strong> is the
-              founding course coordinator and master curriculum architect of MECH/MIAE 221 at Concordia.
-            </p>
-            <ul className="m221-pedigree-list">
-              <li>
-                <strong>2017 Sample Midterm &amp; Final:</strong> Formally authored and signed by <em>Drs. Martin Pugh and Mamoun Medraj</em> (Section T coordinator).
-              </li>
-              <li>
-                <strong>Master Lecture Decks (Lectures 1–27):</strong> Every slide deck used in the department originates from Dr. Medraj’s lecture series.
-              </li>
-              <li>
-                <strong>Multi-Instructor Coordination (2021–2026):</strong> Subsequent course instructors (<em>Dr. Martin Pugh, Dr. Navid Sharifi, Dr. Sam Eskandarian, Dr. Mamadou Sy</em>) all pull directly from Dr. Medraj's question vaults, Figure X crystallography diagrams, and Figure 1 tensile curves.
-              </li>
-            </ul>
-            <div className="m221-pedigree-takeaway">
-              <Zap size={15} />
-              <span>
-                <strong>Mastering the 2017 Sample Midterm</strong> gives you a verified ~80% mathematical blueprint of what will appear on your upcoming exam.
-              </span>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Year-by-Year Comparison Breakdown */}

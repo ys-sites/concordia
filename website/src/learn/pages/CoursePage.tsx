@@ -389,15 +389,23 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
               </li>
             </ul>
             <div className="lx-course-mobile-cta">
-              <a className="lx-btn lx-btn--accent lx-btn--lg" href={ctaHref} style={{ flex: 1 }}>
-                <PlayCircle size={18} /> {started ? `Continue · Chapter ${activeChapterNum}` : 'Start course · Chapter 1'}
+              <button
+                type="button"
+                className="lx-btn lx-btn--accent lx-btn--lg"
+                onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}
+                style={{ flex: 1 }}
+              >
+                <GraduationCap size={17} /> Exam prep
+              </button>
+              <a className="lx-btn lx-btn--lg" href={ctaHref} style={{ flex: 1 }}>
+                <PlayCircle size={17} /> {started ? `Continue · Ch ${activeChapterNum}` : 'Start course'}
               </a>
               <button
                 type="button"
                 className="lx-btn lx-btn--lg"
                 onClick={() => setDrawer('content')}
-                style={{ padding: '0 14px' }}
-                title="Open Chapters (Chapter 1, 2, 3...)"
+                style={{ padding: '0 12px' }}
+                title="Open Chapters"
                 aria-label="Open Chapters"
               >
                 <ListTree size={18} />
@@ -487,35 +495,22 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
                   </span>
                 </div>
               ) : null}
-              {/* Exam Prep Compound Button */}
-              {urgentExam && (
-                <div className="lx-btn-compound">
-                  <button type="button" className="lx-btn lx-btn--accent lx-btn--lg lx-btn-compound-main" onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}>
-                    <GraduationCap size={17} /> Exam prep · {urgentExamLabel}
-                  </button>
-                  <button type="button" className="lx-btn lx-btn--accent lx-btn-compound-toggle" onClick={() => setDrawer('exam')} title="Open Midterm Preparation List" aria-label="Open Midterm Preparation List">
-                    <span>Prep</span>
-                    <ChevronDown size={14} />
-                  </button>
-                </div>
-              )}
+              {/* Exam Prep (Red accent button) */}
+              <button
+                type="button"
+                className="lx-btn lx-btn--accent lx-btn--lg lx-btn--block"
+                onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}
+              >
+                <GraduationCap size={18} /> Exam prep{urgentExamLabel ? ` · ${urgentExamLabel}` : (sideExam ? ` · Midterm` : '')}
+              </button>
 
-              {/* Continue Compound Button (Chapter 1, 2, 3...) */}
-              <div className="lx-btn-compound">
-                <a className={`lx-btn${urgentExam ? '' : ' lx-btn--accent'} lx-btn--lg lx-btn-compound-main`} href={ctaHref}>
-                  <PlayCircle size={18} /> {started ? `Continue · Chapter ${activeChapterNum}` : 'Start course · Chapter 1'}
-                </a>
-                <button
-                  type="button"
-                  className={`lx-btn${urgentExam ? '' : ' lx-btn--accent'} lx-btn-compound-toggle`}
-                  onClick={() => setDrawer('content')}
-                  title={`Open Chapter List (Ch 1–${nonExamSections.length})`}
-                  aria-label="Open Chapter List"
-                >
-                  <span>Ch 1–{nonExamSections.length}</span>
-                  <ChevronDown size={14} />
-                </button>
-              </div>
+              {/* Start or Continue Course (Clean full-width button) */}
+              <a
+                className="lx-btn lx-btn--lg lx-btn--block"
+                href={ctaHref}
+              >
+                <PlayCircle size={18} /> {started ? `Continue · Chapter ${activeChapterNum}` : 'Start course · Chapter 1'}
+              </a>
 
               {/* Quick Chapter Jump Bar (Chapter 1, 2, 3, 4, 5 and so on) */}
               <div className="lx-chapter-quick-nav">
@@ -548,17 +543,6 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
                 </div>
               </div>
 
-              {!urgentExam && (
-                <div className="lx-btn-compound" style={{ marginTop: '4px' }}>
-                  <button type="button" className="lx-btn lx-btn--block lx-btn-compound-main" onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}>
-                    <GraduationCap size={17} /> Exam prep
-                  </button>
-                  <button type="button" className="lx-btn lx-btn-compound-toggle" onClick={() => setDrawer('exam')} title="Open Midterm Preparation List" aria-label="Open Midterm Preparation List">
-                    <span>Prep</span>
-                    <ChevronDown size={14} />
-                  </button>
-                </div>
-              )}
               <p className="lx-meta lx-side-includes-title">This course includes</p>
               <ul className="lx-side-includes lx-num">
                 <li>{fmtHours(s.videoMinutes)} of narrated video</li>
