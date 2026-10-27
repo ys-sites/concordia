@@ -225,6 +225,55 @@ One narrated, step-by-step video per subtopic of the course (21), in the order o
 - 9:51 Mix-ups to avoid
 - 10:25 Recap
 
+## 15 · Dislocations & Interfaces (10:47)
+
+- 0:00 The Idea
+- 0:48 The edge dislocation
+- 1:25 How a dislocation moves
+- 2:37 The Burgers vector
+- 3:09 Screw and mixed
+- 4:12 Planar defects
+- 5:23 Volume defects
+- 5:54 Seeing defects
+- 6:45 Measuring grain size
+- 8:11 Try it
+- 8:40 Are dislocations bad?
+- 9:12 Mix-ups to avoid
+- 9:47 Recap
+
+## 16 · Diffusion & D(T) (10:44)
+
+- 0:00 The Idea
+- 0:54 A diffusion couple
+- 1:39 Mechanism 1 · vacancy diffusion
+- 2:18 Mechanism 2 · interstitial diffusion
+- 2:44 How temperature changes D
+- 3:51 Example 1 · carbon in two kinds of iron
+- 5:23 Example 2 · turning up the heat
+- 6:06 Example 3 · finding Q d
+- 7:11 The Arrhenius plot
+- 7:44 What makes diffusion fast
+- 8:15 Why it matters
+- 8:49 Try it
+- 9:33 Mix-ups to avoid
+- 10:06 Recap
+
+## 17 · Fick's First Law (10:41)
+
+- 0:00 The Idea
+- 0:51 Steady state
+- 1:39 The concentration gradient
+- 2:20 Fick’s first law
+- 3:39 Example 1 · carbon in steel
+- 4:32 From flux to mass
+- 5:09 Example 2 · purifying hydrogen
+- 6:12 Example 3 · how thick?
+- 7:02 Example 4 · inside the plate
+- 7:34 Thinking in proportions
+- 8:30 Try it
+- 9:23 Mix-ups to avoid
+- 9:54 Recap
+
 ## 18 · Fick's Second Law (10:38)
 
 - 0:00 The Idea
