@@ -520,16 +520,18 @@
 
 
 
-/* Fast-Crack Answer Section in Explanation & Solution */
+/* Fast-Crack Answer Section in Explanation & Solution: each question gets its own
+   clearly separated quick-revision card, with breathing room between sections
+   and between steps so it reads at a glance on a phone. */
 .lx-fast-crack-card {
   background: linear-gradient(135deg, rgba(190, 24, 93, 0.05) 0%, rgba(244, 114, 182, 0.03) 100%);
   border: 1.5px solid rgba(190, 24, 93, 0.25);
   border-radius: 12px;
-  padding: 16px;
+  padding: 18px 16px;
   margin-bottom: 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 .lx-fast-crack-header {
   display: flex;
@@ -560,9 +562,36 @@
   color: var(--lx-ink, #0f172a);
 }
 .lx-fast-crack-spot p {
-  margin: 3px 0 0;
+  margin: 4px 0 0;
   color: #475569;
-  line-height: 1.45;
+  line-height: 1.55;
+}
+.lx-fast-crack-how {
+  font-size: 13px;
+  color: var(--lx-ink, #0f172a);
+}
+.lx-fast-crack-how p {
+  margin: 4px 0 0;
+  color: #334155;
+  line-height: 1.6;
+}
+.lx-fast-crack-tips {
+  font-size: 12.5px;
+  color: #334155;
+}
+.lx-fast-crack-tips strong {
+  color: var(--lx-ink, #0f172a);
+}
+.lx-fast-crack-tips ul {
+  margin: 6px 0 0 16px;
+  padding: 0;
+}
+.lx-fast-crack-tips li {
+  margin-bottom: 8px;
+  line-height: 1.55;
+}
+.lx-fast-crack-tips li:last-child {
+  margin-bottom: 0;
 }
 .lx-fast-crack-formula {
   background: #ffffff;
@@ -588,11 +617,15 @@
   color: var(--lx-ink, #0f172a);
 }
 .lx-fast-crack-steps ol {
-  margin: 4px 0 0 16px;
+  margin: 6px 0 0 16px;
   padding: 0;
 }
 .lx-fast-crack-steps li {
-  margin-bottom: 3px;
+  margin-bottom: 9px;
+  line-height: 1.55;
+}
+.lx-fast-crack-steps li:last-child {
+  margin-bottom: 0;
 }
 .lx-fast-crack-photo-btn {
   display: inline-flex;

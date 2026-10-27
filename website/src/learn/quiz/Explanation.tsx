@@ -264,7 +264,12 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
 
             <div className="lx-fast-crack-spot">
               <strong>👀 How to Spot in Under 5 Seconds:</strong>
-              <p>{fastCrack.howToSpot}</p>
+              <p><MathText text={fastCrack.howToSpot} /></p>
+            </div>
+
+            <div className="lx-fast-crack-how">
+              <strong>📖 How It Works (quick revision):</strong>
+              <p><MathText text={fastCrack.howItWorks} /></p>
             </div>
 
             <div className="lx-fast-crack-formula">
@@ -283,9 +288,18 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
               </ol>
             </div>
 
+            <div className="lx-fast-crack-tips">
+              <strong>💡 Tips for This Subtopic:</strong>
+              <ul>
+                {fastCrack.tips.map((tip, i) => (
+                  <li key={i}><MathText text={tip} /></li>
+                ))}
+              </ul>
+            </div>
+
             {fastCrack.commonTrap && (
               <div className="lx-fast-crack-spot" style={{ color: '#b91c1c' }}>
-                <strong>⚠️ Instant Trap Check:</strong> {fastCrack.commonTrap}
+                <strong>⚠️ Instant Trap Check:</strong> <MathText text={fastCrack.commonTrap} />
               </div>
             )}
 
