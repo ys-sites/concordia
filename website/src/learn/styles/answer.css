@@ -590,7 +590,19 @@
   margin-bottom: 8px;
   line-height: 1.55;
 }
-.lx-fast-crack-tips li:last-child {
+.lx-fast-crack-tips p {
+  margin: 4px 0 0;
+  line-height: 1.6;
+}
+.lx-steps-list {
+  margin: 8px 0 0 18px;
+  padding: 0;
+}
+.lx-steps-list li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.lx-steps-list li:last-child {
   margin-bottom: 0;
 }
 .lx-fast-crack-formula {

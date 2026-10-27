@@ -14,6 +14,7 @@ import { useCurriculum } from '../data';
 import { href } from '../router';
 import { saveVideoPosition, useProgress } from '../progress/store';
 import { detectFastCrackType } from '../../data/miae221FastCrack';
+import { getQuestionCrack } from '../../data/miae221QuestionCracks';
 
 // The answer to one question, organised the same way every time:
 //   main column   where your answer went wrong · the idea · the solution one small move at a time · the trap
@@ -238,6 +239,8 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
   const wrongNote = wrongIdx !== undefined ? e.whyWrong?.[wrongIdx] : undefined;
   const isMiae221 = q.courseId === 'MIAE221' || q.id.startsWith('MIAE221') || q.id.startsWith('TX_MIAE221') || q.id.startsWith('F24') || q.id.startsWith('A25') || q.id.startsWith('W26');
   const fastCrack = isMiae221 ? detectFastCrackType(q.prompt, q.topic, q.id) : null;
+  const questionCrack = isMiae221 ? getQuestionCrack(q.id) : null;
+  const hasOwnSteps = !!(e.steps?.length || e.lines?.length);
 
   return (
     <>
@@ -266,6 +269,13 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
               <strong>👀 How to Spot in Under 5 Seconds:</strong>
               <p><MathText text={fastCrack.howToSpot} /></p>
             </div>
+
+            {questionCrack && (
+              <div className="lx-fast-crack-how">
+                <strong>🎯 This Question:</strong>
+                <p><MathText text={questionCrack.ask} /></p>
+              </div>
+            )}
 
             <div className="lx-fast-crack-how">
               <strong>📖 How It Works (quick revision):</strong>
@@ -297,12 +307,31 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
               </ul>
             </div>
 
+            {questionCrack && (
+              <div className="lx-fast-crack-tips">
+                <strong>🧩 Tip for This Question:</strong>
+                <p><MathText text={questionCrack.trick} /></p>
+              </div>
+            )}
+
             {fastCrack.commonTrap && (
               <div className="lx-fast-crack-spot" style={{ color: '#b91c1c' }}>
                 <strong>⚠️ Instant Trap Check:</strong> <MathText text={fastCrack.commonTrap} />
               </div>
             )}
 
+          </section>
+        )}
+        {questionCrack && !hasOwnSteps && (
+          <section className="lx-ans-card is-steps">
+            <h4>
+              <ListOrdered size={16} aria-hidden /> Step-by-step breakdown
+            </h4>
+            <ol className="lx-steps-list">
+              {questionCrack.moves.map((mv, i) => (
+                <li key={i}><MathText text={mv} /></li>
+              ))}
+            </ol>
           </section>
         )}
         {wrongNote && (

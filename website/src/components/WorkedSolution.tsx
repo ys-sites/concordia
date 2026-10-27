@@ -16,6 +16,7 @@ import {
   Zap
 } from 'lucide-react';
 import { detectFastCrackType } from '../data/miae221FastCrack';
+import { getQuestionCrack } from '../data/miae221QuestionCracks';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 
@@ -109,6 +110,7 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
   const [shown, setShown] = useState<number>(mode === 'wrong' && isCalc && hasSteps ? 1 : steps.length);
   const isMiae221 = question.courseId === 'MIAE221' || question.id.startsWith('TX_MIAE221') || question.id.startsWith('MIAE221');
   const fastCrack = isMiae221 ? detectFastCrackType(question.question, question.topic, question.id) : null;
+  const questionCrack = isMiae221 ? getQuestionCrack(question.id) : null;
   const allShown = shown >= steps.length;
 
   const diagnosis =
@@ -193,6 +195,13 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
             <p><MathText text={fastCrack.howToSpot} /></p>
           </div>
 
+          {questionCrack && (
+            <div className="lx-fast-crack-how">
+              <strong>🎯 This Question:</strong>
+              <p><MathText text={questionCrack.ask} /></p>
+            </div>
+          )}
+
           <div className="lx-fast-crack-how">
             <strong>📖 How It Works (quick revision):</strong>
             <p><MathText text={fastCrack.howItWorks} /></p>
@@ -223,11 +232,32 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
             </ul>
           </div>
 
+          {questionCrack && (
+            <div className="lx-fast-crack-tips">
+              <strong>🧩 Tip for This Question:</strong>
+              <p><MathText text={questionCrack.trick} /></p>
+            </div>
+          )}
+
           {fastCrack.commonTrap && (
             <div className="lx-fast-crack-spot" style={{ color: '#b91c1c' }}>
               <strong>⚠️ Instant Trap Check:</strong> <MathText text={fastCrack.commonTrap} />
             </div>
           )}
+        </div>
+      )}
+
+      {questionCrack && question.explanation.stepByStep.length === 0 && (
+        <div className="ws-card">
+          <div className="ws-card-title">
+            <ListOrdered size={16} />
+            <span>Step-by-step breakdown</span>
+          </div>
+          <ol className="lx-steps-list">
+            {questionCrack.moves.map((mv, i) => (
+              <li key={i}><MathText text={mv} /></li>
+            ))}
+          </ol>
         </div>
       )}
 
