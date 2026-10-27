@@ -177,8 +177,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
       let order: string[];
       let adaptive: QuizSession['adaptive'];
       if (typeof level === 'number') pool = pool.filter((id) => idx.byId.get(id)!.level === level);
-      const configured = step.size && step.size < pool.length ? step.size : undefined;
-      const defaultSize = ids ? pool.length : mode === 'practice' ? boundedPracticeSize(pool.length, configured) : configured ?? pool.length;
+      const configured = step.size ? Math.min(step.size, pool.length) : undefined;
+      const defaultSize = ids ? pool.length : step.ordered ? (step.size || pool.length) : mode === 'practice' ? (configured ?? boundedPracticeSize(pool.length, configured)) : configured ?? pool.length;
       const size = Math.min(requestedSize ?? defaultSize, pool.length);
       if (ids) order = pool;
       else if (step.ordered) order = pool.slice(0, size);
@@ -191,7 +191,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
           .sort((a, b) => rank(a) - rank(b))
           .slice(0, size);
         // easy to hard within the set; random order inside each level
-        order = mode === 'exam' ? order : shuffle(order).sort((a, b) => idx.byId.get(a)!.level - idx.byId.get(b)!.level);
+        order = mode === 'exam' ? order : shuffle(order);
       }
       const optionOrder = optionOrderFor(order);
       updateProgress((s) => {
@@ -224,7 +224,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   );
 
   useEffect(() => {
-    if (autoStart && idx && !session) start(defaultMode);
+    if (autoStart && idx && !session) start(defaultMode, step.questionIds);
   }, [autoStart, idx, session]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const patch = (fn: (ss: QuizSession) => void) =>
@@ -379,8 +379,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
   }
 
   const available = (step.questionIds ?? []).filter((id) => idx.byId.has(id));
-  const configuredSetSize = step.size && step.size < available.length ? step.size : undefined;
-  const setSize = step.kind === 'practice' ? boundedPracticeSize(available.length, configuredSetSize) : configuredSetSize ?? available.length;
+  const configuredSetSize = step.size ? Math.min(step.size, available.length) : undefined;
+  const setSize = step.ordered ? (configuredSetSize ?? available.length) : step.kind === 'practice' ? (configuredSetSize ?? boundedPracticeSize(available.length, configuredSetSize)) : configuredSetSize ?? available.length;
   const isPastExamSet = step.kind === 'exam' && !step.timeLimit;
   const selectedPastExamSize = Math.min(pastExamSize ?? Math.min(5, available.length), available.length);
   const displayedSetSize = isPastExamSet ? selectedPastExamSize : setSize;

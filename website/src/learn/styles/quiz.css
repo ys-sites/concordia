@@ -289,7 +289,7 @@
 .lx-opts {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 .lx-opts.is-tf {
   flex-direction: row;
@@ -299,13 +299,13 @@
 }
 .lx-opt {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
+  align-items: center;
+  gap: 12px;
   width: 100%;
-  padding: 14px 16px;
-  min-height: 52px;
+  padding: 10px 14px;
+  min-height: 44px;
   border: 1.5px solid var(--lx-line-strong);
-  border-radius: var(--lx-r-lg);
+  border-radius: var(--lx-r);
   background: var(--lx-surface);
   text-align: left;
   font-size: 15px;

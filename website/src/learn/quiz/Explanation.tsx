@@ -85,7 +85,7 @@ export const SolutionVideo: React.FC<{ videoId: string }> = ({ videoId }) => {
         <PlayCircle size={34} aria-hidden />
         <span className="lx-vid-dur lx-num">{mmss}</span>
       </span>
-      <span>
+      <span className="lx-solvid-info">
         <strong>
           <Clapperboard size={14} aria-hidden /> Video solution
         </strong>
@@ -291,9 +291,14 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
           </section>
         )}
         {e.note && (
-          <p className="lx-ex-note">
-            <MathText text={e.note} />
-          </p>
+          <section className="lx-ans-card lx-ans-card--note">
+            <h4>
+              <Lightbulb size={16} aria-hidden /> Key insight
+            </h4>
+            <p className="lx-ex-note-text">
+              <MathText text={e.note} />
+            </p>
+          </section>
         )}
       </div>
       <CourseDocs q={q} yourAnswer={yourAnswer} />

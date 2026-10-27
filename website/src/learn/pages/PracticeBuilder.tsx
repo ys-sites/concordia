@@ -125,7 +125,7 @@ export const PracticeBuilder: React.FC<{ course: CourseId }> = ({ course }) => {
       title: `Your quiz: ${title()}`,
       minutes: ids.length * (mode === 'exam' ? 3 : 2),
       questionIds: ids,
-      size: 0,
+      size: ids.length,
       ordered: true,
       passMark: 0.7,
       ...(mode === 'exam' ? { timeLimit: Math.max(5, ids.length * 3) } : {})

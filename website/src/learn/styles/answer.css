@@ -76,7 +76,7 @@
 /* the answer */
 .lx-ans {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 280px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 320px);
   gap: 16px;
   align-items: start;
 }
@@ -422,25 +422,52 @@
   font-weight: 850;
 }
 .lx-ans-video .lx-solvid-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+  background: var(--lx-surface);
+  border: 1px solid var(--lx-line-strong);
+  border-radius: var(--lx-r);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  width: 100%;
+}
+.lx-ans-video .lx-solvid-card:hover {
+  border-color: var(--lx-accent);
+  background: var(--lx-tint);
+  transform: translateY(-1px);
 }
 .lx-ans-video .lx-solvid-thumb {
-  max-height: min(66vh, 620px);
-  border-radius: var(--lx-r-lg);
+  width: 200px;
+  max-width: 200px;
+  height: 112px;
+  aspect-ratio: 16 / 9;
+  flex: none;
+  border-radius: var(--lx-r-sm, 6px);
 }
+.lx-ans-video .lx-solvid-info,
 .lx-ans-video .lx-solvid-card > span:last-child {
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
 }
 .lx-ans-video .lx-solvid-open {
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
 }
 .lx-ans-video .ec-video-container {
   border-radius: var(--lx-r-lg);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
 }
 
 @media (max-width: 900px) {
