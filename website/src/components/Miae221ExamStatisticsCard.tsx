@@ -12,7 +12,6 @@ import {
   Zap,
   ExternalLink,
   BookOpen,
-  Camera,
   Layers,
   ArrowRight
 } from 'lucide-react';
@@ -21,16 +20,13 @@ import {
   MIAE221_QUESTION_SIMILARITY_MATRIX,
   MIAE221_STATISTICS_SUMMARY
 } from '../data/miae221ExamStatistics';
-import { audio } from '../utils/audio';
 
 interface Miae221ExamStatisticsCardProps {
   onStart2017Drill?: () => void;
-  onOpenPhotos?: (page?: number) => void;
 }
 
 export const Miae221ExamStatisticsCard: React.FC<Miae221ExamStatisticsCardProps> = ({
-  onStart2017Drill,
-  onOpenPhotos
+  onStart2017Drill
 }) => {
   const [selectedTopic, setSelectedTopic] = useState<string>('all');
   const [tableSearch, setTableSearch] = useState<string>('');
@@ -150,19 +146,6 @@ export const Miae221ExamStatisticsCard: React.FC<Miae221ExamStatisticsCardProps>
                 </ul>
               </div>
 
-              {stat.term === 'Winter 2026' && onOpenPhotos && (
-                <button
-                  type="button"
-                  className="m221-photo-btn"
-                  onClick={() => {
-                    audio.playClick();
-                    onOpenPhotos(1);
-                  }}
-                >
-                  <Camera size={15} />
-                  <span>View Winter 2026 Original Exam Paper Photos (9 Pages)</span>
-                </button>
-              )}
             </div>
           ))}
         </div>
@@ -299,19 +282,6 @@ export const Miae221ExamStatisticsCard: React.FC<Miae221ExamStatisticsCardProps>
                                 <p className="m221-detail-text">{q.fastCrackTip}</p>
                               </div>
                             </div>
-                            {q.matches.w26 && onOpenPhotos && (
-                              <button
-                                type="button"
-                                className="m221-mini-photo-link"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  audio.playClick();
-                                  onOpenPhotos(q.q2017Num <= 4 ? 1 : q.q2017Num <= 11 ? 2 : q.q2017Num <= 15 ? 3 : 4);
-                                }}
-                              >
-                                <Camera size={13} /> View matching question on Winter 2026 paper scan
-                              </button>
-                            )}
                           </div>
                         </td>
                       </tr>

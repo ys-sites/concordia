@@ -13,11 +13,9 @@ import {
   Calculator,
   BookOpen,
   CheckCircle2,
-  Zap,
-  Camera
+  Zap
 } from 'lucide-react';
-import { detectFastCrackType, getExamPhotoForQuestion } from '../data/miae221FastCrack';
-import { ExamPhotoModal } from './ExamPhotoModal';
+import { detectFastCrackType } from '../data/miae221FastCrack';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 
@@ -109,11 +107,8 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
 
   // After a wrong answer on a calculation, show one baby step at a time so student can compare scratch work
   const [shown, setShown] = useState<number>(mode === 'wrong' && isCalc && hasSteps ? 1 : steps.length);
-  const [photoPage, setPhotoPage] = useState<number | null>(null);
-
   const isMiae221 = question.courseId === 'MIAE221' || question.id.startsWith('TX_MIAE221') || question.id.startsWith('MIAE221');
   const fastCrack = isMiae221 ? detectFastCrackType(question.question, question.topic, question.id) : null;
-  const examPhoto = isMiae221 ? getExamPhotoForQuestion(question.id) : null;
   const allShown = shown >= steps.length;
 
   const diagnosis =
@@ -218,16 +213,6 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
             <div className="lx-fast-crack-spot" style={{ color: '#b91c1c' }}>
               <strong>⚠️ Instant Trap Check:</strong> {fastCrack.commonTrap}
             </div>
-          )}
-
-          {examPhoto && (
-            <button
-              type="button"
-              className="lx-fast-crack-photo-btn"
-              onClick={() => setPhotoPage(examPhoto.page)}
-            >
-              <Camera size={14} /> View Authentic Exam Paper Scan (Page {examPhoto.page})
-            </button>
           )}
         </div>
       )}
@@ -358,11 +343,6 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
           </p>
         </div>
       )}
-      <ExamPhotoModal
-        isOpen={photoPage !== null}
-        initialPage={photoPage ?? 1}
-        onClose={() => setPhotoPage(null)}
-      />
     </div>
   );
 };

@@ -32,7 +32,6 @@ import { VideoLibrary } from '../components/VideoLibrary';
 import { FormulaSheet, hasFormulaSheet } from '../components/FormulaSheet';
 import { getVideoUrl } from '../../utils/pdfUrl';
 import { Miae221ExamStatisticsCard } from '../../components/Miae221ExamStatisticsCard';
-import { ExamPhotoModal } from '../../components/ExamPhotoModal';
 import '../styles/course.css';
 
 const lessonHref = (c: CourseId, l: Lesson, done: Record<string, number>) => {
@@ -154,7 +153,6 @@ const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ 
   const sections = cur.sections.filter((s) => s.examPrep);
   const fullTeacherPaper = sections.flatMap((s) => s.lessons).find((l) => l.id === 'tp-full-paper');
   const fullTeacherStep = fullTeacherPaper?.steps.find((s) => s.kind === 'exam');
-  const [photoPage, setPhotoPage] = useState<number | null>(null);
 
   const startTeacherDrill = () => {
     if (fullTeacherPaper && fullTeacherStep) {
@@ -189,17 +187,9 @@ const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ 
       </a>
 
       {cur.id === 'MIAE221' && (
-        <>
-          <Miae221ExamStatisticsCard
-            onStart2017Drill={startTeacherDrill}
-            onOpenPhotos={(p) => setPhotoPage(p ?? 1)}
-          />
-          <ExamPhotoModal
-            isOpen={photoPage !== null}
-            initialPage={photoPage ?? 1}
-            onClose={() => setPhotoPage(null)}
-          />
-        </>
+        <Miae221ExamStatisticsCard
+          onStart2017Drill={startTeacherDrill}
+        />
       )}
 
       <Curriculum cur={cur} sections={sections} done={done} />

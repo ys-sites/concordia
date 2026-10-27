@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
-import { AlertTriangle, BookOpen, Camera, ChevronDown, Clapperboard, ExternalLink, FileText, Lightbulb, ListOrdered, PlayCircle, Search, Zap } from 'lucide-react';
+import { AlertTriangle, BookOpen, ChevronDown, Clapperboard, ExternalLink, FileText, Lightbulb, ListOrdered, PlayCircle, Search, Zap } from 'lucide-react';
 import type { DocRef, LearnQuestion } from '../model';
 import type { MotionLesson } from '../videoSources';
 import { resolveVideo } from '../videoSources';
@@ -13,8 +13,7 @@ import { openDoc } from '../docBus';
 import { useCurriculum } from '../data';
 import { href } from '../router';
 import { saveVideoPosition, useProgress } from '../progress/store';
-import { detectFastCrackType, getExamPhotoForQuestion } from '../../data/miae221FastCrack';
-import { ExamPhotoModal } from '../../components/ExamPhotoModal';
+import { detectFastCrackType } from '../../data/miae221FastCrack';
 
 // The answer to one question, organised the same way every time:
 //   main column   where your answer went wrong · the idea · the solution one small move at a time · the trap
@@ -237,11 +236,8 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
   const e = q.explain;
   const wrongIdx = chosen && correct === false ? chosen.find((i) => !q.correct.includes(i)) : undefined;
   const wrongNote = wrongIdx !== undefined ? e.whyWrong?.[wrongIdx] : undefined;
-  const [photoPage, setPhotoPage] = useState<number | null>(null);
-
   const isMiae221 = q.courseId === 'MIAE221' || q.id.startsWith('MIAE221') || q.id.startsWith('TX_MIAE221') || q.id.startsWith('F24') || q.id.startsWith('A25') || q.id.startsWith('W26');
   const fastCrack = isMiae221 ? detectFastCrackType(q.prompt, q.topic, q.id) : null;
-  const examPhoto = isMiae221 ? getExamPhotoForQuestion(q.id) : null;
 
   return (
     <>
@@ -293,15 +289,6 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
               </div>
             )}
 
-            {examPhoto && (
-              <button
-                type="button"
-                className="lx-fast-crack-photo-btn"
-                onClick={() => setPhotoPage(examPhoto.page)}
-              >
-                <Camera size={14} /> View Authentic Exam Paper Scan (Page {examPhoto.page})
-              </button>
-            )}
           </section>
         )}
         {wrongNote && (
@@ -371,11 +358,6 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
         <SolutionVideo videoId={q.videoId} />
       </section>
     )}
-    <ExamPhotoModal
-      isOpen={photoPage !== null}
-      initialPage={photoPage ?? 1}
-      onClose={() => setPhotoPage(null)}
-    />
     </>
   );
 };
