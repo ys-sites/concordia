@@ -139,3 +139,20 @@ One narrated, step-by-step video per subtopic of the course (21), in the order o
 - 8:41 Families
 - 9:22 Mix-ups to avoid
 - 10:00 Recap
+
+## 10 · Miller Indices - Planes (10:20)
+
+- 0:00 The Idea
+- 1:07 Intercepts
+- 2:09 The recipe
+- 3:13 Example 1 · easy
+- 3:41 Example 2 · a parallel plane
+- 4:23 Example 3 · a fraction
+- 4:59 Example 4 · a fraction on z
+- 5:31 Example 5 · fractions after flipping
+- 6:06 Example 6 · through the origin
+- 7:12 Drawing a plane
+- 7:38 Why one over the intercept?
+- 8:33 Families
+- 9:05 Mix-ups to avoid
+- 9:32 Recap
