@@ -191,6 +191,40 @@ One narrated, step-by-step video per subtopic of the course (21), in the order o
 - 9:44 Mix-ups to avoid
 - 10:15 Recap
 
+## 13 · Vacancies (10:46)
+
+- 0:00 The Idea
+- 1:13 Why vacancies exist
+- 2:20 The equation
+- 3:11 Counting the sites, N
+- 3:46 Example 1 · the fraction
+- 4:38 Example 2 · the number
+- 5:31 Example 3 · at room temperature
+- 6:17 Example 4 · finding Q v
+- 7:25 Example 5 · a ratio
+- 8:21 A straight-line plot
+- 8:52 Try it
+- 9:28 Mix-ups to avoid
+- 10:08 Recap
+
+## 19 · Stress, Strain & Poisson (11:08)
+
+- 0:00 The Idea
+- 0:39 Stress
+- 1:19 Strain
+- 2:06 Elastic deformation
+- 2:31 Hooke’s law
+- 3:16 Where E comes from
+- 3:58 Example 1 · a strain
+- 4:31 Example 2 · how much does it stretch?
+- 6:15 Poisson’s ratio
+- 7:13 Example 3 · Poisson in action
+- 8:17 Shear modulus
+- 8:50 Try it
+- 9:33 Stiff is not strong
+- 10:05 Mix-ups to avoid
+- 10:32 Recap
+
 ## 20 · The Tensile Curve (11:01)
 
 - 0:00 The Idea
