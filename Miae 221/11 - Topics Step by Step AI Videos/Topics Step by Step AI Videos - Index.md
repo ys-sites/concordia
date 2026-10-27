@@ -124,3 +124,18 @@ One narrated, step-by-step video per subtopic of the course (21), in the order o
 - 8:33 Check your understanding
 - 10:07 Mix-ups to avoid
 - 10:30 Recap
+
+## 09 · Miller Indices - Directions (10:36)
+
+- 0:00 The Idea
+- 1:26 Reading a point
+- 2:43 The recipe
+- 3:50 Example 1 · easy
+- 4:30 Example 2 · a fraction
+- 5:12 Example 3 · tail not at the origin
+- 6:14 Example 4 · harder
+- 7:08 Example 5 · tail inside a face
+- 7:55 Drawing a direction
+- 8:41 Families
+- 9:22 Mix-ups to avoid
+- 10:00 Recap
