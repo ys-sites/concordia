@@ -191,6 +191,23 @@ One narrated, step-by-step video per subtopic of the course (21), in the order o
 - 9:44 Mix-ups to avoid
 - 10:15 Recap
 
+## 20 · The Tensile Curve (11:01)
+
+- 0:00 The Idea
+- 0:59 The elastic region
+- 1:25 Yielding
+- 2:36 Tensile strength and necking
+- 3:34 Ductility
+- 4:34 Example · reading a real curve
+- 5:41 More from the same curve
+- 6:42 Resilience and toughness
+- 7:28 Brittle vs ductile
+- 7:58 Designing with the curve
+- 8:31 True stress and strain
+- 9:12 Hardness: a different test
+- 9:41 Mix-ups to avoid
+- 10:20 Recap
+
 ## 21 · Dislocations & Slip (10:32)
 
 - 0:00 The Idea
