@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
-import { AlertTriangle, BookOpen, ChevronDown, Clapperboard, ExternalLink, FileText, Lightbulb, ListOrdered, PlayCircle, Search } from 'lucide-react';
+import { AlertTriangle, BookOpen, Camera, ChevronDown, Clapperboard, ExternalLink, FileText, Lightbulb, ListOrdered, PlayCircle, Search, Zap } from 'lucide-react';
 import type { DocRef, LearnQuestion } from '../model';
 import type { MotionLesson } from '../videoSources';
 import { resolveVideo } from '../videoSources';
@@ -13,6 +13,8 @@ import { openDoc } from '../docBus';
 import { useCurriculum } from '../data';
 import { href } from '../router';
 import { saveVideoPosition, useProgress } from '../progress/store';
+import { detectFastCrackType, getExamPhotoForQuestion } from '../../data/miae221FastCrack';
+import { ExamPhotoModal } from '../../components/ExamPhotoModal';
 
 // The answer to one question, organised the same way every time:
 //   main column   where your answer went wrong · the idea · the solution one small move at a time · the trap
@@ -235,6 +237,12 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
   const e = q.explain;
   const wrongIdx = chosen && correct === false ? chosen.find((i) => !q.correct.includes(i)) : undefined;
   const wrongNote = wrongIdx !== undefined ? e.whyWrong?.[wrongIdx] : undefined;
+  const [photoPage, setPhotoPage] = useState<number | null>(null);
+
+  const isMiae221 = q.courseId === 'MIAE221' || q.id.startsWith('MIAE221') || q.id.startsWith('TX_MIAE221') || q.id.startsWith('F24') || q.id.startsWith('A25') || q.id.startsWith('W26');
+  const fastCrack = isMiae221 ? detectFastCrackType(q.prompt, q.topic, q.id) : null;
+  const examPhoto = isMiae221 ? getExamPhotoForQuestion(q.id) : null;
+
   return (
     <>
     {q.code && q.courseId === 'MIAE215' && (
@@ -247,6 +255,55 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
     )}
     <div className="lx-ans">
       <div className="lx-ans-main">
+        {fastCrack && (
+          <section className="lx-fast-crack-card" aria-label="Fast-Crack Strategy & Turbo Formula">
+            <div className="lx-fast-crack-header">
+              <div className="lx-fast-crack-badge">
+                <Zap size={14} /> 60-Second Fast-Crack Strategy
+              </div>
+              <div className="lx-fast-crack-system">
+                <strong>{fastCrack.typeName}</strong> · {fastCrack.system}
+              </div>
+            </div>
+
+            <div className="lx-fast-crack-spot">
+              <strong>👀 How to Spot in Under 5 Seconds:</strong>
+              <p>{fastCrack.howToSpot}</p>
+            </div>
+
+            <div className="lx-fast-crack-formula">
+              <strong>⚡ Shortened Turbo Formula / Algorithm:</strong>
+              <div className="lx-fast-crack-math">
+                <MathText text={fastCrack.turboFormula} />
+              </div>
+            </div>
+
+            <div className="lx-fast-crack-steps">
+              <strong>Speed Strategy:</strong>
+              <ol>
+                {fastCrack.steps.map((st, i) => (
+                  <li key={i}><MathText text={st} /></li>
+                ))}
+              </ol>
+            </div>
+
+            {fastCrack.commonTrap && (
+              <div className="lx-fast-crack-spot" style={{ color: '#b91c1c' }}>
+                <strong>⚠️ Instant Trap Check:</strong> {fastCrack.commonTrap}
+              </div>
+            )}
+
+            {examPhoto && (
+              <button
+                type="button"
+                className="lx-fast-crack-photo-btn"
+                onClick={() => setPhotoPage(examPhoto.page)}
+              >
+                <Camera size={14} /> View Authentic Exam Paper Scan (Page {examPhoto.page})
+              </button>
+            )}
+          </section>
+        )}
         {wrongNote && (
           <section className="lx-ans-card is-wrong">
             <h4>
@@ -314,6 +371,11 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
         <SolutionVideo videoId={q.videoId} />
       </section>
     )}
+    <ExamPhotoModal
+      isOpen={photoPage !== null}
+      initialPage={photoPage ?? 1}
+      onClose={() => setPhotoPage(null)}
+    />
     </>
   );
 };

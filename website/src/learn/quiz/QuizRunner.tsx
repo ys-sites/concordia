@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Eye, Flag, GraduationCap, L
 import type { CourseId } from '../../types';
 import type { LearnQuestion, Lesson, Step } from '../model';
 import { LEVEL_LABEL } from '../model';
-import { Answer, Attempt, QuizSession, recordAnswer, stepKey, toggleFlag, updateProgress, useProgress } from '../progress/store';
+import { Answer, Attempt, QuizSession, markStep, recordAnswer, stepKey, toggleFlag, updateProgress, useProgress } from '../progress/store';
 import { useCourseQuestions } from '../questions';
 import { grade, isAnswered } from '../questions/grade';
 import { QuestionView } from './QuestionView';
@@ -290,6 +290,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
         s.attempts.push(attempt);
         if (s.attempts.length > 400) s.attempts.splice(0, s.attempts.length - 400);
       });
+      // Mark step completed in progress store so theory and quiz usage are counted
+      markStep(course, step.id);
       trackStudy('quiz_complete', { course, lesson: lesson.id, step: step.id, mode: ss.mode, score_bucket: scoreBucket(score, results.length), questions: results.length });
       onFinished?.(results.length > 0 && score / results.length >= (step.passMark ?? 0.7));
     },

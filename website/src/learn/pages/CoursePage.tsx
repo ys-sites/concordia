@@ -5,14 +5,18 @@ import {
   Check,
   CheckCircle2,
   ChevronDown,
+  ChevronRight,
+  Circle,
   Clapperboard,
   FileText,
   GraduationCap,
   HelpCircle,
   LibraryBig,
+  ListTree,
   PlayCircle,
   Target,
-  Timer
+  Timer,
+  X
 } from 'lucide-react';
 import type { CourseId } from '../../types';
 import type { Curriculum, Lesson, Section, VideoCard } from '../model';
@@ -27,6 +31,8 @@ import { ResourceLibrary } from '../components/ResourceLibrary';
 import { VideoLibrary } from '../components/VideoLibrary';
 import { FormulaSheet, hasFormulaSheet } from '../components/FormulaSheet';
 import { getVideoUrl } from '../../utils/pdfUrl';
+import { Miae221ExamStatisticsCard } from '../../components/Miae221ExamStatisticsCard';
+import { ExamPhotoModal } from '../../components/ExamPhotoModal';
 import '../styles/course.css';
 
 const lessonHref = (c: CourseId, l: Lesson, done: Record<string, number>) => {
@@ -143,10 +149,21 @@ const Curriculum: React.FC<{ cur: Curriculum; sections: Section[]; done: Record<
 };
 
 // ── exam prep tab ────────────────────────────────────────────────────────────────
+// ── exam prep tab ────────────────────────────────────────────────────────────────
 const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ cur, done }) => {
   const sections = cur.sections.filter((s) => s.examPrep);
   const fullTeacherPaper = sections.flatMap((s) => s.lessons).find((l) => l.id === 'tp-full-paper');
   const fullTeacherStep = fullTeacherPaper?.steps.find((s) => s.kind === 'exam');
+  const [photoPage, setPhotoPage] = useState<number | null>(null);
+
+  const startTeacherDrill = () => {
+    if (fullTeacherPaper && fullTeacherStep) {
+      window.location.href = href({ name: 'learn', course: cur.id, lesson: fullTeacherPaper.id, step: fullTeacherStep.id });
+    } else {
+      window.location.href = href({ name: 'practice', course: cur.id });
+    }
+  };
+
   return (
     <div className="lx-exam-tab">
       {fullTeacherPaper && fullTeacherStep && (
@@ -170,8 +187,152 @@ const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ 
         </span>
         <ArrowRight size={18} aria-hidden />
       </a>
+
+      {cur.id === 'MIAE221' && (
+        <>
+          <Miae221ExamStatisticsCard
+            onStart2017Drill={startTeacherDrill}
+            onOpenPhotos={(p) => setPhotoPage(p ?? 1)}
+          />
+          <ExamPhotoModal
+            isOpen={photoPage !== null}
+            initialPage={photoPage ?? 1}
+            onClose={() => setPhotoPage(null)}
+          />
+        </>
+      )}
+
       <Curriculum cur={cur} sections={sections} done={done} />
     </div>
+  );
+};
+
+// ── course content & exam prep slide-out drawer ──────────────────────────────
+const CourseDrawer: React.FC<{
+  cur: Curriculum;
+  drawer: 'content' | 'exam';
+  onClose: () => void;
+  onSwitch: (tab: 'content' | 'exam') => void;
+  done: Record<string, number>;
+  activeStepId?: string;
+  activeLessonId?: string;
+}> = ({ cur, drawer, onClose, onSwitch, done, activeStepId, activeLessonId }) => {
+  const sections = cur.sections.filter((section) => Boolean(section.examPrep) === (drawer === 'exam'));
+  const currentSection = cur.sections.find((s) => s.lessons.some((l) => l.id === activeLessonId))?.id;
+  const [openSections, setOpenSections] = useState<Set<string>>(() => new Set(currentSection ? [currentSection] : [sections[0]?.id].filter(Boolean) as string[]));
+  const [openLessons, setOpenLessons] = useState<Set<string>>(() => new Set(activeLessonId ? [activeLessonId] : []));
+
+  const toggle = (set: React.Dispatch<React.SetStateAction<Set<string>>>, id: string) =>
+    set((o) => {
+      const n = new Set(o);
+      if (n.has(id)) n.delete(id);
+      else n.add(id);
+      return n;
+    });
+
+  const contentLabel = drawer === 'exam' ? 'Midterm preparation' : 'Course content';
+
+  return (
+    <>
+      <div className="lx-pside-scrim" onClick={onClose} aria-hidden />
+      <aside className="lx-course-drawer is-open" aria-label={contentLabel}>
+        <div className="lx-drawer-head">
+          <div className="lx-drawer-head-top">
+            <strong>{contentLabel}</strong>
+            <button type="button" className="lx-icon-btn lx-drawer-close" onClick={onClose} aria-label="Close drawer">
+              <X size={20} />
+            </button>
+          </div>
+          <div className="lx-drawer-tabs">
+            <button
+              type="button"
+              className={`lx-drawer-tab ${drawer === 'content' ? 'is-active' : ''}`}
+              onClick={() => onSwitch('content')}
+            >
+              Course content (Ch 1–{cur.sections.filter((s) => !s.examPrep).length})
+            </button>
+            <button
+              type="button"
+              className={`lx-drawer-tab ${drawer === 'exam' ? 'is-active' : ''}`}
+              onClick={() => onSwitch('exam')}
+            >
+              Midterm prep
+            </button>
+          </div>
+        </div>
+
+        <div className="lx-drawer-body">
+          <nav className="lx-side-list" aria-label={contentLabel}>
+            {sections.map((s: Section, si) => {
+              const done_ = s.lessons.filter((l) => lessonProgress(cur.id, l, done).complete).length;
+              const open = openSections.has(s.id);
+              return (
+                <div key={s.id} className={`lx-side-sec${open ? ' is-open' : ''}`}>
+                  <button type="button" className="lx-side-sec-head" aria-expanded={open} onClick={() => toggle(setOpenSections, s.id)}>
+                    <span>
+                      <strong>
+                        {drawer === 'exam' ? '' : `Section ${si + 1}: `}
+                        {s.title}
+                      </strong>
+                      <span className="lx-meta lx-num">
+                        {done_} / {s.lessons.length} · {fmtMinutes(s.lessons.reduce((n, l) => n + l.minutes, 0))}
+                      </span>
+                    </span>
+                    <ChevronDown size={18} aria-hidden className="lx-acc-chev" />
+                  </button>
+                  {open && (
+                    <ul>
+                      {s.lessons.map((l: Lesson) => {
+                        const lp = lessonProgress(cur.id, l, done);
+                        const lopen = openLessons.has(l.id);
+                        return (
+                          <li key={l.id} className={`lx-side-lesson${l.id === activeLessonId ? ' is-current' : ''}`}>
+                            <button type="button" className="lx-side-lesson-head" aria-expanded={lopen} onClick={() => toggle(setOpenLessons, l.id)}>
+                              <span className={`lx-lesson-state${lp.complete ? ' is-done' : lp.started ? ' is-started' : ''}`} aria-hidden>
+                                {lp.complete ? <Check size={12} strokeWidth={3} /> : null}
+                              </span>
+                              <span className="lx-side-lesson-title">{l.title}</span>
+                              <span className="lx-meta lx-num">{fmtMinutes(l.minutes)}</span>
+                            </button>
+                            {lopen && (
+                              <ul>
+                                {l.steps.map((st) => {
+                                  const d = !!done[`${cur.id}/${st.id}`];
+                                  return (
+                                    <li key={st.id}>
+                                      <a
+                                        className={`lx-side-step${st.id === activeStepId ? ' is-current' : ''}${d ? ' is-done' : ''}`}
+                                        href={href({ name: 'learn', course: cur.id, lesson: l.id, step: st.id })}
+                                        onClick={onClose}
+                                      >
+                                        <span className="lx-side-check" aria-label={d ? 'completed' : 'not completed'}>
+                                          {d ? <CheckCircle2 size={16} /> : <Circle size={16} />}
+                                        </span>
+                                        <span className="lx-side-step-text">
+                                          <span>{st.title}</span>
+                                          <span className="lx-meta">
+                                            <StepIcon step={st} size={13} /> {st.optional ? 'Optional · ' : ''}
+                                            {st.minutes} min
+                                          </span>
+                                        </span>
+                                      </a>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
+          </nav>
+        </div>
+      </aside>
+    </>
   );
 };
 
@@ -184,6 +345,15 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
   const lastPlace = useProgress((st) => st.lastByCourse[course]);
   const prog = useMemo(() => (cur ? courseProgress(cur, done) : null), [cur, done]);
   const next = useMemo(() => (cur ? nextStep(cur, done, lastPlace?.stepId) : null), [cur, done, lastPlace]);
+  const [drawer, setDrawer] = useState<'content' | 'exam' | null>(null);
+
+  const nonExamSections = useMemo(() => (cur ? cur.sections.filter((x) => !x.examPrep) : []), [cur]);
+  const activeSecIdx = useMemo(() => {
+    if (!next || !nonExamSections.length) return 0;
+    const idx = nonExamSections.findIndex((sec) => sec.lessons.some((l) => l.id === next.lesson.id));
+    return idx >= 0 ? idx : 0;
+  }, [next, nonExamSections]);
+  const activeChapterNum = activeSecIdx + 1;
   const sideExam = nextExam(useReminders(), course);
   const urgentExam = sideExam && sideExam.left <= 21 ? sideExam : null;
   const urgentExamLabel = urgentExam ? (urgentExam.left === 0 ? 'Today' : urgentExam.left === 1 ? 'Tomorrow' : `${urgentExam.left}d`) : null;
@@ -219,9 +389,19 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
               </li>
             </ul>
             <div className="lx-course-mobile-cta">
-              <a className="lx-btn lx-btn--accent lx-btn--lg" href={ctaHref}>
-                <PlayCircle size={18} /> {started ? `Continue · ${prog?.pct ?? 0}%` : 'Start course'}
+              <a className="lx-btn lx-btn--accent lx-btn--lg" href={ctaHref} style={{ flex: 1 }}>
+                <PlayCircle size={18} /> {started ? `Continue · Chapter ${activeChapterNum}` : 'Start course · Chapter 1'}
               </a>
+              <button
+                type="button"
+                className="lx-btn lx-btn--lg"
+                onClick={() => setDrawer('content')}
+                style={{ padding: '0 14px' }}
+                title="Open Chapters (Chapter 1, 2, 3...)"
+                aria-label="Open Chapters"
+              >
+                <ListTree size={18} />
+              </button>
             </div>
           </section>
 
@@ -307,18 +487,77 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
                   </span>
                 </div>
               ) : null}
+              {/* Exam Prep Compound Button */}
               {urgentExam && (
-                <button type="button" className="lx-btn lx-btn--accent lx-btn--lg lx-btn--block" onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}>
-                  <GraduationCap size={17} /> Exam prep · {urgentExamLabel}
-                </button>
+                <div className="lx-btn-compound">
+                  <button type="button" className="lx-btn lx-btn--accent lx-btn--lg lx-btn-compound-main" onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}>
+                    <GraduationCap size={17} /> Exam prep · {urgentExamLabel}
+                  </button>
+                  <button type="button" className="lx-btn lx-btn--accent lx-btn-compound-toggle" onClick={() => setDrawer('exam')} title="Open Midterm Preparation List" aria-label="Open Midterm Preparation List">
+                    <span>Prep</span>
+                    <ChevronDown size={14} />
+                  </button>
+                </div>
               )}
-              <a className={`lx-btn${urgentExam ? '' : ' lx-btn--accent'} lx-btn--lg lx-btn--block`} href={ctaHref}>
-                <PlayCircle size={18} /> {started ? 'Continue' : 'Start course'}
-              </a>
-              {!urgentExam && (
-                <button type="button" className="lx-btn lx-btn--block" onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}>
-                  <GraduationCap size={17} /> Exam prep
+
+              {/* Continue Compound Button (Chapter 1, 2, 3...) */}
+              <div className="lx-btn-compound">
+                <a className={`lx-btn${urgentExam ? '' : ' lx-btn--accent'} lx-btn--lg lx-btn-compound-main`} href={ctaHref}>
+                  <PlayCircle size={18} /> {started ? `Continue · Chapter ${activeChapterNum}` : 'Start course · Chapter 1'}
+                </a>
+                <button
+                  type="button"
+                  className={`lx-btn${urgentExam ? '' : ' lx-btn--accent'} lx-btn-compound-toggle`}
+                  onClick={() => setDrawer('content')}
+                  title={`Open Chapter List (Ch 1–${nonExamSections.length})`}
+                  aria-label="Open Chapter List"
+                >
+                  <span>Ch 1–{nonExamSections.length}</span>
+                  <ChevronDown size={14} />
                 </button>
+              </div>
+
+              {/* Quick Chapter Jump Bar (Chapter 1, 2, 3, 4, 5 and so on) */}
+              <div className="lx-chapter-quick-nav">
+                <div className="lx-chapter-quick-header">
+                  <span className="lx-meta">Jump to Chapter:</span>
+                  <button type="button" className="lx-chapter-all-btn" onClick={() => setDrawer('content')}>
+                    View all ({nonExamSections.length}) <ChevronRight size={13} />
+                  </button>
+                </div>
+                <div className="lx-chapter-chips-row">
+                  {nonExamSections.map((sec, idx) => {
+                    const chNum = idx + 1;
+                    const openLesson = sec.lessons.find((l) => !lessonProgress(course, l, done).complete) ?? sec.lessons[0];
+                    const targetHref = lessonHref(course, openLesson, done);
+                    const lessonsDone = sec.lessons.filter((l) => lessonProgress(course, l, done).complete).length;
+                    const isComplete = lessonsDone === sec.lessons.length && sec.lessons.length > 0;
+                    const isCurrent = activeSecIdx === idx;
+                    return (
+                      <a
+                        key={sec.id}
+                        href={targetHref}
+                        className={`lx-ch-chip${isCurrent ? ' is-current' : ''}${isComplete ? ' is-complete' : ''}`}
+                        title={`Chapter ${chNum}: ${sec.title} (${lessonsDone}/${sec.lessons.length} lessons)`}
+                      >
+                        <span>Ch {chNum}</span>
+                        {isComplete && <Check size={11} strokeWidth={3} className="lx-ch-chip-check" />}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {!urgentExam && (
+                <div className="lx-btn-compound" style={{ marginTop: '4px' }}>
+                  <button type="button" className="lx-btn lx-btn--block lx-btn-compound-main" onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}>
+                    <GraduationCap size={17} /> Exam prep
+                  </button>
+                  <button type="button" className="lx-btn lx-btn-compound-toggle" onClick={() => setDrawer('exam')} title="Open Midterm Preparation List" aria-label="Open Midterm Preparation List">
+                    <span>Prep</span>
+                    <ChevronDown size={14} />
+                  </button>
+                </div>
               )}
               <p className="lx-meta lx-side-includes-title">This course includes</p>
               <ul className="lx-side-includes lx-num">
@@ -331,6 +570,18 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
           </div>
         </aside>
       </div>
+
+      {drawer && cur && (
+        <CourseDrawer
+          cur={cur}
+          drawer={drawer}
+          onClose={() => setDrawer(null)}
+          onSwitch={(t: 'content' | 'exam') => setDrawer(t)}
+          done={done}
+          activeStepId={next?.step.id}
+          activeLessonId={next?.lesson.id}
+        />
+      )}
     </div>
   );
 };

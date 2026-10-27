@@ -12,8 +12,12 @@ import {
   AlertTriangle,
   Calculator,
   BookOpen,
-  CheckCircle2
+  CheckCircle2,
+  Zap,
+  Camera
 } from 'lucide-react';
+import { detectFastCrackType, getExamPhotoForQuestion } from '../data/miae221FastCrack';
+import { ExamPhotoModal } from './ExamPhotoModal';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 
@@ -105,6 +109,11 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
 
   // After a wrong answer on a calculation, show one baby step at a time so student can compare scratch work
   const [shown, setShown] = useState<number>(mode === 'wrong' && isCalc && hasSteps ? 1 : steps.length);
+  const [photoPage, setPhotoPage] = useState<number | null>(null);
+
+  const isMiae221 = question.courseId === 'MIAE221' || question.id.startsWith('TX_MIAE221') || question.id.startsWith('MIAE221');
+  const fastCrack = isMiae221 ? detectFastCrackType(question.question, question.topic, question.id) : null;
+  const examPhoto = isMiae221 ? getExamPhotoForQuestion(question.id) : null;
   const allShown = shown >= steps.length;
 
   const diagnosis =
@@ -171,6 +180,57 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
 
       {/* Narrated solve video (teacher midterm questions that have one) */}
       <QuestionVideo questionId={question.id} />
+
+      {/* 60-Second Fast-Crack Strategy for MIAE 221 */}
+      {fastCrack && (
+        <div className="lx-fast-crack-card" style={{ margin: '14px 0' }}>
+          <div className="lx-fast-crack-header">
+            <div className="lx-fast-crack-badge">
+              <Zap size={14} /> 60-Second Fast-Crack Strategy
+            </div>
+            <div className="lx-fast-crack-system">
+              <strong>{fastCrack.typeName}</strong> · {fastCrack.system}
+            </div>
+          </div>
+
+          <div className="lx-fast-crack-spot">
+            <strong>👀 How to Spot in Under 5 Seconds:</strong>
+            <p>{fastCrack.howToSpot}</p>
+          </div>
+
+          <div className="lx-fast-crack-formula">
+            <strong>⚡ Shortened Turbo Formula / Algorithm:</strong>
+            <div className="lx-fast-crack-math">
+              <MathText text={fastCrack.turboFormula} />
+            </div>
+          </div>
+
+          <div className="lx-fast-crack-steps">
+            <strong>Speed Strategy:</strong>
+            <ol>
+              {fastCrack.steps.map((st, i) => (
+                <li key={i}><MathText text={st} /></li>
+              ))}
+            </ol>
+          </div>
+
+          {fastCrack.commonTrap && (
+            <div className="lx-fast-crack-spot" style={{ color: '#b91c1c' }}>
+              <strong>⚠️ Instant Trap Check:</strong> {fastCrack.commonTrap}
+            </div>
+          )}
+
+          {examPhoto && (
+            <button
+              type="button"
+              className="lx-fast-crack-photo-btn"
+              onClick={() => setPhotoPage(examPhoto.page)}
+            >
+              <Camera size={14} /> View Authentic Exam Paper Scan (Page {examPhoto.page})
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Key Idea / Core Concept */}
       <div className="ws-card ws-concept">
@@ -298,6 +358,11 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
           </p>
         </div>
       )}
+      <ExamPhotoModal
+        isOpen={photoPage !== null}
+        initialPage={photoPage ?? 1}
+        onClose={() => setPhotoPage(null)}
+      />
     </div>
   );
 };

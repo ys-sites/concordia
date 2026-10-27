@@ -517,3 +517,317 @@
   font-weight: 800;
   color: var(--lx-ink-2);
 }
+
+
+
+/* Fast-Crack Answer Section in Explanation & Solution */
+.lx-fast-crack-card {
+  background: linear-gradient(135deg, rgba(190, 24, 93, 0.05) 0%, rgba(244, 114, 182, 0.03) 100%);
+  border: 1.5px solid rgba(190, 24, 93, 0.25);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.lx-fast-crack-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px dashed rgba(190, 24, 93, 0.2);
+  padding-bottom: 8px;
+}
+.lx-fast-crack-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #be185d;
+  background: rgba(190, 24, 93, 0.1);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.lx-fast-crack-system {
+  font-size: 12px;
+  color: #831843;
+}
+.lx-fast-crack-spot {
+  font-size: 13px;
+  color: var(--lx-ink, #0f172a);
+}
+.lx-fast-crack-spot p {
+  margin: 3px 0 0;
+  color: #475569;
+  line-height: 1.45;
+}
+.lx-fast-crack-formula {
+  background: #ffffff;
+  border: 1px solid rgba(190, 24, 93, 0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.lx-fast-crack-formula strong {
+  font-size: 12px;
+  color: #be185d;
+  display: block;
+  margin-bottom: 4px;
+}
+.lx-fast-crack-math {
+  font-size: 14px;
+  color: #0f172a;
+}
+.lx-fast-crack-steps {
+  font-size: 12.5px;
+  color: #334155;
+}
+.lx-fast-crack-steps strong {
+  color: var(--lx-ink, #0f172a);
+}
+.lx-fast-crack-steps ol {
+  margin: 4px 0 0 16px;
+  padding: 0;
+}
+.lx-fast-crack-steps li {
+  margin-bottom: 3px;
+}
+.lx-fast-crack-photo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  background: #fdf2f8;
+  border: 1px solid #f472b6;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 750;
+  color: #be185d;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.15s;
+}
+.lx-fast-crack-photo-btn:hover {
+  background: #fce7f3;
+  border-color: #db2777;
+}
+
+/* Exam Photo Lightbox Modal */
+.exam-photo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.exam-photo-modal-content {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 950px;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+.exam-photo-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+  color: #ffffff;
+}
+.exam-photo-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.exam-photo-icon {
+  color: #f472b6;
+}
+.exam-photo-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 750;
+  color: #f8fafc;
+}
+.exam-photo-sub {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #94a3b8;
+}
+.exam-photo-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.exam-photo-zoom-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 2px 6px;
+}
+.exam-photo-zoom-group button {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+.exam-photo-zoom-group button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.exam-photo-zoom-level {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  min-width: 36px;
+  text-align: center;
+}
+.exam-photo-close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+}
+.exam-photo-close-btn:hover {
+  background: #334155;
+  color: #ffffff;
+}
+.exam-photo-scope-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px;
+  background: #1e1b4b;
+  border-bottom: 1px solid #312e81;
+  font-size: 12px;
+}
+.exam-photo-scope-tag {
+  background: #4f46e5;
+  color: #ffffff;
+  font-weight: 750;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.exam-photo-scope-details {
+  color: #c7d2fe;
+}
+.exam-photo-viewer-canvas {
+  position: relative;
+  flex: 1;
+  min-height: 480px;
+  max-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #020617;
+  overflow: hidden;
+}
+.exam-photo-img-scroll {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+.exam-photo-active-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease-out;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.exam-photo-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.15s;
+}
+.exam-photo-nav-arrow:hover:not(:disabled) {
+  background: #be185d;
+}
+.exam-photo-nav-arrow:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+.exam-photo-nav-arrow.is-prev { left: 16px; }
+.exam-photo-nav-arrow.is-next { right: 16px; }
+.exam-photo-footer {
+  padding: 12px 20px;
+  background: #0f172a;
+  border-top: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.exam-photo-thumbs-strip {
+  display: flex;
+  gap: 8px;
+}
+.exam-photo-thumb-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: #1e293b;
+  border: 1.5px solid transparent;
+  border-radius: 6px;
+  padding: 3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.exam-photo-thumb-btn.is-active {
+  border-color: #f472b6;
+  background: #334155;
+}
+.exam-photo-mini-thumb {
+  width: 42px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+.exam-photo-thumb-label {
+  font-size: 10px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+.exam-photo-footer-note {
+  font-size: 11px;
+  color: #64748b;
+  text-align: right;
+}

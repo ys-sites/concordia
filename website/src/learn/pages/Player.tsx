@@ -172,6 +172,13 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
     setHelpful(null);
     trackStudyOnce(`lesson:${course}:${lessonId}`, 'lesson_start', { course, lesson: lessonId });
     document.title = `${step.title} · ${found.lesson.title} · ${c.code}`;
+
+    // Auto-mark theory, formula, notes, tools, and reading steps complete when the user visits and looks at them
+    if (MANUAL.includes(step.kind)) {
+      markStep(course, step.id);
+      trackStudyOnce(`complete:${course}:${step.id}`, 'step_complete', { course, lesson: lessonId, step: step.id, kind: step.kind });
+    }
+
     return () => {
       document.title = 'Concordia Engineering Hub';
     };
