@@ -235,7 +235,11 @@
   cursor: none !important;
 }
 
-/* Fullscreen Styling: standard API, webkit prefix, and CSS fallback */
+/* Fullscreen Styling: standard API, webkit prefix, and CSS fallback.
+   The `.is-fullscreen` class is ONLY the CSS-viewport fallback (Tier 3). It is
+   never applied while iOS Safari's native video player owns fullscreen:
+   restyling the video's ancestors during that handover drops the video layer
+   and the picture disappears. Native API fullscreen is sized by :fullscreen. */
 :fullscreen,
 :-webkit-full-screen {
   background: #000000 !important;

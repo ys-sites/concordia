@@ -36,6 +36,7 @@ interface MotionLessonPlayerProps {
   onFallback?: () => void;
   bare?: boolean; // no header or disclosure: the page around the player shows them
   alwaysShowFullscreen?: boolean; // keeps an explicit control visible for embedded answer videos
+  autoPlay?: boolean; // start playing as soon as the player mounts (one tap on the thumbnail = playing)
 }
 
 export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
@@ -47,12 +48,16 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
   onEnded,
   onFallback,
   bare = false,
-  alwaysShowFullscreen = false
+  alwaysShowFullscreen = false,
+  autoPlay = false
 }) => {
   const lastReport = useRef(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hideControlsTimerRef = useRef<number | null>(null);
+  // Set once the video has actually played, so autoplay attempts never fight a user pause.
+  const hasPlayedRef = useRef(false);
+  const wasPlayingRef = useRef(false);
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -66,8 +71,25 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
     triedLocal.current = false;
     setVideoFailed(false);
   }, [lesson.video]);
+
+  // One-tap autoplay: the thumbnail tap that opened this player is the user's
+  // play gesture, so start playing right away. Never retries after the video
+  // has played once, so a user pause is always respected.
+  useEffect(() => {
+    if (!autoPlay) return;
+    hasPlayedRef.current = false;
+    const v = videoRef.current;
+    if (v) v.play().catch(() => {});
+  }, [autoPlay, lesson.video]);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
-  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  // Fullscreen is split in two on purpose. `isNativeFullscreen` tracks the Fullscreen
+  // API or iOS Safari's native video player: it must NEVER change the container's
+  // layout, or iOS drops the video layer and the picture disappears. `isPseudoFullscreen`
+  // is only the CSS full-viewport fallback (Tier 3), which is the one case where the
+  // container itself is restyled via the `is-fullscreen` class.
+  const [isNativeFullscreen, setIsNativeFullscreen] = useState<boolean>(false);
+  const [isPseudoFullscreen, setIsPseudoFullscreen] = useState<boolean>(false);
+  const isFullscreen = isNativeFullscreen || isPseudoFullscreen;
   const [showControls, setShowControls] = useState<boolean>(true);
   const [bufferedPercent, setBufferedPercent] = useState<number>(0);
   const [showSpeedMenu, setShowSpeedMenu] = useState<boolean>(false);
@@ -136,9 +158,12 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
     setShowSpeedMenu(false);
   };
 
-  // Exit fullscreen explicitly
+  // Exit fullscreen explicitly: the CSS fallback is ours to leave; the native API
+  // exits through the document; iOS Safari's native video player can only be left
+  // with its own Done button, and its end event syncs the state below.
   const exitFullscreen = useCallback(async () => {
     try {
+      setIsPseudoFullscreen(false);
       const isNativeFs = !!(
         document.fullscreenElement ||
         (document as any).webkitFullscreenElement ||
@@ -160,8 +185,6 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
       } catch {}
     } catch (err) {
       console.warn('Exit fullscreen error:', err);
-    } finally {
-      setIsFullscreen(false);
     }
   }, []);
 
@@ -184,11 +207,12 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
       return;
     }
 
-    // Tier 1: Try container.requestFullscreen (Chrome, Android, Edge, Firefox, Mac Safari)
+    // Tier 1: Try container.requestFullscreen (Chrome, Android, Edge, Firefox, Mac Safari).
+    // The fullscreenchange listener below syncs isNativeFullscreen; no layout class is
+    // applied here, the :fullscreen CSS rules do the sizing.
     try {
       if (container.requestFullscreen) {
         await container.requestFullscreen();
-        setIsFullscreen(true);
         // Attempt orientation lock on mobile devices supporting it
         try {
           if ((screen.orientation as any)?.lock) {
@@ -198,18 +222,21 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
         return;
       } else if ((container as any).webkitRequestFullscreen) {
         await (container as any).webkitRequestFullscreen();
-        setIsFullscreen(true);
         return;
       }
     } catch (err) {
       console.warn('Container requestFullscreen failed, attempting video fallback:', err);
     }
 
-    // Tier 2: iOS Safari / iPhone (HTMLVideoElement has webkitEnterFullscreen, divs do not)
+    // Tier 2: iOS Safari / iPhone (HTMLVideoElement has webkitEnterFullscreen, divs do not).
+    // Play first, inside this tap, so the native player opens on a playing video, then
+    // hand the video to the system player and touch NOTHING about the page layout:
+    // restyling the video's ancestors while iOS takes over the video layer is what
+    // made the picture vanish. webkitbeginfullscreen syncs the state, without a class.
     if (v && typeof (v as any).webkitEnterFullscreen === 'function') {
       try {
+        await v.play().catch(() => {});
         (v as any).webkitEnterFullscreen();
-        setIsFullscreen(true);
         return;
       } catch (err) {
         console.warn('Video webkitEnterFullscreen failed:', err);
@@ -217,10 +244,13 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
     }
 
     // Tier 3: CSS Full-Viewport Fallback (guaranteed to work across all mobile aspect ratios & browsers)
-    setIsFullscreen(true);
+    // This is the ONLY tier that restyles the container, via the is-fullscreen class.
+    setIsPseudoFullscreen(true);
   }, [isFullscreen, exitFullscreen]);
 
-  // Track native fullscreen change
+  // Track native fullscreen change (Fullscreen API only: iOS native video
+  // fullscreen does not set a document fullscreen element, so this never fires
+  // for the Tier 2 path, and no layout class is ever applied for it).
   useEffect(() => {
     const handleFullscreenChange = () => {
       const isFs = !!(
@@ -229,7 +259,7 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
         (document as any).mozFullScreenElement ||
         (document as any).msFullscreenElement
       );
-      setIsFullscreen(isFs);
+      setIsNativeFullscreen(isFs);
 
       if (hideControlsTimerRef.current) {
         clearTimeout(hideControlsTimerRef.current);
@@ -259,16 +289,22 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
     };
   }, []);
 
-  // Listen for iOS Safari video fullscreen events
+  // Listen for iOS Safari video fullscreen events. These only flip the tracking
+  // flag: the page layout is left exactly as it was, so the video layer survives
+  // the handover. On exit, nudge playback back on if it was playing, which
+  // restores the picture when Safari leaves the video layer black.
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
 
     const handleWebkitBegin = () => {
-      setIsFullscreen(true);
+      setIsNativeFullscreen(true);
     };
     const handleWebkitEnd = () => {
-      setIsFullscreen(false);
+      setIsNativeFullscreen(false);
+      if (wasPlayingRef.current) {
+        v.play().catch(() => {});
+      }
     };
 
     v.addEventListener('webkitbeginfullscreen', handleWebkitBegin);
@@ -379,6 +415,11 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
       v.currentTime = startAt;
       setCurrentTime(startAt);
     }
+    // Second autoplay attempt, once the stream is ready and the resume seek
+    // has landed. Still gated on never having played, so a pause is final.
+    if (autoPlay && !hasPlayedRef.current) {
+      v.play().catch(() => {});
+    }
   };
 
   const handleEnded = () => {
@@ -426,7 +467,7 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
       {/* Main Video Viewport with Fullscreen & Auto-Hide Control System */}
       <div
         ref={containerRef}
-        className={`ec-video-container ${isFullscreen ? 'is-fullscreen' : ''} ${
+        className={`ec-video-container ${isPseudoFullscreen ? 'is-fullscreen' : ''} ${
           showControls ? 'controls-visible' : 'controls-hidden'
         }`}
         onMouseMove={handleUserActivity}
@@ -450,9 +491,14 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
           // plain thumbnails must not share a cached copy with this CORS one (see learn/components/VideoThumb)
           poster={`${getVideoUrl(lesson.poster)}?player`}
           src={getVideoUrl(lesson.video)}
-          onPlay={() => setIsPlaying(true)}
+          onPlay={() => {
+            setIsPlaying(true);
+            hasPlayedRef.current = true;
+            wasPlayingRef.current = true;
+          }}
           onPause={() => {
             setIsPlaying(false);
+            wasPlayingRef.current = false;
             const v = videoRef.current;
             if (v && onProgress) onProgress(v.currentTime, v.duration || lesson.duration);
           }}
