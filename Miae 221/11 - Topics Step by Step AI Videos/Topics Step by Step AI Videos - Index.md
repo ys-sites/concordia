@@ -174,6 +174,23 @@ One narrated, step-by-step video per subtopic of the course (21), in the order o
 - 8:45 Mix-ups to avoid
 - 9:22 Recap
 
+## 12 · X-Ray Diffraction (10:50)
+
+- 0:00 The Idea
+- 1:15 Waves adding up
+- 1:51 Bragg’s idea
+- 2:49 Theta and two theta
+- 3:21 Plane spacing
+- 4:04 Example 1 · spacing from a peak
+- 4:43 Example 2 · predict a peak
+- 5:47 Example 3 · the textbook’s iron
+- 6:35 Example 4 · working backwards
+- 7:42 Try it
+- 8:25 Higher orders
+- 8:57 Which planes show up?
+- 9:44 Mix-ups to avoid
+- 10:15 Recap
+
 ## 21 · Dislocations & Slip (10:32)
 
 - 0:00 The Idea
