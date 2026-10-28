@@ -29,7 +29,7 @@ export interface StrategyInput {
     lines?: string[];
     steps?: any[];
     solution?: string;
-    whyWrong?: Record<string | number, string>;
+    whyWrong?: Record<string | number, string | undefined>;
   };
 }
 
