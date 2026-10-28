@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { PracticeQuestion, SolutionStep } from '../types';
 import { MathBlock, MathText, hasInlineMath } from '../utils/mathRenderer';
 import { ReadAloudButton } from './ReadAloudButton';
 import { QuestionVideo } from './QuestionVideo';
 import {
-  Lightbulb,
   Search,
   ListOrdered,
   ChevronDown,
-  Flag,
-  AlertTriangle,
   Calculator,
   BookOpen,
-  CheckCircle2,
-  Zap
+  Target,
+  Zap,
+  Lightbulb
 } from 'lucide-react';
-import { detectFastCrackType } from '../data/miae221FastCrack';
 import { getQuestionCrack } from '../data/miae221QuestionCracks';
+import { resolveQuestionStrategy } from '../learn/quiz/questionStrategy';
+import '../learn/styles/answer.css';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
 
@@ -103,31 +102,52 @@ function resolveSteps(q: PracticeQuestion, isCalc: boolean): SolutionStep[] {
 
 export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, selectedIndex, mode }) => {
   const isCalc = isCalculationQuestion(question);
+  const questionCrack = useMemo(() => getQuestionCrack(question.id), [question.id]);
   const steps = resolveSteps(question, isCalc);
   const hasSteps = steps.length > 0;
 
   // After a wrong answer on a calculation, show one baby step at a time so student can compare scratch work
   const [shown, setShown] = useState<number>(mode === 'wrong' && isCalc && hasSteps ? 1 : steps.length);
-  const isMiae221 = question.courseId === 'MIAE221' || question.id.startsWith('TX_MIAE221') || question.id.startsWith('MIAE221');
-  const fastCrack = isMiae221 ? detectFastCrackType(question.question, question.topic, question.id) : null;
-  const questionCrack = isMiae221 ? getQuestionCrack(question.id) : null;
   const allShown = shown >= steps.length;
+
+  const strategy = useMemo(() => resolveQuestionStrategy({
+    id: question.id,
+    courseId: question.courseId,
+    prompt: question.question,
+    topic: question.topic,
+    formula: question.formula,
+    code: question.codeSnippet,
+    options: question.options,
+    explain: {
+      concept: question.explanation.coreConcept,
+      trap: question.explanation.commonTrap,
+      lines: question.explanation.stepByStep,
+      steps: question.explanation.steps,
+      whyWrong: question.explanation.whyWrong
+    }
+  }), [question]);
 
   const diagnosis =
     selectedIndex !== undefined && selectedIndex !== question.correctIndex
       ? question.explanation.whyWrong?.[String(selectedIndex) as '0' | '1' | '2' | '3']
       : undefined;
 
-  // Human voice read-aloud: core concept + solution steps (LaTeX cleaned automatically)
-  const solutionSpeech = [
-    question.explanation.coreConcept,
-    ...steps.flatMap((s) => [s.title, s.note].filter(Boolean) as string[]),
-  ].join(' ');
-
   const chosenOptionText =
     selectedIndex !== undefined && question.options[selectedIndex]
       ? question.options[selectedIndex]
       : undefined;
+
+  // Speech for read-aloud:
+  const solutionSpeech = useMemo(() => {
+    if (questionCrack && questionCrack.moves?.length) {
+      return questionCrack.moves.join('. ');
+    }
+    return [
+      strategy.howToSpot,
+      strategy.howToTackle,
+      ...steps.flatMap((s) => [s.title, s.note].filter(Boolean) as string[])
+    ].join(' ');
+  }, [strategy, steps, questionCrack]);
 
   return (
     <div className="ws-root">
@@ -141,11 +161,6 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
               : 'Conceptual Theory · Standard Engineering Reasoning'}
           </span>
         </div>
-        {isCalc && hasSteps && mode === 'wrong' && (
-          <div className="ws-type-banner-badge">
-            Step {Math.min(shown, steps.length)} of {steps.length}
-          </div>
-        )}
         <ReadAloudButton text={solutionSpeech} stopKey={question.id + mode} label="Listen" />
       </div>
 
@@ -178,114 +193,82 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
       {/* Narrated solve video (teacher midterm questions that have one) */}
       <QuestionVideo questionId={question.id} />
 
-      {/* 60-Second Fast-Crack Strategy for MIAE 221 */}
-      {fastCrack && (
-        <div className="lx-fast-crack-card" style={{ margin: '14px 0' }}>
-          <div className="lx-fast-crack-header">
-            <div className="lx-fast-crack-badge">
-              <Zap size={14} /> 60-Second Fast-Crack Strategy
-            </div>
-            <div className="lx-fast-crack-system">
-              <strong>{fastCrack.typeName}</strong> · {fastCrack.system}
-            </div>
+      {/* ── SECTION 1: Spot & Tackle Strategy (Key Knowledge to Retain) ── */}
+      <section className="lx-ans-strategy-card" style={{ margin: '14px 0' }} aria-label="Section 1: Quick Spot & Tackle Strategy">
+        <div className="lx-strategy-header">
+          <div className="lx-strategy-badge">
+            <Zap size={14} aria-hidden /> Section 1 · Spot &amp; Tackle Strategy
           </div>
-
-          <div className="lx-fast-crack-spot">
-            <strong>👀 How to Spot in Under 5 Seconds:</strong>
-            <p><MathText text={fastCrack.howToSpot} /></p>
+          <div className="lx-strategy-category">
+            <strong>{strategy.category}</strong>
           </div>
-
-          {questionCrack && (
-            <div className="lx-fast-crack-how">
-              <strong>🎯 This Question:</strong>
-              <p><MathText text={questionCrack.ask} /></p>
-            </div>
-          )}
-
-          <div className="lx-fast-crack-how">
-            <strong>📖 How It Works (quick revision):</strong>
-            <p><MathText text={fastCrack.howItWorks} /></p>
-          </div>
-
-          <div className="lx-fast-crack-formula">
-            <strong>⚡ Shortened Turbo Formula / Algorithm:</strong>
-            <div className="lx-fast-crack-math">
-              <MathText text={fastCrack.turboFormula} />
-            </div>
-          </div>
-
-          <div className="lx-fast-crack-steps">
-            <strong>Speed Strategy:</strong>
-            <ol>
-              {fastCrack.steps.map((st, i) => (
-                <li key={i}><MathText text={st} /></li>
-              ))}
-            </ol>
-          </div>
-
-          <div className="lx-fast-crack-tips">
-            <strong>💡 Tips for This Subtopic:</strong>
-            <ul>
-              {fastCrack.tips.map((tip, i) => (
-                <li key={i}><MathText text={tip} /></li>
-              ))}
-            </ul>
-          </div>
-
-          {questionCrack && (
-            <div className="lx-fast-crack-tips">
-              <strong>🧩 Tip for This Question:</strong>
-              <p><MathText text={questionCrack.trick} /></p>
-            </div>
-          )}
-
-          {fastCrack.commonTrap && (
-            <div className="lx-fast-crack-spot" style={{ color: '#b91c1c' }}>
-              <strong>⚠️ Instant Trap Check:</strong> <MathText text={fastCrack.commonTrap} />
-            </div>
-          )}
         </div>
-      )}
 
-      {questionCrack && question.explanation.stepByStep.length === 0 && (
-        <div className="ws-card">
-          <div className="ws-card-title">
-            <ListOrdered size={16} />
-            <span>Step-by-step breakdown</span>
+        <div className="lx-strategy-grid">
+          <div className="lx-strategy-item is-spot">
+            <span className="lx-strategy-label">
+              <Search size={12} aria-hidden /> How to Spot (&lt; 5s)
+            </span>
+            <p className="lx-strategy-val">
+              <MathText text={strategy.howToSpot} />
+            </p>
           </div>
-          <ol className="lx-steps-list">
+
+          <div className="lx-strategy-item is-tackle">
+            <span className="lx-strategy-label">
+              <Target size={12} aria-hidden /> How to Tackle
+            </span>
+            <p className="lx-strategy-val">
+              <MathText text={strategy.howToTackle} />
+            </p>
+          </div>
+
+          <div className="lx-strategy-item is-knowledge">
+            <span className="lx-strategy-label">
+              <BookOpen size={12} aria-hidden /> Fundamental Knowledge
+            </span>
+            <div className="lx-strategy-val">
+              <MathText text={strategy.fundamentalKnowledge} />
+            </div>
+          </div>
+
+          <div className="lx-strategy-item is-retention">
+            <span className="lx-strategy-label">
+              <Lightbulb size={12} aria-hidden /> Retention &amp; Trap Tip
+            </span>
+            <p className="lx-strategy-val">
+              <MathText text={strategy.retentionTip} />
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 2: Step-by-Step Worked Solution ── */}
+      <section className="lx-ans-steps-card" style={{ margin: '14px 0' }} aria-label="Section 2: Step-by-Step Worked Solution">
+        <header className="lx-steps-header">
+          <div className="lx-steps-badge">
+            <ListOrdered size={14} aria-hidden /> Section 2 · Step-by-Step Worked Solution
+          </div>
+          <span className="lx-chip lx-num">
+            {questionCrack?.moves?.length || steps.length || 1} {(questionCrack?.moves?.length || steps.length || 1) === 1 ? 'Step' : 'Steps'}
+          </span>
+        </header>
+
+        {questionCrack && questionCrack.moves?.length > 0 ? (
+          <ol className="lx-moves">
             {questionCrack.moves.map((mv, i) => (
-              <li key={i}><MathText text={mv} /></li>
+              <li key={i} className="lx-fade-in is-new-step">
+                <span className="lx-move-no">{i + 1}</span>
+                <div className="lx-move-body">
+                  <p>
+                    <MathText text={mv} />
+                  </p>
+                </div>
+              </li>
             ))}
           </ol>
-        </div>
-      )}
-
-      {/* Key Idea / Core Concept */}
-      <div className="ws-card ws-concept">
-        <div className="ws-card-title">
-          <Lightbulb size={16} />
-          <span>{isCalc ? 'Governing Physical Law & Formula' : 'Key Engineering Concept'}</span>
-        </div>
-        <p>
-          <MathText text={question.explanation.coreConcept} />
-        </p>
-      </div>
-
-      {/* Step-by-Step Breakdown: Calculation Baby Steps vs Theory Deductive Reasoning */}
-      {isCalc ? (
-        <div className="ws-card ws-steps ws-calc-steps">
-          <div className="ws-card-title">
-            <ListOrdered size={16} />
-            <span>Step-by-Step Calculation (Baby Steps)</span>
-            {hasSteps && (
-              <span className="ws-step-count">
-                {Math.min(shown, steps.length)} / {steps.length} Steps Revealed
-              </span>
-            )}
-          </div>
-
-          {hasSteps ? (
+        ) : isCalc && hasSteps ? (
+          <>
             <ol className="ws-step-list">
               {steps.slice(0, shown).map((step, i) => (
                 <li key={i} className={`ws-step ${i === shown - 1 ? 'ws-step-latest' : ''}`}>
@@ -311,36 +294,19 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
                 </li>
               ))}
             </ol>
-          ) : (
-            <ol className="ws-plain-list">
-              {question.explanation.stepByStep.map((s, i) => (
-                <li key={i}>
-                  <MathText text={s} />
-                </li>
-              ))}
-            </ol>
-          )}
-
-          {hasSteps && !allShown && (
-            <div className="ws-reveal-row">
-              <button className="ws-reveal-btn" onClick={() => setShown((n) => n + 1)}>
-                <ChevronDown size={16} />
-                <span>Show Step {shown + 1} of {steps.length}</span>
-              </button>
-              <button className="ws-reveal-all" onClick={() => setShown(steps.length)}>
-                Show All Baby Steps
-              </button>
-            </div>
-          )}
-        </div>
-      ) : (
-        /* Conceptual / Theory Question: Clean, standard explanation */
-        <div className="ws-card ws-steps ws-theory-steps">
-          <div className="ws-card-title">
-            <CheckCircle2 size={16} />
-            <span>Deductive Reasoning & Conceptual Breakdown</span>
-          </div>
-
+            {hasSteps && !allShown && (
+              <div className="ws-reveal-row" style={{ marginTop: 12 }}>
+                <button className="ws-reveal-btn" onClick={() => setShown((n) => n + 1)}>
+                  <ChevronDown size={16} />
+                  <span>Show Step {shown + 1} of {steps.length}</span>
+                </button>
+                <button className="ws-reveal-all" onClick={() => setShown(steps.length)}>
+                  Show All Baby Steps
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
           <ol className="ws-plain-list">
             {(question.explanation.stepByStep.length > 0
               ? question.explanation.stepByStep
@@ -351,42 +317,26 @@ export const WorkedSolution: React.FC<WorkedSolutionProps> = ({ question, select
               </li>
             ))}
           </ol>
-        </div>
-      )}
+        )}
 
-      {/* Boxed Final Answer */}
-      {(allShown || !hasSteps || !isCalc) && (
-        <div className="ws-card ws-answer">
-          <div className="ws-card-title">
-            <Flag size={16} />
-            <span>Correct Answer · Option {LETTERS[question.correctIndex]}</span>
+        {/* Boxed Final Answer */}
+        <div className="lx-solution-final-box" style={{ marginTop: 16 }}>
+          <span className="lx-final-kicker">Final Answer · Option {LETTERS[question.correctIndex]}:</span>
+          <div className="lx-final-math">
+            {question.explanation.answer && hasInlineMath(question.explanation.answer) ? (
+              <p className="ws-answer-text" style={{ margin: 0 }}>
+                <MathText text={question.explanation.answer} />
+              </p>
+            ) : question.explanation.answer ? (
+              <MathBlock tex={`\\boxed{${question.explanation.answer}}`} />
+            ) : (
+              <p className="ws-answer-text" style={{ margin: 0 }}>
+                <MathText text={question.options[question.correctIndex]} />
+              </p>
+            )}
           </div>
-          {question.explanation.answer && hasInlineMath(question.explanation.answer) ? (
-            <p className="ws-answer-text">
-              <MathText text={question.explanation.answer} />
-            </p>
-          ) : question.explanation.answer ? (
-            <MathBlock tex={`\\boxed{${question.explanation.answer}}`} />
-          ) : (
-            <p className="ws-answer-text">
-              <MathText text={question.options[question.correctIndex]} />
-            </p>
-          )}
         </div>
-      )}
-
-      {/* Common Trap Banner */}
-      {question.explanation.commonTrap && (
-        <div className="ws-card ws-trap">
-          <div className="ws-card-title">
-            <AlertTriangle size={16} />
-            <span>Common Exam Trap & Misconception</span>
-          </div>
-          <p>
-            <MathText text={question.explanation.commonTrap} />
-          </p>
-        </div>
-      )}
+      </section>
     </div>
   );
 };

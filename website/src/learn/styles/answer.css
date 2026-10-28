@@ -520,6 +520,208 @@
 
 
 
+/* ─────────────────────────────────────────────────────────────────────────
+   Unified 2-Section Answer Architecture for All Quiz Questions
+   Section 1: Spot & Tackle Strategy (Key Knowledge to Retain) - Compact
+   Section 2: Step-by-Step Worked Solution - Expanded
+   ───────────────────────────────────────────────────────────────────────── */
+
+.lx-ans-strategy-card {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.95) 100%);
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.lx-strategy-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.lx-strategy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: -0.2px;
+}
+
+.lx-strategy-category {
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 3px 9px;
+  border-radius: 6px;
+}
+
+.lx-strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .lx-strategy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lx-strategy-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lx-strategy-item.is-spot {
+  border-left: 3.5px solid #2563eb;
+  background: linear-gradient(to right, rgba(239, 246, 255, 0.6), #ffffff);
+}
+.lx-strategy-item.is-tackle {
+  border-left: 3.5px solid #d97706;
+  background: linear-gradient(to right, rgba(254, 243, 199, 0.6), #ffffff);
+}
+.lx-strategy-item.is-knowledge {
+  border-left: 3.5px solid #059669;
+  background: linear-gradient(to right, rgba(236, 253, 245, 0.6), #ffffff);
+}
+.lx-strategy-item.is-retention {
+  border-left: 3.5px solid #db2777;
+  background: linear-gradient(to right, rgba(253, 242, 248, 0.6), #ffffff);
+}
+
+.lx-strategy-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.lx-strategy-item.is-spot .lx-strategy-label { color: #1d4ed8; }
+.lx-strategy-item.is-tackle .lx-strategy-label { color: #b45309; }
+.lx-strategy-item.is-knowledge .lx-strategy-label { color: #047857; }
+.lx-strategy-item.is-retention .lx-strategy-label { color: #be185d; }
+
+.lx-strategy-val {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* Section 2: Step-by-Step Worked Solution Card */
+.lx-ans-steps-card {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.lx-steps-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.lx-steps-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 4px 11px;
+  border-radius: 999px;
+  letter-spacing: -0.2px;
+}
+
+.lx-diagnosis-callout {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid #ef4444;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: #991b1b;
+  line-height: 1.55;
+}
+.lx-diagnosis-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 750;
+  margin-bottom: 3px;
+}
+
+.lx-solution-final-box {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lx-final-kicker {
+  font-size: 12px;
+  font-weight: 800;
+  color: #166534;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.lx-final-math {
+  font-size: 16px;
+  color: #14532d;
+}
+
+.lx-full-solution-block {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+.lx-full-solution-block strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 750;
+  color: #475569;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
 /* Fast-Crack Answer Section in Explanation & Solution: each question gets its own
    clearly separated quick-revision card, with breathing room between sections
    and between steps so it reads at a glance on a phone. */

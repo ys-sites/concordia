@@ -1,5 +1,18 @@
 import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
-import { AlertTriangle, BookOpen, ChevronDown, Clapperboard, ExternalLink, FileText, Lightbulb, ListOrdered, PlayCircle, Search, Zap } from 'lucide-react';
+import {
+  AlertTriangle,
+  BookOpen,
+  ChevronDown,
+  Clapperboard,
+  ExternalLink,
+  FileText,
+  Lightbulb,
+  ListOrdered,
+  PlayCircle,
+  Search,
+  Target,
+  Zap
+} from 'lucide-react';
 import type { DocRef, LearnQuestion } from '../model';
 import type { MotionLesson } from '../videoSources';
 import { resolveVideo } from '../videoSources';
@@ -13,8 +26,9 @@ import { openDoc } from '../docBus';
 import { useCurriculum } from '../data';
 import { href } from '../router';
 import { saveVideoPosition, useProgress } from '../progress/store';
-import { detectFastCrackType } from '../../data/miae221FastCrack';
 import { getQuestionCrack } from '../../data/miae221QuestionCracks';
+import { resolveQuestionStrategy } from './questionStrategy';
+import '../styles/answer.css';
 
 // The answer to one question, organised the same way every time:
 //   main column   where your answer went wrong · the idea · the solution one small move at a time · the trap
@@ -233,14 +247,87 @@ const CourseDocs: React.FC<{ q: LearnQuestion; yourAnswer?: string }> = ({ q, yo
   );
 };
 
+interface DerivedMove {
+  step: number;
+  title?: string;
+  math?: string;
+  text?: string;
+  note?: string;
+}
+
+function resolveSection2Moves(q: LearnQuestion, questionCrack: ReturnType<typeof getQuestionCrack>): DerivedMove[] {
+  // Priority 1: Per-question crack moves (crafted specifically for this question)
+  if (questionCrack && questionCrack.moves && questionCrack.moves.length > 0) {
+    return questionCrack.moves.map((mv, i) => {
+      const mathMatch = mv.match(/\$\$?([^$]+)\$\$?/);
+      if (mathMatch && mv.length < 160) {
+        return {
+          step: i + 1,
+          title: `Step ${i + 1}`,
+          math: mathMatch[1],
+          text: mv.replace(/\$\$?[^$]+\$\$?/, '').trim() || undefined
+        };
+      }
+      return {
+        step: i + 1,
+        title: `Step ${i + 1}`,
+        text: mv
+      };
+    });
+  }
+
+  // Priority 2: Standard baby steps from e.steps or e.lines
+  const moves = babySteps(q);
+  if (moves.length > 0) return moves;
+
+  // Priority 3: Fallback if no explicit step array
+  if (q.explain.solution && !/[;{}]\s*$|#include|cout|int main/m.test(q.explain.solution)) {
+    return [
+      {
+        step: 1,
+        title: 'Analytical Solution',
+        text: q.explain.solution
+      }
+    ];
+  }
+
+  if (q.explain.concept) {
+    return [
+      {
+        step: 1,
+        title: 'Deductive Reasoning',
+        text: q.explain.concept
+      }
+    ];
+  }
+
+  return [
+    {
+      step: 1,
+      title: 'Direct Evaluation',
+      text: `Evaluate the governing relationship to determine the verified result: ${q.answerText}`
+    }
+  ];
+}
+
 export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correct: boolean | null; order?: number[]; yourAnswer?: string }> = ({ q, chosen, correct, order, yourAnswer }) => {
   const e = q.explain;
   const wrongIdx = chosen && correct === false ? chosen.find((i) => !q.correct.includes(i)) : undefined;
   const wrongNote = wrongIdx !== undefined ? e.whyWrong?.[wrongIdx] : undefined;
-  const isMiae221 = q.courseId === 'MIAE221' || q.id.startsWith('MIAE221') || q.id.startsWith('TX_MIAE221') || q.id.startsWith('F24') || q.id.startsWith('A25') || q.id.startsWith('W26');
-  const fastCrack = isMiae221 ? detectFastCrackType(q.prompt, q.topic, q.id) : null;
-  const questionCrack = isMiae221 ? getQuestionCrack(q.id) : null;
-  const hasOwnSteps = !!(e.steps?.length || e.lines?.length);
+  const questionCrack = useMemo(() => getQuestionCrack(q.id), [q.id]);
+  const strategy = useMemo(() => resolveQuestionStrategy({
+    id: q.id,
+    courseId: q.courseId,
+    prompt: q.prompt,
+    topic: q.topic,
+    formula: q.formula,
+    code: q.code,
+    options: q.options,
+    explain: e
+  }), [q, e]);
+
+  const moves = useMemo(() => resolveSection2Moves(q, questionCrack), [q, questionCrack]);
+  const speech = useMemo(() => moves.map((m) => [m.title, m.text, m.note].filter(Boolean).join('. ')).join('. '), [moves]);
 
   return (
     <>
@@ -254,142 +341,148 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
     )}
     <div className="lx-ans">
       <div className="lx-ans-main">
-        {fastCrack && (
-          <section className="lx-fast-crack-card" aria-label="Fast-Crack Strategy & Turbo Formula">
-            <div className="lx-fast-crack-header">
-              <div className="lx-fast-crack-badge">
-                <Zap size={14} /> 60-Second Fast-Crack Strategy
-              </div>
-              <div className="lx-fast-crack-system">
-                <strong>{fastCrack.typeName}</strong> · {fastCrack.system}
-              </div>
+        {/* ── SECTION 1: Quick Spot & Tackle Strategy (Key Knowledge to Retain) ── */}
+        <section className="lx-ans-strategy-card" aria-label="Section 1: Quick Spot & Tackle Strategy (Key Knowledge to Retain)">
+          <div className="lx-strategy-header">
+            <div className="lx-strategy-badge">
+              <Zap size={14} aria-hidden /> Section 1 · Spot &amp; Tackle Strategy
             </div>
-
-            <div className="lx-fast-crack-spot">
-              <strong>👀 How to Spot in Under 5 Seconds:</strong>
-              <p><MathText text={fastCrack.howToSpot} /></p>
+            <div className="lx-strategy-category">
+              <strong>{strategy.category}</strong>
             </div>
+          </div>
 
-            {questionCrack && (
-              <div className="lx-fast-crack-how">
-                <strong>🎯 This Question:</strong>
-                <p><MathText text={questionCrack.ask} /></p>
-              </div>
-            )}
-
-            <div className="lx-fast-crack-how">
-              <strong>📖 How It Works (quick revision):</strong>
-              <p><MathText text={fastCrack.howItWorks} /></p>
-            </div>
-
-            <div className="lx-fast-crack-formula">
-              <strong>⚡ Shortened Turbo Formula / Algorithm:</strong>
-              <div className="lx-fast-crack-math">
-                <MathText text={fastCrack.turboFormula} />
-              </div>
-            </div>
-
-            <div className="lx-fast-crack-steps">
-              <strong>Speed Strategy:</strong>
-              <ol>
-                {fastCrack.steps.map((st, i) => (
-                  <li key={i}><MathText text={st} /></li>
-                ))}
-              </ol>
-            </div>
-
-            <div className="lx-fast-crack-tips">
-              <strong>💡 Tips for This Subtopic:</strong>
-              <ul>
-                {fastCrack.tips.map((tip, i) => (
-                  <li key={i}><MathText text={tip} /></li>
-                ))}
-              </ul>
-            </div>
-
-            {questionCrack && (
-              <div className="lx-fast-crack-tips">
-                <strong>🧩 Tip for This Question:</strong>
-                <p><MathText text={questionCrack.trick} /></p>
-              </div>
-            )}
-
-            {fastCrack.commonTrap && (
-              <div className="lx-fast-crack-spot" style={{ color: '#b91c1c' }}>
-                <strong>⚠️ Instant Trap Check:</strong> <MathText text={fastCrack.commonTrap} />
-              </div>
-            )}
-
-          </section>
-        )}
-        {questionCrack && !hasOwnSteps && (
-          <section className="lx-ans-card is-steps">
-            <h4>
-              <ListOrdered size={16} aria-hidden /> Step-by-step breakdown
-            </h4>
-            <ol className="lx-steps-list">
-              {questionCrack.moves.map((mv, i) => (
-                <li key={i}><MathText text={mv} /></li>
-              ))}
-            </ol>
-          </section>
-        )}
-        {wrongNote && (
-          <section className="lx-ans-card is-wrong">
-            <h4>
-              <Search size={16} aria-hidden /> Where answer {LETTER[order ? order.indexOf(wrongIdx!) : wrongIdx!] ?? ''} went wrong
-            </h4>
-            <p>
-              <MathText text={wrongNote} />
-            </p>
-          </section>
-        )}
-        {e.concept && (
-          <section className="lx-ans-card is-idea">
-            <h4>
-              <Lightbulb size={16} aria-hidden /> The idea
-            </h4>
-            <p>
-              <MathText text={e.concept} />
-            </p>
-          </section>
-        )}
-        <Steps q={q} stepwise={false} />
-        {e.solution && (
-          <section className="lx-ans-card">
-            <h4>Full solution</h4>
-            {/[;{}]\s*$|#include|cout|int main/m.test(e.solution) ? (
-              <CodeBlock code={e.solution} label="Solution code" />
-            ) : (
-              <p className="lx-ex-pre">
-                <MathText text={e.solution} />
+          <div className="lx-strategy-grid">
+            <div className="lx-strategy-item is-spot">
+              <span className="lx-strategy-label">
+                <Search size={12} aria-hidden /> How to Spot (&lt; 5s)
+              </span>
+              <p className="lx-strategy-val">
+                <MathText text={strategy.howToSpot} />
               </p>
-            )}
-          </section>
-        )}
-        {e.trap && (
-          <section className="lx-ans-card is-trap">
-            <h4>
-              <AlertTriangle size={16} aria-hidden /> Common exam trap
-            </h4>
-            <p>
-              <MathText text={e.trap} />
-            </p>
-          </section>
-        )}
-        {e.note && (
-          <section className="lx-ans-card lx-ans-card--note">
-            <h4>
-              <Lightbulb size={16} aria-hidden /> Key insight
-            </h4>
-            <p className="lx-ex-note-text">
-              <MathText text={e.note} />
-            </p>
-          </section>
-        )}
+            </div>
+
+            <div className="lx-strategy-item is-tackle">
+              <span className="lx-strategy-label">
+                <Target size={12} aria-hidden /> How to Tackle
+              </span>
+              <p className="lx-strategy-val">
+                <MathText text={strategy.howToTackle} />
+              </p>
+            </div>
+
+            <div className="lx-strategy-item is-knowledge">
+              <span className="lx-strategy-label">
+                <BookOpen size={12} aria-hidden /> Fundamental Knowledge
+              </span>
+              <div className="lx-strategy-val">
+                <MathText text={strategy.fundamentalKnowledge} />
+              </div>
+            </div>
+
+            <div className="lx-strategy-item is-retention">
+              <span className="lx-strategy-label">
+                <Lightbulb size={12} aria-hidden /> Retention &amp; Trap Tip
+              </span>
+              <p className="lx-strategy-val">
+                <MathText text={strategy.retentionTip} />
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── SECTION 2: Step-by-Step Worked Solution ── */}
+        <section className="lx-ans-steps-card" aria-label="Section 2: Step-by-Step Worked Solution">
+          <header className="lx-steps-header">
+            <div className="lx-steps-badge">
+              <ListOrdered size={14} aria-hidden /> Section 2 · Step-by-Step Worked Solution
+            </div>
+            <span className="lx-chip lx-num">
+              {moves.length} {moves.length === 1 ? 'Step' : 'Steps'}
+            </span>
+            <ReadAloudButton text={speech} stopKey={q.id + 'steps'} />
+          </header>
+
+          {/* Diagnostic on wrong answer if chosen */}
+          {wrongNote && (
+            <div className="lx-diagnosis-callout">
+              <div className="lx-diagnosis-title">
+                <Search size={14} aria-hidden /> Where answer {LETTER[order ? order.indexOf(wrongIdx!) : wrongIdx!] ?? ''} went wrong:
+              </div>
+              <p>
+                <MathText text={wrongNote} />
+              </p>
+            </div>
+          )}
+
+          {/* Expanded Step-by-Step derivation moves */}
+          <ol className="lx-moves">
+            {moves.map((m, i) => (
+              <li key={i} className={`lx-fade-in${m.title || m.text ? ' is-new-step' : ''}`}>
+                {(m.title || m.text) && <span className="lx-move-no">{m.step}</span>}
+                <div className="lx-move-body">
+                  {m.title && (
+                    <strong>
+                      <MathText text={m.title} />
+                    </strong>
+                  )}
+                  {m.text && (
+                    <p>
+                      <MathText text={m.text} />
+                    </p>
+                  )}
+                  {m.math && <MathBlock tex={m.math} className="lx-move-math" />}
+                  {m.note && (
+                    <p className="lx-move-note">
+                      <MathText text={m.note} />
+                    </p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          {/* Full solution (e.g. code or written proof) */}
+          {e.solution && (
+            <div className="lx-full-solution-block">
+              <strong>Full Detailed Solution:</strong>
+              {/[;{}]\s*$|#include|cout|int main/m.test(e.solution) ? (
+                <CodeBlock code={e.solution} label="Solution code" />
+              ) : (
+                <p className="lx-ex-pre">
+                  <MathText text={e.solution} />
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Boxed Final Answer */}
+          {(q.explain.answerTex || q.answerText) && (
+            <div className="lx-solution-final-box">
+              <span className="lx-final-kicker">Final Answer:</span>
+              <div className="lx-final-math">
+                {q.explain.answerTex ? (
+                  <MathBlock
+                    tex={
+                      q.explain.answerTex.startsWith('\\boxed{')
+                        ? q.explain.answerTex
+                        : q.explain.answerTex.startsWith('$') && q.explain.answerTex.endsWith('$')
+                        ? `\\boxed{${q.explain.answerTex.slice(1, -1)}}`
+                        : `\\boxed{${q.explain.answerTex}}`
+                    }
+                  />
+                ) : (
+                  <MathBlock tex={`\\boxed{\\text{${q.answerText}}}`} />
+                )}
+              </div>
+            </div>
+          )}
+        </section>
       </div>
+
       <CourseDocs q={q} yourAnswer={yourAnswer} />
     </div>
+
     {q.videoId && (
       <section className="lx-ans-video" aria-label="Video solution">
         <header>
