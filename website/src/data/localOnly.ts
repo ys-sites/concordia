@@ -83,7 +83,8 @@ export const EXAM_PAPER_PATTERNS: RegExp[] = [
 // Study guides whose names mention a midterm but that hold no exam paper
 const STUDY_GUIDE_ALLOW: RegExp[] = [
   /^Engr 213\/02 - Comprehensive Topic Guides \(Expanded & Intuitive\)\/Paradis notes - [^/]*\.pdf$/,
-  /^Indu 211\/04 - Worked Problems & Quantitative Analysis\/INDU 211 - (Midterm|Final Exam) Quantitative Problem Guide[^/]*\.pdf$/
+  /^Indu 211\/04 - Worked Problems & Quantitative Analysis\/INDU 211 - (Midterm|Final Exam) Quantitative Problem Guide[^/]*\.pdf$/,
+  /^Miae 221\/formula\/.*\.pdf$/
 ];
 
 export const isExamPaper = (relativePath: string): boolean => {

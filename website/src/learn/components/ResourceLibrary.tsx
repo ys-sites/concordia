@@ -19,6 +19,7 @@ interface Kind {
 }
 
 const KINDS: Kind[] = [
+  { id: 'formula', title: 'Formula & Exam Guides', blurb: 'Master formula sheets, symbol guides, and theory explainers', icon: FileCheck2, test: /formula/i },
   { id: 'teacher', title: 'Teacher’s notes', blurb: 'The slides and notes from class, in lecture order', icon: BookOpen, test: /teacher lecture notes|in-class lecture notes/i },
   { id: 'guides', title: 'Study guides', blurb: 'The same topics explained step by step, chapter by chapter', icon: Layers, test: /topic guides|notes explained|expanded notes|chapter \d+ summary|overview & study guide/i },
   { id: 'review', title: 'Review & cheat sheets', blurb: 'One page per topic, for the last look before the exam', icon: FileCheck2, test: /rapid review|cheat/i },
@@ -30,7 +31,7 @@ const KINDS: Kind[] = [
 const OTHER: Kind = { id: 'other', title: 'More files', blurb: '', icon: Folder, test: /.*/ };
 
 const kindOf = (folder: string) => KINDS.find((k) => k.test.test(folder)) ?? OTHER;
-const clean = (f: string) => f.replace(/^\d+\s*-\s*/, '').replace(/_/g, ' ');
+const clean = (f: string) => (f.toLowerCase() === 'formula' ? 'Formula & Exam Guides' : f.replace(/^\d+\s*-\s*/, '').replace(/_/g, ' '));
 
 interface FileItem extends DocRef {
   folder: string; // top folder inside the course

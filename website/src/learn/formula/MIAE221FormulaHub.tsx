@@ -118,13 +118,31 @@ export const MIAE221FormulaHub: React.FC = () => {
             </p>
           </div>
           <div className="lx-fhub-actions">
+            <a
+              href="/courses/Miae-221/formula/MIAE-221-Master-Formula-Sheet-Symbol-Guide-Ch-1-6.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="lx-btn lx-btn--ghost lx-btn--sm"
+              title="Open the compiled Master Formula Sheet PDF in a new tab"
+            >
+              <FileText size={15} /> Formula Sheet PDF
+            </a>
+            <a
+              href="/courses/Miae-221/formula/MIAE-221-2017-Midterm-Theory-Past-Paper-Master-Explainer.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="lx-btn lx-btn--ghost lx-btn--sm"
+              title="Open the 2017 Midterm Theory Explainer PDF in a new tab"
+            >
+              <BookOpen size={15} /> Theory Explainer PDF
+            </a>
             <button
               type="button"
               className="lx-btn lx-btn--ghost lx-btn--sm"
               onClick={printSheet}
               title="Print clean review sheet"
             >
-              <Printer size={15} /> Print / Save PDF
+              <Printer size={15} /> Print
             </button>
           </div>
         </div>
