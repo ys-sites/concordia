@@ -208,7 +208,7 @@ export const ExamCheatsheetSection: React.FC<ExamCheatsheetSectionProps> = ({
               lineHeight: 1.5
             }}
           >
-            <strong>Callister Chapters 1–7.4 Master Guide:</strong> Bonding potential wells, FCC/BCC/HCP lattice geometry table, Miller indices for directions and planes, Bragg’s law XRD peak rules, Hume-Rothery criteria, Schmid’s law slip, Fick’s diffusion laws, and tensile stress-strain landmarks.
+            <strong>Callister Chapters 1–6 Master Guide:</strong> Bonding potential wells, FCC/BCC/HCP lattice geometry table, Miller indices for directions and planes, Bragg’s law XRD peak rules, Hume-Rothery criteria, Fick’s diffusion laws, and tensile stress-strain landmarks.
           </div>
         )}
       </div>

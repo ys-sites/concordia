@@ -46,7 +46,7 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
     dateLabel: 'Friday, October 30, 2026',
     timeAndLocation: 'During regular lecture period (in-person examination)',
     assignmentNotice: 'Term Assignment is confirmed due on Friday, November 27, 2026.',
-    confirmedScope: 'Lectures 1–12 (Callister Chapters 1 through 7.4): Material classes, bonding & potential curves, unit cells & crystal systems (FCC, BCC, HCP), Miller indices for directions & planes, linear/planar densities, XRD & Bragg’s Law, point defects & Arrhenius vacancy concentration, solid solutions (Hume-Rothery), dislocations, diffusion (steady-state & non-steady-state erf), mechanical properties & stress-strain curves, and slip systems (7.1–7.4).',
+    confirmedScope: 'Lectures 1–11 (Callister Chapters 1 through 6): Material classes, bonding & potential curves, unit cells & crystal systems (FCC, BCC, HCP), Miller indices for directions & planes, linear/planar densities, XRD & Bragg’s Law, point defects & Arrhenius vacancy concentration, solid solutions (Hume-Rothery), dislocations, diffusion (steady-state & non-steady-state erf), and mechanical properties & stress-strain curves.',
     formatOverview: '20 Multiple Choice questions (2 marks each = 40 marks) + 10 True/False questions (1 mark each = 10 marks), totaling 50 marks. Official formula sheet with crystal structure formulas, Bragg’s law, and error function table provided on exam paper.',
     calculatorPolicy: 'Standard ENCS Faculty-approved calculator (e.g. Sharp EL-531 or Casio fx-300MS) with sticker required.',
     instructorNotes: [
@@ -88,10 +88,10 @@ export const TEACHER_EXAM_PRACTICE_DATA: Record<string, TeacherExamBlueprint> = 
         filename: 'MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
         relativePath: 'Miae 221/03 - 1-Page Rapid Review Sheets/MIAE 221 - Midterm 1-Page Exam Cheatsheet (Single-Sided).pdf',
         instructor: 'Drs. Martin Pugh & Mamoun Medraj',
-        termYear: 'Midterm 2026 (Callister Ch 1–7.4)',
+        termYear: 'Midterm 2026 (Callister Ch 1–6)',
         badge: '1-Page Memory Aide',
         fileType: 'pdf',
-        description: 'Strict single-sided 1-page master reference sheet (page count: 1) formatted at 10pt font on Letter paper covering Callister Chapters 1–7.4 and Lectures 1–12. Includes bonding potential wells, FCC/BCC/HCP lattice geometry table, Miller indices, Bragg’s law XRD peak rules, Hume-Rothery criteria, Schmid’s law slip, Fick’s diffusion laws, and stress-strain landmarks.',
+        description: 'Strict single-sided 1-page master reference sheet (page count: 1) formatted at 10pt font on Letter paper covering Callister Chapters 1–6 and Lectures 1–11. Includes bonding potential wells, FCC/BCC/HCP lattice geometry table, Miller indices, Bragg’s law XRD peak rules, Hume-Rothery criteria, Fick’s diffusion laws, and stress-strain landmarks.',
         keyTopics: ['1-Page Only (Verified)', '10pt Font', 'Callister Modules 1–12', 'Crystal Geometry', 'Bragg XRD', 'Diffusion', 'Stress-Strain']
       },
       {

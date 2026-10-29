@@ -392,7 +392,7 @@ export const TeacherMidtermPracticeSection: React.FC<TeacherMidtermPracticeSecti
               <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: '4px 0 12px' }}>
                 {course.id === 'MIAE215'
                   ? 'Follows Dr. Gordon’s Moodle policy strictly: front-side only of 1 sheet, back completely blank, >= 10 pt font, Letter size. Print single-sided and you are 100% compliant.'
-                  : 'Callister Chapters 1–7.4 condensed master formula and concept reference sheet. Formatted single-sided on Letter size.'}
+                  : 'Callister Chapters 1–6 condensed master formula and concept reference sheet. Formatted single-sided on Letter size.'}
               </p>
               <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                 <a

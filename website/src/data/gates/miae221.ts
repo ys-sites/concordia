@@ -8,11 +8,11 @@ import { MIAE221_FIGURES } from './miae221Figures';
 const content: GateContent = {
  "version": 2,
  "course": "MIAE221",
- "builtFor": "MIAE 221 · Fall 2026 midterm (Ch 1–7.4)",
+ "builtFor": "MIAE 221 · Fall 2026 midterm (Ch 1–6)",
  "midterm": {
   "date": "2026-10-30",
   "label": "Fri Oct 30, 8:30 AM · 25 % of the grade · closed book, no cheat sheet",
-  "scope": "Ch 1–7.4: bonding, crystal structures & crystallography, imperfections, diffusion, mechanical properties, dislocations & slip systems (7.1–7.4)"
+  "scope": "Ch 1–6: bonding, crystal structures & crystallography, imperfections, diffusion, mechanical properties"
  },
  "labTitle": "Formula Lab",
  "labBlurb": "Every calculation the midterm needs, in teacher-notes order. Each one goes through four steps: understand it, follow a worked example from the slides or Callister, try the calculator with real exam numbers, then a practice quiz that mixes the real past questions with new ones in the same style.",

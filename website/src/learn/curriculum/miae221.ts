@@ -1,5 +1,5 @@
 // MIAE 221 — Materials Science & Engineering. Order follows Dr. Medraj's lectures; the midterm covers
-// Ch 1–6 and Ch 7.1–7.4.
+// Ch 1–6.
 import type { CourseSpec } from './types';
 
 export const MIAE221_SPEC: CourseSpec = {
@@ -234,8 +234,7 @@ export const MIAE221_SPEC: CourseSpec = {
     {
       id: 'dislocations',
       title: 'Dislocations & strengthening',
-      subtitle: 'Ch 7 · 7.1–7.4 in the midterm',
-      midterm: true,
+      subtitle: 'Ch 7 · Lectures 11–12 (After the midterm)',
       lessons: [
         {
           id: 'slip-systems',
@@ -314,12 +313,12 @@ export const MIAE221_SPEC: CourseSpec = {
       { ch: 'past', title: 'Exam-style questions: midterms', summary: 'Questions modelled on past MIAE 221 midterms, including corrected exam answers.' },
       { ch: 'past-final', title: 'Exam-style questions: finals', summary: 'Questions modelled on past finals, for the whole course.' }
     ],
-    mock: { title: 'Mock midterm (Ch 1–7.4)', size: 30, minutes: 90 },
+    mock: { title: 'Mock midterm (Ch 1–6)', size: 30, minutes: 90 },
     extra: [
       {
         id: 'teacher-practice',
         title: 'Midterm practice by subject',
-        subtitle: '40 questions from the official marking key, each with a course video lesson and worked solution',
+        subtitle: 'Official marking key questions for Chapters 1–6, each with a course video lesson and worked solution',
         lessons: [
           {
             id: 'tp-miller-planes',
@@ -355,15 +354,6 @@ export const MIAE221_SPEC: CourseSpec = {
             steps: [
               { kind: 'video', title: 'Watch: Imperfections in Solids', slug: 'video', videoId: 'topic221:m221-05-defects' },
               { kind: 'practice', title: 'Answer the defect questions', slug: 'practice', questions: { teacher: /^Defects & Solid Solutions$/ }, ordered: true }
-            ]
-          },
-          {
-            id: 'tp-dislocations',
-            title: 'Dislocations & slip',
-            summary: 'Burgers vectors, slip planes and directions, and Schmid’s law resolved shear stress.',
-            steps: [
-              { kind: 'video', title: 'Watch: Dislocations & Strengthening', slug: 'video', videoId: 'topic221:m221-09-strengthening' },
-              { kind: 'practice', title: 'Answer the slip questions', slug: 'practice', questions: { teacher: /^Dislocations & Slip$/ }, ordered: true }
             ]
           },
           {
@@ -404,9 +394,25 @@ export const MIAE221_SPEC: CourseSpec = {
           },
           {
             id: 'tp-full-paper',
-            title: 'Complete midterm subject bundle',
-            summary: 'All 40 midterm questions grouped by subject, with a timer, immediate feedback, and worked solutions.',
-            steps: [{ kind: 'exam', title: 'Complete midterm subject bundle (40 questions)', slug: 'exam', questions: { teacher: /./ }, ordered: false, timeLimit: 90 }]
+            title: 'Complete midterm subject bundle (Ch 1–6)',
+            summary: 'All midterm questions from Chapters 1–6 grouped by subject, with a timer, immediate feedback, and worked solutions.',
+            steps: [{ kind: 'exam', title: 'Complete midterm subject bundle (Ch 1–6)', slug: 'exam', questions: { teacher: /^(?!Dislocations)/ }, ordered: false, timeLimit: 90 }]
+          }
+        ]
+      },
+      {
+        id: 'post-midterm-practice',
+        title: 'Post-midterm & Final exam topics',
+        subtitle: 'Dislocations, strengthening and slip (Ch 7) covered after the midterm',
+        lessons: [
+          {
+            id: 'tp-dislocations',
+            title: 'Dislocations & slip',
+            summary: 'Burgers vectors, slip planes and directions, and Schmid’s law resolved shear stress (Ch 7 · Final exam scope).',
+            steps: [
+              { kind: 'video', title: 'Watch: Dislocations & Strengthening', slug: 'video', videoId: 'topic221:m221-09-strengthening' },
+              { kind: 'practice', title: 'Answer the slip questions', slug: 'practice', questions: { teacher: /^Dislocations & Slip$/ }, ordered: true }
+            ]
           }
         ]
       },

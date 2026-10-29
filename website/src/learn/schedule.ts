@@ -18,7 +18,7 @@ export interface ScheduleEvent {
 export const SCHEDULE: ScheduleEvent[] = [
   // midterms
   { id: 'engr213-midterm-1', course: 'ENGR213', kind: 'midterm', title: 'Midterm 1', date: '2026-10-23', time: '2:00–3:45 PM', detail: 'GNM 100 · Chapter 2 + Sections 17.1/17.2' },
-  { id: 'miae221-midterm', course: 'MIAE221', kind: 'midterm', title: 'Midterm', date: '2026-10-30', time: '8:30 AM', detail: '25% of the grade · Chapters 1–7 · closed book, no cheat sheet' },
+  { id: 'miae221-midterm', course: 'MIAE221', kind: 'midterm', title: 'Midterm', date: '2026-10-30', time: '8:30 AM', detail: '25% of the grade · Chapters 1–6 · closed book, no cheat sheet' },
   { id: 'engr213-midterm-2', course: 'ENGR213', kind: 'midterm', title: 'Midterm 2', date: '2026-11-20', time: '2:00–3:45 PM', detail: 'GNM 100' },
   // finals
   { id: 'miae221-final', course: 'MIAE221', kind: 'final', title: 'Final exam', date: '2026-12-11', time: '2:00–5:00 PM' },

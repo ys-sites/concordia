@@ -1,5 +1,5 @@
 // Master Exam Solver & Fast-Crack Knowledge Base for MIAE 221
-// Grounded in Callister Ch 1–7.4 and the exam blueprints by Drs. Mamoun Medraj & Martin Pugh
+// Grounded in Callister Ch 1–6 and the exam blueprints by Drs. Mamoun Medraj & Martin Pugh
 //
 // Quick-revision rules for every strategy:
 // - All maths is written as real LaTeX inside $...$ so it typesets as proper
