@@ -14,6 +14,7 @@ import { ReadAloudButton } from '../../components/ReadAloudButton';
 import { CodeBlock } from '../components/CodeBlock';
 import { Explanation, useCourseDocs } from './Explanation';
 import { QuestionFigure } from './QuestionFigure';
+import { ExamRatioBubbles } from '../components/ExamRatioBubbles';
 import '../styles/answer.css';
 
 const LETTER = 'ABCDEFGH';
@@ -121,6 +122,7 @@ What went wrong:
             </span>
           )}
           <span className="lx-chip">{q.topic}</span>
+          <ExamRatioBubbles topicId={q.topic} course={q.courseId} compact />
           {slide && !paper && (
             <button type="button" className="lx-chip lx-q-ref" onClick={() => openDoc(slide)} title={`Open ${slide.title}${slide.page ? `, page ${slide.page}` : ''}`}>
               <BookOpen size={12} aria-hidden /> {slide.title.replace(/\.pdf$/i, '')}

@@ -966,3 +966,92 @@
     height: 36px;
   }
 }
+
+/* ── Exam Question Frequency Ratio Bubbles ────────────────────────────────── */
+.lx-ratio-bubbles-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.lx-ratio-bubbles-row.is-compact {
+  gap: 6px;
+  margin: 0;
+}
+.lx-ratio-bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 550;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+  cursor: help;
+}
+.lx-ratio-bubble:hover {
+  transform: translateY(-1px);
+}
+.lx-bubble-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.lx-bubble-label {
+  opacity: 0.88;
+}
+.lx-bubble-val {
+  font-weight: 750;
+  font-family: var(--lx-mono, monospace);
+  font-size: 12.5px;
+}
+
+/* 2017 Midterm Bubble (Blue / Cyan) */
+.lx-ratio-bubble.lx-bubble-2017 {
+  background: rgba(2, 132, 199, 0.12);
+  border: 1px solid rgba(2, 132, 199, 0.32);
+  color: #0284c7;
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.08);
+}
+.lx-ratio-bubble.lx-bubble-2017:hover {
+  background: rgba(2, 132, 199, 0.18);
+  border-color: rgba(2, 132, 199, 0.48);
+}
+.lx-bubble-dot.lx-dot-2017 {
+  background: #0ea5e9;
+  box-shadow: 0 0 6px #0ea5e9;
+}
+
+/* All Past Papers Bubble (Purple / Violet) */
+.lx-ratio-bubble.lx-bubble-all {
+  background: rgba(147, 51, 234, 0.12);
+  border: 1px solid rgba(147, 51, 234, 0.32);
+  color: #9333ea;
+  box-shadow: 0 1px 3px rgba(147, 51, 234, 0.08);
+}
+.lx-ratio-bubble.lx-bubble-all:hover {
+  background: rgba(147, 51, 234, 0.18);
+  border-color: rgba(147, 51, 234, 0.48);
+}
+.lx-bubble-dot.lx-dot-all {
+  background: #a855f7;
+  box-shadow: 0 0 6px #a855f7;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .lx-ratio-bubble.lx-bubble-2017 {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.35);
+  }
+  .lx-ratio-bubble.lx-bubble-all {
+    color: #c084fc;
+    background: rgba(192, 132, 252, 0.15);
+    border-color: rgba(192, 132, 252, 0.35);
+  }
+}

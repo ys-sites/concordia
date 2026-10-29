@@ -5,6 +5,7 @@ import type { FormulaChapter, SheetFormula } from '../../data/miae221Formulas';
 import { MIAE221_CONSTANTS, MIAE221_FORMULAS } from '../../data/miae221Formulas';
 import { MathBlock, MathText } from '../../utils/mathRenderer';
 import { href } from '../router';
+import { MIAE221FormulaHub } from '../formula/MIAE221FormulaHub';
 import '../styles/formulas.css';
 
 // The course's formulas tab: every formula, chapter by chapter, marked "on the sheet" or "memorise".
@@ -57,6 +58,9 @@ const FormulaCard: React.FC<{ f: SheetFormula; cur: Curriculum }> = ({ f, cur })
 };
 
 export const FormulaSheet: React.FC<{ cur: Curriculum }> = ({ cur }) => {
+  if (cur.id === 'MIAE221') {
+    return <MIAE221FormulaHub />;
+  }
   const data = SHEETS[cur.id];
   const [q, setQ] = useState('');
   const [show, setShow] = useState<Show>('all');

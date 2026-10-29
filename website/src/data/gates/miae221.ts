@@ -1984,17 +1984,17 @@ const content: GateContent = {
    "n": 8,
    "topic": "vacancy",
    "kind": "calc",
-   "q": "Cu: Qv = 0.9 eV/atom, A = 63.5 g/mol, ρ = 8.9 g/cm³ at 20 °C. Vacancies per m³ at 20 °C?",
+   "q": "Calculate the equilibrium number of vacancies per cubic meter in pure copper at 20°C. Assume an energy for vacancy formation of 0.90 eV/atom, an atomic weight of 63.5 g/mol, and a density of 8.94 g/cm³:",
    "opts": [
-    "2.8×10¹³",
-    "1.1×10²⁵",
-    "3.0×10³⁰",
-    "4.4×10³¹",
-    "2.5×10⁴⁴"
+    "2.8 × 10¹³ m⁻³",
+    "1.1 × 10²⁵ m⁻³",
+    "3.0 × 10³⁰ m⁻³",
+    "4.4 × 10³¹ m⁻³",
+    "2.5 × 10⁴⁴ m⁻³"
    ],
    "ans": "a",
    "status": "verified",
-   "note": "$N = \\rho N_A/A = 8.44\\times10^{28}$ m⁻³; $e^{-0.9/(8.62\\times10^{-5}\\cdot293)} = 3.3\\times10^{-16}$ → $2.8\\times10^{13}$. This is Callister Ex 4.1 with T moved from 1000 °C to 20 °C.",
+   "note": "$N = \\rho N_A/A = (8.94\\times 10^6)(6.022\\times 10^{23})/63.5 = 8.478\\times 10^{28}$ m⁻³; $N_v = N \\exp[-Q_v/(kT)] = 8.478\\times 10^{28} \\exp[-0.90/(8.62\\times 10^{-5}\\cdot 293.15)] = 2.82\\times 10^{13}$ m⁻³. Matches Callister Ex 4.1 at room temperature (20 °C = 293 K).",
    "f": [
     "vacancy"
    ]
@@ -2588,12 +2588,12 @@ const content: GateContent = {
    "n": 1,
    "topic": "planes",
    "kind": "figure",
-   "q": "The Miller indices of the plane shown in the cubic unit cell are…",
+   "q": "The Miller indices for the plane shown in the adjacent cubic unit cell are:",
    "opts": [
-    "(102)",
+    "(1 0 2)",
     "(1 1 ½)",
     "(1 ∞ ½)",
-    "(110)",
+    "(1 1 0)",
     "(1 0 ½)"
    ],
    "ans": "a",
@@ -2608,16 +2608,17 @@ const content: GateContent = {
    "n": 2,
    "topic": "vacancy",
    "kind": "calc",
-   "q": "Vacancies per m³ at 1000 °C: Qv = 1.22 eV/atom, ρ = 6.25 g/cm³, A = 37.4 g/mol.",
+   "q": "The number of vacancies per cubic meter at 1000°C for a metal that has an energy for vacancy formation of 1.22 eV/atom, a density of 6.25 g/cm³, and an atomic weight of 37.4 g/mol is:",
    "opts": [
-    "7.25×10¹⁶",
-    "1.49×10²²",
-    "1.49×10²⁴",
-    "2.57×10²⁴",
-    "1.49×10¹⁸"
+    "7.25 × 10¹⁶ m⁻³",
+    "1.49 × 10²² m⁻³",
+    "1.49 × 10²⁴ m⁻³",
+    "2.57 × 10²⁴ m⁻³",
+    "1.49 × 10¹⁸ m⁻³"
    ],
    "ans": "c",
    "status": "verified",
+   "note": "$N = \\rho N_A / A = (6.25\\times 10^6)(6.022\\times 10^{23})/37.4 = 1.006\\times 10^{29}$ sites/m³; $N_v = N \\exp[-Q_v/(kT)] = 1.006\\times 10^{29} \\exp[-1.22/(8.62\\times 10^{-5}\\cdot 1273.15)] = 1.49\\times 10^{24}$ m⁻³.",
    "f": [
     "vacancy"
    ]
@@ -2628,17 +2629,17 @@ const content: GateContent = {
    "n": 12,
    "topic": "elastic",
    "kind": "calc",
-   "q": "Steel bar 20 mm wide × 40 mm thick, E = 207 GPa, ν = 0.30, pulled with 60 kN. Change in width?",
+   "q": "A specimen of steel has a rectangular cross section 20 mm wide and 40 mm thick, an elastic modulus of 207 GPa, and a Poisson's ratio of 0.30. If this specimen is pulled in tension with a force of 60 kN, what is the change in width if the deformation is totally elastic?",
    "opts": [
-    "+3.62 µm",
-    "−7.24 µm",
-    "+7.24 µm",
-    "−2.18 µm",
-    "−4.35 µm"
+    "Increase in width of 3.62 µm",
+    "Decrease in width of 7.24 µm",
+    "Increase in width of 7.24 µm",
+    "Decrease in width of 2.18 µm",
+    "Decrease in width of 4.35 µm"
    ],
    "ans": "d",
    "status": "verified",
-   "note": "$\\Delta w = -\\nu F/(E\\,t) = -0.3\\cdot60000/(207\\times10^9\\cdot0.04) = -2.17$ µm. Width shrinks in tension.",
+   "note": "$\\Delta w = -\\nu w_0 \\varepsilon_z = -\\nu w_0 \\frac{F}{E A_0} = -\\frac{\\nu F}{E t} = -\\frac{0.30\\cdot 60\\,000}{207\\times 10^9 \\cdot 0.040} = -2.174\\times 10^{-6}\\text{ m} = -2.18\\,\\mu\\text{m}$. Width decreases in tension.",
    "f": [
     "poisson"
    ]
@@ -2649,14 +2650,17 @@ const content: GateContent = {
    "n": 16,
    "topic": "density",
    "kind": "concept",
-   "q": "Metals A (FCC, a = 0.3 nm) and B (BCC, a = 0.4 nm) have equal densities. Which atom is heavier?",
+   "q": "Two hypothetical metals, A and B, have identical densities; however A has an FCC crystal structure whereas B is BCC. If the lattice parameters of A and B are 0.3 and 0.4 nm respectively, which is the heavier of the two atoms? (i.e. Which has the highest atomic weight?)",
    "opts": [
     "A",
-    "B"
+    "B",
+    "Both have the same weight",
+    "Not enough information has been given",
+    "None of the above"
    ],
    "ans": "b",
    "status": "verified",
-   "note": "$A \\propto \\rho a^3/n$: A → 0.027/4, B → 0.064/2. B is heavier.",
+   "note": "$\\rho = \\frac{n A}{V_C N_A} \\implies A \\propto \\frac{\\rho a^3}{n}$. For metal A (FCC, $n=4, a=0.3$): $A_A \\propto 0.027/4 = 0.00675$. For metal B (BCC, $n=2, a=0.4$): $A_B \\propto 0.064/2 = 0.032$. Thus atom B is much heavier.",
    "f": [
     "density"
    ]
@@ -2667,17 +2671,17 @@ const content: GateContent = {
    "n": 17,
    "topic": "ldpd",
    "kind": "calc",
-   "q": "FCC copper, a = 0.361 nm. Atoms per nm² on the cube face?",
+   "q": "The lattice parameter of FCC copper is 0.361 nm. The atomic density in atoms per square nm on the face of the unit cell is therefore:",
    "opts": [
-    "15.35",
-    "23.02",
-    "2",
-    "38.4",
-    "7.67"
+    "15.35 atoms/nm²",
+    "23.02 atoms/nm²",
+    "2 atoms/nm²",
+    "38.4 atoms/nm²",
+    "7.67 atoms/nm²"
    ],
    "ans": "a",
    "status": "verified",
-   "note": "$2/a^2 = 2/0.361^2 = 15.35$ nm⁻². The numeric twin of W26 Q6.",
+   "note": "Planar density on the (100) face of FCC: $PD = \\frac{2\\text{ atoms}}{a^2} = \\frac{2}{(0.361\\text{ nm})^2} = 15.35\\text{ atoms/nm}^2$.",
    "f": [
     "pd"
    ]
@@ -2688,17 +2692,17 @@ const content: GateContent = {
    "n": 18,
    "topic": "solidsol",
    "kind": "concept",
-   "q": "10 % Sn added to molten Cu → substitutional solid solution (bronze). Its structure is…",
+   "q": "10% tin can be added to copper in the molten state and cooled to give a substitutional solid solution known as bronze. This means that the crystal structure of the solid solution:",
    "opts": [
-    "FCC Cu cells interspersed with FCC Sn cells",
-    "FCC Cu with some Cu atoms replaced by Sn",
-    "85 % Cu grains + 15 % Sn grains",
-    "Sn with Cu squeezed in",
-    "Cu with Sn squeezed between Cu atoms"
+    "consists of unit cells of FCC copper interspersed with unit cells of FCC tin.",
+    "is basically that of FCC copper with some of the copper atoms replaced by tin atoms.",
+    "consists of grains of pure copper which make up 85% of the weight of the material. The remaining 15% occurs as grains of pure tin.",
+    "is that of tin with the copper atoms squeezed in the gaps.",
+    "is that of copper with the tin atoms squeezed into the spaces between the copper atoms."
    ],
    "ans": "b",
    "status": "key",
-   "note": "Same five options as A25 Q10, shuffled, with Ni in place of Sn."
+   "note": "In a substitutional solid solution, solute atoms (Sn) directly replace solvent host atoms (Cu) on their regular crystal lattice positions."
   },
   {
    "id": "PPS1-1",

@@ -9,6 +9,7 @@ import { grade, isAnswered } from '../questions/grade';
 import { QuestionView } from './QuestionView';
 import { Explanation } from './Explanation';
 import { MathText } from '../../utils/mathRenderer';
+import { ExamRatioBubbles } from '../components/ExamRatioBubbles';
 import '../styles/quiz.css';
 import { scoreBucket, trackStudy, trackStudyOnce } from '../analytics';
 import { boundedPracticeSize, practiceSizeVariant } from '../experiments';
@@ -449,6 +450,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
             <CheckCircle2 size={16} aria-hidden /> Pass mark {Math.round((step.passMark ?? 0.7) * 100)}%
           </li>
         </ul>
+        <div style={{ margin: '12px 0 6px 0' }}>
+          <ExamRatioBubbles topicId={available[0] ? idx.byId.get(available[0])?.topic : undefined} course={course} />
+        </div>
         {showDifficulty && (
           <div className="lx-diff">
             <div className="lx-diff-head">
@@ -485,17 +489,34 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
           </div>
         )}
         {isPastExamSet && available.length > 1 && (
-          <label className="lx-diff lx-past-exam-size">
-            <span className="lx-diff-head">
+          <div className="lx-diff lx-past-exam-size">
+            <div className="lx-diff-head">
               <strong>How many past-exam questions?</strong>
-              <span className="lx-meta">Every question is from a verified previous paper.</span>
-            </span>
-            <select className="lx-input" value={selectedPastExamSize} onChange={(event) => setPastExamSize(Number(event.target.value))}>
-              {Array.from({ length: available.length }, (_, index) => index + 1).map((count) => (
-                <option key={count} value={count}>{count} question{count === 1 ? '' : 's'}</option>
-              ))}
-            </select>
-          </label>
+              <span className="lx-meta">Every question is drawn directly from verified past exams.</span>
+            </div>
+            <div className="lx-diff-choices" role="radiogroup" aria-label="Past exam questions count" style={{ marginTop: '8px' }}>
+              {[
+                { label: '5 Questions', count: 5 },
+                { label: '10 Questions', count: 10 },
+                { label: '20 Questions', count: 20 },
+                ...(available.length >= 40 ? [{ label: '40 (Full Midterm)', count: 40 }] : []),
+                { label: `All ${available.length}`, count: available.length },
+              ]
+                .filter((item, idx, arr) => item.count <= available.length && arr.findIndex((x) => x.count === item.count) === idx)
+                .map((choice) => (
+                  <button
+                    key={choice.count}
+                    type="button"
+                    role="radio"
+                    aria-checked={selectedPastExamSize === choice.count}
+                    className={`lx-diff-choice${selectedPastExamSize === choice.count ? ' is-on' : ''}`}
+                    onClick={() => setPastExamSize(choice.count)}
+                  >
+                    <strong>{choice.label}</strong>
+                  </button>
+                ))}
+            </div>
+          </div>
         )}
         {lastAttempt && (
           <p className="lx-meta lx-num">

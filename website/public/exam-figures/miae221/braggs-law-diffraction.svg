@@ -1,0 +1,36 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 760 440' width='760' height='440' font-family='Inter, sans-serif'>
+<rect width='760' height='440' fill='#0f172a' rx='12'/>
+<defs>
+<marker id='bragg-arr' viewBox='0 0 10 10' refX='6' refY='5' markerWidth='6' markerHeight='6' orient='auto'>
+<path d='M0,1 L8,5 L0,9 z' fill='#38bdf8'/>
+</marker>
+</defs>
+<line x1='80' y1='140' x2='680' y2='140' stroke='#475569' stroke-width='2' stroke-dasharray='6,6'/>
+<line x1='80' y1='260' x2='680' y2='260' stroke='#475569' stroke-width='2' stroke-dasharray='6,6'/>
+<text x='90' y='125' font-size='15' fill='#94a3b8' font-weight='600'>Plane 1 (hkl)</text>
+<text x='90' y='285' font-size='15' fill='#94a3b8' font-weight='600'>Plane 2 (hkl)</text>
+<circle cx='160' cy='140' r='10' fill='#3b82f6'/>
+<circle cx='160' cy='260' r='10' fill='#3b82f6'/>
+<circle cx='230' cy='140' r='10' fill='#3b82f6'/>
+<circle cx='230' cy='260' r='10' fill='#3b82f6'/>
+<circle cx='300' cy='140' r='10' fill='#3b82f6'/>
+<circle cx='300' cy='260' r='10' fill='#3b82f6'/>
+<circle cx='370' cy='140' r='10' fill='#3b82f6'/>
+<circle cx='370' cy='260' r='10' fill='#3b82f6'/>
+<circle cx='440' cy='140' r='10' fill='#3b82f6'/>
+<circle cx='440' cy='260' r='10' fill='#3b82f6'/>
+<circle cx='510' cy='140' r='10' fill='#3b82f6'/>
+<circle cx='510' cy='260' r='10' fill='#3b82f6'/>
+<circle cx='580' cy='140' r='10' fill='#3b82f6'/>
+<circle cx='580' cy='260' r='10' fill='#3b82f6'/>
+<line x1='640' y1='140' x2='640' y2='260' stroke='#fbbf24' stroke-width='2.2'/>
+<line x1='630' y1='140' x2='650' y2='140' stroke='#fbbf24' stroke-width='2'/>
+<line x1='630' y1='260' x2='650' y2='260' stroke='#fbbf24' stroke-width='2'/>
+<text x='665' y='206.0' font-size='17' font-weight='700' fill='#fbbf24'>d_hkl</text>
+<line x1='120' y1='44.3' x2='300' y2='140' stroke='#38bdf8' stroke-width='2.8' marker-end='url(#bragg-arr)'/>
+<line x1='300' y1='140' x2='480' y2='44.3' stroke='#38bdf8' stroke-width='2.8' marker-end='url(#bragg-arr)'/>
+<line x1='120' y1='127.1' x2='370' y2='260' stroke='#38bdf8' stroke-width='2.8' marker-end='url(#bragg-arr)'/>
+<line x1='370' y1='260' x2='550' y2='164.3' stroke='#38bdf8' stroke-width='2.8' marker-end='url(#bragg-arr)'/>
+<text x='380' y='400' font-size='19' font-weight='700' fill='#f8fafc' text-anchor='middle'>Constructive Interference Condition: nλ = 2 d_hkl sin(θ)</text>
+<text x='380' y='425' font-size='15' fill='#94a3b8' text-anchor='middle'>Detector records 2θ angle · d_hkl = a / √(h² + k² + l²)</text>
+</svg>

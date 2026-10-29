@@ -24,6 +24,25 @@ const FX_2 = fig('fx-figure-2', 'Unit cell with corner atoms A to E and an atom 
 const F17_1 = fig('f17-q1-plane', 'Cubic unit cell of edge a with a shaded plane cutting x at 1, parallel to y, and z at ½', 'Final 2017, Q1: the plane in the cubic unit cell (redrawn from the paper).');
 const FX_5 = fig('fx-figure-5', 'Atomic lattice with a distorted region and arrows showing the shear direction', 'Old final, Figure 5 (redrawn from the paper).');
 
+// New high-definition exam figures
+const CU_VACANCY = fig(
+  'copper-vacancy-curve',
+  'Equilibrium vacancy fraction Nv/N (×10⁻⁴) against temperature (°C) for copper (Qv = 0.9 eV/atom), rising exponentially from 3×10⁻¹⁶ at 20 °C to 2.7×10⁻⁴ at 1000 °C',
+  'Copper (Qᵥ = 0.9 eV): vacancies rise exponentially with temperature T (Nv/N = exp(−Qv/kT)).'
+);
+
+const BRAGG_DIFFRACTION = fig(
+  'braggs-law-diffraction',
+  'Bragg diffraction geometry: X-rays of wavelength λ scattering from parallel atomic planes separated by spacing d_hkl with path difference 2 d_hkl sin(θ)',
+  'Bragg’s Law of X-ray diffraction: nλ = 2 d_hkl sin(θ), where d_hkl = a / √(h² + k² + l²).'
+);
+
+const SCHMID_GEOMETRY = fig(
+  'schmids-law-geometry',
+  'Cylindrical single-crystal tensile specimen showing slip plane normal at angle φ and slip direction at angle λ under tensile stress σ',
+  'Schmid’s Law: resolved shear stress τ_R = σ cos(φ) cos(λ); maximum shear occurs at φ = λ = 45° where τ_R = 0.5 σ.'
+);
+
 export const MIAE221_FIGURES: Record<string, QuestionFigure> = {
   'F24-6': F24_FORCE,
   'F24-13': F24_CUBE,
@@ -41,6 +60,7 @@ export const MIAE221_FIGURES: Record<string, QuestionFigure> = {
   'W26-2': W26_DIRS,
   'W26-3': W26_AB,
   'W26-4': W26_CD,
+  'W26-8': CU_VACANCY,
   'W26-16': W26_SS,
   'W26-17': W26_SS,
   'W26-18': W26_SS,
@@ -48,6 +68,13 @@ export const MIAE221_FIGURES: Record<string, QuestionFigure> = {
   'W26-20': W26_SS,
   'FX-1': FX_1,
   'FX-5': FX_2,
+  'FX-9': CU_VACANCY,
   'FX-12': FX_5,
-  'F17-1': F17_1
+  'F17-1': F17_1,
+  'F17-2': CU_VACANCY,
+  'F17-14': BRAGG_DIFFRACTION,
+  'F17-18': A25_3,
+  'F17-40': SCHMID_GEOMETRY,
+  'vacancy': CU_VACANCY,
+  'diffraction': BRAGG_DIFFRACTION
 };
