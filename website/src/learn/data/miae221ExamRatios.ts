@@ -383,12 +383,182 @@ export const MIAE221_TOPIC_RATIOS: Record<string, ExamRatio> = {
   }
 };
 
-export function getExamRatio(topicId?: string): ExamRatio | null {
-  if (!topicId) return null;
-  return MIAE221_TOPIC_RATIOS[topicId] ?? null;
+const TOPIC_ALIASES: Record<string, string> = {
+  intro: 'intro',
+  'materials-intro': 'intro',
+  'materials and why structure decides properties': 'intro',
+  'material classes & structure–property links': 'intro',
+  'material classes & structure-property links': 'intro',
+  config: 'config',
+  'atomic-structure': 'config',
+  'atomic structure, moles & electron configuration': 'config',
+  'electron configuration & periodic groups': 'config',
+  atomsmass: 'atomsmass',
+  'moles, atoms & mass': 'atomsmass',
+  bonding: 'bonding',
+  'bond types & % ionic character': 'bonding',
+  'bond-energy': 'bondcurve',
+  bondcurve: 'bondcurve',
+  'force–energy curves & properties from bonding': 'bondcurve',
+  'force-energy curves & properties from bonding': 'bondcurve',
+  'potential well & interatomic force curve': 'bondcurve',
+  cells: 'cells',
+  'unit-cells': 'cells',
+  'unit cells: n, cn, apf & crystal systems': 'cells',
+  'unit cells, packing & crystal systems': 'cells',
+  density: 'density',
+  'theoretical-density': 'density',
+  'theoretical density': 'density',
+  structure: 'structure',
+  'crystalline-amorphous': 'structure',
+  'crystalline, amorphous & polycrystalline': 'structure',
+  directions: 'directions',
+  'miller indices: directions': 'directions',
+  'miller indices (directions)': 'directions',
+  planes: 'planes',
+  'miller indices: planes': 'planes',
+  'miller indices (planes)': 'planes',
+  ldpd: 'ldpd',
+  'linear-planar-density': 'ldpd',
+  'linear & planar density, close packing': 'ldpd',
+  'linear & planar atomic density': 'ldpd',
+  xrd: 'xrd',
+  "x-ray diffraction & bragg's law": 'xrd',
+  "bragg's law & x-ray diffraction": 'xrd',
+  "bragg's law": 'xrd',
+  vacancy: 'vacancy',
+  'point-defects': 'vacancy',
+  'point defects & vacancy concentration': 'vacancy',
+  'vacancy concentration & arrhenius equation': 'vacancy',
+  solidsol: 'solidsol',
+  'solid-solutions': 'solidsol',
+  'solid solutions': 'solidsol',
+  'solid solutions & hume-rothery': 'solidsol',
+  'solid solutions & hume-rothery rules': 'solidsol',
+  'impurities & solid solutions': 'solidsol',
+  defects: 'defects',
+  'dislocations-grains': 'defects',
+  'dislocations, grain boundaries & microscopy': 'defects',
+  'dislocations & grain boundaries': 'defects',
+  diffmech: 'diffmech',
+  'diffusion-mechanisms': 'diffmech',
+  'diffusion mechanisms': 'diffmech',
+  'diffusion mechanisms & d(t)': 'diffmech',
+  'diffusion mechanisms & temperature dependence': 'diffmech',
+  fick1: 'fick1',
+  'fick-first': 'fick1',
+  "fick's first law: steady state": 'fick1',
+  "fick's 1st law (steady-state flux)": 'fick1',
+  fick2: 'fick2',
+  'fick-second': 'fick2',
+  "fick's second law, erf & carburizing": 'fick2',
+  "fick's 2nd law (non-steady-state & erf)": 'fick2',
+  elastic: 'elastic',
+  "stress, strain, hooke's law & poisson's ratio": 'elastic',
+  "stress, strain & hooke's law": 'elastic',
+  tensile: 'tensile',
+  'the tensile curve: yield, ts, ductility & hardness': 'tensile',
+  'tensile curve, yield, uts & ductility': 'tensile',
+  'plastic-true-stress': 'tensile',
+  'plastic deformation, true stress & design': 'tensile',
+  slip: 'slip',
+  'slip-systems': 'slip',
+  'dislocations & slip systems': 'slip',
+  'dislocations & slip': 'slip',
+  strengthening: 'slip',
+  'strengthening mechanisms & annealing': 'slip'
+};
+
+const SUBJECT_ALIASES: Record<string, string> = {
+  atoms: 'atoms',
+  'introduction, atoms & bonding': 'atoms',
+  'intro, atoms & bonding': 'atoms',
+  'ch 1–2': 'atoms',
+  'ch 1-2': 'atoms',
+  crystals: 'crystals',
+  'crystal structures': 'crystals',
+  'ch 3': 'crystals',
+  cryst: 'cryst',
+  crystallography: 'cryst',
+  'crystallography & x-rays': 'cryst',
+  imperf: 'imperf',
+  imperfections: 'imperf',
+  'imperfections in solids': 'imperf',
+  'ch 4': 'imperf',
+  diffusion: 'diffusion',
+  'diffusion in solids': 'diffusion',
+  'ch 5': 'diffusion',
+  mech: 'mech',
+  mechanical: 'mech',
+  'mechanical properties': 'mech',
+  'mechanical properties of metals': 'mech',
+  'ch 6': 'mech',
+  slip: 'slip',
+  dislocations: 'slip',
+  'dislocations & strengthening': 'slip',
+  'dislocations & slip': 'slip',
+  'ch 7': 'slip'
+};
+
+export function getExamRatio(rawId?: string): ExamRatio | null {
+  if (!rawId) return null;
+  if (MIAE221_TOPIC_RATIOS[rawId]) return MIAE221_TOPIC_RATIOS[rawId];
+
+  // Clean raw id
+  let clean = rawId.trim();
+  clean = clean.replace(/^(x:MIAE221:|b:|d:)/, '');
+  clean = clean.replace(/\.(exam|practice|check|video|notes|tool|reading)$/, '');
+  const lower = clean.toLowerCase();
+
+  // 1. Direct alias lookup
+  if (TOPIC_ALIASES[lower] && MIAE221_TOPIC_RATIOS[TOPIC_ALIASES[lower]]) {
+    return MIAE221_TOPIC_RATIOS[TOPIC_ALIASES[lower]];
+  }
+
+  // 2. Substring matching against known topic names and aliases
+  for (const [alias, canonical] of Object.entries(TOPIC_ALIASES)) {
+    if (lower.includes(alias) || alias.includes(lower)) {
+      if (MIAE221_TOPIC_RATIOS[canonical]) return MIAE221_TOPIC_RATIOS[canonical];
+    }
+  }
+
+  // 3. Fallback to subject ratio converted into an ExamRatio
+  const sub = getSubjectRatio(rawId);
+  if (sub) {
+    return {
+      topicId: sub.subjectId,
+      topicName: sub.subjectName,
+      subjectId: sub.subjectId,
+      subjectName: sub.subjectName,
+      chapter: sub.chapter,
+      m2017Count: sub.m2017Count,
+      m2017Total: sub.m2017Total,
+      m2017Pct: sub.m2017Pct,
+      allPapersCount: sub.allPapersCount,
+      allPapersTotal: sub.allPapersTotal,
+      allPapersPct: sub.allPapersPct
+    };
+  }
+
+  return null;
 }
 
-export function getSubjectRatio(subjectId?: string): SubjectRatio | null {
-  if (!subjectId) return null;
-  return MIAE221_SUBJECT_RATIOS[subjectId] ?? null;
+export function getSubjectRatio(rawId?: string): SubjectRatio | null {
+  if (!rawId) return null;
+  if (MIAE221_SUBJECT_RATIOS[rawId]) return MIAE221_SUBJECT_RATIOS[rawId];
+
+  const lower = rawId.toLowerCase().trim();
+  const canonical = SUBJECT_ALIASES[lower];
+  if (canonical && MIAE221_SUBJECT_RATIOS[canonical]) {
+    return MIAE221_SUBJECT_RATIOS[canonical];
+  }
+
+  for (const [alias, can] of Object.entries(SUBJECT_ALIASES)) {
+    if (lower.includes(alias) || alias.includes(lower)) {
+      if (MIAE221_SUBJECT_RATIOS[can]) return MIAE221_SUBJECT_RATIOS[can];
+    }
+  }
+
+  return null;
 }
+

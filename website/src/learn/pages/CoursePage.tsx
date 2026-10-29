@@ -30,6 +30,7 @@ import { StepIcon } from '../components/StepIcon';
 import { ResourceLibrary } from '../components/ResourceLibrary';
 import { VideoLibrary } from '../components/VideoLibrary';
 import { FormulaSheet, hasFormulaSheet } from '../components/FormulaSheet';
+import { ExamRatioBubbles } from '../components/ExamRatioBubbles';
 import { getVideoUrl } from '../../utils/pdfUrl';
 import { Miae221ExamStatisticsCard } from '../../components/Miae221ExamStatisticsCard';
 import '../styles/course.css';
@@ -51,6 +52,7 @@ const SectionBlock: React.FC<{ cur: Curriculum; section: Section; open: boolean;
           <span className="lx-acc-title">
             <strong>{section.title}</strong>
             <span className="lx-meta">{section.subtitle}</span>
+            <ExamRatioBubbles subjectId={section.id} course={cur.id} compact />
           </span>
           <span className="lx-acc-meta lx-meta lx-num">
             {complete ? `${complete} / ` : ''}
@@ -93,6 +95,7 @@ const SectionBlock: React.FC<{ cur: Curriculum; section: Section; open: boolean;
                           <Timer size={13} aria-hidden /> timed
                         </span>
                       ) : null}
+                      <ExamRatioBubbles topicId={l.topicTags?.[0] ?? l.id} course={cur.id} compact />
                     </span>
                   </span>
                   <span className="lx-lesson-time lx-meta lx-num">

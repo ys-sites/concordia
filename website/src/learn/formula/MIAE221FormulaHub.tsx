@@ -10,13 +10,17 @@ import {
   GraduationCap,
   HelpCircle,
   Lightbulb,
+  PlayCircle,
   Printer,
   Search,
   Sparkles,
+  Video,
   X
 } from 'lucide-react';
-import { MIAE221_MASTER_FORMULAS, MasterFormulaItem } from './formulaData';
+import { MIAE221_MASTER_FORMULAS, MasterFormulaItem, METALLIC_CRYSTAL_STRUCTURES } from './formulaData';
 import { MIDTERM_2017_THEORY_QUESTIONS, TheoryQuestionItem } from './midterm2017TheoryData';
+import { getTheoryVideo } from './theoryVideoLookup';
+import { MotionLessonPlayer } from '../../components/MotionLessonPlayer';
 import { MathBlock, MathText } from '../../utils/mathRenderer';
 import './formulaHub.css';
 
@@ -28,6 +32,10 @@ export const MIAE221FormulaHub: React.FC = () => {
   const [onlyRedAlert, setOnlyRedAlert] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedTheoryIds, setExpandedTheoryIds] = useState<Set<string>>(new Set());
+  const [activeVideoTheoryId, setActiveVideoTheoryId] = useState<string | null>(null);
+
+  const cleanTip = (text: string) =>
+    text.replace(/^💡\s*(Quick\s*[\w\s]*Tip|Golden\s*Rule|Handwritten\s*Rule|Mental\s*Rule|Mnemonic|Direct\s*mnemonic|Instant\s*Mnemonic|Trap\s*Alert|4\s*Hume-Rothery\s*Commandments|Fundamental\s*Distinction|Arrhenius\s*Golden\s*Graph|0\.002\s*Offset\s*Rule|Mental\s*Picture|Mental\s*Model|Quick\s*Rule)[\s:–-]*/i, '').trim();
 
   const redAlertCount = useMemo(
     () => MIAE221_MASTER_FORMULAS.filter((f) => !f.isOnOfficialSheet).length,
@@ -240,6 +248,51 @@ export const MIAE221FormulaHub: React.FC = () => {
       {/* VIEW 1: MASTER FORMULA SHEET */}
       {activeView === 'formulas' && (
         <div>
+          {/* High-Yield Metallic Crystal Structures Reference Table (Callister Table 3.1) */}
+          {(selectedChapter === 'all' || selectedChapter === 2) && !onlyRedAlert && (
+            <div className="lx-crystal-table-card">
+              <div className="lx-crystal-table-head">
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '15px', color: 'var(--lx-ink)' }}>
+                    Common Metallic Crystal Structures (FCC, BCC, HCP) & Packing Factor
+                  </h3>
+                  <span className="lx-meta">
+                    Callister Table 3.1 · High-Yield Memory Sheet for Theoretical Density & Slip Calculations
+                  </span>
+                </div>
+                <span className="lx-crystal-badge">FCC · BCC · HCP</span>
+              </div>
+              <table className="lx-crystal-grid-table">
+                <thead>
+                  <tr>
+                    <th style={{ width: '33%' }}>FCC (4 atoms/cell · APF = 0.74)</th>
+                    <th style={{ width: '33%' }}>BCC (2 atoms/cell · APF = 0.68)</th>
+                    <th style={{ width: '34%' }}>HCP (6 atoms/cell · APF = 0.74)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    {METALLIC_CRYSTAL_STRUCTURES.map((struct) => (
+                      <td key={struct.structure}>
+                        <div style={{ marginBottom: '8px', fontSize: '12px', color: 'var(--lx-ink-2)' }}>
+                          <strong>CN:</strong> {struct.coordinationNumber} · <MathText text={`$${struct.geometryFormula}$`} />
+                        </div>
+                        <div className="lx-metal-pills">
+                          {struct.metals.map((m) => (
+                            <span key={m.symbol} className="lx-metal-pill" title={`${m.name} (${struct.structure})`}>
+                              <span>{m.name}</span>
+                              <strong className="lx-metal-symbol">({m.symbol})</strong>
+                            </span>
+                          ))}
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          )}
+
           {filteredFormulas.length === 0 ? (
             <p className="lx-empty">No formulas match your active filter or search query.</p>
           ) : (
@@ -312,7 +365,7 @@ export const MIAE221FormulaHub: React.FC = () => {
                       <Lightbulb size={18} className="lx-fhub-tip-icon" />
                       <div>
                         <strong>Quick Understanding Tip: </strong>
-                        <MathText text={f.quickTip} />
+                        <MathText text={cleanTip(f.quickTip)} />
                       </div>
                     </div>
                   )}
@@ -331,12 +384,20 @@ export const MIAE221FormulaHub: React.FC = () => {
           ) : (
             filteredTheory.map((item) => {
               const isExpanded = expandedTheoryIds.has(item.id);
+              const video = getTheoryVideo(item);
+              const isVideoOpen = activeVideoTheoryId === item.id;
+
               return (
                 <article key={item.id} className="lx-theory-card">
                   <header className="lx-theory-card-head">
                     <div className="lx-theory-source-chips">
                       <span className="lx-theory-chip is-paper">{item.paper} · {item.qNum}</span>
                       <span className="lx-theory-chip">Chapter {item.chapter}</span>
+                      {video && (
+                        <span className="lx-theory-chip" style={{ background: 'rgba(2, 132, 199, 0.1)', color: '#0284c7', borderColor: 'rgba(2, 132, 199, 0.3)' }}>
+                          <Video size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Video Available
+                        </span>
+                      )}
                     </div>
                     <span className="lx-theory-subject">{item.subject}</span>
                   </header>
@@ -365,23 +426,67 @@ export const MIAE221FormulaHub: React.FC = () => {
                     })}
                   </div>
 
-                  {/* Expand / Reveal Button */}
-                  <button
-                    type="button"
-                    className="lx-theory-reveal-btn"
-                    onClick={() => toggleTheoryExpand(item.id)}
-                    aria-expanded={isExpanded}
-                  >
-                    {isExpanded ? (
-                      <>
-                        <ChevronUp size={16} /> Hide Explanation & Theory Behind It
-                      </>
-                    ) : (
-                      <>
-                        <ChevronDown size={16} /> Reveal Correct Answer ({item.correctKey}) & Deep Theory Breakdown
-                      </>
+                  {/* Action Buttons: Reveal Answer & Watch Video Explanation */}
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
+                    <button
+                      type="button"
+                      className="lx-theory-reveal-btn"
+                      style={{ flex: '1 1 280px' }}
+                      onClick={() => toggleTheoryExpand(item.id)}
+                      aria-expanded={isExpanded}
+                    >
+                      {isExpanded ? (
+                        <>
+                          <ChevronUp size={16} /> Hide Explanation & Theory Behind It
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown size={16} /> Reveal Correct Answer ({item.correctKey}) & Deep Theory Breakdown
+                        </>
+                      )}
+                    </button>
+
+                    {video && (
+                      <button
+                        type="button"
+                        className={`lx-theory-video-btn${isVideoOpen ? ' is-active' : ''}`}
+                        onClick={() => setActiveVideoTheoryId(isVideoOpen ? null : item.id)}
+                        aria-expanded={isVideoOpen}
+                      >
+                        <PlayCircle size={16} />
+                        {isVideoOpen ? 'Hide Video Explanation' : 'Watch Video Explanation'}
+                      </button>
                     )}
-                  </button>
+                  </div>
+
+                  {/* Interactive Video Player Drawer */}
+                  {video && isVideoOpen && (
+                    <div className="lx-theory-video-container">
+                      <div className="lx-theory-video-meta">
+                        <span className="lx-theory-video-badge">
+                          <Video size={13} /> {video.badge}
+                        </span>
+                        <span>
+                          {video.title} {video.duration ? `· ${typeof video.duration === 'number' ? Math.round(video.duration / 60) + ' min' : video.duration}` : ''}
+                        </span>
+                      </div>
+                      {video.kind === 'motion' && video.motionLesson && (
+                        <div style={{ padding: '8px' }}>
+                          <MotionLessonPlayer lesson={video.motionLesson} bare autoPlay />
+                        </div>
+                      )}
+                      {video.kind === 'youtube' && video.youtubeId && (
+                        <div className="lx-theory-iframe-wrap">
+                          <iframe
+                            src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
+                            title={video.title}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                   {/* Detailed Explanation Drawer */}
                   {isExpanded && (
@@ -405,7 +510,7 @@ export const MIAE221FormulaHub: React.FC = () => {
                         <Lightbulb size={18} className="lx-fhub-tip-icon" />
                         <div>
                           <strong>Quick Understanding Tip: </strong>
-                          <MathText text={item.quickTip} />
+                          <MathText text={cleanTip(item.quickTip)} />
                         </div>
                       </div>
                     </div>
@@ -419,3 +524,4 @@ export const MIAE221FormulaHub: React.FC = () => {
     </div>
   );
 };
+

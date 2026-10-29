@@ -29,6 +29,8 @@ export const isTermPaperDoc = (relativePath: string): boolean =>
   /Term Paper & Final Project/i.test(relativePath);
 
 const RAW_FILTERED_RELATIVE_PATHS: string[] = [
+  "Miae 221/formula/MIAE 221 - Master Formula Sheet & Symbol Guide (Ch 1-6).pdf",
+  "Miae 221/formula/MIAE 221 - 2017 Midterm Theory & Past Paper Master Explainer.pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Lecture 11 - Homogeneous Linear Equations & Auxiliary Equation (Visual Master Notes).pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Lecture 12 - Undetermined Coefficients & Nonhomogeneous Equations (Comprehensive Guide).pdf",
   "Miae 221/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Lecture 12 - Ductility, Toughness, Hardness & Slip Systems (Comprehensive Guide).pdf",

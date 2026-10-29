@@ -549,3 +549,73 @@ export const MIAE221_MASTER_FORMULAS: MasterFormulaItem[] = [
     officialSheetNote: 'Not on formula sheet. Mandatory theory question.'
   }
 ];
+
+// =========================================================================
+// CALLISTER TABLE 3.1: COMMON METALLIC CRYSTAL STRUCTURES
+// High-Yield Midterm Memory Sheet (FCC, BCC, HCP)
+// =========================================================================
+export interface MetallicCrystalEntry {
+  structure: 'FCC' | 'BCC' | 'HCP';
+  name: string;
+  atomsPerCell: string;
+  coordinationNumber: number;
+  atomicPackingFactor: number;
+  geometryFormula: string;
+  volumeFormula: string;
+  metals: { name: string; symbol: string; note?: string }[];
+}
+
+export const METALLIC_CRYSTAL_STRUCTURES: MetallicCrystalEntry[] = [
+  {
+    structure: 'FCC',
+    name: 'Face-Centered Cubic',
+    atomsPerCell: '4 atoms/cell',
+    coordinationNumber: 12,
+    atomicPackingFactor: 0.74,
+    geometryFormula: 'a = 2\\sqrt{2} R',
+    volumeFormula: 'V_c = 16\\sqrt{2} R^3',
+    metals: [
+      { name: 'Aluminium', symbol: 'Al' },
+      { name: 'Copper', symbol: 'Cu' },
+      { name: 'Nickel', symbol: 'Ni' },
+      { name: 'Gold', symbol: 'Au' },
+      { name: 'Silver', symbol: 'Ag' },
+      { name: 'Lead', symbol: 'Pb' },
+      { name: 'Platinum', symbol: 'Pt' }
+    ]
+  },
+  {
+    structure: 'BCC',
+    name: 'Body-Centered Cubic',
+    atomsPerCell: '2 atoms/cell',
+    coordinationNumber: 8,
+    atomicPackingFactor: 0.68,
+    geometryFormula: 'a = \\frac{4R}{\\sqrt{3}}',
+    volumeFormula: 'V_c = \\frac{64 R^3}{3\\sqrt{3}}',
+    metals: [
+      { name: 'Iron (α-ferrite at RT)', symbol: 'Fe*' },
+      { name: 'Chromium', symbol: 'Cr' },
+      { name: 'Tungsten', symbol: 'W' },
+      { name: 'Molybdenum', symbol: 'Mo' },
+      { name: 'Vanadium', symbol: 'V' },
+      { name: 'Tantalum', symbol: 'Ta' }
+    ]
+  },
+  {
+    structure: 'HCP',
+    name: 'Hexagonal Close-Packed',
+    atomsPerCell: '6 atoms/conventional cell (2/primitive)',
+    coordinationNumber: 12,
+    atomicPackingFactor: 0.74,
+    geometryFormula: 'c/a = 1.633 \\text{ (ideal)}, a = 2R',
+    volumeFormula: 'V_c = 6\\sqrt{3} R^2 c',
+    metals: [
+      { name: 'Magnesium', symbol: 'Mg' },
+      { name: 'Zinc', symbol: 'Zn' },
+      { name: 'Titanium (α-Ti at RT)', symbol: 'Ti*' },
+      { name: 'Cobalt (α-Co at RT)', symbol: 'Co*' },
+      { name: 'Cadmium', symbol: 'Cd' }
+    ]
+  }
+];
+

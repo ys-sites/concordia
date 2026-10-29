@@ -325,16 +325,23 @@
   gap: 10px;
   padding: 12px 14px;
   border-radius: 10px;
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.25);
+  background: #fffbeb !important;
+  border: 1px solid #fde68a !important;
   font-size: 13.5px;
   line-height: 1.5;
-  color: #92400e;
+  color: #78350f !important;
   margin-top: auto;
+}
+.lx-fhub-tip-box strong {
+  color: #92400e !important;
+}
+.lx-fhub-tip-box p,
+.lx-fhub-tip-box span {
+  color: #78350f !important;
 }
 .lx-fhub-tip-icon {
   flex-shrink: 0;
-  color: #d97706;
+  color: #d97706 !important;
   margin-top: 2px;
 }
 
@@ -478,19 +485,144 @@
   margin-bottom: 4px;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .lx-fhub-tip-box {
-    background: rgba(245, 158, 11, 0.12);
-    color: #fde68a;
-    border-color: rgba(245, 158, 11, 0.3);
-  }
-  .lx-fhub-tip-icon {
-    color: #fbbf24;
-  }
-  .lx-fhub-card.is-red-alert {
-    background: linear-gradient(to bottom, rgba(239, 68, 68, 0.08), var(--lx-surface));
-  }
+/* Video button & inline video explainer drawer */
+.lx-theory-video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  border: 1px solid rgba(2, 132, 199, 0.35);
+  background: rgba(2, 132, 199, 0.08);
+  color: #0284c7;
+  transition: all 0.15s ease;
+}
+.lx-theory-video-btn:hover {
+  background: rgba(2, 132, 199, 0.16);
+  border-color: rgba(2, 132, 199, 0.55);
+}
+.lx-theory-video-btn.is-active {
+  background: #0284c7;
+  color: #fff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+}
+
+.lx-theory-video-container {
+  margin: 12px 0 6px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+  background: #0f172a;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+.lx-theory-video-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: rgba(15, 23, 42, 0.95);
+  color: #e2e8f0;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.lx-theory-video-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: #0284c7;
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+}
+.lx-theory-iframe-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+.lx-theory-iframe-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Metallic Crystal Structures Reference Card */
+.lx-crystal-table-card {
+  padding: 22px;
+  border-radius: 14px;
+  background: var(--lx-surface);
+  border: 1.5px solid rgba(2, 132, 199, 0.3);
+  box-shadow: 0 3px 12px rgba(2, 132, 199, 0.06);
+  margin-bottom: 22px;
+}
+.lx-crystal-table-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.lx-crystal-badge {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+}
+.lx-crystal-grid-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.lx-crystal-grid-table th {
+  background: #f1f5f9;
+  font-weight: 700;
+  padding: 10px;
+  border: 1px solid var(--lx-line);
+  color: var(--lx-ink);
+  font-size: 13px;
+  text-align: left;
+}
+.lx-crystal-grid-table td {
+  padding: 10px;
+  border: 1px solid var(--lx-line);
+  font-size: 13px;
+  vertical-align: top;
+}
+.lx-metal-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 6px;
+}
+.lx-metal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  font-size: 12px;
+  color: #1e293b;
+  font-weight: 550;
+}
+.lx-metal-symbol {
+  font-weight: 750;
+  color: #0369a1;
+  font-family: var(--lx-mono, monospace);
 }
 
 /* Print Stylesheet for 1-Page / Clear Printing */
@@ -498,17 +630,21 @@
   .lx-fhub-controls,
   .lx-fhub-main-tabs,
   .lx-fhub-actions,
-  .lx-theory-reveal-btn {
+  .lx-theory-reveal-btn,
+  .lx-theory-video-btn,
+  .lx-theory-video-container {
     display: none !important;
   }
   .lx-fhub-grid {
     display: block !important;
   }
   .lx-fhub-card,
-  .lx-theory-card {
+  .lx-theory-card,
+  .lx-crystal-table-card {
     margin-bottom: 14px !important;
     page-break-inside: avoid !important;
     border: 1px solid #ccc !important;
     box-shadow: none !important;
   }
 }
+

@@ -451,7 +451,10 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({ course, lesson, step, on
           </li>
         </ul>
         <div style={{ margin: '12px 0 6px 0' }}>
-          <ExamRatioBubbles topicId={available[0] ? idx.byId.get(available[0])?.topic : undefined} course={course} />
+          <ExamRatioBubbles
+            topicId={lesson.topicTags?.[0] ?? lesson.id ?? (available[0] ? idx.byId.get(available[0])?.topic : undefined) ?? step.id}
+            course={course}
+          />
         </div>
         {showDifficulty && (
           <div className="lx-diff">

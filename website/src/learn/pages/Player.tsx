@@ -7,6 +7,7 @@ import { courseProgress, findLesson, fmtMinutes, isDone, lessonProgress, useCurr
 import { href, navigate } from '../router';
 import { markStep, setPlace, updateProgress, useProgress } from '../progress/store';
 import { StepIcon, KIND_LABEL } from '../components/StepIcon';
+import { ExamRatioBubbles } from '../components/ExamRatioBubbles';
 import { BrandMark } from '../../components/BrandMark';
 import { AskAiButton } from '../components/AskAi';
 import { openDoc } from '../docBus';
@@ -60,6 +61,7 @@ const Sidebar: React.FC<{ cur: Curriculum; lessonId: string; stepId: string; don
                 <span className="lx-meta lx-num">
                   {done_} / {s.lessons.length} · {fmtMinutes(s.lessons.reduce((n, l) => n + l.minutes, 0))}
                 </span>
+                <ExamRatioBubbles subjectId={s.id} course={cur.id} compact />
               </span>
               <ChevronDown size={18} aria-hidden className="lx-acc-chev" />
             </button>
@@ -97,6 +99,9 @@ const Sidebar: React.FC<{ cur: Curriculum; lessonId: string; stepId: string; don
                                     <span className="lx-meta">
                                       <StepIcon step={st} size={13} /> {st.optional ? 'Optional · ' : ''}
                                       {st.minutes} min
+                                      {(st.kind === 'exam' || /past exam/i.test(st.title) || st.id.includes('exam')) && (
+                                        <ExamRatioBubbles topicId={l.topicTags?.[0] ?? l.id} course={cur.id} compact />
+                                      )}
                                     </span>
                                   </span>
                                 </a>
@@ -402,6 +407,9 @@ export const Player: React.FC<{ course: CourseId; lessonId: string; stepId?: str
                         <span className="lx-meta">
                           {s.optional ? 'optional · ' : ''}
                           {s.minutes} min
+                          {(s.kind === 'exam' || /past exam/i.test(s.title) || s.id.includes('exam')) && (
+                            <ExamRatioBubbles topicId={lesson.topicTags?.[0] ?? lesson.id} course={course} compact />
+                          )}
                         </span>
                         {isDone(done, course, s) && <CheckCircle2 size={16} className="lx-ok" aria-label="completed" />}
                       </a>
