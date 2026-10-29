@@ -42,6 +42,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Ionic, covalent, metallic and secondary bonds, and how electronegativity sets the ionic character.',
           gate: ['bonding'],
           videos: ['topic221:m221-02-bonding'],
+          youtube: ['whmLL77C8e0'],
           bank: [{ ch: 'bonding', not: /potential|well|energy|separation|melting|thermal expansion/i }, { ch: 'mixed', re: /ionic character|bonding/i, not: /bond energy/i }],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 02 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 2 - /, /^03 - 1-Page Rapid Review Sheets\/Part 2 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 03 /]
         },
@@ -67,6 +68,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Count atoms per cell, coordination and packing for SC, BCC, FCC and HCP, and name the crystal systems.',
           gate: ['cells'],
           videos: ['topic221:m221-03-crystal'],
+          youtube: ['PaGJwOPg2kU'],
           bank: [{ ch: 'crystal' }, { ch: 'mixed' }],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 03 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 3 - /, /^03 - 1-Page Rapid Review Sheets\/Part 3 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 0[45] /]
         },
@@ -104,8 +106,9 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'Miller indices: planes',
           summary: 'Intercepts, reciprocals and clearing fractions, including planes through the origin.',
           gate: ['planes'],
-          bank: [{ ch: 'crystal', re: /plane|miller/i }],
-          youtube: ['9Tf1dB1yVKY']
+          videos: ['topic221:m221-04-densities'],
+          youtube: ['9Tf1dB1yVKY'],
+          bank: [{ ch: 'crystal', re: /plane|miller/i }]
         },
         {
           id: 'linear-planar-density',
@@ -145,8 +148,9 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'Impurities & solid solutions',
           summary: 'Substitutional and interstitial solutions, the Hume-Rothery rules, and converting wt% to at%.',
           gate: ['solidsol'],
-          bank: [{ ch: 'defects', re: /hume|solid solu|interstitial vs|weight %|atom %|substitutional/i }],
-          youtube: ['aMCth97s-Ns']
+          videos: ['topic221:m221-05-defects'],
+          youtube: ['aMCth97s-Ns'],
+          bank: [{ ch: 'defects', re: /hume|solid solu|interstitial vs|weight %|atom %|substitutional/i }]
         },
         {
           id: 'dislocations-grains',
@@ -154,6 +158,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Edge and screw dislocations, the Burgers vector, grain size and how we see microstructure.',
           gate: ['defects'],
           videos: ['topic221:m221-06-interfaces'],
+          youtube: ['g-M6i2TQJP0'],
           bank: [{ ch: 'defects' }],
           resources: [/^02 - Comprehensive Topic Guides[^/]*\/Part 5B - /, /^03 - 1-Page Rapid Review Sheets\/Part 5B - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 08 /]
         }
@@ -201,6 +206,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Engineering stress and strain, the elastic modulus and lateral contraction.',
           gate: ['elastic'],
           videos: ['topic221:m221-08-mechanical'],
+          youtube: ['pNIvZyd5djQ'],
           bank: [{ ch: 'mechanical', re: /elastic|modulus calc|hooke|poisson|elongation under/i, not: /resilience|recovery|permanent/i }],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 06 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 6 - /, /^03 - 1-Page Rapid Review Sheets\/Part 6 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 10 /]
         },
@@ -209,6 +215,8 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'The tensile curve: yield, TS, ductility & hardness',
           summary: 'The 0.002 offset, tensile strength, %EL and %RA, elastic recovery, resilience and hardness.',
           gate: ['tensile'],
+          videos: ['topic221:m221-10-plastic'],
+          youtube: ['-qHEi9kijj0'],
           bank: [{ ch: 'mechanical' }, { ch: 'lecture_12' }],
           read: [/^01 - Teacher Lecture Notes\/lecture 12-mech prop 3/, /^02 - Comprehensive Topic Guides.*Lecture 12/]
         },
@@ -311,14 +319,14 @@ export const MIAE221_SPEC: CourseSpec = {
       {
         id: 'teacher-practice',
         title: 'Midterm practice by subject',
-        subtitle: '40 questions from the official marking key, each with a video solution and top creator walkthrough',
+        subtitle: '40 questions from the official marking key, each with a course video lesson and worked solution',
         lessons: [
           {
             id: 'tp-miller-planes',
             title: 'Miller indices: planes',
             summary: 'Q1–Q3 on the 2017 exam paper: coordinate intercepts, reciprocals and plane indices (hkl).',
             steps: [
-              { kind: 'extra', title: 'Watch: Crystallographic Planes (Engineering and Design Solutions)', slug: 'yt-miller', youtubeId: '9Tf1dB1yVKY', minutes: 19, refVideoId: 'topic221:m221-04-densities' },
+              { kind: 'video', title: 'Watch: Crystallographic Planes & Densities', slug: 'video', videoId: 'topic221:m221-04-densities' },
               { kind: 'practice', title: 'Index the planes', slug: 'practice', questions: { teacher: /^Miller Indices/ }, ordered: true }
             ]
           },
@@ -327,7 +335,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Crystal structures & densities',
             summary: 'Packing factor, coordination, theoretical density and unit cell geometries.',
             steps: [
-              { kind: 'extra', title: 'Watch: Crystal Structures & Atomic Packing (The Efficient Engineer)', slug: 'yt-crystal', youtubeId: 'PaGJwOPg2kU', minutes: 8, refVideoId: 'topic221:m221-03-crystal' },
+              { kind: 'video', title: 'Watch: Crystal Structures', slug: 'video', videoId: 'topic221:m221-03-crystal' },
               { kind: 'practice', title: 'Solve the structure questions', slug: 'practice', questions: { teacher: /^Crystal Structures & Densities$/ }, ordered: true }
             ]
           },
@@ -336,7 +344,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Atomic bonding',
             summary: 'Primary and secondary bond types, force-energy curves and percent ionic character.',
             steps: [
-              { kind: 'extra', title: 'Watch: Bonding Overview (Texas A&M lecture)', slug: 'yt-bonding', youtubeId: 'whmLL77C8e0', minutes: 20, refVideoId: 'topic221:m221-02-bonding' },
+              { kind: 'video', title: 'Watch: Chemical Bonding', slug: 'video', videoId: 'topic221:m221-02-bonding' },
               { kind: 'practice', title: 'Answer the bonding questions', slug: 'practice', questions: { teacher: /^Atomic Bonding$/ }, ordered: true }
             ]
           },
@@ -345,7 +353,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Defects & solid solutions',
             summary: 'Vacancies, equilibrium Arrhenius concentration and Hume-Rothery solubility criteria.',
             steps: [
-              { kind: 'extra', title: 'Watch: Hume-Rothery Rules, worked example (Dr Kidd Engineering)', slug: 'yt-defects', youtubeId: 'aMCth97s-Ns', minutes: 7, refVideoId: 'topic221:m221-05-defects' },
+              { kind: 'video', title: 'Watch: Imperfections in Solids', slug: 'video', videoId: 'topic221:m221-05-defects' },
               { kind: 'practice', title: 'Answer the defect questions', slug: 'practice', questions: { teacher: /^Defects & Solid Solutions$/ }, ordered: true }
             ]
           },
@@ -354,7 +362,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Dislocations & slip',
             summary: 'Burgers vectors, slip planes and directions, and Schmid’s law resolved shear stress.',
             steps: [
-              { kind: 'extra', title: 'Watch: Loading a single crystal along its slip systems (Engineering and Design Solutions)', slug: 'yt-slip', youtubeId: 'QgymOJv0Igc', minutes: 16, refVideoId: 'topic221:m221-09-strengthening' },
+              { kind: 'video', title: 'Watch: Dislocations & Strengthening', slug: 'video', videoId: 'topic221:m221-09-strengthening' },
               { kind: 'practice', title: 'Answer the slip questions', slug: 'practice', questions: { teacher: /^Dislocations & Slip$/ }, ordered: true }
             ]
           },
@@ -363,7 +371,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Microscopy',
             summary: 'Sample polishing, chemical etching of grain boundaries, optical reflection and SEM.',
             steps: [
-              { kind: 'extra', title: 'Watch: Introduction to Scanning Electron Microscopy (Penn State MRI)', slug: 'yt-microscopy', youtubeId: 'g-M6i2TQJP0', minutes: 4, refVideoId: 'topic221:m221-06-microscopy' },
+              { kind: 'video', title: 'Watch: Grain Boundaries & Microscopy', slug: 'video', videoId: 'topic221:m221-06-interfaces' },
               { kind: 'practice', title: 'Answer the microscopy questions', slug: 'practice', questions: { teacher: /^Microscopy$/ }, ordered: true }
             ]
           },
@@ -372,7 +380,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Diffusion',
             summary: "Fick's 1st law steady-state flux and 2nd law non-steady state concentration profiles.",
             steps: [
-              { kind: 'extra', title: 'Watch: Introduction to Diffusion in Solids (Engineering and Design Solutions)', slug: 'yt-diffusion', youtubeId: 'K_1QmKJvNjc', minutes: 17, refVideoId: 'topic221:m221-07-diffusion' },
+              { kind: 'video', title: 'Watch: Diffusion', slug: 'video', videoId: 'topic221:m221-07-diffusion' },
               { kind: 'practice', title: 'Solve the diffusion questions', slug: 'practice', questions: { teacher: /^Diffusion$/ }, ordered: true }
             ]
           },
@@ -381,7 +389,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'The stress–strain curve (Figure 1)',
             summary: 'Modulus E, 0.2% offset yield strength, ultimate tensile strength and necking.',
             steps: [
-              { kind: 'extra', title: 'Watch: The stress–strain curve for steel and its key points (Engineering and Design Solutions)', slug: 'yt-stress-strain', youtubeId: 'pNIvZyd5djQ', minutes: 18, refVideoId: 'topic221:m221-08-mechanical' },
+              { kind: 'video', title: 'Watch: Mechanical Properties of Metals', slug: 'video', videoId: 'topic221:m221-08-mechanical' },
               { kind: 'practice', title: 'Read the curve', slug: 'practice', questions: { teacher: /^Stress–Strain Curve/ }, ordered: true }
             ]
           },
@@ -390,7 +398,7 @@ export const MIAE221_SPEC: CourseSpec = {
             title: 'Tensile test calculations',
             summary: 'Engineering stress, engineering strain, percent elongation (%EL) and reduction in area (%RA).',
             steps: [
-              { kind: 'extra', title: 'Watch: Stress–strain curve and the 0.2% offset yield strength (Engineering and Design Solutions)', slug: 'yt-tensile-calc', youtubeId: '-qHEi9kijj0', minutes: 35, refVideoId: 'topic221:m221-08-mechanical' },
+              { kind: 'video', title: 'Watch: Plastic Deformation & Tensile Properties', slug: 'video', videoId: 'topic221:m221-10-plastic' },
               { kind: 'practice', title: 'Do the calculations', slug: 'practice', questions: { teacher: /^Tensile Test Calculations$/ }, ordered: true }
             ]
           },
