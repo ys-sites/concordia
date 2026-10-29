@@ -7,7 +7,7 @@
 
 ---
 
-### Currently Pending Uploads: 100
+### Currently Pending Uploads: 102
 
 ---
 
@@ -1168,4 +1168,27 @@
 - **Category**: Lecture notes
 - **Title**: MIAE 221 - Lecture 12 Ductility, Toughness, Hardness & Slip Systems (Comprehensive Guide)
 - **Academic year**: 2025/2026
-- **Description**: Comprehensive master study guide and pedagogical reference manual for Dr. Medraj\'s MIAE 221 Lecture 12 (Mechanical Properties III & Slip Systems, Callister Chapters 6 & 7). Covers quantitative measures of ductility (%EL and %RA), the Modulus of Resilience ( = \sigma_y^2 / 2E$) with dimensional proofs, tensile toughness vs Charpy/Izod notch impact toughness ( g (h - h')$), standard hardness testing comparison (Brinell, Rockwell, Vickers, Knoop, and Mohs scratch scale), the complete worked Callister tensile example 6.4, and the Taylor-Orowan-Polanyi dislocation slip theory explaining why metals yield at 1/1000 theoretical strength with crystallographic slip system comparisons across FCC (12 systems, ductile), BCC (48 systems), and HCP (3 systems, brittle).
+- **Description**: Comprehensive master study guide and pedagogical reference manual for Dr. Medraj's MIAE 221 Lecture 12 (Mechanical Properties III & Slip Systems, Callister Chapters 6 & 7). Covers quantitative measures of ductility (%EL and %RA), the Modulus of Resilience ( = \sigma_y^2 / 2E$) with dimensional proofs, tensile toughness vs Charpy/Izod notch impact toughness ( g (h - h')$), standard hardness testing comparison (Brinell, Rockwell, Vickers, Knoop, and Mohs scratch scale), the complete worked Callister tensile example 6.4, and the Taylor-Orowan-Polanyi dislocation slip theory explaining why metals yield at 1/1000 theoretical strength with crystallographic slip system comparisons across FCC (12 systems, ductile), BCC (48 systems), and HCP (3 systems, brittle).
+
+---
+
+### 📄 MIAE 221 - Master Formula Sheet & Symbol Guide (Ch 1-6).md
+- **Exact Filename**: `MIAE 221 - Master Formula Sheet & Symbol Guide (Ch 1-6).md`
+- **University**: `Concordia University`
+- **Course**: `Materials Science (MIAE 221)`
+- **Category**: `Summaries`
+- **Title**: `MIAE 221 - Master Formula Sheet & Symbol Guide (Ch 1-6)`
+- **Academic year**: `2025/2026`
+- **Description**: Complete master formula sheet and symbol reference guide for Concordia MIAE 221 (Materials Science) covering Chapters 1 to 6 (Midterm Scope). Features color-graded equations, full symbol tables (symbol, role, meaning, SI units), and critical Red Alert highlights for essential equations NOT given on the official midterm formula sheet (including atomic site density $N = \rho N_A / A$, engineering stress $\sigma = F/A_0$, transverse Poisson width contraction $\Delta w = -\nu w_0 \varepsilon_z$, and unit cell count $N_{\text{cells}} = V/a^3$).
+
+---
+
+### 📄 MIAE 221 - 2017 Midterm Theory & Past Paper Master Explainer.md
+- **Exact Filename**: `MIAE 221 - 2017 Midterm Theory & Past Paper Master Explainer.md`
+- **University**: `Concordia University`
+- **Course**: `Materials Science (MIAE 221)`
+- **Category**: `Practice materials`
+- **Title**: `MIAE 221 - 2017 Midterm Theory & Past Paper Master Explainer`
+- **Academic year**: `2025/2026`
+- **Description**: Exhaustive pedagogical explainer covering all conceptual and theory questions from the 2017 Sample Midterm and high-yield past papers for MIAE 221 (Chapters 1 to 6). Features full question stems, all options A to E, verified correct answers, in-depth pedagogical breakdowns ("The Theory Behind It"), and fast exam mnemonics and mental models (noble gas bonding, equilibrium potential wells, Bravais lattices, FCC vs HCP stacking, single crystal anisotropy vs polycrystal isotropy, Hume-Rothery rules, dislocation line geometry, vacancy thermodynamics, and Schmid factor limits).
+
