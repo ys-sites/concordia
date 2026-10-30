@@ -1192,3 +1192,14 @@
 - **Academic year**: `2025/2026`
 - **Description**: Exhaustive pedagogical explainer covering all conceptual and theory questions from the 2017 Sample Midterm and high-yield past papers for MIAE 221 (Chapters 1 to 6). Features full question stems, all options A to E, verified correct answers, in-depth pedagogical breakdowns ("The Theory Behind It"), and fast exam mnemonics and mental models (noble gas bonding, equilibrium potential wells, Bravais lattices, FCC vs HCP stacking, single crystal anisotropy vs polycrystal isotropy, Hume-Rothery rules, dislocation line geometry, vacancy thermodynamics, and Schmid factor limits).
 
+
+---
+
+### 📄 MIAE 221 - Master Formula Sheet Past Exam Solved Companion (Ch 1-6).pdf
+- **Exact Filename**: `MIAE 221 - Master Formula Sheet Past Exam Solved Companion (Ch 1-6).pdf`
+- **University**: `Concordia University`
+- **Course**: `Materials Science (MIAE 221)`
+- **Category**: `Practice materials`
+- **Title**: `MIAE 221 - Master Formula Sheet Past Exam Solved Companion (Ch 1-6)`
+- **Academic year**: `2025/2026`
+- **Description**: Official problem-solving companion guide to the MIAE 221 Master Formula Sheet (Chapters 1 to 6). Contains fully solved past midterm and final examination questions for every single curriculum formula with zero skipped intermediate steps, explicit unit tracking, error function interpolations, and high-yield exam trap diagnostics.

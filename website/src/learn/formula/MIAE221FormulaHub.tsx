@@ -128,6 +128,15 @@ export const MIAE221FormulaHub: React.FC = () => {
               <FileText size={15} /> Formula Sheet PDF
             </a>
             <a
+              href="/courses/Miae-221/formula/MIAE-221-Master-Formula-Sheet-Past-Exam-Solved-Companion-Ch-1-6.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="lx-btn lx-btn--ghost lx-btn--sm"
+              title="Open the Past Exam Solved Companion PDF in a new tab"
+            >
+              <FileText size={15} /> Solved Exam Companion PDF
+            </a>
+            <a
               href="/courses/Miae-221/formula/MIAE-221-2017-Midterm-Theory-Past-Paper-Master-Explainer.pdf"
               target="_blank"
               rel="noreferrer"

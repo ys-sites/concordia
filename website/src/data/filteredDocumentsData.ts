@@ -30,6 +30,7 @@ export const isTermPaperDoc = (relativePath: string): boolean =>
 
 const RAW_FILTERED_RELATIVE_PATHS: string[] = [
   "Miae 221/formula/MIAE 221 - Master Formula Sheet & Symbol Guide (Ch 1-6).pdf",
+  "Miae 221/formula/MIAE 221 - Master Formula Sheet Past Exam Solved Companion (Ch 1-6).pdf",
   "Miae 221/formula/MIAE 221 - 2017 Midterm Theory & Past Paper Master Explainer.pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Lecture 11 - Homogeneous Linear Equations & Auxiliary Equation (Visual Master Notes).pdf",
   "Engr 213/02 - Comprehensive Topic Guides (Expanded & Intuitive)/Lecture 12 - Undetermined Coefficients & Nonhomogeneous Equations (Comprehensive Guide).pdf",
