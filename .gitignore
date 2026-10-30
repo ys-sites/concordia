@@ -127,3 +127,6 @@ scratch_test_img.pdf
 001 Main/**
 **/001 Main/**
 
+# Private, local-only historical workspace and course materials.
+/Local Semester Archive/
+
