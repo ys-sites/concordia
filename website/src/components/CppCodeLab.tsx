@@ -749,7 +749,7 @@ export const CppCodeLab: React.FC = () => {
           <h2>
             <Code2 size={24} style={{ color: '#38bdf8' }} />
             <span>MIAE 215 C++ Midterm Code Lab</span>
-            <span className="ccl-banner-badge">55%–60% Exam Weight</span>
+            
           </h2>
           <p className="ccl-banner-desc">
             The programming question makes up over half of the midterm marks. Practice writing real C++ code for the 5 most likely exam problems directly in this interactive sandbox based on Dr. Gordon's official 2022 midterm and quiz review packages.

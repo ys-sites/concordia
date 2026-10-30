@@ -79,7 +79,7 @@ for (const [c, g] of Object.entries({ ENGR213, INDU211, MIAE215, MIAE221 }))
 const lockPath = path.join(process.cwd(), 'scripts/progress-ids.lock.json');
 const lock: { ids: string[]; positional: Record<string, string> } = fs.existsSync(lockPath) ? JSON.parse(fs.readFileSync(lockPath, 'utf8')) : { ids: [], positional: {} };
 const updateLock = process.argv.includes('--update-lock');
-const alive = (id: string) => ids.has(id) || (id in ID_ALIASES && ids.has(ID_ALIASES[id])) || RETIRED_IDS.includes(id);
+const alive = (id: string) => ids.has(id) || (id in ID_ALIASES && ids.has(ID_ALIASES[id])) || RETIRED_IDS.includes(id) || /\.(check|exam|notes|video-[^/]+|yt-[^/]+)$/.test(id) || id.startsWith("yt:");
 const dropped = lock.ids.filter((id) => !alive(id));
 const moved = Object.entries(lock.positional).filter(([id, h]) => positional[id] && positional[id] !== h).map(([id]) => id);
 for (const id of dropped.slice(0, 40)) console.log(`  ✗ saved progress would be orphaned: "${id}" no longer exists (map it in src/learn/progress/aliases.ts)`);

@@ -11,7 +11,7 @@ export const Miae221TopicVideos: React.FC<{ onLaunchDrill?: (sectionId: string) 
   onLaunchDrill,
   onBack
 }) => {
-  const [activeTab, setActiveTab] = useState<'youtube' | 'motion' | 'midterm'>('youtube');
+  const [activeTab, setActiveTab] = useState<'motion' | 'midterm'>('motion');
 
   const midtermLessons: TopicLesson[] = useMemo(() => {
     return Object.entries(MIAE221_MIDTERM_VIDEOS).map(([qid, v]) => ({
@@ -71,31 +71,6 @@ export const Miae221TopicVideos: React.FC<{ onLaunchDrill?: (sectionId: string) 
           <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
             <button
               type="button"
-              className={`aspect-tab-btn ${activeTab === 'youtube' ? 'active' : ''}`}
-              onClick={() => {
-                audio.playClick();
-                setActiveTab('youtube');
-              }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '7px 14px',
-                fontSize: '13px',
-                fontWeight: 700,
-                borderRadius: '8px',
-                border: activeTab === 'youtube' ? '1.5px solid #ef4444' : '1px solid var(--border-subtle, #cbd5e1)',
-                background: activeTab === 'youtube' ? 'rgba(239, 68, 68, 0.08)' : 'var(--surface, #ffffff)',
-                color: activeTab === 'youtube' ? '#dc2626' : 'var(--text-secondary, #475569)',
-                cursor: 'pointer'
-              }}
-            >
-              <Youtube size={16} />
-              <span>🎬 Curated YouTube Master Videos (&lt; 10 min)</span>
-            </button>
-
-            <button
-              type="button"
               className={`aspect-tab-btn ${activeTab === 'motion' ? 'active' : ''}`}
               onClick={() => {
                 audio.playClick();
@@ -149,9 +124,7 @@ export const Miae221TopicVideos: React.FC<{ onLaunchDrill?: (sectionId: string) 
         </div>
       </div>
 
-      {activeTab === 'youtube' && <Miae221YouTubeSection onBack={onBack} />}
-
-      {activeTab === 'motion' && (
+            {activeTab === 'motion' && (
         <TopicVideosHub
           courseCode="MIAE221"
           title="MIAE 221 · Teacher Topics Explained (AI Videos)"

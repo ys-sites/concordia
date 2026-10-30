@@ -717,7 +717,7 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content }) => {
                 <Terminal size={18} />
                 <span>Output Tracing Tables</span>
               </div>
-              <div className="mg-metric-value">{gordonData.analytics.weightDistribution.tracingPercentage}%</div>
+              <div className="mg-metric-value">Tracing</div>
               <div className="mg-metric-desc">
                 High-density while/for loops &amp; array indexing. Only answers inside the box receive marks.
               </div>
@@ -728,7 +728,7 @@ export const GordonMidtermsDoc: React.FC<Props> = ({ content }) => {
                 <Code size={18} />
                 <span>1D Array Programming</span>
               </div>
-              <div className="mg-metric-value">{gordonData.analytics.weightDistribution.codingPercentage}%</div>
+              <div className="mg-metric-value">Coding</div>
               <div className="mg-metric-desc">
                 Multi-part programming problem (input validation, dot product, array combine &amp; sentinel loops).
               </div>

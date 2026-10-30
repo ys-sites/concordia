@@ -2319,67 +2319,7 @@ export const Engr213MidtermCompanion: React.FC<Props> = ({ onViewPdf, onBack, in
                 </div>
               )}
 
-              {/* Curated YouTube Video Review (< 15 mins) */}
-              {currentMethod.videoReview && (
-                <div className="ec-video-review-card">
-                  <div className="ec-video-header">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <div className="ec-video-play-icon">
-                        <Play size={14} fill="#ffffff" color="#ffffff" />
-                      </div>
-                      <div>
-                        <div className="ec-video-badge-row">
-                          <span className="ec-video-channel-badge">{currentMethod.videoReview.channel}</span>
-                          <span className="ec-video-duration-badge">⏱ {currentMethod.videoReview.duration}</span>
-                          <span className="ec-video-quick-badge">Organic Chemistry Review</span>
-                        </div>
-                        <h4 className="ec-video-title">{currentMethod.videoReview.title}</h4>
-                      </div>
-                    </div>
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
-                      <button
-                        type="button"
-                        className="ec-video-toggle-btn"
-                        onClick={() => {
-                          audio.playClick();
-                          setOpenVideoMethodId(openVideoMethodId === currentMethod.id ? null : currentMethod.id);
-                        }}
-                      >
-                        {openVideoMethodId === currentMethod.id ? 'Close Player ✕' : '▶ Watch In-Portal'}
-                      </button>
-                      <a
-                        href={currentMethod.videoReview.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ec-video-external-btn"
-                      >
-                        <ExternalLink size={13} /> Open on YouTube
-                      </a>
-                    </div>
-                  </div>
-
-                  {openVideoMethodId === currentMethod.id && (
-                    <div className="ec-video-embed-container">
-                      <iframe
-                        src={`https://www.youtube-nocookie.com/embed/${currentMethod.videoReview.youtubeId}?autoplay=1`}
-                        title={currentMethod.videoReview.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="ec-video-iframe"
-                      />
-                    </div>
-                  )}
-
-                  <div className="ec-video-takeaways">
-                    <strong style={{ fontSize: '12px', color: '#1e293b' }}>Key Video Takeaways for Midterm:</strong>
-                    <ul style={{ margin: '4px 0 0', paddingLeft: '18px', fontSize: '12.5px', color: '#475569' }}>
-                      {currentMethod.videoReview.keyTakeaways.map((point, kIdx) => (
-                        <li key={kIdx} style={{ marginTop: '2px' }}>{point}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              )}
+{/* Video Review Removed */}
 
               {/* Friend Tip & Concordia Trap Callout */}
               <div className="ec-copilot-tip-box">

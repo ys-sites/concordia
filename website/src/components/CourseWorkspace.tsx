@@ -214,52 +214,9 @@ export const CourseWorkspace: React.FC<CourseWorkspaceProps> = ({
           <span className="fx-file-meta">
             {showLocation && location.length > 0 && <span className="fx-file-location">{location.join(' › ')}</span>}
             <span>PDF{doc.fileSizeBytes ? ` · ${formatFileSize(doc.fileSizeBytes)}` : ''}</span>
-            {examInfo && (
-              <span
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  padding: '2px 8px',
-                  borderRadius: '9999px',
-                  color: examInfo.badgeColor,
-                  backgroundColor: examInfo.badgeBg,
-                  border: `1px solid ${examInfo.badgeColor}33`,
-                  marginLeft: '4px'
-                }}
-              >
-                {examInfo.badgeText}
-              </span>
-            )}
           </span>
         </button>
         <div className="fx-file-actions">
-          {getVideoUrl(doc) && (
-            <a
-              className="fx-btn fx-btn-video"
-              href={getVideoUrl(doc)!}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Watch tutorial video on YouTube"
-              aria-label="Watch video"
-              onClick={(e) => {
-                e.stopPropagation();
-                audio.playClick();
-              }}
-              style={{
-                backgroundColor: 'rgba(239, 68, 68, 0.12)',
-                color: '#ef4444',
-                borderColor: 'rgba(239, 68, 68, 0.3)',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '5px'
-              }}
-            >
-              <Video size={14} />
-              <span>Watch</span>
-            </a>
-          )}
           <button
             className="fx-btn fx-btn-primary"
             onClick={() => {

@@ -272,12 +272,50 @@ export const NotesStep: React.FC<{ course: CourseId; step: Step }> = ({ course, 
   if (step.notesKey) return <InsightNotes g={g} notesKey={step.notesKey} />;
   const fs = (step.formulaIds ?? []).map((id) => g.formulas.find((f) => f.id === id)).filter((f): f is Formula => !!f);
   const topic = g.topics.find((t) => fs[0]?.topic === t.id);
+  const isExplanation = step.id.endsWith('.explanation') || step.title.toLowerCase().includes('explanation');
+
+  if (isExplanation) {
+    return (
+      <div className="lx-notes">
+        <section className="lx-notes-card">
+          <header className="lx-notes-head">
+            <h2 className="lx-h2">{topic?.name ?? step.title}</h2>
+          </header>
+          {fs.map(
+            (f) =>
+              f.learn?.idea && (
+                <p key={f.id} className="lx-notes-idea">
+                  <Lightbulb size={18} aria-hidden />
+                  <MathText text={f.learn.idea} />
+                </p>
+              )
+          )}
+          {fs.flatMap((f) => f.learn?.when ?? []).length > 0 && (
+            <div className="lx-ex-block">
+              <h3 className="lx-ex-title">
+                <Target size={16} aria-hidden /> Core Concept &amp; Applications
+              </h3>
+              <ul className="lx-notes-list">
+                {fs.flatMap((f) => f.learn?.when ?? []).map((w, i) => (
+                  <li key={i}>
+                    <MathText text={w} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+        <DocButtons docs={step.docs ?? []} />
+      </div>
+    );
+  }
+
   return (
     <div className="lx-notes">
       {fs.map((f) => (
         <FormulaNotes key={f.id} f={f} />
       ))}
-      {!fs.length && topic && <p className="lx-lead">{topic.name}: open the teacher’s slides below, then try the quick check.</p>}
+      {!fs.length && topic && <p className="lx-lead">{topic.name}: open the teacher’s slides below.</p>}
       <DocButtons docs={step.docs ?? []} />
     </div>
   );
@@ -381,10 +419,7 @@ const InsightNotes: React.FC<{ g: GateContent; notesKey: string }> = ({ g, notes
       return (
         <div className="lx-notes">
           <section className="lx-notes-card">
-            <h2 className="lx-h2">How Dr. Gordon’s midterms are weighted</h2>
-            <p className="lx-lead lx-num">
-              {a.weightDistribution.tracingPercentage}% tracing programs · {a.weightDistribution.codingPercentage}% writing programs
-            </p>
+            <h2 className="lx-h2">How Dr. Gordon’s midterms are structured</h2>
             <ul className="lx-notes-list">
               {a.weightDistribution.rulesSummary.map((r, i) => (
                 <li key={i}>{r}</li>

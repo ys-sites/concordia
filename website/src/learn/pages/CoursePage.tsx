@@ -32,7 +32,6 @@ import { VideoLibrary } from '../components/VideoLibrary';
 import { FormulaSheet, hasFormulaSheet } from '../components/FormulaSheet';
 import { ExamRatioBubbles } from '../components/ExamRatioBubbles';
 import { getVideoUrl } from '../../utils/pdfUrl';
-import { Miae221ExamStatisticsCard } from '../../components/Miae221ExamStatisticsCard';
 import '../styles/course.css';
 
 const lessonHref = (c: CourseId, l: Lesson, done: Record<string, number>) => {
@@ -189,11 +188,6 @@ const ExamTab: React.FC<{ cur: Curriculum; done: Record<string, number> }> = ({ 
         <ArrowRight size={18} aria-hidden />
       </a>
 
-      {cur.id === 'MIAE221' && (
-        <Miae221ExamStatisticsCard
-          onStart2017Drill={startTeacherDrill}
-        />
-      )}
 
       <Curriculum cur={cur} sections={sections} done={done} />
     </div>

@@ -169,92 +169,104 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
     }
     const refs = [...slides.slice(0, 8), ...matchDocs(l.read, l.id).map((p) => docRef(p))];
 
-    // outside explanations
-    const seen = new Set<string>();
-    const yt = [
-      ...topics.flatMap((t) => gate.videoStops.filter((v) => v.topic === t).flatMap((v) => v.videos)).map((v) => ({ id: v.id, title: v.title, channel: v.channel, len: v.len, watch: v.watch })),
-      ...(l.youtube ?? []).map((id) => {
-        const v = input.youtube221.find((x) => x.youtubeId === id);
-        if (!v) problems.push(`${l.id}: unknown YouTube companion ${id}`);
-        return v ? { id, title: v.videoTitle, channel: v.channel, len: v.duration, watch: v.keyTakeaways } : null;
-      })
-    ].filter((v): v is NonNullable<typeof v> => !!v && !seen.has(v.id) && !!seen.add(v.id));
-    const ytStep = (v: (typeof yt)[number], optional: boolean): Step => ({ id: `${l.id}.yt-${v.id}`, kind: 'extra', title: v.title, minutes: Math.round(parseLen(v.len)), youtube: v, ...(optional ? { optional: true } : {}) });
-
-    // A lesson is its video. The teacher's slides (at the right pages), the guides and the key notes sit under
-    // it as references; with no course video, the best outside one takes its place. Only a lesson with no
-    // video at all keeps a key-notes step, with the same references.
-    const main = videos[0] ?? (yt.length ? ytStep(yt.shift()!, false) : undefined);
-    if (main) {
-      steps.push({ ...main, ...(refs.length ? { docs: refs } : {}), ...(fs.length ? { formulaIds: fs.map((f) => f.id) } : {}) }, ...videos.slice(1));
-    } else if (fs.length || refs.length) {
-      steps.push({ id: `${l.id}.notes`, kind: 'notes', title: 'Key notes', minutes: minutesFor('notes') + fs.length, formulaIds: fs.map((f) => f.id), docs: refs });
+    // 1. Explanation of the topic
+    if (videos.length) {
+      steps.push({
+        ...videos[0],
+        id: `${l.id}.explanation`,
+        title: 'Explanation of the topic',
+        docs: refs.length ? refs : undefined,
+        formulaIds: fs.length ? fs.map((f) => f.id) : undefined
+      });
+      for (let vi = 1; vi < videos.length; vi++) {
+        steps.push(videos[vi]);
+      }
+    } else {
+      steps.push({
+        id: `${l.id}.explanation`,
+        kind: 'notes',
+        title: 'Explanation of the topic',
+        minutes: minutesFor('notes'),
+        docs: refs.length ? refs : undefined,
+        formulaIds: fs.length ? fs.map((f) => f.id) : undefined
+      });
     }
 
+    // 2. Formula to retain
+    if (fs.length) {
+      steps.push({
+        id: `${l.id}.formulas`,
+        kind: 'notes',
+        title: fs.length > 1 ? 'Formulas to retain' : 'Formula to retain',
+        minutes: minutesFor('notes') + fs.length,
+        formulaIds: fs.map((f) => f.id),
+        docs: refs.length ? refs : undefined
+      });
+    }
+
+    // 3. Example of the topic
     const worked = fs.filter((f) => f.learn?.example);
-    if (worked.length) steps.push({ id: `${l.id}.worked`, kind: 'worked', title: worked.length > 1 ? 'Worked examples' : 'Worked example', minutes: 4 * worked.length, formulaIds: worked.map((f) => f.id) });
-
-    // lesson practice items: the first ones are the in-lesson check, the rest join the practice set
-    const items = fs.flatMap((f) => (f.learn?.quiz ?? []).map((it, i) => ({ f, i, it })).filter(({ f, i }) => isItem(f, i)));
-    const checkable = items.filter(({ it }) => it.type !== 'open');
-    const check = checkable.slice(0, 4).map(({ f, i }) => itemId(c, f, i));
-    const bankQs = bankRoute.home.get(l.id) ?? [];
-    if (check.length < 3) {
-      for (const q of bankQs.filter((q) => q.difficulty === 'Foundation')) if (check.length < 4) check.push(`b:${q.id}`);
-      for (const q of bankQs) if (check.length < 3 && !check.includes(`b:${q.id}`)) check.push(`b:${q.id}`);
+    if (worked.length) {
+      steps.push({
+        id: `${l.id}.worked`,
+        kind: 'worked',
+        title: worked.length > 1 ? 'Examples of the topic' : 'Example of the topic',
+        minutes: 4 * worked.length,
+        formulaIds: worked.map((f) => f.id)
+      });
     }
-    const s1 = qStep(l.id, 'check', 'Check your understanding', check);
-    if (s1) steps.push(s1);
 
-    for (const f of fs.filter((x) => x.calc)) steps.push({ id: `${l.id}.tool-${f.id}`, kind: 'tool', title: `Formula lab: ${f.name}`, minutes: minutesFor('tool'), toolId: `formula:${f.id}`, formulaIds: [f.id] });
-    for (const t of l.tools ?? []) steps.push({ id: `${l.id}.tool-${slug(t)}`, kind: 'tool', title: toolTitle(t), minutes: 8, toolId: t });
+    // Interactive tools (formula lab, C++ lab, TSP)
+    for (const f of fs.filter((x) => x.calc)) {
+      steps.push({
+        id: `${l.id}.tool-${f.id}`,
+        kind: 'tool',
+        title: `Formula lab: ${f.name}`,
+        minutes: minutesFor('tool'),
+        toolId: `formula:${f.id}`,
+        formulaIds: [f.id]
+      });
+    }
+    for (const t of l.tools ?? []) {
+      steps.push({
+        id: `${l.id}.tool-${slug(t)}`,
+        kind: 'tool',
+        title: toolTitle(t),
+        minutes: 8,
+        toolId: t
+      });
+    }
 
+    // 4. Check your understanding is the same as practice problem, so combine them and past midterms
+    const items = fs.flatMap((f) => (f.learn?.quiz ?? []).map((it, i) => ({ f, i, it })));
+    const checkable = items.filter(({ it }) => it.type !== 'open');
+    const itemIds = items.map(({ f, i }) => itemId(c, f, i));
+    const checkIds = checkable.map(({ f, i }) => itemId(c, f, i));
+    const bankQs = bankRoute.home.get(l.id) ?? [];
+    const bankIds = bankQs.map((q) => `b:${q.id}`);
+    const drillIds = (drillRoute.home.get(l.id) ?? []).map((q) => `d:${q.id}`);
     const examQs = examOf(topics);
-    const practice = [
-      ...items.map(({ f, i }) => itemId(c, f, i)).filter((id) => !check.includes(id)),
-      ...bankQs.map((q) => `b:${q.id}`).filter((id) => !check.includes(id)),
-      ...(drillRoute.home.get(l.id) ?? []).map((q) => `d:${q.id}`),
-      ...examQs.filter((q) => homework.has(q.exam)).map((q) => examQid(c, q.id))
-    ];
-    const s2 = qStep(l.id, 'practice', `Practice (${practice.length} questions)`, practice);
-    if (s2) steps.push(s2);
+    const examIds = examQs.map((q) => examQid(c, q.id));
 
-    const exam = examQs.filter((q) => !homework.has(q.exam)).map((q) => examQid(c, q.id));
-    const s3 = qStep(l.id, 'exam', `Past exam questions (${exam.length})`, exam);
-    if (s3) steps.push(s3);
+    const combined = Array.from(new Set([...itemIds, ...bankIds, ...drillIds, ...examIds]));
+    if (combined.length) {
+      const sPractice = qStep(l.id, 'practice', `Practice Problems & Past Midterms (${combined.length})`, combined, { size: 0 });
+      if (sPractice) steps.push(sPractice);
+    }
 
-    // more outside explanations, optional
-    yt.forEach((v) => steps.push(ytStep(v, true)));
     return steps;
   };
 
   const handSteps = (l: LessonSpec, specs: StepSpec[]): Step[] =>
     specs.flatMap((s) => {
       const id = `${l.id}.${s.slug}`;
+      if (s.kind === 'extra' || s.youtubeId) {
+        // Remove all youtube videos
+        return [];
+      }
       if (s.kind === 'video') {
         const st = s.videoId ? videoStep(l.id, s.videoId) : null;
         return st ? [{ ...st, id, title: s.title }] : [];
-      }
-      if (s.kind === 'extra') {
-        const y = s.youtubeId ? input.youtube221.find((x) => x.youtubeId === s.youtubeId || x.id === s.youtubeId) : undefined;
-        if (y) {
-          const refV = s.refVideoId ? videoById.get(s.refVideoId) : undefined;
-          return [{
-            id,
-            kind: 'extra',
-            title: s.title || y.videoTitle,
-            minutes: s.minutes ?? Math.round(parseLen(y.duration)),
-            optional: s.optional ?? false,
-            youtube: {
-              id: y.youtubeId,
-              title: y.videoTitle,
-              channel: y.channel,
-              len: y.duration,
-              watch: y.keyTakeaways,
-              ...(s.refVideoId ? { refVideoId: s.refVideoId, refVideoTitle: refV?.lesson.title.replace(/^[A-Z]?\d+\s*·\s*/, '') ?? 'Course Motion Lesson' } : {})
-            }
-          }];
-        }
       }
       const ids: string[] = [];
       if (s.questions) {
