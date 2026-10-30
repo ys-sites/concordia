@@ -45,6 +45,7 @@ export const MIAE215_SPEC: CourseSpec = {
           id: 'data-types',
           title: 'Data types, sizes & overflow',
           summary: 'int, double, char, bool and their modifiers: ranges, sizeof, overflow and round-off.',
+          tools: ['3d:memory-architecture'],
           gate: ['types'],
           bank: [{ ch: 'types' }],
           read: [/^Mini Course\/Lesson 3 - /],
@@ -160,6 +161,7 @@ export const MIAE215_SPEC: CourseSpec = {
           id: 'arrays-2d',
           title: '2-D arrays',
           summary: 'Rows and columns, nested traversal and row or column totals.',
+          tools: ['3d:2d-arrays'],
           gate: ['arr2']
         },
         {
@@ -181,7 +183,7 @@ export const MIAE215_SPEC: CourseSpec = {
           title: 'Writing a full program',
           summary: 'Read the specification, plan the variables and loops, write it, then trace it to be sure.',
           gate: ['write'],
-          tools: ['cpp-lab'],
+          tools: ['cpp-lab', '3d:arduino-hardware'],
           resources: [/^04 - Practice Problems & Code Solutions\/MIAE 215 - Step-by-Step Code Execution/, /^02 - Comprehensive Topic Guides[^/]*\/Part 5 - /, /^04 - Practice Problems & Code Solutions\/Exercise Solutions Set 1/]
         },
         {

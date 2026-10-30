@@ -1,6 +1,6 @@
-/* Crystal Lab — Unit Cell Explorer. Uses the site tokens (tokens.css): light
-   interface, burgundy MIAE 221 accent via --lx-accent, dark viewport inside
-   the light page (the 3D stage is --lx-dark, the same dark the site uses). */
+/* Crystal Lab & 3D Visual Learner Studio Styles.
+   Uses a warm studio alabaster radial backdrop instead of a harsh pitch-black canvas,
+   with crisp frosted pill badges and physical material contrast. */
 .lx-cl {
   display: flex;
   flex-direction: column;
@@ -30,15 +30,19 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding: 10px 8px;
+  padding: 10px 10px;
   border: 1px solid var(--lx-line);
   border-radius: var(--lx-r);
   background: var(--lx-surface);
   cursor: pointer;
   text-align: left;
   color: var(--lx-ink);
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
 }
-.lx-cl-cell strong { font-size: 16px; }
+.lx-cl-cell:hover {
+  border-color: var(--lx-line-strong);
+}
+.lx-cl-cell strong { font-size: 15px; }
 .lx-cl-cell span { font-size: 11px; color: var(--lx-muted); }
 .lx-cl-cell.is-on {
   border-color: var(--lx-accent);
@@ -47,41 +51,80 @@
 }
 .lx-cl-stage {
   position: relative;
-  background: var(--lx-dark);
+  background: radial-gradient(circle at 50% 36%, #ffffff 0%, #f1f5f9 62%, #e2e8f0 100%);
+  border: 1px solid #cbd5e1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 24px -8px rgba(15, 23, 42, 0.08);
   border-radius: var(--lx-r-lg);
   overflow: hidden;
-  min-height: 340px;
+  min-height: 360px;
   height: 56vw;
-  max-height: 480px;
+  max-height: 490px;
 }
 .lx-cl-stage canvas { touch-action: none; display: block; }
 .lx-cl-fallback { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--lx-s3); }
 .lx-cl-fallback svg { width: 100%; max-width: 420px; height: auto; }
 .lx-cl-stage-bar {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--lx-s2);
-  padding: 8px 10px;
-  background: linear-gradient(transparent, rgba(15, 23, 42, 0.85));
-  color: var(--lx-on-dark);
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  color: #0f172a;
   font-size: 13px;
 }
-.lx-cl-readout strong { color: #fff; }
-.lx-cl-fs { color: var(--lx-on-dark); border-color: rgba(255, 255, 255, 0.35); }
+.lx-cl-readout strong { color: var(--lx-accent-deep); font-weight: 700; }
+.lx-cl-fs { color: #334155; border-color: #cbd5e1; background: #fff; }
+.lx-cl-label {
+  pointer-events: none;
+  user-select: none;
+}
 .lx-cl-label span {
-  background: rgba(15, 23, 42, 0.88);
+  display: inline-block;
+  background: rgba(15, 23, 42, 0.86);
+  backdrop-filter: blur(6px);
   color: #fff;
   font-size: 11px;
-  padding: 2px 6px;
-  border-radius: var(--lx-pill);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
   white-space: nowrap;
 }
-.lx-cl-axis span { font-weight: 800; font-size: 13px; }
+.lx-cl-label span.is-tail {
+  background: rgba(190, 18, 60, 0.92);
+}
+.lx-cl-label span.is-head {
+  background: rgba(180, 83, 9, 0.92);
+}
+.lx-cl-axis {
+  pointer-events: none;
+  user-select: none;
+}
+.lx-cl-axis span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid currentColor;
+  font-weight: 800;
+  font-size: 11px;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.1);
+}
 .lx-cl-cams .lx-btn.is-on,
 .lx-cl-modes .lx-chip.is-on {
   border-color: var(--lx-accent);
@@ -147,8 +190,6 @@
 .lx-cl-options { display: flex; gap: var(--lx-s2); flex-wrap: wrap; }
 .lx-cl-options .is-good { border-color: var(--lx-good); background: var(--lx-good-bg); color: var(--lx-good); }
 .lx-cl-options .is-bad { border-color: var(--lx-bad); background: var(--lx-bad-bg); color: var(--lx-bad); }
-/* Docked navigation: the student never scrolls far to advance, and the
-   model stays in view above it. Sticky to the bottom of the viewport. */
 .lx-cl-nav {
   position: sticky;
   bottom: 0;
@@ -181,7 +222,7 @@
   border-radius: 0;
 }
 @media (min-width: 720px) {
-  .lx-cl-stage { height: 420px; }
+  .lx-cl-stage { height: 430px; }
   .lx-cl-facts dl { grid-template-columns: repeat(3, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {

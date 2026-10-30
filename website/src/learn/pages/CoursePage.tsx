@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import {
   ArrowRight,
+  Box,
   CalendarClock,
   Check,
   CheckCircle2,
@@ -29,6 +30,8 @@ import { CourseCover } from '../components/CourseCover';
 import { StepIcon } from '../components/StepIcon';
 import { ResourceLibrary } from '../components/ResourceLibrary';
 import { VideoLibrary } from '../components/VideoLibrary';
+import { ModelLibrary } from '../components/ModelLibrary';
+import { VISUAL_3D_TOPICS } from '../visual3d/catalog';
 import { FormulaSheet, hasFormulaSheet } from '../components/FormulaSheet';
 import { ExamRatioBubbles } from '../components/ExamRatioBubbles';
 import { getVideoUrl } from '../../utils/pdfUrl';
@@ -65,6 +68,7 @@ const SectionBlock: React.FC<{ cur: Curriculum; section: Section; open: boolean;
             const p = lessonProgress(cur.id, l, done);
             const counts = l.steps.reduce<Record<string, number>>((m, s) => ((m[s.kind] = (m[s.kind] ?? 0) + 1), m), {});
             const qs = l.steps.reduce((n, s) => n + (s.questionIds?.length ?? 0), 0);
+            const models3d = l.steps.filter((s) => s.toolId?.startsWith('3d:') || s.toolId?.startsWith('crystal-lab:')).length;
             return (
               <li key={l.id}>
                 <a className="lx-lesson-row" href={lessonHref(cur.id, l, done)}>
@@ -77,6 +81,11 @@ const SectionBlock: React.FC<{ cur: Curriculum; section: Section; open: boolean;
                       {counts.video ? (
                         <span>
                           <PlayCircle size={13} aria-hidden /> {counts.video} video{counts.video > 1 ? 's' : ''}
+                        </span>
+                      ) : null}
+                      {models3d ? (
+                        <span style={{ color: 'var(--lx-accent-deep)', fontWeight: 600 }}>
+                          <Box size={13} aria-hidden /> {models3d} 3D model{models3d > 1 ? 's' : ''}
                         </span>
                       ) : null}
                       {counts.notes || counts.reading ? (
@@ -347,13 +356,15 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
   const ctaHref = next ? href({ name: 'learn', course, lesson: next.lesson.id, step: next.step.id }) : href({ name: 'learn', course, lesson: SUMMARY[course].start.lessonId });
   const started = !!prog && prog.done > 0;
   const examTab: { id: CourseTab; label: string } = { id: 'exam', label: urgentExamLabel ? `Exam prep · ${urgentExamLabel}` : 'Exam prep' };
+  const modelsCount = useMemo(() => VISUAL_3D_TOPICS.filter((m) => m.courseId === course).length, [course]);
+  const modelsTab: { id: CourseTab; label: string }[] = modelsCount ? [{ id: 'models', label: `3D Models (${modelsCount})` }] : [];
   const formulasTab: { id: CourseTab; label: string }[] = hasFormulaSheet(course) ? [{ id: 'formulas', label: 'Formulas' }] : [];
   const tabs: { id: CourseTab; label: string }[] = urgentExam
-    ? [examTab, { id: 'overview', label: 'Course content' }, { id: 'videos', label: `Videos (${s.videos})` }, ...formulasTab, { id: 'resources', label: `Resources (${s.documents})` }]
-    : [{ id: 'overview', label: 'Course content' }, { id: 'videos', label: `Videos (${s.videos})` }, examTab, ...formulasTab, { id: 'resources', label: `Resources (${s.documents})` }];
+    ? [examTab, { id: 'overview', label: 'Course content' }, { id: 'videos', label: `Videos (${s.videos})` }, ...modelsTab, ...formulasTab, { id: 'resources', label: `Resources (${s.documents})` }]
+    : [{ id: 'overview', label: 'Course content' }, { id: 'videos', label: `Videos (${s.videos})` }, ...modelsTab, examTab, ...formulasTab, { id: 'resources', label: `Resources (${s.documents})` }];
   return (
     <div className={`lx-course ${courseClass(course)}`}>
-      <div className={`lx-wrap lx-course-layout${tab === 'videos' ? ' is-wide' : ''}`}>
+      <div className={`lx-wrap lx-course-layout${tab === 'videos' || tab === 'models' ? ' is-wide' : ''}`}>
         <div className="lx-course-main">
           <section className="lx-course-hero">
             <nav className="lx-crumbs lx-meta" aria-label="Breadcrumb">
@@ -455,6 +466,8 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
               </>
             ) : tab === 'videos' ? (
               <VideoLibrary cur={cur} />
+            ) : tab === 'models' ? (
+              <ModelLibrary cur={cur} />
             ) : tab === 'exam' ? (
               <ExamTab cur={cur} done={done} />
             ) : tab === 'formulas' && hasFormulaSheet(course) ? (
@@ -533,6 +546,7 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
               <p className="lx-meta lx-side-includes-title">This course includes</p>
               <ul className="lx-side-includes lx-num">
                 <li>{fmtHours(s.videoMinutes)} of narrated video</li>
+                {modelsCount > 0 && <li>{modelsCount} interactive 3D visual learners</li>}
                 <li>{s.questions} questions with worked solutions</li>
                 <li>A timed mock midterm and exam-style practice sets</li>
                 <li>{s.documents} documents: slides, guides and review sheets</li>

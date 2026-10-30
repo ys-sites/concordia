@@ -50,6 +50,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'bond-energy',
           title: 'Force–energy curves & properties from bonding',
           summary: 'The potential well: equilibrium spacing, bond energy, and why it predicts melting point, stiffness and expansion.',
+          tools: ['3d:thermal-expansion'],
           gate: ['bondcurve'],
           videos: ['topic221:m221-02b-bondcurve'],
           bank: [{ ch: 'bonding', re: /potential|well|energy|separation|melting|thermal expansion/i }, { ch: 'mixed', re: /bond energy|melting/i }]
@@ -69,7 +70,7 @@ export const MIAE221_SPEC: CourseSpec = {
           gate: ['cells'],
           videos: ['topic221:m221-03-crystal'],
           youtube: ['PaGJwOPg2kU'],
-          tools: ['crystal-lab:unit-cells'],
+          tools: ['crystal-lab:unit-cells', '3d:atom-sharing', '3d:apf', '3d:coordination-number', '3d:lattice-radius'],
           bank: [{ ch: 'crystal' }, { ch: 'mixed' }],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 03 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 3 - /, /^03 - 1-Page Rapid Review Sheets\/Part 3 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 0[45] /]
         },
@@ -77,6 +78,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'theoretical-density',
           title: 'Theoretical density',
           summary: 'ρ = nA / (V_c N_A): from the crystal structure and atomic radius to a density you can check.',
+          tools: ['3d:theoretical-density'],
           gate: ['density'],
           bank: [{ ch: 'crystal', re: /density/i }, { ch: 'mixed', re: /density|atoms per cm|cell volume/i }]
         },
@@ -100,7 +102,7 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'Miller indices: directions',
           summary: 'Point coordinates, direction indices and families of directions, step by step.',
           gate: ['directions'],
-          tools: ['crystal-lab:directions'],
+          tools: ['crystal-lab:directions', '3d:families'],
           bank: [{ ch: 'crystal', re: /direction/i }]
         },
         {
@@ -116,6 +118,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'linear-planar-density',
           title: 'Linear & planar density, close packing',
           summary: 'Atoms per length and per area along key directions and planes, and why slip follows the densest ones.',
+          tools: ['3d:linear-planar-density'],
           gate: ['ldpd'],
           videos: ['topic221:m221-04-densities'],
           bank: [{ ch: 'densities', re: /linear density|planar density|slip/i }],
@@ -125,6 +128,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'xrd',
           title: "X-ray diffraction & Bragg's law",
           summary: 'nλ = 2d sin θ, interplanar spacing in cubic crystals, and reading a powder pattern.',
+          tools: ['3d:xrd-bragg'],
           gate: ['xrd'],
           bank: [{ ch: 'densities' }]
         }
@@ -140,6 +144,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'point-defects',
           title: 'Point defects & vacancy concentration',
           summary: 'Vacancies and self-interstitials, the Arrhenius law for N_v, and finding Q_v from data.',
+          tools: ['3d:atomic-defects'],
           gate: ['vacancy'],
           videos: ['topic221:m221-05-defects'],
           bank: [{ ch: 'defects', re: /vacanc|self-interstitial|activation energy|arrhenius|defects bad/i }],
@@ -157,6 +162,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'dislocations-grains',
           title: 'Dislocations, grain boundaries & microscopy',
           summary: 'Edge and screw dislocations, the Burgers vector, grain size and how we see microstructure.',
+          tools: ['3d:dislocations', '3d:grain-boundaries'],
           gate: ['defects'],
           videos: ['topic221:m221-06-interfaces'],
           youtube: ['g-M6i2TQJP0'],
@@ -175,6 +181,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'diffusion-mechanisms',
           title: 'Diffusion mechanisms & D(T)',
           summary: 'Vacancy and interstitial diffusion, and the Arrhenius dependence of the diffusion coefficient.',
+          tools: ['3d:diffusion'],
           gate: ['diffmech'],
           videos: ['topic221:m221-07-diffusion'],
           youtube: ['K_1QmKJvNjc'],
@@ -205,6 +212,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'elastic',
           title: "Stress, strain, Hooke's law & Poisson's ratio",
           summary: 'Engineering stress and strain, the elastic modulus and lateral contraction.',
+          tools: ['3d:stress-strain'],
           gate: ['elastic'],
           videos: ['topic221:m221-08-mechanical'],
           youtube: ['pNIvZyd5djQ'],
@@ -215,6 +223,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'tensile',
           title: 'The tensile curve: yield, TS, ductility & hardness',
           summary: 'The 0.002 offset, tensile strength, %EL and %RA, elastic recovery, resilience and hardness.',
+          tools: ['3d:elastic-plastic', '3d:necking-fracture'],
           gate: ['tensile'],
           videos: ['topic221:m221-10-plastic'],
           youtube: ['-qHEi9kijj0'],
@@ -225,6 +234,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'plastic-true-stress',
           title: 'Plastic deformation, true stress & design',
           summary: 'True stress and strain, strain hardening σ = Kεⁿ, and safety factors.',
+          tools: ['3d:true-vs-engineering'],
           bank: [{ ch: 'mechanical', re: /true|hollomon|strain-hardening|n and K|log–log|safety|plastic deformation|unload/i }],
           read: [/^01 - Teacher Lecture Notes\/(Lecture 11|lecture 11-mech prop 2)/, /^02 - Comprehensive Topic Guides.*Lecture 11/],
           resources: [/^01 - In-Class Lecture Notes[^/]*\/Lecture 11 /, /^02 - Comprehensive Topic Guides.*Lecture 11/]
@@ -240,6 +250,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'slip-systems',
           title: 'Dislocations & slip systems',
           summary: 'How dislocations move, slip planes and directions in FCC, BCC and HCP, and resolved shear stress.',
+          tools: ['3d:slip-systems', '3d:schmids-law'],
           gate: ['slip'],
           videos: ['topic221:m221-09-strengthening'],
           bank: [{ ch: 'strengthening', re: /slip|schmid|resolved/i }],
@@ -250,6 +261,7 @@ export const MIAE221_SPEC: CourseSpec = {
           id: 'strengthening',
           title: 'Strengthening mechanisms & annealing',
           summary: 'Grain-size (Hall-Petch), solid-solution and strain hardening, then recovery and recrystallization. After the midterm.',
+          tools: ['3d:strengthening'],
           bank: [{ ch: 'strengthening' }]
         }
       ]

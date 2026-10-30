@@ -165,6 +165,7 @@ export const ENGR213_SPEC: CourseSpec = {
           id: 'cooling',
           title: "Newton's law of cooling",
           summary: 'dT/dt = k(T − Tₘ): find k from one reading, then predict a temperature or a time.',
+          tools: ['3d:newton-cooling'],
           gate: ['cool'],
           bank: [{ ch: 'applications', re: /cool|warm|newton|temperature/i }],
           drill: [{ method: 'applications', re: /cool/i }]
@@ -173,6 +174,7 @@ export const ENGR213_SPEC: CourseSpec = {
           id: 'mixtures-circuits',
           title: 'Mixtures & circuits',
           summary: 'Rate in minus rate out for brine tanks, and the same linear equation for LR and RC circuits.',
+          tools: ['3d:mixing-tank', '3d:lr-rc-circuit'],
           bank: [{ ch: 'applications', re: /mix|brine|tank|salt|circuit|\bLR\b|\bRC\b/i }],
           drill: [{ method: 'applications', re: /mix|tank/i }],
           resources: [/^Professor Leonard\/06 - Tank Mixing/]
@@ -208,6 +210,7 @@ export const ENGR213_SPEC: CourseSpec = {
           id: 'roots-de-moivre',
           title: 'Powers & roots: De Moivre',
           summary: 'zⁿ in one line, all n roots of a complex number, and the complex roots of auxiliary equations.',
+          tools: ['3d:complex-roots'],
           gate: ['roots'],
           bank: [{ ch: 'complex' }],
           drill: [{ method: 'complex_numbers' }]
@@ -230,6 +233,7 @@ export const ENGR213_SPEC: CourseSpec = {
           id: 'constant-coefficients',
           title: 'Second-order equations with constant coefficients',
           summary: 'The auxiliary equation and its three cases: distinct, repeated and complex roots.',
+          tools: ['3d:mass-spring'],
           videos: ['tutor:second_order'],
           bank: [{ ch: 'lecture_11' }],
           read: [/^01 - Teacher Lecture Notes\/ENGR213, Lecture 11/, /^02 - Comprehensive Topic Guides.*Lecture 11/, /^02 - Textbook Expanded Notes\/Chapter 03 /],

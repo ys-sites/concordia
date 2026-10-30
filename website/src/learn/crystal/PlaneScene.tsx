@@ -1,15 +1,32 @@
-// Miller Plane Explorer 3D scene (Milestone 2, Module C).
+// Miller Plane Explorer 3D scene (Milestone 2, Module C) — Studio Edition.
 // The plane is the intersection polygon computed by millerPlane() from the
 // equation hx + ky + lz = d — a real translucent polygon, never a positioned
 // rectangle. Atoms come from unitCell(); the body-centre atom is highlighted
 // exactly when pointOnPlane() says it lies on the plane.
 import React, { useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Line } from '@react-three/drei';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from 'three';
-import { millerPlane, pointOnPlane, polygonArea, unitCell, type CellKind, type MillerPlane, type Vec3 } from '../visualization/crystalMath';
-import { Axes, CameraRig, CubeEdges, LabControls, PRESET_POS, centre, type CameraPreset } from './SceneKit';
+import {
+  millerPlane,
+  pointOnPlane,
+  polygonArea,
+  unitCell,
+  type CellKind,
+  type MillerPlane,
+  type Vec3,
+} from '../visualization/crystalMath';
+import {
+  Axes,
+  CameraRig,
+  CubeEdges,
+  CylinderRod,
+  LabControls,
+  PRESET_POS,
+  StudioEnvironment,
+  centre,
+  type CameraPreset,
+} from './SceneKit';
 
 const PlaneMesh: React.FC<{ plane: MillerPlane }> = ({ plane }) => {
   const geom = useMemo(() => {
@@ -33,13 +50,30 @@ const PlaneMesh: React.FC<{ plane: MillerPlane }> = ({ plane }) => {
     return g;
   }, [plane]);
   if (!geom || plane.polygon.length < 3) return null;
-  const loop = [...plane.polygon.map(centre), centre(plane.polygon[0])];
+  const pts = plane.polygon.map(centre);
   return (
     <group>
       <mesh geometry={geom}>
-        <meshStandardMaterial color="#b3294a" transparent opacity={0.42} side={THREE.DoubleSide} roughness={0.4} metalness={0.05} />
+        <meshPhysicalMaterial
+          color="#e11d48"
+          transparent
+          opacity={0.44}
+          side={THREE.DoubleSide}
+          roughness={0.2}
+          metalness={0.08}
+          clearcoat={0.6}
+        />
       </mesh>
-      <Line points={loop} color="#fda4af" lineWidth={2} transparent opacity={0.95} />
+      {pts.map((a, i) => (
+        <CylinderRod
+          key={i}
+          start={a}
+          end={pts[(i + 1) % pts.length]}
+          color="#be123c"
+          radius={0.014}
+          opacity={0.95}
+        />
+      ))}
     </group>
   );
 };
@@ -61,31 +95,30 @@ export const PlaneScene: React.FC<{
   if (failed) return null;
   return (
     <Canvas
-      dpr={[1, 1.75]}
-      camera={{ position: PRESET_POS[preset], fov: 42 }}
-      onCreated={({ gl }) => gl.setClearColor('#0f172a')}
+      dpr={[1, 2]}
+      camera={{ position: PRESET_POS[preset], fov: 40 }}
+      gl={{ alpha: true, antialias: true }}
       onError={() => setFailed(true)}
       aria-label={`Miller plane (${h} ${k} ${l}) in a ${model.short} unit cell. Drag to orbit, scroll or pinch to zoom.`}
     >
-      <ambientLight intensity={0.75} />
-      <directionalLight position={[4, 6, 3]} intensity={1.4} />
-      <directionalLight position={[-3, -2, -4]} intensity={0.35} />
+      <StudioEnvironment floorY={-0.78} />
       <CameraRig preset={preset} autoOrbit={autoOrbit} controls={controls} />
-      <CubeEdges />
+      <CubeEdges color="#64748b" opacity={0.7} radius={0.011} />
       <PlaneMesh plane={plane} />
       {showAtoms &&
         model.atoms.map((a) => {
           const onPlane = pointOnPlane(a.frac, plane);
           const pos = centre(a.frac);
           return (
-            <mesh key={a.id} position={pos}>
-              <sphereGeometry args={[a.role === 'body' ? 0.11 : 0.085, 24, 18]} />
-              <meshStandardMaterial
-                color={onPlane ? '#ffffff' : a.role === 'body' ? '#e11d48' : '#cbd5e1'}
-                emissive={onPlane ? '#b3294a' : '#000000'}
-                emissiveIntensity={onPlane ? 0.6 : 0}
-                roughness={0.32}
-                metalness={0.08}
+            <mesh key={a.id} position={pos} scale={onPlane ? 1.15 : 1}>
+              <sphereGeometry args={[a.role === 'body' ? 0.11 : 0.085, 28, 22]} />
+              <meshPhysicalMaterial
+                color={onPlane ? '#2563eb' : a.role === 'body' ? '#be123c' : '#94a3b8'}
+                emissive={onPlane ? '#1d4ed8' : '#000000'}
+                emissiveIntensity={onPlane ? 0.4 : 0}
+                roughness={0.2}
+                metalness={0.18}
+                clearcoat={0.75}
               />
             </mesh>
           );
@@ -97,4 +130,5 @@ export const PlaneScene: React.FC<{
 };
 
 /** Re-export for the lab readout (area is already in the polygon). */
-export const planeArea = (h: number, k: number, l: number, d: number): number => polygonArea(millerPlane(h, k, l, d).polygon);
+export const planeArea = (h: number, k: number, l: number, d: number): number =>
+  polygonArea(millerPlane(h, k, l, d).polygon);

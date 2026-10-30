@@ -149,7 +149,7 @@ export const PlaneLab: React.FC = () => {
     <section className={`lx-cl${fullscreen ? ' is-full' : ''}`} aria-label="Miller Plane Explorer">
       <header className="lx-cl-head">
         <span className="lx-cl-fig">Fig 3 · Miller Plane Explorer</span>
-        <h2 className="lx-h2">Miller planes: from intercepts to (hkl)</h2>
+        <h2 className="lx-h2">3D Visual Learner: Miller Indices ? Planes</h2>
         <p className="lx-meta">Every plane is drawn from its equation — rotate the cube and verify the cut yourself.</p>
       </header>
 

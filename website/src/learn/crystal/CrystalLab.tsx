@@ -151,7 +151,7 @@ export const CrystalLab: React.FC = () => {
         <span className="lx-cl-fig">
           <Box size={18} aria-hidden /> Fig 1 · Crystal Lab
         </span>
-        <h2 className="lx-h2">Unit cells: count the atoms</h2>
+        <h2 className="lx-h2">3D Visual Learner: Crystal Structures</h2>
         <p className="lx-meta">SC · BCC · FCC · HCP — one model drives the picture and every number below it.</p>
       </header>
 

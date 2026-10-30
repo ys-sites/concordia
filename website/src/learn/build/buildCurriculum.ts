@@ -463,5 +463,63 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
   return { curriculum, report: { courseId: c, orphanQuestions, orphanVideos, duplicateVideos, problems } };
 }
 
+const VISUAL_3D_TITLES: Record<string, string> = {
+  'crystal-lab:unit-cells': '3D Visual Learner: Crystal Structures',
+  '3d:crystal-structures': '3D Visual Learner: Crystal Structures',
+  '3d:atom-sharing': '3D Visual Learner: Atom Sharing',
+  '3d:apf': '3D Visual Learner: Atomic Packing Factor',
+  '3d:coordination-number': '3D Visual Learner: Coordination Number',
+  '3d:lattice-radius': '3D Visual Learner: Lattice Parameter & Atomic Radius',
+  '3d:theoretical-density': '3D Visual Learner: Theoretical Density',
+  'crystal-lab:directions': '3D Visual Learner: Crystallographic Directions',
+  '3d:directions': '3D Visual Learner: Crystallographic Directions',
+  'crystal-lab:planes': '3D Visual Learner: Miller Indices ? Planes',
+  '3d:planes': '3D Visual Learner: Miller Indices ? Planes',
+  '3d:families': '3D Visual Learner: Direction & Plane Families',
+  '3d:linear-planar-density': '3D Visual Learner: Linear & Planar Density',
+  '3d:xrd-bragg': '3D Visual Learner: X-Ray Diffraction',
+  '3d:atomic-defects': '3D Visual Learner: Atomic Defects',
+  '3d:dislocations': '3D Visual Learner: Dislocations',
+  '3d:grain-boundaries': '3D Visual Learner: Grain Boundaries',
+  '3d:slip-systems': '3D Visual Learner: Slip Systems',
+  '3d:schmids-law': "3D Visual Learner: Schmid's Law",
+  '3d:stress-strain': '3D Visual Learner: Stress & Strain',
+  '3d:elastic-plastic': '3D Visual Learner: Elastic & Plastic Deformation',
+  '3d:necking-fracture': '3D Visual Learner: Necking & Fracture',
+  '3d:true-vs-engineering': '3D Visual Learner: True vs. Engineering Stress',
+  '3d:strengthening': '3D Visual Learner: Strengthening Mechanisms',
+  '3d:diffusion': '3D Visual Learner: Diffusion',
+  '3d:thermal-expansion': '3D Visual Learner: Thermal Expansion',
+  '3d:product-layout': '3D Visual Learner: Product Layout',
+  '3d:process-layout': '3D Visual Learner: Process Layout',
+  '3d:cellular-layout': '3D Visual Learner: Cellular Layout',
+  '3d:fixed-position-layout': '3D Visual Learner: Fixed-Position Layout',
+  '3d:hybrid-layout': '3D Visual Learner: Hybrid Layout',
+  '3d:material-handling': '3D Visual Learner: Material Handling',
+  '3d:warehouse-routing': '3D Visual Learner: Warehouse Routing',
+  '3d:manufacturing-processes': '3D Visual Learner: Manufacturing Processes',
+  '3d:bom-exploded': '3D Visual Learner: Bill of Materials',
+  '3d:work-ergonomics': '3D Visual Learner: Work Design & Ergonomics',
+  '3d:mixing-tank': '3D Visual Learner: Mixing Tank Problems',
+  '3d:newton-cooling': "3D Visual Learner: Newton's Law of Cooling",
+  '3d:mass-spring': '3D Visual Learner: Mass?Spring Systems',
+  '3d:lr-rc-circuit': '3D Visual Learner: LR/RC Circuits',
+  '3d:complex-roots': '3D Visual Learner: Complex Numbers & Roots',
+  '3d:2d-arrays': '3D Visual Learner: 2D Arrays',
+  '3d:memory-architecture': '3D Visual Learner: Memory Architecture',
+  '3d:arduino-hardware': '3D Visual Learner: Arduino Hardware',
+};
+
 export const toolTitle = (t: string) =>
-  t.startsWith('cpp-lab') ? 'C++ code lab: write and run it' : t.startsWith('cpp-sim') ? 'Step through the code' : t === 'tsp' ? 'TSP routing simulator' : t === 'classifier' ? 'Method classifier' : t === 'crystal-lab:unit-cells' ? 'Crystal Lab: explore the unit cell in 3D' : t === 'crystal-lab:directions' ? 'Direction Explorer: from two points to [uvw]' : t === 'crystal-lab:planes' ? 'Miller Plane Explorer: from intercepts to (hkl)' : t.startsWith('crystal-lab:') ? 'Crystal Lab: explore in 3D' : 'Interactive tool';
+  VISUAL_3D_TITLES[t] ??
+  (t.startsWith('cpp-lab')
+    ? 'C++ code lab: write and run it'
+    : t.startsWith('cpp-sim')
+      ? 'Step through the code'
+      : t === 'tsp'
+        ? 'TSP routing simulator'
+        : t === 'classifier'
+          ? 'Method classifier'
+          : t.startsWith('3d:') || t.startsWith('crystal-lab:')
+            ? '3D Visual Learner'
+            : 'Interactive tool');

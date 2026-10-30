@@ -21,6 +21,7 @@ const FormulaTool = lazy(() => import('../tools/FormulaTool'));
 const CrystalLab = lazy(() => import('../crystal/CrystalLab'));
 const DirectionLab = lazy(() => import('../crystal/DirectionLab'));
 const PlaneLab = lazy(() => import('../crystal/PlaneLab'));
+const Visual3DLearner = lazy(() => import('../visual3d/Visual3DLearner'));
 const CppCodeLab = lazy(() => import('../../components/CppCodeLab'));
 const TspSimulator = lazy(() => import('../../components/TspFactorialSimulator').then((m) => ({ default: m.TspFactorialSimulator })));
 

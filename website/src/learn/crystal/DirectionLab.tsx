@@ -177,7 +177,7 @@ export const DirectionLab: React.FC = () => {
     <section className={`lx-cl${fullscreen ? ' is-full' : ''}`} aria-label="Direction Explorer">
       <header className="lx-cl-head">
         <span className="lx-cl-fig">Fig 2 · Direction Explorer</span>
-        <h2 className="lx-h2">Directions: from two points to [uvw]</h2>
+        <h2 className="lx-h2">3D Visual Learner: Crystallographic Directions</h2>
         <p className="lx-meta">Pick a tail and a head — the calculation follows the arrow, step by step.</p>
       </header>
 

@@ -47,6 +47,7 @@ export const INDU211_SPEC: CourseSpec = {
           id: 'bom-processes',
           title: 'Bill of materials & industrial processes',
           summary: 'Read a product structure tree, count parts, and know the main forming, cutting and joining processes.',
+          tools: ['3d:bom-exploded', '3d:manufacturing-processes'],
           gate: ['mfg'],
           bank: [{ ch: 'ch3' }],
           resources: [/^00 - Textbook Chapters\/Textbook Chapter 03 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 2 - /, /^03 - 1-Page Rapid Review Sheets\/Part 2 - /]
@@ -79,6 +80,7 @@ export const INDU211_SPEC: CourseSpec = {
           id: 'layout',
           title: 'Facility layout',
           summary: 'Product, process, fixed-position, cellular and mixed layouts, REL charts and when each one fits.',
+          tools: ['3d:product-layout', '3d:process-layout', '3d:cellular-layout', '3d:fixed-position-layout', '3d:hybrid-layout'],
           gate: ['layout'],
           bank: [{ ch: 'ch4' }]
         }
@@ -94,6 +96,7 @@ export const INDU211_SPEC: CourseSpec = {
           id: 'material-handling',
           title: 'Material handling equipment & principles',
           summary: 'Trucks, AGVs, cranes and conveyors, and the principles that decide how material should move.',
+          tools: ['3d:material-handling'],
           bank: [{ ch: 'ch5' }],
           read: [/^01 - Teacher Lecture Notes\/5\.0\.INDU_211_CH5/],
           resources: [/^00 - Textbook Chapters\/Textbook Chapter 05 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 4 - /]
@@ -104,7 +107,7 @@ export const INDU211_SPEC: CourseSpec = {
           summary: 'Nearest-neighbour tours, why exact TSP explodes factorially, and building vehicle routes with the savings method.',
           gate: ['tsp'],
           bank: [{ ch: 'ch5', re: /TSP|VRP|route|routing|nearest|clark|savings|heuristic|trucks|salesperson/i }],
-          tools: ['tsp'],
+          tools: ['tsp', '3d:warehouse-routing'],
           resources: [/^04 - Worked Problems[^/]*\/INDU 211 - Factorial Complexity/, /^YouTube Tutorial Solutions\/05 - /, /^04 - Worked Problems[^/]*\/INDU 211 - Midterm Quantitative/]
         }
       ]
@@ -179,6 +182,7 @@ export const INDU211_SPEC: CourseSpec = {
           id: 'work-design',
           title: 'Work design & human factors',
           summary: 'Productivity, standard time with allowances, anthropometry and job design.',
+          tools: ['3d:work-ergonomics'],
           bank: [{ ch: 'ch6-11' }],
           read: [/^01 - Teacher Lecture Notes\/12\.INDU_211_CH6and11/],
           resources: [/^00 - Textbook Chapters\/Textbook Chapter (06|11) /, /^02 - Comprehensive Topic Guides[^/]*\/Part 8 - /]
