@@ -100,6 +100,7 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'Miller indices: directions',
           summary: 'Point coordinates, direction indices and families of directions, step by step.',
           gate: ['directions'],
+          tools: ['crystal-lab:directions'],
           bank: [{ ch: 'crystal', re: /direction/i }]
         },
         {
@@ -108,6 +109,7 @@ export const MIAE221_SPEC: CourseSpec = {
           summary: 'Intercepts, reciprocals and clearing fractions, including planes through the origin.',
           gate: ['planes'],
           youtube: ['9Tf1dB1yVKY'],
+          tools: ['crystal-lab:planes'],
           bank: [{ ch: 'crystal', re: /plane|miller/i }]
         },
         {

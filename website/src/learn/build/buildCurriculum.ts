@@ -464,4 +464,4 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
 }
 
 export const toolTitle = (t: string) =>
-  t.startsWith('cpp-lab') ? 'C++ code lab: write and run it' : t.startsWith('cpp-sim') ? 'Step through the code' : t === 'tsp' ? 'TSP routing simulator' : t === 'classifier' ? 'Method classifier' : t === 'crystal-lab:unit-cells' ? 'Crystal Lab: explore the unit cell in 3D' : t.startsWith('crystal-lab:') ? 'Crystal Lab: explore in 3D' : 'Interactive tool';
+  t.startsWith('cpp-lab') ? 'C++ code lab: write and run it' : t.startsWith('cpp-sim') ? 'Step through the code' : t === 'tsp' ? 'TSP routing simulator' : t === 'classifier' ? 'Method classifier' : t === 'crystal-lab:unit-cells' ? 'Crystal Lab: explore the unit cell in 3D' : t === 'crystal-lab:directions' ? 'Direction Explorer: from two points to [uvw]' : t === 'crystal-lab:planes' ? 'Miller Plane Explorer: from intercepts to (hkl)' : t.startsWith('crystal-lab:') ? 'Crystal Lab: explore in 3D' : 'Interactive tool';

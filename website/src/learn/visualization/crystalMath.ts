@@ -431,3 +431,266 @@ export const formatDirection = (uvw: [number, number, number]): string => {
   const bar = (n: number): string => (n < 0 ? `${Math.abs(n)}̄` : String(n));
   return `[${uvw.map(bar).join(' ')}]`;
 };
+
+// ── Milestone 2: directions & planes — step-by-step, not just the answer ──
+
+/** Parse "1/2", "-1/3", "0.5", "1", "-2" → a number, or null if not a valid coordinate. */
+export const parseFraction = (s: string): number | null => {
+  const t = s.trim();
+  if (t === '') return null;
+  const m = /^([+-]?\d+)\s*\/\s*([1-9]\d*)$/.exec(t);
+  if (m) return Number(m[1]) / Number(m[2]);
+  if (/^[+-]?(\d+\.?\d*|\.\d+)$/.test(t)) return Number(t);
+  return null;
+};
+
+/** Smallest denominator (≤ 12) that makes x an integer, else 1. */
+const denominatorOf = (x: number): number => {
+  for (let d = 1; d <= 12; d++) if (Math.abs(x * d - Math.round(x * d)) < 1e-9) return d;
+  return 1;
+};
+
+/** Multiply fractional values by the LCM of their denominators → smallest integers. */
+export const clearFractions = (values: number[]): { multiplier: number; ints: number[] } => {
+  const lcm = (a: number, b: number): number => (a * b) / gcd(a, b);
+  const multiplier = values.reduce((acc, x) => lcm(acc, denominatorOf(x)), 1);
+  return { multiplier, ints: values.map((x) => Math.round(x * multiplier)) };
+};
+
+/** Exact fraction string ("1/2", "−1/3", "2") for display; decimals otherwise. */
+export const fracToString = (x: number): string => {
+  if (Math.abs(x - Math.round(x)) < 1e-9) return String(Math.round(x));
+  const d = denominatorOf(x);
+  const n = Math.round(x * d);
+  const sign = n < 0 ? '−' : '';
+  return `${sign}${Math.abs(n)}/${d}`;
+};
+
+const vecToString = (v: Vec3): string => `(${v.map(fracToString).join(', ')})`;
+
+export interface DirectionSteps {
+  start: Vec3;
+  end: Vec3;
+  /** End − Start, as fractions. */
+  diff: Vec3;
+  /** Multiplier that clears the fractions. */
+  multiplier: number;
+  /** Diff × multiplier, before reduction. */
+  scaled: [number, number, number];
+  /** GCD of the scaled components. */
+  gcdValue: number;
+  final: [number, number, number];
+  /** Human-readable lines for the guided Calculate step. */
+  lines: string[];
+}
+
+/** The full worked calculation for a direction, step by step. */
+export const directionSteps = (start: Vec3, end: Vec3): DirectionSteps => {
+  const diff: Vec3 = [end[0] - start[0], end[1] - start[1], end[2] - start[2]];
+  const { multiplier, ints } = clearFractions(diff);
+  const scaled: [number, number, number] = [ints[0], ints[1], ints[2]];
+  const gcdValue = scaled.reduce((acc, x) => gcd(acc, x), 0) || 1;
+  const final: [number, number, number] = [scaled[0] / gcdValue, scaled[1] / gcdValue, scaled[2] / gcdValue];
+  const lines = [
+    `Start = ${vecToString(start)}`,
+    `End = ${vecToString(end)}`,
+    `End − Start = ${vecToString(diff)}`,
+    multiplier === 1
+      ? 'No fractions to clear — multiply by 1.'
+      : `Multiply every component by ${multiplier}: (${scaled.join(', ')})`,
+    gcdValue === 1 ? 'Already in smallest integers.' : `Divide by the GCD ${gcdValue}.`,
+    `Final direction: ${formatDirection(final)}`,
+  ];
+  return { start, end, diff, multiplier, scaled, gcdValue, final, lines };
+};
+
+/** Miller indices (hkl) with bar notation, e.g. (1 1̄ 0). */
+export const formatMiller = (hkl: [number, number, number]): string => {
+  const bar = (n: number): string => (n < 0 ? `${Math.abs(n)}̄` : String(n));
+  return `(${hkl.map(bar).join(' ')})`;
+};
+
+/** Direction family ⟨uvw⟩, e.g. ⟨110⟩. */
+export const formatFamily = (uvw: [number, number, number]): string => {
+  const bar = (n: number): string => (n < 0 ? `${Math.abs(n)}̄` : String(n));
+  return `⟨${uvw.map(bar).join(' ')}⟩`;
+};
+
+/** Plane family {hkl}, e.g. {110}. */
+export const formatPlaneFamily = (hkl: [number, number, number]): string => {
+  const bar = (n: number): string => (n < 0 ? `${Math.abs(n)}̄` : String(n));
+  return `{${hkl.map(bar).join(' ')}}`;
+};
+
+const permute3 = (v: [number, number, number]): [number, number, number][] => {
+  const [a, b, c] = v;
+  return [
+    [a, b, c],
+    [a, c, b],
+    [b, a, c],
+    [b, c, a],
+    [c, a, b],
+    [c, b, a],
+  ];
+};
+
+/** All crystallographically equivalent directions in a cubic crystal (permutations + sign flips). */
+export const directionFamily = (uvw: [number, number, number]): [number, number, number][] => {
+  const seen = new Set<string>();
+  const out: [number, number, number][] = [];
+  for (const p of permute3(uvw))
+    for (const sx of [1, -1])
+      for (const sy of [1, -1])
+        for (const sz of [1, -1]) {
+          const d: [number, number, number] = [p[0] * sx, p[1] * sy, p[2] * sz];
+          const key = d.join(',');
+          if (!seen.has(key)) {
+            seen.add(key);
+            out.push(d);
+          }
+        }
+  return out;
+};
+
+/** All equivalent planes in a cubic crystal. (hkl) and (−h−k−l) are the same
+    family (parallel planes), so the sign is canonicalised: first non-zero index positive. */
+export const planeFamily = (hkl: [number, number, number]): [number, number, number][] => {
+  const seen = new Set<string>();
+  const out: [number, number, number][] = [];
+  for (const p of permute3(hkl))
+    for (const sx of [1, -1])
+      for (const sy of [1, -1])
+        for (const sz of [1, -1]) {
+          let d: [number, number, number] = [p[0] * sx, p[1] * sy, p[2] * sz];
+          const first = d.find((x) => x !== 0);
+          if (first !== undefined && first < 0) d = [-d[0], -d[1], -d[2]];
+          const key = d.join(',');
+          if (!seen.has(key)) {
+            seen.add(key);
+            out.push(d);
+          }
+        }
+  return out;
+};
+
+/** Default offset d for hx + ky + lz = d so the plane cuts the unit cube in its
+    standard textbook position: d = 1 when all indices are ≥ 0 (so (100) is the
+    x = 1 face, (110) is x + y = 1, (111) is the corner triangle); the midpoint
+    of the attainable range when signs are mixed (so (1−10) is the diagonal). */
+export const defaultPlaneOffset = (h: number, k: number, l: number): number => {
+  if (h >= 0 && k >= 0 && l >= 0) return 1;
+  const vals = [h, k, l];
+  const min = vals.reduce((s, v) => s + (v < 0 ? v : 0), 0);
+  const max = vals.reduce((s, v) => s + (v > 0 ? v : 0), 0);
+  return (min + max) / 2;
+};
+
+/** Orthonormal basis (e1, e2) in the plane hx + ky + lz = d — for rendering the polygon. */
+export const planeBasis = (h: number, k: number, l: number): { e1: Vec3; e2: Vec3 } => {
+  const n: Vec3 = [h, k, l];
+  const e1 = norm3(cross3(n, Math.abs(n[2]) < 0.9 ? [0, 0, 1] : [0, 1, 0]));
+  const e2 = norm3(cross3(n, e1));
+  return { e1, e2 };
+};
+
+/** Area of a polygon (fan triangulation from its centroid). */
+export const polygonArea = (polygon: Vec3[]): number => {
+  if (polygon.length < 3) return 0;
+  const c: Vec3 = [
+    polygon.reduce((s, p) => s + p[0], 0) / polygon.length,
+    polygon.reduce((s, p) => s + p[1], 0) / polygon.length,
+    polygon.reduce((s, p) => s + p[2], 0) / polygon.length,
+  ];
+  let area = 0;
+  for (let i = 0; i < polygon.length; i++) {
+    const a = polygon[i];
+    const b = polygon[(i + 1) % polygon.length];
+    const u: Vec3 = [a[0] - c[0], a[1] - c[1], a[2] - c[2]];
+    const v: Vec3 = [b[0] - c[0], b[1] - c[1], b[2] - c[2]];
+    const cr = cross3(u, v);
+    area += Math.sqrt(dot3(cr, cr)) / 2;
+  }
+  return area;
+};
+
+export interface PlaneFromIntercepts {
+  /** True when any intercept is 0: the plane passes through the origin, so it
+      must be translated parallel to itself before indexing. */
+  throughOrigin: boolean;
+  /** Reciprocals 1/intercept (null = intercept ∞, axis parallel). */
+  reciprocals: (number | null)[];
+  /** Miller indices after clearing fractions, or null when through the origin. */
+  hkl: [number, number, number] | null;
+  multiplier: number;
+  lines: string[];
+}
+
+/** Index a plane from its intercepts: reciprocals, then clear fractions.
+    Pass null for an intercept at infinity (plane parallel to that axis). */
+export const planeFromIntercepts = (x: number | null, y: number | null, z: number | null): PlaneFromIntercepts => {
+  const intercepts = [x, y, z];
+  const throughOrigin = intercepts.some((v) => v === 0);
+  const reciprocals = intercepts.map((v) => (v === null ? null : v === 0 ? null : 1 / v));
+  const lines: string[] = [
+    `Intercepts: x = ${x === null ? '∞' : x}, y = ${y === null ? '∞' : y}, z = ${z === null ? '∞' : z}`,
+  ];
+  if (throughOrigin) {
+    lines.push('An intercept is 0 — the plane passes through the origin. Translate it parallel to itself (move it one cell over) and index the translated plane; the indices are the same.');
+    return { throughOrigin, reciprocals, hkl: null, multiplier: 1, lines };
+  }
+  const vals = reciprocals.map((v) => v ?? 0);
+  lines.push(`Reciprocals: ${vals.map((v) => fracToString(v)).join(', ')} (∞ → 0)`);
+  const { multiplier, ints } = clearFractions(vals);
+  const g = ints.reduce((acc, v) => gcd(acc, v), 0) || 1;
+  const hkl: [number, number, number] = [ints[0] / g, ints[1] / g, ints[2] / g];
+  lines.push(
+    multiplier === 1 ? 'No fractions to clear.' : `Clear fractions — multiply by ${multiplier}: (${ints.join(', ')})`,
+    g === 1 ? 'Already in smallest integers.' : `Divide by the GCD ${g}.`,
+    `Final plane: ${formatMiller(hkl)}`,
+  );
+  return { throughOrigin, reciprocals, hkl, multiplier, lines };
+};
+
+export interface AtomsOnPlane {
+  /** Atoms whose centres lie on the plane, with their share inside the plane. */
+  atoms: { atom: AtomSite; inPlaneShare: number; position: 'vertex' | 'edge' | 'interior' }[];
+  /** Atoms per plane cell (shares summed). */
+  count: number;
+  /** Area of the plane's intersection with the unit cell, in units of a². */
+  area: number;
+  /** Planar atomic density, atoms per a². */
+  density: number;
+}
+
+/** Which atoms of one cell are centred on a Miller plane, and the planar density.
+    In-plane sharing mirrors the 3D rule one dimension down: a polygon vertex is
+    shared by 4 plane cells (1/4), a point on a polygon edge by 2 (1/2), an
+    interior point belongs to the plane cell alone (1). */
+export const atomsOnPlane = (cell: CellKind, plane: MillerPlane): AtomsOnPlane => {
+  const model = unitCell(cell);
+  const poly = plane.polygon;
+  const onPlane = model.atoms.filter((a) => pointOnPlane(a.frac, plane));
+  const atoms = onPlane.map((atom) => {
+    const p = atom.frac;
+    let position: 'vertex' | 'edge' | 'interior' = 'interior';
+    if (poly.some((v) => dist(p, v) < 1e-9)) position = 'vertex';
+    else {
+      for (let i = 0; i < poly.length; i++) {
+        const a = poly[i];
+        const b = poly[(i + 1) % poly.length];
+        const ab: Vec3 = [b[0] - a[0], b[1] - a[1], b[2] - a[2]];
+        const ap: Vec3 = [p[0] - a[0], p[1] - a[1], p[2] - a[2]];
+        const t = Math.max(0, Math.min(1, dot3(ap, ab) / (dot3(ab, ab) || 1)));
+        const closest: Vec3 = [a[0] + t * ab[0], a[1] + t * ab[1], a[2] + t * ab[2]];
+        if (dist(p, closest) < 1e-9) {
+          position = 'edge';
+          break;
+        }
+      }
+    }
+    return { atom, inPlaneShare: position === 'vertex' ? 1 / 4 : position === 'edge' ? 1 / 2 : 1, position };
+  });
+  const count = atoms.reduce((s, a) => s + a.inPlaneShare, 0);
+  const area = polygonArea(poly);
+  return { atoms, count, area, density: area > 0 ? count / area : 0 };
+};

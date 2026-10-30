@@ -19,6 +19,8 @@ import { trackStudyOnce } from '../analytics';
 const PdfCanvasViewer = lazy(() => import('../../components/PdfCanvasViewer'));
 const FormulaTool = lazy(() => import('../tools/FormulaTool'));
 const CrystalLab = lazy(() => import('../crystal/CrystalLab'));
+const DirectionLab = lazy(() => import('../crystal/DirectionLab'));
+const PlaneLab = lazy(() => import('../crystal/PlaneLab'));
 const CppCodeLab = lazy(() => import('../../components/CppCodeLab'));
 const TspSimulator = lazy(() => import('../../components/TspFactorialSimulator').then((m) => ({ default: m.TspFactorialSimulator })));
 
@@ -713,7 +715,7 @@ export const ToolStep: React.FC<{ course: CourseId; step: Step }> = ({ course, s
     return (
       <Suspense fallback={<Loading label="Loading the Crystal Lab…" />}>
         <div className="lx-tool-embed">
-          <CrystalLab />
+          {t === 'crystal-lab:directions' ? <DirectionLab /> : t === 'crystal-lab:planes' ? <PlaneLab /> : <CrystalLab />}
         </div>
       </Suspense>
     );

@@ -155,9 +155,17 @@ export const validateSpec = (spec: VisualizationSpec): string[] => {
   return errs;
 };
 
-/** The templates Milestone 1 actually renders. Everything else is registered
+/** The templates Milestones 1–2 actually render. Everything else is registered
     but intentionally unrendered until its milestone. */
-export const RENDERED_TYPES: VisualizationType[] = ['unit-cell'];
+export const RENDERED_TYPES: VisualizationType[] = ['unit-cell', 'crystal-direction', 'miller-plane'];
+
+const LAB_STEPS: TeachingStep[] = [
+  { phase: 'observe', title: 'Observe', body: 'Look at the model and what it shows.' },
+  { phase: 'identify', title: 'Identify', body: 'Name the parts and read the coordinates.' },
+  { phase: 'manipulate', title: 'Manipulate', body: 'Move the model and change the inputs.' },
+  { phase: 'calculate', title: 'Calculate', body: 'Work it out step by step from the model.' },
+  { phase: 'practice', title: 'Practice', body: 'Check yourself with a fresh question.' },
+];
 
 export const UNIT_CELLS_SPEC: UnitCellSpec = {
   id: 'crystal-lab:unit-cells',
@@ -165,5 +173,23 @@ export const UNIT_CELLS_SPEC: UnitCellSpec = {
   lessonId: 'unit-cells',
   type: 'unit-cell',
   parameters: { cell: 'bcc', replicate: [1, 1, 1], explode: 0, showSharing: false },
-  teachingSteps: [],
+  teachingSteps: LAB_STEPS,
+};
+
+export const DIRECTIONS_SPEC: CrystalDirectionSpec = {
+  id: 'crystal-lab:directions',
+  courseId: 'MIAE221',
+  lessonId: 'directions',
+  type: 'crystal-direction',
+  parameters: { start: [0, 0, 0], end: [0.5, 1, 1 / 3], family: true },
+  teachingSteps: LAB_STEPS,
+};
+
+export const PLANES_SPEC: MillerPlaneSpec = {
+  id: 'crystal-lab:planes',
+  courseId: 'MIAE221',
+  lessonId: 'planes',
+  type: 'miller-plane',
+  parameters: { h: 1, k: 1, l: 0, d: 1, cell: 'bcc' },
+  teachingSteps: LAB_STEPS,
 };

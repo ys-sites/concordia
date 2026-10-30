@@ -1,15 +1,29 @@
 // Tests for the Crystal Lab's single source of truth (crystalMath.ts).
 // No test framework in this repo: run with `npm run test:crystal`
 // (esbuild bundles this file, node runs it). Exit code 1 on any failure.
+import { DIRECTIONS_SPEC, PLANES_SPEC, UNIT_CELLS_SPEC, validateSpec } from './registry';
 import {
   CELL_KINDS,
   CUBE_EDGES,
   HCP_IDEAL_C_OVER_A,
+  atomsOnPlane,
+  clearFractions,
+  defaultPlaneOffset,
+  directionFamily,
   directionFromPoints,
+  directionSteps,
   dist,
   formatDirection,
+  formatFamily,
+  formatMiller,
+  formatPlaneFamily,
+  fracToString,
   millerPlane,
+  parseFraction,
+  planeFamily,
+  planeFromIntercepts,
   pointOnPlane,
+  polygonArea,
   replicate,
   unitCell,
 } from './crystalMath';
@@ -96,6 +110,68 @@ console.log('Crystallographic directions (Milestone 2 hook)');
 check('Example: (0,0,0) → (1/2,1,1/3) is [3 6 2]', JSON.stringify(directionFromPoints([0, 0, 0], [0.5, 1, 1 / 3])) === JSON.stringify([3, 6, 2]));
 check('Negative indices kept: (1,0,0) → (0,1,0) direction [−1 1 0]', JSON.stringify(directionFromPoints([1, 0, 0], [0, 1, 0])) === JSON.stringify([-1, 1, 0]));
 check('Format: [1 -1 0] renders with a bar', formatDirection([1, -1, 0]) === '[1 1̄ 0]');
+
+console.log('Milestone 2 — direction steps, worked step by step');
+const ex = directionSteps([0, 0, 0], [0.5, 1, 1 / 3]);
+check('Example: diff is (1/2, 1, 1/3)', ex.diff[0] === 0.5 && ex.diff[1] === 1 && Math.abs(ex.diff[2] - 1 / 3) < 1e-9);
+check('Example: multiplier is 6, scaled (3, 6, 2)', ex.multiplier === 6 && JSON.stringify(ex.scaled) === JSON.stringify([3, 6, 2]));
+check('Example: GCD 1, final [3 6 2]', ex.gcdValue === 1 && JSON.stringify(ex.final) === JSON.stringify([3, 6, 2]));
+check('Example: step lines show Start, End, End−Start, ×6, final', ex.lines.length === 6 && ex.lines[0].includes('Start') && ex.lines[3].includes('6'));
+const neg = directionSteps([1, 0, 0], [0, 1, 0]);
+check('Negative indices: (1,0,0) → (0,1,0) is [−1 1 0]', JSON.stringify(neg.final) === JSON.stringify([-1, 1, 0]));
+check('Negative indices: bar notation [1̄ 1 0]', formatDirection([-1, 1, 0]) === '[1̄ 1 0]');
+const frac = directionSteps([0, 0, 0], [1, 0.5, 0]);
+check('Fractions reduce: (0,0,0) → (1,1/2,0) is [2 1 0]', JSON.stringify(frac.final) === JSON.stringify([2, 1, 0]) && frac.multiplier === 2 && frac.gcdValue === 1);
+check('clearFractions: (1/2, 1, 1/3) × 6 = (3, 6, 2)', JSON.stringify(clearFractions([0.5, 1, 1 / 3]).ints) === JSON.stringify([3, 6, 2]));
+check('parseFraction: "1/2", "-1/3", "0.5", "2", "x" → 0.5, -1/3, 0.5, 2, null', parseFraction('1/2') === 0.5 && parseFraction('-1/3') === -1 / 3 && parseFraction('0.5') === 0.5 && parseFraction('2') === 2 && parseFraction('x') === null);
+check('fracToString: 1/2, −1/3, 2', fracToString(0.5) === '1/2' && fracToString(-1 / 3) === '−1/3' && fracToString(2) === '2');
+
+console.log('Milestone 2 — direction & plane families');
+check('⟨100⟩ has 6 directions', directionFamily([1, 0, 0]).length === 6);
+check('⟨110⟩ has 12 directions', directionFamily([1, 1, 0]).length === 12);
+check('⟨111⟩ has 8 directions', directionFamily([1, 1, 1]).length === 8);
+check('⟨110⟩ contains [1 1̄ 0] and [0 1 1]', directionFamily([1, 1, 0]).some((d) => JSON.stringify(d) === JSON.stringify([1, -1, 0])) && directionFamily([1, 1, 0]).some((d) => JSON.stringify(d) === JSON.stringify([0, 1, 1])));
+check('Family notation: ⟨110⟩', formatFamily([1, 1, 0]) === '⟨1 1 0⟩');
+check('{100} has 3 planes', planeFamily([1, 0, 0]).length === 3);
+check('{110} has 6 planes', planeFamily([1, 1, 0]).length === 6);
+check('{111} has 4 planes', planeFamily([1, 1, 1]).length === 4);
+check('{110} does not double-count opposite planes', !planeFamily([1, 1, 0]).some((p) => JSON.stringify(p) === JSON.stringify([-1, -1, 0])));
+check('Plane family notation: {110}', formatPlaneFamily([1, 1, 0]) === '{1 1 0}');
+check('Miller notation: (1 1̄ 0)', formatMiller([1, -1, 0]) === '(1 1̄ 0)');
+
+console.log('Milestone 2 — planes from intercepts');
+const p110i = planeFromIntercepts(1, 1, null);
+check('(110) from intercepts (1, 1, ∞): reciprocals (1, 1, 0), (hkl) = (110)', JSON.stringify(p110i.hkl) === JSON.stringify([1, 1, 0]) && p110i.reciprocals[2] === null);
+const p111i = planeFromIntercepts(1, 1, 1);
+check('(111) from intercepts (1, 1, 1)', JSON.stringify(p111i.hkl) === JSON.stringify([1, 1, 1]));
+const p201 = planeFromIntercepts(1 / 2, null, 1);
+check('(201) from intercepts (1/2, ∞, 1): reciprocals (2, 0, 1)', JSON.stringify(p201.hkl) === JSON.stringify([2, 0, 1]));
+const pOrig = planeFromIntercepts(0, 1, 1);
+check('Plane through the origin is flagged, not indexed', pOrig.throughOrigin && pOrig.hkl === null);
+check('Translated equivalent plane keeps (hkl): (111) d=1 and d=1.5 both (111)', millerPlane(1, 1, 1, 1).h === 1 && millerPlane(1, 1, 1, 1.5).h === 1 && millerPlane(1, 1, 1, 1.5).polygon.length === 6);
+check('Default offset: (100)→1, (110)→1, (111)→1, (1−10)→0', defaultPlaneOffset(1, 0, 0) === 1 && defaultPlaneOffset(1, 1, 0) === 1 && defaultPlaneOffset(1, 1, 1) === 1 && defaultPlaneOffset(1, -1, 0) === 0);
+check('(1−10) at its default offset cuts the cube as a 4-gon', millerPlane(1, -1, 0, defaultPlaneOffset(1, -1, 0)).polygon.length === 4);
+check('(1̄10) intercepts: x=1, y=−1, z parallel', millerPlane(-1, 1, 0, 1).intercepts.x === -1 && millerPlane(-1, 1, 0, 1).intercepts.y === 1 && millerPlane(-1, 1, 0, 1).intercepts.z === null);
+check('Planes parallel to axes: (010) has x,z = ∞; (001) has x,y = ∞', millerPlane(0, 1, 0, 1).intercepts.x === null && millerPlane(0, 1, 0, 1).intercepts.z === null && millerPlane(0, 0, 1, 1).intercepts.x === null && millerPlane(0, 0, 1, 1).intercepts.y === null);
+
+console.log('Milestone 2 — atoms on planes (planar density)');
+const bcc110 = atomsOnPlane('bcc', millerPlane(1, 1, 0, 1));
+check('BCC (110): 2 atoms per plane cell (4 corners × 1/4 + body × 1)', Math.abs(bcc110.count - 2) < 1e-9, `got ${bcc110.count}`);
+check('BCC (110): plane area is √2 a²', Math.abs(bcc110.area - Math.sqrt(2)) < 1e-9, `got ${bcc110.area}`);
+check('BCC (110): density √2 atoms/a²', Math.abs(bcc110.density - Math.sqrt(2)) < 1e-9, `got ${bcc110.density}`);
+check('BCC (110): body centre is on the plane and counted as interior (share 1)', bcc110.atoms.some((a) => a.atom.id === 'body' && a.position === 'interior' && a.inPlaneShare === 1));
+const fcc100 = atomsOnPlane('fcc', millerPlane(1, 0, 0, 1));
+check('FCC (100): 2 atoms per plane cell (4 corners × 1/4 + face centre × 1)', Math.abs(fcc100.count - 2) < 1e-9, `got ${fcc100.count}`);
+check('FCC (100): plane area is 1 a²', Math.abs(fcc100.area - 1) < 1e-9);
+check('Polygon area: (111) triangle is √3/2 a²', Math.abs(polygonArea(millerPlane(1, 1, 1, 1).polygon) - Math.sqrt(3) / 2) < 1e-9);
+check('Atom-in-plane: BCC corner (1,0,0) is on (110), (0,0,0) is not', pointOnPlane([1, 0, 0], millerPlane(1, 1, 0, 1)) && !pointOnPlane([0, 0, 0], millerPlane(1, 1, 0, 1)));
+
+console.log('Milestone 2 — registry specs validate');
+check('Unit-cells spec validates', validateSpec(UNIT_CELLS_SPEC).length === 0);
+check('Directions spec validates ([3 6 2] example)', validateSpec(DIRECTIONS_SPEC).length === 0);
+check('Planes spec validates (BCC (110), d=1)', validateSpec(PLANES_SPEC).length === 0);
+check('Invalid spec is rejected: (000) is not a plane', validateSpec({ ...PLANES_SPEC, parameters: { h: 0, k: 0, l: 0 } }).length > 0);
+check('Invalid spec is rejected: zero-length direction', validateSpec({ ...DIRECTIONS_SPEC, parameters: { start: [0, 0, 0], end: [0, 0, 0] } }).length > 0);
 
 console.log(`\n${passed} passed, ${failed} failed`);
 if (failed > 0) {
