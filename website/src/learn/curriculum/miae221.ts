@@ -223,8 +223,8 @@ export const MIAE221_SPEC: CourseSpec = {
           title: 'Plastic deformation, true stress & design',
           summary: 'True stress and strain, strain hardening σ = Kεⁿ, and safety factors.',
           bank: [{ ch: 'mechanical', re: /true|hollomon|strain-hardening|n and K|log–log|safety|plastic deformation|unload/i }],
-          read: [/^01 - Teacher Lecture Notes\/Lecture 11 - Plastic Deformation/],
-          resources: [/^01 - In-Class Lecture Notes[^/]*\/Lecture 11 /]
+          read: [/^01 - Teacher Lecture Notes\/(Lecture 11|lecture 11-mech prop 2)/, /^02 - Comprehensive Topic Guides.*Lecture 11/],
+          resources: [/^01 - In-Class Lecture Notes[^/]*\/Lecture 11 /, /^02 - Comprehensive Topic Guides.*Lecture 11/]
         }
       ]
     },
