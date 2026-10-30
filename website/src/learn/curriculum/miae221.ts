@@ -69,6 +69,7 @@ export const MIAE221_SPEC: CourseSpec = {
           gate: ['cells'],
           videos: ['topic221:m221-03-crystal'],
           youtube: ['PaGJwOPg2kU'],
+          tools: ['crystal-lab:unit-cells'],
           bank: [{ ch: 'crystal' }, { ch: 'mixed' }],
           resources: [/^02 - Callister Textbook Expanded Notes\/Chapter 03 /, /^02 - Comprehensive Topic Guides[^/]*\/Part 3 - /, /^03 - 1-Page Rapid Review Sheets\/Part 3 - /, /^01 - In-Class Lecture Notes[^/]*\/Lecture 0[45] /]
         },

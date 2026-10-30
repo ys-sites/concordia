@@ -18,6 +18,7 @@ import { trackStudyOnce } from '../analytics';
 
 const PdfCanvasViewer = lazy(() => import('../../components/PdfCanvasViewer'));
 const FormulaTool = lazy(() => import('../tools/FormulaTool'));
+const CrystalLab = lazy(() => import('../crystal/CrystalLab'));
 const CppCodeLab = lazy(() => import('../../components/CppCodeLab'));
 const TspSimulator = lazy(() => import('../../components/TspFactorialSimulator').then((m) => ({ default: m.TspFactorialSimulator })));
 
@@ -708,6 +709,15 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
 export const ToolStep: React.FC<{ course: CourseId; step: Step }> = ({ course, step }) => {
   const g = useGate(course);
   const t = step.toolId ?? '';
+  if (t.startsWith('crystal-lab:')) {
+    return (
+      <Suspense fallback={<Loading label="Loading the Crystal Lab…" />}>
+        <div className="lx-tool-embed">
+          <CrystalLab />
+        </div>
+      </Suspense>
+    );
+  }
   if (t.startsWith('formula:')) {
     if (!g) return <Loading />;
     const f = g.formulas.find((x) => x.id === t.slice(8));
