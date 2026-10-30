@@ -20,7 +20,7 @@ export const KIND_LABEL: Record<StepKind, string> = {
   reading: 'Reading',
   worked: 'Example of the topic',
   check: 'Check your understanding',
-  practice: 'Practice Problems & Past Midterms',
+  practice: 'Practice Questions',
   exam: 'Past Midterms',
   tool: 'Interactive tool',
   extra: 'Explanation'

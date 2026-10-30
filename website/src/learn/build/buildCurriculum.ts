@@ -237,21 +237,30 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
       });
     }
 
-    // 4. Check your understanding is the same as practice problem, so combine them and past midterms
+    // 4. Practice Questions (combines understanding items, practice bank & drill questions)
     const items = fs.flatMap((f) => (f.learn?.quiz ?? []).map((it, i) => ({ f, i, it })));
-    const checkable = items.filter(({ it }) => it.type !== 'open');
     const itemIds = items.map(({ f, i }) => itemId(c, f, i));
-    const checkIds = checkable.map(({ f, i }) => itemId(c, f, i));
     const bankQs = bankRoute.home.get(l.id) ?? [];
     const bankIds = bankQs.map((q) => `b:${q.id}`);
     const drillIds = (drillRoute.home.get(l.id) ?? []).map((q) => `d:${q.id}`);
     const examQs = examOf(topics);
-    const examIds = examQs.map((q) => examQid(c, q.id));
 
-    const combined = Array.from(new Set([...itemIds, ...bankIds, ...drillIds, ...examIds]));
-    if (combined.length) {
-      const sPractice = qStep(l.id, 'practice', `Practice Problems & Past Midterms (${combined.length})`, combined, { size: 0 });
+    const practiceIds = Array.from(new Set([
+      ...itemIds,
+      ...bankIds,
+      ...drillIds,
+      ...examQs.filter((q) => homework.has(q.exam)).map((q) => examQid(c, q.id))
+    ]));
+    if (practiceIds.length) {
+      const sPractice = qStep(l.id, 'practice', `Practice Questions (${practiceIds.length})`, practiceIds, { size: 0 });
       if (sPractice) steps.push(sPractice);
+    }
+
+    // 5. Past Midterms (separate section)
+    const pastExamIds = examQs.filter((q) => !homework.has(q.exam)).map((q) => examQid(c, q.id));
+    if (pastExamIds.length) {
+      const sExam = qStep(l.id, 'exam', `Past Midterms (${pastExamIds.length})`, pastExamIds, { size: 0 });
+      if (sExam) steps.push(sExam);
     }
 
     return steps;
