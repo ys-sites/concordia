@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowLeft, BookOpen, ChevronRight, ExternalLink, FileCheck2, FileText, Folder, GraduationCap, Layers, Library, PencilRuler, Rocket, Search, X } from 'lucide-react';
+import { ArrowLeft, ChevronRight, ExternalLink, FileCheck2, FileText, Folder, GraduationCap, Layers, PencilRuler, Rocket, Search, X } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { Curriculum, DocRef } from '../model';
 import { COURSE_BY_ID } from '../courses';
 import { href, navigate } from '../router';
 import { openDoc } from '../docBus';
 import { getPdfUrl } from '../../utils/pdfUrl';
+import { isOriginalTeachingPdf } from '../resourceVisibility';
 import './resourceLibrary.css';
 
 // The course's documents as a library: folders sorted into a few kinds, a file list per folder that shows which
@@ -20,11 +21,9 @@ interface Kind {
 
 const KINDS: Kind[] = [
   { id: 'formula', title: 'Formula & Exam Guides', blurb: 'Master formula sheets, symbol guides, and theory explainers', icon: FileCheck2, test: /formula/i },
-  { id: 'teacher', title: 'Teacher’s notes', blurb: 'The slides and notes from class, in lecture order', icon: BookOpen, test: /teacher lecture notes|in-class lecture notes/i },
   { id: 'guides', title: 'Study guides', blurb: 'The same topics explained step by step, chapter by chapter', icon: Layers, test: /topic guides|notes explained|expanded notes|chapter \d+ summary|overview & study guide/i },
   { id: 'review', title: 'Review & cheat sheets', blurb: 'One page per topic, for the last look before the exam', icon: FileCheck2, test: /rapid review|cheat/i },
   { id: 'practice', title: 'Practice & worked solutions', blurb: 'Problems solved in full, tutorials and exercise sets', icon: PencilRuler, test: /practice problems|tutorials|worked problems|tutorial solutions/i },
-  { id: 'textbook', title: 'Textbook & references', blurb: 'Textbook chapters and the reference sheets you build on', icon: Library, test: /syllabus & textbook|textbook chapters|calculus review/i },
   { id: 'video-notes', title: 'Video course notes', blurb: 'Notes that follow well-known video courses on the subject', icon: GraduationCap, test: /professor (dave|leonard)/i },
   { id: 'start', title: 'Getting started', blurb: 'Set up and first steps', icon: Rocket, test: /mini course/i }
 ];
@@ -45,7 +44,7 @@ export const ResourceLibrary: React.FC<{ cur: Curriculum; folder?: string }> = (
   const files: FileItem[] = useMemo(
     () =>
       cur.resources.flatMap((g) =>
-        g.docs.map((d) => {
+        g.docs.filter((d) => !isOriginalTeachingPdf(d.path)).map((d) => {
           const inner = d.path.split('/').slice(1, -1);
           return { ...d, folder: inner[0] ?? 'Course files', sub: inner.slice(1).map(clean).join(' › ') };
         })

@@ -29,7 +29,7 @@ export const VideoLibrary: React.FC<{ cur: Curriculum }> = ({ cur }) => {
       youtube: cur.videos.filter((v) => v.kind === 'extra').sort(byOrder)
     } as Record<Track, VideoCard[]>;
   }, [cur]);
-  const available = (['ai', 'solutions', 'youtube'] as Track[]).filter((t) => tracks[t].length);
+  const available = (['ai', 'solutions'] as Track[]).filter((t) => tracks[t].length);
   const [track, setTrack] = useState<Track>(available[0] ?? 'ai');
   const list = tracks[track];
   const [selected, setSelected] = useState<string | null>(null);

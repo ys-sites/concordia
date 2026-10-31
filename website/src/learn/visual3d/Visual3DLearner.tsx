@@ -53,7 +53,7 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
           <Box size={16} aria-hidden /> 3D Visual Learner #{spec.num} · {spec.sectionTitle}
         </span>
         <h2 className="lx-h2">3D Visual Learner: {spec.title}</h2>
-        <p className="lx-meta">{spec.subtitle} — {spec.summary}</p>
+        <p className="lx-meta"><MathText text={spec.subtitle} autoMath /> — <MathText text={spec.summary} autoMath /></p>
       </header>
 
       {spec.presets.length > 0 && (
@@ -68,8 +68,8 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
                 setAnswer(null);
               }}
             >
-              <strong>{p.label}</strong>
-              <span>{p.note}</span>
+              <strong><MathText text={p.label} autoMath /></strong>
+              <span><MathText text={p.note} autoMath /></span>
             </button>
           ))}
         </div>
@@ -133,7 +133,7 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
             return (
               <label key={ctrl.key} style={{ flex: '1 1 220px', justifyContent: 'space-between' }}>
                 <span>
-                  <strong>{ctrl.label}:</strong> {Number.isInteger(ctrl.step) ? v : v.toFixed(2)}
+                  <strong><MathText text={ctrl.label} autoMath />:</strong> {Number.isInteger(ctrl.step) ? v : v.toFixed(2)}
                   {ctrl.unit ? ` ${ctrl.unit}` : ''}
                 </span>
                 <input
@@ -164,7 +164,7 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
             <p>
               <strong>
                 <CheckCircle2 size={15} style={{ verticalAlign: 'text-bottom', marginRight: 6 }} />
-                {spec.check.q}
+                <MathText text={spec.check.q} autoMath />
               </strong>
             </p>
             <div className="lx-cl-options" role="group" aria-label="Check your understanding">

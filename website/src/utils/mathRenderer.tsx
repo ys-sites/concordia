@@ -44,7 +44,8 @@ const BARE_TERM = String.raw`[+\-−]?(?:${BARE_NUMBER}|${BARE_SYMBOL}|[πρσΔ
 const BARE_OPERATOR = String.raw`(?:=|≈|≠|≤|≥|<|>|\+|−|-|±|×|\*|\/|\^|∝|→)`;
 const BARE_EXPRESSION = String.raw`${BARE_TERM}(?:\s*${BARE_OPERATOR}\s*${BARE_TERM})+`;
 const BARE_UNICODE_SCRIPT_IDENTIFIER = String.raw`[A-Za-zα-ωΑ-Ω][A-Za-z0-9]*(?:[${UNICODE_SUBS}]+|[${UNICODE_SUPS}]+)+(?![A-Za-z0-9_])`;
-const BARE_MATH = new RegExp(`${BARE_EXPRESSION}|${BARE_UNICODE_SCRIPT_IDENTIFIER}`, 'g');
+const BARE_SUBSCRIPT_IDENTIFIER = String.raw`[A-Za-zα-ωΑ-Ω]_[A-Za-z0-9]+`;
+const BARE_MATH = new RegExp(`${BARE_EXPRESSION}|${BARE_UNICODE_SCRIPT_IDENTIFIER}|${BARE_SUBSCRIPT_IDENTIFIER}`, 'g');
 const BARE_PAREN_CONTENT = new RegExp(`^\\s*${BARE_TERM}(?:\\s*${BARE_OPERATOR}\\s*${BARE_TERM})*\\s*$`);
 const RAW_TEX_MATH = /(?:\d+(?:\.\d+)?\s*)?\\[A-Za-z]+(?:\s*(?:=|≈|≠|≤|≥|<|>|\+|−|-|±|×|\*|\/|\^|∝|→)\s*\d+(?:\.\d+)?(?:\^\\[A-Za-z]+)?)?/g;
 
@@ -101,7 +102,7 @@ const extendBareMath = (input: string, end: number): number => {
 };
 
 const hasBareMathSignal = (value: string): boolean =>
-  /[=≈≠≤≥×*/^∝→]/.test(value) || /[₀₁₂₃₄₅₆₇₈₉⁰¹²³⁴⁵⁶⁷⁸⁹]/.test(value) || (/[0-9]/.test(value) && /[+−-]/.test(value));
+  /[=≈≠≤≥×*/^∝→]/.test(value) || /^[A-Za-zα-ωΑ-Ω]_[A-Za-z0-9]+$/.test(value) || /[₀₁₂₃₄₅₆₇₈₉⁰¹²³⁴⁵⁶⁷⁸⁹]/.test(value) || (/[0-9]/.test(value) && /[+−-]/.test(value));
 
 const splitBareMath = (input: string): Segment[] => {
   const segments: Segment[] = [];

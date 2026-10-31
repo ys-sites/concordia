@@ -1,0 +1,35 @@
+# Visual learning production plan
+
+Use this plan for ENGR 213, INDU 211, MIAE 215 and MIAE 221. The current MIAE 221 videos establish the instructional voice: explain patiently, connect ideas to examples, and show calculations step by step. New work should make physical mechanisms, diagrams and mathematical relationships more visible and interactive.
+
+## Student experience
+
+Organize each topic around an intuitive explanation, formulas and units, worked examples, practice with diagnostic feedback, and a separate past-midterm section. Provide a self-contained expanded explanation for each topic before withdrawing its existing source document. Keep a clear status for missing explanations, examples, interactive models and videos. Existing AI videos remain available until verified replacements exist.
+
+Treat instructor materials and textbooks as private inputs for curriculum coverage and accuracy. Future student-facing videos should neither show nor mention those source documents. Recreate original diagrams when appropriate, retain private provenance and respect source rights. Remove outside YouTube videos from student navigation; do not classify generated video solely by the presence or absence of a YouTube URL without verifying its source.
+
+## Motion and interaction
+
+Use a restrained but continuously developing visual: a physical model moves, an equation transforms, a graph draws, a part highlights, or the camera reveals a relevant detail. Each motion should advance the explanation without making calculations difficult to read. Use a model, diagram or 3D scene when it helps the learner understand the subject, and ensure all displayed values come from verified calculations.
+
+For browser lessons, offer appropriate controls such as rotation, parameter adjustment, prediction, check, reset and replay. Provide keyboard access, a reduced-motion alternative and a usable mobile layout. For recorded video, drive scenes and narration from explicit timing; an MP4 cannot preserve the learner's controls. Share mathematical models and scene data between web and video where practical, and verify both outputs separately.
+
+### 3D model teaching prompt
+
+> Redesign the **[subject and model]** experience as a guided mini-lesson. Start with a one-sentence plain-language answer to what the learner is seeing and why the topic matters. Present the model as one clear focal point with a short legend linking the real object, relevant variables and the subject. Reveal detail progressively: (1) the big idea, (2) what each important part represents, (3) a guided change to one control and its cause-and-effect on the model and graph, (4) a worked example with units and each needed calculation, and (5) a short prediction check with feedback. Show one primary action at a time, keep advanced settings and full derivations behind clearly labelled expandable sections, and explain how to reset. Use readable typeset mathematical notation, not raw underscores or programming syntax. Give every control a plain-language label, unit and meaningful current value. The 3D model, graph and numeric readout must derive from one verified mathematical state. Keep the view usable with keyboard, on mobile and with reduced motion. Provide a text or static fallback when 3D is unavailable. Do not add an AI chat that only appears functional: connect any tutor interaction to a real service and test it, or provide accurate prewritten guidance instead. Check conceptual accuracy, numerical values, state changes, layouts and the full learner flow before calling the model complete.
+
+For Newton's law of cooling, show a compact temperature-versus-time graph next to or below the model. Mark the selected time with a point on the curve and show the same temperature on the 3D object. Label the dashed line as the surrounding temperature and explain that the curve approaches it. When the student changes time or a parameter, the point, graph, object and readouts must update from the same calculation. Explain that the curve slopes downward when the object starts hotter than its surroundings and upward when it starts colder. Include a short numerical example and put the full graph and derivation behind an optional expansion.
+
+## Replacement queue and release gate
+
+1. Inventory every topic, subtopic and example in the four course curricula. Record existing explanation, formulas, worked example, practice, past-midterm material, AI video, interactive model and expanded guide.
+2. Prioritize a MIAE 221 pilot, then expand course by course. Do not label a topic complete until its content and mathematics have been checked against the private curriculum sources.
+3. For each original document, identify the expanded replacement and affected lesson links. Check that the replacement is readable and covers the relevant topic before withdrawing the original from the registry, dev server and deployed assets.
+4. Verify direct URLs and static copies as well as navigation; hiding a resource card alone is not access control. Check cached and separately hosted assets as well as the new build.
+5. Preserve progress identifiers, existing questions and solutions. Run curriculum and integrity checks, inspect representative desktop and mobile lessons, and document any remaining coverage gaps.
+
+**Current status:** The resource library hides documents identified as original teaching PDFs, and the video library offers the AI and solution tracks. This is a navigation change, not complete removal from publication: source documents can still be referenced elsewhere and may remain accessible by direct URL. The wider replacement, 3D video system and regenerated resources remain to be implemented and verified.
+
+## Reusable production prompt
+
+> Create a self-contained lesson for **[course, subject, subtopic]**. Inspect the relevant private course materials and existing explanations; record the scope and privately verify each definition, formula, unit and worked result. Teach the subject directly without displaying or mentioning the source documents. Use intuitive one-on-one narration, then a complete worked example with no skipped arithmetic. Design a meaningful 3D or interactive model where it clarifies the concept; connect all geometry, labels and readouts to the same checked model. Add a prediction, controllable parameters, reset/replay and feedback for common misconceptions. Develop the visual continuously while preserving readability and a reduced-motion option. Plan a separate deterministic narrated video and an interactive browser experience, then verify each independently. Include practice, separate past-midterm questions when available, and a concise exam-pitfall review. Record source provenance privately and list all missing coverage. For a future PDF, use a polished accessible layout with legible mathematics, diagram captions and a worked example; generate it only when explicitly requested. Check the relevant desktop and mobile views, mathematical results, keyboard controls, narration timing, source visibility and direct asset URLs. Preserve the current material until the replacement is verified.
