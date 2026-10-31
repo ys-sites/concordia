@@ -21,6 +21,7 @@ import { MIAE221_MASTER_FORMULAS, MasterFormulaItem, METALLIC_CRYSTAL_STRUCTURES
 import { MIDTERM_2017_THEORY_QUESTIONS, TheoryQuestionItem } from './midterm2017TheoryData';
 import { getTheoryVideo } from './theoryVideoLookup';
 import { MotionLessonPlayer } from '../../components/MotionLessonPlayer';
+import { solutionVideoStart } from '../quiz/solutionVideoStart';
 import { MathBlock, MathText } from '../../utils/mathRenderer';
 import './formulaHub.css';
 
@@ -499,7 +500,7 @@ export const MIAE221FormulaHub: React.FC = () => {
                       </div>
                       {video.kind === 'motion' && video.motionLesson && (
                         <div style={{ padding: '8px' }}>
-                          <MotionLessonPlayer lesson={video.motionLesson} bare autoPlay />
+                          <MotionLessonPlayer lesson={video.motionLesson} bare autoPlay startAt={video.badge === 'Past Exam Solve Video' || video.badge === 'AI Midterm Video Explainer' ? solutionVideoStart(video.motionLesson) : undefined} />
                         </div>
                       )}
 

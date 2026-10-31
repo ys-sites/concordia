@@ -3,6 +3,7 @@ import { CheckCircle2, Clapperboard, ListVideo, Sparkles } from 'lucide-react';
 import type { Curriculum, VideoCard } from '../model';
 import { resolveVideo, MotionLesson } from '../videoSources';
 import { MotionLessonPlayer } from '../../components/MotionLessonPlayer';
+import { solutionVideoStart } from '../quiz/solutionVideoStart';
 import { VideoThumb } from './VideoThumb';
 import { fmtClock } from '../data';
 import { href } from '../router';
@@ -86,7 +87,7 @@ export const VideoLibrary: React.FC<{ cur: Curriculum }> = ({ cur }) => {
                 key={current.id}
                 lesson={lesson}
                 bare
-                startAt={positions[current.id]?.t}
+                startAt={current.kind === 'solution' ? solutionVideoStart(lesson, positions[current.id]?.t) : positions[current.id]?.t}
                 onProgress={(t, d) => {
                   saveVideoPosition(current.id, t, d);
                   if (d && t / d >= 0.9 && current.kind !== 'solution') markStep(cur.id, current.stepId);

@@ -10,6 +10,12 @@ Make the main diagram or 3D apparatus the focal point. Use spacious composition,
 
 Preserve the MIAE 221 series' patient explanation and zero-skipped reasoning while improving its visual storytelling. Every moment should have purposeful visual activity where practical—drawing, an object responding, a diagram developing or a gentle camera move—while important equations and calculations remain readable. Dark chalkboard instructions in historical style files apply to their existing series; this light illustrated direction takes priority for **new** work unless a later request says otherwise. Existing videos do not change until replacements are actually produced and reviewed.
 
+## Quiz and exam answer videos: solution first
+
+Start the first visual and spoken sentence with the relevant concept or first solution step. Do not open with a title sequence, reread the question, or devote a chapter to restating it. Show only the givens needed for the current step, then work through the reasoning and arithmetic patiently, with units, a check of the answer, and any important misconception. Keep the question accessible in the surrounding interface. This rule applies to answer explanations across courses; general concept lessons may still open with the big idea.
+
+Existing answer videos with a clearly marked “Solve It” chapter can start at that marker in the player; students can seek backward to the original introduction. This is a playback change, not a new render. Videos without a reliable marker keep their original start until reviewed.
+
 ## Research and tool routing
 
 Before designing a new production, review the existing REA findings in [THE_NEXT_STEP.md](./THE_NEXT_STEP.md), the local `001 Main` resource library and the relevant references below. Treat REA findings as evidence and inspiration: distinguish inspected behavior from design proposals and verify assumptions against the actual tool version. Select a small compatible set of tools for each lesson; do not rewrite the working renderer, install every tool, or promise integrations that have not been tested.

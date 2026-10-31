@@ -79,7 +79,11 @@ export const MotionLessonPlayer: React.FC<MotionLessonPlayerProps> = ({
     if (!autoPlay) return;
     hasPlayedRef.current = false;
     const v = videoRef.current;
-    if (v) v.play().catch(() => {});
+    // Wait for metadata before starting a seeked video, so its intro does not flash or play first.
+    if (v && (!startAt || startAt <= 3 || v.readyState >= 1)) {
+      if (startAt && startAt > 3 && v.readyState >= 1) v.currentTime = startAt;
+      v.play().catch(() => {});
+    }
   }, [autoPlay, lesson.video]);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
   // Fullscreen is split in two on purpose. `isNativeFullscreen` tracks the Fullscreen

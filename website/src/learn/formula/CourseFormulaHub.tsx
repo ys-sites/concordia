@@ -17,7 +17,9 @@ import type { Curriculum, LearnQuestion } from '../model';
 import { COURSE_BY_ID } from '../courses';
 import { useGate } from '../player/StepViews';
 import { useCourseQuestions } from '../questions';
-import { resolveVideo, VIDEO_SOURCES, type MotionLesson } from '../videoSources';
+import { resolveVideo, staticVideo, VIDEO_SOURCES, type MotionLesson } from '../videoSources';
+import { parseSolveVideoId } from '../solveVideoId';
+import { solutionVideoStart } from '../quiz/solutionVideoStart';
 import { MotionLessonPlayer } from '../../components/MotionLessonPlayer';
 import { CodeBlock } from '../components/CodeBlock';
 import { MathBlock, MathText } from '../../utils/mathRenderer';
@@ -56,7 +58,7 @@ const InlineMotionVideo: React.FC<{ videoId: string; badge: string }> = ({ video
         </span>
       </div>
       <div style={{ padding: '8px' }}>
-        <MotionLessonPlayer lesson={lesson} bare autoPlay />
+        <MotionLessonPlayer lesson={lesson} bare autoPlay startAt={parseSolveVideoId(videoId) || staticVideo(videoId)?.kind === 'solution' ? solutionVideoStart(lesson) : undefined} />
       </div>
     </div>
   );

@@ -54,6 +54,7 @@ Every subject module you produce must implement or verify all 8 parts of the AI 
 
 8. Synchronized AI-Generated Video (`MotionLesson` & MP4 Pipeline):
    - Produce a scene-by-scene `MotionLesson` specification (`chapters`, `scenes`, narration script, on-screen LaTeX equations, and 3D/SVG visual choreography).
+   - For quiz, practice, and exam answer explanations, begin the first visual and spoken sentence with the solution or decisive concept. Do not reread the question or show a question-only intro; show the necessary givens as the complete step-by-step solution unfolds. General topic lessons may still begin with the big idea.
    - Keep visuals alive throughout (camera orbit/dolly, highlighting active components, drawing vectors/planes, live parameter readouts) while keeping equations crisp and readable.
    - Remember that an interactive web lesson and a rendered MP4 are separate delivery formats: interactive controls belong in the web lesson (`Visual3DLearner`, `FormulaTool`, `QuizStep`), while the MP4 delivers a smooth, self-contained visual & narrated walkthrough.
 

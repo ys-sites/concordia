@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Clapperboard } from 'lucide-react';
 import type { MotionLesson } from '../../data/engr213Lessons';
 import { MotionLessonPlayer } from '../MotionLessonPlayer';
+import { solutionVideoStart } from '../../learn/quiz/solutionVideoStart';
 import './gateSolveVideo.css';
 
 // Narrated, slow, step-by-step solve video for one gate question. `itemKey` is the drill key: the exam
@@ -23,6 +24,7 @@ export const GateSolveVideo: React.FC<{ videos?: Record<string, MotionLesson>; i
         <MotionLessonPlayer
           key={itemKey}
           lesson={lesson}
+          startAt={solutionVideoStart(lesson)}
           badge="Video Solution · Step by Step"
           disclosure="for this exact question: how to recognise the type, the plan, every step, the check and the traps (option letters follow the original paper; your quiz may shuffle them)"
         />

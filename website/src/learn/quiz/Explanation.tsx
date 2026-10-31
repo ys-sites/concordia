@@ -18,6 +18,7 @@ import type { MotionLesson } from '../videoSources';
 import { resolveVideo } from '../videoSources';
 import { MathBlock, MathText } from '../../utils/mathRenderer';
 import { MotionLessonPlayer } from '../../components/MotionLessonPlayer';
+import { solutionVideoStart } from './solutionVideoStart';
 import { ReadAloudButton } from '../../components/ReadAloudButton';
 import { VideoThumb } from '../components/VideoThumb';
 import { CodeBlock } from '../components/CodeBlock';
@@ -89,7 +90,7 @@ export const SolutionVideo: React.FC<{ videoId: string }> = ({ videoId }) => {
   const mmss = `${Math.floor(lesson.duration / 60)}:${String(Math.round(lesson.duration % 60)).padStart(2, '0')}`;
   return open ? (
     <div className="lx-solvid-open">
-      <MotionLessonPlayer lesson={lesson} bare alwaysShowFullscreen autoPlay startAt={pos?.t} onProgress={(t, d) => saveVideoPosition(videoId, t, d)} />
+      <MotionLessonPlayer lesson={lesson} bare alwaysShowFullscreen autoPlay startAt={solutionVideoStart(lesson, pos?.t)} onProgress={(t, d) => saveVideoPosition(videoId, t, d)} />
       <button type="button" className="lx-btn lx-btn--ghost lx-btn--sm" onClick={() => setOpen(false)}>
         Hide the video
       </button>
