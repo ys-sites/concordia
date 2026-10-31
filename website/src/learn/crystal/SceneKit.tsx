@@ -113,6 +113,14 @@ export const CameraRig: React.FC<{
     lastPreset.current = preset;
     target.current = { pos: new THREE.Vector3(...PRESET_POS[preset]), t: 0 };
   }, [preset]);
+  useEffect(() => {
+    const orbit = controls.current;
+    if (!orbit) return;
+    // A manual orbit or zoom takes priority over a camera-preset transition.
+    const stopTransition = () => { target.current = null; };
+    orbit.addEventListener('start', stopTransition);
+    return () => orbit.removeEventListener('start', stopTransition);
+  }, [controls]);
   useFrame((_, dt) => {
     const c = controls.current;
     if (c) c.autoRotate = autoOrbit;
