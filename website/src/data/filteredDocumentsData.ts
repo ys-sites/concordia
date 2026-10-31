@@ -1,6 +1,7 @@
 // Unified Course Assessment Vault & Midterm Preparation Data
 // Generated for Concordia Semester 1 Engineering Portal
 import { CourseId, CourseDocument } from '../types';
+import { isHiddenFromSite } from './localOnly';
 
 export type AssessmentCategory = 'Midterm Exam' | 'Final Exam' | 'Quiz / Test' | 'Assignment' | 'Lab / Project';
 
@@ -3732,6 +3733,7 @@ const ownDocsOnly = (docs: FilteredDocItem[], courseId: CourseId) =>
   docs.filter(
     (d) =>
       d.courseId === courseId &&
+      !isHiddenFromSite(d.relativePath) &&
       !isSubmissionInstructionDoc(d.relativePath) &&
       !isTermPaperDoc(d.relativePath)
   );
@@ -3743,7 +3745,7 @@ export const FILTERED_COURSES_DATA = Object.fromEntries(
       ...cfg,
       assessmentDocs: ownDocsOnly(cfg.assessmentDocs, id),
       midtermPrepDocs: ownDocsOnly(cfg.midtermPrepDocs, id),
-      termPaperDocs: cfg.termPaperDocs ? cfg.termPaperDocs.filter((d) => d.courseId === id) : undefined
+      termPaperDocs: cfg.termPaperDocs ? cfg.termPaperDocs.filter((d) => d.courseId === id && !isHiddenFromSite(d.relativePath)) : undefined
     }
   ])
 ) as Record<CourseId, FilteredCourseConfig>;

@@ -5,7 +5,7 @@ import type { DocRef, Step } from '../model';
 import type { Formula, GateContent } from '../../data/gates/types';
 import { loadGate } from '../../data/gates';
 import { examLabel } from '../examLabel';
-import { resolveVideo, MotionLesson } from '../videoSources';
+import { resolveVideo, VIDEO_SOURCES, MotionLesson } from '../videoSources';
 import { MotionLessonPlayer } from '../../components/MotionLessonPlayer';
 import { ReadAloudButton } from '../../components/ReadAloudButton';
 import { MathBlock, MathText } from '../../utils/mathRenderer';
@@ -15,6 +15,7 @@ import { YouTubePlayer } from '../components/YouTubePlayer';
 import { openDoc } from '../docBus';
 import { saveVideoPosition, useProgress } from '../progress/store';
 import { trackStudyOnce } from '../analytics';
+import { MIAE221_UNIT_CELLS_PILOT } from '../pilot/miae221UnitCellsPilot';
 
 const PdfCanvasViewer = lazy(() => import('../../components/PdfCanvasViewer'));
 const FormulaTool = lazy(() => import('../tools/FormulaTool'));
@@ -109,13 +110,86 @@ export const LessonReferences: React.FC<{ course: CourseId; step: Step }> = ({ c
   const docs = step.docs ?? [];
   const ids = step.formulaIds ?? [];
   if (!docs.length && !ids.length) return null;
+  const isUnitCellsPilot = course === 'MIAE221' && step.id.startsWith('unit-cells.');
   return (
     <section className="lx-refs" aria-labelledby="lx-refs-title">
+      {isUnitCellsPilot && (
+        <div className="lx-notes" style={{ marginBottom: 20 }}>
+          <section className="lx-notes-card">
+            <header className="lx-notes-head">
+              <div>
+                <span className="lx-chip lx-chip--accent" style={{ marginBottom: 6 }}>AI Tutor Deep-Dive</span>
+                <h2 className="lx-h2">{MIAE221_UNIT_CELLS_PILOT.title}</h2>
+                <p className="lx-meta">{MIAE221_UNIT_CELLS_PILOT.subtitle}</p>
+              </div>
+              <ReadAloudButton text={MIAE221_UNIT_CELLS_PILOT.tutorWelcome} stopKey="pilot-unit-cells-welcome" />
+            </header>
+            <p className="lx-notes-idea">
+              <Lightbulb size={18} aria-hidden />
+              <MathText text={MIAE221_UNIT_CELLS_PILOT.tutorWelcome} />
+            </p>
+            {MIAE221_UNIT_CELLS_PILOT.sections.map((sec, idx) => (
+              <div key={idx} className="lx-ex-block" style={{ marginTop: 14 }}>
+                <h3 className="lx-ex-title">
+                  <Target size={16} aria-hidden /> {sec.heading}
+                </h3>
+                <p style={{ fontWeight: 600, marginBottom: 8 }}>
+                  <MathText text={sec.intuition} />
+                </p>
+                <ul className="lx-notes-list">
+                  {sec.paragraphs.map((par, pi) => (
+                    <li key={pi}>
+                      <MathText text={par} />
+                    </li>
+                  ))}
+                </ul>
+                {sec.keyEquationTex && (
+                  <div className="lx-notes-formula" style={{ marginTop: 10 }}>
+                    <MathBlock tex={sec.keyEquationTex} />
+                    {sec.keyEquationNote && <p className="lx-meta">{sec.keyEquationNote}</p>}
+                  </div>
+                )}
+              </div>
+            ))}
+            <div className="lx-ex-block" style={{ marginTop: 16 }}>
+              <h3 className="lx-ex-title">
+                <ListOrdered size={16} aria-hidden /> Master Comparison Table: SC, BCC, FCC &amp; HCP
+              </h3>
+              <div style={{ overflowX: 'auto' }}>
+                <table className="lx-vars">
+                  <thead>
+                    <tr>
+                      <th>Structure</th>
+                      <th>Atoms/cell (n)</th>
+                      <th>Coord. (CN)</th>
+                      <th>Lattice a(R)</th>
+                      <th>Touching Line</th>
+                      <th>Packing Factor (APF)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {MIAE221_UNIT_CELLS_PILOT.structureComparisonTable.map((row) => (
+                      <tr key={row.structure}>
+                        <th>{row.structure}</th>
+                        <td>{row.n}</td>
+                        <td>{row.cn}</td>
+                        <td>{row.aInTermsOfR}</td>
+                        <td>{row.touchDirection}</td>
+                        <td>{row.apf}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
       <header className="lx-refs-head">
         <h2 id="lx-refs-title" className="lx-h3">
           <BookOpen size={18} aria-hidden /> Read alongside this video
         </h2>
-        <p className="lx-meta">The teacher’s slides at the right page and the guides for this lesson, to go deeper. The video keeps its place.</p>
+        <p className="lx-meta">Expanded study guides, rapid review sheets, and key notes for this lesson. The video keeps its place.</p>
       </header>
       {docs.length > 0 && (
         <ul className="lx-refs-grid">
@@ -161,7 +235,7 @@ const DocButtons: React.FC<{ docs: DocRef[] }> = ({ docs }) =>
   docs.length ? (
     <div className="lx-notes-docs">
       <h3 className="lx-h3">
-        <BookOpen size={17} aria-hidden /> In the teacher’s slides
+        <BookOpen size={17} aria-hidden /> Expanded Study Guides & Rapid Review
       </h3>
       <ul>
         {docs.map((d, i) => (
@@ -273,14 +347,129 @@ const FormulaNotes: React.FC<{ f: Formula }> = ({ f }) => {
 export const NotesStep: React.FC<{ course: CourseId; step: Step }> = ({ course, step }) => {
   const g = useGate(course);
   if (!g) return <Loading label="Loading the notes…" />;
+  if (step.notesKey === 'pitfalls') {
+    const pFs = (step.formulaIds ?? []).map((id) => g.formulas.find((f) => f.id === id)).filter((f): f is Formula => !!f);
+    const isPilot = course === 'MIAE221' && step.id.startsWith('unit-cells.');
+    return (
+      <div className="lx-notes">
+        <section className="lx-notes-card">
+          <header className="lx-notes-head">
+            <h2 className="lx-h2">Exam Pitfalls &amp; Mistakes to Avoid</h2>
+          </header>
+          {isPilot && (
+            <div className="lx-ex-block" style={{ marginBottom: 14 }}>
+              {MIAE221_UNIT_CELLS_PILOT.pitfalls.map((pf, idx) => (
+                <div key={idx} className="lx-ex-trap lx-notes-traps" style={{ marginBottom: 10 }}>
+                  <AlertTriangle size={16} aria-hidden />
+                  <div>
+                    <strong>Trap #{idx + 1}: {pf.mistake}</strong>
+                    <p style={{ margin: '4px 0' }}><em>Why it happens:</em> {pf.whyItHappens}</p>
+                    <p style={{ margin: 0 }}><strong>How to avoid:</strong> {pf.howToAvoid}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {pFs.map((f) =>
+            f.traps.length > 0 ? (
+              <div key={f.id} className="lx-ex-trap lx-notes-traps" style={{ marginBottom: 12 }}>
+                <AlertTriangle size={16} aria-hidden />
+                <div>
+                  <strong>{f.name} ? High-Frequency Exam Traps</strong>
+                  <ul>
+                    {f.traps.map((t, i) => (
+                      <li key={i}>
+                        <MathText text={t} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : null
+          )}
+        </section>
+        <section className="lx-notes-card">
+          <header className="lx-notes-head">
+            <h2 className="lx-h2">Concise Revision Summary</h2>
+          </header>
+          <div style={{ display: 'grid', gap: 12 }}>
+            {pFs.map((f) => (
+              <div key={f.id} className="lx-ex-block">
+                <h3 className="lx-ex-title">
+                  <CheckCircle2 size={16} aria-hidden /> {f.name}
+                </h3>
+                {f.tex && <MathBlock tex={f.tex} />}
+                <p className="lx-meta">
+                  <MathText text={f.meaning} />
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    );
+  }
   if (step.notesKey) return <InsightNotes g={g} notesKey={step.notesKey} />;
   const fs = (step.formulaIds ?? []).map((id) => g.formulas.find((f) => f.id === id)).filter((f): f is Formula => !!f);
   const topic = g.topics.find((t) => fs[0]?.topic === t.id);
   const isExplanation = step.id.endsWith('.explanation') || step.title.toLowerCase().includes('explanation');
 
   if (isExplanation) {
+    const lessonId = step.id.split('.')[0];
+    const LESSON_VIDEO_MAP: Record<string, string> = {
+      // ENGR 213
+      'classify': 'tutor:separable',
+      'solutions-ivps': 'tutor:separable',
+      'direction-fields': 'tutor:separable',
+      'calculus-toolkit': 'tutor:separable',
+      'which-method': 'tutor:exact',
+      'modelling': 'tutor:linear_if',
+      'growth-decay': 'tutor:separable',
+      'cooling': 'tutor:linear_if',
+      'mixtures-circuits': 'tutor:linear_if',
+      'logistic': 'tutor:bernoulli',
+      'complex-arithmetic': 'tutor:second_order',
+      'roots-de-moivre': 'tutor:second_order',
+      'higher-order-theory': 'tutor:second_order',
+      'undetermined-coefficients': 'tutor:second_order',
+      'laplace-preview': 'tutor:second_order',
+      // INDU 211
+      'engineering-profession': 'visual211:bom',
+      'industrial-systems': 'visual211:bom',
+      'layout': 'visual211:transportation',
+      'material-handling': 'visual211:tsp-nearest',
+      // MIAE 215
+      'build-process': 'mid215:TX_MIAE215_28',
+      'input-output': 'mid215:TX_MIAE215_28',
+      'data-types': 'mid215:TX_MIAE215_30',
+      'casting': 'mid215:TX_MIAE215_30',
+      'integer-division': 'pm215:pm26_q2a',
+      'operators': 'mid215:TX_MIAE215_01',
+      'math-library': 'lab215:c5_menu_series',
+      'if-else': 'pm215:pm26_q2a',
+      'logical-operators': 'mid215:TX_MIAE215_23',
+      'for-loops': 'lab215:c5_menu_series',
+      'while-loops': 'pm215:pm26_q2b',
+      'break-continue': 'mid215:TX_MIAE215_04',
+      'nested-loops': 'mid215:TX_MIAE215_11',
+      'arrays-1d': 'lab215:c2_stats_shift',
+      'arrays-2d': 'mid215:TX_MIAE215_12',
+      'c-strings': 'lab215:c4_equality',
+      'write-program': 'lab215:c1_midterm2022',
+      'flowcharts': 'lab215:c3_histogram',
+    };
+    const fallbackVidId = LESSON_VIDEO_MAP[lessonId];
+    const fallbackVid = fallbackVidId
+      ? VIDEO_SOURCES.find((v) => v.id === fallbackVidId)
+      : VIDEO_SOURCES.find((v) => v.courseId === course);
+
     return (
       <div className="lx-notes">
+        {fallbackVid && (
+          <div style={{ marginBottom: 18, borderRadius: 12, overflow: 'hidden', border: '1px solid var(--lx-line)' }}>
+            <MotionLessonPlayer key={fallbackVid.id} lesson={fallbackVid.lesson} bare />
+          </div>
+        )}
         <section className="lx-notes-card">
           <header className="lx-notes-head">
             <h2 className="lx-h2">{topic?.name ?? step.title}</h2>
@@ -319,7 +508,7 @@ export const NotesStep: React.FC<{ course: CourseId; step: Step }> = ({ course, 
       {fs.map((f) => (
         <FormulaNotes key={f.id} f={f} />
       ))}
-      {!fs.length && topic && <p className="lx-lead">{topic.name}: open the teacher’s slides below.</p>}
+      {!fs.length && topic && <p className="lx-lead">{topic.name}: review the expanded study guides below.</p>}
       <DocButtons docs={step.docs ?? []} />
     </div>
   );
@@ -590,8 +779,47 @@ export const WorkedStep: React.FC<{ course: CourseId; step: Step }> = ({ course,
   const g = useGate(course);
   if (!g) return <Loading />;
   const fs = (step.formulaIds ?? []).map((id) => g.formulas.find((f) => f.id === id)).filter((f): f is Formula => !!f?.learn?.example);
+  const isPilot = course === 'MIAE221' && step.id.startsWith('unit-cells.');
   return (
     <div className="lx-notes">
+      {isPilot &&
+        MIAE221_UNIT_CELLS_PILOT.workedExamples.map((ex) => (
+          <section key={ex.id} className="lx-notes-card">
+            <header className="lx-notes-head">
+              <h2 className="lx-h2">{ex.title}</h2>
+            </header>
+            <dl className="lx-worked-given">
+              <div>
+                <dt>Given</dt>
+                <dd>
+                  <MathText text={ex.given} />
+                </dd>
+              </div>
+              <div>
+                <dt>Find</dt>
+                <dd>
+                  <MathText text={ex.find} />
+                </dd>
+              </div>
+            </dl>
+            <ol className="lx-ex-steps">
+              {ex.steps.map((s) => (
+                <li key={s.stepNumber}>
+                  <strong>Step {s.stepNumber}: {s.title}</strong>
+                  <p style={{ margin: '4px 0' }}>
+                    <MathText text={s.explanation} />
+                  </p>
+                  <MathBlock tex={s.tex} className="lx-ex-math" />
+                </li>
+              ))}
+            </ol>
+            <div className="lx-ex-answer">
+              <span className="lx-meta">Answer &amp; Verification</span>
+              <p><strong>{ex.finalAnswer}</strong></p>
+              <p className="lx-meta">{ex.verificationCheck}</p>
+            </div>
+          </section>
+        ))}
       {fs.map((f) => (
         <Worked key={f.id} f={f} />
       ))}
@@ -712,6 +940,15 @@ export const ExtraStep: React.FC<{ step: Step }> = ({ step }) => {
 export const ToolStep: React.FC<{ course: CourseId; step: Step }> = ({ course, step }) => {
   const g = useGate(course);
   const t = step.toolId ?? '';
+  if (t.startsWith('3d:')) {
+    return (
+      <Suspense fallback={<Loading label="Loading 3D Visual Learner..." />}>
+        <div className="lx-tool-embed">
+          <Visual3DLearner toolId={t} />
+        </div>
+      </Suspense>
+    );
+  }
   if (t.startsWith('crystal-lab:')) {
     return (
       <Suspense fallback={<Loading label="Loading the Crystal Lab…" />}>

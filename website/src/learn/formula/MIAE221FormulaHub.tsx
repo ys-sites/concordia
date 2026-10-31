@@ -502,16 +502,7 @@ export const MIAE221FormulaHub: React.FC = () => {
                           <MotionLessonPlayer lesson={video.motionLesson} bare autoPlay />
                         </div>
                       )}
-                      {video.kind === 'youtube' && video.youtubeId && (
-                        <div className="lx-theory-iframe-wrap">
-                          <iframe
-                            src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
-                            title={video.title}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          />
-                        </div>
-                      )}
+
                     </div>
                   )}
 

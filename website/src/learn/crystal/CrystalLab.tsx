@@ -313,11 +313,6 @@ export const CrystalLab: React.FC = () => {
             </span>
             <h3 className="lx-h3">{step.title}</h3>
             <p>{step.body}</p>
-            {step.formula && (
-              <p className="lx-cl-formula">
-                <MathText text={`$${step.formula}$`} />
-              </p>
-            )}
             {step.check && (
               <div className="lx-cl-check-q">
                 <p>

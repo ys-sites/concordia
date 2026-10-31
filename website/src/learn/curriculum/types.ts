@@ -29,7 +29,7 @@ export interface StepSpec {
   refVideoId?: string;
   docs?: RegExp[];
   notesKey?: string;
-  questions?: { teacher?: RegExp; teacherIds?: string[]; gordonPaper?: string; ids?: string[]; examId?: string };
+  questions?: { teacher?: RegExp; teacherIds?: string[]; gordonPaper?: string; ids?: string[]; examId?: string; gateTopics?: string[] };
   size?: number;
   timeLimit?: number;
   ordered?: boolean;

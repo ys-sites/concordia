@@ -337,11 +337,6 @@ export const DirectionLab: React.FC = () => {
             </span>
             <h3 className="lx-h3">{step.title}</h3>
             <p>{step.body}</p>
-            {step.formula && (
-              <p className="lx-cl-formula">
-                <MathText text={`$${step.formula}$`} />
-              </p>
-            )}
             {step.phase === 'calculate' && (
               <div>
                 <ol style={{ margin: '8px 0', paddingLeft: 20 }}>

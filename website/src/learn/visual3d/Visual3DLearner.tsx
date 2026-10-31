@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Box, CheckCircle2, Expand, RotateCcw, Shrink } from 'lucide-react';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
-import { MathBlock, MathText } from '../../utils/mathRenderer';
+import { MathText } from '../../utils/mathRenderer';
 import { CameraRig, LabControls, PRESET_POS, StudioEnvironment, type CameraPreset } from '../crystal/SceneKit';
 import CrystalLab from '../crystal/CrystalLab';
 import DirectionLab from '../crystal/DirectionLab';
@@ -181,11 +181,7 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
 
       <div className="lx-cl-guide">
         <div className="lx-cl-step">
-          <h3 className="lx-h3">Core Governing Equation &amp; Visual Check</h3>
-          <div className="lx-cl-formula" style={{ marginBottom: 12 }}>
-            <MathBlock tex={spec.formula} />
-          </div>
-          <div className="lx-cl-check-q" style={{ marginTop: 8, paddingTop: 10 }}>
+          <div className="lx-cl-check-q" style={{ marginTop: 0, paddingTop: 0, borderTop: 'none' }}>
             <p>
               <strong>
                 <CheckCircle2 size={15} style={{ verticalAlign: 'text-bottom', marginRight: 6 }} />

@@ -1,7 +1,7 @@
 // Files that stay on the local machine only: solutions to graded assignments & labs,
-// and the INDU 211 term paper. They are hidden from the portal and never copied into
-// dist/courses. Keep in sync with the "Local-only" block in .gitignore / .vercelignore.
-// Paths are relative to the Semester 1 root, using forward slashes.
+// original teacher notes/slides, textbook documents, and outside YouTube notes.
+// They are retained privately on disk as source material, hidden from the portal,
+// and never copied into dist/courses or exposed via direct URLs.
 export const LOCAL_ONLY_PATTERNS: RegExp[] = [
   // INDU 211 — term paper & final project (entire folder)
   /^Indu 211\/05 - Assignments & Solutions\/Term Paper & Final Project(\/|$)/,
@@ -33,9 +33,7 @@ export const isLocalOnly = (relativePath: string): boolean => {
   return LOCAL_ONLY_PATTERNS.some((re) => re.test(p));
 };
 
-// Not secret, but not published either. The site carries theory notes (teacher lecture notes,
-// textbook chapters, expanded guides, review sheets) and practice problems only — nothing tied to
-// graded work or exams. Kept in git, never shown or deployed.
+// Kept privately on disk as source material, never published or exposed via direct URLs.
 export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   // Loose unorganized PDFs at root of course folders
   /^[A-Za-z0-9 _]+\/[^/]+\.pdf$/i,
@@ -43,8 +41,32 @@ export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   // All Studocu downloads and folders (kept local only)
   /studocu/i,
 
-  // Another teacher notes (reference only, never published to website)
+  // Another teacher notes & original teacher lecture note/slide folders
   /another teacher notes/i,
+  /(^|\/)01 - Teacher Lecture Notes[^/]*(\/|$)/i,
+  /(^|\/)01 - In-Class Lecture Notes[^/]*(\/|$)/i,
+  /(^|\/)Teacher's Notes(\/|$)/i,
+
+  // Textbook folders, textbook excerpts, and Callister textbook notes
+  /(^|\/)00 - Course Syllabus & Textbook(\/|$)/i,
+  /(^|\/)00 - Textbook Chapters(\/|$)/i,
+  /(^|\/)02 - Textbook Expanded Notes(\/|$)/i,
+  /(^|\/)02 - Callister Textbook Expanded Notes(\/|$)/i,
+  /(^|\/)05 - Textbook Solutions[^/]*(\/|$)/i,
+  /textbook excerpt/i,
+  /callister/i,
+
+  // Outside YouTube channel notes (Professor Leonard, Professor Dave, YouTube Tutorial Solutions)
+  /(^|\/)Professor Leonard(\/|$)/i,
+  /(^|\/)Professor Dave(\/|$)/i,
+  /(^|\/)YouTube Tutorial Solutions(\/|$)/i,
+
+  // In-class / teacher-branded handouts and official tutorial manuals
+  /Paradis notes/i,
+  /Engr 213 Tutor\.pdf$/i,
+  /Official Tutorial Exercises/i,
+  /Teacher Commentary/i,
+  /In-Person Lecture Problems/i,
 
   // Quiz, midterm, exam, and test prep folders (kept local only)
   /(^|\/)06 - Quiz & Midterm Exam Prep(\/|$)/i,
@@ -69,8 +91,7 @@ export const SITE_EXCLUDED_PATTERNS: RegExp[] = [
   /(^|\/)[^/]*Advanced Engineering Mathematics\s*\(7th Edition\)[^/]*\.pdf$/i
 ];
 
-// Whole exam papers, solved exam banks and graded work. A whole exam is never shown as a PDF: its questions
-// reach students as practice in the quiz system (src/learn), one question at a time with its solution.
+// Whole exam papers, solved exam banks and graded work.
 export const EXAM_PAPER_PATTERNS: RegExp[] = [
   /^Engr 213\/(Midterm|Final)(\/|$)/,
   /(^|\/)06 - Quiz & Midterm Exam Prep(\/|$)/i,
@@ -80,9 +101,8 @@ export const EXAM_PAPER_PATTERNS: RegExp[] = [
   /(^|\/)[^/]*sample (final|midterm)[^/]*$/i
 ];
 
-// Study guides whose names mention a midterm but that hold no exam paper
+// Original study guides whose names mention a midterm but hold no exam paper or teacher slides
 const STUDY_GUIDE_ALLOW: RegExp[] = [
-  /^Engr 213\/02 - Comprehensive Topic Guides \(Expanded & Intuitive\)\/Paradis notes - [^/]*\.pdf$/,
   /^Indu 211\/04 - Worked Problems & Quantitative Analysis\/INDU 211 - (Midterm|Final Exam) Quantitative Problem Guide[^/]*\.pdf$/,
   /^Miae 221\/formula\/.*\.pdf$/
 ];
@@ -97,13 +117,25 @@ export const isCheatsheetOrReviewPdf = (relativePath: string): boolean => {
   return /03 - 1-Page Rapid Review Sheets\/.*(cheatsheet|memory|survival|review)/i.test(p);
 };
 
+// Original teaching PDFs, slides, and textbooks are private inputs.
+export const isOriginalTeachingPdf = (relativePath: string): boolean => {
+  const p = relativePath.replace(/\\/g, '/');
+  if (!/\.pdf$/i.test(p)) return false;
+  const parts = p.split('/');
+  const filename = parts[parts.length - 1] ?? '';
+  return (
+    parts.slice(1, -1).some((part) =>
+      /teacher lecture notes|in-class lecture notes|textbook|callister|professor leonard|professor dave|youtube tutorial/i.test(part)
+    ) || /^(textbook|advanced engineering mathematics)/i.test(filename)
+  );
+};
+
 // Everything that must not appear on (or be deployed with) the website
 export const isHiddenFromSite = (relativePath: string, isDirectory = false): boolean => {
   const p = relativePath.replace(/\\/g, '/');
-  if (isLocalOnly(p) || isExamPaper(p)) return true;
-  if (isCheatsheetOrReviewPdf(p)) return false; // always published
+  if (isLocalOnly(p) || isExamPaper(p) || (!isDirectory && isOriginalTeachingPdf(p))) return true;
+  if (isCheatsheetOrReviewPdf(p)) return false;
   if (!isDirectory && STUDY_GUIDE_ALLOW.some((re) => re.test(p))) return false;
-  return SITE_EXCLUDED_PATTERNS.some((re) => re.test(p));
+  if (SITE_EXCLUDED_PATTERNS.some((re) => re.test(p))) return true;
+  return false;
 };
-
-

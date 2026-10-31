@@ -265,6 +265,61 @@ export const ENGR213_SPEC: CourseSpec = {
     mock: { title: 'Mock midterm', size: 15, minutes: 75 },
     extra: [
       {
+        id: 'teacher-practice',
+        title: 'Midterm practice by subject',
+        subtitle: 'Past midterm and quiz questions grouped by ODE method, each with a worked solution and video explanation',
+        lessons: [
+          {
+            id: 'tp-classify-ivp',
+            title: 'Classification, solutions & IVPs',
+            summary: 'Order, linearity, solution verification and existence-uniqueness intervals.',
+            steps: [
+              { kind: 'practice', title: 'Solve the classification & IVP questions', slug: 'practice', questions: { gateTopics: ['classify', 'solution'] }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-separable-linear',
+            title: 'Separable & linear equations',
+            summary: 'Separation of variables, integrating factors ?(x), and singular solutions.',
+            steps: [
+              { kind: 'practice', title: 'Solve the separable & linear questions', slug: 'practice', questions: { gateTopics: ['sep', 'lin'] }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-exact',
+            title: 'Exact equations & integrating factors',
+            summary: 'Exactness test ?M/?y = ?N/?x and reconstructing F(x, y) = C.',
+            steps: [
+              { kind: 'practice', title: 'Solve the exact ODE questions', slug: 'practice', questions: { gateTopics: ['exact'] }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-substitutions',
+            title: 'Bernoulli & homogeneous substitutions',
+            summary: 'Transforming Bernoulli (u = y???) and homogeneous (y = ux) ODEs.',
+            steps: [
+              { kind: 'practice', title: 'Solve the substitution questions', slug: 'practice', questions: { gateTopics: ['bern', 'homog'] }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-models-complex',
+            title: 'Growth, cooling, logistic & complex numbers',
+            summary: 'First-order physical models and De Moivre powers and roots.',
+            steps: [
+              { kind: 'practice', title: 'Solve the modelling & complex questions', slug: 'practice', questions: { gateTopics: ['growth', 'cool', 'logis', 'cplx', 'roots'] }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-full-paper',
+            title: 'Complete midterm subject bundle',
+            summary: 'All past midterm and quiz questions grouped by subject, with a timer, immediate feedback, and video solutions.',
+            steps: [
+              { kind: 'exam', title: 'Complete midterm subject bundle', slug: 'exam', questions: { gateTopics: ['classify', 'solution', 'sep', 'lin', 'exact', 'bern', 'homog', 'growth', 'cool', 'logis', 'cplx', 'roots'] }, ordered: false, timeLimit: 75 }
+            ]
+          }
+        ]
+      },
+      {
         id: 'tutor-notes',
         title: 'Tutor notes & solving system',
         subtitle: 'How a tutor attacks each question type',
@@ -286,6 +341,23 @@ export const ENGR213_SPEC: CourseSpec = {
               { kind: 'reading', title: 'Read: tutorial exercises & solutions', slug: 'official', docs: [/^04 - Tutorials\/ENGR 213 - Official Tutorial/] },
               { kind: 'reading', title: 'Read: tutor notes on recent exercises', slug: 'tutor', docs: [/^04 - Tutorials\/ENGR 213 - ODE Step-by-Step/] },
               { kind: 'reading', title: 'Read: in-class lecture & tutorial compendium', slug: 'paradis', docs: [/Paradis notes/] }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'exam-kit',
+        title: 'Exam kit',
+        subtitle: 'Master summary sheets and calculus review',
+        lessons: [
+          {
+            id: 'cheat-sheet',
+            title: 'Your master summary & review sheets',
+            summary: 'Chapter 1 & 2 master summaries and the calculus toolkit sheet.',
+            steps: [
+              { kind: 'reading', title: 'Read: Chapter 1 Master Summary', slug: 'ch1', docs: [/^03 - Chapter 1 Summary\/Chapter 1 - Master Summary/] },
+              { kind: 'reading', title: 'Read: Chapter 2 Master Summary', slug: 'ch2', docs: [/^04 - Chapter 2 Summary\/Chapter 2 - Master Summary/] },
+              { kind: 'reading', title: 'Read: Calculus for ODEs Master Sheet', slug: 'calc', docs: [/^00 - Calculus Review for ODEs\/Calculus for Differential Equations - Master Sheet/] }
             ]
           }
         ]

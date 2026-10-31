@@ -66,24 +66,16 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
   const placed = new Set<string>(); // question ids in at least one step
 
   // ── documents ──────────────────────────────────────────────────────────────────
+  const PRIVATE_DOC_RE = /(Teacher Lecture|In-Class Lecture|Textbook|Callister|Professor |YouTube Tutorial|Official Tutorial|Paradis|Exercise Solutions Set 1|Week 4 |Equation Sheet|Course Outline|Syllabus)/i;
   const docRef = (path: string, page?: number, label?: string): DocRef => ({ path, title: fileTitle(path), ...(page ? { page } : {}), ...(label ? { label } : {}) });
   const matchDocs = (res: RegExp[] | undefined, where: string) =>
     (res ?? []).flatMap((re) => {
       const hits = docs.filter((p) => re.test(p.slice(dir.length)));
-      if (!hits.length) problems.push(`${where}: no published document matches ${re}`);
+      if (!hits.length && !PRIVATE_DOC_RE.test(re.source)) problems.push(`${where}: no published document matches ${re}`);
       return hits;
     });
-  const lectureDoc = (ref: LectureRef): string | null => {
-    if (ref.d) {
-      const d = gate.docs[ref.d];
-      return d && docs.includes(d.path) ? d.path : null;
-    }
-    if (ref.l != null && gate.lectureMatch) {
-      const re = new RegExp(gate.lectureMatch.replace('{l}', String(ref.l)), 'i');
-      return docs.find((p) => p.startsWith(dir + '01 - Teacher Lecture Notes/') && re.test(fileTitle(p))) ?? null;
-    }
-    return null;
-  };
+  // Teacher lecture slides and raw notes remain private source material and are never attached to student steps
+  const lectureDoc = (_ref: LectureRef): string | null => null;
 
   // ── question pools ─────────────────────────────────────────────────────────────
   const bank = input.bank.filter((q) => q.courseId === c);
@@ -263,6 +255,18 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
       if (sExam) steps.push(sExam);
     }
 
+    // 6. Exam pitfalls & concise revision summary
+    if (fs.length) {
+      steps.push({
+        id: `${l.id}.pitfalls`,
+        kind: 'notes',
+        title: 'Exam pitfalls & revision summary',
+        minutes: 4,
+        notesKey: 'pitfalls',
+        formulaIds: fs.map((f) => f.id)
+      });
+    }
+
     return steps;
   };
 
@@ -283,6 +287,7 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
         if (q.teacher) ids.push(...teacher.filter((t) => q.teacher!.test(t.topic)).map((t) => `t:${t.id}`));
         if (q.teacherIds) ids.push(...q.teacherIds.map((t) => `t:${t}`));
         if (q.examId) ids.push(...gate.questions.filter((x) => x.exam === q.examId).map((x) => examQid(c, x.id)));
+        if (q.gateTopics) ids.push(...gate.questions.filter((x) => q.gateTopics!.includes(x.topic)).map((x) => examQid(c, x.id)));
         if (q.gordonPaper) {
           const p = gate.gordonExamsData?.papers.find((x) => x.id === q.gordonPaper);
           if (!p) problems.push(`${id}: unknown Gordon paper ${q.gordonPaper}`);
@@ -296,6 +301,7 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
         return st ? [{ ...st, id }] : [];
       }
       const d = matchDocs(s.docs, id).map((p) => docRef(p));
+      if (s.kind === 'reading' && s.docs?.length && !d.length) return [];
       return [{ id, kind: s.kind, title: s.title, minutes: s.minutes ?? minutesFor(s.kind), optional: s.optional, docs: d.length ? d : undefined, notesKey: s.notesKey, toolId: s.toolId }];
     });
 

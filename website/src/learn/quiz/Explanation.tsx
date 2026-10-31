@@ -182,7 +182,7 @@ const Steps: React.FC<{ q: LearnQuestion; stepwise: boolean }> = ({ q, stepwise 
 export function useCourseDocs(q: LearnQuestion) {
   const cur = useCurriculum(q.courseId);
   return useMemo(() => {
-    if (!cur) return { slides: [] as DocRef[], lesson: null as null | { id: string; title: string; stepId?: string }, more: [] as DocRef[] };
+    if (!cur) return { slides: [] as DocRef[], lesson: null as null | { id: string; title: string; stepId?: string }, more: [] as DocRef[], lessonVideoId: undefined as string | undefined };
     const all = cur.resources.flatMap((g) => g.docs);
     const slides: DocRef[] = [];
     for (const r of q.refs ?? []) {
@@ -201,7 +201,20 @@ export function useCourseDocs(q: LearnQuestion) {
           more = [...(lead?.docs ?? []), ...(l.resources ?? [])].filter((d) => !seen.has(d.path) && !!seen.add(d.path)).slice(0, 3);
           if (!slides.length) slides.push(...more.splice(0, 1));
         }
-    return { slides, lesson, more };
+    let lessonVideoId: string | undefined;
+    for (const s of cur.sections) {
+      for (const l of s.lessons) {
+        if (l.steps.some((st) => st.questionIds?.includes(q.id))) {
+          const vidStep = l.steps.find((st) => st.videoId);
+          if (vidStep?.videoId) {
+            lessonVideoId = vidStep.videoId;
+            break;
+          }
+        }
+      }
+      if (lessonVideoId) break;
+    }
+    return { slides, lesson, more, lessonVideoId };
   }, [cur, q]);
 }
 
@@ -326,6 +339,7 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
     explain: e
   }), [q, e]);
 
+  const courseDocs = useCourseDocs(q);
   const moves = useMemo(() => resolveSection2Moves(q, questionCrack), [q, questionCrack]);
   const speech = useMemo(() => moves.map((m) => [m.title, m.text, m.note].filter(Boolean).join('. ')).join('. '), [moves]);
 
@@ -483,15 +497,15 @@ export const Explanation: React.FC<{ q: LearnQuestion; chosen?: number[]; correc
       <CourseDocs q={q} yourAnswer={yourAnswer} />
     </div>
 
-    {q.videoId && (
+    {(q.videoId || courseDocs.lessonVideoId) && (
       <section className="lx-ans-video" aria-label="Video solution">
         <header>
           <span className="lx-ans-video-kicker">
-            <Clapperboard size={17} aria-hidden /> Watch the full walkthrough
+            <Clapperboard size={17} aria-hidden /> {q.videoId ? 'Watch the full walkthrough' : 'Watch the topic video explanation'}
           </span>
-          <p className="lx-meta">The narrated solution stays with the written steps, while your course files remain available beside them.</p>
+          <p className="lx-meta">The narrated video explanation stays with the written steps, while your course files remain available beside them.</p>
         </header>
-        <SolutionVideo videoId={q.videoId} />
+        <SolutionVideo videoId={(q.videoId ?? courseDocs.lessonVideoId)!} />
       </section>
     )}
     </>

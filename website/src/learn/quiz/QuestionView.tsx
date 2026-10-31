@@ -129,7 +129,7 @@ What went wrong:
               {slide.page ? ` · p. ${slide.page}` : ''}
             </button>
           )}
-          {q.source && !sourceIsSlide && !q.pastPaper && <span className="lx-chip">{q.source}</span>}
+          {q.source && !sourceIsSlide && !q.pastPaper && !/(lecture|slide|callister|medraj|gordon|paradis|textbook|ch\.?\s*\d)/i.test(q.source) && <span className="lx-chip">{q.source}</span>}
         </div>
       </header>
 

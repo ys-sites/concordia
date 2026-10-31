@@ -210,6 +210,65 @@ export const INDU211_SPEC: CourseSpec = {
       { ch: 'past-mid', title: 'Exam-style questions: midterm', summary: 'Questions modelled on past INDU 211 midterms (Chapters 1–5), each with a worked solution.' },
       { ch: 'past-final', title: 'Exam-style questions: final', summary: 'Questions modelled on past finals, covering the whole course.' }
     ],
-    mock: { title: 'Mock midterm (Chapters 1–5)', size: 20, minutes: 75 }
+    mock: { title: 'Mock midterm (Chapters 1?5)', size: 20, minutes: 75 },
+    extra: [
+      {
+        id: 'teacher-practice',
+        title: 'Midterm practice by subject',
+        subtitle: 'Past midterm questions for Chapters 1?5 grouped by subject, with video explanations and worked solutions',
+        lessons: [
+          {
+            id: 'tp-ie-foundations',
+            title: 'Engineering profession & industrial systems (Ch 1?2)',
+            summary: 'Engineering regulation, ethics, systems thinking, and production decision levels.',
+            steps: [
+              { kind: 'practice', title: 'Answer the Ch 1?2 questions', slug: 'practice', questions: { gateTopics: ['ie', 'ise'] }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-location-layout',
+            title: 'Facility location & layout (Ch 4)',
+            summary: 'Transportation method, centre of gravity, and product/process/cellular layouts.',
+            steps: [
+              { kind: 'practice', title: 'Solve the location & layout questions', slug: 'practice', questions: { gateTopics: ['loc', 'layout'] }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-routing',
+            title: 'Material handling, TSP & Clarke-Wright routing (Ch 5)',
+            summary: 'Nearest-neighbour TSP tours, factorial complexity, and Clarke-Wright vehicle routing.',
+            steps: [
+              { kind: 'practice', title: 'Solve the routing questions', slug: 'practice', questions: { gateTopics: ['tsp'] }, ordered: true }
+            ]
+          },
+          {
+            id: 'tp-full-paper',
+            title: 'Complete midterm subject bundle (Ch 1?5)',
+            summary: 'All past midterm questions from Chapters 1?5 grouped by subject, with a timer, immediate feedback, and worked solutions.',
+            steps: [
+              { kind: 'exam', title: 'Complete midterm subject bundle (Ch 1?5)', slug: 'exam', questions: { gateTopics: ['ie', 'ise', 'mfg', 'bep', 'loc', 'layout', 'tsp'] }, ordered: false, timeLimit: 75 }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'exam-kit',
+        title: 'Exam kit',
+        subtitle: 'One-page rapid review sheets and master study guide',
+        lessons: [
+          {
+            id: 'cheat-sheet',
+            title: 'Your one-page rapid review sheets',
+            summary: 'Ready-to-print one-page review sheets for Chapters 1?4 and the master study guide.',
+            steps: [
+              { kind: 'reading', title: 'Read: Master Study Guide & Exam Strategy', slug: 'master', docs: [/^00 - Course Overview & Study Guide\/INDU 211 - Master Study Guide/] },
+              { kind: 'reading', title: 'Read: Ch 1?2 Rapid Review Sheet', slug: 'ch12', docs: [/^03 - 1-Page Rapid Review Sheets\/Part 1 - /] },
+              { kind: 'reading', title: 'Read: Ch 3 Rapid Review Sheet', slug: 'ch3', docs: [/^03 - 1-Page Rapid Review Sheets\/Part 2 - /] },
+              { kind: 'reading', title: 'Read: Ch 4 Rapid Review Sheet', slug: 'ch4', docs: [/^03 - 1-Page Rapid Review Sheets\/Part 3 - /] }
+            ]
+          }
+        ]
+      }
+    ]
   }
 };

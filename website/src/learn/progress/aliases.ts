@@ -208,6 +208,10 @@ export const RETIRED_IDS: string[] = [
   'MIAE221/atomic-structure.yt-aQf6Q8t1FQE',
   'MIAE221/unit-cells.yt-PaGJwOPg2kU',
   'MIAE221/polymers.yt-jWpB7_6X81Q',
-  'yt:jWpB7_6X81Q'
+  'yt:jWpB7_6X81Q',
+  // Retired teacher/official handout reading steps (private source policy):
+  'ENGR213/tutorials.official',
+  'ENGR213/tutorials.paradis',
+  'MIAE221/cheat-sheet.equations'
 ];
 
