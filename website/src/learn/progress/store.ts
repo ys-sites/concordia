@@ -148,7 +148,7 @@ const ARRAY_FIELDS = ['attempts', 'reminders'] as const;
 const isObj = (x: unknown): x is Record<string, unknown> => !!x && typeof x === 'object' && !Array.isArray(x);
 
 // a renamed id keeps its progress: everything kept under the old id moves to the new one
-function applyAliases(s: ProgressState) {
+export function applyAliases(s: ProgressState) {
   const pairs = Object.entries(ID_ALIASES);
   if (!pairs.length) return;
   const rename = (id: string) => ID_ALIASES[id] ?? id;
@@ -161,7 +161,20 @@ function applyAliases(s: ProgressState) {
       }
   for (const pl of [s.last, ...Object.values(s.lastByCourse)]) if (pl) Object.assign(pl, { lessonId: local(pl.course, pl.lessonId), stepId: local(pl.course, pl.stepId) });
   for (const a of s.attempts) Object.assign(a, { lessonId: local(a.course, a.lessonId), stepId: local(a.course, a.stepId), results: a.results.map((r) => ({ ...r, q: rename(r.q) })) });
-  for (const q of Object.values(s.quizzes)) q.order = q.order.map(rename);
+  for (const q of Object.values(s.quizzes)) {
+    q.order = q.order.map(rename);
+    for (const rec of [q.answers, q.checked, q.optionOrder, q.confidence]) {
+      if (!rec) continue;
+      const keyed = rec as Record<string, unknown>;
+      for (const [from, to] of pairs) if (from in keyed) {
+        if (!(to in keyed)) keyed[to] = keyed[from];
+        delete keyed[from];
+      }
+    }
+    for (const field of ['flags', 'hints', 'revealed', 'selfPending'] as const)
+      if (q[field]) q[field] = q[field]!.map(rename);
+    if (q.adaptive) q.adaptive.pool = q.adaptive.pool.map(rename);
+  }
   for (const r of s.reminders) r.id = rename(r.id);
 }
 

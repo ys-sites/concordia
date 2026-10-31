@@ -5,7 +5,10 @@
 //
 // To rename: add `old: new` below (full ids as stored), run `npm run validate:curriculum -- --update-lock`.
 // Never remove an entry: a student who has not visited since still has the old id saved.
+import { EXAM_ITEM_ALIASES } from './examItemAliases';
+
 export const ID_ALIASES: Record<string, string> = {
+  ...EXAM_ITEM_ALIASES,
   // INDU 211 Visual Learning videos (2026-10-26): a lesson's key-notes step became its first video step
   'INDU211/cpm-pert.notes': 'INDU211/cpm-pert.video-visual211-cpm',
   'INDU211/forecasting.notes': 'INDU211/forecasting.video-visual211-moving-average',

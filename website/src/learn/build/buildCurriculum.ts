@@ -231,7 +231,9 @@ export function buildCurriculum(spec: CourseSpec, input: BuildInput): { curricul
 
     // 4. Practice Questions (combines understanding items, practice bank & drill questions)
     const items = fs.flatMap((f) => (f.learn?.quiz ?? []).map((it, i) => ({ f, i, it })));
-    const itemIds = items.map(({ f, i }) => itemId(c, f, i));
+    // Exam-backed quiz entries already belong to the past-midterm question pool.
+    // They do not have a standalone lesson-item question in the runtime index.
+    const itemIds = items.filter(({ f, i }) => isItem(f, i)).map(({ f, i }) => itemId(c, f, i));
     const bankQs = bankRoute.home.get(l.id) ?? [];
     const bankIds = bankQs.map((q) => `b:${q.id}`);
     const drillIds = (drillRoute.home.get(l.id) ?? []).map((q) => `d:${q.id}`);
