@@ -389,22 +389,20 @@ export const CoursePage: React.FC<{ course: CourseId; tab: CourseTab; folder?: s
             <div className="lx-course-mobile-cta">
               <button
                 type="button"
-                className="lx-btn lx-btn--accent lx-btn--lg"
+                className="lx-btn lx-btn--accent lx-btn--lg lx-course-action"
                 onClick={() => navigate({ name: 'course', course, tab: 'exam' }, { replace: true })}
-                style={{ flex: 1 }}
               >
                 <GraduationCap size={17} /> Exam prep
               </button>
-              <a className="lx-btn lx-btn--lg" href={ctaHref} style={{ flex: 1 }}>
+              <a className="lx-btn lx-btn--lg lx-course-action" href={ctaHref}>
                 <PlayCircle size={17} /> {started ? `Continue · Ch ${activeChapterNum}` : 'Start course'}
               </a>
               <button
                 type="button"
-                className="lx-btn lx-btn--lg"
+                className="lx-btn lx-btn--lg lx-course-action-icon"
                 onClick={() => setDrawer('content')}
-                style={{ padding: '0 12px' }}
-                title="Open Chapters"
-                aria-label="Open Chapters"
+                title="Open chapters"
+                aria-label="Open chapters"
               >
                 <ListTree size={18} />
               </button>

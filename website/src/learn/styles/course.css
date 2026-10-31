@@ -66,7 +66,19 @@
 }
 .lx-course-mobile-cta {
   display: none;
-  margin-top: 8px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 48px;
+  gap: 8px;
+  width: min(100%, 720px);
+  margin-top: 12px;
+}
+.lx-course-mobile-cta .lx-course-action {
+  min-width: 0;
+  padding-inline: 12px;
+  font-size: 14px;
+}
+.lx-course-mobile-cta .lx-course-action-icon {
+  width: 48px;
+  padding: 0;
 }
 .lx-course-layout.is-wide {
   grid-template-columns: minmax(0, 1fr);
@@ -75,7 +87,7 @@
   display: none;
 }
 .lx-course-layout.is-wide .lx-course-mobile-cta {
-  display: flex;
+  display: grid;
 }
 
 .lx-course-side {
@@ -152,7 +164,7 @@
   padding: 16px 18px;
   border: 1px solid var(--lx-tint-2);
   border-radius: var(--lx-r-lg);
-  background: linear-gradient(135deg, var(--lx-tint), var(--lx-surface));
+  background: var(--lx-surface);
 }
 .lx-course-exam-icon {
   display: grid;
@@ -439,7 +451,7 @@
   padding: 16px 18px;
   border: 1px solid color-mix(in srgb, var(--lx-accent) 38%, var(--lx-line));
   border-radius: var(--lx-r-lg);
-  background: linear-gradient(110deg, var(--lx-tint), var(--lx-surface));
+  background: var(--lx-surface);
   color: var(--lx-accent-deep);
   text-decoration: none;
 }
@@ -480,7 +492,16 @@
     padding-bottom: 24px;
   }
   .lx-course-mobile-cta {
-    display: flex;
+    display: grid;
+  }
+}
+
+@media (max-width: 480px) {
+  .lx-course-mobile-cta {
+    grid-template-columns: minmax(0, 1fr) 48px;
+  }
+  .lx-course-mobile-cta .lx-course-action:first-child {
+    grid-column: 1 / -1;
   }
 }
 @media (max-width: 640px) {
@@ -1041,19 +1062,17 @@
   align-items: center;
   gap: 10px;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #be185d 0%, #9d174d 100%);
+  background: var(--lx-accent);
   color: #ffffff;
   border: none;
   border-radius: 10px;
   font-size: 14.5px;
   font-weight: 750;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(190, 24, 93, 0.35);
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: background-color var(--lx-motion-fast) var(--lx-ease);
 }
 .m221-cta-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(190, 24, 93, 0.45);
+  background: var(--lx-accent-deep);
 }
 
 /* Exam Photo Lightbox Modal */

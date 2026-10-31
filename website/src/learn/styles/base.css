@@ -156,23 +156,22 @@ body::before {
   min-height: 40px;
   padding: 0 16px;
   border-radius: var(--lx-r);
-  border: 1px solid var(--lx-ink);
+  border: 1px solid var(--lx-line-strong);
   background: var(--lx-surface);
   color: var(--lx-ink);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
-  transition: background var(--lx-motion-fast) var(--lx-ease), border-color var(--lx-motion-fast) var(--lx-ease), box-shadow var(--lx-motion) var(--lx-ease), transform var(--lx-motion-fast) var(--lx-ease);
+  transition: background-color var(--lx-motion-fast) var(--lx-ease), border-color var(--lx-motion-fast) var(--lx-ease), color var(--lx-motion-fast) var(--lx-ease);
 }
 .lx-btn:hover {
   background: var(--lx-surface-2);
-  transform: translateY(-1px);
-  box-shadow: 0 5px 13px rgba(15, 23, 42, 0.08);
+  border-color: var(--lx-muted);
 }
 .lx-btn:active {
-  transform: translateY(1px);
+  background: var(--lx-surface-3);
 }
 .lx-btn:disabled {
   opacity: 0.45;
@@ -180,10 +179,15 @@ body::before {
 }
 .lx-btn--primary {
   background: var(--lx-ink);
+  border-color: var(--lx-ink);
   color: #fff;
 }
 .lx-btn--primary:hover {
   background: #1e293b;
+  border-color: #1e293b;
+}
+.lx-btn--primary:active {
+  background: #334155;
 }
 .lx-btn--accent {
   background: var(--lx-accent);
@@ -193,6 +197,9 @@ body::before {
 .lx-btn--accent:hover {
   background: var(--lx-accent-deep);
   border-color: var(--lx-accent-deep);
+}
+.lx-btn--accent:active {
+  background: var(--lx-accent-deep);
 }
 .lx-btn--ghost {
   border-color: transparent;

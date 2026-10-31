@@ -43,12 +43,10 @@
   background: var(--lx-surface);
   border: 1px solid var(--lx-line);
   border-radius: var(--lx-r-lg);
-  transition: transform var(--lx-motion-fast) var(--lx-ease), border-color var(--lx-motion-fast) var(--lx-ease), box-shadow var(--lx-motion) var(--lx-ease);
+  transition: border-color var(--lx-motion-fast) var(--lx-ease);
 }
 .lx-cont-card:hover {
-  transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--lx-accent) 32%, var(--lx-line));
-  box-shadow: var(--lx-lift);
 }
 .lx-cont-cover {
   border-radius: 10px;
@@ -104,12 +102,10 @@
   border: 1px solid var(--lx-line);
   border-radius: var(--lx-r-lg);
   overflow: hidden;
-  transition: transform var(--lx-motion-fast) var(--lx-ease), border-color var(--lx-motion-fast) var(--lx-ease), box-shadow var(--lx-motion) var(--lx-ease);
+  transition: border-color var(--lx-motion-fast) var(--lx-ease);
 }
 .lx-reco:hover {
-  transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--lx-accent) 35%, var(--lx-line));
-  box-shadow: var(--lx-lift);
 }
 .lx-reco-media {
   position: relative;
@@ -326,14 +322,13 @@
   border: 1px solid var(--lx-line);
   border-radius: var(--lx-r);
   background: rgba(255, 255, 255, 0.72);
-  transition: transform var(--lx-motion-fast) var(--lx-ease), border-color var(--lx-motion-fast) var(--lx-ease);
+  transition: border-color var(--lx-motion-fast) var(--lx-ease);
 }
 .lx-plan-metrics > div + div {
   padding-left: 12px;
   border-left: 1px solid var(--lx-line);
 }
 .lx-plan-metrics > div:hover {
-  transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--lx-accent) 38%, var(--lx-line));
 }
 .lx-plan-metrics svg {
