@@ -24,6 +24,39 @@
   flex-wrap: wrap;
   gap: var(--lx-s2);
 }
+.lx-cl-cams { align-items: center; }
+/* Keep playback actions, the motion setting and its hint aligned as they wrap. */
+.lx-cl-cams[aria-label='Factory demonstration playback'] {
+  column-gap: 16px;
+  row-gap: 8px;
+}
+.lx-cl-cams[aria-label='Factory demonstration playback'] > label,
+.lx-cl .lx-cl-check,
+.lx-cl .lx-tutor-motion-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  cursor: pointer;
+}
+.lx-cl-cams[aria-label='Factory demonstration playback'] > label input,
+.lx-cl .lx-cl-check input,
+.lx-cl .lx-tutor-motion-toggle input {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--lx-accent);
+}
+.lx-cl-cams[aria-label='Factory demonstration playback'] > .lx-meta {
+  flex: 1 1 240px;
+  line-height: 1.45;
+}
+@media (max-width: 600px) {
+  .lx-cl-cams[aria-label='Factory demonstration playback'] > .lx-meta {
+    flex-basis: 100%;
+  }
+}
 .lx-cl-cell {
   flex: 1 1 0;
   min-width: 72px;
