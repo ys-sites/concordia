@@ -15,6 +15,7 @@
     "validate:integrity": "esbuild scripts/qa-integrity.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/qa-integrity.mjs --loader:.css=empty --external:virtual:* && node node_modules/.cache/qa-integrity.mjs",
     "inventory": "esbuild scripts/content-inventory.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/content-inventory.mjs --loader:.css=empty --external:virtual:* && node node_modules/.cache/content-inventory.mjs",
     "validate:cpp": "esbuild scripts/validate-cpp.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/validate-cpp.mjs --loader:.css=empty --external:virtual:* && node node_modules/.cache/validate-cpp.mjs",
+    "validate:visual-topics": "esbuild scripts/validate-visual-topics.ts --bundle --platform=node --format=cjs --log-level=warning --outfile=node_modules/.cache/validate-visual-topics.cjs && node node_modules/.cache/validate-visual-topics.cjs",
     "test:crystal": "esbuild src/learn/visualization/crystalMath.test.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/crystal-math-test.mjs && node node_modules/.cache/crystal-math-test.mjs",
     "process-lesson": "node scripts/process-lesson.mjs",
     "lesson:pipeline": "node scripts/process-lesson.mjs",
