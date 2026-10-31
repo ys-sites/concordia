@@ -3,9 +3,10 @@
 // the scene never invents a coordinate. For HCP, crystallographic (x, y, z_c)
 // is mapped so the hexagonal basal planes lie horizontally (XZ) and the c-axis
 // stands vertically along Three.js Y, matching standard crystallography figures.
-import React, { useMemo, useRef, useState } from 'react';
+import React, { Suspense, useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Html, OrbitControls } from '@react-three/drei';
+import { ContactShadows, Environment, Html, OrbitControls } from '@react-three/drei';
+import { ACESFilmicToneMapping, SRGBColorSpace } from 'three';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import {
   CUBE_EDGES,
@@ -50,6 +51,13 @@ const ROLE_COLORS: Record<AtomSite['role'], string> = {
 };
 
 const HCP_SCALE = 0.68;
+
+// A failed optional reflection map must never take down the teaching model.
+class ReflectionBoundary extends React.Component<React.PropsWithChildren, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() { return this.state.failed ? null : this.props.children; }
+}
 
 /**
  * Convert crystallographic centered coordinates into Three.js Y-up studio coordinates.
@@ -160,8 +168,9 @@ const Atom: React.FC<{
   selected: boolean;
   dimmed: boolean;
   showLabel: boolean;
+  realistic: boolean;
   onSelect: (id: string) => void;
-}> = ({ cell, site, radius, explode, selected, dimmed, showLabel, onSelect }) => {
+}> = ({ cell, site, radius, explode, selected, dimmed, showLabel, realistic, onSelect }) => {
   const basePos = toStagePos(cell, site.cart);
   const len = Math.sqrt(basePos[0] ** 2 + basePos[1] ** 2 + basePos[2] ** 2) || 1;
   const pos: Vec3 = [
@@ -207,10 +216,11 @@ const Atom: React.FC<{
         color={color}
         emissive={selected ? '#1d4ed8' : '#000000'}
         emissiveIntensity={selected ? 0.35 : 0}
-        roughness={0.2}
-        metalness={0.18}
-        clearcoat={0.78}
-        clearcoatRoughness={0.14}
+        roughness={realistic ? 0.26 : 0.2}
+        metalness={realistic ? 0.82 : 0.18}
+        envMapIntensity={realistic ? 1.15 : 0}
+        clearcoat={realistic ? 0.18 : 0.78}
+        clearcoatRoughness={0.2}
         transparent={dimmed}
         opacity={dimmed ? 0.28 : 1}
       />
@@ -246,6 +256,7 @@ export const UnitCellScene: React.FC<{ scene: SceneState; onSelect: (id: string 
     model.radius * scaleFactor * (scene.atomSize === 'touching' ? 0.92 : 0.38);
 
   const [failed, setFailed] = useState(false);
+  const [realistic, setRealistic] = useState(true);
   const reduced =
     typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -262,16 +273,50 @@ export const UnitCellScene: React.FC<{ scene: SceneState; onSelect: (id: string 
           -(scene.replicate[2] - 1) / 2,
         ];
 
+  // The floor follows the lowest atom, including replication and explosion;
+  // it must never slice through an HCP layer or an expanded cell.
+  const floorY = Math.min(...atoms.map((a) => {
+    const p = toStagePos(scene.cell, a.cart);
+    const len = Math.hypot(...p) || 1;
+    return p[1] + p[1] / len * scene.explode * 0.52 + blockOffset[1]
+      - displayRadius * 1.14;
+  })) - 0.05;
+  const shadowKey = [scene.cell, ...scene.replicate, scene.explode, scene.atomSize, scene.selectedId, scene.showSharing].join(':');
+
   if (failed) return null;
   return (
     <Canvas
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       camera={{ position: PRESET_POS[scene.preset], fov: 40 }}
-      gl={{ alpha: true, antialias: true }}
+      gl={{ alpha: true, antialias: true, toneMapping: ACESFilmicToneMapping,
+        toneMappingExposure: 1.08, outputColorSpace: SRGBColorSpace }}
       onError={() => setFailed(true)}
       aria-label={`${model.name} unit cell, interactive 3D model. Drag to orbit, scroll or pinch to zoom.`}
     >
-      <StudioEnvironment floorY={scene.cell === 'hcp' ? -0.82 : -0.78} />
+      <StudioEnvironment floorY={floorY} showFloor={!realistic} />
+      {realistic && <>
+        <ReflectionBoundary>
+          <Suspense fallback={null}>
+            <Environment files="/3d/crystal/photo_studio_01_1k.hdr" background={false} />
+          </Suspense>
+        </ReflectionBoundary>
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, floorY - 0.005, 0]}>
+          <circleGeometry args={[4.8, 64]} />
+          <meshStandardMaterial color="#e4e7eb" roughness={0.86} metalness={0} />
+        </mesh>
+        <ContactShadows key={shadowKey} position={[0, floorY, 0]} scale={10}
+          opacity={0.32} blur={2.5} far={6} resolution={256} frames={1} color="#263345" />
+      </>}
+      <Html fullscreen style={{ pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', top: 12, right: 12, pointerEvents: 'auto' }}>
+          <button type="button" aria-pressed={!realistic}
+            onClick={() => setRealistic((value) => !value)}
+            style={{ background: '#fff', color: '#263345', border: '1px solid #94a3b8', borderRadius: 8,
+              padding: '10px 12px', minHeight: 44, font: '600 12px system-ui', cursor: 'pointer' }}>
+            {realistic ? 'Use teaching colors' : 'Use realistic metal'}
+          </button>
+        </div>
+      </Html>
       <CameraRig preset={scene.preset} autoOrbit={scene.autoOrbit && !reduced} controls={controls} />
       <group position={blockOffset}>
         {edges.map((seg, i) => (
@@ -282,6 +327,8 @@ export const UnitCellScene: React.FC<{ scene: SceneState; onSelect: (id: string 
             color={seg.color}
             radius={seg.radius}
             opacity={seg.opacity}
+            metalness={realistic ? 0.75 : 0.25}
+            roughness={realistic ? 0.32 : 0.3}
           />
         ))}
         {atoms.map((a) => (
@@ -290,6 +337,7 @@ export const UnitCellScene: React.FC<{ scene: SceneState; onSelect: (id: string 
             cell={scene.cell}
             site={a}
             radius={displayRadius}
+            realistic={realistic}
             explode={scene.explode}
             selected={scene.selectedId === a.id}
             dimmed={scene.selectedId !== null && scene.selectedId !== a.id && scene.showSharing}

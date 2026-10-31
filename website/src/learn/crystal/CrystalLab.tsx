@@ -136,7 +136,9 @@ export const CrystalLab: React.FC = () => {
     selectedId,
   };
 
-  const selected = selectedId ? model.atoms.find((a) => a.id === selectedId) ?? null : null;
+  // The scene appends @ijk when replicating atoms, including the first cell.
+  // Keep the full ID for highlighting, but resolve its base role for the explanation.
+  const selected = selectedId ? model.atoms.find((a) => a.id === selectedId.split('@')[0]) ?? null : null;
   const go = (d: number) => {
     setStepIdx((i) => Math.max(0, Math.min(steps.length - 1, i + d)));
     setAnswer(null);
