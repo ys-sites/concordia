@@ -1,0 +1,11 @@
+.lx-guided-hint { margin: .5rem 0 0; color: var(--lx-ink); font-size: .9rem; }
+.lx-guided-details { border: 1px solid var(--lx-line); border-radius: 10px; padding: .65rem .8rem; }
+.lx-guided-details > summary { cursor: pointer; font-weight: 650; }
+.lx-guided-details > summary + * { margin-top: .7rem; }
+.lx-guided-time { display: grid; gap: .4rem; font-weight: 650; }
+.lx-guided-time input { width: 100%; }
+.lx-cooling-graph { border: 1px solid var(--lx-line); border-radius: 10px; padding: .75rem 1rem; }
+.lx-cooling-graph h3, .lx-cooling-graph p { margin: .25rem 0; }
+.lx-cooling-graph p { font-size: .875rem; }
+.lx-cooling-graph svg { display: block; width: 100%; max-width: 520px; max-height: 215px; margin: .5rem auto; }
+@media (prefers-reduced-motion: reduce) { .lx-guided-details *, .lx-cooling-graph * { transition: none !important; animation: none !important; } }

@@ -2,6 +2,18 @@
 
 > **Implementation status:** This is a research blueprint. Proposed interactive scenes, performance targets, and video exports require implementation and verification. The learner controls and assessment state must be built separately from a rendered MP4.
 
+## Current direction for future learning videos
+
+The existing MIAE 221 explanation videos are the teaching baseline: a patient, one-on-one explanation, intuitive physical meaning, and worked mathematics shown step by step. Future videos should build on that style with more meaningful 3D models, physical mechanisms, clear diagrams and synchronized graphs. Use continuous, purposeful visual development—such as model movement, progressive drawing, highlights or a gentle camera move—so the screen stays engaging while the student can still read and follow each step.
+
+Teach each subject directly in the video's narration and visuals. Teacher slides, lecture notes and textbooks are private curriculum and accuracy inputs: **future student-facing videos must not display or mention those documents, their pages or their authors**. Preserve the source files privately and keep provenance and rights records outside the student-facing output. Use verified subject content, original explanations and suitable visual assets.
+
+Pair a recorded lesson with a guided interactive experience when the topic benefits from it. Introduce one idea and one control at a time, explain how the model relates to the topic, and connect the 3D view, graph, numerical readout and worked example to the same checked mathematical model. Provide short explanations, prediction questions, feedback, reset and replay, with optional expanded details, mobile support and reduced motion. A video file itself is not interactive; browser interaction and the recorded walkthrough require separate implementation and verification.
+
+For Newton's law of cooling, for example, a compact graph should identify the selected time and object temperature, while the 3D object and numerical readout show that same temperature. Explain the surrounding-temperature line, how the curve approaches it, and why the curve rises or falls depending on the initial temperature. Include a worked example and make the full derivation optional.
+
+The website should eventually expose original expanded explanations and AI-generated course videos rather than original teacher or textbook documents or outside YouTube videos. Replace and verify topic coverage first, then remove source-document links and published assets—including direct URLs—without deleting the private source material. This is a desired direction, not a claim that all replacements or access controls have been completed. See [Visual learning production plan](./VISUAL_LEARNING_PRODUCTION.md) for the reusable prompt, review steps and current status. PDF generation is a separate task for another agent.
+
 **Target Directory**: `001 Main/`  
 **Orchestration Hub**: `motion-video-director/`  
 **Scope**: Reverse-engineering analysis of 9 reference platforms/repositories + existing local engines to train and architect an AI capable of generating world-class interactive simulations, 2D/3D visual explainers, and narrated deterministic videos.

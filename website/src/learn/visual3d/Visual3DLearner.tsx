@@ -11,8 +11,11 @@ import { getVisual3DTopic, VISUAL_3D_TOPICS } from './catalog';
 import { Materials2DGraph, Materials3DGroup } from './Materials3DCanvas';
 import { Indu3DGroup } from './Indu3DCanvas';
 import { Engr213LiveGraph, Engr213SimGroup } from './Engr213SimCanvas';
+import { CoolingGraph } from './CoolingGraph';
+import { coolingAt, coolingInputs } from './coolingModel';
 import { Miae215Group } from './Miae215Canvas';
 import '../crystal/crystalLab.css';
+import './guidedLearner.css';
 
 export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
   const spec = useMemo(() => getVisual3DTopic(toolId) ?? VISUAL_3D_TOPICS[0], [toolId]);
@@ -29,6 +32,8 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
   const [fullscreen, setFullscreen] = useState(false);
   const [answer, setAnswer] = useState<number | null>(null);
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
+  const cooling = spec.id === '3d:newton-cooling';
+  const cool = coolingInputs(values);
 
   useEffect(() => {
     setValues(initialValues);
@@ -53,11 +58,12 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
           <Box size={16} aria-hidden /> 3D Visual Learner #{spec.num} · {spec.sectionTitle}
         </span>
         <h2 className="lx-h2">3D Visual Learner: {spec.title}</h2>
-        <p className="lx-meta"><MathText text={spec.subtitle} autoMath /> — <MathText text={spec.summary} autoMath /></p>
+        <p className="lx-meta">{cooling ? 'See how an object’s temperature moves toward the temperature of its surroundings.' : <MathText text={spec.summary} autoMath />}</p>
+        <p className="lx-guided-hint">{cooling ? 'Start with the time slider below. Watch the object and the dot on the graph change together.' : 'Start by exploring the model, then open the controls to change one thing at a time.'}</p>
       </header>
 
       {spec.presets.length > 0 && (
-        <div className="lx-cl-cells" role="group" aria-label="Interactive presets">
+        <details className="lx-guided-details"><summary>Try another example</summary><div className="lx-cl-cells" role="group" aria-label="Interactive presets">
           {spec.presets.map((p) => (
             <button
               key={p.label}
@@ -72,7 +78,7 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
               <span><MathText text={p.note} autoMath /></span>
             </button>
           ))}
-        </div>
+        </div></details>
       )}
 
       <div className="lx-cl-stage">
@@ -80,6 +86,7 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
           dpr={[1, 2]}
           camera={{ position: PRESET_POS[preset], fov: 40 }}
           gl={{ alpha: true, antialias: true }}
+          fallback={<p className="lx-guided-hint">The 3D view is unavailable. Use the controls and the explanation below to explore the topic.</p>}
           aria-label={`3D interactive simulation for ${spec.title}`}
         >
           <StudioEnvironment floorY={-0.78} />
@@ -105,7 +112,12 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
         </div>
       </div>
 
-      <div className="lx-cl-cams" role="group" aria-label="Camera view">
+      {cooling && <details className="lx-guided-details"><summary>What am I looking at?</summary>
+        <p>The cylinder represents the object. The surrounding space represents the air or liquid around it. The object's temperature changes with time; the surroundings stay at the chosen temperature.</p>
+        <p>Try increasing time: the dot moves along the curve while the object temperature changes. The temperature difference gets smaller.</p>
+      </details>}
+
+      <details className="lx-guided-details"><summary>Camera options</summary><div className="lx-cl-cams" role="group" aria-label="Camera view">
         {(['iso', 'front', 'top', 'side'] as CameraPreset[]).map((p) => (
           <button
             key={p}
@@ -124,11 +136,16 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
         >
           <RotateCcw size={14} /> Auto-orbit
         </button>
-      </div>
+      </div></details>
 
       {spec.controls.length > 0 && (
+        <>
+        {cooling && <label className="lx-guided-time">Time: {cool.time.toFixed(1)} minutes
+          <input type="range" min="0" max="30" step="0.5" value={cool.time} onChange={(e) => setValues((prev) => ({ ...prev, timeMin: Number(e.target.value) }))} />
+        </label>}
+        <details className="lx-guided-details"><summary>Adjust {cooling ? 'temperatures and cooling rate' : 'model settings'}</summary>
         <div className="lx-cl-settings" aria-label="Interactive simulation controls">
-          {spec.controls.map((ctrl) => {
+          {spec.controls.filter((ctrl) => !cooling || ctrl.key !== 'timeMin').map((ctrl) => {
             const v = values[ctrl.key] ?? ctrl.defaultValue;
             return (
               <label key={ctrl.key} style={{ flex: '1 1 220px', justifyContent: 'space-between' }}>
@@ -148,11 +165,19 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
             );
           })}
         </div>
+        <button type="button" className="lx-btn lx-btn--sm" onClick={() => { setValues(initialValues); setAnswer(null); }}>Reset model</button>
+        </details></>
       )}
 
       {/* Synchronized Live 2D Graphs for Mechanical Testing (17–20) & ENGR 213 ODEs (34–38) */}
       {spec.courseId === 'MIAE221' && <Materials2DGraph topicId={spec.id} values={values} />}
-      {spec.courseId === 'ENGR213' && <Engr213LiveGraph topicId={spec.id} values={values} />}
+      {cooling ? <CoolingGraph values={values} /> : spec.courseId === 'ENGR213' && <Engr213LiveGraph topicId={spec.id} values={values} />}
+
+      {cooling && <details className="lx-guided-details"><summary>Show the calculation</summary>
+        <p>Start at {cool.initial} °C. The surroundings are {cool.surrounding} °C, so the initial difference is {cool.initial} − {cool.surrounding} = {(cool.initial - cool.surrounding).toFixed(1)} °C.</p>
+        <p>After {cool.time.toFixed(1)} minutes, the remaining fraction is e<sup>−{cool.rate} × {cool.time.toFixed(1)}</sup> = {Math.exp(-cool.rate * cool.time).toFixed(3)}.</p>
+        <p>Object temperature = {cool.surrounding} + ({cool.initial} − {cool.surrounding}) × {Math.exp(-cool.rate * cool.time).toFixed(3)} ≈ <strong>{coolingAt(cool).toFixed(1)} °C</strong>. The result uses the unrounded fraction.</p>
+      </details>}
 
       <div className="lx-cl-guide">
         <div className="lx-cl-step">
@@ -193,4 +218,3 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
 };
 
 export default Visual3DLearner;
-

@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { CoolingGraph } from '../src/learn/visual3d/CoolingGraph';
+const render = (timeMin: number, T0 = 160, Tm = 25) => renderToStaticMarkup(<CoolingGraph values={{ T0, Tm, kMag: 0.12, timeMin }} />);
+const first = render(0);
+const later = render(8);
+assert.match(first, /object 160\.0 °C/);
+assert.match(later, /object 76\.7 °C/);
+assert.match(later, /surrounding 25\.0 °C/);
+assert.match(later, /surrounding temperature/);
+assert.notEqual(first.match(/<circle[^>]+>/)?.[0], later.match(/<circle[^>]+>/)?.[0]);
+assert.match(render(8, 5, 30), /warms up/);
+console.log('Cooling graph checks passed.');

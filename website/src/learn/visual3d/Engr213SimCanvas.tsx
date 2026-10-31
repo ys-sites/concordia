@@ -4,6 +4,7 @@ import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 import type { Vec3 } from '../visualization/crystalMath';
 import { Arrow, CylinderRod } from '../crystal/SceneKit';
+import { coolingAt, coolingInputs } from './coolingModel';
 
 const Pill: React.FC<{ pos: Vec3; text: string; bg?: string }> = ({ pos, text, bg }) => (
   <Html position={pos} center className="lx-cl-label" zIndexRange={[10, 0]}>
@@ -98,11 +99,9 @@ export const Engr213SimGroup: React.FC<{
 
   // ── 35. Newton's Law of Cooling ─────────────────────────────────────────────
   if (topicId === '3d:newton-cooling') {
-    const T0 = values.T0 ?? 160;
-    const Tm = values.Tm ?? 25;
-    const k = -(values.kMag ?? 0.12);
-    const t = values.timeMin ?? 8;
-    const Tnow = Tm + (T0 - Tm) * Math.exp(k * t);
+    const input = coolingInputs(values);
+    const { surrounding: Tm, time: t } = input;
+    const Tnow = coolingAt(input);
     const heatFrac = Math.max(0, Math.min(1, (Tnow - 10) / 170));
     const col = new THREE.Color().lerpColors(new THREE.Color('#2563eb'), new THREE.Color('#e11d48'), heatFrac);
     return (
@@ -126,7 +125,7 @@ export const Engr213SimGroup: React.FC<{
         </mesh>
         <Pill
           pos={[0, 0.72, 0]}
-          text={`t = ${t.toFixed(1)} min · Object T(t) = ${Tnow.toFixed(1)}°C → Ambient T_m = ${Tm}°C`}
+          text={`${t.toFixed(1)} min · Object ${Tnow.toFixed(1)} °C · Surroundings ${Tm} °C`}
           bg="rgba(190,18,60,0.92)"
         />
       </group>
