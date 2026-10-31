@@ -1,5 +1,7 @@
 # Antigravity Autonomous Workflow Rules: Fast, Smart & Safe + Studocu Pipeline Law
 
+For website work, also follow the project-specific [Website Essentials Guide](./WEB_ESSENTIALS_GUIDE.md). Apply its design, accessibility, security and validation guidance as relevant to the task.
+
 ## 1. MANDATORY FIRST STEP ON EVERY PROMPT
 Before executing any user task or generating any educational material, the agent MUST review and adhere to this permanent pipeline rule:
 

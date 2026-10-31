@@ -1,5 +1,7 @@
 # Reusable AI Tutor Production Prompt (Lessons, 3D Visuals, Videos & Study Guides)
 
+For website-facing work, also apply the relevant guidance in [WEB_ESSENTIALS_GUIDE.md](./WEB_ESSENTIALS_GUIDE.md).
+
 Copy and paste the prompt below into an agent session to produce any remaining subject, subtopic, worked example, interactive lesson, AI video, or study PDF from the **Prioritized Regeneration Queue** in `COVERAGE_AUDIT_AND_REGENERATION_QUEUE.md`.
 
 ---

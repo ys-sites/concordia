@@ -2,6 +2,8 @@
 
 > **Implementation status:** This is a research blueprint. Proposed interactive scenes, performance targets, and video exports require implementation and verification. The learner controls and assessment state must be built separately from a rendered MP4.
 
+For website design, implementation and verification, also use the [Website Essentials Guide](./WEB_ESSENTIALS_GUIDE.md).
+
 ## Current direction for future learning videos
 
 The existing MIAE 221 explanation videos are the teaching baseline: a patient, one-on-one explanation, intuitive physical meaning, and worked mathematics shown step by step. For new videos, use a white or warm-white illustrated paper aesthetic inspired by the local `001 Main/video style/` examples: fine ink outlines, hand-drawn hatching, dimensional objects, soft shadows, selective explanatory color, legible typography and clean learning controls. Future videos should build on that teaching style with more meaningful 3D models, physical mechanisms, clear diagrams and synchronized graphs. Use continuous, purposeful visual development—such as model movement, progressive drawing, highlights or a gentle camera move—so the screen stays engaging while the student can still read and follow each step. The updated [production plan](./VISUAL_LEARNING_PRODUCTION.md) connects this visual direction to the REA findings and the selected research-tool shortlist.

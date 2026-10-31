@@ -2,6 +2,8 @@
 
 Use this plan for ENGR 213, INDU 211, MIAE 215 and MIAE 221. The current MIAE 221 videos establish the instructional voice: explain patiently, connect ideas to examples, and show calculations step by step. New work should make physical mechanisms, diagrams and mathematical relationships more visible and interactive.
 
+For website-wide design, accessibility, security and verification guidance, see the [Website Essentials Guide](./WEB_ESSENTIALS_GUIDE.md).
+
 ## Approved visual direction for new videos
 
 Use a **white or warm-white paper background** and an illustrated, hand-drawn world. The reference screenshots in `001 Main/video style/` show dimensional objects sitting on a light book-like surface: fine dark ink contours, cross-hatched shading, subtle paper texture, soft shadows, and selective saturated color that makes the changing physical quantity easy to follow. Think of a carefully drawn engineering notebook coming to life. Use the screenshots as design references, not as assets to reproduce or publish; some include browser interface content.

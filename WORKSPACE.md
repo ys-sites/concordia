@@ -12,6 +12,7 @@ This repository is the **single consolidated workspace** for the Concordia Unive
 - `Miae 221/` — Materials Science lecture slides, comprehensive topic guides, and formula sheets (`formula/`).
 - `Studocu/` — Upload queue (`Need to Upload/`) and completed archive (`Done/`) metadata logs.
 - `THE_NEXT_STEP.md` — Interactive visual learning engine architecture and 3D/2D visualization blueprint.
+- `WEB_ESSENTIALS_GUIDE.md` — Project-specific design, accessibility, security and verification guidance adapted from the supplied website essentials.
 
 ### Local-Only & Git-Ignored Directories (Never Pushed to Remote)
 All private files, large binary archives, reference libraries, and historical recovery checkouts are consolidated inside this workspace and excluded from Git via `.gitignore`:
