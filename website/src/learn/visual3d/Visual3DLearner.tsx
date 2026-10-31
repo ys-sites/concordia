@@ -31,6 +31,8 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
   const [autoOrbit, setAutoOrbit] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [answer, setAnswer] = useState<number | null>(null);
+  const [induPlaying, setInduPlaying] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(() => typeof window !== 'undefined' && Boolean(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches));
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
   const cooling = spec.id === '3d:newton-cooling';
   const cool = coolingInputs(values);
@@ -38,7 +40,30 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
   useEffect(() => {
     setValues(initialValues);
     setAnswer(null);
+    setInduPlaying(false);
   }, [initialValues]);
+
+  // Animate only controls that describe physical progress; category selectors stay fixed.
+  const motionKeys: Record<string, string> = {
+    '3d:fixed-position-layout': 'craneAngle', '3d:material-handling': 'craneX',
+    '3d:manufacturing-processes': 'cyclePos', '3d:bom-exploded': 'explode',
+  };
+  const motionControl = spec.controls.find((c) => c.key === motionKeys[spec.id]);
+  useEffect(() => {
+    if (!induPlaying || reduceMotion || !motionControl) return;
+    let last = performance.now();
+    let frame = 0;
+    const tick = (now: number) => {
+      const dt = Math.min(0.1, (now - last) / 1000); last = now;
+      setValues((prev) => {
+        const next = (prev[motionControl.key] ?? motionControl.min) + (motionControl.max - motionControl.min) * dt / 8;
+        return { ...prev, [motionControl.key]: next > motionControl.max ? motionControl.min : next };
+      });
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [induPlaying, reduceMotion, motionControl]);
 
   // Delegate Topics 1, 7, 8 to the dedicated multi-phase Crystal/Direction/Plane labs
   if (spec.id === '3d:crystal-structures' || toolId === 'crystal-lab:unit-cells') {
@@ -92,7 +117,7 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
           <StudioEnvironment floorY={-0.78} />
           <CameraRig preset={preset} autoOrbit={autoOrbit} controls={controlsRef} />
           {spec.courseId === 'MIAE221' && <Materials3DGroup topicId={spec.id} values={values} />}
-          {spec.courseId === 'INDU211' && <Indu3DGroup topicId={spec.id} values={values} />}
+          {spec.courseId === 'INDU211' && <Indu3DGroup topicId={spec.id} values={values} playing={induPlaying && !reduceMotion} />}
           {spec.courseId === 'ENGR213' && <Engr213SimGroup topicId={spec.id} values={values} />}
           {spec.courseId === 'MIAE215' && <Miae215Group topicId={spec.id} values={values} />}
           <LabControls controls={controlsRef} autoOrbit={autoOrbit} />
@@ -112,6 +137,11 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
         </div>
       </div>
 
+      {spec.courseId === 'INDU211' && (motionControl || ['3d:product-layout', '3d:cellular-layout', '3d:hybrid-layout'].includes(spec.id)) && <div className="lx-cl-cams" role="group" aria-label="Factory demonstration playback">
+        <button type="button" className="lx-btn lx-btn--sm" disabled={reduceMotion} aria-pressed={induPlaying} onClick={() => setInduPlaying((p) => !p)}>{induPlaying ? 'Pause demonstration' : 'Play demonstration'}</button>
+        <label><input type="checkbox" checked={reduceMotion} onChange={(event) => { setReduceMotion(event.target.checked); if (event.target.checked) setInduPlaying(false); }} /> Reduce motion</label>
+        <span className="lx-meta">Drag to rotate; scroll or pinch to zoom, including during playback.</span>
+      </div>}
       {cooling && <details className="lx-guided-details"><summary>What am I looking at?</summary>
         <p>The cylinder represents the object. The surrounding space represents the air or liquid around it. The object's temperature changes with time; the surroundings stay at the chosen temperature.</p>
         <p>Try increasing time: the dot moves along the curve while the object temperature changes. The temperature difference gets smaller.</p>

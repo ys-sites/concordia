@@ -652,7 +652,7 @@ export const VISUAL_3D_TOPICS: Visual3DTopicSpec[] = [
     ],
     presets: [
       { label: 'Balanced Automotive Line', note: '5 stations · smooth continuous flow', values: { lineSpeed: 1.0, stations: 5 } },
-      { label: 'High-Speed Bottling', note: 'Rapid cycle time · zero WIP buildup', values: { lineSpeed: 1.8, stations: 6 } },
+      { label: 'High-Speed Bottling', note: 'Faster conveyor illustration', values: { lineSpeed: 1.8, stations: 6 } },
     ],
     check: {
       q: 'When is a Product (Assembly Line) layout the most appropriate choice?',
@@ -670,14 +670,14 @@ export const VISUAL_3D_TOPICS: Visual3DTopicSpec[] = [
     title: 'Process Layout',
     subtitle: 'Group machines by function and visualize flow',
     formula: '\\text{Total Load-Distance} = \\sum_{i}\\sum_{j} f_{ij} d_{ij}',
-    summary: 'Explore a 3D job-shop floor grouped into functional departments (Lathes, Milling, Drilling, Grinding, Assembly) and trace crisscrossing routing paths for custom job orders.',
+    summary: 'Explore a 3D job-shop floor grouped into functional departments (lathes, milling, drilling, and assembly) and trace example routes for custom job orders.',
     controls: [
       { key: 'jobRoute', label: 'Active Job Order Route (0=Job A, 1=Job B, 2=All)', min: 0, max: 2, step: 1, defaultValue: 2 },
-      { key: 'swapDepts', label: 'Optimize Department Adjacency (0/1)', min: 0, max: 1, step: 1, defaultValue: 0 },
+      { key: 'swapDepts', label: 'Compare Department Arrangements (0/1)', min: 0, max: 1, step: 1, defaultValue: 0 },
     ],
     presets: [
-      { label: 'Unoptimized Job Shop', note: 'Long diagonal travel between departments', values: { jobRoute: 2, swapDepts: 0 } },
-      { label: 'REL-Optimized Adjacency', note: 'High-flow departments placed side-by-side', values: { jobRoute: 2, swapDepts: 1 } },
+      { label: 'First Job-Shop Arrangement', note: 'Compare the routes between departments', values: { jobRoute: 2, swapDepts: 0 } },
+      { label: 'Alternative Arrangement', note: 'Compare how the routes change', values: { jobRoute: 2, swapDepts: 1 } },
     ],
     check: {
       q: 'What is the defining characteristic of a Process (Functional / Job-Shop) layout?',
@@ -697,11 +697,11 @@ export const VISUAL_3D_TOPICS: Visual3DTopicSpec[] = [
     formula: '\\text{Group Technology (GT)} \\implies \\text{U-Shaped Cells for Part Families}',
     summary: 'Inspect 3D U-shaped manufacturing cells where dissimilar machines (Lathe + Mill + Drill + Grind) are grouped together to process an entire part family from raw stock to finished part.',
     controls: [
-      { key: 'cellFocus', label: 'Inspect Cell (0=All 3 Cells, 1=Cell A, 2=Cell B)', min: 0, max: 2, step: 1, defaultValue: 0 },
+      { key: 'cellFocus', label: 'Inspect Cell (0=Both Cells, 1=Cell A, 2=Cell B)', min: 0, max: 2, step: 1, defaultValue: 0 },
       { key: 'flowSpeed', label: 'Part Family Flow Rate', min: 0.3, max: 1.8, step: 0.1, defaultValue: 1.0 },
     ],
     presets: [
-      { label: 'Full 3-Cell Factory', note: 'Part Families A, B, C running in parallel', values: { cellFocus: 0, flowSpeed: 1.0 } },
+      { label: 'Two-Cell Factory', note: 'Compare two part-family cells', values: { cellFocus: 0, flowSpeed: 1.0 } },
       { label: 'Zoom U-Cell A', note: 'One operator tends entry & exit of U-loop', values: { cellFocus: 1, flowSpeed: 1.2 } },
     ],
     check: {
@@ -720,10 +720,10 @@ export const VISUAL_3D_TOPICS: Visual3DTopicSpec[] = [
     title: 'Fixed-Position Layout',
     subtitle: 'Product remains stationary while resources move',
     formula: '\\text{Bulk/Weight Too High} \\implies \\text{Workers, Tools \\& Materials Move to Product}',
-    summary: 'See a central aircraft fuselage assembly bay where the heavy product remains stationary on the 3D floor while gantry cranes, AGV carts, and technician teams orbit and converge on it.',
+    summary: 'Explore an aircraft assembly bay where the aircraft stays in place while a gantry trolley and other resources move around it.',
     controls: [
       { key: 'buildPhase', label: 'Assembly Stage (1=Frame, 2=Wings, 3=Engines)', min: 1, max: 3, step: 1, defaultValue: 2 },
-      { key: 'craneAngle', label: 'Staging Ring Activity', min: 0.2, max: 1.5, step: 0.1, defaultValue: 1.0 },
+      { key: 'craneAngle', label: 'Gantry Trolley Position', min: 0.2, max: 1.5, step: 0.1, defaultValue: 1.0 },
     ],
     presets: [
       { label: 'Stage 1: Fuselage Structural Bay', note: 'Heavy gantry crane positioning', values: { buildPhase: 1, craneAngle: 0.8 } },
@@ -798,15 +798,14 @@ export const VISUAL_3D_TOPICS: Visual3DTopicSpec[] = [
     title: 'Warehouse Routing',
     subtitle: 'Simulate picker/forklift routes through aisles',
     formula: 'S_{ij} = d_{0i} + d_{0j} - d_{ij}\\qquad (\\text{Clark–Wright Savings})',
-    summary: 'Watch a 3D order-picker forklift navigate multi-tier warehouse racking aisles, comparing naive out-and-back trips against Nearest-Neighbor TSP and Clark–Wright consolidated routes.',
+    summary: 'Explore warehouse racks, aisles and a depot. Compare separate picking trips with illustrated combined routes; the drawing does not calculate an optimal route.',
     controls: [
-      { key: 'routeStrategy', label: 'Strategy (0=Out-and-Back, 1=Nearest-Neighbor TSP, 2=Clark-Wright)', min: 0, max: 2, step: 1, defaultValue: 2 },
+      { key: 'routeStrategy', label: 'Illustrated Route (0=Separate Trips, 1=Combined Trip)', min: 0, max: 1, step: 1, defaultValue: 1 },
       { key: 'stopsCount', label: 'Pick Locations', min: 3, max: 6, step: 1, defaultValue: 5 },
     ],
     presets: [
-      { label: 'Naive Out-and-Back (Star)', note: 'Returns to depot after every pick · highest distance', values: { routeStrategy: 0, stopsCount: 5 } },
-      { label: 'Nearest-Neighbor Tour', note: 'Greedy single-vehicle loop', values: { routeStrategy: 1, stopsCount: 5 } },
-      { label: 'Clark–Wright Savings Route', note: 'Merges stops with largest S_ij = d_0i + d_0j − d_ij', values: { routeStrategy: 2, stopsCount: 5 } },
+      { label: 'Separate Trips', note: 'Returns to the depot after every pick', values: { routeStrategy: 0, stopsCount: 5 } },
+      { label: 'Combined Picking Trip', note: 'One illustrated route through the aisles', values: { routeStrategy: 1, stopsCount: 5 } },
     ],
     check: {
       q: 'In the Clark–Wright savings formula S_ij = d_0i + d_0j − d_ij, what does node 0 represent?',
@@ -883,8 +882,8 @@ export const VISUAL_3D_TOPICS: Visual3DTopicSpec[] = [
       { key: 'allowancePct', label: 'PFD Allowance (%)', min: 5, max: 25, step: 1, defaultValue: 15 },
     ],
     presets: [
-      { label: 'Optimal Ergonomic Zone', note: 'Bins inside 35 cm Normal Reach · elbow height bench', values: { binDist: 35, benchHeight: 95, allowancePct: 12 } },
-      { label: 'Overextended Reach Strain', note: 'Bins at 65 cm require torso bending · higher fatigue', values: { binDist: 65, benchHeight: 75, allowancePct: 22 } },
+      { label: 'Closer Bin', note: 'Compare a closer bin and work surface', values: { binDist: 35, benchHeight: 95, allowancePct: 12 } },
+      { label: 'Farther Bin', note: 'Compare a longer reach; individual dimensions vary', values: { binDist: 65, benchHeight: 75, allowancePct: 22 } },
     ],
     check: {
       q: 'In workstation anthropometry (Principles of Motion Economy), where should the most frequently used tools and parts bins be placed?',
@@ -1045,7 +1044,7 @@ export const VISUAL_3D_TOPICS: Visual3DTopicSpec[] = [
     title: '2D Arrays',
     subtitle: 'Matrix/grid visualization and traversal',
     formula: '\\text{Address}(A[r][c]) = \\text{Base} + (r \\cdot N_{\\text{cols}} + c) \\times \\text{sizeof}(T)',
-    summary: 'Step through a 3D 4×4 matrix grid `int A[4][4]` where pillar height shows element value, and compare Row-Major (`for r ... for c`), Column-Major (`for c ... for r`), and Main/Anti-Diagonal traversal.',
+    summary: 'Step through a 3D 4×4 matrix grid `int A[4][4]` where pillar height shows element value, and compare row-wise traversal, column-wise traversal, the main diagonal, and the upper triangle.',
     controls: [
       { key: 'orderMode', label: 'Traversal (0=Row-Major, 1=Col-Major, 2=Main Diag r==c, 3=Upper r<=c)', min: 0, max: 3, step: 1, defaultValue: 0 },
       { key: 'stepCell', label: 'Step Counter k', min: 0, max: 15, step: 1, defaultValue: 5 },
@@ -1071,8 +1070,8 @@ export const VISUAL_3D_TOPICS: Visual3DTopicSpec[] = [
     lessonId: 'data-types',
     title: 'Memory Architecture',
     subtitle: 'Variables, arrays, and memory locations',
-    formula: '\\text{sizeof}(\\texttt{char})=1,\\quad \\text{sizeof}(\\texttt{int})=4,\\quad \\text{sizeof}(\\texttt{double})=8\\text{ bytes}',
-    summary: 'Inspect 3D RAM byte blocks starting at `0x1000` to see how `char`, `int`, `double`, contiguous `int arr[4]`, and pointer variables occupy physical memory addresses.',
+    formula: '\\text{Example: }\\text{sizeof}(\\texttt{char})=1,\\quad \\text{sizeof}(\\texttt{int})=4,\\quad \\text{sizeof}(\\texttt{double})=8\\text{ bytes}',
+    summary: 'Explore illustrative memory locations for variables, contiguous arrays, and pointers. Addresses are examples; int and double sizes can vary by implementation.',
     controls: [
       { key: 'layoutMode', label: 'View (0=Data Types sizeof, 1=Contiguous int arr[4], 2=Pointer &x)', min: 0, max: 2, step: 1, defaultValue: 0 },
       { key: 'activeIdx', label: 'Inspect Slot / Index', min: 0, max: 3, step: 1, defaultValue: 1 },
@@ -1098,9 +1097,9 @@ export const VISUAL_3D_TOPICS: Visual3DTopicSpec[] = [
     title: 'Arduino Hardware',
     subtitle: 'Rotate the board, inspect pins, and connect components',
     formula: '\\texttt{analogRead}(A0) \\in [0, 1023],\\qquad \\texttt{analogWrite}(D9, \\text{duty}) \\in [0, 255]',
-    summary: 'Rotate a 3D Arduino Uno R3 board with its ATmega328P microcontroller, USB port, Digital PWM header (D0–D13), Analog ADC header (A0–A5), and live breadboard LED + potentiometer circuit.',
+    summary: 'Rotate a simplified Arduino Uno R3 and explore its digital, analog and power headers alongside an illustrative potentiometer and LED circuit.',
     controls: [
-      { key: 'pinFocus', label: 'Highlight Header (0=All, 1=Digital PWM D0-D13, 2=Analog A0-A5, 3=Power 5V/GND)', min: 0, max: 3, step: 1, defaultValue: 0 },
+      { key: 'pinFocus', label: 'Highlight Header (0=All, 1=Digital D0-D13, 2=Analog A0-A5, 3=Power 5V/GND)', min: 0, max: 3, step: 1, defaultValue: 0 },
       { key: 'adcRaw', label: 'Sensor Input analogRead(A0)', min: 0, max: 1023, step: 16, defaultValue: 768 },
     ],
     presets: [
