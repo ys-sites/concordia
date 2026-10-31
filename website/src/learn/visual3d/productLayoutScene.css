@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'Product Layout Source Serif';
+  src: url('/3d/product-layout/source-serif-4-600.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+.lx-paper-note, .lx-paper-station, .lx-paper-flow {
+  font-family: 'Product Layout Source Serif', Georgia, serif;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #1c2433;
+  background: rgba(251, 246, 234, 0.96);
+  border: 1px solid #1c2433;
+  box-shadow: 0 2px 5px rgba(28, 36, 51, 0.13);
+}
+
+.lx-paper-note { border-radius: 4px; padding: 5px 9px; font-size: 12px; }
+.lx-paper-station { display: block; border-radius: 50%; width: 23px; height: 23px; line-height: 21px; text-align: center; font-size: 12px; }
+.lx-paper-flow { display: block; border-radius: 3px; padding: 4px 8px; color: #803020; border-color: #9a3b2a; font-size: 12px; text-shadow: 0 0 8px rgba(245, 155, 88, 0.8); }
+
+.lx-paper-scene .lx-cl-label > span {
+  font-family: 'Product Layout Source Serif', Georgia, serif;
+  color: #1c2433;
+  background: #fbf6ea !important;
+  border: 1px solid #1c2433;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(28, 36, 51, 0.13);
+}
+
+.lx-paper-heading { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); }

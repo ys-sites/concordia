@@ -1,0 +1,2 @@
+# HDR pixel data must never undergo line-ending conversion.
+*.hdr binary

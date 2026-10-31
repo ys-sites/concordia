@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import {
   Box,
@@ -24,9 +24,12 @@ import { Indu3DGroup } from './Indu3DCanvas';
 import { Engr213LiveGraph, Engr213SimGroup } from './Engr213SimCanvas';
 import { CoolingGraph } from './CoolingGraph';
 import { Miae215Group } from './Miae215Canvas';
+import ProductLayoutScene, { AssetBoundary } from './ProductLayoutScene';
+import { PaperEnvironment } from './PaperEnvironment';
 import { cleanNotation, getTutorGuideForTopic } from './tutorGuideData';
 import '../crystal/crystalLab.css';
 import './guidedLearner.css';
+import './productLayoutScene.css';
 
 export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
   const spec = useMemo(() => getVisual3DTopic(toolId) ?? VISUAL_3D_TOPICS[0], [toolId]);
@@ -60,6 +63,8 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
 
   const guide = useMemo(() => getTutorGuideForTopic(spec, values), [spec, values]);
   const cooling = spec.id === '3d:newton-cooling';
+  const productLayout = spec.id === '3d:product-layout';
+  const paperScene = ['INDU211', 'ENGR213', 'MIAE215'].includes(spec.courseId);
   const hasMechanicalGraph =
     spec.courseId === 'MIAE221' &&
     (spec.id === '3d:stress-strain' ||
@@ -145,9 +150,9 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
 
       {/* 2. Side-by-Side Stage & Compact Synchronized Graph */}
       <div className={`lx-guided-stage-grid${hasGraph ? ' has-graph' : ''}`}>
-        <div className="lx-cl-stage">
+        <div className={`lx-cl-stage${paperScene ? ' lx-paper-scene' : ''}`}>
           <Canvas
-            dpr={[1, 2]}
+            dpr={paperScene ? [1, 1.5] : [1, 2]}
             camera={{ position: PRESET_POS[preset], fov: 40 }}
             gl={{ alpha: true, antialias: true }}
             fallback={
@@ -157,11 +162,13 @@ export const Visual3DLearner: React.FC<{ toolId: string }> = ({ toolId }) => {
             }
             aria-label={`3D interactive simulation for ${spec.title}`}
           >
-            <StudioEnvironment floorY={-0.78} />
+            {paperScene ? <PaperEnvironment floor={!productLayout} /> : <StudioEnvironment floorY={-0.78} />}
             <CameraRig preset={preset} autoOrbit={autoOrbit && !reduceMotion} controls={controlsRef} />
             {spec.courseId === 'MIAE221' && <Materials3DGroup topicId={spec.id} values={values} />}
-            {spec.courseId === 'INDU211' && <Indu3DGroup topicId={spec.id} values={values} playing={isPlaying && !reduceMotion} />}
-            {spec.courseId === 'ENGR213' && <Engr213SimGroup topicId={spec.id} values={values} />}
+            {productLayout ? (
+              <Suspense fallback={null}><ProductLayoutScene values={values} playing={isPlaying && !reduceMotion} /></Suspense>
+            ) : spec.courseId === 'INDU211' && <AssetBoundary key={spec.id}><Suspense fallback={null}><Indu3DGroup topicId={spec.id} values={values} playing={isPlaying && !reduceMotion} /></Suspense></AssetBoundary>}
+            {spec.courseId === 'ENGR213' && <Engr213SimGroup topicId={spec.id} values={values} playing={isPlaying && !reduceMotion} />}
             {spec.courseId === 'MIAE215' && <Miae215Group topicId={spec.id} values={values} />}
             <LabControls controls={controlsRef} autoOrbit={autoOrbit && !reduceMotion} />
           </Canvas>

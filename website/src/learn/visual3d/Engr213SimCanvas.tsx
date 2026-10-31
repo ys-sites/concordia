@@ -24,14 +24,15 @@ const Pill: React.FC<{ pos: Vec3; text: string; bg?: string }> = ({ pos, text, b
 export const Engr213SimGroup: React.FC<{
   topicId: string;
   values: Record<string, number>;
-}> = ({ topicId, values }) => {
+  playing?: boolean;
+}> = ({ topicId, values, playing = false }) => {
   const clockRef = useRef(0);
   const impellerRef = useRef<THREE.Group | null>(null);
   const massRef = useRef<THREE.Group | null>(null);
 
   useFrame((_, dt) => {
     clockRef.current += dt;
-    if (impellerRef.current) {
+    if (impellerRef.current && playing) {
       impellerRef.current.rotation.y += dt * 3.5;
     }
     if (massRef.current && topicId === '3d:mass-spring') {

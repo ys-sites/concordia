@@ -4,6 +4,7 @@ import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 import type { Vec3 } from '../visualization/crystalMath';
 import { CylinderRod } from '../crystal/SceneKit';
+import { FactoryMachine } from './ProductLayoutScene';
 
 const Pill: React.FC<{ pos: Vec3; text: string; bg?: string }> = ({ pos, text, bg }) => (
   <Html position={pos} center className="lx-cl-label" zIndexRange={[10, 0]}>
@@ -12,27 +13,11 @@ const Pill: React.FC<{ pos: Vec3; text: string; bg?: string }> = ({ pos, text, b
 );
 
 /** Small, distinct machine silhouettes keep layout diagrams tied to a real shop floor. */
-const ShopMachine: React.FC<{ kind: 'lathe' | 'mill' | 'drill' | 'assembly'; color?: string }> = ({ kind, color = '#64748b' }) => (
-  <group>
-    <mesh position={[0, -0.10, 0]}><boxGeometry args={[0.34, 0.18, 0.22]} /><meshStandardMaterial color={color} metalness={0.35} roughness={0.65} /></mesh>
-    {kind === 'lathe' ? <>
-      <mesh position={[-0.11, 0.035, 0]}><boxGeometry args={[0.11, 0.16, 0.19]} /><meshStandardMaterial color="#475569" /></mesh>
-      <mesh position={[0.04, 0.055, 0]} rotation={[0, 0, Math.PI / 2]}><cylinderGeometry args={[0.04, 0.04, 0.22, 16]} /><meshStandardMaterial color="#cbd5e1" metalness={0.7} roughness={0.3} /></mesh>
-    </> : kind === 'assembly' ? <>
-      <mesh position={[0, 0.025, 0]}><boxGeometry args={[0.2, 0.08, 0.14]} /><meshStandardMaterial color="#d97706" /></mesh>
-      <CylinderRod start={[0.09, 0, -0.08]} end={[0.09, 0.23, -0.08]} color="#334155" radius={0.012} />
-    </> : <>
-      <mesh position={[-0.12, 0.04, -0.07]}><boxGeometry args={[0.09, 0.27, 0.08]} /><meshStandardMaterial color="#475569" /></mesh>
-      <mesh position={[0, 0.16, -0.07]}><boxGeometry args={[0.25, 0.09, 0.1]} /><meshStandardMaterial color={color} /></mesh>
-      <mesh position={[0.06, 0.07, 0]}><cylinderGeometry args={[0.024, 0.014, 0.14, 12]} /><meshStandardMaterial color="#e2e8f0" metalness={0.7} roughness={0.25} /></mesh>
-      {kind === 'mill' && <mesh position={[0, 0, 0]}><boxGeometry args={[0.2, 0.035, 0.14]} /><meshStandardMaterial color="#cbd5e1" /></mesh>}
-    </>}
-  </group>
-);
+const ShopMachine: React.FC<{ kind: 'lathe' | 'mill' | 'drill' | 'assembly'; color?: string }> = ({ kind, color }) => <FactoryMachine kind={kind} color={color} />;
 
 const FactoryFloor: React.FC = () => <group>
-  <mesh position={[0, -0.37, 0]}><boxGeometry args={[2.7, 0.06, 1.85]} /><meshStandardMaterial color="#dce2e6" roughness={0.9} /></mesh>
-  {[-0.7, 0.7].map((z) => <mesh key={z} position={[0, -0.335, z]}><boxGeometry args={[2.5, 0.006, 0.02]} /><meshStandardMaterial color="#eab308" /></mesh>)}
+  <mesh position={[0, -0.37, 0]}><boxGeometry args={[2.7, 0.06, 1.85]} /><meshStandardMaterial color="#efe6d3" roughness={0.9} /></mesh>
+  {[-0.7, 0.7].map((z) => <mesh key={z} position={[0, -0.335, z]}><boxGeometry args={[2.5, 0.006, 0.02]} /><meshStandardMaterial color="#9a3b2a" /></mesh>)}
 </group>;
 
 export const Indu3DGroup: React.FC<{
