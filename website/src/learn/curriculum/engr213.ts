@@ -220,39 +220,50 @@ export const ENGR213_SPEC: CourseSpec = {
     {
       id: 'higher-order',
       title: 'Higher-order linear equations',
-      subtitle: 'After the midterm · Lecture 9 onward',
+      subtitle: 'Ch 4 · Lectures 9–14 (Wronskian, Constant Coeffs, Undetermined Coeffs, Variation of Parameters, Cauchy–Euler)',
       lessons: [
         {
           id: 'higher-order-theory',
-          title: 'Theory of higher-order linear equations',
-          summary: 'Fundamental sets, the Wronskian and superposition: why two independent solutions are enough.',
-          read: [/^01 - Teacher Lecture Notes\/ENGR213, Lecture 9/, /^02 - Lecture Notes Explained\/Lecture 9 - /],
-          resources: [/^00 - Course Syllabus & Textbook\/Textbook Chapters\/Textbook Chapter 3 /, /^Professor Leonard\/11 - /, /^Professor Dave\/07 - /]
+          title: 'Theory of higher-order linear equations & Wronskian',
+          summary: 'Fundamental sets, the Wronskian determinant, reduction of order, and superposition: why n independent solutions span the full solution space.',
+          gate: ['wronskian'],
+          read: [/^02 - Lecture Notes Explained\/Lecture 9 - /]
         },
         {
           id: 'constant-coefficients',
-          title: 'Second-order equations with constant coefficients',
-          summary: 'The auxiliary equation and its three cases: distinct, repeated and complex roots.',
+          title: 'Homogeneous linear ODEs with constant coefficients',
+          summary: 'The auxiliary equation am² + bm + c = 0 and its three root cases: distinct real, repeated real (x·e^{mx}), and complex conjugate roots.',
           tools: ['3d:mass-spring'],
+          gate: ['const-coeff'],
           videos: ['tutor:second_order'],
           bank: [{ ch: 'lecture_11' }],
-          read: [/^01 - Teacher Lecture Notes\/ENGR213, Lecture 11/, /^02 - Comprehensive Topic Guides.*Lecture 11/, /^02 - Textbook Expanded Notes\/Chapter 03 /],
-          resources: [/^Professor Leonard\/1[234] - /, /^Professor Dave\/0[89] - /]
+          read: [/^02 - Comprehensive Topic Guides.*Lecture 11/, /^02 - Textbook Expanded Notes\/Chapter 03 /]
         },
         {
           id: 'undetermined-coefficients',
-          title: 'Nonhomogeneous equations: undetermined coefficients',
-          summary: 'The superposition principle y = yc + yp, the form rule for polynomials, exponentials and trig terms, and the multiplication rule for resonance.',
+          title: 'Nonhomogeneous ODEs: method of undetermined coefficients',
+          summary: 'Superposition y = yc + yp, trial forms for polynomials, exponentials and sinusoids, and the x^s duplication rule when a trial term matches yc.',
+          gate: ['undet-coeff'],
           bank: [{ ch: 'lecture_12' }],
-          read: [/^01 - Teacher Lecture Notes\/ENGR213, Lecture 12/, /^02 - Comprehensive Topic Guides.*Lecture 12/],
-          resources: [/^Professor Leonard\/15 - /]
+          read: [/^02 - Comprehensive Topic Guides.*Lecture 12/]
+        },
+        {
+          id: 'variation-of-parameters',
+          title: 'Method of variation of parameters (Lecture 13)',
+          summary: "Solve any nonhomogeneous 2nd-order linear ODE y'' + P(x)y' + Q(x)y = f(x) using yp = u₁(x)y₁(x) + u₂(x)y₂(x) and Cramer's rule Wronskians.",
+          gate: ['var-param']
+        },
+        {
+          id: 'cauchy-euler',
+          title: 'Cauchy–Euler (equidimensional) equations (Lecture 14)',
+          summary: 'Solve ax²y\'\' + bxy\' + cy = g(x) with the power trial y = x^m, auxiliary equation am(m−1) + bm + c = 0, logarithmic repeated/complex cases, and Variation of Parameters.',
+          gate: ['cauchy-euler']
         },
         {
           id: 'laplace-preview',
           title: 'Looking ahead: Laplace transforms',
-          summary: 'A first look at the transform that turns differential equations into algebra.',
-          read: [/^02 - Textbook Expanded Notes\/Chapter 04 /],
-          resources: [/^Professor Leonard\/16 - /, /^Professor Dave\/1[56] - /]
+          summary: 'A first look at the integral transform that converts initial-value differential equations into algebraic equations in s.',
+          read: [/^02 - Textbook Expanded Notes\/Chapter 04 /]
         }
       ]
     }

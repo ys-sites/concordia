@@ -1,7 +1,8 @@
 // Unit-cell 3D scene (React Three Fiber + Drei) — Studio Edition.
 // Every atom position, radius and count comes from crystalMath.unitCell() —
-// the scene never invents a coordinate. Camera movement never changes the
-// maths: the camera only looks at the model.
+// the scene never invents a coordinate. For HCP, crystallographic (x, y, z_c)
+// is mapped so the hexagonal basal planes lie horizontally (XZ) and the c-axis
+// stands vertically along Three.js Y, matching standard crystallography figures.
 import React, { useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Html, OrbitControls } from '@react-three/drei';
@@ -42,20 +43,51 @@ export interface SceneState {
 }
 
 const ROLE_COLORS: Record<AtomSite['role'], string> = {
-  corner: '#64748b',
-  face: '#f59e0b',
+  corner: '#475569',
+  face: '#d97706',
   body: '#be123c',
   interior: '#be123c',
 };
 
-const centreOf = (cell: CellKind): Vec3 =>
-  cell === 'hcp' ? [0, 0, HCP_IDEAL_C_OVER_A / 2] : [0.5, 0.5, 0.5];
+const HCP_SCALE = 0.68;
 
-/** Cell edges in centred coordinates (cell centre at the origin). */
-const cellEdges = (cell: CellKind): [Vec3, Vec3][] => {
-  const c = centreOf(cell);
-  const sub = (p: Vec3): Vec3 => [p[0] - c[0], p[1] - c[1], p[2] - c[2]];
-  if (cell !== 'hcp') return CUBE_EDGES.map(([a, b]) => [sub(a), sub(b)]);
+/**
+ * Convert crystallographic centered coordinates into Three.js Y-up studio coordinates.
+ * - Cubic cells: centered at (0.5, 0.5, 0.5).
+ * - HCP cell: crystallographic (x, y) basal plane maps to Three.js (x, -z),
+ *   and crystallographic z (height along c-axis, 0..c/a) maps to vertical Three.js Y!
+ */
+export const toStagePos = (cell: CellKind, cart: Vec3): Vec3 => {
+  if (cell === 'hcp') {
+    return [
+      cart[0] * HCP_SCALE,
+      (cart[2] - HCP_IDEAL_C_OVER_A / 2) * HCP_SCALE,
+      -cart[1] * HCP_SCALE,
+    ];
+  }
+  return [cart[0] - 0.5, cart[1] - 0.5, cart[2] - 0.5];
+};
+
+interface EdgeSegment {
+  start: Vec3;
+  end: Vec3;
+  color: string;
+  radius: number;
+  opacity: number;
+}
+
+/** Cell edges and structural guide lines in centred Three.js stage coordinates. */
+const cellEdges = (cell: CellKind, wireRadius: number, mainOpacity: number): EdgeSegment[] => {
+  if (cell !== 'hcp') {
+    return CUBE_EDGES.map(([a, b]) => ({
+      start: toStagePos(cell, a),
+      end: toStagePos(cell, b),
+      color: '#64748b',
+      radius: wireRadius,
+      opacity: mainOpacity,
+    }));
+  }
+
   const m = unitCell('hcp');
   const corners = m.atoms.filter((a) => a.role === 'corner');
   const bottom = corners
@@ -64,45 +96,100 @@ const cellEdges = (cell: CellKind): [Vec3, Vec3][] => {
   const top = corners
     .filter((a) => a.frac[2] === 1)
     .sort((a, b) => Math.atan2(a.cart[1], a.cart[0]) - Math.atan2(b.cart[1], b.cart[0]));
-  const edges: [Vec3, Vec3][] = [];
+  const bottomCenter = toStagePos('hcp', [0, 0, 0]);
+  const topCenter = toStagePos('hcp', [0, 0, HCP_IDEAL_C_OVER_A]);
+  const mids = m.atoms.filter((a) => a.role === 'interior').map((a) => toStagePos('hcp', a.cart));
+
+  const segments: EdgeSegment[] = [];
+
+  // 1. Outer hexagonal prism perimeter (6 bottom edges, 6 top edges, 6 vertical pillars)
   for (let i = 0; i < 6; i++) {
-    edges.push([sub(bottom[i].cart), sub(bottom[(i + 1) % 6].cart)]);
-    edges.push([sub(top[i].cart), sub(top[(i + 1) % 6].cart)]);
-    edges.push([sub(bottom[i].cart), sub(top[i].cart)]);
+    const b0 = toStagePos('hcp', bottom[i].cart);
+    const b1 = toStagePos('hcp', bottom[(i + 1) % 6].cart);
+    const t0 = toStagePos('hcp', top[i].cart);
+    const t1 = toStagePos('hcp', top[(i + 1) % 6].cart);
+
+    segments.push({ start: b0, end: b1, color: '#334155', radius: wireRadius * 1.15, opacity: mainOpacity });
+    segments.push({ start: t0, end: t1, color: '#334155', radius: wireRadius * 1.15, opacity: mainOpacity });
+    segments.push({ start: b0, end: t0, color: '#475569', radius: wireRadius, opacity: mainOpacity * 0.9 });
+
+    // 2. Six radial basal spokes on bottom and top hexagonal faces (forming the 6 equilateral triangles)
+    segments.push({ start: bottomCenter, end: b0, color: '#94a3b8', radius: wireRadius * 0.72, opacity: 0.55 });
+    segments.push({ start: topCenter, end: t0, color: '#94a3b8', radius: wireRadius * 0.72, opacity: 0.55 });
   }
-  return edges;
+
+  // 3. Central vertical c-axis connecting bottom face-center to top face-center
+  segments.push({
+    start: bottomCenter,
+    end: topCenter,
+    color: '#d97706',
+    radius: wireRadius * 0.75,
+    opacity: 0.5,
+  });
+
+  // 4. Mid-plane B-layer triangle connecting the 3 interior atoms at z = c/2
+  if (mids.length === 3) {
+    for (let i = 0; i < 3; i++) {
+      segments.push({
+        start: mids[i],
+        end: mids[(i + 1) % 3],
+        color: '#be123c',
+        radius: wireRadius * 0.95,
+        opacity: 0.75,
+      });
+    }
+  }
+
+  return segments;
+};
+
+const shareText = (site: AtomSite): string => {
+  if (site.role === 'corner') {
+    return Math.abs(site.share - 1 / 6) < 1e-4 ? 'corner · 1/6' : 'corner · 1/8';
+  }
+  if (site.role === 'face') return 'face center · 1/2';
+  if (site.role === 'body') return 'body center · 1';
+  return 'interior (B-layer) · 1';
 };
 
 const Atom: React.FC<{
+  cell: CellKind;
   site: AtomSite;
-  centre: Vec3;
   radius: number;
   explode: number;
   selected: boolean;
   dimmed: boolean;
   showLabel: boolean;
   onSelect: (id: string) => void;
-}> = ({ site, centre, radius, explode, selected, dimmed, showLabel, onSelect }) => {
-  const dir: Vec3 = [
-    site.cart[0] - centre[0],
-    site.cart[1] - centre[1],
-    site.cart[2] - centre[2],
-  ];
-  const len = Math.sqrt(dir[0] ** 2 + dir[1] ** 2 + dir[2] ** 2) || 1;
+}> = ({ cell, site, radius, explode, selected, dimmed, showLabel, onSelect }) => {
+  const basePos = toStagePos(cell, site.cart);
+  const len = Math.sqrt(basePos[0] ** 2 + basePos[1] ** 2 + basePos[2] ** 2) || 1;
   const pos: Vec3 = [
-    site.cart[0] - centre[0] + (dir[0] / len) * explode * 0.55,
-    site.cart[1] - centre[1] + (dir[1] / len) * explode * 0.55,
-    site.cart[2] - centre[2] + (dir[2] / len) * explode * 0.55,
+    basePos[0] + (basePos[0] / len) * explode * 0.52,
+    basePos[1] + (basePos[1] / len) * explode * 0.52,
+    basePos[2] + (basePos[2] / len) * explode * 0.52,
   ];
   const labelOffset: Vec3 = [
-    (dir[0] / len) * (radius + 0.14),
-    (dir[1] / len) * (radius + 0.14) + 0.08,
-    (dir[2] / len) * (radius + 0.14),
+    (basePos[0] / len) * (radius + 0.12),
+    (basePos[1] / len) * (radius + 0.12) + 0.07,
+    (basePos[2] / len) * (radius + 0.12),
   ];
+
+  // Distinct color palette for HCP ABAB layers vs cubic roles
+  const color = selected
+    ? '#2563eb'
+    : cell === 'hcp'
+      ? site.role === 'interior'
+        ? '#be123c' // B-layer (3 interior atoms)
+        : site.role === 'face'
+          ? '#d97706' // Basal face centers (2 atoms, 1/2 each)
+          : '#3b82f6' // Basal corner ring (12 atoms, 1/6 each)
+      : ROLE_COLORS[site.role];
+
   return (
     <mesh
       position={pos}
-      scale={selected ? 1.16 : 1}
+      scale={selected ? 1.14 : 1}
       onClick={(e) => {
         e.stopPropagation();
         onSelect(site.id);
@@ -117,27 +204,19 @@ const Atom: React.FC<{
     >
       <sphereGeometry args={[radius, 36, 28]} />
       <meshPhysicalMaterial
-        color={selected ? '#2563eb' : ROLE_COLORS[site.role]}
+        color={color}
         emissive={selected ? '#1d4ed8' : '#000000'}
         emissiveIntensity={selected ? 0.35 : 0}
         roughness={0.2}
         metalness={0.18}
-        clearcoat={0.75}
-        clearcoatRoughness={0.15}
+        clearcoat={0.78}
+        clearcoatRoughness={0.14}
         transparent={dimmed}
-        opacity={dimmed ? 0.3 : 1}
+        opacity={dimmed ? 0.28 : 1}
       />
       {showLabel && (
         <Html position={labelOffset} center className="lx-cl-label" zIndexRange={[10, 0]}>
-          <span>
-            {site.role === 'corner'
-              ? 'corner · 1/8'
-              : site.role === 'face'
-                ? 'face · 1/2'
-                : site.role === 'body'
-                  ? 'body · 1'
-                  : 'inside · 1'}
-          </span>
+          <span>{shareText(site)}</span>
         </Html>
       )}
     </mesh>
@@ -150,13 +229,22 @@ export const UnitCellScene: React.FC<{ scene: SceneState; onSelect: (id: string 
 }) => {
   const controls = useRef<OrbitControlsImpl | null>(null);
   const model = useMemo(() => unitCell(scene.cell), [scene.cell]);
-  const centre = centreOf(scene.cell);
   const atoms = useMemo(() => {
     const r = replicate(scene.cell, ...scene.replicate);
     return r.atoms;
   }, [scene.cell, scene.replicate]);
-  const edges = useMemo(() => cellEdges(scene.cell), [scene.cell]);
-  const displayRadius = model.radius * (scene.atomSize === 'touching' ? 0.92 : 0.44);
+
+  const wireRadius = scene.showWireframe ? 0.015 : 0.01;
+  const mainOpacity = scene.replicate[0] * scene.replicate[1] * scene.replicate[2] === 1 ? 0.85 : 0.45;
+  const edges = useMemo(
+    () => cellEdges(scene.cell, wireRadius, mainOpacity),
+    [scene.cell, wireRadius, mainOpacity],
+  );
+
+  const scaleFactor = scene.cell === 'hcp' ? HCP_SCALE : 1;
+  const displayRadius =
+    model.radius * scaleFactor * (scene.atomSize === 'touching' ? 0.92 : 0.38);
+
   const [failed, setFailed] = useState(false);
   const reduced =
     typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -164,9 +252,9 @@ export const UnitCellScene: React.FC<{ scene: SceneState; onSelect: (id: string 
   const blockOffset: Vec3 =
     scene.cell === 'hcp'
       ? [
-          -(scene.replicate[0] - 1) / 2 + (scene.replicate[1] - 1) / 4,
-          -((scene.replicate[1] - 1) * Math.sqrt(3)) / 4,
-          -((scene.replicate[2] - 1) * HCP_IDEAL_C_OVER_A) / 2,
+          (-(scene.replicate[0] - 1) / 2 + (scene.replicate[1] - 1) / 4) * HCP_SCALE,
+          -((scene.replicate[2] - 1) * HCP_IDEAL_C_OVER_A * HCP_SCALE) / 2,
+          ((scene.replicate[1] - 1) * Math.sqrt(3) * HCP_SCALE) / 4,
         ]
       : [
           -(scene.replicate[0] - 1) / 2,
@@ -183,29 +271,32 @@ export const UnitCellScene: React.FC<{ scene: SceneState; onSelect: (id: string 
       onError={() => setFailed(true)}
       aria-label={`${model.name} unit cell, interactive 3D model. Drag to orbit, scroll or pinch to zoom.`}
     >
-      <StudioEnvironment floorY={scene.cell === 'hcp' ? -1.05 : -0.78} />
+      <StudioEnvironment floorY={scene.cell === 'hcp' ? -0.82 : -0.78} />
       <CameraRig preset={scene.preset} autoOrbit={scene.autoOrbit && !reduced} controls={controls} />
       <group position={blockOffset}>
-        {edges.map(([a, b], i) => (
+        {edges.map((seg, i) => (
           <CylinderRod
             key={i}
-            start={a}
-            end={b}
-            color="#64748b"
-            radius={scene.showWireframe ? 0.016 : 0.011}
-            opacity={scene.replicate[0] * scene.replicate[1] * scene.replicate[2] === 1 ? 0.8 : 0.45}
+            start={seg.start}
+            end={seg.end}
+            color={seg.color}
+            radius={seg.radius}
+            opacity={seg.opacity}
           />
         ))}
         {atoms.map((a) => (
           <Atom
             key={a.id}
+            cell={scene.cell}
             site={a}
-            centre={centre}
             radius={displayRadius}
             explode={scene.explode}
             selected={scene.selectedId === a.id}
             dimmed={scene.selectedId !== null && scene.selectedId !== a.id && scene.showSharing}
-            showLabel={scene.showLabels && (scene.selectedId === a.id || (scene.showSharing && a.role !== 'corner'))}
+            showLabel={
+              scene.showLabels &&
+              (scene.selectedId === a.id || (scene.showSharing && a.role !== 'corner'))
+            }
             onSelect={onSelect}
           />
         ))}

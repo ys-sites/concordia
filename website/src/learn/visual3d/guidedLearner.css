@@ -1,11 +1,398 @@
-.lx-guided-hint { margin: .5rem 0 0; color: var(--lx-ink); font-size: .9rem; }
-.lx-guided-details { border: 1px solid var(--lx-line); border-radius: 10px; padding: .65rem .8rem; }
-.lx-guided-details > summary { cursor: pointer; font-weight: 650; }
-.lx-guided-details > summary + * { margin-top: .7rem; }
-.lx-guided-time { display: grid; gap: .4rem; font-weight: 650; }
-.lx-guided-time input { width: 100%; }
-.lx-cooling-graph { border: 1px solid var(--lx-line); border-radius: 10px; padding: .75rem 1rem; }
-.lx-cooling-graph h3, .lx-cooling-graph p { margin: .25rem 0; }
-.lx-cooling-graph p { font-size: .875rem; }
-.lx-cooling-graph svg { display: block; width: 100%; max-width: 520px; max-height: 215px; margin: .5rem auto; }
-@media (prefers-reduced-motion: reduce) { .lx-guided-details *, .lx-cooling-graph * { transition: none !important; animation: none !important; } }
+/* One-on-One AI Tutor Layout for 3D Visual Learners */
+
+.lx-guided-tutor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lx-tutor-banner {
+  background: var(--lx-surface-subtle, #f8fafc);
+  border: 1px solid var(--lx-line, #e2e8f0);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+}
+
+.lx-tutor-banner__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.lx-tutor-live-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #9f1239;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.lx-tutor-plain {
+  margin: 0.35rem 0 0.25rem;
+  color: var(--lx-ink, #0f172a);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.lx-tutor-why {
+  margin: 0;
+  color: var(--lx-muted, #475569);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+/* Side-by-side 3D stage + compact synchronized graph */
+.lx-guided-stage-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.lx-guided-stage-grid.has-graph {
+  grid-template-columns: minmax(0, 1.35fr) minmax(275px, 0.95fr);
+}
+
+@media (max-width: 860px) {
+  .lx-guided-stage-grid.has-graph {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lx-guided-graph-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Compact Synchronized Graph Card */
+.lx-cooling-graph {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid var(--lx-line, #cbd5e1);
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+}
+
+.lx-cooling-graph-head,
+.lx-cooling-graph__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.lx-cooling-graph h3 {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.lx-cooling-badge,
+.lx-cooling-graph__badge {
+  display: inline-block;
+  padding: 0.16rem 0.55rem;
+  border-radius: 999px;
+  background: #fef2f2;
+  color: #be123c;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.lx-cooling-why,
+.lx-cooling-graph__why {
+  margin: 0.2rem 0 0.35rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #475569;
+}
+
+.lx-cooling-graph svg {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  max-height: 185px;
+  margin: 0.25rem auto;
+}
+
+.lx-cooling-example {
+  margin: 0.3rem 0 0;
+  padding-top: 0.35rem;
+  border-top: 1px dashed #e2e8f0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #334155;
+}
+
+/* Primary Interactive Bar */
+.lx-tutor-playbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0.9rem;
+  padding: 0.6rem 0.85rem;
+  background: #ffffff;
+  border: 1px solid var(--lx-line, #cbd5e1);
+  border-radius: 10px;
+}
+
+.lx-tutor-playbar__slider {
+  flex: 1 1 220px;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.85rem;
+}
+
+.lx-tutor-playbar__slider span {
+  white-space: nowrap;
+}
+
+.lx-tutor-playbar__slider input[type='range'] {
+  flex: 1;
+  min-width: 110px;
+}
+
+.lx-tutor-motion-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  color: #475569;
+  cursor: pointer;
+}
+
+/* Guided One-at-a-Time Interaction Walkthrough */
+.lx-tutor-walkthrough {
+  background: #ffffff;
+  border: 1px solid var(--lx-line, #cbd5e1);
+  border-radius: 12px;
+  padding: 0.8rem 0.95rem;
+}
+
+.lx-tutor-walkthrough__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.lx-tutor-step-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lx-tutor-step-tab {
+  padding: 0.32rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lx-tutor-step-tab.is-active {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+}
+
+.lx-tutor-step-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+@media (max-width: 760px) {
+  .lx-tutor-step-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lx-tutor-step-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  padding: 0.55rem 0.7rem;
+}
+
+.lx-tutor-step-kicker {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #be123c;
+  margin-bottom: 0.2rem;
+}
+
+.lx-tutor-step-card p {
+  margin: 0;
+  font-size: 0.83rem;
+  line-height: 1.42;
+  color: #1e293b;
+}
+
+.lx-tutor-step-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* Parts of the Model One at a Time */
+.lx-tutor-parts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.lx-tutor-part-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lx-tutor-part-pill {
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lx-tutor-part-pill.is-active {
+  background: #be123c;
+  border-color: #be123c;
+  color: #ffffff;
+}
+
+.lx-tutor-part-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.65rem 0.8rem;
+}
+
+.lx-tutor-part-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.lx-tutor-part-symbol {
+  padding: 0.14rem 0.5rem;
+  border-radius: 6px;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.lx-tutor-part-card p {
+  margin: 0.2rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+/* Worked Calculation Panel */
+.lx-tutor-calc {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  line-height: 1.48;
+}
+
+.lx-tutor-calc__problem,
+.lx-tutor-calc__live,
+.lx-tutor-calc__conclusion {
+  margin: 0;
+}
+
+.lx-tutor-calc__live {
+  padding: 0.4rem 0.65rem;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #881337;
+  font-weight: 600;
+}
+
+.lx-tutor-calc__steps {
+  margin: 0.2rem 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.lx-tutor-calc__math {
+  margin-top: 0.2rem;
+  padding: 0.3rem 0.55rem;
+  background: #f8fafc;
+  border-left: 3px solid #be123c;
+  border-radius: 4px;
+}
+
+.lx-guided-hint {
+  margin: 0.5rem 0 0;
+  color: var(--lx-ink);
+  font-size: 0.9rem;
+}
+
+.lx-guided-details {
+  border: 1px solid var(--lx-line, #cbd5e1);
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  background: #ffffff;
+}
+
+.lx-guided-details > summary {
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 0.88rem;
+}
+
+.lx-guided-details > summary + * {
+  margin-top: 0.65rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lx-guided-details *,
+  .lx-cooling-graph *,
+  .lx-guided-tutor * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.lx-guided-tutor.is-reduced-motion * {
+  transition: none !important;
+  animation: none !important;
+}

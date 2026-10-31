@@ -141,28 +141,46 @@ export const MIAE215_SPEC: CourseSpec = {
           summary: 'Counting inner iterations, patterns and the classic exam traces with two counters.',
           gate: ['nested'],
           bank: [{ ch: 'control', re: /nested/i }, { ch: 'arrays' }]
+        },
+        {
+          id: 'trace-tables',
+          title: 'Systematic variable-table tracing, scientific tables & overflow checks (Week 4 Lec 2)',
+          summary: 'Line-numbered execution tables (tracking G for uninitialized garbage), scientific notation tables with 1.0e-5 roundoff guards, and unsigned/double overflow loops.',
+          gate: ['trace-tables']
         }
       ]
     },
     {
       id: 'arrays',
-      title: 'Arrays & C-strings',
-      subtitle: 'Weeks 6–7 · Mini Course Lesson 6',
+      title: 'Arrays, File I/O & Matrix Algebra',
+      subtitle: 'Weeks 6–7 · In-Person Lectures 1–2 & Exercises Parts 1–2',
       midterm: true,
       lessons: [
         {
           id: 'arrays-1d',
-          title: '1-D arrays: sum, max, search & dot product',
-          summary: 'Declaring, filling and traversing arrays, and the off-by-one errors that cost marks.',
+          title: '1-D arrays: sum, max, search, circular shift & dot product',
+          summary: 'Declaring, filling and traversing arrays, auxiliary shift buffers (A_shift), frequency histograms, and off-by-one errors.',
           gate: ['arr1'],
           read: [/^Mini Course\/Lesson 6 - /]
         },
         {
+          id: 'arrays-init-errors',
+          title: '6 array initialization methods & 8 compile vs. run-time errors (Week 7 Lec 1)',
+          summary: 'Brace lists, auto row sizing, {0.0}, loop formulas, cin & ifstream initialization, plus diagnosing compile-time vs. run-time array bugs.',
+          gate: ['arr-errors']
+        },
+        {
           id: 'arrays-2d',
-          title: '2-D arrays',
-          summary: 'Rows and columns, nested traversal and row or column totals.',
+          title: '2-D arrays & matrix algebra (Week 7 Lec 2 & Exercise Part 2)',
+          summary: '1-based indexing A[NMAX+1][NMAX+1], matrix transpose, spreadsheet column sums, triple-loop matrix multiplication, column Euclidean norms, and column swapping.',
           tools: ['3d:2d-arrays'],
-          gate: ['arr2']
+          gate: ['arr2', 'matrix-alg']
+        },
+        {
+          id: 'arrays-file-io',
+          title: 'Array File I/O with <fstream>: ifstream & ofstream 5-step recipe (Week 7 Lec 2)',
+          summary: 'Open, validate if(!fin), read element count n with NMAX bounds check, close and reuse file streams for A.txt, B.txt, and C.txt.',
+          gate: ['file-io', 'matrix-alg']
         },
         {
           id: 'c-strings',

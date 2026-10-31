@@ -7,6 +7,7 @@
 // BCC (110) is the worked example: x + y = 1 contains the body centre,
 // because 1/2 + 1/2 = 1.
 import React, { useMemo, useState } from 'react';
+import { WalkthroughPlay } from './WalkthroughPlay';
 import { ChevronLeft, ChevronRight, Expand, RotateCcw, Shrink } from 'lucide-react';
 import {
   atomsOnPlane,
@@ -152,6 +153,8 @@ export const PlaneLab: React.FC = () => {
         <h2 className="lx-h2">3D Visual Learner: Miller Indices ? Planes</h2>
         <p className="lx-meta">Every plane is drawn from its equation — rotate the cube and verify the cut yourself.</p>
       </header>
+
+      <WalkthroughPlay count={stepDefs.length} onStart={() => { setMode('teach'); setStepIdx(0); setAnswer(null); }} onStep={(i) => { setStepIdx(i); setAnswer(null); }} />
 
       <div className="lx-cl-modes" role="group" aria-label="Learning mode">
         {(['explore', 'teach', 'practice', 'challenge'] as Mode[]).map((m) => (

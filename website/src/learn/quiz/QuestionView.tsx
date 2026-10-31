@@ -141,7 +141,7 @@ What went wrong:
           <MathText text={`$${q.formula.replace(/^\$|\$$/g, '')}$`} />
         </div>
       )}
-      {q.code && <CodeBlock code={q.code} />}
+      {q.code && <CodeBlock code={q.code} questionId={q.id} prompt={q.prompt} />}
       {q.figure && <QuestionFigure figure={q.figure} />}
 
       {(q.kind === 'mc' || q.kind === 'tf' || q.kind === 'multi') && (

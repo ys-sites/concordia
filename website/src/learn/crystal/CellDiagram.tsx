@@ -3,7 +3,7 @@
 // student sees when WebGL is unavailable, and it is also the static figure
 // behind the 3D scene's sharing step. Positions come from crystalMath.
 import React from 'react';
-import { unitCell, type CellKind } from '../visualization/crystalMath';
+import { HCP_IDEAL_C_OVER_A, unitCell, type CellKind } from '../visualization/crystalMath';
 
 const project = (x: number, y: number, z: number): [number, number] => {
   // Isometric-ish projection: x right-down, y left-down, z up.
@@ -12,29 +12,71 @@ const project = (x: number, y: number, z: number): [number, number] => {
   return [px, py];
 };
 
-/** HCP fallback: a flat hexagon with its mid atoms, drawn from the model. */
-const HcpDiagram: React.FC<{ cell: 'hcp'; selectedId: string | null; onSelect: (id: string) => void }> = ({ selectedId, onSelect }) => {
+const projectHcp = (x: number, y: number, z: number): [number, number] => {
+  const px = 200 + x * 92 - y * 28;
+  const py = 235 - z * 88 + y * 36;
+  return [px, py];
+};
+
+/** HCP fallback: isometric 3D hexagonal prism with top/bottom hexagons, radial spokes, and 3 B-layer interior atoms. */
+const HcpDiagram: React.FC<{ cell: 'hcp'; selectedId: string | null; onSelect: (id: string) => void }> = ({
+  selectedId,
+  onSelect,
+}) => {
   const m = unitCell('hcp');
-  const corners = m.atoms.filter((a) => a.role === 'corner' && a.frac[2] === 0);
-  const pts = corners.map((a) => {
-    const [x, y] = [a.cart[0], a.cart[1]];
-    return [200 + x * 90, 190 - y * 90] as [number, number];
-  });
+  const bottomCorners = m.atoms
+    .filter((a) => a.role === 'corner' && a.frac[2] === 0)
+    .sort((a, b) => Math.atan2(a.cart[1], a.cart[0]) - Math.atan2(b.cart[1], b.cart[0]));
+  const topCorners = m.atoms
+    .filter((a) => a.role === 'corner' && a.frac[2] === 1)
+    .sort((a, b) => Math.atan2(a.cart[1], a.cart[0]) - Math.atan2(b.cart[1], b.cart[0]));
   const mid = m.atoms.filter((a) => a.role === 'interior');
+  const botPts = bottomCorners.map((a) => projectHcp(a.cart[0], a.cart[1], a.cart[2]));
+  const topPts = topCorners.map((a) => projectHcp(a.cart[0], a.cart[1], a.cart[2]));
+  const botCenter = projectHcp(0, 0, 0);
+  const topCenter = projectHcp(0, 0, HCP_IDEAL_C_OVER_A);
+  const midPts = mid.map((a) => projectHcp(a.cart[0], a.cart[1], a.cart[2]));
+
   return (
-    <svg viewBox="0 0 400 340" role="img" aria-label="Hexagonal close-packed unit cell, top view">
-      <polygon points={pts.map((p) => p.join(',')).join(' ')} fill="none" stroke="#94a3b8" strokeWidth="1.5" />
-      {pts.map((p, i) => (
-        <circle key={i} cx={p[0]} cy={p[1]} r={13} fill="#cbd5e1" stroke="#0f172a" strokeWidth="1" />
-      ))}
-      {mid.map((a) => (
-        <g key={a.id} onClick={() => onSelect(a.id)} style={{ cursor: 'pointer' }}>
-          <circle cx={200 + a.cart[0] * 90} cy={190 - a.cart[1] * 90} r={13} fill={selectedId === a.id ? '#ffffff' : '#e11d48'} stroke="#0f172a" strokeWidth="1" />
+    <svg viewBox="0 0 400 340" role="img" aria-label="Hexagonal close-packed unit cell, 3D prism view">
+      {/* Bottom & top hexagons + vertical pillars + basal spokes */}
+      <polygon points={botPts.map((p) => p.join(',')).join(' ')} fill="none" stroke="#64748b" strokeWidth="1.6" />
+      <polygon points={topPts.map((p) => p.join(',')).join(' ')} fill="none" stroke="#64748b" strokeWidth="1.6" />
+      {botPts.map((b, i) => (
+        <g key={`pillar-${i}`}>
+          <line x1={b[0]} y1={b[1]} x2={topPts[i][0]} y2={topPts[i][1]} stroke="#64748b" strokeWidth="1.3" />
+          <line x1={botCenter[0]} y1={botCenter[1]} x2={b[0]} y2={b[1]} stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3 2" />
+          <line x1={topCenter[0]} y1={topCenter[1]} x2={topPts[i][0]} y2={topPts[i][1]} stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3 2" />
         </g>
       ))}
-      <circle cx={200} cy={190} r={13} fill="#fbbf24" stroke="#0f172a" strokeWidth="1" />
-      <text x={200} y={320} textAnchor="middle" fill="#cbd5e1" fontSize={13}>
-        HCP — top view · 12 corners × 1/6 + 2 faces × 1/2 + 3 inside × 1 = 6 atoms
+      {/* B-layer mid-plane triangle */}
+      {midPts.length === 3 && (
+        <polygon
+          points={midPts.map((p) => p.join(',')).join(' ')}
+          fill="rgba(190,18,60,0.12)"
+          stroke="#be123c"
+          strokeWidth="1.5"
+        />
+      )}
+      {/* All 17 HCP atom sites */}
+      {m.atoms.map((a) => {
+        const [cx, cy] = projectHcp(a.cart[0], a.cart[1], a.cart[2]);
+        const fill =
+          selectedId === a.id
+            ? '#ffffff'
+            : a.role === 'interior'
+              ? '#e11d48'
+              : a.role === 'face'
+                ? '#fbbf24'
+                : '#3b82f6';
+        return (
+          <g key={a.id} onClick={() => onSelect(a.id)} style={{ cursor: 'pointer' }}>
+            <circle cx={cx} cy={cy} r={a.role === 'interior' ? 11 : 9.5} fill={fill} stroke="#0f172a" strokeWidth="1.2" />
+          </g>
+        );
+      })}
+      <text x={200} y={322} textAnchor="middle" fill="#cbd5e1" fontSize={12.5}>
+        HCP Hexagonal Prism · 12 corners × 1/6 + 2 faces × 1/2 + 3 interior × 1 = 6 atoms
       </text>
     </svg>
   );

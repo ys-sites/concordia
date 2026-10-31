@@ -4,6 +4,7 @@ import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 import {
   CUBE_EDGES,
+  HCP_IDEAL_C_OVER_A,
   directionFamily,
   millerPlane,
   planeFamily,
@@ -12,6 +13,65 @@ import {
   type Vec3,
 } from '../visualization/crystalMath';
 import { Arrow, Axes, CubeEdges, CylinderRod, centre } from '../crystal/SceneKit';
+import { toStagePos } from '../crystal/UnitCellScene';
+
+/** Reusable upright HCP hexagonal prism wireframe with basal spokes and B-layer triangle */
+const HcpEdges: React.FC<{ opacity?: number }> = ({ opacity = 0.85 }) => {
+  const m = useMemo(() => unitCell('hcp'), []);
+  const corners = useMemo(() => m.atoms.filter((a) => a.role === 'corner'), [m]);
+  const bottom = useMemo(
+    () =>
+      corners
+        .filter((a) => a.frac[2] === 0)
+        .sort((a, b) => Math.atan2(a.cart[1], a.cart[0]) - Math.atan2(b.cart[1], b.cart[0])),
+    [corners],
+  );
+  const top = useMemo(
+    () =>
+      corners
+        .filter((a) => a.frac[2] === 1)
+        .sort((a, b) => Math.atan2(a.cart[1], a.cart[0]) - Math.atan2(b.cart[1], b.cart[0])),
+    [corners],
+  );
+  const bottomCenter = toStagePos('hcp', [0, 0, 0]);
+  const topCenter = toStagePos('hcp', [0, 0, HCP_IDEAL_C_OVER_A]);
+  const mids = useMemo(
+    () => m.atoms.filter((a) => a.role === 'interior').map((a) => toStagePos('hcp', a.cart)),
+    [m],
+  );
+
+  return (
+    <group>
+      {[0, 1, 2, 3, 4, 5].map((i) => {
+        const b0 = toStagePos('hcp', bottom[i].cart);
+        const b1 = toStagePos('hcp', bottom[(i + 1) % 6].cart);
+        const t0 = toStagePos('hcp', top[i].cart);
+        const t1 = toStagePos('hcp', top[(i + 1) % 6].cart);
+        return (
+          <group key={i}>
+            <CylinderRod start={b0} end={b1} color="#334155" radius={0.011} opacity={opacity} />
+            <CylinderRod start={t0} end={t1} color="#334155" radius={0.011} opacity={opacity} />
+            <CylinderRod start={b0} end={t0} color="#475569" radius={0.009} opacity={opacity * 0.9} />
+            <CylinderRod start={bottomCenter} end={b0} color="#94a3b8" radius={0.007} opacity={0.55} />
+            <CylinderRod start={topCenter} end={t0} color="#94a3b8" radius={0.007} opacity={0.55} />
+          </group>
+        );
+      })}
+      <CylinderRod start={bottomCenter} end={topCenter} color="#d97706" radius={0.008} opacity={0.5} />
+      {mids.length === 3 &&
+        [0, 1, 2].map((i) => (
+          <CylinderRod
+            key={`mid-${i}`}
+            start={mids[i]}
+            end={mids[(i + 1) % 3]}
+            color="#be123c"
+            radius={0.009}
+            opacity={0.75}
+          />
+        ))}
+    </group>
+  );
+};
 
 const Pill: React.FC<{ pos: Vec3; text: string; bg?: string }> = ({ pos, text, bg }) => (
   <Html position={pos} center className="lx-cl-label" zIndexRange={[10, 0]}>
@@ -37,15 +97,15 @@ export const Materials3DGroup: React.FC<{
   // ── 2. Atom Sharing ─────────────────────────────────────────────────────────
   if (topicId === '3d:atom-sharing') {
     const idx = Math.round(values.cellType ?? 2);
-    const kind: CellKind = idx === 0 ? 'sc' : idx === 1 ? 'bcc' : 'fcc';
+    const kind: CellKind = idx === 0 ? 'sc' : idx === 1 ? 'bcc' : idx === 2 ? 'fcc' : 'hcp';
     const explode = values.explode ?? 0.35;
     const roleFilter = Math.round(values.highlightRole ?? 0);
     const m = unitCell(kind);
     return (
       <group>
-        <CubeEdges color="#475569" opacity={0.75} />
+        {kind === 'hcp' ? <HcpEdges opacity={0.85} /> : <CubeEdges color="#475569" opacity={0.75} />}
         {m.atoms.map((a) => {
-          const dir = centre(a.frac);
+          const dir = kind === 'hcp' ? toStagePos('hcp', a.cart) : centre(a.frac);
           const len = Math.hypot(dir[0], dir[1], dir[2]) || 1;
           const pos: Vec3 = [
             dir[0] + (dir[0] / len) * explode * 0.55,
@@ -56,9 +116,31 @@ export const Materials3DGroup: React.FC<{
             roleFilter === 0 ||
             (roleFilter === 1 && a.role === 'corner') ||
             (roleFilter === 2 && a.role === 'face') ||
-            (roleFilter === 3 && a.role === 'body');
-          const r = a.role === 'corner' ? 0.14 : a.role === 'face' ? 0.18 : 0.22;
-          const col = a.role === 'corner' ? '#64748b' : a.role === 'face' ? '#f59e0b' : '#be123c';
+            (roleFilter === 3 && (a.role === 'body' || a.role === 'interior'));
+          const r =
+            kind === 'hcp'
+              ? a.role === 'corner'
+                ? 0.13
+                : a.role === 'face'
+                  ? 0.15
+                  : 0.165
+              : a.role === 'corner'
+                ? 0.14
+                : a.role === 'face'
+                  ? 0.18
+                  : 0.22;
+          const col =
+            kind === 'hcp'
+              ? a.role === 'corner'
+                ? '#3b82f6'
+                : a.role === 'face'
+                  ? '#d97706'
+                  : '#be123c'
+              : a.role === 'corner'
+                ? '#64748b'
+                : a.role === 'face'
+                  ? '#f59e0b'
+                  : '#be123c';
           return (
             <mesh key={a.id} position={pos}>
               <sphereGeometry args={[r, 28, 22]} />
@@ -73,9 +155,19 @@ export const Materials3DGroup: React.FC<{
             </mesh>
           );
         })}
-        <Pill pos={[-0.55, 0.65, -0.55]} text="Corner: 1/8 inside cell" bg="rgba(71,85,105,0.92)" />
-        {kind === 'fcc' && <Pill pos={[0, 0.65, 0]} text="Face: 1/2 inside cell" bg="rgba(180,83,9,0.92)" />}
-        {kind === 'bcc' && <Pill pos={[0, 0.28, 0]} text="Body center: 1 whole atom" bg="rgba(190,18,60,0.92)" />}
+        {kind === 'hcp' ? (
+          <>
+            <Pill pos={[0, 0.78, 0]} text="HCP: 12 corners × 1/6 + 2 faces × 1/2 + 3 interior × 1 = 6 atoms" bg="rgba(15,23,42,0.92)" />
+            <Pill pos={[0.52, -0.58, 0.3]} text="Corner: 1/6 inside cell" bg="rgba(37,99,235,0.92)" />
+            <Pill pos={[0, -0.2, 0]} text="Interior B-layer: 1 whole atom" bg="rgba(190,18,60,0.92)" />
+          </>
+        ) : (
+          <>
+            <Pill pos={[-0.55, 0.65, -0.55]} text="Corner: 1/8 inside cell" bg="rgba(71,85,105,0.92)" />
+            {kind === 'fcc' && <Pill pos={[0, 0.65, 0]} text="Face: 1/2 inside cell" bg="rgba(180,83,9,0.92)" />}
+            {kind === 'bcc' && <Pill pos={[0, 0.28, 0]} text="Body center: 1 whole atom" bg="rgba(190,18,60,0.92)" />}
+          </>
+        )}
         <Axes />
       </group>
     );
@@ -90,38 +182,53 @@ export const Materials3DGroup: React.FC<{
     const m = unitCell(kind);
     return (
       <group>
-        <CubeEdges color="#334155" opacity={0.8} />
-        {/* Translucent interstitial void box */}
+        {kind === 'hcp' ? <HcpEdges opacity={0.85} /> : <CubeEdges color="#334155" opacity={0.8} />}
+        {/* Translucent interstitial void container */}
         <mesh position={[0, 0, 0]}>
-          <boxGeometry args={[0.98, 0.98, 0.98]} />
+          {kind === 'hcp' ? (
+            <cylinderGeometry args={[0.66, 0.66, HCP_IDEAL_C_OVER_A * 0.68, 6]} />
+          ) : (
+            <boxGeometry args={[0.98, 0.98, 0.98]} />
+          )}
           <meshPhysicalMaterial
             color="#38bdf8"
             transparent
-            opacity={voidOp * 0.45}
+            opacity={voidOp * 0.42}
             roughness={0.15}
             transmission={0.4}
             depthWrite={false}
           />
         </mesh>
-        {m.atoms
-          .filter((a) => kind !== 'hcp' || a.frac[2] <= 1)
-          .map((a) => {
-            const p = kind === 'hcp' ? ([a.cart[0] * 0.6, a.cart[1] * 0.6, (a.cart[2] - 0.8) * 0.6] as Vec3) : centre(a.frac);
-            return (
-              <mesh key={a.id} position={p}>
-                <sphereGeometry args={[m.radius * 0.9 * fillScale, 28, 22]} />
-                <meshPhysicalMaterial
-                  color={a.role === 'corner' ? '#64748b' : a.role === 'face' ? '#f59e0b' : '#be123c'}
-                  roughness={0.2}
-                  metalness={0.2}
-                  clearcoat={0.75}
-                />
-              </mesh>
-            );
-          })}
+        {m.atoms.map((a) => {
+          const p = kind === 'hcp' ? toStagePos('hcp', a.cart) : centre(a.frac);
+          const scale = kind === 'hcp' ? 0.68 * 0.88 : 0.9;
+          const col =
+            kind === 'hcp'
+              ? a.role === 'corner'
+                ? '#3b82f6'
+                : a.role === 'face'
+                  ? '#d97706'
+                  : '#be123c'
+              : a.role === 'corner'
+                ? '#64748b'
+                : a.role === 'face'
+                  ? '#f59e0b'
+                  : '#be123c';
+          return (
+            <mesh key={a.id} position={p}>
+              <sphereGeometry args={[m.radius * scale * fillScale, 28, 22]} />
+              <meshPhysicalMaterial
+                color={col}
+                roughness={0.2}
+                metalness={0.2}
+                clearcoat={0.75}
+              />
+            </mesh>
+          );
+        })}
         <Pill
-          pos={[0, 0.72, 0]}
-          text={`${m.short}: ${(m.apf * 100).toFixed(1)}% Solid · ${(100 - m.apf * 100).toFixed(1)}% Empty Void`}
+          pos={[0, 0.78, 0]}
+          text={`${m.short}: ${(m.apf * 100).toFixed(1)}% Solid Atoms · ${(100 - m.apf * 100).toFixed(1)}% Empty Void`}
           bg="rgba(15,23,42,0.9)"
         />
       </group>
@@ -857,39 +964,37 @@ export const Materials2DGraph: React.FC<{
     return ((values.stageProgress ?? 72) / 100) * 0.3;
   }, [topicId, values]);
 
-  const xPx = 45 + Math.min(1, eps / 0.3) * 280;
+  const xPx = 52 + Math.min(1, eps / 0.3) * 280;
   const yEng =
     eps < 0.02
-      ? 150 - (eps / 0.02) * 70
+      ? 142 - (eps / 0.02) * 66
       : eps < 0.16
-        ? 80 - ((eps - 0.02) / 0.14) * 35
-        : 45 + ((eps - 0.16) / 0.14) * 32;
-  const yTrue = eps < 0.02 ? yEng : 80 - ((eps - 0.02) / 0.28) * 58;
+        ? 76 - ((eps - 0.02) / 0.14) * 33
+        : 43 + ((eps - 0.16) / 0.14) * 30;
+  const yTrue = eps < 0.02 ? yEng : 76 - ((eps - 0.02) / 0.28) * 54;
+  const engMpa = Math.round((142 - yEng) * 4.5);
 
   return (
-    <div
-      style={{
-        background: '#ffffff',
-        border: '1px solid #cbd5e1',
-        borderRadius: 12,
-        padding: '10px 14px',
-      }}
-    >
-      <div style={{ fontSize: 12, fontWeight: 700, color: '#334155', marginBottom: 4 }}>
-        Live Synchronized Stress–Strain Diagram (σ vs. ε)
+    <aside className="lx-cooling-graph" aria-label="Stress-strain diagram">
+      <div className="lx-cooling-graph__head">
+        <h3>Stress vs. Strain Curve</h3>
+        <span className="lx-cooling-graph__badge">
+          ε = {(eps * 100).toFixed(1)}%, σ ≈ {engMpa} MPa
+        </span>
       </div>
-      <svg viewBox="0 0 360 175" style={{ width: '100%', height: 'auto', display: 'block' }}>
-        <line x1={45} y1={150} x2={340} y2={150} stroke="#64748b" strokeWidth={1.5} />
-        <line x1={45} y1={150} x2={45} y2={15} stroke="#64748b" strokeWidth={1.5} />
-        <text x={315} y={166} fontSize={11} fill="#475569">
-          Strain ε
-        </text>
-        <text x={8} y={26} fontSize={11} fill="#475569">
-          σ (MPa)
-        </text>
+      <p className="lx-cooling-graph__why">
+        {eps <= 0.02
+          ? 'Elastic region: stress rises linearly with strain (Hooke’s law σ = Eε); bonds stretch reversibly.'
+          : eps <= 0.16
+            ? 'Uniform plastic strain hardening: dislocations multiply and strengthen the metal up to ultimate tensile strength (UTS).'
+            : 'Post-UTS necking: localized cross-sectional thinning causes engineering stress to drop while true stress keeps rising.'}
+      </p>
+      <svg viewBox="0 0 360 172" role="img" aria-label={`Stress vs strain curve at strain ${(eps * 100).toFixed(1)}%`}>
+        <line x1={52} y1={142} x2={336} y2={142} stroke="#64748b" strokeWidth={1.3} />
+        <line x1={52} y1={142} x2={52} y2={16} stroke="#64748b" strokeWidth={1.3} />
         {/* Engineering curve */}
         <path
-          d="M 45 150 L 64 80 Q 135 42 195 45 Q 265 48 325 78"
+          d="M 52 142 L 71 76 Q 140 40 198 43 Q 268 46 332 73"
           fill="none"
           stroke="#2563eb"
           strokeWidth={2.5}
@@ -897,7 +1002,7 @@ export const Materials2DGraph: React.FC<{
         {/* True stress curve */}
         {topicId === '3d:true-vs-engineering' && (
           <path
-            d="M 45 150 L 64 80 Q 160 32 325 18"
+            d="M 52 142 L 71 76 Q 165 30 332 18"
             fill="none"
             stroke="#be123c"
             strokeWidth={2.5}
@@ -909,19 +1014,26 @@ export const Materials2DGraph: React.FC<{
           <line
             x1={xPx}
             y1={yEng}
-            x2={Math.max(45, xPx - 19)}
-            y2={150}
+            x2={Math.max(52, xPx - 19)}
+            y2={142}
             stroke="#16a34a"
             strokeWidth={2.5}
             strokeDasharray="4 2"
           />
         )}
-        <circle cx={xPx} cy={yEng} r={5.5} fill="#2563eb" stroke="#fff" strokeWidth={1.5} />
+        <line x1={xPx} y1={142} x2={xPx} y2={yEng} stroke="#94a3b8" strokeWidth={1} strokeDasharray="2 2" />
+        <circle cx={xPx} cy={yEng} r={5.5} fill="#2563eb" stroke="#fff" strokeWidth={1.8} />
         {topicId === '3d:true-vs-engineering' && (
-          <circle cx={xPx} cy={yTrue} r={5.5} fill="#be123c" stroke="#fff" strokeWidth={1.5} />
+          <circle cx={xPx} cy={yTrue} r={5.5} fill="#be123c" stroke="#fff" strokeWidth={1.8} />
         )}
+        <text x={10} y={15} fontSize={10.5} fontWeight={600} fill="#334155">
+          Stress σ (MPa)
+        </text>
+        <text x={194} y={164} textAnchor="middle" fontSize={10.5} fontWeight={600} fill="#334155">
+          Strain ε (stretch ratio)
+        </text>
       </svg>
-    </div>
+    </aside>
   );
 };
 

@@ -10,11 +10,11 @@
 // Modes: Explore (free), Teach (guided), Practice (guided + check yourself),
 // Challenge (numbers hidden until you commit an answer).
 import React, { useMemo, useState } from 'react';
+import { WalkthroughPlay } from './WalkthroughPlay';
 import { Box, ChevronLeft, ChevronRight, Expand, Eye, RotateCcw, Shrink, Sparkles } from 'lucide-react';
 import { CELL_KINDS, formatDirection, unitCell, type CellKind } from '../visualization/crystalMath';
 import { UnitCellScene, type CameraPreset, type SceneState } from './UnitCellScene';
 import { CellDiagram } from './CellDiagram';
-import { MathText } from '../../utils/mathRenderer';
 import './crystalLab.css';
 
 type Mode = 'explore' | 'teach' | 'practice' | 'challenge';
@@ -47,21 +47,30 @@ const stepsFor = (cell: CellKind): LabStep[] => {
     {
       phase: 'observe',
       title: `Look at the ${m.short} cell`,
-      body: `This is one ${m.name} unit cell — the smallest repeating brick of the crystal. Drag to orbit it, pinch or scroll to zoom. The burgundy atom is the one that belongs wholly to this cell; the pale corner atoms are shared with neighbours.`,
+      body:
+        m.short === 'HCP'
+          ? `This is one ${m.name} hexagonal prism unit cell standing upright along its c-axis. Drag to orbit it, pinch or scroll to zoom. The 6 blue corner atoms on the bottom and top hexagons form the A layers (each shared by 6 cells = 1/6), the 2 amber face-center atoms sit at the center of the top and bottom hexagons (each shared by 2 cells = 1/2), and the 3 burgundy interior atoms form the B-layer triangle at mid-height (each 1 whole atom).`
+          : `This is one ${m.name} unit cell — the smallest repeating brick of the crystal. Drag to orbit it, pinch or scroll to zoom. The burgundy atom belongs wholly to this cell; the corner atoms are shared with neighbours.`,
       formula: 'n = atoms per unit cell',
       scene: { preset: 'iso', explode: 0, showLabels: true, showSharing: false },
     },
     {
       phase: 'identify',
       title: 'Name every atom by its place',
-      body: `Tap an atom. A corner atom sits where 8 cells meet, so only 1/8 of it is yours. A face atom is shared by 2 cells (1/2). The ${m.short === 'BCC' ? 'body-centre' : m.short === 'HCP' ? 'interior' : 'face'} atom belongs to this cell alone.`,
-      formula: 'corner = 1/8 · face = 1/2 · body = 1',
+      body:
+        m.short === 'HCP'
+          ? `Tap an atom. Each of the 12 hexagonal corner atoms sits where 6 hexagonal prisms meet (3 in the bottom layer, 3 in the top layer), so 1/6 of it belongs to this cell (12 × 1/6 = 2). The 2 top/bottom face-center atoms are shared by 2 cells (2 × 1/2 = 1). The 3 burgundy B-layer interior atoms sit completely inside the cell (3 × 1 = 3), giving n = 6 atoms.`
+          : `Tap an atom. A corner atom sits where 8 cubic cells meet, so only 1/8 of it is yours. A face atom is shared by 2 cells (1/2). The ${m.short === 'BCC' ? 'body-centre' : 'face'} atom belongs to this cell alone.`,
+      formula: m.short === 'HCP' ? 'corner = 1/6 · face = 1/2 · interior = 1' : 'corner = 1/8 · face = 1/2 · body = 1',
       scene: { preset: 'iso', explode: 0, showLabels: true, showSharing: true },
     },
     {
       phase: 'manipulate',
       title: 'Take it apart — then put it back',
-      body: `Slide "Explode" and watch each atom travel out along its own direction until its share is obvious: a corner atom is one eighth of a sphere. Try the 2 × 2 × 2 block too: corners that looked separate are the same atom, shared between cells.`,
+      body:
+        m.short === 'HCP'
+          ? `Slide "Explode" and watch the top/bottom hexagonal A-layers and the middle B-layer triangle separate radially so you can clearly count all 12 corner atoms, 2 face-center atoms, and 3 interior B-layer atoms.`
+          : `Slide "Explode" and watch each atom travel out along its own direction until its share is obvious: a corner atom is one eighth of a sphere. Try the 2 × 2 × 2 block too: corners that looked separate are the same atom, shared between cells.`,
       formula: 'explode: assembled → apart',
       scene: { preset: 'iso', explode: 0.6, showLabels: true, showSharing: true },
     },
@@ -103,8 +112,6 @@ export const CrystalLab: React.FC = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [answer, setAnswer] = useState<number | null>(null);
-  // User takeover (anatomy: when the reader acts during a guided tour, the
-  // tour stops driving that control and the state stays where they left it).
   const [explodeOverride, setExplodeOverride] = useState<number | null>(null);
   const [presetOverride, setPresetOverride] = useState<CameraPreset | null>(null);
   const [gl] = useState(() => (typeof window === 'undefined' ? true : webglAvailable()));
@@ -115,8 +122,6 @@ export const CrystalLab: React.FC = () => {
   const step = guided ? steps[Math.min(stepIdx, steps.length - 1)] : null;
   const hideNumbers = mode === 'challenge' && answer === null;
 
-  // The guided step drives the scene (camera, highlights, explode target) —
-  // unless the student has taken a control over, in which case their value wins.
   const scene: SceneState = {
     cell,
     explode: explodeOverride ?? (guided && step?.scene?.explode !== undefined ? step.scene.explode : explode),
@@ -154,6 +159,8 @@ export const CrystalLab: React.FC = () => {
         <h2 className="lx-h2">3D Visual Learner: Crystal Structures</h2>
         <p className="lx-meta">SC · BCC · FCC · HCP — one model drives the picture and every number below it.</p>
       </header>
+
+      <WalkthroughPlay count={steps.length} onStart={() => { setMode('teach'); setStepIdx(0); setAnswer(null); setExplodeOverride(null); setPresetOverride(null); }} onStep={(i) => { setStepIdx(i); setAnswer(null); setExplodeOverride(null); setPresetOverride(null); }} />
 
       <div className="lx-cl-modes" role="group" aria-label="Learning mode">
         {(['explore', 'teach', 'practice', 'challenge'] as Mode[]).map((m) => (
@@ -250,7 +257,15 @@ export const CrystalLab: React.FC = () => {
         <div className="lx-cl-selected" role="status">
           <strong>{selected.label}</strong>
           <span>
-            {selected.role === 'corner' ? 'Corner atom — shared by 8 cells, counts as 1/8.' : selected.role === 'face' ? 'Face atom — shared by 2 cells, counts as 1/2.' : selected.role === 'body' ? 'Body-centre atom — belongs to this cell alone, counts as 1.' : 'Interior atom — belongs to this cell alone, counts as 1.'}
+            {selected.role === 'corner'
+              ? cell === 'hcp'
+                ? 'Hexagonal corner atom — shared by 6 hexagonal prisms (3 per layer × 2 layers), counts as 1/6.'
+                : 'Corner atom — shared by 8 cubic cells, counts as 1/8.'
+              : selected.role === 'face'
+                ? 'Face-center atom — shared by 2 cells, counts as 1/2.'
+                : selected.role === 'body'
+                  ? 'Body-centre atom — belongs to this cell alone, counts as 1.'
+                  : 'Interior B-layer atom — sits inside the mid-plane (z = c/2) and belongs to this cell alone, counts as 1.'}
           </span>
           <button type="button" className="lx-btn lx-btn--sm lx-btn--ghost" onClick={() => setSelectedId(null)}>
             Clear

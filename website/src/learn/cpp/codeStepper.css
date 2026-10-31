@@ -48,9 +48,10 @@
   max-height: 460px;
   overflow: auto;
   padding: 10px 0;
-  border-radius: var(--lx-r);
-  background: var(--lx-dark);
-  font-family: var(--lx-mono);
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+  font-family: 'JetBrains Mono', Consolas, monospace;
   font-size: 13.5px;
   line-height: 1.7;
 }
@@ -58,24 +59,36 @@
   display: flex;
   gap: 12px;
   padding: 0 14px 0 0;
-  color: #cbd5e1;
+  color: #0f172a;
   white-space: pre;
 }
 .lx-cs-line.is-now {
-  background: rgba(99, 102, 241, 0.28);
-  box-shadow: inset 3px 0 0 #a5b4fc;
-  color: #fff;
+  background: #dbeafe;
+  box-shadow: inset 4px 0 0 #2563eb;
+  color: #0f172a;
+  font-weight: 600;
 }
 .lx-cs-ln {
   flex: none;
-  width: 34px;
+  width: 38px;
   text-align: right;
-  color: #64748b;
+  color: #94a3b8;
   user-select: none;
+  padding-right: 8px;
+  border-right: 1px solid #f1f5f9;
 }
 .lx-cs-line.is-now .lx-cs-ln {
-  color: #a5b4fc;
+  color: #2563eb;
+  font-weight: 700;
 }
+.lx-cs-line .tk-keyword { color: #7c3aed; font-weight: 600; }
+.lx-cs-line .tk-type { color: #2563eb; font-weight: 600; }
+.lx-cs-line .tk-io { color: #0d9488; font-weight: 600; }
+.lx-cs-line .tk-number { color: #c2410c; font-weight: 500; }
+.lx-cs-line .tk-string { color: #16a34a; }
+.lx-cs-line .tk-comment { color: #64748b; font-style: italic; }
+.lx-cs-line .tk-operator { color: #334155; font-weight: 500; }
+.lx-cs-line .tk-ident { color: #0f172a; }
 .lx-cs-side {
   display: flex;
   flex-direction: column;
@@ -217,11 +230,12 @@
   flex-direction: column;
   gap: 6px;
   padding: 12px 14px;
-  border-radius: var(--lx-r);
-  background: var(--lx-dark);
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
 }
 .lx-cs-console .lx-cs-tag {
-  color: #94a3b8;
+  color: #475569;
 }
 .lx-cs-console pre,
 .lx-cs-file pre {
@@ -230,15 +244,17 @@
   overflow: auto;
   white-space: pre-wrap;
   word-break: break-word;
-  font-family: var(--lx-mono);
+  font-family: 'JetBrains Mono', Consolas, monospace;
   font-size: 13.5px;
 }
 .lx-cs-console pre {
-  color: #e2e8f0;
+  color: #0f172a;
 }
 .lx-cs-console mark {
-  background: rgba(250, 204, 21, 0.25);
-  color: #fef08a;
+  background: #fef08a;
+  color: #854d0e;
+  padding: 1px 3px;
+  border-radius: 3px;
 }
 .lx-cs-empty {
   margin: 0;

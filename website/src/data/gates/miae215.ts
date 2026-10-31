@@ -299,24 +299,28 @@ const content: GateContent = {
    "id": "control",
    "name": "Control statements",
    "ch": "Weeks 4–5",
-   "blurb": "Ladders, logical operators, for/while, break/continue, nested loops. Most of the paper.",
+   "blurb": "Ladders, logical operators, for/while, break/continue, nested loops, and Week 4 systematic trace tables.",
    "topics": [
     "ifelse",
     "logic",
     "for",
     "while",
     "breakcont",
-    "nested"
+    "nested",
+    "trace-tables"
    ]
   },
   {
    "id": "arrays",
-   "name": "Arrays & C-strings",
+   "name": "Arrays, File I/O & Matrix Algebra",
    "ch": "Weeks 6–7",
-   "blurb": "1-D/2-D arrays, accumulators, the null terminator, index traps.",
+   "blurb": "1-D/2-D arrays, 6 initialization methods, compile vs. run-time array errors, <fstream> file I/O, matrix algebra, and C-strings.",
    "topics": [
     "arr1",
+    "arr-errors",
     "arr2",
+    "file-io",
+    "matrix-alg",
     "cstr"
    ]
   },
@@ -498,6 +502,38 @@ const content: GateContent = {
     }
    ],
    "cal": "7-step recipe",
+   "guide": "Part 5"
+  },
+  {
+   "id": "trace-tables",
+   "name": "Systematic trace tables, scientific tables & overflow checks (Week 4 Lec 2)",
+   "ch": "Week 4",
+   "lec": [],
+   "cal": "Week 4 In-Person Lecture 2",
+   "guide": "Part 5"
+  },
+  {
+   "id": "arr-errors",
+   "name": "6 array initialization methods & 8 compile vs. run-time errors (Week 7 Lec 1)",
+   "ch": "Week 7",
+   "lec": [],
+   "cal": "Week 7 In-Person Lecture 1",
+   "guide": "Part 5"
+  },
+  {
+   "id": "file-io",
+   "name": "Array File I/O with <fstream> (ifstream & ofstream 5-step recipe)",
+   "ch": "Week 7",
+   "lec": [],
+   "cal": "Week 7 In-Person Lecture 2",
+   "guide": "Part 5"
+  },
+  {
+   "id": "matrix-alg",
+   "name": "2-D matrix algebra: transpose, column sums, norms, swap & multiplication",
+   "ch": "Week 7",
+   "lec": [],
+   "cal": "Week 7 In-Person Lecture 2 & Exercise Part 2",
    "guide": "Part 5"
   }
  ],
@@ -2367,7 +2403,341 @@ const content: GateContent = {
      }
     ]
    }
-  }
+  },
+  {
+   "id": "L-trace-tables",
+   "topic": "trace-tables",
+   "name": "Systematic Line-by-Line Trace Tables, Scientific Formatting & Overflow Loops",
+   "calc": null,
+   "tex": "\\text{Trace Table: Line } \\to \\text{Variables } (i, j, x, y) \\to \\text{Output}",
+   "meaning": "Systematic line-by-line trace tables track uninitialized variables (G = Garbage), loop update order, scientific table formatting, and overflow rollover.",
+   "steps": [
+      "Number every executable line including the three parts of for(init; cond; update).",
+      "Track variable columns; mark uninitialized local variables as G (Garbage).",
+      "Add roundoff guard (e.g. + 1.0e-5 * dx) to loop termination conditions on floating-point ranges.",
+      "Trace integer wrap-around and double overflow (inf * 10 == inf)."
+   ],
+   "traps": [
+      "Assuming an uninitialized variable starts at 0; it contains garbage bytes.",
+      "Forgetting the loop update expression runs AFTER the loop body in each iteration."
+   ],
+   "seen": [],
+   "lec": [],
+   "guide": "Part 5",
+   "cal": "Week 4 In-Person Lecture 2 & Quiz 1",
+   "learn": {
+      "idea": "On every quiz and midterm, output questions are designed to defeat mental guessing. Number each statement (giving the three parts of `for(a; b; c)` their own line numbers), write a column for each variable starting at `G` (Garbage) until initialized, and update only the variable modified on that line. For numerical programming questions, remember the floating-point loop guard `+ 1.0e-5` so the final table row is never lost to binary roundoff.",
+      "when": [
+         "Multi-variable `for` / `while` output tracing where indices, signs (`j *= -1`), or array elements mutate inside the loop",
+         "Printing formatted tables of `x`, `sin(x)`, `exp(x)` in scientific notation with `N` intervals",
+         "Finding hardware limits of `unsigned long int` or `double` using a `while(1)` loop"
+      ],
+      "example": {
+         "title": "Week 4 Lecture 2 In-Person Q1 & Q2: Line-Numbered Variable Table Trace",
+         "given": "A `for` loop flipping `j *= -1` and accumulating `x += y`, followed by a `while(x < 35)` loop writing into `A[5]`",
+         "find": "Trace the exact console output and identify where `G` (Garbage) appears",
+         "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Part 1: Sign-flipping accumulator\n    int i, j;       // 1: i=G, j=G\n    double x, y;    // 2: x=G, y=G\n    j = -1;         // 3\n    x = 0.0;        // 4\n    y = 2.5;        // 5\n    //   6     7    11\n    for(i=0; i<=3; i++) {\n        x += y;     // 8\n        j *= -1;    // 9\n        cout << j << \"\\t\" << x << \"\\n\"; // 10\n    }\n    cout << \"\\ni = \" << i << \"\\n\"; // 12 (prints i = 4!)\n\n    // Part 2: Array filling with selective if(i % 2 == 0)\n    int A[5];       // A[0..4] all start as G (Garbage)!\n    x = 1.5;\n    i = 0;\n    while(x < 35) {\n        i++;\n        x = 2*x + 1;\n        if(i % 2 == 0) A[i] = x;\n    }\n    for(i=0; i<5; i++) cout << A[i] << \" \";\n    return 0;\n}",
+         "steps": [
+            {
+               "say": "In Part 1, `i` runs through `0, 1, 2, 3` (4 passes). On pass `i=0`: `x = 2.5`, `j = 1`. On pass `i=1`: `x = 5.0`, `j = -1`. On pass `i=2`: `x = 7.5`, `j = 1`. On pass `i=3`: `x = 10.0`, `j = -1`. After pass `i=3`, expression 11 increments `i` to `4`, condition 7 (`4 <= 3`) fails, and line 12 prints `i = 4`."
+            },
+            {
+               "say": "In Part 2, `A[0..4]` is declared without an initializer list, so all 5 slots start as `G` (Garbage). Pass 1 (`x=1.5 < 35`): `i=1`, `x = 4.0`, `1%2==0` is false (`A[1]` stays `G`). Pass 2 (`x=4.0 < 35`): `i=2`, `x = 9.0`, `2%2==0` is true (`A[2] = int(9.0) = 9`). Pass 3 (`x=9.0 < 35`): `i=3`, `x = 19.0` (`A[3]` stays `G`). Pass 4 (`x=19.0 < 35`): `i=4`, `x = 39.0`, `4%2==0` is true (`A[4] = 39`)."
+            },
+            {
+               "say": "When the final loop prints `A[0]` through `A[4]`, only `A[2] = 9` and `A[4] = 39` were assigned\u2014so the output is `G G 9 G 39`!"
+            }
+         ],
+         "answer": "Part 1 prints: 1 2.5 / -1 5 / 1 7.5 / -1 10 / i = 4. Part 2 prints: G G 9 G 39."
+      },
+      "quiz": [
+         {
+            "type": "mc",
+            "badge": "concept",
+            "q": "In Week 4 Lecture 2 Part 2 above, why does `cout << A[i]` print `G G 9 G 39`?",
+            "opts": [
+               "Because `int A[5];` is uninitialized and `if(i % 2 == 0)` only assigns `A[2]` and `A[4]`",
+               "Because `A[0]` is automatically `0` in C++",
+               "Because `while(x < 35)` never reaches `i = 4`",
+               "Because `A` is a `double` array"
+            ],
+            "ans": "a",
+            "why": "Local arrays without `{0}` contain garbage (`G`) in every element that is not explicitly written before being read."
+         },
+         {
+            "type": "mc",
+            "badge": "concept",
+            "q": "In Quiz 1 (Tuesday), you print 11 equally spaced values from `x = 1.0` to `x = 3.0` (`dx = 0.2`) using `for(x = 1.0; x <= 3.0 + 1.0e-5; x += dx)`. Why is `+ 1.0e-5` added to the upper bound?",
+            "opts": [
+               "To prevent binary floating-point roundoff (e.g., `x = 3.0000000000000004`) from skipping the 11th row `x = 3.0`",
+               "To print 12 rows instead of 11",
+               "Because `sin(x)` is undefined at `3.0`",
+               "To convert `x` from `float` to `int`"
+            ],
+            "ans": "a",
+            "why": "0.2 has no exact binary fraction; adding `0.2` ten times slightly exceeds `3.0`, so `x <= 3.0` can fail on the final step without `+ 1.0e-5`."
+         },
+         {
+            "type": "tf",
+            "badge": "concept",
+            "q": "For an `unsigned long int i`, when `i` reaches its maximum possible value, `(i + 1) == 0` evaluates to true.",
+            "ans": true,
+            "why": "Unsigned integers wrap around modulo $2^N$, so `MAX + 1` rolls over to `0`."
+         }
+      ]
+   }
+},
+{
+   "id": "L-arr-errors",
+   "topic": "arr-errors",
+   "name": "6 Ways to Initialize 1D/2D Arrays & 8 Compile-Time vs. Run-Time Errors",
+   "calc": null,
+   "tex": "\\text{double } B[2][3] = \\{0.0\\}; \\quad \\text{Compile-Time vs. Run-Time}",
+   "meaning": "6 valid array initialization patterns and distinguishing compile-time syntax errors (non-const dimensions, missing column bounds, array assignment B=A) from run-time errors (out-of-bounds, stack overflow, uninitialized garbage).",
+   "steps": [
+      "Choose array initialization: brace list, {0}, formula loop, cin, or ifstream.",
+      "Always specify the column dimension in 2D array declarations.",
+      "Use const int for compile-time fixed dimensions.",
+      "Copy arrays element-by-element with nested loops; never B = A."
+   ],
+   "traps": [
+      "Writing B = A; array names decay to constant pointers and cannot be assigned.",
+      "Omitting the column size in a 2D array: double B[2][] is a compile error."
+   ],
+   "seen": [],
+   "lec": [],
+   "guide": "Part 5",
+   "cal": "Week 7 In-Person Lecture 1 & Array Exercise Part 1",
+   "learn": {
+      "idea": "Week 7 Lecture 1 and the Array Part 1 Exercise test two core skills: (1) knowing all 6 valid ways to populate a 1-D or 2-D array, and (2) distinguishing **compile-time errors** (compiler stops immediately) from **run-time errors** (program compiles and runs, but crashes or outputs garbage). Remember: C++ never checks array subscript bounds at compile time!",
+      "when": [
+         "Identifying whether a buggy array snippet fails at compile time or run time",
+         "Fixing broken 1-D and 2-D array declarations, initializations, and copies",
+         "Choosing between `{0.0}`, loop formulas, `cin`, and `ifstream` to initialize arrays"
+      ],
+      "example": {
+         "title": "Week 7 Lecture 1 \u2014 Array Exercise Part 1 (Parts a\u2013h): Diagnose & Fix All 8 Errors",
+         "given": "8 buggy 2-D array code fragments (a) through (h) from the in-person exercise",
+         "find": "Classify each as Compile-Time or Run-Time, explain why, and write the exact C++ fix",
+         "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // a) FIX: Initialize array to 0 so reading A1[1][1] doesn't print garbage (Run-time)\n    int A1[2][3] = { 0 };\n    cout << \"\\n\" << A1[1][1];\n\n    // b) FIX: Reduce dimension from 100000000 to <= 10000 to prevent stack crash (Run-time)\n    int A2[1000][3] = { 0 };\n\n    // c) FIX: Use double instead of int to store real matrix values (Run-time truncation)\n    double A3[2][3] = { 0.0 };\n\n    // d) FIX: Make n and m const so A4[n][m] has compile-time constant bounds (Compile-time)\n    const int n = 2, m = 3;\n    int A4[n][m] = { 0 };\n\n    // e) FIX: Provide constant row & column sizes when no brace list is given (Compile-time)\n    int A5[10][10], B5[3][10], C5[10][3];\n\n    // f) FIX: Keep row in 0..1, col in 0..2, and initialize k=0 (Run-time out-of-bounds)\n    int A6[2][3] = { 0 }, i = 1, k = 0;\n    cout << \"\\n\" << A6[i][i];\n    A6[0][i] = 1; A6[i][2] = 3; A6[1][k] = 7;\n\n    // g) & h) FIX: Cannot use A7 = {...} or B8 = A8 after declaration (Compile-time)\n    // Must copy element-by-element using nested for loops:\n    int A8[2][3] = { 1, 2, 3, 4, 5, 6 }, B8[2][3];\n    for (int r = 0; r < 2; r++)\n        for (int c = 0; c < 3; c++)\n            B8[r][c] = A8[r][c];\n    return 0;\n}",
+         "steps": [
+            {
+               "say": "**Compile-time errors (d, e, g, h)**: `(d)` non-const variable dimensions `int A4[n][m]`; `(e)` empty dimensions `int A5[][]`, `B5[3][]`, `C5[][3]` without an initializer list; `(g)` assigning a brace list `A7 = {1,2,3,4,5,6}` after declaration; `(h)` whole-array assignment `B8 = A8`."
+            },
+            {
+               "say": "**Run-time errors (a, b, c, f)**: `(a)` reading uninitialized `A1[1][1]` prints garbage; `(b)` `int A2[100000000][3]` overflows the program stack and crashes at startup; `(c)` storing a real matrix in `int A3[2][3]` silently chops off decimals; `(f)` `A6[i+1][i+1]` (`A6[2][2]`), `A6[-1][i]`, `A6[i][3]`, and uninitialized `A6[1][k]` access memory outside `0..1` \u00d7 `0..2`."
+            },
+            {
+               "say": "Always remember: in C++, the array name by itself (`A8`) decays to a constant memory address, so it can **never** appear on the left-hand side of `=`!"
+            }
+         ],
+         "answer": "Compile-time: (d), (e), (g), (h). Run-time: (a), (b), (c), (f)."
+      },
+      "quiz": [
+         {
+            "type": "mc",
+            "badge": "concept",
+            "q": "Which of the following 2-D array declarations causes a **compile-time** error?",
+            "opts": [
+               "double B[][3] = { 1, 2, 3, 4, 5, 6 };",
+               "double B[2][] = { 1, 2, 3, 4, 5, 6 };",
+               "double B[2][3] = { 0.0 };",
+               "const int r = 2, c = 3; double B[r][c];"
+            ],
+            "ans": "b",
+            "why": "In C++, the column size (second dimension) must ALWAYS be specified so the compiler knows how many elements sit in each row in memory."
+         },
+         {
+            "type": "mc",
+            "badge": "concept",
+            "q": "What kind of error is `int A[2][3]; int i = 1; A[i][3] = 5;`?",
+            "opts": [
+               "Run-time error (column index 3 is out of bounds for valid columns 0, 1, 2)",
+               "Compile-time syntax error",
+               "Linker error",
+               "No error; C++ automatically resizes `A` to 4 columns"
+            ],
+            "ans": "a",
+            "why": "C++ does not check array bounds at compile time. Writing to column index 3 (the 4th column of a 3-column row) overwrites adjacent stack memory at run time."
+         },
+         {
+            "type": "tf",
+            "badge": "concept",
+            "q": "If `int A[5] = {1,2,3,4,5};` and `int B[5];`, you can copy `A` into `B` by writing `B = A;`.",
+            "ans": false,
+            "why": "`B = A;` is a compile-time error. You must copy element-by-element with a `for` loop: `for(i=0; i<5; i++) B[i] = A[i];`."
+         }
+      ]
+   }
+},
+{
+   "id": "L-file-io",
+   "topic": "file-io",
+   "name": "Array File I/O with <fstream>: The 5-Step ifstream & ofstream Recipe",
+   "calc": null,
+   "tex": "\\text{ifstream fin; fin.open(\"A.txt\"); if (!fin) exit(1); fin } \\gg A[i]; \\text{ fin.close();}",
+   "meaning": "The 5-step recipe for reading and writing data files with ifstream and ofstream: include fstream, declare stream, open file, check (!stream), read/write in loop, close stream.",
+   "steps": [
+      "Step 0: #include <fstream> and #include <cstdlib>.",
+      "Step 1: Declare ifstream fin; or ofstream fout;.",
+      "Step 2: fin.open(\"filename.txt\");.",
+      "Step 3: Check if (!fin) { cout << \"error\"; exit(1); }.",
+      "Step 4: Read element count n first, verify n <= NMAX, then loop fin >> A[i].",
+      "Step 5: fin.close(); so the stream object can be reused."
+   ],
+   "traps": [
+      "Reading past array bounds when file count n exceeds declared capacity NMAX.",
+      "Forgetting to call fin.close() before attempting to open a second file with fin."
+   ],
+   "seen": [],
+   "lec": [],
+   "guide": "Part 5",
+   "cal": "Week 7 In-Person Lecture 2",
+   "learn": {
+      "idea": "Once you open a file stream in C++, reading from `fin >> x` is 100% identical to reading from the keyboard with `cin >> x`, and writing to `fout << x` is 100% identical to printing to the screen with `cout << x`! Follow Dr. Gordon's 5-step recipe every time: (0) `#include <fstream>`, (1) declare `ifstream fin;` / `ofstream fout;`, (2) `.open(\"filename.txt\")`, (3) check `if (!fin) exit(1);`, (4) read/write with `>>` or `<<` inside a `for` loop (checking `if (n > NMAX)` first when the file starts with a count `n`), and (5) `.close()`.",
+      "when": [
+         "Reading 1-D or 2-D arrays from `.txt` data files (`A.txt`, `B.txt`)",
+         "Saving computed arrays or matrices to an output file (`C.txt`)",
+         "Reusing a single `ifstream fin` variable to read multiple files sequentially"
+      ],
+      "example": {
+         "title": "Week 7 Lecture 2 & Exercise Part 2 Q1: Read Two 3\u00d73 Matrices from A.txt and B.txt",
+         "given": "`A.txt` and `B.txt` each contain 9 numbers (3 rows \u00d7 3 columns) without a leading size `n`",
+         "find": "Read both 3\u00d73 matrices using 1-based indexing `A[1..3][1..3]`, compute the transpose $A^T$, and compute the column sums of $B$",
+         "code": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\nusing namespace std;\n\nint main() {\n    // Allocate 4x4 so we can use 1-based math indices 1..3 directly!\n    double A[4][4], B[4][4], At[4][4], S[4];\n    int i, j;\n    ifstream fin;\n\n    fin.open(\"A.txt\");\n    if (!fin) { cout << \"\\ninput file open error (A.txt)\"; exit(1); }\n    for (i = 1; i <= 3; i++)\n        for (j = 1; j <= 3; j++)\n            fin >> A[i][j];\n    fin.close();\n\n    fin.open(\"B.txt\");\n    if (!fin) { cout << \"\\ninput file open error (B.txt)\"; exit(1); }\n    for (i = 1; i <= 3; i++)\n        for (j = 1; j <= 3; j++)\n            fin >> B[i][j];\n    fin.close();\n\n    // Transpose: At[i][j] = A[j][i]\n    for (i = 1; i <= 3; i++)\n        for (j = 1; j <= 3; j++)\n            At[i][j] = A[j][i];\n\n    // Sum of each column j of B (spreadsheet column totals)\n    for (j = 1; j <= 3; j++) S[j] = 0.0;\n    for (i = 1; i <= 3; i++)\n        for (j = 1; j <= 3; j++)\n            S[j] += B[i][j];\n\n    return 0;\n}",
+         "steps": [
+            {
+               "say": "Declare `double A[4][4], B[4][4];` (size `3+1` by `3+1`) so mathematical indices `1..3` map directly to C++ indices `1..3` without off-by-one confusion."
+            },
+            {
+               "say": "Open `\"A.txt\"`, check `if (!fin)`, read all $3 \\times 3 = 9$ numbers with nested `i` and `j` loops (`fin >> A[i][j];`), and call `fin.close()` so `fin` can immediately open `\"B.txt\"`."
+            },
+            {
+               "say": "Form the transpose via `At[i][j] = A[j][i];` and initialize `S[j] = 0.0` before accumulating each column sum `S[j] += B[i][j];`."
+            }
+         ],
+         "answer": "See the complete 5-step `<fstream>` implementation above."
+      },
+      "quiz": [
+         {
+            "type": "mc",
+            "badge": "concept",
+            "q": "What is the most common reason `if (!fin)` evaluates to `true` when opening an input file `fin.open(\"A.txt\");`?",
+            "opts": [
+               "`A.txt` is not in the program's working/project directory (or its name is misspelled)",
+               "`A.txt` contains negative numbers",
+               "`#include <cmath>` was omitted",
+               "The array `A` was not initialized to `{0.0}`"
+            ],
+            "ans": "a",
+            "why": "An input file stream fails to open if the file does not exist in the working directory or is locked by another process."
+         },
+         {
+            "type": "mc",
+            "badge": "concept",
+            "q": "When `A.txt` starts with an integer `n` (the number of elements) followed by `n` doubles, why must you check `if (n > NMAX) exit(1);` BEFORE the `for(i=0; i<n; i++) fin >> A[i];` loop?",
+            "opts": [
+               "To prevent a run-time buffer overflow if the file specifies more elements than the declared capacity `A[NMAX]`",
+               "Because `fin >> n` closes the file automatically",
+               "Because `NMAX` is a floating-point variable",
+               "To sort the array in ascending order"
+            ],
+            "ans": "a",
+            "why": "If `A` has size `NMAX = 200` and the file says `n = 500`, reading 500 elements into `A[200]` writes past the end of the array and corrupts stack memory."
+         },
+         {
+            "type": "tf",
+            "badge": "concept",
+            "q": "After calling `fin.close();` on `A.txt`, you can reuse the exact same `ifstream fin;` variable to open `B.txt` with `fin.open(\"B.txt\");`.",
+            "ans": true,
+            "why": "Closing the stream disconnects it from the first file so the same `ifstream` object can open another file."
+         }
+      ]
+   }
+},
+{
+   "id": "L-matrix-alg",
+   "topic": "matrix-alg",
+   "name": "2-D Matrix Algebra in C++: Multiplication, Column Norms & Column Swapping",
+   "calc": null,
+   "tex": "D_{ij} = \\sum_{k=1}^m A_{ik} B_{kj}, \\quad \\|\\mathbf{v}_j\\| = \\sqrt{\\sum_{i=1}^n A_{ij}^2}",
+   "meaning": "1-based 2D matrix algorithms in C++: addition, triple-nested-loop matrix multiplication, Euclidean column norms, and in-place column swapping using temporary backups.",
+   "steps": [
+      "Allocate [NMAX+1][NMAX+1] for 1-based indexing matching math notation.",
+      "Matrix addition: C[i][j] = A[i][j] + B[i][j] with double loop.",
+      "Matrix multiplication: triple nested loop (i, j, k) with sum = 0.0 reset before k loop.",
+      "Column swap: backup = A[i][c1]; A[i][c1] = A[i][c2]; A[i][c2] = backup; inside a row loop."
+   ],
+   "traps": [
+      "Forgetting to reset sum = 0.0 inside the (i, j) loop before the k inner product loop.",
+      "Overwriting a column without a backup variable: A[i][2] = A[i][3]; A[i][3] = A[i][2]; destroys data."
+   ],
+   "seen": [],
+   "lec": [],
+   "guide": "Part 5",
+   "cal": "Week 7 In-Person Lecture 2 & Arrays Part 2 Exercise",
+   "learn": {
+      "idea": "2-D array algorithms translate linear algebra directly into nested `for` loops. Use 1-based indexing (`A[1..n][1..m]` inside an array declared as `A[NMAX+1][NMAX+1]`) whenever a problem gives mathematical formulas like $D_{ij} = \\sum_{k=1}^m A_{ik} B_{kj}$. For matrix multiplication, you need three nested loops (`i` for row of $A$, `j` for column of $B$, `k` for the dot-product summation). For single-column operations (like the norm of column 3 or swapping columns 2 and 3), only a single loop over the row index `i` is needed!",
+      "when": [
+         "Multiplying two matrices $D = A B$ or adding $C = A + B$",
+         "Computing the Euclidean norm $\\|\\mathbf{a}_{\\cdot,3}\\|_2 = \\sqrt{\\sum_{i=1}^n A_{i,3}^2}$ of a specific matrix column",
+         "Swapping two rows or two columns of a 2-D matrix in place"
+      ],
+      "example": {
+         "title": "Arrays Part 2 Exercise Q2 & Q3: Matrix Multiplication, Column Norm & Column Swap",
+         "given": "A $3 \\times 3$ matrix $A$ initialized by $A_{ij} = i + 10(j - 1)$ and $B_{ij} = i - 0.1(j - 1)$ for $i, j \\in \\{1, 2, 3\\}$",
+         "find": "Compute $D = AB$, find the Euclidean norm of column 3 of $A$, and swap columns 2 and 3 of $A$",
+         "code": "#include <iostream>\n#include <cmath>\nusing namespace std;\n\nint main() {\n    const int NMAX = 20;\n    int i, j, k, n = 3, m = 3, p = 3;\n    double A[NMAX+1][NMAX+1], B[NMAX+1][NMAX+1], D[NMAX+1][NMAX+1];\n    double sum, norm, backup;\n\n    // Initialize A and B (1-based indices 1..3)\n    for (i = 1; i <= n; i++) {\n        for (j = 1; j <= m; j++) {\n            A[i][j] = i + 10.0 * (j - 1);\n            B[i][j] = i - 0.1  * (j - 1);\n        }\n    }\n\n    // Matrix multiplication D = A * B\n    for (i = 1; i <= n; i++) {\n        for (j = 1; j <= p; j++) {\n            sum = 0.0;\n            for (k = 1; k <= m; k++) {\n                sum += A[i][k] * B[k][j];\n            }\n            D[i][j] = sum;\n        }\n    }\n\n    // Euclidean norm of 3rd column of A: sqrt(21^2 + 22^2 + 23^2) = sqrt(1454) = 38.1314\n    sum = 0.0;\n    for (i = 1; i <= n; i++) sum += pow(A[i][3], 2);\n    norm = sqrt(sum);\n    cout << \"\\nnorm of col 3 = \" << norm << \"\\n\";\n\n    // Swap columns 2 and 3 of A\n    for (i = 1; i <= n; i++) {\n        backup  = A[i][2];\n        A[i][2] = A[i][3];\n        A[i][3] = backup;\n    }\n    return 0;\n}",
+         "steps": [
+            {
+               "say": "With $A_{ij} = i + 10(j-1)$, column 1 is $[1, 2, 3]^T$, column 2 is $[11, 12, 13]^T$, and column 3 is $[21, 22, 23]^T$."
+            },
+            {
+               "say": "For $D = AB$, each entry $D_{ij}$ resets `sum = 0.0` and loops `k = 1..3` to accumulate `A[i][k] * B[k][j]`."
+            },
+            {
+               "say": "For the norm of column 3, fix the column index at `3` and loop `i = 1..3`: $21^2 + 22^2 + 23^2 = 441 + 484 + 529 = 1454$, so $\\text{norm} = \\sqrt{1454} \\approx 38.1314$. Then swap `A[i][2]` and `A[i][3]` across each row `i = 1..3` using `backup`."
+            }
+         ],
+         "answer": "norm of col 3 = 38.1314; after swap, col 2 is [21, 22, 23]^T and col 3 is [11, 12, 13]^T."
+      },
+      "quiz": [
+         {
+            "type": "mc",
+            "badge": "concept",
+            "q": "In the triple-nested loop for matrix multiplication $D_{ij} = \\sum_{k=1}^m A_{ik} B_{kj}$, where MUST `sum = 0.0;` be placed?",
+            "opts": [
+               "Inside the `i` and `j` loops, immediately BEFORE `for (k = 1; k <= m; k++)`",
+               "Once at the very top of `main()` before all three loops",
+               "Inside the innermost `k` loop on every pass",
+               "After `D[i][j] = sum;` at the end of `main()`"
+            ],
+            "ans": "a",
+            "why": "Each entry `D[i][j]` is a fresh dot product of row `i` and column `j`, so `sum` must be zeroed right before the `k` loop begins."
+         },
+         {
+            "type": "mc",
+            "badge": "concept",
+            "q": "Given $A_{ij} = i + 10(j - 1)$ for $1 \\le i, j \\le 3$, what is $\\sum_{i=1}^3 A_{i,3}^2$ (the squared norm of column 3)?",
+            "opts": [
+               "1454 (since $21^2 + 22^2 + 23^2 = 441 + 484 + 529$)",
+               "14 (since $1^2 + 2^2 + 3^2 = 14$)",
+               "434 (since $11^2 + 12^2 + 13^2 = 434$)",
+               "66 (since $21 + 22 + 23 = 66$)"
+            ],
+            "ans": "a",
+            "why": "For $j = 3$, $A_{1,3} = 21$, $A_{2,3} = 22$, $A_{3,3} = 23$, and $21^2 + 22^2 + 23^2 = 1454$."
+         },
+         {
+            "type": "tf",
+            "badge": "concept",
+            "q": "To compute the transpose $A^T$ of a $3 \\times 3$ matrix $A$ into a separate matrix `At`, you write `At[i][j] = A[j][i];` inside nested `i` and `j` loops.",
+            "ans": true,
+            "why": "Transposing swaps row and column indices: row `i`, column `j` of $A^T$ equals row `j`, column `i` of $A$."
+         }
+      ]
+   }
+}
  ],
  "videoStops": [
   {

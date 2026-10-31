@@ -1,0 +1,9 @@
+
+Q3. Correct the errors in array_example_2D_typical_errors
+so that the program compiles and runs without errors.
+Assume that the maximum possible array size is 10000.
+
+Try to make as small a number of program changes as possible
+when correcting the program, while keeping the original
+intentions of program.  Avoid deleting parts of the program
+if possible.

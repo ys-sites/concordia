@@ -211,6 +211,19 @@ const content: GateContent = {
     "cplx",
     "roots"
    ]
+  },
+  {
+   "id": "higher-order",
+   "name": "Chapter 3: Higher-order linear ODEs",
+   "ch": "Ch 3.1–3.6 · Lectures 9–14",
+   "blurb": "Wronskian, constant coefficients, undetermined coefficients, variation of parameters, and Cauchy–Euler equations.",
+   "topics": [
+    "wronskian",
+    "const-coeff",
+    "undet-coeff",
+    "var-param",
+    "cauchy-euler"
+   ]
   }
  ],
  "topics": [
@@ -345,6 +358,41 @@ const content: GateContent = {
     }
    ],
    "cal": "Zill 17.2"
+  },
+  {
+   "id": "wronskian",
+   "name": "Theory of higher-order linear equations & the Wronskian",
+   "ch": "Ch 3.1–3.2 · Lectures 9–10",
+   "lec": [],
+   "cal": "Zill 3.1–3.2"
+  },
+  {
+   "id": "const-coeff",
+   "name": "Homogeneous linear ODEs with constant coefficients",
+   "ch": "Ch 3.3 · Lecture 11",
+   "lec": [],
+   "cal": "Zill 3.3"
+  },
+  {
+   "id": "undet-coeff",
+   "name": "Undetermined coefficients (superposition approach)",
+   "ch": "Ch 3.4 · Lecture 12",
+   "lec": [],
+   "cal": "Zill 3.4"
+  },
+  {
+   "id": "var-param",
+   "name": "Method of variation of parameters",
+   "ch": "Ch 3.5 · Lecture 13",
+   "lec": [],
+   "cal": "Zill 3.5"
+  },
+  {
+   "id": "cauchy-euler",
+   "name": "Cauchy–Euler equations",
+   "ch": "Ch 3.6 · Lecture 14",
+   "lec": [],
+   "cal": "Zill 3.6"
   }
  ],
  "questions": [
@@ -3289,7 +3337,462 @@ const content: GateContent = {
      }
     ]
    }
-  }
+  },
+  {
+   "id": "M-wronskian",
+   "topic": "wronskian",
+   "name": "Wronskian, Fundamental Set & Superposition",
+   "calc": null,
+   "tex": "W(y_1, y_2) = \\begin{vmatrix} y_1 & y_2 \\\\ y_1' & y_2' \\end{vmatrix} = y_1 y_2' - y_2 y_1' \\neq 0 \\implies y(x) = c_1 y_1(x) + c_2 y_2(x) + y_p(x)",
+   "meaning": "Wronskian tests linear independence of solutions y\u2081, y\u2082 on interval I; general solution of nonhomogeneous linear ODE is y = y_c + y_p.",
+   "vars": [
+      [
+         "W(y_1, y_2)",
+         "Wronskian determinant",
+         "dimensionless / function of x"
+      ],
+      [
+         "y_c(x)",
+         "Complementary function",
+         "dependent variable"
+      ],
+      [
+         "y_p(x)",
+         "Particular solution",
+         "dependent variable"
+      ]
+   ],
+   "steps": [
+      "Check that the linear ODE has continuous coefficients and a_n(x) != 0 on interval I.",
+      "Compute W(y_1, y_2) = y_1 y_2' - y_2 y_1' and confirm W != 0 on I.",
+      "If only one solution y_1(x) is known, find y_2(x) via Reduction of Order: y_2 = y_1 * integral(e^(-integral P dx)/y_1^2 dx).",
+      "Combine complementary solution y_c = c_1 y_1 + c_2 y_2 with particular solution y_p to write y = y_c + y_p."
+   ],
+   "traps": [
+      "Computing Wronskian without putting equation in standard form first.",
+      "Assuming y_1, y_2 are independent when W = 0."
+   ],
+   "seen": [],
+   "lec": [],
+   "cal": "Zill 4.1 & 4.2",
+   "learn": {
+      "idea": "Think of two vectors in a 2D plane: if they point in different directions (non-zero determinant), you can reach any point in the plane by combining them. The Wronskian is that exact determinant test for functions! And if the system has an external push g(x), you just add one particular response y_p to the free homogeneous motion y_c.",
+      "when": [
+         "Verifying linear independence of solutions y\u2081, y\u2082 on an interval",
+         "Finding a second linearly independent solution using Reduction of Order",
+         "Checking the existence and uniqueness of solutions to an IVP"
+      ],
+      "example": {
+         "title": "Fundamental Set & Superposition of y'' - 9y = 0",
+         "given": "$y_1 = e^{3x}$ and $y_2 = e^{-3x}$ for $y'' - 9y = 0$",
+         "find": "verify fundamental set and write general solution",
+         "steps": [
+            {
+               "say": "Substitute both into the homogeneous ODE to verify solutions.",
+               "tex": "y_1'' - 9y_1 = 0,\\quad y_2'' - 9y_2 = 0"
+            },
+            {
+               "say": "Compute the Wronskian determinant.",
+               "tex": "W = e^{3x}(-3e^{-3x}) - e^{-3x}(3e^{3x}) = -6 \\neq 0"
+            },
+            {
+               "say": "Form the general solution by superposition.",
+               "tex": "y(x) = c_1 e^{3x} + c_2 e^{-3x}"
+            }
+         ],
+         "answer": "$y(x) = c_1 e^{3x} + c_2 e^{-3x}$"
+      },
+      "quiz": [
+         {
+            "type": "value",
+            "badge": "textbook",
+            "q": "Evaluate the Wronskian $W(e^{2x}, e^{5x})$ at $x = 0$.",
+            "answer": 3,
+            "unit": "",
+            "steps": [
+               "$W(e^{2x}, e^{5x}) = e^{2x}(5e^{5x}) - e^{5x}(2e^{2x}) = 3e^{7x}$",
+               "At $x = 0$: $W = 3e^0 = 3$"
+            ]
+         },
+         {
+            "type": "mc",
+            "badge": "exam",
+            "q": "Using Reduction of Order on $y'' - 4y' + 4y = 0$ given $y_1 = e^{2x}$, what is $y_2(x)$?",
+            "opts": [
+               "$x e^{2x}$",
+               "$e^{-2x}$",
+               "$x^2 e^{2x}$",
+               "$\\ln(x) e^{2x}$"
+            ],
+            "ans": "a",
+            "why": "Standard form has P(x) = -4, so e^(-int P dx) = e^(4x). y_2 = e^(2x) int (e^(4x)/e^(4x)) dx = x e^(2x)."
+         }
+      ]
+   }
+},
+{
+   "id": "M-const-coeff",
+   "topic": "const-coeff",
+   "name": "Homogeneous Linear ODEs with Constant Coefficients",
+   "calc": null,
+   "tex": "a m^2 + b m + c = 0 \\implies \\begin{cases} c_1 e^{m_1 x} + c_2 e^{m_2 x} & (\\Delta > 0) \\\\ c_1 e^{m_1 x} + c_2 x e^{m_1 x} & (\\Delta = 0) \\\\ e^{\\alpha x}(c_1 \\cos\\beta x + c_2 \\sin\\beta x) & (m = \\alpha \\pm i\\beta) \\end{cases}",
+   "meaning": "Substituting y = e^(mx) into ay'' + by' + cy = 0 gives the auxiliary equation am^2 + bm + c = 0. Distinct real roots give exponentials, repeated roots gain powers of x, and complex conjugate roots give damped sinusoids.",
+   "vars": [
+      [
+         "a m^2 + b m + c = 0",
+         "Auxiliary (characteristic) equation",
+         "algebraic equation"
+      ],
+      [
+         "\\Delta = b^2 - 4ac",
+         "Discriminant",
+         "real number"
+      ],
+      [
+         "\\alpha \\pm i\\beta",
+         "Complex conjugate roots",
+         "complex root"
+      ]
+   ],
+   "steps": [
+      "Replace y^(k) with m^k to write the auxiliary polynomial equation am^2 + bm + c = 0.",
+      "Solve for roots using factoring or the quadratic formula.",
+      "Case I (Distinct real m_1 != m_2): y = c_1 e^(m_1 x) + c_2 e^(m_2 x).",
+      "Case II (Repeated real root m_1 of multiplicity k): multiply by ascending powers of x: (c_1 + c_2 x + ... + c_k x^(k-1))e^(m_1 x).",
+      "Case III (Complex conjugate pair alpha +- i beta): write e^(alpha x)(c_1 cos beta x + c_2 sin beta x)."
+   ],
+   "traps": [
+      "Mixing up e^(alpha x) and cos(beta x) by putting i inside the trig functions.",
+      "Forgetting to multiply repeated roots by x."
+   ],
+   "seen": [],
+   "lec": [],
+   "cal": "Zill 4.3",
+   "learn": {
+      "idea": "An exponential e^(mx) is the only function whose shape doesn't change when you differentiate it\u2014it just drops down a factor of m. That lets us trade derivatives for powers of m and solve a regular quadratic equation!",
+      "when": [
+         "Any linear homogeneous differential equation with constant coefficients ay'' + by' + cy = 0"
+      ],
+      "example": {
+         "title": "IVP for 4y'' + 4y' + 17y = 0",
+         "given": "$4y'' + 4y' + 17y = 0$, $y(0) = -1$, $y'(0) = 2$",
+         "find": "particular solution satisfying initial conditions",
+         "steps": [
+            {
+               "say": "Solve the auxiliary quadratic equation.",
+               "tex": "4m^2 + 4m + 17 = 0 \\implies m = -\\frac{1}{2} \\pm 2i"
+            },
+            {
+               "say": "Write the general solution with alpha = -1/2, beta = 2.",
+               "tex": "y(x) = e^{-x/2}(c_1 \\cos 2x + c_2 \\sin 2x)"
+            },
+            {
+               "say": "Apply y(0) = -1 to find c_1, then y'(0) = 2 to find c_2.",
+               "tex": "c_1 = -1,\\quad c_2 = \\frac{3}{4}"
+            }
+         ],
+         "answer": "$y(x) = e^{-x/2}\\left(-\\cos 2x + \\frac{3}{4}\\sin 2x\\right)$"
+      },
+      "quiz": [
+         {
+            "type": "mc",
+            "badge": "lecture",
+            "q": "What is the general solution of $y''' + 3y'' - 4y = 0$?",
+            "opts": [
+               "$y = c_1 e^x + c_2 e^{-2x} + c_3 x e^{-2x}$",
+               "$y = c_1 e^x + c_2 e^{-2x} + c_3 e^{2x}$",
+               "$y = c_1 e^{-x} + e^{2x}(c_2 \\cos x + c_3 \\sin x)$",
+               "$y = (c_1 + c_2 x + c_3 x^2)e^{-2x}$"
+            ],
+            "ans": "a",
+            "why": "Auxiliary equation is (m - 1)(m + 2)^2 = 0, giving m = 1 (simple) and m = -2 (multiplicity 2)."
+         },
+         {
+            "type": "value",
+            "badge": "exam",
+            "q": "For $y'' - 6y' + 9y = 0$ with $y(0) = 2$ and $y'(0) = 8$, find $c_2$ in $y = c_1 e^{3x} + c_2 x e^{3x}$.",
+            "answer": 2,
+            "unit": "",
+            "steps": [
+               "$y(0) = c_1 = 2$.",
+               "$y'(0) = 3c_1 + c_2 = 8 \\implies 6 + c_2 = 8 \\implies c_2 = 2$."
+            ]
+         }
+      ]
+   }
+},
+{
+   "id": "M-undet-coeff",
+   "topic": "undet-coeff",
+   "name": "Method of Undetermined Coefficients (Superposition)",
+   "calc": null,
+   "tex": "a y'' + b y' + c y = g(x) \\implies y_p(x) = x^s \\cdot y_p^{\\text{trial}}(x), \\quad y(x) = y_c(x) + y_p(x)",
+   "meaning": "When g(x) consists of polynomials, exponentials, or sines/cosines, guess trial solution y_p with unknown coefficients. If any term duplicates y_c, multiply by x^s.",
+   "vars": [
+      [
+         "y_p^{\\text{trial}}(x)",
+         "Initial trial particular solution",
+         "function of x"
+      ],
+      [
+         "x^s",
+         "Duplication multiplier rule",
+         "multiplier"
+      ]
+   ],
+   "steps": [
+      "Solve the homogeneous ODE ay'' + by' + cy = 0 first to find y_c(x).",
+      "Set up the trial form for g(x): polynomials of degree n -> sum A_k x^k; e^(kx) -> A e^(kx); sines/cosines -> A cos beta x + B sin beta x.",
+      "If any trial term duplicates a term in y_c, multiply the entire trial group by x^s.",
+      "Substitute y_p into the ODE, equate like coefficients, and solve for constants."
+   ],
+   "traps": [
+      "Guessing y_p before finding y_c and missing duplication.",
+      "Only including sin(bx) instead of A cos(bx) + B sin(bx)."
+   ],
+   "seen": [],
+   "lec": [],
+   "cal": "Zill 4.4",
+   "learn": {
+      "idea": "If the right-hand side is e^(3x), plugging in A e^(3x) on the left will also produce e^(3x) terms\u2014unless e^(3x) gets wiped out to zero because it's already in y_c! When that happens, multiplying your guess by x prevents it from vanishing.",
+      "when": [
+         "Nonhomogeneous linear ODEs with constant coefficients and polynomial, exponential, or sinusoidal forcing"
+      ],
+      "example": {
+         "title": "y'' - 5y' + 4y = 8e^x",
+         "given": "$y'' - 5y' + 4y = 8e^x$",
+         "find": "general solution including resonance multiplier",
+         "steps": [
+            {
+               "say": "Find complementary function y_c.",
+               "tex": "m^2 - 5m + 4 = 0 \\implies y_c = c_1 e^x + c_2 e^{4x}"
+            },
+            {
+               "say": "Notice e^x duplicates y_c, so multiply trial by x.",
+               "tex": "y_p = A x e^x"
+            },
+            {
+               "say": "Substitute into ODE and equate coefficients.",
+               "tex": "-3A e^x = 8e^x \\implies A = -\\frac{8}{3}"
+            }
+         ],
+         "answer": "$y(x) = c_1 e^x + c_2 e^{4x} - \\frac{8}{3}x e^x$"
+      },
+      "quiz": [
+         {
+            "type": "mc",
+            "badge": "lecture",
+            "q": "What is the correct form of $y_p(x)$ for $y'' - 6y' + 9y = 5x e^{3x}$?",
+            "opts": [
+               "$x^2(Ax + B)e^{3x} = (Ax^3 + Bx^2)e^{3x}$",
+               "$(Ax + B)e^{3x}$",
+               "$x(Ax + B)e^{3x}$",
+               "$Ax^2 e^{3x}$"
+            ],
+            "ans": "a",
+            "why": "Homogeneous roots are m = 3, 3 so y_c = c_1 e^(3x) + c_2 x e^(3x). Both terms of (Ax+B)e^(3x) duplicate y_c, requiring multiplication by x^2."
+         },
+         {
+            "type": "value",
+            "badge": "exam",
+            "q": "For $y'' + 4y = 12$, what is the constant particular solution $y_p = A$?",
+            "answer": 3,
+            "unit": "",
+            "steps": [
+               "Try y_p = A => y_p'' = 0.",
+               "0 + 4A = 12 => A = 3."
+            ]
+         }
+      ]
+   }
+},
+{
+   "id": "M-var-param",
+   "topic": "var-param",
+   "name": "Method of Variation of Parameters (Lecture 13)",
+   "calc": null,
+   "tex": "y_p(x) = u_1(x) y_1(x) + u_2(x) y_2(x), \\quad u_1' = -\\frac{y_2 f(x)}{W}, \\quad u_2' = \\frac{y_1 f(x)}{W}",
+   "meaning": "Universal method for finding a particular solution y_p to y'' + P(x)y' + Q(x)y = f(x) for ANY continuous forcing function f(x).",
+   "vars": [
+      [
+         "f(x) = g(x)/a_2(x)",
+         "Standard-form forcing function",
+         "forcing per unit leading coeff"
+      ],
+      [
+         "W(y_1, y_2)",
+         "Wronskian of fundamental set",
+         "determinant"
+      ],
+      [
+         "W_1, W_2",
+         "Cramer's rule determinants",
+         "determinants"
+      ]
+   ],
+   "steps": [
+      "Divide ODE by leading coefficient a_2(x) to put in standard form y'' + P(x)y' + Q(x)y = f(x).",
+      "Find fundamental set y_1, y_2 and compute Wronskian W = y_1 y_2' - y_2 y_1'.",
+      "Compute u_1' = -y_2 f(x) / W and u_2' = y_1 f(x) / W.",
+      "Integrate u_1 = int u_1' dx and u_2 = int u_2' dx.",
+      "Assemble y_p = u_1 y_1 + u_2 y_2 and general solution y = y_c + y_p."
+   ],
+   "traps": [
+      "Forgetting to divide the ODE by a_2(x) to get standard form f(x) = g(x)/a_2(x).",
+      "Mixing up the negative sign: u_1' has the minus sign, u_2' is positive."
+   ],
+   "seen": [],
+   "lec": [],
+   "cal": "Zill 4.6",
+   "learn": {
+      "idea": "Think of c_1 y_1 + c_2 y_2 as a recipe with fixed weights. When an arbitrary outside force f(x) (like tan x or sec x) hits the system, we let the weights vary with x (u_1(x) and u_2(x)) to absorb the force at every instant.",
+      "when": [
+         "Nonhomogeneous 2nd-order ODEs where g(x) is not suitable for undetermined coefficients (e.g., sec x, tan x, 1/x)"
+      ],
+      "example": {
+         "title": "4y'' + 36y = csc(3x)",
+         "given": "$4y'' + 36y = \\csc(3x)$",
+         "find": "general solution using variation of parameters",
+         "steps": [
+            {
+               "say": "Standardize ODE by dividing by 4.",
+               "tex": "y'' + 9y = \\frac{1}{4}\\csc(3x) \\implies f(x) = \\frac{1}{4}\\csc(3x)"
+            },
+            {
+               "say": "Compute homogeneous fundamental set and Wronskian.",
+               "tex": "y_1 = \\cos(3x),\\; y_2 = \\sin(3x),\\quad W = 3"
+            },
+            {
+               "say": "Find u_1' and u_2' and integrate.",
+               "tex": "u_1 = -\\frac{x}{12},\\quad u_2 = \\frac{1}{36}\\ln|\\sin 3x|"
+            }
+         ],
+         "answer": "$y(x) = c_1\\cos(3x) + c_2\\sin(3x) - \\frac{x}{12}\\cos(3x) + \\frac{1}{36}\\sin(3x)\\ln|\\sin(3x)|$"
+      },
+      "quiz": [
+         {
+            "type": "mc",
+            "badge": "lecture",
+            "q": "In Lecture 13 Example 2 ($y'' - 4y' + 4y = (x+1)e^{2x}$), given $y_1 = e^{2x}$ and $y_2 = x e^{2x}$, what is the Wronskian $W(y_1, y_2)$?",
+            "opts": [
+               "$e^{4x}$",
+               "$2e^{4x}$",
+               "$x e^{4x}$",
+               "$1$"
+            ],
+            "ans": "a",
+            "why": "W = e^(2x)(2x+1)e^(2x) - x e^(2x)(2e^(2x)) = e^(4x)."
+         },
+         {
+            "type": "mc",
+            "badge": "exam",
+            "q": "For $y'' - 4y' + 4y = (x+1)e^{2x}$ with $W = e^{4x}$, what is the particular solution $y_p(x) = u_1 y_1 + u_2 y_2$?",
+            "opts": [
+               "$\\left(\\frac{x^3}{6} + \\frac{x^2}{2}\\right)e^{2x}$",
+               "$\\left(\\frac{x^3}{3} + x^2\\right)e^{2x}$",
+               "$\\left(-\\frac{x^3}{3} - \\frac{x^2}{2}\\right)e^{2x}$",
+               "$(x^2 + x)e^{2x}$"
+            ],
+            "ans": "a",
+            "why": "u_1 = -x^3/3 - x^2/2, u_2 = x^2/2 + x, so y_p = u_1 y_1 + u_2 y_2 = (x^3/6 + x^2/2)e^(2x)."
+         }
+      ]
+   }
+},
+{
+   "id": "M-cauchy-euler",
+   "topic": "cauchy-euler",
+   "name": "Cauchy\u2013Euler Equations (Lecture 14)",
+   "calc": null,
+   "tex": "a x^2 y'' + b x y' + c y = 0, \\quad y = x^m \\implies a m^2 + (b-a)m + c = 0",
+   "meaning": "Equidimensional linear ODEs with power coefficients a_k x^k. Substituting y = x^m yields auxiliary quadratic am(m-1) + bm + c = am^2 + (b-a)m + c = 0.",
+   "vars": [
+      [
+         "y = x^m",
+         "Power trial solution",
+         "power function"
+      ],
+      [
+         "a m^2 + (b-a)m + c = 0",
+         "Cauchy\u2013Euler auxiliary equation",
+         "algebraic equation"
+      ],
+      [
+         "\\ln x",
+         "Logarithmic factor for repeated/complex roots",
+         "logarithmic argument"
+      ]
+   ],
+   "steps": [
+      "Verify equidimensional Cauchy\u2013Euler form: x^2 y'', x y', y.",
+      "Substitute y = x^m to obtain auxiliary equation am^2 + (b-a)m + c = 0.",
+      "Case I (Distinct real m_1 != m_2): y = c_1 x^(m_1) + c_2 x^(m_2).",
+      "Case II (Repeated real root m_1): y = c_1 x^(m_1) + c_2 x^(m_1) ln x.",
+      "Case III (Complex roots alpha +- i beta): y = x^alpha [c_1 cos(beta ln x) + c_2 sin(beta ln x)].",
+      "For nonhomogeneous ax^2 y'' + bxy' + cy = g(x), divide by ax^2 first to find f(x) before Variation of Parameters."
+   ],
+   "traps": [
+      "Writing am^2 + bm + c = 0 instead of am^2 + (b-a)m + c = 0.",
+      "Forgetting to divide nonhomogeneous equations by ax^2 before using Variation of Parameters."
+   ],
+   "seen": [],
+   "lec": [],
+   "cal": "Zill 4.7",
+   "learn": {
+      "idea": "In constant-coefficient ODEs, e^(mx) is the magic function because derivatives just pull down m. When every derivative y^(k) is multiplied by x^k, the power function x^m becomes the magic function: differentiating drops the exponent by 1, and multiplying by x puts it right back to x^m!",
+      "when": [
+         "Equidimensional ODEs where derivative order matches power of x: a x^2 y'' + b x y' + c y = g(x)"
+      ],
+      "example": {
+         "title": "x^2 y'' - 3x y' + 3y = 2x^4 e^x",
+         "given": "$x^2 y'' - 3x y' + 3y = 2x^4 e^x$ on $(0, \\infty)$",
+         "find": "general solution via auxiliary equation and variation of parameters",
+         "steps": [
+            {
+               "say": "Solve auxiliary equation m(m-1) - 3m + 3 = 0.",
+               "tex": "m^2 - 4m + 3 = 0 \\implies y_c = c_1 x + c_2 x^3"
+            },
+            {
+               "say": "Standardize ODE: divide by x^2 to get f(x).",
+               "tex": "y'' - \\frac{3}{x}y' + \\frac{3}{x^2}y = 2x^2 e^x \\implies f(x) = 2x^2 e^x"
+            },
+            {
+               "say": "Compute Wronskian W(x, x^3) and integrate u_1, u_2.",
+               "tex": "W = 2x^3,\\; u_1 = (-x^2+2x-2)e^x,\\; u_2 = e^x"
+            }
+         ],
+         "answer": "$y = c_1 x + c_2 x^3 + 2x(x-1)e^x$"
+      },
+      "quiz": [
+         {
+            "type": "mc",
+            "badge": "lecture",
+            "q": "What is the general solution of $4x^2 y'' + 8x y' + y = 0$ on $(0, \\infty)$ (Lecture 14 Example 2)?",
+            "opts": [
+               "$y = c_1 x^{-1/2} + c_2 x^{-1/2}\\ln x$",
+               "$y = c_1 x^{-1/2} + c_2 x^{1/2}$",
+               "$y = c_1 e^{-x/2} + c_2 x e^{-x/2}$",
+               "$y = x^{-1/2}[c_1 \\cos(\\frac{1}{2}\\ln x) + c_2 \\sin(\\frac{1}{2}\\ln x)]$"
+            ],
+            "ans": "a",
+            "why": "Auxiliary equation is 4m(m-1) + 8m + 1 = 4m^2 + 4m + 1 = (2m+1)^2 = 0, giving repeated root m = -1/2."
+         },
+         {
+            "type": "mc",
+            "badge": "exam",
+            "q": "Solve the initial-value problem $4x^2 y'' + 17y = 0$, $y(1) = -1$, $y'(1) = -1/2$ (Lecture 14 Example 3).",
+            "opts": [
+               "$y = -x^{1/2}\\cos(2\\ln x)$",
+               "$y = -x^{1/2}\\sin(2\\ln x)$",
+               "$y = x^{1/2}[-\\cos(2\\ln x) + \\sin(2\\ln x)]$",
+               "$y = -x^{-1/2}\\cos(2\\ln x)$"
+            ],
+            "ans": "a",
+            "why": "Auxiliary equation: 4m^2 - 4m + 17 = 0 => m = 1/2 +- 2i. Applying y(1)=-1, y'(1)=-1/2 gives c_1 = -1, c_2 = 0."
+         }
+      ]
+   }
+}
  ],
  "videoStops": [
   {

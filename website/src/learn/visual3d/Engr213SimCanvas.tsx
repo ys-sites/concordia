@@ -4,7 +4,16 @@ import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 import type { Vec3 } from '../visualization/crystalMath';
 import { Arrow, CylinderRod } from '../crystal/SceneKit';
-import { coolingAt, coolingInputs } from './coolingModel';
+import {
+  circuitAt,
+  circuitInputs,
+  coolingAt,
+  coolingInputs,
+  massSpringAt,
+  massSpringInputs,
+  mixingTankAt,
+  mixingTankInputs,
+} from './coolingModel';
 
 const Pill: React.FC<{ pos: Vec3; text: string; bg?: string }> = ({ pos, text, bg }) => (
   <Html position={pos} center className="lx-cl-label" zIndexRange={[10, 0]}>
@@ -26,35 +35,19 @@ export const Engr213SimGroup: React.FC<{
       impellerRef.current.rotation.y += dt * 3.5;
     }
     if (massRef.current && topicId === '3d:mass-spring') {
-      const m = values.m ?? 1;
-      const c = values.c ?? 0.8;
-      const k = values.k ?? 9;
-      const F0 = values.F0 ?? 0;
-      const t = clockRef.current % 6;
-      const w0 = Math.sqrt(k / m);
-      const zeta = c / (2 * Math.sqrt(m * k));
-      let yDisp = 0;
-      if (F0 > 0 && c < 0.2) {
-        yDisp = Math.min(0.45, 0.06 * t * Math.sin(w0 * t));
-      } else if (zeta < 1) {
-        const wd = w0 * Math.sqrt(1 - zeta * zeta);
-        yDisp = 0.35 * Math.exp(-(c / (2 * m)) * t) * Math.cos(wd * t);
-      } else {
-        yDisp = 0.35 * (1 + w0 * t) * Math.exp(-w0 * t);
-      }
-      massRef.current.position.y = -0.15 + yDisp;
+      const ms = massSpringAt(massSpringInputs(values));
+      massRef.current.position.y = -0.15 + Math.max(-0.42, Math.min(0.42, ms.x * 0.35));
     }
   });
 
   // ── 34. Mixing Tank Problems ────────────────────────────────────────────────
   if (topicId === '3d:mixing-tank') {
-    const ci = values.ci ?? 0.8;
-    const ri = values.ri ?? 6;
-    const ro = values.ro ?? 6;
-    const A0 = values.A0 ?? 10;
-    const fillRatio = Math.min(0.92, Math.max(0.28, 0.6 + (ri - ro) * 0.04));
+    const inp = mixingTankInputs(values);
+    const state = mixingTankAt(inp);
+    const fillRatio = Math.min(0.92, Math.max(0.22, state.volume / 220));
     const liquidH = 1.1 * fillRatio;
-    const eqSalt = ci * 100;
+    const concSat = Math.min(1, Math.max(0, state.concentration / 1.4));
+    const liquidCol = new THREE.Color().lerpColors(new THREE.Color('#38bdf8'), new THREE.Color('#1d4ed8'), concSat);
     return (
       <group>
         {/* Outer Glass Tank Cylinder */}
@@ -73,9 +66,9 @@ export const Engr213SimGroup: React.FC<{
         <mesh position={[0, -0.6 + liquidH / 2, 0]}>
           <cylinderGeometry args={[0.55, 0.55, liquidH, 36]} />
           <meshPhysicalMaterial
-            color={ci > 0.4 ? '#2563eb' : '#38bdf8'}
+            color={liquidCol}
             transparent
-            opacity={0.72}
+            opacity={0.76}
             roughness={0.18}
             clearcoat={0.8}
           />
@@ -86,12 +79,13 @@ export const Engr213SimGroup: React.FC<{
           <CylinderRod start={[-0.32, 0, 0]} end={[0.32, 0, 0]} color="#0f172a" radius={0.025} />
           <CylinderRod start={[0, 0, -0.32]} end={[0, 0, 0.32]} color="#0f172a" radius={0.025} />
         </group>
-        {/* Inflow Pipe (Top Left) & Outflow Pipe (Bottom Right) */}
+        {/* Inflow Pipe (Top Left, Green) & Outflow Pipe (Bottom Right, Red) */}
         <CylinderRod start={[-0.95, 0.65, 0]} end={[-0.35, 0.65, 0]} color="#16a34a" radius={0.045} />
         <CylinderRod start={[0.55, -0.48, 0]} end={[1.0, -0.48, 0]} color="#be123c" radius={0.045} />
         <Pill
           pos={[0, 0.82, 0]}
-          text={`R_in = ${(ri * ci).toFixed(1)} kg/min · R_out = ${ro}(A/V) · A(0)=${A0} kg → A(∞)=${eqSalt.toFixed(0)} kg`}
+          text={`t = ${inp.t.toFixed(1)} min · Salt A(t) = ${state.saltKg.toFixed(1)} kg · Volume V(t) = ${state.volume.toFixed(0)} L`}
+          bg="rgba(15,23,42,0.92)"
         />
       </group>
     );
@@ -125,7 +119,7 @@ export const Engr213SimGroup: React.FC<{
         </mesh>
         <Pill
           pos={[0, 0.72, 0]}
-          text={`${t.toFixed(1)} min · Object ${Tnow.toFixed(1)} °C · Surroundings ${Tm} °C`}
+          text={`Time ${t.toFixed(1)} min · Object ${Tnow.toFixed(1)} °C · Surroundings ${Tm} °C`}
           bg="rgba(190,18,60,0.92)"
         />
       </group>
@@ -134,16 +128,9 @@ export const Engr213SimGroup: React.FC<{
 
   // ── 36. Mass–Spring Systems ─────────────────────────────────────────────────
   if (topicId === '3d:mass-spring') {
-    const m = values.m ?? 1;
-    const c = values.c ?? 0.8;
-    const k = values.k ?? 9;
-    const disc = c * c - 4 * m * k;
-    const regime =
-      Math.abs(disc) < 0.2
-        ? 'Critically Damped (Δ = 0)'
-        : disc < 0
-          ? 'Underdamped Oscillatory (Δ < 0)'
-          : 'Overdamped Non-Oscillatory (Δ > 0)';
+    const inp = massSpringInputs(values);
+    const state = massSpringAt(inp);
+    const yMass = -0.15 + Math.max(-0.42, Math.min(0.42, state.x * 0.35));
     return (
       <group>
         {/* Top Support Beam */}
@@ -151,33 +138,36 @@ export const Engr213SimGroup: React.FC<{
           <boxGeometry args={[1.2, 0.08, 0.4]} />
           <meshPhysicalMaterial color="#334155" metalness={0.4} roughness={0.3} />
         </mesh>
-        {/* Helical Spring Coils */}
+        {/* Helical Spring & Damper Struts */}
         {[-0.25, 0.25].map((x, idx) => (
           <CylinderRod
             key={idx}
             start={[x, 0.68, 0]}
-            end={[x, -0.1, 0]}
+            end={[x, yMass, 0]}
             color={idx === 0 ? '#2563eb' : '#64748b'}
             radius={idx === 0 ? 0.028 : 0.036}
           />
         ))}
         {/* Oscillating Mass Block */}
-        <group ref={massRef} position={[0, -0.15, 0]}>
+        <group ref={massRef} position={[0, yMass, 0]}>
           <mesh>
             <boxGeometry args={[0.78, 0.36, 0.42]} />
             <meshPhysicalMaterial color="#be123c" roughness={0.2} metalness={0.25} clearcoat={0.8} />
           </mesh>
         </group>
-        <Pill pos={[0, 0.9, 0]} text={`${regime} · ω₀ = ${Math.sqrt(k / m).toFixed(2)} rad/s`} />
+        <Pill
+          pos={[0, 0.9, 0]}
+          text={`t = ${inp.t.toFixed(1)} s · x(t) = ${state.x.toFixed(2)} m · ${state.regime}`}
+          bg="rgba(15,23,42,0.92)"
+        />
       </group>
     );
   }
 
   // ── 37. LR/RC Circuits ──────────────────────────────────────────────────────
   if (topicId === '3d:lr-rc-circuit') {
-    const mode = Math.round(values.circuitMode ?? 0);
-    const tau = values.tau ?? 1.5;
-    const E0 = values.E0 ?? 12;
+    const inp = circuitInputs(values);
+    const state = circuitAt(inp);
     const loopPts: Vec3[] = [
       [-0.75, -0.15, -0.45],
       [0.75, -0.15, -0.45],
@@ -202,10 +192,17 @@ export const Engr213SimGroup: React.FC<{
           <meshPhysicalMaterial color="#d97706" roughness={0.25} clearcoat={0.7} />
         </mesh>
         {/* Inductor L or Capacitor C (Right) */}
-        {mode === 0 ? (
+        {inp.mode === 0 ? (
           <mesh position={[0.75, -0.08, 0]}>
             <torusGeometry args={[0.16, 0.045, 16, 36]} />
-            <meshPhysicalMaterial color="#2563eb" roughness={0.2} metalness={0.35} clearcoat={0.8} />
+            <meshPhysicalMaterial
+              color="#2563eb"
+              emissive="#1d4ed8"
+              emissiveIntensity={state.fraction * 0.4}
+              roughness={0.2}
+              metalness={0.35}
+              clearcoat={0.8}
+            />
           </mesh>
         ) : (
           <group position={[0.75, -0.08, 0]}>
@@ -221,13 +218,8 @@ export const Engr213SimGroup: React.FC<{
         )}
         <Pill
           pos={[0, 0.65, 0]}
-          text={
-            mode === 0
-              ? `LR Series Circuit · Time Constant τ = L/R = ${tau} s · E₀ = ${E0} V`
-              : mode === 1
-                ? `RC Charging Circuit · Time Constant τ = RC = ${tau} s`
-                : `RC Discharging Circuit · Exponential Decay e^{-t/${tau}}`
-          }
+          text={`t = ${inp.t.toFixed(1)} s · ${state.label} = ${state.value.toFixed(2)} ${state.unit} · τ = ${inp.tau} s`}
+          bg="rgba(15,23,42,0.92)"
         />
       </group>
     );
@@ -267,155 +259,170 @@ export const Engr213SimGroup: React.FC<{
       })}
       <Pill
         pos={[0, 0.82, 0]}
-        text={`De Moivre: ${n} Roots Spaced by ${(360 / n).toFixed(0)}° on Circle of Radius r^(1/${n}) = ${rRoot.toFixed(2)}`}
+        text={`${n} Roots Spaced by ${(360 / n).toFixed(0)}° · Radius = ${rRoot.toFixed(2)}`}
       />
     </group>
   );
 };
 
-/** Synchronized Live 2D Mathematical Graph for ENGR 213 ODE Topics (34–38) */
+/** Synchronized Compact 2D Mathematical Graph for ENGR 213 ODE Topics (34, 36, 37, 38) */
 export const Engr213LiveGraph: React.FC<{
   topicId: string;
   values: Record<string, number>;
 }> = ({ topicId, values }) => {
-  const { pathD, asymY, title, yLabel, readout } = useMemo(() => {
+  const { pathD, asymY, asymLabel, title, xLabel, yLabel, dotX, dotY, dotLabel, explanation } = useMemo(() => {
     const pts: string[] = [];
     const N = 80;
     if (topicId === '3d:mixing-tank') {
-      const ci = values.ci ?? 0.8;
-      const ri = values.ri ?? 6;
-      const A0 = values.A0 ?? 10;
-      const Aeq = ci * 100;
+      const inp = mixingTankInputs(values);
+      const now = mixingTankAt(inp);
+      const maxMass = Math.max(160, inp.A0 * 1.15, now.equilibriumKg * 1.25);
       for (let i = 0; i <= N; i++) {
         const t = (i / N) * 50;
-        const A = Aeq + (A0 - Aeq) * Math.exp(-(ri / 100) * t);
-        const x = 45 + (i / N) * 290;
-        const y = 145 - Math.min(1, Math.max(0, A / 160)) * 120;
+        const st = mixingTankAt({ ...inp, t });
+        const x = 52 + (i / N) * 280;
+        const y = 142 - Math.min(1, Math.max(0, st.saltKg / maxMass)) * 114;
         pts.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`);
       }
-      const ay = 145 - Math.min(1, Aeq / 160) * 120;
+      const ay = 142 - Math.min(1, Math.max(0, now.equilibriumKg / maxMass)) * 114;
+      const dx = 52 + Math.min(1, Math.max(0, inp.t / 50)) * 280;
+      const dy = 142 - Math.min(1, Math.max(0, now.saltKg / maxMass)) * 114;
       return {
         pathD: pts.join(' '),
         asymY: ay,
-        title: 'Live Solution Curve A(t) — Salt Mass in Tank vs. Time t',
-        yLabel: 'A(t) kg',
-        readout: `Equilibrium Asymptote A(∞) = ${Aeq.toFixed(1)} kg`,
-      };
-    }
-    if (topicId === '3d:newton-cooling') {
-      const T0 = values.T0 ?? 160;
-      const Tm = values.Tm ?? 25;
-      const k = -(values.kMag ?? 0.12);
-      for (let i = 0; i <= N; i++) {
-        const t = (i / N) * 30;
-        const T = Tm + (T0 - Tm) * Math.exp(k * t);
-        const x = 45 + (i / N) * 290;
-        const y = 145 - Math.min(1, Math.max(0, T / 200)) * 120;
-        pts.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`);
-      }
-      const ay = 145 - (Tm / 200) * 120;
-      return {
-        pathD: pts.join(' '),
-        asymY: ay,
-        title: 'Live Solution Curve T(t) = T_m + (T₀ − T_m)e^{kt}',
-        yLabel: 'T(t) °C',
-        readout: `Ambient Asymptote T_m = ${Tm}°C`,
+        asymLabel: inp.ri === inp.ro ? `Steady salt (${now.equilibriumKg.toFixed(0)} kg)` : `cᵢ·V(t) reference`,
+        title: 'Salt Mass in Tank Over Time',
+        xLabel: 'Time (minutes)',
+        yLabel: 'Salt mass A(t) (kg)',
+        dotX: dx,
+        dotY: dy,
+        dotLabel: `${inp.t.toFixed(1)} min, ${now.saltKg.toFixed(1)} kg`,
+        explanation:
+          now.netRate >= 0
+            ? `Salt enters at ${now.rateIn.toFixed(2)} kg/min and leaves at ${now.rateOut.toFixed(2)} kg/min, so salt mass is rising.`
+            : `Salt leaves (${now.rateOut.toFixed(2)} kg/min) faster than it enters (${now.rateIn.toFixed(2)} kg/min), so salt mass is falling.`,
       };
     }
     if (topicId === '3d:mass-spring') {
-      const m = values.m ?? 1;
-      const c = values.c ?? 0.8;
-      const k = values.k ?? 9;
-      const F0 = values.F0 ?? 0;
-      const w0 = Math.sqrt(k / m);
-      const zeta = c / (2 * Math.sqrt(m * k));
+      const inp = massSpringInputs(values);
+      const now = massSpringAt(inp);
       for (let i = 0; i <= N; i++) {
         const t = (i / N) * 10;
-        let val = 0;
-        if (F0 > 0 && c < 0.2) val = Math.min(1, 0.12 * t * Math.sin(w0 * t));
-        else if (zeta < 1) val = Math.exp(-(c / (2 * m)) * t) * Math.cos(w0 * Math.sqrt(1 - zeta * zeta) * t);
-        else val = (1 + w0 * t) * Math.exp(-w0 * t);
-        const x = 45 + (i / N) * 290;
-        const y = 85 - val * 55;
+        const st = massSpringAt({ ...inp, t });
+        const x = 52 + (i / N) * 280;
+        const y = 85 - st.x * 52;
         pts.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`);
       }
+      const dx = 52 + Math.min(1, Math.max(0, inp.t / 10)) * 280;
+      const dy = 85 - now.x * 52;
       return {
         pathD: pts.join(' '),
         asymY: 85,
-        title: 'Live Displacement Response x(t) vs. Time t',
-        yLabel: 'x(t)',
-        readout: `Discriminant Δ = c² − 4mk = ${(c * c - 4 * m * k).toFixed(2)}`,
+        asymLabel: 'Equilibrium (x = 0)',
+        title: 'Mass Position Over Time',
+        xLabel: 'Time (seconds)',
+        yLabel: 'Position x(t) (m)',
+        dotX: dx,
+        dotY: dy,
+        dotLabel: `${inp.t.toFixed(1)} s, ${now.x.toFixed(2)} m`,
+        explanation: `Regime: ${now.regime} (Δ = c² − 4mk = ${now.discriminant.toFixed(2)}).`,
       };
     }
     if (topicId === '3d:lr-rc-circuit') {
-      const mode = Math.round(values.circuitMode ?? 0);
-      const tau = values.tau ?? 1.5;
+      const inp = circuitInputs(values);
+      const now = circuitAt(inp);
       for (let i = 0; i <= N; i++) {
         const t = (i / N) * 8;
-        const frac = mode === 2 ? Math.exp(-t / tau) : 1 - Math.exp(-t / tau);
-        const x = 45 + (i / N) * 290;
-        const y = 145 - frac * 115;
+        const st = circuitAt({ ...inp, t });
+        const x = 52 + (i / N) * 280;
+        const y = 142 - st.fraction * 110;
         pts.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`);
       }
+      const dx = 52 + Math.min(1, Math.max(0, inp.t / 8)) * 280;
+      const dy = 142 - now.fraction * 110;
       return {
         pathD: pts.join(' '),
-        asymY: mode === 2 ? 145 : 30,
-        title: 'Live Transient Response i(t) / q(t) vs. Time t',
-        yLabel: mode === 0 ? 'i(t)' : 'q(t)',
-        readout: `At t = τ (${tau} s), response reaches 63.2% of step change`,
+        asymY: inp.mode === 2 ? 142 : 32,
+        asymLabel: inp.mode === 2 ? 'Fully discharged (0)' : `Steady state (${now.steadyState.toFixed(1)} ${now.unit})`,
+        title: `${now.label} Over Time`,
+        xLabel: 'Time (seconds)',
+        yLabel: `${now.label} (${now.unit})`,
+        dotX: dx,
+        dotY: dy,
+        dotLabel: `${inp.t.toFixed(1)} s, ${now.value.toFixed(2)} ${now.unit}`,
+        explanation: `At time constant τ = ${inp.tau} s, the circuit completes 63.2% of its total transition.`,
       };
     }
-    // 38: Complex Roots Euler Cosine projection Re(e^{iθ})
+    // 38: Complex Roots Euler Cosine projection
     const n = Math.round(values.nRoots ?? 4);
+    const theta0 = ((values.thetaDeg ?? 60) * Math.PI) / 180;
     for (let i = 0; i <= N; i++) {
       const ang = (i / N) * 2 * Math.PI;
-      const x = 45 + (i / N) * 290;
-      const y = 85 - Math.cos(n * ang) * 50;
+      const x = 52 + (i / N) * 280;
+      const y = 85 - Math.cos(n * ang - theta0) * 48;
       pts.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`);
     }
+    const k0Ang = (theta0 >= 0 ? theta0 : theta0 + 2 * Math.PI) / n;
+    const dx = 52 + Math.min(1, Math.max(0, k0Ang / (2 * Math.PI))) * 280;
+    const dy = 85 - 48;
     return {
       pathD: pts.join(' '),
       asymY: 85,
-      title: `Real Part Re(z^n) = r cos(${n}θ) — ${n} Zero Crossings per Period`,
-      yLabel: 'Re(zⁿ)',
-      readout: `Angular Root Spacing Δθ = 2π/${n} = ${(360 / n).toFixed(1)}°`,
+      asymLabel: 'Zero axis',
+      title: `Harmonic Wave cos(${n}θ) Showing ${n} Root Cycles`,
+      xLabel: 'Angle θ (0° to 360°)',
+      yLabel: 'Real part',
+      dotX: dx,
+      dotY: dy,
+      dotLabel: `k = 0 (${((theta0 * 180) / Math.PI / n).toFixed(0)}°)`,
+      explanation: `The ${n} roots sit spaced equally by ${(360 / n).toFixed(1)}° around the circle of radius ${(Math.pow(values.modulusR ?? 8, 1 / n)).toFixed(2)}.`,
     };
   }, [topicId, values]);
 
   return (
-    <div
-      style={{
-        background: '#ffffff',
-        border: '1px solid #cbd5e1',
-        borderRadius: 12,
-        padding: '10px 14px',
-      }}
-    >
-      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, fontWeight: 700, color: '#334155', marginBottom: 4 }}>
-        <span>{title}</span>
-        <span style={{ color: '#be123c' }}>{readout}</span>
+    <aside className="lx-cooling-graph" aria-label={title}>
+      <div className="lx-cooling-graph__head">
+        <h3>{title}</h3>
+        <span className="lx-cooling-graph__badge">{dotLabel}</span>
       </div>
-      <svg viewBox="0 0 360 165" style={{ width: '100%', height: 'auto', display: 'block' }}>
-        <line x1={45} y1={145} x2={340} y2={145} stroke="#94a3b8" strokeWidth={1.2} />
-        <line x1={45} y1={145} x2={45} y2={15} stroke="#94a3b8" strokeWidth={1.2} />
+      <p className="lx-cooling-graph__why">{explanation}</p>
+      <svg viewBox="0 0 360 172" role="img" aria-label={`${title}. Selected point ${dotLabel}`}>
+        <line x1={52} y1={142} x2={336} y2={142} stroke="#64748b" strokeWidth={1.3} />
+        <line x1={52} y1={142} x2={52} y2={18} stroke="#64748b" strokeWidth={1.3} />
+        {/* Dashed reference / steady-state line */}
         <line
-          x1={45}
+          x1={52}
           y1={asymY}
-          x2={340}
+          x2={336}
           y2={asymY}
-          stroke="#16a34a"
-          strokeWidth={1.4}
+          stroke="#0f766e"
+          strokeWidth={1.5}
           strokeDasharray="5 4"
         />
+        <text x={332} y={Math.max(26, asymY - 5)} textAnchor="end" fontSize={10} fontWeight={600} fill="#0f766e">
+          {asymLabel}
+        </text>
+        {/* Solution curve */}
         <path d={pathD} fill="none" stroke="#be123c" strokeWidth={2.6} />
-        <text x={8} y={28} fontSize={11} fill="#475569">
+        {/* Vertical time guide & synchronized live dot */}
+        <line x1={dotX} y1={142} x2={dotX} y2={dotY} stroke="#94a3b8" strokeWidth={1} strokeDasharray="2 2" />
+        <circle cx={dotX} cy={dotY} r={5.5} fill="#be123c" stroke="#ffffff" strokeWidth={2} />
+        <text
+          x={Math.min(285, Math.max(58, dotX + 7))}
+          y={Math.max(26, dotY - 7)}
+          fontSize={10.5}
+          fontWeight={700}
+          fill="#be123c"
+        >
+          {dotLabel}
+        </text>
+        <text x={10} y={15} fontSize={10.5} fontWeight={600} fill="#334155">
           {yLabel}
         </text>
-        <text x={312} y={160} fontSize={11} fill="#475569">
-          Time t
+        <text x={194} y={164} textAnchor="middle" fontSize={10.5} fontWeight={600} fill="#334155">
+          {xLabel}
         </text>
       </svg>
-    </div>
+    </aside>
   );
 };
-

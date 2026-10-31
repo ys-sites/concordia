@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AlertTriangle, ChevronLeft, ChevronRight, FileText, Keyboard, Pause, Play, RotateCcw, Terminal } from 'lucide-react';
+import { tokenizeCpp } from '../../components/CppOptionView';
 import type { Trace, TraceStep } from './interpreter';
 import { inputFrom, traceCpp } from './interpreter';
 import './codeStepper.css';
@@ -129,7 +130,14 @@ export const CodeStepper: React.FC<{ code: string; questionId?: string; prompt?:
               <span className="lx-cs-ln lx-num" aria-hidden>
                 {n + 1 === step.line ? '▶' : n + 1}
               </span>
-              <code>{l || ' '}</code>
+              <code>
+                {tokenizeCpp(l).map((t, k) => (
+                  <span key={k} className={'tk-' + t.type}>
+                    {t.text}
+                  </span>
+                ))}
+                {l === '' ? ' ' : ''}
+              </code>
             </div>
           ))}
         </div>

@@ -6,6 +6,7 @@
 // Every number comes from crystalMath.ts. Families ⟨uvw⟩ are shown as the
 // whole set of equivalent arrows, faded, so a family is visibly not one arrow.
 import React, { useMemo, useState } from 'react';
+import { WalkthroughPlay } from './WalkthroughPlay';
 import { ChevronLeft, ChevronRight, Expand, RotateCcw, Shrink } from 'lucide-react';
 import {
   directionFamily,
@@ -180,6 +181,8 @@ export const DirectionLab: React.FC = () => {
         <h2 className="lx-h2">3D Visual Learner: Crystallographic Directions</h2>
         <p className="lx-meta">Pick a tail and a head — the calculation follows the arrow, step by step.</p>
       </header>
+
+      <WalkthroughPlay count={stepDefs.length} onStart={() => { setMode('teach'); setStepIdx(0); setAnswer(null); }} onStep={(i) => { setStepIdx(i); setAnswer(null); setCalcReveal(1); }} />
 
       <div className="lx-cl-modes" role="group" aria-label="Learning mode">
         {(['explore', 'teach', 'practice', 'challenge'] as Mode[]).map((m) => (

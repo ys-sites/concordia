@@ -1,0 +1,10 @@
+-IC:\TDM-GCC-64\lib\gcc\x86_64-w64-mingw32\9.2.0\include\c++
+-IC:\TDM-GCC-64\lib\gcc\x86_64-w64-mingw32\9.2.0\include\c++\x86_64-w64-mingw32
+-IC:\TDM-GCC-64\lib\gcc\x86_64-w64-mingw32\9.2.0\include\c++\backward
+-IC:\TDM-GCC-64\lib\gcc\x86_64-w64-mingw32\9.2.0\include
+-IC:\TDM-GCC-64\include
+-IC:\TDM-GCC-64\lib\gcc\x86_64-w64-mingw32\9.2.0\include-fixed
+-IC:\TDM-GCC-64\x86_64-w64-mingw32\include
+-IG:\mech215_2020\mech215_2020_new\2_variable_types\lectures\variable_types1\CodeLite_project
+-target
+x86_64-pc-windows-gnu
